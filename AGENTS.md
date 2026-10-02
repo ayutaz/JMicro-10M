@@ -16,5 +16,6 @@ The user has authorized Codex to implement, run, evaluate, repair, and improve t
 - Stop for genuinely missing credentials, OS elevation/restart, inaccessible hardware, or exhausted account/runtime capacity, and record the exact blocker and restart command. Do not turn a transient error into repeated identical retries.
 - Work on this project and its documented WSL/data environments. External publication, messages to other people, and paid cloud jobs need their own authorization. Do not expose authentication files or secrets in logs.
 - Use repository-local Git identity `yousan <ka1357amnbpdr@gmail.com>`. Commit verified, meaningful changes at appropriate milestones; do not automatically push or publish.
+- Current stop boundary (user request, 2026-10-03): finish Phase 4 and then stop. Do not start Phase 5 overfit/smoke/comparisons until the user resumes work.
 
 For the non-interactive runner, return the requested JSON result. `continue` means useful authorized work remains; `needs_user` means an external action is necessary; `complete` requires actual evidence that the requested roadmap goals have been met. A completed code change alone is not project completion.

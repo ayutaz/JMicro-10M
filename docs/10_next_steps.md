@@ -46,15 +46,17 @@
 
 ## Phase 4: 学習器・再開・4090実測
 
-- [ ] iMacから別のWindows＋RTX 4090 PCへ切り替え、WSL 3.x/Linuxで同じcommit/config/Tokenizer/sampleを復元する。
-- [ ] 実WSL version、distribution実行方式、GPU/driver、PyTorch/CUDAを記録し、hash/ID一致とCUDA動作を確認する。
-- [ ] `uint16` shards、document index、mmap loaderと消費済み位置の保存を作る。
-- [ ] AdamW/BF16 autocast、gradient accumulation、scheduler、checkpointを実装する。
-- [ ] 準備runから学習runへschema/台帳を拡張し、実際のtokens/steps、checkpoint、完了/失敗を記録する。
-- [ ] 本文NLL、window/stride、BPBとBase生成suiteのrunnerを実装・検証する。
-- [ ] 連続200 stepsと100 steps→保存→再開100 stepsのtoken列/loss/weightsを比較する。
-- [ ] syntheticと実shardでmicro batchを最大安定値まで増やし、backend/compile、VRAM、data wait、速度を測る。
-- [ ] 100M〜50Bの時間とストレージを実測から見積もる。
+- [x] iMacから別のWindows＋RTX 4090 PCへ切り替え、WSL 3.x/Linuxで同じconfig/Tokenizer/sampleを復元する。
+- [x] 実WSL version、distribution実行方式、GPU/driver、PyTorch/CUDAを記録し、hash/ID一致とCUDA動作を確認する。
+- [x] `uint16` shards、document index、mmap loaderと消費済み位置の保存を作る。
+- [x] AdamW/BF16 autocast、gradient accumulation、scheduler、checkpointを実装する。
+- [x] 準備runから学習runへschema/台帳を拡張し、実際のtokens/steps、checkpoint、完了/失敗を記録する。
+- [x] 本文NLL、window/stride、BPBとBase生成suiteのrunnerを実装・検証する。
+- [x] 連続200 stepsと100 steps→保存→再開100 stepsのtoken列/loss/weightsを比較する。
+- [x] syntheticと実shardでeager micro batchを最大安定値まで増やし、backend/compile、VRAM、data wait、速度を測る。
+- [x] 100M〜50Bの時間とストレージを実測から見積もる。
+
+[Phase 4実測・制約](21_phase4_completion.md)。ユーザー指定によりここで停止し、Phase 5は再開待ち。
 
 ## Phase 5: 最小pipelineと100M探索
 

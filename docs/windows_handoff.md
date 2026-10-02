@@ -1,6 +1,6 @@
 # 別PCで続きを進める: Windows / WSL / RTX 4090
 
-2026-10-02時点の再開手順。別PCでこの文書を最初に読み、上から順に環境と成果物を復元してPhase 4を進める。**Phase 0〜3は完了、本学習は未実施。次はRTX 4090で学習器・保存再開・最大安定バッチを検証する。** Windows実機のCUDA動作・速度はまだ測っていない。
+2026-10-02に作成した新規PC向け復元手順。2026-10-03に現在のPCでPhase 4のCUDA/BF16・学習器・保存再開・最大安定batch・評価を通過した。[実機完了記録](21_phase4_completion.md)を参照する。現在はユーザー指定により停止中。復元済みのPCでは以下を最初から繰り返さず、[最新状態](autonomous_status.md)と既存job/checkpointを確認する。Base/Chatの本学習は未実施。
 
 ## 引継ぎ先と現在地
 
@@ -170,9 +170,11 @@ export JMICRO_DATA_ROOT="$HOME/jmicro-data"
 mkdir -p "$JMICRO_DATA_ROOT"
 ```
 
-これは`configs/training/baseline.json`等にある環境変数名。**現時点では学習loaderが未実装で、download helperの復元先はproject root固定**。環境変数を設定しただけでdataが移動したり学習が始まったりはしない。Phase 4実装時にshard/checkpointのpathへ反映する。
+これは`configs/training/baseline.json`等にある環境変数名。download helperの復元先はproject root固定。学習loaderはPhase 4で実装済みで、shardはCLIの`--shards`、checkpointは`--output`で保存先を明示する。GPU排他lockは`JMICRO_DATA_ROOT`を使用する。環境変数を設定しただけでdataが移動したり学習が始まったりはしない。
 
 ## 6. この後に実装する順番
+
+この節は移行時の計画の履歴。2026-10-03に下記Phase 4作業を実装・監査済みで、現在は停止している。実際のcommand・証拠・制約は[Phase 4完了記録](21_phase4_completion.md)を使用する。次回はユーザー再開後にPhase 5へ進む。
 
 以下はこれから作る処理であり、現時点の実行commandはまだない。最初はT8Kで最小経路を成立させ、T4Kの比較へ広げる。
 

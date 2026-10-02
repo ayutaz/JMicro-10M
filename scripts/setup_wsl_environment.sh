@@ -91,4 +91,4 @@ PY
 run_dir=$(uv run --frozen --extra data --extra ml scripts/experiment.py prepare-run --name phase4-handoff-t8k --output-root reports/phase4 --tokenizer-artifact artifacts/phase2/8192/tokenizer.model --dataset-manifest data/phase1/processed/dataset_manifest.parquet)
 uv run --frozen --extra data --extra ml scripts/experiment.py verify-run "$run_dir"
 echo "Environment and artifacts checked. Reports: $project_root/reports/phase4"
-echo 'Phase 4 training loop, checkpoint resume, and batch benchmarks remain to be implemented.'
+echo 'Phase 4 training tools are available in scripts/train.py; consult docs/autonomous_status.md for completed gates and the user stop boundary before starting GPU work.'

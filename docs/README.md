@@ -23,7 +23,7 @@
 
 **現在地**: iMac上のPhase 0〜3が完了。データpilot、[4k/8k Tokenizer](18_phase2_completion.md)、[両モデル・cache・HF/native GGUF・Q8/Q4候補](19_phase3_completion.md)を検証した。モデル重みはランダム初期化。Python/依存は`uv add`で管理し、実行は`uv run`。
 
-**次の作業**: Phase 4でWindows/WSL＋RTX 4090へ切り替え、学習器・shard・保存再開・最大安定batchを検証する。GPU学習は未実施。最新の状態は[フェーズ別計画の全体表](15_project_roadmap.md#全体の順序)を参照する。
+**現在地**: [Phase 4の実GPU検証](21_phase4_completion.md)が完了し、ユーザー指定により停止中。次回再開後にPhase 5の100件overfitから進める。Base/Chatの本学習・能力目標は未達。最新の状態は[継続記録](autonomous_status.md)を参照する。
 
 **別PCでの再開入口**: [Windows/WSL＋RTX 4090の再開手順](windows_handoff.md)。GitHubの取得からHub成果物の復元、uv環境、CUDA確認、実装順までを順に実行できる。
 

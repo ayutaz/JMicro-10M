@@ -1,6 +1,6 @@
 # Codexによる環境整備・学習・改善の自動化
 
-ユーザー指定（2026-10-02）: 本プロジェクトの環境整備・実装・学習・評価・改善をCodexに継続して任せる。作業内容と実測結果は`autonomous_status.md`、方針はrootの`AGENTS.md`へ残す。学習pipeline自体はPhase 4でこれから実装する。
+ユーザー指定（2026-10-02）: 本プロジェクトの環境整備・実装・学習・評価・改善をCodexに継続して任せる。作業内容と実測結果は`autonomous_status.md`、方針はrootの`AGENTS.md`へ残す。2026-10-03にPhase 4の学習pipelineと実GPU検証が完了した。ユーザーの追加指定によりPhase 4で停止し、Phase 5は再開待ち。
 
 ## このアプリで続ける
 
@@ -43,7 +43,7 @@ runnerはprofileのinstallなしでも、起動するCodexに`approval_policy=ne
 
 `reports/automation/<UTC-id>/`に各回のprompt、JSONL events、stderr、最終JSON、最新resultを保存する。exit codeは0=要求達成、2=runner/CLIエラー、3=外部操作待ち、4=起動回数上限。`runner.lock`で二重runnerを防ぐ。強制終了後にlockが残った場合は記録されたPIDの終了を確認してから除去する。学習jobの二重起動はagentがcheckpoint/run記録とPIDを確認して避ける。
 
-コードの継続runnerと、長時間GPU学習のcheckpoint/監視/再開は別の機能。GPU側の永続job管理はPhase 4の実装へ含める。スリープ・再起動・ログイン切れでも永久に動くことは、この準備だけでは保証しない。
+コードの継続runnerと、長時間GPU学習のcheckpoint/監視/再開は別の機能。GPU側はPhase 4で排他lock、PID/boot ID/start ticks、stage/run記録、atomic checkpointとhashを実装し、hiddenのWindows `wsl.exe` supervisorで検証jobを保持した。スリープ・再起動・ログイン切れで永続実行は保証せず、中断時はcompleted-update checkpointから再開する。
 
 Pythonの実行はrunner・テスト・一時スクリプトを含め`uv run --frozen`経由に統一する。Python 3.12.7が未導入なら`uv python install 3.12.7`で導入し、依存は`uv sync --frozen`で復元する。固定環境を取得できない場合はblockerを記録し、system Pythonへ切り替えない。
 

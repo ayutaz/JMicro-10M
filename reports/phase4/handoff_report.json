@@ -1,0 +1,149 @@
+{
+  "status": "passed",
+  "phase": 4,
+  "created_at": "2026-10-02T16:58:14.429622Z",
+  "stop_boundary": "Stop now; Phase 5 requires user resumption",
+  "gates": {
+    "environment_artifacts_tests": "passed",
+    "resume_model_optimizer_scheduler_rng_sampler": "passed_exact",
+    "held_out_common_bytes_and_fixed_dev_generation": "passed",
+    "cuda_evaluation_rng_isolation": "passed",
+    "common_short_text_windows": "passed",
+    "compiled_bf16_logit_parity": "passed",
+    "capacity_backend_compile_synthetic_real": "passed"
+  },
+  "windows_wsl_observation": {
+    "observed_at": "2026-10-02T16:42:39.7452771Z",
+    "requested_wsl_package": "3.x",
+    "status": "observed_only",
+    "commands": [
+      {
+        "output": "WSL バージョン: 3.0.1.0\r\nカーネル バージョン: 6.18.40.1-1\r\nWSLg バージョン: 1.0.79\r\nMSRDC バージョン: 1.2.7214\r\nDirect3D バージョン: 1.611.1-81528511\r\nDXCore バージョン: 10.0.26100.1-240331-1435.ge-release\r\nWindows バージョン: 10.0.26100.6584",
+        "command": [
+          "wsl.exe",
+          "--version"
+        ],
+        "exit_code": 0
+      },
+      {
+        "output": "NAME      STATE           VERSION\r\n* Ubuntu    Running         2",
+        "command": [
+          "wsl.exe",
+          "--list",
+          "--verbose"
+        ],
+        "exit_code": 0
+      },
+      {
+        "output": "既定のディストリビューション: Ubuntu\r\n既定のバージョン: 2\r\nWSL1 は、現在のマシン構成ではサポートされていません。\r\nWSL1 を使用するには、\"Linux 用 Windows サブシステム\" オプション コンポーネントを有効にしてください。",
+        "command": [
+          "wsl.exe",
+          "--status"
+        ],
+        "exit_code": 0
+      }
+    ]
+  },
+  "compiled_bf16_logit_parity": {
+    "t8k": {
+      "max_logit_difference": 0.0625,
+      "tolerance": {
+        "atol": 0.05,
+        "rtol": 0.02
+      },
+      "batch": 8,
+      "context": 1024
+    },
+    "t4k": {
+      "max_logit_difference": 0.0625,
+      "tolerance": {
+        "atol": 0.05,
+        "rtol": 0.02
+      },
+      "batch": 8,
+      "context": 1024
+    }
+  },
+  "unsupported_optional_backends": [
+    {
+      "model": "t8k",
+      "backend": "flash",
+      "reason": "explicit non-null attention mask is unsupported by this installed Flash kernel",
+      "raw_report": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase4/gates-20261003/throughput/t8k-b8-flash-eager-real-014-1790959827733144178.json"
+    },
+    {
+      "model": "t4k",
+      "backend": "flash",
+      "reason": "explicit non-null attention mask is unsupported by this installed Flash kernel",
+      "raw_report": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase4/gates-20261003/throughput/t4k-b8-flash-eager-real-032-1790960169047982630.json"
+    }
+  ],
+  "completed_at": "2026-10-02T16:58:38.778115Z",
+  "throughput": {
+    "t8k": {
+      "maximum_stable_batch": 57,
+      "first_oom_batch": 58,
+      "capacity_definition": "94% CUDA allocator limit; desktop/evaluation/save headroom; 3 x 200 updates",
+      "confirmation_median_tokens_per_second": 225168.79837425635,
+      "confirmation_range_tokens_per_second": [
+        225145.80247779458,
+        225371.79276034213
+      ],
+      "fastest_measured": {
+        "batch": 8,
+        "backend": "default",
+        "compile": true,
+        "steady_tokens_per_second": 439655.70009777264,
+        "report": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase4/gates-20261003/throughput/t8k-b8-default-compile-real-015-1790959829810585001.json"
+      }
+    },
+    "t4k": {
+      "maximum_stable_batch": 64,
+      "first_oom_batch": 65,
+      "capacity_definition": "94% CUDA allocator limit; desktop/evaluation/save headroom; 3 x 200 updates",
+      "confirmation_median_tokens_per_second": 218410.56097898993,
+      "confirmation_range_tokens_per_second": [
+        218391.2704597771,
+        218488.6181529074
+      ],
+      "fastest_measured": {
+        "batch": 8,
+        "backend": "default",
+        "compile": true,
+        "steady_tokens_per_second": 448601.13412622374,
+        "report": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase4/gates-20261003/throughput/t4k-b8-default-compile-real-033-1790960171137601706.json"
+      }
+    }
+  },
+  "dev_bpb": {
+    "t8k": 2.092990235753675,
+    "t4k": 2.2775748394142
+  },
+  "quality_claim": "No trained Base/Chat capability claim; small Phase 4 validation runs only",
+  "trained_checkpoint_paths": {
+    "t8k": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase4/gates-20261003/resume-t8k/continuous/checkpoint-00000200.pt",
+    "t4k": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase4/gates-20261003/resume-t4k/continuous/checkpoint-00000200.pt"
+  },
+  "evaluation_elapsed_seconds_approx": {
+    "t8k": 361.970547914505,
+    "t4k": 400.2433638572693
+  },
+  "storage_bytes": {
+    "raw": 0,
+    "processed_pilot": 106523144,
+    "shards_both": 45069218,
+    "phase4_reports_checkpoints_snapshots": 1469791503,
+    "uv_download_cache": 19272829896,
+    "virtual_environment": 6072792110,
+    "free_linux_bytes": 980811743232
+  },
+  "auditor_sha256": "1fb3072ba703e5c7ca5fc64d59c1f09b1578254a7e2764a155bda124773b30c8",
+  "raw_evidence_sha256": {
+    "reports/phase4/gates-20261003/throughput/throughput_report.json": "4c5a805e9a844baf88b71462a83ef80ae8c32a7cc909d02e52405e13223c4705",
+    "reports/phase4/gates-20261003/resume-t8k/resume_report.json": "f2971c025c908ec7d50e467e1000147f5345deb857dc691a986317c21303f1ac",
+    "reports/phase4/gates-20261003/resume-t4k/resume_report.json": "2de6ab3aecaf5705ea27a6d16e2e1f58046603ea0c8b04b39ed6d13a425446f4",
+    "reports/phase4/gates-20261003/evaluation-t8k.json": "1f1745dfbec8132903945be59bde86b28d16ffa603f233d0bdec20b590fbfd85",
+    "reports/phase4/gates-20261003/evaluation-t4k.json": "e52d6858d7eaf1e0465e970a301286cdcb03d71c9ffe0a8f262f8c70a561a766",
+    "reports/phase4/gates-20261003/common_short_windows.json": "08e348ca07d68ecf1b57da0134a67827a020a5f0925dfadbf25f545e25129429"
+  }
+}

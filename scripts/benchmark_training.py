@@ -11,7 +11,7 @@ import time
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 import numpy as np
 import torch
-from jmicro.experiment import ROOT, now, read_json, write_json
+from jmicro.experiment import ROOT, now, read_json, sha256, write_json
 from jmicro.shards import Shard
 from jmicro.tokenizer import Tokenizer
 from jmicro.training import Trainer, evaluate_body, generate_suite, gpu_lock
@@ -24,7 +24,7 @@ def worker(args):
         "context": 1024, "accumulation": 1, "effective_batch_tokens": args.batch * 1024,
         "backend": args.backend, "compile": args.compile, "data_kind": args.data_kind,
         "memory_fraction_limit": 0.94, "warmup": args.warmup,
-        "measured_updates": args.steps, "created_at": now()}
+        "measured_updates": args.steps, "created_at": now(), "source_sha256": sha256(Path(__file__))}
     started = time.perf_counter()
     try:
         with gpu_lock("cuda"):
@@ -41,11 +41,17 @@ def worker(args):
                     return torch.from_numpy(ids[:,:-1].copy()), torch.from_numpy(ids[:,1:].copy()), 0
                 trainer.sampler.batch = batch
             torch.cuda.reset_peak_memory_stats()
+            print(json.dumps({"phase": "first_update", "compile": args.compile, "batch": args.batch}), flush=True)
             first = trainer.step()
             report["first_update_seconds"] = first["seconds"]
             for _ in range(max(0, args.warmup-1)):
                 trainer.step()
-            metrics = [trainer.step() for _ in range(args.steps)]
+            metrics = []
+            for index in range(args.steps):
+                metrics.append(trainer.step())
+                if (index+1) % 50 == 0:
+                    print(json.dumps({"phase": "measuring", "updates": index+1, "total": args.steps,
+                                      "tokens_per_second": metrics[-1]["tokens_per_second"]}), flush=True)
             report.update(status="passed", steady_tokens_per_second=statistics.median(r["tokens_per_second"] for r in metrics),
                 steady_seconds=sum(r["seconds"] for r in metrics),
                 data_wait_seconds=sum(r["data_wait_seconds"] for r in metrics),
@@ -81,9 +87,20 @@ def worker(args):
 def orchestrate(args):
     args.output.mkdir(parents=True, exist_ok=True)
     results = []
+    cache = read_json(args.output / "progress.json")["results"] if args.resume else []
+    used = set()
     def run(model, batch, backend="default", compiled=False, kind="real", steps=8, warmup=4):
+        for index, cached in enumerate(cache):
+            if index in used or cached["status"] not in ("passed","oom"):
+                continue
+            if all(cached.get(key) == value for key,value in dict(model=model,batch=batch,backend=backend,
+                   compile=compiled,data_kind=kind,measured_updates=steps,warmup=warmup).items()):
+                used.add(index)
+                results.append(cached)
+                print(json.dumps({"reused": cached["report"], "status": cached["status"]}), flush=True)
+                return cached
         label = f"{model}-b{batch}-{backend}-{'compile' if compiled else 'eager'}-{kind}-{len(results):03d}"
-        output = args.output / f"{label}.json"
+        output = args.output / f"{label}-{time.time_ns()}.json"
         command = [sys.executable, str(Path(__file__).resolve()), "--worker", "--model", model,
             "--batch", str(batch), "--backend", backend, "--data-kind", kind,
             "--data-root", args.data_root, "--output", str(output), "--steps", str(steps), "--warmup", str(warmup)]
@@ -151,6 +168,7 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--data-root", default=str(Path.home() / "jmicro-data"))
     parser.add_argument("--worker", action="store_true")
+    parser.add_argument("--resume", action="store_true", help="Reuse passed/oom probes after fixing a failed gate")
     parser.add_argument("--model", choices=["t8k", "t4k"], default="t8k")
     parser.add_argument("--batch", type=int, default=8)
     parser.add_argument("--backend", choices=["default", "math", "flash"], default="default")

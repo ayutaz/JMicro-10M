@@ -2,7 +2,7 @@
 
 日本語の短文生成と数ターンの雑談を目的に、約10Mの言語モデルをTokenizerからスクラッチ構築する。計画は[フェーズ別実行計画](docs/15_project_roadmap.md)、設計・調査一覧は[docs](docs/README.md)を参照。
 
-Phase 0〜3が完了。データpilot、4k/8k Tokenizer、約10Mモデル、cache、HF/実float GGUF、Q8/Q4候補と推論入口をiMacで検証した。[Tokenizer完了記録](docs/18_phase2_completion.md)、[モデル・export完了記録](docs/19_phase3_completion.md)を参照する。重みはランダム初期化で、本学習は未実施。次のPhase 4ではWindows＋RTX 4090＋ユーザー指定WSL 3.x/Linuxへ切り替え、学習器・保存再開・最大安定batchを検証する。
+Phase 0〜4が完了。データpilot、4k/8k Tokenizer、約10Mモデル、cache、HF/実float GGUFをiMacで検証し、WSL＋RTX 4090で学習器・保存再開・最大安定batch・評価を実測した。[Tokenizer完了記録](docs/18_phase2_completion.md)、[モデル・export完了記録](docs/19_phase3_completion.md)、[Phase 4完了記録](docs/21_phase4_completion.md)を参照する。Phase 4は小さいGPU検証runで、Base/Chatの本学習と能力目標は未達。ユーザー指定によりPhase 4で停止し、Phase 5は未開始。
 
 **別PCで続きを進める場合は[Windows/WSL＋RTX 4090の再開手順](docs/windows_handoff.md)から始める。** private GitHubのclone、public Hugging Face成果物の復元、uv環境・CUDA確認、Phase 4の実装順と次の担当への引継ぎ文面をまとめている。
 

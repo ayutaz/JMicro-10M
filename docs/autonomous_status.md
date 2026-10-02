@@ -8,7 +8,20 @@
 
 2026-10-03の追加指定: Python実行は環境確認・自律runner・テスト・一時スクリプトも含め`uv run --frozen`経由に統一する。Pythonは3.12.7、導入は`uv python install`、依存復元は`uv sync --frozen`、依存変更は`uv add`。system Pythonを直接呼ばず、固定環境が取得できない場合も代替しない。rootの`AGENTS.md`に恒久ルールとして追記した。
 
+2026-10-03の停止指定: 今の区切りはPhase 4完了まで。完了証拠・予算・次のcommandを記録してコミットしたら停止する。ユーザーが再開するまでPhase 5のoverfit/10M smoke/100M比較を起動しない。Git identityはlocalの`yousan <ka1357amnbpdr@gmail.com>`。
+
 ## 実際の状態
+
+**最新: 2026-10-03 01:58 JSTにPhase 4監査成功。ユーザー指定により停止。** 基準は[Phase 4完了記録](21_phase4_completion.md)とGit保存の`reports/phase4/handoff_report.json`。
+
+- T8K/T4Kともsource-boundの連続200 vs 100+100で消費列digest / loss / weights / optimizer / scheduler / RNG / samplerが完全一致。64 tests / skip 0、CUDA評価RNG保全、共通bytes・本文一度採点・共通短文window、compile BF16 logitsの既定許容差内一致を監査した。
+- dev 924文書 / 共通1,633,458 bytes、固定dev 80 prompt × 5 decoding条件を各モデルで評価。test未使用。検証checkpointのEOS停止0/80で、Base/Chat能力目標は未達と明記した。
+- eager/default SDPA、FP32 parameters/BF16 autocast、context 1024、CUDA allocator 94%上限で、最大安定micro batchはT8K **57**（58 OOM）/ T4K **64**（65 OOM）。各3×200更新と評価/保存を通過。定常中央値225,169 / 218,411 tokens/s。
+- 測定点の最高速度はcompile / batch 8で439,656 / 448,601 tokens/s。compile容量は未探索。Flash-onlyはnon-null mask非対応でraw失敗を保持し、成功と扱わない。default/math/compile-defaultは実測成功。
+- 100M〜50Bのcompute時間と実ストレージを`reports/phase4/resource_budget.md`に保存。T8K eager最大batchの10B computeは約12.34h、評価/save/比較・取得処理は別加算。master corpus・Base/Chatの長期本学習は未実施。
+- Linuxの`reports/phase4/gates-20261003/`に全ログ・snapshot・checkpointを保持。小さい集約reportをWindowsへコピーしGitへ保存。GPU jobは終了済み。Phase 5は開始していない。
+
+以下は復旧・実装途中の履歴:
 
 最新の会話内実測（2026-10-03 01:13〜01:25 JST。以下の旧blocker記録より優先）:
 
@@ -47,16 +60,27 @@
 
 ## 実行中ジョブ
 
-学習ジョブはまだ開始していない。以降はPID、起動command、run directory、checkpoint、終了/再開条件を記録する。
+**実行中GPU jobなし。** Phase 4 supervisorは01:56 JSTに終了（job.json `complete`）、最終監査は01:58 JSTに終了（handoff `passed`）。完了後のGPU compute一覧は空、Windows supervisor PID 35316の終了を確認した。Phase 5を開始せず停止する。
 
-2026-10-03の再確認ではWindows上にPython/uv学習プロセスを観測せず、`reports/automation/runner.lock`も未配置。`nvidia-smi`のプロセス一覧には表示権限不足のPIDがあり、WSL一覧も取得できないため、Linuxを含む全ジョブの不在は確認できていない。再開先でジョブ・checkpointを改めて確認する。
+履歴: 2026-10-03 01:32 JSTにPhase 4の検証supervisorを起動。Windows `wsl.exe` PID **35316**、起動記録`reports/phase4/gates-20261003/launcher.json`。Linux checkout `/home/aihub_ubuntu/src/japanese-tiny-llm-10m`、Linux PID 404 / boot ID / start ticksとstageは同checkoutの`reports/phase4/gates-20261003/job.json`。Windows supervisorログは同名directory、各stageのログ・run/checkpointはLinux側へ永続化。
+
+command: `bash scripts/run_phase4_job.sh scripts/validate_phase4.py --output reports/phase4/gates-20261003`。T8K/T4Kのsource-bound checkpointによる200 vs 100+100、全dev BPB・固定dev生成suite、最大batch/backend/compile/synthetic比較を順番に行い、Phase 4で終了する。CUDA jobは`~/jmicro-data/gpu.lock`で排他。Phase 5へ自動遷移しない。
+
+先の`resume-bf16-20261003`は終了済み（loss/weights差0）。全64 tests / skip 0をLinuxで実行済み。コードはWindows側`3168d79`、環境整備分は`db6ed27`としてコミットした。Git local identityはWindows/WSL両方で設定済み。
+
+起動前にLinux/WindowsプロセスとGPU compute一覧を確認し、重複GPU jobがないことを確認した。先の「WSLアクセス不可・学習なし」は履歴であり、現在の状態ではない。
 
 ## 次の具体的な作業
 
-1. 次の再開では外部runnerの復元結果を採用し、既存Linuxコピー・成果物・ジョブを確認する。復元済みTokenizerの再学習やPhase 3全作業を繰り返さない。
-2. driver 616.92への更新を確認済み。依存をCUDA 12.4へ変更する必要は現時点でなく、通常端末から下記runnerを再開する。復元済みLinuxコピーのsetupを再実行し、固定CUDA 13依存を導入・確認する。既存Linuxコピーを上書きするbootstrapは使わない。
-3. LinuxコピーでCUDA/BF16、skipなしの必要な全suite、入力付き準備runを確認する。
-4. Phase 4の未実装処理を作り、連続200と保存再開100+100、最大安定batch、compile初回と定常速度を検証する。driver単体比較とPyTorch/CUDAを変える構成比較は区別し、実shardで測る。調査reportに未実施の比較条件・完了条件を記録済み。
+今はPhase 4達成のため停止する。次回ユーザーの再開後にjob/checkpointを確認し、Phase 5の100件overfitから進める。Tokenizer再学習・成果物復元・Phase 3全作業・完了済みPhase 4測定を繰り返さない。
+
+次回の最初の準備command（**現時点では実行しない**。100件のtrainと独立したdev/testの小shardを作る）:
+
+```sh
+uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train.py build-shards --tokenizer artifacts/phase2/8192/tokenizer.model --limit 100 --output "$HOME/jmicro-data/shards/t8k-overfit100"
+```
+
+その後、開始前にoverfit予算・採用基準・最大安定batchをrun configへ固定して学習する。10M smoke、T4K/T8K 100M比較はoverfit gate後。baselineのLR/schedulerはまだ探索候補で、Phase 4速度だけで品質・長期予算を確定しない。
 
 以下はFull access反映前の再開手順の履歴。現在は会話内WSL/CUDA操作が成功しており、通常端末runnerの再起動をユーザーへ求める必要はない。
 
