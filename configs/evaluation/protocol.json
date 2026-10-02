@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "suite_version": "jmicro-eval-v1",
+  "suite_files": {
+    "base": "eval/base.jsonl",
+    "chat": "eval/chat.jsonl"
+  },
+  "split_manifest": "eval/split_manifest.json",
+  "split_unit": "family_id",
+  "dev_per_suite": 80,
+  "test_per_suite": 20,
+  "bpB": {
+    "denominator": "canonical_utf8_bytes_scored_once",
+    "nll_unit": "natural_log",
+    "aggregation": "sum_nll_over_sum_bytes_div_ln2",
+    "include_first_body_token_conditioned_on_bos": true,
+    "exclude_special_loss": true,
+    "eos_loss_separate": true,
+    "context_tokens": 1024,
+    "stride_tokens": 512,
+    "common_short_windows": "same_text_windows_fit_both_tokenizers",
+    "do_not_compare_cross_tokenizer_perplexity": true
+  },
+  "generation": {
+    "max_new_tokens": 64,
+    "context_limit_includes_generation": true,
+    "history_policy": "remove_oldest_complete_turn_then_reprefill",
+    "greedy": {
+      "do_sample": false,
+      "seeds": [
+        42
+      ]
+    },
+    "sampling": {
+      "do_sample": true,
+      "temperature": 0.8,
+      "top_p": 0.9,
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    },
+    "suppress_body_ids": [
+      0,
+      1,
+      2,
+      4,
+      5,
+      6
+    ],
+    "base_stop_ids": [
+      3
+    ],
+    "chat_stop_ids": [
+      7,
+      3
+    ],
+    "role_leak_measurement": "raw_output_ids_before_decode",
+    "run_unsuppressed_diagnostic": true,
+    "empty_response_measurement": "no_nonwhitespace_body_text",
+    "single_message_overflow": "reject_and_record; never_cut_teacher_response_and_append_eot"
+  },
+  "metrics": {
+    "human_scores": [
+      "grammar",
+      "relevance",
+      "context"
+    ],
+    "human_score_values": [
+      0,
+      1,
+      2
+    ],
+    "flags": [
+      "repetition",
+      "role_leak",
+      "unicode_failure",
+      "contradiction",
+      "stop_failure",
+      "empty_response"
+    ],
+    "length_fields": [
+      "characters",
+      "utf8_bytes",
+      "tokens"
+    ],
+    "repetition_definition": {
+      "consecutive_substring_min_characters": 2,
+      "consecutive_copies": 3,
+      "diagnostic_char_ngram": 4,
+      "ngram_score": "1-unique_ngrams/total_ngrams",
+      "ngram_score_is_not_binary_threshold": true
+    },
+    "context_score_denominator_categories": [
+      "correction",
+      "followup",
+      "context"
+    ]
+  },
+  "statistics": {
+    "paired_bootstrap_unit_base": "document",
+    "paired_bootstrap_unit_chat": "prompt_or_dialogue",
+    "confidence_level": 0.95,
+    "resamples": 2000,
+    "seed": 42
+  },
+  "targets": {
+    "status": "provisional_freeze_by_phase5_using_dev",
+    "base_grammar_2_rate": 0.7,
+    "chat_grammar_and_relevance_2_rate": 0.7,
+    "chat_context_2_rate": 0.6,
+    "stop_success_min": 0.95,
+    "empty_response_max": 0.05,
+    "role_leak_max": 0.01,
+    "unicode_failure_max_fixed_suite": 0,
+    "quantized_bundle_size_goal_mb": [
+      5,
+      10
+    ],
+    "quantization_degradation_limits": null,
+    "quantization_limits_freeze_before_selection": true
+  },
+  "human_review": {
+    "blind_model_names": true,
+    "interrater_subset_fraction": 0.2,
+    "independent_human_review_done": false
+  },
+  "fixed_history_context_is_not_free_running_dialogue": true,
+  "numeric_tolerances": {
+    "status": "initial_proposal_verify_before_backend_comparison",
+    "fp32_reference_logits": {
+      "atol": 1e-05,
+      "rtol": 0.0001
+    },
+    "bf16_logits": {
+      "atol": 0.05,
+      "rtol": 0.02
+    },
+    "strict_fp32_resume_weights": {
+      "atol": 1e-07,
+      "rtol": 1e-06
+    },
+    "strict_fp32_resume_loss": {
+      "atol": 1e-06,
+      "rtol": 1e-05
+    },
+    "consumed_token_ids": "exact_equality",
+    "parameter_count": "exact_equality",
+    "tf32_in_reference": false,
+    "cross_platform_bitwise_equality_required": false,
+    "fast_backend_resume_tolerance": "freeze_after_phase4_baseline_before_resume_comparison"
+  },
+  "data_buckets": {
+    "tracked_separately": [
+      "commercial_strict",
+      "commercial_web",
+      "sharealike"
+    ],
+    "default_for_unknown_conditions": "excluded",
+    "mixing_requires_manifest_record": true,
+    "noncommercial_research_only": "separate_explicit_run; excluded_from_release_candidate_by_default"
+  },
+  "phase0_suite_limitations": [
+    "authored_fixed_history; free_running_rollout_to_add_phase7",
+    "no_model_outputs_yet",
+    "test_20_per_suite_is_small; report_counts_and_intervals",
+    "semantic_near_duplicate_check_is_manual; exact_check_only_is_automated"
+  ]
+}

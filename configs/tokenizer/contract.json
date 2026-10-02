@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "status": "trained_validated_external_codec",
+  "algorithm": "sentencepiece_unigram",
+  "vocab_sizes": [
+    4096,
+    8192
+  ],
+  "byte_fallback": true,
+  "byte_piece_count": 256,
+  "character_coverage_candidates": [
+    0.9995,
+    0.999,
+    0.995
+  ],
+  "normalization_rule_name": "identity",
+  "add_dummy_prefix": false,
+  "remove_extra_whitespaces": false,
+  "canonicalization": {
+    "line_endings": "CRLF_and_CR_to_LF",
+    "remove_codepoints": [
+      "U+0000"
+    ],
+    "unicode_normalization": "none",
+    "invalid_utf8": "reject",
+    "other_characters": "preserve"
+  },
+  "special_tokens": [
+    {
+      "id": 0,
+      "piece": "<|pad|>",
+      "type": "builtin"
+    },
+    {
+      "id": 1,
+      "piece": "<|unk|>",
+      "type": "builtin"
+    },
+    {
+      "id": 2,
+      "piece": "<|bos|>",
+      "type": "builtin"
+    },
+    {
+      "id": 3,
+      "piece": "<|eos|>",
+      "type": "builtin"
+    },
+    {
+      "id": 4,
+      "piece": "<|system|>",
+      "type": "control"
+    },
+    {
+      "id": 5,
+      "piece": "<|user|>",
+      "type": "control"
+    },
+    {
+      "id": 6,
+      "piece": "<|assistant|>",
+      "type": "control"
+    },
+    {
+      "id": 7,
+      "piece": "<|eot|>",
+      "type": "control"
+    }
+  ],
+  "encode_body_separately": true,
+  "insert_role_ids": true,
+  "base_stop_ids": [
+    3
+  ],
+  "chat_stop_ids": [
+    7,
+    3
+  ],
+  "body_role_spelling_is_not_structure": true,
+  "context_overflow": "remove_oldest_complete_turn_and_reprefill",
+  "assistant_labels": "assistant_body_and_following_eot",
+  "shift": "logits[:-1]_predict_labels[1:]",
+  "masked_label": -100
+}

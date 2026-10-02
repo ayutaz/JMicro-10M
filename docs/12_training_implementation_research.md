@@ -1,5 +1,7 @@
 # モデル実装・段階学習・実行環境の追加調査
 
+**実装状況**: 以下は調査時点の仕様・候補。モデル/cacheのCPU実装・実parameter数・参照モデルとの一致は[Phase 3](19_phase3_completion.md)で検証済み。GPU学習器・保存再開・4090 benchmarkはPhase 4で実施する。
+
 調査日: 2026-10-02。既存[アーキテクチャ](03_architecture.md)、[学習計画](06_training_plan.md)、[環境](07_environment.md)を実装するための補足。以下の推奨設定は**提案**であり、実験済みの最適値ではない。
 
 ## 1. QK-Normの仕様を固定する

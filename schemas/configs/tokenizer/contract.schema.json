@@ -1,0 +1,153 @@
+{
+  "type": "object",
+  "required": [
+    "schema_version",
+    "status",
+    "algorithm",
+    "vocab_sizes",
+    "byte_fallback",
+    "byte_piece_count",
+    "character_coverage_candidates",
+    "normalization_rule_name",
+    "add_dummy_prefix",
+    "remove_extra_whitespaces",
+    "canonicalization",
+    "special_tokens",
+    "encode_body_separately",
+    "insert_role_ids",
+    "base_stop_ids",
+    "chat_stop_ids",
+    "body_role_spelling_is_not_structure",
+    "context_overflow",
+    "assistant_labels",
+    "shift",
+    "masked_label"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "type": "string"
+    },
+    "algorithm": {
+      "type": "string"
+    },
+    "vocab_sizes": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "byte_fallback": {
+      "type": "boolean"
+    },
+    "byte_piece_count": {
+      "type": "integer"
+    },
+    "character_coverage_candidates": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    },
+    "normalization_rule_name": {
+      "type": "string"
+    },
+    "add_dummy_prefix": {
+      "type": "boolean"
+    },
+    "remove_extra_whitespaces": {
+      "type": "boolean"
+    },
+    "canonicalization": {
+      "type": "object",
+      "required": [
+        "line_endings",
+        "remove_codepoints",
+        "unicode_normalization",
+        "invalid_utf8",
+        "other_characters"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "line_endings": {
+          "type": "string"
+        },
+        "remove_codepoints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unicode_normalization": {
+          "type": "string"
+        },
+        "invalid_utf8": {
+          "type": "string"
+        },
+        "other_characters": {
+          "type": "string"
+        }
+      }
+    },
+    "special_tokens": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "piece",
+          "type"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "piece": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "encode_body_separately": {
+      "type": "boolean"
+    },
+    "insert_role_ids": {
+      "type": "boolean"
+    },
+    "base_stop_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "chat_stop_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "body_role_spelling_is_not_structure": {
+      "type": "boolean"
+    },
+    "context_overflow": {
+      "type": "string"
+    },
+    "assistant_labels": {
+      "type": "string"
+    },
+    "shift": {
+      "type": "string"
+    },
+    "masked_label": {
+      "type": "integer"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

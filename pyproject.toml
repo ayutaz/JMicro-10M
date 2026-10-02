@@ -1,0 +1,37 @@
+[project]
+name = "jmicro-10m"
+version = "0.1.0"
+description = "Japanese 10M language model research and reproducible experiment tools"
+requires-python = ">=3.12"
+dependencies = [
+    "jsonschema>=4.26.0",
+]
+
+[project.optional-dependencies]
+ml = [
+    "datasets>=5.0.1",
+    "numpy>=2.5.3",
+    "protobuf>=7.36.2",
+    "safetensors>=0.8.0",
+    "sentencepiece>=0.2.2",
+    "torch>=2.14.1",
+    "transformers>=5.18.0",
+]
+data = [
+    "aiohttp>=3.14.3",
+    "datasketch>=2.0.0",
+    "fsspec>=2026.6.0",
+    "pyarrow>=25.0.1",
+]
+export = [
+    "gguf>=0.19.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

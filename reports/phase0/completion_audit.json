@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "objective": "Phase 0 preparation on iMac",
+  "audited_at": "2026-10-02T11:51:00.048791+00:00",
+  "status": "complete",
+  "requirements": [
+    {
+      "requirement": "repository_structure_and_uv_management",
+      "evidence": [
+        "README.md",
+        "pyproject.toml",
+        "uv.lock",
+        ".python-version"
+      ],
+      "verified": true
+    },
+    {
+      "requirement": "experiment_snapshot_and_artifact_hashes",
+      "evidence": [
+        "reports/p0-foundation-20261002T115059Z-3644155d/experiment.json",
+        "reports/p0-foundation-20261002T115059Z-3644155d/source_manifest.json",
+        "reports/experiments.jsonl"
+      ],
+      "verified": true
+    },
+    {
+      "requirement": "actual_imac_environment_and_linux_handoff",
+      "evidence": [
+        "reports/phase0/environment.json",
+        "docs/windows_handoff.md",
+        "configs/runtime/windows_wsl.json"
+      ],
+      "verified": true
+    },
+    {
+      "requirement": "evaluation_contract_and_fixed_independent_splits",
+      "evidence": [
+        "reports/phase0/validation.json",
+        "eval/split_manifest.json",
+        "docs/evaluation_protocol.md"
+      ],
+      "verified": true
+    },
+    {
+      "requirement": "scoring_examples_and_ambiguity_review",
+      "evidence": [
+        "eval/rubric_examples.json"
+      ],
+      "verified": true,
+      "reviewer": "Codex manual design review; independent human evaluation deferred to Phase 7"
+    }
+  ],
+  "verification_commands": [
+    {
+      "command": "uv lock --check --offline",
+      "exit_code": 0,
+      "observed_output": "Resolved 83 packages in 2ms"
+    },
+    {
+      "command": "uv run --frozen --no-sync pytest -q",
+      "exit_code": 0,
+      "observed_output": "22 passed in 1.56s",
+      "evidence_source": "actual terminal output during this Phase 0 turn; no code changes since that test run"
+    },
+    {
+      "command": "uv run --frozen --no-sync scripts/validate_phase0.py",
+      "exit_code": 0,
+      "report": "reports/phase0/validation.json"
+    },
+    {
+      "command": "uv run --frozen --no-sync scripts/experiment.py prepare-run --name foundation",
+      "exit_code": 0,
+      "run": "reports/p0-foundation-20261002T115059Z-3644155d"
+    },
+    {
+      "command": "verify_run latest preparation snapshot",
+      "result": {
+        "run_id": "p0-foundation-20261002T115059Z-3644155d",
+        "verified": true,
+        "source_file_count": 54,
+        "record_kind": "preparation",
+        "training_tokens_seen": 0
+      }
+    }
+  ],
+  "artifact_hashes": {
+    "README.md": "109da1d3b88c3994d461a15c9c66bc2c03adc1c33fb4efee325db8c1e8e6fd35",
+    "pyproject.toml": "1e2397b1ad23ca394ffc2d4ddd11e6059f8b1996a3ddd1e8180cea494b5645fe",
+    "uv.lock": "7f09ee0483086c83688bfbab40cbf1569118bbdf7df8a38a1dc18a0b11aa3c11",
+    ".python-version": "5327a40401de3c82bbc3c066c9f8272fd6ce56b99825b5e76fea5b7463729d55",
+    "schemas/experiment_schema.json": "574116643c77f46e9f9ce3de7384f669c70202a3bb2a7e62c33cc5d4348d4071",
+    "configs/models/t8k.json": "bb08690afd3b85ece87a04e6c3d39a15878183535a1034011df5e112b5c7b440",
+    "configs/models/t4k.json": "930654be2ed6628091bbd018dbc1563d8b1cd8e202b78cb5ff009407f66dc353",
+    "configs/training/baseline.json": "e4cd6372a83a05bf309bdfabaeedce498b1ceede70dba7c00e3f7d3bf4b7b78d",
+    "configs/tokenizer/contract.json": "5e776e84fa68599216573edac1f2834bdf91cd6603b0795ee1246121cf5123a9",
+    "configs/evaluation/protocol.json": "9bd16c89b1473d7fedf409e2829179fad902bc915e9d0c91c4178402061c7990",
+    "configs/runtime/imac.json": "6bb66dc9f31e40d0f85383cd9b0f54fb742aad3434b0a3c6b1236a4dfc0dcd77",
+    "configs/runtime/windows_wsl.json": "2c53c961d34e1c5f5b0b3f7d476b5b23d7cbe7f1f8cba313eb76e297ff77ee3d",
+    "eval/base.jsonl": "93cd3a19f3e62c8d30d1660b431a9525823f58b9ceb1bf90c6ecbac2c19292eb",
+    "eval/chat.jsonl": "86ed01af44926370bbe2b863d6984dd00358dbb88b21a02cf124e7c388b67a86",
+    "eval/split_manifest.json": "3e5b19172cc312e182df0130cdfd2d5ae4bd1e5e8a15649f7e08014cc62448ba",
+    "eval/rubric_examples.json": "81cc03f568bb0978520dd80a154afb55ed2814a3c65a6e868d9427cf0374b50b",
+    "docs/evaluation_protocol.md": "3ecac7c90af44d0bf7fca99db625ba2cfd4b181d77143b845442221916e1531d",
+    "docs/windows_handoff.md": "7e049fa76aa160f7e260cea6f26a9b3adb3cf397d32fa355ad38f0c29aa95af1",
+    "reports/phase0/environment.json": "a45e4b516a776312324577714a57c6bd94f195db91b4be98df5d4e19d156cdf1",
+    "reports/phase0/validation.json": "5d8968e5be95bd5d805e2fee0bee7463f814ad14a9984f8b7a333f252ed6527f"
+  },
+  "deferred_to_phase4": [
+    "Windows/WSL actual versions and GPU/driver/CUDA",
+    "ML installation and CUDA/BF16 compatibility",
+    "model CUDA forward/backward",
+    "GPU resume and maximum stable batch benchmark"
+  ],
+  "not_claimed": [
+    "model implementation",
+    "trained tokenizer",
+    "training runs or model quality",
+    "independent human interrater agreement",
+    "Windows/GPU gate passed"
+  ],
+  "git_commit": "27fe83be9d7b338df9084057e4e7e798e3947d37",
+  "worktree_dirty": true,
+  "preparation_run_id": "p0-foundation-20261002T115059Z-3644155d"
+}

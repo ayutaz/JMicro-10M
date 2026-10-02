@@ -2,6 +2,10 @@
 
 ## 全体像
 
+プロジェクト全体の目的・ゴール・成果物・完了条件は[フェーズ別実行計画](15_project_roadmap.md)を参照する。本書は学習系列の設定とcheckpoint段階を扱う。10B BaseからChatへ分岐し、20B/50Bの終了をChat着手の前提にしない。
+
+**現在地（2026-10-02）**: 4k/8k Tokenizerと両モデル/cache/HF/native GGUFのPhase 3まで完了。本学習は未実施。次はWindows/WSL＋RTX 4090上のPhase 4で学習器・shard・評価runner・保存再開・最大安定batchを検証する。完成までの時間短縮を優先し、実装時間とGPU計算時間を分けて実測から見積もる。[進め方](15_project_roadmap.md#高速に完成させる進め方)
+
 ```text
 Tokenizer 4k / 8k
         -> 10M-token smoke
@@ -10,11 +14,9 @@ Tokenizer 4k / 8k
         -> 2B 過去355Mモデルとの比較点
         -> 5B 本命を1つに決定
         -> 10B Base v1
-        -> 20B Base v2
-        -> 改善継続時のみ50B
-        -> Dialogue mid-training
-        -> SFT
-        -> JMicro-10M-Chat
+             |-> Dialogue mid-training -> SFT -> Chat v1 -> 量子化/ローカル実行
+             |-> 20B Base v2 -> 改善継続時のみ50B
+                   -> 有望なら同じChat手順で再比較
 ```
 
 ## Checkpoint段階
@@ -49,6 +51,8 @@ Tokenizer 4k / 8k
 
 ## Batchとperformance
 
+**確定**: 設計・実装は現在のiMacで進め、学習時は別のWindows PCのRTX 4090へ切り替え、ユーザー指定WSL 3.1上のLinuxで実行する。本学習は24GB VRAMを最大限使う最大安定micro batchを実測して設定する。[移行・batch方針](07_environment.md)
+
 **提案**: RTX 4090ではmodelを載せるためでなく、大きなbatchでGPUを埋めるために24GB VRAMを使う。micro batchを16、32、64、128、256…と増やし、以下を実測する。
 
 - tokens/sec
@@ -57,6 +61,8 @@ Tokenizer 4k / 8k
 - step time
 - MFU
 - data wait time
+
+OOM境界付近は中間値を試し、loss/backward/optimizerと実shardの運用まで含めて最大安定値を確認する。gradient accumulation後のeffective batch、LR、warmup、更新回数は別に管理する。小探索でbatchを小さくする場合は比較目的と理由をconfig/台帳へ残す。
 
 `torch.compile`、PyTorch SDPA/FlashAttention、BF16を基準にする。10MモデルではPython overhead、kernel launch、DataLoaderがbottleneckになりやすい。
 
@@ -85,7 +91,7 @@ Tokenizer 4k / 8k
 
 ## Vast.ai
 
-**確定**: 初期のTokenizer、実装、100M〜20B、Dialogue SFTはローカルRTX 4090を第一候補とする。
+**確定**: 初期のTokenizer学習とモデル実装・CPU検証はiMacで完了。今後の学習器・GPU検証、100M〜20B、Dialogue SFTはローカルRTX 4090で進める。
 
 Vast.aiは後半に限定する。
 

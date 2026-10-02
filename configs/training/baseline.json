@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "status": "proposed_unmeasured",
+  "seed": 42,
+  "device": "cuda",
+  "parameter_dtype": "float32",
+  "autocast_dtype": "bfloat16",
+  "optimizer": {
+    "name": "adamw",
+    "lr": 0.002,
+    "betas": [
+      0.9,
+      0.95
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0.1,
+    "decay_norm": false,
+    "decay_tied_embedding": true,
+    "gradient_clip_norm": 1.0
+  },
+  "context_length": 1024,
+  "micro_batch": null,
+  "micro_batch_policy": "largest_stable_measured",
+  "batch_probe_candidates": [
+    8,
+    16,
+    32,
+    64,
+    128,
+    256
+  ],
+  "probe_intermediate_values": true,
+  "gradient_accumulation_steps": 1,
+  "effective_batch_tokens": null,
+  "batch_selection_phase": 4,
+  "small_search_batch_override_requires_reason": true,
+  "scheduler": {
+    "search": "warmup_cosine",
+    "extension_candidate": "wsd",
+    "warmup_steps": null,
+    "total_steps": null,
+    "freeze_before_run": true
+  },
+  "num_workers": 0,
+  "checkpoint_boundary": "completed_optimizer_update",
+  "save_rng": [
+    "python",
+    "numpy",
+    "pytorch",
+    "cuda",
+    "mixture_sampler"
+  ],
+  "checkpoint_stages_tokens": [
+    100000000,
+    500000000,
+    1000000000,
+    2000000000,
+    5000000000,
+    10000000000,
+    20000000000,
+    50000000000
+  ],
+  "data_root_env": "JMICRO_DATA_ROOT",
+  "training_on_imac": false
+}

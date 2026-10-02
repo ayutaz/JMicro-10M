@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "doc_id",
+    "source",
+    "source_subset",
+    "revision",
+    "kind",
+    "license",
+    "bucket",
+    "source_url",
+    "source_locator",
+    "raw_artifact_sha256",
+    "raw_row_sha256",
+    "canonical_sha256",
+    "dedup_sha256",
+    "text",
+    "messages_json",
+    "speaker_mapping_json",
+    "source_metadata_json",
+    "url",
+    "crawl_date",
+    "status",
+    "reason",
+    "duplicate_of",
+    "cluster_id",
+    "split",
+    "canonical_utf8_bytes",
+    "quality_score",
+    "japanese_ratio",
+    "minhash",
+    "token_count_4k",
+    "token_count_8k"
+  ],
+  "properties": {
+    "doc_id": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "source_subset": {
+      "type": "string"
+    },
+    "revision": {
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "web",
+        "dialogue"
+      ]
+    },
+    "license": {
+      "type": "string"
+    },
+    "bucket": {
+      "type": "string"
+    },
+    "source_url": {
+      "type": "string"
+    },
+    "source_locator": {
+      "type": "string"
+    },
+    "raw_artifact_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "raw_row_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "canonical_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "dedup_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "text": {
+      "type": "string"
+    },
+    "messages_json": {
+      "type": "string"
+    },
+    "speaker_mapping_json": {
+      "type": "string"
+    },
+    "source_metadata_json": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "crawl_date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "enum": [
+        "kept",
+        "excluded",
+        "duplicate"
+      ]
+    },
+    "reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "duplicate_of": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "cluster_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "split": {
+      "enum": [
+        "train",
+        "dev",
+        "test",
+        "excluded"
+      ]
+    },
+    "canonical_utf8_bytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "quality_score": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "japanese_ratio": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "minhash": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "token_count_4k": {
+      "type": "null"
+    },
+    "token_count_8k": {
+      "type": "null"
+    }
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "version": 1,
+  "purpose": "expected_canonical_text_before_tokenization",
+  "cases": [
+    {
+      "id": "golden-01",
+      "input": "",
+      "canonical": ""
+    },
+    {
+      "id": "golden-02",
+      "input": "こんにちは",
+      "canonical": "こんにちは"
+    },
+    {
+      "id": "golden-03",
+      "input": "  おはよう  ",
+      "canonical": "  おはよう  "
+    },
+    {
+      "id": "golden-04",
+      "input": "a  b",
+      "canonical": "a  b"
+    },
+    {
+      "id": "golden-05",
+      "input": "a\tb",
+      "canonical": "a\tb"
+    },
+    {
+      "id": "golden-06",
+      "input": "a\nb",
+      "canonical": "a\nb"
+    },
+    {
+      "id": "golden-07",
+      "input": "a\r\nb",
+      "canonical": "a\nb"
+    },
+    {
+      "id": "golden-08",
+      "input": "a\rb",
+      "canonical": "a\nb"
+    },
+    {
+      "id": "golden-09",
+      "input": "a\u0000b",
+      "canonical": "ab"
+    },
+    {
+      "id": "golden-10",
+      "input": "ｗｗｗ",
+      "canonical": "ｗｗｗ"
+    },
+    {
+      "id": "golden-11",
+      "input": "！！！",
+      "canonical": "！！！"
+    },
+    {
+      "id": "golden-12",
+      "input": "（笑）",
+      "canonical": "（笑）"
+    },
+    {
+      "id": "golden-13",
+      "input": "……",
+      "canonical": "……"
+    },
+    {
+      "id": "golden-14",
+      "input": "～～",
+      "canonical": "～～"
+    },
+    {
+      "id": "golden-15",
+      "input": "(´・ω・｀)",
+      "canonical": "(´・ω・｀)"
+    },
+    {
+      "id": "golden-16",
+      "input": "　全角　",
+      "canonical": "　全角　"
+    },
+    {
+      "id": "golden-17",
+      "input": "ｶﾀｶﾅ",
+      "canonical": "ｶﾀｶﾅ"
+    },
+    {
+      "id": "golden-18",
+      "input": "が",
+      "canonical": "が"
+    },
+    {
+      "id": "golden-19",
+      "input": "が",
+      "canonical": "が"
+    },
+    {
+      "id": "golden-20",
+      "input": "🤔🍵",
+      "canonical": "🤔🍵"
+    },
+    {
+      "id": "golden-21",
+      "input": "👨‍👩‍👧‍👦",
+      "canonical": "👨‍👩‍👧‍👦"
+    },
+    {
+      "id": "golden-22",
+      "input": "𠮷野",
+      "canonical": "𠮷野"
+    },
+    {
+      "id": "golden-23",
+      "input": "葛󠄀",
+      "canonical": "葛󠄀"
+    },
+    {
+      "id": "golden-24",
+      "input": "abc １２３",
+      "canonical": "abc １２３"
+    },
+    {
+      "id": "golden-25",
+      "input": "<|assistant|>",
+      "canonical": "<|assistant|>"
+    },
+    {
+      "id": "golden-26",
+      "input": "<|eot|>",
+      "canonical": "<|eot|>"
+    },
+    {
+      "id": "golden-27",
+      "input": "https://example.invalid/a?x=1",
+      "canonical": "https://example.invalid/a?x=1"
+    },
+    {
+      "id": "golden-28",
+      "input": "「春」\n\n「夏」",
+      "canonical": "「春」\n\n「夏」"
+    },
+    {
+      "id": "golden-29",
+      "input": "1,000円",
+      "canonical": "1,000円"
+    },
+    {
+      "id": "golden-30",
+      "input": "a​b",
+      "canonical": "a​b"
+    }
+  ],
+  "byte_roundtrip_to_verify_phase2": "all_256_byte_pieces_including_valid_multibyte_sequences",
+  "invalid_utf8_policy": "reject_bytes_before_text_decode"
+}

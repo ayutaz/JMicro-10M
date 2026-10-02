@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "id",
+    "family_id",
+    "suite",
+    "category",
+    "split",
+    "checks"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^(base|chat)-[0-9]{3}$"
+    },
+    "family_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "suite": {
+      "enum": [
+        "base",
+        "chat"
+      ]
+    },
+    "category": {
+      "type": "string",
+      "minLength": 1
+    },
+    "split": {
+      "enum": [
+        "dev",
+        "test"
+      ]
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "prefix": {
+      "type": "string",
+      "minLength": 1
+    },
+    "messages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "role",
+          "content"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "role": {
+            "enum": [
+              "user",
+              "assistant"
+            ]
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "suite": {
+            "const": "base"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "prefix"
+        ],
+        "not": {
+          "required": [
+            "messages"
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "suite": {
+            "const": "chat"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "messages"
+        ],
+        "not": {
+          "required": [
+            "prefix"
+          ]
+        }
+      }
+    }
+  ]
+}

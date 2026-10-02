@@ -1,5 +1,7 @@
 # Tokenizer設計
 
+**実装状況（2026-10-02）**: 4096/8192語彙のSentencePiece Unigram + byte fallbackを同一train sampleで学習済み。coverageは両方0.9995、特殊IDは0〜7。CRLF/CR→LF、NUL除去以外のUnicodeを保持し、改行・タブ・literal `▁`・`<`は共通wrapperでUTF-8 byte piecesへ表現する。以下の前処理候補をすべて採用したわけではなく、現在の正式な契約・実測は[Phase 2完了記録](18_phase2_completion.md)と[config](../configs/tokenizer/contract.json)を参照する。
+
 ## 方針
 
 **確定**: 既存LLMのTokenizerは流用せず、日本語コーパスから学習する。Tokenizerアルゴリズム自体を新規発明する意味ではなく、SentencePieceを使って語彙・正規化・特殊tokenをプロジェクト専用に設計する。

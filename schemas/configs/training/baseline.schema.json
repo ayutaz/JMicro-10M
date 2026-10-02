@@ -1,0 +1,167 @@
+{
+  "type": "object",
+  "required": [
+    "schema_version",
+    "status",
+    "seed",
+    "device",
+    "parameter_dtype",
+    "autocast_dtype",
+    "optimizer",
+    "context_length",
+    "micro_batch",
+    "micro_batch_policy",
+    "batch_probe_candidates",
+    "probe_intermediate_values",
+    "gradient_accumulation_steps",
+    "effective_batch_tokens",
+    "batch_selection_phase",
+    "small_search_batch_override_requires_reason",
+    "scheduler",
+    "num_workers",
+    "checkpoint_boundary",
+    "save_rng",
+    "checkpoint_stages_tokens",
+    "data_root_env",
+    "training_on_imac"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "type": "string"
+    },
+    "seed": {
+      "type": "integer"
+    },
+    "device": {
+      "type": "string"
+    },
+    "parameter_dtype": {
+      "type": "string"
+    },
+    "autocast_dtype": {
+      "type": "string"
+    },
+    "optimizer": {
+      "type": "object",
+      "required": [
+        "name",
+        "lr",
+        "betas",
+        "eps",
+        "weight_decay",
+        "decay_norm",
+        "decay_tied_embedding",
+        "gradient_clip_norm"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "lr": {
+          "type": "number"
+        },
+        "betas": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "eps": {
+          "type": "number"
+        },
+        "weight_decay": {
+          "type": "number"
+        },
+        "decay_norm": {
+          "type": "boolean"
+        },
+        "decay_tied_embedding": {
+          "type": "boolean"
+        },
+        "gradient_clip_norm": {
+          "type": "number"
+        }
+      }
+    },
+    "context_length": {
+      "type": "integer"
+    },
+    "micro_batch": {},
+    "micro_batch_policy": {
+      "type": "string"
+    },
+    "batch_probe_candidates": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "probe_intermediate_values": {
+      "type": "boolean"
+    },
+    "gradient_accumulation_steps": {
+      "type": "integer"
+    },
+    "effective_batch_tokens": {},
+    "batch_selection_phase": {
+      "type": "integer"
+    },
+    "small_search_batch_override_requires_reason": {
+      "type": "boolean"
+    },
+    "scheduler": {
+      "type": "object",
+      "required": [
+        "search",
+        "extension_candidate",
+        "warmup_steps",
+        "total_steps",
+        "freeze_before_run"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "search": {
+          "type": "string"
+        },
+        "extension_candidate": {
+          "type": "string"
+        },
+        "warmup_steps": {},
+        "total_steps": {},
+        "freeze_before_run": {
+          "type": "boolean"
+        }
+      }
+    },
+    "num_workers": {
+      "type": "integer"
+    },
+    "checkpoint_boundary": {
+      "type": "string"
+    },
+    "save_rng": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "checkpoint_stages_tokens": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "data_root_env": {
+      "type": "string"
+    },
+    "training_on_imac": {
+      "type": "boolean"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,243 @@
+{
+  "version": 1,
+  "purpose": "manual_rubric_calibration_not_model_evaluation",
+  "authored_by": "Codex",
+  "independent_human_review_done": false,
+  "examples": [
+    {
+      "id": "base-strong",
+      "suite": "base",
+      "input": "道端に小さな花が咲いていた。私は",
+      "response": "足を止めて、そっと眺めた。",
+      "scores": {
+        "grammar": 2,
+        "relevance": 2,
+        "context": null
+      },
+      "flags": [],
+      "reason": "構文が接続し、見かけた花の場面を短く継続する。",
+      "reviewer_type": "assistant_manual_design_review",
+      "model_output": false
+    },
+    {
+      "id": "base-partial",
+      "suite": "base",
+      "input": "道端に小さな花が咲いていた。私は",
+      "response": "花の、小さい見た。",
+      "scores": {
+        "grammar": 1,
+        "relevance": 1,
+        "context": null
+      },
+      "flags": [],
+      "reason": "話題は近いが、助詞と構文が不自然。",
+      "reviewer_type": "assistant_manual_design_review",
+      "model_output": false
+    },
+    {
+      "id": "base-broken",
+      "suite": "base",
+      "input": "道端に小さな花が咲いていた。私は",
+      "response": "にがの、はで。",
+      "scores": {
+        "grammar": 0,
+        "relevance": 0,
+        "context": null
+      },
+      "flags": [],
+      "reason": "解釈可能な文が成立しない。",
+      "reviewer_type": "assistant_manual_design_review",
+      "model_output": false
+    },
+    {
+      "id": "chat-strong",
+      "suite": "chat",
+      "input": [
+        {
+          "role": "user",
+          "content": "資格の勉強を続けられて、嬉しい。"
+        }
+      ],
+      "response": "続けられたんだね。頑張ったね！",
+      "scores": {
+        "grammar": 2,
+        "relevance": 2,
+        "context": null
+      },
+      "flags": [],
+      "reason": "嬉しいという感情と努力を具体的に拾う。",
+      "reviewer_type": "assistant_manual_design_review",
+      "model_output": false
+    },
+    {
+      "id": "chat-partial",
+      "suite": "chat",
+      "input": [
+        {
+          "role": "user",
+          "content": "資格の勉強を続けられて、嬉しい。"
+        }
+      ],
+      "response": "そうなんだ。今日は寒いね。",
+      "scores": {
+        "grammar": 2,
+        "relevance": 1,
+        "context": null
+      },
+      "flags": [],
+      "reason": "文法は成立するが、入力を拾うのは相づちだけで話題が逸れる。",
+      "reviewer_type": "assistant_manual_design_review",
+      "model_output": false
+    },
+    {
+      "id": "chat-unrelated",
+      "suite": "chat",
+      "input": [
+        {
+          "role": "user",
+          "content": "資格の勉強を続けられて、嬉しい。"
+        }
+      ],
+      "response": "列車の運賃は二百円です。",
+      "scores": {
+        "grammar": 2,
+        "relevance": 0,
+        "context": null
+      },
+      "flags": [],
+      "reason": "文法と関連性を分離し、無関係な内容の関連性は0。",
+      "reviewer_type": "assistant_manual_design_review",
+      "model_output": false
+    },
+    {
+      "id": "context-strong",
+      "suite": "chat",
+      "input": [
+        {
+          "role": "user",
+          "content": "誕生日は5月だよ。"
+        },
+        {
+          "role": "assistant",
+          "content": "5月なんだね。"
+        },
+        {
+          "role": "user",
+          "content": "訂正。誕生日は6月だった。何月か覚えてる？"
+        }
+      ],
+      "response": "6月だね。訂正した方を覚えてるよ。",
+      "scores": {
+        "grammar": 2,
+        "relevance": 2,
+        "context": 2
+      },
+      "flags": [],
+      "reason": "訂正後の情報を保持する。",
+      "reviewer_type": "assistant_manual_design_review",
+      "model_output": false
+    },
+    {
+      "id": "context-partial",
+      "suite": "chat",
+      "input": [
+        {
+          "role": "user",
+          "content": "誕生日は5月だよ。"
+        },
+        {
+          "role": "assistant",
+          "content": "5月なんだね。"
+        },
+        {
+          "role": "user",
+          "content": "訂正。誕生日は6月だった。何月か覚えてる？"
+        }
+      ],
+      "response": "5月か6月だったかな。",
+      "scores": {
+        "grammar": 2,
+        "relevance": 1,
+        "context": 1
+      },
+      "flags": [],
+      "reason": "話題と候補は保持しているが、訂正を確定していない。",
+      "reviewer_type": "assistant_manual_design_review",
+      "model_output": false
+    },
+    {
+      "id": "context-failed",
+      "suite": "chat",
+      "input": [
+        {
+          "role": "user",
+          "content": "誕生日は5月だよ。"
+        },
+        {
+          "role": "assistant",
+          "content": "5月なんだね。"
+        },
+        {
+          "role": "user",
+          "content": "訂正。誕生日は6月だった。何月か覚えてる？"
+        }
+      ],
+      "response": "5月だよ。",
+      "scores": {
+        "grammar": 2,
+        "relevance": 1,
+        "context": 0
+      },
+      "flags": [
+        "contradiction"
+      ],
+      "reason": "質問に答える形はあるが、訂正前の情報へ戻っている。",
+      "reviewer_type": "assistant_manual_design_review",
+      "model_output": false
+    },
+    {
+      "id": "chat-repeat",
+      "suite": "chat",
+      "input": [
+        {
+          "role": "user",
+          "content": "用事が終わったよ。"
+        }
+      ],
+      "response": "よかったね。よかったね。よかったね。",
+      "scores": {
+        "grammar": 2,
+        "relevance": 2,
+        "context": null
+      },
+      "flags": [
+        "repetition"
+      ],
+      "reason": "文法や関連性が成立しても、反復flagは独立に立てる。",
+      "reviewer_type": "assistant_manual_design_review",
+      "model_output": false
+    },
+    {
+      "id": "chat-empty",
+      "suite": "chat",
+      "input": [
+        {
+          "role": "user",
+          "content": "少し話そう。"
+        }
+      ],
+      "response": "",
+      "scores": {
+        "grammar": 0,
+        "relevance": 0,
+        "context": null
+      },
+      "flags": [
+        "empty_response"
+      ],
+      "reason": "EOTだけで停止しても会話応答の品質は成立しない。停止flagはID/timingを見て別判定。",
+      "reviewer_type": "assistant_manual_design_review",
+      "model_output": false
+    }
+  ]
+}

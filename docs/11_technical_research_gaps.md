@@ -2,6 +2,20 @@
 
 調査日: 2026-10-02。対象は[プロジェクト目的](01_project_goal.md)を実現するため、既存の01〜10では実装判断まで落とせていなかった課題。
 
+## 実装後の現在地（2026-10-02）
+
+調査後にPhase 0〜3を完了した。下記の表・検証順は調査時点の提案であり、現在の未着手一覧とは分けて読む。
+
+| 課題 | 現在の状態 | 証拠・次の判断 |
+|---|---|---|
+| 独自4k/8k、文字保存、特殊ID、会話教師mask | 実装・学習・検証済み | [Phase 2](18_phase2_completion.md) |
+| 10M予算、QK-Norm、因果性、prefill/cache | 両モデルでCPU検証済み | [Phase 3](19_phase3_completion.md) |
+| HF/native float GGUF、量子化型・容量・停止 | 検証済み。内蔵Tokenizerは不一致、外部SentencePieceを採用 | [export report](../reports/phase3/export_parity_report.json) |
+| GPU学習器、保存再開、最大batch/実速度、BPB runner | 未実施・次の着手 | [Phase 4の優先順](15_project_roadmap.md#高速に完成させる進め方) |
+| 4k/8kの品質勝者、日本語短文・雑談、学習後の量子化品質 | 未実証 | Phase 5〜8の実学習・固定評価 |
+
+完成までの時間短縮を優先し、現在はWindows/WSL＋RTX 4090へ移行する。学習済みTokenizerとpilotを引き継ぎ、関連箇所の検証を行う。
+
 ## 結論
 
 **提案**: Transformer、4k/8k、段階学習という大方針を維持し、まずTokenizerの入出力仕様、評価条件、保存・再開、推論形式を固める。10Mの日本語雑談能力は未実証であり、新しい構成を増やすより、短い会話に合ったデータと測定方法を先に用意する。

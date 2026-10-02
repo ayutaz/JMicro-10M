@@ -1,109 +1,112 @@
 # 次の実装タスク
 
-## Phase 0: リポジトリと環境
+この文書は[フェーズ別実行計画](15_project_roadmap.md)の着手checklistである。Phase番号、目的、ゴール、成果物、完了条件、Go/No-Goは同計画を正とし、技術仕様は03〜08と12〜14を参照する。2026-10-02にiMac上のPhase 0を実施した。[完了記録](16_phase0_completion.md)を参照する。Phase 1のcorpus・manifest・split・会話pilotも完了した。[完了記録](17_phase1_completion.md)を参照する。[Phase 2](18_phase2_completion.md)・[Phase 3](19_phase3_completion.md)も完了。モデル本学習とWindowsの実機確認は未実施。
 
-1. WSL、Ubuntu、NVIDIA driver、CUDA、PyTorch、Python、`torch.compile`の実versionを記録する。
-2. `src/`、`configs/`、`tests/`、`scripts/`、`data/`の骨格を作る。
-3. run configとartifact naming規則を決める。
-4. synthetic batchでRTX 4090のthroughput benchmarkを作る。
+**次の作業**: Phase 4。Windows/WSL＋RTX 4090へ切り替え、CUDA確認、学習器・shard・保存再開・最大安定batchを検証する。4k/8k TokenizerとCPUで検証したモデル・export経路を引き継ぐ。Pythonは`uv run`、依存変更は`uv add`。
 
-追加調査の参照: [QK-Norm・precision・cache・benchmark仕様](12_training_implementation_research.md)。正確な依存versionと採用commitを固定し、micro batchとeffective batchを別に記録する。
+完成までの時間短縮を優先し、[移行 → 最小学習経路 → 保存再開 → 最大batch/速度実測](15_project_roadmap.md#高速に完成させる進め方)の順で進める。Phase 3をGPUで再実装する必要はない。Git管理外のTokenizerとpilotは別途コピーする。実装時間とGPU計算時間を分け、4090の実測前に完了日を確定しない。
 
-完了条件: 同じconfigから同じ小モデルを構築し、forward/backward、save/loadが動く。
+## Phase 0: 成功条件・環境・実験管理
 
-## Phase 1: データmanifest
+- [x] `src/`、`configs/`、`tests/`、`scripts/`と実験台帳の骨格を作る。
+- [x] iMac環境とuv管理の依存設定を記録し、Windows/WSL 3.1/Linuxへの移行手順を用意する（GPU実機記録はPhase 4）。
+- [x] run/config/artifact schemaとhash記録を決める。
+- [x] Base/Chat各100件の独自固定prompt、dev/test、rubric、generation条件、数値誤差の仕様を作る。
 
-1. source、subset、license、URL、hash、quality scoreを持つschemaを決める。
-2. `commercial_strict`、`commercial_web`、`sharealike`を分離する。
-3. FineWeb2 Edu Japaneseの10B sampleを最初の候補として取得計画へ入れる。
-4. validationをdocument単位で先に固定する。
+## Phase 1: 小規模データと会話pilot
 
-完了条件: 任意のdocumentが出所・ライセンス・splitまで追跡できる。
+- [x] FineWeb2 Edu JapaneseとRealPersonaChatの候補revision・配布条件・形式を確認し、調査metadataを保存する。
+- [x] `uv add --optional data`でデータ処理用依存を登録し、lockする。
+- [x] source台帳とdocument/dialogue manifest schemaを作る。
+- [x] source/subset/revision・利用条件の証拠を台帳へ固定し、取得範囲・容量上限・保存先をconfigで決める。
+- [x] 固定revisionから小規模本文データを取得する（Web20,000文書・会話3,000対話を取得、Web19,998文書と会話全件を採用）。
+- [x] 小sampleへraw/canonical hash、品質、duplicate cluster、splitのmanifestを付ける。
+- [x] FineWeb2 Edu Japanese等の小subsetをfilter/dedupし、cluster単位のsplitを固定する。
+- [x] Tokenizer学習用sampleをtrainから作る。
+- [x] 会話候補1k〜10k対話でspeaker/tree/品質と文字ベースの会話長を確認する（1024-token内の割合はPhase 2）。
 
-## Phase 2: Tokenizer 4k / 8k
+## Phase 2: Tokenizer 4k/8k
 
-1. Tokenizer学習用sample mixtureを作る。
-2. SentencePiece Unigram + byte fallbackを4k/8kで学習する。
-3. 特殊token IDを固定する。
-4. round-trip、byte fallback、特殊token、異常Unicodeのテストを書く。
-5. domain別chars/token、bytes/token reportを生成する。
+[完了](18_phase2_completion.md)。同じsample、固定語彙数、全corpus round-tripと会話window教師計数を検証した。
 
-完了条件: 同一sampleから再現可能な4k/8k artifactと比較reportが得られる。
+- [x] 同じsampleでSentencePiece Unigram + byte fallbackを4096/8192語彙で学習する。
+- [x] 正規化、空白/改行、特殊IDと本文/構造IDの区別をgolden例で検証する。
+- [x] domain別圧縮率、fallback率、1024超過率を比較する。
+- [x] 会話のunique量、総系列tokens、Assistant教師tokensを再計数する。
 
-## Phase 3: Modern Transformer
+## Phase 3: Transformer・cache・学習前export
 
-1. RMSNorm、RoPE、GQA、QK-Norm、SwiGLU、block、modelを小単位で実装する。
-2. causal mask、GQA mapping、tied embedding、parameter countのテストを書く。
-3. KV cacheとcached/non-cached一致テストを書く。
-4. T4KとT8K configを作る。
+[完了](19_phase3_completion.md)。両実モデル、HFとnative float GGUF、Q8/Q4候補を検証した。
 
-完了条件: T4K約10.00M、T8K約9.77Mで全unit testが通る（head間gain共有のQK-Norm案）。
+- [x] T8Kから実装し、RMSNorm/RoPE/GQA/QK-Norm/SwiGLU/tied embeddingを検証する。
+- [x] T4Kへ展開し、parameter countがT8K 9,772,800、T4K 10,002,816であることを確認する（head間gain共有QK-Norm案）。
+- [x] causal mask、padding、finite gradient、prefill/1-token/chunk cache一致を検証する。
+- [x] ランダム重みでHF/float GGUF logitsとTokenizer契約を別々に確認する。
+- [x] 必要なら外部SentencePiece経路を実装し、EOT停止と量子化型fallbackを確認する。
 
-**提案（追加gate）**: head間gain共有のQK-NormならT4K 10,002,816、T8K 9,772,800を期待値にする。本学習前にランダム重みでHF／float GGUFのtoken IDs・logits一致と量子化fallbackを確認する。[計算式](12_training_implementation_research.md)、[export gate](14_evaluation_deployment_research.md)
+## Phase 4: 学習器・再開・4090実測
 
-## Phase 4: DataLoaderとcheckpoint
+- [ ] iMacから別のWindows＋RTX 4090 PCへ切り替え、WSL 3.1/Linuxで同じcommit/config/Tokenizer/sampleを復元する。
+- [ ] 実WSL version、distribution実行方式、GPU/driver、PyTorch/CUDAを記録し、hash/ID一致とCUDA動作を確認する。
+- [ ] `uint16` shards、document index、mmap loaderと消費済み位置の保存を作る。
+- [ ] AdamW/BF16 autocast、gradient accumulation、scheduler、checkpointを実装する。
+- [ ] 準備runから学習runへschema/台帳を拡張し、実際のtokens/steps、checkpoint、完了/失敗を記録する。
+- [ ] 本文NLL、window/stride、BPBとBase生成suiteのrunnerを実装・検証する。
+- [ ] 連続200 stepsと100 steps→保存→再開100 stepsのtoken列/loss/weightsを比較する。
+- [ ] syntheticと実shardでmicro batchを最大安定値まで増やし、backend/compile、VRAM、data wait、速度を測る。
+- [ ] 100M〜50Bの時間とストレージを実測から見積もる。
 
-1. `uint16` shard writerとmemory-mapped loaderを作る。
-2. shard boundary、shuffle、data position resumeをテストする。
-3. model、optimizer、scheduler、RNG、data offset、hashを保存する。
-4. 100 step save/resume equivalence testを作る。
+## Phase 5: 最小pipelineと100M探索
 
-完了条件: 中断後に同じtoken位置から再開し、連続runと一致する。
+- [ ] 100件overfit、10M-token smokeで学習・生成・保存再開を一周する。
+- [ ] 100Mで4k/8k、QK-Norm、LRを一要因ずつ比較する。
+- [ ] AdamW baseline成立後、必要ならMuon+AdamWを別LRで比較する。
+- [ ] BPB、処理bytes/GPU時間、更新数、生成失敗を比較し、最大2候補へ絞る。
+- [ ] dev/pilotを使い、品質閾値を最終test評価前に固定する。
 
-## Phase 5: Smokeと100M探索
+## Phase 6: 1B〜10B Base v1
 
-1. 小データ100件をoverfitする。
-2. 10M-token smoke runを実施する。
-3. 100M tokensで4k/8k、QK-Norm、LRを比較する。
-4. AdamW baseline後にMuon+AdamWを比較する。
-5. BPB、repetition、EOS、throughputをreport化する。
+- [ ] 500M/1B/2Bで段階評価し、5Bまでに本命1モデルを決める。
+- [ ] 検証済みのデータ処理を拡張し、50〜100B master corpus候補を段階整備する。
+- [ ] 固定mixture系列と変更系列、継続stable枝と評価decay枝を区別する。
+- [ ] 10B Base v1のartifactと固定評価を作り、日本語短文の達成/未達を記録する。
 
-完了条件: 発散せず、比較表から1Bへ進める候補を最大2つ選べる。
+## Phase 7: Chat v1
 
-## Phase 6: Scaling
+- [ ] Dialogue mid-trainingのconfig/予算を固定し、Base→SFTの小対照も残す。
+- [ ] Assistant本文+EOTのmask、shift、教師0件、turn単位の切り捨てを検証する。
+- [ ] SFT累積総系列10M/30M/100M候補を比較し、教師tokens/unique量/反復を併記する。
+- [ ] 固定対話で関連性、2〜数ターンの文脈、停止、反復、role、Unicodeを評価する。
+- [ ] 固定履歴とは別にモデル生成を戻す複数turn rollout、自動失敗flag、人手評価・一致率を用意する。
+- [ ] devで選んだChat v1を独立testで評価する。
 
-1. 1Bで候補を絞る。
-2. 2Bで過去モデルとの観察点を記録する。
-3. 5Bで本命を1つ決定する。
-4. 10Bで`JMicro-10M-Base-v1`を固定評価する。
-5. 20Bで`Base-v2`を評価する。
-6. 改善が続く場合のみ50Bへ進む。
+## Phase 8: 量子化とローカル実行
 
-## Phase 7: Chat
+- [ ] 学習済みBase/ChatでHF/float GGUF parityと停止を再確認する。
+- [ ] Q8/Q4の品質差、tensor実型、weights/全artifact容量、RSS、CPU応答時間を測る。
+- [ ] model card、hash、source/帰属、依存、再現/推論手順を揃える。
+- [ ] 独立環境でBase completionとChatを起動し、容量/品質目標の達成を確認する。
 
-1. Dialogue-oriented mid-training mixtureを作る。
-2. 10M/30M/100M dialogue-token SFTを比較する。
-3. Assistant-only lossを検証する。
-4. 固定100〜500 promptで人手・自動評価する。
-5. `JMicro-10M-Chat`を作る。
+## Phase 9: 20Bと条件付き50B
 
-## Phase 8: 追加研究
+- [ ] 20B Base v2を評価し、10Bとの差・信頼区間・追加予算を報告する。
+- [ ] 改善継続と予算が成立する場合のみ50Bへ進む。
+- [ ] 新BaseをChatへ採用する場合は同じSFT/量子化/配布検証を再実行する。
 
-優先順:
+## Phase 10: 後半研究
 
-1. Layer Sharing 12 unique / 24 logical
-2. teacher distillation
-3. ReLU²
-4. Mamba2 + Attention hybrid
-5. LFM2風Conv + Attention
-6. 5M/10M/25M/50M/100M scaling
-7. Vast.aiで独立runを並列化
+- [ ] Layer Sharing、テキスト蒸留、ReLU²、Mamba2/Conv hybrid、規模比較を優先順に検討する。
+- [ ] 各proposalで対照条件、改善metric、compute予算、採用基準を先に決める。
+- [ ] Vast.aiはローカル検証済みの独立run並列化に限定し、利用時に再見積もりする。
 
-## 最初に実装する最小単位
+## これから進める最初の一周
 
 ```text
-環境情報採取
-  -> Tokenizerの最小sample
-  -> 正規化・特殊token・4k/8k語彙予算の検証
-  -> T8K model
-  -> unit tests
-  -> ランダム重みでHF/GGUF exportとcache一致確認
-  -> synthetic benchmark
-  -> 100件overfit
-  -> save/resume test
-  -> 10M-token smoke
+Phase 0〜3: データ / Tokenizer / 両モデル / cache / ランダム重みexportは完了済み
+  -> 学習器の実装 / Windows・WSLへ切替
+  -> 評価runner / save-resume / 最大batchの4090 benchmark
+  -> 100件overfit / 10M-token smoke
+  -> T4Kとの100M比較
 ```
 
-この最小単位が安定してから、巨大datasetのdownloadと50〜100B master corpus構築へ進む。
-
-未解決事項と優先順位の全体表は[追加技術調査](11_technical_research_gaps.md)を参照する。会話データ候補の取得・pilotは[Tokenizer・会話データ調査](13_tokenizer_dialogue_data_research.md)に沿って進める。実測待ちの項目を文献確認済みとして扱わない。
+この一周が成立してから、大規模データ処理と本系列へ進む。会話pilot・評価準備は早期から並行する。具体的な未解決事項と根拠は[追加技術調査](11_technical_research_gaps.md)、会話データは[Tokenizer・会話データ調査](13_tokenizer_dialogue_data_research.md)、推論経路は[評価・配布調査](14_evaluation_deployment_research.md)を参照する。

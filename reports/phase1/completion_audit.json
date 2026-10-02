@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "objective": "Phase 1 data pilot on iMac",
+  "phase": 1,
+  "audited_at": "2026-10-02T12:52:10.610542+00:00",
+  "status": "complete",
+  "requirements": [
+    {
+      "requirement": "source_subset_revision_terms_attribution_and_bucket",
+      "evidence": [
+        "configs/data/pilot.json",
+        "data/phase1/raw/acquisition.json"
+      ],
+      "verified": true
+    },
+    {
+      "requirement": "document_and_dialogue_manifest_schema",
+      "evidence": [
+        "schemas/configs/data/pilot.schema.json",
+        "schemas/dataset_record.schema.json"
+      ],
+      "verified": true
+    },
+    {
+      "requirement": "bounded_actual_base_corpus_and_1k_to_10k_dialogue_pilot",
+      "evidence": [
+        "data/phase1/processed/dataset_manifest.parquet",
+        "reports/phase1/data_pilot_report.json",
+        "reports/phase1/dialogue_data_report.json"
+      ],
+      "verified": true
+    },
+    {
+      "requirement": "all_raw_and_canonical_source_records_reconstructed",
+      "evidence": [
+        "reports/phase1/verification.json"
+      ],
+      "verified": true
+    },
+    {
+      "requirement": "japanese_exact_near_cross_source_dedup_and_limits",
+      "evidence": [
+        "src/jmicro/data.py",
+        "tests/test_data.py",
+        "reports/phase1/data_pilot_report.json",
+        "reports/phase1/verification.json"
+      ],
+      "verified": true
+    },
+    {
+      "requirement": "url_and_duplicate_cluster_split_before_windowing",
+      "evidence": [
+        "data/phase1/processed/split_manifest.json",
+        "reports/phase1/verification.json"
+      ],
+      "verified": true
+    },
+    {
+      "requirement": "fixed_evaluation_contamination_checks",
+      "evidence": [
+        "reports/phase1/verification.json",
+        "reports/phase1/data_pilot_report.json"
+      ],
+      "verified": true
+    },
+    {
+      "requirement": "identical_ordered_train_only_tokenizer_sample_for_4k_and_8k",
+      "evidence": [
+        "data/phase1/processed/tokenizer_sample.jsonl",
+        "data/phase1/processed/split_manifest.json"
+      ],
+      "verified": true
+    },
+    {
+      "requirement": "fixed_speaker_orientation_persona_omission_prefix_and_tree_policy",
+      "evidence": [
+        "configs/data/pilot.json",
+        "reports/phase1/dialogue_data_report.json",
+        "tests/test_data.py"
+      ],
+      "verified": true
+    },
+    {
+      "requirement": "domain_bytes_short_lengths_turns_responses_and_content_review",
+      "evidence": [
+        "reports/phase1/data_pilot_report.json",
+        "reports/phase1/dialogue_data_report.json",
+        "reports/phase1/quality_review.json"
+      ],
+      "verified": true
+    },
+    {
+      "requirement": "byte_identical_rebuild_all_six_outputs",
+      "evidence": [
+        "reports/phase1/reproducibility.json"
+      ],
+      "verified": true
+    },
+    {
+      "requirement": "uv_management_and_frozen_code_config_dataset_record",
+      "evidence": [
+        "pyproject.toml",
+        "uv.lock",
+        "reports/p0-data-pilot-20261002T124937Z-cab2bfc4/experiment.json"
+      ],
+      "verified": true
+    },
+    {
+      "requirement": "reproduction_docs_latest_plan_and_phase0_history_preservation",
+      "evidence": [
+        "data/README.md",
+        "docs/17_phase1_completion.md",
+        "docs/15_project_roadmap.md",
+        "docs/10_next_steps.md"
+      ],
+      "verified": true
+    }
+  ],
+  "verification_commands": [
+    {
+      "command": "uv run --frozen --extra data --offline pytest -q",
+      "exit_code": 0,
+      "observed_output": "34 passed in 1.84s"
+    },
+    {
+      "command": "uv lock --check --offline",
+      "exit_code": 0,
+      "observed_output": "Resolved 85 packages in 3ms"
+    },
+    {
+      "command": "uv run --frozen --extra data --offline scripts/prepare_phase1.py verify",
+      "exit_code": 0,
+      "report": "reports/phase1/verification.json"
+    },
+    {
+      "command": "two offline builds in separate output directories",
+      "exit_code": 0,
+      "report": "reports/phase1/reproducibility.json"
+    },
+    {
+      "command": "uv run --frozen --extra data --offline scripts/validate_phase0.py --output reports/local/phase0_validation.json",
+      "exit_code": 0,
+      "report": "reports/local/phase0_validation.json"
+    }
+  ],
+  "source_snapshot": {
+    "path": "reports/p0-data-pilot-20261002T124937Z-cab2bfc4",
+    "verification": {
+      "run_id": "p0-data-pilot-20261002T124937Z-cab2bfc4",
+      "verified": true,
+      "source_file_count": 61,
+      "record_kind": "preparation",
+      "training_tokens_seen": 0
+    },
+    "git": {
+      "commit": "27fe83be9d7b338df9084057e4e7e798e3947d37",
+      "dirty": true
+    },
+    "kind": "preparation; legacy phase=0 schema, not a training result"
+  },
+  "artifact_sha256": {
+    "data/phase1/processed/dataset_manifest.parquet": "fa5507445665c3dff556d7b04a5725ee3021c8f300cb02cc2e92f6e99c986a79",
+    "data/phase1/processed/corpus.jsonl": "2c54cadb7da6fb000f47d6f072b220a9f2f14076f76ba2a6597980bcd766ebe1",
+    "data/phase1/processed/split_manifest.json": "fa93051171c307ac5417bc252f837f1d0d426416a8b6a1fe80d68c73fd3e84d6",
+    "data/phase1/processed/tokenizer_sample.jsonl": "2bd5f104d0931e883a891f64bbcd0392cabd7259d3cfc5cd8a693f7f1acf54e6",
+    "data/phase1/processed/data_pilot_report.json": "cef8962c343159eba8e1f8ca39b6945b6c84c53e0e802f96d114f3e718cd98f7",
+    "data/phase1/processed/dialogue_data_report.json": "72059467d87f598295b9d9905a26bb072cb207700c391ac3f356ce69dd5a04d6",
+    "configs/data/pilot.json": "05cec7dda37a1d5954d661909c117f99f876bb76855b2f00557ad0d4deb8bc67",
+    "schemas/configs/data/pilot.schema.json": "35a928fadff4ae4726a99b410186003eb0b107e270508abb3aefd20311da72db",
+    "schemas/dataset_record.schema.json": "3bb5f3d89c2d4afba054ef575df7be8eea0f943b7afcb2893de7740cf88f67c7",
+    "src/jmicro/data.py": "24b15285c9af6997c34d2b785dd5cca94d645c40ab03af936c0335ca943caa51",
+    "scripts/prepare_phase1.py": "804482566330e7b8adc9233bb7986442c8dfb2e8d912f329192fa3b812584520",
+    "tests/test_data.py": "70bec018c3b46e957dfe6c4890794f49831a6ce50f7f2738bf926131735f438e",
+    "pyproject.toml": "643c719ab37e9e5ab26f818f56230bedbef018c8dd6454444eb63b13b75422f6",
+    "uv.lock": "dd8416ceaf1fbb4510acb97bd615ca0ce3cfe7f12d62f0f9c019aeaebf2fe8db",
+    "docs/17_phase1_completion.md": "23907c5d284497259df13216ce592c42e5a61914c192c7f6c491cc8381cb54b8",
+    "reports/phase1/verification.json": "20ab90c0cd13c80c9c2818ebc26ee3cd162137784532edad8536069e496b65d5",
+    "reports/phase1/quality_review.json": "a9b82f682ff3cc37cb588165e475cba9a3ec9164e0825b82b50dfc359532dd87",
+    "reports/phase1/reproducibility.json": "1b0f08f52f4e773e1b2c0116af49622175c7505d6922cb981378f4348acc20ac"
+  },
+  "deferred_to_phase2": [
+    "tokenizer training and round-trip",
+    "4k/8k corpus and Assistant teacher tokens",
+    "context 1024 fit ratio and turn windows"
+  ],
+  "not_claimed": [
+    "exhaustive semantic dedup or absence of all contamination",
+    "independent human quality review",
+    "speaker-disjoint evaluation",
+    "full master corpus or unique 100M tokens",
+    "trained tokenizer/model or GPU benchmark"
+  ]
+}

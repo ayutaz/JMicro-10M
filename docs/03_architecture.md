@@ -1,5 +1,7 @@
 # アーキテクチャ設計
 
+**実装状況（2026-10-02）**: T8K/T4Kを実装し、実parameter数9,772,800／10,002,816、因果性、padding/cache、HF/native float GGUFをCPUで検証済み。[Phase 3完了記録](19_phase3_completion.md)。学習性能の優劣は未判定で、以下の比較・派生案は研究候補として残す。
+
 ## 本命: JMicro-10M-T8K
 
 **提案**:
@@ -25,7 +27,7 @@ mlp_bias: false
 dropout: 0.0
 ```
 
-QK-Normをhead間gain共有のhead次元RMSNormとする提案では、設計上のパラメータ数は9,772,800（約9.77M）。旧概算9,775,872との差はQ/K gainの共有方式による。[追加調査の計算式](12_training_implementation_research.md)を参照し、実装後にテストで実数を固定する。
+QK-Normをhead間gain共有のhead次元RMSNormとする実装で、パラメータ数9,772,800（約9.77M）を確認した。旧概算9,775,872との差はQ/K gainの共有方式による。[追加調査の計算式](12_training_implementation_research.md)と[実測report](../reports/phase3/model_contract_report.json)を参照する。
 
 | 部分 | 概算 |
 |---|---:|

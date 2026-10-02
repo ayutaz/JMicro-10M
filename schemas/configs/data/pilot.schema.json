@@ -1,0 +1,322 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "seed",
+    "sources",
+    "filters",
+    "dedup",
+    "split",
+    "contamination",
+    "tokenizer_sample_bytes",
+    "dialogue_policy"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "seed": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "repository",
+          "subset",
+          "revision",
+          "license",
+          "bucket",
+          "terms_url",
+          "attribution",
+          "artifact",
+          "url",
+          "expected_sha256",
+          "max_download_bytes",
+          "evidence_url",
+          "evidence_artifact",
+          "evidence_sha256",
+          "row_start",
+          "sample_count",
+          "selection"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "web",
+              "dialogue"
+            ]
+          },
+          "repository": {
+            "type": "string",
+            "minLength": 1
+          },
+          "subset": {
+            "type": "string",
+            "minLength": 1
+          },
+          "revision": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{40}$"
+          },
+          "license": {
+            "enum": [
+              "ODC-By-1.0",
+              "CC-BY-SA-4.0"
+            ]
+          },
+          "bucket": {
+            "enum": [
+              "commercial_web",
+              "sharealike"
+            ]
+          },
+          "terms_url": {
+            "type": "string",
+            "minLength": 1
+          },
+          "attribution": {
+            "type": "string",
+            "minLength": 1
+          },
+          "artifact": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expected_sha256": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "max_download_bytes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "evidence_url": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_artifact": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "row_start": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "sample_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "selection": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "filters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "web_min_chars",
+        "web_max_chars",
+        "min_japanese_ratio",
+        "min_language_score",
+        "min_quality_score",
+        "dialogue_min_messages"
+      ],
+      "properties": {
+        "web_min_chars": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "web_max_chars": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "min_japanese_ratio": {
+          "type": "number",
+          "minimum": 0
+        },
+        "min_language_score": {
+          "type": "number",
+          "minimum": 0
+        },
+        "min_quality_score": {
+          "type": "number",
+          "minimum": 0
+        },
+        "dialogue_min_messages": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "dedup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "char_ngram",
+        "num_perm",
+        "bands",
+        "rows_per_band",
+        "jaccard_threshold",
+        "near_min_chars",
+        "shared_prefix_messages",
+        "shared_prefix_min_chars"
+      ],
+      "properties": {
+        "char_ngram": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "num_perm": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "bands": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rows_per_band": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "jaccard_threshold": {
+          "type": "number",
+          "minimum": 0
+        },
+        "near_min_chars": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "shared_prefix_messages": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "shared_prefix_min_chars": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "split": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "train",
+        "dev",
+        "test"
+      ],
+      "properties": {
+        "train": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "dev": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "test": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "contamination": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "min_substring_chars",
+        "fixed_suites"
+      ],
+      "properties": {
+        "min_substring_chars": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fixed_suites": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "tokenizer_sample_bytes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "commercial_web",
+        "sharealike"
+      ],
+      "properties": {
+        "commercial_web": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sharealike": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "dialogue_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "user",
+        "assistant",
+        "merge_consecutive_same_speaker",
+        "persona",
+        "windowing"
+      ],
+      "properties": {
+        "user": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assistant": {
+          "type": "string",
+          "minLength": 1
+        },
+        "merge_consecutive_same_speaker": {
+          "type": "boolean"
+        },
+        "persona": {
+          "type": "string",
+          "minLength": 1
+        },
+        "windowing": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

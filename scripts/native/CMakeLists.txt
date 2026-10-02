@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.20)
+project(jmicro_bridge LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+find_library(LLAMA_LIBRARY NAMES llama PATHS "${LLAMA_BUILD_DIR}/bin" NO_DEFAULT_PATH REQUIRED)
+add_executable(llama-bridge ../llama_bridge.cpp)
+target_include_directories(llama-bridge PRIVATE "${LLAMA_SOURCE_DIR}/include" "${LLAMA_SOURCE_DIR}/ggml/include" "${LLAMA_SOURCE_DIR}/vendor/nlohmann")
+target_link_libraries(llama-bridge PRIVATE "${LLAMA_LIBRARY}")
+set_target_properties(llama-bridge PROPERTIES BUILD_RPATH "${LLAMA_BUILD_DIR}/bin")
