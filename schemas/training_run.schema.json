@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Completed-update training run, separate from preparation runs",
+  "type": "object",
+  "required": ["version", "kind", "run_id", "phase", "status", "created_at", "git", "spec", "source_sha256", "shard_manifest_sha256", "tokens_seen", "update", "checkpoint", "failure_reason"],
+  "properties": {
+    "version": {"const": 1},
+    "kind": {"const": "training"},
+    "run_id": {"type": "string", "minLength": 1},
+    "phase": {"type": "integer", "minimum": 4},
+    "status": {"enum": ["running", "paused", "interrupted", "complete", "failed"]},
+    "created_at": {"type": "string"},
+    "git": {"type": "object"},
+    "spec": {"type": "object"},
+    "source_sha256": {"type": "object"},
+    "shard_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "tokens_seen": {"type": "integer", "minimum": 0},
+    "update": {"type": "integer", "minimum": 0},
+    "checkpoint": {"type": ["string", "null"]},
+    "failure_reason": {"type": ["string", "null"]}
+  }
+}
