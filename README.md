@@ -4,6 +4,8 @@
 
 Phase 0〜3が完了。データpilot、4k/8k Tokenizer、約10Mモデル、cache、HF/実float GGUF、Q8/Q4候補と推論入口をiMacで検証した。[Tokenizer完了記録](docs/18_phase2_completion.md)、[モデル・export完了記録](docs/19_phase3_completion.md)を参照する。重みはランダム初期化で、本学習は未実施。次のPhase 4ではWindows＋RTX 4090＋ユーザー指定WSL 3.1/Linuxへ切り替え、学習器・保存再開・最大安定batchを検証する。
 
+**別PCで続きを進める場合は[Windows/WSL＋RTX 4090の再開手順](docs/windows_handoff.md)から始める。** private GitHubのclone、public Hugging Face成果物の復元、uv環境・CUDA確認、Phase 4の実装順と次の担当への引継ぎ文面をまとめている。
+
 ## 開発環境
 
 TokenizerとpilotデータのHugging Face共有については[公開状態と取得手順](docs/huggingface_handoff.md)を参照する。[ライセンス・個人情報確認](docs/20_publication_review.md)を終え、出所・利用条件を付けた公開版の匿名取得・checksum検証が完了した。

@@ -26,6 +26,8 @@ Pythonは`.python-version`の3.12.7、依存変更は`uv add`、環境再構築�
 
 Phase 0〜3の成果物はそれぞれの完了記録に実pathを示す。Phase 4以降の成果物名は**今後作成するもの**であり、既に存在するfileを示さない。コードは`src/`、設定は`configs/`、検証は`tests/`、実行入口は`scripts/`を基本とする。小さな比較結果・判断記録は`reports/<run_id>/`、大型データ・重みは[外部データ領域](07_environment.md)へ置く。`docs`には仕様、計画、成果物への参照を残す。
 
+別PCで再開する時は[Windows/WSL＋RTX 4090の手順](windows_handoff.md)を入口とする。コードをprivate GitHubから取得し、公開済みTokenizer/pilotを固定Hub commitから復元してからPhase 4へ進む。
+
 各フェーズは、成果物が作られ、完了条件を証拠で確認した時に完了とする。条件を満たさない場合は修正・再比較へ戻り、未達事項を次フェーズへ黙って持ち越さない。日付の締切は4090実測前には決めず、Phase 4で所要時間を見積もる。
 
 ## 全体の順序

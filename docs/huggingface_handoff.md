@@ -2,6 +2,8 @@
 
 [japanese-data-analyze/japanese-tiny-llm-10m-artifacts](https://huggingface.co/datasets/japanese-data-analyze/japanese-tiny-llm-10m-artifacts)へpublicで公開済み。GitHubのコードリポジトリは非公開のまま、Tokenizerと前処理済みpilotを共有する。
 
+別PCでの初回clone・WSL/uv環境構築から進める場合は[再開手順](windows_handoff.md)を最初に読む。この文書は公開file・hash・取得処理の詳細を補足する。
+
 ## 確認済みの公開状態
 
 2026-10-02に計27 files、約107MBを公開。Hub commitは`0b1042979bf32899e24da30790e3ae6b239013c3`。認証なしで全25 payload＋manifest/checksum台帳を取得し、サイズ・SHA-256を照合した。移行対象16 filesの復元も確認済み。[公開前の確認](20_publication_review.md)と[実施report](../reports/publication/review.json)を参照。

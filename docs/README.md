@@ -25,6 +25,8 @@
 
 **次の作業**: Phase 4でWindows/WSL＋RTX 4090へ切り替え、学習器・shard・保存再開・最大安定batchを検証する。GPU学習は未実施。最新の状態は[フェーズ別計画の全体表](15_project_roadmap.md#全体の順序)を参照する。
 
+**別PCでの再開入口**: [Windows/WSL＋RTX 4090の再開手順](windows_handoff.md)。GitHubの取得からHub成果物の復元、uv環境、CUDA確認、実装順までを順に実行できる。
+
 **進め方**: 完成までの時間短縮を優先する。Phase 3の最終検証一式は実装後24.62秒で、実装・修正を含む作業時間とは別。Phase 3の再実装を移行条件にせず、既存artifactの引継ぎから進める。実装時間とGPU計算時間を分け、Phase 4の実測から残り時間を更新する。[詳細](15_project_roadmap.md#高速に完成させる進め方)
 
 ## 文書一覧

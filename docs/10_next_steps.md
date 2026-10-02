@@ -4,7 +4,7 @@
 
 **次の作業**: Phase 4。Windows/WSL＋RTX 4090へ切り替え、CUDA確認、学習器・shard・保存再開・最大安定batchを検証する。4k/8k TokenizerとCPUで検証したモデル・export経路を引き継ぐ。Pythonは`uv run`、依存変更は`uv add`。
 
-完成までの時間短縮を優先し、[移行 → 最小学習経路 → 保存再開 → 最大batch/速度実測](15_project_roadmap.md#高速に完成させる進め方)の順で進める。Phase 3をGPUで再実装する必要はない。Git管理外のTokenizerとpilotは別途コピーする。実装時間とGPU計算時間を分け、4090の実測前に完了日を確定しない。
+完成までの時間短縮を優先し、[移行 → 最小学習経路 → 保存再開 → 最大batch/速度実測](15_project_roadmap.md#高速に完成させる進め方)の順で進める。別PCでは[再開手順](windows_handoff.md)に従い、Git管理外のTokenizerとpilotを公開済みHugging Faceの固定commitから復元する。Phase 3をGPUで再実装する必要はない。実装時間とGPU計算時間を分け、4090の実測前に完了日を確定しない。
 
 ## Phase 0: 成功条件・環境・実験管理
 
