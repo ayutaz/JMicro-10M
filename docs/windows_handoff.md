@@ -24,7 +24,7 @@ snapshotをコピーする場合は`reports/<run_id>/`と親の`experiments.json
 
 Git clone/pullではGit管理外のデータとTokenizerは取得できない。repo内の同じ相対pathへ次をコピーする。
 
-Hugging Faceのpublic repository経由で共有する準備も進めている。[公開状態と取得手順](huggingface_handoff.md)を参照。現在はpayloadの公開承認待ちでアップロード未実施のため、Hubから取得できる状態ではない。
+Hugging Faceのpublic repositoryへ公開済み。[公開版の取得手順](huggingface_handoff.md)で固定commitの全fileを匿名取得し、checksumを検証して配置できる。公開TokenizerはiMacのユーザーpathを含むtrainer metadataのみを除去したコピーで、token ID契約は同じだがmodelのbyte hashは旧Phase 2 artifactと異なる。[確認記録](20_publication_review.md)を参照。
 
 | 相対path | 用途 |
 |---|---|
@@ -34,7 +34,7 @@ Hugging Faceのpublic repository経由で共有する準備も進めている。
 | `data/phase1/processed/split_manifest.json` | 入出力checksumと固定split |
 | `data/phase1/processed/tokenizer_sample.jsonl` | 共通sampleのhash/ID確認 |
 
-Tokenizer modelの期待hashは[Phase 2 contract report](../reports/phase2/tokenizer_contract_report.json)、データの期待hashはコピーした`split_manifest.json`と[Phase 1完了監査](../reports/phase1/completion_audit.json)で照合する。相対pathを保ち、Windows側の絶対pathへMacのpathを流用しない。
+元のiMac artifactをコピーする場合は、Tokenizer modelの期待hashを[Phase 2 contract report](../reports/phase2/tokenizer_contract_report.json)、データの期待hashをコピーした`split_manifest.json`と[Phase 1完了監査](../reports/phase1/completion_audit.json)で照合する。Hub公開版の場合は`configs/hub/artifacts.json`の固定commit/manifest SHAと公開manifestのfile hashを使用し、旧Tokenizer hashを公開コピーに流用しない。相対pathを保ち、Windows側の絶対pathへMacのpathを流用しない。
 
 原データを復元検証する時は`data/phase1/raw/`も必要。ランダム重みのnative GGUFを再比較する時は`artifacts/phase3/`も必要だが、最初のCUDA確認には不要。`.venv`、Mac native build、大きなlogits、再学習候補・停止fixtureは最初の転送対象から外してよい。
 

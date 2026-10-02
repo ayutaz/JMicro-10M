@@ -37,7 +37,7 @@ def main():
     source = args.source
     if source is None:
         if not pin["revision"]:
-            parser.error("Publication is pending approval; the Hub commit is not pinned yet.")
+            parser.error("Publication is on hold; the Hub commit is not pinned yet. See docs/20_publication_review.md.")
         from huggingface_hub import hf_hub_download, snapshot_download
 
         download_dir = ROOT / "artifacts/hub-downloads" / pin["revision"]

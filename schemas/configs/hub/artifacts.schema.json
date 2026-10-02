@@ -9,7 +9,7 @@
     "repo_type": {"const": "dataset"},
     "revision": {"type": ["string", "null"], "pattern": "^[a-f0-9]{40}$"},
     "manifest_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
-    "publication_status": {"enum": ["pending_payload_approval", "published_verified"]}
+    "publication_status": {"enum": ["pending_payload_approval", "held_for_license_privacy_review", "published_verified"]}
   },
   "allOf": [{
     "if": {"properties": {"publication_status": {"const": "published_verified"}}},
