@@ -1,0 +1,20 @@
+# JMicro-10M development and training
+
+Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/windows_handoff.md` before continuing. The roadmap defines milestones and evidence; the status file records the actual current state.
+
+The user has authorized Codex to implement, run, evaluate, repair, and improve this project autonomously, including local GPU training and the required WSL environment preparation. Continue through routine implementation decisions and milestone transitions without asking for renewed permission. Respect the active tool permissions: authorization in this file cannot change the execution sandbox or managed policy.
+
+- Target WSL package 3.x with a Linux distribution using WSL 2 and RTX 4090. Use Python 3.12.7 and uv; dependency changes use `uv add`. Preserve historical Phase 0–3 reports.
+- Run all Python commands through uv, including setup probes, automation runners, tests, and one-off scripts: use `uv run --frozen ...` with the required extras. Install Python with `uv python install 3.12.7` and restore dependencies with `uv sync --frozen`. Do not invoke system `python`, `python3`, or `py` directly or install dependencies with pip. Python subprocesses may reuse `sys.executable` when the parent was launched through uv. If the pinned interpreter or dependencies are inaccessible, record the blocker instead of falling back to system Python.
+- Recover the pinned public pilot/Tokenizer and verify hashes before use. Do not repeat Tokenizer training or Phase 3 export work unless new evidence requires it.
+- Follow Phase 4 environment → shards/trainer/evaluation → save/resume → maximum stable batch. Then overfit/smoke/100M comparisons → Base → Chat → quantization/local validation. Follow the roadmap's measured-budget and improvement conditions for 20B/50B; additional research must have a defined comparison and completion condition.
+- Implement missing training and evaluation commands before trying to run them. Proposed settings and random-weight CPU checks are not evidence of GPU training or useful model quality.
+- Use train records for learning; keep dev/test and the fixed evaluation suites separate. Compare Tokenizers with common-byte BPB and clearly labeled token/byte/GPU-time budgets. Chat loss supervises Assistant body plus EOT.
+- Save optimizer/scheduler/RNG/sampler position and consumed tokens at completed updates. Verify continuous vs resumed training before long runs. Use measured stable batch sizes and finite CUDA/BF16 forward/backward results.
+- Persist long GPU jobs, logs, checkpoint paths, and process identity so a conversation ending does not lose training. Before starting a job, inspect existing processes and run records to avoid duplicate GPU jobs. Resume valid checkpoints after interruption.
+- After each meaningful change or experiment, run relevant checks, fix failures, and update `docs/autonomous_status.md` with evidence, decisions, active jobs, and the next concrete action. Do not weaken acceptance criteria merely to pass a failed run.
+- Stop for genuinely missing credentials, OS elevation/restart, inaccessible hardware, or exhausted account/runtime capacity, and record the exact blocker and restart command. Do not turn a transient error into repeated identical retries.
+- Work on this project and its documented WSL/data environments. External publication, messages to other people, and paid cloud jobs need their own authorization. Do not expose authentication files or secrets in logs.
+- Use repository-local Git identity `yousan <ka1357amnbpdr@gmail.com>`. Commit verified, meaningful changes at appropriate milestones; do not automatically push or publish.
+
+For the non-interactive runner, return the requested JSON result. `continue` means useful authorized work remains; `needs_user` means an external action is necessary; `complete` requires actual evidence that the requested roadmap goals have been met. A completed code change alone is not project completion.

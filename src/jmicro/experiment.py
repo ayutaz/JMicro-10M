@@ -21,7 +21,7 @@ from jsonschema import Draft202012Validator, FormatChecker
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE_DIRS = ("src", "scripts", "configs", "schemas", "eval", "tests", "docs")
-SOURCE_FILES = ("README.md", "pyproject.toml", "uv.lock", ".python-version", ".gitignore")
+SOURCE_FILES = ("README.md", "AGENTS.md", "pyproject.toml", "uv.lock", ".python-version", ".gitignore", ".gitattributes")
 PACKAGES = ("jsonschema", "pytest", "numpy", "sentencepiece", "torch", "transformers", "datasets", "safetensors")
 
 
@@ -90,7 +90,7 @@ def capture_environment(root: Path = ROOT, probe_torch: bool = False) -> dict:
             "storage": {"root": str(root), "total_bytes": disk.total, "free_bytes": disk.free},
             "nvidia_smi": nvidia, "wsl_observation": wsl, "torch_probe": torch_probe,
             "training_target": {"system": "Windows + WSL/Linux", "gpu": "RTX 4090", "vram_gib": 24,
-                                "wsl_package_version_requested": "3.1", "verified": False,
+                                "wsl_package_version_requested": "3.x", "verified": False,
                                 "verification_phase": 4, "micro_batch_policy": "largest_stable_measured"}}
 
 

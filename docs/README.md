@@ -13,7 +13,7 @@
 
 - **確定**: 目標は「約10M parameters、日本語専用、短文生成と数ターンの雑談対話」。高度な推論や長文RAGではなく、狭い能力を高密度に持たせる。
 - **確定**: Tokenizer、モデル重み、事前学習、Dialogue SFTまでスクラッチで構築する。
-- **確定**: 現在のiMacで開発し、学習時に別のRTX 4090 24GB搭載Windows PCへ切り替える。ユーザー指定WSL 3.1上のLinuxで最大安定バッチを実測して学習する。8TBストレージを前提とする。
+- **確定**: 現在のiMacで開発し、学習時に別のRTX 4090 24GB搭載Windows PCへ切り替える。ユーザー指定WSL 3.x上のLinuxで最大安定バッチを実測して学習する。8TBストレージを前提とする。
 - **提案**: 本命はModern deep-thin Transformer。8k語彙版はhidden 256、12層、4Q/2KV GQA、SwiGLU、RoPE、RMSNorm、head間gain共有のQK-Norm、context 1024、tied embeddingで約9.77M。
 - **提案**: 4k語彙版も同じ約10M予算で作り、BPBと日本語圧縮率で比較する。
 - **確定**: 学習量は100M → 1B → 2B → 5B → 10B → 20B → 50B tokensの段階評価。50Bは20B時点で改善が続く場合のみ実施する。

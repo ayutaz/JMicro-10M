@@ -7,11 +7,13 @@
 - 現在の開発・設計環境はiMac。学習開始時に別のWindows PCへ切り替える
 - 学習用Windows PCにRTX 4090を搭載
 - RTX 4090 24GBを常時利用可能
-- ユーザー指定のWSL 3.1上のLinux環境で学習
+- ユーザー指定のWSL 3.x上のLinux環境で学習
 - 学習用GPUメモリを最大限使い、安定して学習できる最大バッチを実測して使う
 - 約8TBのローカルストレージ
 
-WSL 3.1はユーザー指定の採用環境として記録する。実際の導入version、Linux distribution、CUDA、PyTorchの組合せはWindows PCへ切り替えた時に実機で記録する。指定があることを導入確認済みとは扱わない。
+WSL 3.xはユーザー指定の採用環境として記録する。実際の導入version、Linux distribution、CUDA、PyTorchの組合せはWindows PCへ切り替えた時に実機で記録する。指定があることを導入確認済みとは扱わない。
+
+2026-10-02に[WSL 3.0.1](https://github.com/microsoft/WSL/releases/tag/3.0.1)を確認し、採用指定を3.xへ更新した。2026-10-03にWSL package 3.0.1.0 / Ubuntu WSL 2、RTX 4090、Windows driver 616.92、Python 3.12.7、PyTorch 2.14.1 / CUDA 13.0を実機確認。CUDA/BF16のfinite forward/backwardと53 tests / skip 0を通過した。証拠は`reports/phase4/environment.json`と[最新状態](autonomous_status.md)。最大安定batchと長期学習の予算は引き続き実測する。
 
 **確認済み（追加調査）**: CUDAの公式手順はWSL 2の実行環境を対象とする。WSLパッケージのversionとdistributionのWSL 1／2は別に記録する。Windows側NVIDIA driverを利用し、WSL内へLinux GPU driverを別途入れない。[NVIDIA公式手順](https://docs.nvidia.com/cuda/wsl-user-guide/)、[benchmark・環境記録案](12_training_implementation_research.md)
 
@@ -46,7 +48,7 @@ micro batch（GPUへ一度に載せる系列数）とeffective batch（optimizer
 
 ```text
 Windows 11
-  -> WSL 3.1（ユーザー指定）/ Linux（Ubuntuは候補）
+  -> WSL 3.x（ユーザー指定）/ Linux（Ubuntuは候補）
      -> Python + uv
      -> NVIDIA CUDA対応PyTorch
      -> BF16

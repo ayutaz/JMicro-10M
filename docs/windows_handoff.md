@@ -19,6 +19,29 @@
 
 ## 1. Windows側でWSLとGPUを確認
 
+2026-10-02のユーザー指定により、WSLパッケージは**3.x**を採用する。公式latestを直接確認した時点の安定版は[3.0.1（2026-09-29公開）](https://github.com/microsoft/WSL/releases/tag/3.0.1)。従来の3.1指定を3.xへ更新し、実際に導入したversionを記録する。
+
+このPCではWSL 2.6.1.0、RTX 4090 24,564 MiB、Windows NVIDIA driver 552.12を確認した。ただし、制限された実行環境ではdistribution一覧・状態が`E_ACCESSDENIED`、WSL更新が`WININET_E_CANNOT_CONNECT`、Hub/Python取得がsocketアクセス拒否となった。**更新・Linux起動・成果物復元は未完了**。実測は`reports/phase4/windows_preflight.json`を参照する。アクセス拒否をdistribution未導入と解釈しない。
+
+通常のWindows PowerShellで、プロジェクトのrootから再開する:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\setup_windows_wsl.ps1
+```
+
+WSLを公式安定版へ更新して3.xを確認し、既存distributionを利用する。複数ある場合は`-Distribution Ubuntu-24.04`等で明示する。distributionがゼロの場合はUbuntu-24.04を導入し、Linuxユーザーの初回作成で停止する。作成後に同じcommandを再実行する。更新に管理者権限が必要と表示された場合は管理者PowerShellで更新する。更新チャネルが3.xをまだ配布しない場合は、[公式releaseのx64 MSI](https://github.com/microsoft/WSL/releases/tag/3.0.1)で更新してから再実行する。
+
+Linux側では`setup_wsl_environment.sh`がWindowsの作業treeを`~/src/japanese-tiny-llm-10m`へコピーし、Python 3.12.7/uv、Hub成果物復元、依存、CUDA/BF16、skipなしテスト、入力付き準備runの順に進める。既存のLinuxコピーは上書きしない。Linuxコピーで再実行する場合:
+
+```sh
+cd ~/src/japanese-tiny-llm-10m
+JMICRO_PROJECT_ROOT="$PWD" bash scripts/setup_wsl_environment.sh
+```
+
+`JMICRO_PROJECT_ROOT`で新しいLinux保存先も指定できる。Linuxの`reports/phase4/setup.log`と各report、Windowsの`reports/phase4/wsl_setup.json`に結果を残す。これらのスクリプトの構文とWindows確認モードを検証したが、Linux構築・GPU動作はまだ実機検証できていない。
+
+固定`uv.lock`のLinux依存にはCUDA runtime 13.0.96、cuDNN-cu13が含まれる。[CUDA 13.xの最低driver条件は580以上](https://docs.nvidia.com/deploy/cuda-compatibility/minor-version-compatibility.html)で、観測した552.12は満たさない。Windows側でRTX 4090用の現行対応driverを[公式NVIDIA配布先](https://www.nvidia.com/Download/index.aspx)から更新する。スクリプトは成果物を先に復元し、driver条件未達ならGPU依存導入前に停止する。driver条件を満たすことと、実CUDA/BF16動作確認は別に記録する。
+
 PowerShellで実行:
 
 ```powershell
@@ -27,7 +50,7 @@ wsl -l -v
 nvidia-smi
 ```
 
-ユーザー指定の「WSL 3.1」はWSLパッケージversionとして記録する。`wsl -l -v`のdistribution実行方式はWSL 2で確認する。この二つのversion表示を混同せず、実際の表示を記録する。[MicrosoftのWSL手順](https://learn.microsoft.com/en-us/windows/wsl/install)
+「WSL 3.x」はWSLパッケージversionとして記録する。`wsl -l -v`のdistribution実行方式はWSL 2で確認する。この二つのversion表示を混同せず、実際の表示を記録する。[MicrosoftのWSL手順](https://learn.microsoft.com/en-us/windows/wsl/install)
 
 WSL/Ubuntuが未導入の場合のみ、管理者PowerShellで以下を実行し、要求に従って再起動・Linuxユーザー作成を済ませる。既に使っているdistributionがあれば、その環境を確認して使用する。
 

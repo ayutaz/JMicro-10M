@@ -2,15 +2,17 @@
 
 日本語の短文生成と数ターンの雑談を目的に、約10Mの言語モデルをTokenizerからスクラッチ構築する。計画は[フェーズ別実行計画](docs/15_project_roadmap.md)、設計・調査一覧は[docs](docs/README.md)を参照。
 
-Phase 0〜3が完了。データpilot、4k/8k Tokenizer、約10Mモデル、cache、HF/実float GGUF、Q8/Q4候補と推論入口をiMacで検証した。[Tokenizer完了記録](docs/18_phase2_completion.md)、[モデル・export完了記録](docs/19_phase3_completion.md)を参照する。重みはランダム初期化で、本学習は未実施。次のPhase 4ではWindows＋RTX 4090＋ユーザー指定WSL 3.1/Linuxへ切り替え、学習器・保存再開・最大安定batchを検証する。
+Phase 0〜3が完了。データpilot、4k/8k Tokenizer、約10Mモデル、cache、HF/実float GGUF、Q8/Q4候補と推論入口をiMacで検証した。[Tokenizer完了記録](docs/18_phase2_completion.md)、[モデル・export完了記録](docs/19_phase3_completion.md)を参照する。重みはランダム初期化で、本学習は未実施。次のPhase 4ではWindows＋RTX 4090＋ユーザー指定WSL 3.x/Linuxへ切り替え、学習器・保存再開・最大安定batchを検証する。
 
 **別PCで続きを進める場合は[Windows/WSL＋RTX 4090の再開手順](docs/windows_handoff.md)から始める。** private GitHubのclone、public Hugging Face成果物の復元、uv環境・CUDA確認、Phase 4の実装順と次の担当への引継ぎ文面をまとめている。
+
+環境整備・学習・評価・改善をCodexへ継続して任せる場合は[自律実行の設定とrunner](docs/codex_automation.md)を参照する。次の担当の現在地は[継続作業の状態](docs/autonomous_status.md)、作業ルールは[AGENTS.md](AGENTS.md)。2026-10-03にFull accessが反映され、WSL・公開成果物復元・CUDA/BF16確認を通過した。
 
 ## 開発環境
 
 TokenizerとpilotデータのHugging Face共有については[公開状態と取得手順](docs/huggingface_handoff.md)を参照する。[ライセンス・個人情報確認](docs/20_publication_review.md)を終え、出所・利用条件を付けた公開版の匿名取得・checksum検証が完了した。
 
-Pythonと依存は`uv`で管理する。`.python-version`は今回確認したPython 3.12.7、解決した依存versionと配布file hashは`uv.lock`へ固定。依存変更は`uv add`を使う。
+Pythonと依存は`uv`で管理する。Pythonの実行は環境確認・自律runner・テスト・一時スクリプトも含め、必要なextraを付けた`uv run --frozen ...`に統一する。systemの`python`・`python3`・`py`を直接実行しない。`.python-version`は今回確認したPython 3.12.7、解決した依存versionと配布file hashは`uv.lock`へ固定。Python導入は`uv python install 3.12.7`、依存復元は`uv sync --frozen`、依存変更は`uv add`を使う。
 
 ```sh
 uv sync --frozen --extra data --extra ml --extra export

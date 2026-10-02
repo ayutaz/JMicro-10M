@@ -50,7 +50,7 @@ Phase 0〜8を最初の完結した開発系列とする。Phase 9は20Bの評�
 
 Phase 1の会話pilotは準備済みで、拡張と評価準備をBase学習と並行して進める。Phase 6で10B Baseが成立すればPhase 7へ進め、20B・50BをChat開始の前提にしない。単一4090ではGPU実験を順番に実施し、CPUでのデータ整理・評価準備を並行する。
 
-**確定（実行場所）**: 現在のiMacで設計・実装・小sample/Tokenizer・CPU検証を進め、学習に入る時は別のWindows PC（RTX 4090、ユーザー指定WSL 3.1上のLinux）へ切り替える。Phase 4のGPU実機検証からWindows側で実施し、本学習はVRAMを最大限使える最大安定バッチを実測して設定する。[移行成果物・確認条件](07_environment.md)
+**確定（実行場所）**: 現在のiMacで設計・実装・小sample/Tokenizer・CPU検証を進め、学習に入る時は別のWindows PC（RTX 4090、ユーザー指定WSL 3.x上のLinux）へ切り替える。Phase 4のGPU実機検証からWindows側で実施し、本学習はVRAMを最大限使える最大安定バッチを実測して設定する。[移行成果物・確認条件](07_environment.md)
 
 ## 高速に完成させる進め方
 
@@ -84,7 +84,7 @@ Phase 4は次の順で進め、各段階の結果と次の作業を短く報告�
 作業:
 
 - リポジトリ骨格、依存version固定、run ID、artifact naming、seed管理、config schemaを作る。
-- iMac側の環境を記録し、Windows/WSL用の依存設定と移行手順を用意する。WSL 3.1の実導入version、GPU、driver、OS、PyTorch/CUDA、ストレージの実機確認は切替時に行う。
+- iMac側の環境を記録し、Windows/WSL用の依存設定と移行手順を用意する。WSL 3.xの実導入version、GPU、driver、OS、PyTorch/CUDA、ストレージの実機確認は切替時に行う。
 - Base評価、Chat評価、tokenizer契約、数値誤差、停止ID、公開対象のデータbucketを仕様化する。
 - Base completionとChat各100件の独自prompt suiteを作成し、各dev 80件・最終test 20件へ分けた。Chatは挨拶、感情応答、質問返し、訂正、2〜数ターンの文脈を含む。
 
@@ -190,7 +190,7 @@ Phase 4は次の順で進め、各段階の結果と次の作業を短く報告�
 作業:
 
 - `uint16` shard、document index、checksum、mmap loader、決定的shuffle/mixture samplerを作る。
-- GPU実機検証の前にWindows PCのWSL 3.1/Linuxへ切り替え、同じcommit/config、Tokenizer、sample、hashを引き継いでCUDA動作を確認する。
+- GPU実機検証の前にWindows PCのWSL 3.x/Linuxへ切り替え、同じcommit/config、Tokenizer、sample、hashを引き継いでCUDA動作を確認する。
 - AdamW、FP32 parameter + BF16 autocastを基準にloss、gradient accumulation、schedulerを実装する。
 - model/optimizer/scheduler/RNG、消費済みデータ位置、tokens/steps、全hashを保存する。optimizer更新境界で保存し、一時fileからのatomic renameを行う。
 - Phase 0の準備run記録を基に、学習runの開始/完了/失敗、checkpoint、metricsのschemaと台帳を追加する。準備runの`tokens_seen=0`を学習結果として流用しない。

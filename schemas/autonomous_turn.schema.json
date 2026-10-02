@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status", "milestone", "summary", "evidence", "next_action", "blocker"],
+  "properties": {
+    "status": {"type": "string", "enum": ["continue", "complete", "needs_user"]},
+    "milestone": {"type": "string"},
+    "summary": {"type": "string"},
+    "evidence": {"type": "array", "items": {"type": "string"}},
+    "next_action": {"type": "string"},
+    "blocker": {"type": ["string", "null"]}
+  }
+}

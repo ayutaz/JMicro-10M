@@ -9,7 +9,7 @@
 ## Phase 0: 成功条件・環境・実験管理
 
 - [x] `src/`、`configs/`、`tests/`、`scripts/`と実験台帳の骨格を作る。
-- [x] iMac環境とuv管理の依存設定を記録し、Windows/WSL 3.1/Linuxへの移行手順を用意する（GPU実機記録はPhase 4）。
+- [x] iMac環境とuv管理の依存設定を記録し、Windows/WSL 3.x/Linuxへの移行手順を用意する（GPU実機記録はPhase 4）。
 - [x] run/config/artifact schemaとhash記録を決める。
 - [x] Base/Chat各100件の独自固定prompt、dev/test、rubric、generation条件、数値誤差の仕様を作る。
 
@@ -46,7 +46,7 @@
 
 ## Phase 4: 学習器・再開・4090実測
 
-- [ ] iMacから別のWindows＋RTX 4090 PCへ切り替え、WSL 3.1/Linuxで同じcommit/config/Tokenizer/sampleを復元する。
+- [ ] iMacから別のWindows＋RTX 4090 PCへ切り替え、WSL 3.x/Linuxで同じcommit/config/Tokenizer/sampleを復元する。
 - [ ] 実WSL version、distribution実行方式、GPU/driver、PyTorch/CUDAを記録し、hash/ID一致とCUDA動作を確認する。
 - [ ] `uint16` shards、document index、mmap loaderと消費済み位置の保存を作る。
 - [ ] AdamW/BF16 autocast、gradient accumulation、scheduler、checkpointを実装する。

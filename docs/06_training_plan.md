@@ -51,7 +51,7 @@ Tokenizer 4k / 8k
 
 ## Batchとperformance
 
-**確定**: 設計・実装は現在のiMacで進め、学習時は別のWindows PCのRTX 4090へ切り替え、ユーザー指定WSL 3.1上のLinuxで実行する。本学習は24GB VRAMを最大限使う最大安定micro batchを実測して設定する。[移行・batch方針](07_environment.md)
+**確定**: 設計・実装は現在のiMacで進め、学習時は別のWindows PCのRTX 4090へ切り替え、ユーザー指定WSL 3.x上のLinuxで実行する。本学習は24GB VRAMを最大限使う最大安定micro batchを実測して設定する。[移行・batch方針](07_environment.md)
 
 **提案**: RTX 4090ではmodelを載せるためでなく、大きなbatchでGPUを埋めるために24GB VRAMを使う。micro batchを16、32、64、128、256…と増やし、以下を実測する。
 
