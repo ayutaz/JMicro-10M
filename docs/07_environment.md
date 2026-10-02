@@ -11,6 +11,8 @@
 
 WSLの実version、Ubuntu、CUDA、PyTorchの組合せは実装開始時に実機で記録する。会話中の「WSL 3.x」は目標環境であり、ドキュメントだけで導入済みとみなさない。
 
+**確認済み（追加調査）**: CUDAの公式手順はWSL 2の実行環境を対象とする。WSLパッケージのversionとdistributionのWSL 1／2は別に記録する。Windows側NVIDIA driverを利用し、WSL内へLinux GPU driverを別途入れない。[NVIDIA公式手順](https://docs.nvidia.com/cuda/wsl-user-guide/)、[benchmark・環境記録案](12_training_implementation_research.md)
+
 ## 推奨stack
 
 **提案**:

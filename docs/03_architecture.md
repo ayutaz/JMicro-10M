@@ -25,7 +25,7 @@ mlp_bias: false
 dropout: 0.0
 ```
 
-概算パラメータ数は約9,775,872（約9.78M）。実装時はNormの持ち方、QK-Norm、LM headの実装差を含め、テストで実数を固定する。
+QK-Normをhead間gain共有のhead次元RMSNormとする提案では、設計上のパラメータ数は9,772,800（約9.77M）。旧概算9,775,872との差はQ/K gainの共有方式による。[追加調査の計算式](12_training_implementation_research.md)を参照し、実装後にテストで実数を固定する。
 
 | 部分 | 概算 |
 |---|---:|
@@ -33,7 +33,7 @@ dropout: 0.0
 | Attention × 12 | 約2.36M |
 | SwiGLU FFN × 12 | 約5.31M |
 | Norm等 | 微量 |
-| 合計 | 約9.78M |
+| 合計 | 約9.77M |
 
 ## 比較: JMicro-10M-T4K
 
@@ -50,7 +50,7 @@ intermediate_size: 640
 tie_word_embeddings: true
 ```
 
-概算約10,006,144 parameters（約10.01M）。4kで節約したembedding予算を1層追加と広いFFNへ再配分する。
+同じhead間gain共有のQK-Normなら設計上10,002,816 parameters（約10.00M）。旧概算10,006,144との差はNorm仕様による。4kで節約したembedding予算を1層追加と広いFFNへ再配分する。
 
 | 項目 | T4K | T8K |
 |---|---:|---:|
@@ -58,7 +58,7 @@ tie_word_embeddings: true
 | Hidden | 256 | 256 |
 | Physical layers | 13 | 12 |
 | FFN | 640 | 576 |
-| Params | 約10.01M | 約9.78M |
+| Params | 約10.00M | 約9.77M |
 | 日本語token圧縮 | 不利の可能性 | 有利の可能性 |
 | Transformer容量 | やや多い | やや少ない |
 
@@ -69,6 +69,8 @@ tie_word_embeddings: true
 **確定**: contextはまず1024。短文対話を対象とするため、v1はfull causal attentionとする。
 
 **提案**: 4 query heads / 2 KV heads、head_dim 64のGQAを使う。QK-Normは有効化した案を第一候補にするが、100M-token A/Bで学習安定性と速度を確認する。
+
+**提案（追加調査）**: QK-NormはQ/Kそれぞれのhead次元RMSNorm、head間gain共有、RoPEの前、attention scaleは`1/sqrt(64)`として具体化する。cache使用時のmask、RoPE位置、初期化の仕様は[モデル実装調査](12_training_implementation_research.md)、HF／GGUFと量子化の制約は[配布調査](14_evaluation_deployment_research.md)を参照する。互換性は実測待ち。
 
 ## FFN
 

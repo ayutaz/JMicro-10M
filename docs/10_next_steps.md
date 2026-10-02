@@ -7,6 +7,8 @@
 3. run configとartifact naming規則を決める。
 4. synthetic batchでRTX 4090のthroughput benchmarkを作る。
 
+追加調査の参照: [QK-Norm・precision・cache・benchmark仕様](12_training_implementation_research.md)。正確な依存versionと採用commitを固定し、micro batchとeffective batchを別に記録する。
+
 完了条件: 同じconfigから同じ小モデルを構築し、forward/backward、save/loadが動く。
 
 ## Phase 1: データmanifest
@@ -35,7 +37,9 @@
 3. KV cacheとcached/non-cached一致テストを書く。
 4. T4KとT8K configを作る。
 
-完了条件: T4K約10.01M、T8K約9.78Mで全unit testが通る。
+完了条件: T4K約10.00M、T8K約9.77Mで全unit testが通る（head間gain共有のQK-Norm案）。
+
+**提案（追加gate）**: head間gain共有のQK-NormならT4K 10,002,816、T8K 9,772,800を期待値にする。本学習前にランダム重みでHF／float GGUFのtoken IDs・logits一致と量子化fallbackを確認する。[計算式](12_training_implementation_research.md)、[export gate](14_evaluation_deployment_research.md)
 
 ## Phase 4: DataLoaderとcheckpoint
 
@@ -90,8 +94,10 @@
 ```text
 環境情報採取
   -> Tokenizerの最小sample
+  -> 正規化・特殊token・4k/8k語彙予算の検証
   -> T8K model
   -> unit tests
+  -> ランダム重みでHF/GGUF exportとcache一致確認
   -> synthetic benchmark
   -> 100件overfit
   -> save/resume test
@@ -99,3 +105,5 @@
 ```
 
 この最小単位が安定してから、巨大datasetのdownloadと50〜100B master corpus構築へ進む。
+
+未解決事項と優先順位の全体表は[追加技術調査](11_technical_research_gaps.md)を参照する。会話データ候補の取得・pilotは[Tokenizer・会話データ調査](13_tokenizer_dialogue_data_research.md)に沿って進める。実測待ちの項目を文献確認済みとして扱わない。

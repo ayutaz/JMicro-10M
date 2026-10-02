@@ -4,6 +4,8 @@
 
 **確定**: Tokenizerが異なるモデル間ではtoken-level perplexityを直接比較しない。4k/8kの主比較指標は同一raw bytesに対するBits Per Byte (BPB)とする。
 
+**提案（実装上の具体化）**: 同一原文集合と共通前処理を固定し、実際に予測したcanonical UTF-8 bytesをBPBの分母とする。本文NLLの総和を使い、特殊tokenの損失は分離する。文脈量、同一学習bytes／GPU時間、統計比較、Chat rubricの仕様は[評価・配布調査](14_evaluation_deployment_research.md)を参照する。
+
 ## Base model評価
 
 必須metric:

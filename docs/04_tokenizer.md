@@ -44,6 +44,8 @@
 
 Dialogue SFT開始時に語彙追加とembedding resizeを行わないためである。ID割当はconfigとテストで固定し、変更時はTokenizer artifactのmajor versionを上げる。
 
+**提案（追加調査）**: role／EOTは`control_symbols`として予約し、本文encodeと分けてIDを挿入する。原文中の表記を単一tokenにする`user_defined_symbols`とは異なるため、文字列テンプレート全体を一括encodeしない。[具体的なID・正規化・語彙予算](13_tokenizer_dialogue_data_research.md)を参照する。
+
 ## 正規化
 
 **提案**: 雑談で意味を持つ表現を壊さない弱い正規化にする。
@@ -76,7 +78,7 @@ Dialogue SFT開始時に語彙追加とembedding resizeを行わないためで�
 
 - `decode(encode(text))`が意味と主要記号を保持する
 - 全byte fallback tokenのround-trip
-- 特殊tokenが分割されない
+- テンプレートへ挿入した構造token IDが単一で固定され、本文中の同じ表記の扱いが仕様どおりである
 - 特殊token IDが固定される
 - 空文字、長い連続文字、絵文字、結合文字、異体字でcrashしない
 - 4k/8kの比較reportを同じsample setから再生成できる

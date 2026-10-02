@@ -45,6 +45,8 @@ Tokenizer 4k / 8k
 
 最初からarchitecture、optimizer、data mixtureを同時に変えない。一度に一つの主要因を比較する。
 
+**提案（追加調査）**: 小探索は終点固定cosine、本系列の延長はWSDを比較候補にする。継続用stable枝と評価用decay枝を分け、optimizer更新回数、effective batch、枝ごとのtokensとGPU時間を記録する。Muonには補助AdamWと別LRを設定する。[実装・段階学習調査](12_training_implementation_research.md)を参照する。
+
 ## Batchとperformance
 
 **提案**: RTX 4090ではmodelを載せるためでなく、大きなbatchでGPUを埋めるために24GB VRAMを使う。micro batchを16、32、64、128、256…と増やし、以下を実測する。
@@ -74,6 +76,8 @@ Tokenizer 4k / 8k
 ```
 
 **提案**: SFTは10M、30M、100M dialogue tokensを比較し、lossはAssistant部分だけへ適用する。過剰なinstruction tuningでBaseの日本語流暢性を崩さないか確認する。
+
+**提案（追加調査）**: 上記tokensは累積学習量であり、uniqueデータ量とは区別する。総系列tokensとAssistant教師tokensを両方記録し、Assistant本文直後のEOTも教師対象とする。データ候補、role割当、maskのshift、反復回数の扱いは[会話データ・SFT調査](13_tokenizer_dialogue_data_research.md)を参照する。
 
 ## Distillation
 
