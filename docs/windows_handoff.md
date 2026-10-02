@@ -24,6 +24,8 @@ snapshotをコピーする場合は`reports/<run_id>/`と親の`experiments.json
 
 Git clone/pullではGit管理外のデータとTokenizerは取得できない。repo内の同じ相対pathへ次をコピーする。
 
+Hugging Faceのpublic repository経由で共有する準備も進めている。[公開状態と取得手順](huggingface_handoff.md)を参照。現在はpayloadの公開承認待ちでアップロード未実施のため、Hubから取得できる状態ではない。
+
 | 相対path | 用途 |
 |---|---|
 | `artifacts/phase2/4096/`、`artifacts/phase2/8192/` | 学習済みTokenizer、wrapper/special設定、trainer metadata |

@@ -699,6 +699,9 @@ data = [
 export = [
     { name = "gguf" },
 ]
+hub = [
+    { name = "huggingface-hub" },
+]
 ml = [
     { name = "datasets" },
     { name = "numpy" },
@@ -721,6 +724,7 @@ requires-dist = [
     { name = "datasketch", marker = "extra == 'data'", specifier = ">=2.0.0" },
     { name = "fsspec", marker = "extra == 'data'", specifier = ">=2026.6.0" },
     { name = "gguf", marker = "extra == 'export'", specifier = ">=0.19.0" },
+    { name = "huggingface-hub", marker = "extra == 'hub'", specifier = "==1.33.0" },
     { name = "jsonschema", specifier = ">=4.26.0" },
     { name = "numpy", marker = "extra == 'ml'", specifier = ">=2.5.3" },
     { name = "protobuf", marker = "extra == 'ml'", specifier = ">=7.36.2" },
@@ -730,7 +734,7 @@ requires-dist = [
     { name = "torch", marker = "extra == 'ml'", specifier = ">=2.14.1" },
     { name = "transformers", marker = "extra == 'ml'", specifier = ">=5.18.0" },
 ]
-provides-extras = ["ml", "data", "export"]
+provides-extras = ["ml", "data", "export", "hub"]
 
 [package.metadata.requires-dev]
 dev = [{ name = "pytest", specifier = ">=9.1.1" }]

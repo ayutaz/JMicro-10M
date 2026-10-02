@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "repo_id", "repo_type", "revision", "manifest_sha256", "publication_status"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "repo_id": {"const": "japanese-data-analyze/japanese-tiny-llm-10m-artifacts"},
+    "repo_type": {"const": "dataset"},
+    "revision": {"type": ["string", "null"], "pattern": "^[a-f0-9]{40}$"},
+    "manifest_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "publication_status": {"enum": ["pending_payload_approval", "published_verified"]}
+  },
+  "allOf": [{
+    "if": {"properties": {"publication_status": {"const": "published_verified"}}},
+    "then": {"properties": {"revision": {"type": "string"}}},
+    "else": {"properties": {"revision": {"type": "null"}}}
+  }]
+}

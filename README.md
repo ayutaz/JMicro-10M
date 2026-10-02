@@ -6,6 +6,8 @@ Phase 0〜3が完了。データpilot、4k/8k Tokenizer、約10Mモデル、cach
 
 ## 開発環境
 
+TokenizerとpilotデータのHugging Face共有については[公開状態と取得手順](docs/huggingface_handoff.md)を参照する。公開リポジトリは作成済み、payloadのアップロードは公開承認待ち。
+
 Pythonと依存は`uv`で管理する。`.python-version`は今回確認したPython 3.12.7、解決した依存versionと配布file hashは`uv.lock`へ固定。依存変更は`uv add`を使う。
 
 ```sh
