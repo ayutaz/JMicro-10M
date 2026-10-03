@@ -88,6 +88,7 @@ raw evidenceと18 checkpointsはLinux `reports/phase6/base-20261003/`へ保持�
 
 - [実行中: ローカル10Bデータ整備](../docs/32_local_10b_corpus.md)。WSL保存、全件重複/heldout保護/token監査を行い学習前で停止する。全105tests成功。実10B構築・監査は未完了。
 - [LSH性能のprefix probe](phase6/corpus_10b_cost_probe.json)、[実1M・全32bandsでの並列比較](phase6/corpus_10b_parallel_probe.json)。候補coverageと全代表が一致、30.004→9.135秒（3.285倍）。取り込みcheckpointを保持したexecution v3へ移行した。全10Bの監査完了ではない。
+- [実ローダー利用確認の手順](../docs/32_local_10b_corpus.md#学習用ローダーでの最終利用確認)。Shard/BlockSamplerでtrain batch/mask/bytes/replayを検証する。小fixtureは成功、実10Bは全件audit・process終了待ち。
 - [以前の2B/5B計画](../docs/27_phase6_remaining_plan.md#次回の一区切り-学習用データを2bへ拡張する)は10Bの実行依頼へ更新した。
 - [保留したdecoder比較の計画](phase6/repetition_decoder_plan.json)、[以前の作業順序](../docs/27_phase6_remaining_plan.md#保留した案-学習済み10mモデルの生成方法を比較する)、[当時の計画の16項目照合](phase6/repetition_decoder_plan_audit.json)。同じ10Mパラメータの重みで640outputs/GPU15分上限を比較する案。監査は当時の計画を確認した記録で、現在の優先作業や実行結果ではない。
 - [事前計画](phase6/repetition_diagnosis_plan.json)、[判断と比較](phase6/repetition_diagnosis_review.md)、[数値/binding/20項目監査](phase6/repetition_diagnosis_review.json)、[225既存files保持](phase6/repetition_preservation.json)、[終了・同期監査](phase6/repetition_completion_audit.json)。

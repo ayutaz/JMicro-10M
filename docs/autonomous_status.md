@@ -6,7 +6,9 @@
 
 最新の実行はexecution v3。元の取り込み・品質基準・独立逐次auditを保持し、後続LSHだけを8workersのband並列へ移行した。[実1M全32bands比較](../reports/phase6/corpus_10b_parallel_probe.json)で524,480候補coverage/全cluster/duplicate代表完全一致、30.004秒→9.135秒（3.285倍）。旧v2を実PID確認後にSIGINTで終了し、累積680.554秒・24files/5,630,035レコードのcheckpointを保持して再開した。元source snapshotとデータは保持し、追加実行codeを別snapshotへ保存する。
 
-Windows launcher23824、Linux1106994/boot`0b330ec7-c11f-4bb3-be7c-cae9b868f4af`/start_ticks144729、stage ingestでlive。file24以降から再開し、file25内・約595万レコードの進行を確認。data rootは同じ`ten-billion/prepared-v2/`、現在ログは`preparation-v3.log`、再開入口は`scripts/run_corpus_10b_parallel.sh`。[移行と実装](32_local_10b_corpus.md#並列lshへの検証済み移行)。WSL空き約781GiBで拡張不要。10Bのtoken化と全件監査はまだ未完了。次は取り込み完了→並列LSH→export→元の全件逐次auditを監視し、実10B/token/heldout/hashを確認してreport/commitする。
+Windows launcher23824、Linux1106994/boot`0b330ec7-c11f-4bb3-be7c-cae9b868f4af`/start_ticks144729、stage ingestでlive。file24以降から再開し、file37まで38filesのcommit、file38内・約893万レコードの進行を確認。data rootは同じ`ten-billion/prepared-v2/`、現在ログは`preparation-v3.log`、再開入口は`scripts/run_corpus_10b_parallel.sh`。[移行と実装](32_local_10b_corpus.md#並列lshへの検証済み移行)。WSL空き約766GiBで拡張不要。10Bのtoken化と全件監査はまだ未完了。次は取り込み完了→並列LSH→export→元の全件逐次auditを監視し、実10B/token/heldout/hashを確認してreport/commitする。
+
+最終の[実学習用ローダー利用確認](32_local_10b_corpus.md#学習用ローダーでの最終利用確認)も実装した。未変更のShard/BlockSamplerでtrain batch2/context1024を作り、mask/bytes/再生一致を検証する（モデル作成・学習更新0）。小fixture3tests成功、未完了job/失敗auditでは拒否する。実10Bの確認はpipeline全件監査とprocess終了後に実行する。CPUの小fixtureを実10Bの完成へ読み替えない。
 
 ### 取得・初回構築の記録（履歴）
 

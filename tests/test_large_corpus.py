@@ -125,6 +125,23 @@ def test_restartable_ingest_protects_previous_heldout_and_exports_losslessly(tmp
     monkeypatch.setattr(auditor,"ROOT",root)
     report=auditor.audit(config,raw,output,workers=1)
     assert report["status"]=="passed" and report["raw_records_reconstructed"]==153
+    spec=importlib.util.spec_from_file_location("fixture_ready",ROOT/"scripts/check_corpus_10b_ready.py")
+    ready=importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(ready)
+    monkeypatch.setattr(ready,"ROOT",root)
+    terminal={"status":"complete","pid":2147483647,"boot_id":"synthetic-nonlive","start_ticks":"0"}
+    write_json(output/"job.json",terminal)
+    actual_loader=ready.check(config,output,output/"ready.json")
+    assert actual_loader["status"]=="passed_actual_training_loader" and actual_loader["sampler_replay_exact"]
+    write_json(output/"job.json",dict(terminal,status="running"))
+    with pytest.raises(ValueError,match="not completed"):
+        ready.check(config,output,output/"refused.json")
+    write_json(output/"job.json",terminal)
+    saved_audit=read_json(output/"corpus_audit.json")
+    write_json(output/"corpus_audit.json",dict(saved_audit,status="failed"))
+    with pytest.raises(ValueError,match="binding"):
+        ready.check(config,output,output/"refused.json")
+    write_json(output/"corpus_audit.json",saved_audit)
     with (artifact/"shards/train.bin").open("r+b") as stream:
         stream.write(b"bad!")
     with pytest.raises(ValueError,match="checksum"):

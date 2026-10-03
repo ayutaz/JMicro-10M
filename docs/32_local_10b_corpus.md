@@ -46,3 +46,13 @@ JSONの全indexを巨大listへ溜めず、corpus・uint16 token stream・index 
 - `corpus_audit.json`、`audit_progress.json`、`ten-billion/preparation-v2.log`。
 
 再開は実processが終了したことを確認してから、同じ入口と保存先を使う。source/config変更は通常再開で拒否する。学習・decoder比較・Chat・量子化をこのjobから起動しない。完了後は実tokens/documents/bytes/所要時間/容量・hash・監査・job終了をstatus/reportへ記録し、commitして停止する。
+
+## 学習用ローダーでの最終利用確認
+
+pipelineの全件auditとprocess終了を確認してから、[利用確認CLI](../scripts/check_corpus_10b_ready.py)で実際の未変更`Shard`/`BlockSampler`を使う。trainのstream/index/hashを読み込み、context1024・batch2を作り、語彙範囲・BOS教師mask・body bytes・同じsampler位置からの完全再現を検証する。モデルは作らず、学習更新0。dev/testはローダー試験へ使わない。現在は小fixtureで成功し、未完了job・失敗auditでの拒否も確認済み。実10Bへの適用はpipeline完了待ち。
+
+```sh
+uv run --frozen --extra hub --extra data --extra ml --extra export scripts/check_corpus_10b_ready.py --output /home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2 --report reports/phase6/corpus_10b_loader_ready.json
+```
+
+利用確認reportのartifact/shards path、量とhashを引継ぎへ記録する。旧`base_frozen.json`と旧checkpointのshard bindingは保持し、新しいデータを通常resumeへ差し替えない。新データで学習する際は、別系列の設定と全state再開の検証を行う。
