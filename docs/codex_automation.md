@@ -1,8 +1,10 @@
 # Codexによる環境整備・学習・改善の自動化
 
-確認日: 2026-10-03。現在はFull accessが実効policyへ反映済みで、ユーザー側のrunner起動は不要。停止指定はrunnerを起動しても維持し、Phase 5を始めるにはユーザーの再開指定が必要。CLI 0.159.3の実helpとOpenAI公式資料を照合した。
+Phase 5実行状況（2026-10-03）: ユーザーが再開と完了までの作業を指定した。[詳細計画](22_phase5_plan.md)を参照。現在のrun/processは継続状態を正とし、Phase 6本学習は開始しない。
 
-ユーザー指定（2026-10-02）: 本プロジェクトの環境整備・実装・学習・評価・改善をCodexに継続して任せる。作業内容と実測結果は`autonomous_status.md`、方針はrootの`AGENTS.md`へ残す。2026-10-03にPhase 4の学習pipelineと実GPU検証が完了した。ユーザーの追加指定によりPhase 4で停止し、Phase 5は再開待ち。
+確認日: 2026-10-03。現在はFull accessが実効policyへ反映済みで、ユーザー側のrunner起動は不要。ユーザーのPhase 5再開指定を反映済みで、runnerもPhase 5完了後に停止する。CLI 0.159.3の実helpとOpenAI公式資料を照合した。
+
+ユーザー指定（2026-10-02）: 本プロジェクトの環境整備・実装・学習・評価・改善をCodexに継続して任せる。作業内容と実測結果は`autonomous_status.md`、方針はrootの`AGENTS.md`へ残す。2026-10-03にPhase 4の学習pipelineと実GPU検証が完了した。ユーザーがPhase 5の計画から完了までを指示し、今回の区切りはPhase 5完了。
 
 ## このアプリで続ける
 

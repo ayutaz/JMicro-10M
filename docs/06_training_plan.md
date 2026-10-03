@@ -1,5 +1,7 @@
 # 学習計画
 
+Phase 5実行状況（2026-10-03）: ユーザーが再開と完了までの作業を指定した。[詳細計画](22_phase5_plan.md)を参照。現在のrun/processは継続状態を正とし、Phase 6本学習は開始しない。
+
 最終更新: 2026-10-03。AdamW＋warmup/cosineは実装済み。WSD、Muon、Chat trainerは未実装の比較候補。train CLIは引数から設定を作り、baseline JSONを自動読込しない。現在のresumeは固定schedule/config/source/dataの変更を拒否するため、予算の延長を同一runの再開として扱わない。50Bは改善と予算条件を満たした場合のみ、外部の有料GPU実行は別途ユーザーの指示が必要。
 
 ## 全体像

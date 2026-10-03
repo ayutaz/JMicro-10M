@@ -398,7 +398,7 @@ def train_command(args):
         raise
     finally:
         atomic_json(run / "run.json", record)
-        ledger = ROOT / "reports/phase4/training_runs.jsonl"
+        ledger = ROOT / f"reports/phase{args.phase}/training_runs.jsonl"
         ledger.parent.mkdir(parents=True, exist_ok=True)
         with ledger.open("a") as stream:
             stream.write(json.dumps(record, allow_nan=False) + "\n")

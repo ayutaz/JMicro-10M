@@ -1,6 +1,8 @@
 # 別PCで続きを進める: Windows / WSL / RTX 4090
 
-最終更新: 2026-10-03。現在のPCは[Phase 4の実機検証](21_phase4_completion.md)まで完了し、ユーザー指定により停止中。復元済みPCでは環境整備・Tokenizer学習・完了済み測定を繰り返さず、[現在の状態](autonomous_status.md)と既存job/checkpointを確認する。Phase 5とBase/Chat本学習は未開始。
+Phase 5実行状況（2026-10-03）: ユーザーが再開と完了までの作業を指定した。[詳細計画](22_phase5_plan.md)を参照。現在のrun/processは継続状態を正とし、Phase 6本学習は開始しない。
+
+最終更新: 2026-10-03。現在のPCは[Phase 4の実機検証](21_phase4_completion.md)まで完了し、ユーザー指定により停止中。復元済みPCでは環境整備・Tokenizer学習・完了済み測定を繰り返さず、[現在の状態](autonomous_status.md)と既存job/checkpointを確認する。Phase 5を実行中。Base/Chat本学習は未開始。
 
 ## 引継ぎ先と現在地
 
@@ -146,10 +148,10 @@ eager最大安定batchはT8K 57 / T4K 64、測定点の最高速度はcompile ba
 
 ```text
 AGENTS.md、docs/autonomous_status.md、docs/15_project_roadmap.md、docs/windows_handoff.mdを読んでください。
-Phase 0〜4は完了し、ユーザー指定でGPU学習停止中です。再開指定がない限りPhase 5を開始しないでください。
+Phase 0〜4は完了。ユーザーはPhase 5の完了までを指示済みです。Phase 5を進め、Phase 6前で停止してください。
 最新コードの正本はWindows workspaceで、最近のコミットは未pushです。Linux実行sourceはsnapshot/hashで確認してください。
 固定公開Tokenizer/pilotは復元済み。Pythonは必ずuv run --frozen、依存変更はuv addを使ってください。
-再開指定後は既存process/checkpointを確認し、100件overfit→10M smoke→100M比較から進めてください。
+既存process/checkpointを確認し、docs/22_phase5_plan.mdに従って進め、同じjobを二重起動しないでください。
 未達の品質目標を維持し、原データ再取得・Tokenizer再学習・Phase 3全作業・完了済みPhase 4測定を繰り返さないでください。
 実測結果、失敗、次の作業をreport/statusへ保存し、指定Git名義で適度にコミットしてください。
 ```

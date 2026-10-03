@@ -8,11 +8,13 @@
 
 2026-10-03の追加指定: Python実行は環境確認・自律runner・テスト・一時スクリプトも含め`uv run --frozen`経由に統一する。Pythonは3.12.7、導入は`uv python install`、依存復元は`uv sync --frozen`、依存変更は`uv add`。system Pythonを直接呼ばず、固定環境が取得できない場合も代替しない。rootの`AGENTS.md`に恒久ルールとして追記した。
 
-2026-10-03の停止指定: 今の区切りはPhase 4完了まで。完了証拠・予算・次のcommandを記録してコミットしたら停止する。ユーザーが再開するまでPhase 5のoverfit/10M smoke/100M比較を起動しない。Git identityはlocalの`yousan <ka1357amnbpdr@gmail.com>`。
+2026-10-03にユーザーがPhase 5の計画から完了までを指示し、Phase 4での停止を解除した。今回の区切りはPhase 5完了。Phase 6の本学習は起動しない。Git identityはlocalの`yousan <ka1357amnbpdr@gmail.com>`。
 
 ## 実際の状態
 
-**最新: 2026-10-03 01:58 JSTにPhase 4監査成功。ユーザー指定により停止。** 基準は[Phase 4完了記録](21_phase4_completion.md)とGit保存の`reports/phase4/handoff_report.json`。
+**最新: Phase 5を再開して実GPU検証中。** [詳細計画](22_phase5_plan.md)と`configs/phase5/plan.json`へ目的・合格条件・予算を固定した。QK-Normなし候補、batched本文/EOS評価、paired bootstrap、永続supervisorを実装。全67 tests / skip 0と公開25 payloadの固定revision/hash検証が成功した。
+
+以下は完了済みPhase 4の証拠（2026-10-03 01:58 JST監査成功）。[完了記録](21_phase4_completion.md)とGit保存の`reports/phase4/handoff_report.json`を参照する。
 
 - T8K/T4Kともsource-boundの連続200 vs 100+100で消費列digest / loss / weights / optimizer / scheduler / RNG / samplerが完全一致。64 tests / skip 0、CUDA評価RNG保全、共通bytes・本文一度採点・共通短文window、compile BF16 logitsの既定許容差内一致を監査した。
 - dev 924文書 / 共通1,633,458 bytes、固定dev 80 prompt × 5 decoding条件を各モデルで評価。test未使用。検証checkpointのEOS停止0/80で、Base/Chat能力目標は未達と明記した。
@@ -32,17 +34,21 @@ Windowsの正本: `C:\Users\AiHUB\Desktop\japanese-tiny-llm-10m`。Linux実行�
 
 ## 実行中ジョブ
 
-実行中GPU jobなし。Phase 4 supervisorは01:56 JSTに終了、最終監査は01:58 JSTに終了（handoff `passed`）。完了時のGPU compute一覧は空。Phase 5は未開始。
+Phase 5の採用runはLinux checkoutの`reports/phase5/run-20261003-math/`。Windows hidden wsl.exe PID **15036**、Linuxの実PID/boot ID/start ticks/active_stageは同directoryの`job.json`を正とする。起動前に旧supervisorとGPU workerの終了を確認した。
+
+command: `bash scripts/run_phase4_job.sh scripts/run_phase5.py --output reports/phase5/run-20261003-math`。wrapperはuv/extras/data rootを設定する共通起動処理。Windowsにも同名directoryにlauncher.json/supervisor.logを保存する。supervisorとGPUの排他lockを使う。
+
+棄却run `run-20261003`（compile/default）と`run-20261003-eager`（eager/default）はterminal failed、Windows PID 6688/24632は終了済み。消費列/RNGは一致したが重み・optimizer・lossが一致しなかった。6更新の切り分けではdefaultの重み差約3.9e-5、math-onlyは0。閾値を緩めずbackendを変更し、math-onlyのT8K 200 vs 100+100全state一致が成功した。raw失敗・checkpoint・診断を保持する。
 
 終了済みjobの記録: Windows supervisor PID 35316、Linux PID 404。Linux checkoutの`reports/phase4/gates-20261003/job.json`にboot ID/start ticks/stage、同directoryに全ログ・snapshot・checkpointを保持。Windows側にはlauncher/logと小さい集約reportを保存。GPU排他は`~/jmicro-data/gpu.lock`。再開時はPIDだけでなくboot ID/start ticksとcheckpointを照合する。
 
 ## 次の具体的な作業
 
-ユーザー指定によりGPU学習は停止したまま。全ドキュメントの現在地・運用手順を更新した。34 Markdown文書と285内部file/anchorリンク、主要CLIのhelp 5件、Phase 0〜3 report 18 filesの不変を確認済み。検証記録はWindowsの`reports/local/documentation_audit_20261003.json`。外部研究の全件再調査は行わず、参照日と実装/実測を区別した。確認済み文書変更を指定Git名義でコミットし、ここで作業を終える。新しい学習jobは起動しない。
+実プロセスとjob/logを確認し、変更後のmath-only CUDA保存再開 → 100件overfit → 10M smoke → T4K/T8K 100M比較 → QK-Norm/LR比較 → 候補選定・監査を進める。失敗したgateはraw結果を保持して修復し、閾値を緩めない。Phase 6には進まない。文書更新は`aa932bb`へ保存済み。
 
-次回ユーザーが学習を再開した後に既存job/checkpointを確認し、Phase 5の100件overfit → 10M smoke → T4K/T8K 100M比較へ進む。開始前に予算・合格条件・batch/LR/warmup/更新数を固定する。Tokenizer再学習・Phase 3 export全作業・完了済みPhase 4測定は繰り返さない。
+Phase 5の設定・実装を検証済みの区切りでコミットし、最後に実測reportと候補config・採否理由を保存する。Tokenizer再学習・Phase 3全作業・完了済みPhase 4測定は繰り返さない。
 
-再開後の最初の準備例（今は実行しない、WSL Linux shellで実行）:
+overfit用shardはsupervisorが必要な場合のみ作成する。手動準備の形式（重複実行しない）:
 
 ```sh
 uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train.py build-shards --tokenizer artifacts/phase2/8192/tokenizer.model --limit 100 --output "$HOME/jmicro-data/shards/t8k-overfit100"

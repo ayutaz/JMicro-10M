@@ -62,8 +62,9 @@ class Attention(nn.Module):
         self.k_proj = nn.Linear(h, self.kvheads * d, bias=False)
         self.v_proj = nn.Linear(h, self.kvheads * d, bias=False)
         self.o_proj = nn.Linear(self.qheads * d, h, bias=False)
-        self.q_norm = RMSNorm(d, config["rms_norm_eps"])
-        self.k_norm = RMSNorm(d, config["rms_norm_eps"])
+        norm = lambda: RMSNorm(d, config["rms_norm_eps"]) if config["qk_norm_type"] == "rms_head_shared" else nn.Identity()
+        self.q_norm = norm()
+        self.k_norm = norm()
 
     def forward(self, x, positions, allowed, past):
         batch, length, _ = x.shape
@@ -122,7 +123,7 @@ class JMicroModel(nn.Module):
         super().__init__()
         self.config = dict(config)
         if not (config["tie_word_embeddings"] and config["rope_layout"] == "half_split" and
-                config["qk_norm_type"] == "rms_head_shared" and config["qk_norm_before_rope"] and
+                config["qk_norm_type"] in ("rms_head_shared", "none") and config["qk_norm_before_rope"] and
                 config["rotary_dim"] == config["head_dim"] and config["activation"] == "swiglu" and
                 not config["attention_bias"] and not config["mlp_bias"] and config["dropout"] == 0):
             raise ValueError("Unsupported architecture contract")
@@ -188,6 +189,8 @@ class JMicroModel(nn.Module):
         return model
 
     def hf_reference(self):
+        if self.config["qk_norm_type"] != "rms_head_shared":
+            raise ValueError("QK-Norm-free ablation requires a separate HF/export adapter")
         from transformers import Qwen3Config, Qwen3ForCausalLM
         c = self.config
         config = Qwen3Config(vocab_size=c["vocab_size"], hidden_size=c["hidden_size"],

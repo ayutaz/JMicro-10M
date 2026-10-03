@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Frozen Phase 5 experimental budget and acceptance contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "phase", "seed", "dtype", "device", "context", "batch", "accumulation", "backend", "compile", "lr", "weight_decay", "warmup", "smoke_updates", "comparison_updates", "save_every", "overfit", "selection"],
+  "properties": {
+    "version": {"const": 1}, "phase": {"const": 5}, "seed": {"type": "integer"},
+    "dtype": {"enum": ["bf16", "fp32"]}, "device": {"const": "cuda"},
+    "context": {"type": "integer", "minimum": 2, "maximum": 1024},
+    "batch": {"type": "integer", "minimum": 1}, "accumulation": {"type": "integer", "minimum": 1},
+    "backend": {"enum": ["default", "math"]}, "compile": {"type": "boolean"},
+    "lr": {"type": "number", "exclusiveMinimum": 0}, "weight_decay": {"type": "number", "minimum": 0},
+    "warmup": {"type": "integer", "minimum": 0}, "smoke_updates": {"type": "integer", "minimum": 1},
+    "comparison_updates": {"type": "integer", "minimum": 1}, "save_every": {"type": "integer", "minimum": 1},
+    "overfit": {
+      "type": "object", "additionalProperties": false,
+      "required": ["documents_per_split", "context", "batch", "updates", "warmup", "max_nll_per_token", "min_teacher_accuracy", "min_continuation_exact_rate", "min_eos_argmax_accuracy"],
+      "properties": {
+        "documents_per_split": {"const": 100}, "context": {"type": "integer", "minimum": 2, "maximum": 1024},
+        "batch": {"type": "integer", "minimum": 1}, "updates": {"type": "integer", "minimum": 1},
+        "warmup": {"type": "integer", "minimum": 0},
+        "max_nll_per_token": {"type": "number", "exclusiveMinimum": 0, "maximum": 0.5},
+        "min_teacher_accuracy": {"type": "number", "minimum": 0.9, "maximum": 1},
+        "min_continuation_exact_rate": {"type": "number", "minimum": 0.5, "maximum": 1},
+        "min_eos_argmax_accuracy": {"type": "number", "minimum": 0.5, "maximum": 1}
+      }
+    },
+    "selection": {
+      "type": "object", "additionalProperties": false,
+      "required": ["max_candidates", "lr_comparison", "bootstrap_repetitions", "bootstrap_seed", "require_dev_bpb_improvement", "test_usage", "phase6_authorized"],
+      "properties": {
+        "max_candidates": {"type": "integer", "minimum": 1, "maximum": 2},
+        "lr_comparison": {"type": "number", "exclusiveMinimum": 0},
+        "bootstrap_repetitions": {"type": "integer", "minimum": 2000}, "bootstrap_seed": {"type": "integer"},
+        "require_dev_bpb_improvement": {"const": true}, "test_usage": {"const": false}, "phase6_authorized": {"const": false}
+      }
+    }
+  }
+}

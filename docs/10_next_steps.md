@@ -1,8 +1,10 @@
 # 次の実装タスク
 
+Phase 5実行状況（2026-10-03）: ユーザーが再開と完了までの作業を指定した。[詳細計画](22_phase5_plan.md)を参照。現在のrun/processは継続状態を正とし、Phase 6本学習は開始しない。
+
 この文書は[フェーズ別実行計画](15_project_roadmap.md)の着手checklistである。Phase番号、目的、ゴール、成果物、完了条件、Go/No-Goは同計画を正とし、技術仕様は03〜08と12〜14を参照する。2026-10-02にiMac上のPhase 0を実施した。[完了記録](16_phase0_completion.md)を参照する。Phase 1のcorpus・manifest・split・会話pilotも完了した。[完了記録](17_phase1_completion.md)を参照する。[Phase 2](18_phase2_completion.md)・[Phase 3](19_phase3_completion.md)も完了。本学習は未実施。Windows/WSL実機検証は[Phase 4](21_phase4_completion.md)で完了した。
 
-**次の作業**: ユーザーの再開指定後にPhase 5の100件overfitから進める。現在は停止中。Phase 4の学習器・評価・保存再開・最大安定batchは完了済み。Pythonは`uv run --frozen`、依存変更は`uv add`。
+**次の作業**: Phase 5の詳細計画に従い、overfit/smoke/100M比較を実行する。Phase 4の学習器・評価・保存再開・最大安定batchは完了済み。Pythonは`uv run --frozen`、依存変更は`uv add`。
 
 完成までの時間短縮を優先し、[移行 → 最小学習経路 → 保存再開 → 最大batch/速度実測](15_project_roadmap.md#高速に完成させる進め方)を完了した。新規PCでは[再開手順](windows_handoff.md)に従い、最新コードとGit管理外の固定Tokenizer/pilotを引き継ぐ。復元済みPCでは再取得・Phase 3の再実装は不要。実装時間とGPU計算時間を分け、実測した計算時間に評価・保存・比較・データ処理を加えて見積もる。
 
@@ -56,7 +58,7 @@
 - [x] syntheticと実shardでeager micro batchを最大安定値まで増やし、backend/compile、VRAM、data wait、速度を測る。
 - [x] 100M〜50Bの時間とストレージを実測から見積もる。
 
-[Phase 4実測・制約](21_phase4_completion.md)。ユーザー指定によりここで停止し、Phase 5は再開待ち。
+[Phase 4実測・制約](21_phase4_completion.md)。Phase 4での停止はユーザーが解除し、Phase 5を実行中。
 
 ## Phase 5: 最小pipelineと100M探索
 
@@ -105,7 +107,7 @@
 
 ```text
 Phase 0〜4: データ / Tokenizer / モデル / export / 学習器 / 評価 / GPU再開・実測は完了
-  -> 現在は停止、ユーザーの再開指定を待つ
+  -> 現在はPhase 5実行中、Phase 6前で停止する
   -> 100件overfit / 10M-token smoke
   -> T4Kとの100M比較
 ```
