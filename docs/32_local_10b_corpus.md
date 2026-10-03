@@ -61,6 +61,8 @@ uv run --frozen --extra hub --extra data --extra ml --extra export scripts/check
 
 ## 大groupを保持する監査cacheの検証済み入口
 
+2026-10-04 00:12 JST: [全128raw/29,208,256records再照合を通過](../reports/phase6/corpus_10b_raw_audit_complete.json)。初期DB検査と全source/filter/protection/signature/exact代表の再構築が完了し、同じv4 processが後続の全32band逐次near検証を継続する。完成export manifestは変更されていない。全代表・全membership/token往復・実loaderは未完了。
+
 2026-10-03 23:10 JSTに[全件監査v4を起動](../reports/phase6/corpus_10b_cached_audit_start.json)。実train12,225,819,077 tokensの`prepared-v2/export-001/`を保持し、元v3 processの終了後に累積9975.723秒を完全に引き継いだ。監査Linux1170053/boot`0b330ec7-c11f-4bb3-be7c-cae9b868f4af`/start_ticks1074573、logは`ten-billion/preparation-v4.log`、追加codeは`execution_v4_snapshot/`。全件監査と実loaderは未完了で、以下の未起動記録は実装時点の履歴である。
 
 ユーザー指定の[変換・保存の限定比較](../reports/phase6/corpus_10b_export_speed_probe.json)も実施。実train262,144文書/123.5M tokens、16workersを固定し、親で文書ごとにJSON生成/batch128から、worker側JSON生成・batch512のまとまったbyte返却へ変更すると1.353/1.366倍。ABBA4回の本文/token/index全SHAと全件数が一致、42.136秒/180秒上限、事前gate1.2倍を通過。比較はbuffered binary writerを使うtrain限定sampleで、実export全体の速度とは区別する。現行exportはすでに完成しているため再構築せず、[実験code](../reports/phase6/corpus_10b_export_speed_probe.py)と結果を次回の別入口実装用に保持する。現在のauditと旧source snapshotsは変更しない。

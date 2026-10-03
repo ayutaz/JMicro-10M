@@ -4,6 +4,8 @@
 
 ## 実行中: ローカル10Bデータの取得・構築・監査
 
+2026-10-04 00:12 JST: [全128raw filesの独立再照合完了](../reports/phase6/corpus_10b_raw_audit_complete.json)。全29,208,256 records（raw29,009,357＋保護198,899）が取り込み完了件数と一致。原auditorのfull SQLite integrity_check、全raw hash/size、source payload/filter/protection、全signature、exact代表/eligibilityの比較を通過した。audit開始から3667.085秒には初期DB検査を含む。同じ1170053/boot/start_ticks1074573が実live、完成export manifest SHAは`856bf074...e0eb1`のまま。次は全32bandの逐次near検証・全代表→全membership/split/token往復→terminal/PID終了→実loader。これは途中の受入結果で、全件auditの合格・ローカル10B整備の完了とはしない。WSL空き619,283,693,568 bytes、RAM available約64GBで拡張不要。学習更新0。
+
 2026-10-03 23:46 JST: [以前の大型成果物の保持確認](../reports/phase6/corpus_10b_prior_bulk_preserved.json)を実施。以前の固定reviewとconfigをWindows/WSL間で実hash照合してから、それらに記録された19 checkpoint（全stable/decay保存点とpilot）、旧pilot/expandedの両shard manifestと全train/dev/test stream/index/token byte table、保護用旧corpus、T4K Tokenizerの全37ファイル・9,058,888,985 bytesをWSLで再hashし完全一致。uint16 stream sizeも一致し、6.536秒で終了。[再現用checker](../reports/phase6/check_corpus_10b_prior_bulk.py)を保持。モデル読み込み・heldout採点・学習更新0。既存225小ファイルの保持確認を補う証拠で、新10Bの全件audit/実loaderの完了ではない。新audit1170053は引き続きliveで、全raw再構築を進める。
 
 2026-10-03 23:37 JST: [初期DB検査通過・raw全件再構築へ移行](../reports/phase6/corpus_10b_raw_audit_progress.json)。同じaudit1170053/start_ticks1074573がlive。原auditorのfull SQLite integrity_checkがokを返し、保護198,899件と完了raw fileのsource/filter/payload/signature全比較を通過した位置で`audit_raw` checkpointが出た。観測は13/128files・3,136,181 records（保護を含む）、workers16。file00001→00006は約75.46秒/5files（約15.1秒/file）で、raw再構築の残りは同速度なら約30分。ただし後続32bands/全代表・全corpus/token列照合・実loaderは別で未完了、全件合格としない。次は全128files/29,208,256 recordsの再照合完了→全band検証→最終監査を継続する。
