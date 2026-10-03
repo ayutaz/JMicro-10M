@@ -1,10 +1,10 @@
 # 次の実装タスク
 
-Phase 6①②③完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpus・shardの独立監査も完了。③の速度/batch・厳密/cold再開検証も完了。④以降と本学習は未開始。
+Phase 6①〜⑤の準備検証を完了し、`93c7d1d`へcommit済み（2026-10-03）。400生成・全文dev評価、学習済みNoNormのCPU推論精度profileによる全12変換比較、実CLI/重み監査149 checks、全90 testsが成功。本学習設定version2を凍結し、500M以上のBase本学習を開始せず停止中。
 
 この文書は[フェーズ別実行計画](15_project_roadmap.md)の着手checklistである。Phase番号、目的、ゴール、成果物、完了条件、Go/No-Goは同計画を正とし、技術仕様は03〜08と12〜14を参照する。2026-10-02にiMac上のPhase 0を実施した。[完了記録](16_phase0_completion.md)を参照する。Phase 1のcorpus・manifest・split・会話pilotも完了した。[完了記録](17_phase1_completion.md)を参照する。[Phase 2](18_phase2_completion.md)・[Phase 3](19_phase3_completion.md)も完了。本学習は未実施。Windows/WSL実機検証は[Phase 4](21_phase4_completion.md)で完了した。
 
-**現在の境界**: [Phase 5](23_phase5_completion.md)は完了し、Phase 6①②③完了で停止中（④以降・本学習未開始）。①②のcorpus/WSDと③の高速化・容量・厳密/cold再開を完了し、性能証拠は`a7d26e1`へcommit済み。次の着手は再開指定後の④生成/変換確認。[③の完了](29_phase6_performance_completion.md)。Phase 4の学習器・評価・保存再開・最大安定batchは完了済み。Pythonは`uv run --frozen`、依存変更は`uv add`。
+**現在の境界**: [Phase 5](23_phase5_completion.md)は完了し、Phase 6①〜⑤の準備完了で停止中（本学習未開始）。①②のcorpus/WSDと③の高速化・容量・厳密/cold再開を完了し、性能証拠は`a7d26e1`へcommit済み。④⑤の生成/変換確認・設定凍結も`93c7d1d`へcommit済み。次の着手は再開指定後の500M Base学習。[③の完了](29_phase6_performance_completion.md)。Phase 4の学習器・評価・保存再開・最大安定batchは完了済み。Pythonは`uv run --frozen`、依存変更は`uv add`。
 
 完成までの時間短縮を優先し、[移行 → 最小学習経路 → 保存再開 → 最大batch/速度実測](15_project_roadmap.md#高速に完成させる進め方)を完了した。新規PCでは[再開手順](windows_handoff.md)に従い、最新コードとGit管理外の固定Tokenizer/pilotを引き継ぐ。復元済みPCでは再取得・Phase 3の再実装は不要。実装時間とGPU計算時間を分け、実測した計算時間に評価・保存・比較・データ処理を加えて見積もる。
 
@@ -58,7 +58,7 @@ Phase 6①②③完了（2026-10-03）: train 756,087,912 unique stream tokens�
 - [x] syntheticと実shardでeager micro batchを最大安定値まで増やし、backend/compile、VRAM、data wait、速度を測る。
 - [x] 100M〜50Bの時間とストレージを実測から見積もる。
 
-[Phase 4実測・制約](21_phase4_completion.md)。Phase 5も完了し、Phase 6①②③完了で停止中（④以降・本学習未開始）。
+[Phase 4実測・制約](21_phase4_completion.md)。Phase 5も完了し、Phase 6①〜⑤の準備完了で停止中（本学習未開始）。
 
 ## Phase 5: 最小pipelineと100M探索
 
@@ -70,13 +70,13 @@ Phase 6①②③完了（2026-10-03）: train 756,087,912 unique stream tokens�
 
 ## Phase 6: 500M〜10B Base v1
 
-[段階評価とgate](24_phase6_plan.md)、[③以降の目的・完了条件](27_phase6_remaining_plan.md)。①②③は完了し、④以降は次回再開後の作業で、現在はPhase 6①②③完了で停止中（④以降・本学習未開始）。
+[段階評価とgate](24_phase6_plan.md)、[本学習以降の目的・完了条件](27_phase6_remaining_plan.md)。①〜⑤の準備は完了し、500M以上は次回再開後の作業で、現在はPhase 6①〜⑤の準備完了で停止中（本学習未開始）。
 
 - [x] 500M開始用corpusのsource/revision/取得上限・unique量・Web 100%配合・反復とdev/test分離を固定し、全raw/cluster/shardを監査する（756M unique train stream tokens）。
 - [x] WSD stable/decay分岐を実装し、採用NoNorm・実shard・CUDA/BF16/mathで全state/loss/token列の完全一致を検証する。
 - [x] ③ 採用NoNorm・拡張shard・WSDでmath/compiled-math/Flashの実演算・最大安定容量・最速値・厳密再開/分岐・6設定の3×200更新/評価/saveを確認。Flash＋compile batch 32=694,521 tokens/s、最大111、独立1286 checks・cold再開26 checks・全79 tests成功。[完了証拠](29_phase6_performance_completion.md)。
-- [ ] ④ NoNormのUnicode・反復・EOS停止、native/cacheとHF/GGUF変換を切り分け、固定dev 400生成で修正/対照・未達を記録する。
-- [ ] ⑤ 採用batchの安定性を確認してeffective batch/LR/WSD数値予算と実CLI/restart commandを凍結し、log/PID/boot/start ticks/checkpoint SHA、枝compute・保持数・容量上限を保存する。
+- [x] ④ NoNormのUnicode・反復・EOS停止、native/cacheとHF/GGUF変換を切り分け、固定dev 400生成で修正/対照・未達を記録する。
+- [x] ⑤ 採用batchの安定性を確認してeffective batch/LR/WSD数値予算と実CLI/restart commandを凍結し、log/PID/boot/start ticks/checkpoint SHA、枝compute・保持数・容量上限を保存する。
 
 - [ ] 500M/1B/2Bで段階評価し、5Bまでに本命1モデルを決める。
 - [ ] 段階評価で必要と判断した場合にデータを追加する。現在のPhase 6 dev/test保護・変更系列のprovenanceを先に実装し、取得上限を固定する。50〜100B全量を500M開始条件にしない。
@@ -115,12 +115,14 @@ Phase 6①②③完了（2026-10-03）: train 756,087,912 unique stream tokens�
 
 ```text
 Phase 0〜4: データ / Tokenizer / モデル / export / 学習器 / 評価 / GPU再開・実測は完了
-  -> Phase 5は完了、Phase 6①②③完了で停止中（④以降・本学習未開始）
+  -> Phase 5は完了、Phase 6①〜⑤の準備完了で停止中（本学習未開始）
   -> 100件overfit / 10M-token smokeは合格
   -> T4K/T8K・Norm・LRの100M比較、補助評価、候補選定も完了
   -> ①拡張corpus / ②WSD全state一致は完了
   -> ③容量・高速化・厳密/cold再開は完了
-  -> 次回の再開指定後: ④生成/変換 -> ⑤予算凍結 -> 500M
+  -> ④400生成/全文dev/CPU精度profileの12比較と実CLI149 checksは完了
+  -> ⑤LR3候補/厳密cold再開/設定version2凍結は完了（93c7d1d）
+  -> 次回の再開指定後: 500M -> 独立decay/評価 -> 1B/2B/5B/10B
 ```
 
-この一周は完了した。ユーザーの④以降の再開指定後に、既存Phase 5 NoNorm checkpointと固定Base devの生成ID・native/cache/停止契約を確認する。会話pilot・評価準備は早期から並行する。具体的な未解決事項と根拠は[追加技術調査](11_technical_research_gaps.md)、会話データは[Tokenizer・会話データ調査](13_tokenizer_dialogue_data_research.md)、推論経路は[評価・配布調査](14_evaluation_deployment_research.md)を参照する。
+この一周は完了した。ユーザーの本学習再開指定後に、凍結source/data/runtimeと既存process/checkpointを照合し、新規初期化seed42で500Mから始める。Phase 5や準備runのcheckpointを本学習の初期状態へresumeしない。会話pilot・評価準備は早期から並行する。具体的な未解決事項と根拠は[追加技術調査](11_technical_research_gaps.md)、会話データは[Tokenizer・会話データ調査](13_tokenizer_dialogue_data_research.md)、推論経路は[評価・配布調査](14_evaluation_deployment_research.md)を参照する。

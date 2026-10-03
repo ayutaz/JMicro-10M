@@ -2,11 +2,11 @@
 
 最終更新: 2026-10-03。Base本文NLL/BPB・生成評価とcheckpoint再開は実装・実GPU検証済み。[評価契約report](../reports/phase4/base_evaluation_contract_report.json)。Phase 4〜5のpilot devは924文書 / 共通1,633,458 canonical bytesで、モデル評価でtestは未使用。Phase 5で100件overfit、10M smoke、4本の100M、4補助checkpoint、document paired bootstrapを実施し独立監査した。[実測証拠](23_phase5_completion.md)。Chat、rollout、文法等の全件blind人手採点は未実施。以下のmetric/TDDは要件一覧で、未実施metricを達成済みとしない。
 
-Phase 6①の新devは89,416文書 / 164,344,743 body bytes、testは89,485文書。全splitの構造・本文/token往復を監査したが、testをモデル評価・選定へ使っていない。②のCUDA dev採点は4文書の状態保全確認で、新dev全文の品質評価ではない。新devのBPBをpilot BPBの数値差として比較せず、全文採点と固定400生成の時間を別計測する。[準備の証拠](26_phase6_preparation_completion.md)、[次の評価](27_phase6_remaining_plan.md)
+Phase 6①の新devは89,416文書 / 164,344,743 body bytes、testは89,485文書。全splitの構造・本文/token往復を監査したが、testをモデル評価・選定へ使っていない。②のCUDA dev採点は4文書の状態保全確認で、新dev全文の品質評価ではない。新devのBPBをpilot BPBの数値差として比較せず、④で全文採点336.292秒/BPB1.2441264716、固定400生成360.684秒を別計測済み。[結果](30_phase6_readiness_execution.md)。[準備の証拠](26_phase6_preparation_completion.md)、[次の評価](27_phase6_remaining_plan.md)
 
 ## 評価原則
 
-③の高速化studyは4 dev文書＋1 prompt×2 greedy outputs/最大8 tokensの保存・容量確認を通過した。[③の完了](29_phase6_performance_completion.md)。独立1286 checks・cold再開26 checksは再現性の証拠で、全文dev BPB・固定400生成・品質目標は④以降の作業として残る。
+③の高速化studyは4 dev文書＋1 prompt×2 greedy outputs/最大8 tokensの保存・容量確認を通過した。[③の完了](29_phase6_performance_completion.md)。独立1286 checks・cold再開26 checksは再現性の証拠で、④で全文dev BPB・固定400生成を測定し、⑤で固定dev256文書による3 LR比較を終えた。品質目標は未達のまま。CPU精度profileの変換12比較・実CLI/重み149 checks・全90 tests成功は実装契約の証拠で、文法・EOS到達の能力合格ではない。
 
 **確定**: Tokenizerが異なるモデル間ではtoken-level perplexityを直接比較しない。4k/8kの主比較指標は同一原文集合・共通前処理のcanonical UTF-8 bytesを分母にしたBits Per Byte (BPB)とする。
 

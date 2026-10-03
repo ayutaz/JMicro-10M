@@ -61,11 +61,11 @@ LR0.001/0.002/0.003は各2,000 stable＋独立100 decayを完了、固定256文�
 
 [全90 tests](../reports/phase6/readiness_precision_tests.xml)はskip・error・failure 0。既存Norm経路を維持し、NoNorm CPU精度profileの1024/full/cache/HF disk reload、ragged padding、future mask、重み/tie不変性、training/autocast拒否、native実library hashの変更拒否も確認した。GPU学習core・readiness worker/evaluator・uv.lockは未変更で、既存の実CUDA比較・厳密/cold再開証拠を維持する。
 
-[設定version2](../configs/phase6/base_frozen.json)は元のbatch32/LR0.002/WSD予算・容量に加え、採用した推論profile・native receipt・学習済み検証artifactをbindした。技術gateはすべてtrue。旧[起動不可version1](../configs/phase6/base_frozen_blocked_v1.json)とその実拒否証拠を保持する。今回はprepare/復旧commandの検証までで、500M以上の本学習は開始せず、最終監査・commit後に停止する。
+[設定version2](../configs/phase6/base_frozen.json)は元のbatch32/LR0.002/WSD予算・容量に加え、採用した推論profile・native receipt・学習済み検証artifactをbindした。技術gateはすべてtrue。旧[起動不可version1](../configs/phase6/base_frozen_blocked_v1.json)とその実拒否証拠を保持する。prepare/復旧commandの検証までを終えて93c7d1dへcommit済み。500M以上の本学習は開始せず停止している。
 
 GPU学習はWSL/RTX4090の高速BF16経路を維持する。CPU精度profileは重み/activation/cache/logitsのFP32境界とFP64累積を使うため、stock CPU kernelと速度が異なる。未修正stock HF/GGUFやCUDA FP32の厳密parity達成とは扱わない。生成品質・文法・EOS到達の未達は維持し、次回の新規Base学習で同じdev suiteを測る。
 
-[総合監査](../reports/phase6/readiness_gate_audit.json)は6つの要求と停止条件を37 checksで照合し、[文書・成果物・履歴監査](../reports/phase6/readiness_package_audit.json)も成功。旧73 reportsとuv.lockのbyte保持、現在source/config/正式artifactのhash、実prepare（global305,176更新・stop15,259）、GPU process/終了job identity、本学習directory未作成を確認した。検証済み結果をcommitし、本学習前で停止する。
+[総合監査](../reports/phase6/readiness_gate_audit.json)は6つの要求と停止条件を37 checksで照合し、[文書・成果物・履歴監査](../reports/phase6/readiness_package_audit.json)も成功。旧73 reportsとuv.lockのbyte保持、現在source/config/正式artifactのhash、実prepare（global305,176更新・stop15,259）、GPU process/終了job identity、本学習directory未作成を確認した。検証済み結果は93c7d1dへcommit済みで、本学習前で停止している。
 
 WSL project rootでの読み取り監査とprepare（どちらもGPU本学習を起動しない）:
 

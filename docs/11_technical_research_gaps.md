@@ -4,7 +4,7 @@
 
 ## 実装後の現在地（2026-10-03）
 
-調査後にPhase 0〜5とPhase 6①②③を完了した。次の表は現在の状態、後半の調査表・検証順は2026-10-02の提案として区別する。
+調査後にPhase 0〜5とPhase 6①〜⑤の準備を完了した。次の表は現在の状態、後半の調査表・検証順は2026-10-02の提案として区別する。
 
 | 課題 | 現在の状態 | 証拠・次の判断 |
 |---|---|---|
@@ -16,9 +16,11 @@
 | 拡張corpus・WSD再開/分岐 | 756M unique train stream、全corpus監査、CUDA全state完全一致、74 tests / skip 0・73 GPU checks | [Phase 6①②完了証拠](26_phase6_preparation_completion.md) |
 | 採用NoNorm/math・compiled/math/Flashの最大batch・速度 | 実GPU測定・厳密/cold再開完了。最速Flash＋compile batch 32=694,521 tokens/s、最大111/112 OOM | [③完了証拠](29_phase6_performance_completion.md) |
 | stable予算延長・追加corpusのheldout継承 | 未実装。通常resumeのbudget/source/data変更は不可、decay forkは実装済み | [⑤と後続拡張の条件](27_phase6_remaining_plan.md) |
-| 日本語短文・雑談、学習後量子化・NoNorm変換 | 品質目標未達、NoNorm HF/GGUF adapter未実装 | Phase 6〜8の実学習・固定評価 |
+| 学習済みNoNorm HF/Llama・GGUF/Llama | CPU精度profileで全12比較・実CLI/重み149 checks成功。stock FP32の失敗は保持 | [④⑤の検証](30_phase6_readiness_execution.md) |
+| 本学習LR/WSD・評価/保存/容量 | 3 LR候補・厳密/cold再開からLR0.002/batch32を採用しversion2へ凍結 | [本設定](../configs/phase6/base_frozen.json) |
+| 日本語短文・雑談、学習後量子化 | 品質目標未達、Base/Chat本学習と学習後量子化品質は未実施 | Phase 6〜8の実学習・固定評価 |
 
-完成までの時間短縮を優先し、Windows/WSL＋RTX 4090への移行とPhase 4は完了した。Phase 5の候補選定も完了し、ユーザー指定のPhase 6①②③完了で停止中（④以降・本学習未開始）。③の証拠は`a7d26e1`へcommit済み。再開後は④の生成/変換診断から進める。
+完成までの時間短縮を優先し、Windows/WSL＋RTX 4090への移行とPhase 4は完了した。Phase 5の候補選定も完了し、ユーザー指定のPhase 6①〜⑤の準備を完了し、本学習前で停止中。③は`a7d26e1`、④⑤は`93c7d1d`へcommit済み。再開後は500Mの新規Base学習から進める。
 
 ## 結論
 

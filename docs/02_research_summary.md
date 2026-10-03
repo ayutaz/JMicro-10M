@@ -1,10 +1,10 @@
 # 調査要約
 
-更新: 2026-10-03。外部研究は2026-10-02の調査記録で、全件の最新再調査ではない。Transformer/Tokenizer/exportとAdamW＋warmup/cosineのGPU経路は実装・検証済み。[Phase 4](21_phase4_completion.md)。QK-Normなしも実装し、[Phase 5](23_phase5_completion.md)の100M比較でT4K / NoQK-Norm / LR 0.002を選定した。Muonは安定したAdamW比較で候補を選べたため追加せず、長期schedulerのWSD stable/decayは[Phase 6①②](26_phase6_preparation_completion.md)で実装し、拡張実shard・CUDA/BF16/mathで全stateの再開・分岐完全一致を確認した。本学習batch/backendと長期の数値配分は未凍結。Layer Sharing/hybrid、Chatと学習後の量子化は未実施。外部文献の再調査ではなく、ローカル実測に基づく更新である。
+更新: 2026-10-03。外部研究は2026-10-02の調査記録で、全件の最新再調査ではない。Transformer/Tokenizer/exportとAdamW＋warmup/cosineのGPU経路は実装・検証済み。[Phase 4](21_phase4_completion.md)。QK-Normなしも実装し、[Phase 5](23_phase5_completion.md)の100M比較でT4K / NoQK-Norm / LR 0.002を選定した。Muonは安定したAdamW比較で候補を選べたため追加せず、長期schedulerのWSD stable/decayは[Phase 6①②](26_phase6_preparation_completion.md)で実装し、拡張実shard・CUDA/BF16/mathで全stateの再開・分岐完全一致を確認した。④⑤でbatch32・Flash/compile・LR0.002・WSD global305,176更新と独立decay5%を[version2](../configs/phase6/base_frozen.json)へ凍結した。Layer Sharing/hybrid、Chatと学習後の量子化は未実施。外部文献の再調査ではなく、ローカル実測に基づく更新である。
 
 ## 結論
 
-③の高速化も[完了](29_phase6_performance_completion.md)。固定長・PADなしcausal経路とbackend別compile cacheを実装し、Flash＋compile reduce-overhead / batch 32で694,521 tokens/s、最速reference比5.436倍を実測した。容量上限111より32が速く、厳密/cold再開を通過した32を長期候補にする。生成・NoNorm変換と長期LR/WSD凍結は④⑤の未完了事項として維持する。
+③の高速化も[完了](29_phase6_performance_completion.md)。固定長・PADなしcausal経路とbackend別compile cacheを実装し、Flash＋compile reduce-overhead / batch 32で694,521 tokens/s、最速reference比5.436倍を実測した。容量上限111より32が速く、厳密/cold再開を通過した32を長期候補にする。④⑤の400生成・全文dev採点、NoNorm CPU精度profileの全12変換比較・実CLI149 checksと長期LR/WSD凍結も完了し、`93c7d1d`へcommitした。生成品質は未達、本学習は未開始。[④⑤の証拠](30_phase6_readiness_execution.md)。
 
 **提案**: v1の本命は、2024〜2026年の小型モデル研究で支持される要素を組み合わせたModern deep-thin Transformerとする。
 

@@ -80,7 +80,7 @@ MuonのLRをAdamWと同じ数値で比較しない。Muonと補助AdamWは別LR�
 
 **設計からの計算**: effective batchが262,144 tokensなら、100M-token runは約381.5更新しかない。1M-token warmupは約3.8更新になる。小探索で大きなbatchを使うと、LR／Norm比較の結果が少ない更新回数に支配され得る。
 
-**現在の実測**: Phase 5はeager/math・micro batch 8・effective 8,192 tokens/updateで12,208更新を固定した。小探索の更新数確保と厳密resumeのための設定で、最大VRAM活用ではない。③でmath/compiled-math/Flashの最大容量・再開一致・速度を別測定し、Flash＋compile batch 32（32,768 input tokens/update）を採用した。独立1286 checks・cold再開26 checksも通過。長期のLR/WSDは⑤で凍結する。
+**現在の実測**: Phase 5はeager/math・micro batch 8・effective 8,192 tokens/updateで12,208更新を固定した。小探索の更新数確保と厳密resumeのための設定で、最大VRAM活用ではない。③でmath/compiled-math/Flashの最大容量・再開一致・速度を別測定し、Flash＋compile batch 32（32,768 input tokens/update）を採用した。独立1286 checks・cold再開26 checksも通過。長期のLR0.002/WSD global305,176更新・各観測点5%独立decayを⑤で[version2](../configs/phase6/base_frozen.json)へ凍結済み。
 
 **当初の提案**: GPUを埋めるmicro batchと、統計的なeffective batchを分ける。100M探索ではeffective batch 16,384／32,768／65,536 tokens等を候補にし、約6,104／3,052／1,526更新を確保する。メモリと速度測定後に一つへ固定して主要因を比較する。warmupはtokensとstepsの両方で記録する。
 
@@ -93,7 +93,7 @@ SFTでは有効なAssistant教師token数がbatchごとに違う。gradient accu
 **提案**:
 
 - 100M探索は終点固定のwarmup＋cosineを使い、設定を揃える。
-- 長期系列はPhase 5でWSD採用を決定し、Phase 6②でstable/decay実装とCUDA全state完全一致を検証済み。凍結した準備configは200更新/100追加更新で、本学習の数値配分は未凍結。継続用のstable checkpointと、評価用のdecay済みcheckpointを別artifactにする。以下の9B+1B等は当初の例で、実行configではない。[①②完了証拠](26_phase6_preparation_completion.md)、[③以降の計画](27_phase6_remaining_plan.md)
+- 長期系列はPhase 5でWSD採用を決定し、Phase 6②でstable/decay実装とCUDA全state完全一致を検証済み。凍結した準備configは200更新/100追加更新で、本学習の数値配分はversion2へ凍結済み。継続用のstable checkpointと、評価用のdecay済みcheckpointを別artifactにする。以下の9B+1B等は当初の例で、実行configではない。[①②完了証拠](26_phase6_preparation_completion.md)、[本学習以降の計画](27_phase6_remaining_plan.md)
 - 10B評価枝を作るなら、たとえば9Bで分岐し1Bをdecay。継続枝も9Bから10Bへ進める。20B評価枝は19Bで同様に分岐する。decay 10%は初期案で、最適値ではない。
 - 評価枝の追加計算も累積GPU時間へ計上し、`tokens_seen`は各枝の履歴に対する値として扱う。
 - decay済み10Bから20Bへ継続する場合は、LR再上昇を含む別の実験条件とし、stable枝からの継続と混同しない。

@@ -1,10 +1,10 @@
 # Codexによる環境整備・学習・改善の自動化
 
-現在地（2026-10-03）: Phase 0〜5とPhase 6①②は完了。拡張corpusとWSDの準備監査を終え、③の容量/速度探索・本学習の前で停止中。[最新状態](autonomous_status.md)、[①②完了証拠](26_phase6_preparation_completion.md)、[再開後の計画](27_phase6_remaining_plan.md)を参照する。
+現在地（2026-10-03）: Phase 0〜5とPhase 6①〜⑤の準備は完了。③高速化・④生成/CPU変換精度・⑤設定凍結の検証を終え、93c7d1dへcommitして本学習前で停止中。[最新状態](autonomous_status.md)、[①②完了証拠](26_phase6_preparation_completion.md)、[再開後の計画](27_phase6_remaining_plan.md)を参照する。
 
-確認日: 2026-10-03。Full accessが実効policyへ反映済みで、ユーザー側のrunner起動は不要。停止境界はAGENTS.mdと最新statusに従う。文書更新は③以降の再開指定ではなく、runnerの起動を次の学習開始条件にしない。以下のCLI 0.159.3の実helpとOpenAI公式資料の説明は当時の確認記録で、この文書更新では製品設定を再調査・変更していない。
+確認日: 2026-10-03。Full accessが実効policyへ反映済みで、ユーザー側のrunner起動は不要。停止境界はAGENTS.mdと最新statusに従う。文書更新は本学習の再開指定ではなく、runnerの起動を次の学習開始条件にしない。以下のCLI 0.159.3の実helpとOpenAI公式資料の説明は当時の確認記録で、この文書更新では製品設定を再調査・変更していない。
 
-ユーザー指定（2026-10-02）: 本プロジェクトの環境整備・実装・学習・評価・改善をCodexに継続して任せる。作業内容と実測結果は`autonomous_status.md`、方針はrootの`AGENTS.md`へ残す。Phase 4とPhase 5の指定範囲を完了した後、ユーザーがPhase 6①②を再開し、2026-10-03にその範囲も完了した。現在は③以降の再開指定を待つ。`complete`はその時の指定範囲を証拠で完了したことを示し、Base/Chat全体の完成とは区別する。
+ユーザー指定（2026-10-02）: 本プロジェクトの環境整備・実装・学習・評価・改善をCodexに継続して任せる。作業内容と実測結果は`autonomous_status.md`、方針はrootの`AGENTS.md`へ残す。Phase 4とPhase 5の指定範囲を完了した後、ユーザーがPhase 6①②を再開し、2026-10-03にその範囲も完了した。その後③〜⑤も完了し、現在は500M以上の本学習の再開指定を待つ。`complete`はその時の指定範囲を証拠で完了したことを示し、Base/Chat全体の完成とは区別する。
 
 ## このアプリで続ける
 

@@ -18,7 +18,7 @@ rawログ・source snapshot・checkpoint・生成出力はLinux実行コピー�
 
 ## Phase 5の実学習・比較証拠
 
-`phase5/`にはoverfit/smoke、4本の100Mのtraining/evaluation audit、凍結plan、共通bytesと固定生成の集約、候補config、採用・棄却理由、独立監査、実測予算と停止確認を保存した。全68 tests / skip 0、4構成のCUDA厳密resume、overfit全5 gate、全比較と補助評価が成功。候補はT4K / NoQK-Norm / LR 0.002。停止・反復・sampling Unicodeの品質目標は未達で、NoNormのHF/GGUF adapterも未実装。[完了記録](../docs/23_phase5_completion.md)
+`phase5/`にはoverfit/smoke、4本の100Mのtraining/evaluation audit、凍結plan、共通bytesと固定生成の集約、候補config、採用・棄却理由、独立監査、実測予算と停止確認を保存した。全68 tests / skip 0、4構成のCUDA厳密resume、overfit全5 gate、全比較と補助評価が成功。候補はT4K / NoQK-Norm / LR 0.002。停止・反復・sampling Unicodeの品質目標は未達で、Phase 5当時はNoNormのHF/GGUF adapterが未実装だった。現在は④でCPU精度profileによる学習済み変換を検証済み（下記④⑤）。[完了記録](../docs/23_phase5_completion.md)
 
 raw evidenceはLinux checkoutの`reports/phase5/run-20261003-docoverfit/`へ保持する。GPU job/launcherは終了済み。自動生成の`candidate_selection.md`と`completion_audit.json`をそのまま保存し、詳細な採否レビューを`candidate_selection_review.md`へ分けた。Phase 6本学習は未開始。
 
@@ -38,9 +38,9 @@ raw evidenceはLinux checkoutの`reports/phase5/run-20261003-docoverfit/`へ保�
 | [preparation_failures.json](phase6/preparation_failures.json) | 初回scheme失敗・schema不足と修復。条件を緩めず失敗履歴を保持 |
 | [hub_artifacts_verification.json](phase6/hub_artifacts_verification.json)、[process_completion.json](phase6/process_completion.json) | 公開25 payload照合/restored 0、launcher終了と停止確認 |
 | [documentation_audit.json](phase6/documentation_audit.json)、[final_package_audit.json](phase6/final_package_audit.json) | ①②完了時点の43 Markdown / 393内部リンク、Windows/WSL 91 source filesの同期、包装監査13 checks |
-| [documentation_update_20261003.json](phase6/documentation_update_20261003.json) | 今回の文書・残りの計画更新を別監査。旧report/実装/config/lock/eval不変、文書リンク・CLI・WSL同期・停止境界を確認 |
+| [documentation_update_20261003.json](phase6/documentation_update_20261003.json) | ①②後の文書・残りの計画更新を別監査した当時の記録。旧report/実装/config/lock/eval不変、文書リンク・CLI・WSL同期・停止境界を確認 |
 
-大型dataは`~/jmicro-data/phase6/{raw,expanded-v2}/`、CUDA checkpoints/log/source snapshotsはLinux checkoutの`reports/phase6/preparation-20261003/cuda/`。①②③のjobは終了済みで④以降は停止中。Git clone/Hub bundleだけで拡張data/checkpointsが揃うとは扱わない。既存snapshotと完了reportは当時の証拠として保持し、現在の文書を過去snapshotへ書き戻さない。今後の実行順は[③以降の計画](../docs/27_phase6_remaining_plan.md)。
+大型dataは`~/jmicro-data/phase6/{raw,expanded-v2}/`、CUDA checkpoints/log/source snapshotsはLinux checkoutの`reports/phase6/preparation-20261003/cuda/`。①〜⑤のjobは終了済みで、本学習前で停止中。Git clone/Hub bundleだけで拡張data/checkpointsが揃うとは扱わない。既存snapshotと完了reportは当時の証拠として保持し、現在の文書を過去snapshotへ書き戻さない。今後の実行順は[本学習以降の計画](../docs/27_phase6_remaining_plan.md)。
 
 ## Phase 6③の高速化・容量・再開証拠
 
@@ -54,4 +54,21 @@ raw evidenceはLinux checkoutの`reports/phase5/run-20261003-docoverfit/`へ保�
 | [performance_documentation_audit.json](phase6/performance_documentation_audit.json) | ③完了時の文書/CLI/WSL同期・旧73 reports/lock保持と実装/report binding |
 | [plan_update_20261003.json](phase6/plan_update_20261003.json) | 今回の最新計画・完了チェック・算術予算・文書同期と旧成果/コード保持の監査 |
 
-raw logs/requests/compiled code/source snapshots/checkpointsはLinux `reports/phase6/performance-20261003-v3/`と`performance-cold-resume-20261003/`に保持する。今後は再開指定後に④生成/変換→⑤長期設定凍結→500M段階評価へ進む。
+raw logs/requests/compiled code/source snapshots/checkpointsはLinux `reports/phase6/performance-20261003-v3/`と`performance-cold-resume-20261003/`に保持する。④生成/変換と⑤長期設定凍結は完了した。今後は再開指定後に500M段階評価へ進む。
+
+## Phase 6④⑤の検証・設定凍結と停止
+
+④⑤は`93c7d1d`へcommit済み。[実施記録](../docs/30_phase6_readiness_execution.md)。
+
+| report / config | 確認したこと |
+|---|---|
+| [generation_diagnostics.json](phase6/generation_diagnostics.json)、[expanded_dev_baseline.json](phase6/expanded_dev_baseline.json) | 固定dev400生成と拡張dev89,416文書の全文採点、BPB/時間/未達品質、本文一度採点・EOS分離 |
+| [nonorm_export_parity_report.json](phase6/nonorm_export_parity_report.json)、[readiness_export_audit.json](phase6/readiness_export_audit.json) | CPU精度profileで学習済み短/1024・full/cacheの全12比較、13契約、実CLI/全119 GGUF重みの独立149 checks |
+| [nonorm_precision_repair_report.json](phase6/nonorm_precision_repair_report.json)、[stock失敗](phase6/nonorm_export_stock_fp32_failure.json) | 精度修復の採否、途中/stock/CPU8設定/CUDA参照の失敗保持。GPU学習coreと重みは不変 |
+| [readiness_stability_report.json](phase6/readiness_stability_report.json)、[readiness_gpu_audit.json](phase6/readiness_gpu_audit.json) | LR3候補×2,000 stable＋100独立decay、LR0.002採用、厳密50/cold25完全一致、独立106 checks |
+| [readiness_precision_tests.xml](phase6/readiness_precision_tests.xml)、[readiness_gate_audit.json](phase6/readiness_gate_audit.json) | 全90 tests / skip・failure・error 0、指定範囲の6要求と停止境界の37 checks。Base品質合格ではない |
+| [base_frozen.json](../configs/phase6/base_frozen.json)、[base_launch_plan.json](phase6/base_launch_plan.json) | version2のmodel/data/source/runtime、batch32/LR0.002/WSD global305,176更新、独立decay5%、保存/容量/実起動・再開CLI |
+| [旧version1](../configs/phase6/base_frozen_blocked_v1.json)、[base_launch_guard_report.json](phase6/base_launch_guard_report.json) | 修復前の起動不可設定と実起動拒否をbyte保持 |
+| [documentation_refresh_readiness_20261003.json](phase6/documentation_refresh_readiness_20261003.json) | ④⑤完了後の25文書・残りの計画更新。凍結条件/CLI/算術予算、内部リンク、WSL同期、旧実装/設定/証拠の保持と停止を検証 |
+
+raw logs/checkpoints/weights/logits/snapshotsはLinux `reports/phase6/readiness-20261003/`、正式exportは同runの`export-stable-f32/`。専用CPU runtimeは`artifacts/runtime-stable-f32-v2`。Git/Hubだけでは復元できず、Windowsコードとともに引き継ぐ。現行の`launch_enabled=true`は技術gate成立で、ユーザーの再開指定まで500M以上の本学習を開始しない。

@@ -1,6 +1,6 @@
 # JMicro-10M 設計・調査ノート
 
-Phase 6①②③完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpus・shardの独立監査も完了。③の速度/batch・厳密再開・cold再開も完了。④以降と本学習は未開始。
+Phase 6①〜⑤の準備検証を完了し、`93c7d1d`へcommit済み（2026-10-03）。400生成・全文dev評価、学習済みNoNormのCPU推論精度profileによる全12変換比較、実CLI/重み監査149 checks、全90 testsが成功。本学習設定version2を凍結し、500M以上のBase本学習を開始せず停止中。
 
 このディレクトリは、日本語専用の約10Mパラメータ級Decoder-only Language Model `JMicro-10M` を、Tokenizerを含めてスクラッチ構築するための設計・調査記録である。
 
@@ -25,7 +25,7 @@ Phase 6①②③完了（2026-10-03）: train 756,087,912 unique stream tokens�
 
 **完了範囲**: [4k/8k Tokenizer](18_phase2_completion.md)、[両モデル/cache/学習前export](19_phase3_completion.md)、GPU学習器・評価・再開・速度を検証済み。Phase 3重みはランダム初期化、Phase 4には小さい学習済み検証checkpointがある。Python 3.12.7、実行は`uv run --frozen`、依存変更は`uv add`。
 
-**現在地**: [Phase 4の実GPU検証](21_phase4_completion.md)と[Phase 5の候補選定](23_phase5_completion.md)が完了し、Phase 6①②③完了で停止中（本学習未開始）。Base/Chatの本学習・能力目標は未達。①②は756M unique train stream tokensとWSD stable/decayのCUDA完全一致、全74 tests / skip 0、73 GPU checksを確認した。[完了証拠](26_phase6_preparation_completion.md)。最新の状態は[継続記録](autonomous_status.md)、③以降は[残りの実行計画](27_phase6_remaining_plan.md)を参照する。
+**現在地**: [Phase 4の実GPU検証](21_phase4_completion.md)と[Phase 5の候補選定](23_phase5_completion.md)が完了し、Phase 6①〜⑤の準備完了で停止中（本学習未開始）。Base/Chatの本学習・能力目標は未達。①②は756M unique train stream tokensとWSD stable/decayのCUDA完全一致、全74 tests / skip 0、73 GPU checksを確認した。[完了証拠](26_phase6_preparation_completion.md)。最新の状態は[継続記録](autonomous_status.md)、④⑤の準備検証も`93c7d1d`で完了し、再開後の本学習は[残りの実行計画](27_phase6_remaining_plan.md)を参照する。
 
 **別PCでの再開入口**: [Windows/WSL＋RTX 4090の再開手順](windows_handoff.md)。GitHubの取得からHub成果物の復元、uv環境、CUDA確認、実装順までを順に実行できる。
 
@@ -59,10 +59,10 @@ Phase 6①②③完了（2026-10-03）: train 756,087,912 unique stream tokens�
 24. [24_phase6_plan.md](24_phase6_plan.md) — gateの完了/未着手、500M〜10B段階評価・予算
 25. [25_phase6_preparation.md](25_phase6_preparation.md) — ①②の事前の目的、凍結条件と停止境界
 26. [26_phase6_preparation_completion.md](26_phase6_preparation_completion.md) — ①②の実量、全corpus/CUDA監査、保存先、実CLI
-27. [27_phase6_remaining_plan.md](27_phase6_remaining_plan.md) — ③の採用結果、再開後の④生成/変換、⑤設定凍結、本学習と完了条件
+27. [27_phase6_remaining_plan.md](27_phase6_remaining_plan.md) — ①〜⑤の完了証拠、再開後の500M〜10B、Chat・量子化・拡張の条件
 28. [28_phase6_performance.md](28_phase6_performance.md) — ③の実GPU高速化・backend実効確認・容量と厳密再開の比較
 29. [29_phase6_performance_completion.md](29_phase6_performance_completion.md) — ③の採用速度・最大容量・厳密/cold再開・独立監査と停止記録
-30. [30_phase6_readiness_execution.md](30_phase6_readiness_execution.md) — ④⑤の限定比較、生成/変換・全文評価・LR・再開・本学習設定の完了条件
+30. [30_phase6_readiness_execution.md](30_phase6_readiness_execution.md) — ④⑤の限定比較、CPU精度修復、正式検証・凍結設定・commitと停止記録
 
 運用文書: [最新状態](autonomous_status.md)、[復旧履歴](autonomous_history_20261003.md)、[Windows/WSL引継ぎ](windows_handoff.md)、[固定Hub復元](huggingface_handoff.md)、[自律runner](codex_automation.md)、[評価仕様](evaluation_protocol.md)。[data](../data/README.md)、[eval](../eval/README.md)、[reports](../reports/README.md)に各保存領域の手順を記載する。
 

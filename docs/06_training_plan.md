@@ -1,16 +1,16 @@
 # 学習計画
 
-Phase 6①②③完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpus・shardの独立監査も完了。③の速度/batch・厳密/cold再開検証も完了。④以降と本学習は未開始。
+Phase 6①〜⑤の準備検証を完了し、`93c7d1d`へcommit済み（2026-10-03）。400生成・全文dev評価、学習済みNoNormのCPU推論精度profileによる全12変換比較、実CLI/重み監査149 checks、全90 testsが成功。本学習設定version2を凍結し、500M以上のBase本学習を開始せず停止中。
 
 最終更新: 2026-10-03。AdamW＋warmup/cosine・WSD stable/decayは実装済み。Phase 6の長期schedulerはWSDを採用し、stable/decayは実装・CUDA検証済み。Muon・Chat trainerは未実装。train CLIは引数から設定を作り、baseline JSONを自動読込しない。現在のresumeは固定schedule/config/source/dataの変更を拒否するため、予算の延長を同一runの再開として扱わない。50Bは改善と予算条件を満たした場合のみ、外部の有料GPU実行は別途ユーザーの指示が必要。
 
 ## 全体像
 
-完了①②③と未着手④以降は[Phase 6計画](24_phase6_plan.md)、残る作業の目的・実装入口・完了条件は[再開時の実行計画](27_phase6_remaining_plan.md)を参照する。現在の選定候補は1つで、未凍結の長期WSD/LR配分や本学習の最適化条件を確定設定として実行しない。
+①〜⑤の準備完了と未開始の本学習は[Phase 6計画](24_phase6_plan.md)、残る作業の目的・実装入口・完了条件は[再開時の実行計画](27_phase6_remaining_plan.md)を参照する。現在の選定候補は1つで、長期WSD/LR/保存/容量は[version2](../configs/phase6/base_frozen.json)へ凍結済み。`launch_enabled=true`は技術gateの成立であり、文書更新を学習再開の指定として扱わない。
 
 プロジェクト全体の目的・ゴール・成果物・完了条件は[フェーズ別実行計画](15_project_roadmap.md)を参照する。本書は学習系列の設定とcheckpoint段階を扱う。10B BaseからChatへ分岐し、20B/50Bの終了をChat着手の前提にしない。
 
-**現在地（2026-10-03）**: Phase 0〜5が完了。WSL＋RTX 4090で学習器・shard・BPB/生成評価・保存再開・最大安定batchを検証した。Phase 5のoverfit/smoke・4本の100M比較と独立監査も完了し、T4K / NoQK-Norm / LR 0.002を候補に選定した。Phase 6①②③完了で停止中（④以降・本学習未開始）。smokeはdev BPBが改善したが、抑制ありgreedy EOS 0/80・反復63/80で、本学習・Base/Chat品質目標は未達。実装時間とGPU計算時間を分け、③で採用したFlash＋compile reduce-overhead / batch 32の694,521 tokens/sから純学習予算を見積もる。全文評価・保存・decay枝・調整は別計上する。[高速化完了](29_phase6_performance_completion.md)。[詳細計画](22_phase5_plan.md)、[進め方](15_project_roadmap.md#高速に完成させる進め方)
+**現在地（2026-10-03）**: Phase 0〜5が完了。WSL＋RTX 4090で学習器・shard・BPB/生成評価・保存再開・最大安定batchを検証した。Phase 5のoverfit/smoke・4本の100M比較と独立監査も完了し、T4K / NoQK-Norm / LR 0.002を候補に選定した。Phase 6①〜⑤の準備完了で停止中（本学習未開始）。smokeはdev BPBが改善したが、抑制ありgreedy EOS 0/80・反復63/80で、本学習・Base/Chat品質目標は未達。実装時間とGPU計算時間を分け、③で採用したFlash＋compile reduce-overhead / batch 32の694,521 tokens/sから純学習予算を見積もる。全文dev336.292秒・400生成360.684秒、decay枝・保存・compileを別計上して⑤の予算へ保存した。[④⑤の検証](30_phase6_readiness_execution.md)。[高速化完了](29_phase6_performance_completion.md)。[詳細計画](22_phase5_plan.md)、[進め方](15_project_roadmap.md#高速に完成させる進め方)
 
 ```text
 Tokenizer 4k / 8k・Phase 4実測は完了
@@ -18,8 +18,8 @@ Tokenizer 4k / 8k・Phase 4実測は完了
         -> 10M-token smoke（合格）
         -> 100M T4K/T8K・Norm・LR比較（完了、Muon追加不要）
         -> Phase 6①756M unique train / ②WSD全state完全一致（完了）
-        -> 停止中（④以降・本学習未開始）
-        -> 再開後: ④生成/変換 -> ⑤本学習設定・予算凍結
+        -> ③高速化/容量 -> ④生成/CPU変換精度 -> ⑤設定凍結（準備完了）
+        -> 本学習前で停止中; ユーザー再開後に500Mから開始
         -> 500M / 1B 選定候補の日本語生成と継続価値を評価
         -> 2B 継続価値（過去355M artifactがなければ直接比較は未実施）
         -> 5B 本命を1つに決定
@@ -63,7 +63,7 @@ Tokenizer 4k / 8k・Phase 4実測は完了
 
 ## Batchとperformance
 
-**確定**: Phase 0〜3のiMac開発からWindows/WSL＋RTX 4090へ移行済み。本学習は容量上限と速度を測り、厳密再開を通過した最速micro batchを候補にする。Phase 4のeager/defaultの運用上限はT8K 57 / T4K 64、最高速度の測定点はcompile/default batch 8。Phase 5は厳密resumeのためeager/math、batch 8を採用し、100Mで約12,208更新を確保する。③でreference/math最大45、compiled/math最大53、compiled Flash最大111を検証し、最速のFlash＋compile reduce-overhead batch 32を採用した。32,768 input tokens/updateで、長期LR/WSDは⑤で凍結する。[③の実測](29_phase6_performance_completion.md)。[移行・batch方針](07_environment.md)
+**確定**: Phase 0〜3のiMac開発からWindows/WSL＋RTX 4090へ移行済み。本学習は容量上限と速度を測り、厳密再開を通過した最速micro batchを候補にする。Phase 4のeager/defaultの運用上限はT8K 57 / T4K 64、最高速度の測定点はcompile/default batch 8。Phase 5は厳密resumeのためeager/math、batch 8を採用し、100Mで約12,208更新を確保する。③でreference/math最大45、compiled/math最大53、compiled Flash最大111を検証し、最速のFlash＋compile reduce-overhead batch 32を採用した。32,768 input tokens/updateで、長期LR0.002/WSDは⑤でversion2へ凍結済み。[③の実測](29_phase6_performance_completion.md)。[移行・batch方針](07_environment.md)
 
 **③で実施済み**: RTX 4090でmicro batchを倍増・境界探索し、容量上限と最高速度を別に確認した。batch 111のdriver peakは97.64%、batch 32の速度が最も高く、運用候補は32を選択した。以下の観測値をreportに保存した。
 

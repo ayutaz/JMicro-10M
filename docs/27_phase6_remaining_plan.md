@@ -1,76 +1,98 @@
-# Phase 6④以降: 最新の実行計画
+# 準備完了後の実行計画: Base本学習からChat・量子化まで
 
-更新: 2026-10-03。①②は[完了済み](26_phase6_preparation_completion.md)、③も[完了](29_phase6_performance_completion.md)。採用はFlash/compile reduce-overhead、batch32、694,521 tokens/s。ユーザー指定で④生成/変換・⑤設定確定を再開し、[固定比較と途中結果](30_phase6_readiness_execution.md)を保存した。400生成・全文dev・3 LR比較・変更後sourceの厳密/cold再開に加え、CPU精度profileで元の全12変換比較と実CLI監査149 checks、全90 testsが成功。本設定をversion2へ凍結し、本学習前で停止する。品質閾値と完全一致の要求を維持する。
+更新: 2026-10-03。Phase 0〜5とPhase 6①〜⑤の準備は完了。③は`a7d26e1`、④⑤は`93c7d1d`へcommit済み。[現在の状態](autonomous_status.md)、[④⑤の実測と停止記録](30_phase6_readiness_execution.md)。**現在は本学習前で停止している。今回の文書更新は学習再開の指定ではなく、500M以上を起動しない。**
 
-## 出発点と、今回繰り返さない作業
+## 完了済みの準備と証拠
 
-採用候補はT4K / NoQK-Norm / AdamW / LR 0.002、10,001,152 parameters、context 1024。モデルconfigは[候補台帳](../reports/phase5/candidate_configs.json)、実装・データの証拠は[独立監査](../reports/phase6/completion_audit.json)を正とする。Python 3.12.7の全実行を`uv run --frozen`経由にし、GPU作業はWSL 2 / Ubuntu / RTX 4090で行う。
-
-| 項目 | 確認済み | 次回に必要なこと |
+| 作業 | 検証結果 | 正本 |
 |---|---|---|
-| データ | train 756,087,912 unique stream tokens、Web 100%、全raw/cluster/shard監査 | 現在のhashと保存先を確認。追加取得・再構築は通常の再開条件にしない |
-| WSD | stable 200 vs 100+100、decay 100 vs 50+50、全state・履歴完全一致 | batch/backend/実装変更後に同じ厳密検証を通す |
-| GPU設定 | Flash＋compile reduce-overhead、FP32 parameters＋BF16、batch 32 / accumulation 1、context 1024 | 32,768 input tokens/updateを長期候補とする。reference/math最大45、compiled/math最大53、Flash/compile最大111は容量記録として保持 |
-| 最新速度・メモリ | 694,521 tokens/s、最速reference/math比5.436倍、save/小sample評価込みpeak allocated5.73 GiB・driver7.53 GiB | 全文dev採点・400生成・保存/枝を別計上し、長期LR安定性と予算を⑤で固定 |
-| 資源 | 準備完了時のLinux空き950,875,688,960 bytes、data約15.43GB、CUDA run約1.45GB | 開始時に再確認。data容量はraw約2.15GBを含まないapparent bytes |
-| 品質・配布 | Phase 5のgreedy EOS 0/80、反復54/80、sampling Unicode 2/240。今回も品質未達 | NoNorm HF/GGUF adapter・実ID生成/停止は成立。CPU精度profileで長系列も検証済み。過去の未達を保持し、次回は本学習で品質を測る |
+| ①拡張データ | T4K train 756,087,912 unique stream tokens、1,604,292文書、Web100%。全raw/cluster/shard監査、dev/test分離 | [①②完了記録](26_phase6_preparation_completion.md) |
+| ②WSD・保存再開 | stable/独立decay、model/optimizer/scheduler/RNG/sampler・token消費のCUDA完全一致 | [①②のGPU監査](../reports/phase6/completion_audit.json) |
+| ③高速化・容量 | Flash＋compile reduce-overhead、batch32、694,521 tokens/s。最大stable batch111、112 OOM。32が111より速い | [③完了記録](29_phase6_performance_completion.md) |
+| ④生成・全文評価 | 400生成360.684秒。greedy EOS0/80・反復48/80、Unicode0/400で品質未達。全文dev89,416文書、BPB1.2441264716、336.292秒 | [生成](../reports/phase6/generation_diagnostics.json)、[全文dev](../reports/phase6/expanded_dev_baseline.json) |
+| ④学習済み変換 | NoNorm HF/Llama・GGUF/Llama。CPU精度profileで元の短/1024・full/cacheの全12比較、実CLI/重み監査149 checks成功 | [数値比較](../reports/phase6/nonorm_export_parity_report.json)、[独立CLI監査](../reports/phase6/readiness_export_audit.json) |
+| ⑤設定凍結 | LR3候補から0.002採用。厳密50/cold25 checks完全一致、独立GPU106 checks、全90 tests成功 | [安定性](../reports/phase6/readiness_stability_report.json)、[設定version2](../configs/phase6/base_frozen.json)、[総合37 checks](../reports/phase6/readiness_gate_audit.json) |
 
-復元済みTokenizer/pilot、Phase 3 export、Phase 5比較、完了済み①②③を再実行しない。新jobの前にWindows/Linux process、GPU compute一覧、job status、PID/boot ID/start ticks、lock、checkpoint SHAとsource snapshotを照合し、二重起動を防ぐ。
+GPU準備runの合計245,760,000 input tokensは独立した有限比較の台帳で、一つのBase本学習ではない。Phase 6全体の完了には10BのBase成果物と評価が必要で、①〜⑤完了と区別する。
 
-## ③ 容量・高速化: 完了済み
+CPU推論profileはFP32の重み/activation/cache/logitsとFP64累積を使い、成果物metadataから専用runtimeを適用する。stock runtimeでの実行を拒否し、未修正stock CPU/CUDA FP32の失敗を保持する。精度profileの成功をGPU学習速度や生成品質の改善へ読み替えない。学習のCUDA/BF16経路は変更していない。
 
-凍結した7設定の実演算比較と容量探索、9設定のstable/decay全state再開・親の不変性、最速/容量6設定の各3×200更新・小sample評価/saveを完了した。独立1286 checks・cold-cache再開26 checks・79 testsはすべて成功。最速はFlash＋compile reduce-overhead / batch 32、32,768 input tokens/update、694,521 tokens/s。reference/math最速比5.436倍。最大安定batch 111・112 OOM、driver peak97.64%だが、速度では32が上回った。
+## 再開時の最初の確認
 
-実在成果物は[全結果](../reports/phase6/batch_performance_report.json)、[選定理由](../reports/phase6/batch_choice.md)、[資源・速度要約](../reports/phase6/performance_summary.json)。raw logs/checkpoints/source snapshotsはLinuxの完了runに保持。[詳細・条件・失敗](28_phase6_performance.md)、[完了監査と保存先](29_phase6_performance_completion.md)。完了した測定を再実行しない。source/model/backend/batch/contextが変わる場合は、影響する容量・演算・厳密再開gateを新runで再検証する。③の速度検証は生成品質・長期LR最適性の達成ではない。
+ユーザーが本学習を再開した後、以下を確認してから500Mへ進む。
 
-## 再開後の順序と完了条件
+1. Windowsコード正本とLinux実行コピーのsource/hashを照合する。Linuxの旧Git HEADだけで現在の実装を判断しない。
+2. 実GPU compute一覧、既存run/job、PID/boot ID/start ticks、GPU排他lock、checkpoint/latest.jsonを照合し、重複起動を防ぐ。
+3. [凍結設定](../configs/phase6/base_frozen.json)のmodel・Tokenizer・shard manifest・source・検証artifact・runtime receiptを検証する。入力を変更する場合は新条件で必要なgateを再検証する。
+4. 空き容量200 GiB以上、run出力上限100 GiB、checkpoint全保持の予算を確認する。データ再取得・Tokenizer再学習・完了済み比較を通常の再開条件にしない。
+5. `run_base.py`のprepareで500M commandを確認する。新規Baseはseed42のランダム初期化から始め、Phase 5終端や準備比較のcheckpointを初期状態へresumeしない。
 
-| 順序 | 作業 | 完了の証拠 |
+Python3.12.7の全実行は必要なextra付き`uv run --frozen`。依存変更は`uv add`、復元は`uv sync --frozen`。学習はWSL2/Ubuntu/RTX4090、Git identityは`yousan <ka1357amnbpdr@gmail.com>`。
+
+## 500Mから10Bまでの段階評価
+
+凍結条件はcontext1024、batch32、accumulation1、32,768 input tokens/update、FP32 parameters/BF16、fused AdamW、Flash/compile reduce-overhead/fullgraph/static/deterministic、LR0.002、warmup200、WSD global305,176更新。save1,000更新ごと・log50更新ごと。各観測点の独立decay枝は更新数の5%を切り上げ、最低LR比0.1。
+
+| stable観測点 | global更新数 | 丸め後stable input tokens | 独立decay更新数 | decay終端global更新数 | 次へ進む判断 |
+|---:|---:|---:|---:|---:|---|
+| 500M | 15,259 | 500,006,912 | 763 | 16,022 | 有限loss/gradient・保存/再開・全文BPB・Unicode/反復/EOSを確認 |
+| 1B | 30,518 | 1,000,013,824 | 1,526 | 32,044 | 同一dev文書のBPB差/paired CI、生成失敗と文法rubricを確認 |
+| 2B | 61,036 | 2,000,027,648 | 3,052 | 64,088 | 継続価値と追加時間を判断。過去355M artifactがなければ直接比較未実施と明記 |
+| 5B | 152,588 | 5,000,003,584 | 7,630 | 160,218 | 本命1構成と10Bまでの継続方針を固定。品質停滞に応じた対照は別系列 |
+| 10B | 305,176 | 10,000,007,168 | 15,259 | 320,435 | Base v1の再開可能checkpoint・固定評価・model card、品質達成/未達を保存 |
+
+各観測点のstableを保存し、別directoryへ独立decay枝を作る。そのdecay済みcheckpointに対して全文dev89,416文書と固定Base dev80 prompt×5条件の400生成を行う。次のstableは元のstable checkpointから同じglobal予算で継続し、decay枝をstable履歴へ戻さない。stable/枝ごとにtokens・教師tokens・body bytes・digest・GPU時間・親hashを記録する。
+
+新dev全文の基準はBPB1.2441264716。同じ文書集合・前処理・CE精度・windowで比較し、旧pilot BPB1.221443との差を改善量にしない。文法などのblind人手採点は未実施。既存bootstrapを用いた段階間paired CI・人手rubricの集約は`run_base.py`の自動処理へ未統合で、必要なreport作成を別途実装・検証する。自動flagや合成停止fixtureを品質合格へ数えない。
+
+モデル選定はdevだけで行い、testは最終確認まで保持する。発散・非有限・再開不一致・hash不一致・容量不足なら原因と有効checkpointを保存して修復する。重大な品質退行は対照条件を定義して調べ、閾値を下げない。10B到達だけでChatへ移行せず、[凍結品質目標](15_project_roadmap.md#品質目標と判断ルール)と日本語生成の成立を確認する。
+
+## 実CLIと中断復旧
+
+実commandの正本は[起動/復旧計画](../reports/phase6/base_launch_plan.json)。下記はWSLのproject rootでの確認で、本学習を起動しない。
+
+```sh
+uv run --frozen --extra hub --extra data --extra ml --extra export scripts/run_base.py --config configs/phase6/base_frozen.json --target 500M --output reports/phase6/base-20261003
+```
+
+**本学習再開が指定された後の実行例**。今回は実行しない。
+
+```sh
+uv run --frozen --extra hub --extra data --extra ml --extra export scripts/run_base.py --config configs/phase6/base_frozen.json --target 500M --output reports/phase6/base-20261003 --operation stable --execute
+uv run --frozen --extra hub --extra data --extra ml --extra export scripts/run_base.py --config configs/phase6/base_frozen.json --target 500M --output reports/phase6/base-20261003 --operation decay --execute
+uv run --frozen --extra hub --extra data --extra ml --extra export scripts/run_base.py --config configs/phase6/base_frozen.json --target 500M --output reports/phase6/base-20261003 --operation evaluate --execute
+```
+
+中断時はsupervisor.json・log・PID/boot/start ticksと実processを照合し、有効なlatest.json/checkpoint SHAを確認して同じcommandを再実行する。CLIがcheckpoint境界へ戻して再開し、500M完了後の1Bでは`--target 1B`へ変える。global終端305,176を変更せず、checkpointのない既存directoryを新規初期化しない。long GPU jobは排他/永続supervisor/heartbeat/source snapshot/checkpointで保持する。
+
+500M+の実起動は未実施。prepare・未達gateでの拒否・有限準備runの実GPU再開は検証済みで、将来の長期run完了とは区別する。`launch_enabled=true`は技術条件の成立で、停止境界を解除しない。
+
+## 実測に基づく予算と容量
+
+⑤の採用LR0.002 runの定常速度693,666 tokens/sを使う。[凍結値](../configs/phase6/base_frozen.json)は③の694,521 tokens/sと別の測定予算である。
+
+| 計上するもの | 算術値/実測 | 範囲 |
 |---|---|---|
-| ④-1 | 既存NoNorm checkpoint・固定Base dev 80 promptをbindし、native/cache/停止IDと400生成の失敗を診断 | 生成ID・greedy/抑制なし/sampling別のEOS/反復/Unicode・原因と最大2案の対照結果 |
-| ④-2 | NoNorm HF/native float GGUF adapterを実装し、新dev全文採点時間を測る | 外部SentencePieceのID、float logits/cache/停止parity、BPBと89,416文書の採点時間・400生成時間 |
-| ⑤ | batch 32候補のLR安定性・WSD・保存/評価/枝の予算を固定 | 凍結configと起動/復旧CLI、丸め後tokens/updates、容量・監視・停止条件 |
-| Phase 6本学習 | 新規初期化から500M→1B→2B→5B→10B | 観測点ごとのdev BPB/CI・生成/rubric・失敗例、stableとdecay枝の別台帳、Base v1のartifactと最終評価 |
-| Phase 7→8 | Dialogue mid-training/Assistant本文＋EOT SFT→量子化・独立ローカル検証 | Chat関連性/文脈/停止、float/quantized品質差、実容量・RSS/応答時間、再現手順 |
+| stable500M | 約12分 | 学習のみ。独立decay・評価・保存・起動を含まない |
+| 500M＋独立decay＋全文dev/400生成1回 | 約24分 | 現測定からの算術値。compile/保存/filesystem変動は別 |
+| stable10B | 約4時間 | 累積stable系列のみ |
+| 5観測点の独立decay全枝 | 約22.2分 | stableへの追加compute |
+| 5回の全文dev＋400生成 | 約58.1分 | 336.292秒＋360.684秒/回。生成長による変動あり |
+| 上記10Bまでの合計 | 約5時間21分＋その他の時間 | compile/起動/保存/人手評価/修復を除く。完成時刻の保証ではない |
+| checkpoint | 推定347件・41,702,694,225 bytes | 全保持。run上限100 GiB、最低空き200 GiB |
 
-今回は④⑤の検証・commitまでを進め、本学習前で停止する。数値設定は[base_frozen](../configs/phase6/base_frozen.json)と[起動/復旧計画](../reports/phase6/base_launch_plan.json)へ保存し、CPU精度profileの変換gateも成功した。`launch_enabled=true`だが今回は本学習を起動しない。Chat trainer/mixtureと学習後量子化は未実装・未検証。20B/条件付き50B・追加研究はPhase 9/10の別予算として維持する。
+最終checkpoint1件のsave0.435秒、compile込み初回update1.987秒は観測値で、cold compile上限や全保存の保証ではない。raw/data・venv/cache・一時領域は別計上し、開始時に実filesystemの空きを確認する。756M train streamは500M約0.66回、10B約13.23回の算術露出。反復量を新規データ量へ読み替えない。
 
-## ④ 生成・変換: 既知の失敗を切り分ける
+## Base後の未実装・未検証と条件
 
-採用NoNormのnative prefill/cache一致とEOS=3の停止契約を確認する。Phase 5のcheckpointと生成IDを起点に、Unicode破綻・反復・EOS未到達の具体例を保存し、decode/cache/停止実装の問題とモデル出力を区別する。
+| 次の系列 | 着手前に必要なこと | 完了の証拠 |
+|---|---|---|
+| Phase7 Chat | Dialogue mid-training/SFT trainer・Assistant本文＋EOT教師mask・shift・教師0件/turn切断・保存再開を実装して小予算で検証 | 関連性/文脈/停止、rolloutと人手評価、dev選定後の独立test |
+| Phase8 量子化/ローカル | 本学習済みBase/Chatのfloat parityを再検証し、候補比較前に退行許容幅を固定 | Q8/Q4の実型・BPB/生成品質差・weights/全artifact容量・CPU RSS/応答時間・独立環境起動 |
+| データ追加/mixture | 現Phase6 dev/testの保護・provenance継承と複数source loaderを実装。取得上限と変更系列予算を固定 | 旧heldoutを保護した新manifest/hash、source別量、変更後の再開/公平比較 |
+| Phase9 20B/条件付き50B | stable予算延長の明示fork・履歴・全state再開を実装。通常resumeで予算変更しない | 10B→20Bのcommon-byte BPB差と95%CI、重大生成退行なし、追加予算内なら50B候補 |
+| Phase10 追加研究 | 対照、改善metric、予算、採用/打切り条件を事前に定義 | Layer Sharing/蒸留/ReLU²/hybrid/規模比較の独立report |
 
-比較は固定Base dev 80 prompt×5条件の400生成を使い、greedy・抑制なし診断・sampling seeds 42/43/44を別集計する。生成制約やdecode修正は同一checkpoint・prompt・seed・最大長で比較し、抑制による改善をモデルの能力と混同しない。変更候補は最大2案の対照として先に固定し、効果がなければ結果を保存して保留する。文法等のrubricは実施範囲・採点者・分母を明示し、自動flagを文法70%達成の証拠にしない。
+現在の`--branch-from`はdecay専用。stable延長fork・mixture・Chat trainer・量子化後品質は未実装/未検証。初期Web100%の500M開始に50〜100B master全量取得を要求しない。ローカルで進め、外部の有料GPUや公開は別途の指定が必要。
 
-NoNormのHF/native float GGUF adapterを実装・検証する。外部SentencePieceによるID契約、float logits parity、cache、停止を既定の数値条件で確認する。変換が成立しない場合は原因と修復予算、保存済みNorm対照への構成見直しを記録する。構成を変える場合は③の容量/再開と公平な品質比較も再確認する。学習後の量子化品質・容量・独立ローカル検証はPhase 8として残す。
-
-拡張devは**89,416文書 / 164,344,743 body bytes**で、Phase 5 pilotの924文書とは母集団が異なる。新corpusのBPB基準を別に作り、全文採点時間と400生成の時間を実測する。Phase 5の約5.4分/400生成を、新dev全文を含む評価全体の保証にしない。小sample probeを最終dev評価として扱わず、testは選定に使わない。
-
-**完了条件**: native/cache/停止と変換の実装契約を確認し、400生成の失敗・対照結果、未達品質、次の修復または学習による検証方針を残す。Base品質目標の達成は本学習後に判断する。将来成果物: `generation_diagnostics.json`、`nonorm_export_parity_report.json`、修復・採否記録。
-
-## ⑤ 本学習設定・予算を凍結し、500Mから段階評価する
-
-③のbatchでeffective tokens/updateと更新数が変わるため、Phase 5のLR 0.002を無条件に最適値としない。採用batchで小予算の安定性を確認し、変更が必要なら一要因の対照・token/byte/GPU時間予算・打切り条件を先に固定する。比較予算は③の測定から見積もり、長期開始前にconfigへ保存する。
-
-凍結項目はmodel/Tokenizer/data/source hash、seed、backend/compile/precision、micro/effective batch・accumulation、LR/warmup/weight decay/clipping、stable終端予算、各観測点とdecay枝の追加予算・minimum LR ratio、保存/評価間隔・保持checkpoint数、空き容量上限、予定反復、実CLIとrestart command。stable終端は10B系列の計画予算として固定し、各地点は`--stop-after`で区切る。丸め後の実tokens/updatesも記録する。
-
-| 累積stable tokens | 現train streamへの露出（算術値） | 確認すること |
-|---:|---:|---|
-| 500M | 約0.66回 | 拡張corpusでの初期BPB、Unicode・反復・停止、有限値と保存再開 |
-| 1B | 約1.32回 | 同一devでの改善、paired CI、文法、生成長と失敗率 |
-| 2B | 約2.65回 | 継続価値。過去355M modelが取得できなければ直接比較未実施と明記 |
-| 5B | 約6.61回 | 本命1構成、10Bまでの追加時間/容量、データ反復の影響 |
-| 10B | 約13.23回 | Base v1の固定評価、checkpoint/config/Tokenizer/manifest/model card |
-
-本系列は拡張trainの新規初期化から開始し、Phase 5終端cosine checkpointの予算を変更して延長しない。各観測点のWSD decayは別runへ分岐し、stable累積tokensと枝の追加tokens/bytes/GPU時間を分ける。既存CLIでは`--schedule-updates`は**global update数**で、decay枝の終端は分岐元update＋`--decay-updates`。通常resumeは凍結した全引数を維持する。
-
-既存WSDはstableのLRを終端によらず維持できるが、**stable予算の延長forkは未実装**。現在の通常resumeはbudget/source/data変更を拒否し、`--branch-from`はdecay専用である。20B/50Bへ延長するPhase 9では、明示的な継続forkの仕様・履歴・全state検証が必要。追加corpusでも現在のPhase 6 dev/testを保護する入力・provenance機能が必要で、現builderのPhase 1 pilot保護だけで継承済みとは扱わない。変更系列を同一runの通常resumeにしない。
-
-**完了条件**: 凍結config、実起動/再開command、GPU排他、PID/boot/start ticks、log・heartbeat・source snapshot・checkpoint SHAと復旧手順を保存し、500M以降を段階評価する。意味のある実装・測定・観測点ごとにstatus/reportを更新して指定Git名義でcommitし、pushしない。発散・非有限・再開不一致は修復まで停止、品質退行は原因と対照を記録する。10B到達を自動的な品質合格としない。
-
-将来成果物: 本学習run config、scaling checkpoints、`base_scaling_report.json`、`base_v1_evaluation.md`、model card。これらは未作成。Base文法70%以上等の[凍結目標](15_project_roadmap.md#品質目標と判断ルール)を維持する。ChatはPhase 7、量子化/配布はPhase 8、20B・条件付き50BはPhase 9の別系列。
-
-## 時間と再開入口
-
-③の定常実測694,521 tokens/sによる参考computeは500M約12分、10B約4時間。純学習の算術値で、④⑤の実装・検証、新dev全文評価、cold compile、保存、decay枝、LR調整を含まない。本学習設定は凍結済みで、作業全体の完了時刻の保証ではない。[現在の予算](24_phase6_plan.md#暫定のcompute見積もり)
-
-次回は[最新状態](autonomous_status.md)、本書、[引継ぎ](windows_handoff.md)を読み、process/source/dataの確認から始める。③のstudyとcold再開は終了済みで、完了した測定を重複起動しない。③の証拠は`a7d26e1`へcommit済み。④⑤の準備検証は完了し、本学習は再開指定を待つ。準備の中断復旧と別出力への読み取り監査は[実CLI](26_phase6_preparation_completion.md#実cliと再開)にある。
+意味のある実装・測定・観測点ごとにreport/statusを更新して指定名義でcommitし、pushしない。今回は文書/計画更新を検証・commitして停止する。

@@ -1,6 +1,6 @@
 # データ領域
 
-現在地（2026-10-03）: pilot/Tokenizerは固定公開版をhash検証してWSLへ復元済み。通常の再開では下記のraw再取得・再生成を繰り返さない。[初回の復元](../docs/huggingface_handoff.md)を使う。Phase 4のBase shardはWeb train 18,022 / dev 924 / test 1,052文書を分離した。会話3,000件は別bucketで、Chat学習は未開始。Phase 6①の拡張corpusは全件監査済みで、756M unique train stream tokensをWSL外部領域に保存した。通常の再開ではこの取得・構築も繰り返さない。
+現在地（2026-10-03）: pilot/Tokenizerは固定公開版をhash検証してWSLへ復元済み。通常の再開では下記のraw再取得・再生成を繰り返さない。[初回の復元](../docs/huggingface_handoff.md)を使う。Phase 4のBase shardはWeb train 18,022 / dev 924 / test 1,052文書を分離した。会話3,000件は別bucketで、Chat学習は未開始。Phase 6①の拡張corpusは全件監査済みで、756M unique train stream tokensをWSL外部領域に保存した。通常の再開ではこの取得・構築も繰り返さない。④⑤で本学習入力のmanifest/tokenizer/source hashを[version2](../configs/phase6/base_frozen.json)へ凍結済み。新規Baseはこのtrainだけを使い、dev/testは学習へ混ぜない。
 
 ここにはPhase 1以降の小sampleとmanifestを置く。本文・shardsはGit管理外。大規模データとcheckpointは学習PCの外部データ領域で管理し、configから場所を指定する。
 

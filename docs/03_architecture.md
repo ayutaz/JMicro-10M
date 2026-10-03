@@ -1,6 +1,6 @@
 # アーキテクチャ設計
 
-現在の実装はQK-Normあり/なしの両方をサポートする。[Phase 5](23_phase5_completion.md)でT4K / NoQK-Norm / LR 0.002を本学習候補に選定した。ReLU²、Layer Sharing、hybridは未実装の後半候補。設定を変える場合はparameter予算・数値一致・GPU容量を別runで検証する。NoNormのHF/GGUF adapterは未実装。
+現在の実装はQK-Normあり/なしの両方をサポートする。[Phase 5](23_phase5_completion.md)でT4K / NoQK-Norm / LR 0.002を本学習候補に選定した。ReLU²、Layer Sharing、hybridは未実装の後半候補。設定を変える場合はparameter予算・数値一致・GPU容量を別runで検証する。NoNormのHF/Llama・GGUF/Llama adapterは実装済み。[④⑤](30_phase6_readiness_execution.md)で学習済み重みの短/1024・full/cacheの全12比較をCPU精度profileで検証した。未修正stock FP32の失敗は保持する。
 
 **実装状況（2026-10-03）**: T8K/T4Kを実装し、実parameter数9,772,800／10,002,816、因果性、padding/cache、HF/native float GGUFをCPUで検証済み。[Phase 3完了記録](19_phase3_completion.md)。Phase 4で両モデルのCUDA/BF16学習・再開・評価・容量を検証済み。Phase 5では同一token予算と近い時間予算の結果からT4K NoNormを選定した。近いbytes予算ではT8Kが僅かに良く、モデルfamilyと予算に依存した選択。Base/Chatの品質目標は未達で、以下の派生案は研究候補として残す。
 
@@ -8,7 +8,7 @@
 
 語彙4,096、hidden 256、13層、FFN 640、4Q/2KV、head dim 64、SwiGLU、RMSNorm、RoPE、context 1024、tied embedding、biasなし、dropout 0。Q/K head NormをIdentityへ置き換え、gainは持たない。実parameter数 **10,001,152**。[実行configとcheckpoint hash](../reports/phase5/candidate_configs.json)
 
-主比較のdev BPB 1.221443、共通短文BPB 1.546589。greedy EOS0/80、反復54/80、sampling Unicode2/240という未達がある。採用はPhase 6の比較候補であり、品質や配布互換の保証ではない。[採否理由](../reports/phase5/candidate_selection_review.md)、[次の準備](24_phase6_plan.md)
+主比較のdev BPB 1.221443、共通短文BPB 1.546589。greedy EOS0/80、反復54/80、sampling Unicode2/240という未達がある。採用はPhase 6の比較候補であり、品質目標の達成とは区別する。CPU精度profileと外部SentencePieceの実CLI・変換契約は検証済みで、学習後量子化品質は未検証。[採否理由](../reports/phase5/candidate_selection_review.md)、[次の準備](24_phase6_plan.md)
 
 ## 初期baseline: JMicro-10M-T8K
 

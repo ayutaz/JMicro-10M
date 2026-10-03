@@ -2,6 +2,8 @@
 
 実装状況更新: 2026-10-03。機械可読protocolの閾値・split・数値許容値は維持し、品質目標は100M選定前に凍結済み。Base評価、overfit/smoke・100M比較、同一dev文書のpaired bootstrapと生成ID/flag照合は実施済み。Chat品質評価・rollout・文法等の全件blind人手採点は未実施。[Phase 5の品質実測](23_phase5_completion.md)、[Phase 6①②の準備検証](26_phase6_preparation_completion.md)
 
+④⑤では新dev89,416文書を全文採点してBPB1.2441264716/336.292秒、400生成360.684秒を記録した。greedy EOS0/80・反復48/80で品質未達。NoNormのCPU精度profileは学習済み短/1024・full/cacheの12比較と実CLI/重み149 checksで検証済み。固定protocol・閾値・split・入力は変更していない。[④⑤の実測](30_phase6_readiness_execution.md)。未修正stock FP32の失敗と学習後量子化品質未検証を保持する。
+
 作成: 2026-10-02、Phase 0。機械可読の正本は[protocol.json](../configs/evaluation/protocol.json)、入力は[固定評価データ](../eval/README.md)。設計契約を固定する資料であり、モデル性能の評価結果ではない。
 
 ## 評価対象とsplit

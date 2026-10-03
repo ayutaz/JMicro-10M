@@ -1,8 +1,8 @@
 # JMicro-10M フェーズ別実行計画
 
-Phase 6①②③完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shard・全件監査、WSD/速度/batch・厳密/cold再開を検証。ユーザー指定の④生成/変換と⑤本学習設定の確定も検証済み。[固定条件と証拠](30_phase6_readiness_execution.md)。500M以上の本学習は未開始で、④⑤の検証・commit後に停止する。
+Phase 6①②③完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shard・全件監査、WSD/速度/batch・厳密/cold再開を検証。ユーザー指定の④生成/変換と⑤本学習設定の確定も検証済み。[固定条件と証拠](30_phase6_readiness_execution.md)。500M以上の本学習は未開始で、④⑤は`93c7d1d`へcommit済みで、本学習前で停止している。
 
-作成日: 2026-10-02。最終更新: 2026-10-03（Phase 6①②③完了・④以降の実行計画と速度予算を更新）。根拠は[プロジェクト目的](01_project_goal.md)、[設計](03_architecture.md)、[技術調査](11_technical_research_gaps.md)、[Phase 0完了記録](16_phase0_completion.md)、[Phase 1完了記録](17_phase1_completion.md)。既存の**確定**方針から逆算した計画であり、将来の成果物名・未凍結の実行値は**提案**である。品質目標・評価契約はPhase 5で凍結済みで、結果を見て緩めない。
+作成日: 2026-10-02。最終更新: 2026-10-03（Phase 6①〜⑤の準備完了・次回本学習の計画と凍結予算を更新）。根拠は[プロジェクト目的](01_project_goal.md)、[設計](03_architecture.md)、[技術調査](11_technical_research_gaps.md)、[Phase 0完了記録](16_phase0_completion.md)、[Phase 1完了記録](17_phase1_completion.md)。既存の**確定**方針から逆算した計画であり、将来の成果物名・未凍結の実行値は**提案**である。品質目標・評価契約はPhase 5で凍結済みで、結果を見て緩めない。
 
 ## 最終的に実現すること
 
@@ -229,7 +229,7 @@ Phase 4は以下の順で実施済み。新規環境への移行・実装変更�
 
 ## Phase 6: 500M〜10B Base v1
 
-**状態**: 準備①②と③高速化・容量検証は完了し、本学習は未着手。756M unique train stream tokensのcorpus全監査とWSD stable/decayのCUDA全state再開一致を確認した。[準備完了記録](26_phase6_preparation_completion.md)。③はFlash＋compile batch 32、694,521 tokens/s、独立1286 checks・cold再開26 checks・79 testsを通過し、証拠は`a7d26e1`へcommit済みで④の前で停止中。[高速化完了記録](29_phase6_performance_completion.md)。今後は[段階評価/gate](24_phase6_plan.md)と[残りの実行計画](27_phase6_remaining_plan.md)の生成/変換課題・予算凍結を通過して本学習を始める。
+**状態**: 準備①〜⑤は完了し、本学習は未着手。756M unique train stream tokensのcorpus全監査とWSD stable/decayのCUDA全state再開一致を確認した。[準備完了記録](26_phase6_preparation_completion.md)。③はFlash＋compile batch 32、694,521 tokens/s、独立1286 checks・cold再開26 checks・79 testsを通過し、証拠は`a7d26e1`へcommit済み。④の生成/全文dev/CPU精度profileによる学習済み変換と⑤のLR3候補/厳密cold再開/設定version2凍結も`93c7d1d`で完了した。[高速化完了記録](29_phase6_performance_completion.md)。今後は[段階評価/gate](24_phase6_plan.md)と[残りの実行計画](27_phase6_remaining_plan.md)に沿い、ユーザーの再開指定後に凍結条件を照合して500Mの新規Base学習を始める。
 
 **目的**: 約10Mで日本語短文生成がどこまで成立するかを測り、Chatの土台を作る。
 

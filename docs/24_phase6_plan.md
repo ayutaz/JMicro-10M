@@ -1,6 +1,6 @@
 # Phase 6: Base本学習の準備と段階評価計画
 
-更新: 2026-10-03。[Phase 5](23_phase5_completion.md)とPhase 6①②③は完了。ユーザーが残り計画の最初の2項目を再開したため、④生成/変換→⑤設定・予算凍結を[固定実行計画](30_phase6_readiness_execution.md)に沿って検証済み。①②は[完了証拠](26_phase6_preparation_completion.md)、③は`a7d26e1`と[完了記録](29_phase6_performance_completion.md)を参照。今回の停止境界は④⑤の実検証・commitまでで、500M以上の本学習は開始しない。
+更新: 2026-10-03。[Phase 5](23_phase5_completion.md)とPhase 6①②③は完了。ユーザーが残り計画の最初の2項目を再開したため、④生成/変換→⑤設定・予算凍結を[固定実行計画](30_phase6_readiness_execution.md)に沿って検証済み。①②は[完了証拠](26_phase6_preparation_completion.md)、③は`a7d26e1`と[完了記録](29_phase6_performance_completion.md)を参照。④⑤は`93c7d1d`へcommit済み。現在は本学習前で停止しており、500M以上の本学習は開始しない。
 
 ## 目的と出発点
 
@@ -64,7 +64,7 @@ WSD stable/decayは実装・CUDA全state再開一致を検証済み。複数sour
 | 5B | 約2時間 |
 | 10B | 約4時間 |
 
-同じ固定400生成のNoNorm評価workerはPhase 5で約5.4分/回だった。新devは89,416文書 / 164,344,743 body bytesで、pilot 924文書とは別母集団。拡張dev全文採点、保存間隔、枝の回数を別加算し、小sample probeを全文品質評価としない。uint16 streamは2 bytes/tokenにindex/raw/一時fileを加え、checkpointは保持個数×実file容量、cache/venvは別枠。準備完了時のLinux空きは950,875,688,960 bytesで、開始時に再確認する。[Phase 5速度](../reports/phase5/resource_budget.json)、[Phase 6準備の実測資源](../reports/phase6/completion_audit.json)
+同じ固定400生成のNoNorm評価workerはPhase 5で約5.4分/回だった。④⑤の現在sourceでは400生成360.684秒、拡張dev全文336.292秒を別計測した。新devは89,416文書 / 164,344,743 body bytesで、pilot 924文書とは別母集団。拡張dev全文採点、保存間隔、枝の回数を別加算し、小sample probeを全文品質評価としない。uint16 streamは2 bytes/tokenにindex/raw/一時fileを加え、checkpointは保持個数×実file容量、cache/venvは別枠。準備完了時のLinux空きは950,875,688,960 bytesで、開始時に再確認する。[Phase 5速度](../reports/phase5/resource_budget.json)、[Phase 6準備の実測資源](../reports/phase6/completion_audit.json)
 
 ## 次回の実行入口と成果物
 
@@ -78,11 +78,11 @@ uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train
 
 WSDの実CLI・準備検証config、③用測定/厳密再開・独立監査の入口は実装済み。[③の実CLIと比較](28_phase6_performance.md)。④⑤用の`phase6_readiness.py`と`verify_nonorm_export.py`を追加し、完了した実jobとsource/weights/logsを保持する。本学習の`run_base.py`はprepareが既定で、凍結configを照合し、実commandを[起動計画](../reports/phase6/base_launch_plan.json)へ固定済み。本学習は再開指定を待つ。
 
-①②の拡張corpus/shards・監査・準備検証checkpointは[完了記録](26_phase6_preparation_completion.md)、③はcommit `a7d26e1`へ保存済み。今回④⑤の凍結run configと実起動/復旧計画までを作成・検証する。scaling checkpoint、`base_scaling_report.json`、`base_v1_evaluation.md`とmodel cardは次の本学習で作る成果物であり、今回は開始しない。
+①②の拡張corpus/shards・監査・準備検証checkpointは[完了記録](26_phase6_preparation_completion.md)、③はcommit `a7d26e1`へ保存済み。④⑤の凍結run configと実起動/復旧計画も`93c7d1d`で作成・検証済み。scaling checkpoint、`base_scaling_report.json`、`base_v1_evaluation.md`とmodel cardは次の本学習で作る成果物であり、今回は開始しない。
 
 ## batch 32の保存した更新数と丸め（version2凍結済み・本学習前で停止）
 
-⑤の3 LR比較・厳密/cold再開後に保存した32,768 input tokens/updateの算術表。stable系列のglobal updateで、decay枝の追加tokensを含まない。configは`launch_enabled=false`であり、この表を理由に本学習を起動しない。
+⑤の3 LR比較・厳密/cold再開後に保存した32,768 input tokens/updateの算術表。stable系列のglobal updateで、decay枝の追加tokensを含まない。現行version2は`launch_enabled=true`で技術gateを満たすが、ユーザーの再開指定まで本学習を起動しない。旧false設定はversion1として保持する。
 
 | 目標input tokens | global updates | 丸め後input tokens | 純学習換算 |
 |---:|---:|---:|---:|

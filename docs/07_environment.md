@@ -1,8 +1,8 @@
 # 実行環境とデータ配置
 
-Phase 6①②③完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpus・shardの独立監査も完了。③の速度/batch・厳密/cold再開検証も完了。④以降と本学習は未開始。
+Phase 6①〜⑤の準備検証を完了し、`93c7d1d`へcommit済み（2026-10-03）。400生成・全文dev評価、学習済みNoNormのCPU推論精度profileによる全12変換比較、実CLI/重み監査149 checks、全90 testsが成功。本学習設定version2を凍結し、500M以上のBase本学習を開始せず停止中。
 
-最終更新: 2026-10-03。[Phase 4監査](../reports/phase4/handoff_report.json)で確認した実機環境を記載する。Phase 5も完了し、Phase 6①②③完了で停止中（④以降・本学習未開始）。
+最終更新: 2026-10-03。[Phase 4監査](../reports/phase4/handoff_report.json)で確認した実機環境を記載する。Phase 5も完了し、Phase 6①〜⑤の準備完了で停止中（本学習未開始）。
 
 ## 実機環境
 
@@ -52,6 +52,8 @@ Windowsコード正本は`C:\Users\AiHUB\Desktop\japanese-tiny-llm-10m`、Linux�
   reports/phase6/preparation-20261003/    準備audit/CUDA run・12 checkpoints（終了済み）
   reports/phase6/performance-20261003-v3/  ③の測定・全state検証・source snapshots（終了済み）
   reports/phase6/performance-cold-resume-20261003/  空compiler cache再開（終了済み）
+  reports/phase6/readiness-20261003/  ④⑤のGPU比較/全文評価/生成/変換・source snapshots（終了済み）
+  artifacts/runtime-stable-f32-v2/  NoNorm CPU精度profileの専用native runtime（構築・検証済み）
 ~/jmicro-data/
   shards/{t8k-pilot,t4k-pilot}/   Phase 4〜5 pilot入力
   phase6/raw/                    固定8 Parquet・条件資料・receipt
@@ -77,4 +79,4 @@ Phase 6①では同じ公開T4Kでtrain 756,087,912 stream tokens / 1,604,292 do
 
 synthetic/実shard、eager/compile、backend、batch、peak VRAM、data wait、評価/save時間を測定済み。③でcompiled/math/Flash容量探索も完了した。Windows volumeとLinux filesystemのI/O比較、DataLoader単体、厳密なMFUは未実施で、完了条件へ追加せず必要性が出た時の別対照とする。③の成功をPhase 4の履歴へ遡及しない。
 
-長期予算は実測tokens/sから計算し、評価/save/compile初回/データ処理/比較runを加える。Phase 4のT8K Norm/default最大batchでは10B compute約12.34hという算術値を得たが、Phase 5の厳密resumeを通過した現候補の保証ではない。最新③のFlash＋compile batch 32の694,521 tokens/sでは500M約12分、10B約4時間の純学習算術値。全文評価・保存・cold compile・decay枝・LR調整は別計上し、⑤で長期予算を凍結する。[次回の予算](24_phase6_plan.md#暫定のcompute見積もり)。品質改善に必要な総期間の保証ではなく、20B/50B着手はロードマップの条件に従う。
+長期予算は実測tokens/sから計算し、評価/save/compile初回/データ処理/比較runを加える。Phase 4のT8K Norm/default最大batchでは10B compute約12.34hという算術値を得たが、Phase 5の厳密resumeを通過した現候補の保証ではない。最新③のFlash＋compile batch 32の694,521 tokens/sでは500M約12分、10B約4時間の純学習算術値。全文評価・保存・cold compile・decay枝・LR調整は別計上し、⑤で長期予算をversion2へ凍結済み。[凍結設定](../configs/phase6/base_frozen.json)はLR0.002の定常693,666 tokens/s、10B純学習約4時間、全decay枝約22.2分、5回の全文dev/400生成約58.1分を別計上する。checkpoint推定347件/41,702,694,225 bytes、run上限100 GiB・最低空き200 GiB。[次回の予算](24_phase6_plan.md#暫定のcompute見積もり)。品質改善に必要な総期間の保証ではなく、20B/50B着手はロードマップの条件に従う。
