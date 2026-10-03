@@ -11,7 +11,7 @@ from jmicro.tokenizer import Tokenizer, CODEC_VERSION
 CHAT_TEMPLATE = "{{ bos_token }}{% for message in messages %}{{ '<|' + message['role'] + '|>' }}{{ message['content'] }}{{ '<|eot|>' }}{% endfor %}{% if add_generation_prompt %}{{ '<|assistant|>' }}{% endif %}"
 
 
-def export_hf(model, tokenizer_path: Path, directory: Path):
+def export_hf(model, tokenizer_path: Path, directory: Path, inference_precision=None):
     reference = model.hf_reference()
     reference.save_pretrained(directory, safe_serialization=True)
     write_json(directory / "jmicro_config.json", model.config)
@@ -19,7 +19,8 @@ def export_hf(model, tokenizer_path: Path, directory: Path):
     tok = Tokenizer(directory / "tokenizer.model")
     tok.save_wrapper(directory)
     write_json(directory / "artifact_manifest.json", {"tokenizer_sha256": sha256(tok.path),
-               "weights_sha256": sha256(directory / "model.safetensors"), "codec": CODEC_VERSION})
+               "weights_sha256": sha256(directory / "model.safetensors"), "codec": CODEC_VERSION,
+               **({"inference_precision":inference_precision} if inference_precision else {})})
     write_json(directory / "special_tokens.json", [{"id": i, "piece": tok.sp.id_to_piece(i)} for i in range(8)])
     # The template documents the rendered format. The body codec inserts IDs;
     # encoding this rendered string would violate literal-role handling.
@@ -77,6 +78,10 @@ def export_gguf(hf_directory: Path, path: Path, config: dict):
     writer.add_remove_extra_whitespaces(False)
     writer.add_string("jmicro.external_codec", CODEC_VERSION)
     writer.add_string("jmicro.tokenizer_sha256", sha256(tok.path))
+    from jmicro.experiment import read_json
+    precision = read_json(hf_directory/'artifact_manifest.json').get('inference_precision')
+    if precision:
+        writer.add_string('jmicro.inference_precision', precision)
     writer.add_bool("jmicro.external_tokenizer_required", True)
     writer.add_chat_template(CHAT_TEMPLATE)
     mapping = gguf.get_tensor_name_map(gguf.MODEL_ARCH.LLAMA if no_qk_norm else gguf.MODEL_ARCH.QWEN3, config["num_hidden_layers"])

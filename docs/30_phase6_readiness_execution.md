@@ -21,6 +21,8 @@ Python3.12.7の全実行はuv run --frozen。依存変更が必要ならuv add�
 
 ## 2026-10-03の途中結果
 
+以下はCPU精度profile修復前の記録で、起動不可設定は[version1](../configs/phase6/base_frozen_blocked_v1.json)へ保持した。現在の採用と検証は末尾の「最終検証と停止」を参照する。
+
 400生成は360.684秒で完了。greedy抑制あり/なし各80件のEOSは0、反復48、sampling3 seed合計240件の反復6、Unicode破綻0。品質目標は未達のまま。拡張dev89,416文書 / 164,344,743 bytes / 42,003,934 body tokensを336.292秒で全文採点し、BPB1.2441264716を得た。scalar/batchの32文書BPB差は0.0000330177で事前の0.001以内。旧pilotのBPBとは母集団・CEの加算精度が違うため、改善量にしない。
 
 NoNorm HF/Llama・GGUF/Llamaの重み/外部codec/greedy IDs・本物のargmaxからのEOS/EOT停止は成立。全12数値比較を保存したところ、学習済み1024系列ではTorch自身のfull/cache比較も固定FP32許容値を超え、変換だけの問題とは断定できない。標準GGMLのRoPE逐次乗算の位置依存誤差を別runtime `artifacts/runtime-precise`で修正し、1024系列のnative最大差は0.000259から0.0000382へ減ったが、厳密比較は未合格。元runtime・archive・失敗report・probeを保持する。許容値・入力・必要な比較を削って通過扱いにしない。設定値は確定して保存するが、この数値gateをfalseとし、起動CLIが実行を拒否する。④⑤の総合完了とは扱わない。
@@ -37,8 +39,37 @@ CUDA参照の診断も終了。短系列の6比較は成功し、1024ではHF/fu
 
 演算追跡は同じ学習済みartifact・固定1024入力で、CPU FP32のfull1回とcache511+1+512を1回実行し、全Linear/RMSNorm/attention/block/MLP出力の差と最初に相違する演算を保存する。全stage保存がこの診断の終了条件。重み・許容値を変えず、追加の環境sweepは行わない。
 
+## 数値精度の修復条件
+
+RoPE周波数の修復に続く第2案は、実際のCPU推論でFP32の重み・activation・cache・logitsを維持し、Linearとattentionの積和、RMSNormの分散、softmaxの和をFP64で累積する精度profileである。SiLUとdefault RoPEのsin/cosもdoubleで計算しFP32の演算境界へ丸める。Torchと独立したHF/Llamaのforward/cacheに専用の演算を適用し、別native runtime `artifacts/runtime-stable-f32-v2`のCPU F32 kernelsを同じ数学的精度へ修復する。高速なCUDA/BF16学習経路には適用しない。重みやモデル構造を変更せず、未修正のstock FP32での失敗を保持する。
+
+固定checkpoint・元の短/1024入力とcache分割・元の全12比較・atol=1e-5/rtol=1e-4を使う。判定だけにoracleを差し込まず、artifact manifest/GGUF metadataを読んだ実際の推論CLIでも同じprofileを使う。nativeのpatch chain、archive、実binary/shared librariesをhashで照合し、stock runtimeではprofile付きartifactの実行を拒否する。全12比較・disk reload・greedy IDs・本物のEOS/EOT argmax停止・padding/cache/重み不変性の検証が採用条件。追加の環境設定sweepは行わない。
+
+第2案の途中版はTorch/HF/full/cacheが完全一致し、native1024の4要素が未合格だった。位置0〜1023×32周波数のsin/cosを調べるとfloat libmとdouble結果のFP32丸めに474/329箇所の1 ULP差があり、double libmとTorch doubleをFP32へ丸めた値は全箇所一致した。default RoPEのtrigも修復した試作では同じ全12比較が合格。正式な成果物/CLI・全テストを検証してから設定を再凍結する。途中失敗・原runtime・既存GPU測定を保持する。
+
 LR0.001/0.002/0.003は各2,000 stable＋独立100 decayを完了、固定256文書BPBは1.18776153/1.18404703/1.18739314で0.002を採用。新sourceのstable400 vs200+200、decay100 vs50+50、cold200→400は全state/履歴完全一致。[結果](../reports/phase6/readiness_stability_report.json)、[独立106 checks](../reports/phase6/readiness_gpu_audit.json)。unique raw metricsは7,500 completed updates / 245,760,000 input tokensで、複数の準備runの合計、本学習系列ではない。
 
 [本設定](../configs/phase6/base_frozen.json)はbatch32・accum1・context1024・32,768 input tokens/update、LR0.002、warmup200、seed42、Flash/compile reduce-overhead/fullgraph/static/deterministic、WSD stable総305,176更新（10,000,007,168 input tokens）。各観測点に5%の独立decay枝、最低LR比0.1、1,000更新ごとにsave・全checkpointを保持する。容量はcheckpoint推定347件 / 41,702,694,225 bytes、run上限100 GiB・最低空き200 GiB。実CLIと復旧は[起動計画](../reports/phase6/base_launch_plan.json)。変換gate falseのため起動不可。
 
 実測693,666 tokens/sからstable10B約4.00時間、5段階decay合計約22.2分、全文dev/400生成を5回で約58.1分。保存・compile・filesystemの変動は別計上で、完成時刻を保証しない。保存は最終1件0.435秒、compile込み初回更新1.987秒の観測値で、cold compileの上限ではない。テストは[全86件 / skip・failure・error 0](../reports/phase6/readiness_tests.xml)。
+
+## 最終検証と停止
+
+[正式な学習済み変換検証](../reports/phase6/nonorm_export_parity_report.json)は元の全12数値比較と13契約checksが成功。Torch/HFのfull/cacheは完全一致、nativeのfull/cacheも完全一致、1024のnative対Torch最大差0.0000124574は固定の要素別許容誤差内。FP32パラメータとTokenizer ID、元の入力・cache分割を保持した。
+
+[独立監査](../reports/phase6/readiness_export_audit.json)は149 checks成功。実119 GGUF tensorsの全要素と元の学習済み重みの対応を確認し、9回の実CLI（学習済みgreedy・EOS/EOT fixture×3 backend）でID一致と停止を確認。profile metadataから実CLIが同じCPU演算を使い、stock native runtimeを指定すると実行前に拒否する。base品質のEOS成功ではなくcontrollerの合成fixture証拠である。
+
+[全90 tests](../reports/phase6/readiness_precision_tests.xml)はskip・error・failure 0。既存Norm経路を維持し、NoNorm CPU精度profileの1024/full/cache/HF disk reload、ragged padding、future mask、重み/tie不変性、training/autocast拒否、native実library hashの変更拒否も確認した。GPU学習core・readiness worker/evaluator・uv.lockは未変更で、既存の実CUDA比較・厳密/cold再開証拠を維持する。
+
+[設定version2](../configs/phase6/base_frozen.json)は元のbatch32/LR0.002/WSD予算・容量に加え、採用した推論profile・native receipt・学習済み検証artifactをbindした。技術gateはすべてtrue。旧[起動不可version1](../configs/phase6/base_frozen_blocked_v1.json)とその実拒否証拠を保持する。今回はprepare/復旧commandの検証までで、500M以上の本学習は開始せず、最終監査・commit後に停止する。
+
+GPU学習はWSL/RTX4090の高速BF16経路を維持する。CPU精度profileは重み/activation/cache/logitsのFP32境界とFP64累積を使うため、stock CPU kernelと速度が異なる。未修正stock HF/GGUFやCUDA FP32の厳密parity達成とは扱わない。生成品質・文法・EOS到達の未達は維持し、次回の新規Base学習で同じdev suiteを測る。
+
+[総合監査](../reports/phase6/readiness_gate_audit.json)は6つの要求と停止条件を37 checksで照合し、[文書・成果物・履歴監査](../reports/phase6/readiness_package_audit.json)も成功。旧73 reportsとuv.lockのbyte保持、現在source/config/正式artifactのhash、実prepare（global305,176更新・stop15,259）、GPU process/終了job identity、本学習directory未作成を確認した。検証済み結果をcommitし、本学習前で停止する。
+
+WSL project rootでの読み取り監査とprepare（どちらもGPU本学習を起動しない）:
+
+```sh
+uv run --frozen --extra hub --extra data --extra ml --extra export scripts/audit_phase6_completion.py
+uv run --frozen --extra hub --extra data --extra ml --extra export scripts/run_base.py --config configs/phase6/base_frozen.json --target 500M --output reports/phase6/base-20261003
+```

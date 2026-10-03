@@ -1,78 +1,155 @@
 {
-  "status": "incomplete",
+  "status": "passed_requested_scope",
   "objective": "Finish generation/export validation and long-training settings, then stop before 500M Base scaling",
-  "previous_goal_turn": "no_progress: plan/status restatement; resumed concrete implementation and experiments this turn",
-  "current_goal_turn": "progress",
   "requirements": [
     {
       "item": 1,
-      "quality_targets_achieved": false,
-      "state": "diagnosis_complete",
-      "evidence": [
-        "reports/phase6/generation_diagnostics.json",
-        "reports/phase6/nonorm_cuda_reference_report.json"
-      ]
+      "requirement": "400 fixed dev generation and cache diagnosis; unmet quality retained",
+      "state": "proved_complete",
+      "checks": {
+        "1_all_400_fixed_dev_outputs": true,
+        "1_five_groups_each_80": true,
+        "1_generation_source_matches_current_training": true,
+        "1_original_quality_failures_retained": true,
+        "1_cuda_cache_original_tolerance": true
+      },
+      "evidence": {
+        "/mnt/c/Users/AiHUB/Desktop/japanese-tiny-llm-10m/reports/phase6/generation_diagnostics.json": "f60dd05ce5921fcfbf3e470d827311240897bfc1e788953bcf3953bf5e7b7da3"
+      }
     },
     {
       "item": 2,
-      "state": "incomplete_strict_learned_long_sequence_numeric_parity",
-      "missing": "Repair full/cache/reference arithmetic; pass original short/1024 full/cache checks without changing tolerance or input",
-      "evidence": [
-        "reports/phase6/nonorm_export_parity_report.json",
-        "reports/phase6/nonorm_cpu_precision_report.json",
-        "reports/phase6/nonorm_cuda_reference_report.json",
-        "reports/phase6/nonorm_cache_precision_trace.json"
-      ]
+      "requirement": "Learned HF/Llama and float GGUF, original short/1024/cache/tolerance, IDs/tie/real EOS/EOT stops",
+      "state": "proved_complete",
+      "checks": {
+        "2_original_12_comparisons_and_13_contracts": true,
+        "2_original_fixed_tolerance": true,
+        "2_final_actual_export_bound": true,
+        "2_independent_149_weight_and_real_cli_checks": true,
+        "2_current_real_CLI_source_bound": true,
+        "2_export_CLI_proof_bound": true,
+        "2_stock_failures_preserved": true
+      },
+      "evidence": {
+        "/mnt/c/Users/AiHUB/Desktop/japanese-tiny-llm-10m/reports/phase6/nonorm_export_parity_report.json": "6c224bda2b9a47b05e1516d8a1cebda529c9786e60425a8a948fb02882b7286a",
+        "/mnt/c/Users/AiHUB/Desktop/japanese-tiny-llm-10m/reports/phase6/readiness_export_audit.json": "9428efe4805b2a87ceee673884a6551cc1d57edae77f6323787343a4424700a6"
+      }
     },
     {
       "item": 3,
-      "state": "complete_full_dev_population_and_timing",
-      "evidence": [
-        "reports/phase6/expanded_dev_baseline.json",
-        "reports/phase6/readiness_gpu_audit.json"
-      ]
+      "requirement": "89,416 heldout dev documents scored completely, common-byte BPB and measured time",
+      "state": "proved_complete",
+      "checks": {
+        "3_full_dev_raw_population_and_digest": true,
+        "3_every_body_token_once_eos_separate": true,
+        "3_scalar_batched_prior_gate": true,
+        "3_current_eval_source_bound": true
+      },
+      "evidence": {
+        "/mnt/c/Users/AiHUB/Desktop/japanese-tiny-llm-10m/reports/phase6/expanded_dev_baseline.json": "897ea1ae9c6b8d1da77e4d23cc90694a22716e9bd72f5f7ffb743f617e9c36f9",
+        "/mnt/c/Users/AiHUB/Desktop/japanese-tiny-llm-10m/reports/phase6/readiness_gpu_audit.json": "71b1bc090b7b0ff2c7dcf96e37b1676ac38c4f4e0686fee460042d1225aeeb12"
+      }
     },
     {
       "item": 4,
-      "state": "complete_3_bounded_lr_comparisons",
-      "evidence": [
-        "reports/phase6/readiness_stability_report.json",
-        "reports/phase6/readiness_gpu_audit.json"
-      ],
-      "selected_lr": 0.002
+      "requirement": "3 bounded equal-budget LR/stable/independent decay comparisons with unchanged parents",
+      "state": "proved_complete",
+      "checks": {
+        "4_three_fixed_lr_budgets": true,
+        "4_best_stable_bounded_lr_selected": true
+      },
+      "evidence": {
+        "/mnt/c/Users/AiHUB/Desktop/japanese-tiny-llm-10m/reports/phase6/readiness_stability_report.json": "90b41c9bbefffcefd951f9bab634f697e22320138fc104e07011d940eb3d1253",
+        "/mnt/c/Users/AiHUB/Desktop/japanese-tiny-llm-10m/reports/phase6/readiness_gpu_audit.json": "71b1bc090b7b0ff2c7dcf96e37b1676ac38c4f4e0686fee460042d1225aeeb12"
+      }
     },
     {
-      "evidence": [
-        "reports/phase6/readiness_stability_report.json",
-        "reports/phase6/readiness_gpu_audit.json"
-      ],
       "item": 5,
-      "state": "complete_current_source_exact_and_cold_resume",
-      "cold_checks": 25,
-      "independent_checks": 106,
-      "exact_checks": 50
+      "requirement": "Changed training source verified strict/cold exact resume with all state and histories",
+      "state": "proved_complete",
+      "checks": {
+        "5_exact_50_cold_25_checks": true,
+        "5_independent_106_GPU_checks": true,
+        "5_training_implementation_and_worker_unchanged": true,
+        "5_GPU_audit_raw_evidence_bound": true
+      },
+      "evidence": {
+        "/mnt/c/Users/AiHUB/Desktop/japanese-tiny-llm-10m/reports/phase6/readiness_stability_report.json": "90b41c9bbefffcefd951f9bab634f697e22320138fc104e07011d940eb3d1253",
+        "/mnt/c/Users/AiHUB/Desktop/japanese-tiny-llm-10m/reports/phase6/readiness_gpu_audit.json": "71b1bc090b7b0ff2c7dcf96e37b1676ac38c4f4e0686fee460042d1225aeeb12"
+      }
     },
     {
-      "evidence": [
-        "configs/phase6/base_frozen.json",
-        "reports/phase6/base_launch_plan.json",
-        "reports/phase6/base_launch_guard_report.json"
-      ],
       "item": 6,
-      "state": "settings_saved_execution_gated",
-      "scope_limit": "Future persistent Base execution is implemented; preparation/rejection are verified, no long Base run has been started",
-      "launch_enabled": false,
-      "long_training_started": false
+      "requirement": "Final model/data/source/precision/optimizer/budget/capacity/CLI/persistent recovery settings frozen",
+      "state": "proved_complete",
+      "checks": {
+        "6_frozen_version2_all_technical_gates": true,
+        "6_batch_lr_wsd_global_budget": true,
+        "6_cpu_precision_artifacts_and_runtime_bound": true,
+        "6_launch_plan_binds_actual_config": true,
+        "6_all_5_launch_resume_and_evaluation_commands": true,
+        "6_real_prepare_preserves_global_schedule_without_execution": true,
+        "6_old_config_and_specific_launch_rejection_preserved": true,
+        "6_budget_and_capacity_bound": true
+      },
+      "evidence": {
+        "/mnt/c/Users/AiHUB/Desktop/japanese-tiny-llm-10m/reports/phase6/base_launch_plan.json": "d723ca2ca4870dd6019c7aa8485082b5a34768bd892b8e966d3c78d0abb44c32",
+        "/mnt/c/Users/AiHUB/Desktop/japanese-tiny-llm-10m/reports/phase6/base_launch_guard_report.json": "497ac9e323702dca3118b0dfb3bbf4a0c12a98fa2f60eba6ca281b2f2ea3e651"
+      }
     }
   ],
   "checks": {
-    "stop_boundary_honored": true,
-    "historical_reports_preserved": true,
-    "acceptance_not_weakened": true
+    "1_all_400_fixed_dev_outputs": true,
+    "1_five_groups_each_80": true,
+    "1_generation_source_matches_current_training": true,
+    "1_original_quality_failures_retained": true,
+    "1_cuda_cache_original_tolerance": true,
+    "2_original_12_comparisons_and_13_contracts": true,
+    "2_original_fixed_tolerance": true,
+    "2_final_actual_export_bound": true,
+    "2_independent_149_weight_and_real_cli_checks": true,
+    "2_current_real_CLI_source_bound": true,
+    "2_export_CLI_proof_bound": true,
+    "2_stock_failures_preserved": true,
+    "3_full_dev_raw_population_and_digest": true,
+    "3_every_body_token_once_eos_separate": true,
+    "3_scalar_batched_prior_gate": true,
+    "3_current_eval_source_bound": true,
+    "4_three_fixed_lr_budgets": true,
+    "4_best_stable_bounded_lr_selected": true,
+    "5_exact_50_cold_25_checks": true,
+    "5_independent_106_GPU_checks": true,
+    "5_training_implementation_and_worker_unchanged": true,
+    "5_GPU_audit_raw_evidence_bound": true,
+    "6_frozen_version2_all_technical_gates": true,
+    "6_batch_lr_wsd_global_budget": true,
+    "6_cpu_precision_artifacts_and_runtime_bound": true,
+    "6_launch_plan_binds_actual_config": true,
+    "6_all_5_launch_resume_and_evaluation_commands": true,
+    "6_real_prepare_preserves_global_schedule_without_execution": true,
+    "6_old_config_and_specific_launch_rejection_preserved": true,
+    "6_budget_and_capacity_bound": true,
+    "stop_no_live_GPU_or_identified_jobs": true,
+    "stop_no_Base_scaling_run_or_output": true,
+    "all_90_tests_no_skip_error_failure": true,
+    "73_historical_reports_byte_preserved": true,
+    "dependency_lock_byte_preserved": true,
+    "all_document_links_and_uv_contracts": true,
+    "Windows_and_Linux_final_code_settings_docs_synchronized": true
   },
   "package_audit": "reports/phase6/readiness_package_audit.json",
-  "tests": "reports/phase6/readiness_tests.xml",
-  "next_action": "Repair numerical consistency in FP32 inference projections/attention using the fixed learned input; rerun all original comparisons and any affected source verification",
+  "tests": "reports/phase6/readiness_precision_tests.xml",
+  "overall_goal_achieved": true,
+  "previous_goal_turn": "no_progress: plan/status only; this turn implemented and validated inference repair and settings",
+  "current_goal_turn": "progress",
+  "base_quality_targets_achieved": false,
+  "long_training_started": false,
+  "remaining_outside_requested_scope": [
+    "500M+ Base scaling and quality evaluation",
+    "Chat",
+    "quantized quality and local distribution"
+  ],
+  "next_action": "Commit verified final result and stop; next Base stage requires user resumption",
   "user_action_required": false,
-  "overall_goal_achieved": false
+  "completed_at": "2026-10-03T09:13:15.254569Z"
 }

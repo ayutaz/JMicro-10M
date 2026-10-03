@@ -1,0 +1,32 @@
+{
+  "status": "passed_real_cpu_inference_profile",
+  "profile": "cpu-f32-f64-accumulation-v1",
+  "repair_candidates": 2,
+  "first_repair": "independent default RoPE frequencies",
+  "second_repair": "FP64 accumulation with FP32 storage/activation/cache/logits; accurate default RoPE trig",
+  "training_core_changed": false,
+  "weights_changed": false,
+  "fixed_tolerance_changed": false,
+  "fixed_inputs_or_comparisons_removed": false,
+  "short_and_context1024_comparisons_passed": 12,
+  "formal_contract_checks_passed": 13,
+  "real_CLI_and_weight_audit_checks_passed": 149,
+  "evidence": {
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/precision-repair-v1/result.json": "73894f1c8c6574869e0829fd1b8ff8180a1a8803cb5fd150e3907eaf9ab00004",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/precision-repair-v1-fixed-loader/result.json": "82f8b10e42dc17e8b3ec6403db78b4480e2c03015da9807b7f3fbcebda581bbd",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/precision-repair-v1-fixed-loader/trig_rounding.json": "0abbc6f462cb6d62bfd265e7e0632a4e959c0b33087684e1d37fd68e835655d2",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/precision-repair-v2/result.json": "3ca54d46771c260f9512a80f524c8fb47be96e7e774d8893ed0a8c0ba6191fa6",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/export-stable-f32/nonorm_export_parity_report.json": "6c224bda2b9a47b05e1516d8a1cebda529c9786e60425a8a948fb02882b7286a"
+  },
+  "retained_stock_failures": [
+    "reports/phase6/nonorm_export_stock_fp32_failure.json",
+    "reports/phase6/nonorm_export_initial_failure.json",
+    "reports/phase6/nonorm_export_precision_failure.json",
+    "reports/phase6/nonorm_cpu_precision_report.json",
+    "reports/phase6/nonorm_cuda_reference_report.json"
+  ],
+  "precision_profile_scope": "actual CPU inference; stock CPU/CUDA FP32 failure retained; CUDA/BF16 training path unchanged",
+  "quality_targets_achieved": false,
+  "base_scaling_started": false,
+  "completed_at": "2026-10-03T09:09:36.254827Z"
+}

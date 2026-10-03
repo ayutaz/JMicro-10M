@@ -6,7 +6,7 @@
 
 Pythonは3.12.7/uv管理、全実行は`uv run --frozen`。依存変更は`uv add`、復元は`uv sync --frozen`。GPU学習はWSL 2 / Ubuntu / RTX 4090。Git local identityは`yousan <ka1357amnbpdr@gmail.com>`、検証済み変更をcommitし、push/公開しない。
 
-**Phase 0〜5とPhase 6①②③は完了。ユーザーが「2まで計画を立てて進める」と指定したため、④生成/変換と⑤長期設定の確定を再開した。④⑤の検証・commit後に停止し、500M以上の本学習は開始しない。** [今回の比較と完了条件](30_phase6_readiness_execution.md)、[③完了記録](29_phase6_performance_completion.md)。
+**Phase 0〜5とPhase 6①〜⑤の準備は検証済み。ユーザー指定の「1.生成/変換確認、2.本学習設定確定」を実施し、最終監査・commit後に停止する。500M以上の本学習は未開始で、次の再開指定を待つ。** [今回の比較と完了条件](30_phase6_readiness_execution.md)、[③完了記録](29_phase6_performance_completion.md)。
 
 ## ③の実測と採用
 
@@ -37,18 +37,22 @@ Windowsコード/Git正本は`C:\Users\AiHUB\Desktop\japanese-tiny-llm-10m`、Li
 
 ②のWSD stable/独立decay CLIとNoNorm/math batch 8の全state再開・分岐完全一致は73 GPU checks / 74 tests、独立55 checksで完了。12 checkpointsとsnapshotをLinux `reports/phase6/preparation-20261003/cuda/`へ保持。[①②完了記録](26_phase6_preparation_completion.md)。新sourceの通常resumeは旧checkpointを拒否する契約を維持し、旧sourceはsnapshotへ保持。旧73 reportsとuv.lockはbyte保持を別監査する。
 
-## 次の具体的な行動
+## 今回の④⑤: 検証済み・本学習前で停止
 
-④⑤のGPU準備比較は終了し、設定と証拠を保存した。**学習済み1024 logits/cacheの固定数値gateは未合格で、④⑤の総合完了は未達。固定1024系列の全stage追跡を完了し、最初の差は第1層のq_proj（FP32行列積）であると確認した。[全stage](../reports/phase6/nonorm_cache_precision_trace.json)。次はLinear/attentionの推論演算精度を修復し、元の短/1024・prefill/cacheの全12比較を再検証する。** 許容値・入力・必要な比較を削って通過扱いにしない。CPUのMKL分岐/threads8設定も終了し成功0、追加sweepしない。CUDA FP32参照の同じ12比較も終了し、短系列6件は成功、1024の5件は未合格。CPUだけの問題とは断定できず、[結果](../reports/phase6/nonorm_cuda_reference_report.json)を保持する。[今回の条件と全結果](30_phase6_readiness_execution.md)。
+**固定の短/1024入力・元のcache分割・全12数値比較が成功し、本学習設定をversion2として再凍結した。** [変換結果](../reports/phase6/nonorm_export_parity_report.json)、[独立した実CLI/重み監査149 checks](../reports/phase6/readiness_export_audit.json)、[全90 tests / skip・failure・error 0](../reports/phase6/readiness_precision_tests.xml)。
 
-400生成は360.684秒、Unicode0/400、greedy EOS0/80・反復48/80で品質未達。全文dev89,416文書 / 164,344,743 bytes / 42,003,934 body tokensを336.292秒で採点しBPB1.2441264716、scalar/batch差0.0000330177（事前許容0.001以内）。旧pilotの直接改善量にしない。NoNorm HF/Llama・GGUF/Llamaの実greedy IDsと本物のargmaxからのEOS/EOT停止は成功したが、数値parityは未合格。[数値監査](../reports/phase6/nonorm_export_precision_failure.json)、[CPU8設定](../reports/phase6/nonorm_cpu_precision_report.json)。別runtimeは `artifacts/runtime-precise`、receiptに元archive/patcher/原・修正source/実binaryのSHAを保存。原runtimeと全失敗を保持する。
+採用したCPU推論profileは `cpu-f32-f64-accumulation-v1`。FP32の重み・activation・cache・logitsを維持し、Linear/attentionの積和、RMSNorm分散、softmaxの和をFP64で累積する。SiLU/default RoPEのtrigも精度を上げる。Torch/HFの通常実行とcacheは完全一致、native1024の最大差0.0000124574は固定atol1e-5＋rtol1e-4以内。成果物metadataから実推論CLIも同じprofileを適用し、対応しないstock runtimeを拒否する。runtimeはLinux `artifacts/runtime-stable-f32-v2`、archive/patch chain/binary/shared librariesをhashで照合する。CPU精度優先の経路で、stock FP32やCUDAの同精度を保証する結果ではない。
 
-LR0.001/0.002/0.003の各2,000 stable＋独立100 decayは有限で完了し、固定dev256文書BPBは1.18776153/1.18404703/1.18739314。0.002を採用。新sourceのstable400/200+200・decay100/50+50・cold200→400のmodel/optimizer/scheduler/RNG/sampler/token/bytes/digest・全履歴が完全一致、親全file不変・元継続も成功。[結果](../reports/phase6/readiness_stability_report.json)、[独立106 checks](../reports/phase6/readiness_gpu_audit.json)、[全86 tests / skip・failure・error 0](../reports/phase6/readiness_tests.xml)。unique raw metrics7,500 updates / 245,760,000 input tokensは複数の有限準備runの合計で、本学習ではない。
+旧stock FP32の失敗、RoPE周波数だけを修復した失敗、CPU8設定とCUDA参照の失敗を保持する。第1層q_projからの誤差増幅を[159 stageで追跡](../reports/phase6/nonorm_cache_precision_trace.json)した。2つ目の修復案で累積精度を上げ、途中版の4要素の未達はtrig丸めの差を修復して解消した。[修復の採否と保持](../reports/phase6/nonorm_precision_repair_report.json)。許容値・入力・必要な比較・学習済み重みを変更して通過扱いにしていない。
 
-[保存した本設定](../configs/phase6/base_frozen.json)はbatch32・accum1・context1024、32,768 input tokens/update、LR0.002、warmup200、seed42、Flash/compile reduce-overhead/fullgraph/static/deterministic、WSD global305,176更新（10B丸め）、各観測点5%独立decay・floor0.1。save1,000更新ごと・checkpoint全保持、推定347件/41,702,694,225 bytes、run上限100 GiB・最低空き200 GiB。[起動/復旧計画](../reports/phase6/base_launch_plan.json)。`launch_enabled=false`で保存し、CLIは未達gateで実行を拒否する。500M以上のBaseは開始していない。
+GPU学習coreのmodel/shards/training/uv.lockとreadiness worker/evaluatorは変更していない。高速CUDA/BF16経路にはCPU profileを適用せず、LR比較・保存再開の実測を維持する。LR0.001/0.002/0.003は各2,000 stable＋独立100 decayで完了、固定dev256文書BPBは1.18776153/1.18404703/1.18739314。0.002を採用。新sourceのstable400/200+200・decay100/50+50は50 checks完全一致、cold200→400は25 checks完全一致、親全file不変・元継続も成功。[GPU独立106 checks](../reports/phase6/readiness_gpu_audit.json)。合計7,500 updates / 245,760,000 input tokensは複数の準備runの台帳で、本学習系列ではない。
 
-Linux deep evidenceは `reports/phase6/readiness-20261003/`。GPU supervisor job terminal complete、Windows launcher12524、Linux supervisor476 / boot `a1175657-f036-4bff-abd9-0326a3f844a3` / start ticks10880は終了確認済み。CPU8設定supervisor21703 / start ticks114774もterminal complete。実GPU compute一覧と関連processなしを確認済み。完了したjobを再起動せず、logs/requests/checkpoints/source snapshotを保持する。環境はcmake/ninja/native runtime構築済み、blockerは外部権限・driverではない。実装と途中証拠は`7349470`・`dec6626`へcommit済み。
+400生成は360.684秒、Unicode0/400、greedy EOS0/80・反復48/80で品質未達。全文dev89,416文書 / 164,344,743 bytes / 42,003,934 body tokensを336.292秒で採点しBPB1.2441264716、scalar/batch差0.0000330177（事前許容0.001以内）。旧pilotの直接改善量や人手文法評価の合格にしない。新CPU profileのcontrollerは実argmaxからのEOS/EOT停止と3 backendのgreedy IDsを実CLIで検証し、合成停止fixtureをモデル品質へ数えない。
 
-変換数値gateの修復・再検証と今回の④⑤の総合検証・commit後に停止する。500M→1B→2B→5B→10Bは次回再開後の段階評価で、今回は起動しない。Phase 5のBPB1.221443、greedy EOS0/80・反復54/80、sampling Unicode2/240は未達として維持。Chat trainer/複数source mixture/Muonも未実装。
+[本学習設定version2](../configs/phase6/base_frozen.json)はbatch32・accum1・context1024、32,768 input tokens/update、LR0.002、warmup200、seed42、Flash/compile reduce-overhead/fullgraph/static/deterministic、WSD global305,176更新（10B丸め）、各観測点5%独立decay・floor0.1。save1,000更新ごと・全checkpoint保持、推定347件/41,702,694,225 bytes、run上限100 GiB・最低空き200 GiB。[起動/復旧計画](../reports/phase6/base_launch_plan.json)。`launch_enabled=true`は技術gateの成立を示すが、今回は起動しない。先の起動不可設定は[version1](../configs/phase6/base_frozen_blocked_v1.json)と[実起動拒否証拠](../reports/phase6/base_launch_guard_report.json)へbyte保持した。
 
-現在速度から500M約12分・10B約4時間は純学習の算術値。compile/startup/全文dev評価/400生成/保存/decay枝/LR調整を含まず、完成時刻の保証ではない。[今後のgateと予算](24_phase6_plan.md)。以前の状態は[Phase 5当時status](autonomous_status_phase5_20261003.md)と[復旧履歴](autonomous_history_20261003.md)に保持。
+Linux deep evidenceは `reports/phase6/readiness-20261003/`、最終exportは同runの `export-stable-f32/`、source snapshot/logs/raw logits/weightsを保持する。GPU準備とCPU8設定のsupervisorはterminal complete、精度build/probe/正式検証/CLI/テストも終了。GPU compute processなしを最後に確認する。完了したjobを再起動しない。
+
+**次の行動は停止。ユーザーが再開した後に、凍結source/data/runtimeを照合し、既存process/checkpointを確認して500Mの新規Base学習から始める。** prepareが既定で、復旧は同じglobal予算のまま行う。500M/1B/2B/5B/10Bの段階評価、Chat trainer、mixture、Muon、学習後量子化品質は今回の範囲外・未実施として維持する。外部権限やdriver更新のblockerはない。
+
+現在速度から500M約12分・10B約4時間は純学習の算術値。compile/startup/全文dev評価/400生成/保存/decay枝を含め、完成時刻の保証にしない。[予算](24_phase6_plan.md)。以前の状態は[Phase 5当時status](autonomous_status_phase5_20261003.md)と[復旧履歴](autonomous_history_20261003.md)に保持。

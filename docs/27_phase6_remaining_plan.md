@@ -1,6 +1,6 @@
 # Phase 6④以降: 最新の実行計画
 
-更新: 2026-10-03。①②は[完了済み](26_phase6_preparation_completion.md)、③も[完了](29_phase6_performance_completion.md)。採用はFlash/compile reduce-overhead、batch32、694,521 tokens/s。ユーザー指定で④生成/変換・⑤設定確定を再開し、[固定比較と途中結果](30_phase6_readiness_execution.md)を保存した。400生成・全文dev・3 LR比較・変更後sourceの厳密/cold再開と設定保存は済んだが、長系列の固定数値gateが未合格。本設定は起動無効で、500M以上の本学習を開始しない。品質閾値と完全一致の要求を維持する。
+更新: 2026-10-03。①②は[完了済み](26_phase6_preparation_completion.md)、③も[完了](29_phase6_performance_completion.md)。採用はFlash/compile reduce-overhead、batch32、694,521 tokens/s。ユーザー指定で④生成/変換・⑤設定確定を再開し、[固定比較と途中結果](30_phase6_readiness_execution.md)を保存した。400生成・全文dev・3 LR比較・変更後sourceの厳密/cold再開に加え、CPU精度profileで元の全12変換比較と実CLI監査149 checks、全90 testsが成功。本設定をversion2へ凍結し、本学習前で停止する。品質閾値と完全一致の要求を維持する。
 
 ## 出発点と、今回繰り返さない作業
 
@@ -13,7 +13,7 @@
 | GPU設定 | Flash＋compile reduce-overhead、FP32 parameters＋BF16、batch 32 / accumulation 1、context 1024 | 32,768 input tokens/updateを長期候補とする。reference/math最大45、compiled/math最大53、Flash/compile最大111は容量記録として保持 |
 | 最新速度・メモリ | 694,521 tokens/s、最速reference/math比5.436倍、save/小sample評価込みpeak allocated5.73 GiB・driver7.53 GiB | 全文dev採点・400生成・保存/枝を別計上し、長期LR安定性と予算を⑤で固定 |
 | 資源 | 準備完了時のLinux空き950,875,688,960 bytes、data約15.43GB、CUDA run約1.45GB | 開始時に再確認。data容量はraw約2.15GBを含まないapparent bytes |
-| 品質・配布 | Phase 5のgreedy EOS 0/80、反復54/80、sampling Unicode 2/240。今回も品質未達 | NoNorm HF/GGUF adapter・実ID生成/停止は成立。長系列の固定数値gateを修復し、過去の未達を消さない |
+| 品質・配布 | Phase 5のgreedy EOS 0/80、反復54/80、sampling Unicode 2/240。今回も品質未達 | NoNorm HF/GGUF adapter・実ID生成/停止は成立。CPU精度profileで長系列も検証済み。過去の未達を保持し、次回は本学習で品質を測る |
 
 復元済みTokenizer/pilot、Phase 3 export、Phase 5比較、完了済み①②③を再実行しない。新jobの前にWindows/Linux process、GPU compute一覧、job status、PID/boot ID/start ticks、lock、checkpoint SHAとsource snapshotを照合し、二重起動を防ぐ。
 
@@ -33,7 +33,7 @@
 | Phase 6本学習 | 新規初期化から500M→1B→2B→5B→10B | 観測点ごとのdev BPB/CI・生成/rubric・失敗例、stableとdecay枝の別台帳、Base v1のartifactと最終評価 |
 | Phase 7→8 | Dialogue mid-training/Assistant本文＋EOT SFT→量子化・独立ローカル検証 | Chat関連性/文脈/停止、float/quantized品質差、実容量・RSS/応答時間、再現手順 |
 
-今回は④⑤の検証・commitまでを進め、本学習前で停止する。数値設定は[base_frozen](../configs/phase6/base_frozen.json)と[起動/復旧計画](../reports/phase6/base_launch_plan.json)へ保存したが、未合格の変換gateで実行を拒否する。Chat trainer/mixtureと学習後量子化は未実装・未検証。20B/条件付き50B・追加研究はPhase 9/10の別予算として維持する。
+今回は④⑤の検証・commitまでを進め、本学習前で停止する。数値設定は[base_frozen](../configs/phase6/base_frozen.json)と[起動/復旧計画](../reports/phase6/base_launch_plan.json)へ保存し、CPU精度profileの変換gateも成功した。`launch_enabled=true`だが今回は本学習を起動しない。Chat trainer/mixtureと学習後量子化は未実装・未検証。20B/条件付き50B・追加研究はPhase 9/10の別予算として維持する。
 
 ## ④ 生成・変換: 既知の失敗を切り分ける
 
@@ -71,6 +71,6 @@ NoNormのHF/native float GGUF adapterを実装・検証する。外部SentencePi
 
 ## 時間と再開入口
 
-③の定常実測694,521 tokens/sによる参考computeは500M約12分、10B約4時間。純学習の算術値で、④⑤の実装・検証、新dev全文評価、cold compile、保存、decay枝、LR調整を含まない。本学習設定は未凍結で、作業全体の完了時刻の保証ではない。[現在の予算](24_phase6_plan.md#暫定のcompute見積もり)
+③の定常実測694,521 tokens/sによる参考computeは500M約12分、10B約4時間。純学習の算術値で、④⑤の実装・検証、新dev全文評価、cold compile、保存、decay枝、LR調整を含まない。本学習設定は凍結済みで、作業全体の完了時刻の保証ではない。[現在の予算](24_phase6_plan.md#暫定のcompute見積もり)
 
-次回は[最新状態](autonomous_status.md)、本書、[引継ぎ](windows_handoff.md)を読み、process/source/dataの確認から始める。③のstudyとcold再開は終了済みで、完了した測定を重複起動しない。③の証拠は`a7d26e1`へcommit済み。④以降・本学習は再開指定を待つ。準備の中断復旧と別出力への読み取り監査は[実CLI](26_phase6_preparation_completion.md#実cliと再開)にある。
+次回は[最新状態](autonomous_status.md)、本書、[引継ぎ](windows_handoff.md)を読み、process/source/dataの確認から始める。③のstudyとcold再開は終了済みで、完了した測定を重複起動しない。③の証拠は`a7d26e1`へcommit済み。④⑤の準備検証は完了し、本学習は再開指定を待つ。準備の中断復旧と別出力への読み取り監査は[実CLI](26_phase6_preparation_completion.md#実cliと再開)にある。

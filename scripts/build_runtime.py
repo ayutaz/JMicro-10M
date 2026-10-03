@@ -24,7 +24,10 @@ def main():
     parser.add_argument("--runtime", type=Path, default=ROOT/'artifacts/runtime')
     parser.add_argument("--archive", type=Path, help="Reuse the verified pinned archive")
     parser.add_argument("--precise-default-rope", action="store_true", help="Build an explicitly patched, separate CPU runtime")
+    parser.add_argument("--stable-fp32", action="store_true", help="Separate F32 CPU runtime with F64 accumulation; requires precise RoPE")
     args = parser.parse_args()
+    if args.stable_fp32 and not args.precise_default_rope:
+        parser.error('--stable-fp32 requires --precise-default-rope')
     runtime = args.runtime.resolve()
     runtime.mkdir(parents=True, exist_ok=True)
     archive = args.archive.resolve() if args.archive else runtime / "llama-source.tar.gz"
@@ -57,18 +60,46 @@ def main():
         if patch_receipt.exists():
             patch = json.loads(patch_receipt.read_text())
             if digest(source/patch['file']) != patch['patched_sha256']:
-                raise SystemExit('Patched source changed; preserve it and inspect')
+                # The stable patch follows the RoPE patch in the same file.
+                following = runtime/'stable_precision_patch.json'
+                chain = json.loads(following.read_text()) if args.stable_fp32 and following.exists() else {}
+                match = next((row for row in chain.get('files',[]) if row['file']==patch['file']),None)
+                if not (match and match['original_sha256']==patch['patched_sha256'] and
+                        digest(source/patch['file'])==match['patched_sha256']):
+                    raise SystemExit('Patched source changed; preserve it and inspect')
         else:
             patch = precise_default_rope(source)
             patch_receipt.write_text(json.dumps(patch, indent=2)+'\n')
         patches.append(patch)
     elif patch_receipt.exists():
         raise SystemExit('This runtime is patched; specify --precise-default-rope')
+    stable_receipt = runtime/'stable_precision_patch.json'
+    if args.stable_fp32:
+        from jmicro.native_precision import stable_f32_accumulation
+        if stable_receipt.exists():
+            patch = json.loads(stable_receipt.read_text())
+            for entry in patch['files']:
+                if digest(source/entry['file']) != entry['patched_sha256']:
+                    raise SystemExit('Stable precision source changed; preserve it and inspect')
+        else:
+            patch = stable_f32_accumulation(source)
+            stable_receipt.write_text(json.dumps(patch, indent=2)+'\n')
+        patches.append(patch)
+        # Receipt consumers verify the final file, while retaining both steps.
+        for preceding in patches[:-1]:
+            match = next((row for row in patch['files'] if row['file']==preceding.get('file')),None)
+            if match:
+                assert preceding['patched_sha256'] == match['original_sha256']
+                preceding['final_patched_sha256'] = match['patched_sha256']
+    elif stable_receipt.exists():
+        raise SystemExit('This runtime uses stable accumulation; specify --stable-fp32')
     flags = ["-DCMAKE_BUILD_TYPE=Release", "-DGGML_METAL=OFF", "-DGGML_BLAS=OFF",
              "-DGGML_ACCELERATE=OFF", "-DGGML_CCACHE=OFF", "-DCMAKE_C_COMPILER_LAUNCHER=",
              "-DCMAKE_CXX_COMPILER_LAUNCHER=", "-DLLAMA_BUILD_TESTS=OFF", "-DLLAMA_BUILD_EXAMPLES=OFF",
              "-DLLAMA_BUILD_SERVER=OFF", "-DLLAMA_BUILD_MTMD=OFF", "-DLLAMA_BUILD_TOOLS=ON",
              "-DLLAMA_CURL=OFF"]
+    if args.stable_fp32:
+        flags.extend(['-DGGML_LLAMAFILE=OFF', '-DCMAKE_CXX_FLAGS=-ffp-contract=off'])
     commands = [["cmake", "-S", str(source), "-B", str(build), *flags],
                 ["cmake", "--build", str(build), "--target", "llama-quantize", "llama-completion", "-j", "4"],
                 ["cmake", "-S", str(ROOT / "scripts/native"), "-B", str(runtime / "build-bridge"),
@@ -81,6 +112,7 @@ def main():
             subprocess.run(command, check=True, stdout=log, stderr=log)
     receipt = {"revision": REVISION, "source_url": url, "archive_sha256": digest(archive),
                "commands": commands, "patches": patches, "bridge_source_sha256": digest(ROOT / "scripts/llama_bridge.cpp"),
+               "shared_library_sha256": {str(path.relative_to(runtime)):digest(path) for path in sorted(build.rglob('*.so'))},
                "bridge_binary_sha256": digest(runtime / "llama-bridge"),
                "quantizer_binary_sha256": digest(build / "bin/llama-quantize"),
                "completion_binary_sha256": digest(build / "bin/llama-completion"),

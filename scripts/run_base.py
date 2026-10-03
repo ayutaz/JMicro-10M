@@ -28,7 +28,8 @@ def frozen_sources():
     return dict(implementation_hashes(), **{name:sha256(ROOT/name) for name in (
         'scripts/run_base.py','scripts/train.py','scripts/phase6_readiness.py',
         'src/jmicro/readiness.py','configs/phase6/readiness.json','src/jmicro/export.py',
-        'scripts/verify_nonorm_export.py','src/jmicro/native_precision.py')})
+        'scripts/verify_nonorm_export.py','src/jmicro/native_precision.py',
+        'src/jmicro/inference.py','src/jmicro/inference_precision.py','scripts/build_runtime.py')})
 
 
 def freeze(readiness, export, destination):
@@ -68,7 +69,7 @@ def freeze(readiness, export, destination):
     save_every = 1000
     checkpoint_count = math.ceil(milestones['10B']['stable_updates']/save_every)+len(milestones)
     checkpoint_count += sum(math.ceil(row['decay_updates']/save_every)+1 for row in milestones.values())
-    config = {'version':1, 'phase':6, 'initialization':'new random weights, seed42; do not resume the Phase5 or readiness trajectory',
+    config = {'version':2, 'phase':6, 'initialization':'new random weights, seed42; do not resume the Phase5 or readiness trajectory',
         'model':str(model_path.relative_to(ROOT)), 'model_sha256':sha256(model_path),
         'shards':plan['shards'], 'shard_manifest_sha256':plan['shard_manifest_sha256'],
         'tokenizer':plan['tokenizer'], 'tokenizer_sha256':plan['tokenizer_sha256'],
@@ -99,6 +100,18 @@ def freeze(readiness, export, destination):
         'launch_gates':{'learned_export_fp32_parity':export_verified,'bounded_lr_comparison':True,
                         'full_dev_and_400_generation_diagnosis':True,'strict_and_cold_resume':True},
         'quality_targets_achieved':False, 'scaling_started':False, 'created_at':now()}
+    if native['binding'].get('inference_precision') == 'cpu-f32-f64-accumulation-v1':
+        from jmicro.native_precision import validate_stable_runtime
+        runtime = ROOT/'artifacts/runtime-stable-f32-v2'
+        validate_stable_runtime(runtime)
+        assert sha256(runtime/'source_receipt.json') == native['binding']['runtime_receipt_sha256']
+        config['validated_inference'] = {
+            'profile':native['binding']['inference_precision'],'scope':'CPU FP32 storage and logits with FP64 accumulation; CUDA/BF16 training unchanged',
+            'runtime':str(runtime),'runtime_receipt_sha256':sha256(runtime/'source_receipt.json'),
+            'stock_fp32_numeric_status':'fails strict learned 1024 checks; preserved as diagnostic evidence',
+            'artifact_sha256':{str(path):sha256(path) for path in (export/'torch/model.safetensors',
+                export/'torch/artifact_manifest.json',export/'hf/model.safetensors',
+                export/'hf/config.json',export/'hf/artifact_manifest.json',export/'model-f32.gguf')}}
     assert config['capacity']['estimated_checkpoint_bytes'] < config['capacity']['maximum_output_bytes']
     if destination.exists():
         previous = read_json(destination)
@@ -134,6 +147,14 @@ def validate_config(path):
     assert sha256(Path(config['shards'])/'manifest.json') == config['shard_manifest_sha256']
     for evidence, digest in config['evidence'].items():
         assert sha256(Path(evidence)) == digest
+    if 'validated_inference' in config:
+        from jmicro.native_precision import validate_stable_runtime
+        precision = config['validated_inference']
+        runtime = Path(precision['runtime'])
+        validate_stable_runtime(runtime)
+        assert sha256(runtime/'source_receipt.json') == precision['runtime_receipt_sha256']
+        for artifact, digest in precision['artifact_sha256'].items():
+            assert sha256(Path(artifact)) == digest
     return config
 
 

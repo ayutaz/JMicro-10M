@@ -1,6 +1,6 @@
 # Phase 6: Base本学習の準備と段階評価計画
 
-更新: 2026-10-03。[Phase 5](23_phase5_completion.md)とPhase 6①②③は完了。ユーザーが残り計画の最初の2項目を再開したため、④生成/変換→⑤設定・予算凍結を[固定実行計画](30_phase6_readiness_execution.md)に沿って実行中。①②は[完了証拠](26_phase6_preparation_completion.md)、③は`a7d26e1`と[完了記録](29_phase6_performance_completion.md)を参照。今回の停止境界は④⑤の実検証・commitまでで、500M以上の本学習は開始しない。
+更新: 2026-10-03。[Phase 5](23_phase5_completion.md)とPhase 6①②③は完了。ユーザーが残り計画の最初の2項目を再開したため、④生成/変換→⑤設定・予算凍結を[固定実行計画](30_phase6_readiness_execution.md)に沿って検証済み。①②は[完了証拠](26_phase6_preparation_completion.md)、③は`a7d26e1`と[完了記録](29_phase6_performance_completion.md)を参照。今回の停止境界は④⑤の実検証・commitまでで、500M以上の本学習は開始しない。
 
 ## 目的と出発点
 
@@ -8,7 +8,7 @@
 
 現在の候補は **T4K / QK-Normなし / AdamW / LR 0.002**。語彙4,096、hidden 256、13層、FFN 640、4Q/2KV、context 1024、tied embedding、10,001,152 parameters。[候補configと実checkpoint](../reports/phase5/candidate_configs.json)、[採否理由](../reports/phase5/candidate_selection_review.md)を参照する。RMSNormとRoPEは維持し、Q/Kのhead次元Normだけを省略する。
 
-Phase 5のdev BPBは1.221443、定常速度121,139 tokens/s。これはpilot反復・math / batch 8の実測。greedy EOS0/80、反復54/80、sampling Unicode破綻2/240で品質目標は未達。NoNormのHF/Llama・GGUF/Llama adapterは実装済みで、3 backendの生成IDs・EOS/EOT停止は成功したが、学習済み1024系列の固定数値許容誤差は未合格。Torch自身のfull/cacheも外れるため、演算精度を診断中。NormありT4Kの対照と過去reportを保持する。[今回の診断](30_phase6_readiness_execution.md)。
+Phase 5のdev BPBは1.221443、定常速度121,139 tokens/s。これはpilot反復・math / batch 8の実測。greedy EOS0/80、反復54/80、sampling Unicode破綻2/240で品質目標は未達。NoNormのHF/Llama・GGUF/Llama adapterは実装済みで、3 backendの生成IDs・EOS/EOT停止は成功したが、学習済み1024系列はstock FP32で未合格だった。CPU精度profileの実推論へ修復し、元の全12比較と実CLI監査149 checksが成功。NormありT4Kの対照と過去reportを保持する。[今回の診断](30_phase6_readiness_execution.md)。
 
 ## 開始前に揃える条件
 
@@ -21,8 +21,8 @@ Phase 5のdev BPBは1.221443、定常速度121,139 tokens/s。これはpilot反�
 | 3 | 必要なtrainer機能 | ②のWSD完了、mixture未実装 | stable/decay CLIは実装済み。初期Web単一sourceはmixture不要。必要時は明示変更系列として実装・検証し、window/教師maskと累積loss契約を維持する。 |
 | 4 | 正確な再開・分岐 | ②③に加え、④⑤変更後sourceの採用設定も完全一致 | stable400 vs200+200・decay100 vs50+50、cold200→400の全state/履歴・親不変性・元継続を実GPU検証、独立106 checks成功。source変更後は再検証する。 |
 | 5 | 速度・最大安定batch | ③完了（独立1286 checks・cold26 checks） | [完了記録](29_phase6_performance_completion.md)。NoNorm/拡張shard/WSDで実演算・cache分離、有限値、厳密再開/分岐、6設定の3×200更新・評価/saveを通過。最速Flash/compile batch 32=694,521 tokens/s、最大111・112 OOM。 |
-| 6 | 生成・変換課題 | ④実行中、400生成/全文dev完了、数値parity未合格 | [固定条件と途中結果](30_phase6_readiness_execution.md)。生成ids・実argmax停止は成功、長系列のTorch/HF/native数値差を診断。許容誤差・入力・比較を削って完了扱いにしない。 |
-| 7 | 本学習設定・予算・永続実行 | ⑤の数値設定保存済み、gate6未達で起動不可 | 3 LR各2,000＋100 decayから0.002を採用。全state/履歴・cold再開が一致し、[本設定](../configs/phase6/base_frozen.json)と[実CLI/復旧計画](../reports/phase6/base_launch_plan.json)を保存。`launch_enabled=false`で実起動拒否を確認。④⑤の総合完了は未達。 |
+| 6 | 生成・変換課題 | ④検証済み、400生成/全文dev・CPU精度profileの全12数値比較成功 | [固定条件と途中結果](30_phase6_readiness_execution.md)。生成ids・実argmax停止は成功、長系列のTorch/HF/native数値差はCPU精度profileで解消。stockの失敗を保持。許容誤差・入力・比較を削って完了扱いにしない。 |
+| 7 | 本学習設定・予算・永続実行 | ⑤version2へ凍結済み、本学習前で停止 | 3 LR各2,000＋100 decayから0.002を採用。全state/履歴・cold再開が一致し、[本設定](../configs/phase6/base_frozen.json)と[実CLI/復旧計画](../reports/phase6/base_launch_plan.json)を保存。CPU精度profileの変換gateも通過し`launch_enabled=true`。旧false設定と拒否証拠を保持し、今回は本学習を起動しない。 |
 
 全量50〜100Bの取得を最初の500M開始条件にしない。各段階に必要な取得範囲を先に決める。unique量が予算より少なければ反復倍率を明記し、同じpilotの反復を新規データのscalingと呼ばない。拡張dataでのBPBとPhase 5のpilot BPBは母集団が違うため、そのまま数値差を改善量にしない。
 
@@ -34,7 +34,7 @@ Phase 5のdev BPBは1.221443、定常速度121,139 tokens/s。これはpilot反�
 
 Phase 5の100M終端は凍結cosineの比較結果であり、総step数だけを変更して本系列へ延長しない。選択するのはarchitecture/Tokenizer/LRで、拡張train corpusの本系列は新規初期化する。batchを増やすと更新数と最適化条件が変わるため、LR 0.002を無条件に最適値としない。採用batchで小予算の安定性・学習曲線を確認してから本設定を固定する。
 
-WSD stable/decayは実装・CUDA全state再開一致を検証済み。複数source mixtureは未実装。NoNorm HF/GGUF adapterは実装済み、学習済み長系列の数値parityは未合格。拡張sourceは756M unique train stream tokens、初期配合はWeb 100%。長期設定は保存済みだが数値gateで起動無効。学習後export/量子化の正式なparity・品質検証はPhase 8の必須条件として維持する。
+WSD stable/decayは実装・CUDA全state再開一致を検証済み。複数source mixtureは未実装。NoNorm HF/GGUF adapterは実装済み、学習済み長系列の数値parityはCPU精度profileで検証済み。拡張sourceは756M unique train stream tokens、初期配合はWeb 100%。長期設定はversion2へ凍結済みで、本学習前で停止。学習後export/量子化の正式なparity・品質検証はPhase 8の必須条件として維持する。
 
 `configs/training/baseline.json`は初期の提案templateで、train CLIは自動読込しない。Phase 5の実行条件は凍結済みの`configs/phase5/plan.json`、候補の実configは上記reportを正とする。Phase 6のruntime configはgate通過後に別途作成し、初期templateのbatch-selection phaseやscheduler候補を本学習の確定値として流用しない。
 
@@ -54,7 +54,7 @@ WSD stable/decayは実装・CUDA全state再開一致を検証済み。複数sour
 
 ## 暫定のcompute見積もり
 
-③の採用設定の定常中央値694,521 tokens/sを使った算術値。全文評価/保存/取得/修復・cold compile・decay枝・LR調整を除く。本学習設定は起動無効で保存済み。下表は純学習のみで、[全文評価/生成/枝を加えた実測予算](30_phase6_readiness_execution.md)を参照し、実時間の保証にはしない。[③の完了記録](29_phase6_performance_completion.md)。
+③の採用設定の定常中央値694,521 tokens/sを使った算術値。全文評価/保存/取得/修復・cold compile・decay枝・LR調整を除く。本学習設定は凍結済みで、今回は起動しない。下表は純学習のみで、[全文評価/生成/枝を加えた実測予算](30_phase6_readiness_execution.md)を参照し、実時間の保証にはしない。[③の完了記録](29_phase6_performance_completion.md)。
 
 | 系列tokens | 参考compute時間 |
 |---:|---:|
@@ -76,11 +76,11 @@ WSD stable/decayは実装・CUDA全state再開一致を検証済み。複数sour
 uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train.py train --help
 ```
 
-WSDの実CLI・準備検証config、③用測定/厳密再開・独立監査の入口は実装済み。[③の実CLIと比較](28_phase6_performance.md)。④⑤用の`phase6_readiness.py`と`verify_nonorm_export.py`を追加し、実jobを保存中。本学習の`run_base.py`はprepareが既定で、未凍結configから起動せず、④⑤のgate通過後に実commandを固定する。
+WSDの実CLI・準備検証config、③用測定/厳密再開・独立監査の入口は実装済み。[③の実CLIと比較](28_phase6_performance.md)。④⑤用の`phase6_readiness.py`と`verify_nonorm_export.py`を追加し、完了した実jobとsource/weights/logsを保持する。本学習の`run_base.py`はprepareが既定で、凍結configを照合し、実commandを[起動計画](../reports/phase6/base_launch_plan.json)へ固定済み。本学習は再開指定を待つ。
 
 ①②の拡張corpus/shards・監査・準備検証checkpointは[完了記録](26_phase6_preparation_completion.md)、③はcommit `a7d26e1`へ保存済み。今回④⑤の凍結run configと実起動/復旧計画までを作成・検証する。scaling checkpoint、`base_scaling_report.json`、`base_v1_evaluation.md`とmodel cardは次の本学習で作る成果物であり、今回は開始しない。
 
-## batch 32の保存した更新数と丸め（数値gate未達で起動不可）
+## batch 32の保存した更新数と丸め（version2凍結済み・本学習前で停止）
 
 ⑤の3 LR比較・厳密/cold再開後に保存した32,768 input tokens/updateの算術表。stable系列のglobal updateで、decay枝の追加tokensを含まない。configは`launch_enabled=false`であり、この表を理由に本学習を起動しない。
 

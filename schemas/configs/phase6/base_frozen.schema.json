@@ -41,11 +41,12 @@
     "launch_gates",
     "quality_targets_achieved",
     "scaling_started",
-    "created_at"
+    "created_at",
+    "validated_inference"
   ],
   "properties": {
     "version": {
-      "const": 1
+      "const": 2
     },
     "phase": {
       "const": 6
@@ -77,14 +78,17 @@
         "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
         "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
         "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298",
-        "scripts/run_base.py": "e0455020c88d6f57158e257ca93ed0b11cc63657a06a0fd53dfee66521a1f0ca",
+        "scripts/run_base.py": "3c31762748d68fa7b3c3d425e9326c414850bace55f7092643993c1c9e0cca00",
         "scripts/train.py": "ee0e0e4248ebc9ceadc1c152d95d15d13eeb8bcae76e1e5e2c63796043d61038",
         "scripts/phase6_readiness.py": "e9f67b58ec6a9019d00d24620cc76f4533d69950f375dbed5ee2747b7a4cd5eb",
         "src/jmicro/readiness.py": "69a92251f4a697b551b9c3cfef9e2b992e776e2047c0331f7c43ba2331d172ea",
         "configs/phase6/readiness.json": "6a2627ef4577fb0498c5f4d0fd4db3333ab7cfff94854f01a1e9d5cde08461cc",
-        "src/jmicro/export.py": "ea4a70e1ed305bc69363de968632c8b8b18882d942e07ccaee2aa4fdd90ecd0c",
-        "scripts/verify_nonorm_export.py": "0096c22da33c32c281da7b209be87c404b9c0fad1749a2c650694adca4f3043f",
-        "src/jmicro/native_precision.py": "d0f8693ef093ddf9372fe06e936b78f294f66298a18f731412373493b346378e"
+        "src/jmicro/export.py": "fea8ee6f40de2a6e27d90b378693947312c1186838b924784719414cba4a9389",
+        "scripts/verify_nonorm_export.py": "0b6486b22e92c288871281467cc2216e0ca99a91c11b743679f40e95e81aab82",
+        "src/jmicro/native_precision.py": "e776e46d2aee902a7888fc347eec03776b8635dab9f889abf24c772d7a040afe",
+        "src/jmicro/inference.py": "453adb24c8e1311fbf95c75e3f074cd2564ca39794dcc94a668e0058642f801d",
+        "src/jmicro/inference_precision.py": "a177ecc758fc22253194b5dd64c1e1fe419d271865ac236566c7accc64e5c197",
+        "scripts/build_runtime.py": "4225fa098c1e6b9e0aa9af3b4ebd0ea848d974d746b3a431e0e4ae3eb61d0a1b"
       }
     },
     "seed": {
@@ -233,7 +237,7 @@
         "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/readiness_stability_report.json": "90b41c9bbefffcefd951f9bab634f697e22320138fc104e07011d940eb3d1253",
         "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/expanded_dev_baseline.json": "5c6c56ad7ea61eafb399dabb8a91b6aaa9cd99aa65eedd7c34dca70993f3fb13",
         "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/generation_diagnostics.json": "f60dd05ce5921fcfbf3e470d827311240897bfc1e788953bcf3953bf5e7b7da3",
-        "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/cpu-precision/auto-t2/nonorm_export_parity_report.json": "d1ea55e5e3633e2bd15662381008d01e65bc2deff49580b2a7f2a65d3a13b0f1"
+        "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/export-stable-f32/nonorm_export_parity_report.json": "6c224bda2b9a47b05e1516d8a1cebda529c9786e60425a8a948fb02882b7286a"
       }
     },
     "measured_budget": {
@@ -250,11 +254,11 @@
       }
     },
     "launch_enabled": {
-      "const": false
+      "const": true
     },
     "launch_gates": {
       "const": {
-        "learned_export_fp32_parity": false,
+        "learned_export_fp32_parity": true,
         "bounded_lr_comparison": true,
         "full_dev_and_400_generation_diagnosis": true,
         "strict_and_cold_resume": true
@@ -267,7 +271,24 @@
       "const": false
     },
     "created_at": {
-      "const": "2026-10-03T08:26:10.131621Z"
+      "const": "2026-10-03T09:04:44.404167Z"
+    },
+    "validated_inference": {
+      "const": {
+        "profile": "cpu-f32-f64-accumulation-v1",
+        "scope": "CPU FP32 storage and logits with FP64 accumulation; CUDA/BF16 training unchanged",
+        "runtime": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/runtime-stable-f32-v2",
+        "runtime_receipt_sha256": "f9ff8e1a7f055d2f5aa4aa0c79f48f98f252425f6ccebfae90836383510aa4e7",
+        "stock_fp32_numeric_status": "fails strict learned 1024 checks; preserved as diagnostic evidence",
+        "artifact_sha256": {
+          "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/export-stable-f32/torch/model.safetensors": "64e292a8222dbe1b6b4600154287f03150250934421296158c4051c6b108b768",
+          "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/export-stable-f32/torch/artifact_manifest.json": "41b2eb4f23991ea243dfeedfa2a567c6f0a04b8979ea58e8aa004c5760defba1",
+          "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/export-stable-f32/hf/model.safetensors": "d7d3ae8e62d3f516af6eb1a17941bf4e767b9b00bd0612864818a4328ae693da",
+          "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/export-stable-f32/hf/config.json": "4bda67310c7ba3ffd290e137fefd0fac1bdb2ed06c222c114007a36cc5df63a9",
+          "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/export-stable-f32/hf/artifact_manifest.json": "b3c28a9755dbfe1a3ac8a62ee084446801e74d079a764ec3daf43fe83a339f42",
+          "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/export-stable-f32/model-f32.gguf": "44c9cc53780abaf3b44d34bb17a0bc4ef8a9fb0f1cc5a19fa0a623fb4c06f231"
+        }
+      }
     }
   }
 }

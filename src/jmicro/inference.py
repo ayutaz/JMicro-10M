@@ -13,6 +13,18 @@ from jmicro.tokenizer import Tokenizer, SUPPRESS_IDS
 
 
 def native(model: Path, request: dict, work: Path, bridge: Path | None = None) -> dict:
+    import gguf
+    reader = gguf.GGUFReader(model)
+    precision = reader.fields.get('jmicro.inference_precision')
+    profile = precision.contents() if precision else None
+    del reader
+    if profile:
+        from jmicro.inference_precision import PROFILE
+        from jmicro.native_precision import validate_stable_runtime
+        if profile != PROFILE:
+            raise ValueError('Unknown GGUF inference precision profile')
+        bridge = bridge or ROOT/'artifacts/runtime-stable-f32-v2/llama-bridge'
+        validate_stable_runtime(bridge.resolve().parent)
     work.mkdir(parents=True, exist_ok=True)
     write_json(work / "request.json", request)
     bridge = bridge or ROOT / "artifacts/runtime/llama-bridge"
@@ -90,6 +102,12 @@ def generate(backend, artifact: Path, tok: Tokenizer, input_ids, max_new_tokens=
                 return out.logits, out.past_key_values
         else:
             raise ValueError("Unknown backend")
+        precision = manifest.get('inference_precision')
+        if precision:
+            from jmicro.inference_precision import install, PROFILE
+            if precision != PROFILE:
+                raise ValueError('Unknown inference precision profile')
+            install(model)
         with torch.inference_mode():
             ids, reason = greedy(input_ids, step, max_new_tokens, stop_ids, forced_first_id)
     raw = tok.decode_bytes(ids)

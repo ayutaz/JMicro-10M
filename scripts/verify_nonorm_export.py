@@ -34,7 +34,7 @@ def compare(actual, expected, tolerance):
             'tolerance':tolerance}
 
 
-def verify(output, runtime, threads=2):
+def verify(output, runtime, threads=2, precision_profile=None, inputs_from=None):
     torch.set_num_threads(threads)
     torch.manual_seed(42)
     output.mkdir(parents=True, exist_ok=True)
@@ -54,9 +54,18 @@ def verify(output, runtime, threads=2):
     bridge = runtime/'llama-bridge'
     assert receipt['bridge_binary_sha256'] == sha256(bridge)
     for patch in receipt.get('patches', []):
-        assert sha256(runtime/'llama.cpp'/patch['file']) == patch['patched_sha256']
+        for entry in patch.get('files',[patch]):
+            assert sha256(runtime/'llama.cpp'/entry['file']) == entry.get('final_patched_sha256',entry['patched_sha256'])
+    if precision_profile:
+        from jmicro.inference_precision import install, PROFILE
+        from jmicro.native_precision import validate_stable_runtime
+        assert precision_profile == PROFILE
+        validate_stable_runtime(runtime)
     import os
     binding = {'checkpoint': str(checkpoint), 'checkpoint_sha256': sha256(checkpoint), 'tokenizer_sha256': sha256(tok.path), 'implementation': implementation_hashes(), 'verifier_sha256': sha256(Path(__file__)), 'protocol_sha256': sha256(ROOT/'configs/evaluation/protocol.json'), 'runtime_receipt_sha256': sha256(runtime/'source_receipt.json'), 'cpu_threads':threads, 'cpu_environment':{key:os.environ.get(key) for key in ('MKL_CBWR','MKL_DYNAMIC','OMP_DYNAMIC')}}
+    binding.update(inference_precision=precision_profile or 'stock-fp32',
+                   inference_precision_source_sha256=sha256(ROOT/'src/jmicro/inference_precision.py') if precision_profile else None,
+                   fixed_inputs_sha256=sha256(inputs_from) if inputs_from else None)
     if (output/'binding.json').exists():
         assert read_json(output/'binding.json') == binding
     else:
@@ -65,8 +74,9 @@ def verify(output, runtime, threads=2):
     report = {'status': 'running', 'binding': binding, 'runtime': receipt, 'tolerance': tolerance, 'checks': {}, 'comparisons': {}, 'scope': 'Learned NoNorm export/cache/controller integrity; not Base quality or quantized quality'}
     write_json(output/'nonorm_export_parity_report.json', report)
     model.save(output/'torch')
-    write_json(output/'torch/artifact_manifest.json', {'tokenizer_sha256': sha256(tok.path), 'weights_sha256': sha256(output/'torch/model.safetensors'), 'codec': CODEC_VERSION})
-    hf = export_hf(model, tok.path, output/'hf')
+    write_json(output/'torch/artifact_manifest.json', {'tokenizer_sha256': sha256(tok.path), 'weights_sha256': sha256(output/'torch/model.safetensors'), 'codec': CODEC_VERSION,
+        **({'inference_precision':precision_profile} if precision_profile else {})})
+    hf = export_hf(model, tok.path, output/'hf', inference_precision=precision_profile)
     loaded = AutoModelForCausalLM.from_pretrained(output/'hf', local_files_only=True, attn_implementation='eager').eval()
     names = export_gguf(output/'hf', output/'model-f32.gguf', model.config)
     checks = report['checks']
@@ -74,6 +84,16 @@ def verify(output, runtime, threads=2):
     checks['hf_tied_embedding'] = loaded.lm_head.weight is loaded.model.embed_tokens.weight
     checks['learned_parameter_count'] = sum(parameter.numel() for parameter in model.parameters()) == 10001152
     sequences = {'short': [2, *tok.encode('こんにちは。\n今日は　晴れ？🤔 <|assistant|> ▁')], 'context1024': torch.randint(8, tok.vocab_size, (1024,)).tolist()}
+    if inputs_from:
+        fixed = read_json(inputs_from)['runs']
+        original = {run['name'].removesuffix('_prefill'):sum(run['chunks'],[]) for run in fixed if run['name'].endswith('_prefill')}
+        assert sequences == original, 'Keep the original fixed short/1024 inputs'
+    if precision_profile:
+        before = {name:parameter.detach().clone() for name,parameter in model.state_dict().items()}
+        install(model)
+        install(loaded)
+        checks['precision_profile_keeps_all_weights_exact'] = all(torch.equal(before[name],parameter) for name,parameter in model.state_dict().items())
+        checks['profile_is_real_artifact_inference'] = read_json(output/'torch/artifact_manifest.json')['inference_precision'] == read_json(output/'hf/artifact_manifest.json')['inference_precision'] == precision_profile
     requests = []
     for name, ids in sequences.items():
         split = min(11, len(ids)-2) if name == 'short' else 511
@@ -130,8 +150,9 @@ def verify(output, runtime, threads=2):
             fixture.model.embed_tokens.weight[stop_id].fill_(1)
         location = output/f'stop-fixture-{stop_id}'
         fixture.save(location/'torch')
-        write_json(location/'torch/artifact_manifest.json', {'tokenizer_sha256': sha256(tok.path), 'weights_sha256': sha256(location/'torch/model.safetensors'), 'codec': CODEC_VERSION})
-        export_hf(fixture, tok.path, location/'hf')
+        write_json(location/'torch/artifact_manifest.json', {'tokenizer_sha256': sha256(tok.path), 'weights_sha256': sha256(location/'torch/model.safetensors'), 'codec': CODEC_VERSION,
+            **({'inference_precision':precision_profile} if precision_profile else {})})
+        export_hf(fixture, tok.path, location/'hf', inference_precision=precision_profile)
         export_gguf(location/'hf', location/'model.gguf', fixture.config)
         generated = {backend: generate(backend, artifact, tok, [2, 5, *tok.encode('はい'), 7, 6], max_new_tokens=8, chat=True, work=location/backend, bridge=bridge) for backend, artifact in [('torch', location/'torch'), ('hf', location/'hf'), ('gguf', location/'model.gguf')]}
         checks[f'actual_argmax_stop_{stop_id}_all_backends'] = all(item['generated_ids'] == [stop_id] and item['stop_reason'] == 'stop_id' for item in generated.values())
@@ -148,9 +169,11 @@ if __name__ == '__main__':
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--runtime', type=Path, default=ROOT/'artifacts/runtime')
     parser.add_argument('--threads', type=int, choices=[1,2], default=2)
+    parser.add_argument('--precision-profile', choices=['cpu-f32-f64-accumulation-v1'])
+    parser.add_argument('--inputs-from', type=Path, help='Assert identity with the preserved original native request')
     args = parser.parse_args()
     try:
-        verify(args.output.resolve(), args.runtime.resolve(), args.threads)
+        verify(args.output.resolve(), args.runtime.resolve(), args.threads, args.precision_profile, args.inputs_from)
     except Exception as error:
         report_path = args.output/'nonorm_export_parity_report.json'
         if report_path.exists():

@@ -1,6 +1,6 @@
 # 別PCで続きを進める: Windows / WSL / RTX 4090
 
-Phase 6①②③完了（2026-10-03）。④生成/変換と⑤本学習設定の確定をユーザー指定で実行中。[今回の固定計画](30_phase6_readiness_execution.md)と[実状態](autonomous_status.md)を参照する。④⑤の検証・commit後に停止し、500M以上の本学習は開始しない。
+Phase 6①②③完了（2026-10-03）。④生成/変換と⑤本学習設定の確定もユーザー指定の範囲で検証済み。[今回の固定計画](30_phase6_readiness_execution.md)と[実状態](autonomous_status.md)を参照する。④⑤の検証・commit後に停止し、500M以上の本学習は開始しない。
 
 最終更新: 2026-10-03。[Phase 4](21_phase4_completion.md)、[Phase 5](23_phase5_completion.md)、Phase 6①②③は完了。復元済みPCでは環境整備・Tokenizer学習・完了済み測定を繰り返さず、[現在の状態](autonomous_status.md)と既存job/checkpointを確認する。今回は④⑤の限定比較と起動設定凍結まで。Base/Chat本学習は未開始。
 
@@ -17,7 +17,7 @@ Phase 6①②③完了（2026-10-03）。④生成/変換と⑤本学習設定�
 | 実機環境 | WSL package 3.0.1.0 / Ubuntu WSL 2、RTX 4090、Windows driver 616.92 |
 | Python / PyTorch | uv管理の3.12.7 / 2.14.1、CUDA 13.0 |
 | 完了済み | Phase 0〜5とPhase 6①②③。pilot/Tokenizer、モデル/export、GPU学習器、100M候補選定、756M拡張corpus、WSD全state再開/分岐完全一致 |
-| 現在の境界 | ③の証拠はa7d26e1へcommit済み。④⑤を再開し、400生成/dev全文とNoNorm export診断、LR3候補の限定比較・新source再開検証を実行。長期LRは未凍結、本学習は開始しない。 |
+| 現在の境界 | ③の証拠はa7d26e1へcommit済み。④⑤を再開し、400生成/dev全文とNoNorm export診断、LR3候補の限定比較・新source再開検証を実行。長期LR0.002と予算はversion2へ凍結済み、全12変換比較・実CLI149 checks・90 tests成功。本学習は開始しない。 |
 | 未実施 | 長期Base本学習、Chat trainer、学習後の量子化品質 |
 
 HubにはpilotとTokenizerがあり、モデル重み・shard・checkpointは含まない。Phase 4の検証checkpointはLinuxの`reports/phase4/gates-20261003/`、Phase 5は`reports/phase5/run-20261003-docoverfit/`、Phase 6準備の12 checkpointsは`reports/phase6/preparation-20261003/cuda/`へ保存してある。拡張raw/corpus/shardsは`~/jmicro-data/phase6/{raw,expanded-v2}/`で、Hub bundleには含まれない。新規PCへは必要なcheckpoint/logも別途引き継ぐ。旧driver/アクセス拒否の履歴は[復旧履歴](autonomous_history_20261003.md)へ分離した。
@@ -121,7 +121,7 @@ checkpoint version 2は完了updateでmodel/optimizer/scheduler/Python・NumPy�
 
 今回の①②は[準備完了記録](26_phase6_preparation_completion.md)と[独立監査](../reports/phase6/completion_audit.json)を正とする。WSL data rootの拡張corpusは756M unique train stream tokens、WSD stable/decayの実CUDA再開一致は成功済み。準備の中断復旧/読み取り再監査の実commandは完了記録に保存した。①②のjobは終了済み。③の別studyとcold再開も終了済み。[完了記録](29_phase6_performance_completion.md)に採用設定・監査・job identityを保存した。
 
-開始条件は[Phase 6 gate](24_phase6_plan.md)と[今回の固定比較](30_phase6_readiness_execution.md)を参照する。④⑤の400生成/全文dev・3 LR比較・厳密/cold再開は終了し、[本設定](../configs/phase6/base_frozen.json)と[起動/復旧CLI](../reports/phase6/base_launch_plan.json)を保存した。長系列の固定数値gateは未合格で、`launch_enabled=false`、本学習CLIの実起動拒否を検証した。完了した準備jobを再起動せず、次は数値精度を修復する。Phase 4のNorm/pilot/cosine benchmarkをNoNorm/拡張shard/WSDの証拠へ流用しない。
+開始条件は[Phase 6 gate](24_phase6_plan.md)と[今回の固定比較](30_phase6_readiness_execution.md)を参照する。④⑤の400生成/全文dev・3 LR比較・厳密/cold再開は終了し、[本設定](../configs/phase6/base_frozen.json)と[起動/復旧CLI](../reports/phase6/base_launch_plan.json)を保存した。長系列の固定数値gateはCPU精度profileで元の全12比較が成功し、実CLI監査149 checks・全90 testsが成功。version2は`launch_enabled=true`だが今回は本学習前で停止する。旧false設定と実起動拒否証拠は保持。完了した準備jobを再起動しない。Phase 4のNorm/pilot/cosine benchmarkをNoNorm/拡張shard/WSDの証拠へ流用しない。
 
 `scripts/train.py`にbuild-shards/train/evaluateを実装済み。trainはCLI引数を使用し、baseline JSONを自動読込しない。AdamW＋warmup/cosine・WSD stable/decayは実装済み、Muon・Chat trainer・複数source mixtureは未実装。
 
@@ -132,7 +132,7 @@ uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train
 uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train.py evaluate --help
 ```
 
-下記200更新はCLI利用例で、overfit合格の証拠や本学習設定ではない。Phase 5の正式な予算・合格条件は[詳細計画](22_phase5_plan.md)へ固定済み。Phase 5 supervisorは終了済み。完了したPhase 5比較と③のstudyを重複起動しない。④以降は再開指定を待つ。文書単独の暗記検証には`--sampler document`を使用し、通常のsmoke/100Mはdefaultのblock samplerを使う。
+下記200更新はCLI利用例で、overfit合格の証拠や本学習設定ではない。Phase 5の正式な予算・合格条件は[詳細計画](22_phase5_plan.md)へ固定済み。Phase 5 supervisorは終了済み。完了したPhase 5比較と③のstudyを重複起動しない。本学習は再開指定を待つ。文書単独の暗記検証には`--sampler document`を使用し、通常のsmoke/100Mはdefaultのblock samplerを使う。
 
 ```sh
 uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train.py build-shards --tokenizer artifacts/phase2/8192/tokenizer.model --limit 100 --output "$HOME/jmicro-data/shards/t8k-overfit100"
@@ -153,7 +153,7 @@ Phase 4 Norm/defaultのeager最大安定batchはT8K 57 / T4K 64、測定点の�
 
 ```text
 AGENTS.md、docs/autonomous_status.md、docs/15_project_roadmap.md、docs/windows_handoff.md、docs/24_phase6_plan.mdを読んでください。
-Phase 0〜5とPhase 6①②③は完了しています。③の証拠はa7d26e1へcommit済みです。④以降の再開指定まで停止し、完了したGPU studyを再実行しないでください。残る作業はdocs/27_phase6_remaining_plan.mdを参照してください。ユーザーの再開指定があるまで本学習を起動しないでください。
+Phase 0〜5とPhase 6①②③は完了しています。③の証拠はa7d26e1へcommit済みです。④⑤のCPU精度profile・実CLI・長期設定も検証済みです。本学習の再開指定まで停止し、完了したGPU studyを再実行しないでください。残る作業はdocs/27_phase6_remaining_plan.mdを参照してください。ユーザーの再開指定があるまで本学習を起動しないでください。
 最新コードの正本はWindows workspaceで、最近のコミットは未pushです。Linux実行sourceはsnapshot/hashで確認してください。
 固定公開Tokenizer/pilotは復元済み。Pythonは必ずuv run --frozen、依存変更はuv addを使ってください。
 既存process/checkpointを確認し、docs/24_phase6_plan.mdとdocs/26_phase6_preparation_completion.mdに従って進め、同じjobを二重起動しないでください。
@@ -163,4 +163,4 @@ Phase 0〜5とPhase 6①②③は完了しています。③の証拠はa7d26e1�
 
 ## この手順の検証範囲
 
-固定公開25 payload、Python/uv/WSL/GPU、CUDA/BF16、Phase 4の全64 testsと両モデルの再開/容量/速度、Phase 5の100M候補選定、Phase 6①②の全74 tests・73 GPU checksと拡張corpus全監査を現在のPCで確認済み。③の採用NoNormの容量・compiled/math/Flash速度・厳密/cold再開は検証済み（独立1286 checks、cold26 checks、79 tests）。長期予算は未確定。新規PCや変更したruntimeでは必要な環境gateを改めて確認する。学習後のBase/Chat品質・quantizationは未検証。
+固定公開25 payload、Python/uv/WSL/GPU、CUDA/BF16、Phase 4の全64 testsと両モデルの再開/容量/速度、Phase 5の100M候補選定、Phase 6①②の全74 tests・73 GPU checksと拡張corpus全監査を現在のPCで確認済み。③の採用NoNormの容量・compiled/math/Flash速度・厳密/cold再開は検証済み（独立1286 checks、cold26 checks、79 tests）。長期予算はversion2へ凍結済み、CPU精度profileの全12比較・実CLI149 checks・全90 tests成功。新規PCや変更したruntimeでは必要な環境gateを改めて確認する。学習後のBase/Chat品質・quantizationは未検証。
