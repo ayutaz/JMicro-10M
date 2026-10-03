@@ -35,6 +35,8 @@ backend別cache namespaceとin-memory reset、実CUDA updateのATen operator検�
 
 実行中study: Linux `reports/phase6/performance-20261003-v3`、Windows hidden launcher PID 24452。Linux `job.json`のPID/boot/start ticks・worker・stage/log/heartbeatと、各checkpoint/SHAから状態を確認する。同じGPU jobを二重起動しない。新しい採用設定・最大batchの判定は未完了。旧①②reportとsnapshot、uv.lockは保持する。
 
+v3の7設定は実演算・有限値・小sample評価を通過した。[短い比較](../reports/phase6/performance_initial_probes.json)ではreference約120.5kに対してcompiled Flash/reduce-overhead約520.8k tokens/s（4.321倍）、batch 8のtraining peak約1.53 GiB。採用には厳密再開/容量/3×200が必要で、まだ採用しない。実装はcommit `1aa0d4d`。現在の文書45件/内部link 484件、全79 tests、旧73 reportsとuv.lockのbyte保持を別監査で確認した。
+
 ## 次の具体的な行動
 
 ③のpersistent performance studyを実行する。[実装・比較と実CLI](28_phase6_performance.md)。causalの学習専用経路、compile mode/fullgraph/static shape、決定的カーネルを実装し、全78 tests / skip・failure・error 0を確認した。新sourceなので旧①②checkpointの通常resumeは拒否する契約を維持し、旧snapshotとreportを保持する。新規probe/厳密再開/分岐/3×200の実測を保存し、最速と容量を別に選定する。③の完了後は停止し、④以降は[残る実行計画](27_phase6_remaining_plan.md)へ残す。過去のTokenizer学習・Phase 3 export・Phase 5比較を重複実行しない。

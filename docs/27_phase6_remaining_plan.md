@@ -1,6 +1,6 @@
 # Phase 6③以降: 再開時の実行計画
 
-更新: 2026-10-03。①データ拡充と②WSD/長時間学習準備は[完了済み](26_phase6_preparation_completion.md)。本書は未着手の③容量・高速化、④生成/変換課題、⑤本学習設定の凍結から500M以降へ進む計画である。**現在は停止中。文書更新は③以降の再開を意味しない。** 本書の探索予算は提案で、再開時に実験configへ固定する。品質閾値と完全一致の要求は維持する。
+更新: 2026-10-03。①データ拡充と②WSD/長時間学習準備は[完了済み](26_phase6_preparation_completion.md)。ユーザーの資源活用・高速化の指定で③を再開し、[実装・凍結比較・実CLI](28_phase6_performance.md)に従い測定中。**③の検証・commit後に停止し、④生成/変換・⑤本学習設定の凍結・500M以上の本学習は開始しない。** 本書の④⑤以降の予算は将来の提案であり、再開時に固定する。品質閾値と完全一致の要求は維持する。
 
 ## 出発点と、今回繰り返さない作業
 
@@ -21,7 +21,7 @@
 
 目的はVRAM使用率と実速度を測り、保存・評価・再開が成立する運用設定を決めること。最大容量と最速batchを別に記録する。VRAMを埋めることだけを採用基準にしない。
 
-最初に測定入口を実装・適応する。既存の[scripts/benchmark_training.py](../scripts/benchmark_training.py)はPhase 4のNorm config / pilot / cosineを使い、probe checkpointを削除するため、そのまま③の証拠にできない。[準備verifier](../scripts/verify_phase6_preparation.py)は凍結batch 8/mathの①②専用。採用model config、拡張shard、WSD、batch/backend/compile、出力先を固定できる別の測定・厳密再開入口を用意し、既存reportを上書きしない。実装前の起動commandは掲載しない。
+採用model config・拡張shard・WSD・batch/backend/compileを固定する[scripts/phase6_performance.py](../scripts/phase6_performance.py)と[独立監査](../scripts/audit_phase6_performance.py)を実装した。凍結比較と実CLIは[③の詳細](28_phase6_performance.md)。既存の[scripts/benchmark_training.py](../scripts/benchmark_training.py)はPhase 4のNorm config / pilot / cosine用で、[準備verifier](../scripts/verify_phase6_preparation.py)は①②のbatch 8/math専用として保持する。旧reportを上書きせず、backend実効・cache分離を含む新規runで検証する。
 
 比較は同じmodel/Tokenizer/data hash、context、precision、optimizer、seedを保つ。実験configには短いprobeと最終確認の予算を別記する。提案する探索順は以下。
 
@@ -72,4 +72,4 @@ NoNormのHF/native float GGUF adapterを実装・検証する。外部SentencePi
 
 現候補のPhase 5実測による参考computeは500M約1.15時間、10B約22.93時間。これは純粋な学習の算術値で、③④の実装・検証、新dev全文評価、cold compile、保存、decay枝、修復を含まない。作業全体の完了時刻は③の測定後に更新する。[現在の予算](24_phase6_plan.md#暫定のcompute見積もり)
 
-次回は[最新状態](autonomous_status.md)、本書、[引継ぎ](windows_handoff.md)を読み、process/source/dataの確認から始める。現在は①②完了で停止し、③の測定入口実装・GPU探索・本学習は開始しない。準備の中断復旧と別出力への読み取り監査は[実CLI](26_phase6_preparation_completion.md#実cliと再開)にある。
+次回は[最新状態](autonomous_status.md)、本書、[引継ぎ](windows_handoff.md)を読み、process/source/dataの確認から始める。③の既存studyを確認して重複起動せず、検証・commit後に停止する。④以降・本学習は開始しない。準備の中断復旧と別出力への読み取り監査は[実CLI](26_phase6_preparation_completion.md#実cliと再開)にある。

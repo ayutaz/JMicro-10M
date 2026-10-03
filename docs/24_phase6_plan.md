@@ -1,6 +1,6 @@
 # Phase 6: Base本学習の準備と段階評価計画
 
-更新: 2026-10-03。[Phase 5](23_phase5_completion.md)は完了し、現在はPhase 6①②完了で停止中（③以降未開始）。①データ拡充と②長時間学習準備は[事前の目的・完了条件](25_phase6_preparation.md)に従い完了した。[完了証拠](26_phase6_preparation_completion.md)。再開後の③容量/高速化→④生成/変換→⑤設定・予算凍結は[残りの実行計画](27_phase6_remaining_plan.md)に具体化した。今回の文書更新では探索と本学習を起動しない。
+更新: 2026-10-03。[Phase 5](23_phase5_completion.md)は完了し、現在はPhase 6①②完了・③高速化と容量検証中（本学習未開始）。①データ拡充と②長時間学習準備は[事前の目的・完了条件](25_phase6_preparation.md)に従い完了した。[完了証拠](26_phase6_preparation_completion.md)。再開後の③容量/高速化→④生成/変換→⑤設定・予算凍結は[残りの実行計画](27_phase6_remaining_plan.md)に具体化した。ユーザーの資源活用・高速化指定で③を再開した。実装・実測は[③の詳細](28_phase6_performance.md)。④以降と本学習は開始しない。
 
 ## 目的と出発点
 
@@ -20,7 +20,7 @@ Phase 5のdev BPBは1.221443、定常速度121,139 tokens/s。これはpilot反�
 | 2 | 拡張corpus・shard化 | ①完了 | 756,087,912 unique train stream tokens、Web 100%、dev/test分離。source/revision/条件・取得上限・全raw/cluster/shard監査と予定反復を[完了記録](26_phase6_preparation_completion.md)に保存。 |
 | 3 | 必要なtrainer機能 | ②のWSD完了、mixture未実装 | stable/decay CLIは実装済み。初期Web単一sourceはmixture不要。必要時は明示変更系列として実装・検証し、window/教師maskと累積loss契約を維持する。 |
 | 4 | 正確な再開・分岐 | NoNorm/math/batch 8で②完了、新設定は要検証 | 実拡張shardでstable 200 vs 100+100、decay 100 vs 50+50のtoken列/loss/LR/全state完全一致、元stable不変性・継続一致を確認済み。batch/backend/source変更後に再検証する。 |
-| 5 | 速度・最大安定batch | ③未着手 | NoNorm/拡張shard/WSDの測定入口を先に実装・適応。math/compiled-math、有限値、厳密再開/分岐、3×200更新・評価/save、peak VRAM、cold compile、定常速度、data waitを比較し、最大容量と最速設定を分ける。 |
+| 5 | 速度・最大安定batch | ③実装済み・GPU検証中 | [専用study](28_phase6_performance.md)でNoNorm/拡張shard/WSD、math/Flash/compileの実演算・cache分離、有限値、厳密再開/分岐、3×200更新・評価/save、peak VRAM、compile起動、定常速度、data waitを測る。最大容量と最速設定を分ける。 |
 | 6 | 生成・変換課題 | ④未着手、品質未達 | native prefill/cache・停止ID、Unicode/反復/EOSを同一dev 400生成で対照確認。NoNorm HF/GGUF adapterを実装・parity検証し、成立しない場合の修復予算またはNorm対照への見直しを記録する。 |
 | 7 | 本学習設定・予算・永続実行 | 準備runは保存済み、⑤の長期凍結は未着手 | measured batch/effective tokens、LR/warmup、stable/decay数値予算、mixture/seed、保存/評価間隔・保持数、追加枝compute、容量上限、実CLI/restart commandを凍結。PID/boot/start ticks・log・snapshot・checkpoint SHAと復旧を保持する。 |
 
@@ -76,6 +76,6 @@ WSD stable/decayは実装・CUDA全state再開一致を検証済み。複数sour
 uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train.py train --help
 ```
 
-WSDの実CLIと準備検証configは実装済み。③用測定/厳密再開入口は採用config・shard・WSDに対応させる必要があり、長期run configも未凍結のため、本書には未実装の測定や本学習の起動commandを置かない。[残りの実行計画](27_phase6_remaining_plan.md)に従い実装とgate通過後、正確な起動・再開commandをrun記録とhandoffへ追加する。
+WSDの実CLI・準備検証configと、採用config・拡張shardに対応する③用測定/厳密再開・独立監査の入口は実装済み。[③の実CLIと比較](28_phase6_performance.md)。長期run configは未凍結のため、本学習の起動commandは置かない。④⑤のgate通過後、正確な本学習の起動・再開commandをrun記録とhandoffへ追加する。
 
-①②の拡張corpus manifest/shards、独立準備gate report、準備検証config、stable/decay検証checkpointと台帳は保存済み。[完了記録](26_phase6_preparation_completion.md)。本学習の凍結run config、scaling checkpoint、`base_scaling_report.json`、`base_v1_evaluation.md`とmodel cardは今後作成する。今回の停止境界はPhase 6①②完了。③以降へは進まない。
+①②の拡張corpus manifest/shards、独立準備gate report、準備検証config、stable/decay検証checkpointと台帳は保存済み。[完了記録](26_phase6_preparation_completion.md)。本学習の凍結run config、scaling checkpoint、`base_scaling_report.json`、`base_v1_evaluation.md`とmodel cardは今後作成する。今回の停止境界は③の高速化・容量検証とcommit完了。④以降へは進まない。

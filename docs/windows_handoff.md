@@ -1,8 +1,8 @@
 # 別PCで続きを進める: Windows / WSL / RTX 4090
 
-Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpus・shardの独立監査も完了。③以降の速度/batch探索・本学習は未開始。
+Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpus・shardの独立監査も完了。③の速度/batch探索を再開し実測中。本学習は未開始。
 
-最終更新: 2026-10-03。現在のPCは[Phase 4の実機検証](21_phase4_completion.md)と[Phase 5](23_phase5_completion.md)が完了し、Phase 6①②完了で停止中（③以降未開始）。復元済みPCでは環境整備・Tokenizer学習・完了済み測定を繰り返さず、[現在の状態](autonomous_status.md)と既存job/checkpointを確認する。今回の作業範囲は①②まで。③以降を開始しない。Base/Chat本学習は未開始。
+最終更新: 2026-10-03。現在のPCは[Phase 4の実機検証](21_phase4_completion.md)と[Phase 5](23_phase5_completion.md)が完了し、Phase 6①②完了・③高速化と容量検証中（本学習未開始）。復元済みPCでは環境整備・Tokenizer学習・完了済み測定を繰り返さず、[現在の状態](autonomous_status.md)と既存job/checkpointを確認する。今回の作業範囲は③の高速化・容量検証とcommitまで。④以降を開始しない。Base/Chat本学習は未開始。
 
 ## 引継ぎ先と現在地
 
@@ -17,7 +17,7 @@ Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの�
 | 実機環境 | WSL package 3.0.1.0 / Ubuntu WSL 2、RTX 4090、Windows driver 616.92 |
 | Python / PyTorch | uv管理の3.12.7 / 2.14.1、CUDA 13.0 |
 | 完了済み | Phase 0〜5とPhase 6①②。pilot/Tokenizer、モデル/export、GPU学習器、100M候補選定、756M拡張corpus、WSD全state再開/分岐完全一致 |
-| 現在の境界 | ①②は全監査を完了し停止。実行中jobなし。候補T4K / NoQK-Norm / LR 0.002 |
+| 現在の境界 | ①②は全監査完了。③のGPU study実行中（job/PIDはautonomous_status.md）。③の完了・commit後に停止。候補T4K / NoQK-Norm / LR 0.002 |
 | 未実施 | 長期Base本学習、Chat trainer、学習後の量子化品質 |
 
 HubにはpilotとTokenizerがあり、モデル重み・shard・checkpointは含まない。Phase 4の検証checkpointはLinuxの`reports/phase4/gates-20261003/`、Phase 5は`reports/phase5/run-20261003-docoverfit/`、Phase 6準備の12 checkpointsは`reports/phase6/preparation-20261003/cuda/`へ保存してある。拡張raw/corpus/shardsは`~/jmicro-data/phase6/{raw,expanded-v2}/`で、Hub bundleには含まれない。新規PCへは必要なcheckpoint/logも別途引き継ぐ。旧driver/アクセス拒否の履歴は[復旧履歴](autonomous_history_20261003.md)へ分離した。
@@ -119,9 +119,9 @@ checkpoint version 2は完了updateでmodel/optimizer/scheduler/Python・NumPy�
 
 ## 6. 実装済みCLIと次回の再開
 
-今回の①②は[準備完了記録](26_phase6_preparation_completion.md)と[独立監査](../reports/phase6/completion_audit.json)を正とする。WSL data rootの拡張corpusは756M unique train stream tokens、WSD stable/decayの実CUDA再開一致は成功済み。準備の中断復旧/読み取り再監査の実commandは完了記録に保存した。現在のjobは全終了しており、通常の次回作業は③の別測定からになる。
+今回の①②は[準備完了記録](26_phase6_preparation_completion.md)と[独立監査](../reports/phase6/completion_audit.json)を正とする。WSL data rootの拡張corpusは756M unique train stream tokens、WSD stable/decayの実CUDA再開一致は成功済み。準備の中断復旧/読み取り再監査の実commandは完了記録に保存した。①②のjobは終了済み。現在は③の別studyを実行中で、job identityとcheckpointを確認する。
 
-次回の開始条件は[Phase 6 gate](24_phase6_plan.md)、③容量/高速化→④生成/変換→⑤予算凍結の目的・完了条件は[残りの実行計画](27_phase6_remaining_plan.md)を参照する。現在はPhase 6①②完了で停止中（③以降未開始）。WSDの実CLIと凍結した準備検証configは存在する。本学習の長期run configは未凍結で、③以降のgate通過後に起動・再開commandを追加する。Phase 4 benchmarkはNorm/pilot/cosine用なので、採用NoNorm/拡張shard/WSD用の測定入口を実装・適応してから使う。
+次回の開始条件は[Phase 6 gate](24_phase6_plan.md)、③容量/高速化→④生成/変換→⑤予算凍結の目的・完了条件は[残りの実行計画](27_phase6_remaining_plan.md)を参照する。現在はPhase 6①②完了・③高速化と容量検証中（本学習未開始）。WSDの実CLIと凍結した準備検証configは存在する。本学習の長期run configは未凍結で、③以降のgate通過後に起動・再開commandを追加する。Phase 4 benchmarkはNorm/pilot/cosine用なので、採用NoNorm/拡張shard/WSD用の[専用測定入口](28_phase6_performance.md)を使う。
 
 `scripts/train.py`にbuild-shards/train/evaluateを実装済み。trainはCLI引数を使用し、baseline JSONを自動読込しない。AdamW＋warmup/cosine・WSD stable/decayは実装済み、Muon・Chat trainer・複数source mixtureは未実装。
 
@@ -132,7 +132,7 @@ uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train
 uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train.py evaluate --help
 ```
 
-下記200更新はCLI利用例で、overfit合格の証拠や本学習設定ではない。Phase 5の正式な予算・合格条件は[詳細計画](22_phase5_plan.md)へ固定済み。Phase 5 supervisorは終了済み。完了した比較を重複起動せず、Phase 6③以降の再開指定を待つ。文書単独の暗記検証には`--sampler document`を使用し、通常のsmoke/100Mはdefaultのblock samplerを使う。
+下記200更新はCLI利用例で、overfit合格の証拠や本学習設定ではない。Phase 5の正式な予算・合格条件は[詳細計画](22_phase5_plan.md)へ固定済み。Phase 5 supervisorは終了済み。完了した比較を重複起動せず、現在の③のstudyを確認する。④以降は再開指定を待つ。文書単独の暗記検証には`--sampler document`を使用し、通常のsmoke/100Mはdefaultのblock samplerを使う。
 
 ```sh
 uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train.py build-shards --tokenizer artifacts/phase2/8192/tokenizer.model --limit 100 --output "$HOME/jmicro-data/shards/t8k-overfit100"
@@ -153,7 +153,7 @@ Phase 4 Norm/defaultのeager最大安定batchはT8K 57 / T4K 64、測定点の�
 
 ```text
 AGENTS.md、docs/autonomous_status.md、docs/15_project_roadmap.md、docs/windows_handoff.md、docs/24_phase6_plan.mdを読んでください。
-Phase 0〜5とPhase 6①②は完了し、③以降は停止中です。残る作業はdocs/27_phase6_remaining_plan.mdを参照してください。ユーザーの再開指定があるまで本学習を起動しないでください。
+Phase 0〜5とPhase 6①②は完了し、③の高速化・容量検証を実行中です。③の完了・commit後に停止し、④以降は開始しないでください。残る作業はdocs/27_phase6_remaining_plan.mdを参照してください。ユーザーの再開指定があるまで本学習を起動しないでください。
 最新コードの正本はWindows workspaceで、最近のコミットは未pushです。Linux実行sourceはsnapshot/hashで確認してください。
 固定公開Tokenizer/pilotは復元済み。Pythonは必ずuv run --frozen、依存変更はuv addを使ってください。
 既存process/checkpointを確認し、docs/24_phase6_plan.mdとdocs/26_phase6_preparation_completion.mdに従って進め、同じjobを二重起動しないでください。

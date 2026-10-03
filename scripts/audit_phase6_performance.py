@@ -34,7 +34,8 @@ def audit(study, destination):
     validate(plan, read_json(study/'snapshot/schemas/configs/phase6/performance.schema.json'))
     checks = {}
     evidence = {'study': str(study), 'report_sha256': sha256(study/'batch_performance_report.json'),
-                'binding': binding, 'protocol': plan, 'exact': {}, 'resource_summary': {}}
+                'binding': binding, 'protocol': plan, 'auditor_sha256': sha256(Path(__file__)), 'exact': {}, 'resource_summary': {}}
+    selected_model = read_json(ROOT/'reports/phase5/candidate_configs.json')['100m-no-qknorm']['model_config']
     def check(name, passed):
         checks[name] = bool(passed)
     check('study_complete', read_json(study/'job.json')['status'] == 'complete' and report['status'] == 'passed')
@@ -66,6 +67,14 @@ def audit(study, destination):
             check(f'{label}_failure_preserved', bool(item.get('failure')) and (study/'logs'/f'{label}.log').exists())
             continue
         check(f'{label}_checkpoint_sha', sha256(Path(item['checkpoint'])) == item['checkpoint_sha256'])
+        run_record = read_json(Path(request['run'])/'run.json')
+        environment = read_json(Path(request['run'])/'environment.json')
+        check(f'{label}_selected_model_and_source', run_record['model_config'] == selected_model
+              and run_record['implementation_sha256'] == binding['implementation'])
+        check(f'{label}_actual_wsl_cuda_bf16_python', environment['platform']['is_wsl']
+              and environment['platform']['system'] == 'Linux' and environment['platform']['python'] == '3.12.7'
+              and environment['torch_probe']['cuda_available'] and environment['torch_probe']['bf16_supported']
+              and 'RTX 4090' in environment['nvidia_smi']['stdout'])
         check(f'{label}_finite_metrics', all(math.isfinite(item[key]) and item[key] > 0 for key in ('steady_tokens_per_second', 'p95_update_seconds')))
         check(f'{label}_cuda_evaluation_isolated', item['evaluation_state_isolated'] and item['evaluation_documents'] == plan['evaluation_documents'] and item['generation_outputs'] == plan['generation_cases'])
         if request['kind'] in ('probe', 'confirmation'):

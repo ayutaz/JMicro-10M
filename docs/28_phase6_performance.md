@@ -34,6 +34,22 @@ v3は実CUDA updateのCPU ATen traceで、Flashなら`aten::_scaled_dot_product_
 
 最終設定は完全一致と運用確認を通過したものから速度で選ぶ。最大VRAM使用量と最高速度を別に報告し、評価/saveの余裕を残す。本学習effective batch/LR/WSD数値予算の凍結は⑤として残す。CPU/data waitが制約なら実測に基づく対策を比較し、測定していないMFUや「全GPU能力を使い切った」との保証はしない。
 
+## v3の短い比較（採用判定前）
+
+[7設定のraw結果への参照と実演算証拠](../reports/phase6/performance_initial_probes.json)。各batch 8/context 1024/40完了更新、同じ入力327,680 tokens、最初の8更新とprofile更新を速度集計から除いた。compile cacheがある起動の値で、fresh cold compileや最大batchの結果ではない。
+
+| 設定 | 定常tokens/s | training peak GiB |
+|---|---:|---:|
+| reference/math | 120,508 | 3.913 |
+| causal/math | 111,869 | 3.913 |
+| compile/math/default | 272,222 | 3.217 |
+| compile/math/reduce-overhead | 284,281 | 3.154 |
+| causal/Flash | 235,705 | 2.137 |
+| compile/Flash/default | 473,743 | 1.592 |
+| compile/Flash/reduce-overhead | 520,757 | 1.530 |
+
+全7設定で有限値・保存/小sample評価・backend実効を確認した。最大速度比はreference比4.321倍だが、再開・容量・3×200を通過するまでは採用しない。[全79 tests](../reports/phase6/performance_tests.xml)、[文書・履歴保護の監査](../reports/phase6/performance_documentation_audit.json)、[live uv parent実行の確認](../reports/phase6/performance_launch_audit.json)を保存した。GPU使用率やdata waitの判定は最終confirmation時系列から行う。
+
 ## 永続実行と再開
 
 WSL checkoutからの実command:
