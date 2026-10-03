@@ -77,6 +77,26 @@ def test_evaluation_targets_scored_once(body):
     assert seen == list(range(1, body + 1))
 
 
+def test_batched_heldout_matches_scalar_body_eos_and_preserves_state(shard):
+    from jmicro.readiness import evaluate_batched
+    dev = Shard(shard.directory, 'dev')
+    model = Trainer(config(), shard, spec()).model
+    model.train()
+    before = rng_state()
+    scalar = evaluate_body(model, dev, 'cpu', context=16)
+    batched = evaluate_batched(model, dev, 'cpu', context=16, batch=3)
+    assert model.training and equal_state(before, rng_state())
+    assert batched['documents'] == 4 and batched['body_bytes'] == scalar['body_bytes']
+    assert batched['body_tokens'] == sum(row['body_tokens'] for row in scalar['rows'])
+    for actual, expected in zip(batched['rows'], scalar['rows'], strict=True):
+        assert actual['doc_id'] == expected['doc_id']
+        assert actual['scored_body_tokens'] == expected['body_tokens']
+        assert actual['body_nll'] == pytest.approx(expected['body_nll'], rel=1e-6)
+        assert actual['eos_nll'] == pytest.approx(expected['eos_nll'], rel=1e-6)
+    with pytest.raises(ValueError, match='held-out'):
+        evaluate_batched(model, shard, 'cpu')
+
+
 def test_continuous_vs_resumed_updates_with_evaluation_rng_isolation(shard, tmp_path):
     continuous = Trainer(config(), shard, spec())
     expected = [continuous.step() for _ in range(6)]

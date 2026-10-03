@@ -205,13 +205,13 @@ def evaluate_body(model, shard, device, dtype="fp32", limit=None, context=1024):
             for start, end, first, last in scoring_windows(count, context, min(512, context - 1)):
                 with autocast(device, dtype):
                     logits = model(ids[start:end][None]).logits[0]
-                value = F.cross_entropy(logits[first-start-1:last-start-1], ids[first:last], reduction="sum")
+                value = F.cross_entropy(logits[first-start-1:last-start-1].float(), ids[first:last], reduction="sum")
                 nll += float(value)
                 scored += last - first
             start = max(0, len(ids) - context)
             with autocast(device, dtype):
                 logits = model(ids[start:-1][None]).logits[0, -1]
-            eos = float(F.cross_entropy(logits[None], ids[-1:]))
+            eos = float(F.cross_entropy(logits[None].float(), ids[-1:]))
             if scored != count:
                 raise ValueError("Body targets were not scored exactly once")
             rows.append({"doc_id": document["doc_id"], "body_tokens": count,

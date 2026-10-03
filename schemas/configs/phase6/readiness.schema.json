@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Frozen Phase6 generation export and bounded stability readiness",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "scope",
+    "shards",
+    "tokenizer",
+    "tokenizer_sha256",
+    "shard_manifest_sha256",
+    "batch",
+    "context",
+    "accumulation",
+    "dtype",
+    "seed",
+    "weight_decay",
+    "warmup",
+    "learning_rates",
+    "stability_updates",
+    "stability_decay_updates",
+    "score_documents",
+    "evaluation_batch",
+    "evaluation_bpb_tolerance",
+    "generation_cases",
+    "generation_tokens",
+    "memory_fraction",
+    "maximum_generation_fixes",
+    "worker_timeout_seconds",
+    "variant",
+    "exact_stable_updates",
+    "exact_split_at",
+    "exact_decay_updates",
+    "exact_decay_split_at",
+    "selection",
+    "acceptance"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "scope": {
+      "const": "Phase6 steps4-5 only; stop before 500M Base scaling"
+    },
+    "shards": {
+      "const": "/home/aihub_ubuntu/jmicro-data/phase6/expanded-v2/shards"
+    },
+    "tokenizer": {
+      "const": "artifacts/phase2/4096/tokenizer.model"
+    },
+    "tokenizer_sha256": {
+      "const": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+    },
+    "shard_manifest_sha256": {
+      "const": "75c7420a1434cf8a97797218b163c694a13ed838f389f09327dcc86f7164c12c"
+    },
+    "batch": {
+      "const": 32
+    },
+    "context": {
+      "const": 1024
+    },
+    "accumulation": {
+      "const": 1
+    },
+    "dtype": {
+      "const": "bf16"
+    },
+    "seed": {
+      "const": 42
+    },
+    "weight_decay": {
+      "const": 0.1
+    },
+    "warmup": {
+      "const": 200
+    },
+    "learning_rates": {
+      "const": [
+        0.001,
+        0.002,
+        0.003
+      ]
+    },
+    "stability_updates": {
+      "const": 2000
+    },
+    "stability_decay_updates": {
+      "const": 100
+    },
+    "score_documents": {
+      "const": 256
+    },
+    "evaluation_batch": {
+      "const": 16
+    },
+    "evaluation_bpb_tolerance": {
+      "const": 0.001
+    },
+    "generation_cases": {
+      "const": 80
+    },
+    "generation_tokens": {
+      "const": 64
+    },
+    "memory_fraction": {
+      "const": 0.94
+    },
+    "maximum_generation_fixes": {
+      "const": 2
+    },
+    "worker_timeout_seconds": {
+      "const": 7200
+    },
+    "variant": {
+      "const": {
+        "name": "compile-reduce-flash",
+        "backend": "flash",
+        "compile": true,
+        "compile_mode": "reduce-overhead",
+        "training_fast_path": true,
+        "deterministic": true
+      }
+    },
+    "exact_stable_updates": {
+      "const": 400
+    },
+    "exact_split_at": {
+      "const": 200
+    },
+    "exact_decay_updates": {
+      "const": 100
+    },
+    "exact_decay_split_at": {
+      "const": 50
+    },
+    "selection": {
+      "const": "lowest common-byte BPB of the 256 fixed dev documents after the independent 100-update decay, among finite and exactly resumable candidates; no extra LR sweep"
+    },
+    "acceptance": {
+      "const": "Learned NoNorm HF/native float GGUF parity and stop controller; 400 generation failure diagnosis; full expanded-dev BPB/timing; 3 bounded LR comparisons; new-source all-state stable/decay and cold-cache resume; frozen long-run config and real launch/restart commands, without starting Base scaling"
+    }
+  }
+}

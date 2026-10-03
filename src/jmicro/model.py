@@ -201,11 +201,11 @@ class JMicroModel(nn.Module):
         return model
 
     def hf_reference(self):
-        if self.config["qk_norm_type"] != "rms_head_shared":
-            raise ValueError("QK-Norm-free ablation requires a separate HF/export adapter")
-        from transformers import Qwen3Config, Qwen3ForCausalLM
+        from transformers import LlamaConfig, LlamaForCausalLM, Qwen3Config, Qwen3ForCausalLM
         c = self.config
-        config = Qwen3Config(vocab_size=c["vocab_size"], hidden_size=c["hidden_size"],
+        config_class, model_class = ((LlamaConfig, LlamaForCausalLM) if c["qk_norm_type"] == "none"
+                                    else (Qwen3Config, Qwen3ForCausalLM))
+        config = config_class(vocab_size=c["vocab_size"], hidden_size=c["hidden_size"],
             intermediate_size=c["intermediate_size"], num_hidden_layers=c["num_hidden_layers"],
             num_attention_heads=c["num_attention_heads"], num_key_value_heads=c["num_key_value_heads"],
             head_dim=c["head_dim"], hidden_act="silu", max_position_embeddings=c["max_position_embeddings"],
@@ -213,6 +213,6 @@ class JMicroModel(nn.Module):
             rope_parameters={"rope_type": "default", "rope_theta": c["rope_theta"]},
             attention_bias=False, attention_dropout=0.0, pad_token_id=0, bos_token_id=2, eos_token_id=3)
         config._attn_implementation = "eager"
-        reference = Qwen3ForCausalLM(config).eval()
+        reference = model_class(config).eval()
         reference.load_state_dict(self.state_dict(), strict=True)
         return reference

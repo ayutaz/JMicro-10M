@@ -62,6 +62,7 @@ Phase 6①②③完了（2026-10-03）: train 756,087,912 unique stream tokens�
 27. [27_phase6_remaining_plan.md](27_phase6_remaining_plan.md) — ③の採用結果、再開後の④生成/変換、⑤設定凍結、本学習と完了条件
 28. [28_phase6_performance.md](28_phase6_performance.md) — ③の実GPU高速化・backend実効確認・容量と厳密再開の比較
 29. [29_phase6_performance_completion.md](29_phase6_performance_completion.md) — ③の採用速度・最大容量・厳密/cold再開・独立監査と停止記録
+30. [30_phase6_readiness_execution.md](30_phase6_readiness_execution.md) — ④⑤の限定比較、生成/変換・全文評価・LR・再開・本学習設定の完了条件
 
 運用文書: [最新状態](autonomous_status.md)、[復旧履歴](autonomous_history_20261003.md)、[Windows/WSL引継ぎ](windows_handoff.md)、[固定Hub復元](huggingface_handoff.md)、[自律runner](codex_automation.md)、[評価仕様](evaluation_protocol.md)。[data](../data/README.md)、[eval](../eval/README.md)、[reports](../reports/README.md)に各保存領域の手順を記載する。
 

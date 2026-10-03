@@ -30,15 +30,25 @@ def export_hf(model, tokenizer_path: Path, directory: Path):
     return reference
 
 
+def llama_rope_rows(tensor, heads):
+    """Half-split HF Q/K rows -> interleaved llama.cpp Llama RoPE rows."""
+    rows, columns = tensor.shape
+    if rows % (2 * heads):
+        raise ValueError("Q/K rows must contain complete even-sized heads")
+    return tensor.reshape(heads, 2, rows // heads // 2, columns).transpose(1, 2).reshape(rows, columns).contiguous()
+
+
 def export_gguf(hf_directory: Path, path: Path, config: dict):
-    """HF safetensors -> Qwen3 GGUF, official name map, FP32 tensors.
+    """HF safetensors -> Qwen3 (QK-Norm) or Llama (NoNorm) FP32 GGUF.
 
     Qwen3 GGML RoPE uses half-split (NEOX); Q/K weights need no permutation.
     Built-in SPM is measured separately; external SentencePiece is normative.
     """
     tok = Tokenizer(hf_directory / "tokenizer.model")
-    writer = gguf.GGUFWriter(path, "qwen3")
-    writer.add_name(config["name"] + "-random-seed42")
+    no_qk_norm = config["qk_norm_type"] == "none"
+    architecture = "llama" if no_qk_norm else "qwen3"
+    writer = gguf.GGUFWriter(path, architecture)
+    writer.add_name(config["name"] if no_qk_norm else config["name"] + "-random-seed42")
     writer.add_context_length(config["max_position_embeddings"])
     writer.add_embedding_length(config["hidden_size"])
     writer.add_block_count(config["num_hidden_layers"])
@@ -69,12 +79,16 @@ def export_gguf(hf_directory: Path, path: Path, config: dict):
     writer.add_string("jmicro.tokenizer_sha256", sha256(tok.path))
     writer.add_bool("jmicro.external_tokenizer_required", True)
     writer.add_chat_template(CHAT_TEMPLATE)
-    mapping = gguf.get_tensor_name_map(gguf.MODEL_ARCH.QWEN3, config["num_hidden_layers"])
+    mapping = gguf.get_tensor_name_map(gguf.MODEL_ARCH.LLAMA if no_qk_norm else gguf.MODEL_ARCH.QWEN3, config["num_hidden_layers"])
     state = load_file(str(hf_directory / "model.safetensors"))
     names = {}
     for name, tensor in state.items():
         if name == "lm_head.weight":
             continue
+        if no_qk_norm and name.endswith("self_attn.q_proj.weight"):
+            tensor = llama_rope_rows(tensor, config["num_attention_heads"])
+        elif no_qk_norm and name.endswith("self_attn.k_proj.weight"):
+            tensor = llama_rope_rows(tensor, config["num_key_value_heads"])
         mapped = mapping.get_name(name, try_suffixes=(".weight",))
         if mapped is None:
             raise ValueError(f"Unmapped HF tensor: {name}")

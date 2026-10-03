@@ -92,3 +92,20 @@ def test_hf_independent_eager_reference(model):
         torch.testing.assert_close(model(ids).logits, hf(ids).logits, atol=1e-5, rtol=1e-4)
         prefix = hf(ids[:, :17], use_cache=True)
         torch.testing.assert_close(model(ids).logits[:, 17:], hf(ids[:, 17:], past_key_values=prefix.past_key_values).logits, atol=1e-5, rtol=1e-4)
+
+
+def test_no_qknorm_hf_llama_reference_and_disk_cache(model, tmp_path):
+    from transformers import AutoModelForCausalLM
+    config = dict(model.config, qk_norm_type="none")
+    own = JMicroModel(config).eval()
+    hf = own.hf_reference()
+    assert hf.config.model_type == "llama"
+    assert hf.lm_head.weight is hf.model.embed_tokens.weight
+    hf.save_pretrained(tmp_path)
+    loaded = AutoModelForCausalLM.from_pretrained(tmp_path, local_files_only=True, attn_implementation="eager").eval()
+    ids = torch.randint(8, 300, (1, 25))
+    with torch.no_grad():
+        expected = own(ids).logits
+        torch.testing.assert_close(loaded(ids).logits, expected, atol=1e-5, rtol=1e-4)
+        prefix = loaded(ids[:, :17], use_cache=True)
+        torch.testing.assert_close(loaded(ids[:, 17:], past_key_values=prefix.past_key_values).logits, expected[:, 17:], atol=1e-5, rtol=1e-4)

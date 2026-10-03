@@ -6,7 +6,7 @@
 
 Pythonは3.12.7/uv管理、全実行は`uv run --frozen`。依存変更は`uv add`、復元は`uv sync --frozen`。GPU学習はWSL 2 / Ubuntu / RTX 4090。Git local identityは`yousan <ka1357amnbpdr@gmail.com>`、検証済み変更をcommitし、push/公開しない。
 
-**Phase 0〜5とPhase 6①②③は完了。③の高速化・資源活用の最終証拠は`a7d26e1`へcommit済みで停止中。④生成/変換、⑤長期設定の凍結、500M以上の本学習は未開始。Phase 6全体やBase/Chat品質の完了ではない。** [③完了記録](29_phase6_performance_completion.md)、[残りの計画](27_phase6_remaining_plan.md)。
+**Phase 0〜5とPhase 6①②③は完了。ユーザーが「2まで計画を立てて進める」と指定したため、④生成/変換と⑤長期設定の確定を再開した。④⑤の検証・commit後に停止し、500M以上の本学習は開始しない。** [今回の比較と完了条件](30_phase6_readiness_execution.md)、[③完了記録](29_phase6_performance_completion.md)。
 
 ## ③の実測と採用
 
@@ -39,7 +39,9 @@ Windowsコード/Git正本は`C:\Users\AiHUB\Desktop\japanese-tiny-llm-10m`、Li
 
 ## 次の具体的な行動
 
-③の最終report/status/文書・WSL同期・旧成果保持は検証済み、`a7d26e1`へcommit済み。今回の「計画を最新にする」作業は文書のみで、[更新監査](../reports/phase6/plan_update_20261003.json)に結果を保存する。実装は`1aa0d4d`、初期probe/文書は`3fc1221`、cold再開入口は`8e68350`。④以降はユーザーの再開指定を待つ。Tokenizer再学習、Phase 3 export、完了済みdata/Phase 5比較を繰り返さない。
+④⑤を[固定計画](30_phase6_readiness_execution.md)に従って実行中。NoNorm HF/Llama・GGUF Q/K row adapter、FP32 CEのbatch評価を実装し、全82 tests成功（失敗初回もLinux `reports/local/readiness_tests.xml`へ保持、成功は`readiness_tests_verified.xml`）。cmake/ninjaと固定native runtimeを構築済み。学習済みGGUFは初回のFP32比較で許容値を超え、元runtime/出力/logを保持してRoPEのFP32逐次乗算による位置依存誤差を診断した。独立周波数計算を使う別runtimeを構築し、許容値を変えず再検証する。Linux空き921,717,997,568 bytesを準備時に確認。準備前commitは`a786f59`、性能証拠は`a7d26e1`。Tokenizer再学習・完了済み比較は繰り返さない。
+
+④⑤のGPU supervisorはLinux `reports/phase6/readiness-20261003/job.json`、Windows launcher12524、Linux supervisor476 / boot `a1175657-f036-4bff-abd9-0326a3f844a3` / start ticks10880、400生成worker513 / start ticks10999が実プロセス確認済み。GPU排他・stage/log・2秒heartbeat・完了更新checkpointで保持する。次はdev全文→LR3候補各2,000更新＋独立100 decay→変更後sourceの400/200+200・decay100/50+50・cold200→400再開。これは有限の準備比較で、本学習を起動しない。再開CLIはjob.jsonへ保存済み、source/config一致と生存プロセス確認後に使用する。別runtime CPUビルドのWindows launcher13528、Linux `artifacts/runtime-precise/build.log`。原runtimeは変更しない。
 
 再開後は④でEOS/反復/Unicodeの400生成診断とNoNorm HF/GGUF adapter、⑤で採用batchに対するLR/effective batch/長期WSD・評価予算を凍結してから500M→1B→2B→5B→10Bを段階評価する。Phase 5のBPB1.221443、greedy EOS0/80・反復54/80、sampling Unicode2/240は未達として維持。Chat trainer/複数source mixture/Muonも未実装。
 

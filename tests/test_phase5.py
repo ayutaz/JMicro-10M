@@ -36,8 +36,9 @@ def test_norm_free_has_no_gains_and_cache_still_matches():
     torch.testing.assert_close(full[:,:-1], ablation(changed).logits[:,:-1], atol=0, rtol=0)
     ablation(ids, labels=ids).loss.backward()
     assert all(torch.isfinite(p.grad).all() for p in ablation.parameters())
-    with pytest.raises(ValueError, match='adapter'):
-        ablation.hf_reference()
+    reference = ablation.hf_reference().eval()
+    assert reference.config.model_type == 'llama'
+    torch.testing.assert_close(reference(ids).logits, full, atol=1e-5, rtol=1e-4)
 
 
 def test_batched_scoring_matches_serial_with_padding_long_windows_and_rng():
