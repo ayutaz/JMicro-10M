@@ -1,6 +1,6 @@
 # Phase 6: Base本学習の準備と段階評価計画
 
-更新: 2026-10-03。[Phase 5](23_phase5_completion.md)は完了し、現在はPhase 6前で停止中。この文書は次回の準備・判断順を定める計画であり、学習開始や数値予算の凍結を意味しない。ユーザーの再開指定後に進める。
+更新: 2026-10-03。[Phase 5](23_phase5_completion.md)は完了し、現在はPhase 6①②の準備を実行中。ユーザーが①データ拡充と②長時間学習準備を再開した。[今回の目的・完了条件](25_phase6_preparation.md)に従い実行中。③以降の探索と本学習は今回起動しない。
 
 ## 目的と出発点
 
@@ -30,7 +30,7 @@ Phase 5のdev BPBは1.221443、定常速度121,139 tokens/s。これはpilot反�
 
 Phase 5の100M終端は凍結cosineの比較結果であり、総step数だけを変更して本系列へ延長しない。選択するのはarchitecture/Tokenizer/LRで、拡張train corpusの本系列は新規初期化する。batchを増やすと更新数と最適化条件が変わるため、LR 0.002を無条件に最適値としない。採用batchで小予算の安定性・学習曲線を確認してから本設定を固定する。
 
-WSD、mixture、NoNorm HF/GGUF adapterは未実装。stable/decayの数値配分、拡張sourceの実量・配合、本学習batch/backendは未凍結。これらを実装済み・実測済みと表示しない。学習後export/量子化の正式なparity・品質検証はPhase 8の必須条件として維持する。
+WSD stable/decayは実装・CUDA全state再開一致を検証済み。複数source mixtureとNoNorm HF/GGUF adapterは未実装。拡張sourceは756M unique train stream tokens、初期配合はWeb 100%。長期stable/decayの数値配分と本学習batch/backendは未凍結。これらを実装済み・実測済みと表示しない。学習後export/量子化の正式なparity・品質検証はPhase 8の必須条件として維持する。
 
 `configs/training/baseline.json`は初期の提案templateで、train CLIは自動読込しない。Phase 5の実行条件は凍結済みの`configs/phase5/plan.json`、候補の実configは上記reportを正とする。Phase 6のruntime configはgate通過後に別途作成し、初期templateのbatch-selection phaseやscheduler候補を本学習の確定値として流用しない。
 
@@ -72,6 +72,6 @@ WSD、mixture、NoNorm HF/GGUF adapterは未実装。stable/decayの数値配分
 uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train.py train --help
 ```
 
-WSDの実CLIと長期run configが未作成のため、本書には本学習の起動commandを置かない。実装とgate通過後に、正確な起動・再開commandをrun記録とhandoffへ追加する。
+WSDの実CLIと準備検証configは実装済み。長期run configは未凍結のため、本書には本学習の起動commandを置かない。実装とgate通過後に、正確な起動・再開commandをrun記録とhandoffへ追加する。
 
-予定成果物は拡張corpus manifest/shards、準備gate report、凍結run config、stable/decay checkpointと台帳、`base_scaling_report.json`、`base_v1_evaluation.md`、model card。これらは今後作成するもの。現在の停止境界はPhase 5完了のまま維持する。
+予定成果物は拡張corpus manifest/shards、準備gate report、凍結run config、stable/decay checkpointと台帳、`base_scaling_report.json`、`base_v1_evaluation.md`、model card。これらは今後作成するもの。今回の停止境界はPhase 6①②完了。③以降へは進まない。

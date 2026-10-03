@@ -1,0 +1,22 @@
+{
+  "scope": "Preserved preparation failures, corrected without relaxing gates",
+  "failures": [
+    {
+      "stage": "initial_data_build",
+      "output": "/home/aihub_ubuntu/jmicro-data/phase6/expanded-v1",
+      "log": "reports/phase6/data-build/stderr.log",
+      "reason": "datasketch 2.0 requires an explicit scheme when constructing MinHash from permutations/hash values",
+      "correction": "Explicit legacy scheme, scalar hash/permutation reference test and LSH candidate test; retained failed artifacts and started expanded-v2",
+      "threshold_changes": false
+    },
+    {
+      "stage": "first_full_unit_suite",
+      "reason": "New preparation JSON lacked its required schema; Phase 0 config validation rejected it",
+      "result": {"failed": 2, "passed": 71},
+      "correction": "Added preparation schema with fixed 500M goal, capacity, source and CUDA verification constraints",
+      "threshold_changes": false
+    }
+  ],
+  "final_unit_result": {"tests": 74, "failures": 0, "errors": 0, "skipped": 0},
+  "unit_warnings": "Two Python 3.12 fork deprecation warnings from the small multithreaded integrity fixture; both worker lifecycles completed successfully. Real data workers and audit are separately observed."
+}

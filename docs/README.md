@@ -1,6 +1,6 @@
 # JMicro-10M 設計・調査ノート
 
-Phase 5完了（2026-10-03）: overfit・10M smoke・4本の100M比較・補助評価・候補選定・独立監査が終了。[完了記録](23_phase5_completion.md)を参照。Phase 6本学習は開始せず停止中。
+Phase 6①②の準備を実行中（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpusの独立監査は進行中。③以降の速度/batch探索・本学習は未開始。
 
 このディレクトリは、日本語専用の約10Mパラメータ級Decoder-only Language Model `JMicro-10M` を、Tokenizerを含めてスクラッチ構築するための設計・調査記録である。
 
@@ -25,7 +25,7 @@ Phase 5完了（2026-10-03）: overfit・10M smoke・4本の100M比較・補助�
 
 **完了範囲**: [4k/8k Tokenizer](18_phase2_completion.md)、[両モデル/cache/学習前export](19_phase3_completion.md)、GPU学習器・評価・再開・速度を検証済み。Phase 3重みはランダム初期化、Phase 4には小さい学習済み検証checkpointがある。Python 3.12.7、実行は`uv run --frozen`、依存変更は`uv add`。
 
-**現在地**: [Phase 4の実GPU検証](21_phase4_completion.md)と[Phase 5の候補選定](23_phase5_completion.md)が完了し、Phase 6前で停止中。Base/Chatの本学習・能力目標は未達。最新の状態は[継続記録](autonomous_status.md)を参照する。
+**現在地**: [Phase 4の実GPU検証](21_phase4_completion.md)と[Phase 5の候補選定](23_phase5_completion.md)が完了し、Phase 6①②の準備を実行中。Base/Chatの本学習・能力目標は未達。最新の状態は[継続記録](autonomous_status.md)を参照する。
 
 **別PCでの再開入口**: [Windows/WSL＋RTX 4090の再開手順](windows_handoff.md)。GitHubの取得からHub成果物の復元、uv環境、CUDA確認、実装順までを順に実行できる。
 
@@ -81,3 +81,5 @@ Phase 5完了（2026-10-03）: overfit・10M smoke・4本の100M比較・補助�
 公開データの「商用利用可能」は、データセット配布ライセンスだけで最終判断しない。Common Crawl由来データでは、データベースライセンスと各Web文書の著作権は別問題である。公開・販売前に、採用した各source subsetの利用条件、帰属表示、ShareAlike条件、削除要求対応を再確認する。本書は法的助言ではない。
 
 最終更新: 2026-10-03。外部資料の調査日は各文書へ残し、研究候補と実装・実測結果を区別する。
+
+25. [25_phase6_preparation.md](25_phase6_preparation.md) — 今回の①データ拡充・②WSD/長時間学習準備の目的、完了条件と停止境界

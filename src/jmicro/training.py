@@ -449,10 +449,12 @@ def train_command(args):
     if args.branch_from:
         parent = torch.load(args.branch_from, map_location="cpu", weights_only=False)
         spec.update(scheduler="wsd_decay", branch_at=parent["update"],
-                    decay_updates=args.decay_updates, minimum_lr_ratio=args.minimum_lr_ratio)
+                    decay_updates=args.decay_updates, minimum_lr_ratio=0.1 if args.minimum_lr_ratio is None else args.minimum_lr_ratio)
     elif args.resume:
         prior = torch.load(args.resume, map_location="cpu", weights_only=False)
         if prior["spec"].get("scheduler") == "wsd_decay":
+            if args.scheduler != "wsd" or (args.minimum_lr_ratio is not None and args.minimum_lr_ratio != prior["spec"]["minimum_lr_ratio"]):
+                raise ValueError("Resume branch scheduler/floor differs; use frozen WSD configuration")
             spec.update({k: prior["spec"][k] for k in ("scheduler", "branch_at", "decay_updates", "minimum_lr_ratio")})
     trainer = Trainer(read_json(args.model), Shard(args.shards), spec, args.device)
     run = args.output
@@ -469,11 +471,11 @@ def train_command(args):
     else:
         if run.exists():
             raise ValueError("Use --resume for an existing run directory")
-        run.mkdir(parents=True)
         if args.branch_from:
             if run.resolve() == args.branch_from.parent.resolve():
                 raise ValueError("Branch output must differ from parent run")
             trainer.load(args.branch_from, decay_branch=True)
+        run.mkdir(parents=True)
         record = {"version": 1, "kind": "training", "run_id": run.name, "phase": args.phase,
             "status": "running", "created_at": now(), "git": git_state(ROOT),
             "spec": spec, "model_config": trainer.model.config,
@@ -568,7 +570,7 @@ def main():
     train.add_argument("--scheduler", choices=["cosine", "wsd"], default="cosine")
     train.add_argument("--branch-from", type=Path, help="Fork a stable WSD checkpoint into a new decay run")
     train.add_argument("--decay-updates", type=int)
-    train.add_argument("--minimum-lr-ratio", type=float, default=0.1)
+    train.add_argument("--minimum-lr-ratio", type=float, help="Decay floor (new branch default 0.1); resume must preserve the frozen floor")
     evaluation = commands.add_parser("evaluate")
     evaluation.add_argument("--checkpoint", type=Path, required=True)
     evaluation.add_argument("--shards", type=Path, required=True)
@@ -588,7 +590,7 @@ def main():
             parser.error("Invalid batch/context/update/warmup counts")
         if args.branch_from and args.resume:
             parser.error("Branch creation and resume are separate operations")
-        if args.branch_from and (args.scheduler != "wsd" or not args.decay_updates or not 0 <= args.minimum_lr_ratio < 1):
+        if args.branch_from and (args.scheduler != "wsd" or not args.decay_updates or (args.minimum_lr_ratio is not None and not 0 <= args.minimum_lr_ratio < 1)):
             parser.error("Decay branch requires --scheduler wsd, positive --decay-updates and a floor in [0,1)")
         if args.decay_updates is not None and not args.branch_from:
             parser.error("--decay-updates is only for branch creation; resume uses frozen branch configuration")

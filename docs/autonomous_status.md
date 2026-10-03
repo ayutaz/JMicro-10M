@@ -12,6 +12,8 @@
 
 ## 実際の状態
 
+Phase 6①②の最新実測: 拡張shardのtrainは1,604,292文書 / **756,087,912 stream tokens** / 2,946,200,160 body bytesで、500M開始用のunique量を満たした。dev 89,416 / test 89,485文書を分離。全raw再構成・edge/clusterの再構築監査は通過し、全retained文書のTokenizer round-trip/token/index照合を実行中。WSD stableの200 vs 100+100、decayの100 vs 50+50は採用NoNorm・実shard・CUDA/BF16/mathでmodel/optimizer/scheduler/RNG/sampler/loss/LR/token列まで完全一致し、73 GPU checksが成功した。CUDA jobは終了。全74 tests / skip・error・failure 0。Windows supervisor PID **23648**、Linux PID **1300**、active data audit PID **1397**。正本はLinux `reports/phase6/preparation-20261003/job.json`、同runのlogとdata outputの`audit_job.json`。監査完了後、独立completion audit・current docs/handoff更新・commitまで行い、③の探索前で停止する。
+
 **最新追記（Phase 6①②再開）**: ユーザーがデータ拡充と長時間学習準備を完了まで指示した。[今回の目的と完了条件](25_phase6_preparation.md)に500M以上のunique train stream tokens、固定revision/hash、pilot/固定suite保護、cluster分割、全corpus/shard監査、WSD stable/decay実装、実CUDA全state再開一致を固定した。最大batch/高速化探索と500M以上の本学習へは進まず、①②完了・コミットで停止する。
 
 WSD stableと独立decay枝CLI、枝の継承履歴・追加tokens、通常resumeのsource/config/data拒否を実装した。WSLで全73 tests / failure・error・skip 0を確認。CPU WSDの連続/中断再開・decay再開は全state完全一致、元stable checkpoint不変、LR境界、禁止変更の棄却を確認した。実CUDAは拡張shardの完成待ちで、まだ成功証拠にしない。

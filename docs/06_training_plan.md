@@ -1,8 +1,8 @@
 # 学習計画
 
-Phase 5完了（2026-10-03）: overfit・10M smoke・4本の100M比較・補助評価・候補選定・独立監査が終了。[完了記録](23_phase5_completion.md)を参照。Phase 6本学習は開始せず停止中。
+Phase 6①②の準備を実行中（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpusの独立監査は進行中。③以降の速度/batch探索・本学習は未開始。
 
-最終更新: 2026-10-03。AdamW＋warmup/cosineは実装済み。Phase 6の長期schedulerはWSDを採用する方針に決めたが、WSD、Muon、Chat trainerは未実装。train CLIは引数から設定を作り、baseline JSONを自動読込しない。現在のresumeは固定schedule/config/source/dataの変更を拒否するため、予算の延長を同一runの再開として扱わない。50Bは改善と予算条件を満たした場合のみ、外部の有料GPU実行は別途ユーザーの指示が必要。
+最終更新: 2026-10-03。AdamW＋warmup/cosine・WSD stable/decayは実装済み。Phase 6の長期schedulerはWSDを採用する方針に決めたが、WSD stable/decayは実装・CUDA検証済み、Muon・Chat trainerは未実装。train CLIは引数から設定を作り、baseline JSONを自動読込しない。現在のresumeは固定schedule/config/source/dataの変更を拒否するため、予算の延長を同一runの再開として扱わない。50Bは改善と予算条件を満たした場合のみ、外部の有料GPU実行は別途ユーザーの指示が必要。
 
 ## 全体像
 
@@ -10,14 +10,14 @@ Phase 5完了（2026-10-03）: overfit・10M smoke・4本の100M比較・補助�
 
 プロジェクト全体の目的・ゴール・成果物・完了条件は[フェーズ別実行計画](15_project_roadmap.md)を参照する。本書は学習系列の設定とcheckpoint段階を扱う。10B BaseからChatへ分岐し、20B/50Bの終了をChat着手の前提にしない。
 
-**現在地（2026-10-03）**: Phase 0〜5が完了。WSL＋RTX 4090で学習器・shard・BPB/生成評価・保存再開・最大安定batchを検証した。Phase 5のoverfit/smoke・4本の100M比較と独立監査も完了し、T4K / NoQK-Norm / LR 0.002を候補に選定した。Phase 6前で停止中。smokeはdev BPBが改善したが、抑制ありgreedy EOS 0/80・反復63/80で、本学習・Base/Chat品質目標は未達。実装時間とGPU計算時間を分け、採用したmath-only/batch 8の実測から予算を見積もる。[詳細計画](22_phase5_plan.md)、[進め方](15_project_roadmap.md#高速に完成させる進め方)
+**現在地（2026-10-03）**: Phase 0〜5が完了。WSL＋RTX 4090で学習器・shard・BPB/生成評価・保存再開・最大安定batchを検証した。Phase 5のoverfit/smoke・4本の100M比較と独立監査も完了し、T4K / NoQK-Norm / LR 0.002を候補に選定した。Phase 6①②の準備を実行中。smokeはdev BPBが改善したが、抑制ありgreedy EOS 0/80・反復63/80で、本学習・Base/Chat品質目標は未達。実装時間とGPU計算時間を分け、採用したmath-only/batch 8の実測から予算を見積もる。[詳細計画](22_phase5_plan.md)、[進め方](15_project_roadmap.md#高速に完成させる進め方)
 
 ```text
 Tokenizer 4k / 8k・Phase 4実測は完了
         -> 100件overfit（合格）
         -> 10M-token smoke（合格）
         -> 100M T4K/T8K・Norm・LR比較（完了、Muon追加不要）
-        -> Phase 6前で停止中
+        -> Phase 6①②の準備を実行中
         -> 再開後: 拡張corpus / WSD分岐・再開 / 容量・高速化 / 予算凍結
         -> 500M / 1B 選定候補の日本語生成と継続価値を評価
         -> 2B 過去355Mモデルとの比較点
@@ -58,7 +58,7 @@ Tokenizer 4k / 8k・Phase 4実測は完了
 
 最初からarchitecture、optimizer、data mixtureを同時に変えない。一度に一つの主要因を比較する。
 
-**Phase 5での判断**: 小探索は終点固定cosine、本系列はWSDを採用する方針。継続用stable枝と評価用decay枝を分け、optimizer更新回数、effective batch、枝ごとのtokensとGPU時間を記録する。WSD実装・分岐の再開検証と数値予算の凍結はPhase 6の開始前に行う。Phase 5の100M終点を予算だけ変更して延長しない。[詳細計画](22_phase5_plan.md#長期schedulerの選択と引継ぎ)、[実装・段階学習調査](12_training_implementation_research.md)を参照する。
+**Phase 5での判断**: 小探索は終点固定cosine、本系列はWSDを採用する方針。継続用stable枝と評価用decay枝を分け、optimizer更新回数、effective batch、枝ごとのtokensとGPU時間を記録する。WSD実装・分岐のCUDA再開検証は①②で完了。長期の数値予算は③以降の測定後に凍結する。Phase 5の100M終点を予算だけ変更して延長しない。[詳細計画](22_phase5_plan.md#長期schedulerの選択と引継ぎ)、[実装・段階学習調査](12_training_implementation_research.md)を参照する。
 
 ## Batchとperformance
 

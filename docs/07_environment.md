@@ -1,8 +1,8 @@
 # 実行環境とデータ配置
 
-Phase 5完了（2026-10-03）: overfit・10M smoke・4本の100M比較・補助評価・候補選定・独立監査が終了。[完了記録](23_phase5_completion.md)を参照。Phase 6本学習は開始せず停止中。
+Phase 6①②の準備を実行中（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpusの独立監査は進行中。③以降の速度/batch探索・本学習は未開始。
 
-最終更新: 2026-10-03。[Phase 4監査](../reports/phase4/handoff_report.json)で確認した実機環境を記載する。Phase 5も完了し、Phase 6前で停止中。
+最終更新: 2026-10-03。[Phase 4監査](../reports/phase4/handoff_report.json)で確認した実機環境を記載する。Phase 5も完了し、Phase 6①②の準備を実行中。
 
 ## 実機環境
 

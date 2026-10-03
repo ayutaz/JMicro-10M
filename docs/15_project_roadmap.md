@@ -1,6 +1,6 @@
 # JMicro-10M フェーズ別実行計画
 
-Phase 5完了（2026-10-03）: overfit・10M smoke・4本の100M比較・補助評価・候補選定・独立監査が終了。[完了記録](23_phase5_completion.md)を参照。Phase 6本学習は開始せず停止中。
+Phase 6①②の準備を実行中（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpusの独立監査は進行中。③以降の速度/batch探索・本学習は未開始。
 
 作成日: 2026-10-02。最終更新: 2026-10-03（Phase 5候補選定完了、Phase 6準備計画を更新）。根拠は[プロジェクト目的](01_project_goal.md)、[設計](03_architecture.md)、[技術調査](11_technical_research_gaps.md)、[Phase 0完了記録](16_phase0_completion.md)、[Phase 1完了記録](17_phase1_completion.md)。既存の**確定**方針から逆算した計画であり、フェーズ分割、成果物名、採用基準は**提案**である。
 
@@ -20,7 +20,7 @@ Phase 5完了（2026-10-03）: overfit・10M smoke・4本の100M比較・補助�
 
 2026-10-02にiMac上のPhase 0を実施し、uv管理の開発基盤、準備run、環境記録、評価仕様・固定suiteを作成した。[Phase 0完了記録](16_phase0_completion.md)を参照する。モデル・Tokenizer・学習前exportはPhase 2〜3で実装・検証済み。学習器と4090 benchmarkはPhase 4で完了した。本学習と学習後の品質・配布検証は未実施。文献で確認した内容を実機検証の完了として扱わない。
 
-**Phase 0〜5が完了。Phase 6前で停止中**。[Tokenizer完了記録](18_phase2_completion.md)、[モデル・export完了記録](19_phase3_completion.md)、[Phase 4実機結果](21_phase4_completion.md)を参照する。Phase 5のoverfit・10M smoke・100M比較と候補選定も完了した。[完了記録](23_phase5_completion.md)を参照する。Web 19,998文書と3,000対話を採用し、cluster単位のtrain/dev/test、trainだけのTokenizer用sample約4.50MBを作成した。source台帳・manifest schema・全件復元・6成果物の再生成一致・20件の内容レビューを[完了記録](17_phase1_completion.md)にまとめた。
+**Phase 0〜5が完了。Phase 6①②の準備を実行中**。[Tokenizer完了記録](18_phase2_completion.md)、[モデル・export完了記録](19_phase3_completion.md)、[Phase 4実機結果](21_phase4_completion.md)を参照する。Phase 5のoverfit・10M smoke・100M比較と候補選定も完了した。[完了記録](23_phase5_completion.md)を参照する。Web 19,998文書と3,000対話を採用し、cluster単位のtrain/dev/test、trainだけのTokenizer用sample約4.50MBを作成した。source台帳・manifest schema・全件復元・6成果物の再生成一致・20件の内容レビューを[完了記録](17_phase1_completion.md)にまとめた。
 
 Phase 0の22件のテスト成功と54ファイルの準備run snapshot検証を記録済み。Base/Chat各100件（各dev 80/test 20）、前処理golden 30件、手動採点例11件を利用する。Phase 3完了時には全48テスト、両モデル×3 backendの実CLI 6件、79 source filesとruntime source 3,673 filesの監査が成功した。データは小規模pilot。4k/8k Tokenizerは学習済みで、両モデルのCPU検証も完了。Phase 4では64 tests、GPU検証checkpointとeager最大安定batch T8K 57 / T4K 64を確認した。master corpusと完成したBase/Chat重みはまだない。
 
@@ -56,7 +56,7 @@ Phase 1の会話pilotは準備済みで、拡張と評価準備をBase学習と�
 
 ## 高速に完成させる進め方
 
-**確定（優先方針）**: ユーザーは完成までの時間短縮を優先する。Windows/WSLへの切替とPhase 4は完了した。Phase 5の候補選定まで完了し、Phase 6前で停止中。Phase 3をGPUで最初からやり直すことは移行の前提にしない。
+**確定（優先方針）**: ユーザーは完成までの時間短縮を優先する。Windows/WSLへの切替とPhase 4は完了した。Phase 5の候補選定まで完了し、Phase 6①②の準備を実行中。Phase 3をGPUで最初からやり直すことは移行の前提にしない。
 
 Phase 3の最終検証一式はM1 iMac上で24.62秒。これは実装後の検証時間で、コード作成・修正、Tokenizer学習、runtime初回build、docs更新を含まない。作業全体の約25分と区別し、GPUへの変更で実装時間まで短縮すると見積もらない。[実測report](../reports/phase3/export_parity_report.json)
 
@@ -183,7 +183,7 @@ Phase 4は以下の順で実施済み。新規環境への移行・実装変更�
 
 ## Phase 4: 学習器・shard・再開・4090 benchmark
 
-**状態**: 2026-10-03に完了。WSL 3.0.1.0 / Ubuntu WSL 2 / RTX 4090でCUDA/BF16確認と64 tests / skip 0、両モデルの200 vs 100+100完全一致、全dev・固定生成suite、最大batch・backend/compile・予算を実測・監査した。[完了記録と測定の制約](21_phase4_completion.md)を参照する。Phase 5も[完了](23_phase5_completion.md)し、Phase 6前で停止中。
+**状態**: 2026-10-03に完了。WSL 3.0.1.0 / Ubuntu WSL 2 / RTX 4090でCUDA/BF16確認と64 tests / skip 0、両モデルの200 vs 100+100完全一致、全dev・固定生成suite、最大batch・backend/compile・予算を実測・監査した。[完了記録と測定の制約](21_phase4_completion.md)を参照する。Phase 5も[完了](23_phase5_completion.md)し、Phase 6①②の準備を実行中。
 
 **目的**: 長期runを失わず、実際の計算・ストレージ予算に収める。
 
@@ -208,7 +208,7 @@ Phase 4は以下の順で実施済み。新規環境への移行・実装変更�
 
 ## Phase 5: overfit・10M smoke・100M比較
 
-**状態**: 2026-10-03に完了。4本の100Mと補助予算を評価し、T4K / NoQK-Norm / LR 0.002を1候補に選定。全68 tests / skip 0、CUDA厳密resumeと独立監査が成功。品質の未達も[完了記録](23_phase5_completion.md)へ保存し、Phase 6前で停止。
+**状態**: 2026-10-03に完了。4本の100Mと補助予算を評価し、T4K / NoQK-Norm / LR 0.002を1候補に選定。全68 tests / skip 0、CUDA厳密resumeと独立監査が成功。品質の未達も[完了記録](23_phase5_completion.md)へ保存し、Phase 6①②の準備を実行中。
 
 **目的**: 実装不備を小予算で見つけ、長期学習へ渡す候補を根拠で選ぶ。
 
@@ -357,6 +357,6 @@ Vast.aiはローカルで検証済みの独立runを並列化する後半用途�
 
 全runでcode commit、config、依存version、Tokenizer/data hash、seed、tokens seen、unique docs/bytes/tokens、更新数、micro/effective batch、wall time、失敗理由を残す。SFTでは総系列tokensとAssistant教師tokens、WSDでは分岐ごとの履歴を分ける。比較する条件を変えたら別run IDにする。
 
-Phase 0〜4の骨格・データpilot・Tokenizer・両モデル/cache/export・Windows/WSL移行・学習器・評価・保存再開・実機速度は完了済み。Phase 5のoverfit/smoke・4本の100M比較・候補選定が完了し、Phase 6前で停止中。巨大コーパス全量取得、50B開始、追加hybridを先行しない。
+Phase 0〜4の骨格・データpilot・Tokenizer・両モデル/cache/export・Windows/WSL移行・学習器・評価・保存再開・実機速度は完了済み。Phase 5のoverfit/smoke・4本の100M比較・候補選定が完了し、Phase 6①②の準備を実行中。巨大コーパス全量取得、50B開始、追加hybridを先行しない。
 
 具体的な着手checklistは[次の実装タスク](10_next_steps.md)、各技術判断の根拠と実測待ち項目は[追加調査](11_technical_research_gaps.md)を参照する。

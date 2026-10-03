@@ -1,6 +1,6 @@
 # プロジェクト目的
 
-現在地（2026-10-03）: [Phase 0〜5](23_phase5_completion.md)が完了。100M比較からT4K / NoQK-Norm / LR 0.002を本学習候補に選定し、Phase 6前で停止中。完成したBase/Chat、雑談品質、学習後の量子化・独立環境検証は未達。本書の成功条件を維持し、次回は[Phase 6準備計画](24_phase6_plan.md)に従う。
+現在地（2026-10-03）: [Phase 0〜5](23_phase5_completion.md)が完了。100M比較からT4K / NoQK-Norm / LR 0.002を本学習候補に選定し、Phase 6①②の準備を実行中。完成したBase/Chat、雑談品質、学習後の量子化・独立環境検証は未達。本書の成功条件を維持し、次回は[Phase 6準備計画](24_phase6_plan.md)に従う。
 
 ## ゴール
 

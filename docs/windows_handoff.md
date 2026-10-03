@@ -1,8 +1,8 @@
 # 別PCで続きを進める: Windows / WSL / RTX 4090
 
-Phase 5完了（2026-10-03）: overfit・10M smoke・4本の100M比較・補助評価・候補選定・独立監査が終了。[完了記録](23_phase5_completion.md)を参照。Phase 6本学習は開始せず停止中。
+Phase 6①②の準備を実行中（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpusの独立監査は進行中。③以降の速度/batch探索・本学習は未開始。
 
-最終更新: 2026-10-03。現在のPCは[Phase 4の実機検証](21_phase4_completion.md)と[Phase 5](23_phase5_completion.md)が完了し、Phase 6前で停止中。復元済みPCでは環境整備・Tokenizer学習・完了済み測定を繰り返さず、[現在の状態](autonomous_status.md)と既存job/checkpointを確認する。Phase 6前に停止する。Base/Chat本学習は未開始。
+最終更新: 2026-10-03。現在のPCは[Phase 4の実機検証](21_phase4_completion.md)と[Phase 5](23_phase5_completion.md)が完了し、Phase 6①②の準備を実行中。復元済みPCでは環境整備・Tokenizer学習・完了済み測定を繰り返さず、[現在の状態](autonomous_status.md)と既存job/checkpointを確認する。今回の作業範囲は①②まで。③以降を開始しない。Base/Chat本学習は未開始。
 
 ## 引継ぎ先と現在地
 
@@ -17,7 +17,7 @@ Phase 5完了（2026-10-03）: overfit・10M smoke・4本の100M比較・補助�
 | 実機環境 | WSL package 3.0.1.0 / Ubuntu WSL 2、RTX 4090、Windows driver 616.92 |
 | Python / PyTorch | uv管理の3.12.7 / 2.14.1、CUDA 13.0 |
 | 完了済み | Phase 0〜5。pilot/Tokenizer、モデル/export、GPU学習器、overfit/smoke、100M比較・候補選定 |
-| 現在の境界 | 実行中jobなし。Phase 6前で停止。候補T4K / NoQK-Norm / LR 0.002 |
+| 現在の境界 | ①②の全corpus独立監査を実行中。WSD CUDA gateは成功。候補T4K / NoQK-Norm / LR 0.002 |
 | 未実施 | 長期Base本学習、Chat trainer、学習後の量子化品質 |
 
 HubにはpilotとTokenizerがあり、モデル重み・shard・checkpointは含まない。Phase 4の小さい学習済み検証checkpointはLinuxの`reports/phase4/gates-20261003/`へ保存してある。新規PCへは必要なcheckpoint/logも別途引き継ぐ。旧driver/アクセス拒否の履歴は[復旧履歴](autonomous_history_20261003.md)へ分離した。
@@ -119,9 +119,9 @@ checkpoint version 2は完了updateでmodel/optimizer/scheduler/Python・NumPy�
 
 ## 6. 実装済みCLIと次回の再開
 
-次回のPhase 6準備順・開始条件・未凍結項目は[詳細計画](24_phase6_plan.md)を参照する。現在はPhase 6前で停止。WSDの実CLIと凍結run configはまだ存在しないため、実装/gate通過後に本学習の起動・再開commandを追加する。
+次回のPhase 6準備順・開始条件・未凍結項目は[詳細計画](24_phase6_plan.md)を参照する。現在はPhase 6①②の準備を実行中。WSDの実CLIと凍結run configはまだ存在しないため、実装/gate通過後に本学習の起動・再開commandを追加する。
 
-`scripts/train.py`にbuild-shards/train/evaluateを実装済み。trainはCLI引数を使用し、baseline JSONを自動読込しない。AdamW＋warmup/cosineは実装済み、Muon・WSD・Chat trainer・複数source mixtureは未実装。
+`scripts/train.py`にbuild-shards/train/evaluateを実装済み。trainはCLI引数を使用し、baseline JSONを自動読込しない。AdamW＋warmup/cosine・WSD stable/decayは実装済み、Muon・Chat trainer・複数source mixtureは未実装。
 
 以下のhelpは学習を起動せず確認できる:
 
@@ -130,7 +130,7 @@ uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train
 uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train.py evaluate --help
 ```
 
-下記200更新はCLI利用例で、overfit合格の証拠や本学習設定ではない。Phase 5の正式な予算・合格条件は[詳細計画](22_phase5_plan.md)へ固定済み。Phase 5 supervisorは終了済み。完了した比較を重複起動せず、Phase 6の再開指定を待つ。文書単独の暗記検証には`--sampler document`を使用し、通常のsmoke/100Mはdefaultのblock samplerを使う。
+下記200更新はCLI利用例で、overfit合格の証拠や本学習設定ではない。Phase 5の正式な予算・合格条件は[詳細計画](22_phase5_plan.md)へ固定済み。Phase 5 supervisorは終了済み。完了した比較を重複起動せず、Phase 6③以降の再開指定を待つ。文書単独の暗記検証には`--sampler document`を使用し、通常のsmoke/100Mはdefaultのblock samplerを使う。
 
 ```sh
 uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train.py build-shards --tokenizer artifacts/phase2/8192/tokenizer.model --limit 100 --output "$HOME/jmicro-data/shards/t8k-overfit100"
@@ -151,7 +151,7 @@ eager最大安定batchはT8K 57 / T4K 64、測定点の最高速度はcompile ba
 
 ```text
 AGENTS.md、docs/autonomous_status.md、docs/15_project_roadmap.md、docs/windows_handoff.md、docs/24_phase6_plan.mdを読んでください。
-Phase 0〜5は完了。今回のPhase 5は完了し、Phase 6前で停止中です。ユーザーの再開指定があるまで本学習を起動しないでください。
+Phase 0〜5は完了。今回のPhase 5は完了し、Phase 6①②の準備を実行中です。ユーザーの再開指定があるまで本学習を起動しないでください。
 最新コードの正本はWindows workspaceで、最近のコミットは未pushです。Linux実行sourceはsnapshot/hashで確認してください。
 固定公開Tokenizer/pilotは復元済み。Pythonは必ずuv run --frozen、依存変更はuv addを使ってください。
 既存process/checkpointを確認し、docs/22_phase5_plan.mdに従って進め、同じjobを二重起動しないでください。

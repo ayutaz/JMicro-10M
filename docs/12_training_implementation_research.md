@@ -2,7 +2,7 @@
 
 実装状況更新: 2026-10-03。以下の提案と現在の実装を区別する。model.pyは学習/prefill/cacheで明示boolean mask＋is_causal=Falseを使う。maskなしis_causal=True経路は未実装で、Flash-onlyはnon-null mask非対応。fused AdamW、共有embeddingを含む行列へのdecay、FP32 parameters/BF16 autocast、単一split binの決定的sampler、完了updateでのatomic保存とsource/data/config拘束は実装済み。Phase 5のT8K/T4K/文書overfit/NoNormの200 vs 100+100もmathで全stateが完全一致。compile/defaultとeager/defaultはPhase 5の厳密resumeに失敗して採用せず、失敗を保持した。下記の仮速度表は算術例。現状は[Phase 5実測予算](../reports/phase5/resource_budget.json)と[次回の再測定計画](24_phase6_plan.md)を使う。
 
-**実装状況**: 以下は調査時点の仕様・候補。モデル/cacheのCPU実装・実parameter数・参照モデルとの一致は[Phase 3](19_phase3_completion.md)で検証済み。GPU学習器・保存再開・4090 benchmarkは[Phase 4](21_phase4_completion.md)で実測済み。AdamW＋warmup/cosineとNoQK-Normは実装済み。MuonはPhase 5で追加不要と判断し、WSDは長期方針に採用したが未実装。
+**実装状況**: 以下は調査時点の仕様・候補。モデル/cacheのCPU実装・実parameter数・参照モデルとの一致は[Phase 3](19_phase3_completion.md)で検証済み。GPU学習器・保存再開・4090 benchmarkは[Phase 4](21_phase4_completion.md)で実測済み。AdamW＋warmup/cosineとNoQK-Normは実装済み。MuonはPhase 5で追加不要と判断し、WSD stable/decayは実装し、拡張実shardのCUDA全state再開一致を検証済み。
 
 調査日: 2026-10-02。既存[アーキテクチャ](03_architecture.md)、[学習計画](06_training_plan.md)、[環境](07_environment.md)を実装するための補足。以下の推奨設定は**提案**であり、実験済みの最適値ではない。
 
@@ -93,7 +93,7 @@ SFTでは有効なAssistant教師token数がbatchごとに違う。gradient accu
 **提案**:
 
 - 100M探索は終点固定のwarmup＋cosineを使い、設定を揃える。
-- 長期系列はPhase 5でWSDを採用する方針に決定したが、実装と数値配分は未凍結。継続用のstable checkpointと、評価用のdecay済みcheckpointを別artifactにする。以下の9B+1B等は当初の例で、実行configではない。[準備計画](24_phase6_plan.md)
+- 長期系列はPhase 5でWSDを採用する方針に決定したが、stable/decay実装とCUDA検証は完了し、長期の数値配分は未凍結。継続用のstable checkpointと、評価用のdecay済みcheckpointを別artifactにする。以下の9B+1B等は当初の例で、実行configではない。[準備計画](24_phase6_plan.md)
 - 10B評価枝を作るなら、たとえば9Bで分岐し1Bをdecay。継続枝も9Bから10Bへ進める。20B評価枝は19Bで同様に分岐する。decay 10%は初期案で、最適値ではない。
 - 評価枝の追加計算も累積GPU時間へ計上し、`tokens_seen`は各枝の履歴に対する値として扱う。
 - decay済み10Bから20Bへ継続する場合は、LR再上昇を含む別の実験条件とし、stable枝からの継続と混同しない。

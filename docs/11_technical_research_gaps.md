@@ -13,10 +13,10 @@
 | HF/native float GGUF、量子化型・容量・停止 | 検証済み。内蔵Tokenizerは不一致、外部SentencePieceを採用 | [export report](../reports/phase3/export_parity_report.json) |
 | GPU学習器、保存再開、最大batch/実速度、BPB runner | 実装・実GPU検証済み、全64 tests / skip 0 | [Phase 4完了証拠](21_phase4_completion.md) |
 | 4k/8k・Norm・LRの100M、overfit/smoke、統計比較 | 実施・独立監査済み、全68 tests / skip 0。T4K NoNorm / LR 0.002を1候補に選定 | [Phase 5](23_phase5_completion.md) |
-| 拡張corpus、WSD、採用構成の最大batch/高速化 | 未実施・未凍結 | [Phase 6準備計画](24_phase6_plan.md) |
+| 拡張corpus・WSD / 最大batch・高速化 | 756M unique train shardとWSD CUDA一致は成功、全corpus監査中 / 最大batch・高速化は未実施 | [Phase 6準備計画](24_phase6_plan.md) |
 | 日本語短文・雑談、学習後量子化・NoNorm変換 | 品質目標未達、NoNorm HF/GGUF adapter未実装 | Phase 6〜8の実学習・固定評価 |
 
-完成までの時間短縮を優先し、Windows/WSL＋RTX 4090への移行とPhase 4は完了した。Phase 5の候補選定も完了し、ユーザー指定のPhase 6前で停止中。再開後はPhase 6の準備gateから進める。
+完成までの時間短縮を優先し、Windows/WSL＋RTX 4090への移行とPhase 4は完了した。Phase 5の候補選定も完了し、ユーザー指定のPhase 6①②の準備を実行中。再開後はPhase 6の準備gateから進める。
 
 ## 結論
 
