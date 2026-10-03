@@ -1,12 +1,12 @@
 # JMicro-10M
 
-Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpus・shardの独立監査も完了。③の速度/batch・厳密再開・cold再開も完了。④以降と本学習は未開始。
+Phase 6①②③完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpus・shardの独立監査も完了。③の速度/batch・厳密再開・cold再開も完了。④以降と本学習は未開始。
 
 日本語の短文生成と数ターンの雑談を目的に、約10Mの言語モデルをTokenizerからスクラッチ構築する。計画は[フェーズ別実行計画](docs/15_project_roadmap.md)、設計・調査一覧は[docs](docs/README.md)を参照。
 
 Phase 0〜5が完了。データpilot、4k/8k Tokenizer、約10Mモデル、cache、HF/実float GGUFをiMacで検証し、WSL＋RTX 4090で学習器・保存再開・最大安定batch・評価を実測した。[Tokenizer完了記録](docs/18_phase2_completion.md)、[モデル・export完了記録](docs/19_phase3_completion.md)、[Phase 4完了記録](docs/21_phase4_completion.md)を参照する。Phase 4は小さいGPU検証runで、Base/Chatの本学習と能力目標は未達。Phase 5の候補選定と独立監査も終了し、Phase 6①②③完了で停止中（本学習未開始）。
 
-**別PCで続きを進める場合は[Windows/WSL＋RTX 4090の再開手順](docs/windows_handoff.md)から始める。** 固定成果物の復元、uv環境・CUDA確認、実装済みCLIと引継ぎ条件をまとめている。Phase 5・Phase 6①②と文書更新のコミットはローカル保存で、GitHubへpushしていない。新規cloneだけで最新コードが揃うとは限らない。
+**別PCで続きを進める場合は[Windows/WSL＋RTX 4090の再開手順](docs/windows_handoff.md)から始める。** 固定成果物の復元、uv環境・CUDA確認、実装済みCLIと引継ぎ条件をまとめている。Phase 5・Phase 6①②③と文書更新のコミットはローカル保存で、GitHubへpushしていない。新規cloneだけで最新コードが揃うとは限らない。
 
 環境整備・学習・評価・改善をCodexへ継続して任せる場合は[自律実行の設定とrunner](docs/codex_automation.md)を参照する。次の担当の現在地は[継続作業の状態](docs/autonomous_status.md)、作業ルールは[AGENTS.md](AGENTS.md)。2026-10-03にFull accessが反映され、WSL・公開成果物復元・CUDA/BF16確認を通過した。
 

@@ -1,6 +1,6 @@
 # JMicro-10M 設計・調査ノート
 
-Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpus・shardの独立監査も完了。③の速度/batch・厳密再開・cold再開も完了。④以降と本学習は未開始。
+Phase 6①②③完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpus・shardの独立監査も完了。③の速度/batch・厳密再開・cold再開も完了。④以降と本学習は未開始。
 
 このディレクトリは、日本語専用の約10Mパラメータ級Decoder-only Language Model `JMicro-10M` を、Tokenizerを含めてスクラッチ構築するための設計・調査記録である。
 
@@ -29,7 +29,7 @@ Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの�
 
 **別PCでの再開入口**: [Windows/WSL＋RTX 4090の再開手順](windows_handoff.md)。GitHubの取得からHub成果物の復元、uv環境、CUDA確認、実装順までを順に実行できる。
 
-**進め方**: 完成までの時間短縮を優先する。Phase 3の最終検証一式は実装後24.62秒で、実装・修正を含む作業時間とは別。Phase 3の再実装を移行条件にせず、既存artifactの引継ぎから進める。実装時間とGPU計算時間を分け、現候補のPhase 5速度を暫定値とし、Phase 6③の実測から残り時間を更新する。[詳細](15_project_roadmap.md#高速に完成させる進め方)
+**進め方**: 完成までの時間短縮を優先する。Phase 3の最終検証一式は実装後24.62秒で、実装・修正を含む作業時間とは別。Phase 3の再実装を移行条件にせず、既存artifactの引継ぎから進める。実装時間とGPU計算時間を分け、Phase 6③の実測694,521 tokens/sから純学習予算を更新済み。全文評価・保存・枝・調整を別計上し、完成時刻とは区別する。[詳細](15_project_roadmap.md#高速に完成させる進め方)
 
 ## 文書一覧
 
@@ -59,7 +59,7 @@ Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの�
 24. [24_phase6_plan.md](24_phase6_plan.md) — gateの完了/未着手、500M〜10B段階評価・予算
 25. [25_phase6_preparation.md](25_phase6_preparation.md) — ①②の事前の目的、凍結条件と停止境界
 26. [26_phase6_preparation_completion.md](26_phase6_preparation_completion.md) — ①②の実量、全corpus/CUDA監査、保存先、実CLI
-27. [27_phase6_remaining_plan.md](27_phase6_remaining_plan.md) — 再開後の③容量/速度、④生成/変換、⑤設定凍結、未実装入口と完了条件
+27. [27_phase6_remaining_plan.md](27_phase6_remaining_plan.md) — ③の採用結果、再開後の④生成/変換、⑤設定凍結、本学習と完了条件
 28. [28_phase6_performance.md](28_phase6_performance.md) — ③の実GPU高速化・backend実効確認・容量と厳密再開の比較
 29. [29_phase6_performance_completion.md](29_phase6_performance_completion.md) — ③の採用速度・最大容量・厳密/cold再開・独立監査と停止記録
 

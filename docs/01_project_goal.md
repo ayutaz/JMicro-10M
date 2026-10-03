@@ -1,6 +1,6 @@
 # プロジェクト目的
 
-現在地（2026-10-03）: [Phase 0〜5](23_phase5_completion.md)と[Phase 6①②](26_phase6_preparation_completion.md)が完了。100M比較からT4K / NoQK-Norm / LR 0.002を選定し、756M unique train stream tokensとWSD全state再開一致を確認して停止中（③以降未開始）。完成したBase/Chat、雑談品質、学習後の量子化・独立環境検証は未達。本書の成功条件を維持し、再開後は[③以降の実行計画](27_phase6_remaining_plan.md)と[段階評価](24_phase6_plan.md)に従う。
+現在地（2026-10-03）: [Phase 0〜5](23_phase5_completion.md)と[Phase 6①②](26_phase6_preparation_completion.md)と[③の高速化](29_phase6_performance_completion.md)が完了。100M比較からT4K / NoQK-Norm / LR 0.002を選定し、756M unique train stream tokens、WSD全state再開一致とFlash＋compile batch 32の694,521 tokens/sを確認して停止中（④以降・本学習未開始）。完成したBase/Chat、雑談品質、学習後の量子化・独立環境検証は未達。本書の成功条件を維持し、再開後は[③以降の実行計画](27_phase6_remaining_plan.md)と[段階評価](24_phase6_plan.md)に従う。
 
 ## ゴール
 

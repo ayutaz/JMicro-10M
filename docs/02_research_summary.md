@@ -4,6 +4,8 @@
 
 ## 結論
 
+③の高速化も[完了](29_phase6_performance_completion.md)。固定長・PADなしcausal経路とbackend別compile cacheを実装し、Flash＋compile reduce-overhead / batch 32で694,521 tokens/s、最速reference比5.436倍を実測した。容量上限111より32が速く、厳密/cold再開を通過した32を長期候補にする。生成・NoNorm変換と長期LR/WSD凍結は④⑤の未完了事項として維持する。
+
 **提案**: v1の本命は、2024〜2026年の小型モデル研究で支持される要素を組み合わせたModern deep-thin Transformerとする。
 
 採用候補:

@@ -1,8 +1,8 @@
 # 実行環境とデータ配置
 
-Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpus・shardの独立監査も完了。③以降の速度/batch探索・本学習は未開始。
+Phase 6①②③完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpus・shardの独立監査も完了。③の速度/batch・厳密/cold再開検証も完了。④以降と本学習は未開始。
 
-最終更新: 2026-10-03。[Phase 4監査](../reports/phase4/handoff_report.json)で確認した実機環境を記載する。Phase 5も完了し、Phase 6①②完了で停止中（③以降未開始）。
+最終更新: 2026-10-03。[Phase 4監査](../reports/phase4/handoff_report.json)で確認した実機環境を記載する。Phase 5も完了し、Phase 6①②③完了で停止中（④以降・本学習未開始）。
 
 ## 実機環境
 
@@ -26,7 +26,7 @@ Python実行は一時スクリプトも`uv run --frozen`。導入は`uv python i
 
 ## 最大バッチの決め方
 
-本学習では最大安定micro batchを実測して使う方針。Phase 4はcontext 1024、accumulation 1、eager/default SDPA、fused AdamW、CUDA allocator 94%上限で測定した。
+本学習では最大安定容量と最速micro batchを実測し、速度・保存/評価余裕・再開一致から設定を選ぶ。以下はPhase 4時点の履歴。Phase 4はcontext 1024、accumulation 1、eager/default SDPA、fused AdamW、CUDA allocator 94%上限で測定した。
 
 | モデル | 最大安定micro batch | effective tokens/update | 次のOOM batch | 定常中央値 |
 |---|---:|---:|---:|---:|
@@ -35,9 +35,9 @@ Python実行は一時スクリプトも`uv run --frozen`。導入は`uv python i
 
 倍増と境界の中間値を探し、最大値を3×200更新、評価・保存込みで確認した。測定点の最高速度はcompile batch 8で439,656 / 448,601 tokens/s。compile経路の最大容量は未探索。最大容量と最高速度を区別し、backend/context/precision/optimizerを変える場合は新しい設定で検証する。小探索のeffective batchと更新数は別に固定する。
 
-Phase 4の短い速度・有限値probeではdefault、math-only、compile/defaultが成功。Phase 5の厳密resumeではcompile/defaultとeager/defaultが失敗し、採用したeager/mathだけが全state一致を通過した。Flash-onlyはnon-null attention mask非対応で失敗を保持している。Flash対応のmask変更は未実装の改善候補。[Phase 4実測](21_phase4_completion.md)、[現在の速度と制約](../reports/phase5/performance_status.md)
+Phase 4の短い速度・有限値probeではdefault、math-only、compile/defaultが成功。Phase 5の厳密resumeではcompile/defaultとeager/defaultが失敗し、採用したeager/mathだけが全state一致を通過した。Flash-onlyはnon-null attention mask非対応で失敗を保持している。③ではPADなし固定長の学習専用causal経路を実装してFlashを検証済み。推論/cacheの明示maskは維持する。[Phase 4実測](21_phase4_completion.md)、[現在の速度と制約](../reports/phase5/performance_status.md)
 
-Phase 5の選択候補T4K NoNorm / math / batch 8の学習ピークallocated VRAMは約3.866 GiB、定常約121,139 tokens/s。拡張shard/WSDでの最大容量と速度は未測定。Phase 4のNorm/default最大batch 64はこのmath/NoNorm構成の保証ではない。次回の容量・速度・再開gateは[Phase 6計画](24_phase6_plan.md#開始前に揃える条件)で定める。
+Phase 5の選択候補T4K NoNorm / math / batch 8の学習ピークallocated VRAMは約3.866 GiB、定常約121,139 tokens/s。③の拡張shard/WSDではreference/math最大45、compiled/math最大53、compiled Flash最大111。最速のFlash＋compile reduce-overhead batch 32=694,521 tokens/sを採用した。選択設定のpeak allocatedは5.73 GiB、driver peakは7.53 GiB。最大111はdriver 23.42/23.99 GiB、112 OOM。厳密/cold再開は完全一致。[③の完了証拠](29_phase6_performance_completion.md)。以降のgateは[Phase 6計画](24_phase6_plan.md#開始前に揃える条件)で定める。
 
 ## ストレージ配置
 
@@ -50,6 +50,8 @@ Windowsコード正本は`C:\Users\AiHUB\Desktop\japanese-tiny-llm-10m`、Linux�
   reports/phase4/gates-20261003/ ログ、source snapshot、検証checkpoint
   reports/phase5/run-20261003-docoverfit/  実学習/評価・snapshot・checkpoint（終了済み）
   reports/phase6/preparation-20261003/    準備audit/CUDA run・12 checkpoints（終了済み）
+  reports/phase6/performance-20261003-v3/  ③の測定・全state検証・source snapshots（終了済み）
+  reports/phase6/performance-cold-resume-20261003/  空compiler cache再開（終了済み）
 ~/jmicro-data/
   shards/{t8k-pilot,t4k-pilot}/   Phase 4〜5 pilot入力
   phase6/raw/                    固定8 Parquet・条件資料・receipt
@@ -73,6 +75,6 @@ Phase 6①では同じ公開T4Kでtrain 756,087,912 stream tokens / 1,604,292 do
 
 ## benchmark済みと残る測定
 
-synthetic/実shard、eager/compile、backend、batch、peak VRAM、data wait、評価/save時間を測定済み。Windows volumeとLinux filesystemのI/O比較、DataLoader単体、厳密なMFU、compiled容量探索は未実施。これらをPhase 4の成功として記載しない。
+synthetic/実shard、eager/compile、backend、batch、peak VRAM、data wait、評価/save時間を測定済み。③でcompiled/math/Flash容量探索も完了した。Windows volumeとLinux filesystemのI/O比較、DataLoader単体、厳密なMFUは未実施で、完了条件へ追加せず必要性が出た時の別対照とする。③の成功をPhase 4の履歴へ遡及しない。
 
-長期予算は実測tokens/sから計算し、評価/save/compile初回/データ処理/比較runを加える。Phase 4のT8K Norm/default最大batchでは10B compute約12.34hという算術値を得たが、Phase 5の厳密resumeを通過した現候補の保証ではない。選択したT4K NoNorm / math / batch 8の速度なら10B compute約22.93hの暫定値。開始前の再測定で更新する。[次回の予算](24_phase6_plan.md#暫定のcompute見積もり)。品質改善に必要な総期間の保証ではなく、20B/50B着手はロードマップの条件に従う。
+長期予算は実測tokens/sから計算し、評価/save/compile初回/データ処理/比較runを加える。Phase 4のT8K Norm/default最大batchでは10B compute約12.34hという算術値を得たが、Phase 5の厳密resumeを通過した現候補の保証ではない。最新③のFlash＋compile batch 32の694,521 tokens/sでは500M約12分、10B約4時間の純学習算術値。全文評価・保存・cold compile・decay枝・LR調整は別計上し、⑤で長期予算を凍結する。[次回の予算](24_phase6_plan.md#暫定のcompute見積もり)。品質改善に必要な総期間の保証ではなく、20B/50B着手はロードマップの条件に従う。

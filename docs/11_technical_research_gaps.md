@@ -4,7 +4,7 @@
 
 ## 実装後の現在地（2026-10-03）
 
-調査後にPhase 0〜5とPhase 6①②を完了した。次の表は現在の状態、後半の調査表・検証順は2026-10-02の提案として区別する。
+調査後にPhase 0〜5とPhase 6①②③を完了した。次の表は現在の状態、後半の調査表・検証順は2026-10-02の提案として区別する。
 
 | 課題 | 現在の状態 | 証拠・次の判断 |
 |---|---|---|
@@ -14,11 +14,11 @@
 | GPU学習器、保存再開、最大batch/実速度、BPB runner | 実装・実GPU検証済み、全64 tests / skip 0 | [Phase 4完了証拠](21_phase4_completion.md) |
 | 4k/8k・Norm・LRの100M、overfit/smoke、統計比較 | 実施・独立監査済み、全68 tests / skip 0。T4K NoNorm / LR 0.002を1候補に選定 | [Phase 5](23_phase5_completion.md) |
 | 拡張corpus・WSD再開/分岐 | 756M unique train stream、全corpus監査、CUDA全state完全一致、74 tests / skip 0・73 GPU checks | [Phase 6①②完了証拠](26_phase6_preparation_completion.md) |
-| 採用NoNorm/mathの最大batch・compiled/math | 未実施。Phase 4 Norm/defaultの容量・速度を流用しない | [③の測定入口・完了条件](27_phase6_remaining_plan.md) |
+| 採用NoNorm/math・compiled/math/Flashの最大batch・速度 | 実GPU測定・厳密/cold再開完了。最速Flash＋compile batch 32=694,521 tokens/s、最大111/112 OOM | [③完了証拠](29_phase6_performance_completion.md) |
 | stable予算延長・追加corpusのheldout継承 | 未実装。通常resumeのbudget/source/data変更は不可、decay forkは実装済み | [⑤と後続拡張の条件](27_phase6_remaining_plan.md) |
 | 日本語短文・雑談、学習後量子化・NoNorm変換 | 品質目標未達、NoNorm HF/GGUF adapter未実装 | Phase 6〜8の実学習・固定評価 |
 
-完成までの時間短縮を優先し、Windows/WSL＋RTX 4090への移行とPhase 4は完了した。Phase 5の候補選定も完了し、ユーザー指定のPhase 6①②完了で停止中（③以降未開始）。再開後は③の採用構成に対応する測定入口実装から進める。
+完成までの時間短縮を優先し、Windows/WSL＋RTX 4090への移行とPhase 4は完了した。Phase 5の候補選定も完了し、ユーザー指定のPhase 6①②③完了で停止中（④以降・本学習未開始）。③の証拠は`a7d26e1`へcommit済み。再開後は④の生成/変換診断から進める。
 
 ## 結論
 
@@ -72,9 +72,9 @@ P0: 長期学習の前に解決。P1: 100M探索／Chat準備までに解決。P
 ## 文献だけでは解決できなかった項目
 
 - 10Mでの日本語雑談能力の上限と、最適なWeb／会話mixture。
-- 小予算のT4K NoNorm / LR 0.002選定は完了。拡張corpus・長期予算での最適性、mathの最大batch、compiled/mathの正確な再開と速度は未実証。
+- 小予算のT4K NoNorm / LR 0.002選定は完了。math/compiled-math/Flashの容量・速度と厳密/cold再開は③で実証済み。拡張corpus・長期予算での最適性と品質目標は未実証。
 - GGUF内蔵Tokenizerは不一致が判明し、外部wrapperで一致を検証済み。汎用CLIの内蔵Tokenizer互換は未達。
-- 4090 throughputは測定済み。compiled/mathや採用候補の最大容量、CPU応答時間分布、学習後の量子化品質は未測定。
+- 4090 throughputは測定済み。compiled/math/Flashと採用候補の最大容量も③で測定済み。CPU応答時間分布、学習後の量子化品質は未測定。
 - LLM-jp Corpus v4の個別subset manifest・利用条件。公式公開告知の規模は確認できたが、今回の閲覧ではGitLab本文を十分取得できなかった。既存05の個別subset表は引き続き**要検証**。
 
 これらは未調査のままではなく、上記の実験または原本取得を必要とする未解決事項として管理する。既存09の公開モデル一覧全件の再監査と、Mamba／Convのkernel比較は今回の対象外で、後半研究として残す。

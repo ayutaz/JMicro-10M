@@ -6,6 +6,8 @@ Phase 6①の新devは89,416文書 / 164,344,743 body bytes、testは89,485文�
 
 ## 評価原則
 
+③の高速化studyは4 dev文書＋1 prompt×2 greedy outputs/最大8 tokensの保存・容量確認を通過した。[③の完了](29_phase6_performance_completion.md)。独立1286 checks・cold再開26 checksは再現性の証拠で、全文dev BPB・固定400生成・品質目標は④以降の作業として残る。
+
 **確定**: Tokenizerが異なるモデル間ではtoken-level perplexityを直接比較しない。4k/8kの主比較指標は同一原文集合・共通前処理のcanonical UTF-8 bytesを分母にしたBits Per Byte (BPB)とする。
 
 **提案（実装上の具体化）**: 同一原文集合と共通前処理を固定し、実際に予測したcanonical UTF-8 bytesをBPBの分母とする。本文NLLの総和を使い、特殊tokenの損失は分離する。文脈量、同一学習bytes／GPU時間、統計比較、Chat rubricの仕様は[評価・配布調査](14_evaluation_deployment_research.md)を参照する。

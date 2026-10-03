@@ -26,7 +26,7 @@ raw evidenceはLinux checkoutの`reports/phase5/run-20261003-docoverfit/`へ保�
 
 ## Phase 6①②の完了証拠と文書更新
 
-`phase6/`は[事前の目的・条件](../docs/25_phase6_preparation.md)に対応する。train 756,087,912 unique stream tokensの拡張corpusとWSD stable/独立decayを準備した。[完了記録](../docs/26_phase6_preparation_completion.md)。③の容量/速度・長期Base/Chat・品質達成の証拠ではない。
+以下の①②reportは[事前の目的・条件](../docs/25_phase6_preparation.md)に対応する。train 756,087,912 unique stream tokensの拡張corpusとWSD stable/独立decayを準備した。[完了記録](../docs/26_phase6_preparation_completion.md)。③の容量/速度・長期Base/Chat・品質達成の証拠ではない。
 
 | report | 確認したこと |
 |---|---|
@@ -40,4 +40,18 @@ raw evidenceはLinux checkoutの`reports/phase5/run-20261003-docoverfit/`へ保�
 | [documentation_audit.json](phase6/documentation_audit.json)、[final_package_audit.json](phase6/final_package_audit.json) | ①②完了時点の43 Markdown / 393内部リンク、Windows/WSL 91 source filesの同期、包装監査13 checks |
 | [documentation_update_20261003.json](phase6/documentation_update_20261003.json) | 今回の文書・残りの計画更新を別監査。旧report/実装/config/lock/eval不変、文書リンク・CLI・WSL同期・停止境界を確認 |
 
-大型dataは`~/jmicro-data/phase6/{raw,expanded-v2}/`、CUDA checkpoints/log/source snapshotsはLinux checkoutの`reports/phase6/preparation-20261003/cuda/`。全jobは終了済みで③以降は停止中。Git clone/Hub bundleだけで拡張data/checkpointsが揃うとは扱わない。既存snapshotと完了reportは当時の証拠として保持し、現在の文書を過去snapshotへ書き戻さない。今後の実行順は[③以降の計画](../docs/27_phase6_remaining_plan.md)。
+大型dataは`~/jmicro-data/phase6/{raw,expanded-v2}/`、CUDA checkpoints/log/source snapshotsはLinux checkoutの`reports/phase6/preparation-20261003/cuda/`。①②③のjobは終了済みで④以降は停止中。Git clone/Hub bundleだけで拡張data/checkpointsが揃うとは扱わない。既存snapshotと完了reportは当時の証拠として保持し、現在の文書を過去snapshotへ書き戻さない。今後の実行順は[③以降の計画](../docs/27_phase6_remaining_plan.md)。
+
+## Phase 6③の高速化・容量・再開証拠
+
+③は`a7d26e1`でcommit済み。[完了記録](../docs/29_phase6_performance_completion.md)。Flash＋compile reduce-overhead / batch 32=694,521 tokens/s、最大安定111/112 OOM。以下は①②のreportとは別の実測で、品質達成・長期Baseの証拠ではない。
+
+| report | 確認したこと |
+|---|---|
+| [batch_performance_report.json](phase6/batch_performance_report.json)、[batch_choice.md](phase6/batch_choice.md)、[performance_summary.json](phase6/performance_summary.json) | 最速・容量・保存/評価込みVRAM・速度比・unique metricsのtoken台帳 |
+| [performance_completion_audit.json](phase6/performance_completion_audit.json)、[performance_cold_resume_report.json](phase6/performance_cold_resume_report.json)、[performance_tests.xml](phase6/performance_tests.xml) | 独立1286 checks、空cache再開26 checks、79 tests / skip・failure・error 0 |
+| [performance_failures.json](phase6/performance_failures.json)、[performance_audit_initial_failure.json](phase6/performance_audit_initial_failure.json) | 初回cache/backend・観測不足・監査のoutput数誤判定を保持 |
+| [performance_documentation_audit.json](phase6/performance_documentation_audit.json) | ③完了時の文書/CLI/WSL同期・旧73 reports/lock保持と実装/report binding |
+| [plan_update_20261003.json](phase6/plan_update_20261003.json) | 今回の最新計画・完了チェック・算術予算・文書同期と旧成果/コード保持の監査 |
+
+raw logs/requests/compiled code/source snapshots/checkpointsはLinux `reports/phase6/performance-20261003-v3/`と`performance-cold-resume-20261003/`に保持する。今後は再開指定後に④生成/変換→⑤長期設定凍結→500M段階評価へ進む。

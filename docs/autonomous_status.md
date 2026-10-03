@@ -6,7 +6,7 @@
 
 Pythonは3.12.7/uv管理、全実行は`uv run --frozen`。依存変更は`uv add`、復元は`uv sync --frozen`。GPU学習はWSL 2 / Ubuntu / RTX 4090。Git local identityは`yousan <ka1357amnbpdr@gmail.com>`、検証済み変更をcommitし、push/公開しない。
 
-**Phase 0〜5とPhase 6①②③は完了。③の高速化・資源活用の最終証拠をcommitして停止する。④生成/変換、⑤長期設定の凍結、500M以上の本学習は未開始。Phase 6全体やBase/Chat品質の完了ではない。** [③完了記録](29_phase6_performance_completion.md)、[残りの計画](27_phase6_remaining_plan.md)。
+**Phase 0〜5とPhase 6①②③は完了。③の高速化・資源活用の最終証拠は`a7d26e1`へcommit済みで停止中。④生成/変換、⑤長期設定の凍結、500M以上の本学習は未開始。Phase 6全体やBase/Chat品質の完了ではない。** [③完了記録](29_phase6_performance_completion.md)、[残りの計画](27_phase6_remaining_plan.md)。
 
 ## ③の実測と採用
 
@@ -39,7 +39,7 @@ Windowsコード/Git正本は`C:\Users\AiHUB\Desktop\japanese-tiny-llm-10m`、Li
 
 ## 次の具体的な行動
 
-③の最終report/status/文書・WSL同期・旧成果保持を確認し、指定Git名義でcommitして停止する。実装は`1aa0d4d`、初期probe/文書は`3fc1221`、cold再開入口は`8e68350`。④以降はユーザーの再開指定を待つ。Tokenizer再学習、Phase 3 export、完了済みdata/Phase 5比較を繰り返さない。
+③の最終report/status/文書・WSL同期・旧成果保持は検証済み、`a7d26e1`へcommit済み。今回の「計画を最新にする」作業は文書のみで、[更新監査](../reports/phase6/plan_update_20261003.json)に結果を保存する。実装は`1aa0d4d`、初期probe/文書は`3fc1221`、cold再開入口は`8e68350`。④以降はユーザーの再開指定を待つ。Tokenizer再学習、Phase 3 export、完了済みdata/Phase 5比較を繰り返さない。
 
 再開後は④でEOS/反復/Unicodeの400生成診断とNoNorm HF/GGUF adapter、⑤で採用batchに対するLR/effective batch/長期WSD・評価予算を凍結してから500M→1B→2B→5B→10Bを段階評価する。Phase 5のBPB1.221443、greedy EOS0/80・反復54/80、sampling Unicode2/240は未達として維持。Chat trainer/複数source mixture/Muonも未実装。
 

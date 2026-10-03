@@ -1,6 +1,6 @@
-# Phase 6③以降: 再開時の実行計画
+# Phase 6④以降: 最新の実行計画
 
-更新: 2026-10-03。①データ拡充と②WSD/長時間学習準備は[完了済み](26_phase6_preparation_completion.md)。③の資源活用・高速化も[完了](29_phase6_performance_completion.md)。採用はFlash/compile reduce-overhead、batch 32、694,521 tokens/s。**③の証拠をcommitして停止し、④生成/変換・⑤本学習設定の凍結・500M以上の本学習は開始しない。** 本書の④⑤以降の予算は将来の提案であり、再開時に固定する。品質閾値と完全一致の要求は維持する。
+更新: 2026-10-03。①データ拡充と②WSD/長時間学習準備は[完了済み](26_phase6_preparation_completion.md)。③の資源活用・高速化も[完了](29_phase6_performance_completion.md)。採用はFlash/compile reduce-overhead、batch 32、694,521 tokens/s。**③の証拠は`a7d26e1`へcommit済みで停止中。④生成/変換・⑤本学習設定の凍結・500M以上の本学習は開始しない。** 本書の④⑤以降の予算は将来の提案であり、再開時に固定する。品質閾値と完全一致の要求は維持する。
 
 ## 出発点と、今回繰り返さない作業
 
@@ -10,29 +10,30 @@
 |---|---|---|
 | データ | train 756,087,912 unique stream tokens、Web 100%、全raw/cluster/shard監査 | 現在のhashと保存先を確認。追加取得・再構築は通常の再開条件にしない |
 | WSD | stable 200 vs 100+100、decay 100 vs 50+50、全state・履歴完全一致 | batch/backend/実装変更後に同じ厳密検証を通す |
-| GPU設定 | eager/math、FP32 parameters＋BF16、batch 8 / accumulation 1 | ③でreference/math最大45、compiled/math最大53、Flash/compile最大111を検証。最速Flash/compile batch 32を採用 |
-| 過去の速度 | Phase 5採用構成の定常中央値121,139 tokens/s、peak allocated約3.866 GiB | ③の拡張shard/WSDで694,521 tokens/s、最速reference/math比5.436倍。Phase 4のNorm/default測定とは別の証拠 |
+| GPU設定 | Flash＋compile reduce-overhead、FP32 parameters＋BF16、batch 32 / accumulation 1、context 1024 | 32,768 input tokens/updateを長期候補とする。reference/math最大45、compiled/math最大53、Flash/compile最大111は容量記録として保持 |
+| 最新速度・メモリ | 694,521 tokens/s、最速reference/math比5.436倍、save/小sample評価込みpeak allocated5.73 GiB・driver7.53 GiB | 全文dev採点・400生成・保存/枝を別計上し、長期LR安定性と予算を⑤で固定 |
 | 資源 | 準備完了時のLinux空き950,875,688,960 bytes、data約15.43GB、CUDA run約1.45GB | 開始時に再確認。data容量はraw約2.15GBを含まないapparent bytes |
 | 品質・配布 | Phase 5のgreedy EOS 0/80、反復54/80、sampling Unicode 2/240 | 未達を維持。NoNorm HF/GGUF adapterも未実装 |
 
-復元済みTokenizer/pilot、Phase 3 export、Phase 5比較、完了済み①②を再実行しない。新jobの前にWindows/Linux process、GPU compute一覧、job status、PID/boot ID/start ticks、lock、checkpoint SHAとsource snapshotを照合し、二重起動を防ぐ。
+復元済みTokenizer/pilot、Phase 3 export、Phase 5比較、完了済み①②③を再実行しない。新jobの前にWindows/Linux process、GPU compute一覧、job status、PID/boot ID/start ticks、lock、checkpoint SHAとsource snapshotを照合し、二重起動を防ぐ。
 
-## ③ 容量・高速化: 安全に速い運用設定を選ぶ
+## ③ 容量・高速化: 完了済み
 
-目的はVRAM使用率と実速度を測り、保存・評価・再開が成立する運用設定を決めること。最大容量と最速batchを別に記録する。VRAMを埋めることだけを採用基準にしない。
+凍結した7設定の実演算比較と容量探索、9設定のstable/decay全state再開・親の不変性、最速/容量6設定の各3×200更新・小sample評価/saveを完了した。独立1286 checks・cold-cache再開26 checks・79 testsはすべて成功。最速はFlash＋compile reduce-overhead / batch 32、32,768 input tokens/update、694,521 tokens/s。reference/math最速比5.436倍。最大安定batch 111・112 OOM、driver peak97.64%だが、速度では32が上回った。
 
-採用model config・拡張shard・WSD・batch/backend/compileを固定する[scripts/phase6_performance.py](../scripts/phase6_performance.py)と[独立監査](../scripts/audit_phase6_performance.py)を実装した。凍結比較と実CLIは[③の詳細](28_phase6_performance.md)。既存の[scripts/benchmark_training.py](../scripts/benchmark_training.py)はPhase 4のNorm config / pilot / cosine用で、[準備verifier](../scripts/verify_phase6_preparation.py)は①②のbatch 8/math専用として保持する。旧reportを上書きせず、backend実効・cache分離を含む新規runで検証する。
+実在成果物は[全結果](../reports/phase6/batch_performance_report.json)、[選定理由](../reports/phase6/batch_choice.md)、[資源・速度要約](../reports/phase6/performance_summary.json)。raw logs/checkpoints/source snapshotsはLinuxの完了runに保持。[詳細・条件・失敗](28_phase6_performance.md)、[完了監査と保存先](29_phase6_performance_completion.md)。完了した測定を再実行しない。source/model/backend/batch/contextが変わる場合は、影響する容量・演算・厳密再開gateを新runで再検証する。③の速度検証は生成品質・長期LR最適性の達成ではない。
 
-比較は同じmodel/Tokenizer/data hash、context、precision、optimizer、seedを保つ。実験configには短いprobeと最終確認の予算を別記する。提案する探索順は以下。
+## 再開後の順序と完了条件
 
-1. eager/math batch 8を基準に、16、32…と倍増してOOM境界を見つけ、中間値を探索する。単一backendの容量probeは最大16設定とし、境界が見つからなければ「測定範囲内の安定上限」と記録する。
-2. compiled/mathはまずbatch 8で厳密resumeを確認する。通過した場合だけ、mathで速かったbatchと容量付近を比較する。compile/defaultの既知の失敗を同じ条件で繰り返さない。修正を試す場合は原因・変更点・対照・打切り条件を先に固定する。
-3. 各backendの最速候補と容量上限を、cold startとは別の**3×200完了更新**で確認する。有限loss/gradient/weights/optimizer、保存・評価、失敗理由と全metricsを保持する。
-4. 採用する各構成でstable 200 vs 100+100、decay 100 vs 50+50のtoken列/loss/LR/model/optimizer/scheduler/RNG/sampler全state完全一致、元stableの不変性と継続一致を確認する。未通過の高速経路は採用しない。
+| 順序 | 作業 | 完了の証拠 |
+|---|---|---|
+| ④-1 | 既存NoNorm checkpoint・固定Base dev 80 promptをbindし、native/cache/停止IDと400生成の失敗を診断 | 生成ID・greedy/抑制なし/sampling別のEOS/反復/Unicode・原因と最大2案の対照結果 |
+| ④-2 | NoNorm HF/native float GGUF adapterを実装し、新dev全文採点時間を測る | 外部SentencePieceのID、float logits/cache/停止parity、BPBと89,416文書の採点時間・400生成時間 |
+| ⑤ | batch 32候補のLR安定性・WSD・保存/評価/枝の予算を固定 | 凍結configと起動/復旧CLI、丸め後tokens/updates、容量・監視・停止条件 |
+| Phase 6本学習 | 新規初期化から500M→1B→2B→5B→10B | 観測点ごとのdev BPB/CI・生成/rubric・失敗例、stableとdecay枝の別台帳、Base v1のartifactと最終評価 |
+| Phase 7→8 | Dialogue mid-training/Assistant本文＋EOT SFT→量子化・独立ローカル検証 | Chat関連性/文脈/停止、float/quantized品質差、実容量・RSS/応答時間、再現手順 |
 
-測定値は初回起動/compile時間、定常tokens/s・更新時間分布、data wait、total wall time、peak allocated/reserved・driver側VRAM、GPU利用率、checkpoint容量・保存時間、評価時peak/時間。容量probeは固定した小dev sample（例: 4文書＋1 prompt/8 new tokens）を使用し、全文評価や400生成とは区別する。最速設定を選ぶ際に、実際の評価batchと保存で必要なVRAM余裕も確認する。MFUを出す場合はFLOP算定方法を記録し、GPU利用率をMFUと表示しない。
-
-**完了条件**: 有限値・厳密再開・3回の運用確認を通過した最大安定値と最速値、採用理由、失敗、容量余裕、更新数・effective tokens/updateを保存する。③の結果は速度・再現性の証拠であり、生成品質の達成ではない。将来成果物: `batch_performance_report.json`、`batch_choice.md`、設定ごとのraw logs/checkpoints/source snapshots。
+現在は文書更新のみで、④以降の実行は再開指定を待つ。Chat trainer/mixtureと学習後量子化は未実装・未検証で、Base品質が成立した後の系列として進める。20B/条件付き50B・追加研究はPhase 9/10の別予算とし、最初のBase/Chat完成を待たせない。
 
 ## ④ 生成・変換: 既知の失敗を切り分ける
 
@@ -72,4 +73,4 @@ NoNormのHF/native float GGUF adapterを実装・検証する。外部SentencePi
 
 ③の定常実測694,521 tokens/sによる参考computeは500M約12分、10B約4時間。純学習の算術値で、④⑤の実装・検証、新dev全文評価、cold compile、保存、decay枝、LR調整を含まない。本学習設定は未凍結で、作業全体の完了時刻の保証ではない。[現在の予算](24_phase6_plan.md#暫定のcompute見積もり)
 
-次回は[最新状態](autonomous_status.md)、本書、[引継ぎ](windows_handoff.md)を読み、process/source/dataの確認から始める。③のstudyとcold再開は終了済みで、完了した測定を重複起動しない。③の証拠をcommitして停止する。④以降・本学習は再開指定を待つ。準備の中断復旧と別出力への読み取り監査は[実CLI](26_phase6_preparation_completion.md#実cliと再開)にある。
+次回は[最新状態](autonomous_status.md)、本書、[引継ぎ](windows_handoff.md)を読み、process/source/dataの確認から始める。③のstudyとcold再開は終了済みで、完了した測定を重複起動しない。③の証拠は`a7d26e1`へcommit済み。④以降・本学習は再開指定を待つ。準備の中断復旧と別出力への読み取り監査は[実CLI](26_phase6_preparation_completion.md#実cliと再開)にある。

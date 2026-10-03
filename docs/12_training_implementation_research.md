@@ -1,6 +1,6 @@
 # モデル実装・段階学習・実行環境の追加調査
 
-実装状況更新: 2026-10-03。以下の提案と現在の実装を区別する。model.pyは学習/prefill/cacheで明示boolean mask＋is_causal=Falseを使う。maskなしis_causal=True経路は未実装で、Flash-onlyはnon-null mask非対応。fused AdamW、共有embeddingを含む行列へのdecay、FP32 parameters/BF16 autocast、単一split binの決定的sampler、完了updateでのatomic保存とsource/data/config拘束は実装済み。Phase 5のT8K/T4K/文書overfit/NoNormの200 vs 100+100もmathで全stateが完全一致。compile/defaultとeager/defaultはPhase 5の厳密resumeに失敗して採用せず、失敗を保持した。下記の仮速度表は算術例。現状は[Phase 5実測予算](../reports/phase5/resource_budget.json)と[次回の再測定計画](24_phase6_plan.md)を使う。
+実装状況更新: 2026-10-03。以下の提案と現在の実装を区別する。model.pyは推論/padding/cacheで明示boolean mask＋is_causal=Falseを使う。③で固定長・PADなしの学習専用maskなしis_causal=True経路を実装し、Flash＋compile reduce-overheadを採用した。fused AdamW、共有embeddingを含む行列へのdecay、FP32 parameters/BF16 autocast、単一split binの決定的sampler、完了updateでのatomic保存とsource/data/config拘束は実装済み。Phase 5のT8K/T4K/文書overfit/NoNormの200 vs 100+100もmathで全stateが完全一致。compile/defaultとeager/defaultはPhase 5の厳密resumeに失敗して採用せず、失敗を保持した。下記の仮速度表は算術例。現在の純学習算術予算は③の694,521 tokens/sから更新した。[③完了証拠](29_phase6_performance_completion.md)、[本学習のgate・予算](24_phase6_plan.md)を使う。
 
 **実装状況**: 以下は調査時点の仕様・候補。モデル/cacheのCPU実装・実parameter数・参照モデルとの一致は[Phase 3](19_phase3_completion.md)で検証済み。GPU学習器・保存再開・4090 benchmarkは[Phase 4](21_phase4_completion.md)で実測済み。AdamW＋warmup/cosineとNoQK-Normは実装済み。MuonはPhase 5で追加不要と判断し、WSD stable/decayは実装し、拡張実shardのCUDA全state再開一致を検証済み。
 
@@ -80,7 +80,7 @@ MuonのLRをAdamWと同じ数値で比較しない。Muonと補助AdamWは別LR�
 
 **設計からの計算**: effective batchが262,144 tokensなら、100M-token runは約381.5更新しかない。1M-token warmupは約3.8更新になる。小探索で大きなbatchを使うと、LR／Norm比較の結果が少ない更新回数に支配され得る。
 
-**現在の実測**: Phase 5はeager/math・micro batch 8・effective 8,192 tokens/updateで12,208更新を固定した。小探索の更新数確保と厳密resumeのための設定で、最大VRAM活用ではない。math/compiled-mathの最大安定batch・再開一致・速度はPhase 6③で別測定する。
+**現在の実測**: Phase 5はeager/math・micro batch 8・effective 8,192 tokens/updateで12,208更新を固定した。小探索の更新数確保と厳密resumeのための設定で、最大VRAM活用ではない。③でmath/compiled-math/Flashの最大容量・再開一致・速度を別測定し、Flash＋compile batch 32（32,768 input tokens/update）を採用した。独立1286 checks・cold再開26 checksも通過。長期のLR/WSDは⑤で凍結する。
 
 **当初の提案**: GPUを埋めるmicro batchと、統計的なeffective batchを分ける。100M探索ではeffective batch 16,384／32,768／65,536 tokens等を候補にし、約6,104／3,052／1,526更新を確保する。メモリと速度測定後に一つへ固定して主要因を比較する。warmupはtokensとstepsの両方で記録する。
 

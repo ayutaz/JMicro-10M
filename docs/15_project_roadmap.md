@@ -1,8 +1,8 @@
 # JMicro-10M フェーズ別実行計画
 
-Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpus・shardの独立監査も完了。③の速度/batch・厳密再開・cold再開も完了。④以降と本学習は未開始。
+Phase 6①②③完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpus・shardの独立監査も完了。③の速度/batch・厳密再開・cold再開も完了。④以降と本学習は未開始。
 
-作成日: 2026-10-02。最終更新: 2026-10-03（Phase 6①②完了・③以降の実行計画を更新）。根拠は[プロジェクト目的](01_project_goal.md)、[設計](03_architecture.md)、[技術調査](11_technical_research_gaps.md)、[Phase 0完了記録](16_phase0_completion.md)、[Phase 1完了記録](17_phase1_completion.md)。既存の**確定**方針から逆算した計画であり、将来の成果物名・未凍結の実行値は**提案**である。品質目標・評価契約はPhase 5で凍結済みで、結果を見て緩めない。
+作成日: 2026-10-02。最終更新: 2026-10-03（Phase 6①②③完了・④以降の実行計画と速度予算を更新）。根拠は[プロジェクト目的](01_project_goal.md)、[設計](03_architecture.md)、[技術調査](11_technical_research_gaps.md)、[Phase 0完了記録](16_phase0_completion.md)、[Phase 1完了記録](17_phase1_completion.md)。既存の**確定**方針から逆算した計画であり、将来の成果物名・未凍結の実行値は**提案**である。品質目標・評価契約はPhase 5で凍結済みで、結果を見て緩めない。
 
 ## 最終的に実現すること
 
@@ -28,9 +28,9 @@ Pythonは`.python-version`の3.12.7、依存変更は`uv add`、環境再構築�
 
 Phase 0〜5とPhase 6①②の成果物は各完了記録に実pathを示す。[①②の完了記録](26_phase6_preparation_completion.md)にあるcorpus/shards・WSD検証checkpoint・reportは存在する。本学習の凍結config・scaling checkpoint・Base/Chat完成artifactは**今後作成するもの**で、準備検証artifactと区別する。コードは`src/`、設定は`configs/`、検証は`tests/`、実行入口は`scripts/`を基本とする。小さな比較結果・判断記録は`reports/<run_id>/`、大型データ・重みは[外部データ領域](07_environment.md)へ置く。`docs`には仕様、計画、成果物への参照を残す。
 
-別PCで再開する時は[Windows/WSL＋RTX 4090の手順](windows_handoff.md)を入口とする。新規PCではコードと固定Hub成果物を復元して環境を確認する。Phase 5・Phase 6①②と文書更新のコミットは未pushなので、最新のWindows正本も引き継ぐ。復元済みPCでは完了作業を繰り返さず、③の高速化・容量検証を終えてcommit後に停止し、④以降と本学習を開始しない。
+別PCで再開する時は[Windows/WSL＋RTX 4090の手順](windows_handoff.md)を入口とする。新規PCではコードと固定Hub成果物を復元して環境を確認する。Phase 5・Phase 6①②③と文書更新のコミットは未pushなので、最新のWindows正本も引き継ぐ。復元済みPCでは完了作業を繰り返さず、③の完了commit `a7d26e1`とsource/dataを確認し、④以降の再開指定まで停止する。
 
-各フェーズは、成果物が作られ、完了条件を証拠で確認した時に完了とする。条件を満たさない場合は修正・再比較へ戻り、未達事項を次フェーズへ黙って持ち越さない。現在の算術予算はPhase 5の採用構成を基準とし、Phase 6③の実測に評価/保存/枝computeを加えて更新する。実装・修復を含む日付の締切は実測なしに保証しない。
+各フェーズは、成果物が作られ、完了条件を証拠で確認した時に完了とする。条件を満たさない場合は修正・再比較へ戻り、未達事項を次フェーズへ黙って持ち越さない。現在の算術予算はPhase 6③の694,521 tokens/sを基準に500M約12分・10B約4時間。全文評価/保存/枝compute/LR調整は別に実測し、⑤の開始前予算へ加える。実装・修復を含む日付の締切は実測なしに保証しない。
 
 ## 全体の順序
 
@@ -71,7 +71,7 @@ Phase 4は以下の順で実施済み。新規環境への移行・実装変更�
 
 最初のChat完成に必要なPhase 0〜8を優先し、20B/条件付き50B、Muon等の追加比較、hybrid、クラウド並列研究はbaseline成立後に進める。小探索では主要因を一つずつ比較し、総当たりを前提にしない。データは次の段階で使う量から準備し、master corpus全量取得を学習開始の条件にしない。
 
-**時間見積もり**: 「学習開始まで1〜2日、初版Chatまで1〜3週間」は会話中の粗い仮見積もりで、確定scheduleへ採用しない。実装作業時間とGPU計算時間を別々に記録する。Phase 4で実測したtokens/secから`残りtokens / tokens/sec + 評価・保存・比較runの時間`を計算し、段階ごとに更新する。品質の修正が必要な場合は追加実験を別に見積もる。
+**時間見積もり**: 「学習開始まで1〜2日、初版Chatまで1〜3週間」は会話中の粗い仮見積もりで、確定scheduleへ採用しない。実装作業時間とGPU計算時間を別々に記録する。変更後の採用設定で検証済みのPhase 6③のtokens/secから`残りtokens / tokens/sec + 評価・保存・比較runの時間`を計算し、段階ごとに更新する。品質の修正が必要な場合は追加実験を別に見積もる。
 
 ## Phase 0: 成功条件・環境・実験管理
 
@@ -229,7 +229,7 @@ Phase 4は以下の順で実施済み。新規環境への移行・実装変更�
 
 ## Phase 6: 500M〜10B Base v1
 
-**状態**: 準備①②と③高速化・容量検証は完了し、本学習は未着手。756M unique train stream tokensのcorpus全監査とWSD stable/decayのCUDA全state再開一致を確認した。[準備完了記録](26_phase6_preparation_completion.md)。③はFlash＋compile batch 32、694,521 tokens/s、独立1286 checks・cold再開26 checks・79 testsを通過し、証拠をcommitして④の前で停止する。[高速化完了記録](29_phase6_performance_completion.md)。今後は[段階評価/gate](24_phase6_plan.md)と[残りの実行計画](27_phase6_remaining_plan.md)の生成/変換課題・予算凍結を通過して本学習を始める。
+**状態**: 準備①②と③高速化・容量検証は完了し、本学習は未着手。756M unique train stream tokensのcorpus全監査とWSD stable/decayのCUDA全state再開一致を確認した。[準備完了記録](26_phase6_preparation_completion.md)。③はFlash＋compile batch 32、694,521 tokens/s、独立1286 checks・cold再開26 checks・79 testsを通過し、証拠は`a7d26e1`へcommit済みで④の前で停止中。[高速化完了記録](29_phase6_performance_completion.md)。今後は[段階評価/gate](24_phase6_plan.md)と[残りの実行計画](27_phase6_remaining_plan.md)の生成/変換課題・予算凍結を通過して本学習を始める。
 
 **目的**: 約10Mで日本語短文生成がどこまで成立するかを測り、Chatの土台を作る。
 

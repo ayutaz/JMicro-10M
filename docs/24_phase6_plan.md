@@ -1,6 +1,6 @@
 # Phase 6: Base本学習の準備と段階評価計画
 
-更新: 2026-10-03。[Phase 5](23_phase5_completion.md)は完了し、現在はPhase 6①②③完了で停止中（本学習未開始）。①データ拡充と②長時間学習準備は[事前の目的・完了条件](25_phase6_preparation.md)に従い完了した。[完了証拠](26_phase6_preparation_completion.md)。再開後の③容量/高速化→④生成/変換→⑤設定・予算凍結は[残りの実行計画](27_phase6_remaining_plan.md)に具体化した。ユーザーの資源活用・高速化指定で③を再開した。実装・実測は[③の詳細](28_phase6_performance.md)。④以降と本学習は開始しない。
+更新: 2026-10-03。[Phase 5](23_phase5_completion.md)は完了し、現在はPhase 6①②③完了で停止中（本学習未開始）。①データ拡充と②長時間学習準備は[事前の目的・完了条件](25_phase6_preparation.md)に従い完了した。[完了証拠](26_phase6_preparation_completion.md)。③容量/高速化の完了結果と再開後の④生成/変換→⑤設定・予算凍結は[残りの実行計画](27_phase6_remaining_plan.md)に具体化した。ユーザー指定の③資源活用・高速化は検証・commit済み（`a7d26e1`）。実装・実測は[③の完了](29_phase6_performance_completion.md)。④以降と本学習は開始しない。
 
 ## 目的と出発点
 
@@ -16,7 +16,7 @@ Phase 5のdev BPBは1.221443、定常速度121,139 tokens/s。これはpilot反�
 
 | gate | 作業 | 現在の状態 | 完了の証拠・次回の条件 |
 |---:|---|---|---|
-| 1 | 実行状態・成果物の確認 | ①②終了時に確認済み、各job前に再確認 | 既存process/job/lock、公開Tokenizer hash、選択config、checkpoint、core sourceを照合。重複GPU jobを起動しない。 |
+| 1 | 実行状態・成果物の確認 | ①②③終了時に確認済み、各job前に再確認 | 既存process/job/lock、公開Tokenizer hash、選択config、checkpoint、core sourceを照合。重複GPU jobを起動しない。 |
 | 2 | 拡張corpus・shard化 | ①完了 | 756,087,912 unique train stream tokens、Web 100%、dev/test分離。source/revision/条件・取得上限・全raw/cluster/shard監査と予定反復を[完了記録](26_phase6_preparation_completion.md)に保存。 |
 | 3 | 必要なtrainer機能 | ②のWSD完了、mixture未実装 | stable/decay CLIは実装済み。初期Web単一sourceはmixture不要。必要時は明示変更系列として実装・検証し、window/教師maskと累積loss契約を維持する。 |
 | 4 | 正確な再開・分岐 | ②と③の9設定で完全一致・採用設定のcold再開も完了 | 実拡張shardでstable 200 vs 100+100、decay 100 vs 50+50のtoken列/loss/LR/全state完全一致、元stable不変性・継続一致を確認済み。batch/backend/source変更後に再検証する。 |
@@ -78,4 +78,18 @@ uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train
 
 WSDの実CLI・準備検証configと、採用config・拡張shardに対応する③用測定/厳密再開・独立監査の入口は実装済み。[③の実CLIと比較](28_phase6_performance.md)。長期run configは未凍結のため、本学習の起動commandは置かない。④⑤のgate通過後、正確な本学習の起動・再開commandをrun記録とhandoffへ追加する。
 
-①②の拡張corpus manifest/shards、独立準備gate report、準備検証config、stable/decay検証checkpointと台帳は保存済み。[完了記録](26_phase6_preparation_completion.md)。本学習の凍結run config、scaling checkpoint、`base_scaling_report.json`、`base_v1_evaluation.md`とmodel cardは今後作成する。今回の停止境界は③の高速化・容量検証とcommit完了。④以降へは進まない。
+①②の拡張corpus manifest/shards、独立準備gate report、準備検証config、stable/decay検証checkpointと台帳は保存済み。[完了記録](26_phase6_preparation_completion.md)。本学習の凍結run config、scaling checkpoint、`base_scaling_report.json`、`base_v1_evaluation.md`とmodel cardは今後作成する。③の高速化・容量検証はcommit `a7d26e1`で完了。今回の計画更新で停止境界は変更しない。④以降へは進まない。
+
+## batch 32候補の更新数と丸め（⑤で凍結する提案）
+
+③の32,768 input tokens/updateを維持する場合の算術表。stable系列のglobal updateで、decay枝の追加tokensを含まない。本学習configの確定値ではなく、batch・accumulation変更時は再計算する。
+
+| 目標input tokens | global updates | 丸め後input tokens | 純学習換算 |
+|---:|---:|---:|---:|
+| 500,000,000 | 15,259 | 500,006,912 | 12.0分 |
+| 1,000,000,000 | 30,518 | 1,000,013,824 | 24.0分 |
+| 2,000,000,000 | 61,036 | 2,000,027,648 | 48.0分 |
+| 5,000,000,000 | 152,588 | 5,000,003,584 | 120.0分 |
+| 10,000,000,000 | 305,176 | 10,000,007,168 | 240.0分 |
+
+本文教師tokens/bytesはBOS等のmaskと実samplerから別計数する。500M→1B等の区間予算は累積値の差で計算し、枝と評価/保存を別に加算する。

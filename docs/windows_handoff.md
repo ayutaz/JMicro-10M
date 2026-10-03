@@ -1,6 +1,6 @@
 # 別PCで続きを進める: Windows / WSL / RTX 4090
 
-Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpus・shardの独立監査も完了。③の速度/batch・厳密再開・cold再開も完了。④以降と本学習は未開始。
+Phase 6①②③完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpus・shardの独立監査も完了。③の速度/batch・厳密再開・cold再開も完了。④以降と本学習は未開始。
 
 最終更新: 2026-10-03。現在のPCは[Phase 4の実機検証](21_phase4_completion.md)と[Phase 5](23_phase5_completion.md)が完了し、Phase 6①②③完了で停止中（本学習未開始）。復元済みPCでは環境整備・Tokenizer学習・完了済み測定を繰り返さず、[現在の状態](autonomous_status.md)と既存job/checkpointを確認する。今回の作業範囲は③の高速化・容量検証とcommitまで。④以降を開始しない。Base/Chat本学習は未開始。
 
@@ -10,14 +10,14 @@ Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの�
 |---|---|
 | コード・docs・lockの正本 | Windows `C:\Users\AiHUB\Desktop\japanese-tiny-llm-10m` |
 | Linux実行コピー | `/home/aihub_ubuntu/src/japanese-tiny-llm-10m` |
-| GitHub | [private repository](https://github.com/ayutaz/japanese-tiny-llm-10m)。Phase 5・Phase 6①②と文書更新のコミットは未push |
+| GitHub | [private repository](https://github.com/ayutaz/japanese-tiny-llm-10m)。Phase 5・Phase 6①②③と文書更新のコミットは未push |
 | 公開pilot / Tokenizer | [固定Hub repository](https://huggingface.co/datasets/japanese-data-analyze/japanese-tiny-llm-10m-artifacts)、約107MB |
 | Hub commit | `0b1042979bf32899e24da30790e3ae6b239013c3` |
 | manifest SHA-256 | `8072bd218be26637a51c7c11540f1c8c636392c3b1a91f805a5e317e6ca55a09` |
 | 実機環境 | WSL package 3.0.1.0 / Ubuntu WSL 2、RTX 4090、Windows driver 616.92 |
 | Python / PyTorch | uv管理の3.12.7 / 2.14.1、CUDA 13.0 |
-| 完了済み | Phase 0〜5とPhase 6①②。pilot/Tokenizer、モデル/export、GPU学習器、100M候補選定、756M拡張corpus、WSD全state再開/分岐完全一致 |
-| 現在の境界 | ①②は全監査完了。③のGPU study・cold再開・独立監査も完了（保存先はautonomous_status.md）。証拠をcommitして停止。候補T4K / NoQK-Norm / LR 0.002 |
+| 完了済み | Phase 0〜5とPhase 6①②③。pilot/Tokenizer、モデル/export、GPU学習器、100M候補選定、756M拡張corpus、WSD全state再開/分岐完全一致 |
+| 現在の境界 | ①②は全監査完了。③のGPU study・cold再開・独立監査も完了（保存先はautonomous_status.md）。証拠はa7d26e1へcommit済みで停止中。候補T4K / NoQK-Norm / LR 0.002 |
 | 未実施 | 長期Base本学習、Chat trainer、学習後の量子化品質 |
 
 HubにはpilotとTokenizerがあり、モデル重み・shard・checkpointは含まない。Phase 4の検証checkpointはLinuxの`reports/phase4/gates-20261003/`、Phase 5は`reports/phase5/run-20261003-docoverfit/`、Phase 6準備の12 checkpointsは`reports/phase6/preparation-20261003/cuda/`へ保存してある。拡張raw/corpus/shardsは`~/jmicro-data/phase6/{raw,expanded-v2}/`で、Hub bundleには含まれない。新規PCへは必要なcheckpoint/logも別途引き継ぐ。旧driver/アクセス拒否の履歴は[復旧履歴](autonomous_history_20261003.md)へ分離した。
@@ -49,7 +49,7 @@ cd ~/src/japanese-tiny-llm-10m
 JMICRO_PROJECT_ROOT="$PWD" bash scripts/setup_wsl_environment.sh
 ```
 
-Linuxのsetup.log/environment、Windowsのwsl_setup reportに結果を保存する。既存環境は構築済みで、CUDA/BF16、入力付きprepare/verify、Phase 4の全64 tests / skip 0を確認した。Phase 6①②まで含む最新suiteは全74 tests / skip 0で成功し、73 GPU checksも確認した。
+Linuxのsetup.log/environment、Windowsのwsl_setup reportに結果を保存する。既存環境は構築済みで、CUDA/BF16、入力付きprepare/verify、Phase 4の全64 tests / skip 0を確認した。Phase 6①②は74 tests・73 GPU checks、最新③は79 tests・独立1286 checks・cold再開26 checks成功（全skip 0）。
 
 ## 2. Linux側でコードとuvを準備
 
@@ -132,7 +132,7 @@ uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train
 uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train.py evaluate --help
 ```
 
-下記200更新はCLI利用例で、overfit合格の証拠や本学習設定ではない。Phase 5の正式な予算・合格条件は[詳細計画](22_phase5_plan.md)へ固定済み。Phase 5 supervisorは終了済み。完了した比較を重複起動せず、完了した③のstudyを重複起動しない。④以降は再開指定を待つ。文書単独の暗記検証には`--sampler document`を使用し、通常のsmoke/100Mはdefaultのblock samplerを使う。
+下記200更新はCLI利用例で、overfit合格の証拠や本学習設定ではない。Phase 5の正式な予算・合格条件は[詳細計画](22_phase5_plan.md)へ固定済み。Phase 5 supervisorは終了済み。完了したPhase 5比較と③のstudyを重複起動しない。④以降は再開指定を待つ。文書単独の暗記検証には`--sampler document`を使用し、通常のsmoke/100Mはdefaultのblock samplerを使う。
 
 ```sh
 uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train.py build-shards --tokenizer artifacts/phase2/8192/tokenizer.model --limit 100 --output "$HOME/jmicro-data/shards/t8k-overfit100"
@@ -153,7 +153,7 @@ Phase 4 Norm/defaultのeager最大安定batchはT8K 57 / T4K 64、測定点の�
 
 ```text
 AGENTS.md、docs/autonomous_status.md、docs/15_project_roadmap.md、docs/windows_handoff.md、docs/24_phase6_plan.mdを読んでください。
-Phase 0〜5とPhase 6①②③は完了しています。③の証拠をcommitして停止し、④以降は再開指定まで開始しないでください。残る作業はdocs/27_phase6_remaining_plan.mdを参照してください。ユーザーの再開指定があるまで本学習を起動しないでください。
+Phase 0〜5とPhase 6①②③は完了しています。③の証拠はa7d26e1へcommit済みです。④以降の再開指定まで停止し、完了したGPU studyを再実行しないでください。残る作業はdocs/27_phase6_remaining_plan.mdを参照してください。ユーザーの再開指定があるまで本学習を起動しないでください。
 最新コードの正本はWindows workspaceで、最近のコミットは未pushです。Linux実行sourceはsnapshot/hashで確認してください。
 固定公開Tokenizer/pilotは復元済み。Pythonは必ずuv run --frozen、依存変更はuv addを使ってください。
 既存process/checkpointを確認し、docs/24_phase6_plan.mdとdocs/26_phase6_preparation_completion.mdに従って進め、同じjobを二重起動しないでください。
