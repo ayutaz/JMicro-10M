@@ -1,5 +1,17 @@
 # ローカル10Bデータセットの整備
 
+2026-10-04現在: [ローカル整備完了](../reports/phase6/corpus_10b_ready_review.json)。WSL内`/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2/export-001/shards/`に実T4K train12,225,819,077 tokens/25,879,667文書を保存済み。新dev678,132,065/test679,399,996 tokensは別で、10Bに含めない。構築時に全32band重複処理と全採用文書のencode/decode/hash確認が済み、独立監査では全128raw/全signature再構築と29/32near bandまで検証した。
+
+ユーザーが過剰な照合の省略と学習開始を指示したため、残る独立重複再構築・全代表照合・全文再トークン化は省略。[停止記録](../reports/phase6/corpus_10b_validation_policy.json)に元job/manifest/config bindingを保存し、全件audit合格とは記録しない。代わりに未変更の`Shard`/`BlockSampler`による実train読み込み・checksum・語彙/教師mask・batch生成・位置再現が[49.147秒で合格](../reports/phase6/corpus_10b_loader_ready.json)。このユーザー指定の検証範囲で利用可能とする。旧データ・heldout・Tokenizer・重み・履歴は別pathで保持し、再export/再監査を行わない。
+
+同じ構築済みデータへの利用確認入口は以下。通常入口の全件audit条件は保持し、このflagでは一致するユーザー指定停止記録が必要。
+
+```sh
+uv run --frozen --extra hub --extra data --extra ml --extra export scripts/check_corpus_10b_ready.py --user-reduced-validation --output /home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2 --report reports/phase6/corpus_10b_loader_ready.json
+```
+
+続いてユーザーが2B学習を指定し、[別config](../configs/phase6/base_2b_10b_data.json)でGPU学習を開始した。減衰込み2B総予算、既存のprotected devで比較して停止する。[実状態](autonomous_status.md)。以下は開始時の計画・変更経過として保持する。
+
 2026-10-03。ユーザー指定「今後のために10bほどローカルに用意」に基づき、学習用データの準備を実行する。完了はT4Kで測ったtrain stream tokensが10,000,000,000以上あり、全件構造監査に通り、ローカルで利用可能なこと。周回、dev/test、上流の別Tokenizerによる推計は10Bへ含めない。これは学習の実行依頼ではなく、モデルは10,001,152パラメータのまま。
 
 ## 保存先と容量

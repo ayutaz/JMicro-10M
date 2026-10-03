@@ -1,0 +1,63 @@
+{
+  "status": "running_gpu_training",
+  "observed_at_utc": "2026-10-03T17:51:20.0347883Z",
+  "config": "configs/phase6/base_2b_10b_data.json",
+  "config_sha256": "11ca116e0702a2feba99f883f5d2471ba92f265a04c49a38e8b34e300f64b0ff",
+  "windows_launcher_pid": 28168,
+  "supervisor": {
+    "boot_id": "0b330ec7-c11f-4bb3-be7c-cae9b868f4af",
+    "start_ticks": "2372467",
+    "pid": 482
+  },
+  "worker": {
+    "pid": 487,
+    "boot_id": "0b330ec7-c11f-4bb3-be7c-cae9b868f4af",
+    "start_ticks": "2372547"
+  },
+  "run": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-2b-10bdata-20261004",
+  "log": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-2b-10bdata-20261004/stable-2B-0.log",
+  "latest_observed_metrics": {
+    "update": 950,
+    "loss": 3.548124074935913,
+    "gradient_norm": 0.3182772994041443,
+    "lr": 0.002,
+    "tokens_seen": 31129600,
+    "supervised_tokens": 31063533,
+    "body_bytes_seen": 120965458,
+    "token_digest": "7891dbb41b956b48333793718c27bf84e21e46537b1c4a8ad1a2035645687de5",
+    "seconds": 0.04620936699939193,
+    "data_wait_seconds": 0.00026450199948158115,
+    "tokens_per_second": 709120.2959008547
+  },
+  "model_parameters": 10000152,
+  "prepared_unique_train_tokens": 12225819077,
+  "planned_total_input_tokens": 2000027648,
+  "planned_stable_updates": 57984,
+  "planned_decay_updates": 3052,
+  "initialization": "new random weights, seed42; independent large-data run, same model/settings as prior500M; old checkpoints preserved",
+  "evaluation": "Existing protected dev and fixed400 generation comparison; test unused",
+  "restart_command": [
+    "uv",
+    "run",
+    "--frozen",
+    "--extra",
+    "hub",
+    "--extra",
+    "data",
+    "--extra",
+    "ml",
+    "--extra",
+    "export",
+    "scripts/run_base.py",
+    "--config",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_2b_10b_data.json",
+    "--target",
+    "2B",
+    "--output",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-2b-10bdata-20261004",
+    "--operation",
+    "stable",
+    "--execute"
+  ],
+  "stop_boundary": "Stop after total2B training and existing evaluation; no5B/10B/Chat"
+}

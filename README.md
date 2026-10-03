@@ -1,5 +1,7 @@
 # JMicro-10M
 
+2026-10-04: [ローカル学習データを実train12.23B tokens整備](reports/phase6/corpus_10b_ready_review.json)。ユーザー指示で過剰な独立再照合を省き、構築時の全件確認と実loader合格を採用（独立全件auditは未完了と明記）。新データでユーザー指定の2B学習をWSL＋RTX4090で開始した。モデルは約10Mパラメータのまま。減衰込み2Bと既存dev/生成評価を終えて停止する。[現在の実状態](docs/autonomous_status.md)。
+
 2026-10-03: 拡張trainの500M stable＋独立763更新decayと全文dev/400生成評価を完了。同一dev BPB 1.244126→1.022491、抑制greedy EOS 0/80→0/80、反復48/80→66/80。全99 tests成功。人手blind採点・test・Chat・新重みの量子化は未実施。1B前で停止。 [最新結果](reports/phase6/base_500m_review.json)。
 
 日本語の短文生成と数ターンの雑談を目的に、約10Mの言語モデルをTokenizerからスクラッチ構築する。計画は[フェーズ別実行計画](docs/15_project_roadmap.md)、設計・調査一覧は[docs](docs/README.md)を参照。

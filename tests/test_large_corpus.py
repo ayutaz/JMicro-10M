@@ -149,10 +149,28 @@ def test_restartable_ingest_protects_previous_heldout_and_exports_losslessly(tmp
     with pytest.raises(ValueError,match="binding"):
         ready.check(config,output,output/"refused.json")
     write_json(output/"corpus_audit.json",saved_audit)
+    stopped=dict(terminal,status="failed",failure="InterruptedError: Audit interrupted by signal2; preserve completed export")
+    write_json(output/"job.json",stopped)
+    policy=dict(status="audit_stopped_by_user",validation_scope="built_export_and_actual_train_loader",
+                manifest_sha256=sha256(output/"manifest.json"),config_sha256=sha256(config),
+                terminal_job_sha256=sha256(output/"job.json"),audit_pid=stopped["pid"],
+                boot_id=stopped["boot_id"],start_ticks=stopped["start_ticks"])
+    write_json(output/"validation_policy.json",policy)
+    reduced=ready.check(config,output,output/"reduced-ready.json",user_reduced_validation=True)
+    assert reduced["sampler_replay_exact"] and not reduced["full_independent_audit_passed"]
+    assert reduced["corpus_audit_sha256"] is None
+    write_json(output/"validation_policy.json",dict(policy,manifest_sha256="wrong"))
+    with pytest.raises(ValueError,match="policy/export/terminal binding"):
+        ready.check(config,output,output/"refused.json",user_reduced_validation=True)
+    write_json(output/"validation_policy.json",policy)
+    with pytest.raises(ValueError,match="not completed"):
+        ready.check(config,output,output/"refused.json")
     with (artifact/"shards/train.bin").open("r+b") as stream:
         stream.write(b"bad!")
     with pytest.raises(ValueError,match="checksum"):
         auditor.audit(config,raw,output,workers=1)
     with pytest.raises(ValueError,match="checksum"):
         audit_with_cache(auditor,config,raw,output,workers=1)
+    with pytest.raises(ValueError,match="checksum"):
+        ready.check(config,output,output/"refused.json",user_reduced_validation=True)
     assert auditor.lru_cache is original_decorator

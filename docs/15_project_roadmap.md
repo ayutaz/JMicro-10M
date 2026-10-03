@@ -1,6 +1,6 @@
 # JMicro-10M フェーズ別実行計画
 
-ユーザーの実行依頼により、優先作業は[約10Bのローカル学習用データ整備](32_local_10b_corpus.md)。取得・構築・全件監査をWSL filesystemで実行中。旧2B/5B計画を更新し、完了後report/commitで学習前に停止する。モデルは約10Mパラメータのまま、データ量と累積学習量を区別する。生成方法の対照比較は保留。
+2026-10-04: [ローカルデータ整備](32_local_10b_corpus.md)は実train12.23B tokensで完了。ユーザー指示で過剰な独立再照合を省き、構築時の全件検査・独立raw再構築・実train loader合格を採用し、独立全件audit未完了を明記した。さらにユーザーが2B学習を指定し、同じ約10Mモデルを新データで別runとしてGPU学習中。減衰込み総2B、既存protected dev/生成比較、report/commitで停止する。5B/10B/Chat・生成方法の対照比較は未起動。[現在の実状態](autonomous_status.md)。
 
 2026-10-03: 500M後の反復/EOS/data調査も完了。[判断と比較](../reports/phase6/repetition_diagnosis_review.md)。EOS教師漏れは確認されず、文書末尾予測は改善し、反復は131Mから多い。decay後は70/80→66/80。原因をデータ量へ確定せず、次の対照を提案して停止。追加学習/1Bは未開始。
 

@@ -1,4 +1,4 @@
-"""Verify audited local corpus delivery and actual training-loader usability.
+"""Verify local corpus delivery and actual training-loader usability.
 
 Run after preparation has terminated successfully. This creates no model and
 performs no optimizer update, inference or evaluation of the heldout text.
@@ -16,25 +16,42 @@ from jmicro.experiment import ROOT,now,sha256
 from jmicro.shards import Shard,BlockSampler
 
 
-def check(config,output,report):
+def check(config,output,report,user_reduced_validation=False):
     started=time.perf_counter()
     c=read_json(config)
     job=read_json(output/"job.json")
-    if job["status"]!="complete":
+    if not user_reduced_validation and job["status"]!="complete":
         raise ValueError("Preparation has not completed")
     process=Path(f'/proc/{job["pid"]}/stat')
     if (process.exists() and Path("/proc/sys/kernel/random/boot_id").read_text().strip()==job["boot_id"] and
         process.read_text().split()[21]==job["start_ticks"]):
         raise ValueError("Preparation process is still live; verify terminal delivery after exit")
     manifest=read_json(output/"manifest.json")
-    audit=read_json(output/"corpus_audit.json")
-    if (audit["status"]!="passed" or audit["manifest_sha256"]!=sha256(output/"manifest.json") or
-        manifest["config_sha256"]!=sha256(config)):
+    manifest_hash=sha256(output/"manifest.json")
+    if manifest["config_sha256"]!=sha256(config):
         raise ValueError("Final audit/manifest/config binding differs")
+    audit=None
+    if user_reduced_validation:
+        policy=read_json(output/"validation_policy.json")
+        if (policy["status"]!="audit_stopped_by_user" or
+            policy["validation_scope"]!="built_export_and_actual_train_loader" or
+            policy["manifest_sha256"]!=manifest_hash or
+            policy["config_sha256"]!=manifest["config_sha256"] or
+            policy["terminal_job_sha256"]!=sha256(output/"job.json") or
+            any(policy[k]!=job[j] for k,j in (("audit_pid","pid"),("boot_id","boot_id"),("start_ticks","start_ticks"))) or
+            job["status"]!="failed" or
+            "InterruptedError: Audit interrupted by signal2" not in job.get("failure","") or
+            manifest["status"]!="built_not_audited" or not manifest["target_met"]):
+            raise ValueError("User-reduced validation policy/export/terminal binding differs")
+    else:
+        audit=read_json(output/"corpus_audit.json")
+        if audit["status"]!="passed" or audit["manifest_sha256"]!=manifest_hash:
+            raise ValueError("Final audit/manifest/config binding differs")
     if manifest["splits"]["train"]["tokens"]<c["minimum_train_stream_tokens"]:
         raise ValueError("Prepared training corpus is below target")
     artifact=Path(manifest["artifact_directory"])
-    if str(artifact)!=audit["artifact_directory"]:
+    artifact.resolve().relative_to(output.resolve())
+    if audit is not None and str(artifact)!=audit["artifact_directory"]:
         raise ValueError("Audited artifact directory differs")
     shard_manifest=read_json(artifact/"shards/manifest.json")
     if shard_manifest["splits"]!=manifest["splits"]:
@@ -62,8 +79,11 @@ def check(config,output,report):
     result={"status":"passed_actual_training_loader","completed_at":now(),
             "target_train_tokens":c["minimum_train_stream_tokens"],"prepared_splits":manifest["splits"],
             "artifact_directory":str(artifact),"shards":str(artifact/"shards"),
-            "manifest_sha256":sha256(output/"manifest.json"),
-            "corpus_audit_sha256":sha256(output/"corpus_audit.json"),
+            "manifest_sha256":manifest_hash,
+            "corpus_audit_sha256":sha256(output/"corpus_audit.json") if audit is not None else None,
+            "validation_scope":"built_export_and_actual_train_loader" if user_reduced_validation else "full_independent_audit_and_actual_train_loader",
+            "full_independent_audit_passed":audit is not None,
+            "validation_policy_sha256":sha256(output/"validation_policy.json") if user_reduced_validation else None,
             "shard_manifest_sha256":sha256(artifact/"shards/manifest.json"),
             "loader":"jmicro.shards.Shard/BlockSampler; unchanged production implementation",
             "batch_shape":[2,1024],"sampler_replay_exact":True,"training_updates":0,
@@ -77,5 +97,6 @@ if __name__=="__main__":
     p.add_argument("--config",type=Path,default=ROOT/"configs/phase6/corpus_10b.json")
     p.add_argument("--output",type=Path,required=True)
     p.add_argument("--report",type=Path,required=True)
+    p.add_argument("--user-reduced-validation",action="store_true",help="Require a bound user-requested audit stop record; retain actual train-loader checks")
     args=p.parse_args()
-    print(json.dumps(check(args.config,args.output,args.report)),flush=True)
+    print(json.dumps(check(args.config,args.output,args.report,args.user_reduced_validation)),flush=True)

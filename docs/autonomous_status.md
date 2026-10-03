@@ -2,7 +2,15 @@
 
 最終更新: 2026-10-03（日本時間）。実測の正本はreportとWSLのrun/data、milestoneは[roadmap](15_project_roadmap.md)。
 
-## 実行中: ローカル10Bデータの取得・構築・監査
+## 実行中: 新しい12.23Bデータで2B学習
+
+2026-10-04: ユーザーの「過剰な検証や照合はしなくていい」「学習に早く入りたい」に従い、独立監査の残りを停止。最後の進捗は29/32band、raw128files/全29,208,256records再構築は済み。構築時の全32band重複処理・全export往復検査と、[実train loaderの合格](../reports/phase6/corpus_10b_loader_ready.json)で[ローカル10B整備を完了](../reports/phase6/corpus_10b_ready_review.json)。train12,225,819,077 tokens/25,879,667文書、dev/testは別。loader49.147秒、batch2×1024・sampler再現一致。独立全件監査は未完了のまま明記し、`job.json`のInterruptedError/failedは[ユーザー指定の監査停止](../reports/phase6/corpus_10b_validation_policy.json)によるもの。構築済みmanifestと凍結sourceは変更せず、再監査・再exportしない。
+
+ユーザーは2B学習を明示指定。[新しい学習config](../configs/phase6/base_2b_10b_data.json)と[実GPU開始記録](../reports/phase6/base_2b_10b_data_start.json)。同じ約10M/NoNormモデルをseed42で別runに初期化し、旧500M重みは保持する。stable57,984更新＋decay3,052更新、総2,000,027,648 tokens（batch丸め、減衰も2B総予算内）。BF16/Flash＋compile reduce-overhead、batch32/context1024、途中保存1000更新ごと。実950更新/31,129,600tokens、finite loss3.5481・grad、約709k tokens/sを確認済み。まだ品質改善とはしない。
+
+実行先`/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-2b-10bdata-20261004/`。Windows hidden launcher28168、pipeline shell472、stable supervisor482/start_ticks2372467、worker487/start_ticks2372547、boot`0b330ec7-c11f-4bb3-be7c-cae9b868f4af`。正本は`supervisor.json`（operation移行後はPIDが変わる）。logはrun内`stable-2B-0.log`、全体は`reports/phase6/base_2b_10b_data_pipeline.log`。`scripts/run_base_2b_10b_data.sh`がstable→decay→既存protected dev/400生成評価を順に実行し、その後停止する。現在の実PIDを確認してから再開し、live時は重複起動しない。学習のみ約47〜48分＋既存評価約12分が目安、実測速度・保存で変動する。test/5B/10B/Chat/decoder比較は未起動。
+
+以下はデータ整備・旧監査の経過記録。
 
 2026-10-04 02:41 JST: [逐次near監査28/32band通過](../reports/phase6/corpus_10b_edges_audit_twenty_eight.json)。band0〜27の連続した完了logを確認。大group7,077件を含むband27は987.968秒（約16分28秒）で完了した。実PID1170053/boot/start_ticks1074573が記録と一致し、CPU時間が増加、完成export manifest SHAも不変。残り4band→全代表・全corpus/membership/split/token/index往復→terminal/PID終了→実train loaderを継続する。WSL空き619,283,476,480 bytes・RAM available約64GBを確認済みで拡張不要。全件合格・整備完了は未達、学習更新0。
 
