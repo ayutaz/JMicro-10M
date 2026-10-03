@@ -34,6 +34,8 @@ v3は実CUDA updateのCPU ATen traceで、Flashなら`aten::_scaled_dot_product_
 
 最終設定は完全一致と運用確認を通過したものから速度で選ぶ。最大VRAM使用量と最高速度を別に報告し、評価/saveの余裕を残す。本学習effective batch/LR/WSD数値予算の凍結は⑤として残す。CPU/data waitが制約なら実測に基づく対策を比較し、測定していないMFUや「全GPU能力を使い切った」との保証はしない。
 
+採用候補には、[空のcompiler cacheからの再開検証](../scripts/verify_phase6_cold_resume.py)も追加する。study終了後、その設定のstable 100 checkpointを新runへ通常loadし、空のbackend別cacheで残る100更新を実行する。連続200の全state・後半loss/LR/token履歴完全一致と元run全filesの不変性を確認する。cacheが作成された後、cold trajectoryのcheckpointを保存する前に中断した場合は、warm cacheで代替せず新しい空outputで再検証する。
+
 ## v3の短い比較（採用判定前）
 
 [7設定のraw結果への参照と実演算証拠](../reports/phase6/performance_initial_probes.json)。各batch 8/context 1024/40完了更新、同じ入力327,680 tokens、最初の8更新とprofile更新を速度集計から除いた。compile cacheがある起動の値で、fresh cold compileや最大batchの結果ではない。
@@ -56,6 +58,13 @@ WSL checkoutからの実command:
 
 ```sh
 uv run --frozen --extra hub --extra data --extra ml --extra export scripts/phase6_performance.py --plan configs/phase6/performance.json --output reports/phase6/performance-20261003-v3
+```
+
+studyのterminal completeとprocess/GPUの終了確認後のみ:
+
+```sh
+uv run --frozen --extra hub --extra data --extra ml --extra export scripts/verify_phase6_cold_resume.py --study reports/phase6/performance-20261003-v3 --output reports/phase6/performance-cold-resume-20261003
+uv run --frozen --extra hub --extra data --extra ml --extra export scripts/audit_phase6_performance.py --study reports/phase6/performance-20261003-v3 --output reports/phase6/performance_completion_audit.json
 ```
 
 Windows hidden launcherとLinux supervisorで保持し、`job.json`のPID/boot/start ticks・worker identity・stage/log/heartbeat/restart command、各runのmetrics/atomic checkpoint/SHA、source snapshotを保存する。GPU lockと既存compute processを確認して重複起動しない。同じcommandは完了したstudyを重複実行せず、同一source/configの完了probeを再利用する。中断したworkerは有効checkpointの境界へmetricsを戻して再開する。失敗・source/config変更は別outputへ分け、失敗を削除しない。

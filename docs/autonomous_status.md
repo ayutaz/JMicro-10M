@@ -35,7 +35,9 @@ backend別cache namespaceとin-memory reset、実CUDA updateのATen operator検�
 
 実行中study: Linux `reports/phase6/performance-20261003-v3`、Windows hidden launcher PID 24452。Linux `job.json`のPID/boot/start ticks・worker・stage/log/heartbeatと、各checkpoint/SHAから状態を確認する。同じGPU jobを二重起動しない。新しい採用設定・最大batchの判定は未完了。旧①②reportとsnapshot、uv.lockは保持する。
 
-v3の7設定は実演算・有限値・小sample評価を通過した。[短い比較](../reports/phase6/performance_initial_probes.json)ではreference約120.5kに対してcompiled Flash/reduce-overhead約520.8k tokens/s（4.321倍）、batch 8のtraining peak約1.53 GiB。採用には厳密再開/容量/3×200が必要で、まだ採用しない。実装はcommit `1aa0d4d`。現在の文書45件/内部link 484件、全79 tests、旧73 reportsとuv.lockのbyte保持を別監査で確認した。
+v3の7設定は実演算・有限値・小sample評価を通過した。[短い比較](../reports/phase6/performance_initial_probes.json)ではreference約120.5kに対してcompiled Flash/reduce-overhead約520.8k tokens/s（4.321倍）、batch 8のtraining peak約1.53 GiB。採用には厳密再開/容量/3×200が必要で、まだ採用しない。実装はcommit `1aa0d4d`、probe/文書証拠は`3fc1221`。文書45件、全79 tests、旧73 reportsとuv.lockのbyte保持を別監査で確認した。
+
+reference/math batch 16は全state・履歴の厳密再開/分岐と3×200完了更新を通過した。短い容量probeはbatch 45通過・46 OOM。45も厳密再開/分岐を通過し、3×200確認中で最大安定判定はまだ完了していない。検証中のdriver観測はVRAM 23,694/24,564 MiB、GPU使用率99%。study後の採用候補には空compiler cacheからstable 100→200を再開して連続200と完全一致する追加検証を用意した。実CLIは③の詳細へ記載し、既存GPU studyが終わるまで起動しない。
 
 ## 次の具体的な行動
 
