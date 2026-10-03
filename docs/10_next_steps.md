@@ -62,11 +62,11 @@ Phase 5実行状況（2026-10-03）: ユーザーが再開と完了までの作�
 
 ## Phase 5: 最小pipelineと100M探索
 
-- [ ] 100件overfit、10M-token smokeで学習・生成・保存再開を一周する。
+- [x] 100件overfit、10M-token smokeで学習・生成・保存再開を一周する（機械的gateに合格、停止・反復の品質未達はstatusへ記録）。
 - [ ] 100Mで4k/8k、QK-Norm、LRを一要因ずつ比較する。
 - [ ] AdamW baseline成立後、必要ならMuon+AdamWを別LRで比較する。
 - [ ] BPB、処理bytes/GPU時間、更新数、生成失敗を比較し、最大2候補へ絞る。
-- [ ] dev/pilotを使い、品質閾値を最終test評価前に固定する。
+- [x] dev/pilotを使い、品質閾値を最終test評価前に固定する（数値を維持し、100M結果前にtargets.statusをfrozenへ変更）。
 
 ## Phase 6: 1B〜10B Base v1
 

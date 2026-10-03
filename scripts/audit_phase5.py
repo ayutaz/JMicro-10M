@@ -7,6 +7,7 @@ from collections import Counter, defaultdict
 import json
 import math
 from pathlib import Path
+import re
 import sys
 import xml.etree.ElementTree as ET
 
@@ -38,7 +39,7 @@ def audit_body(body, expected):
     require(all(math.isfinite(r["body_nll"]) and math.isfinite(r["eos_nll"]) for r in rows), "Nonfinite evaluation")
 
 
-def generation_summary(generation, cases):
+def generation_summary(generation, cases, tokenizer):
     expected = Counter((c["id"], c["category"], suppressed, mode, seed)
         for c in cases for suppressed, mode, seed in
         [(True, "greedy", 42), (False, "greedy", 42),
@@ -56,6 +57,16 @@ def generation_summary(generation, cases):
         require(0 < len(ids) <= 64, "Invalid generation token count")
         require((row["stop_reason"] == "stop_id") == (ids[-1] == 3), "Stop reason differs from token IDs")
         require(not (3 in ids[:-1]), "Generation continued after EOS")
+        require(all(0 <= i < tokenizer.vocab_size for i in ids), "Generated ID outside vocabulary")
+        raw = tokenizer.decode_bytes(ids) if 1 not in ids else b""
+        try:
+            decoded, valid = raw.decode(), 1 not in ids
+        except UnicodeDecodeError:
+            decoded, valid = raw.decode(errors="replace"), False
+        require(row["text"] == decoded and row["valid_utf8"] == valid, "Decoded text/Unicode flag differs")
+        require(row["role_leak"] == any(i in (4,5,6,7) for i in ids), "Role flag differs")
+        require(row["empty_response"] == (not decoded.strip()), "Empty flag differs")
+        require(row["repetition"] == bool(re.search(r"(.{2,}?)\1\1", decoded, flags=re.DOTALL)), "Repetition flag differs")
         key = f'{row["decoding"]}/suppressed={row["suppressed"]}'
         grouped[key].append(row)
         grouped[f'{key}/category={row["category"]}'].append(row)
@@ -93,11 +104,12 @@ def main():
     populations = {name: [(r["doc_id"], r["bytes"]) for r in shard.index] for name, shard in shards.items()}
     require(populations["t8k"] == populations["t4k"], "Tokenizer dev populations differ")
     require(len(populations["t8k"]) == 924 and sum(b for _, b in populations["t8k"]) == 1633458, "Pinned dev population differs")
-    fallback = {}
+    fallback, tokenizers = {}, {}
     for name, shard in shards.items():
         train = Shard(shard.directory, "train")
         require(not set(r["doc_id"] for r in train.index) & set(r["doc_id"] for r in shard.index), "Train/dev overlap")
         tok = Tokenizer(ROOT / f'artifacts/phase2/{8192 if name == "t8k" else 4096}/tokenizer.model')
+        tokenizers[name] = tok
         count = sum(int(np.isin(shard.tokens[r["offset"]+1:r["offset"]+1+r["body_tokens"]], tok.byte_ids).sum()) for r in shard.index)
         total = sum(r["body_tokens"] for r in shard.index)
         fallback[name] = dict(split="dev", body_tokens=total, fallback_tokens=count, fallback_token_rate=count/total,
@@ -170,7 +182,7 @@ def main():
             require((directory / "checkpoint-00000600.pt").exists() and "smoke-t8k-first-half" in job["completed_stages"], "Actual smoke pause missing")
         compact[name] = dict(body={k:v for k,v in report["body"].items() if k != "rows"},
             common_windows={k:v for k,v in report["common_windows"].items() if k != "rows"},
-            generation=generation_summary(report["generation"], cases),
+            generation=generation_summary(report["generation"], cases, tokenizers[model_name]),
             checkpoint=report["checkpoint"], checkpoint_sha256=report["checkpoint_sha256"], spec=state["spec"],
             raw_report=str(run / ("smoke_report.json" if name == "smoke" else f"{name}.json")),
             raw_report_sha256=sha256(run / ("smoke_report.json" if name == "smoke" else f"{name}.json")))

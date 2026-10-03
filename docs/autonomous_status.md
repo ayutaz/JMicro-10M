@@ -12,7 +12,9 @@
 
 ## 実際の状態
 
-**最新: Phase 5のoverfit修復が合格し、10M smokeを実行中。** [詳細計画](22_phase5_plan.md)と`configs/phase5/plan.json`へ目的・合格条件・予算を固定した。固定blockの失敗を保持し、文書単位samplerへ修復した`34d932d`では全68 tests / skip 0と、新sourceのT8K/T4K/文書samplerのCUDA 200 vs 100+100全state一致が成功した。100件overfitは6,000更新後、本文NLL/token **0.01277**、teacher accuracy **99.712%**、16-token continuation exact **100%**、EOS argmax/実生成停止 **100%**で全5 gateに合格した。raw証拠は`reports/phase5/overfit_report.json`へ保存する。smokeは600更新で保存・再開し、合計1,221更新を行う。品質目標の数値を維持した凍結は`5d6b72e`へ保存済み。公開25 payloadの固定revision/hash検証も成功済み。
+**最新: Phase 5のoverfit/10M smokeが合格し、T8Kの100M比較を実行中。** [詳細計画](22_phase5_plan.md)と`configs/phase5/plan.json`へ目的・合格条件・予算を固定した。固定blockの失敗を保持し、文書単位samplerへ修復した`34d932d`では全68 tests / skip 0と、新sourceのT8K/T4K/文書samplerのCUDA 200 vs 100+100全state一致が成功した。100件overfitは6,000更新後、本文NLL/token **0.01277**、teacher accuracy **99.712%**、16-token continuation exact **100%**、EOS argmax/実生成停止 **100%**で全5 gateに合格した。raw証拠は`reports/phase5/overfit_report.json`に保存済み。品質目標の数値を維持した凍結は`5d6b72e`へ保存済み。公開25 payloadの固定revision/hash検証も成功済み。
+
+10M smokeは600更新で保存・再開し、1,221更新 / **10,002,432 tokens**で終了。全更新・weights・optimizerの有限値、凍結設定、loss低下を独立に監査した。dev 924文書 / 1,633,458 bytesのBPBは初期**2.74787 → 1.41697**。固定dev 80件×5条件の400生成を実施し、IDから全flagを再計算して一致した。抑制ありgreedyはEOS **0/80**、反復 **63/80**、Unicode/role/emptyは各0/80で、Base/Chat品質目標は未達。文書末尾からの暗記EOS 100%と自発的な短文停止は区別する。smoke評価に約354秒を要した。`reports/phase5/smoke_report.json`と二つのsmoke auditへ保存する。
 
 以下は完了済みPhase 4の証拠（2026-10-03 01:58 JST監査成功）。[完了記録](21_phase4_completion.md)とGit保存の`reports/phase4/handoff_report.json`を参照する。
 
@@ -46,7 +48,7 @@ command: `bash scripts/run_phase4_job.sh scripts/run_phase5.py --output reports/
 
 ## 次の具体的な作業
 
-実プロセスとjob/logを確認し、10M smokeの再開・改善・生成評価 → T4K/T8K 100M比較 → QK-Norm/LR比較 → 候補選定・独立監査を進める。新sourceのT8K/T4K/文書sampler resumeとoverfitは合格済み。NoQK-Normは比較前に別途resumeを検証する。失敗したgateはraw結果を保持して修復し、閾値を緩めない。Phase 6には進まない。
+実プロセスとjob/logを確認し、T8K/T4K 100M比較 → QK-Norm/LR比較 → 補助bytes/time予算評価 → 候補選定・独立監査を進める。新sourceのT8K/T4K/文書sampler resume、overfit、10M smokeは合格済み。NoQK-Normは比較前に別途resumeを検証する。smokeでの自発停止/反復の失敗を各100M結果と比較し、品質未達を隠さない。Phase 6には進まない。
 
 Phase 5の設定・実装を検証済みの区切りでコミットし、最後に実測reportと候補config・採否理由を保存する。Tokenizer再学習・Phase 3全作業・完了済みPhase 4測定は繰り返さない。
 

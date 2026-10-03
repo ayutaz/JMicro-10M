@@ -25,7 +25,7 @@ Phase 5実行状況（2026-10-03）: ユーザーが再開と完了までの作�
 
 **完了範囲**: [4k/8k Tokenizer](18_phase2_completion.md)、[両モデル/cache/学習前export](19_phase3_completion.md)、GPU学習器・評価・再開・速度を検証済み。Phase 3重みはランダム初期化、Phase 4には小さい学習済み検証checkpointがある。Python 3.12.7、実行は`uv run --frozen`、依存変更は`uv add`。
 
-**現在地**: [Phase 4の実GPU検証](21_phase4_completion.md)が完了し、ユーザー指定により停止中。Phase 5のoverfit/smoke/100M比較を順に実行する。Base/Chatの本学習・能力目標は未達。最新の状態は[継続記録](autonomous_status.md)を参照する。
+**現在地**: [Phase 4の実GPU検証](21_phase4_completion.md)が完了し、ユーザー指定によりPhase 5を実行中。overfit/smoke/100M比較を順に検証し、Phase 6前に停止する。Base/Chatの本学習・能力目標は未達。最新の状態は[継続記録](autonomous_status.md)を参照する。
 
 **別PCでの再開入口**: [Windows/WSL＋RTX 4090の再開手順](windows_handoff.md)。GitHubの取得からHub成果物の復元、uv環境、CUDA確認、実装順までを順に実行できる。
 

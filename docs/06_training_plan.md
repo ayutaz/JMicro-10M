@@ -2,17 +2,17 @@
 
 Phase 5実行状況（2026-10-03）: ユーザーが再開と完了までの作業を指定した。[詳細計画](22_phase5_plan.md)を参照。現在のrun/processは継続状態を正とし、Phase 6本学習は開始しない。
 
-最終更新: 2026-10-03。AdamW＋warmup/cosineは実装済み。WSD、Muon、Chat trainerは未実装の比較候補。train CLIは引数から設定を作り、baseline JSONを自動読込しない。現在のresumeは固定schedule/config/source/dataの変更を拒否するため、予算の延長を同一runの再開として扱わない。50Bは改善と予算条件を満たした場合のみ、外部の有料GPU実行は別途ユーザーの指示が必要。
+最終更新: 2026-10-03。AdamW＋warmup/cosineは実装済み。Phase 6の長期schedulerはWSDを採用する方針に決めたが、WSD、Muon、Chat trainerは未実装。train CLIは引数から設定を作り、baseline JSONを自動読込しない。現在のresumeは固定schedule/config/source/dataの変更を拒否するため、予算の延長を同一runの再開として扱わない。50Bは改善と予算条件を満たした場合のみ、外部の有料GPU実行は別途ユーザーの指示が必要。
 
 ## 全体像
 
 プロジェクト全体の目的・ゴール・成果物・完了条件は[フェーズ別実行計画](15_project_roadmap.md)を参照する。本書は学習系列の設定とcheckpoint段階を扱う。10B BaseからChatへ分岐し、20B/50Bの終了をChat着手の前提にしない。
 
-**現在地（2026-10-03）**: Phase 0〜4が完了。WSL＋RTX 4090で学習器・shard・BPB/生成評価・保存再開・最大安定batchを検証した。現在はユーザー指定により停止し、Phase 5のoverfit/smoke/100M比較は未開始。本学習・Base/Chat品質目標は未達。実装時間とGPU計算時間を分け、Phase 4の実測から予算を見積もる。[進め方](15_project_roadmap.md#高速に完成させる進め方)
+**現在地（2026-10-03）**: Phase 0〜4が完了。WSL＋RTX 4090で学習器・shard・BPB/生成評価・保存再開・最大安定batchを検証した。Phase 5を実行中で、修復後の100件overfitと10M smokeが合格、100M候補比較へ進んだ。smokeはdev BPBが改善したが、抑制ありgreedy EOS 0/80・反復63/80で、本学習・Base/Chat品質目標は未達。実装時間とGPU計算時間を分け、採用したmath-only/batch 8の実測から予算を見積もる。[詳細計画](22_phase5_plan.md)、[進め方](15_project_roadmap.md#高速に完成させる進め方)
 
 ```text
 Tokenizer 4k / 8k・Phase 4実測は完了
-        -> 再開指定後に100件overfit
+        -> 100件overfit（合格）
         -> 10M-token smoke
         -> 100M architecture/LR/optimizer比較
         -> 1B 候補を絞る
@@ -52,11 +52,11 @@ Tokenizer 4k / 8k・Phase 4実測は完了
 
 最初からarchitecture、optimizer、data mixtureを同時に変えない。一度に一つの主要因を比較する。
 
-**提案（追加調査）**: 小探索は終点固定cosine、本系列の延長はWSDを比較候補にする。継続用stable枝と評価用decay枝を分け、optimizer更新回数、effective batch、枝ごとのtokensとGPU時間を記録する。Muonには補助AdamWと別LRを設定する。[実装・段階学習調査](12_training_implementation_research.md)を参照する。
+**Phase 5での判断**: 小探索は終点固定cosine、本系列はWSDを採用する方針。継続用stable枝と評価用decay枝を分け、optimizer更新回数、effective batch、枝ごとのtokensとGPU時間を記録する。WSD実装・分岐の再開検証と数値予算の凍結はPhase 6の開始前に行う。Phase 5の100M終点を予算だけ変更して延長しない。[詳細計画](22_phase5_plan.md#長期schedulerの選択と引継ぎ)、[実装・段階学習調査](12_training_implementation_research.md)を参照する。
 
 ## Batchとperformance
 
-**確定**: Phase 0〜3のiMac開発からWindows/WSL＋RTX 4090へ移行済み。本学習は最大安定micro batchを実測して設定する。eagerの運用上限はT8K 57 / T4K 64、最高速度の測定点はcompile batch 8。小探索の更新量は別途固定する。[移行・batch方針](07_environment.md)
+**確定**: Phase 0〜3のiMac開発からWindows/WSL＋RTX 4090へ移行済み。本学習は最大安定micro batchを実測して設定する。Phase 4のeager/defaultの運用上限はT8K 57 / T4K 64、最高速度の測定点はcompile/default batch 8。Phase 5は厳密resumeのためeager/math、batch 8を採用し、100Mで約12,208更新を確保する。math backendの最大容量は未探索で、本学習前に別途測定する。[移行・batch方針](07_environment.md)
 
 **提案**: RTX 4090ではmodelを載せるためでなく、大きなbatchでGPUを埋めるために24GB VRAMを使う。micro batchを16、32、64、128、256…と増やし、以下を実測する。
 
