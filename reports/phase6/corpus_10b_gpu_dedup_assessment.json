@@ -1,0 +1,51 @@
+{
+  "status": "source_review_only_gpu_speed_unmeasured",
+  "observed_at_utc": "2026-10-03T17:33:57Z",
+  "current_stage": "Independent serial audit of an already built corpus; not the initial parallel deduplication",
+  "completed_bands_at_observation": 27,
+  "required_bands": 32,
+  "audit_pid": 1170053,
+  "current_implementation": {
+    "feature": "Set of actual UTF-8 encoded normalized character 5-grams",
+    "score": "len(a & b) / max(1, len(a | b))",
+    "threshold": 0.85,
+    "candidate_generation": "Existing 32 x 4 LSH bands",
+    "largest_remaining_group_records": 7077,
+    "largest_group_potential_pairs_before_component_skips": 25038426,
+    "execution": "Nested CPU Python pair loops and serial component updates, with bounded feature cache"
+  },
+  "existing_measured_optimization": {
+    "report": "reports/phase6/corpus_10b_feature_cache_probe.json",
+    "large_group_sample_speedups": [2.8360961725925997, 2.8992674981394613, 2.6756171550604497],
+    "scope": "32920 fixed pairs per actual large group; not whole audit speed",
+    "integration_report": "reports/phase6/corpus_10b_feature_cache_integration.json"
+  },
+  "gpu_candidate_inference": {
+    "approach": "Encode actual shingle strings with collision-free IDs per group, then batch set intersection/cardinality computations on GPU; preserve all candidates, original acceptance and component results",
+    "library_candidate": "cuGraph selected-pair Jaccard on a document/shingle graph, or a dedicated exact set-intersection kernel",
+    "limitations": "Python set objects and SQLite text loads do not become GPU operations automatically. Encoding, graph/array construction, transfers, VRAM batching and threshold precision need measurement and validation. No dependency compatibility or GPU speed benchmark has been performed.",
+    "speedup_claim": null
+  },
+  "decision": "Keep the healthy frozen audit running. Do not restart it for an unmeasured GPU replacement. Retain the candidate for a separate future bounded comparison.",
+  "future_comparison_conditions": {
+    "scope": "Fixed actual large-group pairs plus the existing complete 1M/all32-band component comparison",
+    "include_in_timing": "String ID encoding, GPU data construction, transfers, kernel, result retrieval and component processing",
+    "acceptance": "All candidate coverage, original threshold decisions and final component/duplicate representatives identical; measure CPU baseline and total wall time",
+    "bounded_pair_probe_runtime_seconds": 180,
+    "candidate_adoption_minimum_end_to_end_speedup": 2.0,
+    "execution": "Not started; no change to the active corpus or audit"
+  },
+  "primary_sources": [
+    {
+      "url": "https://docs.nvidia.com/cugraph/latest/api_docs/api/cugraph/cugraph.jaccard/",
+      "supports": "GPU library API accepts explicit vertex pairs and computes set-neighborhood Jaccard; graph is undirected. Document/shingle representation is this project's inference, not a ready-made text deduplication API."
+    },
+    {
+      "url": "https://docs.nvidia.com/cudf/latest/cudf_pandas/faq/",
+      "supports": "GPU acceleration benefits from batching; small operations can lose performance due to data transfers. This does not establish speed on the current corpus."
+    }
+  ],
+  "active_pipeline_changed": false,
+  "full_audit_passed": false,
+  "training_updates": 0
+}

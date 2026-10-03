@@ -4,6 +4,8 @@
 
 ## 実行中: ローカル10Bデータの取得・構築・監査
 
+2026-10-04 02:33 JST: [重複判定GPU化の実装・一次資料確認](../reports/phase6/corpus_10b_gpu_dedup_assessment.json)。現在は構築済みcorpusの独立監査で、27/32band完了、audit1170053のCPU時間が増加している。原処理はUTF-8文字5-gram集合の積/和をPythonで1組ずつ計算し、7,077件の大groupでは同一componentのskip前に最大25,038,426組。衝突のない整数IDへ変換し候補をGPUへまとめる方法は有力だが、変換・転送・精度境界・代表の一致・依存互換性を含むGPU実測は未実施。cuGraphの指定pair Jaccardは候補であり、このcorpusの速度保証とはしない。稼働中の凍結監査は継続し、GPU版への差し替え・再起動は行わない。将来比較は固定大group/実1M全32band、全候補・判定・代表一致、変換転送込み速度、限定pair probe180秒/採用目安2倍で閉じる。全件auditと実loaderは未完了、学習更新0。
+
 2026-10-04 02:10 JST: [逐次near監査24/32band通過](../reports/phase6/corpus_10b_edges_audit_three_quarters.json)。band0〜23の連続した完了logを確認し、24段階はraw完了後7098.828秒（約118.3分、移行込み）。band23だけで967.156秒（約16.1分）かかり、band間の候補量・所要時間の差を実確認した。同じaudit1170053/boot/start_ticks1074573が実live、完成export manifest SHAは不変。24段階平均が残りも続く仮定のnear残は約39分だが、残り8bandも変動する。全代表・全corpus/membership/split/token/index往復・実loaderは別で未完了。全件合格とはしない。残り8bandを継続し、学習更新0。
 
 2026-10-04 01:25 JST: [逐次near監査16/32band通過](../reports/phase6/corpus_10b_edges_audit_half.json)。band0〜15の連続した完了logを確認し、前半16段階はraw完了後4437.677秒（約74.0分、移行込み）。同じaudit1170053/boot/start_ticks1074573が実live、完成export manifest SHAは不変。前半平均が後半も続く仮定では残りnearは約1.23時間だが、後半の候補量は異なり、全代表・全corpus/membership/split/token/index照合と実loaderは別で未完了。途中結果を全件合格としない。後半16bandを継続し、学習更新0。
