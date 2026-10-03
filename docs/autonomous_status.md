@@ -4,6 +4,8 @@
 
 ## 実行中: ローカル10Bデータの取得・構築・監査
 
+2026-10-04 00:30 JST: [序盤3bandの実測](../reports/phase6/corpus_10b_audit_early_timing.json)は374.910/208.675/515.511秒、平均366.366秒（約6.1分、最初はrawからの移行込み）。同じaudit1170053は実liveで、全32band中3個が完了。序盤平均が続くという仮定だけなら残りnear検証は約2.95時間だが、bandごとの候補量は異なり、後続の全token逐次再encode/byte/index/membership照合と実loaderの時間はまだ未測定。以前の全体残り3〜5時間という暫定値が上振れする可能性をユーザーへ説明した。24時間累積上限と全件受入条件を保持し、健康なjobを再起動しない。最終合格・整備完了は未達、学習更新0。
+
 2026-10-04 00:18 JST: [逐次near重複監査の最初のband完了](../reports/phase6/corpus_10b_edges_audit_start.json)。全raw checkpoint後からband0完了まで374.910秒（約6分15秒、移行処理も含む）。全32band中1個の原逐次Jaccard検証を終え、同じaudit1170053/start_ticks1074573が実live。残り31band→全cluster/duplicate代表→全corpus/token/index往復→terminal/PID終了→実loaderは未完了。bandごとのgroup/candidate量が異なるため、この1個だけから全体速度や完了時刻を確定しない。原受入条件と完成exportを保持し、学習更新0。
 
 2026-10-04 00:12 JST: [全128raw filesの独立再照合完了](../reports/phase6/corpus_10b_raw_audit_complete.json)。全29,208,256 records（raw29,009,357＋保護198,899）が取り込み完了件数と一致。原auditorのfull SQLite integrity_check、全raw hash/size、source payload/filter/protection、全signature、exact代表/eligibilityの比較を通過した。audit開始から3667.085秒には初期DB検査を含む。同じ1170053/boot/start_ticks1074573が実live、完成export manifest SHAは`856bf074...e0eb1`のまま。次は全32bandの逐次near検証・全代表→全membership/split/token往復→terminal/PID終了→実loader。これは途中の受入結果で、全件auditの合格・ローカル10B整備の完了とはしない。WSL空き619,283,693,568 bytes、RAM available約64GBで拡張不要。学習更新0。
