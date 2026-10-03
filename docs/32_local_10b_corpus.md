@@ -57,6 +57,8 @@ uv run --frozen --extra hub --extra data --extra ml --extra export scripts/check
 
 利用確認reportのartifact/shards path、量とhashを引継ぎへ記録する。旧`base_frozen.json`と旧checkpointのshard bindingは保持し、新しいデータを通常resumeへ差し替えない。新データで学習する際は、別系列の設定と全state再開の検証を行う。
 
+既存大型成果物の保持は[全37ファイルの実hash照合](../reports/phase6/corpus_10b_prior_bulk_preserved.json)で確認した。19 checkpoint（全stable/decay保存点とpilot）、両旧shard manifestと全train/dev/test stream/index/token byte table、旧保護corpus、T4K Tokenizerの約9.06GBが以前のreview/config bindingと一致。[読み取り専用checker](../reports/phase6/check_corpus_10b_prior_bulk.py)は`uv run --frozen reports/phase6/check_corpus_10b_prior_bulk.py`で再現できる。これはbyte保持の確認で、モデルやheldoutの採点、新10Bの全件監査を代替しない。
+
 ## 大groupを保持する監査cacheの検証済み入口
 
 2026-10-03 23:10 JSTに[全件監査v4を起動](../reports/phase6/corpus_10b_cached_audit_start.json)。実train12,225,819,077 tokensの`prepared-v2/export-001/`を保持し、元v3 processの終了後に累積9975.723秒を完全に引き継いだ。監査Linux1170053/boot`0b330ec7-c11f-4bb3-be7c-cae9b868f4af`/start_ticks1074573、logは`ten-billion/preparation-v4.log`、追加codeは`execution_v4_snapshot/`。全件監査と実loaderは未完了で、以下の未起動記録は実装時点の履歴である。
