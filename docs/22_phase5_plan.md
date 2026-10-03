@@ -37,7 +37,7 @@ overfitのprefix/末尾は固定したtrain文書だけから選び、対象件�
 
 候補はdev BPB、共通短文BPB、同じ文書のpaired bootstrap差、生成失敗、速度、Tokenizer fallback、checkpoint再現性、推論互換性から選ぶ。BPB差が不明確なら最大2候補を残す。QK-NormなしはQwen3参照/exportへそのまま写せないため、未実装の配布経路を採用リスクとして記載する。MuonはAdamWが安定して改善する場合、この段階では実装・比較を追加せず、その判断理由を残す。
 
-devで使う将来の品質目標は既存protocolのBase文法70%、Chat文法・関連性70%、文脈60%、停止95%以上等を維持する。Phase 5の機械的gateと将来の品質目標を区別し、最終testを見て基準を変更しない。
+devで使う将来の品質目標は既存protocolのBase文法70%、Chat文法・関連性70%、文脈60%、停止95%以上等を維持する。数値を変更せず、100M候補の結果を見る前にprotocolのtargets.statusをfrozenへ変更した。量子化の許容退行幅はfloat品質評価後・候補選定前に別途固定する。Phase 5の機械的gateと将来の品質目標を区別し、最終testを見て基準を変更しない。
 
 ## 予算・永続実行・終了
 
