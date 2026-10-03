@@ -1,10 +1,10 @@
 # 次の実装タスク
 
-Phase 6①②の準備を実行中（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpusの独立監査は進行中。③以降の速度/batch探索・本学習は未開始。
+Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpus・shardの独立監査も完了。③以降の速度/batch探索・本学習は未開始。
 
 この文書は[フェーズ別実行計画](15_project_roadmap.md)の着手checklistである。Phase番号、目的、ゴール、成果物、完了条件、Go/No-Goは同計画を正とし、技術仕様は03〜08と12〜14を参照する。2026-10-02にiMac上のPhase 0を実施した。[完了記録](16_phase0_completion.md)を参照する。Phase 1のcorpus・manifest・split・会話pilotも完了した。[完了記録](17_phase1_completion.md)を参照する。[Phase 2](18_phase2_completion.md)・[Phase 3](19_phase3_completion.md)も完了。本学習は未実施。Windows/WSL実機検証は[Phase 4](21_phase4_completion.md)で完了した。
 
-**現在の境界**: [Phase 5](23_phase5_completion.md)は完了し、Phase 6①②の準備を実行中。今回の①②でcorpusとWSDを準備し、容量/高速化探索は次回へ残す。Phase 4の学習器・評価・保存再開・最大安定batchは完了済み。Pythonは`uv run --frozen`、依存変更は`uv add`。
+**現在の境界**: [Phase 5](23_phase5_completion.md)は完了し、Phase 6①②完了で停止中（③以降未開始）。今回の①②でcorpusとWSDの準備を完了し、容量/高速化探索は次回へ残す。Phase 4の学習器・評価・保存再開・最大安定batchは完了済み。Pythonは`uv run --frozen`、依存変更は`uv add`。
 
 完成までの時間短縮を優先し、[移行 → 最小学習経路 → 保存再開 → 最大batch/速度実測](15_project_roadmap.md#高速に完成させる進め方)を完了した。新規PCでは[再開手順](windows_handoff.md)に従い、最新コードとGit管理外の固定Tokenizer/pilotを引き継ぐ。復元済みPCでは再取得・Phase 3の再実装は不要。実装時間とGPU計算時間を分け、実測した計算時間に評価・保存・比較・データ処理を加えて見積もる。
 
@@ -58,7 +58,7 @@ Phase 6①②の準備を実行中（2026-10-03）: train 756,087,912 unique str
 - [x] syntheticと実shardでeager micro batchを最大安定値まで増やし、backend/compile、VRAM、data wait、速度を測る。
 - [x] 100M〜50Bの時間とストレージを実測から見積もる。
 
-[Phase 4実測・制約](21_phase4_completion.md)。Phase 5も完了し、Phase 6①②の準備を実行中。
+[Phase 4実測・制約](21_phase4_completion.md)。Phase 5も完了し、Phase 6①②完了で停止中（③以降未開始）。
 
 ## Phase 5: 最小pipelineと100M探索
 
@@ -70,10 +70,10 @@ Phase 6①②の準備を実行中（2026-10-03）: train 756,087,912 unique str
 
 ## Phase 6: 1B〜10B Base v1
 
-[詳細計画と開始条件](24_phase6_plan.md)。以下は次回再開後の作業で、現在はPhase 6①②の準備を実行中。
+[詳細計画と開始条件](24_phase6_plan.md)。①②は完了し、残りは次回再開後の作業で、現在はPhase 6①②完了で停止中（③以降未開始）。
 
-- [ ] 拡張corpusのsource/revision/取得上限・unique量・配合・反復、held-out評価を固定する。
-- [ ] WSD stable/decay分岐を実装し、採用構成で全stateの保存再開を検証する。
+- [x] 500M開始用corpusのsource/revision/取得上限・unique量・Web 100%配合・反復とdev/test分離を固定し、全raw/cluster/shardを監査する（756M unique train stream tokens）。
+- [x] WSD stable/decay分岐を実装し、採用NoNorm・実shard・CUDA/BF16/mathで全state/loss/token列の完全一致を検証する。
 - [ ] math/compiled-math等の最大安定batch・速度・厳密resumeを測り、本学習effective batch/LR/予算を凍結する。
 - [ ] NoNormのUnicode・反復・自発停止と変換経路を切り分け、固定devで修正/対照を評価する。
 - [ ] 実CLI/restart command、永続log/PID/boot/start ticks/checkpoint SHA、枝computeと容量上限を保存する。
@@ -115,7 +115,7 @@ Phase 6①②の準備を実行中（2026-10-03）: train 756,087,912 unique str
 
 ```text
 Phase 0〜4: データ / Tokenizer / モデル / export / 学習器 / 評価 / GPU再開・実測は完了
-  -> Phase 5は完了、Phase 6①②の準備を実行中
+  -> Phase 5は完了、Phase 6①②完了で停止中（③以降未開始）
   -> 100件overfit / 10M-token smokeは合格
   -> T4K/T8K・Norm・LRの100M比較、補助評価、候補選定も完了
   -> 次回の再開指定後: 拡張corpus / WSD / 容量・高速化の検証

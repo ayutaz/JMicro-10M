@@ -1,23 +1,23 @@
 # 学習計画
 
-Phase 6①②の準備を実行中（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpusの独立監査は進行中。③以降の速度/batch探索・本学習は未開始。
+Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpus・shardの独立監査も完了。③以降の速度/batch探索・本学習は未開始。
 
-最終更新: 2026-10-03。AdamW＋warmup/cosine・WSD stable/decayは実装済み。Phase 6の長期schedulerはWSDを採用する方針に決めたが、WSD stable/decayは実装・CUDA検証済み、Muon・Chat trainerは未実装。train CLIは引数から設定を作り、baseline JSONを自動読込しない。現在のresumeは固定schedule/config/source/dataの変更を拒否するため、予算の延長を同一runの再開として扱わない。50Bは改善と予算条件を満たした場合のみ、外部の有料GPU実行は別途ユーザーの指示が必要。
+最終更新: 2026-10-03。AdamW＋warmup/cosine・WSD stable/decayは実装済み。Phase 6の長期schedulerはWSDを採用し、stable/decayは実装・CUDA検証済み。Muon・Chat trainerは未実装。train CLIは引数から設定を作り、baseline JSONを自動読込しない。現在のresumeは固定schedule/config/source/dataの変更を拒否するため、予算の延長を同一runの再開として扱わない。50Bは改善と予算条件を満たした場合のみ、外部の有料GPU実行は別途ユーザーの指示が必要。
 
 ## 全体像
 
-次回の具体的な準備順・開始条件・段階ごとの判断は[Phase 6計画](24_phase6_plan.md)を参照する。現在の選定候補は1つで、未実装のWSDや未測定の本学習batchを確定設定として実行しない。
+次回の具体的な準備順・開始条件・段階ごとの判断は[Phase 6計画](24_phase6_plan.md)を参照する。現在の選定候補は1つで、未凍結の長期WSD配分や未測定の本学習batchを確定設定として実行しない。
 
 プロジェクト全体の目的・ゴール・成果物・完了条件は[フェーズ別実行計画](15_project_roadmap.md)を参照する。本書は学習系列の設定とcheckpoint段階を扱う。10B BaseからChatへ分岐し、20B/50Bの終了をChat着手の前提にしない。
 
-**現在地（2026-10-03）**: Phase 0〜5が完了。WSL＋RTX 4090で学習器・shard・BPB/生成評価・保存再開・最大安定batchを検証した。Phase 5のoverfit/smoke・4本の100M比較と独立監査も完了し、T4K / NoQK-Norm / LR 0.002を候補に選定した。Phase 6①②の準備を実行中。smokeはdev BPBが改善したが、抑制ありgreedy EOS 0/80・反復63/80で、本学習・Base/Chat品質目標は未達。実装時間とGPU計算時間を分け、採用したmath-only/batch 8の実測から予算を見積もる。[詳細計画](22_phase5_plan.md)、[進め方](15_project_roadmap.md#高速に完成させる進め方)
+**現在地（2026-10-03）**: Phase 0〜5が完了。WSL＋RTX 4090で学習器・shard・BPB/生成評価・保存再開・最大安定batchを検証した。Phase 5のoverfit/smoke・4本の100M比較と独立監査も完了し、T4K / NoQK-Norm / LR 0.002を候補に選定した。Phase 6①②完了で停止中（③以降未開始）。smokeはdev BPBが改善したが、抑制ありgreedy EOS 0/80・反復63/80で、本学習・Base/Chat品質目標は未達。実装時間とGPU計算時間を分け、採用したmath-only/batch 8の実測から予算を見積もる。[詳細計画](22_phase5_plan.md)、[進め方](15_project_roadmap.md#高速に完成させる進め方)
 
 ```text
 Tokenizer 4k / 8k・Phase 4実測は完了
         -> 100件overfit（合格）
         -> 10M-token smoke（合格）
         -> 100M T4K/T8K・Norm・LR比較（完了、Muon追加不要）
-        -> Phase 6①②の準備を実行中
+        -> Phase 6①②完了で停止中（③以降未開始）
         -> 再開後: 拡張corpus / WSD分岐・再開 / 容量・高速化 / 予算凍結
         -> 500M / 1B 選定候補の日本語生成と継続価値を評価
         -> 2B 過去355Mモデルとの比較点

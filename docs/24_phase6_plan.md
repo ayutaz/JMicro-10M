@@ -1,6 +1,6 @@
 # Phase 6: Base本学習の準備と段階評価計画
 
-更新: 2026-10-03。[Phase 5](23_phase5_completion.md)は完了し、現在はPhase 6①②の準備を実行中。ユーザーが①データ拡充と②長時間学習準備を再開した。[今回の目的・完了条件](25_phase6_preparation.md)に従い実行中。③以降の探索と本学習は今回起動しない。
+更新: 2026-10-03。[Phase 5](23_phase5_completion.md)は完了し、現在はPhase 6①②完了で停止中（③以降未開始）。ユーザーが①データ拡充と②長時間学習準備を再開した。[今回の目的・完了条件](25_phase6_preparation.md)に従い完了した。③以降の探索と本学習は今回起動しない。
 
 ## 目的と出発点
 
@@ -74,4 +74,4 @@ uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train
 
 WSDの実CLIと準備検証configは実装済み。長期run configは未凍結のため、本書には本学習の起動commandを置かない。実装とgate通過後に、正確な起動・再開commandをrun記録とhandoffへ追加する。
 
-予定成果物は拡張corpus manifest/shards、準備gate report、凍結run config、stable/decay checkpointと台帳、`base_scaling_report.json`、`base_v1_evaluation.md`、model card。これらは今後作成するもの。今回の停止境界はPhase 6①②完了。③以降へは進まない。
+①②の拡張corpus manifest/shards、独立準備gate report、準備検証config、stable/decay検証checkpointと台帳は保存済み。[完了記録](26_phase6_preparation_completion.md)。本学習の凍結run config、scaling checkpoint、`base_scaling_report.json`、`base_v1_evaluation.md`とmodel cardは今後作成する。今回の停止境界はPhase 6①②完了。③以降へは進まない。
