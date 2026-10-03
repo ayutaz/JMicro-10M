@@ -18,3 +18,13 @@
 `reports/phase6/generation_diagnostics.json`、`nonorm_export_parity_report.json`、`readiness_stability_report.json`、`base_launch_plan.json`と`configs/phase6/base_frozen.json`、最終監査・status・採否を保存する。raw logs/checkpoints/export/source snapshotsはLinux `reports/phase6/readiness-20261003/`へ保持。長いGPU処理は永続supervisorとcheckpointで復旧する。各起動前に既存jobと実GPU compute一覧を確認し、重複起動しない。
 
 Python3.12.7の全実行はuv run --frozen。依存変更が必要ならuv add、復元はuv sync --frozen。HF/GGUF変換の一次資料は固定[llama.cpp Llama converter](https://github.com/ggml-org/llama.cpp/blob/46ca246de9bb1c35269722a6240d37d9dfd79cad/conversion/llama.py)とローカル固定Transformersを照合する。③実測の69.5万tokens/sは見積もりの起点で、④⑤の実装・検証時間の保証ではない。
+
+## 2026-10-03の途中結果
+
+400生成は360.684秒で完了。greedy抑制あり/なし各80件のEOSは0、反復48、sampling3 seed合計240件の反復6、Unicode破綻0。品質目標は未達のまま。拡張dev89,416文書 / 164,344,743 bytes / 42,003,934 body tokensを336.292秒で全文採点し、BPB1.2441264716を得た。scalar/batchの32文書BPB差は0.0000330177で事前の0.001以内。旧pilotのBPBとは母集団・CEの加算精度が違うため、改善量にしない。
+
+NoNorm HF/Llama・GGUF/Llamaの重み/外部codec/greedy IDs・本物のargmaxからのEOS/EOT停止は成立。全12数値比較を保存したところ、学習済み1024系列ではTorch自身のfull/cache比較も固定FP32許容値を超え、変換だけの問題とは断定できない。標準GGMLのRoPE逐次乗算の位置依存誤差を別runtime `artifacts/runtime-precise`で修正し、1024系列のnative最大差は0.000259から0.0000382へ減ったが、厳密比較は未合格。元runtime・archive・失敗report・probeを保持する。許容値・入力・必要な比較を削って通過扱いにしない。frozen起動設定の作成はこのgateとLR/再開結果を待つ。
+
+`scripts/run_base.py`は凍結済み設定から単一のstable観測点、独立decay、全文dev/400生成の実CLIを準備する。実行時はGPU排他・PID/boot/start ticks・heartbeat・checkpoint SHA・source・容量を確認し、中断時は同一予算で再開する。prepareが既定で、freezeから学習は起動しない。現在は未凍結で、500M以上を開始していない。
+
+追加の数値診断はCPUのMKL分岐AUTO/AUTO,STRICT/AVX2,STRICT/COMPATIBLE×threads1/2の**8設定に限定**する。各設定で同じcheckpoint・seed・短/1024入力・元の12比較とEOS/EOT fixturesを検査し、許容誤差・重み・必要な比較を変更しない。全8完了が調査終了条件で、失敗も保存し追加sweepしない。MKLのCNR指定は[Intel公式説明](https://www.intel.com/content/www/us/en/docs/onemkl/developer-guide-windows/2024-1/specifying-code-branches.html)を参照。実環境はi9-14900KSで、実測差を保存して分岐指定だけを成功証拠にしない。

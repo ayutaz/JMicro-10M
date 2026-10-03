@@ -1,0 +1,1845 @@
+{
+  "status": "failed",
+  "binding": {
+    "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00012208.pt",
+    "checkpoint_sha256": "e5583927efc5aa2041648bcae23f1b618b70f002be334c3581dea23472447d07",
+    "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+    "implementation": {
+      "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+      "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+      "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+      "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+    },
+    "verifier_sha256": "0dc999752f1aaa1f5df9940c7b339481d68ba676adb807957ed1b89d6eb91aa2",
+    "protocol_sha256": "49e0273d4ae315288c9969a11493bf52d9ba8aa21d51f7ac1c35757f5b3b4ec9",
+    "runtime_receipt_sha256": "903d14b081e753519fae3b084029499c59cb8c76f741d73e9414814ed9dd16d7"
+  },
+  "runtime": {
+    "revision": "46ca246de9bb1c35269722a6240d37d9dfd79cad",
+    "source_url": "https://api.github.com/repos/ggml-org/llama.cpp/tarball/46ca246de9bb1c35269722a6240d37d9dfd79cad",
+    "archive_sha256": "ce86fc42c03c5b93d25cd8b555bce6660b684f131e2047d4265bbb07fa1e9ceb",
+    "commands": [
+      [
+        "cmake",
+        "-S",
+        "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/runtime-precise/llama.cpp",
+        "-B",
+        "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/runtime-precise/build",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DGGML_METAL=OFF",
+        "-DGGML_BLAS=OFF",
+        "-DGGML_ACCELERATE=OFF",
+        "-DGGML_CCACHE=OFF",
+        "-DCMAKE_C_COMPILER_LAUNCHER=",
+        "-DCMAKE_CXX_COMPILER_LAUNCHER=",
+        "-DLLAMA_BUILD_TESTS=OFF",
+        "-DLLAMA_BUILD_EXAMPLES=OFF",
+        "-DLLAMA_BUILD_SERVER=OFF",
+        "-DLLAMA_BUILD_MTMD=OFF",
+        "-DLLAMA_BUILD_TOOLS=ON",
+        "-DLLAMA_CURL=OFF"
+      ],
+      [
+        "cmake",
+        "--build",
+        "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/runtime-precise/build",
+        "--target",
+        "llama-quantize",
+        "llama-completion",
+        "-j",
+        "4"
+      ],
+      [
+        "cmake",
+        "-S",
+        "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/native",
+        "-B",
+        "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/runtime-precise/build-bridge",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_CXX_COMPILER_LAUNCHER=",
+        "-DLLAMA_SOURCE_DIR=/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/runtime-precise/llama.cpp",
+        "-DLLAMA_BUILD_DIR=/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/runtime-precise/build",
+        "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/runtime-precise"
+      ],
+      [
+        "cmake",
+        "--build",
+        "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/runtime-precise/build-bridge",
+        "-j",
+        "2"
+      ]
+    ],
+    "patches": [
+      {
+        "name": "independent-default-rope-f32-v1",
+        "file": "ggml/src/ggml-cpu/ops.cpp",
+        "original_sha256": "21987cb36a4a9ef4d0fe1101bd2c42a67c7e9dd0d89e49e2137ede1779ea5759",
+        "patched_sha256": "b215d58b58a440fa2c9bddf361df45b30486871e372eb74032b0b4826f022e68",
+        "patcher_sha256": "d0f8693ef093ddf9372fe06e936b78f294f66298a18f731412373493b346378e",
+        "scope": "CPU default unscaled RoPE only; scaling/YaRN/MRoPE retain upstream arithmetic"
+      }
+    ],
+    "bridge_source_sha256": "f9df6e67d65b045ee23016cac022a246190ccf89f355be652958de256b5ca334",
+    "bridge_binary_sha256": "c8e01b80fb37e5aacf5ba9bc886870f9b4a607a392cccc4b5538a5046b7e0999",
+    "quantizer_binary_sha256": "487e4662b1379d23f75dee9e95f15d07626f43f2fce776f6edba3a0228f39204",
+    "completion_binary_sha256": "cb38cc3fe04e5e26c86ad93ccd7e4f6278db810cebed1728c849bfc41ffec08f",
+    "note": "Archive checkout; embedded git build version can inherit parent repo and is not revision evidence"
+  },
+  "tolerance": {
+    "atol": 1e-05,
+    "rtol": 0.0001
+  },
+  "checks": {
+    "hf_llama_architecture_without_qknorm": true,
+    "hf_tied_embedding": true,
+    "learned_parameter_count": true,
+    "native_eos_and_eot_eog_metadata": true,
+    "all_short_and_1024_logits_cache_comparisons": false,
+    "tied_embedding_exported_once": true,
+    "golden_external_codec_roundtrips": true,
+    "three_backend_greedy_ids_exact": true,
+    "actual_argmax_stop_3_all_backends": true,
+    "actual_argmax_stop_7_all_backends": true,
+    "original_checkpoint_unchanged": true
+  },
+  "comparisons": {
+    "short_hf_full": {
+      "passed": true,
+      "shape": [
+        1,
+        31,
+        4096
+      ],
+      "max_abs_error": 1.4781951904296875e-05,
+      "mean_abs_error": 2.2054468900023494e-06,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "short_torch_cache": {
+      "passed": true,
+      "shape": [
+        1,
+        31,
+        4096
+      ],
+      "max_abs_error": 1.52587890625e-05,
+      "mean_abs_error": 1.6764678321123938e-06,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "short_hf_cache": {
+      "passed": true,
+      "shape": [
+        1,
+        31,
+        4096
+      ],
+      "max_abs_error": 2.4318695068359375e-05,
+      "mean_abs_error": 2.2734016056347173e-06,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "short_gguf_prefill": {
+      "passed": false,
+      "failure": "Tensor-likes are not close!\n\nMismatched elements: 4 / 126976 (0.0%)\nGreatest absolute difference: 1.2922915630042553e-05 at index (0, 21, 3905) (up to 1e-05 allowed)\nGreatest relative difference: 0.014835619367659092 at index (0, 21, 3905) (up to 0.0001 allowed)",
+      "shape": [
+        1,
+        31,
+        4096
+      ],
+      "finite": true,
+      "max_abs_error": 2.086162567138672e-05,
+      "mean_abs_error": 2.566115654190071e-06,
+      "elements_outside_frozen_tolerance": 4,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "short_gguf_cache": {
+      "passed": false,
+      "failure": "Tensor-likes are not close!\n\nMismatched elements: 2 / 126976 (0.0%)\nGreatest absolute difference: 1.1768192052841187e-05 at index (0, 21, 567) (up to 1e-05 allowed)\nGreatest relative difference: 0.01339865941554308 at index (0, 21, 3905) (up to 0.0001 allowed)",
+      "shape": [
+        1,
+        31,
+        4096
+      ],
+      "finite": true,
+      "max_abs_error": 2.0265579223632812e-05,
+      "mean_abs_error": 2.5256913431803696e-06,
+      "elements_outside_frozen_tolerance": 2,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "short_gguf_cache_vs_prefill": {
+      "passed": true,
+      "shape": [
+        1,
+        31,
+        4096
+      ],
+      "max_abs_error": 9.059906005859375e-06,
+      "mean_abs_error": 7.475770757991995e-07,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "context1024_hf_full": {
+      "passed": false,
+      "failure": "Tensor-likes are not close!\n\nMismatched elements: 1272 / 4194304 (0.0%)\nGreatest absolute difference: 3.9439648389816284e-05 at index (0, 12, 3338) (up to 1e-05 allowed)\nGreatest relative difference: 2.5112497806549072 at index (0, 51, 1096) (up to 0.0001 allowed)",
+      "shape": [
+        1,
+        1024,
+        4096
+      ],
+      "finite": true,
+      "max_abs_error": 4.1604042053222656e-05,
+      "mean_abs_error": 3.099028390352032e-06,
+      "elements_outside_frozen_tolerance": 1272,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "context1024_torch_cache": {
+      "passed": false,
+      "failure": "Tensor-likes are not close!\n\nMismatched elements: 927 / 4194304 (0.0%)\nGreatest absolute difference: 3.789365291595459e-05 at index (0, 157, 3332) (up to 1e-05 allowed)\nGreatest relative difference: 0.6807678937911987 at index (0, 370, 130) (up to 0.0001 allowed)",
+      "shape": [
+        1,
+        1024,
+        4096
+      ],
+      "finite": true,
+      "max_abs_error": 4.57763671875e-05,
+      "mean_abs_error": 2.8287822715356015e-06,
+      "elements_outside_frozen_tolerance": 927,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "context1024_hf_cache": {
+      "passed": false,
+      "failure": "Tensor-likes are not close!\n\nMismatched elements: 565 / 4194304 (0.0%)\nGreatest absolute difference: 3.997981548309326e-05 at index (0, 88, 3836) (up to 1e-05 allowed)\nGreatest relative difference: 0.8939228057861328 at index (0, 445, 3203) (up to 0.0001 allowed)",
+      "shape": [
+        1,
+        1024,
+        4096
+      ],
+      "finite": true,
+      "max_abs_error": 4.839897155761719e-05,
+      "mean_abs_error": 2.9792850000376347e-06,
+      "elements_outside_frozen_tolerance": 565,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "context1024_gguf_prefill": {
+      "passed": false,
+      "failure": "Tensor-likes are not close!\n\nMismatched elements: 1286 / 4194304 (0.0%)\nGreatest absolute difference: 3.254786133766174e-05 at index (0, 50, 3247) (up to 1e-05 allowed)\nGreatest relative difference: 0.29708197712898254 at index (0, 216, 3426) (up to 0.0001 allowed)",
+      "shape": [
+        1,
+        1024,
+        4096
+      ],
+      "finite": true,
+      "max_abs_error": 3.820657730102539e-05,
+      "mean_abs_error": 3.2585458029643632e-06,
+      "elements_outside_frozen_tolerance": 1286,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "context1024_gguf_cache": {
+      "passed": false,
+      "failure": "Tensor-likes are not close!\n\nMismatched elements: 1225 / 4194304 (0.0%)\nGreatest absolute difference: 3.254786133766174e-05 at index (0, 50, 3247) (up to 1e-05 allowed)\nGreatest relative difference: 0.29708197712898254 at index (0, 216, 3426) (up to 0.0001 allowed)",
+      "shape": [
+        1,
+        1024,
+        4096
+      ],
+      "finite": true,
+      "max_abs_error": 3.820657730102539e-05,
+      "mean_abs_error": 3.2297261896019336e-06,
+      "elements_outside_frozen_tolerance": 1225,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "context1024_gguf_cache_vs_prefill": {
+      "passed": true,
+      "shape": [
+        1,
+        1024,
+        4096
+      ],
+      "max_abs_error": 1.4543533325195312e-05,
+      "mean_abs_error": 7.176542453635193e-07,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    }
+  },
+  "scope": "Learned NoNorm export/cache/controller integrity; not Base quality or quantized quality",
+  "float_gguf": {
+    "file_bytes": 40097152,
+    "file_sha256": "1060830f1e394806fd0d64185181baad9e357ca14272c3849a0c2e31ee1ce051",
+    "type_counts": {
+      "F32": 119
+    },
+    "tensors": [
+      {
+        "name": "token_embd.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          4096
+        ],
+        "bytes": 4194304
+      },
+      {
+        "name": "blk.0.attn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.0.ffn_down.weight",
+        "type": "F32",
+        "shape": [
+          640,
+          256
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.0.ffn_gate.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.0.ffn_up.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.0.ffn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.0.attn_k.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.0.attn_output.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.0.attn_q.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.0.attn_v.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.1.attn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.1.ffn_down.weight",
+        "type": "F32",
+        "shape": [
+          640,
+          256
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.1.ffn_gate.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.1.ffn_up.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.1.ffn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.1.attn_k.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.1.attn_output.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.1.attn_q.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.1.attn_v.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.10.attn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.10.ffn_down.weight",
+        "type": "F32",
+        "shape": [
+          640,
+          256
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.10.ffn_gate.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.10.ffn_up.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.10.ffn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.10.attn_k.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.10.attn_output.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.10.attn_q.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.10.attn_v.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.11.attn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.11.ffn_down.weight",
+        "type": "F32",
+        "shape": [
+          640,
+          256
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.11.ffn_gate.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.11.ffn_up.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.11.ffn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.11.attn_k.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.11.attn_output.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.11.attn_q.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.11.attn_v.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.12.attn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.12.ffn_down.weight",
+        "type": "F32",
+        "shape": [
+          640,
+          256
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.12.ffn_gate.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.12.ffn_up.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.12.ffn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.12.attn_k.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.12.attn_output.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.12.attn_q.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.12.attn_v.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.2.attn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.2.ffn_down.weight",
+        "type": "F32",
+        "shape": [
+          640,
+          256
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.2.ffn_gate.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.2.ffn_up.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.2.ffn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.2.attn_k.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.2.attn_output.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.2.attn_q.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.2.attn_v.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.3.attn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.3.ffn_down.weight",
+        "type": "F32",
+        "shape": [
+          640,
+          256
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.3.ffn_gate.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.3.ffn_up.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.3.ffn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.3.attn_k.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.3.attn_output.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.3.attn_q.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.3.attn_v.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.4.attn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.4.ffn_down.weight",
+        "type": "F32",
+        "shape": [
+          640,
+          256
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.4.ffn_gate.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.4.ffn_up.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.4.ffn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.4.attn_k.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.4.attn_output.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.4.attn_q.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.4.attn_v.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.5.attn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.5.ffn_down.weight",
+        "type": "F32",
+        "shape": [
+          640,
+          256
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.5.ffn_gate.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.5.ffn_up.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.5.ffn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.5.attn_k.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.5.attn_output.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.5.attn_q.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.5.attn_v.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.6.attn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.6.ffn_down.weight",
+        "type": "F32",
+        "shape": [
+          640,
+          256
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.6.ffn_gate.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.6.ffn_up.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.6.ffn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.6.attn_k.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.6.attn_output.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.6.attn_q.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.6.attn_v.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.7.attn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.7.ffn_down.weight",
+        "type": "F32",
+        "shape": [
+          640,
+          256
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.7.ffn_gate.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.7.ffn_up.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.7.ffn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.7.attn_k.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.7.attn_output.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.7.attn_q.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.7.attn_v.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.8.attn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.8.ffn_down.weight",
+        "type": "F32",
+        "shape": [
+          640,
+          256
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.8.ffn_gate.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.8.ffn_up.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.8.ffn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.8.attn_k.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.8.attn_output.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.8.attn_q.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.8.attn_v.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.9.attn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.9.ffn_down.weight",
+        "type": "F32",
+        "shape": [
+          640,
+          256
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.9.ffn_gate.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.9.ffn_up.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          640
+        ],
+        "bytes": 655360
+      },
+      {
+        "name": "blk.9.ffn_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      },
+      {
+        "name": "blk.9.attn_k.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "blk.9.attn_output.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.9.attn_q.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          256
+        ],
+        "bytes": 262144
+      },
+      {
+        "name": "blk.9.attn_v.weight",
+        "type": "F32",
+        "shape": [
+          256,
+          128
+        ],
+        "bytes": 131072
+      },
+      {
+        "name": "output_norm.weight",
+        "type": "F32",
+        "shape": [
+          256
+        ],
+        "bytes": 1024
+      }
+    ],
+    "output_embedding_saved_once": true
+  },
+  "weight_mapping": {
+    "model.embed_tokens.weight": "token_embd.weight",
+    "model.layers.0.input_layernorm.weight": "blk.0.attn_norm.weight",
+    "model.layers.0.mlp.down_proj.weight": "blk.0.ffn_down.weight",
+    "model.layers.0.mlp.gate_proj.weight": "blk.0.ffn_gate.weight",
+    "model.layers.0.mlp.up_proj.weight": "blk.0.ffn_up.weight",
+    "model.layers.0.post_attention_layernorm.weight": "blk.0.ffn_norm.weight",
+    "model.layers.0.self_attn.k_proj.weight": "blk.0.attn_k.weight",
+    "model.layers.0.self_attn.o_proj.weight": "blk.0.attn_output.weight",
+    "model.layers.0.self_attn.q_proj.weight": "blk.0.attn_q.weight",
+    "model.layers.0.self_attn.v_proj.weight": "blk.0.attn_v.weight",
+    "model.layers.1.input_layernorm.weight": "blk.1.attn_norm.weight",
+    "model.layers.1.mlp.down_proj.weight": "blk.1.ffn_down.weight",
+    "model.layers.1.mlp.gate_proj.weight": "blk.1.ffn_gate.weight",
+    "model.layers.1.mlp.up_proj.weight": "blk.1.ffn_up.weight",
+    "model.layers.1.post_attention_layernorm.weight": "blk.1.ffn_norm.weight",
+    "model.layers.1.self_attn.k_proj.weight": "blk.1.attn_k.weight",
+    "model.layers.1.self_attn.o_proj.weight": "blk.1.attn_output.weight",
+    "model.layers.1.self_attn.q_proj.weight": "blk.1.attn_q.weight",
+    "model.layers.1.self_attn.v_proj.weight": "blk.1.attn_v.weight",
+    "model.layers.10.input_layernorm.weight": "blk.10.attn_norm.weight",
+    "model.layers.10.mlp.down_proj.weight": "blk.10.ffn_down.weight",
+    "model.layers.10.mlp.gate_proj.weight": "blk.10.ffn_gate.weight",
+    "model.layers.10.mlp.up_proj.weight": "blk.10.ffn_up.weight",
+    "model.layers.10.post_attention_layernorm.weight": "blk.10.ffn_norm.weight",
+    "model.layers.10.self_attn.k_proj.weight": "blk.10.attn_k.weight",
+    "model.layers.10.self_attn.o_proj.weight": "blk.10.attn_output.weight",
+    "model.layers.10.self_attn.q_proj.weight": "blk.10.attn_q.weight",
+    "model.layers.10.self_attn.v_proj.weight": "blk.10.attn_v.weight",
+    "model.layers.11.input_layernorm.weight": "blk.11.attn_norm.weight",
+    "model.layers.11.mlp.down_proj.weight": "blk.11.ffn_down.weight",
+    "model.layers.11.mlp.gate_proj.weight": "blk.11.ffn_gate.weight",
+    "model.layers.11.mlp.up_proj.weight": "blk.11.ffn_up.weight",
+    "model.layers.11.post_attention_layernorm.weight": "blk.11.ffn_norm.weight",
+    "model.layers.11.self_attn.k_proj.weight": "blk.11.attn_k.weight",
+    "model.layers.11.self_attn.o_proj.weight": "blk.11.attn_output.weight",
+    "model.layers.11.self_attn.q_proj.weight": "blk.11.attn_q.weight",
+    "model.layers.11.self_attn.v_proj.weight": "blk.11.attn_v.weight",
+    "model.layers.12.input_layernorm.weight": "blk.12.attn_norm.weight",
+    "model.layers.12.mlp.down_proj.weight": "blk.12.ffn_down.weight",
+    "model.layers.12.mlp.gate_proj.weight": "blk.12.ffn_gate.weight",
+    "model.layers.12.mlp.up_proj.weight": "blk.12.ffn_up.weight",
+    "model.layers.12.post_attention_layernorm.weight": "blk.12.ffn_norm.weight",
+    "model.layers.12.self_attn.k_proj.weight": "blk.12.attn_k.weight",
+    "model.layers.12.self_attn.o_proj.weight": "blk.12.attn_output.weight",
+    "model.layers.12.self_attn.q_proj.weight": "blk.12.attn_q.weight",
+    "model.layers.12.self_attn.v_proj.weight": "blk.12.attn_v.weight",
+    "model.layers.2.input_layernorm.weight": "blk.2.attn_norm.weight",
+    "model.layers.2.mlp.down_proj.weight": "blk.2.ffn_down.weight",
+    "model.layers.2.mlp.gate_proj.weight": "blk.2.ffn_gate.weight",
+    "model.layers.2.mlp.up_proj.weight": "blk.2.ffn_up.weight",
+    "model.layers.2.post_attention_layernorm.weight": "blk.2.ffn_norm.weight",
+    "model.layers.2.self_attn.k_proj.weight": "blk.2.attn_k.weight",
+    "model.layers.2.self_attn.o_proj.weight": "blk.2.attn_output.weight",
+    "model.layers.2.self_attn.q_proj.weight": "blk.2.attn_q.weight",
+    "model.layers.2.self_attn.v_proj.weight": "blk.2.attn_v.weight",
+    "model.layers.3.input_layernorm.weight": "blk.3.attn_norm.weight",
+    "model.layers.3.mlp.down_proj.weight": "blk.3.ffn_down.weight",
+    "model.layers.3.mlp.gate_proj.weight": "blk.3.ffn_gate.weight",
+    "model.layers.3.mlp.up_proj.weight": "blk.3.ffn_up.weight",
+    "model.layers.3.post_attention_layernorm.weight": "blk.3.ffn_norm.weight",
+    "model.layers.3.self_attn.k_proj.weight": "blk.3.attn_k.weight",
+    "model.layers.3.self_attn.o_proj.weight": "blk.3.attn_output.weight",
+    "model.layers.3.self_attn.q_proj.weight": "blk.3.attn_q.weight",
+    "model.layers.3.self_attn.v_proj.weight": "blk.3.attn_v.weight",
+    "model.layers.4.input_layernorm.weight": "blk.4.attn_norm.weight",
+    "model.layers.4.mlp.down_proj.weight": "blk.4.ffn_down.weight",
+    "model.layers.4.mlp.gate_proj.weight": "blk.4.ffn_gate.weight",
+    "model.layers.4.mlp.up_proj.weight": "blk.4.ffn_up.weight",
+    "model.layers.4.post_attention_layernorm.weight": "blk.4.ffn_norm.weight",
+    "model.layers.4.self_attn.k_proj.weight": "blk.4.attn_k.weight",
+    "model.layers.4.self_attn.o_proj.weight": "blk.4.attn_output.weight",
+    "model.layers.4.self_attn.q_proj.weight": "blk.4.attn_q.weight",
+    "model.layers.4.self_attn.v_proj.weight": "blk.4.attn_v.weight",
+    "model.layers.5.input_layernorm.weight": "blk.5.attn_norm.weight",
+    "model.layers.5.mlp.down_proj.weight": "blk.5.ffn_down.weight",
+    "model.layers.5.mlp.gate_proj.weight": "blk.5.ffn_gate.weight",
+    "model.layers.5.mlp.up_proj.weight": "blk.5.ffn_up.weight",
+    "model.layers.5.post_attention_layernorm.weight": "blk.5.ffn_norm.weight",
+    "model.layers.5.self_attn.k_proj.weight": "blk.5.attn_k.weight",
+    "model.layers.5.self_attn.o_proj.weight": "blk.5.attn_output.weight",
+    "model.layers.5.self_attn.q_proj.weight": "blk.5.attn_q.weight",
+    "model.layers.5.self_attn.v_proj.weight": "blk.5.attn_v.weight",
+    "model.layers.6.input_layernorm.weight": "blk.6.attn_norm.weight",
+    "model.layers.6.mlp.down_proj.weight": "blk.6.ffn_down.weight",
+    "model.layers.6.mlp.gate_proj.weight": "blk.6.ffn_gate.weight",
+    "model.layers.6.mlp.up_proj.weight": "blk.6.ffn_up.weight",
+    "model.layers.6.post_attention_layernorm.weight": "blk.6.ffn_norm.weight",
+    "model.layers.6.self_attn.k_proj.weight": "blk.6.attn_k.weight",
+    "model.layers.6.self_attn.o_proj.weight": "blk.6.attn_output.weight",
+    "model.layers.6.self_attn.q_proj.weight": "blk.6.attn_q.weight",
+    "model.layers.6.self_attn.v_proj.weight": "blk.6.attn_v.weight",
+    "model.layers.7.input_layernorm.weight": "blk.7.attn_norm.weight",
+    "model.layers.7.mlp.down_proj.weight": "blk.7.ffn_down.weight",
+    "model.layers.7.mlp.gate_proj.weight": "blk.7.ffn_gate.weight",
+    "model.layers.7.mlp.up_proj.weight": "blk.7.ffn_up.weight",
+    "model.layers.7.post_attention_layernorm.weight": "blk.7.ffn_norm.weight",
+    "model.layers.7.self_attn.k_proj.weight": "blk.7.attn_k.weight",
+    "model.layers.7.self_attn.o_proj.weight": "blk.7.attn_output.weight",
+    "model.layers.7.self_attn.q_proj.weight": "blk.7.attn_q.weight",
+    "model.layers.7.self_attn.v_proj.weight": "blk.7.attn_v.weight",
+    "model.layers.8.input_layernorm.weight": "blk.8.attn_norm.weight",
+    "model.layers.8.mlp.down_proj.weight": "blk.8.ffn_down.weight",
+    "model.layers.8.mlp.gate_proj.weight": "blk.8.ffn_gate.weight",
+    "model.layers.8.mlp.up_proj.weight": "blk.8.ffn_up.weight",
+    "model.layers.8.post_attention_layernorm.weight": "blk.8.ffn_norm.weight",
+    "model.layers.8.self_attn.k_proj.weight": "blk.8.attn_k.weight",
+    "model.layers.8.self_attn.o_proj.weight": "blk.8.attn_output.weight",
+    "model.layers.8.self_attn.q_proj.weight": "blk.8.attn_q.weight",
+    "model.layers.8.self_attn.v_proj.weight": "blk.8.attn_v.weight",
+    "model.layers.9.input_layernorm.weight": "blk.9.attn_norm.weight",
+    "model.layers.9.mlp.down_proj.weight": "blk.9.ffn_down.weight",
+    "model.layers.9.mlp.gate_proj.weight": "blk.9.ffn_gate.weight",
+    "model.layers.9.mlp.up_proj.weight": "blk.9.ffn_up.weight",
+    "model.layers.9.post_attention_layernorm.weight": "blk.9.ffn_norm.weight",
+    "model.layers.9.self_attn.k_proj.weight": "blk.9.attn_k.weight",
+    "model.layers.9.self_attn.o_proj.weight": "blk.9.attn_output.weight",
+    "model.layers.9.self_attn.q_proj.weight": "blk.9.attn_q.weight",
+    "model.layers.9.self_attn.v_proj.weight": "blk.9.attn_v.weight",
+    "model.norm.weight": "output_norm.weight"
+  },
+  "ordinary_generation": {
+    "torch": {
+      "input_ids": [
+        2,
+        1021,
+        266,
+        18,
+        1214,
+        270,
+        235,
+        136,
+        136,
+        2778,
+        415,
+        323,
+        248,
+        167,
+        172,
+        156,
+        273,
+        68,
+        434,
+        1282,
+        360,
+        367,
+        985,
+        745,
+        397,
+        434,
+        1233,
+        273,
+        234,
+        158,
+        137
+      ],
+      "generated_ids": [
+        3117,
+        582,
+        18,
+        811,
+        1086,
+        18,
+        285,
+        239
+      ],
+      "text": "須とは\n内容紹介\n「�",
+      "valid_utf8": false,
+      "generated_body_bytes_hex": "e9a088e381a8e381af0ae58685e5aeb9e7b4b9e4bb8b0ae3808ce7",
+      "stop_reason": "max_new_tokens",
+      "backend": "torch",
+      "stop_ids": [
+        3
+      ],
+      "suppressed_ids": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        6
+      ]
+    },
+    "hf": {
+      "input_ids": [
+        2,
+        1021,
+        266,
+        18,
+        1214,
+        270,
+        235,
+        136,
+        136,
+        2778,
+        415,
+        323,
+        248,
+        167,
+        172,
+        156,
+        273,
+        68,
+        434,
+        1282,
+        360,
+        367,
+        985,
+        745,
+        397,
+        434,
+        1233,
+        273,
+        234,
+        158,
+        137
+      ],
+      "generated_ids": [
+        3117,
+        582,
+        18,
+        811,
+        1086,
+        18,
+        285,
+        239
+      ],
+      "text": "須とは\n内容紹介\n「�",
+      "valid_utf8": false,
+      "generated_body_bytes_hex": "e9a088e381a8e381af0ae58685e5aeb9e7b4b9e4bb8b0ae3808ce7",
+      "stop_reason": "max_new_tokens",
+      "backend": "hf",
+      "stop_ids": [
+        3
+      ],
+      "suppressed_ids": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        6
+      ]
+    },
+    "gguf": {
+      "input_ids": [
+        2,
+        1021,
+        266,
+        18,
+        1214,
+        270,
+        235,
+        136,
+        136,
+        2778,
+        415,
+        323,
+        248,
+        167,
+        172,
+        156,
+        273,
+        68,
+        434,
+        1282,
+        360,
+        367,
+        985,
+        745,
+        397,
+        434,
+        1233,
+        273,
+        234,
+        158,
+        137
+      ],
+      "generated_ids": [
+        3117,
+        582,
+        18,
+        811,
+        1086,
+        18,
+        285,
+        239
+      ],
+      "text": "須とは\n内容紹介\n「�",
+      "valid_utf8": false,
+      "generated_body_bytes_hex": "e9a088e381a8e381af0ae58685e5aeb9e7b4b9e4bb8b0ae3808ce7",
+      "stop_reason": "max_new_tokens",
+      "backend": "gguf",
+      "stop_ids": [
+        3
+      ],
+      "suppressed_ids": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        6
+      ]
+    }
+  },
+  "model_driven_stop_fixtures": {
+    "3": {
+      "synthetic_controller_evidence_not_quality": true,
+      "results": {
+        "torch": {
+          "input_ids": [
+            2,
+            5,
+            866,
+            7,
+            6
+          ],
+          "generated_ids": [
+            3
+          ],
+          "text": "",
+          "valid_utf8": true,
+          "generated_body_bytes_hex": "",
+          "stop_reason": "stop_id",
+          "backend": "torch",
+          "stop_ids": [
+            7,
+            3
+          ],
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ]
+        },
+        "hf": {
+          "input_ids": [
+            2,
+            5,
+            866,
+            7,
+            6
+          ],
+          "generated_ids": [
+            3
+          ],
+          "text": "",
+          "valid_utf8": true,
+          "generated_body_bytes_hex": "",
+          "stop_reason": "stop_id",
+          "backend": "hf",
+          "stop_ids": [
+            7,
+            3
+          ],
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ]
+        },
+        "gguf": {
+          "input_ids": [
+            2,
+            5,
+            866,
+            7,
+            6
+          ],
+          "generated_ids": [
+            3
+          ],
+          "text": "",
+          "valid_utf8": true,
+          "generated_body_bytes_hex": "",
+          "stop_reason": "stop_id",
+          "backend": "gguf",
+          "stop_ids": [
+            7,
+            3
+          ],
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ]
+        }
+      }
+    },
+    "7": {
+      "synthetic_controller_evidence_not_quality": true,
+      "results": {
+        "torch": {
+          "input_ids": [
+            2,
+            5,
+            866,
+            7,
+            6
+          ],
+          "generated_ids": [
+            7
+          ],
+          "text": "",
+          "valid_utf8": true,
+          "generated_body_bytes_hex": "",
+          "stop_reason": "stop_id",
+          "backend": "torch",
+          "stop_ids": [
+            7,
+            3
+          ],
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ]
+        },
+        "hf": {
+          "input_ids": [
+            2,
+            5,
+            866,
+            7,
+            6
+          ],
+          "generated_ids": [
+            7
+          ],
+          "text": "",
+          "valid_utf8": true,
+          "generated_body_bytes_hex": "",
+          "stop_reason": "stop_id",
+          "backend": "hf",
+          "stop_ids": [
+            7,
+            3
+          ],
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ]
+        },
+        "gguf": {
+          "input_ids": [
+            2,
+            5,
+            866,
+            7,
+            6
+          ],
+          "generated_ids": [
+            7
+          ],
+          "text": "",
+          "valid_utf8": true,
+          "generated_body_bytes_hex": "",
+          "stop_reason": "stop_id",
+          "backend": "gguf",
+          "stop_ids": [
+            7,
+            3
+          ],
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ]
+        }
+      }
+    }
+  },
+  "completed_at": "2026-10-03T08:15:09.438234Z",
+  "failure": "AssertionError: {'hf_llama_architecture_without_qknorm': True, 'hf_tied_embedding': True, 'learned_parameter_count': True, 'native_eos_and_eot_eog_metadata': True, 'all_short_and_1024_logits_cache_comparisons': False, 'tied_embedding_exported_once': True, 'golden_external_codec_roundtrips': True, 'three_backend_greedy_ids_exact': True, 'actual_argmax_stop_3_all_backends': True, 'actual_argmax_stop_7_all_backends': True, 'original_checkpoint_unchanged': True}"
+}

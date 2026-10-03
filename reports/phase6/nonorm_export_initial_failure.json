@@ -1,0 +1,85 @@
+{
+  "status": "failed",
+  "binding": {
+    "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00012208.pt",
+    "checkpoint_sha256": "e5583927efc5aa2041648bcae23f1b618b70f002be334c3581dea23472447d07",
+    "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+    "implementation": {
+      "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+      "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+      "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+      "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+    },
+    "verifier_sha256": "ed0c728b0a7f5790c1c214e1b01b7a0aeba0b162ef305b73749b587363490204",
+    "protocol_sha256": "49e0273d4ae315288c9969a11493bf52d9ba8aa21d51f7ac1c35757f5b3b4ec9"
+  },
+  "runtime": {
+    "revision": "46ca246de9bb1c35269722a6240d37d9dfd79cad",
+    "source_url": "https://api.github.com/repos/ggml-org/llama.cpp/tarball/46ca246de9bb1c35269722a6240d37d9dfd79cad",
+    "archive_sha256": "ce86fc42c03c5b93d25cd8b555bce6660b684f131e2047d4265bbb07fa1e9ceb",
+    "commands": [
+      [
+        "cmake",
+        "-S",
+        "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/runtime/llama.cpp",
+        "-B",
+        "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/runtime/build",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DGGML_METAL=OFF",
+        "-DGGML_BLAS=OFF",
+        "-DGGML_ACCELERATE=OFF",
+        "-DGGML_CCACHE=OFF",
+        "-DCMAKE_C_COMPILER_LAUNCHER=",
+        "-DCMAKE_CXX_COMPILER_LAUNCHER=",
+        "-DLLAMA_BUILD_TESTS=OFF",
+        "-DLLAMA_BUILD_EXAMPLES=OFF",
+        "-DLLAMA_BUILD_SERVER=OFF",
+        "-DLLAMA_BUILD_MTMD=OFF",
+        "-DLLAMA_BUILD_TOOLS=ON",
+        "-DLLAMA_CURL=OFF"
+      ],
+      [
+        "cmake",
+        "--build",
+        "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/runtime/build",
+        "--target",
+        "llama-quantize",
+        "llama-completion",
+        "-j",
+        "4"
+      ],
+      [
+        "cmake",
+        "-S",
+        "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/native",
+        "-B",
+        "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/runtime/build-bridge",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_CXX_COMPILER_LAUNCHER=",
+        "-DLLAMA_SOURCE_DIR=/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/runtime/llama.cpp",
+        "-DLLAMA_BUILD_DIR=/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/runtime/build",
+        "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/runtime"
+      ],
+      [
+        "cmake",
+        "--build",
+        "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/runtime/build-bridge",
+        "-j",
+        "2"
+      ]
+    ],
+    "bridge_source_sha256": "f9df6e67d65b045ee23016cac022a246190ccf89f355be652958de256b5ca334",
+    "bridge_binary_sha256": "75342bdd2ba5d6562a9bc4b745a79b33095330a278fbde0e2693b7205469ecd5",
+    "quantizer_binary_sha256": "19589f437473b8559caee5c3ce054ecf1d96228541d91221e90c56f617251c88",
+    "completion_binary_sha256": "b0d29bb342c6e17635ffef4dea4d935a834f9ca898f3c999c182556acd0bfd6b",
+    "note": "Archive checkout; embedded git build version can inherit parent repo and is not revision evidence"
+  },
+  "tolerance": {
+    "atol": 1E-05,
+    "rtol": 0.0001
+  },
+  "checks": {},
+  "comparisons": {},
+  "scope": "Learned NoNorm export/cache/controller integrity; not Base quality or quantized quality",
+  "failure": "Native learned short GGUF FP32 logits exceeded frozen tolerance; full 1024 diagnostic also fails. See original stderr and probe_nonorm_precision.py output."
+}

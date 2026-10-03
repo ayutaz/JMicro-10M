@@ -13,13 +13,29 @@ from jmicro.export import export_hf, export_gguf
 from jmicro.inference import generate, native
 from jmicro.model import JMicroModel, RMSNorm
 from jmicro.phase2 import golden_cases
-from jmicro.phase3 import compare, tensor_types
+from jmicro.phase3 import compare as strict_compare, tensor_types
 from jmicro.tokenizer import Tokenizer, CODEC_VERSION
 from jmicro.training import implementation_hashes, source_snapshot
 
 
-def verify(output, runtime):
-    torch.set_num_threads(2)
+def compare(actual, expected, tolerance):
+    """Retain every strict failure so all backends/cache paths are diagnosed."""
+    try:
+        return strict_compare(actual, expected, tolerance)
+    except AssertionError as error:
+        actual, expected = torch.as_tensor(actual), torch.as_tensor(expected)
+        if actual.shape != expected.shape:
+            return {'passed':False,'failure':str(error),'shape':list(actual.shape),'expected_shape':list(expected.shape)}
+        delta = (actual-expected).abs()
+        return {'passed':False,'failure':str(error),'shape':list(actual.shape),
+            'finite':bool(torch.isfinite(actual).all() and torch.isfinite(expected).all()),
+            'max_abs_error':float(delta.max()),'mean_abs_error':float(delta.mean()),
+            'elements_outside_frozen_tolerance':int((delta>tolerance['atol']+tolerance['rtol']*expected.abs()).sum()),
+            'tolerance':tolerance}
+
+
+def verify(output, runtime, threads=2):
+    torch.set_num_threads(threads)
     torch.manual_seed(42)
     output.mkdir(parents=True, exist_ok=True)
     candidate = read_json(ROOT/'reports/phase5/candidate_configs.json')['100m-no-qknorm']
@@ -39,7 +55,8 @@ def verify(output, runtime):
     assert receipt['bridge_binary_sha256'] == sha256(bridge)
     for patch in receipt.get('patches', []):
         assert sha256(runtime/'llama.cpp'/patch['file']) == patch['patched_sha256']
-    binding = {'checkpoint': str(checkpoint), 'checkpoint_sha256': sha256(checkpoint), 'tokenizer_sha256': sha256(tok.path), 'implementation': implementation_hashes(), 'verifier_sha256': sha256(Path(__file__)), 'protocol_sha256': sha256(ROOT/'configs/evaluation/protocol.json'), 'runtime_receipt_sha256': sha256(runtime/'source_receipt.json')}
+    import os
+    binding = {'checkpoint': str(checkpoint), 'checkpoint_sha256': sha256(checkpoint), 'tokenizer_sha256': sha256(tok.path), 'implementation': implementation_hashes(), 'verifier_sha256': sha256(Path(__file__)), 'protocol_sha256': sha256(ROOT/'configs/evaluation/protocol.json'), 'runtime_receipt_sha256': sha256(runtime/'source_receipt.json'), 'cpu_threads':threads, 'cpu_environment':{key:os.environ.get(key) for key in ('MKL_CBWR','MKL_DYNAMIC','OMP_DYNAMIC')}}
     if (output/'binding.json').exists():
         assert read_json(output/'binding.json') == binding
     else:
@@ -130,9 +147,10 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--runtime', type=Path, default=ROOT/'artifacts/runtime')
+    parser.add_argument('--threads', type=int, choices=[1,2], default=2)
     args = parser.parse_args()
     try:
-        verify(args.output.resolve(), args.runtime.resolve())
+        verify(args.output.resolve(), args.runtime.resolve(), args.threads)
     except Exception as error:
         report_path = args.output/'nonorm_export_parity_report.json'
         if report_path.exists():
