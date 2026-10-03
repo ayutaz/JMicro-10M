@@ -1,0 +1,90 @@
+{
+  "observed_at_utc": "2026-10-03T14:11:43.9036953Z",
+  "status": "full_independent_cached_audit_running",
+  "job": {
+    "status": "running",
+    "pid": 1170053,
+    "started_at": "2026-10-03T14:10:06.40855Z",
+    "command": [
+      "scripts/run_corpus_10b_cached_audit.py",
+      "--raw",
+      "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/raw",
+      "--output",
+      "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2"
+    ],
+    "config_sha256": "0f4e738c2c4beb333bea3f5b2c410e2f5889d87f6aaffb8a92b281a19c43375e",
+    "execution": "bounded_feature_cache_audit_v4",
+    "boot_id": "0b330ec7-c11f-4bb3-be7c-cae9b868f4af",
+    "start_ticks": "1074573",
+    "prior_cumulative_seconds": 9975.722686174999,
+    "stage": "full_independent_serial_audit",
+    "heartbeat_at": "2026-10-03T14:10:06.408635Z"
+  },
+  "retired_v3": {
+    "status": "failed",
+    "pid": 1106994,
+    "started_at": "2026-10-03T11:35:08.794619Z",
+    "command": [
+      "scripts/prepare_corpus_10b_parallel.py",
+      "--raw",
+      "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/raw",
+      "--output",
+      "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2"
+    ],
+    "config_sha256": "0f4e738c2c4beb333bea3f5b2c410e2f5889d87f6aaffb8a92b281a19c43375e",
+    "execution": "parallel_bands_v3",
+    "boot_id": "0b330ec7-c11f-4bb3-be7c-cae9b868f4af",
+    "start_ticks": "144729",
+    "prior_cumulative_seconds": 680.553657957,
+    "stage": "full_independent_serial_audit",
+    "heartbeat_at": "2026-10-03T13:46:24.839691Z",
+    "band_workers": 8,
+    "completed_at": "2026-10-03T14:10:03.96368Z",
+    "failure": "InterruptedError: Pipeline interrupted by signal2; preserve all checkpoints",
+    "cumulative_seconds": 9975.722686174999
+  },
+  "retired_process_gone": true,
+  "actual_start_ticks_verified": "1074573",
+  "cumulative_runtime_carried_exact": true,
+  "completed_export_manifest_sha256": "856bf074b99e00391b6206b67bc3b41ffcddd349b81dc74fdc2374f07b9e0eb1",
+  "frozen_source_snapshots_verified": {
+    "source_snapshot.json": "c0ff3d9c21647665974addcd412dfc7dc5727619a1893b0f2eed6298a47330ad",
+    "execution_v3_snapshot.json": "efd2f231f8b31e6aee96d249bcafe876444ab3ab839c46da195ddfbe1df3e16a",
+    "execution_v4_snapshot.json": "032ce47ed4901065c73b9e8714d38db0103839412175385b30fb0f30bf0bce52"
+  },
+  "handoff": {
+    "status": "cached_audit_running",
+    "pid": 1169492,
+    "started_at": "2026-10-03T13:54:38.3882Z",
+    "boot_id": "0b330ec7-c11f-4bb3-be7c-cae9b868f4af",
+    "start_ticks": "981772",
+    "source_sha256": "ac1bdb81c932ae6ce037f893c8ab3d24056978685eb41f66b8a142f9b91b3bd9",
+    "prior_identity": {
+      "status": "running",
+      "pid": 1106994,
+      "started_at": "2026-10-03T11:35:08.794619Z",
+      "command": [
+        "scripts/prepare_corpus_10b_parallel.py",
+        "--raw",
+        "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/raw",
+        "--output",
+        "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2"
+      ],
+      "config_sha256": "0f4e738c2c4beb333bea3f5b2c410e2f5889d87f6aaffb8a92b281a19c43375e",
+      "execution": "parallel_bands_v3",
+      "boot_id": "0b330ec7-c11f-4bb3-be7c-cae9b868f4af",
+      "start_ticks": "144729",
+      "prior_cumulative_seconds": 680.553657957,
+      "stage": "full_independent_serial_audit",
+      "heartbeat_at": "2026-10-03T13:46:24.839691Z",
+      "band_workers": 8
+    },
+    "signal_sent_at": "2026-10-03T13:46:32.729491Z",
+    "exit_wait_resumed": true,
+    "signal_resent": false,
+    "retired_at": "2026-10-03T14:10:06.291991Z"
+  },
+  "full_audit_passed": false,
+  "actual_loader_checked": false,
+  "training_started": false
+}

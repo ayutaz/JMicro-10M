@@ -59,6 +59,8 @@ uv run --frozen --extra hub --extra data --extra ml --extra export scripts/check
 
 ## 大groupを保持する監査cacheの検証済み入口
 
+2026-10-03 23:10 JSTに[全件監査v4を起動](../reports/phase6/corpus_10b_cached_audit_start.json)。実train12,225,819,077 tokensの`prepared-v2/export-001/`を保持し、元v3 processの終了後に累積9975.723秒を完全に引き継いだ。監査Linux1170053/boot`0b330ec7-c11f-4bb3-be7c-cae9b868f4af`/start_ticks1074573、logは`ten-billion/preparation-v4.log`、追加codeは`execution_v4_snapshot/`。全件監査と実loaderは未完了で、以下の未起動記録は実装時点の履歴である。
+
 3つの大group（6,566/7,077/4,410件）で固定32,920組ずつのscore列が一致し、cache再計算を減らして2.676〜2.899倍。全groupのcharged bytesは約356/399/234MBで2GiB以下。[実1M全32bandsの全score/全代表一致](../reports/phase6/corpus_10b_feature_cache_integration.json)と独立audit fixture/破損棄却を含む全107testsも確認した。小groupでは約2%遅いため、全体を2.7倍高速と断定しない。
 
 [audit専用入口](../scripts/run_corpus_10b_cached_audit.sh)は実train10B以上のexport完了後だけ起動する。実process identityと終了を確認し、元jobをjob-v3-retired.jsonへ保持する。manifestがない時点で元jobを止めない。全候補とtrue Jaccardの原逐次auditは保持し、特徴量memoizationだけを8192 entries/charged bytes2GiB上限へ変更する。旧source snapshotsと累積消費時間は保持し、新codeはexecution_v4_snapshotへ別保存する。原corpus_audit.jsonと追加audit_cache_metrics.jsonを検証する。現時点では新audit jobは未起動。

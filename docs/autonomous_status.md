@@ -4,6 +4,8 @@
 
 ## 実行中: ローカル10Bデータの取得・構築・監査
 
+2026-10-03 23:10 JST: [全件監査v4の起動確認](../reports/phase6/corpus_10b_cached_audit_start.json)。元1106994は14:10:03 UTCにSIGINTによるterminal failedと累積9975.723秒を保存して実終了。watcherがjob-v3-retired.jsonを保持し、Linux1170053/同boot/start_ticks1074573の`bounded_feature_cache_audit_v4`を14:10:06 UTCに起動した。実/proc・旧PID消失・累積時間の完全引継ぎ・3 source snapshots全binding・完成export manifest SHA不変を確認。原逐次auditの全件checksを保持し、特徴量memoizationだけを検証済みcacheへ変更する。ログ`ten-billion/preparation-v4.log`、source`execution_v4_snapshot/`、出力`prepared-v2/`。WSL空き約581GiB。現在はauditの初期SQLite検査中、全件監査の合格と実loaderはまだ未完了。次はraw/signature→全32bands/代表→全membership/token列→terminal/PID終了→実loader→最終report/commit、学習前に停止する。以下の終了待機は解消済みの履歴。
+
 2026-10-03 23:00 JST: [以前の225ファイル保持確認](../reports/phase6/corpus_10b_prior_files_preserved.json)。診断開始前の固定baseline SHA `241d5070...98ee`を確認し、Windowsの全225 source/config/evaluation/historical reportsの実hashが一致、missing/mismatch0。これは既存コード・小成果物の保持確認で、Linux bulk corpus/shards/checkpointや新10Bの全件auditの代用ではない。元1106994と終了待機watcher1169492は実/procでlive、cache auditへの移行はまだ終了待ち。
 
 2026-10-03 22:54 JST: [終了の観測だけを再開](../reports/phase6/corpus_10b_handoff_resume.json)。元の5分timeout・送信済みSIGINT時刻・PID/boot/start ticks一致を必須に、シグナル再送0の常駐watcherを起動。Windows28320/Linux1169492の実identityを確認した。108GiB SQLiteの実読み取りが続くため、終了の観測は90分上限とし、元processの終了・terminal state・累積runtime保存を確認してからcache audit入口を起動する。元timeoutを別JSON、再開codeを別snapshotとして保持する。5 guard tests成功（実CLI branchでもSIGINT再送0/retired job保持を確認）。候補・全件audit・受入条件は変更しない。現在は元1106994の終了待ちで、監査完了/実loader確認は未達。
