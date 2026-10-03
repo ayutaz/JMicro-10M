@@ -56,3 +56,9 @@ uv run --frozen --extra hub --extra data --extra ml --extra export scripts/check
 ```
 
 利用確認reportのartifact/shards path、量とhashを引継ぎへ記録する。旧`base_frozen.json`と旧checkpointのshard bindingは保持し、新しいデータを通常resumeへ差し替えない。新データで学習する際は、別系列の設定と全state再開の検証を行う。
+
+## 大groupを保持する監査cacheの検証済み入口
+
+3つの大group（6,566/7,077/4,410件）で固定32,920組ずつのscore列が一致し、cache再計算を減らして2.676〜2.899倍。全groupのcharged bytesは約356/399/234MBで2GiB以下。[実1M全32bandsの全score/全代表一致](../reports/phase6/corpus_10b_feature_cache_integration.json)と独立audit fixture/破損棄却を含む全107testsも確認した。小groupでは約2%遅いため、全体を2.7倍高速と断定しない。
+
+[audit専用入口](../scripts/run_corpus_10b_cached_audit.sh)は実train10B以上のexport完了後だけ起動する。実process identityと終了を確認し、元jobをjob-v3-retired.jsonへ保持する。manifestがない時点で元jobを止めない。全候補とtrue Jaccardの原逐次auditは保持し、特徴量memoizationだけを8192 entries/charged bytes2GiB上限へ変更する。旧source snapshotsと累積消費時間は保持し、新codeはexecution_v4_snapshotへ別保存する。原corpus_audit.jsonと追加audit_cache_metrics.jsonを検証する。現時点では新audit jobは未起動。

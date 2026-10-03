@@ -125,6 +125,13 @@ def test_restartable_ingest_protects_previous_heldout_and_exports_losslessly(tmp
     monkeypatch.setattr(auditor,"ROOT",root)
     report=auditor.audit(config,raw,output,workers=1)
     assert report["status"]=="passed" and report["raw_records_reconstructed"]==153
+    from jmicro.cached_corpus_audit import audit_with_cache
+    original_decorator=auditor.lru_cache
+    cached_report=audit_with_cache(auditor,config,raw,output,workers=1)
+    assert auditor.lru_cache is original_decorator
+    assert cached_report["checks"]==report["checks"]
+    assert cached_report["splits"]==report["splits"]
+    assert read_json(output/"audit_cache_metrics.json")["feature_cache"]["max_charged_bytes"]==2*1024**3
     spec=importlib.util.spec_from_file_location("fixture_ready",ROOT/"scripts/check_corpus_10b_ready.py")
     ready=importlib.util.module_from_spec(spec)
     spec.loader.exec_module(ready)
@@ -146,3 +153,6 @@ def test_restartable_ingest_protects_previous_heldout_and_exports_losslessly(tmp
         stream.write(b"bad!")
     with pytest.raises(ValueError,match="checksum"):
         auditor.audit(config,raw,output,workers=1)
+    with pytest.raises(ValueError,match="checksum"):
+        audit_with_cache(auditor,config,raw,output,workers=1)
+    assert auditor.lru_cache is original_decorator

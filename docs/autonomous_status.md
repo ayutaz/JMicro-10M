@@ -16,6 +16,8 @@ Jaccardのunion集合生成を同値の集合要素数式へ置き換える[限�
 
 2026-10-03 13:03 UTC観測で本処理は30/32bands完了、残り23/27の実CPU時間は増加。[残り3bandsの全候補数](../reports/phase6/corpus_10b_pending_bands.json)は23,719,429 / 26,963,689 / 12,711,887組、最大group6,566 / 7,077 / 4,410件で、元builder2048・audit4096のcacheを超える。読み取り専用の[cache限定比較](../reports/phase6/corpus_10b_feature_cache_probe.json)では各groupの固定32,920組のfloat score列SHAが一致し、2.836 / 2.899 / 2.676倍。全group retentionのcharged bytesは約356 / 399 / 234MBで2GiB以下。新しい8192 entries/2GiB上限cacheは2tests成功だが本処理では未使用。採用前の実1M/全32bands/全代表の一致はまだpending。次にこの全件prefix照合と独立auditの統合検証を行い、既存の進行を失わない時点でauditの特徴量再計算だけを減らす判断をする。元の候補・Jaccard・独立逐次audit基準・frozen source・24時間累積予算は維持する。
 
+監査cacheの[実1M・全32bands照合](../reports/phase6/corpus_10b_feature_cache_integration.json)も完了。全524,480組のfloat score列SHA `059a54...f7a9`・全1Mのcluster/duplicate代表が一致。original27.987秒/cache28.595秒で小groupは約2%遅いが、前記の大group限定2.676〜2.899倍という採用条件2倍を満たす。原auditの特徴量decoratorだけを8192 entries/2GiB上限へ替え、全raw再構築・全候補逐次Jaccard・全token/byte往復・old heldout保護・破損棄却を保持する[adapter](../src/jmicro/cached_corpus_audit.py)を追加。fixtureで同じchecks/split countsと失敗後のdecorator復元を確認し、全107tests成功/skip/failure/error0（fork warning8）。実live排他lockで新CLIの重複起動拒否も確認。 新入口は[scripts/run_corpus_10b_cached_audit.sh](../scripts/run_corpus_10b_cached_audit.sh)で、出力manifest/実train10B以上・old source snapshots・両実比較・process終了が必須。元のingest/dedup/exportを再実行せず、累積24時間予算と別execution_v4_snapshotを保持する。現在の本処理はまだv3で31/32bands完了、新入口は未起動。次は残りband→exportの実10B確認まで既存jobを継続し、完成exportを保持して監査入口へ移行する。
+
 ### 取得・初回構築の記録（履歴）
 
 2026-10-03のユーザー依頼で、2B計画を約10Bのローカルデータ整備へ更新し、実行を再開した。[保存先・取得上限・実装・監査・停止条件](32_local_10b_corpus.md)。全bulk dataをWSLの`~/jmicro-data/phase6/ten-billion/`へ置き、Windowsとの境界越しデータ処理を避ける。WSL空き835GiB/Windows約2.5TBを確認し、現時点でdisk拡張は不要。原corpus/shards/heldoutを保持し、学習は開始しない。
