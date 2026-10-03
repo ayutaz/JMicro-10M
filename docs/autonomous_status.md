@@ -12,9 +12,11 @@
 
 ## 実際の状態
 
-**最新: Phase 5のoverfit/10M smokeが合格し、T8Kの100M比較を実行中。** [詳細計画](22_phase5_plan.md)と`configs/phase5/plan.json`へ目的・合格条件・予算を固定した。固定blockの失敗を保持し、文書単位samplerへ修復した`34d932d`では全68 tests / skip 0と、新sourceのT8K/T4K/文書samplerのCUDA 200 vs 100+100全state一致が成功した。100件overfitは6,000更新後、本文NLL/token **0.01277**、teacher accuracy **99.712%**、16-token continuation exact **100%**、EOS argmax/実生成停止 **100%**で全5 gateに合格した。raw証拠は`reports/phase5/overfit_report.json`に保存済み。品質目標の数値を維持した凍結は`5d6b72e`へ保存済み。公開25 payloadの固定revision/hash検証も成功済み。
+**最新: Phase 5のT8K 100Mが学習・評価を終了し、T4Kの100M比較を実行中。** [詳細計画](22_phase5_plan.md)と`configs/phase5/plan.json`へ目的・合格条件・予算を固定した。固定blockの失敗を保持し、文書単位samplerへ修復した`34d932d`では全68 tests / skip 0と、新sourceのT8K/T4K/文書samplerのCUDA 200 vs 100+100全state一致が成功した。100件overfitは6,000更新後、本文NLL/token **0.01277**、teacher accuracy **99.712%**、16-token continuation exact **100%**、EOS argmax/実生成停止 **100%**で全5 gateに合格した。raw証拠は`reports/phase5/overfit_report.json`に保存済み。品質目標の数値を維持した凍結は`5d6b72e`へ保存済み。公開25 payloadの固定revision/hash検証も成功済み。
 
 10M smokeは600更新で保存・再開し、1,221更新 / **10,002,432 tokens**で終了。全更新・weights・optimizerの有限値、凍結設定、loss低下を独立に監査した。dev 924文書 / 1,633,458 bytesのBPBは初期**2.74787 → 1.41697**。固定dev 80件×5条件の400生成を実施し、IDから全flagを再計算して一致した。抑制ありgreedyはEOS **0/80**、反復 **63/80**、Unicode/role/emptyは各0/80で、Base/Chat品質目標は未達。文書末尾からの暗記EOS 100%と自発的な短文停止は区別する。smoke評価に約354秒を要した。`reports/phase5/smoke_report.json`と二つのsmoke auditへ保存する。
+
+T8Kの100M学習は**12,208更新 / 100,007,936 tokens**で終了し、最終checkpoint SHA `a9dbdc35b5212a899cc3d6e6aad58a8338d50944a83d94f7497a5555dc6f035e`を保存した。全更新・weights・optimizer有限、source snapshot/hash・shard binding・予算一致を独立に確認。first/last 100更新の平均loss **7.7029 → 2.8532**、定常中央値 **117,119 tokens/s**、学習workerの実時間約14分26秒。全dev BPB **1.25886**でsmokeの1.41697から改善、共通短文windowと固定400生成も終了してID/flagを独立に照合した。抑制ありgreedyはEOS **0/80**、反復 **54/80**、Unicode/role/empty各0/80。文書末尾EOS argmaxは19.81%。`reports/phase5/100m-t8k_training_audit.json`と`100m-t8k_evaluation_audit.json`へ保存。smoke対100Mのpaired CIは文書不確実性を測り、学習seedの変動やbudget/schedule以外を揃えた純粋なscaling証明とはしない。候補の採用判断は全比較後に行う。
 
 以下は完了済みPhase 4の証拠（2026-10-03 01:58 JST監査成功）。[完了記録](21_phase4_completion.md)とGit保存の`reports/phase4/handoff_report.json`を参照する。
 
