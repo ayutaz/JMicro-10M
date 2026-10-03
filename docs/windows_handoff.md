@@ -2,7 +2,7 @@
 
 Phase 5実行状況（2026-10-03）: ユーザーが再開と完了までの作業を指定した。[詳細計画](22_phase5_plan.md)を参照。現在のrun/processは継続状態を正とし、Phase 6本学習は開始しない。
 
-最終更新: 2026-10-03。現在のPCは[Phase 4の実機検証](21_phase4_completion.md)まで完了し、ユーザー指定により停止中。復元済みPCでは環境整備・Tokenizer学習・完了済み測定を繰り返さず、[現在の状態](autonomous_status.md)と既存job/checkpointを確認する。Phase 5を実行中。Base/Chat本学習は未開始。
+最終更新: 2026-10-03。現在のPCは[Phase 4の実機検証](21_phase4_completion.md)まで完了し、ユーザー指定によりPhase 5を実行中。復元済みPCでは環境整備・Tokenizer学習・完了済み測定を繰り返さず、[現在の状態](autonomous_status.md)と既存job/checkpointを確認する。Phase 6前に停止する。Base/Chat本学習は未開始。
 
 ## 引継ぎ先と現在地
 
@@ -17,7 +17,8 @@ Phase 5実行状況（2026-10-03）: ユーザーが再開と完了までの作�
 | 実機環境 | WSL package 3.0.1.0 / Ubuntu WSL 2、RTX 4090、Windows driver 616.92 |
 | Python / PyTorch | uv管理の3.12.7 / 2.14.1、CUDA 13.0 |
 | 完了済み | Phase 0〜4。pilot、Tokenizer、モデル/export、GPU学習器・評価・保存再開・容量/速度 |
-| 未実施 | overfit/smoke/100M比較、本学習、Chat trainer、学習後の量子化品質 |
+| 実行中 | Phase 5のoverfit修復・smoke・100M比較。合格済みstageはjob.jsonを確認 |
+| 未実施 | 長期Base本学習、Chat trainer、学習後の量子化品質 |
 
 HubにはpilotとTokenizerがあり、モデル重み・shard・checkpointは含まない。Phase 4の小さい学習済み検証checkpointはLinuxの`reports/phase4/gates-20261003/`へ保存してある。新規PCへは必要なcheckpoint/logも別途引き継ぐ。旧driver/アクセス拒否の履歴は[復旧履歴](autonomous_history_20261003.md)へ分離した。
 
@@ -127,7 +128,7 @@ uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train
 uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train.py evaluate --help
 ```
 
-次の例はユーザーが学習を再開した後に使う形式。現在は実行しない。予算・合格条件を別途固定してからPhase 5の100件overfitに着手する。下記200更新はCLI利用例で、overfit合格の証拠や本学習設定ではない。
+下記200更新はCLI利用例で、overfit合格の証拠や本学習設定ではない。Phase 5の正式な予算・合格条件は[詳細計画](22_phase5_plan.md)へ固定済み。既存supervisorが実行しているため、同じ学習を手動で二重起動しない。文書単独の暗記検証には`--sampler document`を使用し、通常のsmoke/100Mはdefaultのblock samplerを使う。
 
 ```sh
 uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train.py build-shards --tokenizer artifacts/phase2/8192/tokenizer.model --limit 100 --output "$HOME/jmicro-data/shards/t8k-overfit100"

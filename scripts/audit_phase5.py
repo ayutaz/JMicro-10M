@@ -8,6 +8,7 @@ import json
 import math
 from pathlib import Path
 import sys
+import xml.etree.ElementTree as ET
 
 import numpy as np
 import torch
@@ -78,6 +79,10 @@ def main():
     require(job["status"] == "complete", "Supervisor has not completed")
     require(sha256(run / "plan.json") == job["plan_sha256"], "Frozen plan hash differs")
     require(job["implementation_sha256"] == implementation_hashes(), "Runtime source differs")
+    protocol = read_json(ROOT / "configs/evaluation/protocol.json")
+    frozen_protocol = read_json(run / "snapshot/configs/evaluation/protocol.json")
+    require(protocol["targets"] == frozen_protocol["targets"] and
+        protocol["targets"]["status"] == "frozen_phase5_20261003_before_100m_selection", "Quality targets not frozen before run")
     require(not plan["selection"]["test_usage"] and not plan["selection"]["phase6_authorized"], "Scope differs")
     comparison = read_json(run / "tokenizer_model_comparison.json")
     require(comparison["status"] == "passed" and not comparison["test_used"], "Comparison not passed")
@@ -119,6 +124,27 @@ def main():
     train_ids = {r["doc_id"] for r in train["rows"]}
     require(train_ids == {r["doc_id"] for r in recall["outputs"]} == {r["doc_id"] for r in recall["eos_outputs"]}, "Recall population differs")
     require(math.isclose(recall["exact_rate"], sum(r["expected_ids"] == r["generated_ids"] for r in recall["outputs"]) / 100), "Recall rate differs")
+    overfit_directory = run / "overfit-t8k"
+    overfit_metrics = [json.loads(line) for line in (overfit_directory / "metrics.jsonl").read_text().splitlines()]
+    require([r["update"] for r in overfit_metrics] == list(range(1, thresholds["updates"]+1)), "Overfit metrics missing updates")
+    require(all(math.isfinite(r[k]) for r in overfit_metrics for k in ("loss", "gradient_norm", "seconds")), "Nonfinite overfit metrics")
+    require(sha256(Path(overfit["checkpoint"])) == overfit["checkpoint_sha256"], "Overfit checkpoint hash differs")
+    overfit_state = torch.load(overfit["checkpoint"], map_location="cpu", weights_only=False)
+    require(overfit_state["spec"]["sampler"] == "document" and overfit_state["update"] == thresholds["updates"], "Overfit sampler/update differs")
+    require(overfit_state["implementation_sha256"] == job["implementation_sha256"], "Overfit checkpoint source differs")
+    overfit_compact = dict(train={k:v for k,v in train.items() if k != "rows"}, gates=overfit["gates"],
+        continuation_exact_rate=recall["exact_rate"], eos_generation_rate=recall["eos_generation_rate"],
+        padded_input_slots=overfit_state["tokens"], supervised_tokens=overfit_state["supervised_tokens"],
+        body_bytes_seen=overfit_state["body_bytes"], spec=overfit_state["spec"], checkpoint=overfit["checkpoint"],
+        checkpoint_sha256=overfit["checkpoint_sha256"], raw_report_sha256=sha256(run / "overfit_report.json"))
+    del overfit_state
+    environment = read_json(overfit_directory / "environment.json")
+    require(environment["platform"]["python"] == "3.12.7" and environment["platform"]["is_wsl"], "Wrong training environment")
+    require(environment["torch_probe"]["cuda_available"] and environment["torch_probe"]["bf16_supported"] and environment["uv"]["available"], "CUDA/BF16/uv unavailable")
+    require("RTX 4090" in environment["nvidia_smi"]["stdout"], "Wrong GPU")
+    xml = ET.parse(ROOT / "reports/phase5/tests.xml")
+    test_cases = list(xml.iter("testcase"))
+    require(len(test_cases) >= 68 and not any(list(xml.iter(tag)) for tag in ("failure", "error", "skipped")), "Tests incomplete or failed/skipped")
     names = ["100m-t8k", "100m-t4k", "100m-no-qknorm", "100m-lr001"]
     reports, compact = {}, {}
     for name in ["smoke", *names]:
@@ -177,7 +203,7 @@ def main():
             require(report["common_windows"]["text_manifest_sha256"] == reports["100m-t8k"]["common_windows"]["text_manifest_sha256"], "Auxiliary windows differ")
     require(1 <= len(comparison["selected"]) <= 2 and len(set(comparison["selected"])) == len(comparison["selected"]), "Candidate count differs")
     output.mkdir(parents=True, exist_ok=True)
-    write_json(output / "evaluation_summary.json", dict(status="passed", models=compact, tokenizer_dev_fallback=fallback))
+    write_json(output / "evaluation_summary.json", dict(status="passed", models=compact, overfit=overfit_compact, tokenizer_dev_fallback=fallback))
     write_json(output / "candidate_configs.json", {n: comparison["entries"][n] for n in comparison["selected"]})
     write_json(output / "independent_audit.json", dict(status="passed", created_at=now(), run=str(run),
         supervisor=job, resume_state_equality=resumes, checks=["plan/source/hash binding", "exact resume all state",
@@ -185,6 +211,9 @@ def main():
             "four equal 100M token budgets", "single-factor norm/LR comparisons", "full common dev byte population",
             "400 fixed dev generations per model", "paired intervals recomputed", "auxiliary budgets evaluated"],
         test_used=False, phase6_started=False, comparison_sha256=sha256(run / "tokenizer_model_comparison.json"),
+        tests=dict(cases=len(test_cases), skipped=0, failures=0, xml_sha256=sha256(ROOT / "reports/phase5/tests.xml")),
+        quality_targets=protocol["targets"], quality_targets_source_sha256=sha256(run / "snapshot/configs/evaluation/protocol.json"),
+        audit_source_sha256=sha256(Path(__file__)),
         evaluation_summary_sha256=sha256(output / "evaluation_summary.json")))
     print(json.dumps(dict(status="passed", selected=comparison["selected"], output=str(output))))
 

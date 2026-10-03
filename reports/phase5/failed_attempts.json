@@ -1,0 +1,109 @@
+{
+  "phase": 5,
+  "decision": "Preserve failed gates without relaxing thresholds. Adopt exact-resumable eager/math and repair overfit with document-local train windows.",
+  "failures": [
+    {
+      "run": "run-20261003",
+      "status": "failed",
+      "failed_stage": "resume-t8k",
+      "failure": "RuntimeError: Stage resume-t8k failed with exit 1; see log",
+      "completed_at": "2026-10-03T02:37:15.012537Z",
+      "implementation_sha256": {
+        "src/jmicro/model.py": "dfb0df9af5020de1c077d6135f4def8f36c7389d5a27e8bec327ec8d25bb6b4b",
+        "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+        "src/jmicro/training.py": "9ab52d4973f2f54b9bda37365d4ec0570246f5e5d819de59e140f96a42c92086",
+        "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+      },
+      "raw_path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003",
+      "resume": {
+        "status": "failed",
+        "checks": {
+          "model": false,
+          "optimizer": false,
+          "scheduler": true,
+          "rng": true,
+          "sampler": true,
+          "tokens": true,
+          "supervised_tokens": true,
+          "body_bytes": true,
+          "token_digest": true,
+          "implementation_sha256": true,
+          "losses": false,
+          "digests": true,
+          "batched_bytes_equal": true,
+          "batched_bpb_parity": true
+        }
+      },
+      "raw_report_sha256": "a3310701235621ddc5cb4266b6c8cecb19adbaac93eb93f9ab99223bde1e7574"
+    },
+    {
+      "run": "run-20261003-eager",
+      "status": "failed",
+      "failed_stage": "resume-t8k",
+      "failure": "RuntimeError: Stage resume-t8k failed with exit 1; see log",
+      "completed_at": "2026-10-03T02:39:57.574266Z",
+      "implementation_sha256": {
+        "src/jmicro/model.py": "dfb0df9af5020de1c077d6135f4def8f36c7389d5a27e8bec327ec8d25bb6b4b",
+        "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+        "src/jmicro/training.py": "9ab52d4973f2f54b9bda37365d4ec0570246f5e5d819de59e140f96a42c92086",
+        "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+      },
+      "raw_path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-eager",
+      "resume": {
+        "status": "failed",
+        "checks": {
+          "model": false,
+          "optimizer": false,
+          "scheduler": true,
+          "rng": true,
+          "sampler": true,
+          "tokens": true,
+          "supervised_tokens": true,
+          "body_bytes": true,
+          "token_digest": true,
+          "implementation_sha256": true,
+          "losses": false,
+          "digests": true,
+          "batched_bytes_equal": true,
+          "batched_bpb_parity": true
+        }
+      },
+      "raw_report_sha256": "a3310701235621ddc5cb4266b6c8cecb19adbaac93eb93f9ab99223bde1e7574"
+    },
+    {
+      "run": "run-20261003-math",
+      "status": "failed",
+      "failed_stage": "overfit-evaluation",
+      "failure": "RuntimeError: Stage overfit-evaluation failed with exit 1; see log",
+      "completed_at": "2026-10-03T02:48:12.442471Z",
+      "implementation_sha256": {
+        "src/jmicro/model.py": "dfb0df9af5020de1c077d6135f4def8f36c7389d5a27e8bec327ec8d25bb6b4b",
+        "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+        "src/jmicro/training.py": "9ab52d4973f2f54b9bda37365d4ec0570246f5e5d819de59e140f96a42c92086",
+        "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+      },
+      "raw_path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-math",
+      "gates": {
+        "nll": false,
+        "teacher_accuracy": false,
+        "continuation": false,
+        "eos": true,
+        "eos_generation": true
+      },
+      "train": {
+        "documents": 100,
+        "body_tokens": 37564,
+        "nll_per_token": 3.2062559889394637,
+        "teacher_forced_accuracy": 0.6540304546906612,
+        "eos_argmax_accuracy": 0.69
+      },
+      "continuation": {
+        "documents": 100,
+        "exact_rate": 0.02,
+        "eos_generation_rate": 0.69
+      },
+      "checkpoint_sha256": "c3967c9635bc1ff456ad7cfe5c948a5db1c4ec612fe0b4560d08eb97de0c056d",
+      "raw_report_sha256": "de18e86780a157c0b712a7210d32e32e738b45fa0e19ba5e3209cfcf70f9b640"
+    }
+  ]
+}

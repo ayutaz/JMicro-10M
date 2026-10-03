@@ -12,7 +12,7 @@
 
 ## 実際の状態
 
-**最新: Phase 5のoverfit修復を実GPU検証中。** [詳細計画](22_phase5_plan.md)と`configs/phase5/plan.json`へ目的・合格条件・予算を固定した。QK-Normなし候補、batched本文/EOS評価、paired bootstrap、永続supervisorを実装。固定blockのoverfitはlossが下がっても文書単独の暗記gateに失敗したため、train文書単位のsamplerへ修復する。全68 tests / skip 0が成功し、新sourceでCUDA全state resumeから再検証する。品質目標の数値を維持した凍結は`5d6b72e`へ保存済み。公開25 payloadの固定revision/hash検証も成功済み。
+**最新: Phase 5のoverfit修復が合格し、10M smokeを実行中。** [詳細計画](22_phase5_plan.md)と`configs/phase5/plan.json`へ目的・合格条件・予算を固定した。固定blockの失敗を保持し、文書単位samplerへ修復した`34d932d`では全68 tests / skip 0と、新sourceのT8K/T4K/文書samplerのCUDA 200 vs 100+100全state一致が成功した。100件overfitは6,000更新後、本文NLL/token **0.01277**、teacher accuracy **99.712%**、16-token continuation exact **100%**、EOS argmax/実生成停止 **100%**で全5 gateに合格した。raw証拠は`reports/phase5/overfit_report.json`へ保存する。smokeは600更新で保存・再開し、合計1,221更新を行う。品質目標の数値を維持した凍結は`5d6b72e`へ保存済み。公開25 payloadの固定revision/hash検証も成功済み。
 
 以下は完了済みPhase 4の証拠（2026-10-03 01:58 JST監査成功）。[完了記録](21_phase4_completion.md)とGit保存の`reports/phase4/handoff_report.json`を参照する。
 
@@ -21,7 +21,7 @@
 - eager/default SDPA、FP32 parameters/BF16 autocast、context 1024、CUDA allocator 94%上限で、最大安定micro batchはT8K **57**（58 OOM）/ T4K **64**（65 OOM）。各3×200更新と評価/保存を通過。定常中央値225,169 / 218,411 tokens/s。
 - 測定点の最高速度はcompile / batch 8で439,656 / 448,601 tokens/s。compile容量は未探索。Flash-onlyはnon-null mask非対応でraw失敗を保持し、成功と扱わない。default/math/compile-defaultは実測成功。
 - 100M〜50Bのcompute時間と実ストレージを`reports/phase4/resource_budget.md`に保存。T8K eager最大batchの10B computeは約12.34h、評価/save/比較・取得処理は別加算。master corpus・Base/Chatの長期本学習は未実施。
-- Linuxの`reports/phase4/gates-20261003/`に全ログ・snapshot・checkpointを保持。小さい集約reportをWindowsへコピーしGitへ保存。GPU jobは終了済み。Phase 5は開始していない。
+- Linuxの`reports/phase4/gates-20261003/`に全ログ・snapshot・checkpointを保持。小さい集約reportをWindowsへコピーしGitへ保存。Phase 4 GPU jobは終了済み。Phase 4完了時点ではPhase 5は未開始だった。
 
 ## 実装と保存先
 
@@ -46,7 +46,7 @@ command: `bash scripts/run_phase4_job.sh scripts/run_phase5.py --output reports/
 
 ## 次の具体的な作業
 
-実プロセスとjob/logを確認し、変更後のmath-only CUDA保存再開 → 100件overfit → 10M smoke → T4K/T8K 100M比較 → QK-Norm/LR比較 → 候補選定・監査を進める。失敗したgateはraw結果を保持して修復し、閾値を緩めない。Phase 6には進まない。文書更新は`aa932bb`へ保存済み。
+実プロセスとjob/logを確認し、10M smokeの再開・改善・生成評価 → T4K/T8K 100M比較 → QK-Norm/LR比較 → 候補選定・独立監査を進める。新sourceのT8K/T4K/文書sampler resumeとoverfitは合格済み。NoQK-Normは比較前に別途resumeを検証する。失敗したgateはraw結果を保持して修復し、閾値を緩めない。Phase 6には進まない。
 
 Phase 5の設定・実装を検証済みの区切りでコミットし、最後に実測reportと候補config・採否理由を保存する。Tokenizer再学習・Phase 3全作業・完了済みPhase 4測定は繰り返さない。
 

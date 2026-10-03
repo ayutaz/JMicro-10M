@@ -43,6 +43,12 @@ devで使う将来の品質目標は既存protocolのBase文法70%、Chat文法�
 
 ## 予算・永続実行・終了
 
-100M×4候補の訓練computeはPhase 4のeager測定値で概ね30分の算術見積もり。実際のbatch 8速度から更新する。評価、実装、overfit、修復は別加算。100Mは別の累積scheduleで新規初期化し、10M smoke重みを無断で流用しない。phase5 run directoryにjob PID/boot ID/start ticks、stage、log、凍結plan、checkpoint SHAを保存し、単一GPU排他で順次実行する。
+事前の100M×4候補compute見積もり約30分はPhase 4の大batch/default速度を用いた算術値。採用したmath-only / batch 8のsmoke 650更新時点では定常中央値117,172 tokens/sで、100M一本約14.23分、4本約56.9分へ更新した。実時間は各runで再計測する。評価、保存、実装、overfit、修復は別加算。100Mは別の累積scheduleで新規初期化し、10M smoke重みを無断で流用しない。phase5 run directoryにjob PID/boot ID/start ticks、stage、log、凍結plan、checkpoint SHAを保存し、単一GPU排他で順次実行する。
 
 全gateと成果物を現在の状態から監査し、候補config、`candidate_selection.md`、`completion_audit.json`を保存・コミットする。100Mの結果がすべて悪化する場合は原因修復へ戻り、候補選定を成功扱いにしない。Phase 6の拡張データ・長期schedulerは引継ぎ事項として残す。
+
+## 長期schedulerの選択と引継ぎ
+
+Phase 6の延長可能な本学習にはWSD（warmup→stable→decay）を採用する方針を固定する。stableの継続checkpointと、各予算点で分岐する評価用decay checkpointを分け、分岐computeを計上する。Phase 5の100Mは比較条件を揃えた凍結cosine scheduleであり、その最終optimizer stateへ予算だけを足して本学習を継続しない。候補選定はarchitecture/Tokenizer/LRの選択であり、次の拡張corpusで本学習を新規初期化する。
+
+WSD自体は現在のtrainerへ未実装。Phase 6の再開時に実装・保存再開・stable/decay分岐のstate検証を行い、拡張corpusの規模と実測速度からwarmup/stable/decayのtoken予算を凍結してからGPU本学習を開始する。今回の停止境界に従い、その実装と本学習は起動しない。math-onlyでの本学習batch容量も別途実測する。Phase 4のdefault-backend最大batchをそのままmath-onlyの保証として扱わない。
