@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+次回計画を[生成方法の対照比較](27_phase6_remaining_plan.md#次回の一区切り-学習済み10mモデルの生成方法を比較する)へ具体化した。モデルは約10Mパラメータのまま、約5億token学習＋decay済みの同じcheckpointで比較する。計640outputs/GPU15分上限、独立人手評価packetを準備しreport/commitで停止。今回は計画作成のみ、比較・追加学習/1Bは未起動。
+
 2026-10-03: 500M後の反復/EOS/data調査も完了。[判断と比較](../reports/phase6/repetition_diagnosis_review.md)。EOS教師漏れは確認されず、文書末尾予測は改善し、反復は131Mから多い。decay後は70/80→66/80。原因をデータ量へ確定せず、次の対照を提案して停止。追加学習/1Bは未開始。
 
 2026-10-03: 拡張trainの500M stable＋独立763更新decayと全文dev/400生成評価を完了。同一dev BPB 1.244126→1.022491、抑制greedy EOS 0/80→0/80、反復48/80→66/80。全99 tests成功。人手blind採点・test・Chat・新重みの量子化は未実施。1B前で停止。 [最新結果](../reports/phase6/base_500m_review.json)。

@@ -1,5 +1,7 @@
 # 別PCで続きを進める: Windows / WSL / RTX 4090
 
+次回は[学習済み10Mモデルの生成方法の比較](27_phase6_remaining_plan.md#次回の一区切り-学習済み10mモデルの生成方法を比較する)。[比較条件](../reports/phase6/repetition_decoder_plan.json)は計画のみで、専用比較CLIは未実装。ユーザーが実行を再開した後に別CLIの実装/元decoder再現を検証し、同じ重みで計640outputsを測りreport/commitで停止する。約500Mは学習tokensのmilestoneで、モデルサイズは約10Mパラメータ。今回GPU jobや学習を開始していない。
+
 500M後の[反復/EOS/data調査](../reports/phase6/repetition_diagnosis_review.md)も完了し停止。追加学習/1Bは未開始。Linux `reports/phase6/repetition-diagnosis-20261003/`のsample・trace・log・job identity・testsを既存runとともに引き継ぐ。次回案のdecoder/mixture比較は未起動で、完了した500Mや診断jobを再実行しない。[最新状態](autonomous_status.md)。
 
 2026-10-03: 拡張trainの500M stable＋独立763更新decayと全文dev/400生成評価を完了。同一dev BPB 1.244126→1.022491、抑制greedy EOS 0/80→0/80、反復48/80→66/80。全99 tests成功。人手blind採点・test・Chat・新重みの量子化は未実施。1B前で停止。 [最新状態](autonomous_status.md)。以下の初回復元・準備完了記録は履歴として保持する。

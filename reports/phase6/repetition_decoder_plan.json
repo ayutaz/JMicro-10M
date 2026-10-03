@@ -1,0 +1,113 @@
+{
+  "status": "planned_not_executed",
+  "based_on_commit": "16cc38d",
+  "scope": "Next authorized run: implement and validate a separate decoder comparison, measure the same fixed checkpoint, report/commit and stop. Current request is planning only; no experiment or training launch.",
+  "objective": "Determine whether a fixed modest repetition penalty reduces greedy loops without trading them for Unicode/role/empty failures or worse text. Do not infer a training-data causal effect from a decoder comparison.",
+  "checkpoint": {
+    "description": "10M-parameter model after500M-token stable milestone plus25M-token decay;500M denotes training input tokens, not parameter count",
+    "model_parameters": 10001152,
+    "stable_input_tokens": 500006912,
+    "decay_input_tokens": 25001984,
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-20261003/decay-500M/checkpoint-00016022.pt",
+    "sha256": "0a64cfc3ac18d411d0d2144d9d9c8185e7010872baf5247612dd365bd619514e",
+    "tokens": 525008896
+  },
+  "reference_report": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-20261003/evaluation-500M/generation.json",
+    "sha256": "b743e65fce07d4468ef8956de6efb8b14eb4b44c799eeaa9536c2f408648ecb6"
+  },
+  "frozen_bindings": {
+    "configs/phase6/base_frozen.json": "6e2b509e92e84202bcc2fc9e68043b7edc6025ef4218315b3c27e9d7f9848d59",
+    "configs/evaluation/protocol.json": "49e0273d4ae315288c9969a11493bf52d9ba8aa21d51f7ac1c35757f5b3b4ec9",
+    "eval/base.jsonl": "93cd3a19f3e62c8d30d1660b431a9525823f58b9ceb1bf90c6ecbac2c19292eb",
+    "artifacts/phase2/4096/tokenizer.model": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+  },
+  "arms": [
+    {"name": "reference", "repetition_penalty": 1.0},
+    {"name": "candidate", "repetition_penalty": 1.1}
+  ],
+  "repetition_penalty_definition": {
+    "history": "Unique already-generated body token IDs >=8; exclude prompt and special IDs0..7",
+    "application": "Once per unique history ID per step on fresh original logits; positive logit divided by penalty, negative logit multiplied by penalty; penalty1.0 bypasses transformation exactly",
+    "placement": "Before original suppression and original sampling temperature/top_p; preserve BF16 score dtype and original draw algorithm",
+    "EOS": "ID3 unchanged by penalty, original suppression excludes EOS, stop only on actually selected EOS. No forced/minimum-length stop, extra stop strings, Unicode repair, ngram ban or parameter sweep."
+  },
+  "evaluation": {
+    "split": "dev",
+    "cases": 80,
+    "cases_source": "eval/base.jsonl in existing file order",
+    "max_new_tokens": 64,
+    "context": 1024,
+    "prompt": "Same BOS2 plus existing Tokenizer encoding of prefix",
+    "suppressed": true,
+    "suppress_ids": [0, 1, 2, 4, 5, 6],
+    "stop_ids": [3],
+    "greedy": {"seed": 42, "outputs_per_arm": 80},
+    "sampling": {"seeds": [42, 43, 44], "temperature": 0.8, "top_p": 0.9, "outputs_per_arm": 240},
+    "outputs_per_arm": 320,
+    "total_outputs": 640,
+    "inference": "Same CUDA math SDPA, FP32 parameters/BF16 autocast, eval mode, isolated RNG/model state as existing generation; training Flash/compile configuration stays frozen",
+    "reference_gate": "All320 supported reference generated-ID arrays must exactly reproduce the selected suppressed outputs in existing generation.json before interpreting the candidate. Record mismatch and invalidate comparison if any differ.",
+    "existing_unsuppressed_diagnostic": "Retain the original80 unsuppressed outputs as historical evidence; no additional unsuppressed run in this640-output comparison. Label candidate as a supplemental diagnostic, not a replacement frozen400-output evaluation.",
+    "metrics": ["repetition_original_regex", "char4gram_repeat_fraction", "EOS_actual_stop", "unicode_failure", "role_leak", "empty_response", "characters", "utf8_bytes", "tokens", "raw_and_adjusted_EOS_probability_rank"],
+    "statistics": "Paired same-prompt/decoding/seed transitions. Bootstrap prompt IDs80 as clusters, keeping3sampling seeds together; 2000 resamples/seed42/95% intervals. Report counts per mode and seed, not only aggregate rate.",
+    "BPB": "No teacher-forced BPB rerun: identical weights/scoring imply the existing frozen1.022491122502677 full-dev result remains the model baseline; never apply repetition penalty to teacher-forced loss."
+  },
+  "reference_counts": {
+    "greedy": {"outputs": 80, "repetition": 66, "EOS": 0, "unicode_failure": 0, "role_leak": 0, "empty_response": 0},
+    "sampling": {"outputs": 240, "repetition": 11, "EOS": 1, "unicode_failure": 1, "role_leak": 0, "empty_response": 0}
+  },
+  "candidate_classification": {
+    "label": "Provisional decoder improvement candidate, never completed Base quality",
+    "greedy_repetition_max": 58,
+    "reason": "At least8 fewer repeated cases out of80 (10 percentage points), paired transitions and CI also reported",
+    "sampling_repetition_max": 11,
+    "greedy_EOS_min": 0,
+    "sampling_EOS_min": 1,
+    "unicode_failure_max_candidate320": 0,
+    "role_leak_max_candidate320": 0,
+    "empty_response_max_candidate320": 0,
+    "human_review": "Prepare a blinded paired20-case packet and existing0/1/2 grammar/relevance rubric. Without independent human scores, keep grammar/relevance and semantic degradation unresolved; automatic improvements alone do not authorize a quality-pass claim.",
+    "unchanged_targets": "Original protocol quality targets, including stop_success_min0.95 and Unicode failure0, remain unchanged. Exploratory flags or this20-case subset do not certify the full Base targets.",
+    "on_failure": "Record no confirmed decoder improvement or tradeoffs; no tuning sweep, longer generation, relaxed thresholds, or automatic training expansion."
+  },
+  "human_packet": {
+    "cases": 20,
+    "selection": "First2dev cases per each of10 existing categories in suite file order, fixed before generation; greedy paired outputs only",
+    "snippets": 40,
+    "blinding": "Randomize per-pair A/B labels with seed42; keep arm/parameter/checkpoint mapping outside reviewer packet",
+    "interrater_subset_cases": 4,
+    "availability": "No independent human reviewer assumed. Preparing packet is required; completed human scoring is separately recorded and may remain unavailable. Codex review must be labeled Codex qualitative review. No external messages."
+  },
+  "budgets": {
+    "GPU_inference_seconds_total": 900,
+    "estimated_GPU_seconds": 590,
+    "estimate_basis": "Existing400-output generation367s;640 is about587s before penalty/probe overhead",
+    "estimated_total_minutes_including_implementation_validation_report": [30, 60],
+    "estimate_excludes": "Independent human review and unexpected repairs; no completion-time guarantee",
+    "train_updates": 0,
+    "additional_train_tokens": 0,
+    "new_dataset_downloads": 0,
+    "checkpoint_changes": 0,
+    "budget_policy": "Predeclare accounting including CUDA probes/generation/restarts; persist partial outputs and cumulative GPU elapsed time. At900s stop, retain failure/partial result; no silent reset or identical retry."
+  },
+  "implementation_before_execution": {
+    "state": "Repetition-penalty comparison runner not implemented yet; no runnable launch command is claimed",
+    "changes": "New comparison module/CLI and persistent runner only; preserve frozen model/training/shards/evaluator/export/configs/protocol and all prior reports",
+    "checks": ["Penalty sign, unique-history handling, no prompt/special penalty, penalty1.0 exact bypass", "Same sampler seeds/top_p rule/stop rules and all failure flag handling", "Reference IDs reproduce320 existing outputs", "Checkpoint/model/RNG invariant, finite logits, metadata/source/protocol hashes", "GPU exclusion lock, persisted PID/boot/start_ticks/logs/partial case records and budget-aware resume", "CI prompt-cluster grouping and blinded packet mapping separated from text"],
+    "environment": "WSL2/Ubuntu/RTX4090, Python3.12.7; all Python via uv run --frozen with required extras, dependency changes uv add only",
+    "resources": "Keep measured batch32 training settings unchanged. Sequential inference is the reference; any batching must preserve all reference IDs and count against the same budget. No separate VRAM-maximization study."
+  },
+  "deliverables": ["New immutable raw reference/candidate640 outputs with IDs and source/checkpoint/protocol bindings", "Paired count/CI report, failure examples and Codex qualitative review clearly labeled", "20-case blinded reviewer packet plus separate mapping and empty scoring template", "Elapsed GPU seconds, terminal process evidence, checkpoint/frozen-source preservation audit", "Updated status and verified commit; stop before any new experiment or training"],
+  "completion": "Finish the bounded machine comparison or explicitly report budget/gate failure, prepare reviewer packet, preserve all failures, propose the next decision, update status/commit and stop. Human availability is not fabricated; a quality pass is not required to report a completed comparison.",
+  "conditional_followup_not_in_next_scope": {
+    "purpose": "If poor text/stop behavior remains, compare complete short-document supervision after a separately defined/prepared/gated plan; do not automatically start it",
+    "parent": "Same immutable stable500M checkpoint/optimizer/scheduler/RNG. Control A is the existing original-train763-update decay branch if exact training conditions and saved state lineage can be verified; reuse its existing full-dev/generation evidence",
+    "candidate_B": "Original train plus complete train-only documents with body<=128tokens; proposed20% input-token contribution from the short subset, remaining80% original distribution. This refines the prior unspecified20% documents proposal. True endings only; no sentence truncation turned into EOS, no dev/test, no new sources initially",
+    "budget_per_arm": "763 completed updates x32768 =25,001,984 input tokens; report actual body/EOS teachers/bytes. Same original763-update decay schedule and seed42. Mixture sampler is separately initialized and recorded, never claimed identical to control sampler position",
+    "control_reuse_gate": "Implement a separate mixture loader/trainer and prove original-data control compatibility/full-state continuous-resume and finite checks before use. If the control must be regenerated, freeze a new budget before launch: two full-dev/generation evaluations already exceed the previous20-minute sketch (about25minutes excluding gates/preparation)",
+    "budget_with_verified_control_reuse": "Proposed CUDA finite/resume gate cap5minutes plus B training/full-dev400-generation cap20minutes. CPU corpus/preparation/implementation and human review separate; actual budget frozen in the future experiment plan",
+    "limitations": "Short-text distribution and EOS density change together; cannot isolate EOS-only causality. Data/mixture creation, parent-loading implementation and future adoption criteria are not ready or launched.",
+    "1B": "No automatic extension; reconsider only after measured comparison results and a separate continuation decision"
+  }
+}

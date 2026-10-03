@@ -2,6 +2,12 @@
 
 最終更新: 2026-10-03（日本時間）。実測の正本はreportとWSLのrun/data、milestoneは[roadmap](15_project_roadmap.md)。
 
+## 次回計画: 学習済み10Mモデルの生成方法を比較する（未起動）
+
+計画作成依頼に従い、[次回の一区切り](27_phase6_remaining_plan.md#次回の一区切り-学習済み10mモデルの生成方法を比較する)と[条件/予算/終了条件](../reports/phase6/repetition_decoder_plan.json)を記録した。[計画の16項目照合](../reports/phase6/repetition_decoder_plan_audit.json)でhash/実reference件数/7files同期/234既存files保持/未起動を確認する（比較codeや品質の合格ではない）。モデルは約10Mパラメータのまま、500Mは約5億input tokensの学習milestoneを指す。次回は同じdecay後checkpoint（合計525,008,896 input tokens学習）で反復抑制1.0/1.1、dev80×greedy＋sampling3seeds、計640outputsを比較する。reference320の全IDsを既存結果へ照合してから効果を判定する。GPU推論累積15分上限、実装・検証・報告込み30〜60分の目安。比較runnerは未実装で、先に別CLIと永続/再開・元decoder再現の検証を行う。
+
+反復を8件以上減らすこと、sampling/EOSを悪化させないこと、candidateのUnicode/role/empty0件を自動改善候補の目安とし、元のBase品質基準は保持する。固定20組のblind人手評価packetを準備し、独立人手採点がない場合は未実施/文法・関連性未確定を残す。全文BPBの再採点は不要。同じ重みの生成方法の比較を、学習データの原因確定やモデルサイズ増加へ読み替えない。次回もreport/status/commitで停止し、短文mixture学習や1Bへ自動移行しない。今回の依頼では推論・学習・data変更を開始していない。
+
 ## 最新の調査: 反復退行・EOS・データ構成の調査完了、停止
 
 ユーザー指定の反復悪化調査を[事前計画](../reports/phase6/repetition_diagnosis_plan.json)に沿って完了した。[判断と全比較](../reports/phase6/repetition_diagnosis_review.md)、[数値・binding・20項目監査](../reports/phase6/repetition_diagnosis_review.json)、[既存225 files保持](../reports/phase6/repetition_preservation.json)、[終了・同期・停止の監査](../reports/phase6/repetition_completion_audit.json)。学習更新0、GPU推論249.75秒/900秒上限、全102 tests成功/skip0。1B・新data・新trainerの学習・次回案を開始していない。

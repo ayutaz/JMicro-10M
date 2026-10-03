@@ -2,6 +2,36 @@
 
 更新: 2026-10-03。Phase 0〜5とPhase 6①〜⑤の準備は完了。③は`a7d26e1`、④⑤は`93c7d1d`へcommit済み。[現在の状態](autonomous_status.md)、[④⑤の実測と停止記録](30_phase6_readiness_execution.md)。**計画1〜5の実行をユーザーが再開し、500M stable・独立decay・全文dev/400生成比較を完了した。現在は1B前で停止している。**
 
+## 次回の一区切り: 学習済み10Mモデルの生成方法を比較する
+
+2026-10-03の計画依頼。反復/EOS/dataの[調査は16cc38dで完了](../reports/phase6/repetition_diagnosis_review.md)。モデル規模は10,001,152パラメータ（約10M）のまま。500Mは学習したinput token数のmilestoneで、モデル規模ではない。比較に使うcheckpointは500,006,912 tokensのstable学習＋25,001,984 tokensのdecay後、合計525,008,896 input tokensを学習した10Mモデルである。
+
+次回のゴールは、この学習済み10Mモデルの同じ重みを使い、反復抑制が文章の改善につながるかを測り、比較report・人手評価用packetを残してcommitし停止すること。[固定する比較条件と予算](../reports/phase6/repetition_decoder_plan.json)、[計画の16項目照合・WSL同期・234既存files保持](../reports/phase6/repetition_decoder_plan_audit.json)。これは計画の確認で、比較codeや生成品質の検証結果ではない。今回は計画作成のみで、推論・学習・データ変更を開始しない。以下の500M計画は実行前の履歴として保持する。
+
+| 順序 | 次回の作業 | 終了時に確認すること |
+|---:|---|---|
+| 1 | 既存process・checkpoint/Tokenizer/suite/protocol/source hashを照合し、別の比較CLIと永続runnerを実装する | GPU重複なし、有限値・model/RNG不変、同じdecoderの再現、log/部分結果/予算を保った再開。凍結trainer/evaluator/configと過去結果を保持 |
+| 2 | 同じdecay500Mで反復抑制1.0対1.1、dev80、greedy＋sampling3seedsを比較する | 各320、計640outputs。reference320の全generated IDsが既存reportと一致。64-token上限・temp0.8/top_p0.9・EOS3・元の抑制IDsを固定 |
+| 3 | 反復/EOS/Unicode/role/emptyと長さ、同じpromptの改善・悪化、95% CIを集計する | sampling3seedsを同じpromptにまとめたcluster bootstrap、2000回/seed42。EOSを強制せず、文字化けや意味の反復を隠さない |
+| 4 | 各10categoryの最初2dev casesを使い、20組/40文章のblind人手評価packetを作る | A/Bをseed42で匿名化しmappingを分離、文法・関連性0/1/2と意味の反復を点検。独立人手評価がなければ未実施と明記 |
+| 5 | 改善・副作用・未達を報告し、statusを更新してcommitする | 比較結果と時間/hash/job終了の証拠、次の判断を記録して停止。短文mixture学習や1Bへ自動移行しない |
+
+反復抑制1.1は、生成済みbody token IDの重複を一度だけ扱い、正logitを1.1で割り、負logitに1.1を掛ける。promptとspecial IDs0〜7は対象外。EOSへ直接加点したり、停止文字列や最小/最大長を変更したりしない。1.0は元の演算を完全に通す。BF16の元score dtype・sampling手順を保持する。比較機能はまだ未実装なので、次回は実装・検証してから起動する。
+
+referenceはgreedy反復66/80・EOS0/80、sampling反復11/240・EOS1/240・Unicode失敗1/240。自動改善候補の目安はgreedy反復が8件以上減る（58/80以下）、sampling反復/EOSが悪化せず、candidate320のUnicode/role/empty失敗0件。これはdecoder候補の比較基準であり、既存のBase文法70%・EOS停止95%等の凍結品質基準を緩めない。20件のpacketと自動flagだけでBase合格や文章の自然さを宣言しない。
+
+GPU推論の累積上限は15分。既存400生成367秒から計640は約10分の算術見積りで、CUDA probe/再開も同じ上限へ計上する。実装・検証・report込みは30〜60分の目安、人手評価や予期しない修復は別。上限で未完了なら部分結果と原因を保存して停止し、予算をリセットして再試行しない。同じ重みのdecoder比較なので、既存全文dev BPB1.022491はそのまま参照し、全文採点を繰り返さない。
+
+実行はWSL2/Ubuntu/RTX4090、Python3.12.7を必要なextras付き`uv run --frozen`から起動する。学習の最速batch32/Flash/compile/BF16/fused AdamWは変更しない。推論batch化はreference全IDs一致を維持できる場合に限り同じ予算内で扱い、VRAM容量を埋めるための別研究は追加しない。
+
+### その結果を見てからの学習比較案（次回のscope外）
+
+反復抑制で文法が崩れる、意味の反復や停止未達が残る場合には、短い完全文書の教師を増やす対照を別の一区切りとして準備する。同じstable500Mをparentとし、原trainの既存decayを対照A、短文mixtureをBとする。Bはtrainの128body tokens以下の完全文書を使い、input tokensの20%を短文に割り当てる案（前回の未定義な「20%文書」を具体化した提案）。文の途中へEOSを付けず、dev/testや新sourceを使わない。
+
+各armは763更新/25,001,984 input tokens、同じdecay schedule/seed42。optimizer/RNGのparent stateを保持し、Bの新samplerを別のlineageとして記録する。異なるdataでsampler位置まで同じとは主張しない。別loader/trainerを先に実装し、原data対照の互換性・有限値・厳密保存再開を確認する。凍結coreは変更しない。
+
+対照Aの実条件・parent/全stateが一致すれば既存学習/評価を再利用し、無駄な再学習を避ける。A再生成が必要なら、前回の2arm/GPU20分案は全文評価2回だけで約25分必要なため予算を改めて凍結する。Aを再利用できる場合の後続案はCUDA再開gate5分＋Bの学習/全文dev/400生成20分上限、CPU準備・人手評価は別計上。現段階ではdata/実装/起動条件は未準備で、採否条件とともに次の独立計画で確定する。EOS密度と短文内容が同時に変わるのでEOSだけの因果効果にはしない。1Bの判断はその後とする。
+
 ## 次回の一区切り: 拡張データで500Mを学習・評価する
 
 実行後の更新: 2026-10-03: 拡張trainの500M stable＋独立763更新decayと全文dev/400生成評価を完了。同一dev BPB 1.244126→1.022491、抑制greedy EOS 0/80→0/80、反復48/80→66/80。全99 tests成功。人手blind採点・test・Chat・新重みの量子化は未実施。1B前で停止。 [実測](../reports/phase6/base_500m_review.json)。以下は実行前に固定した計画を保持する。
