@@ -36,8 +36,9 @@ def freeze(readiness, export, destination):
     native = read_json(export/'nonorm_export_parity_report.json')
     full = read_json(readiness/'expanded_dev_baseline.json')
     generation = read_json(readiness/'generation_diagnostics.json')
-    assert ready['status'] == native['status'] == full['status'] == 'passed'
-    assert all(native['checks'].values()) and all(item['passed'] for item in native['comparisons'].values())
+    assert ready['status'] == full['status'] == 'passed'
+    assert native['status'] in ('passed','failed') and len(native['comparisons']) == 12
+    export_verified = native['status'] == 'passed' and all(native['checks'].values()) and all(item['passed'] for item in native['comparisons'].values())
     assert all(ready['exact']['checks'].values()) and all(ready['cold_checks'].values())
     assert ready['binding']['implementation'] == implementation_hashes()
     assert full['body']['documents'] == 89416 and full['body']['body_bytes'] == 164344743
@@ -94,6 +95,9 @@ def freeze(readiness, export, destination):
             'all_decay_training_seconds':sum(row['decay_input_tokens'] for row in milestones.values())/throughput,
             'all_full_dev_and_generation_seconds':len(milestones)*(full['body']['seconds']+generation['generation_seconds']),
             'estimate_limit':'Arithmetic estimate; compile, filesystem variability and training-dependent generation length remain separate'},
+        'launch_enabled':export_verified,
+        'launch_gates':{'learned_export_fp32_parity':export_verified,'bounded_lr_comparison':True,
+                        'full_dev_and_400_generation_diagnosis':True,'strict_and_cold_resume':True},
         'quality_targets_achieved':False, 'scaling_started':False, 'created_at':now()}
     assert config['capacity']['estimated_checkpoint_bytes'] < config['capacity']['maximum_output_bytes']
     if destination.exists():
@@ -107,7 +111,9 @@ def freeze(readiness, export, destination):
     write_json(ROOT/'schemas'/relative.with_suffix('.schema.json'), {
         '$schema':'https://json-schema.org/draft/2020-12/schema','type':'object','additionalProperties':False,
         'required':list(config),'properties':{key:{'const':value} for key,value in config.items()}})
-    launch = {'status':'frozen_not_started','config':str(destination),'config_sha256':sha256(destination),
+    launch = {'status':'frozen_not_started' if export_verified else 'frozen_blocked_by_export_parity',
+        'launch_enabled':export_verified,'launch_gates':config['launch_gates'],
+        'config':str(destination),'config_sha256':sha256(destination),
         'milestones':{},'measured_budget':config['measured_budget'],'capacity':config['capacity'],
         'stop_boundary':'Settings freeze only. No 500M+ Base training is authorized by freezing.',
         'created_at':now()}
@@ -173,6 +179,7 @@ def prepare(config, target, output, operation):
 def execute(config_path, target, output, operation):
     import fcntl
     config = validate_config(config_path)
+    assert config['launch_enabled'] and all(config['launch_gates'].values()), 'Base launch is blocked by the unresolved export FP32 parity gate'
     output.mkdir(parents=True,exist_ok=True)
     with (output/'supervisor.lock').open('a+') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
@@ -240,6 +247,7 @@ def main():
         import torch
         request=read_json(args.worker_request)
         config=validate_config(Path(request['config']))
+        assert config['launch_enabled'] and all(config['launch_gates'].values()), 'Base worker launch gate failed'
         torch.cuda.set_per_process_memory_fraction(config['memory_fraction'])
         sys.argv=request['command']
         runpy.run_path(str(ROOT/sys.argv[0]),run_name='__main__')
@@ -252,7 +260,9 @@ def main():
         result=execute(args.config.resolve(),args.target,args.output.resolve(),args.operation)
     else:
         result=prepare(validate_config(args.config),args.target,args.output.resolve(),args.operation)
-        result.update(status='prepared_not_started',uv_commands=[[*UV,*command] for command in result['commands']])
+        config=validate_config(args.config)
+        result.update(status='prepared_not_started',launch_enabled=config['launch_enabled'],
+            launch_gates=config['launch_gates'],uv_commands=[[*UV,*command] for command in result['commands']])
     print(json.dumps(result,ensure_ascii=False),flush=True)
 
 

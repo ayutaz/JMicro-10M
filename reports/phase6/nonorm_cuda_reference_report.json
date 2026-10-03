@@ -1,0 +1,210 @@
+{
+  "status": "failed",
+  "binding": {
+    "cpu_export_report_sha256": "b68adf56bca00157c934edf02ef629fa09984dc9c9db0bf03a4a109e666f9471",
+    "native_requests_sha256": "4b55476b293b6628c1fe1cb7556944dee1eb16b8705e6fa899e6b75098329d51",
+    "implementation": {
+      "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+      "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+      "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+      "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+    },
+    "verifier_sha256": "dc7f14a3722c7c12fee497761e3783df493f22805d8d45c850761de4fbbc1d92",
+    "reference": "CUDA FP32 parameters/activations, math SDPA; TF32 off. Original CPU failures remain unresolved evidence."
+  },
+  "tolerance": {
+    "atol": 1e-05,
+    "rtol": 0.0001
+  },
+  "comparisons": {
+    "short_hf_full": {
+      "passed": true,
+      "shape": [
+        1,
+        31,
+        4096
+      ],
+      "max_abs_error": 1.0967254638671875e-05,
+      "mean_abs_error": 1.4026109056430869e-06,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "short_torch_cache": {
+      "passed": true,
+      "shape": [
+        1,
+        31,
+        4096
+      ],
+      "max_abs_error": 1.4781951904296875e-05,
+      "mean_abs_error": 1.6822901898194687e-06,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "short_hf_cache": {
+      "passed": true,
+      "shape": [
+        1,
+        31,
+        4096
+      ],
+      "max_abs_error": 1.1920928955078125e-05,
+      "mean_abs_error": 1.5625611240466242e-06,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "short_gguf_prefill": {
+      "passed": true,
+      "shape": [
+        1,
+        31,
+        4096
+      ],
+      "max_abs_error": 1.430511474609375e-05,
+      "mean_abs_error": 1.8044946727968636e-06,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "short_gguf_cache": {
+      "passed": true,
+      "shape": [
+        1,
+        31,
+        4096
+      ],
+      "max_abs_error": 1.2874603271484375e-05,
+      "mean_abs_error": 1.6528226751688635e-06,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "short_gguf_cache_vs_prefill": {
+      "passed": true,
+      "shape": [
+        1,
+        31,
+        4096
+      ],
+      "max_abs_error": 9.059906005859375e-06,
+      "mean_abs_error": 7.475770757991995e-07,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "context1024_hf_full": {
+      "passed": false,
+      "failure": "Tensor-likes are not close!\n\nMismatched elements: 259 / 4194304 (0.0%)\nGreatest absolute difference: 3.203749656677246e-05 at index (0, 220, 3919) (up to 1e-05 allowed)\nGreatest relative difference: 0.2660306990146637 at index (0, 393, 3244) (up to 0.0001 allowed)",
+      "shape": [
+        1,
+        1024,
+        4096
+      ],
+      "finite": true,
+      "max_abs_error": 3.7550926208496094e-05,
+      "mean_abs_error": 2.497716195648536e-06,
+      "elements_outside_frozen_tolerance": 259,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "context1024_torch_cache": {
+      "passed": false,
+      "failure": "Tensor-likes are not close!\n\nMismatched elements: 362 / 4194304 (0.0%)\nGreatest absolute difference: 2.7276575565338135e-05 at index (0, 158, 3582) (up to 1e-05 allowed)\nGreatest relative difference: 0.3601110577583313 at index (0, 216, 3426) (up to 0.0001 allowed)",
+      "shape": [
+        1,
+        1024,
+        4096
+      ],
+      "finite": true,
+      "max_abs_error": 3.248453140258789e-05,
+      "mean_abs_error": 2.8083022698410787e-06,
+      "elements_outside_frozen_tolerance": 362,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "context1024_hf_cache": {
+      "passed": false,
+      "failure": "Tensor-likes are not close!\n\nMismatched elements: 387 / 4194304 (0.0%)\nGreatest absolute difference: 2.518296241760254e-05 at index (0, 157, 3332) (up to 1e-05 allowed)\nGreatest relative difference: 0.14503297209739685 at index (0, 393, 3244) (up to 0.0001 allowed)",
+      "shape": [
+        1,
+        1024,
+        4096
+      ],
+      "finite": true,
+      "max_abs_error": 3.2901763916015625e-05,
+      "mean_abs_error": 2.8143981580797117e-06,
+      "elements_outside_frozen_tolerance": 387,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "context1024_gguf_prefill": {
+      "passed": false,
+      "failure": "Tensor-likes are not close!\n\nMismatched elements: 680 / 4194304 (0.0%)\nGreatest absolute difference: 3.4496188163757324e-05 at index (0, 810, 3585) (up to 1e-05 allowed)\nGreatest relative difference: 0.16577187180519104 at index (0, 732, 1157) (up to 0.0001 allowed)",
+      "shape": [
+        1,
+        1024,
+        4096
+      ],
+      "finite": true,
+      "max_abs_error": 3.62396240234375e-05,
+      "mean_abs_error": 3.0159794732753653e-06,
+      "elements_outside_frozen_tolerance": 680,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "context1024_gguf_cache": {
+      "passed": false,
+      "failure": "Tensor-likes are not close!\n\nMismatched elements: 662 / 4194304 (0.0%)\nGreatest absolute difference: 3.042072057723999e-05 at index (0, 173, 3550) (up to 1e-05 allowed)\nGreatest relative difference: 0.1287534236907959 at index (0, 393, 3244) (up to 0.0001 allowed)",
+      "shape": [
+        1,
+        1024,
+        4096
+      ],
+      "finite": true,
+      "max_abs_error": 3.337860107421875e-05,
+      "mean_abs_error": 2.9712477953580674e-06,
+      "elements_outside_frozen_tolerance": 662,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "context1024_gguf_cache_vs_prefill": {
+      "passed": true,
+      "shape": [
+        1,
+        1024,
+        4096
+      ],
+      "max_abs_error": 1.4543533325195312e-05,
+      "mean_abs_error": 7.176542453635193e-07,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    }
+  },
+  "started_at": "2026-10-03T08:33:36.979237Z",
+  "pid": 448,
+  "boot_id": "8f509a37-87a5-4957-9857-66e639fce401",
+  "start_ticks": "457",
+  "completed_at": "2026-10-03T08:33:39.100952Z",
+  "training_performed": false
+}

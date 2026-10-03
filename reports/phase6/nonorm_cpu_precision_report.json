@@ -1,0 +1,1875 @@
+{
+  "status": "complete",
+  "results": [
+    {
+      "name": "auto-t1",
+      "status": "failed",
+      "report": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/cpu-precision/auto-t1/nonorm_export_parity_report.json",
+      "report_sha256": "4cf8b4744335b30cadddefb6da759ee7162c029e76fea121bd522be10ea4f909",
+      "binding": {
+        "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00012208.pt",
+        "checkpoint_sha256": "e5583927efc5aa2041648bcae23f1b618b70f002be334c3581dea23472447d07",
+        "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+        "implementation": {
+          "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+          "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+          "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+          "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+        },
+        "verifier_sha256": "0096c22da33c32c281da7b209be87c404b9c0fad1749a2c650694adca4f3043f",
+        "protocol_sha256": "49e0273d4ae315288c9969a11493bf52d9ba8aa21d51f7ac1c35757f5b3b4ec9",
+        "runtime_receipt_sha256": "903d14b081e753519fae3b084029499c59cb8c76f741d73e9414814ed9dd16d7",
+        "cpu_threads": 1,
+        "cpu_environment": {
+          "MKL_CBWR": "AUTO",
+          "MKL_DYNAMIC": "FALSE",
+          "OMP_DYNAMIC": "FALSE"
+        }
+      },
+      "checks": {
+        "hf_llama_architecture_without_qknorm": true,
+        "hf_tied_embedding": true,
+        "learned_parameter_count": true,
+        "native_eos_and_eot_eog_metadata": true,
+        "all_short_and_1024_logits_cache_comparisons": false,
+        "tied_embedding_exported_once": true,
+        "golden_external_codec_roundtrips": true,
+        "three_backend_greedy_ids_exact": true,
+        "actual_argmax_stop_3_all_backends": true,
+        "actual_argmax_stop_7_all_backends": true,
+        "original_checkpoint_unchanged": true
+      },
+      "comparisons": {
+        "short_hf_full": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 1.4781951904296875e-05,
+          "mean_abs_error": 2.2054468900023494e-06,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_torch_cache": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 1.52587890625e-05,
+          "mean_abs_error": 1.6764679457992315e-06,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_hf_cache": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 2.4318695068359375e-05,
+          "mean_abs_error": 2.273401378261042e-06,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_prefill": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 4 / 126976 (0.0%)\nGreatest absolute difference: 1.2922915630042553e-05 at index (0, 21, 3905) (up to 1e-05 allowed)\nGreatest relative difference: 0.014835619367659092 at index (0, 21, 3905) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 2.086162567138672e-05,
+          "mean_abs_error": 2.566116108937422e-06,
+          "elements_outside_frozen_tolerance": 4,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 2 / 126976 (0.0%)\nGreatest absolute difference: 1.1768192052841187e-05 at index (0, 21, 567) (up to 1e-05 allowed)\nGreatest relative difference: 0.01339865941554308 at index (0, 21, 3905) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 2.0265579223632812e-05,
+          "mean_abs_error": 2.5256913431803696e-06,
+          "elements_outside_frozen_tolerance": 2,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_cache_vs_prefill": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 9.059906005859375e-06,
+          "mean_abs_error": 7.475770757991995e-07,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_hf_full": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1272 / 4194304 (0.0%)\nGreatest absolute difference: 3.9439648389816284e-05 at index (0, 12, 3338) (up to 1e-05 allowed)\nGreatest relative difference: 2.5112497806549072 at index (0, 51, 1096) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 4.1604042053222656e-05,
+          "mean_abs_error": 3.099456080235541e-06,
+          "elements_outside_frozen_tolerance": 1272,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_torch_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 146 / 4194304 (0.0%)\nGreatest absolute difference: 2.3059546947479248e-05 at index (0, 631, 3869) (up to 1e-05 allowed)\nGreatest relative difference: 0.04753938317298889 at index (0, 613, 1078) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.147125244140625e-05,
+          "mean_abs_error": 1.344831048299966e-06,
+          "elements_outside_frozen_tolerance": 146,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_hf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1165 / 4194304 (0.0%)\nGreatest absolute difference: 3.9439648389816284e-05 at index (0, 12, 3338) (up to 1e-05 allowed)\nGreatest relative difference: 2.5112497806549072 at index (0, 51, 1096) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 4.1604042053222656e-05,
+          "mean_abs_error": 3.0281696581369033e-06,
+          "elements_outside_frozen_tolerance": 1165,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_prefill": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1287 / 4194304 (0.0%)\nGreatest absolute difference: 3.254786133766174e-05 at index (0, 50, 3247) (up to 1e-05 allowed)\nGreatest relative difference: 0.29708197712898254 at index (0, 216, 3426) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.820657730102539e-05,
+          "mean_abs_error": 3.2587581699772272e-06,
+          "elements_outside_frozen_tolerance": 1287,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1225 / 4194304 (0.0%)\nGreatest absolute difference: 3.254786133766174e-05 at index (0, 50, 3247) (up to 1e-05 allowed)\nGreatest relative difference: 0.29708197712898254 at index (0, 216, 3426) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.820657730102539e-05,
+          "mean_abs_error": 3.229941285098903e-06,
+          "elements_outside_frozen_tolerance": 1225,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_cache_vs_prefill": {
+          "passed": true,
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "max_abs_error": 1.4543533325195312e-05,
+          "mean_abs_error": 7.176541885201004e-07,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        }
+      }
+    },
+    {
+      "name": "auto-t2",
+      "status": "failed",
+      "report": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/cpu-precision/auto-t2/nonorm_export_parity_report.json",
+      "report_sha256": "d1ea55e5e3633e2bd15662381008d01e65bc2deff49580b2a7f2a65d3a13b0f1",
+      "binding": {
+        "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00012208.pt",
+        "checkpoint_sha256": "e5583927efc5aa2041648bcae23f1b618b70f002be334c3581dea23472447d07",
+        "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+        "implementation": {
+          "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+          "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+          "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+          "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+        },
+        "verifier_sha256": "0096c22da33c32c281da7b209be87c404b9c0fad1749a2c650694adca4f3043f",
+        "protocol_sha256": "49e0273d4ae315288c9969a11493bf52d9ba8aa21d51f7ac1c35757f5b3b4ec9",
+        "runtime_receipt_sha256": "903d14b081e753519fae3b084029499c59cb8c76f741d73e9414814ed9dd16d7",
+        "cpu_threads": 2,
+        "cpu_environment": {
+          "MKL_CBWR": "AUTO",
+          "MKL_DYNAMIC": "FALSE",
+          "OMP_DYNAMIC": "FALSE"
+        }
+      },
+      "checks": {
+        "hf_llama_architecture_without_qknorm": true,
+        "hf_tied_embedding": true,
+        "learned_parameter_count": true,
+        "native_eos_and_eot_eog_metadata": true,
+        "all_short_and_1024_logits_cache_comparisons": false,
+        "tied_embedding_exported_once": true,
+        "golden_external_codec_roundtrips": true,
+        "three_backend_greedy_ids_exact": true,
+        "actual_argmax_stop_3_all_backends": true,
+        "actual_argmax_stop_7_all_backends": true,
+        "original_checkpoint_unchanged": true
+      },
+      "comparisons": {
+        "short_hf_full": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 1.4781951904296875e-05,
+          "mean_abs_error": 2.2054468900023494e-06,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_torch_cache": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 1.52587890625e-05,
+          "mean_abs_error": 1.6764678321123938e-06,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_hf_cache": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 2.4318695068359375e-05,
+          "mean_abs_error": 2.2734016056347173e-06,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_prefill": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 4 / 126976 (0.0%)\nGreatest absolute difference: 1.2922915630042553e-05 at index (0, 21, 3905) (up to 1e-05 allowed)\nGreatest relative difference: 0.014835619367659092 at index (0, 21, 3905) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 2.086162567138672e-05,
+          "mean_abs_error": 2.566115654190071e-06,
+          "elements_outside_frozen_tolerance": 4,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 2 / 126976 (0.0%)\nGreatest absolute difference: 1.1768192052841187e-05 at index (0, 21, 567) (up to 1e-05 allowed)\nGreatest relative difference: 0.01339865941554308 at index (0, 21, 3905) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 2.0265579223632812e-05,
+          "mean_abs_error": 2.5256913431803696e-06,
+          "elements_outside_frozen_tolerance": 2,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_cache_vs_prefill": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 9.059906005859375e-06,
+          "mean_abs_error": 7.475770757991995e-07,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_hf_full": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1272 / 4194304 (0.0%)\nGreatest absolute difference: 3.9439648389816284e-05 at index (0, 12, 3338) (up to 1e-05 allowed)\nGreatest relative difference: 2.5112497806549072 at index (0, 51, 1096) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 4.1604042053222656e-05,
+          "mean_abs_error": 3.099028390352032e-06,
+          "elements_outside_frozen_tolerance": 1272,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_torch_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 927 / 4194304 (0.0%)\nGreatest absolute difference: 3.789365291595459e-05 at index (0, 157, 3332) (up to 1e-05 allowed)\nGreatest relative difference: 0.6807678937911987 at index (0, 370, 130) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 4.57763671875e-05,
+          "mean_abs_error": 2.8287822715356015e-06,
+          "elements_outside_frozen_tolerance": 927,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_hf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 565 / 4194304 (0.0%)\nGreatest absolute difference: 3.997981548309326e-05 at index (0, 88, 3836) (up to 1e-05 allowed)\nGreatest relative difference: 0.8939228057861328 at index (0, 445, 3203) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 4.839897155761719e-05,
+          "mean_abs_error": 2.9792850000376347e-06,
+          "elements_outside_frozen_tolerance": 565,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_prefill": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1286 / 4194304 (0.0%)\nGreatest absolute difference: 3.254786133766174e-05 at index (0, 50, 3247) (up to 1e-05 allowed)\nGreatest relative difference: 0.29708197712898254 at index (0, 216, 3426) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.820657730102539e-05,
+          "mean_abs_error": 3.2585458029643632e-06,
+          "elements_outside_frozen_tolerance": 1286,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1225 / 4194304 (0.0%)\nGreatest absolute difference: 3.254786133766174e-05 at index (0, 50, 3247) (up to 1e-05 allowed)\nGreatest relative difference: 0.29708197712898254 at index (0, 216, 3426) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.820657730102539e-05,
+          "mean_abs_error": 3.2297261896019336e-06,
+          "elements_outside_frozen_tolerance": 1225,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_cache_vs_prefill": {
+          "passed": true,
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "max_abs_error": 1.4543533325195312e-05,
+          "mean_abs_error": 7.176542453635193e-07,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        }
+      }
+    },
+    {
+      "name": "auto-strict-t1",
+      "status": "failed",
+      "report": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/cpu-precision/auto-strict-t1/nonorm_export_parity_report.json",
+      "report_sha256": "ece5192eb06eda09526a6eee0fab12cf968a96fc13bb83cb36d8c6575d61d3af",
+      "binding": {
+        "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00012208.pt",
+        "checkpoint_sha256": "e5583927efc5aa2041648bcae23f1b618b70f002be334c3581dea23472447d07",
+        "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+        "implementation": {
+          "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+          "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+          "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+          "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+        },
+        "verifier_sha256": "0096c22da33c32c281da7b209be87c404b9c0fad1749a2c650694adca4f3043f",
+        "protocol_sha256": "49e0273d4ae315288c9969a11493bf52d9ba8aa21d51f7ac1c35757f5b3b4ec9",
+        "runtime_receipt_sha256": "903d14b081e753519fae3b084029499c59cb8c76f741d73e9414814ed9dd16d7",
+        "cpu_threads": 1,
+        "cpu_environment": {
+          "MKL_CBWR": "AUTO,STRICT",
+          "MKL_DYNAMIC": "FALSE",
+          "OMP_DYNAMIC": "FALSE"
+        }
+      },
+      "checks": {
+        "hf_llama_architecture_without_qknorm": true,
+        "hf_tied_embedding": true,
+        "learned_parameter_count": true,
+        "native_eos_and_eot_eog_metadata": true,
+        "all_short_and_1024_logits_cache_comparisons": false,
+        "tied_embedding_exported_once": true,
+        "golden_external_codec_roundtrips": true,
+        "three_backend_greedy_ids_exact": true,
+        "actual_argmax_stop_3_all_backends": true,
+        "actual_argmax_stop_7_all_backends": true,
+        "original_checkpoint_unchanged": true
+      },
+      "comparisons": {
+        "short_hf_full": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1 / 126976 (0.0%)\nGreatest absolute difference: 1.0838732123374939e-05 at index (0, 25, 2491) (up to 1e-05 allowed)\nGreatest relative difference: 0.0013855979777872562 at index (0, 25, 2491) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 2.002716064453125e-05,
+          "mean_abs_error": 2.363842213526368e-06,
+          "elements_outside_frozen_tolerance": 1,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_torch_cache": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 1.9550323486328125e-05,
+          "mean_abs_error": 1.7502212585895904e-06,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_hf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1 / 126976 (0.0%)\nGreatest absolute difference: 1.2757256627082825e-05 at index (0, 12, 4017) (up to 1e-05 allowed)\nGreatest relative difference: 0.0004897461622022092 at index (0, 12, 4017) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 1.811981201171875e-05,
+          "mean_abs_error": 2.318436372661381e-06,
+          "elements_outside_frozen_tolerance": 1,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_prefill": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1 / 126976 (0.0%)\nGreatest absolute difference: 1.2490898370742798e-05 at index (0, 21, 2884) (up to 1e-05 allowed)\nGreatest relative difference: 0.0017873658798635006 at index (0, 21, 2884) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 1.71661376953125e-05,
+          "mean_abs_error": 2.504709755157819e-06,
+          "elements_outside_frozen_tolerance": 1,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_cache": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 1.6450881958007812e-05,
+          "mean_abs_error": 2.425883621981484e-06,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_cache_vs_prefill": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 9.059906005859375e-06,
+          "mean_abs_error": 7.475770757991995e-07,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_hf_full": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 998 / 4194304 (0.0%)\nGreatest absolute difference: 3.217160701751709e-05 at index (0, 12, 3860) (up to 1e-05 allowed)\nGreatest relative difference: 0.11484932154417038 at index (0, 23, 1051) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.62396240234375e-05,
+          "mean_abs_error": 2.964146233352949e-06,
+          "elements_outside_frozen_tolerance": 998,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_torch_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 88 / 4194304 (0.0%)\nGreatest absolute difference: 3.483891487121582e-05 at index (0, 720, 3754) (up to 1e-05 allowed)\nGreatest relative difference: 0.017836028710007668 at index (0, 652, 3286) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.6716461181640625e-05,
+          "mean_abs_error": 1.270667326025432e-06,
+          "elements_outside_frozen_tolerance": 88,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_hf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1094 / 4194304 (0.0%)\nGreatest absolute difference: 3.217160701751709e-05 at index (0, 12, 3860) (up to 1e-05 allowed)\nGreatest relative difference: 0.1767844557762146 at index (0, 899, 3847) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.62396240234375e-05,
+          "mean_abs_error": 2.9635041300934972e-06,
+          "elements_outside_frozen_tolerance": 1094,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_prefill": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1808 / 4194304 (0.0%)\nGreatest absolute difference: 5.319714546203613e-05 at index (0, 501, 3671) (up to 1e-05 allowed)\nGreatest relative difference: 0.26880741119384766 at index (0, 899, 3847) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 5.3763389587402344e-05,
+          "mean_abs_error": 3.3127612368843984e-06,
+          "elements_outside_frozen_tolerance": 1808,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1828 / 4194304 (0.0%)\nGreatest absolute difference: 5.319714546203613e-05 at index (0, 501, 3671) (up to 1e-05 allowed)\nGreatest relative difference: 4.503769397735596 at index (0, 924, 3889) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 5.3763389587402344e-05,
+          "mean_abs_error": 3.3132969292637426e-06,
+          "elements_outside_frozen_tolerance": 1828,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_cache_vs_prefill": {
+          "passed": true,
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "max_abs_error": 1.4543533325195312e-05,
+          "mean_abs_error": 7.176541885201004e-07,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        }
+      }
+    },
+    {
+      "name": "auto-strict-t2",
+      "status": "failed",
+      "report": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/cpu-precision/auto-strict-t2/nonorm_export_parity_report.json",
+      "report_sha256": "293698b86167a17c2a704e1ec74cd3f7cd38d4b2c1f638e8815639514aaf3b3d",
+      "binding": {
+        "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00012208.pt",
+        "checkpoint_sha256": "e5583927efc5aa2041648bcae23f1b618b70f002be334c3581dea23472447d07",
+        "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+        "implementation": {
+          "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+          "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+          "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+          "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+        },
+        "verifier_sha256": "0096c22da33c32c281da7b209be87c404b9c0fad1749a2c650694adca4f3043f",
+        "protocol_sha256": "49e0273d4ae315288c9969a11493bf52d9ba8aa21d51f7ac1c35757f5b3b4ec9",
+        "runtime_receipt_sha256": "903d14b081e753519fae3b084029499c59cb8c76f741d73e9414814ed9dd16d7",
+        "cpu_threads": 2,
+        "cpu_environment": {
+          "MKL_CBWR": "AUTO,STRICT",
+          "MKL_DYNAMIC": "FALSE",
+          "OMP_DYNAMIC": "FALSE"
+        }
+      },
+      "checks": {
+        "hf_llama_architecture_without_qknorm": true,
+        "hf_tied_embedding": true,
+        "learned_parameter_count": true,
+        "native_eos_and_eot_eog_metadata": true,
+        "all_short_and_1024_logits_cache_comparisons": false,
+        "tied_embedding_exported_once": true,
+        "golden_external_codec_roundtrips": true,
+        "three_backend_greedy_ids_exact": true,
+        "actual_argmax_stop_3_all_backends": true,
+        "actual_argmax_stop_7_all_backends": true,
+        "original_checkpoint_unchanged": true
+      },
+      "comparisons": {
+        "short_hf_full": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1 / 126976 (0.0%)\nGreatest absolute difference: 1.0838732123374939e-05 at index (0, 25, 2491) (up to 1e-05 allowed)\nGreatest relative difference: 0.0013855979777872562 at index (0, 25, 2491) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 2.002716064453125e-05,
+          "mean_abs_error": 2.3638424409000436e-06,
+          "elements_outside_frozen_tolerance": 1,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_torch_cache": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 1.9550323486328125e-05,
+          "mean_abs_error": 1.7502213722764282e-06,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_hf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1 / 126976 (0.0%)\nGreatest absolute difference: 1.2757256627082825e-05 at index (0, 12, 4017) (up to 1e-05 allowed)\nGreatest relative difference: 0.0004897461622022092 at index (0, 12, 4017) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 1.811981201171875e-05,
+          "mean_abs_error": 2.318436372661381e-06,
+          "elements_outside_frozen_tolerance": 1,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_prefill": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1 / 126976 (0.0%)\nGreatest absolute difference: 1.2490898370742798e-05 at index (0, 21, 2884) (up to 1e-05 allowed)\nGreatest relative difference: 0.0017873658798635006 at index (0, 21, 2884) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 1.71661376953125e-05,
+          "mean_abs_error": 2.504709755157819e-06,
+          "elements_outside_frozen_tolerance": 1,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_cache": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 1.6450881958007812e-05,
+          "mean_abs_error": 2.425883621981484e-06,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_cache_vs_prefill": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 9.059906005859375e-06,
+          "mean_abs_error": 7.475770757991995e-07,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_hf_full": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 998 / 4194304 (0.0%)\nGreatest absolute difference: 3.217160701751709e-05 at index (0, 12, 3860) (up to 1e-05 allowed)\nGreatest relative difference: 0.11484932154417038 at index (0, 23, 1051) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.62396240234375e-05,
+          "mean_abs_error": 2.964146233352949e-06,
+          "elements_outside_frozen_tolerance": 998,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_torch_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 88 / 4194304 (0.0%)\nGreatest absolute difference: 3.483891487121582e-05 at index (0, 720, 3754) (up to 1e-05 allowed)\nGreatest relative difference: 0.017836028710007668 at index (0, 652, 3286) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.6716461181640625e-05,
+          "mean_abs_error": 1.270667326025432e-06,
+          "elements_outside_frozen_tolerance": 88,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_hf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1094 / 4194304 (0.0%)\nGreatest absolute difference: 3.217160701751709e-05 at index (0, 12, 3860) (up to 1e-05 allowed)\nGreatest relative difference: 0.1767844557762146 at index (0, 899, 3847) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.62396240234375e-05,
+          "mean_abs_error": 2.9635043574671727e-06,
+          "elements_outside_frozen_tolerance": 1094,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_prefill": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1808 / 4194304 (0.0%)\nGreatest absolute difference: 5.319714546203613e-05 at index (0, 501, 3671) (up to 1e-05 allowed)\nGreatest relative difference: 0.26880741119384766 at index (0, 899, 3847) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 5.3763389587402344e-05,
+          "mean_abs_error": 3.312761464258074e-06,
+          "elements_outside_frozen_tolerance": 1808,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1828 / 4194304 (0.0%)\nGreatest absolute difference: 5.319714546203613e-05 at index (0, 501, 3671) (up to 1e-05 allowed)\nGreatest relative difference: 4.503769397735596 at index (0, 924, 3889) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 5.3763389587402344e-05,
+          "mean_abs_error": 3.3132969292637426e-06,
+          "elements_outside_frozen_tolerance": 1828,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_cache_vs_prefill": {
+          "passed": true,
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "max_abs_error": 1.4543533325195312e-05,
+          "mean_abs_error": 7.176542453635193e-07,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        }
+      }
+    },
+    {
+      "name": "avx2-strict-t1",
+      "status": "failed",
+      "report": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/cpu-precision/avx2-strict-t1/nonorm_export_parity_report.json",
+      "report_sha256": "a09e45e36c8afe0bf504429abebde39bdf1db31f894fba7c16e02d578ce54db4",
+      "binding": {
+        "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00012208.pt",
+        "checkpoint_sha256": "e5583927efc5aa2041648bcae23f1b618b70f002be334c3581dea23472447d07",
+        "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+        "implementation": {
+          "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+          "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+          "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+          "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+        },
+        "verifier_sha256": "0096c22da33c32c281da7b209be87c404b9c0fad1749a2c650694adca4f3043f",
+        "protocol_sha256": "49e0273d4ae315288c9969a11493bf52d9ba8aa21d51f7ac1c35757f5b3b4ec9",
+        "runtime_receipt_sha256": "903d14b081e753519fae3b084029499c59cb8c76f741d73e9414814ed9dd16d7",
+        "cpu_threads": 1,
+        "cpu_environment": {
+          "MKL_CBWR": "AVX2,STRICT",
+          "MKL_DYNAMIC": "FALSE",
+          "OMP_DYNAMIC": "FALSE"
+        }
+      },
+      "checks": {
+        "hf_llama_architecture_without_qknorm": true,
+        "hf_tied_embedding": true,
+        "learned_parameter_count": true,
+        "native_eos_and_eot_eog_metadata": true,
+        "all_short_and_1024_logits_cache_comparisons": false,
+        "tied_embedding_exported_once": true,
+        "golden_external_codec_roundtrips": true,
+        "three_backend_greedy_ids_exact": true,
+        "actual_argmax_stop_3_all_backends": true,
+        "actual_argmax_stop_7_all_backends": true,
+        "original_checkpoint_unchanged": true
+      },
+      "comparisons": {
+        "short_hf_full": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1 / 126976 (0.0%)\nGreatest absolute difference: 1.0838732123374939e-05 at index (0, 25, 2491) (up to 1e-05 allowed)\nGreatest relative difference: 0.0013855979777872562 at index (0, 25, 2491) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 2.002716064453125e-05,
+          "mean_abs_error": 2.363842213526368e-06,
+          "elements_outside_frozen_tolerance": 1,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_torch_cache": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 1.9550323486328125e-05,
+          "mean_abs_error": 1.7502212585895904e-06,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_hf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1 / 126976 (0.0%)\nGreatest absolute difference: 1.2757256627082825e-05 at index (0, 12, 4017) (up to 1e-05 allowed)\nGreatest relative difference: 0.0004897461622022092 at index (0, 12, 4017) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 1.811981201171875e-05,
+          "mean_abs_error": 2.318436372661381e-06,
+          "elements_outside_frozen_tolerance": 1,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_prefill": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1 / 126976 (0.0%)\nGreatest absolute difference: 1.2490898370742798e-05 at index (0, 21, 2884) (up to 1e-05 allowed)\nGreatest relative difference: 0.0017873658798635006 at index (0, 21, 2884) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 1.71661376953125e-05,
+          "mean_abs_error": 2.504709755157819e-06,
+          "elements_outside_frozen_tolerance": 1,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_cache": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 1.6450881958007812e-05,
+          "mean_abs_error": 2.425883621981484e-06,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_cache_vs_prefill": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 9.059906005859375e-06,
+          "mean_abs_error": 7.475770757991995e-07,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_hf_full": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 998 / 4194304 (0.0%)\nGreatest absolute difference: 3.217160701751709e-05 at index (0, 12, 3860) (up to 1e-05 allowed)\nGreatest relative difference: 0.11484932154417038 at index (0, 23, 1051) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.62396240234375e-05,
+          "mean_abs_error": 2.964146233352949e-06,
+          "elements_outside_frozen_tolerance": 998,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_torch_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 88 / 4194304 (0.0%)\nGreatest absolute difference: 3.483891487121582e-05 at index (0, 720, 3754) (up to 1e-05 allowed)\nGreatest relative difference: 0.017836028710007668 at index (0, 652, 3286) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.6716461181640625e-05,
+          "mean_abs_error": 1.270667326025432e-06,
+          "elements_outside_frozen_tolerance": 88,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_hf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1094 / 4194304 (0.0%)\nGreatest absolute difference: 3.217160701751709e-05 at index (0, 12, 3860) (up to 1e-05 allowed)\nGreatest relative difference: 0.1767844557762146 at index (0, 899, 3847) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.62396240234375e-05,
+          "mean_abs_error": 2.9635041300934972e-06,
+          "elements_outside_frozen_tolerance": 1094,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_prefill": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1808 / 4194304 (0.0%)\nGreatest absolute difference: 5.319714546203613e-05 at index (0, 501, 3671) (up to 1e-05 allowed)\nGreatest relative difference: 0.26880741119384766 at index (0, 899, 3847) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 5.3763389587402344e-05,
+          "mean_abs_error": 3.3127612368843984e-06,
+          "elements_outside_frozen_tolerance": 1808,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1828 / 4194304 (0.0%)\nGreatest absolute difference: 5.319714546203613e-05 at index (0, 501, 3671) (up to 1e-05 allowed)\nGreatest relative difference: 4.503769397735596 at index (0, 924, 3889) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 5.3763389587402344e-05,
+          "mean_abs_error": 3.3132969292637426e-06,
+          "elements_outside_frozen_tolerance": 1828,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_cache_vs_prefill": {
+          "passed": true,
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "max_abs_error": 1.4543533325195312e-05,
+          "mean_abs_error": 7.176541885201004e-07,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        }
+      }
+    },
+    {
+      "name": "avx2-strict-t2",
+      "status": "failed",
+      "report": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/cpu-precision/avx2-strict-t2/nonorm_export_parity_report.json",
+      "report_sha256": "86a7fcb6580244463f42abab1eb084e952257e5e73090d9625677fe84d9a0d60",
+      "binding": {
+        "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00012208.pt",
+        "checkpoint_sha256": "e5583927efc5aa2041648bcae23f1b618b70f002be334c3581dea23472447d07",
+        "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+        "implementation": {
+          "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+          "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+          "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+          "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+        },
+        "verifier_sha256": "0096c22da33c32c281da7b209be87c404b9c0fad1749a2c650694adca4f3043f",
+        "protocol_sha256": "49e0273d4ae315288c9969a11493bf52d9ba8aa21d51f7ac1c35757f5b3b4ec9",
+        "runtime_receipt_sha256": "903d14b081e753519fae3b084029499c59cb8c76f741d73e9414814ed9dd16d7",
+        "cpu_threads": 2,
+        "cpu_environment": {
+          "MKL_CBWR": "AVX2,STRICT",
+          "MKL_DYNAMIC": "FALSE",
+          "OMP_DYNAMIC": "FALSE"
+        }
+      },
+      "checks": {
+        "hf_llama_architecture_without_qknorm": true,
+        "hf_tied_embedding": true,
+        "learned_parameter_count": true,
+        "native_eos_and_eot_eog_metadata": true,
+        "all_short_and_1024_logits_cache_comparisons": false,
+        "tied_embedding_exported_once": true,
+        "golden_external_codec_roundtrips": true,
+        "three_backend_greedy_ids_exact": true,
+        "actual_argmax_stop_3_all_backends": true,
+        "actual_argmax_stop_7_all_backends": true,
+        "original_checkpoint_unchanged": true
+      },
+      "comparisons": {
+        "short_hf_full": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1 / 126976 (0.0%)\nGreatest absolute difference: 1.0838732123374939e-05 at index (0, 25, 2491) (up to 1e-05 allowed)\nGreatest relative difference: 0.0013855979777872562 at index (0, 25, 2491) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 2.002716064453125e-05,
+          "mean_abs_error": 2.3638424409000436e-06,
+          "elements_outside_frozen_tolerance": 1,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_torch_cache": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 1.9550323486328125e-05,
+          "mean_abs_error": 1.7502213722764282e-06,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_hf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1 / 126976 (0.0%)\nGreatest absolute difference: 1.2757256627082825e-05 at index (0, 12, 4017) (up to 1e-05 allowed)\nGreatest relative difference: 0.0004897461622022092 at index (0, 12, 4017) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 1.811981201171875e-05,
+          "mean_abs_error": 2.318436372661381e-06,
+          "elements_outside_frozen_tolerance": 1,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_prefill": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1 / 126976 (0.0%)\nGreatest absolute difference: 1.2490898370742798e-05 at index (0, 21, 2884) (up to 1e-05 allowed)\nGreatest relative difference: 0.0017873658798635006 at index (0, 21, 2884) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 1.71661376953125e-05,
+          "mean_abs_error": 2.504709755157819e-06,
+          "elements_outside_frozen_tolerance": 1,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_cache": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 1.6450881958007812e-05,
+          "mean_abs_error": 2.425883621981484e-06,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_cache_vs_prefill": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 9.059906005859375e-06,
+          "mean_abs_error": 7.475770757991995e-07,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_hf_full": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 998 / 4194304 (0.0%)\nGreatest absolute difference: 3.217160701751709e-05 at index (0, 12, 3860) (up to 1e-05 allowed)\nGreatest relative difference: 0.11484932154417038 at index (0, 23, 1051) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.62396240234375e-05,
+          "mean_abs_error": 2.964146233352949e-06,
+          "elements_outside_frozen_tolerance": 998,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_torch_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 88 / 4194304 (0.0%)\nGreatest absolute difference: 3.483891487121582e-05 at index (0, 720, 3754) (up to 1e-05 allowed)\nGreatest relative difference: 0.017836028710007668 at index (0, 652, 3286) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.6716461181640625e-05,
+          "mean_abs_error": 1.270667326025432e-06,
+          "elements_outside_frozen_tolerance": 88,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_hf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1094 / 4194304 (0.0%)\nGreatest absolute difference: 3.217160701751709e-05 at index (0, 12, 3860) (up to 1e-05 allowed)\nGreatest relative difference: 0.1767844557762146 at index (0, 899, 3847) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.62396240234375e-05,
+          "mean_abs_error": 2.9635043574671727e-06,
+          "elements_outside_frozen_tolerance": 1094,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_prefill": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1808 / 4194304 (0.0%)\nGreatest absolute difference: 5.319714546203613e-05 at index (0, 501, 3671) (up to 1e-05 allowed)\nGreatest relative difference: 0.26880741119384766 at index (0, 899, 3847) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 5.3763389587402344e-05,
+          "mean_abs_error": 3.312761464258074e-06,
+          "elements_outside_frozen_tolerance": 1808,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1828 / 4194304 (0.0%)\nGreatest absolute difference: 5.319714546203613e-05 at index (0, 501, 3671) (up to 1e-05 allowed)\nGreatest relative difference: 4.503769397735596 at index (0, 924, 3889) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 5.3763389587402344e-05,
+          "mean_abs_error": 3.3132969292637426e-06,
+          "elements_outside_frozen_tolerance": 1828,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_cache_vs_prefill": {
+          "passed": true,
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "max_abs_error": 1.4543533325195312e-05,
+          "mean_abs_error": 7.176542453635193e-07,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        }
+      }
+    },
+    {
+      "name": "compatible-t1",
+      "status": "failed",
+      "report": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/cpu-precision/compatible-t1/nonorm_export_parity_report.json",
+      "report_sha256": "e5f28071a1793a41fc377a9327e75379539123eda7b1f1ee122a91ad39c2055e",
+      "binding": {
+        "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00012208.pt",
+        "checkpoint_sha256": "e5583927efc5aa2041648bcae23f1b618b70f002be334c3581dea23472447d07",
+        "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+        "implementation": {
+          "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+          "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+          "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+          "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+        },
+        "verifier_sha256": "0096c22da33c32c281da7b209be87c404b9c0fad1749a2c650694adca4f3043f",
+        "protocol_sha256": "49e0273d4ae315288c9969a11493bf52d9ba8aa21d51f7ac1c35757f5b3b4ec9",
+        "runtime_receipt_sha256": "903d14b081e753519fae3b084029499c59cb8c76f741d73e9414814ed9dd16d7",
+        "cpu_threads": 1,
+        "cpu_environment": {
+          "MKL_CBWR": "COMPATIBLE",
+          "MKL_DYNAMIC": "FALSE",
+          "OMP_DYNAMIC": "FALSE"
+        }
+      },
+      "checks": {
+        "hf_llama_architecture_without_qknorm": true,
+        "hf_tied_embedding": true,
+        "learned_parameter_count": true,
+        "native_eos_and_eot_eog_metadata": true,
+        "all_short_and_1024_logits_cache_comparisons": false,
+        "tied_embedding_exported_once": true,
+        "golden_external_codec_roundtrips": true,
+        "three_backend_greedy_ids_exact": true,
+        "actual_argmax_stop_3_all_backends": true,
+        "actual_argmax_stop_7_all_backends": true,
+        "original_checkpoint_unchanged": true
+      },
+      "comparisons": {
+        "short_hf_full": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 1.2874603271484375e-05,
+          "mean_abs_error": 1.7405504877388012e-06,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_torch_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1 / 126976 (0.0%)\nGreatest absolute difference: 1.4677643775939941e-05 at index (0, 11, 425) (up to 1e-05 allowed)\nGreatest relative difference: 0.001620268332771957 at index (0, 11, 425) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 1.9550323486328125e-05,
+          "mean_abs_error": 1.4138753385850578e-06,
+          "elements_outside_frozen_tolerance": 1,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_hf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1 / 126976 (0.0%)\nGreatest absolute difference: 1.4640390872955322e-05 at index (0, 11, 425) (up to 1e-05 allowed)\nGreatest relative difference: 0.0016161559615284204 at index (0, 11, 425) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 1.9550323486328125e-05,
+          "mean_abs_error": 1.9315482404635986e-06,
+          "elements_outside_frozen_tolerance": 1,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_prefill": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 1.52587890625e-05,
+          "mean_abs_error": 2.0123852664255537e-06,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_cache": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 1.52587890625e-05,
+          "mean_abs_error": 1.9412432266108226e-06,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_cache_vs_prefill": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 9.059906005859375e-06,
+          "mean_abs_error": 7.475770757991995e-07,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_hf_full": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 264 / 4194304 (0.0%)\nGreatest absolute difference: 2.4080276489257812e-05 at index (0, 217, 3582) (up to 1e-05 allowed)\nGreatest relative difference: 0.10163453221321106 at index (0, 953, 1546) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.24249267578125e-05,
+          "mean_abs_error": 2.2894419089425355e-06,
+          "elements_outside_frozen_tolerance": 264,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_torch_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 42 / 4194304 (0.0%)\nGreatest absolute difference: 1.7628073692321777e-05 at index (0, 623, 3556) (up to 1e-05 allowed)\nGreatest relative difference: 0.07816429436206818 at index (0, 953, 1546) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 2.3365020751953125e-05,
+          "mean_abs_error": 1.0224225661659148e-06,
+          "elements_outside_frozen_tolerance": 42,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_hf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 242 / 4194304 (0.0%)\nGreatest absolute difference: 2.4080276489257812e-05 at index (0, 217, 3582) (up to 1e-05 allowed)\nGreatest relative difference: 2.7096774578094482 at index (0, 924, 3889) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.24249267578125e-05,
+          "mean_abs_error": 2.3061002139002085e-06,
+          "elements_outside_frozen_tolerance": 242,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_prefill": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 299 / 4194304 (0.0%)\nGreatest absolute difference: 2.9027462005615234e-05 at index (0, 217, 3582) (up to 1e-05 allowed)\nGreatest relative difference: 0.3379693925380707 at index (0, 216, 3426) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.62396240234375e-05,
+          "mean_abs_error": 2.4200785446737427e-06,
+          "elements_outside_frozen_tolerance": 299,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 331 / 4194304 (0.0%)\nGreatest absolute difference: 2.9027462005615234e-05 at index (0, 217, 3582) (up to 1e-05 allowed)\nGreatest relative difference: 0.3379693925380707 at index (0, 216, 3426) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.62396240234375e-05,
+          "mean_abs_error": 2.4419250621576793e-06,
+          "elements_outside_frozen_tolerance": 331,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_cache_vs_prefill": {
+          "passed": true,
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "max_abs_error": 1.4543533325195312e-05,
+          "mean_abs_error": 7.176541885201004e-07,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        }
+      }
+    },
+    {
+      "name": "compatible-t2",
+      "status": "failed",
+      "report": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readiness-20261003/cpu-precision/compatible-t2/nonorm_export_parity_report.json",
+      "report_sha256": "d395558e92312caaab7207a65dc6f331ccad77ec196305a759187b5996459c38",
+      "binding": {
+        "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00012208.pt",
+        "checkpoint_sha256": "e5583927efc5aa2041648bcae23f1b618b70f002be334c3581dea23472447d07",
+        "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+        "implementation": {
+          "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+          "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+          "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+          "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+        },
+        "verifier_sha256": "0096c22da33c32c281da7b209be87c404b9c0fad1749a2c650694adca4f3043f",
+        "protocol_sha256": "49e0273d4ae315288c9969a11493bf52d9ba8aa21d51f7ac1c35757f5b3b4ec9",
+        "runtime_receipt_sha256": "903d14b081e753519fae3b084029499c59cb8c76f741d73e9414814ed9dd16d7",
+        "cpu_threads": 2,
+        "cpu_environment": {
+          "MKL_CBWR": "COMPATIBLE",
+          "MKL_DYNAMIC": "FALSE",
+          "OMP_DYNAMIC": "FALSE"
+        }
+      },
+      "checks": {
+        "hf_llama_architecture_without_qknorm": true,
+        "hf_tied_embedding": true,
+        "learned_parameter_count": true,
+        "native_eos_and_eot_eog_metadata": true,
+        "all_short_and_1024_logits_cache_comparisons": false,
+        "tied_embedding_exported_once": true,
+        "golden_external_codec_roundtrips": true,
+        "three_backend_greedy_ids_exact": true,
+        "actual_argmax_stop_3_all_backends": true,
+        "actual_argmax_stop_7_all_backends": true,
+        "original_checkpoint_unchanged": true
+      },
+      "comparisons": {
+        "short_hf_full": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 1.2874603271484375e-05,
+          "mean_abs_error": 1.7405504877388012e-06,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_torch_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1 / 126976 (0.0%)\nGreatest absolute difference: 1.4677643775939941e-05 at index (0, 11, 425) (up to 1e-05 allowed)\nGreatest relative difference: 0.001620268332771957 at index (0, 11, 425) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 1.9550323486328125e-05,
+          "mean_abs_error": 1.4138754522718955e-06,
+          "elements_outside_frozen_tolerance": 1,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_hf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 1 / 126976 (0.0%)\nGreatest absolute difference: 1.4640390872955322e-05 at index (0, 11, 425) (up to 1e-05 allowed)\nGreatest relative difference: 0.0016161559615284204 at index (0, 11, 425) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 1.9550323486328125e-05,
+          "mean_abs_error": 1.9315482404635986e-06,
+          "elements_outside_frozen_tolerance": 1,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_prefill": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 1.52587890625e-05,
+          "mean_abs_error": 2.012385493799229e-06,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_cache": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 1.52587890625e-05,
+          "mean_abs_error": 1.9412432266108226e-06,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "short_gguf_cache_vs_prefill": {
+          "passed": true,
+          "shape": [
+            1,
+            31,
+            4096
+          ],
+          "max_abs_error": 9.059906005859375e-06,
+          "mean_abs_error": 7.475770757991995e-07,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_hf_full": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 264 / 4194304 (0.0%)\nGreatest absolute difference: 2.4080276489257812e-05 at index (0, 217, 3582) (up to 1e-05 allowed)\nGreatest relative difference: 0.10163453221321106 at index (0, 953, 1546) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.24249267578125e-05,
+          "mean_abs_error": 2.2894419089425355e-06,
+          "elements_outside_frozen_tolerance": 264,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_torch_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 24 / 4194304 (0.0%)\nGreatest absolute difference: 1.5020370483398438e-05 at index (0, 265, 2317) (up to 1e-05 allowed)\nGreatest relative difference: 0.044629283249378204 at index (0, 916, 149) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 2.574920654296875e-05,
+          "mean_abs_error": 1.5703830058555468e-06,
+          "elements_outside_frozen_tolerance": 24,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_hf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 224 / 4194304 (0.0%)\nGreatest absolute difference: 2.6941299438476562e-05 at index (0, 916, 3984) (up to 1e-05 allowed)\nGreatest relative difference: 4.079999923706055 at index (0, 916, 3797) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.4332275390625e-05,
+          "mean_abs_error": 2.311577190994285e-06,
+          "elements_outside_frozen_tolerance": 224,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_prefill": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 299 / 4194304 (0.0%)\nGreatest absolute difference: 2.9027462005615234e-05 at index (0, 217, 3582) (up to 1e-05 allowed)\nGreatest relative difference: 0.3379693925380707 at index (0, 216, 3426) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.62396240234375e-05,
+          "mean_abs_error": 2.4200785446737427e-06,
+          "elements_outside_frozen_tolerance": 299,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_cache": {
+          "passed": false,
+          "failure": "Tensor-likes are not close!\n\nMismatched elements: 331 / 4194304 (0.0%)\nGreatest absolute difference: 2.9027462005615234e-05 at index (0, 217, 3582) (up to 1e-05 allowed)\nGreatest relative difference: 0.3379693925380707 at index (0, 216, 3426) (up to 0.0001 allowed)",
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "finite": true,
+          "max_abs_error": 3.62396240234375e-05,
+          "mean_abs_error": 2.441925289531355e-06,
+          "elements_outside_frozen_tolerance": 331,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        },
+        "context1024_gguf_cache_vs_prefill": {
+          "passed": true,
+          "shape": [
+            1,
+            1024,
+            4096
+          ],
+          "max_abs_error": 1.4543533325195312e-05,
+          "mean_abs_error": 7.176542453635193e-07,
+          "tolerance": {
+            "atol": 1e-05,
+            "rtol": 0.0001
+          }
+        }
+      }
+    }
+  ],
+  "binding": {
+    "verifier_sha256": "0096c22da33c32c281da7b209be87c404b9c0fad1749a2c650694adca4f3043f",
+    "runner_sha256": "f77eef0b841e30c26082271cffb4ef2019bddd833f66559c969bd433e8c8c8da",
+    "runtime_sha256": "903d14b081e753519fae3b084029499c59cb8c76f741d73e9414814ed9dd16d7",
+    "mkl_cbwr": [
+      "AUTO",
+      "AUTO,STRICT",
+      "AVX2,STRICT",
+      "COMPATIBLE"
+    ],
+    "threads": [
+      1,
+      2
+    ],
+    "completion": "Evaluate all 8 fixed CPU configurations using all 12 original comparisons and both actual stop fixtures; no tolerance/input/model changes, no follow-up sweep"
+  },
+  "successful": [],
+  "completed_at": "2026-10-03T08:21:04.138199Z"
+}

@@ -63,3 +63,11 @@ def test_existing_run_without_checkpoint_is_not_reinitialized(tmp_path):
     (tmp_path/'stable').mkdir()
     with pytest.raises(ValueError,match='without a valid checkpoint'):
         launcher.prepare(configuration(),'500M',tmp_path,'stable')
+
+
+def test_unresolved_export_gate_blocks_execution_before_creating_run(tmp_path,monkeypatch):
+    monkeypatch.setattr(launcher,'validate_config',lambda path:{'launch_enabled':False})
+    output=tmp_path/'base-output'
+    with pytest.raises(AssertionError,match='unresolved export'):
+        launcher.execute(tmp_path/'config.json','500M',output,'stable')
+    assert not output.exists()

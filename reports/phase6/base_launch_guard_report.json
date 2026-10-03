@@ -1,0 +1,24 @@
+{
+  "status": "passed_rejection",
+  "checks": {
+    "specific_export_gate_rejection": true,
+    "output_not_created": true,
+    "gpu_processes_absent_before_after": true,
+    "scaling_directory_not_created": true
+  },
+  "config_sha256": "f50081fa42384214c44870fd3f915d7853f868b390249cbe0336aa30080d617b",
+  "command": [
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/.venv/bin/python3",
+    "scripts/run_base.py",
+    "--config",
+    "configs/phase6/base_frozen.json",
+    "--target",
+    "500M",
+    "--output",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/local/base-launch-rejection",
+    "--execute"
+  ],
+  "returncode": 1,
+  "stderr": "Traceback (most recent call last):\n  File \"/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/run_base.py\", line 270, in <module>\n    main()\n  File \"/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/run_base.py\", line 260, in main\n    result=execute(args.config.resolve(),args.target,args.output.resolve(),args.operation)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/run_base.py\", line 182, in execute\n    assert config['launch_enabled'] and all(config['launch_gates'].values()), 'Base launch is blocked by the unresolved export FP32 parity gate'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Base launch is blocked by the unresolved export FP32 parity gate\n",
+  "training_started": false
+}
