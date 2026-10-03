@@ -4,6 +4,8 @@
 
 ## 実行中: ローカル10Bデータの取得・構築・監査
 
+2026-10-03 22:46 JST: [export完成](../reports/phase6/corpus_10b_export_complete.json)。実train **12,225,819,077 stream tokens /25,879,667文書 /47,525,339,486 body bytes**。dev678,132,065 tokens/test679,399,996 tokensは別split。`prepared-v2/export-001/`とroot/shard manifestが完成し、target_met true、manifest件数・hash参照・全split uint16 byte sizes一致を確認。これはbuilder成果物で、独立全件auditと実loaderはまだ未完了。13:46:32 UTCにidentityを照合してv3へSIGINTを一度送信、元processはSQLite読み取り中のため終了待ち（実/procとCPU増加を確認）。終了と累積runtime保存後にwatcherがcache監査を起動する。5分以内に終了しない場合はwatcherが失敗記録を残すため、次は元processの実終了を待ち、完成exportを保持して監査入口へ移行する。元processがliveの間は再起動しない。完成後report/commitで学習前に停止する。
+
 2026-10-03 22:35 JST: [監査引き継ぎwatcher](../reports/phase6/corpus_10b_handoff_watch.json)を常駐。Windows launcher28516、Linux1168675/同boot/start_ticks861194を実/procで確認、v3のexportは継続中。完成manifest・実train10B以上・shard件数一致・frozen source・元のPID/boot/start ticksとaudit stageを確認してから一度だけSIGINTを送り、終了と累積runtimeの保存を待つ。旧jobを別保存し、検証済みcache監査入口を起動する。90分の完成待機/5分の終了待機を超えたら失敗記録を残し、強制終了や自動再試行をしない。3 guard tests成功、liveで二重watcherのlock拒否も確認した。現在は完成export待ちで、引き継ぎ/全件auditの成功はまだ未確認。logは`ten-billion/audit-handoff.log`、statusは`prepared-v2/audit_handoff.json`。
 
 最新観測（2026-10-03 22:31 JST）: 全32bandsのbuilder重複除去が完了し、同じv3 process1106994でexport中。[完了記録](../reports/phase6/corpus_10b_dedup_complete.json)で185,955,238候補組、707,772のband内検証済みspanning links、3808.713秒、groups/duplicates/result SHAを実成果物へ照合した（独立全件auditは未実施）。exportは約5.5分でtrain約3.37B tokens、約10.2M train tokens/s。変換残りは暫定15〜20分、独立全件監査・実loader・report/commitまで含む残りは暫定2〜4時間。後者は大規模audit速度が未実測のため確約しない。完成manifest/実train10B以上を確認後、検証済みcacheのaudit入口へ移行し、完成exportと累積実行予算を保持する。学習前に停止する。以下の途中観測は履歴として保持する。
