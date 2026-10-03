@@ -1,0 +1,70 @@
+{
+  "observed_at_utc": "2026-10-03T13:31:24.5586420Z",
+  "status": "builder_dedup_complete_export_running",
+  "independently_audited": false,
+  "dedup": {
+    "records": 29208256,
+    "verified_pairs": 707772,
+    "count_scope": "Sum of within-band spanning verified links; not serial global link count",
+    "groups_sha256": "eed11c72ceee73a91b5fdd1e16cdf1497b34a51905f0a27a7fac2178f76186e7",
+    "duplicates_sha256": "9dfdc062d91875c0ea96db60ea8acb223bedccb37ef8f6ee7370efb4ac6ef098",
+    "execution": "parallel_bands_v3",
+    "parallel_result_sha256": "ac74107e96843193b8880b15ccca24328e0c900511fc180e74c8f464342bc70a"
+  },
+  "parallel": {
+    "status": "verified_components_built",
+    "records": 29208256,
+    "workers": 8,
+    "bands": 32,
+    "elapsed_seconds": 3808.7133201530005,
+    "candidate_pairs": 185955238,
+    "verified_links": 707772,
+    "groups_sha256": "eed11c72ceee73a91b5fdd1e16cdf1497b34a51905f0a27a7fac2178f76186e7",
+    "duplicates_sha256": "9dfdc062d91875c0ea96db60ea8acb223bedccb37ef8f6ee7370efb4ac6ef098"
+  },
+  "groups_sha256_verified": "eed11c72ceee73a91b5fdd1e16cdf1497b34a51905f0a27a7fac2178f76186e7",
+  "duplicates_sha256_verified": "9dfdc062d91875c0ea96db60ea8acb223bedccb37ef8f6ee7370efb4ac6ef098",
+  "parallel_result_sha256_verified": "ac74107e96843193b8880b15ccca24328e0c900511fc180e74c8f464342bc70a",
+  "export_progress": {
+    "stage": "export",
+    "splits": {
+      "train": {
+        "tokens": 3656609051,
+        "documents": 7758100,
+        "body_bytes": 14248612159
+      },
+      "dev": {
+        "tokens": 202637982,
+        "documents": 430181,
+        "body_bytes": 789607807
+      },
+      "test": {
+        "tokens": 203247408,
+        "documents": 431751,
+        "body_bytes": 791955019
+      }
+    },
+    "seconds": 360.53741034799987
+  },
+  "job": {
+    "status": "running",
+    "pid": 1106994,
+    "started_at": "2026-10-03T11:35:08.794619Z",
+    "command": [
+      "scripts/prepare_corpus_10b_parallel.py",
+      "--raw",
+      "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/raw",
+      "--output",
+      "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2"
+    ],
+    "config_sha256": "0f4e738c2c4beb333bea3f5b2c410e2f5889d87f6aaffb8a92b281a19c43375e",
+    "execution": "parallel_bands_v3",
+    "boot_id": "0b330ec7-c11f-4bb3-be7c-cae9b868f4af",
+    "start_ticks": "144729",
+    "prior_cumulative_seconds": 680.553657957,
+    "stage": "export",
+    "heartbeat_at": "2026-10-03T13:24:23.795864Z",
+    "band_workers": 8
+  },
+  "next_action": "Complete export, confirm actual train tokens >=10B, preserve export and use verified bounded-cache serial audit, then actual loader check and stop before training"
+}

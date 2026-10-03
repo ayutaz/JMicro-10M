@@ -4,6 +4,8 @@
 
 ## 実行中: ローカル10Bデータの取得・構築・監査
 
+最新観測（2026-10-03 22:31 JST）: 全32bandsのbuilder重複除去が完了し、同じv3 process1106994でexport中。[完了記録](../reports/phase6/corpus_10b_dedup_complete.json)で185,955,238候補組、707,772のband内検証済みspanning links、3808.713秒、groups/duplicates/result SHAを実成果物へ照合した（独立全件auditは未実施）。exportは約5.5分でtrain約3.37B tokens、約10.2M train tokens/s。変換残りは暫定15〜20分、独立全件監査・実loader・report/commitまで含む残りは暫定2〜4時間。後者は大規模audit速度が未実測のため確約しない。完成manifest/実train10B以上を確認後、検証済みcacheのaudit入口へ移行し、完成exportと累積実行予算を保持する。学習前に停止する。以下の途中観測は履歴として保持する。
+
 最新の実行はexecution v3。元の取り込み・品質基準・独立逐次auditを保持し、後続LSHだけを8workersのband並列へ移行した。[実1M全32bands比較](../reports/phase6/corpus_10b_parallel_probe.json)で524,480候補coverage/全cluster/duplicate代表完全一致、30.004秒→9.135秒（3.285倍）。旧v2を実PID確認後にSIGINTで終了し、累積680.554秒・24files/5,630,035レコードのcheckpointを保持して再開した。元source snapshotとデータは保持し、追加実行codeを別snapshotへ保存する。
 
 Windows launcher23824、Linux1106994/boot`0b330ec7-c11f-4bb3-be7c-cae9b868f4af`/start_ticks144729は同じidentityでlive。全128raw filesのcommitと29,208,256 records（raw29,009,357＋保護198,899）を確認し、2026-10-03 12:20 UTC（21:20 JST）にstage parallel_external_lshへ移行した。[取り込み完了と実process確認](../reports/phase6/corpus_10b_ingestion.json)で全file receipt hash binding・file row合計/最終ID/ingest件数・signature size14,954,627,072bytesが一致。v3 ingestion2691.384秒、旧24filesは再処理しない。eligible28,998,779件を全32bands/8workersで検証中。workers1109198/1109201〜1109207の実PID/start ticks/CPUを確認。data rootは`ten-billion/prepared-v2/`、ログ`preparation-v3.log`、再開入口`scripts/run_corpus_10b_parallel.sh`。[移行と実装](32_local_10b_corpus.md#並列lshへの検証済み移行)。WSL空き約682GiBで拡張不要。token化・全件監査・実10Bの利用確認は未完了。次は全band完了/代表hash→export実token数→元の全件逐次audit→実ローダー→report/commit、学習前に停止する。
