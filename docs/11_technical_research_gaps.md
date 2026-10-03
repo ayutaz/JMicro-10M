@@ -4,7 +4,7 @@
 
 ## 実装後の現在地（2026-10-03）
 
-調査後にPhase 0〜4を完了した。下記の表・検証順は調査時点の提案であり、現在の未着手一覧とは分けて読む。
+調査後にPhase 0〜5を完了した。次の表は現在の状態、後半の調査表・検証順は2026-10-02の提案として区別する。
 
 | 課題 | 現在の状態 | 証拠・次の判断 |
 |---|---|---|
@@ -12,9 +12,11 @@
 | 10M予算、QK-Norm、因果性、prefill/cache | 両モデルでCPU検証済み | [Phase 3](19_phase3_completion.md) |
 | HF/native float GGUF、量子化型・容量・停止 | 検証済み。内蔵Tokenizerは不一致、外部SentencePieceを採用 | [export report](../reports/phase3/export_parity_report.json) |
 | GPU学習器、保存再開、最大batch/実速度、BPB runner | 実装・実GPU検証済み、全64 tests / skip 0 | [Phase 4完了証拠](21_phase4_completion.md) |
-| 4k/8kの品質勝者、日本語短文・雑談、学習後の量子化品質 | 未実証 | Phase 5〜8の実学習・固定評価 |
+| 4k/8k・Norm・LRの100M、overfit/smoke、統計比較 | 実施・独立監査済み、全68 tests / skip 0。T4K NoNorm / LR 0.002を1候補に選定 | [Phase 5](23_phase5_completion.md) |
+| 拡張corpus、WSD、採用構成の最大batch/高速化 | 未実施・未凍結 | [Phase 6準備計画](24_phase6_plan.md) |
+| 日本語短文・雑談、学習後量子化・NoNorm変換 | 品質目標未達、NoNorm HF/GGUF adapter未実装 | Phase 6〜8の実学習・固定評価 |
 
-完成までの時間短縮を優先し、Windows/WSL＋RTX 4090への移行とPhase 4は完了した。ユーザー指定で停止し、再開後はPhase 5から進める。
+完成までの時間短縮を優先し、Windows/WSL＋RTX 4090への移行とPhase 4は完了した。Phase 5の候補選定も完了し、ユーザー指定のPhase 6前で停止中。再開後はPhase 6の準備gateから進める。
 
 ## 結論
 
@@ -53,7 +55,7 @@ P0: 長期学習の前に解決。P1: 100M探索／Chat準備までに解決。P
 
 ## 当初の検証案と後続実測
 
-以下は調査時の検証案。Tokenizer・モデル・export・会話pilotと教師token量はPhase 1〜3、GPU保存再開→速度測定はPhase 4で完了した。100M探索は未開始。現在の順序はロードマップを正とする。各成果物にはconfig、入力hash、依存version、失敗例を含める。
+以下は調査時の検証案。Tokenizer・モデル・export・会話pilotと教師token量はPhase 1〜3、GPU保存再開→速度測定はPhase 4で完了した。100M探索・補助予算・候補選定はPhase 5で完了。現在の順序はロードマップを正とする。各成果物にはconfig、入力hash、依存version、失敗例を含める。
 
 | 順番 | 検証 | 成果物 | 通過条件 |
 |---:|---|---|---|
@@ -68,9 +70,9 @@ P0: 長期学習の前に解決。P1: 100M探索／Chat準備までに解決。P
 ## 文献だけでは解決できなかった項目
 
 - 10Mでの日本語雑談能力の上限と、最適なWeb／会話mixture。
-- 4kと8kの勝者、QK-Norm有無、最適batch／LR／optimizer。
+- 小予算のT4K NoNorm / LR 0.002選定は完了。拡張corpus・長期予算での最適性、mathの最大batch、compiled/mathの正確な再開と速度は未実証。
 - GGUF内蔵Tokenizerは不一致が判明し、外部wrapperで一致を検証済み。汎用CLIの内蔵Tokenizer互換は未達。
-- 4090 throughputは測定済み。compiled最大容量、CPU応答時間分布、学習後の量子化品質は未測定。
+- 4090 throughputは測定済み。compiled/mathや採用候補の最大容量、CPU応答時間分布、学習後の量子化品質は未測定。
 - LLM-jp Corpus v4の個別subset manifest・利用条件。公式公開告知の規模は確認できたが、今回の閲覧ではGitLab本文を十分取得できなかった。既存05の個別subset表は引き続き**要検証**。
 
 これらは未調査のままではなく、上記の実験または原本取得を必要とする未解決事項として管理する。既存09の公開モデル一覧全件の再監査と、Mamba／Convのkernel比較は今回の対象外で、後半研究として残す。

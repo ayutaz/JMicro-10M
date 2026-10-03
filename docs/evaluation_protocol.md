@@ -1,6 +1,6 @@
 # 評価仕様 v1
 
-実装状況更新: 2026-10-03。機械可読protocolの閾値・split・数値許容値は維持する。Base評価は実装済み、Chat品質評価・人手採点・bootstrapは未実施。[現在の実測](21_phase4_completion.md)
+実装状況更新: 2026-10-03。機械可読protocolの閾値・split・数値許容値は維持し、品質目標は100M選定前に凍結済み。Base評価、overfit/smoke・100M比較、同一dev文書のpaired bootstrapと生成ID/flag照合は実施済み。Chat品質評価・rollout・文法等の全件blind人手採点は未実施。[現在の実測](23_phase5_completion.md)
 
 作成: 2026-10-02、Phase 0。機械可読の正本は[protocol.json](../configs/evaluation/protocol.json)、入力は[固定評価データ](../eval/README.md)。設計契約を固定する資料であり、モデル性能の評価結果ではない。
 

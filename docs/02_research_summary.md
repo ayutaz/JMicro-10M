@@ -1,6 +1,6 @@
 # 調査要約
 
-更新: 2026-10-03。外部研究は2026-10-02の調査記録で、全件の最新再調査ではない。Transformer/Tokenizer/exportとAdamW＋warmup/cosineのGPU経路は実装・検証済み。[Phase 4](21_phase4_completion.md)。QK-Normなし、Muon、WSD、Layer Sharing、hybridは未実装の候補。100M比較は主要因を一つずつ扱い、Muon比較はAdamW baseline成立後に必要性を判断する。
+更新: 2026-10-03。外部研究は2026-10-02の調査記録で、全件の最新再調査ではない。Transformer/Tokenizer/exportとAdamW＋warmup/cosineのGPU経路は実装・検証済み。[Phase 4](21_phase4_completion.md)。QK-Normなしも実装し、[Phase 5](23_phase5_completion.md)の100M比較でT4K / NoQK-Norm / LR 0.002を選定した。Muonは安定したAdamW比較で候補を選べたため追加せず、長期schedulerはWSDの方針を採用したが未実装。Layer Sharing/hybrid、Chatと学習後の量子化は未実施。外部文献の再調査ではなく、ローカル実測に基づく更新である。
 
 ## 結論
 
@@ -12,7 +12,7 @@
 - Grouped Query Attention (GQA)
 - RoPE
 - RMSNorm + pre-normalization
-- QK-Norm
+- QK-Norm（初期対照。現在の選定候補は省略）
 - SwiGLU
 - tied input/output embedding
 - biasなし、dropout 0を初期値
@@ -28,7 +28,7 @@
 | GQA 4Q/2KV | 採用 | attention parametersとKV cacheを削減 |
 | RoPE | 採用 | learned absolute positionより現代的で実装例が多い |
 | RMSNorm | 採用 | Llama/Qwen系の標準的な軽量構成 |
-| QK-Norm | 採用候補 | parameter増が小さく、学習安定性を期待。100M-token runで有無を確認 |
+| QK-Norm | 対照を保存、現在の候補では省略 | T4Kの同一100M比較でNoNormがBPB・速度改善。ただしsampling Unicode退行とHF/GGUF adapter未実装を留保 |
 | SwiGLU | 採用 | MobileLLM等で小型モデルへの有効性が報告される |
 | ReLU² | 比較候補 | gate projectionを省けるが10M日本語での優位性は未確立 |
 | tied embedding | 採用 | 10Mでは語彙層の比率が大きく、節約効果が大きい |
@@ -57,7 +57,9 @@ parametersはほぼ同じでcomputeは約2倍になる。MobileLLMのblock shari
 
 ## 学習方法に関する結論
 
-**提案**:
+**現在の決定**: Phase 5の4本の100M・補助評価・独立監査は完了。次回は拡張corpus、WSD分岐/再開、採用構成の容量/高速化、生成/配布課題を確認してから本学習予算を固定する。[詳細計画](24_phase6_plan.md)
+
+**初期提案（2026-10-02の調査時点）**:
 
 1. 最初はAdamWとSwiGLUで、原因を切り分けやすいbaselineを作る。
 2. 100M-token規模で4k/8k、QK-Norm、learning rateを一要因ずつ比較する。AdamW成立後、必要ならMuon+AdamWを別LRで比較する。

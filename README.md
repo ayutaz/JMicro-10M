@@ -67,6 +67,8 @@ uv add --optional ml <ml-package>
 
 ## 次に進めること
 
+次回の具体的な準備・開始条件・500M〜10Bの判断は[Phase 6計画](docs/24_phase6_plan.md)に整理した。現在の候補はT4K / NoQK-Norm / LR 0.002。Phase 6前の停止を維持し、再開後に拡張corpus・WSD・容量/高速化・生成課題を検証して本学習予算を固定する。
+
 Phase 5の100件overfit → 10M smoke → 100M比較・候補選定が完了し、Phase 6前で停止中。[完了記録](docs/23_phase5_completion.md)を参照する。Tokenizer再学習・成果物再取得・完了済みPhase 4測定を繰り返す必要はない。[実測と制約](docs/21_phase4_completion.md)、[次の作業](docs/10_next_steps.md)を参照する。
 
 Git管理対象はコード・設定・docs・小さな検証report。本文・Tokenizer・checkpointは管理外なので固定Hub成果物とLinux保存先を引き継ぐ。Phase 4では実artifact付きの全64テストが成功した。新規cloneにはartifactを別途復元する。

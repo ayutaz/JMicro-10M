@@ -1,8 +1,8 @@
 # 比較評価・量子化・ローカル推論の追加調査
 
-状況更新: 2026-10-03。下記の式・候補のうちBPB本文一度採点（1024/stride 512）、EOS分離、共通短文32 window、固定dev 80×5条件、評価RNG保全は[Phase 4](21_phase4_completion.md)で実装・検証した。Chat評価、rollout、人手採点、paired bootstrapは未実施。外部コードのmain/masterリンクは2026-10-02の参照で、実装採用versionは各run reportの固定値を使う。
+状況更新: 2026-10-03。下記の式・候補のうちBPB本文一度採点（1024/stride 512）、EOS分離、共通短文32 window、固定dev 80×5条件、評価RNG保全は[Phase 4](21_phase4_completion.md)で実装・検証した。Phase 5ではbatched本文採点、100件overfit、4本の100Mと近似予算、document paired bootstrap、全生成ID/flagの独立照合も実施した。Chat評価、rollout、文法等の全件blind人手採点は未実施。外部コードのmain/masterリンクは2026-10-02の参照で、実装採用versionは各run reportの固定値を使う。
 
-**実装状況**: 以下は調査時点のgate・候補。調査後に[Phase 3](19_phase3_completion.md)で両モデルのHF/native float GGUF、Q8/Q4、停止、実容量・fallbackを検証済み。内蔵Tokenizerの不一致を測定し、外部SentencePiece経路を採用した。Phase 4でGPU検証checkpointの本文NLL/BPB・共通bytes/window・Base dev生成を実測した。品質勝者、学習後の量子化品質、RSS・CPU応答時間分布は未判定。
+**実装状況**: 以下は調査時点のgate・候補。調査後に[Phase 3](19_phase3_completion.md)で両モデルのHF/native float GGUF、Q8/Q4、停止、実容量・fallbackを検証済み。内蔵Tokenizerの不一致を測定し、外部SentencePiece経路を採用した。Phase 4でGPU検証checkpointの本文NLL/BPB・共通bytes/window・Base dev生成を実測した。Phase 5ではT4K NoNormを候補に選定したが、sampling Unicode退行とNoNorm HF/GGUF adapter未実装を留保する。[採否理由](../reports/phase5/candidate_selection_review.md)。実用品質、学習後の量子化品質、RSS・CPU応答時間分布は未達・未測定。
 
 調査日: 2026-10-02。目標は「4k/8kを選べる」「数turnの短い日本語応答を測れる」「5〜10MB級の配布候補を作れる」。評価式・gate・閾値は**提案**であり、実測結果ではない。
 

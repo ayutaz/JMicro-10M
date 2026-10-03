@@ -1,10 +1,10 @@
 # Tokenizer・日本語会話データ・SFTの追加調査
 
-実装状況更新: 2026-10-03。弱い正規化・protected-byte wrapper・構造ID・会話window/教師maskと教師token計数はPhase 2で検証済み。固定公開TokenizerをWSLへ復元し、Phase 4ではWebのみのBase学習経路を検証した。SFT/Chat trainer・複数turn rollout・蒸留は未実装。以下の候補と外部資料は2026-10-02の調査記録で、採用時にrevisionと条件を再確認する。
+実装状況更新: 2026-10-03。弱い正規化・protected-byte wrapper・構造ID・会話window/教師maskと教師token計数はPhase 2で検証済み。固定公開TokenizerをWSLへ復元し、Phase 4〜5ではWebのみのBase学習経路と100M候補比較を検証し、T4K NoNormを選定した。SFT/Chat trainer・複数turn rollout・蒸留は未実装。以下の候補と外部資料は2026-10-02の調査記録で、採用時にrevisionと条件を再確認する。
 
 **実装状況**: 以下は調査時点の提案。調査後に[Phase 1のデータ取得・pilot](17_phase1_completion.md)、[Phase 2のTokenizer学習・文字復元・会話教師token計数](18_phase2_completion.md)を実施済み。後続のSFT学習・品質比較は未実施。
 
-調査日: 2026-10-02。[Tokenizer](04_tokenizer.md)と[データ設計](05_dataset.md)に残っていた、入出力仕様と短い雑談向けデータの不足を扱う。件数・ライセンスは参照先の表示、配合・閾値はJMicro向けの**提案**。今回はデータ全件の取得・集計は行っていない。
+調査日: 2026-10-02。[Tokenizer](04_tokenizer.md)と[データ設計](05_dataset.md)に残っていた、入出力仕様と短い雑談向けデータの不足を扱う。件数・ライセンスは参照先の表示、配合・閾値はJMicro向けの**提案**。この2026-10-02の文献調査自体ではデータ全件の取得・集計を行っていない。後続のpilot取得・計数は上記Phase 1〜2の実測を参照する。
 
 ## 1. 弱い正規化を設定で実現する
 

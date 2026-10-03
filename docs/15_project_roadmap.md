@@ -2,7 +2,7 @@
 
 Phase 5完了（2026-10-03）: overfit・10M smoke・4本の100M比較・補助評価・候補選定・独立監査が終了。[完了記録](23_phase5_completion.md)を参照。Phase 6本学習は開始せず停止中。
 
-作成日: 2026-10-02。最終更新: 2026-10-03（Phase 4実機検証完了）。根拠は[プロジェクト目的](01_project_goal.md)、[設計](03_architecture.md)、[技術調査](11_technical_research_gaps.md)、[Phase 0完了記録](16_phase0_completion.md)、[Phase 1完了記録](17_phase1_completion.md)。既存の**確定**方針から逆算した計画であり、フェーズ分割、成果物名、採用基準は**提案**である。
+作成日: 2026-10-02。最終更新: 2026-10-03（Phase 5候補選定完了、Phase 6準備計画を更新）。根拠は[プロジェクト目的](01_project_goal.md)、[設計](03_architecture.md)、[技術調査](11_technical_research_gaps.md)、[Phase 0完了記録](16_phase0_completion.md)、[Phase 1完了記録](17_phase1_completion.md)。既存の**確定**方針から逆算した計画であり、フェーズ分割、成果物名、採用基準は**提案**である。
 
 ## 最終的に実現すること
 
@@ -229,6 +229,8 @@ Phase 4は以下の順で実施済み。新規環境への移行・実装変更�
 
 ## Phase 6: 1B〜10B Base v1
 
+**状態**: 未着手。Phase 5で選定したT4K NoNorm / LR 0.002の1候補から始める方針。現在は停止中で、再開後に[詳細計画](24_phase6_plan.md)のcorpus・WSD・再開/分岐・容量/高速化・予算凍結を通過して本学習を始める。
+
 **目的**: 約10Mで日本語短文生成がどこまで成立するかを測り、Chatの土台を作る。
 
 **ゴール**: 5Bまでに本命1モデルへ集約し、10Bの`JMicro-10M-Base-v1`と固定評価を残す。
@@ -247,7 +249,7 @@ Phase 4は以下の順で実施済み。新規環境への移行・実装変更�
 - 各段階に必要なshardsから用意し、未使用全量の処理を10B開始の前提にしない。
 - BPB、短文品質、反復、EOS、Unicode、追加GPU時間を段階ごとに記録する。
 - 固定mixtureのscaling系列を残す。目的に合わせたmixture変更は別条件として記録する。
-- 延長するschedulerをPhase 5で決める。WSDなら継続stable枝と評価decay枝を区別し、追加computeも計上する。
+- Phase 5で長期schedulerはWSDの方針に決定した。Phase 6で実装・全state再開/分岐を検証し、継続stable枝と評価decay枝を区別して追加computeも計上する。
 
 **成果物**: 段階checkpoint、`base_scaling_report.json`、`base_v1_evaluation.md`、継続用checkpoint、master corpus manifest。
 

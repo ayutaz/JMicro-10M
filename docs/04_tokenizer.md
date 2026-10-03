@@ -1,6 +1,6 @@
 # Tokenizer設計
 
-更新: 2026-10-03。WSLでは[固定公開版](huggingface_handoff.md#tokenizer-hashと過去のexport)をhash検証して使用し、Phase 4のshard/checkpointへbindした。旧Mac版との違いは保存先metadataのみ。Tokenizer再学習は不要。Phase 4のBPBは小さい検証runで、100M品質比較や勝者決定ではない。
+更新: 2026-10-03。WSLでは[固定公開版](huggingface_handoff.md#tokenizer-hashと過去のexport)をhash検証して使用し、Phase 4のshard/checkpointへbindした。旧Mac版との違いは保存先metadataのみ。Tokenizer再学習は不要。Phase 5で両Tokenizer/model familyの100M・近似bytes/time比較を終え、T4K NoNormを本学習候補に選んだ。近いbytes予算ではT8Kが良く、Tokenizer単独の普遍的優位とはしない。[実測と限界](23_phase5_completion.md)
 
 **実装状況（2026-10-02）**: 4096/8192語彙のSentencePiece Unigram + byte fallbackを同一train sampleで学習済み。coverageは両方0.9995、特殊IDは0〜7。CRLF/CR→LF、NUL除去以外のUnicodeを保持し、改行・タブ・literal `▁`・`<`は共通wrapperでUTF-8 byte piecesへ表現する。以下の前処理候補をすべて採用したわけではなく、現在の正式な契約・実測は[Phase 2完了記録](18_phase2_completion.md)と[config](../configs/tokenizer/contract.json)を参照する。
 

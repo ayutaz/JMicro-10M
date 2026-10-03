@@ -1,8 +1,8 @@
 # モデル実装・段階学習・実行環境の追加調査
 
-実装状況更新: 2026-10-03。以下の提案と現在の実装を区別する。model.pyは学習/prefill/cacheで明示boolean mask＋is_causal=Falseを使う。maskなしis_causal=True経路は未実装で、Flash-onlyはnon-null mask非対応。fused AdamW、共有embeddingを含む行列へのdecay、FP32 parameters/BF16 autocast、単一split binの決定的sampler、完了updateでのatomic保存とsource/data/config拘束は実装済み。T8K/T4Kの200 vs 100+100は全stateが完全一致。下記の仮速度表は算術例で、現在の予算は[実測予算](../reports/phase4/resource_budget.md)を使う。
+実装状況更新: 2026-10-03。以下の提案と現在の実装を区別する。model.pyは学習/prefill/cacheで明示boolean mask＋is_causal=Falseを使う。maskなしis_causal=True経路は未実装で、Flash-onlyはnon-null mask非対応。fused AdamW、共有embeddingを含む行列へのdecay、FP32 parameters/BF16 autocast、単一split binの決定的sampler、完了updateでのatomic保存とsource/data/config拘束は実装済み。Phase 5のT8K/T4K/文書overfit/NoNormの200 vs 100+100もmathで全stateが完全一致。compile/defaultとeager/defaultはPhase 5の厳密resumeに失敗して採用せず、失敗を保持した。下記の仮速度表は算術例。現状は[Phase 5実測予算](../reports/phase5/resource_budget.json)と[次回の再測定計画](24_phase6_plan.md)を使う。
 
-**実装状況**: 以下は調査時点の仕様・候補。モデル/cacheのCPU実装・実parameter数・参照モデルとの一致は[Phase 3](19_phase3_completion.md)で検証済み。GPU学習器・保存再開・4090 benchmarkは[Phase 4](21_phase4_completion.md)で実測済み。AdamW＋warmup/cosineのみ実装済みで、Muon・WSDは候補。
+**実装状況**: 以下は調査時点の仕様・候補。モデル/cacheのCPU実装・実parameter数・参照モデルとの一致は[Phase 3](19_phase3_completion.md)で検証済み。GPU学習器・保存再開・4090 benchmarkは[Phase 4](21_phase4_completion.md)で実測済み。AdamW＋warmup/cosineとNoQK-Normは実装済み。MuonはPhase 5で追加不要と判断し、WSDは長期方針に採用したが未実装。
 
 調査日: 2026-10-02。既存[アーキテクチャ](03_architecture.md)、[学習計画](06_training_plan.md)、[環境](07_environment.md)を実装するための補足。以下の推奨設定は**提案**であり、実験済みの最適値ではない。
 
@@ -80,7 +80,9 @@ MuonのLRをAdamWと同じ数値で比較しない。Muonと補助AdamWは別LR�
 
 **設計からの計算**: effective batchが262,144 tokensなら、100M-token runは約381.5更新しかない。1M-token warmupは約3.8更新になる。小探索で大きなbatchを使うと、LR／Norm比較の結果が少ない更新回数に支配され得る。
 
-**提案**: GPUを埋めるmicro batchと、統計的なeffective batchを分ける。100M探索ではeffective batch 16,384／32,768／65,536 tokens等を候補にし、約6,104／3,052／1,526更新を確保する。メモリと速度測定後に一つへ固定して主要因を比較する。warmupはtokensとstepsの両方で記録する。
+**現在の実測**: Phase 5はeager/math・micro batch 8・effective 8,192 tokens/updateで12,208更新を固定した。小探索の更新数確保と厳密resumeのための設定で、最大VRAM活用ではない。math/compiled-mathの最大安定batch・再開一致・速度はPhase 6前に別測定する。
+
+**当初の提案**: GPUを埋めるmicro batchと、統計的なeffective batchを分ける。100M探索ではeffective batch 16,384／32,768／65,536 tokens等を候補にし、約6,104／3,052／1,526更新を確保する。メモリと速度測定後に一つへ固定して主要因を比較する。warmupはtokensとstepsの両方で記録する。
 
 SFTでは有効なAssistant教師token数がbatchごとに違う。gradient accumulation時はmicro batchごとの平均lossを単純平均せず、全micro batchの教師tokenに対するloss総和／教師token総数へ正規化する。
 
@@ -91,7 +93,7 @@ SFTでは有効なAssistant教師token数がbatchごとに違う。gradient accu
 **提案**:
 
 - 100M探索は終点固定のwarmup＋cosineを使い、設定を揃える。
-- 本番の10B→20B→50BはWSDを候補にする。継続用のstable checkpointと、評価／公開用のdecay済みcheckpointを別artifactにする。
+- 長期系列はPhase 5でWSDを採用する方針に決定したが、実装と数値配分は未凍結。継続用のstable checkpointと、評価用のdecay済みcheckpointを別artifactにする。以下の9B+1B等は当初の例で、実行configではない。[準備計画](24_phase6_plan.md)
 - 10B評価枝を作るなら、たとえば9Bで分岐し1Bをdecay。継続枝も9Bから10Bへ進める。20B評価枝は19Bで同様に分岐する。decay 10%は初期案で、最適値ではない。
 - 評価枝の追加計算も累積GPU時間へ計上し、`tokens_seen`は各枝の履歴に対する値として扱う。
 - decay済み10Bから20Bへ継続する場合は、LR再上昇を含む別の実験条件とし、stable枝からの継続と混同しない。

@@ -70,6 +70,14 @@ Phase 5完了（2026-10-03）: overfit・10M smoke・4本の100M比較・補助�
 
 ## Phase 6: 1B〜10B Base v1
 
+[詳細計画と開始条件](24_phase6_plan.md)。以下は次回再開後の作業で、現在はPhase 6前で停止中。
+
+- [ ] 拡張corpusのsource/revision/取得上限・unique量・配合・反復、held-out評価を固定する。
+- [ ] WSD stable/decay分岐を実装し、採用構成で全stateの保存再開を検証する。
+- [ ] math/compiled-math等の最大安定batch・速度・厳密resumeを測り、本学習effective batch/LR/予算を凍結する。
+- [ ] NoNormのUnicode・反復・自発停止と変換経路を切り分け、固定devで修正/対照を評価する。
+- [ ] 実CLI/restart command、永続log/PID/boot/start ticks/checkpoint SHA、枝computeと容量上限を保存する。
+
 - [ ] 500M/1B/2Bで段階評価し、5Bまでに本命1モデルを決める。
 - [ ] 検証済みのデータ処理を拡張し、50〜100B master corpus候補を段階整備する。
 - [ ] 固定mixture系列と変更系列、継続stable枝と評価decay枝を区別する。

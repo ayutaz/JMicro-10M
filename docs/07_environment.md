@@ -14,7 +14,7 @@ Phase 5完了（2026-10-03）: overfit・10M smoke・4本の100M比較・補助�
 | Python / Linux uv | 3.12.7 / 0.9.0 |
 | PyTorch / CUDA | 2.14.1 / 13.0、lock runtime 13.0.96 |
 | precision | FP32 parameters/optimizer、BF16 autocast |
-| 検証 | CUDA/BF16 finite forward/backward、全64 tests / skip 0 |
+| 検証 | Phase 4: CUDA/BF16 finite forward/backward・64 tests、Phase 5: 68 tests・4構成のmath厳密resume（全skip 0） |
 
 WSL packageの3.xとdistributionのWSL 2は別のversion。NVIDIA driverはWindows側のものを使用し、WSLへLinux display driverを追加しない。[NVIDIA公式手順](https://docs.nvidia.com/cuda/wsl-user-guide/)。Linuxのnvidia-smi表示にはツール版615.71.08もあるが、driverの観測値は616.92。
 
@@ -35,7 +35,9 @@ Python実行は一時スクリプトも`uv run --frozen`。導入は`uv python i
 
 倍増と境界の中間値を探し、最大値を3×200更新、評価・保存込みで確認した。測定点の最高速度はcompile batch 8で439,656 / 448,601 tokens/s。compile経路の最大容量は未探索。最大容量と最高速度を区別し、backend/context/precision/optimizerを変える場合は新しい設定で検証する。小探索のeffective batchと更新数は別に固定する。
 
-default、math-only、compile/defaultは成功。Flash-onlyはnon-null attention mask非対応で失敗を保持している。Flash対応のmask変更は未実装の改善候補。[実測詳細](21_phase4_completion.md)
+Phase 4の短い速度・有限値probeではdefault、math-only、compile/defaultが成功。Phase 5の厳密resumeではcompile/defaultとeager/defaultが失敗し、採用したeager/mathだけが全state一致を通過した。Flash-onlyはnon-null attention mask非対応で失敗を保持している。Flash対応のmask変更は未実装の改善候補。[Phase 4実測](21_phase4_completion.md)、[現在の速度と制約](../reports/phase5/performance_status.md)
+
+選択候補T4K NoNormの学習ピークallocated VRAMは約3.866 GiB、定常約121,139 tokens/s。Phase 4のNorm/default最大batch 64はこのmath/NoNorm構成の保証ではない。次回の容量・速度・再開gateは[Phase 6計画](24_phase6_plan.md#開始前に揃える条件)で定める。
 
 ## ストレージ配置
 
@@ -46,6 +48,7 @@ Windowsコード正本は`C:\Users\AiHUB\Desktop\japanese-tiny-llm-10m`、Linux�
   artifacts/phase2/{4096,8192}/   公開Tokenizer
   data/phase1/processed/         固定pilot、manifest、sample
   reports/phase4/gates-20261003/ ログ、source snapshot、検証checkpoint
+  reports/phase5/run-20261003-docoverfit/  実学習/評価・snapshot・checkpoint（終了済み）
 ~/jmicro-data/
   shards/{t8k-pilot,t4k-pilot}/   実学習入力
   gpu.lock                      単一GPU job排他
@@ -65,4 +68,4 @@ T8K trainは18,022 docs / 6,884,183 stream tokens / 32,774,150 body bytes、T4K�
 
 synthetic/実shard、eager/compile、backend、batch、peak VRAM、data wait、評価/save時間を測定済み。Windows volumeとLinux filesystemのI/O比較、DataLoader単体、厳密なMFU、compiled容量探索は未実施。これらをPhase 4の成功として記載しない。
 
-長期予算は実測tokens/sから計算し、評価/save/compile初回/データ処理/比較runを加える。T8K eager最大batchの10B computeは約12.34h。品質改善に必要な総期間の保証ではなく、20B/50B着手はロードマップの条件に従う。
+長期予算は実測tokens/sから計算し、評価/save/compile初回/データ処理/比較runを加える。Phase 4のT8K Norm/default最大batchでは10B compute約12.34hという算術値を得たが、Phase 5の厳密resumeを通過した現候補の保証ではない。選択したT4K NoNorm / math / batch 8の速度なら10B compute約22.93hの暫定値。開始前の再測定で更新する。[次回の予算](24_phase6_plan.md#暫定のcompute見積もり)。品質改善に必要な総期間の保証ではなく、20B/50B着手はロードマップの条件に従う。

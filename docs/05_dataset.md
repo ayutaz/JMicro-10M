@@ -1,6 +1,6 @@
 # データ設計
 
-現在地（2026-10-03）: 固定pilotは採用22,998件（Web 19,998 / 会話3,000）。Phase 4 Base shardはWebのみのtrain 18,022 / dev 924 / test 1,052文書。dev/testと固定evalは学習から除外し、会話/sharealikeは別系列へ保つ。[復元とshard](../data/README.md)。50〜100B master corpusは未取得。以下の外部規模・条件は2026-10-02の候補調査値で、拡張時に固定revisionの原資料を再確認する。
+現在地（2026-10-03）: 固定pilotは採用22,998件（Web 19,998 / 会話3,000）。Phase 4 Base shardはWebのみのtrain 18,022 / dev 924 / test 1,052文書。dev/testと固定evalは学習から除外し、会話/sharealikeは別系列へ保つ。[復元とshard](../data/README.md)。Phase 5の100Mはこのpilotの反復（T8K約14.53 / T4K約11.91倍のstream-token曝露）であり、unique 100M corpusの実測ではない。50〜100B master corpusは未取得。次回は[段階取得と開始条件](24_phase6_plan.md#開始前に揃える条件)に従って必要な範囲から拡張する。以下の外部規模・条件は2026-10-02の候補調査値で、拡張時に固定revisionの原資料を再確認する。
 
 ## 基本方針
 

@@ -10,7 +10,7 @@ Phase 5完了（2026-10-03）: overfit・10M smoke・4本の100M比較・補助�
 |---|---|
 | コード・docs・lockの正本 | Windows `C:\Users\AiHUB\Desktop\japanese-tiny-llm-10m` |
 | Linux実行コピー | `/home/aihub_ubuntu/src/japanese-tiny-llm-10m` |
-| GitHub | [private repository](https://github.com/ayutaz/japanese-tiny-llm-10m)。最近のPhase 4コミットは未push |
+| GitHub | [private repository](https://github.com/ayutaz/japanese-tiny-llm-10m)。最近のPhase 5コミットと文書更新は未push |
 | 公開pilot / Tokenizer | [固定Hub repository](https://huggingface.co/datasets/japanese-data-analyze/japanese-tiny-llm-10m-artifacts)、約107MB |
 | Hub commit | `0b1042979bf32899e24da30790e3ae6b239013c3` |
 | manifest SHA-256 | `8072bd218be26637a51c7c11540f1c8c636392c3b1a91f805a5e317e6ca55a09` |
@@ -119,6 +119,8 @@ checkpoint version 2は完了updateでmodel/optimizer/scheduler/Python・NumPy�
 
 ## 6. 実装済みCLIと次回の再開
 
+次回のPhase 6準備順・開始条件・未凍結項目は[詳細計画](24_phase6_plan.md)を参照する。現在はPhase 6前で停止。WSDの実CLIと凍結run configはまだ存在しないため、実装/gate通過後に本学習の起動・再開commandを追加する。
+
 `scripts/train.py`にbuild-shards/train/evaluateを実装済み。trainはCLI引数を使用し、baseline JSONを自動読込しない。AdamW＋warmup/cosineは実装済み、Muon・WSD・Chat trainer・複数source mixtureは未実装。
 
 以下のhelpは学習を起動せず確認できる:
@@ -148,7 +150,7 @@ eager最大安定batchはT8K 57 / T4K 64、測定点の最高速度はcompile ba
 ## 次の担当へ渡す文面
 
 ```text
-AGENTS.md、docs/autonomous_status.md、docs/15_project_roadmap.md、docs/windows_handoff.mdを読んでください。
+AGENTS.md、docs/autonomous_status.md、docs/15_project_roadmap.md、docs/windows_handoff.md、docs/24_phase6_plan.mdを読んでください。
 Phase 0〜5は完了。今回のPhase 5は完了し、Phase 6前で停止中です。ユーザーの再開指定があるまで本学習を起動しないでください。
 最新コードの正本はWindows workspaceで、最近のコミットは未pushです。Linux実行sourceはsnapshot/hashで確認してください。
 固定公開Tokenizer/pilotは復元済み。Pythonは必ずuv run --frozen、依存変更はuv addを使ってください。

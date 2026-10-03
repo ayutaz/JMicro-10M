@@ -1,10 +1,10 @@
 # 評価・Checkpoint・TDD
 
-最終更新: 2026-10-03。Base本文NLL/BPB・生成評価とcheckpoint再開は実装・実GPU検証済み。[評価契約report](../reports/phase4/base_evaluation_contract_report.json)。devは924文書 / 共通1,633,458 canonical bytes、test未使用。以下のmetric/TDDは要件一覧であり、Chat、人手評価、100件memorize、統計比較は未実施。
+最終更新: 2026-10-03。Base本文NLL/BPB・生成評価とcheckpoint再開は実装・実GPU検証済み。[評価契約report](../reports/phase4/base_evaluation_contract_report.json)。devは924文書 / 共通1,633,458 canonical bytes、test未使用。Phase 5で100件overfit、10M smoke、4本の100M、4補助checkpoint、document paired bootstrapを実施し独立監査した。[実測証拠](23_phase5_completion.md)。Chat、rollout、文法等の全件blind人手採点は未実施。以下のmetric/TDDは要件一覧で、未実施metricを達成済みとしない。
 
 ## 評価原則
 
-**確定**: Tokenizerが異なるモデル間ではtoken-level perplexityを直接比較しない。4k/8kの主比較指標は同一raw bytesに対するBits Per Byte (BPB)とする。
+**確定**: Tokenizerが異なるモデル間ではtoken-level perplexityを直接比較しない。4k/8kの主比較指標は同一原文集合・共通前処理のcanonical UTF-8 bytesを分母にしたBits Per Byte (BPB)とする。
 
 **提案（実装上の具体化）**: 同一原文集合と共通前処理を固定し、実際に予測したcanonical UTF-8 bytesをBPBの分母とする。本文NLLの総和を使い、特殊tokenの損失は分離する。文脈量、同一学習bytes／GPU時間、統計比較、Chat rubricの仕様は[評価・配布調査](14_evaluation_deployment_research.md)を参照する。
 
@@ -27,7 +27,7 @@
 
 ## 固定生成suite
 
-**固定済み**: Base/Chat各100件、各dev 80/test 20をversion管理する。Phase 4ではBase dev 80×5 decoding条件を各モデルで評価した。testとChatは未使用。
+**固定済み**: Base/Chat各100件、各dev 80/test 20をversion管理する。Phase 4に続きPhase 5のsmoke/100MでもBase dev 80×5 decoding条件を各モデルで評価し、生成IDからflagsを独立照合した。testとChatは未使用。
 
 - 文章completion
 - 日常的な日本語文法

@@ -16,8 +16,8 @@ Phase 5完了（2026-10-03）: overfit・10M smoke・4本の100M比較・補助�
 - **確定**: 目標は「約10M parameters、日本語専用、短文生成と数ターンの雑談対話」。高度な推論や長文RAGではなく、狭い能力を高密度に持たせる。
 - **確定**: Tokenizer、モデル重み、事前学習、Dialogue SFTまでスクラッチで構築する。
 - **確定**: Phase 0〜3はiMac、Phase 4はWindows/WSL＋RTX 4090で完了。WSL package 3.0.1.0 / Ubuntu WSL 2を使用。最大安定batchはeager T8K 57 / T4K 64。約8TBはユーザー計画で、Phase 5終了時のLinux空き実測は約969.7GB。
-- **提案**: 本命はModern deep-thin Transformer。8k語彙版はhidden 256、12層、4Q/2KV GQA、SwiGLU、RoPE、RMSNorm、head間gain共有のQK-Norm、context 1024、tied embeddingで約9.77M。
-- **提案**: 4k語彙版も同じ約10M予算で作り、BPBと日本語圧縮率で比較する。
+- **選定済み（Phase 5の小予算比較）**: 本学習候補はT4K / NoQK-Norm / LR 0.002。hidden 256、13層、FFN 640、4Q/2KV GQA、SwiGLU、RoPE、RMSNorm、context 1024、tied embeddingで10,001,152 parameters。停止・反復・sampling UnicodeとNoNorm変換は未達・未対応。
+- **実測済み**: 4k/8kの100M比較と近似bytes/time比較は完了。同一tokenと近い時間ではT4Kが有望、近いbytesではT8Kが僅かに良く、語彙の普遍的な優劣は断定しない。
 - **確定**: 学習量は100M → 1B → 2B → 5B → 10B → 20B → 50B tokensの段階評価。50Bは20B時点で改善が続く場合のみ実施する。
 - **確定**: Vast.aiは初期開発には使わず、後半の並列比較・スケーリング実験に限定する。
 
@@ -57,6 +57,7 @@ Phase 5完了（2026-10-03）: overfit・10M smoke・4本の100M比較・補助�
 
 22. [22_phase5_plan.md](22_phase5_plan.md) — Phase 5の目的・条件・予算・scheduler判断
 23. [23_phase5_completion.md](23_phase5_completion.md) — overfit/smoke/100M比較・候補選定・品質未達・独立監査
+24. [24_phase6_plan.md](24_phase6_plan.md) — 次回の準備gate、拡張corpus、WSD、容量/高速化、段階評価・予算
 
 運用文書: [最新状態](autonomous_status.md)、[復旧履歴](autonomous_history_20261003.md)、[Windows/WSL引継ぎ](windows_handoff.md)、[固定Hub復元](huggingface_handoff.md)、[自律runner](codex_automation.md)、[評価仕様](evaluation_protocol.md)。[data](../data/README.md)、[eval](../eval/README.md)、[reports](../reports/README.md)に各保存領域の手順を記載する。
 
@@ -71,7 +72,7 @@ Phase 5完了（2026-10-03）: overfit・10M smoke・4本の100M比較・補助�
 - **提案**: BPBに加え、同一原文bytesと同一GPU時間での比較条件を用意する。
 - **提案**: 長期学習前にランダム重みでHF／GGUF互換性を確認する。FFN幅576／640ではK-quantの型fallbackを確認する。
 - **確認済み**: llama.cppの一般的なSentencePiece変換経路と独自Unigramの分割方式は同一ではない。内蔵Tokenizerへの互換性を検証し、必要なら外部SentencePieceでIDを作る経路を使う。
-- **現在の判断**: 4090速度はPhase 4、会話教師token量はPhase 2で実測済み。4k/8k品質勝者・雑談品質・学習後の量子化品質は未判定。
+- **現在の判断**: 4090速度はPhase 4、会話教師token量はPhase 2で実測済み。Phase 5の候補選定は完了。雑談品質・学習後の量子化品質と、拡張corpus/長期予算での優位性は未達・未実証。
 
 追加調査は学習・推論実験を実施した結果ではない。既存の確定方針を維持し、実装候補と検証条件を追加している。
 

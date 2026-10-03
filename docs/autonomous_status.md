@@ -14,7 +14,7 @@
 
 **最新: Phase 5完了。全比較・補助評価・独立監査が終了し、Phase 6前で停止中。** [詳細計画](22_phase5_plan.md)と`configs/phase5/plan.json`へ目的・合格条件・予算を固定した。固定blockの失敗を保持し、文書単位samplerへ修復した`34d932d`では全68 tests / skip 0と、新sourceのT8K/T4K/文書samplerのCUDA 200 vs 100+100全state一致が成功した。NoQK-NormのT4Kも全state完全一致を通過し、4構成のresume証拠を`reports/phase5/resume_report.json`へ保存した。100件overfitは6,000更新後、本文NLL/token **0.01277**、teacher accuracy **99.712%**、16-token continuation exact **100%**、EOS argmax/実生成停止 **100%**で全5 gateに合格した。raw証拠は`reports/phase5/overfit_report.json`に保存済み。品質目標の数値を維持した凍結は`5d6b72e`へ保存済み。公開25 payloadの固定revision/hash検証も成功済み。
 
-10M smokeは600更新で保存・再開し、1,221更新 / **10,002,432 tokens**で終了。全更新・weights・optimizerの有限値、凍結設定、loss低下を独立に監査した。dev 924文書 / 1,633,458 bytesのBPBは初期**2.74787 → 1.41697**。固定dev 80件×5条件の400生成を実施し、IDから全flagを再計算して一致した。抑制ありgreedyはEOS **0/80**、反復 **63/80**、Unicode/role/emptyは各0/80で、Base/Chat品質目標は未達。文書末尾からの暗記EOS 100%と自発的な短文停止は区別する。smoke評価に約354秒を要した。`reports/phase5/smoke_report.json`と二つのsmoke auditへ保存する。
+10M smokeは600更新で保存・再開し、1,221更新 / **10,002,432 tokens**で終了。全更新・weights・optimizerの有限値、凍結設定、loss低下を独立に監査した。dev 924文書 / 1,633,458 bytesのBPBは初期**2.74787 → 1.41697**。固定dev 80件×5条件の400生成を実施し、IDから全flagを再計算して一致した。抑制ありgreedyはEOS **0/80**、反復 **63/80**、Unicode/role/emptyは各0/80で、Base/Chat品質目標は未達。文書末尾からの暗記EOS 100%と自発的な短文停止は区別する。smoke評価に約354秒を要した。`reports/phase5/smoke_report.json`と二つのsmoke auditへ保存済み。
 
 T8Kの100M学習は**12,208更新 / 100,007,936 tokens**で終了し、最終checkpoint SHA `a9dbdc35b5212a899cc3d6e6aad58a8338d50944a83d94f7497a5555dc6f035e`を保存した。全更新・weights・optimizer有限、source snapshot/hash・shard binding・予算一致を独立に確認。first/last 100更新の平均loss **7.7029 → 2.8532**、定常中央値 **117,119 tokens/s**、学習workerの実時間約14分26秒。全dev BPB **1.25886**でsmokeの1.41697から改善、共通短文windowと固定400生成も終了してID/flagを独立に照合した。抑制ありgreedyはEOS **0/80**、反復 **54/80**、Unicode/role/empty各0/80。文書末尾EOS argmaxは19.81%。`reports/phase5/100m-t8k_training_audit.json`と`100m-t8k_evaluation_audit.json`へ保存。smoke対100Mのpaired CIは文書不確実性を測り、学習seedの変動やbudget/schedule以外を揃えた純粋なscaling証明とはしない。候補の採用判断は全比較後に完了した。
 
@@ -37,7 +37,7 @@ T4KのQK-Normなし100M学習も**12,208更新 / 100,007,936 tokens**で終了�
 
 VRAM/高速化に関する現在の回答を[実測記録](../reports/phase5/performance_status.md)へ保存した。学習はWSL 2 / Ubuntu上でuv経由。今回のmath / batch 8比較は学習ピークallocated VRAM約3.9〜4.5 GiB、速度約11〜12万tokens/sで、VRAM最大活用・高速化完了ではない。Phase 4のcompile/default約44〜45万tokens/sは測定済みだが、Phase 5の厳密resumeに失敗したため採用しない。mathの最大安定batchとcompiled/mathは未検証。今回の凍結比較を途中変更せず完了し、本学習前の追加検証をPhase 6引継ぎへ残す。
 
-Windowsの正本: `C:\Users\AiHUB\Desktop\japanese-tiny-llm-10m`。Linux実行コピー: `/home/aihub_ubuntu/src/japanese-tiny-llm-10m`。LinuxのGit HEADは元の移行時のものを含み、実際の実行sourceはrun snapshotとimplementation hashで特定する。WindowsのPhase 4保存コミットは`3168d79`と`9cc4a75`。最近のコミットはpushしていない。
+Windowsの正本: `C:\Users\AiHUB\Desktop\japanese-tiny-llm-10m`。Linux実行コピー: `/home/aihub_ubuntu/src/japanese-tiny-llm-10m`。LinuxのGit HEADは元の移行時のものを含み、実際の実行sourceはrun snapshotとimplementation hashで特定する。WindowsのPhase 4保存コミットは`3168d79`と`9cc4a75`、Phase 5完了コミットは`c3b857c`。最近のコミットはpushしていない。
 
 - `scripts/train.py`: `build-shards` / `train` / `evaluate`を実装済み。trainはCLI引数を使い、baseline JSONの自動読込はしない。
 - AdamW、FP32 parameters/BF16 autocast、gradient accumulation、warmup/cosine、mmap sampler、atomic checkpointを実装。Muon・WSD・Chat trainer・複数source mixtureは未実装。
@@ -52,11 +52,15 @@ command: `bash scripts/run_phase4_job.sh scripts/run_phase5.py --output reports/
 
 棄却run `run-20261003`（compile/default）と`run-20261003-eager`（eager/default）はterminal failed、Windows PID 6688/24632は終了済み。消費列/RNGは一致したが重み・optimizer・lossが一致しなかった。6更新の切り分けではdefaultの重み差約3.9e-5、math-onlyは0。閾値を緩めずbackendを変更し、math-onlyのT8K 200 vs 100+100全state一致が成功した。raw失敗・checkpoint・診断を保持する。
 
-`run-20261003-math`はT8K/T4Kの200 vs 100+100全state一致と初期評価を通過後、overfit-evaluationでterminal failed。Windows PID 15036 / Linux PID 437は終了済み。6,000更新のtrain loss約0.002に対し、文書単独のNLL/token 3.2063、teacher accuracy 65.40%、16-token exact 2%、EOS 69%。固定した連結blockの文脈に依存した疑いがある。raw失敗・checkpointを保持し、文書単位windowを使う修復runを新規初期化する。予算6,000更新と全閾値は維持し、padding input slotsと実教師token数を分ける。通常のsmoke/100Mのblock samplerは変えない。
+`run-20261003-math`はT8K/T4Kの200 vs 100+100全state一致と初期評価を通過後、overfit-evaluationでterminal failed。Windows PID 15036 / Linux PID 437は終了済み。6,000更新のtrain loss約0.002に対し、文書単独のNLL/token 3.2063、teacher accuracy 65.40%、16-token exact 2%、EOS 69%。固定した連結blockの文脈に依存した疑いがある。raw失敗・checkpointを保持し、文書単位windowを使う修復runを新規初期化した。この修復runは同じ閾値で全5 gateに合格済み。予算6,000更新と全閾値は維持し、padding input slotsと実教師token数を分ける。通常のsmoke/100Mのblock samplerは変えない。
 
 終了済みjobの記録: Windows supervisor PID 35316、Linux PID 404。Linux checkoutの`reports/phase4/gates-20261003/job.json`にboot ID/start ticks/stage、同directoryに全ログ・snapshot・checkpointを保持。Windows側にはlauncher/logと小さい集約reportを保存。GPU排他は`~/jmicro-data/gpu.lock`。再開時はPIDだけでなくboot ID/start ticksとcheckpointを照合する。
 
 ## 今回の完了と次回の境界
+
+文書更新の[検証記録](../reports/phase5/documentation_update_20261003.json)を保存した。全current文書のリンク/anchorと既存CLI helpを確認し、Phase 0〜5の実験report 55 files、学習コード・lock・凍結protocol/Phase 5 planを維持した。Phase 6は起動していない。
+
+ドキュメント更新（2026-10-03）: 目的・architecture・評価・研究課題に残っていたPhase 4停止/QK-Normなし未実装/100M未開始等の記述を実測へ更新した。次回のcorpus・WSD・再開/分岐・容量/高速化・生成/変換課題・段階評価と暫定見積もりを[Phase 6計画](24_phase6_plan.md)へ整理した。文書更新はPhase 6開始の承認ではなく、停止境界を維持する。
 
 [Phase 5完了記録](23_phase5_completion.md)、[候補の採否理由](../reports/phase5/candidate_selection_review.md)、[独立監査](../reports/phase5/independent_audit.json)を保存した。候補はT4K / NoQK-Norm / LR 0.002の1つ。全68 tests / failure・error・skip 0、4構成のCUDA厳密resume、overfit全5 gate、smokeの実保存再開、4本の100Mと4補助checkpointの全dev/短文評価、各400固定生成のID/flag再照合が成功した。testとChat suiteは未使用。
 

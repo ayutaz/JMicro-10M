@@ -1,10 +1,16 @@
 # アーキテクチャ設計
 
-現在の実装はQK-Normありの固定baseline。以下のQK-Normなし、ReLU²、Layer Sharing、hybridは未実装の比較候補。設定を変える場合はparameter予算・数値一致・GPU容量を別runで検証する。[現在の実測](21_phase4_completion.md)
+現在の実装はQK-Normあり/なしの両方をサポートする。[Phase 5](23_phase5_completion.md)でT4K / NoQK-Norm / LR 0.002を本学習候補に選定した。ReLU²、Layer Sharing、hybridは未実装の後半候補。設定を変える場合はparameter予算・数値一致・GPU容量を別runで検証する。NoNormのHF/GGUF adapterは未実装。
 
-**実装状況（2026-10-03）**: T8K/T4Kを実装し、実parameter数9,772,800／10,002,816、因果性、padding/cache、HF/native float GGUFをCPUで検証済み。[Phase 3完了記録](19_phase3_completion.md)。Phase 4で両モデルのCUDA/BF16学習・再開・評価・容量を検証済み。品質勝者は未判定で、以下の比較・派生案は研究候補として残す。
+**実装状況（2026-10-03）**: T8K/T4Kを実装し、実parameter数9,772,800／10,002,816、因果性、padding/cache、HF/native float GGUFをCPUで検証済み。[Phase 3完了記録](19_phase3_completion.md)。Phase 4で両モデルのCUDA/BF16学習・再開・評価・容量を検証済み。Phase 5では同一token予算と近い時間予算の結果からT4K NoNormを選定した。近いbytes予算ではT8Kが僅かに良く、モデルfamilyと予算に依存した選択。Base/Chatの品質目標は未達で、以下の派生案は研究候補として残す。
 
-## 本命: JMicro-10M-T8K
+## 現在の本学習候補: T4K / NoQK-Norm
+
+語彙4,096、hidden 256、13層、FFN 640、4Q/2KV、head dim 64、SwiGLU、RMSNorm、RoPE、context 1024、tied embedding、biasなし、dropout 0。Q/K head NormをIdentityへ置き換え、gainは持たない。実parameter数 **10,001,152**。[実行configとcheckpoint hash](../reports/phase5/candidate_configs.json)
+
+主比較のdev BPB 1.221443、共通短文BPB 1.546589。greedy EOS0/80、反復54/80、sampling Unicode2/240という未達がある。採用はPhase 6の比較候補であり、品質や配布互換の保証ではない。[採否理由](../reports/phase5/candidate_selection_review.md)、[次の準備](24_phase6_plan.md)
+
+## 初期baseline: JMicro-10M-T8K
 
 **提案**:
 
@@ -72,7 +78,7 @@ tie_word_embeddings: true
 
 **確定**: contextはまず1024。短文対話を対象とするため、v1はfull causal attentionとする。
 
-**提案**: 4 query heads / 2 KV heads、head_dim 64のGQAを使う。QK-Normは有効化した案を第一候補にするが、100M-token A/Bで学習安定性と速度を確認する。
+**提案**: 4 query heads / 2 KV heads、head_dim 64のGQAを使う。QK-Normを有効化した初期baselineを保持する。Phase 5のT4K A/BではNoNormを選定し、CUDA厳密resume・有限値・生成条件も照合した。
 
 **提案（追加調査）**: QK-NormはQ/Kそれぞれのhead次元RMSNorm、head間gain共有、RoPEの前、attention scaleは`1/sqrt(64)`として具体化する。cache使用時のmask、RoPE位置、初期化の仕様は[モデル実装調査](12_training_implementation_research.md)、HF／GGUFと量子化の制約は[配布調査](14_evaluation_deployment_research.md)を参照する。CPUのHF/native float GGUF parityはPhase 3で実測済み、GPUのcompile BF16 parityはPhase 4で確認した。学習後のexportと量子化品質は未検証。
 
