@@ -1,6 +1,6 @@
 # Phase 6③以降: 再開時の実行計画
 
-更新: 2026-10-03。①データ拡充と②WSD/長時間学習準備は[完了済み](26_phase6_preparation_completion.md)。ユーザーの資源活用・高速化の指定で③を再開し、[実装・凍結比較・実CLI](28_phase6_performance.md)に従い測定中。**③の検証・commit後に停止し、④生成/変換・⑤本学習設定の凍結・500M以上の本学習は開始しない。** 本書の④⑤以降の予算は将来の提案であり、再開時に固定する。品質閾値と完全一致の要求は維持する。
+更新: 2026-10-03。①データ拡充と②WSD/長時間学習準備は[完了済み](26_phase6_preparation_completion.md)。③の資源活用・高速化も[完了](29_phase6_performance_completion.md)。採用はFlash/compile reduce-overhead、batch 32、694,521 tokens/s。**③の証拠をcommitして停止し、④生成/変換・⑤本学習設定の凍結・500M以上の本学習は開始しない。** 本書の④⑤以降の予算は将来の提案であり、再開時に固定する。品質閾値と完全一致の要求は維持する。
 
 ## 出発点と、今回繰り返さない作業
 
@@ -10,8 +10,8 @@
 |---|---|---|
 | データ | train 756,087,912 unique stream tokens、Web 100%、全raw/cluster/shard監査 | 現在のhashと保存先を確認。追加取得・再構築は通常の再開条件にしない |
 | WSD | stable 200 vs 100+100、decay 100 vs 50+50、全state・履歴完全一致 | batch/backend/実装変更後に同じ厳密検証を通す |
-| GPU設定 | eager/math、FP32 parameters＋BF16、batch 8 / accumulation 1 | NoNorm/mathの最大安定batch・compiled/mathは未測定。実運用の容量と最速設定を測る |
-| 過去の速度 | Phase 5採用構成の定常中央値121,139 tokens/s、peak allocated約3.866 GiB | 拡張shard/WSDで再測定。Phase 4のNorm/default最大batch 64・約44万tokens/sを流用しない |
+| GPU設定 | eager/math、FP32 parameters＋BF16、batch 8 / accumulation 1 | ③でreference/math最大45、compiled/math最大53、Flash/compile最大111を検証。最速Flash/compile batch 32を採用 |
+| 過去の速度 | Phase 5採用構成の定常中央値121,139 tokens/s、peak allocated約3.866 GiB | ③の拡張shard/WSDで694,521 tokens/s、最速reference/math比5.436倍。Phase 4のNorm/default測定とは別の証拠 |
 | 資源 | 準備完了時のLinux空き950,875,688,960 bytes、data約15.43GB、CUDA run約1.45GB | 開始時に再確認。data容量はraw約2.15GBを含まないapparent bytes |
 | 品質・配布 | Phase 5のgreedy EOS 0/80、反復54/80、sampling Unicode 2/240 | 未達を維持。NoNorm HF/GGUF adapterも未実装 |
 
@@ -70,6 +70,6 @@ NoNormのHF/native float GGUF adapterを実装・検証する。外部SentencePi
 
 ## 時間と再開入口
 
-現候補のPhase 5実測による参考computeは500M約1.15時間、10B約22.93時間。これは純粋な学習の算術値で、③④の実装・検証、新dev全文評価、cold compile、保存、decay枝、修復を含まない。作業全体の完了時刻は③の測定後に更新する。[現在の予算](24_phase6_plan.md#暫定のcompute見積もり)
+③の定常実測694,521 tokens/sによる参考computeは500M約12分、10B約4時間。純学習の算術値で、④⑤の実装・検証、新dev全文評価、cold compile、保存、decay枝、LR調整を含まない。本学習設定は未凍結で、作業全体の完了時刻の保証ではない。[現在の予算](24_phase6_plan.md#暫定のcompute見積もり)
 
-次回は[最新状態](autonomous_status.md)、本書、[引継ぎ](windows_handoff.md)を読み、process/source/dataの確認から始める。③の既存studyを確認して重複起動せず、検証・commit後に停止する。④以降・本学習は開始しない。準備の中断復旧と別出力への読み取り監査は[実CLI](26_phase6_preparation_completion.md#実cliと再開)にある。
+次回は[最新状態](autonomous_status.md)、本書、[引継ぎ](windows_handoff.md)を読み、process/source/dataの確認から始める。③のstudyとcold再開は終了済みで、完了した測定を重複起動しない。③の証拠をcommitして停止する。④以降・本学習は再開指定を待つ。準備の中断復旧と別出力への読み取り監査は[実CLI](26_phase6_preparation_completion.md#実cliと再開)にある。

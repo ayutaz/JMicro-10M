@@ -1,6 +1,6 @@
 # JMicro-10M 設計・調査ノート
 
-Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpus・shardの独立監査も完了。③の速度/batch探索を再開し実測中。本学習は未開始。
+Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpus・shardの独立監査も完了。③の速度/batch・厳密再開・cold再開も完了。④以降と本学習は未開始。
 
 このディレクトリは、日本語専用の約10Mパラメータ級Decoder-only Language Model `JMicro-10M` を、Tokenizerを含めてスクラッチ構築するための設計・調査記録である。
 
@@ -15,7 +15,7 @@ Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの�
 
 - **確定**: 目標は「約10M parameters、日本語専用、短文生成と数ターンの雑談対話」。高度な推論や長文RAGではなく、狭い能力を高密度に持たせる。
 - **確定**: Tokenizer、モデル重み、事前学習、Dialogue SFTまでスクラッチで構築する。
-- **確定**: Phase 0〜3はiMac、Phase 4はWindows/WSL＋RTX 4090で完了。WSL package 3.0.1.0 / Ubuntu WSL 2を使用。Phase 4のNorm/default最大安定batchはeager T8K 57 / T4K 64。現在のNoNorm/math最大batch・compiled/math速度は未測定。約8TBはユーザー計画で、Phase 6①②完了時のLinux空き実測は950,875,688,960 bytes（約950.9GB / 885.6GiB）。
+- **確定**: Phase 0〜3はiMac、Phase 4はWindows/WSL＋RTX 4090で完了。WSL package 3.0.1.0 / Ubuntu WSL 2を使用。Phase 4のNorm/default最大安定batchはeager T8K 57 / T4K 64。③でNoNorm/math最大batch 45、compiled/math最大53、Flash/compile最大111を確認。最速はFlash/compile batch 32、694,521 tokens/s。約8TBはユーザー計画で、Phase 6①②完了時のLinux空き実測は950,875,688,960 bytes（約950.9GB / 885.6GiB）。
 - **選定済み（Phase 5の小予算比較）**: 本学習候補はT4K / NoQK-Norm / LR 0.002。hidden 256、13層、FFN 640、4Q/2KV GQA、SwiGLU、RoPE、RMSNorm、context 1024、tied embeddingで10,001,152 parameters。停止・反復・sampling UnicodeとNoNorm変換は未達・未対応。
 - **実測済み**: 4k/8kの100M比較と近似bytes/time比較は完了。同一tokenと近い時間ではT4Kが有望、近いbytesではT8Kが僅かに良く、語彙の普遍的な優劣は断定しない。
 - **確定**: 学習量は100M比較 → 500M → 1B → 2B → 5B → 10B → 20B → 50B tokensの段階評価。50Bは20B時点で改善が続く場合のみ実施する。
@@ -25,7 +25,7 @@ Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの�
 
 **完了範囲**: [4k/8k Tokenizer](18_phase2_completion.md)、[両モデル/cache/学習前export](19_phase3_completion.md)、GPU学習器・評価・再開・速度を検証済み。Phase 3重みはランダム初期化、Phase 4には小さい学習済み検証checkpointがある。Python 3.12.7、実行は`uv run --frozen`、依存変更は`uv add`。
 
-**現在地**: [Phase 4の実GPU検証](21_phase4_completion.md)と[Phase 5の候補選定](23_phase5_completion.md)が完了し、Phase 6①②完了・③高速化と容量検証中（本学習未開始）。Base/Chatの本学習・能力目標は未達。①②は756M unique train stream tokensとWSD stable/decayのCUDA完全一致、全74 tests / skip 0、73 GPU checksを確認した。[完了証拠](26_phase6_preparation_completion.md)。最新の状態は[継続記録](autonomous_status.md)、③以降は[残りの実行計画](27_phase6_remaining_plan.md)を参照する。
+**現在地**: [Phase 4の実GPU検証](21_phase4_completion.md)と[Phase 5の候補選定](23_phase5_completion.md)が完了し、Phase 6①②③完了で停止中（本学習未開始）。Base/Chatの本学習・能力目標は未達。①②は756M unique train stream tokensとWSD stable/decayのCUDA完全一致、全74 tests / skip 0、73 GPU checksを確認した。[完了証拠](26_phase6_preparation_completion.md)。最新の状態は[継続記録](autonomous_status.md)、③以降は[残りの実行計画](27_phase6_remaining_plan.md)を参照する。
 
 **別PCでの再開入口**: [Windows/WSL＋RTX 4090の再開手順](windows_handoff.md)。GitHubの取得からHub成果物の復元、uv環境、CUDA確認、実装順までを順に実行できる。
 
@@ -61,6 +61,7 @@ Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの�
 26. [26_phase6_preparation_completion.md](26_phase6_preparation_completion.md) — ①②の実量、全corpus/CUDA監査、保存先、実CLI
 27. [27_phase6_remaining_plan.md](27_phase6_remaining_plan.md) — 再開後の③容量/速度、④生成/変換、⑤設定凍結、未実装入口と完了条件
 28. [28_phase6_performance.md](28_phase6_performance.md) — ③の実GPU高速化・backend実効確認・容量と厳密再開の比較
+29. [29_phase6_performance_completion.md](29_phase6_performance_completion.md) — ③の採用速度・最大容量・厳密/cold再開・独立監査と停止記録
 
 運用文書: [最新状態](autonomous_status.md)、[復旧履歴](autonomous_history_20261003.md)、[Windows/WSL引継ぎ](windows_handoff.md)、[固定Hub復元](huggingface_handoff.md)、[自律runner](codex_automation.md)、[評価仕様](evaluation_protocol.md)。[data](../data/README.md)、[eval](../eval/README.md)、[reports](../reports/README.md)に各保存領域の手順を記載する。
 

@@ -1,0 +1,87 @@
+{
+  "status": "performance_verified",
+  "completed_at": "2026-10-03T07:29:17.934251+00:00",
+  "selected": {
+    "name": "compile-reduce-flash",
+    "backend": "flash",
+    "compile": true,
+    "compile_mode": "reduce-overhead",
+    "training_fast_path": true,
+    "deterministic": true,
+    "batch": 32,
+    "context": 1024,
+    "accumulation": 1,
+    "parameters": 10001152,
+    "dtype": "FP32 parameters, BF16 forward/backward",
+    "effective_input_tokens_per_update": 32768
+  },
+  "selected_resources": {
+    "median_tokens_per_second": 694521.4348618583,
+    "peak_allocated_bytes_including_save_eval": 6149073408,
+    "peak_reserved_bytes_including_save_eval": 7075790848,
+    "driver_peak_memory_mib": 7714.0,
+    "driver_memory_total_mib": 24564.0,
+    "gpu_utilization_max_percent": 95.0,
+    "gpu_utilization_median_all_samples_percent": 14.5,
+    "power_peak_watts": 371.28,
+    "data_wait_fraction": 0.0054692968556536575,
+    "save_seconds": [
+      0.22794861500005936,
+      0.1715960520000408,
+      0.17023157699986768
+    ],
+    "evaluation_seconds": [
+      0.644191729999875,
+      0.8360147170001255,
+      0.6690267399999357
+    ],
+    "effective_tokens_per_update": 32768,
+    "telemetry_limit": "2s samples include startup/save/eval; GPU utilization is not MFU"
+  },
+  "maximum_capacity_resources": {
+    "median_tokens_per_second": 649563.0939632591,
+    "peak_allocated_bytes_including_save_eval": 21053954560,
+    "peak_reserved_bytes_including_save_eval": 24136122368,
+    "driver_peak_memory_mib": 23984.0,
+    "driver_memory_total_mib": 24564.0,
+    "gpu_utilization_max_percent": 98.0,
+    "gpu_utilization_median_all_samples_percent": 97.0,
+    "power_peak_watts": 390.1,
+    "data_wait_fraction": 0.004644352753713382,
+    "save_seconds": [
+      0.16712556999982553,
+      0.6903287229997659,
+      0.16924192400028915
+    ],
+    "evaluation_seconds": [
+      0.8838654890000726,
+      0.6592115509997711,
+      0.6675201860002744
+    ],
+    "effective_tokens_per_update": 113664,
+    "telemetry_limit": "2s samples include startup/save/eval; GPU utilization is not MFU"
+  },
+  "maximum_stable_batch": 111,
+  "first_oom_batch": 112,
+  "allocator_memory_fraction": 0.94,
+  "speed_ratio_vs_best_verified_reference": 5.43562226492132,
+  "speed_ratio_vs_batch8_reference_probe": 5.763304442705597,
+  "pure_training_estimate": {
+    "500M_seconds": 719.9201851839908,
+    "10B_seconds": 14398.403703679816,
+    "limits": "Arithmetic steady-training only; excludes compile/startup/save/full dev/generation/WSD branches/LR tuning. Long run is not frozen or started."
+  },
+  "study_completed_updates_in_unique_raw_metrics": 10005,
+  "study_completed_input_tokens_in_unique_raw_metrics": 414298112,
+  "cold_resume_extra_updates": 100,
+  "cold_resume_extra_input_tokens": 3276800,
+  "ledger_limits": "Completed updates in v3 metrics; excludes unfinished OOM updates and diagnostic v1/v2. Separate fresh runs, not one long Base checkpoint.",
+  "independent_audit_checks": 1286,
+  "cold_resume_checks": 26,
+  "remaining": [
+    "Base/Chat quality",
+    "long Base training",
+    "long-run effective batch/LR/WSD budget freeze"
+  ],
+  "stop_boundary": "Phase6 step3 complete; stop before step4 and long Base."
+}

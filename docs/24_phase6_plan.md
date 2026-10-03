@@ -1,6 +1,6 @@
 # Phase 6: Base本学習の準備と段階評価計画
 
-更新: 2026-10-03。[Phase 5](23_phase5_completion.md)は完了し、現在はPhase 6①②完了・③高速化と容量検証中（本学習未開始）。①データ拡充と②長時間学習準備は[事前の目的・完了条件](25_phase6_preparation.md)に従い完了した。[完了証拠](26_phase6_preparation_completion.md)。再開後の③容量/高速化→④生成/変換→⑤設定・予算凍結は[残りの実行計画](27_phase6_remaining_plan.md)に具体化した。ユーザーの資源活用・高速化指定で③を再開した。実装・実測は[③の詳細](28_phase6_performance.md)。④以降と本学習は開始しない。
+更新: 2026-10-03。[Phase 5](23_phase5_completion.md)は完了し、現在はPhase 6①②③完了で停止中（本学習未開始）。①データ拡充と②長時間学習準備は[事前の目的・完了条件](25_phase6_preparation.md)に従い完了した。[完了証拠](26_phase6_preparation_completion.md)。再開後の③容量/高速化→④生成/変換→⑤設定・予算凍結は[残りの実行計画](27_phase6_remaining_plan.md)に具体化した。ユーザーの資源活用・高速化指定で③を再開した。実装・実測は[③の詳細](28_phase6_performance.md)。④以降と本学習は開始しない。
 
 ## 目的と出発点
 
@@ -19,8 +19,8 @@ Phase 5のdev BPBは1.221443、定常速度121,139 tokens/s。これはpilot反�
 | 1 | 実行状態・成果物の確認 | ①②終了時に確認済み、各job前に再確認 | 既存process/job/lock、公開Tokenizer hash、選択config、checkpoint、core sourceを照合。重複GPU jobを起動しない。 |
 | 2 | 拡張corpus・shard化 | ①完了 | 756,087,912 unique train stream tokens、Web 100%、dev/test分離。source/revision/条件・取得上限・全raw/cluster/shard監査と予定反復を[完了記録](26_phase6_preparation_completion.md)に保存。 |
 | 3 | 必要なtrainer機能 | ②のWSD完了、mixture未実装 | stable/decay CLIは実装済み。初期Web単一sourceはmixture不要。必要時は明示変更系列として実装・検証し、window/教師maskと累積loss契約を維持する。 |
-| 4 | 正確な再開・分岐 | NoNorm/math/batch 8で②完了、新設定は要検証 | 実拡張shardでstable 200 vs 100+100、decay 100 vs 50+50のtoken列/loss/LR/全state完全一致、元stable不変性・継続一致を確認済み。batch/backend/source変更後に再検証する。 |
-| 5 | 速度・最大安定batch | ③実装済み・GPU検証中 | [専用study](28_phase6_performance.md)でNoNorm/拡張shard/WSD、math/Flash/compileの実演算・cache分離、有限値、厳密再開/分岐、3×200更新・評価/save、peak VRAM、compile起動、定常速度、data waitを測る。最大容量と最速設定を分ける。 |
+| 4 | 正確な再開・分岐 | ②と③の9設定で完全一致・採用設定のcold再開も完了 | 実拡張shardでstable 200 vs 100+100、decay 100 vs 50+50のtoken列/loss/LR/全state完全一致、元stable不変性・継続一致を確認済み。batch/backend/source変更後に再検証する。 |
+| 5 | 速度・最大安定batch | ③完了（独立1286 checks・cold26 checks） | [完了記録](29_phase6_performance_completion.md)。NoNorm/拡張shard/WSDで実演算・cache分離、有限値、厳密再開/分岐、6設定の3×200更新・評価/saveを通過。最速Flash/compile batch 32=694,521 tokens/s、最大111・112 OOM。 |
 | 6 | 生成・変換課題 | ④未着手、品質未達 | native prefill/cache・停止ID、Unicode/反復/EOSを同一dev 400生成で対照確認。NoNorm HF/GGUF adapterを実装・parity検証し、成立しない場合の修復予算またはNorm対照への見直しを記録する。 |
 | 7 | 本学習設定・予算・永続実行 | 準備runは保存済み、⑤の長期凍結は未着手 | measured batch/effective tokens、LR/warmup、stable/decay数値予算、mixture/seed、保存/評価間隔・保持数、追加枝compute、容量上限、実CLI/restart commandを凍結。PID/boot/start ticks・log・snapshot・checkpoint SHAと復旧を保持する。 |
 
@@ -54,15 +54,15 @@ WSD stable/decayは実装・CUDA全state再開一致を検証済み。複数sour
 
 ## 暫定のcompute見積もり
 
-選択候補のPhase 5定常中央値121,139 tokens/sを使った算術値。新corpus・batch/backend・WSDの速度保証ではなく、評価/保存/取得/修復・cold start・decay枝を除く。最終予算は開始前の再測定で更新する。
+③の採用設定の定常中央値694,521 tokens/sを使った算術値。全文評価/保存/取得/修復・cold compile・decay枝・LR調整を除く。本学習configは未凍結で、実時間の保証ではない。[③の完了記録](29_phase6_performance_completion.md)。
 
 | 系列tokens | 参考compute時間 |
 |---:|---:|
-| 500M | 約1.15時間 |
-| 1B | 約2.29時間 |
-| 2B | 約4.59時間 |
-| 5B | 約11.47時間 |
-| 10B | 約22.93時間 |
+| 500M | 約12分 |
+| 1B | 約24分 |
+| 2B | 約48分 |
+| 5B | 約2時間 |
+| 10B | 約4時間 |
 
 同じ固定400生成のNoNorm評価workerはPhase 5で約5.4分/回だった。新devは89,416文書 / 164,344,743 body bytesで、pilot 924文書とは別母集団。拡張dev全文採点、保存間隔、枝の回数を別加算し、小sample probeを全文品質評価としない。uint16 streamは2 bytes/tokenにindex/raw/一時fileを加え、checkpointは保持個数×実file容量、cache/venvは別枠。準備完了時のLinux空きは950,875,688,960 bytesで、開始時に再確認する。[Phase 5速度](../reports/phase5/resource_budget.json)、[Phase 6準備の実測資源](../reports/phase6/completion_audit.json)
 

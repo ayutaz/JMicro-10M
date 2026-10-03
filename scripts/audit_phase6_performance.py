@@ -76,7 +76,9 @@ def audit(study, destination):
               and environment['torch_probe']['cuda_available'] and environment['torch_probe']['bf16_supported']
               and 'RTX 4090' in environment['nvidia_smi']['stdout'])
         check(f'{label}_finite_metrics', all(math.isfinite(item[key]) and item[key] > 0 for key in ('steady_tokens_per_second', 'p95_update_seconds')))
-        check(f'{label}_cuda_evaluation_isolated', item['evaluation_state_isolated'] and item['evaluation_documents'] == plan['evaluation_documents'] and item['generation_outputs'] == plan['generation_cases'])
+        # generate_suite emits suppressed and unrestricted greedy for each
+        # prompt when sampling=False. The frozen budget counts prompts.
+        check(f'{label}_cuda_evaluation_isolated', item['evaluation_state_isolated'] and item['evaluation_documents'] == plan['evaluation_documents'] and item['generation_outputs'] == 2*plan['generation_cases'])
         if request['kind'] in ('probe', 'confirmation'):
             trace = read_json(Path(request['run'])/'attention_profile.json')
             operators = trace['operators']
@@ -127,6 +129,7 @@ def audit(study, destination):
                 for key in ('update', 'loss', 'lr', 'gradient_norm', 'tokens_seen', 'supervised_tokens', 'body_bytes_seen', 'token_digest'):
                     check(f'{label}_{prefix}_{key}_history_exact', [row[key] for row in rows[0]] == [row[key] for row in rows[1]])
                 check(f'{label}_{prefix}_finite_all_state', all(finite(state) for state in states))
+                check(f'{label}_{prefix}_fp32_model_parameters', all(value.dtype == torch.float32 for state in states for value in state['model'].values() if value.is_floating_point()))
                 if prefix == 'decay':
                     check(f'{label}_independent_decay_budget', all(state['branch_updates'] == 100 and state['branch_tokens'] == 100*batch*1024
                           and sha256(Path(state['lineage']['parent_checkpoint'])) == state['lineage']['parent_sha256'] for state in states))

@@ -1,6 +1,6 @@
 # Phase 6③: 高速化と資源活用の実測
 
-更新: 2026-10-03。ユーザーがVRAM等の資源活用、torch.compile等の高速化を確認し、不足を対応するよう指定したため、③を再開する。①②の証拠・snapshotは保持し、今回は③の実装・測定・厳密再開とcommitまで。④生成/変換、⑤長期設定の凍結、500M以上の本学習は開始しない。
+更新: 2026-10-03。ユーザーがVRAM等の資源活用、torch.compile等の高速化を確認し、不足を対応するよう指定したため、③の実装・測定・厳密再開・cold再開を完了した。[最終採用と監査](29_phase6_performance_completion.md)。①②の証拠・snapshotは保持し、③の証拠をcommitして停止する。④生成/変換、⑤長期設定の凍結、500M以上の本学習は開始しない。
 
 ## 確認した不足と実装
 
@@ -69,4 +69,4 @@ uv run --frozen --extra hub --extra data --extra ml --extra export scripts/audit
 
 Windows hidden launcherとLinux supervisorで保持し、`job.json`のPID/boot/start ticks・worker identity・stage/log/heartbeat/restart command、各runのmetrics/atomic checkpoint/SHA、source snapshotを保存する。GPU lockと既存compute processを確認して重複起動しない。同じcommandは完了したstudyを重複実行せず、同一source/configの完了probeを再利用する。中断したworkerは有効checkpointの境界へmetricsを戻して再開する。失敗・source/config変更は別outputへ分け、失敗を削除しない。
 
-現在の実測結果は作業中で、まだ新しい高速化の成功や最大batchを宣言しない。最終reportはrun内の`batch_performance_report.json`、集約証拠と採用理由を完了後に保存する。
+実測・再開・独立監査は完了した。採用はFlash/compile reduce-overhead、batch 32、694,521 tokens/s。最大安定batch 111、112 OOM。独立1286 checks・空cache再開26 checks・全79 testsは成功。[最終report](../reports/phase6/batch_performance_report.json)、[採用理由](../reports/phase6/batch_choice.md)、[完了記録](29_phase6_performance_completion.md)に保存。v3/cold jobは終了済みで、④以降は開始しない。
