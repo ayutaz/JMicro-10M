@@ -61,6 +61,37 @@ def seed_all(seed):
     torch.backends.cudnn.allow_tf32 = False
 
 
+def learning_rate_factor(spec, step):
+    """LR for the next completed update; WSD stable is independent of its budget."""
+    if step < spec["warmup"]:
+        return (step + 1) / max(1, spec["warmup"])
+    mode = spec.get("scheduler", "cosine")
+    if mode == "wsd":
+        return 1.0
+    if mode == "wsd_decay":
+        progress = min(1.0, max(0.0, (step-spec["branch_at"]) / spec["decay_updates"]))
+        floor = spec["minimum_lr_ratio"]
+    elif mode == "cosine":
+        progress = min(1.0, (step-spec["warmup"]) / max(1, spec["schedule_updates"]-spec["warmup"]))
+        floor = 0.1
+    else:
+        raise ValueError("Unknown scheduler")
+    return floor + (1-floor) * (1+math.cos(math.pi*progress)) / 2
+
+
+def validate_schedule(spec):
+    mode = spec.get("scheduler", "cosine")
+    if mode not in ("cosine", "wsd", "wsd_decay"):
+        raise ValueError("Unknown scheduler")
+    if not 0 <= spec["warmup"] < spec["schedule_updates"]:
+        raise ValueError("Invalid warmup or update budget")
+    if mode == "wsd_decay":
+        if (spec["branch_at"] < spec["warmup"] or spec["decay_updates"] < 1
+                or spec["schedule_updates"] != spec["branch_at"]+spec["decay_updates"]
+                or not 0 <= spec["minimum_lr_ratio"] < 1):
+            raise ValueError("Invalid decay branch schedule")
+
+
 def implementation_hashes():
     # Ignore checkout newline conversions, preserve every other source byte.
     names = ("src/jmicro/model.py", "src/jmicro/shards.py", "src/jmicro/training.py", "uv.lock")
@@ -228,6 +259,7 @@ def generate_suite(model, tok, device, dtype, split="dev", limit=None, max_new=6
 
 class Trainer:
     def __init__(self, model_config, shard, spec, device="cpu"):
+        validate_schedule(spec)
         if shard.split != "train":
             raise ValueError("Only train records may be used for learning")
         if spec["context"] > model_config["max_position_embeddings"]:
@@ -246,12 +278,7 @@ class Trainer:
             {"params": decay, "weight_decay": spec["weight_decay"]},
             {"params": no_decay, "weight_decay": 0.0}], lr=spec["lr"],
             betas=(0.9, 0.95), eps=1e-8, fused=str(device).startswith("cuda"))
-        def schedule(step):
-            if step < spec["warmup"]:
-                return (step + 1) / max(1, spec["warmup"])
-            progress = min(1.0, (step - spec["warmup"]) / max(1, spec["schedule_updates"] - spec["warmup"]))
-            return 0.1 + 0.9 * (1 + math.cos(math.pi * progress)) / 2
-        self.scheduler = torch.optim.lr_scheduler.LambdaLR(self.optimizer, schedule)
+        self.scheduler = torch.optim.lr_scheduler.LambdaLR(self.optimizer, lambda step: learning_rate_factor(spec, step))
         sampler_mode = spec.get("sampler", "block")
         if sampler_mode not in ("block", "document"):
             raise ValueError("Unknown sampler mode")
@@ -259,6 +286,7 @@ class Trainer:
         self.sampler = sampler_class(shard, spec["context"], spec["seed"])
         self.update = self.tokens = self.supervised_tokens = self.body_bytes = 0
         self.token_digest = "00" * 32
+        self.lineage = None
         self.forward = torch.compile(self.model) if spec.get("compile") else self.model
 
     def step(self):
@@ -317,6 +345,10 @@ class Trainer:
             "supervised_tokens": self.supervised_tokens, "body_bytes": self.body_bytes,
             "token_digest": self.token_digest, "shard_manifest_sha256": sha256(self.shard.directory / "manifest.json"),
             "implementation_sha256": implementation_hashes()}
+        if self.lineage is not None:
+            state["lineage"] = self.lineage
+            state["branch_updates"] = self.update-self.lineage["parent_update"]
+            state["branch_tokens"] = self.tokens-self.lineage["parent_tokens"]
         temporary = path.with_suffix(".tmp")
         with temporary.open("wb") as stream:
             torch.save(state, stream)
@@ -327,17 +359,41 @@ class Trainer:
                     "update": self.update, "tokens_seen": self.tokens})
         return time.perf_counter() - started
 
-    def load(self, path):
+    def load(self, path, *, decay_branch=False):
         state = torch.load(path, map_location="cpu", weights_only=False)
         if state.get("implementation_sha256") != implementation_hashes():
             raise ValueError("Resume implementation differs or checkpoint predates source binding")
-        if state["spec"] != self.spec or state["model_config"] != self.model.config:
+        if state["model_config"] != self.model.config:
+            raise ValueError("Resume configuration differs")
+        if decay_branch:
+            mutable = {"scheduler", "schedule_updates", "branch_at", "decay_updates", "minimum_lr_ratio"}
+            if (state["spec"].get("scheduler") != "wsd" or self.spec.get("scheduler") != "wsd_decay"
+                    or state["update"] != self.spec["branch_at"] or state["update"] < state["spec"]["warmup"]
+                    or {k:v for k,v in state["spec"].items() if k not in mutable}
+                    != {k:v for k,v in self.spec.items() if k not in mutable}):
+                raise ValueError("Decay branch must fork a completed stable WSD update with identical training settings")
+        elif state["spec"] != self.spec:
             raise ValueError("Resume configuration differs; scheduler/budget must remain frozen")
         if state["shard_manifest_sha256"] != sha256(self.shard.directory / "manifest.json"):
             raise ValueError("Resume data differs")
         self.model.load_state_dict(state["model"])
         self.optimizer.load_state_dict(state["optimizer"])
-        self.scheduler.load_state_dict(state["scheduler"])
+        if decay_branch:
+            # Preserve Adam moments and the global update counter, install only the
+            # explicit branch schedule. The first branch update starts at peak LR.
+            self.scheduler.last_epoch = state["update"]
+            self.scheduler._step_count = state["scheduler"]["_step_count"]
+            self.scheduler.base_lrs = state["scheduler"]["base_lrs"]
+            values = [base*learning_rate_factor(self.spec, state["update"]) for base in self.scheduler.base_lrs]
+            for group, value in zip(self.optimizer.param_groups, values):
+                group["lr"] = value
+            self.scheduler._last_lr = values
+            self.lineage = {"kind": "wsd_decay", "parent_checkpoint": str(path.resolve()),
+                "parent_sha256": sha256(path), "parent_update": state["update"], "parent_tokens": state["tokens"],
+                "parent_spec": state["spec"], "parent_token_digest": state["token_digest"]}
+        else:
+            self.scheduler.load_state_dict(state["scheduler"])
+            self.lineage = state.get("lineage")
         self.sampler.load_state_dict(state["sampler"])
         self.update, self.tokens = state["update"], state["tokens"]
         self.supervised_tokens, self.body_bytes = state["supervised_tokens"], state["body_bytes"]
@@ -388,6 +444,16 @@ def train_command(args):
     spec = {key: getattr(args, key) for key in ("seed", "context", "batch", "accumulation", "lr", "weight_decay", "warmup", "schedule_updates", "dtype", "compile", "backend")}
     if args.sampler != "block":
         spec["sampler"] = args.sampler
+    if args.scheduler != "cosine":
+        spec["scheduler"] = args.scheduler
+    if args.branch_from:
+        parent = torch.load(args.branch_from, map_location="cpu", weights_only=False)
+        spec.update(scheduler="wsd_decay", branch_at=parent["update"],
+                    decay_updates=args.decay_updates, minimum_lr_ratio=args.minimum_lr_ratio)
+    elif args.resume:
+        prior = torch.load(args.resume, map_location="cpu", weights_only=False)
+        if prior["spec"].get("scheduler") == "wsd_decay":
+            spec.update({k: prior["spec"][k] for k in ("scheduler", "branch_at", "decay_updates", "minimum_lr_ratio")})
     trainer = Trainer(read_json(args.model), Shard(args.shards), spec, args.device)
     run = args.output
     if args.resume:
@@ -404,12 +470,18 @@ def train_command(args):
         if run.exists():
             raise ValueError("Use --resume for an existing run directory")
         run.mkdir(parents=True)
+        if args.branch_from:
+            if run.resolve() == args.branch_from.parent.resolve():
+                raise ValueError("Branch output must differ from parent run")
+            trainer.load(args.branch_from, decay_branch=True)
         record = {"version": 1, "kind": "training", "run_id": run.name, "phase": args.phase,
             "status": "running", "created_at": now(), "git": git_state(ROOT),
             "spec": spec, "model_config": trainer.model.config,
             "shard_manifest_sha256": sha256(args.shards / "manifest.json"),
             "source_sha256": source_snapshot(run / "snapshot"),
-            "tokens_seen": 0, "update": 0, "checkpoint": None, "failure_reason": None}
+            "tokens_seen": trainer.tokens, "update": trainer.update, "checkpoint": None, "failure_reason": None}
+        if trainer.lineage is not None:
+            record["lineage"] = trainer.lineage
         write_json(run / "environment.json", capture_environment(probe_torch=True))
     record.update(status="running", pid=os.getpid(), command=sys.argv, started_at=now())
     if Path("/proc/self/stat").exists():
@@ -447,6 +519,9 @@ def train_command(args):
             token_digest=trainer.token_digest, checkpoint=str(checkpoint.resolve()), save_seconds=save_seconds,
             peak_vram_bytes=torch.cuda.max_memory_allocated() if args.device.startswith("cuda") else None,
             completed_at=now())
+        if trainer.lineage is not None:
+            record.update(branch_updates=trainer.update-trainer.lineage["parent_update"],
+                          branch_tokens=trainer.tokens-trainer.lineage["parent_tokens"])
     except Exception as exc:
         record.update(status="failed", failure_reason=f"{type(exc).__name__}: {exc}",
                       checkpoint=str(checkpoint.resolve()) if checkpoint else None, completed_at=now())
@@ -490,6 +565,10 @@ def main():
     train.add_argument("--backend", choices=["default", "math", "flash"], default="default")
     train.add_argument("--sampler", choices=["block", "document"], default="block")
     train.add_argument("--resume", type=Path)
+    train.add_argument("--scheduler", choices=["cosine", "wsd"], default="cosine")
+    train.add_argument("--branch-from", type=Path, help="Fork a stable WSD checkpoint into a new decay run")
+    train.add_argument("--decay-updates", type=int)
+    train.add_argument("--minimum-lr-ratio", type=float, default=0.1)
     evaluation = commands.add_parser("evaluate")
     evaluation.add_argument("--checkpoint", type=Path, required=True)
     evaluation.add_argument("--shards", type=Path, required=True)
@@ -507,6 +586,12 @@ def main():
     elif args.command == "train":
         if min(args.batch, args.context, args.accumulation, args.schedule_updates, args.save_every, args.log_every) < 1 or not 0 <= args.warmup < args.schedule_updates:
             parser.error("Invalid batch/context/update/warmup counts")
+        if args.branch_from and args.resume:
+            parser.error("Branch creation and resume are separate operations")
+        if args.branch_from and (args.scheduler != "wsd" or not args.decay_updates or not 0 <= args.minimum_lr_ratio < 1):
+            parser.error("Decay branch requires --scheduler wsd, positive --decay-updates and a floor in [0,1)")
+        if args.decay_updates is not None and not args.branch_from:
+            parser.error("--decay-updates is only for branch creation; resume uses frozen branch configuration")
         with gpu_lock(args.device):
             train_command(args)
     else:

@@ -8,7 +8,8 @@ import torch
 
 from jmicro.experiment import ROOT, read_json, write_json
 from jmicro.shards import BlockSampler, Shard, build_shards
-from jmicro.training import Trainer, evaluate_body, isolated_evaluation, rng_state, scoring_windows
+from jmicro.training import Trainer, evaluate_body, isolated_evaluation, learning_rate_factor, rng_state, scoring_windows
+from jmicro.phase5 import equal_state
 
 torch.set_num_threads(2)
 
@@ -123,3 +124,62 @@ def test_common_byte_denominator_and_body_eos_separation(shard):
     assert report["bpb"] == pytest.approx(report["body_nll"] / (np.log(2) * report["body_bytes"]))
     with pytest.raises(ValueError, match="Only train"):
         Trainer(config(), dev, spec())
+
+
+def test_wsd_boundaries_and_budget_independence():
+    stable = spec(scheduler="wsd", warmup=2)
+    assert [learning_rate_factor(stable, i) for i in range(7)] == [0.5, 1, 1, 1, 1, 1, 1]
+    assert learning_rate_factor(stable, 4) == learning_rate_factor(dict(stable, schedule_updates=10000), 4)
+    decay = dict(stable, scheduler="wsd_decay", branch_at=3, decay_updates=3, minimum_lr_ratio=0.1)
+    assert learning_rate_factor(decay, 3) == 1
+    assert learning_rate_factor(decay, 6) == pytest.approx(0.1)
+    assert learning_rate_factor(decay, 4) > learning_rate_factor(decay, 5)
+
+
+def test_wsd_resume_branch_and_stable_isolation_all_state(shard, tmp_path):
+    frozen = spec(scheduler="wsd", warmup=2)
+    stable = Trainer(config(), shard, frozen)
+    reference = [stable.step() for _ in range(6)]
+    stable.save(tmp_path / "continuous.pt")
+    interrupted = Trainer(config(), shard, frozen)
+    prefix = [interrupted.step() for _ in range(3)]
+    parent = tmp_path / "parent.pt"
+    interrupted.save(parent)
+    digest = hashlib.sha256(parent.read_bytes()).hexdigest()
+    branch_spec = dict(frozen, scheduler="wsd_decay", branch_at=3, decay_updates=3, minimum_lr_ratio=0.1)
+    branch = Trainer(config(), shard, branch_spec)
+    branch.load(parent, decay_branch=True)
+    expected = [branch.step() for _ in range(3)]
+    branch.save(tmp_path / "decay-continuous.pt")
+    paused = Trainer(config(), shard, branch_spec)
+    paused.load(parent, decay_branch=True)
+    actual = [paused.step()]
+    paused.save(tmp_path / "branch-pause.pt")
+    resumed = Trainer(config(), shard, branch_spec)
+    resumed.load(tmp_path / "branch-pause.pt")
+    actual += [resumed.step() for _ in range(2)]
+    resumed.save(tmp_path / "decay-resumed.pt")
+    restored = Trainer(config(), shard, frozen)
+    restored.load(parent)
+    suffix = [restored.step() for _ in range(3)]
+    restored.save(tmp_path / "stable-resumed.pt")
+    assert [r["loss"] for r in reference] == [r["loss"] for r in prefix+suffix]
+    assert [r["loss"] for r in expected] == [r["loss"] for r in actual]
+    assert [r["lr"] for r in expected] == [0.002, pytest.approx(0.00155), pytest.approx(0.00065)]
+    for a, b in [("continuous.pt", "stable-resumed.pt"), ("decay-continuous.pt", "decay-resumed.pt")]:
+        assert equal_state(torch.load(tmp_path/a, weights_only=False), torch.load(tmp_path/b, weights_only=False))
+    assert hashlib.sha256(parent.read_bytes()).hexdigest() == digest
+    assert resumed.lineage["parent_sha256"] == digest
+    state = torch.load(tmp_path/"decay-resumed.pt", weights_only=False)
+    assert state["branch_updates"] == 3 and state["branch_tokens"] == 3*2*16
+    with pytest.raises(ValueError, match="configuration"):
+        Trainer(config(), shard, dict(frozen, schedule_updates=7)).load(parent)
+    with pytest.raises(ValueError, match="identical"):
+        Trainer(config(), shard, dict(branch_spec, lr=0.001)).load(parent, decay_branch=True)
+    with pytest.raises(ValueError, match="stable"):
+        Trainer(config(), shard, branch_spec).load(tmp_path/"branch-pause.pt", decay_branch=True)
+    damaged = torch.load(parent, weights_only=False)
+    damaged["implementation_sha256"]["src/jmicro/training.py"] = "0"*64
+    torch.save(damaged, tmp_path/"damaged.pt")
+    with pytest.raises(ValueError, match="implementation"):
+        restored.load(tmp_path/"damaged.pt")

@@ -12,6 +12,12 @@
 
 ## 実際の状態
 
+**最新追記（Phase 6①②再開）**: ユーザーがデータ拡充と長時間学習準備を完了まで指示した。[今回の目的と完了条件](25_phase6_preparation.md)に500M以上のunique train stream tokens、固定revision/hash、pilot/固定suite保護、cluster分割、全corpus/shard監査、WSD stable/decay実装、実CUDA全state再開一致を固定した。最大batch/高速化探索と500M以上の本学習へは進まず、①②完了・コミットで停止する。
+
+WSD stableと独立decay枝CLI、枝の継承履歴・追加tokens、通常resumeのsource/config/data拒否を実装した。WSLで全73 tests / failure・error・skip 0を確認。CPU WSDの連続/中断再開・decay再開は全state完全一致、元stable checkpoint不変、LR境界、禁止変更の棄却を確認した。実CUDAは拡張shardの完成待ちで、まだ成功証拠にしない。
+
+FineWeb2 Edu Japaneseの固定revision `180ca004c6a89b590daaad86cb062a07a5353c69`からtrain Parquet 8 files / 2,152,539,810 bytesを取得し全SHA一致。rawと条件資料・16-file上限の固定source一覧はWSL `~/jmicro-data/phase6/raw/`へ保存。pilot manifestの全Web split/URLを保護して、Python 3.12.7/uvの8 CPU workersで処理中。active Windows launcher PID **9960**、Linux process identityは`~/jmicro-data/phase6/expanded-v2/job.json`、logsはWindows `reports/phase6/data-build-v2/`、progressは同WSL outputの`progress.json`。初回`expanded-v1`はdatasketch 2.0がscheme明示を要求して即失敗し、raw/logを維持、`scheme=legacy`へ修正してscalar照合/LSH testを通した。500Mの実量・全監査は未完了。次は処理完了後に`audit_phase6_data.py`と`verify_phase6_preparation.py`を永続起動する。Phase 0–5 reportを維持。
+
 **最新: Phase 5完了。全比較・補助評価・独立監査が終了し、Phase 6前で停止中。** [詳細計画](22_phase5_plan.md)と`configs/phase5/plan.json`へ目的・合格条件・予算を固定した。固定blockの失敗を保持し、文書単位samplerへ修復した`34d932d`では全68 tests / skip 0と、新sourceのT8K/T4K/文書samplerのCUDA 200 vs 100+100全state一致が成功した。NoQK-NormのT4Kも全state完全一致を通過し、4構成のresume証拠を`reports/phase5/resume_report.json`へ保存した。100件overfitは6,000更新後、本文NLL/token **0.01277**、teacher accuracy **99.712%**、16-token continuation exact **100%**、EOS argmax/実生成停止 **100%**で全5 gateに合格した。raw証拠は`reports/phase5/overfit_report.json`に保存済み。品質目標の数値を維持した凍結は`5d6b72e`へ保存済み。公開25 payloadの固定revision/hash検証も成功済み。
 
 10M smokeは600更新で保存・再開し、1,221更新 / **10,002,432 tokens**で終了。全更新・weights・optimizerの有限値、凍結設定、loss低下を独立に監査した。dev 924文書 / 1,633,458 bytesのBPBは初期**2.74787 → 1.41697**。固定dev 80件×5条件の400生成を実施し、IDから全flagを再計算して一致した。抑制ありgreedyはEOS **0/80**、反復 **63/80**、Unicode/role/emptyは各0/80で、Base/Chat品質目標は未達。文書末尾からの暗記EOS 100%と自発的な短文停止は区別する。smoke評価に約354秒を要した。`reports/phase5/smoke_report.json`と二つのsmoke auditへ保存済み。
