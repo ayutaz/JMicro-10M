@@ -1,0 +1,140 @@
+{
+  "status": "passed",
+  "created_at": "2026-10-03T04:27:54.955739Z",
+  "run": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit",
+  "supervisor": {
+    "status": "complete",
+    "phase": 5,
+    "pid": 654,
+    "boot_id": "4212cfbf-4f5e-45ab-b296-c09859fadeb2",
+    "process_start_ticks": "89593",
+    "started_at": "2026-10-03T02:51:33.499285Z",
+    "plan_sha256": "d18514edbfe82633285905278d1110343d00a2991bc80a9cf047f6ee2f3b834c",
+    "implementation_sha256": {
+      "src/jmicro/model.py": "dfb0df9af5020de1c077d6135f4def8f36c7389d5a27e8bec327ec8d25bb6b4b",
+      "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+      "src/jmicro/training.py": "e4f95adcd09098b87f7b40b05e6e6d479b7a636ba30bf7f3cf9511d060bf1292",
+      "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+    },
+    "completed_stages": [
+      "resume-t8k",
+      "initial-t8k",
+      "resume-t4k",
+      "initial-t4k",
+      "resume-overfit",
+      "overfit-t8k",
+      "overfit-evaluation",
+      "smoke-t8k-first-half",
+      "smoke-t8k",
+      "smoke-evaluation",
+      "100m-t8k",
+      "evaluate-100m-t8k",
+      "100m-t4k",
+      "evaluate-100m-t4k",
+      "resume-no-qknorm",
+      "100m-no-qknorm",
+      "evaluate-no-qknorm",
+      "100m-lr001",
+      "evaluate-lr001",
+      "budget-body_bytes-t8k",
+      "budget-body_bytes-t4k",
+      "budget-training_seconds-t8k",
+      "budget-training_seconds-t4k"
+    ],
+    "active_stage": null,
+    "stop_boundary": "Complete Phase 5; stop before Phase 6",
+    "child_pid": null,
+    "completed_at": "2026-10-03T04:27:24.956428Z"
+  },
+  "resume_state_equality": {
+    "t8k": {
+      "model": true,
+      "optimizer": true,
+      "scheduler": true,
+      "rng": true,
+      "sampler": true,
+      "tokens": true,
+      "supervised_tokens": true,
+      "body_bytes": true,
+      "token_digest": true,
+      "implementation_sha256": true
+    },
+    "t4k": {
+      "model": true,
+      "optimizer": true,
+      "scheduler": true,
+      "rng": true,
+      "sampler": true,
+      "tokens": true,
+      "supervised_tokens": true,
+      "body_bytes": true,
+      "token_digest": true,
+      "implementation_sha256": true
+    },
+    "overfit": {
+      "model": true,
+      "optimizer": true,
+      "scheduler": true,
+      "rng": true,
+      "sampler": true,
+      "tokens": true,
+      "supervised_tokens": true,
+      "body_bytes": true,
+      "token_digest": true,
+      "implementation_sha256": true
+    },
+    "no-qknorm": {
+      "model": true,
+      "optimizer": true,
+      "scheduler": true,
+      "rng": true,
+      "sampler": true,
+      "tokens": true,
+      "supervised_tokens": true,
+      "body_bytes": true,
+      "token_digest": true,
+      "implementation_sha256": true
+    }
+  },
+  "checks": [
+    "plan/source/hash binding",
+    "exact resume all state",
+    "overfit numerical and generated-ID gates",
+    "smoke actual pause and improvement",
+    "finite loss and checkpoint weights",
+    "four equal 100M token budgets",
+    "single-factor norm/LR comparisons",
+    "full common dev byte population",
+    "400 fixed dev generations per model",
+    "paired intervals recomputed",
+    "auxiliary budgets evaluated"
+  ],
+  "test_used": false,
+  "phase6_started": false,
+  "comparison_sha256": "7d3cd62a8e2d7db8b7c44b59937695cffd91461b94c32f7c486e62faf52c5bd5",
+  "tests": {
+    "cases": 68,
+    "skipped": 0,
+    "failures": 0,
+    "xml_sha256": "f7efe820a64237dfd65225ca7b5eeb80880ddb7841d439e922e7c5b6121feaf5"
+  },
+  "quality_targets": {
+    "status": "frozen_phase5_20261003_before_100m_selection",
+    "base_grammar_2_rate": 0.7,
+    "chat_grammar_and_relevance_2_rate": 0.7,
+    "chat_context_2_rate": 0.6,
+    "stop_success_min": 0.95,
+    "empty_response_max": 0.05,
+    "role_leak_max": 0.01,
+    "unicode_failure_max_fixed_suite": 0,
+    "quantized_bundle_size_goal_mb": [
+      5,
+      10
+    ],
+    "quantization_degradation_limits": null,
+    "quantization_limits_freeze_before_selection": true
+  },
+  "quality_targets_source_sha256": "49e0273d4ae315288c9969a11493bf52d9ba8aa21d51f7ac1c35757f5b3b4ec9",
+  "audit_source_sha256": "17cc84fa0fe662a07e11d06487064a8d48b843174412d8f8fa5bda1ac5c4da33",
+  "evaluation_summary_sha256": "15bdc493e251138c37451e78a172eea41800ffb9b31df5da77a9055ac903f745"
+}

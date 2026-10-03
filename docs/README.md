@@ -1,6 +1,6 @@
 # JMicro-10M 設計・調査ノート
 
-Phase 5実行状況（2026-10-03）: ユーザーが再開と完了までの作業を指定した。[詳細計画](22_phase5_plan.md)を参照。現在のrun/processは継続状態を正とし、Phase 6本学習は開始しない。
+Phase 5完了（2026-10-03）: overfit・10M smoke・4本の100M比較・補助評価・候補選定・独立監査が終了。[完了記録](23_phase5_completion.md)を参照。Phase 6本学習は開始せず停止中。
 
 このディレクトリは、日本語専用の約10Mパラメータ級Decoder-only Language Model `JMicro-10M` を、Tokenizerを含めてスクラッチ構築するための設計・調査記録である。
 
@@ -15,7 +15,7 @@ Phase 5実行状況（2026-10-03）: ユーザーが再開と完了までの作�
 
 - **確定**: 目標は「約10M parameters、日本語専用、短文生成と数ターンの雑談対話」。高度な推論や長文RAGではなく、狭い能力を高密度に持たせる。
 - **確定**: Tokenizer、モデル重み、事前学習、Dialogue SFTまでスクラッチで構築する。
-- **確定**: Phase 0〜3はiMac、Phase 4はWindows/WSL＋RTX 4090で完了。WSL package 3.0.1.0 / Ubuntu WSL 2を使用。最大安定batchはeager T8K 57 / T4K 64。約8TBはユーザー計画で、Linux空き実測は約980.8GB。
+- **確定**: Phase 0〜3はiMac、Phase 4はWindows/WSL＋RTX 4090で完了。WSL package 3.0.1.0 / Ubuntu WSL 2を使用。最大安定batchはeager T8K 57 / T4K 64。約8TBはユーザー計画で、Phase 5終了時のLinux空き実測は約969.7GB。
 - **提案**: 本命はModern deep-thin Transformer。8k語彙版はhidden 256、12層、4Q/2KV GQA、SwiGLU、RoPE、RMSNorm、head間gain共有のQK-Norm、context 1024、tied embeddingで約9.77M。
 - **提案**: 4k語彙版も同じ約10M予算で作り、BPBと日本語圧縮率で比較する。
 - **確定**: 学習量は100M → 1B → 2B → 5B → 10B → 20B → 50B tokensの段階評価。50Bは20B時点で改善が続く場合のみ実施する。
@@ -25,7 +25,7 @@ Phase 5実行状況（2026-10-03）: ユーザーが再開と完了までの作�
 
 **完了範囲**: [4k/8k Tokenizer](18_phase2_completion.md)、[両モデル/cache/学習前export](19_phase3_completion.md)、GPU学習器・評価・再開・速度を検証済み。Phase 3重みはランダム初期化、Phase 4には小さい学習済み検証checkpointがある。Python 3.12.7、実行は`uv run --frozen`、依存変更は`uv add`。
 
-**現在地**: [Phase 4の実GPU検証](21_phase4_completion.md)が完了し、ユーザー指定によりPhase 5を実行中。overfit/smoke/100M比較を順に検証し、Phase 6前に停止する。Base/Chatの本学習・能力目標は未達。最新の状態は[継続記録](autonomous_status.md)を参照する。
+**現在地**: [Phase 4の実GPU検証](21_phase4_completion.md)と[Phase 5の候補選定](23_phase5_completion.md)が完了し、Phase 6前で停止中。Base/Chatの本学習・能力目標は未達。最新の状態は[継続記録](autonomous_status.md)を参照する。
 
 **別PCでの再開入口**: [Windows/WSL＋RTX 4090の再開手順](windows_handoff.md)。GitHubの取得からHub成果物の復元、uv環境、CUDA確認、実装順までを順に実行できる。
 
@@ -54,6 +54,9 @@ Phase 5実行状況（2026-10-03）: ユーザーが再開と完了までの作�
 19. [19_phase3_completion.md](19_phase3_completion.md) — モデル/cache/HF/native GGUF/量子化の実測
 20. [20_publication_review.md](20_publication_review.md) — 当時の公開前確認、ローカル情報除去
 21. [21_phase4_completion.md](21_phase4_completion.md) — WSL/CUDA・学習器・保存再開・評価・容量・速度の実機証拠
+
+22. [22_phase5_plan.md](22_phase5_plan.md) — Phase 5の目的・条件・予算・scheduler判断
+23. [23_phase5_completion.md](23_phase5_completion.md) — overfit/smoke/100M比較・候補選定・品質未達・独立監査
 
 運用文書: [最新状態](autonomous_status.md)、[復旧履歴](autonomous_history_20261003.md)、[Windows/WSL引継ぎ](windows_handoff.md)、[固定Hub復元](huggingface_handoff.md)、[自律runner](codex_automation.md)、[評価仕様](evaluation_protocol.md)。[data](../data/README.md)、[eval](../eval/README.md)、[reports](../reports/README.md)に各保存領域の手順を記載する。
 

@@ -1,10 +1,10 @@
 # 次の実装タスク
 
-Phase 5実行状況（2026-10-03）: ユーザーが再開と完了までの作業を指定した。[詳細計画](22_phase5_plan.md)を参照。現在のrun/processは継続状態を正とし、Phase 6本学習は開始しない。
+Phase 5完了（2026-10-03）: overfit・10M smoke・4本の100M比較・補助評価・候補選定・独立監査が終了。[完了記録](23_phase5_completion.md)を参照。Phase 6本学習は開始せず停止中。
 
 この文書は[フェーズ別実行計画](15_project_roadmap.md)の着手checklistである。Phase番号、目的、ゴール、成果物、完了条件、Go/No-Goは同計画を正とし、技術仕様は03〜08と12〜14を参照する。2026-10-02にiMac上のPhase 0を実施した。[完了記録](16_phase0_completion.md)を参照する。Phase 1のcorpus・manifest・split・会話pilotも完了した。[完了記録](17_phase1_completion.md)を参照する。[Phase 2](18_phase2_completion.md)・[Phase 3](19_phase3_completion.md)も完了。本学習は未実施。Windows/WSL実機検証は[Phase 4](21_phase4_completion.md)で完了した。
 
-**次の作業**: Phase 5の詳細計画に従い、overfit/smoke/100M比較を実行する。Phase 4の学習器・評価・保存再開・最大安定batchは完了済み。Pythonは`uv run --frozen`、依存変更は`uv add`。
+**現在の境界**: [Phase 5](23_phase5_completion.md)は完了し、Phase 6前で停止中。再開指定後に拡張corpus・WSD・容量/高速化の検証を行う。Phase 4の学習器・評価・保存再開・最大安定batchは完了済み。Pythonは`uv run --frozen`、依存変更は`uv add`。
 
 完成までの時間短縮を優先し、[移行 → 最小学習経路 → 保存再開 → 最大batch/速度実測](15_project_roadmap.md#高速に完成させる進め方)を完了した。新規PCでは[再開手順](windows_handoff.md)に従い、最新コードとGit管理外の固定Tokenizer/pilotを引き継ぐ。復元済みPCでは再取得・Phase 3の再実装は不要。実装時間とGPU計算時間を分け、実測した計算時間に評価・保存・比較・データ処理を加えて見積もる。
 
@@ -58,14 +58,14 @@ Phase 5実行状況（2026-10-03）: ユーザーが再開と完了までの作�
 - [x] syntheticと実shardでeager micro batchを最大安定値まで増やし、backend/compile、VRAM、data wait、速度を測る。
 - [x] 100M〜50Bの時間とストレージを実測から見積もる。
 
-[Phase 4実測・制約](21_phase4_completion.md)。Phase 4での停止はユーザーが解除し、Phase 5を実行中。
+[Phase 4実測・制約](21_phase4_completion.md)。Phase 5も完了し、Phase 6前で停止中。
 
 ## Phase 5: 最小pipelineと100M探索
 
 - [x] 100件overfit、10M-token smokeで学習・生成・保存再開を一周する（機械的gateに合格、停止・反復の品質未達はstatusへ記録）。
-- [ ] 100Mで4k/8k、QK-Norm、LRを一要因ずつ比較する。
-- [ ] AdamW baseline成立後、必要ならMuon+AdamWを別LRで比較する。
-- [ ] BPB、処理bytes/GPU時間、更新数、生成失敗を比較し、最大2候補へ絞る。
+- [x] 100Mで4k/8k、QK-Norm、LRを一要因ずつ比較する。
+- [x] Muon追加の必要性を判断する（AdamW全4比較が安定・改善し候補を選べたため、今回は追加しない）。
+- [x] BPB、処理bytes/GPU時間、更新数、生成失敗を比較し、T4K / NoQK-Norm / LR 0.002の1候補を選定する。
 - [x] dev/pilotを使い、品質閾値を最終test評価前に固定する（数値を維持し、100M結果前にtargets.statusをfrozenへ変更）。
 
 ## Phase 6: 1B〜10B Base v1
@@ -103,13 +103,14 @@ Phase 5実行状況（2026-10-03）: ユーザーが再開と完了までの作�
 - [ ] 各proposalで対照条件、改善metric、compute予算、採用基準を先に決める。
 - [ ] Vast.aiはローカル検証済みの独立run並列化に限定し、利用時に再見積もりする。
 
-## これから進める最初の一周
+## 完了した最初の一周と次回の境界
 
 ```text
 Phase 0〜4: データ / Tokenizer / モデル / export / 学習器 / 評価 / GPU再開・実測は完了
-  -> 現在はPhase 5実行中、Phase 6前で停止する
-  -> 100件overfit / 10M-token smoke
-  -> T4Kとの100M比較
+  -> Phase 5は完了、Phase 6前で停止中
+  -> 100件overfit / 10M-token smokeは合格
+  -> T4K/T8K・Norm・LRの100M比較、補助評価、候補選定も完了
+  -> 次回の再開指定後: 拡張corpus / WSD / 容量・高速化の検証
 ```
 
-この一周が成立してから、大規模データ処理と本系列へ進む。会話pilot・評価準備は早期から並行する。具体的な未解決事項と根拠は[追加技術調査](11_technical_research_gaps.md)、会話データは[Tokenizer・会話データ調査](13_tokenizer_dialogue_data_research.md)、推論経路は[評価・配布調査](14_evaluation_deployment_research.md)を参照する。
+この一周は完了した。ユーザーのPhase 6再開指定後に、大規模データ処理と本系列へ進む。会話pilot・評価準備は早期から並行する。具体的な未解決事項と根拠は[追加技術調査](11_technical_research_gaps.md)、会話データは[Tokenizer・会話データ調査](13_tokenizer_dialogue_data_research.md)、推論経路は[評価・配布調査](14_evaluation_deployment_research.md)を参照する。

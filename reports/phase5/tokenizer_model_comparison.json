@@ -1,0 +1,800 @@
+{
+  "status": "passed",
+  "phase": 5,
+  "created_at": "2026-10-03T04:27:24.944358Z",
+  "main_budget": "100,007,936 stream tokens, seed 42, repeated pilot",
+  "entries": {
+    "100m-t8k": {
+      "bpb": 1.2588609609175505,
+      "initial_bpb": 2.747869760231594,
+      "common_bpb": 1.6500581816783852,
+      "tokens": 100007936,
+      "body_bytes": 476090448,
+      "training_seconds": 856.3645760569893,
+      "cold_first_update_seconds": 0.5804158869998446,
+      "steady_tokens_per_second": 117118.79137954142,
+      "unique_train": {
+        "tokens": 6884183,
+        "documents": 18022,
+        "body_bytes": 32774150,
+        "stream_sha256": "842ee82481edb243719b4d923864314e63f2bd9ad79a116eb22b8723793f7947",
+        "index_sha256": "fdb5b29513ac8f2b860803c7415efd40848f1adc6039c4352cf6cca4e367e573"
+      },
+      "sampler": {
+        "seed": 42,
+        "epoch": 14,
+        "position": 3556,
+        "context": 1024,
+        "blocks": 6722
+      },
+      "generation_rates": {
+        "cases": 80,
+        "eos": 0.0,
+        "unicode_failure": 0.0,
+        "repetition": 0.675,
+        "role_leak": 0.0,
+        "empty": 0.0
+      },
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t8k/checkpoint-00012208.pt",
+      "checkpoint_sha256": "a9dbdc35b5212a899cc3d6e6aad58a8338d50944a83d94f7497a5555dc6f035e",
+      "model_config": {
+        "schema_version": 1,
+        "architecture": "decoder_only_transformer",
+        "hidden_size": 256,
+        "num_attention_heads": 4,
+        "num_key_value_heads": 2,
+        "head_dim": 64,
+        "activation": "swiglu",
+        "norm": "rmsnorm",
+        "rms_norm_eps": 1e-06,
+        "qk_norm_type": "rms_head_shared",
+        "qk_norm_before_rope": true,
+        "attention_scale": 0.125,
+        "rope_theta": 10000,
+        "rope_layout": "half_split",
+        "rotary_dim": 64,
+        "max_position_embeddings": 1024,
+        "tie_word_embeddings": true,
+        "attention_bias": false,
+        "mlp_bias": false,
+        "dropout": 0.0,
+        "initializer_std": 0.02,
+        "norm_initial_gain": 1.0,
+        "status": "validated_cpu_random_weights",
+        "name": "JMicro-10M-T8K",
+        "vocab_size": 8192,
+        "num_hidden_layers": 12,
+        "intermediate_size": 576,
+        "expected_parameter_count": 9772800
+      },
+      "spec": {
+        "seed": 42,
+        "context": 1024,
+        "batch": 8,
+        "accumulation": 1,
+        "lr": 0.002,
+        "weight_decay": 0.1,
+        "warmup": 200,
+        "schedule_updates": 12208,
+        "dtype": "bf16",
+        "compile": false,
+        "backend": "math"
+      },
+      "budget_points": [
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t8k/checkpoint-00001000.pt",
+          "update": 1000,
+          "tokens": 8192000,
+          "body_bytes": 39009545,
+          "training_seconds": 70.59941208699911
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t8k/checkpoint-00002000.pt",
+          "update": 2000,
+          "tokens": 16384000,
+          "body_bytes": 78023260,
+          "training_seconds": 140.94752312600303
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t8k/checkpoint-00003000.pt",
+          "update": 3000,
+          "tokens": 24576000,
+          "body_bytes": 117007272,
+          "training_seconds": 210.9759886060051
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t8k/checkpoint-00004000.pt",
+          "update": 4000,
+          "tokens": 32768000,
+          "body_bytes": 156005419,
+          "training_seconds": 281.24787796500596
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t8k/checkpoint-00005000.pt",
+          "update": 5000,
+          "tokens": 40960000,
+          "body_bytes": 195000459,
+          "training_seconds": 351.3615606330063
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t8k/checkpoint-00006000.pt",
+          "update": 6000,
+          "tokens": 49152000,
+          "body_bytes": 234013516,
+          "training_seconds": 421.16269670400425
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t8k/checkpoint-00007000.pt",
+          "update": 7000,
+          "tokens": 57344000,
+          "body_bytes": 272978964,
+          "training_seconds": 491.25286838900047
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t8k/checkpoint-00008000.pt",
+          "update": 8000,
+          "tokens": 65536000,
+          "body_bytes": 311994662,
+          "training_seconds": 561.2365527449974
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t8k/checkpoint-00009000.pt",
+          "update": 9000,
+          "tokens": 73728000,
+          "body_bytes": 350998313,
+          "training_seconds": 631.7886483579941
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t8k/checkpoint-00010000.pt",
+          "update": 10000,
+          "tokens": 81920000,
+          "body_bytes": 390019986,
+          "training_seconds": 701.7691711529869
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t8k/checkpoint-00011000.pt",
+          "update": 11000,
+          "tokens": 90112000,
+          "body_bytes": 429011598,
+          "training_seconds": 771.7203807359897
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t8k/checkpoint-00012000.pt",
+          "update": 12000,
+          "tokens": 98304000,
+          "body_bytes": 467986636,
+          "training_seconds": 841.8066527379915
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t8k/checkpoint-00012208.pt",
+          "update": 12208,
+          "tokens": 100007936,
+          "body_bytes": 476090448,
+          "training_seconds": 856.3645760569893
+        }
+      ],
+      "loss_first100": 7.70291871547699,
+      "loss_last100": 2.8532286858558655
+    },
+    "100m-t4k": {
+      "bpb": 1.2318226955287608,
+      "initial_bpb": 3.0924253941889197,
+      "common_bpb": 1.5913857631955488,
+      "tokens": 100007936,
+      "body_bytes": 390286307,
+      "training_seconds": 899.5331786119496,
+      "cold_first_update_seconds": 0.5461151420004171,
+      "steady_tokens_per_second": 111693.12793024267,
+      "unique_train": {
+        "tokens": 8398329,
+        "documents": 18022,
+        "body_bytes": 32774150,
+        "stream_sha256": "4fc83c84bb338eec1e891e22c472a19119341322a9cd8de611862f5f9d92dd65",
+        "index_sha256": "3a394a09a3311bce19d07919a4465e08e4dc9618126452df850c3be9db5459a1"
+      },
+      "sampler": {
+        "seed": 42,
+        "epoch": 11,
+        "position": 7453,
+        "context": 1024,
+        "blocks": 8201
+      },
+      "generation_rates": {
+        "cases": 80,
+        "eos": 0.0,
+        "unicode_failure": 0.0,
+        "repetition": 0.6625,
+        "role_leak": 0.0,
+        "empty": 0.0
+      },
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t4k/checkpoint-00012208.pt",
+      "checkpoint_sha256": "71a1a3bf6e057ad6e290047fb3db0f8ec8723f7c54839a51d50f58d89206cfec",
+      "model_config": {
+        "schema_version": 1,
+        "architecture": "decoder_only_transformer",
+        "hidden_size": 256,
+        "num_attention_heads": 4,
+        "num_key_value_heads": 2,
+        "head_dim": 64,
+        "activation": "swiglu",
+        "norm": "rmsnorm",
+        "rms_norm_eps": 1e-06,
+        "qk_norm_type": "rms_head_shared",
+        "qk_norm_before_rope": true,
+        "attention_scale": 0.125,
+        "rope_theta": 10000,
+        "rope_layout": "half_split",
+        "rotary_dim": 64,
+        "max_position_embeddings": 1024,
+        "tie_word_embeddings": true,
+        "attention_bias": false,
+        "mlp_bias": false,
+        "dropout": 0.0,
+        "initializer_std": 0.02,
+        "norm_initial_gain": 1.0,
+        "status": "validated_cpu_random_weights",
+        "name": "JMicro-10M-T4K",
+        "vocab_size": 4096,
+        "num_hidden_layers": 13,
+        "intermediate_size": 640,
+        "expected_parameter_count": 10002816
+      },
+      "spec": {
+        "seed": 42,
+        "context": 1024,
+        "batch": 8,
+        "accumulation": 1,
+        "lr": 0.002,
+        "weight_decay": 0.1,
+        "warmup": 200,
+        "schedule_updates": 12208,
+        "dtype": "bf16",
+        "compile": false,
+        "backend": "math"
+      },
+      "budget_points": [
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t4k/checkpoint-00001000.pt",
+          "update": 1000,
+          "tokens": 8192000,
+          "body_bytes": 31977775,
+          "training_seconds": 74.26746030598724
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t4k/checkpoint-00002000.pt",
+          "update": 2000,
+          "tokens": 16384000,
+          "body_bytes": 63931629,
+          "training_seconds": 148.18872776198714
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t4k/checkpoint-00003000.pt",
+          "update": 3000,
+          "tokens": 24576000,
+          "body_bytes": 95908724,
+          "training_seconds": 221.61651404798022
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t4k/checkpoint-00004000.pt",
+          "update": 4000,
+          "tokens": 32768000,
+          "body_bytes": 127878140,
+          "training_seconds": 294.90019572297297
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t4k/checkpoint-00005000.pt",
+          "update": 5000,
+          "tokens": 40960000,
+          "body_bytes": 159832303,
+          "training_seconds": 368.6106680849666
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t4k/checkpoint-00006000.pt",
+          "update": 6000,
+          "tokens": 49152000,
+          "body_bytes": 191809001,
+          "training_seconds": 442.46388320596543
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t4k/checkpoint-00007000.pt",
+          "update": 7000,
+          "tokens": 57344000,
+          "body_bytes": 223794507,
+          "training_seconds": 516.179784355952
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t4k/checkpoint-00008000.pt",
+          "update": 8000,
+          "tokens": 65536000,
+          "body_bytes": 255764477,
+          "training_seconds": 589.7351629009513
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t4k/checkpoint-00009000.pt",
+          "update": 9000,
+          "tokens": 73728000,
+          "body_bytes": 287729194,
+          "training_seconds": 663.2324921579539
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t4k/checkpoint-00010000.pt",
+          "update": 10000,
+          "tokens": 81920000,
+          "body_bytes": 319703055,
+          "training_seconds": 737.006697809948
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t4k/checkpoint-00011000.pt",
+          "update": 11000,
+          "tokens": 90112000,
+          "body_bytes": 351639676,
+          "training_seconds": 810.6611658069469
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t4k/checkpoint-00012000.pt",
+          "update": 12000,
+          "tokens": 98304000,
+          "body_bytes": 383656322,
+          "training_seconds": 884.1324499989496
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t4k/checkpoint-00012208.pt",
+          "update": 12208,
+          "tokens": 100007936,
+          "body_bytes": 390286307,
+          "training_seconds": 899.5331786119496
+        }
+      ],
+      "loss_first100": 7.11493989944458,
+      "loss_last100": 2.4935033917427063
+    },
+    "100m-no-qknorm": {
+      "bpb": 1.221443307421146,
+      "initial_bpb": 3.0924253941889197,
+      "common_bpb": 1.5465891690616276,
+      "tokens": 100007936,
+      "body_bytes": 390286307,
+      "training_seconds": 827.8414653289838,
+      "cold_first_update_seconds": 0.4912481739993382,
+      "steady_tokens_per_second": 121138.72531143633,
+      "unique_train": {
+        "tokens": 8398329,
+        "documents": 18022,
+        "body_bytes": 32774150,
+        "stream_sha256": "4fc83c84bb338eec1e891e22c472a19119341322a9cd8de611862f5f9d92dd65",
+        "index_sha256": "3a394a09a3311bce19d07919a4465e08e4dc9618126452df850c3be9db5459a1"
+      },
+      "sampler": {
+        "seed": 42,
+        "epoch": 11,
+        "position": 7453,
+        "context": 1024,
+        "blocks": 8201
+      },
+      "generation_rates": {
+        "cases": 80,
+        "eos": 0.0,
+        "unicode_failure": 0.0,
+        "repetition": 0.675,
+        "role_leak": 0.0,
+        "empty": 0.0
+      },
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00012208.pt",
+      "checkpoint_sha256": "e5583927efc5aa2041648bcae23f1b618b70f002be334c3581dea23472447d07",
+      "model_config": {
+        "schema_version": 1,
+        "architecture": "decoder_only_transformer",
+        "hidden_size": 256,
+        "num_attention_heads": 4,
+        "num_key_value_heads": 2,
+        "head_dim": 64,
+        "activation": "swiglu",
+        "norm": "rmsnorm",
+        "rms_norm_eps": 1e-06,
+        "qk_norm_type": "none",
+        "qk_norm_before_rope": true,
+        "attention_scale": 0.125,
+        "rope_theta": 10000,
+        "rope_layout": "half_split",
+        "rotary_dim": 64,
+        "max_position_embeddings": 1024,
+        "tie_word_embeddings": true,
+        "attention_bias": false,
+        "mlp_bias": false,
+        "dropout": 0.0,
+        "initializer_std": 0.02,
+        "norm_initial_gain": 1.0,
+        "status": "phase5_ablation",
+        "name": "JMicro-10M-T4K-NoQKNorm",
+        "vocab_size": 4096,
+        "num_hidden_layers": 13,
+        "intermediate_size": 640,
+        "expected_parameter_count": 10001152
+      },
+      "spec": {
+        "seed": 42,
+        "context": 1024,
+        "batch": 8,
+        "accumulation": 1,
+        "lr": 0.002,
+        "weight_decay": 0.1,
+        "warmup": 200,
+        "schedule_updates": 12208,
+        "dtype": "bf16",
+        "compile": false,
+        "backend": "math"
+      },
+      "budget_points": [
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00001000.pt",
+          "update": 1000,
+          "tokens": 8192000,
+          "body_bytes": 31977775,
+          "training_seconds": 68.3990088829878
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00002000.pt",
+          "update": 2000,
+          "tokens": 16384000,
+          "body_bytes": 63931629,
+          "training_seconds": 136.1904171360011
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00003000.pt",
+          "update": 3000,
+          "tokens": 24576000,
+          "body_bytes": 95908724,
+          "training_seconds": 203.9848752959906
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00004000.pt",
+          "update": 4000,
+          "tokens": 32768000,
+          "body_bytes": 127878140,
+          "training_seconds": 271.74845571498827
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00005000.pt",
+          "update": 5000,
+          "tokens": 40960000,
+          "body_bytes": 159832303,
+          "training_seconds": 339.5258253619968
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00006000.pt",
+          "update": 6000,
+          "tokens": 49152000,
+          "body_bytes": 191809001,
+          "training_seconds": 407.2773405189773
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00007000.pt",
+          "update": 7000,
+          "tokens": 57344000,
+          "body_bytes": 223794507,
+          "training_seconds": 475.0811500379732
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00008000.pt",
+          "update": 8000,
+          "tokens": 65536000,
+          "body_bytes": 255764477,
+          "training_seconds": 542.6222633899706
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00009000.pt",
+          "update": 9000,
+          "tokens": 73728000,
+          "body_bytes": 287729194,
+          "training_seconds": 610.5021639639872
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00010000.pt",
+          "update": 10000,
+          "tokens": 81920000,
+          "body_bytes": 319703055,
+          "training_seconds": 678.140020997982
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00011000.pt",
+          "update": 11000,
+          "tokens": 90112000,
+          "body_bytes": 351639676,
+          "training_seconds": 745.9575204859939
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00012000.pt",
+          "update": 12000,
+          "tokens": 98304000,
+          "body_bytes": 383656322,
+          "training_seconds": 813.7712418549845
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-no-qknorm/checkpoint-00012208.pt",
+          "update": 12208,
+          "tokens": 100007936,
+          "body_bytes": 390286307,
+          "training_seconds": 827.8414653289838
+        }
+      ],
+      "loss_first100": 7.137880692481994,
+      "loss_last100": 2.4832206892967226
+    },
+    "100m-lr001": {
+      "bpb": 1.2350015854953276,
+      "initial_bpb": 3.0924253941889197,
+      "common_bpb": 1.6181243581929117,
+      "tokens": 100007936,
+      "body_bytes": 390286307,
+      "training_seconds": 828.6709560788995,
+      "cold_first_update_seconds": 0.5032779069997559,
+      "steady_tokens_per_second": 121045.82290573028,
+      "unique_train": {
+        "tokens": 8398329,
+        "documents": 18022,
+        "body_bytes": 32774150,
+        "stream_sha256": "4fc83c84bb338eec1e891e22c472a19119341322a9cd8de611862f5f9d92dd65",
+        "index_sha256": "3a394a09a3311bce19d07919a4465e08e4dc9618126452df850c3be9db5459a1"
+      },
+      "sampler": {
+        "seed": 42,
+        "epoch": 11,
+        "position": 7453,
+        "context": 1024,
+        "blocks": 8201
+      },
+      "generation_rates": {
+        "cases": 80,
+        "eos": 0.0,
+        "unicode_failure": 0.0,
+        "repetition": 0.65,
+        "role_leak": 0.0,
+        "empty": 0.0
+      },
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-lr001/checkpoint-00012208.pt",
+      "checkpoint_sha256": "8f0d43540380bb174efa046bae5625ccf980814693dfa4e07e3de67fd8ce4631",
+      "model_config": {
+        "schema_version": 1,
+        "architecture": "decoder_only_transformer",
+        "hidden_size": 256,
+        "num_attention_heads": 4,
+        "num_key_value_heads": 2,
+        "head_dim": 64,
+        "activation": "swiglu",
+        "norm": "rmsnorm",
+        "rms_norm_eps": 1e-06,
+        "qk_norm_type": "none",
+        "qk_norm_before_rope": true,
+        "attention_scale": 0.125,
+        "rope_theta": 10000,
+        "rope_layout": "half_split",
+        "rotary_dim": 64,
+        "max_position_embeddings": 1024,
+        "tie_word_embeddings": true,
+        "attention_bias": false,
+        "mlp_bias": false,
+        "dropout": 0.0,
+        "initializer_std": 0.02,
+        "norm_initial_gain": 1.0,
+        "status": "phase5_ablation",
+        "name": "JMicro-10M-T4K-NoQKNorm",
+        "vocab_size": 4096,
+        "num_hidden_layers": 13,
+        "intermediate_size": 640,
+        "expected_parameter_count": 10001152
+      },
+      "spec": {
+        "seed": 42,
+        "context": 1024,
+        "batch": 8,
+        "accumulation": 1,
+        "lr": 0.001,
+        "weight_decay": 0.1,
+        "warmup": 200,
+        "schedule_updates": 12208,
+        "dtype": "bf16",
+        "compile": false,
+        "backend": "math"
+      },
+      "budget_points": [
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-lr001/checkpoint-00001000.pt",
+          "update": 1000,
+          "tokens": 8192000,
+          "body_bytes": 31977775,
+          "training_seconds": 68.79538483500073
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-lr001/checkpoint-00002000.pt",
+          "update": 2000,
+          "tokens": 16384000,
+          "body_bytes": 63931629,
+          "training_seconds": 136.39420041900303
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-lr001/checkpoint-00003000.pt",
+          "update": 3000,
+          "tokens": 24576000,
+          "body_bytes": 95908724,
+          "training_seconds": 204.85943796199263
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-lr001/checkpoint-00004000.pt",
+          "update": 4000,
+          "tokens": 32768000,
+          "body_bytes": 127878140,
+          "training_seconds": 272.7582342539772
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-lr001/checkpoint-00005000.pt",
+          "update": 5000,
+          "tokens": 40960000,
+          "body_bytes": 159832303,
+          "training_seconds": 340.31464015198253
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-lr001/checkpoint-00006000.pt",
+          "update": 6000,
+          "tokens": 49152000,
+          "body_bytes": 191809001,
+          "training_seconds": 408.07484275196657
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-lr001/checkpoint-00007000.pt",
+          "update": 7000,
+          "tokens": 57344000,
+          "body_bytes": 223794507,
+          "training_seconds": 475.59605122495486
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-lr001/checkpoint-00008000.pt",
+          "update": 8000,
+          "tokens": 65536000,
+          "body_bytes": 255764477,
+          "training_seconds": 543.1813905369372
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-lr001/checkpoint-00009000.pt",
+          "update": 9000,
+          "tokens": 73728000,
+          "body_bytes": 287729194,
+          "training_seconds": 610.846896720911
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-lr001/checkpoint-00010000.pt",
+          "update": 10000,
+          "tokens": 81920000,
+          "body_bytes": 319703055,
+          "training_seconds": 678.6702285169076
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-lr001/checkpoint-00011000.pt",
+          "update": 11000,
+          "tokens": 90112000,
+          "body_bytes": 351639676,
+          "training_seconds": 746.5806027119052
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-lr001/checkpoint-00012000.pt",
+          "update": 12000,
+          "tokens": 98304000,
+          "body_bytes": 383656322,
+          "training_seconds": 814.4702829798962
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-lr001/checkpoint-00012208.pt",
+          "update": 12208,
+          "tokens": 100007936,
+          "body_bytes": 390286307,
+          "training_seconds": 828.6709560788995
+        }
+      ],
+      "loss_first100": 7.298044581413269,
+      "loss_last100": 2.590371630191803
+    }
+  },
+  "paired_comparisons": {
+    "100m-t8k_vs_100m-t4k": {
+      "direction": "left_bpb_minus_right_bpb",
+      "point": 0.02703826538878973,
+      "ci95": [
+        0.024808145493469175,
+        0.02938744500564506
+      ],
+      "seed": 42,
+      "repetitions": 2000,
+      "unit": "document"
+    },
+    "100m-t4k_vs_100m-no-qknorm": {
+      "direction": "left_bpb_minus_right_bpb",
+      "point": 0.01037938810761485,
+      "ci95": [
+        0.00850465704424264,
+        0.012258479590608195
+      ],
+      "seed": 42,
+      "repetitions": 2000,
+      "unit": "document"
+    },
+    "100m-no-qknorm_vs_100m-lr001": {
+      "direction": "left_bpb_minus_right_bpb",
+      "point": -0.01355827807418164,
+      "ci95": [
+        -0.015443157861969842,
+        -0.01159392735062614
+      ],
+      "seed": 42,
+      "repetitions": 2000,
+      "unit": "document"
+    }
+  },
+  "selected": [
+    "100m-no-qknorm"
+  ],
+  "second_tokenizer_uncertainty": {
+    "direction": "left_bpb_minus_right_bpb",
+    "point": -0.03741765349640458,
+    "ci95": [
+      -0.039630711459301006,
+      -0.03502163277148687
+    ],
+    "seed": 42,
+    "repetitions": 2000,
+    "unit": "document"
+  },
+  "auxiliary_budget_matches": {
+    "body_bytes": {
+      "label": "Approximate nearest saved checkpoint; not equal history or exact budget",
+      "target": 312229045.6,
+      "points": {
+        "100m-t8k": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t8k/checkpoint-00008000.pt",
+          "update": 8000,
+          "tokens": 65536000,
+          "body_bytes": 311994662,
+          "training_seconds": 561.2365527449974
+        },
+        "100m-t4k": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t4k/checkpoint-00010000.pt",
+          "update": 10000,
+          "tokens": 81920000,
+          "body_bytes": 319703055,
+          "training_seconds": 737.006697809948
+        }
+      },
+      "delta": -7708393,
+      "dev_bpb": {
+        "t8k": 1.2009200514689506,
+        "t4k": 1.2039820520049334
+      }
+    },
+    "training_seconds": {
+      "label": "Approximate nearest saved checkpoint; not equal history or exact budget",
+      "target": 685.0916608455915,
+      "points": {
+        "100m-t8k": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t8k/checkpoint-00010000.pt",
+          "update": 10000,
+          "tokens": 81920000,
+          "body_bytes": 390019986,
+          "training_seconds": 701.7691711529869
+        },
+        "100m-t4k": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/100m-t4k/checkpoint-00009000.pt",
+          "update": 9000,
+          "tokens": 73728000,
+          "body_bytes": 287729194,
+          "training_seconds": 663.2324921579539
+        }
+      },
+      "delta": 38.53667899503307,
+      "dev_bpb": {
+        "t8k": 1.2124071548762543,
+        "t4k": 1.1947841236042656
+      }
+    }
+  },
+  "test_used": false,
+  "muon_decision": "Deferred: stable AdamW comparisons suffice; no optimizer expansion in Phase 5",
+  "remaining": "Phase 6 requires expanded corpus, long-run scheduler, and quality evaluation; no Phase 6 job launched"
+}

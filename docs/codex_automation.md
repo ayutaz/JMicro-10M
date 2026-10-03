@@ -1,6 +1,6 @@
 # Codexによる環境整備・学習・改善の自動化
 
-Phase 5実行状況（2026-10-03）: ユーザーが再開と完了までの作業を指定した。[詳細計画](22_phase5_plan.md)を参照。現在のrun/processは継続状態を正とし、Phase 6本学習は開始しない。
+Phase 5完了（2026-10-03）: overfit・10M smoke・4本の100M比較・補助評価・候補選定・独立監査が終了。[完了記録](23_phase5_completion.md)を参照。Phase 6本学習は開始せず停止中。
 
 確認日: 2026-10-03。現在はFull accessが実効policyへ反映済みで、ユーザー側のrunner起動は不要。ユーザーのPhase 5再開指定を反映済みで、runnerもPhase 5完了後に停止する。CLI 0.159.3の実helpとOpenAI公式資料を照合した。
 

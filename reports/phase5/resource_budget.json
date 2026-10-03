@@ -1,8 +1,8 @@
 {
   "phase": 5,
-  "status": "measured_partial",
-  "observed_at": "2026-10-03T04:22:03.932479Z",
-  "active_stage": "evaluate-lr001",
+  "status": "measured_complete",
+  "observed_at": "2026-10-03T04:28:15.263245Z",
+  "active_stage": null,
   "completed_comparison_trainings": {
     "100m-t8k": {
       "updates": 12208,
@@ -199,14 +199,39 @@
       "started_at": "2026-10-03T04:07:31.717231+00:00",
       "ended_at": "2026-10-03T04:21:31.015155+00:00",
       "worker_wall_seconds": 839.297924
+    },
+    "evaluate-lr001": {
+      "started_at": "2026-10-03T04:21:31.023867+00:00",
+      "ended_at": "2026-10-03T04:26:54.276866+00:00",
+      "worker_wall_seconds": 323.252999
+    },
+    "budget-body_bytes-t8k": {
+      "started_at": "2026-10-03T04:26:54.385258+00:00",
+      "ended_at": "2026-10-03T04:27:02.403768+00:00",
+      "worker_wall_seconds": 8.01851
+    },
+    "budget-body_bytes-t4k": {
+      "started_at": "2026-10-03T04:27:02.411471+00:00",
+      "ended_at": "2026-10-03T04:27:09.230114+00:00",
+      "worker_wall_seconds": 6.818643
+    },
+    "budget-training_seconds-t8k": {
+      "started_at": "2026-10-03T04:27:09.238627+00:00",
+      "ended_at": "2026-10-03T04:27:17.510344+00:00",
+      "worker_wall_seconds": 8.271717
+    },
+    "budget-training_seconds-t4k": {
+      "started_at": "2026-10-03T04:27:17.519117+00:00",
+      "ended_at": "2026-10-03T04:27:24.347029+00:00",
+      "worker_wall_seconds": 6.827912
     }
   },
   "total_completed_comparison_training_worker_seconds": 3454.092875,
-  "total_completed_generation_evaluation_worker_seconds": 1421.126977,
+  "total_completed_generation_evaluation_worker_seconds": 1744.379976,
   "persistent_artifact_storage": {
     "run-20261003-docoverfit": {
-      "files": 666,
-      "apparent_bytes": 8731305544,
+      "files": 679,
+      "apparent_bytes": 8733349784,
       "checkpoint_files": 73
     },
     "run-20261003": {
@@ -225,7 +250,7 @@
       "checkpoint_files": 12
     }
   },
-  "free_linux_bytes": 969649356800,
+  "free_linux_bytes": 969676787712,
   "original_smoke_projection": {
     "phase": 5,
     "status": "measured_projection_before_100m",
@@ -265,6 +290,6 @@
     "Apparent storage sizes are not hardlink-deduplicated. Failed runs are retained separately.",
     "Pilot repeated exposures are reported with unique data and sampler position; these are not 100M unique-token corpora.",
     "Observed job wall time excludes earlier implementation/repair and does not measure total human/agent work time.",
-    "Only finished audited trainings appear here; the final update requires all four comparisons and terminal supervisor."
+    "Final update includes all four audited comparisons and the terminal 23-stage supervisor."
   ]
 }

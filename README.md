@@ -1,10 +1,10 @@
 # JMicro-10M
 
-Phase 5実行状況（2026-10-03）: ユーザーが再開と完了までの作業を指定した。[詳細計画](docs/22_phase5_plan.md)を参照。現在のrun/processは継続状態を正とし、Phase 6本学習は開始しない。
+Phase 5完了（2026-10-03）: overfit・10M smoke・4本の100M比較・補助評価・候補選定・独立監査が終了。[完了記録](docs/23_phase5_completion.md)を参照。Phase 6本学習は開始せず停止中。
 
 日本語の短文生成と数ターンの雑談を目的に、約10Mの言語モデルをTokenizerからスクラッチ構築する。計画は[フェーズ別実行計画](docs/15_project_roadmap.md)、設計・調査一覧は[docs](docs/README.md)を参照。
 
-Phase 0〜4が完了。データpilot、4k/8k Tokenizer、約10Mモデル、cache、HF/実float GGUFをiMacで検証し、WSL＋RTX 4090で学習器・保存再開・最大安定batch・評価を実測した。[Tokenizer完了記録](docs/18_phase2_completion.md)、[モデル・export完了記録](docs/19_phase3_completion.md)、[Phase 4完了記録](docs/21_phase4_completion.md)を参照する。Phase 4は小さいGPU検証runで、Base/Chatの本学習と能力目標は未達。ユーザーの再開指定によりPhase 5を実行中。今回の区切りはPhase 5完了。
+Phase 0〜5が完了。データpilot、4k/8k Tokenizer、約10Mモデル、cache、HF/実float GGUFをiMacで検証し、WSL＋RTX 4090で学習器・保存再開・最大安定batch・評価を実測した。[Tokenizer完了記録](docs/18_phase2_completion.md)、[モデル・export完了記録](docs/19_phase3_completion.md)、[Phase 4完了記録](docs/21_phase4_completion.md)を参照する。Phase 4は小さいGPU検証runで、Base/Chatの本学習と能力目標は未達。Phase 5の候補選定と独立監査も終了し、Phase 6前で停止中。
 
 **別PCで続きを進める場合は[Windows/WSL＋RTX 4090の再開手順](docs/windows_handoff.md)から始める。** 固定成果物の復元、uv環境・CUDA確認、実装済みCLIと引継ぎ条件をまとめている。最近のPhase 4コミットはローカル保存で、GitHubへpushしていない。新規cloneだけで最新コードが揃うとは限らない。
 
@@ -54,7 +54,7 @@ uv add --optional ml <ml-package>
 | `tests/` | 日本語dedup・split・話者対応・取得上限、BPB、前処理、snapshot検証 |
 | `eval/` | Base/Chat各100件、dev/test manifest、採点・golden例 |
 | `data/` | 小sample用。本文・shardsはGit管理外 |
-| `reports/` | 準備run台帳、Phase 0〜4の検証・再生成・export・GPU実測結果 |
+| `reports/` | 準備run台帳、Phase 0〜5の検証・再生成・export・GPU学習・比較結果 |
 | `docs/` | 設計、技術調査、評価仕様、移行手順 |
 
 評価方法は[evaluation_protocol.md](docs/evaluation_protocol.md)、環境切替は[windows_handoff.md](docs/windows_handoff.md)、Phase 0の結果は[完了記録](docs/16_phase0_completion.md)を参照。
@@ -67,7 +67,7 @@ uv add --optional ml <ml-package>
 
 ## 次に進めること
 
-Phase 4完了後、ユーザーの再開指定によりPhase 5の100件overfit → 10M smoke → 100M比較へ進む。Tokenizer再学習・成果物再取得・完了済みPhase 4測定を繰り返す必要はない。[実測と制約](docs/21_phase4_completion.md)、[次の作業](docs/10_next_steps.md)を参照する。
+Phase 5の100件overfit → 10M smoke → 100M比較・候補選定が完了し、Phase 6前で停止中。[完了記録](docs/23_phase5_completion.md)を参照する。Tokenizer再学習・成果物再取得・完了済みPhase 4測定を繰り返す必要はない。[実測と制約](docs/21_phase4_completion.md)、[次の作業](docs/10_next_steps.md)を参照する。
 
 Git管理対象はコード・設定・docs・小さな検証report。本文・Tokenizer・checkpointは管理外なので固定Hub成果物とLinux保存先を引き継ぐ。Phase 4では実artifact付きの全64テストが成功した。新規cloneにはartifactを別途復元する。
 
