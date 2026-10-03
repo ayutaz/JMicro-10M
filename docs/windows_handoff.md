@@ -1,6 +1,6 @@
 # 別PCで続きを進める: Windows / WSL / RTX 4090
 
-次回は[学習済み10Mモデルの生成方法の比較](27_phase6_remaining_plan.md#次回の一区切り-学習済み10mモデルの生成方法を比較する)。[比較条件](../reports/phase6/repetition_decoder_plan.json)は計画のみで、専用比較CLIは未実装。ユーザーが実行を再開した後に別CLIの実装/元decoder再現を検証し、同じ重みで計640outputsを測りreport/commitで停止する。約500Mは学習tokensのmilestoneで、モデルサイズは約10Mパラメータ。今回GPU jobや学習を開始していない。
+次回は[学習用データの2B拡張](27_phase6_remaining_plan.md#次回の一区切り-学習用データを2bへ拡張する)。ユーザーのデータ量不足仮説を優先し、現train756Mから合計2B以上を目指す。5Bは後続段階。既存heldout/評価suiteを保護し、別config/outputで取得・統合重複除去・全shard監査を行いreport/commitで停止する計画。取得上限案・構築予算の実測と凍結・保存再開の条件はリンク先を参照。decoder比較は保留。モデルは約10Mパラメータ。今回は計画訂正のみで取得・GPU job・学習を開始していない。
 
 500M後の[反復/EOS/data調査](../reports/phase6/repetition_diagnosis_review.md)も完了し停止。追加学習/1Bは未開始。Linux `reports/phase6/repetition-diagnosis-20261003/`のsample・trace・log・job identity・testsを既存runとともに引き継ぐ。次回案のdecoder/mixture比較は未起動で、完了した500Mや診断jobを再実行しない。[最新状態](autonomous_status.md)。
 
