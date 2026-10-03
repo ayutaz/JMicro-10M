@@ -4,6 +4,7 @@ Run through uv in the WSL checkout. This command never trains or evaluates test.
 """
 import argparse
 from collections import Counter, defaultdict
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -18,7 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from jmicro.experiment import ROOT, now, read_json, sha256, write_json
 from jmicro.phase5 import bootstrap_bpb, equal_state
 from jmicro.shards import Shard
-from jmicro.tokenizer import Tokenizer
+from jmicro.tokenizer import SUPPRESS_IDS, Tokenizer
 from jmicro.training import implementation_hashes
 
 
@@ -58,6 +59,8 @@ def generation_summary(generation, cases, tokenizer):
         require((row["stop_reason"] == "stop_id") == (ids[-1] == 3), "Stop reason differs from token IDs")
         require(not (3 in ids[:-1]), "Generation continued after EOS")
         require(all(0 <= i < tokenizer.vocab_size for i in ids), "Generated ID outside vocabulary")
+        if row["suppressed"]:
+            require(not set(ids).intersection(SUPPRESS_IDS), "Suppressed token was generated")
         raw = tokenizer.decode_bytes(ids) if 1 not in ids else b""
         try:
             decoded, valid = raw.decode(), 1 not in ids
@@ -158,7 +161,7 @@ def main():
     test_cases = list(xml.iter("testcase"))
     require(len(test_cases) >= 68 and not any(list(xml.iter(tag)) for tag in ("failure", "error", "skipped")), "Tests incomplete or failed/skipped")
     names = ["100m-t8k", "100m-t4k", "100m-no-qknorm", "100m-lr001"]
-    reports, compact = {}, {}
+    reports, compact, token_digests = {}, {}, {}
     for name in ["smoke", *names]:
         report = smoke if name == "smoke" else read_json(run / f"{name}.json")
         reports[name] = report
@@ -173,8 +176,19 @@ def main():
         require(np.mean([r["loss"] for r in metrics[-100:]]) < np.mean([r["loss"] for r in metrics[:100]]), "Training loss did not decrease")
         require(sha256(Path(report["checkpoint"])) == report["checkpoint_sha256"], "Checkpoint hash differs")
         state = torch.load(report["checkpoint"], map_location="cpu", weights_only=False)
+        token_digests[name] = state["token_digest"]
         require(state["tokens"] == updates * plan["context"] * plan["batch"] * plan["accumulation"] == report["tokens_seen"], "Consumed token budget differs")
         require(state["update"] == updates and state["implementation_sha256"] == job["implementation_sha256"], "Checkpoint source/update differs")
+        training_record = read_json(directory / "run.json")
+        require(training_record["phase"] == 5 and training_record["status"] == "complete", "Training run not completed Phase 5")
+        require(training_record["spec"] == state["spec"] and training_record["model_config"] == state["model_config"], "Training record differs from checkpoint")
+        require(state["shard_manifest_sha256"] == training_record["shard_manifest_sha256"] ==
+            sha256(shards[model_name].directory / "manifest.json"), "Training/checkpoint shard binding differs")
+        for relative, digest in training_record["source_sha256"].items():
+            require(sha256(directory / "snapshot" / relative) == digest, f"Source snapshot differs: {name}/{relative}")
+        for relative, digest in state["implementation_sha256"].items():
+            require(hashlib.sha256((directory / "snapshot" / relative).read_bytes().replace(b"\r\n", b"\n")).hexdigest() == digest,
+                f"Checkpoint core differs from snapshot: {name}/{relative}")
         require(state["model_config"] == report["model_config"] and all(torch.isfinite(w).all() for w in state["model"].values()), "Checkpoint model differs/nonfinite")
         require(all(torch.isfinite(v).all() for item in state["optimizer"]["state"].values()
             for v in item.values() if isinstance(v, torch.Tensor)), "Nonfinite optimizer state")
@@ -195,6 +209,7 @@ def main():
     baseline_winner = min(("100m-t8k", "100m-t4k"), key=lambda n: reports[n]["body"]["bpb"])
     require(reports["100m-no-qknorm"]["model_config"]["vocab_size"] == reports[baseline_winner]["model_config"]["vocab_size"], "Norm ablation tokenizer differs")
     require(compact["100m-no-qknorm"]["spec"] == compact[baseline_winner]["spec"], "Norm ablation training factors differ")
+    require(token_digests["100m-no-qknorm"] == token_digests[baseline_winner], "Norm comparison consumed different token sequence")
     left = dict(reports[baseline_winner]["model_config"]); right = dict(reports["100m-no-qknorm"]["model_config"])
     for key in ("name", "status", "expected_parameter_count", "qk_norm_type"):
         left.pop(key, None); right.pop(key, None)
@@ -203,6 +218,7 @@ def main():
     require(reports["100m-lr001"]["model_config"] == reports[lr_baseline]["model_config"], "LR comparison architecture differs")
     low_spec = dict(compact["100m-lr001"]["spec"]); low_spec["lr"] = plan["lr"]
     require(low_spec == compact[lr_baseline]["spec"] and compact["100m-lr001"]["spec"]["lr"] == .001, "LR comparison factors differ")
+    require(token_digests["100m-lr001"] == token_digests[lr_baseline], "LR comparison consumed different token sequence")
     for key, recorded in comparison["paired_comparisons"].items():
         left_name, right_name = key.split("_vs_")
         require(bootstrap_bpb(reports[left_name]["body"], reports[right_name]["body"]) == recorded, "Paired comparison differs")
