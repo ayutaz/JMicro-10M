@@ -20,6 +20,8 @@ T8Kの100M学習は**12,208更新 / 100,007,936 tokens**で終了し、最終che
 
 T4Kの100M学習も**12,208更新 / 100,007,936 tokens**で終了し、checkpoint SHA `71a1a3bf6e057ad6e290047fb3db0f8ec8723f7c54839a51d50f58d89206cfec`を保存した。学習workerの実時間約15分11秒。全更新/weights/optimizer有限・source snapshot・shard/予算一致を独立監査し、`reports/phase5/100m-t4k_training_audit.json`へ保存。全dev BPB **1.23182**、抑制ありgreedyのEOS **0/80**・反復 **53/80**・Unicode/role/empty各0/80。400生成ID/flagを再計算して一致し、evaluation auditを保存した。T8K BPB−T4K BPBは**0.02704、95% CI 0.02481〜0.02939**。共通短文BPBはT8K **1.65006** / T4K **1.59139**。次のNorm比較は有望なT4Kで実施する。baseline比較を`reports/phase5/tokenizer_baseline_comparison.json`へ保存。model familyは語彙以外のarchitecture寸法も異なり、純粋な語彙のみの因果比較とはしない。処理body bytesはT8K **476,090,448** / T4K **390,286,307**と異なり、同一token予算と同一bytes予算は区別する。後続の近いcheckpoint予算でも補助評価する。
 
+T4KのQK-Normなし100M学習も**12,208更新 / 100,007,936 tokens**で終了。checkpoint SHA `e5583927efc5aa2041648bcae23f1b618b70f002be334c3581dea23472447d07`、消費token digest **92e575d3…**はT4K baselineと完全一致し、supervised tokens/body bytesも同じ。学習worker実時間約13分58秒。全更新/weights/optimizer有限・source snapshot・shard/予算一致を独立監査し、`reports/phase5/100m-no-qknorm_training_audit.json`に保存。現在dev/400生成を評価中。NoQK-NormのHF/GGUF adapterは未実装で、採否時に変換リスクを記載する。
+
 以下は完了済みPhase 4の証拠（2026-10-03 01:58 JST監査成功）。[完了記録](21_phase4_completion.md)とGit保存の`reports/phase4/handoff_report.json`を参照する。
 
 - T8K/T4Kともsource-boundの連続200 vs 100+100で消費列digest / loss / weights / optimizer / scheduler / RNG / samplerが完全一致。64 tests / skip 0、CUDA評価RNG保全、共通bytes・本文一度採点・共通短文window、compile BF16 logitsの既定許容差内一致を監査した。
