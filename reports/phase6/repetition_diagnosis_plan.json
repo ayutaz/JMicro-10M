@@ -1,0 +1,25 @@
+{
+  "comparisons": [
+    "Paired old/new 400-output failure transitions and repetition onset",
+    "Full train length/stream/EOS statistics, exact consumed-sampler teacher counts, seeded content samples",
+    "Matched held-out true document endings and short-prompt EOS probability for 100M/stable500M/decay500M",
+    "Same fixed greedy80 across stable131M/stable328M/stable500M versus existing decay500M",
+    "Reproduce eight existing outputs and compare cache/full and BF16/FP32 on fixed prefixes"
+  ],
+  "budgets": {
+    "trajectory_max_new_tokens": 64,
+    "train_updates": 0,
+    "teacher_dev_documents": 256,
+    "exact_generation_reproduction_cases": 8,
+    "content_sample_documents_per_dataset": 2048,
+    "GPU_inference_seconds": 900,
+    "trajectory_cases": 80,
+    "initial_total_seconds": 1800,
+    "content_prefix_characters": 512
+  },
+  "created_at": "2026-10-03T10:35:05.0189525Z",
+  "source_commit": "6cdd6b7761f497fd6e28ce0b42991afc4bd87c79",
+  "status": "planned_before_diagnostics",
+  "completion": "Hash-bound report covering paired degradation, EOS supervision and learned endings, data composition and checkpoint/decoding effects; distinguish excluded causes and unresolved confounding; propose a bounded next experiment, update status and commit",
+  "scope": "Investigate repetition/EOS/data composition using immutable existing artifacts and bounded inference; no training or 1B"
+}
