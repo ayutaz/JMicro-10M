@@ -9,6 +9,7 @@
 | T8K / QK-Norm / LR 0.002 | 8 | eager/math | 117,119 | 4.482 |
 | T4K / QK-Norm / LR 0.002 | 8 | eager/math | 111,693 | 4.300 |
 | T4K / NoQK-Norm / LR 0.002 | 8 | eager/math | 121,139 | 3.866 |
+| T4K / NoQK-Norm / LR 0.001 | 8 | eager/math | 121,046 | 3.866 |
 
 VRAM 24 GiBを最大限使う設定ではない。学習ピークはtrainerのCUDA allocated計測であり、nvidia-smiのreserved/contextを含む使用量とは異なる。速度・VRAMは各training auditのmetrics/run記録から得た実測値。生成評価中のGPU使用率やメモリ量を学習の稼働率として扱わない。
 
