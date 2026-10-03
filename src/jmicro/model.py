@@ -66,7 +66,7 @@ class Attention(nn.Module):
         self.q_norm = norm()
         self.k_norm = norm()
 
-    def forward(self, x, positions, allowed, past):
+    def forward(self, x, positions, allowed, past, causal=False):
         batch, length, _ = x.shape
         def project(layer, heads):
             return layer(x).view(batch, length, heads, self.dim).transpose(1, 2)
@@ -78,8 +78,8 @@ class Attention(nn.Module):
         # Explicit repeats keep mapping contiguous: Q heads 0/1->KV0, 2/3->KV1.
         groups = self.qheads // self.kvheads
         attended = F.scaled_dot_product_attention(q, k.repeat_interleave(groups, dim=1),
-            v.repeat_interleave(groups, dim=1), attn_mask=allowed[:, None],
-            dropout_p=0.0, is_causal=False, scale=self.scale)
+            v.repeat_interleave(groups, dim=1), attn_mask=None if causal else allowed[:, None],
+            dropout_p=0.0, is_causal=causal, scale=self.scale)
         attended = attended.transpose(1, 2).reshape(batch, length, -1)
         return self.o_proj(attended), (k, v)
 
@@ -104,8 +104,8 @@ class Block(nn.Module):
         self.input_layernorm = RMSNorm(config["hidden_size"], config["rms_norm_eps"])
         self.post_attention_layernorm = RMSNorm(config["hidden_size"], config["rms_norm_eps"])
 
-    def forward(self, x, positions, allowed, past):
-        attention, cache = self.self_attn(self.input_layernorm(x), positions, allowed, past)
+    def forward(self, x, positions, allowed, past, causal=False):
+        attention, cache = self.self_attn(self.input_layernorm(x), positions, allowed, past, causal)
         x = x + attention
         return x + self.mlp(self.post_attention_layernorm(x)), cache
 
@@ -140,9 +140,21 @@ class JMicroModel(nn.Module):
         elif isinstance(module, RMSNorm):
             nn.init.constant_(module.weight, self.config["norm_initial_gain"])
 
-    def forward(self, input_ids, attention_mask=None, cache=None, use_cache=False, labels=None):
+    def forward(self, input_ids, attention_mask=None, cache=None, use_cache=False, labels=None, training_fast_path=False):
         if input_ids.ndim != 2 or input_ids.shape[1] == 0:
             raise ValueError("Expected nonempty [batch, tokens] IDs")
+        if training_fast_path:
+            # Only fixed, unpadded block training: no cache, padding or labels.
+            # The caller checks PAD/context on the CPU before transferring IDs.
+            if attention_mask is not None or cache is not None or use_cache or labels is not None:
+                raise ValueError("Fast training requires unpadded blocks without cache/labels")
+            if input_ids.shape[1] > self.config["max_position_embeddings"]:
+                raise ValueError("Training context exceeds model")
+            positions = torch.arange(input_ids.shape[1], device=input_ids.device)[None].expand(input_ids.shape[0], -1)
+            x = self.model.embed_tokens(input_ids)
+            for block in self.model.layers:
+                x, _ = block(x, positions, None, None, causal=True)
+            return ModelOutput(self.lm_head(self.model.norm(x)).float())
         valid = torch.ones_like(input_ids, dtype=torch.bool) if attention_mask is None else attention_mask.bool()
         if valid.shape != input_ids.shape:
             raise ValueError("Mask must match current IDs (including chunk decode)")

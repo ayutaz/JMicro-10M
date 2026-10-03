@@ -6,7 +6,7 @@
 
 Pythonは必ず3.12.7/uv管理で`uv run --frozen`から実行する。依存変更は`uv add`、復元は`uv sync --frozen`、system Python/pipへ代替しない。実学習はWSL 2 / Ubuntu / RTX 4090、WSL package 3.x。Git local identityは`yousan <ka1357amnbpdr@gmail.com>`、意味のある検証済み変更をcommitし、push/公開しない。
 
-ユーザーがPhase 5の完了後に「phase6の1,2を目的とゴールを明確にして最後まで」を指定した。①データ拡充と②長時間学習準備は全証拠を揃えて完了した。[目的・完了条件](25_phase6_preparation.md)、[完了記録](26_phase6_preparation_completion.md)。**現在は①②完了で停止中。③の容量/速度探索と500M以上の本学習は、ユーザーが再開するまで起動しない。Phase 6全体の完了ではない。**
+①データ拡充と②長時間学習準備は完了した。[目的・完了条件](25_phase6_preparation.md)、[完了記録](26_phase6_preparation_completion.md)。その後、ユーザーが資源/VRAMの最大活用・torch.compile等の高速化の確認と不足対応を指定したため、**③の実装・測定・厳密再開を再開する。完了してcommit後、④以降と500M以上の本学習の前で停止する。Phase 6全体の完了ではない。** [今回の比較・完了条件](28_phase6_performance.md)。
 
 ## 実際の状態
 
@@ -27,13 +27,21 @@ Phase 5候補のBPB 1.221443、greedy EOS0/80・反復54/80、sampling Unicode2/
 
 初回`expanded-v1`のdatasketch scheme失敗は保持し、明示legacy scheme＋scalar/LSH testで修正。schema不足も固定500M/容量/検証条件のschemaを追加して修正した。条件は緩めない。CPU小fixtureのfork警告2件はreportに残し、実data workerの全終了と全件監査は別に確認した。本文previewでは販促・navigation・見出し反復・翻訳調・古い情報を記録しており、品質の保証としない。
 
+## 高速化の初回測定と修正（2026-10-03）
+
+v1の短い比較ではreference/math約120k、compiled/math約273k、reduce-overhead/math約282k tokens/sだった。しかしcompiled Flashがmathと40更新loss・全model tensorsまで一致し、共用Inductor cacheにFlash ATen演算がなかったため、backendの実効を証明できずv1を採用証拠から除外した。v1のsnapshot/log/checkpoint/検査結果は保持。基準batch 8の53項目の厳密再開・枝検証は通過したが、全studyの完了ではない。workerのterminal OOM後にsupervisorを終了し、GPU compute processなしを確認した。
+
+backend別cache namespaceとin-memory reset、実CUDA updateのATen operator検証、compiled Flash/reduce-overhead比較、最速math/Flash両方の容量探索を追加した。全79 tests / skip・failure・error 0を確認。v2のcompiled default Flashは実Flash演算を通過して約433k tokens/sを測ったが、reduce-overheadのCUDA Graph replayが内側のCPU hookを省略し、検査が誤って失敗した。v2も保持し、workerのterminal完了後にsupervisorを終了。CPU hookに加えてworkerが出力したcompiled code/backend call/SHAと実compiled graph呼び出しを確認するv3へ移った。[失敗記録](../reports/phase6/performance_failures.json)。
+
+実行中study: Linux `reports/phase6/performance-20261003-v3`、Windows hidden launcher PID 24452。Linux `job.json`のPID/boot/start ticks・worker・stage/log/heartbeatと、各checkpoint/SHAから状態を確認する。同じGPU jobを二重起動しない。新しい採用設定・最大batchの判定は未完了。旧①②reportとsnapshot、uv.lockは保持する。
+
 ## 次の具体的な行動
 
-今は停止する。再開後の目的・実装入口・探索予算案・完了条件を[③以降の実行計画](27_phase6_remaining_plan.md)へ具体化した。ユーザーが③以降を再開したら、まず採用NoNorm・拡張shard・WSDに対応する測定/厳密再開入口を実装・適応し、[Phase 6 gate](24_phase6_plan.md)のmath/compiled-math容量・速度・全state再開/分岐を確認する。既存Phase 4 benchmarkのNorm/pilot/cosineをそのまま流用しない。固定devでUnicode/反復/EOSと変換adapterを確認し、本学習予算・設定を凍結してから拡張corpusの新規初期化500Mへ進む。過去のTokenizer学習・Phase 3 export・Phase 5比較を重複実行しない。
+③のpersistent performance studyを実行する。[実装・比較と実CLI](28_phase6_performance.md)。causalの学習専用経路、compile mode/fullgraph/static shape、決定的カーネルを実装し、全78 tests / skip・failure・error 0を確認した。新sourceなので旧①②checkpointの通常resumeは拒否する契約を維持し、旧snapshotとreportを保持する。新規probe/厳密再開/分岐/3×200の実測を保存し、最速と容量を別に選定する。③の完了後は停止し、④以降は[残る実行計画](27_phase6_remaining_plan.md)へ残す。過去のTokenizer学習・Phase 3 export・Phase 5比較を重複実行しない。
 
 準備の中断復旧/読み取り監査の**実CLI**は[完了記録](26_phase6_preparation_completion.md#実cliと再開)。完了済みjobを再起動しない。以前のPhase 5状態と全履歴は[当時のstatus](autonomous_status_phase5_20261003.md)、[Phase 5完了記録](23_phase5_completion.md)、[復旧履歴](autonomous_history_20261003.md)に保持した。
 
-## 文書・計画更新（2026-10-03）
+## 文書・計画更新の履歴（③再開前、2026-10-03）
 
 ①②の完了証拠に合わせてREADME・roadmap・data/reports/eval・WSL handoff・研究/学習/評価文書を整合させた。WSD未実装という古い記述を修正し、実在する準備artifactと将来の本学習artifact、Phase 4 Norm/default容量と採用NoNorm/math未測定容量、pilotと拡張devの評価母集団を分けた。③容量/速度→④生成/変換→⑤本学習設定凍結の目的・有限探索・完了条件を明示した。stable予算延長forkと将来のPhase 6 heldout継承は未実装として残す。
 

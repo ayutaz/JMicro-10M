@@ -1,0 +1,115 @@
+{
+  "status": "failures_preserved",
+  "runs": [
+    {
+      "run": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/performance-20261003-v1",
+      "job": {
+        "pid": 435,
+        "boot_id": "37666cd9-cd78-41c1-a0cb-39c21d108047",
+        "start_ticks": "9058",
+        "status": "invalidated",
+        "started_at": "2026-10-03T06:21:53.075195Z",
+        "stage": "capacity-reference-math-b46",
+        "restart_command": [
+          "uv",
+          "run",
+          "--frozen",
+          "--extra",
+          "hub",
+          "--extra",
+          "data",
+          "--extra",
+          "ml",
+          "--extra",
+          "export",
+          "scripts/phase6_performance.py",
+          "--plan",
+          "configs/phase6/performance.json",
+          "--output",
+          "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/performance-20261003-v1"
+        ],
+        "worker": null,
+        "command": [
+          "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/.venv/bin/python3",
+          "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/phase6_performance.py",
+          "--worker-request",
+          "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/performance-20261003-v1/requests/capacity-reference-math-b46.json",
+          "--worker-output",
+          "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/performance-20261003-v1/results/capacity-reference-math-b46.json"
+        ],
+        "log": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/performance-20261003-v1/logs/capacity-reference-math-b46.log",
+        "heartbeat_at": "2026-10-03T06:26:29.123571Z",
+        "completed_at": "2026-10-03T06:27:27.624287+00:00",
+        "failure": "Compiled Flash reused math cache: identical 40-update loss/model, no generated Flash ATen code. Supervisor stopped after current worker reached terminal OOM; preserve v1 snapshot/results and start corrected v2.",
+        "evidence": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/performance-20261003-v1/compile_backend_inspection.json"
+      },
+      "binding": {
+        "implementation": {
+          "src/jmicro/model.py": "cc7dc24f03c091ba54c78eb9b78b1698d83269cd8012f07b3d50686a3bba81d5",
+          "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+          "src/jmicro/training.py": "a8ae167b31cd2f08a329b44b5e178db6fb8629cacd84a89d88b499443a8d8f56",
+          "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+        },
+        "plan_sha256": "64777cde7752118ba4c2f248389c2e037cd4c5ea90c59a3381587a92ef2974c3",
+        "runner_sha256": "2a8e23981a7b436643b4947490ee5528e7c356b23657c27a08a5361e86dac86d",
+        "shards_sha256": "75c7420a1434cf8a97797218b163c694a13ed838f389f09327dcc86f7164c12c"
+      },
+      "resolution": "Preserve snapshot/results/checkpoints; different source/config/better verifier uses a new study output. Do not treat diagnostic runs as completed performance acceptance."
+    },
+    {
+      "run": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/performance-20261003-v2",
+      "job": {
+        "pid": 423,
+        "boot_id": "37666cd9-cd78-41c1-a0cb-39c21d108047",
+        "start_ticks": "54920",
+        "status": "invalidated",
+        "started_at": "2026-10-03T06:29:31.712691Z",
+        "stage": "reference-math-b8-verify-0",
+        "restart_command": [
+          "uv",
+          "run",
+          "--frozen",
+          "--extra",
+          "hub",
+          "--extra",
+          "data",
+          "--extra",
+          "ml",
+          "--extra",
+          "export",
+          "scripts/phase6_performance.py",
+          "--plan",
+          "configs/phase6/performance.json",
+          "--output",
+          "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/performance-20261003-v2"
+        ],
+        "worker": null,
+        "command": [
+          "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/.venv/bin/python3",
+          "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/phase6_performance.py",
+          "--worker-request",
+          "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/performance-20261003-v2/requests/reference-math-b8-verify-0.json",
+          "--worker-output",
+          "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/performance-20261003-v2/results/reference-math-b8-verify-0.json"
+        ],
+        "log": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/performance-20261003-v2/logs/reference-math-b8-verify-0.log",
+        "heartbeat_at": "2026-10-03T06:31:56.164686Z",
+        "completed_at": "2026-10-03T06:33:29.364007+00:00",
+        "failure": "CPU-only operator trace omits inner ATen during reduce-overhead CUDA Graph replay. Default compiled Flash was independently traced and passed; add generated-code evidence and compiled runtime call evidence for replay, preserve v2, use v3.",
+        "evidence": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/performance-20261003-v2/runs/initial-compile-reduce-math-b8/attention_profile.json"
+      },
+      "binding": {
+        "implementation": {
+          "src/jmicro/model.py": "cc7dc24f03c091ba54c78eb9b78b1698d83269cd8012f07b3d50686a3bba81d5",
+          "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+          "src/jmicro/training.py": "c7050049803ce774e3e2e29675d976d300c638cd48f1b3088cf3ff7a3f024bd4",
+          "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+        },
+        "plan_sha256": "1c3dff8c1ece2da13c04e2f87c2c6fcdc0213461bef58af6e52d66f7c2af829f",
+        "runner_sha256": "472d2bfa3b59b338f91162d90dc2fcc6b1344d0df27673b026612c6f1cc23c9e",
+        "shards_sha256": "75c7420a1434cf8a97797218b163c694a13ed838f389f09327dcc86f7164c12c"
+      },
+      "resolution": "Preserve snapshot/results/checkpoints; different source/config/better verifier uses a new study output. Do not treat diagnostic runs as completed performance acceptance."
+    }
+  ]
+}

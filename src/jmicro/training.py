@@ -25,6 +25,28 @@ from jmicro.shards import BlockSampler, Shard, build_shards
 from jmicro.tokenizer import SUPPRESS_IDS, Tokenizer
 
 
+_COMPILE_CACHE_ROOT = Path(os.environ.get('JMICRO_COMPILE_CACHE_ROOT',
+    os.environ.get('TORCHINDUCTOR_CACHE_DIR', str(ROOT/'artifacts/compile-cache'))))
+
+
+def configure_compile_cache(spec):
+    """Keep backend-specific compiled graphs apart, including in-memory graphs.
+
+    SDPA backend flags have been omitted from upstream FX cache keys. A backend
+    switch must never silently reuse a math graph for a Flash request. Training
+    jobs use one Trainer at a time; reset Dynamo when constructing its compiler.
+    """
+    backend = spec.get('backend', 'default')
+    if backend not in ('math', 'flash', 'default'):
+        raise ValueError('Unknown attention backend')
+    namespace = f"jmicro-v1-{backend}-{spec['dtype']}-det{int(bool(spec.get('deterministic')))}"
+    cache = _COMPILE_CACHE_ROOT/namespace
+    cache.mkdir(parents=True, exist_ok=True)
+    os.environ['TORCHINDUCTOR_CACHE_DIR'] = str(cache)
+    torch._dynamo.reset()
+    return str(cache)
+
+
 def rng_state():
     return {"python": random.getstate(), "numpy": np.random.get_state(),
             "torch": torch.get_rng_state(),
@@ -269,6 +291,12 @@ class Trainer:
         if spec["dtype"] == "bf16" and str(device).startswith("cuda") and not torch.cuda.is_bf16_supported():
             raise ValueError("CUDA BF16 unavailable")
         self.spec, self.shard, self.device = spec, shard, device
+        if spec.get("training_fast_path") and spec.get("sampler", "block") != "block":
+            raise ValueError("Fast training requires the unpadded block sampler")
+        if spec.get("deterministic"):
+            torch.use_deterministic_algorithms(True)
+            torch.backends.cudnn.benchmark = False
+            torch.backends.cudnn.deterministic = True
         seed_all(spec["seed"])
         self.model = JMicroModel(model_config).to(device)
         decay, no_decay = [], []
@@ -287,7 +315,13 @@ class Trainer:
         self.update = self.tokens = self.supervised_tokens = self.body_bytes = 0
         self.token_digest = "00" * 32
         self.lineage = None
-        self.forward = torch.compile(self.model) if spec.get("compile") else self.model
+        compile_options = {}
+        if spec.get("compile_mode"):
+            compile_options.update(mode=spec["compile_mode"], dynamic=False)
+        if spec.get("training_fast_path"):
+            compile_options.update(fullgraph=True, dynamic=False)
+        self.compile_cache = configure_compile_cache(spec) if spec.get('compile') else None
+        self.forward = torch.compile(self.model, **compile_options) if spec.get("compile") else self.model
 
     def step(self):
         synchronize(self.device)
@@ -302,6 +336,8 @@ class Trainer:
         self.model.train()
         digest = hashlib.sha256(bytes.fromhex(self.token_digest))
         for x, y, _ in batches:
+            if self.spec.get("training_fast_path") and x.eq(0).any():
+                raise ValueError("PAD cannot enter the unpadded fast training path")
             digest.update(x.numpy().astype("<i8").tobytes())
             digest.update(y.numpy().astype("<i8").tobytes())
             x, y = x.to(self.device), y.to(self.device)
@@ -311,6 +347,8 @@ class Trainer:
                         "default": [SDPBackend.FLASH_ATTENTION, SDPBackend.EFFICIENT_ATTENTION, SDPBackend.MATH, SDPBackend.CUDNN_ATTENTION]}[backend]
             with sdpa_kernel(selected), autocast(self.device, self.spec["dtype"]):
                 kwargs = {"attention_mask": x.ne(0)} if self.spec.get("sampler") == "document" else {}
+                if self.spec.get("training_fast_path"):
+                    kwargs["training_fast_path"] = True
                 logits = self.forward(x, **kwargs).logits
                 loss = F.cross_entropy(logits.reshape(-1, logits.shape[-1]), y.reshape(-1),
                                        ignore_index=-100, reduction="sum") / denominator
@@ -444,6 +482,9 @@ def train_command(args):
     spec = {key: getattr(args, key) for key in ("seed", "context", "batch", "accumulation", "lr", "weight_decay", "warmup", "schedule_updates", "dtype", "compile", "backend")}
     if args.sampler != "block":
         spec["sampler"] = args.sampler
+    for key in ("training_fast_path", "deterministic", "compile_mode"):
+        if getattr(args, key, None):
+            spec[key] = getattr(args, key)
     if args.scheduler != "cosine":
         spec["scheduler"] = args.scheduler
     if args.branch_from:
@@ -564,6 +605,9 @@ def main():
     train.add_argument("--log-every", type=int, default=20)
     train.add_argument("--phase", type=int, default=4)
     train.add_argument("--compile", action="store_true")
+    train.add_argument("--compile-mode", choices=["default", "reduce-overhead", "max-autotune-no-cudagraphs"])
+    train.add_argument("--training-fast-path", action="store_true", help="Unpadded block-only causal attention; fullgraph when compiled")
+    train.add_argument("--deterministic", action="store_true", help="Require deterministic PyTorch kernels; configure CUDA workspace before launch")
     train.add_argument("--backend", choices=["default", "math", "flash"], default="default")
     train.add_argument("--sampler", choices=["block", "document"], default="block")
     train.add_argument("--resume", type=Path)
@@ -586,6 +630,12 @@ def main():
     if args.command == "build-shards":
         print(json.dumps(build_shards(args.corpus, args.tokenizer, args.output, args.limit)))
     elif args.command == "train":
+        if args.deterministic:
+            os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
+        if args.compile_mode and not args.compile:
+            parser.error("--compile-mode requires --compile")
+        if args.training_fast_path and args.sampler != "block":
+            parser.error("--training-fast-path requires --sampler block")
         if min(args.batch, args.context, args.accumulation, args.schedule_updates, args.save_every, args.log_every) < 1 or not 0 <= args.warmup < args.schedule_updates:
             parser.error("Invalid batch/context/update/warmup counts")
         if args.branch_from and args.resume:
