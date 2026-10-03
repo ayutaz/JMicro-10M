@@ -1,5 +1,7 @@
 # Phase 2完了記録
 
+履歴の位置付け（2026-10-03）: 本文の件数・hash・未実施・次の作業は実施当時の記録。現在は[Phase 0〜4が完了](21_phase4_completion.md)し、ユーザー指定により停止中。[最新状態](autonomous_status.md)を優先する。過去のreport・snapshotは上書きしない。
+
 2026-10-02、M1 iMac・16GB上のCPUで実施。Phase 3の前提として、同一train-only sampleからSentencePiece Unigram + byte fallbackの4096／8192語彙を学習・検証した。モデル本体の学習は実施していない。
 
 ## 成果物と契約

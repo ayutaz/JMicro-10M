@@ -16,17 +16,17 @@
 
 ## 現在地と計画の使い方
 
-2026-10-02にiMac上のPhase 0を実施し、uv管理の開発基盤、準備run、環境記録、評価仕様・固定suiteを作成した。[Phase 0完了記録](16_phase0_completion.md)を参照する。モデル・Tokenizer・学習前exportはPhase 2〜3で実装・検証済み。学習器、本学習、4090 benchmark、学習後の品質・配布検証は未実施。文献で確認した内容を実機検証の完了として扱わない。
+2026-10-02にiMac上のPhase 0を実施し、uv管理の開発基盤、準備run、環境記録、評価仕様・固定suiteを作成した。[Phase 0完了記録](16_phase0_completion.md)を参照する。モデル・Tokenizer・学習前exportはPhase 2〜3で実装・検証済み。学習器と4090 benchmarkはPhase 4で完了した。本学習と学習後の品質・配布検証は未実施。文献で確認した内容を実機検証の完了として扱わない。
 
 **Phase 0〜4が完了。ユーザー指定によりPhase 4で停止中**。[Tokenizer完了記録](18_phase2_completion.md)、[モデル・export完了記録](19_phase3_completion.md)、[Phase 4実機結果](21_phase4_completion.md)を参照する。次回再開後はPhase 5のoverfit・10M smoke・100M比較へ進む。Web 19,998文書と3,000対話を採用し、cluster単位のtrain/dev/test、trainだけのTokenizer用sample約4.50MBを作成した。source台帳・manifest schema・全件復元・6成果物の再生成一致・20件の内容レビューを[完了記録](17_phase1_completion.md)にまとめた。
 
 Phase 0の22件のテスト成功と54ファイルの準備run snapshot検証を記録済み。Base/Chat各100件（各dev 80/test 20）、前処理golden 30件、手動採点例11件を利用する。Phase 3完了時には全48テスト、両モデル×3 backendの実CLI 6件、79 source filesとruntime source 3,673 filesの監査が成功した。データは小規模pilot。4k/8k Tokenizerは学習済みで、両モデルのCPU検証も完了。Phase 4では64 tests、GPU検証checkpointとeager最大安定batch T8K 57 / T4K 64を確認した。master corpusと完成したBase/Chat重みはまだない。
 
-Pythonは`.python-version`の3.12.7、依存変更は`uv add`、環境再構築は`uv sync --frozen`、実行は`uv run --frozen`で統一する。データ処理時は`--extra data`（PyArrow、datasketch、fsspec、aiohttp）、Tokenizer・モデル検証時は`--extra ml`を指定する。両extraを同時に使う処理では両方を指定する。GPU/CUDA互換性はPhase 4で確認する。
+Pythonは`.python-version`の3.12.7、依存変更は`uv add`、環境再構築は`uv sync --frozen`、実行は`uv run --frozen`で統一する。データ処理時は`--extra data`（PyArrow、datasketch、fsspec、aiohttp）、Tokenizer・モデル検証時は`--extra ml`を指定する。両extraを同時に使う処理では両方を指定する。GPU/CUDA互換性はPhase 4で確認済み。
 
 Phase 0〜4の成果物はそれぞれの完了記録に実pathを示す。Phase 5以降の成果物名は**今後作成するもの**であり、既に存在するfileを示さない。コードは`src/`、設定は`configs/`、検証は`tests/`、実行入口は`scripts/`を基本とする。小さな比較結果・判断記録は`reports/<run_id>/`、大型データ・重みは[外部データ領域](07_environment.md)へ置く。`docs`には仕様、計画、成果物への参照を残す。
 
-別PCで再開する時は[Windows/WSL＋RTX 4090の手順](windows_handoff.md)を入口とする。コードをprivate GitHubから取得し、公開済みTokenizer/pilotを固定Hub commitから復元してからPhase 4へ進む。
+別PCで再開する時は[Windows/WSL＋RTX 4090の手順](windows_handoff.md)を入口とする。新規PCではコードと固定Hub成果物を復元して環境を確認する。最近のPhase 4コミットは未pushなので、最新のWindows正本も引き継ぐ。復元済みPCでは完了作業を繰り返さず、再開指定後にPhase 5へ進む。
 
 各フェーズは、成果物が作られ、完了条件を証拠で確認した時に完了とする。条件を満たさない場合は修正・再比較へ戻り、未達事項を次フェーズへ黙って持ち越さない。日付の締切は4090実測前には決めず、Phase 4で所要時間を見積もる。
 
@@ -50,15 +50,15 @@ Phase 0〜8を最初の完結した開発系列とする。Phase 9は20Bの評�
 
 Phase 1の会話pilotは準備済みで、拡張と評価準備をBase学習と並行して進める。Phase 6で10B Baseが成立すればPhase 7へ進め、20B・50BをChat開始の前提にしない。単一4090ではGPU実験を順番に実施し、CPUでのデータ整理・評価準備を並行する。
 
-**確定（実行場所）**: 現在のiMacで設計・実装・小sample/Tokenizer・CPU検証を進め、学習に入る時は別のWindows PC（RTX 4090、ユーザー指定WSL 3.x上のLinux）へ切り替える。Phase 4のGPU実機検証からWindows側で実施し、本学習はVRAMを最大限使える最大安定バッチを実測して設定する。[移行成果物・確認条件](07_environment.md)
+**確定（実行場所）**: Phase 0〜3はiMacで実施し、Phase 4からWindows/WSL＋RTX 4090へ移行済み。本学習は設定ごとの最大安定batchを実測して使う。今回のeager運用上限はT8K 57 / T4K 64、compile容量は未探索。[移行成果物・確認条件](07_environment.md)
 
 ## 高速に完成させる進め方
 
-**確定（優先方針）**: ユーザーは完成までの時間短縮を優先する。Phase 3は完了しているため、次はWindows/WSL＋RTX 4090への切替を進める。Phase 3をGPUで最初からやり直すことは移行の前提にしない。
+**確定（優先方針）**: ユーザーは完成までの時間短縮を優先する。Windows/WSLへの切替とPhase 4は完了した。次回再開後はPhase 5を進める。Phase 3をGPUで最初からやり直すことは移行の前提にしない。
 
 Phase 3の最終検証一式はM1 iMac上で24.62秒。これは実装後の検証時間で、コード作成・修正、Tokenizer学習、runtime初回build、docs更新を含まない。作業全体の約25分と区別し、GPUへの変更で実装時間まで短縮すると見積もらない。[実測report](../reports/phase3/export_parity_report.json)
 
-Phase 4は次の順で進め、各段階の結果と次の作業を短く報告する。すべてのPhase 4完了条件は維持する。
+Phase 4は以下の順で実施済み。新規環境への移行・実装変更時にもこの検証順を使う。すべてのPhase 4完了条件は維持する。
 
 1. **移行・CUDA確認**: GitのコードとGit管理外のTokenizer/pilotを引き継ぎ、hash/ID一致、GPU/driver/PyTorch/BF16を確認する。Macのnative binaryや仮想環境はコピーしない。
 2. **最小の学習経路**: 検証済みモデルを使い、AdamW/BF16、uint16 shard、本文NLL/BPB・生成評価、checkpointを実装する。まず小batchでfiniteな1 stepまで成立させる。

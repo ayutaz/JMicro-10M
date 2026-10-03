@@ -1,10 +1,10 @@
 # 次の実装タスク
 
-この文書は[フェーズ別実行計画](15_project_roadmap.md)の着手checklistである。Phase番号、目的、ゴール、成果物、完了条件、Go/No-Goは同計画を正とし、技術仕様は03〜08と12〜14を参照する。2026-10-02にiMac上のPhase 0を実施した。[完了記録](16_phase0_completion.md)を参照する。Phase 1のcorpus・manifest・split・会話pilotも完了した。[完了記録](17_phase1_completion.md)を参照する。[Phase 2](18_phase2_completion.md)・[Phase 3](19_phase3_completion.md)も完了。モデル本学習とWindowsの実機確認は未実施。
+この文書は[フェーズ別実行計画](15_project_roadmap.md)の着手checklistである。Phase番号、目的、ゴール、成果物、完了条件、Go/No-Goは同計画を正とし、技術仕様は03〜08と12〜14を参照する。2026-10-02にiMac上のPhase 0を実施した。[完了記録](16_phase0_completion.md)を参照する。Phase 1のcorpus・manifest・split・会話pilotも完了した。[完了記録](17_phase1_completion.md)を参照する。[Phase 2](18_phase2_completion.md)・[Phase 3](19_phase3_completion.md)も完了。本学習は未実施。Windows/WSL実機検証は[Phase 4](21_phase4_completion.md)で完了した。
 
-**次の作業**: Phase 4。Windows/WSL＋RTX 4090へ切り替え、CUDA確認、学習器・shard・保存再開・最大安定batchを検証する。4k/8k TokenizerとCPUで検証したモデル・export経路を引き継ぐ。Pythonは`uv run`、依存変更は`uv add`。
+**次の作業**: ユーザーの再開指定後にPhase 5の100件overfitから進める。現在は停止中。Phase 4の学習器・評価・保存再開・最大安定batchは完了済み。Pythonは`uv run --frozen`、依存変更は`uv add`。
 
-完成までの時間短縮を優先し、[移行 → 最小学習経路 → 保存再開 → 最大batch/速度実測](15_project_roadmap.md#高速に完成させる進め方)の順で進める。別PCでは[再開手順](windows_handoff.md)に従い、Git管理外のTokenizerとpilotを公開済みHugging Faceの固定commitから復元する。Phase 3をGPUで再実装する必要はない。実装時間とGPU計算時間を分け、4090の実測前に完了日を確定しない。
+完成までの時間短縮を優先し、[移行 → 最小学習経路 → 保存再開 → 最大batch/速度実測](15_project_roadmap.md#高速に完成させる進め方)を完了した。新規PCでは[再開手順](windows_handoff.md)に従い、最新コードとGit管理外の固定Tokenizer/pilotを引き継ぐ。復元済みPCでは再取得・Phase 3の再実装は不要。実装時間とGPU計算時間を分け、実測した計算時間に評価・保存・比較・データ処理を加えて見積もる。
 
 ## Phase 0: 成功条件・環境・実験管理
 
@@ -104,9 +104,8 @@
 ## これから進める最初の一周
 
 ```text
-Phase 0〜3: データ / Tokenizer / 両モデル / cache / ランダム重みexportは完了済み
-  -> 学習器の実装 / Windows・WSLへ切替
-  -> 評価runner / save-resume / 最大batchの4090 benchmark
+Phase 0〜4: データ / Tokenizer / モデル / export / 学習器 / 評価 / GPU再開・実測は完了
+  -> 現在は停止、ユーザーの再開指定を待つ
   -> 100件overfit / 10M-token smoke
   -> T4Kとの100M比較
 ```

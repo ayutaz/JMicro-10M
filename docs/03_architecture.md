@@ -1,6 +1,8 @@
 # アーキテクチャ設計
 
-**実装状況（2026-10-02）**: T8K/T4Kを実装し、実parameter数9,772,800／10,002,816、因果性、padding/cache、HF/native float GGUFをCPUで検証済み。[Phase 3完了記録](19_phase3_completion.md)。学習性能の優劣は未判定で、以下の比較・派生案は研究候補として残す。
+現在の実装はQK-Normありの固定baseline。以下のQK-Normなし、ReLU²、Layer Sharing、hybridは未実装の比較候補。設定を変える場合はparameter予算・数値一致・GPU容量を別runで検証する。[現在の実測](21_phase4_completion.md)
+
+**実装状況（2026-10-03）**: T8K/T4Kを実装し、実parameter数9,772,800／10,002,816、因果性、padding/cache、HF/native float GGUFをCPUで検証済み。[Phase 3完了記録](19_phase3_completion.md)。Phase 4で両モデルのCUDA/BF16学習・再開・評価・容量を検証済み。品質勝者は未判定で、以下の比較・派生案は研究候補として残す。
 
 ## 本命: JMicro-10M-T8K
 
@@ -72,7 +74,7 @@ tie_word_embeddings: true
 
 **提案**: 4 query heads / 2 KV heads、head_dim 64のGQAを使う。QK-Normは有効化した案を第一候補にするが、100M-token A/Bで学習安定性と速度を確認する。
 
-**提案（追加調査）**: QK-NormはQ/Kそれぞれのhead次元RMSNorm、head間gain共有、RoPEの前、attention scaleは`1/sqrt(64)`として具体化する。cache使用時のmask、RoPE位置、初期化の仕様は[モデル実装調査](12_training_implementation_research.md)、HF／GGUFと量子化の制約は[配布調査](14_evaluation_deployment_research.md)を参照する。互換性は実測待ち。
+**提案（追加調査）**: QK-NormはQ/Kそれぞれのhead次元RMSNorm、head間gain共有、RoPEの前、attention scaleは`1/sqrt(64)`として具体化する。cache使用時のmask、RoPE位置、初期化の仕様は[モデル実装調査](12_training_implementation_research.md)、HF／GGUFと量子化の制約は[配布調査](14_evaluation_deployment_research.md)を参照する。CPUのHF/native float GGUF parityはPhase 3で実測済み、GPUのcompile BF16 parityはPhase 4で確認した。学習後のexportと量子化品質は未検証。
 
 ## FFN
 

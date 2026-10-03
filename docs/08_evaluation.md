@@ -1,5 +1,7 @@
 # 評価・Checkpoint・TDD
 
+最終更新: 2026-10-03。Base本文NLL/BPB・生成評価とcheckpoint再開は実装・実GPU検証済み。[評価契約report](../reports/phase4/base_evaluation_contract_report.json)。devは924文書 / 共通1,633,458 canonical bytes、test未使用。以下のmetric/TDDは要件一覧であり、Chat、人手評価、100件memorize、統計比較は未実施。
+
 ## 評価原則
 
 **確定**: Tokenizerが異なるモデル間ではtoken-level perplexityを直接比較しない。4k/8kの主比較指標は同一raw bytesに対するBits Per Byte (BPB)とする。
@@ -25,7 +27,7 @@
 
 ## 固定生成suite
 
-**提案**: Base向けに100〜500件をversion管理する。
+**固定済み**: Base/Chat各100件、各dev 80/test 20をversion管理する。Phase 4ではBase dev 80×5 decoding条件を各モデルで評価した。testとChatは未使用。
 
 - 文章completion
 - 日常的な日本語文法
@@ -74,16 +76,17 @@ optimizer state
 scheduler state
 global step / tokens seen
 Python / NumPy / PyTorch / CUDA RNG state
-dataloader shard and offset
+sampler epoch / block cursor / RNG state
 model config
 training config
-git commit
 tokenizer hash
 dataset manifest hash
-environment metadata
+implementation hashes
 ```
 
-100 steps学習 → save → resumeしたrunと、停止せず200 steps学習したrunのloss・weightsが許容誤差内で一致することをテストする。
+Git commit/dirty、環境、PID/boot ticks、source snapshotはcheckpointと対応したrun.json側へ記録する。checkpointには消費digest・教師token/body bytes・sampler RNG/epoch/block位置も保存する。version 2 checkpointは完了updateで一時file→fsync→replaceし、latest.jsonへSHA-256を記録する。config/schedule/source/shard変更はresume時に拒否する。
+
+Phase 4ではT8K/T4Kとも連続200と100+100のtoken列/loss/weights/optimizer/scheduler/RNG/samplerが完全一致した。中断後の未保存metricsはcheckpoint境界へ戻して再開する。
 
 ## TDD方針
 

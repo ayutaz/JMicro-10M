@@ -1,5 +1,7 @@
 # 評価仕様 v1
 
+実装状況更新: 2026-10-03。機械可読protocolの閾値・split・数値許容値は維持する。Base評価は実装済み、Chat品質評価・人手採点・bootstrapは未実施。[現在の実測](21_phase4_completion.md)
+
 作成: 2026-10-02、Phase 0。機械可読の正本は[protocol.json](../configs/evaluation/protocol.json)、入力は[固定評価データ](../eval/README.md)。設計契約を固定する資料であり、モデル性能の評価結果ではない。
 
 ## 評価対象とsplit
@@ -16,7 +18,7 @@ Baseは100件の自然文completion、Chatは100件の短文対話。各10 categ
 
 contextは1024、長文の初期stride案は512。window間でscore済み位置を二重計上しない。文書境界へBOSを入れ、無関係な文書の履歴を混ぜない。4k/8kは同じ評価文書を使う。両方が収まる共通text windowの比較と、各1024-token contextの運用比較を別条件にする。学習tokens固定・学習bytes固定・GPU時間固定を区別し、token perplexityをTokenizer間で直接比較しない。
 
-現段階で実装したのは共通前処理とBPBの算術、schema/manifest検証。モデルからのNLL取得、stride採点、生成評価runnerは後続フェーズで実装・検証する。
+Phase 4でモデルNLL、1024/stride 512採点、本文一度採点、EOS分離、共通bytes、共通短文32 window、固定Base dev 80×5条件を実装・実GPU検証した。dev 924文書 / 共通1,633,458 bytes、test未使用。[評価契約report](../reports/phase4/base_evaluation_contract_report.json)。これは小さい検証checkpointの結果で、100M品質比較ではない。
 
 ## 生成条件
 
@@ -51,15 +53,15 @@ Chat固定履歴の30件は2〜4 User turns、うち`context` categoryは3〜4 t
 
 反復flagの初期自動定義は、2文字以上の同じ本文substringが連続3回以上。4文字n-gramの`1 − unique/total`も診断値として保存するが、単独で合否閾値にしない。通常の会話上の反復との誤検知を人手sampleで確認する。文字数、bytes、tokens、返答長p50/p95を併記する。
 
-品質runnerと自動flag実装はPhase 5〜7で行う。現Phase 0の検証PASSはモデル品質が良いことを意味しない。
+Base生成runnerは停止・role ID・UTF-8・空応答・反復と生成長を記録する。Chatのrubric/rollout、人手による誤検知確認、paired bootstrapはPhase 5〜7で行う。Phase 4のgreedy EOS停止は両モデル0/80で品質目標は未達。実装のPASSをモデル品質のPASSとして扱わない。
 
 ## 数値一致・seed・統計
 
 初期許容値はFP32参照logits `atol=1e-5, rtol=1e-4`、BF16 logits `atol=0.05, rtol=0.02`。strict FP32 resumeはweights `1e-7/1e-6`、loss `1e-6/1e-5`。consumed token IDsとparameter countは完全一致を要求する。参照FP32ではTF32を無効化する。
 
-これらは検証前の提案。採用backendのbaselineを測って比較前に調整・固定し、失敗runの後にそのrunを通す目的で緩めない。高速backendでのresume許容値はPhase 4で別固定。同一hardware/version/backend内の再開を対象とし、iMac/CUDA間のbitwise一致は要求しない。
+これらは検証前の提案。採用backendのbaselineを測って比較前に調整・固定し、失敗runの後にそのrunを通す目的で緩めない。Phase 4のBF16同一環境resumeは全stateが完全一致し、compile logitsも既定の合成atol/rtolを維持して通過した。同一hardware/version/backend内の再開を対象とし、iMac/CUDA間のbitwise一致は要求しない。
 
-training seed 42、greedy seed 42、sampling seedsとbootstrap seedはconfigへ記録する。training/generation/bootstrapでRNGを分離し、評価が学習RNGを進めないようにする。Python/NumPy/PyTorch/CUDAとmixture samplerの状態をcheckpointへ保存する実装はPhase 4。
+training seed 42、greedy seed 42、sampling seedsとbootstrap seedはconfigへ記録する。training/generation/bootstrapでRNGを分離し、評価が学習RNGを進めないようにする。Python/NumPy/PyTorch/CUDAとpilot block samplerの状態はcheckpointへ保存済み。評価RNG保全も実CUDAで検証した。複数source mixture samplerは未実装。
 
 BPB差は同一document、会話差は同一prompt/dialogueを対応付け、paired bootstrap 2000回、seed 42、95%信頼区間を初期仕様とする。tokenを独立sampleとして扱わない。greedyとsamplingの率、category別結果を別記録する。
 
@@ -67,4 +69,4 @@ BPB差は同一document、会話差は同一prompt/dialogueを対応付け、pai
 
 初期目標はBase文法2率70%、Chat文法・関連性とも2の率70%、対象会話の文脈2率60%、停止95%以上、空応答5%以下、role漏出1%以下、固定suiteのUnicode破綻0件。Phase 5までにdev/pilotで採用基準を固定する。量子化の許容退行幅はfloat dev評価後・量子化候補選定前に固定し、現時点では未決定。
 
-sourceは`commercial_strict/commercial_web/sharealike`を分離管理し、条件不明は`excluded`。非商用等の研究限定データを使う場合は別runとして明示し、配布候補へ自動混入させない。採用可否はPhase 1でsource/subsetの実際の条件を記録して判断する。Phase 0時点で採用済みの学習datasetはない。
+sourceは`commercial_strict/commercial_web/sharealike`を分離管理し、条件不明は`excluded`。非商用等の研究限定データを使う場合は別runとして明示し、配布候補へ自動混入させない。Phase 1で固定source/subsetの条件を記録した。Phase 4のBaseはWeb bucketだけを選び、会話/sharealikeを混ぜていない。追加sourceの採用条件は拡張時に確認する。

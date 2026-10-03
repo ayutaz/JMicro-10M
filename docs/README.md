@@ -13,7 +13,7 @@
 
 - **確定**: 目標は「約10M parameters、日本語専用、短文生成と数ターンの雑談対話」。高度な推論や長文RAGではなく、狭い能力を高密度に持たせる。
 - **確定**: Tokenizer、モデル重み、事前学習、Dialogue SFTまでスクラッチで構築する。
-- **確定**: 現在のiMacで開発し、学習時に別のRTX 4090 24GB搭載Windows PCへ切り替える。ユーザー指定WSL 3.x上のLinuxで最大安定バッチを実測して学習する。8TBストレージを前提とする。
+- **確定**: Phase 0〜3はiMac、Phase 4はWindows/WSL＋RTX 4090で完了。WSL package 3.0.1.0 / Ubuntu WSL 2を使用。最大安定batchはeager T8K 57 / T4K 64。約8TBはユーザー計画で、Linux空き実測は約980.8GB。
 - **提案**: 本命はModern deep-thin Transformer。8k語彙版はhidden 256、12層、4Q/2KV GQA、SwiGLU、RoPE、RMSNorm、head間gain共有のQK-Norm、context 1024、tied embeddingで約9.77M。
 - **提案**: 4k語彙版も同じ約10M予算で作り、BPBと日本語圧縮率で比較する。
 - **確定**: 学習量は100M → 1B → 2B → 5B → 10B → 20B → 50B tokensの段階評価。50Bは20B時点で改善が続く場合のみ実施する。
@@ -21,7 +21,7 @@
 
 着手順と各フェーズの目的・ゴール・成果物・完了条件は[フェーズ別実行計画](15_project_roadmap.md)を参照する。まず再現可能な最小pipeline、10B Base、Chat、量子化ローカル実行までを完成させる。20Bの比較と条件付き50B、追加アーキテクチャ研究は後続系列として判断する。
 
-**現在地**: iMac上のPhase 0〜3が完了。データpilot、[4k/8k Tokenizer](18_phase2_completion.md)、[両モデル・cache・HF/native GGUF・Q8/Q4候補](19_phase3_completion.md)を検証した。モデル重みはランダム初期化。Python/依存は`uv add`で管理し、実行は`uv run`。
+**完了範囲**: [4k/8k Tokenizer](18_phase2_completion.md)、[両モデル/cache/学習前export](19_phase3_completion.md)、GPU学習器・評価・再開・速度を検証済み。Phase 3重みはランダム初期化、Phase 4には小さい学習済み検証checkpointがある。Python 3.12.7、実行は`uv run --frozen`、依存変更は`uv add`。
 
 **現在地**: [Phase 4の実GPU検証](21_phase4_completion.md)が完了し、ユーザー指定により停止中。次回再開後にPhase 5の100件overfitから進める。Base/Chatの本学習・能力目標は未達。最新の状態は[継続記録](autonomous_status.md)を参照する。
 
@@ -50,7 +50,10 @@
 17. [17_phase1_completion.md](17_phase1_completion.md) — 実データpilot、manifest・split、会話品質、Tokenizer sample、再生成・完了監査
 18. [18_phase2_completion.md](18_phase2_completion.md) — Tokenizer学習・入出力・会話tokensの実測
 19. [19_phase3_completion.md](19_phase3_completion.md) — モデル/cache/HF/native GGUF/量子化の実測
-20. [20_publication_review.md](20_publication_review.md) — 公開済みデータのライセンス・個人情報確認、Tokenizer内部のローカル情報除去
+20. [20_publication_review.md](20_publication_review.md) — 当時の公開前確認、ローカル情報除去
+21. [21_phase4_completion.md](21_phase4_completion.md) — WSL/CUDA・学習器・保存再開・評価・容量・速度の実機証拠
+
+運用文書: [最新状態](autonomous_status.md)、[復旧履歴](autonomous_history_20261003.md)、[Windows/WSL引継ぎ](windows_handoff.md)、[固定Hub復元](huggingface_handoff.md)、[自律runner](codex_automation.md)、[評価仕様](evaluation_protocol.md)。[data](../data/README.md)、[eval](../eval/README.md)、[reports](../reports/README.md)に各保存領域の手順を記載する。
 
 実行時の仕様は[評価仕様](evaluation_protocol.md)と[Windows/WSL移行手順](windows_handoff.md)を参照する。データとTokenizerの[Hugging Face公開版の取得手順](huggingface_handoff.md)も利用できる。
 
@@ -63,7 +66,7 @@
 - **提案**: BPBに加え、同一原文bytesと同一GPU時間での比較条件を用意する。
 - **提案**: 長期学習前にランダム重みでHF／GGUF互換性を確認する。FFN幅576／640ではK-quantの型fallbackを確認する。
 - **確認済み**: llama.cppの一般的なSentencePiece変換経路と独自Unigramの分割方式は同一ではない。内蔵Tokenizerへの互換性を検証し、必要なら外部SentencePieceでIDを作る経路を使う。
-- **要検証**: 4090実速度、4k/8kの勝者、日本語会話データの教師token量、量子化後の品質は実測待ち。
+- **現在の判断**: 4090速度はPhase 4、会話教師token量はPhase 2で実測済み。4k/8k品質勝者・雑談品質・学習後の量子化品質は未判定。
 
 追加調査は学習・推論実験を実施した結果ではない。既存の確定方針を維持し、実装候補と検証条件を追加している。
 
@@ -71,4 +74,4 @@
 
 公開データの「商用利用可能」は、データセット配布ライセンスだけで最終判断しない。Common Crawl由来データでは、データベースライセンスと各Web文書の著作権は別問題である。公開・販売前に、採用した各source subsetの利用条件、帰属表示、ShareAlike条件、削除要求対応を再確認する。本書は法的助言ではない。
 
-最終更新: 2026-10-02
+最終更新: 2026-10-03。外部資料の調査日は各文書へ残し、研究候補と実装・実測結果を区別する。

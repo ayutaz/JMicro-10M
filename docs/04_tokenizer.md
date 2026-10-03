@@ -1,12 +1,14 @@
 # Tokenizer設計
 
+更新: 2026-10-03。WSLでは[固定公開版](huggingface_handoff.md#tokenizer-hashと過去のexport)をhash検証して使用し、Phase 4のshard/checkpointへbindした。旧Mac版との違いは保存先metadataのみ。Tokenizer再学習は不要。Phase 4のBPBは小さい検証runで、100M品質比較や勝者決定ではない。
+
 **実装状況（2026-10-02）**: 4096/8192語彙のSentencePiece Unigram + byte fallbackを同一train sampleで学習済み。coverageは両方0.9995、特殊IDは0〜7。CRLF/CR→LF、NUL除去以外のUnicodeを保持し、改行・タブ・literal `▁`・`<`は共通wrapperでUTF-8 byte piecesへ表現する。以下の前処理候補をすべて採用したわけではなく、現在の正式な契約・実測は[Phase 2完了記録](18_phase2_completion.md)と[config](../configs/tokenizer/contract.json)を参照する。
 
 ## 方針
 
 **確定**: 既存LLMのTokenizerは流用せず、日本語コーパスから学習する。Tokenizerアルゴリズム自体を新規発明する意味ではなく、SentencePieceを使って語彙・正規化・特殊tokenをプロジェクト専用に設計する。
 
-**提案**: 第一候補はSentencePiece Unigram + byte fallback。
+**採用済み**: SentencePiece Unigram + byte fallback。
 
 理由:
 
@@ -17,7 +19,7 @@
 
 ## 比較する語彙
 
-**確定**: 4,096と8,192を両方作る。
+**実施済み**: 4,096と8,192を同じtrain-only sampleで学習した。品質勝者は未選定。
 
 測定項目:
 
@@ -31,7 +33,7 @@
 
 ## 特殊token
 
-**提案**: Tokenizer学習時点で以下を予約する。
+**実装済み**: 学習時に以下をID 0〜7へ予約した。
 
 ```text
 <|pad|>

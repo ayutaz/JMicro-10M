@@ -1,5 +1,7 @@
 # プロジェクト目的
 
+現在地（2026-10-03）: [Phase 0〜4](21_phase4_completion.md)が完了。学習pipelineのGPU検証までで、完成したBase/Chat、雑談品質、学習後の量子化・独立環境検証は未達。ユーザー指定によりPhase 4で停止中。本書の成功条件は維持する。
+
 ## ゴール
 
 **確定**: `JMicro-10M` は、約10Mパラメータで日本語の短文生成と数ターンの自然な雑談対話を行うDecoder-only Language Modelである。既存モデルの量子化やfine-tuningではなく、以下を一つの再現可能なpipelineとして構築する。

@@ -1,5 +1,7 @@
 # Phase 1 完了記録
 
+履歴の位置付け（2026-10-03）: 本文の件数・hash・未実施・次の作業は実施当時の記録。現在は[Phase 0〜4が完了](21_phase4_completion.md)し、ユーザー指定により停止中。[最新状態](autonomous_status.md)を優先する。過去のreport・snapshotは上書きしない。
+
 この文書とreportはPhase 1実施時点の履歴。後続の[Phase 2](18_phase2_completion.md)でTokenizer学習と教師token数を計測し、[Phase 3](19_phase3_completion.md)まで完了した。文中の未測定・次の作業は当時の状態を示す。
 
 実施日: 2026-10-02。対象は[Phase 1のデータpilot](15_project_roadmap.md#phase-1-データの小規模pilotと評価split)。iMac上で実データの取得・処理・split・Tokenizer用sampleを作成し、全件の原データ復元と再生成を検証した。Tokenizer学習とGPU学習は未実施。

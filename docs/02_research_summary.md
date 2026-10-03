@@ -1,5 +1,7 @@
 # 調査要約
 
+更新: 2026-10-03。外部研究は2026-10-02の調査記録で、全件の最新再調査ではない。Transformer/Tokenizer/exportとAdamW＋warmup/cosineのGPU経路は実装・検証済み。[Phase 4](21_phase4_completion.md)。QK-Normなし、Muon、WSD、Layer Sharing、hybridは未実装の候補。100M比較は主要因を一つずつ扱い、Muon比較はAdamW baseline成立後に必要性を判断する。
+
 ## 結論
 
 **提案**: v1の本命は、2024〜2026年の小型モデル研究で支持される要素を組み合わせたModern deep-thin Transformerとする。
@@ -58,7 +60,7 @@ parametersはほぼ同じでcomputeは約2倍になる。MobileLLMのblock shari
 **提案**:
 
 1. 最初はAdamWとSwiGLUで、原因を切り分けやすいbaselineを作る。
-2. 100M-token規模で4k/8k、QK-Norm、learning rate、AdamW vs Muon+AdamWを比較する。
+2. 100M-token規模で4k/8k、QK-Norm、learning rateを一要因ずつ比較する。AdamW成立後、必要ならMuon+AdamWを別LRで比較する。
 3. 1Bで候補を2つ程度へ絞り、5Bで本命を1つ決める。
 4. 10BでBase v1、20BでBase v2を評価する。
 5. 能力が頭打ちでなければ50Bへ進む。

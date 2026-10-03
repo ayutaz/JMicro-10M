@@ -1,6 +1,8 @@
 # Phase 0 完了記録
 
-この文書とreportはPhase 0実施時点の履歴。現在はPhase 0〜3が完了し、次はWindows/WSLへの移行。[最新計画](15_project_roadmap.md)を参照する。後続の変更で過去のsnapshot・hashを上書きしない。
+履歴の位置付け（2026-10-03）: 本文の件数・hash・未実施・次の作業は実施当時の記録。現在は[Phase 0〜4が完了](21_phase4_completion.md)し、ユーザー指定により停止中。[最新状態](autonomous_status.md)を優先する。過去のreport・snapshotは上書きしない。
+
+この文書とreportはPhase 0実施時点の履歴。後続のPhase 4でWindows/WSLへ移行済み。[最新計画](15_project_roadmap.md)を参照する。後続の変更で過去のsnapshot・hashを上書きしない。
 
 実施日: 2026-10-02。対象は[フェーズ別計画のPhase 0](15_project_roadmap.md#phase-0-成功条件環境実験管理)。iMac上で開発・実験管理と評価の準備を完了した。モデル学習・4090検証の完了ではない。
 

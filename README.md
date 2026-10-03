@@ -4,7 +4,7 @@
 
 Phase 0〜4が完了。データpilot、4k/8k Tokenizer、約10Mモデル、cache、HF/実float GGUFをiMacで検証し、WSL＋RTX 4090で学習器・保存再開・最大安定batch・評価を実測した。[Tokenizer完了記録](docs/18_phase2_completion.md)、[モデル・export完了記録](docs/19_phase3_completion.md)、[Phase 4完了記録](docs/21_phase4_completion.md)を参照する。Phase 4は小さいGPU検証runで、Base/Chatの本学習と能力目標は未達。ユーザー指定によりPhase 4で停止し、Phase 5は未開始。
 
-**別PCで続きを進める場合は[Windows/WSL＋RTX 4090の再開手順](docs/windows_handoff.md)から始める。** private GitHubのclone、public Hugging Face成果物の復元、uv環境・CUDA確認、Phase 4の実装順と次の担当への引継ぎ文面をまとめている。
+**別PCで続きを進める場合は[Windows/WSL＋RTX 4090の再開手順](docs/windows_handoff.md)から始める。** 固定成果物の復元、uv環境・CUDA確認、実装済みCLIと引継ぎ条件をまとめている。最近のPhase 4コミットはローカル保存で、GitHubへpushしていない。新規cloneだけで最新コードが揃うとは限らない。
 
 環境整備・学習・評価・改善をCodexへ継続して任せる場合は[自律実行の設定とrunner](docs/codex_automation.md)を参照する。次の担当の現在地は[継続作業の状態](docs/autonomous_status.md)、作業ルールは[AGENTS.md](AGENTS.md)。2026-10-03にFull accessが反映され、WSL・公開成果物復元・CUDA/BF16確認を通過した。
 
@@ -39,20 +39,20 @@ uv add --optional ml <ml-package>
 
 `data` extraにはPyArrow、datasketch、fsspec、aiohttpを登録済み。Phase 1のデータ処理では`uv sync --frozen --extra data`と`uv run --frozen --extra data ...`を使う。
 
-`ml` extraにはNumPy、SentencePiece、protobuf、PyTorch、Transformers、datasets、safetensorsを登録済み。Phase 2〜3ではML本体をインストールしてCPU検証した。GGUF作成・検査には`export` extraの公式ggufも使う。データ処理とMLを同時に使う時は`--extra data --extra ml`を指定する。CUDA/driver互換性はWindowsへの切替時に検証する。
+`ml` extraにはNumPy、SentencePiece、protobuf、PyTorch、Transformers、datasets、safetensorsを登録済み。GGUF作成・検査には`export` extraも使う。WSLではPython 3.12.7、PyTorch 2.14.1 / CUDA 13.0、Windows driver 616.92でCUDA/BF16を検証済み。環境を保持する通常のWSL実行では`--extra hub --extra data --extra ml --extra export`を付ける。
 
 ## 配置
 
 | ディレクトリ | 内容 |
 |---|---|
-| `src/jmicro/` | 環境・データ・Tokenizer・モデル・export・推論・検証 |
+| `src/jmicro/` | 環境・データ・Tokenizer・モデル・shards・学習・評価・export・推論 |
 | `configs/` | source台帳・pilot、T4K/T8K、学習候補、Tokenizer、評価、iMac/WSL設定 |
-| `schemas/` | データrecord・準備run・設定・評価例のJSON Schema |
-| `scripts/` | `uv run`で実行する入口 |
+| `schemas/` | データrecord・準備run・学習run・設定・評価例のJSON Schema |
+| `scripts/` | `uv run --frozen`で実行する入口 |
 | `tests/` | 日本語dedup・split・話者対応・取得上限、BPB、前処理、snapshot検証 |
 | `eval/` | Base/Chat各100件、dev/test manifest、採点・golden例 |
 | `data/` | 小sample用。本文・shardsはGit管理外 |
-| `reports/` | 準備run台帳、Phase 0〜3の検証・品質・再生成・export結果 |
+| `reports/` | 準備run台帳、Phase 0〜4の検証・再生成・export・GPU実測結果 |
 | `docs/` | 設計、技術調査、評価仕様、移行手順 |
 
 評価方法は[evaluation_protocol.md](docs/evaluation_protocol.md)、環境切替は[windows_handoff.md](docs/windows_handoff.md)、Phase 0の結果は[完了記録](docs/16_phase0_completion.md)を参照。
@@ -65,6 +65,8 @@ uv add --optional ml <ml-package>
 
 ## 次に進めること
 
-Phase 3の再実装は不要。Windows/WSL＋RTX 4090へ移行し、環境・artifact一致 → 学習器/shard/評価runner → 保存再開 → 最大安定batchと速度測定の順でPhase 4を進める。[高速に完成させる進め方](docs/15_project_roadmap.md#高速に完成させる進め方)と[引継ぎ手順](docs/windows_handoff.md)を参照する。
+現在はPhase 4完了で停止中。再開指定後にPhase 5の100件overfit → 10M smoke → 100M比較へ進む。Tokenizer再学習・成果物再取得・完了済みPhase 4測定を繰り返す必要はない。[実測と制約](docs/21_phase4_completion.md)、[次の作業](docs/10_next_steps.md)を参照する。
 
-Gitのpushにはコード・設定・docs・小さな検証reportが含まれる。`data/phase1/processed/`と学習済みTokenizerの`artifacts/phase2/`はGit管理外なので、Windowsへ別途コピーしてhashを照合する。Git cloneだけでは48テストすべての実artifact検証は揃わない。
+Git管理対象はコード・設定・docs・小さな検証report。本文・Tokenizer・checkpointは管理外なので固定Hub成果物とLinux保存先を引き継ぐ。Phase 4では実artifact付きの全64テストが成功した。新規cloneにはartifactを別途復元する。
+
+学習入口は`scripts/train.py`の`build-shards` / `train` / `evaluate`。`train`はCLI引数から設定を作り、`configs/training/baseline.json`を自動読込しない。AdamW＋warmup/cosineは実装済み、Muon・WSD・Chat trainerは未実装。[利用例と保存再開](docs/windows_handoff.md#6-実装済みcliと次回の再開)を参照する。

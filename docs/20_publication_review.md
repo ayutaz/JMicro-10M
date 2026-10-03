@@ -1,5 +1,7 @@
 # Hugging Face公開前のライセンス・個人情報確認
 
+履歴の位置付け（2026-10-03）: 本文の件数・hash・未実施・次の作業は実施当時の記録。現在は[Phase 0〜4が完了](21_phase4_completion.md)し、ユーザー指定により停止中。[最新状態](autonomous_status.md)を優先する。過去のreport・snapshotは上書きしない。
+
 2026-10-02に公開候補を確認した。確認者はCodexであり、独立した人手監査・法的な権利クリアランスではない。集計と原fileのhashは[確認report](../reports/publication/review.json)に保存した。個人の連絡先や検出した本文そのものはreportへ転記していない。
 
 ## 結論

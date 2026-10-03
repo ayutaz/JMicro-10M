@@ -1,5 +1,7 @@
 # Hugging Face経由での成果物共有
 
+復元状況更新: 2026-10-03。現在のWSLで公開25 payloadをhash検証済み、再確認時のrestored_filesは0。最近のコードコミットはローカル保存で未push。新規PCでは公開bundleに加えて最新コードと必要なLinux checkpointも引き継ぐ。公開版の範囲・revisionは変更していない。
+
 [japanese-data-analyze/japanese-tiny-llm-10m-artifacts](https://huggingface.co/datasets/japanese-data-analyze/japanese-tiny-llm-10m-artifacts)へpublicで公開済み。GitHubのコードリポジトリは非公開のまま、Tokenizerと前処理済みpilotを共有する。
 
 別PCでの初回clone・WSL/uv環境構築から進める場合は[再開手順](windows_handoff.md)を最初に読む。この文書は公開file・hash・取得処理の詳細を補足する。
@@ -58,4 +60,4 @@ uv run --frozen --extra hub scripts/download_hub_artifacts.py --source artifacts
 
 旧random-weight HF/GGUFは旧Tokenizer hashにbindされている。公開コピーと組み合わせて再検証する時はそのTokenizerでexportし直す。本学習では実際に使う公開版hashをledgerへ記録する。generic AutoTokenizer/raw SentencePieceだけではprotected-byte ID契約が一致しないため、projectの`jmicro.tokenizer.Tokenizer`を使う。
 
-本文・split・sampleのbyte hashは元pilotと同じ。split manifest内の旧lock hashは元runの履歴で、現在のlockで過去runの再生成が済んだという意味ではない。これは学習用shard生成やCUDA検証まで済んだデータではない。次は[Windows/WSL移行](windows_handoff.md)を進める。
+本文・split・sampleのbyte hashは元pilotと同じ。split manifest内の旧lock hashは元runの履歴で、現在のlockで過去runの再生成が済んだという意味ではない。公開bundleにはshard/checkpointを含まない。WSLではこの固定payloadからPhase 4 shardを生成し、CUDA/BF16・保存再開・評価・速度を検証済み。[実機結果](21_phase4_completion.md)。復元済みPCで再取得やTokenizer再学習は不要。

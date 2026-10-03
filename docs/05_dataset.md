@@ -1,5 +1,7 @@
 # データ設計
 
+現在地（2026-10-03）: 固定pilotは採用22,998件（Web 19,998 / 会話3,000）。Phase 4 Base shardはWebのみのtrain 18,022 / dev 924 / test 1,052文書。dev/testと固定evalは学習から除外し、会話/sharealikeは別系列へ保つ。[復元とshard](../data/README.md)。50〜100B master corpusは未取得。以下の外部規模・条件は2026-10-02の候補調査値で、拡張時に固定revisionの原資料を再確認する。
+
 ## 基本方針
 
 **確定**: 収集可能量をそのまま学習量にしない。50〜100B tokens相当のmaster corpus候補を構築し、実学習は100M → 1B → 2B → 5B → 10B → 20B → 50Bと段階的に進める。

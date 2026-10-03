@@ -1,8 +1,10 @@
 # Phase 3完了記録
 
+履歴の位置付け（2026-10-03）: 本文の件数・hash・未実施・次の作業は実施当時の記録。現在は[Phase 0〜4が完了](21_phase4_completion.md)し、ユーザー指定により停止中。[最新状態](autonomous_status.md)を優先する。過去のreport・snapshotは上書きしない。
+
 2026-10-02、M1 iMac・16GB上でT4K／T8Kのモデル実装、cache、保存読込、HF／float GGUF、Q8／Q4候補、推論入口を検証した。重みはseed 42のランダム初期化で、モデルの学習・optimizer更新は行っていない。停止検証には別の合成重みfixtureを使った。
 
-最終の検証一式は24.62秒。実装・修正・Tokenizer学習・runtime初回build・docs更新を含む作業時間とは区別する。現在はPhase 3完了で、次はWindows/WSL＋RTX 4090へ移行する。[完成までの時間短縮を優先した最新計画](15_project_roadmap.md#高速に完成させる進め方)
+最終の検証一式は24.62秒。実装・修正・Tokenizer学習・runtime初回build・docs更新を含む作業時間とは区別する。Phase 3完了時点では次にWindows/WSLへ移行する計画だった。その後Phase 4を完了した。[完成までの時間短縮を優先した最新計画](15_project_roadmap.md#高速に完成させる進め方)
 
 ## モデルと数値一致
 

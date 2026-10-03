@@ -1,5 +1,7 @@
 # 先行例とベースライン
 
+資料確認: 2026-10-02。文書整合性確認: 2026-10-03。以下は当時のmodel card/configと会話資料の調査一覧で、最新モデル全件の再監査ではない。外部baselineを実比較に採用する時はrevision・条件を再確認する。JMicroのPhase 4 GPU検証は完了し、モデル品質・外部baselineとの実比較は未実施。[現在の結果](21_phase4_completion.md)
+
 ## 添付された25M / 100M Llama系config
 
 **確認済み**: 会話に添付された2つの`config.json`は、いずれも`LlamaForCausalLM`、語彙8,192、context 512、RMSNorm、RoPE、GQA、biasなし、untied embeddingだった。

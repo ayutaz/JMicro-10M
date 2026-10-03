@@ -1,5 +1,7 @@
 # データ領域
 
+現在地（2026-10-03）: pilot/Tokenizerは固定公開版をhash検証してWSLへ復元済み。通常の再開では下記のraw再取得・再生成を繰り返さない。[初回の復元](../docs/huggingface_handoff.md)を使う。Phase 4のBase shardはWeb train 18,022 / dev 924 / test 1,052文書を分離した。会話3,000件は別bucketで、Chat学習は未開始。
+
 ここにはPhase 1以降の小sampleとmanifestを置く。本文・shardsはGit管理外。大規模データとcheckpointは学習PCの外部データ領域で管理し、configから場所を指定する。
 
 `eval/`の固定評価例は学習用データへ混ぜない。raw/canonical hash、source/subset/revision、利用条件、duplicate cluster、splitを記録してから採用する。
@@ -52,3 +54,9 @@ uv run --frozen --extra data scripts/prepare_phase1.py build --output data/phase
 Phase 1のmanifestは作成時の`uv.lock` hashを固定している。Phase 2〜3で依存を追加したため、現在のlockで過去の`data/phase1/processed/`をそのまま`verify`すると`Processing input modified`になる。元の全件検証・再生成結果は[Phase 1監査](../reports/phase1/completion_audit.json)と当時のsource snapshotに対応し、更新で上書きしない。
 
 現在のlockで新しい処理runを検証する場合は、`build --output data/phase1/rebuild-current`で別directoryへ作成し、同じ本文であることを確認してレビューをコピーした後、`verify --output data/phase1/rebuild-current`を使う。lockを含む入力台帳のhashは旧runと異なるものとして記録する。最初のWindows移行では既存の固定artifactをコピーしてhashを照合し、再取得・再処理を前提にしない。
+
+## Phase 4の実装済みshard
+
+入力は公開`corpus.jsonl`と公開Tokenizer。入口は`scripts/train.py build-shards`、実装は`src/jmicro/shards.py`。WSLの`~/jmicro-data/shards/{t8k-pilot,t4k-pilot}`へ各split一本のlittle-endian uint16 bin、index/token-byte JSON、hash付きmanifestを保存した。T8K train 6,884,183 / dev 345,044 / test 408,733 stream tokens、T4Kは8,398,329 / 420,053 / 497,374。同じ文書とbody bytesで、BOS/EOSはstream countに含む。
+
+固定長blockを文書を跨いでpackし、BOS targetsをmaskする。最終の不完全train blockを落とす。samplerはseed/epoch/block位置とRNGを保存し、再開で同じ消費列を復元する。複数file/source mixtureへの拡張は未実装。rawがなくても固定processed payloadとhashからshardを生成できる。[CLIと制約](../docs/windows_handoff.md#6-実装済みcliと次回の再開)

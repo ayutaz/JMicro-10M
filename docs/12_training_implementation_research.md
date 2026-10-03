@@ -1,6 +1,8 @@
 # モデル実装・段階学習・実行環境の追加調査
 
-**実装状況**: 以下は調査時点の仕様・候補。モデル/cacheのCPU実装・実parameter数・参照モデルとの一致は[Phase 3](19_phase3_completion.md)で検証済み。GPU学習器・保存再開・4090 benchmarkはPhase 4で実施する。
+実装状況更新: 2026-10-03。以下の提案と現在の実装を区別する。model.pyは学習/prefill/cacheで明示boolean mask＋is_causal=Falseを使う。maskなしis_causal=True経路は未実装で、Flash-onlyはnon-null mask非対応。fused AdamW、共有embeddingを含む行列へのdecay、FP32 parameters/BF16 autocast、単一split binの決定的sampler、完了updateでのatomic保存とsource/data/config拘束は実装済み。T8K/T4Kの200 vs 100+100は全stateが完全一致。下記の仮速度表は算術例で、現在の予算は[実測予算](../reports/phase4/resource_budget.md)を使う。
+
+**実装状況**: 以下は調査時点の仕様・候補。モデル/cacheのCPU実装・実parameter数・参照モデルとの一致は[Phase 3](19_phase3_completion.md)で検証済み。GPU学習器・保存再開・4090 benchmarkは[Phase 4](21_phase4_completion.md)で実測済み。AdamW＋warmup/cosineのみ実装済みで、Muon・WSDは候補。
 
 調査日: 2026-10-02。既存[アーキテクチャ](03_architecture.md)、[学習計画](06_training_plan.md)、[環境](07_environment.md)を実装するための補足。以下の推奨設定は**提案**であり、実験済みの最適値ではない。
 
@@ -34,7 +36,7 @@ Final Norm = h
 N = V*h + L*(196,608 + 3*h*f + 640) + h
 ```
 
-| 構成 | QK-Normなし | head間gain共有のQK-Normあり | 既存03の概算 |
+| 構成 | QK-Normなし | head間gain共有のQK-Normあり | 初期設計の旧概算 |
 |---|---:|---:|---:|
 | T8K: V=8192,L=12,f=576 | 9,771,264 | 9,772,800 | 9,775,872 |
 | T4K: V=4096,L=13,f=640 | 10,001,152 | 10,002,816 | 10,006,144 |

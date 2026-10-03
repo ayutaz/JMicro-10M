@@ -2,25 +2,25 @@
 
 調査日: 2026-10-02。対象は[プロジェクト目的](01_project_goal.md)を実現するため、既存の01〜10では実装判断まで落とせていなかった課題。
 
-## 実装後の現在地（2026-10-02）
+## 実装後の現在地（2026-10-03）
 
-調査後にPhase 0〜3を完了した。下記の表・検証順は調査時点の提案であり、現在の未着手一覧とは分けて読む。
+調査後にPhase 0〜4を完了した。下記の表・検証順は調査時点の提案であり、現在の未着手一覧とは分けて読む。
 
 | 課題 | 現在の状態 | 証拠・次の判断 |
 |---|---|---|
 | 独自4k/8k、文字保存、特殊ID、会話教師mask | 実装・学習・検証済み | [Phase 2](18_phase2_completion.md) |
 | 10M予算、QK-Norm、因果性、prefill/cache | 両モデルでCPU検証済み | [Phase 3](19_phase3_completion.md) |
 | HF/native float GGUF、量子化型・容量・停止 | 検証済み。内蔵Tokenizerは不一致、外部SentencePieceを採用 | [export report](../reports/phase3/export_parity_report.json) |
-| GPU学習器、保存再開、最大batch/実速度、BPB runner | 未実施・次の着手 | [Phase 4の優先順](15_project_roadmap.md#高速に完成させる進め方) |
+| GPU学習器、保存再開、最大batch/実速度、BPB runner | 実装・実GPU検証済み、全64 tests / skip 0 | [Phase 4完了証拠](21_phase4_completion.md) |
 | 4k/8kの品質勝者、日本語短文・雑談、学習後の量子化品質 | 未実証 | Phase 5〜8の実学習・固定評価 |
 
-完成までの時間短縮を優先し、現在はWindows/WSL＋RTX 4090へ移行する。学習済みTokenizerとpilotを引き継ぎ、関連箇所の検証を行う。
+完成までの時間短縮を優先し、Windows/WSL＋RTX 4090への移行とPhase 4は完了した。ユーザー指定で停止し、再開後はPhase 5から進める。
 
 ## 結論
 
 **提案**: Transformer、4k/8k、段階学習という大方針を維持し、まずTokenizerの入出力仕様、評価条件、保存・再開、推論形式を固める。10Mの日本語雑談能力は未実証であり、新しい構成を増やすより、短い会話に合ったデータと測定方法を先に用意する。
 
-今回の成果は文献・公式コードの調査と設計上の計算であり、Tokenizer学習、RTX 4090 benchmark、モデル変換、学習実験の実測ではない。新しい推奨値はすべて**提案**で、ユーザーと合意済みの**確定**方針とは区別する。
+2026-10-02の調査部分は文献・公式コードの読解と設計上の計算であり、Tokenizer学習、RTX 4090 benchmark、モデル変換、学習実験の実測ではない。新しい推奨値はすべて**提案**で、ユーザーと合意済みの**確定**方針とは区別する。
 
 ## 目的から逆算した不足
 
@@ -51,9 +51,9 @@ P0: 長期学習の前に解決。P1: 100M探索／Chat準備までに解決。P
 4. FineWeb2 Edu Japaneseの`small_tokens`系には既知の重複注意があり、公開token数は独自Tokenizerの数ではない。[配布元のdataset card](https://huggingface.co/datasets/hotchpotch/fineweb-2-edu-japanese)
 5. llama.cppはQwen3式QK-NormとSentencePieceへの変換経路を持つが、一般的な変換先SPMとUnigramの分割処理は同じではない。FFN downの576／640列には256要素block形式の制約もある。モデル計算とTokenizerの互換性を別々に検証する。[Qwen変換コード](https://github.com/ggml-org/llama.cpp/blob/master/conversion/qwen.py)、[Tokenizerコード](https://github.com/ggml-org/llama.cpp/blob/master/src/llama-vocab.cpp)、[量子化コード](https://github.com/ggml-org/llama.cpp/blob/master/src/llama-quant.cpp)
 
-## 最初に行う検証
+## 当初の検証案と後続実測
 
-**提案**: 以下の順に小さなartifactを作る。各成果物にはconfig、入力hash、依存version、失敗例を含める。
+以下は調査時の検証案。Tokenizer・モデル・export・会話pilotと教師token量はPhase 1〜3、GPU保存再開→速度測定はPhase 4で完了した。100M探索は未開始。現在の順序はロードマップを正とする。各成果物にはconfig、入力hash、依存version、失敗例を含める。
 
 | 順番 | 検証 | 成果物 | 通過条件 |
 |---:|---|---|---|
@@ -69,8 +69,8 @@ P0: 長期学習の前に解決。P1: 100M探索／Chat準備までに解決。P
 
 - 10Mでの日本語雑談能力の上限と、最適なWeb／会話mixture。
 - 4kと8kの勝者、QK-Norm有無、最適batch／LR／optimizer。
-- 独自Unigramの空白・改行仕様とGGUF実装との完全一致。
-- 4090の実throughput、CPUでの初回応答時間、量子化後の会話品質。
+- GGUF内蔵Tokenizerは不一致が判明し、外部wrapperで一致を検証済み。汎用CLIの内蔵Tokenizer互換は未達。
+- 4090 throughputは測定済み。compiled最大容量、CPU応答時間分布、学習後の量子化品質は未測定。
 - LLM-jp Corpus v4の個別subset manifest・利用条件。公式公開告知の規模は確認できたが、今回の閲覧ではGitLab本文を十分取得できなかった。既存05の個別subset表は引き続き**要検証**。
 
 これらは未調査のままではなく、上記の実験または原本取得を必要とする未解決事項として管理する。既存09の公開モデル一覧全件の再監査と、Mamba／Convのkernel比較は今回の対象外で、後半研究として残す。

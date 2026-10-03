@@ -1,10 +1,12 @@
 # Codexによる環境整備・学習・改善の自動化
 
+確認日: 2026-10-03。現在はFull accessが実効policyへ反映済みで、ユーザー側のrunner起動は不要。停止指定はrunnerを起動しても維持し、Phase 5を始めるにはユーザーの再開指定が必要。CLI 0.159.3の実helpとOpenAI公式資料を照合した。
+
 ユーザー指定（2026-10-02）: 本プロジェクトの環境整備・実装・学習・評価・改善をCodexに継続して任せる。作業内容と実測結果は`autonomous_status.md`、方針はrootの`AGENTS.md`へ残す。2026-10-03にPhase 4の学習pipelineと実GPU検証が完了した。ユーザーの追加指定によりPhase 4で停止し、Phase 5は再開待ち。
 
 ## このアプリで続ける
 
-入力欄下の権限メニューに選択肢がある場合は**Full access**へ変更する。公式の対応設定は`approval_policy = "never"`と`sandbox_mode = "danger-full-access"`。[OpenAI公式の権限説明](https://learn.chatgpt.com/docs/sandboxing)
+初回にモードが表示されない場合はSettings → General → Permissionsで有効化し、その後に入力欄下の権限メニューで選択する。[公式のモード選択](https://learn.chatgpt.com/docs/permission-modes)。入力欄下に選択肢がある場合は**Full access**へ変更する。公式の対応設定は`approval_policy = "never"`と`sandbox_mode = "danger-full-access"`。[OpenAI公式の権限説明](https://learn.chatgpt.com/docs/sandboxing)
 
 Workのnetwork設定が提供されている場合は、Settings → Data controls → Work network accessでAllow public internet accessを有効にする。管理対象の環境で選択肢が無効な場合は管理者側のpolicy変更が必要。ユーザー設定は管理policyを上書きできない。変更が反映された実行環境で続きを進める。
 
@@ -49,6 +51,6 @@ Pythonの実行はrunner・テスト・一時スクリプトを含め`uv run --f
 
 ## 実施した検証
 
-`python -m unittest discover -s tests -p test_codex_automation.py -v`で5件成功。実Codexを呼ばないローカルstub subprocessで、継続結果の引継ぎ、終了条件、CLI失敗時の診断、二重起動防止を確認した。dry-run/profile previewと各fileの構文も確認。権限変更を伴う実Codex起動、ML依存全suite、GPU学習は未実施。
+`uv run --frozen python -m unittest discover -s tests -p test_codex_automation.py -v`で再実行できる5件のstubテストが成功。実Codexを呼ばないローカルstub subprocessで、継続結果の引継ぎ、終了条件、CLI失敗時の診断、二重起動防止を確認した。dry-run/profile previewと各fileの構文も確認。このstub結果だけでは実Codex/GPU成功を証明しない。後続のPhase 4では全64 tests / skip 0と実GPU学習・保存再開・評価・容量測定を完了した。[実機証拠](21_phase4_completion.md)。
 
-上記はuv統一ルール追加前の検証記録。今後の再実行は`uv run --frozen python -m unittest discover -s tests -p test_codex_automation.py -v`を使う。
+初回stub検証はuv統一前の履歴。現在の再実行は`uv run --frozen python -m unittest discover -s tests -p test_codex_automation.py -v`を使う。
