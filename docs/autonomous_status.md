@@ -12,6 +12,8 @@ Windows launcher23824、Linux1106994/boot`0b330ec7-c11f-4bb3-be7c-cae9b868f4af`/
 
 残り時間の[読み取り専用実測](../reports/phase6/corpus_10b_eta_probe.json): committed prefix13,111,597件、eligible12,908,957件のband0に3,722,286候補組、最大group2,491件。180秒上限で実測39.530秒、sort10.056秒。先頭3,000組だけの検証0.698秒は無作為sampleでも全件検証でもなく、全体の速度へ断定的に外挿しない。現在のfile実測から取り込み残約30分。後続の重複除去・export・独立全件監査を含む完成は暫定6〜12時間だが、大規模の候補/check比とaudit速度が未確定で上振れし得る。全32bandsの実測へ進んだら更新する。24時間は累積実行上限で、完成予告ではない。token化と監査は未完了、学習未起動。
 
+Jaccardのunion集合生成を同値の集合要素数式へ置き換える[限定比較](../reports/phase6/corpus_10b_jaccard_probe.json)も実施。実1M・全32bandsの全524,480組のfloat score列SHAと全代表が一致し、29.481秒→20.087秒（1.468倍）。事前の採用条件1.5倍未達のため不採用とし、live v3・元の独立逐次auditは変更していない。180秒上限の比較は終了、同じ比較の反復・閾値緩和はしない。[再現用code](../reports/phase6/corpus_10b_jaccard_probe.py)を保持する。
+
 ### 取得・初回構築の記録（履歴）
 
 2026-10-03のユーザー依頼で、2B計画を約10Bのローカルデータ整備へ更新し、実行を再開した。[保存先・取得上限・実装・監査・停止条件](32_local_10b_corpus.md)。全bulk dataをWSLの`~/jmicro-data/phase6/ten-billion/`へ置き、Windowsとの境界越しデータ処理を避ける。WSL空き835GiB/Windows約2.5TBを確認し、現時点でdisk拡張は不要。原corpus/shards/heldoutを保持し、学習は開始しない。
