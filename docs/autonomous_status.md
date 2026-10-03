@@ -6,7 +6,7 @@
 
 2026-10-03のユーザー依頼で、2B計画を約10Bのローカルデータ整備へ更新し、実行を再開した。[保存先・取得上限・実装・監査・停止条件](32_local_10b_corpus.md)。全bulk dataをWSLの`~/jmicro-data/phase6/ten-billion/`へ置き、Windowsとの境界越しデータ処理を避ける。WSL空き835GiB/Windows約2.5TBを確認し、現時点でdisk拡張は不要。原corpus/shards/heldoutを保持し、学習は開始しない。
 
-取得Windows launcher24348、Linux933704/boot`0b330ec7-c11f-4bb3-be7c-cae9b868f4af`/start_ticks21313。構築v2 launcher7876、Linux1105089/同boot/start_ticks75979。取得は128files・約34.6GBを609.1秒で完了し、job terminal completeと実process終了を確認した。[取得記録](../reports/phase6/corpus_10b_acquisition.json)。構築v2は実/proc照合でlive、stageはingest。旧評価用レコードの保護登録を進めており、signature/SQLite WALの増加を確認した。完了した初期8filesはhash確認してhardlink再利用。実tokensは構築後に確定するため、まだ10B用意済みではない。
+取得Windows launcher24348、Linux933704/boot`0b330ec7-c11f-4bb3-be7c-cae9b868f4af`/start_ticks21313。構築v2 launcher7876、Linux1105089/同boot/start_ticks75979。取得は128files・約34.6GBを609.1秒で完了し、job terminal completeと実process終了を確認した。[取得記録](../reports/phase6/corpus_10b_acquisition.json)。構築v2は実/proc照合でlive、stageはingest。保護用198,899レコードの登録が完了し、実raw取り込みへ進んだ。最初の3raw filesのcommit/再開checkpointを確認し、100万超のレコードを処理した。[処理中の記録](../reports/phase6/corpus_10b_progress.json)。WSL空きは約800GiBで拡張不要。完了した初期8filesはhash確認してhardlink再利用。実tokensは構築後に確定するため、まだ10B用意済みではない。
 
 旧待機job1104732は取り込み開始前に終了確認し、checkpointのatomic保存を加えたprepared-v2へ移行。旧job/snapshotを保持し、取得jobはそのまま継続。新規config/取得runner/SQLite file再開・external-sort LSH・streaming shard export・全件再構築auditを追加。元のtrainer/evaluator/shards/expanded_data/configと歴史的reportは変更しない。全105tests成功（skip/failure/error0、fork関連warning6件）。小fixtureでは旧dev/testのexact/near保護、再開末尾復旧、元LSH候補一致、全token往復と破損棄却を確認した。今後は取得完了→実file速度/容量の確認→全体構築/監査→report/status/commit。goalは10Bの整備全体で、raw取得やcode完了だけでは達成としない。
 
