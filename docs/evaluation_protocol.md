@@ -1,6 +1,6 @@
 # 評価仕様 v1
 
-実装状況更新: 2026-10-03。機械可読protocolの閾値・split・数値許容値は維持し、品質目標は100M選定前に凍結済み。Base評価、overfit/smoke・100M比較、同一dev文書のpaired bootstrapと生成ID/flag照合は実施済み。Chat品質評価・rollout・文法等の全件blind人手採点は未実施。[現在の実測](23_phase5_completion.md)
+実装状況更新: 2026-10-03。機械可読protocolの閾値・split・数値許容値は維持し、品質目標は100M選定前に凍結済み。Base評価、overfit/smoke・100M比較、同一dev文書のpaired bootstrapと生成ID/flag照合は実施済み。Chat品質評価・rollout・文法等の全件blind人手採点は未実施。[Phase 5の品質実測](23_phase5_completion.md)、[Phase 6①②の準備検証](26_phase6_preparation_completion.md)
 
 作成: 2026-10-02、Phase 0。機械可読の正本は[protocol.json](../configs/evaluation/protocol.json)、入力は[固定評価データ](../eval/README.md)。設計契約を固定する資料であり、モデル性能の評価結果ではない。
 
@@ -9,6 +9,8 @@
 Baseは100件の自然文completion、Chatは100件の短文対話。各10 category、dev 80件/test 20件。family単位でsplitし、manifestのID・hashが不一致なら比較を止める。Tokenizer学習・事前学習・SFTに評価本文を入れない。Phase 1のcorpus validation/testはこの独自生成suiteとは別に固定する。
 
 開発時はdevで設定・checkpointを選ぶ。最終testの結果を見て閾値を下げない。testで未達なら報告し、次の改訂は新しい未使用testを用意する。小さいtestの率は分母・件数・category別結果と信頼区間を併記し、0件失敗を未知入力にも失敗しない保証として使わない。
+
+Phase 6拡張corpusのdev/testはPhase 1 pilotと別manifestで固定した。新devは89,416文書 / 164,344,743 canonical body bytes。全splitを構造監査したが、testをモデル評価・候補選定に使っていない。②の4 dev文書CUDA採点は評価の状態保全検証で、全文品質評価ではない。新dev同士の推移を比較し、pilot BPBとの差を改善量にしない。[次回の評価計画](27_phase6_remaining_plan.md)
 
 ## BPBとTokenizer比較
 
@@ -53,20 +55,20 @@ Chat固定履歴の30件は2〜4 User turns、うち`context` categoryは3〜4 t
 
 反復flagの初期自動定義は、2文字以上の同じ本文substringが連続3回以上。4文字n-gramの`1 − unique/total`も診断値として保存するが、単独で合否閾値にしない。通常の会話上の反復との誤検知を人手sampleで確認する。文字数、bytes、tokens、返答長p50/p95を併記する。
 
-Base生成runnerは停止・role ID・UTF-8・空応答・反復と生成長を記録する。Chatのrubric/rollout、人手による誤検知確認、paired bootstrapはPhase 5〜7で行う。Phase 4のgreedy EOS停止は両モデル0/80で品質目標は未達。実装のPASSをモデル品質のPASSとして扱わない。
+Base生成runnerは停止・role ID・UTF-8・空応答・反復と生成長を記録する。document paired bootstrapと生成ID/flag照合はPhase 5で実施済み。Chat rubric/rollout、人手による誤検知確認は今後の検証に残る。Phase 4のgreedy EOS停止は両モデル0/80で品質目標は未達。実装のPASSをモデル品質のPASSとして扱わない。
 
 ## 数値一致・seed・統計
 
 初期許容値はFP32参照logits `atol=1e-5, rtol=1e-4`、BF16 logits `atol=0.05, rtol=0.02`。strict FP32 resumeはweights `1e-7/1e-6`、loss `1e-6/1e-5`。consumed token IDsとparameter countは完全一致を要求する。参照FP32ではTF32を無効化する。
 
-これらは検証前の提案。採用backendのbaselineを測って比較前に調整・固定し、失敗runの後にそのrunを通す目的で緩めない。Phase 4のBF16同一環境resumeは全stateが完全一致し、compile logitsも既定の合成atol/rtolを維持して通過した。同一hardware/version/backend内の再開を対象とし、iMac/CUDA間のbitwise一致は要求しない。
+これらは機械可読protocolへ固定した数値契約。新backendの比較でも失敗runを通す目的で緩めない。同一CUDA/backendでの採用学習経路は全state完全一致を確認する。Phase 4のBF16同一環境resumeは全stateが完全一致し、compile logitsも既定の合成atol/rtolを維持して通過した。同一hardware/version/backend内の再開を対象とし、iMac/CUDA間のbitwise一致は要求しない。
 
-training seed 42、greedy seed 42、sampling seedsとbootstrap seedはconfigへ記録する。training/generation/bootstrapでRNGを分離し、評価が学習RNGを進めないようにする。Python/NumPy/PyTorch/CUDAとpilot block samplerの状態はcheckpointへ保存済み。評価RNG保全も実CUDAで検証した。複数source mixture samplerは未実装。
+training seed 42、greedy seed 42、sampling seedsとbootstrap seedはconfigへ記録する。training/generation/bootstrapでRNGを分離し、評価が学習RNGを進めないようにする。Python/NumPy/PyTorch/CUDAとpilot block samplerの状態はcheckpointへ保存済み。評価RNG保全も実CUDAで検証した。Phase 6②では拡張shardのWSD stable/decay再開と元枝不変性をCUDA全state完全一致で確認し、4文書のdev評価前後のRNG/model/modeも保全した。全74 tests / skip 0、73 GPU checks。budgetを変える通常resumeは許可せず、decayは独立runでglobal更新数と追加枝tokensを分ける。複数source mixture samplerとstable予算延長forkは未実装。
 
 BPB差は同一document、会話差は同一prompt/dialogueを対応付け、paired bootstrap 2000回、seed 42、95%信頼区間を初期仕様とする。tokenを独立sampleとして扱わない。greedyとsamplingの率、category別結果を別記録する。
 
 ## 採用基準とデータbucket
 
-初期目標はBase文法2率70%、Chat文法・関連性とも2の率70%、対象会話の文脈2率60%、停止95%以上、空応答5%以下、role漏出1%以下、固定suiteのUnicode破綻0件。Phase 5までにdev/pilotで採用基準を固定する。量子化の許容退行幅はfloat dev評価後・量子化候補選定前に固定し、現時点では未決定。
+初期目標はBase文法2率70%、Chat文法・関連性とも2の率70%、対象会話の文脈2率60%、停止95%以上、空応答5%以下、role漏出1%以下、固定suiteのUnicode破綻0件。Phase 5の100M結果を見る前に採用基準を凍結済み。量子化の許容退行幅はfloat dev評価後・量子化候補選定前に固定し、現時点では未決定。
 
 sourceは`commercial_strict/commercial_web/sharealike`を分離管理し、条件不明は`excluded`。非商用等の研究限定データを使う場合は別runとして明示し、配布候補へ自動混入させない。Phase 1で固定source/subsetの条件を記録した。Phase 4のBaseはWeb bucketだけを選び、会話/sharealikeを混ぜていない。追加sourceの採用条件は拡張時に確認する。

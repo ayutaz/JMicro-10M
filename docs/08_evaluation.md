@@ -1,6 +1,8 @@
 # 評価・Checkpoint・TDD
 
-最終更新: 2026-10-03。Base本文NLL/BPB・生成評価とcheckpoint再開は実装・実GPU検証済み。[評価契約report](../reports/phase4/base_evaluation_contract_report.json)。devは924文書 / 共通1,633,458 canonical bytes、test未使用。Phase 5で100件overfit、10M smoke、4本の100M、4補助checkpoint、document paired bootstrapを実施し独立監査した。[実測証拠](23_phase5_completion.md)。Chat、rollout、文法等の全件blind人手採点は未実施。以下のmetric/TDDは要件一覧で、未実施metricを達成済みとしない。
+最終更新: 2026-10-03。Base本文NLL/BPB・生成評価とcheckpoint再開は実装・実GPU検証済み。[評価契約report](../reports/phase4/base_evaluation_contract_report.json)。Phase 4〜5のpilot devは924文書 / 共通1,633,458 canonical bytesで、モデル評価でtestは未使用。Phase 5で100件overfit、10M smoke、4本の100M、4補助checkpoint、document paired bootstrapを実施し独立監査した。[実測証拠](23_phase5_completion.md)。Chat、rollout、文法等の全件blind人手採点は未実施。以下のmetric/TDDは要件一覧で、未実施metricを達成済みとしない。
+
+Phase 6①の新devは89,416文書 / 164,344,743 body bytes、testは89,485文書。全splitの構造・本文/token往復を監査したが、testをモデル評価・選定へ使っていない。②のCUDA dev採点は4文書の状態保全確認で、新dev全文の品質評価ではない。新devのBPBをpilot BPBの数値差として比較せず、全文採点と固定400生成の時間を別計測する。[準備の証拠](26_phase6_preparation_completion.md)、[次の評価](27_phase6_remaining_plan.md)
 
 ## 評価原則
 
@@ -86,7 +88,7 @@ implementation hashes
 
 Git commit/dirty、環境、PID/boot ticks、source snapshotはcheckpointと対応したrun.json側へ記録する。checkpointには消費digest・教師token/body bytes・sampler RNG/epoch/block位置も保存する。version 2 checkpointは完了updateで一時file→fsync→replaceし、latest.jsonへSHA-256を記録する。config/schedule/source/shard変更はresume時に拒否する。
 
-Phase 4ではT8K/T4Kとも連続200と100+100のtoken列/loss/weights/optimizer/scheduler/RNG/samplerが完全一致した。中断後の未保存metricsはcheckpoint境界へ戻して再開する。
+Phase 4ではT8K/T4Kとも連続200と100+100のtoken列/loss/weights/optimizer/scheduler/RNG/samplerが完全一致した。中断後の未保存metricsはcheckpoint境界へ戻して再開する。Phase 6②は採用NoNorm・拡張shard・CUDA/BF16/math・batch 8でWSD stable 200 vs 100+100、decay 100 vs 50+50と元枝の不変性/継続一致を全state完全一致で確認した。新batch/backendは再検証が必要。
 
 ## TDD方針
 

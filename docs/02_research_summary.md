@@ -1,6 +1,6 @@
 # 調査要約
 
-更新: 2026-10-03。外部研究は2026-10-02の調査記録で、全件の最新再調査ではない。Transformer/Tokenizer/exportとAdamW＋warmup/cosineのGPU経路は実装・検証済み。[Phase 4](21_phase4_completion.md)。QK-Normなしも実装し、[Phase 5](23_phase5_completion.md)の100M比較でT4K / NoQK-Norm / LR 0.002を選定した。Muonは安定したAdamW比較で候補を選べたため追加せず、長期schedulerはWSDの方針を採用したが未実装。Layer Sharing/hybrid、Chatと学習後の量子化は未実施。外部文献の再調査ではなく、ローカル実測に基づく更新である。
+更新: 2026-10-03。外部研究は2026-10-02の調査記録で、全件の最新再調査ではない。Transformer/Tokenizer/exportとAdamW＋warmup/cosineのGPU経路は実装・検証済み。[Phase 4](21_phase4_completion.md)。QK-Normなしも実装し、[Phase 5](23_phase5_completion.md)の100M比較でT4K / NoQK-Norm / LR 0.002を選定した。Muonは安定したAdamW比較で候補を選べたため追加せず、長期schedulerのWSD stable/decayは[Phase 6①②](26_phase6_preparation_completion.md)で実装し、拡張実shard・CUDA/BF16/mathで全stateの再開・分岐完全一致を確認した。本学習batch/backendと長期の数値配分は未凍結。Layer Sharing/hybrid、Chatと学習後の量子化は未実施。外部文献の再調査ではなく、ローカル実測に基づく更新である。
 
 ## 結論
 
@@ -57,7 +57,7 @@ parametersはほぼ同じでcomputeは約2倍になる。MobileLLMのblock shari
 
 ## 学習方法に関する結論
 
-**現在の決定**: Phase 5の4本の100M・補助評価・独立監査は完了。次回は拡張corpus、WSD分岐/再開、採用構成の容量/高速化、生成/配布課題を確認してから本学習予算を固定する。[詳細計画](24_phase6_plan.md)
+**現在の決定**: Phase 5の4本の100M・補助評価・独立監査は完了。Phase 6①②の拡張corpus・WSD分岐/再開も完了し停止中。次回の再開指定後に採用構成の容量/高速化、生成/変換課題を確認して本学習予算を固定する。[残りの実行計画](27_phase6_remaining_plan.md)
 
 **初期提案（2026-10-02の調査時点）**:
 

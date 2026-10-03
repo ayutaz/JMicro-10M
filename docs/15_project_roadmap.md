@@ -2,7 +2,7 @@
 
 Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの拡張shardとWSD stable/decay CLI・CUDA全state再開一致を検証。全corpus・shardの独立監査も完了。③以降の速度/batch探索・本学習は未開始。
 
-作成日: 2026-10-02。最終更新: 2026-10-03（Phase 5候補選定完了、Phase 6準備計画を更新）。根拠は[プロジェクト目的](01_project_goal.md)、[設計](03_architecture.md)、[技術調査](11_technical_research_gaps.md)、[Phase 0完了記録](16_phase0_completion.md)、[Phase 1完了記録](17_phase1_completion.md)。既存の**確定**方針から逆算した計画であり、フェーズ分割、成果物名、採用基準は**提案**である。
+作成日: 2026-10-02。最終更新: 2026-10-03（Phase 6①②完了・③以降の実行計画を更新）。根拠は[プロジェクト目的](01_project_goal.md)、[設計](03_architecture.md)、[技術調査](11_technical_research_gaps.md)、[Phase 0完了記録](16_phase0_completion.md)、[Phase 1完了記録](17_phase1_completion.md)。既存の**確定**方針から逆算した計画であり、将来の成果物名・未凍結の実行値は**提案**である。品質目標・評価契約はPhase 5で凍結済みで、結果を見て緩めない。
 
 ## 最終的に実現すること
 
@@ -22,15 +22,15 @@ Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの�
 
 **Phase 0〜5が完了。Phase 6①②完了で停止中（③以降未開始）**。[Tokenizer完了記録](18_phase2_completion.md)、[モデル・export完了記録](19_phase3_completion.md)、[Phase 4実機結果](21_phase4_completion.md)を参照する。Phase 5のoverfit・10M smoke・100M比較と候補選定も完了した。[完了記録](23_phase5_completion.md)を参照する。Web 19,998文書と3,000対話を採用し、cluster単位のtrain/dev/test、trainだけのTokenizer用sample約4.50MBを作成した。source台帳・manifest schema・全件復元・6成果物の再生成一致・20件の内容レビューを[完了記録](17_phase1_completion.md)にまとめた。
 
-Phase 0の22件のテスト成功と54ファイルの準備run snapshot検証を記録済み。Base/Chat各100件（各dev 80/test 20）、前処理golden 30件、手動採点例11件を利用する。Phase 3完了時には全48テスト、両モデル×3 backendの実CLI 6件、79 source filesとruntime source 3,673 filesの監査が成功した。データは小規模pilot。4k/8k Tokenizerは学習済みで、両モデルのCPU検証も完了。Phase 4では64 tests、GPU検証checkpointとeager最大安定batch T8K 57 / T4K 64を確認した。master corpusと完成したBase/Chat重みはまだない。
+Phase 0の22件のテスト成功と54ファイルの準備run snapshot検証を記録済み。Base/Chat各100件（各dev 80/test 20）、前処理golden 30件、手動採点例11件を利用する。Phase 3完了時には全48テスト、両モデル×3 backendの実CLI 6件、79 source filesとruntime source 3,673 filesの監査が成功した。Phase 3までのデータは小規模pilot。4k/8k Tokenizerは学習済みで、両モデルのCPU検証も完了。Phase 4では64 tests、GPU検証checkpointとeager最大安定batch T8K 57 / T4K 64を確認した。Phase 6①②では756M unique train stream tokensの拡張corpus全件監査、WSDの73 GPU checks、全74 tests / skip 0を確認した。50〜100B master全量と完成したBase/Chat重みはまだない。
 
 Pythonは`.python-version`の3.12.7、依存変更は`uv add`、環境再構築は`uv sync --frozen`、実行は`uv run --frozen`で統一する。データ処理時は`--extra data`（PyArrow、datasketch、fsspec、aiohttp）、Tokenizer・モデル検証時は`--extra ml`を指定する。両extraを同時に使う処理では両方を指定する。GPU/CUDA互換性はPhase 4で確認済み。
 
-Phase 0〜4の成果物はそれぞれの完了記録に実pathを示す。Phase 6以降の成果物名は**今後作成するもの**であり、既に存在するfileを示さない。コードは`src/`、設定は`configs/`、検証は`tests/`、実行入口は`scripts/`を基本とする。小さな比較結果・判断記録は`reports/<run_id>/`、大型データ・重みは[外部データ領域](07_environment.md)へ置く。`docs`には仕様、計画、成果物への参照を残す。
+Phase 0〜5とPhase 6①②の成果物は各完了記録に実pathを示す。[①②の完了記録](26_phase6_preparation_completion.md)にあるcorpus/shards・WSD検証checkpoint・reportは存在する。本学習の凍結config・scaling checkpoint・Base/Chat完成artifactは**今後作成するもの**で、準備検証artifactと区別する。コードは`src/`、設定は`configs/`、検証は`tests/`、実行入口は`scripts/`を基本とする。小さな比較結果・判断記録は`reports/<run_id>/`、大型データ・重みは[外部データ領域](07_environment.md)へ置く。`docs`には仕様、計画、成果物への参照を残す。
 
-別PCで再開する時は[Windows/WSL＋RTX 4090の手順](windows_handoff.md)を入口とする。新規PCではコードと固定Hub成果物を復元して環境を確認する。最近のPhase 4コミットは未pushなので、最新のWindows正本も引き継ぐ。復元済みPCでは完了作業を繰り返さず、Phase 6①②完了後の停止境界を守る。
+別PCで再開する時は[Windows/WSL＋RTX 4090の手順](windows_handoff.md)を入口とする。新規PCではコードと固定Hub成果物を復元して環境を確認する。Phase 5・Phase 6①②と文書更新のコミットは未pushなので、最新のWindows正本も引き継ぐ。復元済みPCでは完了作業を繰り返さず、Phase 6①②完了後の停止境界を守る。
 
-各フェーズは、成果物が作られ、完了条件を証拠で確認した時に完了とする。条件を満たさない場合は修正・再比較へ戻り、未達事項を次フェーズへ黙って持ち越さない。日付の締切は4090実測前には決めず、Phase 4で所要時間を見積もる。
+各フェーズは、成果物が作られ、完了条件を証拠で確認した時に完了とする。条件を満たさない場合は修正・再比較へ戻り、未達事項を次フェーズへ黙って持ち越さない。現在の算術予算はPhase 5の採用構成を基準とし、Phase 6③の実測に評価/保存/枝computeを加えて更新する。実装・修復を含む日付の締切は実測なしに保証しない。
 
 ## 全体の順序
 
@@ -42,7 +42,7 @@ Phase 0〜4の成果物はそれぞれの完了記録に実pathを示す。Phase
 | 3 | 完了・[証拠](19_phase3_completion.md) | iMac / CPU | 10Mモデルと推論経路を成立させる | 正しいモデル・cache・HF/float GGUF経路を確認する | 2 |
 | 4 | 完了・[実機証拠](21_phase4_completion.md) | Windows/WSL＋RTX 4090 | 長時間学習の再現性と実行可能性を確かめる | 保存再開・実shard学習・4090速度と予算を検証した | 1〜3 |
 | 5 | 完了 | Windows/WSL・RTX 4090 | 小予算で有望な候補を選ぶ | overfit、10M smoke、100M比較から最大2候補を選ぶ | 4 |
-| 6 | 未着手 | Windows/WSL・RTX 4090 | 日本語Baseの能力を段階的に伸ばす | 1B→2B→5B→10Bで本命を決め、Base v1を固定評価する | 5 |
+| 6 | ①②完了、③以降・本学習未着手 | Windows/WSL・RTX 4090 | 日本語Baseの能力を段階的に伸ばす | 500M→1B→2B→5B→10Bで評価し、Base v1を固定する | 5、[準備完了証拠](26_phase6_preparation_completion.md) |
 | 7 | 未着手 | Windows/WSL・RTX 4090 | Baseを短文雑談モデルへ仕上げる | mid-trainingとSFTの効果を分離し、Chat v1を評価する | 6、1の会話pilot |
 | 8 | 未着手 | 学習PC・独立したローカル検証環境 | ローカルで使える成果物を完成させる | Base/Chatと量子化版を独立環境で実行・再現できる | 7、3のexport経路 |
 | 9 | 未着手・50Bは条件付き | Windows/WSL・RTX 4090 | 追加学習に継続価値があるか検証する | 20B、条件付き50Bの効果と限界を報告する | 6、追加予算の見積もり |
@@ -52,7 +52,7 @@ Phase 0〜8を最初の完結した開発系列とする。Phase 9は20Bの評�
 
 Phase 1の会話pilotは準備済みで、拡張と評価準備をBase学習と並行して進める。Phase 6で10B Baseが成立すればPhase 7へ進め、20B・50BをChat開始の前提にしない。単一4090ではGPU実験を順番に実施し、CPUでのデータ整理・評価準備を並行する。
 
-**確定（実行場所）**: Phase 0〜3はiMacで実施し、Phase 4からWindows/WSL＋RTX 4090へ移行済み。本学習は設定ごとの最大安定batchを実測して使う。今回のeager運用上限はT8K 57 / T4K 64、compile容量は未探索。[移行成果物・確認条件](07_environment.md)
+**確定（実行場所）**: Phase 0〜3はiMacで実施し、Phase 4からWindows/WSL＋RTX 4090へ移行済み。本学習は設定ごとの最大安定batchを実測して使う。Phase 4のNorm/default eager運用上限はT8K 57 / T4K 64。採用NoNorm/mathの最大容量とcompiled/mathは未測定。[移行成果物・確認条件](07_environment.md)
 
 ## 高速に完成させる進め方
 
@@ -227,9 +227,9 @@ Phase 4は以下の順で実施済み。新規環境への移行・実装変更�
 
 **次へ進む判断**: 候補がすべて発散・悪化する場合はデータ、mask、LR、batchを切り分けてPhase 2〜4へ戻る。BPB差が小さい場合は速度・fallback・生成失敗・推論互換性を含めて最大2候補を残す。
 
-## Phase 6: 1B〜10B Base v1
+## Phase 6: 500M〜10B Base v1
 
-**状態**: 準備①②は完了し、本学習は未着手。756M unique train stream tokensのcorpus全監査とWSD stable/decayのCUDA全state再開一致を確認した。[準備完了記録](26_phase6_preparation_completion.md)。Phase 5で選定したT4K NoNorm / LR 0.002の1候補を維持し、③以降は停止中。再開後に[詳細計画](24_phase6_plan.md)の容量/高速化・生成/変換課題・予算凍結を通過して本学習を始める。
+**状態**: 準備①②は完了し、本学習は未着手。756M unique train stream tokensのcorpus全監査とWSD stable/decayのCUDA全state再開一致を確認した。[準備完了記録](26_phase6_preparation_completion.md)。Phase 5で選定したT4K NoNorm / LR 0.002の1候補を維持し、③以降は停止中。再開後に[段階評価/gate](24_phase6_plan.md)と[③以降の実行計画](27_phase6_remaining_plan.md)の容量/高速化・生成/変換課題・予算凍結を通過して本学習を始める。
 
 **目的**: 約10Mで日本語短文生成がどこまで成立するかを測り、Chatの土台を作る。
 
@@ -249,7 +249,7 @@ Phase 4は以下の順で実施済み。新規環境への移行・実装変更�
 - 各段階に必要なshardsから用意し、未使用全量の処理を10B開始の前提にしない。
 - BPB、短文品質、反復、EOS、Unicode、追加GPU時間を段階ごとに記録する。
 - 固定mixtureのscaling系列を残す。目的に合わせたmixture変更は別条件として記録する。
-- Phase 5で長期schedulerはWSDの方針に決定した。Phase 6で実装・全state再開/分岐を検証し、継続stable枝と評価decay枝を区別して追加computeも計上する。
+- Phase 5でWSDを採用し、Phase 6②でstable/decayの実装・CUDA全state再開/分岐完全一致を確認済み。本学習のbatch/backend/数値配分は未凍結。継続stable枝と評価decay枝を区別して追加computeも計上する。20B/50Bへのstable予算延長forkは未実装で、通常resumeでは予算を変更しない。
 
 **成果物**: 段階checkpoint、`base_scaling_report.json`、`base_v1_evaluation.md`、継続用checkpoint、master corpus manifest。
 
@@ -307,7 +307,7 @@ Phase 4は以下の順で実施済み。新規環境への移行・実装変更�
 
 作業:
 
-- 継続用checkpointから20Bへ進み、固定mixture・同じ評価条件で10Bと比較する。
+- stable予算延長の明示forkと履歴・全state検証を実装してから継続用checkpointで20Bへ進み、固定mixture・同じ評価条件で10Bと比較する。通常resumeで終端budgetを変更しない。
 - document単位のpaired bootstrapでBPB差と95%信頼区間を記録し、短文品質、失敗率、uniqueデータ露出と追加GPU時間を併記する。
 - 50Bは20Bでも改善継続があり、生成失敗が悪化せず、追加時間/ストレージが予算内の場合のみ進む。
 - 新Baseが有望なら同じChat手順を適用してv1と比較し、Phase 8の学習済みexport/量子化評価も再実行する。

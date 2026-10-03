@@ -1,6 +1,6 @@
 # データ領域
 
-現在地（2026-10-03）: pilot/Tokenizerは固定公開版をhash検証してWSLへ復元済み。通常の再開では下記のraw再取得・再生成を繰り返さない。[初回の復元](../docs/huggingface_handoff.md)を使う。Phase 4のBase shardはWeb train 18,022 / dev 924 / test 1,052文書を分離した。会話3,000件は別bucketで、Chat学習は未開始。
+現在地（2026-10-03）: pilot/Tokenizerは固定公開版をhash検証してWSLへ復元済み。通常の再開では下記のraw再取得・再生成を繰り返さない。[初回の復元](../docs/huggingface_handoff.md)を使う。Phase 4のBase shardはWeb train 18,022 / dev 924 / test 1,052文書を分離した。会話3,000件は別bucketで、Chat学習は未開始。Phase 6①の拡張corpusは全件監査済みで、756M unique train stream tokensをWSL外部領域に保存した。通常の再開ではこの取得・構築も繰り返さない。
 
 ここにはPhase 1以降の小sampleとmanifestを置く。本文・shardsはGit管理外。大規模データとcheckpointは学習PCの外部データ領域で管理し、configから場所を指定する。
 
@@ -60,3 +60,27 @@ Phase 1のmanifestは作成時の`uv.lock` hashを固定している。Phase 2�
 入力は公開`corpus.jsonl`と公開Tokenizer。入口は`scripts/train.py build-shards`、実装は`src/jmicro/shards.py`。WSLの`~/jmicro-data/shards/{t8k-pilot,t4k-pilot}`へ各split一本のlittle-endian uint16 bin、index/token-byte JSON、hash付きmanifestを保存した。T8K train 6,884,183 / dev 345,044 / test 408,733 stream tokens、T4Kは8,398,329 / 420,053 / 497,374。同じ文書とbody bytesで、BOS/EOSはstream countに含む。
 
 固定長blockを文書を跨いでpackし、BOS targetsをmaskする。最終の不完全train blockを落とす。samplerはseed/epoch/block位置とRNGを保存し、再開で同じ消費列を復元する。複数file/source mixtureへの拡張は未実装。rawがなくても固定processed payloadとhashからshardを生成できる。[CLIと制約](../docs/windows_handoff.md#6-実装済みcliと次回の再開)
+
+## Phase 6拡張corpusと全件監査
+
+採用sourceはFineWeb2 Edu Japanese / `small_tokens_cleaned`、revision `180ca004c6a89b590daaad86cb062a07a5353c69`。固定8 files、実raw 2,152,539,810 bytes、Web 100%。[source台帳](../reports/phase6/sources.json)、[取得receipt](../reports/phase6/acquisition.json)、[凍結条件](../configs/phase6/preparation.json)、[完了証拠](../docs/26_phase6_preparation_completion.md)。
+
+| split | 文書数 | stream tokens（BOS/EOS込み） | body tokens | body bytes |
+|---|---:|---:|---:|---:|
+| train | 1,604,292 | 756,087,912 | 752,879,328 | 2,946,200,160 |
+| dev | 89,416 | 42,182,766 | 42,003,934 | 164,344,743 |
+| test | 89,485 | 42,230,751 | 42,051,781 | 164,539,509 |
+
+WSL `~/jmicro-data/phase6/raw/`にParquet/条件資料/receipt、`expanded-v2/`に`corpus.jsonl`、`records.sqlite`、`signatures.bin`、`manifest.json`、`corpus_audit.json`を保存する。`expanded-v2/shards/`にはsplit別uint16 `.bin`、`.index.json`、`token_bytes.json`、shard manifestがある。公開T4K model SHA-256は`a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318`。本文・DB・raw・shardsはGit管理外で、[corpus manifest](../reports/phase6/corpus_manifest.json)と[全件監査](../reports/phase6/corpus_audit.json)へbindする。manifestの`built_not_audited`は作成時ラベルのまま保存し、監査成功は別reportを正とする。
+
+全1,803,712 raw recordsを独立復元し、全signature、検出されたnear/URL edges・connected components、split分離、全retained 1,783,193文書の本文・token/index・文字往復を確認した。NFKC/casefold/空白まとめは重複検出専用で、学習本文には適用しない。pilot全Web splitと固定suiteの検出された混入clusterを除外した。LSH候補のrecallは確率的で、意味的な全重複/汚染排除は保証しない。testは構造監査のみでモデル評価・選定未使用。24 train文書の先頭最大420文字の内容確認は、網羅的な人手品質採点ではない。
+
+現在の756Mは最初の500M開始用で、10Bでは約13.23回露出する。追加corpusを作る時は現在のPhase 6 dev/testの保護・provenanceを実装してから取得上限と新runを固定する。現builderの保護入力はPhase 1 pilotであり、追加構築時にPhase 6 heldoutが自動継承される機能は未実装。通常resumeでdata hashを変更しない。[残る計画](../docs/27_phase6_remaining_plan.md)
+
+既存reportを保持して準備の読み取り監査を行う場合は、WSL checkoutから**別出力**を指定する:
+
+```sh
+uv run --frozen --extra hub --extra data --extra ml --extra export scripts/audit_phase6_preparation.py --data /home/aihub_ubuntu/jmicro-data/phase6/expanded-v2 --run reports/phase6/preparation-20261003 --windows-root /mnt/c/Users/AiHUB/Desktop/japanese-tiny-llm-10m --output reports/local/phase6-preparation-reaudit.json
+```
+
+この監査は学習を起動しない。全corpus再構築監査用の`scripts/audit_phase6_data.py`はoutput内の監査reportを更新するため、保存済み①②の証拠を上書きする目的で再実行しない。取得/buildの再実行も通常の再開では不要。

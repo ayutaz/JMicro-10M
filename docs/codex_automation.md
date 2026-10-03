@@ -1,10 +1,10 @@
 # Codexによる環境整備・学習・改善の自動化
 
-Phase 5完了（2026-10-03）: overfit・10M smoke・4本の100M比較・補助評価・候補選定・独立監査が終了。[完了記録](23_phase5_completion.md)を参照。Phase 6本学習は開始せず停止中。
+現在地（2026-10-03）: Phase 0〜5とPhase 6①②は完了。拡張corpusとWSDの準備監査を終え、③の容量/速度探索・本学習の前で停止中。[最新状態](autonomous_status.md)、[①②完了証拠](26_phase6_preparation_completion.md)、[再開後の計画](27_phase6_remaining_plan.md)を参照する。
 
-確認日: 2026-10-03。現在はFull accessが実効policyへ反映済みで、ユーザー側のrunner起動は不要。ユーザーのPhase 5再開指定を反映済みで、runnerもPhase 5完了後に停止する。CLI 0.159.3の実helpとOpenAI公式資料を照合した。
+確認日: 2026-10-03。Full accessが実効policyへ反映済みで、ユーザー側のrunner起動は不要。停止境界はAGENTS.mdと最新statusに従う。文書更新は③以降の再開指定ではなく、runnerの起動を次の学習開始条件にしない。以下のCLI 0.159.3の実helpとOpenAI公式資料の説明は当時の確認記録で、この文書更新では製品設定を再調査・変更していない。
 
-ユーザー指定（2026-10-02）: 本プロジェクトの環境整備・実装・学習・評価・改善をCodexに継続して任せる。作業内容と実測結果は`autonomous_status.md`、方針はrootの`AGENTS.md`へ残す。2026-10-03にPhase 4の学習pipelineと実GPU検証が完了した。ユーザーがPhase 5の計画から完了までを指示し、今回の区切りはPhase 5完了。
+ユーザー指定（2026-10-02）: 本プロジェクトの環境整備・実装・学習・評価・改善をCodexに継続して任せる。作業内容と実測結果は`autonomous_status.md`、方針はrootの`AGENTS.md`へ残す。Phase 4とPhase 5の指定範囲を完了した後、ユーザーがPhase 6①②を再開し、2026-10-03にその範囲も完了した。現在は③以降の再開指定を待つ。`complete`はその時の指定範囲を証拠で完了したことを示し、Base/Chat全体の完成とは区別する。
 
 ## このアプリで続ける
 

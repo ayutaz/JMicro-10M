@@ -4,7 +4,7 @@
 
 ## 実装後の現在地（2026-10-03）
 
-調査後にPhase 0〜5を完了した。次の表は現在の状態、後半の調査表・検証順は2026-10-02の提案として区別する。
+調査後にPhase 0〜5とPhase 6①②を完了した。次の表は現在の状態、後半の調査表・検証順は2026-10-02の提案として区別する。
 
 | 課題 | 現在の状態 | 証拠・次の判断 |
 |---|---|---|
@@ -13,10 +13,12 @@
 | HF/native float GGUF、量子化型・容量・停止 | 検証済み。内蔵Tokenizerは不一致、外部SentencePieceを採用 | [export report](../reports/phase3/export_parity_report.json) |
 | GPU学習器、保存再開、最大batch/実速度、BPB runner | 実装・実GPU検証済み、全64 tests / skip 0 | [Phase 4完了証拠](21_phase4_completion.md) |
 | 4k/8k・Norm・LRの100M、overfit/smoke、統計比較 | 実施・独立監査済み、全68 tests / skip 0。T4K NoNorm / LR 0.002を1候補に選定 | [Phase 5](23_phase5_completion.md) |
-| 拡張corpus・WSD / 最大batch・高速化 | 756M unique train shardとWSD CUDA一致は成功、全corpus監査成功 / 最大batch・高速化は未実施 | [Phase 6準備計画](24_phase6_plan.md) |
+| 拡張corpus・WSD再開/分岐 | 756M unique train stream、全corpus監査、CUDA全state完全一致、74 tests / skip 0・73 GPU checks | [Phase 6①②完了証拠](26_phase6_preparation_completion.md) |
+| 採用NoNorm/mathの最大batch・compiled/math | 未実施。Phase 4 Norm/defaultの容量・速度を流用しない | [③の測定入口・完了条件](27_phase6_remaining_plan.md) |
+| stable予算延長・追加corpusのheldout継承 | 未実装。通常resumeのbudget/source/data変更は不可、decay forkは実装済み | [⑤と後続拡張の条件](27_phase6_remaining_plan.md) |
 | 日本語短文・雑談、学習後量子化・NoNorm変換 | 品質目標未達、NoNorm HF/GGUF adapter未実装 | Phase 6〜8の実学習・固定評価 |
 
-完成までの時間短縮を優先し、Windows/WSL＋RTX 4090への移行とPhase 4は完了した。Phase 5の候補選定も完了し、ユーザー指定のPhase 6①②完了で停止中（③以降未開始）。再開後はPhase 6の準備gateから進める。
+完成までの時間短縮を優先し、Windows/WSL＋RTX 4090への移行とPhase 4は完了した。Phase 5の候補選定も完了し、ユーザー指定のPhase 6①②完了で停止中（③以降未開始）。再開後は③の採用構成に対応する測定入口実装から進める。
 
 ## 結論
 

@@ -6,7 +6,7 @@ Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの�
 
 ## 全体像
 
-次回の具体的な準備順・開始条件・段階ごとの判断は[Phase 6計画](24_phase6_plan.md)を参照する。現在の選定候補は1つで、未凍結の長期WSD配分や未測定の本学習batchを確定設定として実行しない。
+完了①②と未着手③以降は[Phase 6計画](24_phase6_plan.md)、残る作業の目的・実装入口・完了条件は[再開時の実行計画](27_phase6_remaining_plan.md)を参照する。現在の選定候補は1つで、未凍結の長期WSD配分や未測定の本学習batchを確定設定として実行しない。
 
 プロジェクト全体の目的・ゴール・成果物・完了条件は[フェーズ別実行計画](15_project_roadmap.md)を参照する。本書は学習系列の設定とcheckpoint段階を扱う。10B BaseからChatへ分岐し、20B/50Bの終了をChat着手の前提にしない。
 
@@ -17,10 +17,11 @@ Tokenizer 4k / 8k・Phase 4実測は完了
         -> 100件overfit（合格）
         -> 10M-token smoke（合格）
         -> 100M T4K/T8K・Norm・LR比較（完了、Muon追加不要）
-        -> Phase 6①②完了で停止中（③以降未開始）
-        -> 再開後: 拡張corpus / WSD分岐・再開 / 容量・高速化 / 予算凍結
+        -> Phase 6①756M unique train / ②WSD全state完全一致（完了）
+        -> 停止中（③以降未開始）
+        -> 再開後: ③容量・高速化 -> ④生成/変換 -> ⑤本学習設定・予算凍結
         -> 500M / 1B 選定候補の日本語生成と継続価値を評価
-        -> 2B 過去355Mモデルとの比較点
+        -> 2B 継続価値（過去355M artifactがなければ直接比較は未実施）
         -> 5B 本命を1つに決定
         -> 10B Base v1
              |-> Dialogue mid-training -> SFT -> Chat v1 -> 量子化/ローカル実行
@@ -37,7 +38,7 @@ Tokenizer 4k / 8k・Phase 4実測は完了
 | 10M | pipeline、loss低下、生成、保存再開 | overfit/smokeが通る |
 | 100M | 4k/8k、QK-Norm、LR、optimizer比較 | 発散せずBPB改善 |
 | 500M | early scaling確認 | repetitionが悪化しない |
-| 1B | 日本語生成の立ち上がり | 候補を最大2つへ |
+| 1B | 日本語生成の立ち上がり | 現在の1候補を継続。対照追加は理由・予算を固定し最大2つ |
 | 2B | 過去の約2B-token経験との比較 | 継続価値を判定 |
 | 5B | 本命architecture決定 | 1モデルへ集約 |
 | 10B | Base v1完成 | 固定評価とartifact保存 |
@@ -102,7 +103,7 @@ BF16、default/math SDPA、torch.compile/defaultを実機検証した。Flash-on
 
 ## Vast.ai
 
-**確定**: 初期のTokenizer学習とモデル実装・CPU検証はiMacで完了。学習器・GPU検証はローカルRTX 4090で完了した。今後の100M〜20B、Dialogue SFTもローカルで進める。
+**確定**: 初期のTokenizer学習とモデル実装・CPU検証はiMacで完了。学習器・GPU検証はローカルRTX 4090で完了した。今後の500M〜20B、Dialogue SFTもローカルで進める。
 
 Vast.aiは後半に限定する。
 
@@ -112,3 +113,5 @@ Vast.aiは後半に限定する。
 - ローカルで有望と判明した設定の再現run
 
 過去会話での上限予算は$1,000だが、価格は変動するため利用時に再見積もりする。目的は「単一runを外へ移す」ことではなく「独立実験を並列化する」こととする。
+
+WSD stable予算の延長forkは未実装で、`--branch-from`はdecay専用。通常resumeでは終端budget・source・dataを変更できない。20B/50Bやmixture変更には明示forkの実装・履歴・厳密再開検証が必要。[継続の契約](27_phase6_remaining_plan.md)

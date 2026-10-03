@@ -29,6 +29,12 @@ Phase 5候補のBPB 1.221443、greedy EOS0/80・反復54/80、sampling Unicode2/
 
 ## 次の具体的な行動
 
-今は停止する。ユーザーが③以降を再開したら、[Phase 6 gate](24_phase6_plan.md)のmath/compiled-math容量・速度・厳密resumeから進む。固定devでUnicode/反復/EOSと変換adapterを確認し、本学習予算・設定を凍結してから拡張corpusの新規初期化500Mへ進む。過去のTokenizer学習・Phase 3 export・Phase 5比較を重複実行しない。
+今は停止する。再開後の目的・実装入口・探索予算案・完了条件を[③以降の実行計画](27_phase6_remaining_plan.md)へ具体化した。ユーザーが③以降を再開したら、まず採用NoNorm・拡張shard・WSDに対応する測定/厳密再開入口を実装・適応し、[Phase 6 gate](24_phase6_plan.md)のmath/compiled-math容量・速度・全state再開/分岐を確認する。既存Phase 4 benchmarkのNorm/pilot/cosineをそのまま流用しない。固定devでUnicode/反復/EOSと変換adapterを確認し、本学習予算・設定を凍結してから拡張corpusの新規初期化500Mへ進む。過去のTokenizer学習・Phase 3 export・Phase 5比較を重複実行しない。
 
 準備の中断復旧/読み取り監査の**実CLI**は[完了記録](26_phase6_preparation_completion.md#実cliと再開)。完了済みjobを再起動しない。以前のPhase 5状態と全履歴は[当時のstatus](autonomous_status_phase5_20261003.md)、[Phase 5完了記録](23_phase5_completion.md)、[復旧履歴](autonomous_history_20261003.md)に保持した。
+
+## 文書・計画更新（2026-10-03）
+
+①②の完了証拠に合わせてREADME・roadmap・data/reports/eval・WSL handoff・研究/学習/評価文書を整合させた。WSD未実装という古い記述を修正し、実在する準備artifactと将来の本学習artifact、Phase 4 Norm/default容量と採用NoNorm/math未測定容量、pilotと拡張devの評価母集団を分けた。③容量/速度→④生成/変換→⑤本学習設定凍結の目的・有限探索・完了条件を明示した。stable予算延長forkと将来のPhase 6 heldout継承は未実装として残す。
+
+文書更新の検証は[別監査report](../reports/phase6/documentation_update_20261003.json)に保存する。旧Phase 0〜6 report・実装/config/schema/tests・uv.lock・機械可読評価protocol・固定suite・過去status/完了記録を保持し、更新文書をWSL実行コピーと照合する。この作業ではGPU学習・データ再取得/再構築を起動しない。停止境界は①②完了のまま維持する。

@@ -93,7 +93,7 @@ SFTでは有効なAssistant教師token数がbatchごとに違う。gradient accu
 **提案**:
 
 - 100M探索は終点固定のwarmup＋cosineを使い、設定を揃える。
-- 長期系列はPhase 5でWSDを採用する方針に決定したが、stable/decay実装とCUDA検証は完了し、長期の数値配分は未凍結。継続用のstable checkpointと、評価用のdecay済みcheckpointを別artifactにする。以下の9B+1B等は当初の例で、実行configではない。[準備計画](24_phase6_plan.md)
+- 長期系列はPhase 5でWSD採用を決定し、Phase 6②でstable/decay実装とCUDA全state完全一致を検証済み。凍結した準備configは200更新/100追加更新で、本学習の数値配分は未凍結。継続用のstable checkpointと、評価用のdecay済みcheckpointを別artifactにする。以下の9B+1B等は当初の例で、実行configではない。[①②完了証拠](26_phase6_preparation_completion.md)、[③以降の計画](27_phase6_remaining_plan.md)
 - 10B評価枝を作るなら、たとえば9Bで分岐し1Bをdecay。継続枝も9Bから10Bへ進める。20B評価枝は19Bで同様に分岐する。decay 10%は初期案で、最適値ではない。
 - 評価枝の追加計算も累積GPU時間へ計上し、`tokens_seen`は各枝の履歴に対する値として扱う。
 - decay済み10Bから20Bへ継続する場合は、LR再上昇を含む別の実験条件とし、stable枝からの継続と混同しない。
@@ -142,3 +142,5 @@ v1は`num_workers=0`と決定的なmmap読み込みから始める。遅い場�
 **確認済み**: Chinchillaは計算予算下でのmodel／data配分の研究であり、固定10Mモデルを50Bまで学習したときの最適点を直接示すものではない。データ制約下の研究でも、反復tokenと新規tokenの価値を分けている。[Chinchilla](https://arxiv.org/abs/2203.15556)、[データ制約下のscaling](https://arxiv.org/abs/2305.16264)
 
 **提案**: 10Mの50B学習は容量固定の実験として扱う。unique docs／bytes／tokens、総tokens seen、source別反復回数を保存する。validation BPB改善の信頼区間、会話失敗率、追加GPU時間を合わせて20B以降を判断する。論文の「数epochなら有効」を、日本語雑談SFTの100M反復へそのまま適用しない。
+
+現在の`--branch-from`はstableからdecayを作る入口で、stable終端budgetを延長するforkは未実装。通常resumeでの予算変更は拒否する。20B/50Bへの継続には明示forkの履歴と全state検証を追加する。[実装上の残り](27_phase6_remaining_plan.md)

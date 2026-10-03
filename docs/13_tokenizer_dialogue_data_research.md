@@ -1,6 +1,6 @@
 # Tokenizer・日本語会話データ・SFTの追加調査
 
-実装状況更新: 2026-10-03。弱い正規化・protected-byte wrapper・構造ID・会話window/教師maskと教師token計数はPhase 2で検証済み。固定公開TokenizerをWSLへ復元し、Phase 4〜5ではWebのみのBase学習経路と100M候補比較を検証し、T4K NoNormを選定した。SFT/Chat trainer・複数turn rollout・蒸留は未実装。以下の候補と外部資料は2026-10-02の調査記録で、採用時にrevisionと条件を再確認する。
+実装状況更新: 2026-10-03。弱い正規化・protected-byte wrapper・構造ID・会話window/教師maskと教師token計数はPhase 2で検証済み。固定公開TokenizerをWSLへ復元し、Phase 4〜5ではWebのみのBase学習経路と100M候補比較を検証し、T4K NoNormを選定した。Phase 6①では固定revisionの8 filesから756M unique train stream tokensのWeb corpusを作成し、全raw/cluster/token/index/文字往復を監査した。[完了証拠](26_phase6_preparation_completion.md)。SFT/Chat trainer・複数source mixture・複数turn rollout・蒸留は未実装。以下の候補と外部資料は2026-10-02の調査記録で、採用時にrevisionと条件を再確認する。
 
 **実装状況**: 以下は調査時点の提案。調査後に[Phase 1のデータ取得・pilot](17_phase1_completion.md)、[Phase 2のTokenizer学習・文字復元・会話教師token計数](18_phase2_completion.md)を実施済み。後続のSFT学習・品質比較は未実施。
 

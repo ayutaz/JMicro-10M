@@ -1,12 +1,12 @@
 # データ設計
 
-現在地（2026-10-03）: 固定pilotは採用22,998件（Web 19,998 / 会話3,000）。Phase 4 Base shardはWebのみのtrain 18,022 / dev 924 / test 1,052文書。dev/testと固定evalは学習から除外し、会話/sharealikeは別系列へ保つ。[復元とshard](../data/README.md)。Phase 5の100Mはこのpilotの反復（T8K約14.53 / T4K約11.91倍のstream-token曝露）であり、unique 100M corpusの実測ではない。50〜100B master corpusは未取得。次回は[段階取得と開始条件](24_phase6_plan.md#開始前に揃える条件)に従って必要な範囲から拡張する。以下の外部規模・条件は2026-10-02の候補調査値で、拡張時に固定revisionの原資料を再確認する。
+現在地（2026-10-03）: 固定pilotは採用22,998件（Web 19,998 / 会話3,000）。Phase 4 Base shardはWebのみのtrain 18,022 / dev 924 / test 1,052文書。dev/testと固定evalは学習から除外し、会話/sharealikeは別系列へ保つ。[復元とshard](../data/README.md)。Phase 5の100Mはこのpilotの反復（T8K約14.53 / T4K約11.91倍のstream-token曝露）であり、unique 100M corpusの実測ではない。50〜100B master corpusは未取得。500M開始用の拡張は①で完了しており、追加取得は[継続判断](27_phase6_remaining_plan.md)と取得上限・既存heldout保護を固定してから行う。以下の外部規模・条件は2026-10-02の候補調査値で、拡張時に固定revisionの原資料を再確認する。
 
-Phase 6①では同revisionの8 train filesを取得し、train 1,604,292文書 / 756,087,912 stream tokens / 2,946,200,160 body bytes、dev 89,416文書、test 89,485文書の拡張shardを作成した。初期配合はFineWeb2 Edu Japanese 100%、pilotの全Web splitと固定suiteを保護してcluster分割する。独立全件監査は完了した。これは500M開始用の段階拡張で、50〜100B master全量ではない。初回500Mはstream約0.66回分、10Bは約13.23回分となり、後続stageでは追加取得・配合の判断を行う。[今回の条件](25_phase6_preparation.md)
+Phase 6①では同revisionの8 train filesを取得し、train 1,604,292文書 / 756,087,912 stream tokens / 2,946,200,160 body bytes、dev 89,416文書、test 89,485文書の拡張shardを作成した。初期配合はFineWeb2 Edu Japanese 100%、pilotの全Web splitと固定suiteを保護してcluster分割する。独立全件監査は完了した。これは500M開始用の段階拡張で、50〜100B master全量ではない。初回500Mはstream約0.66回分、10Bは約13.23回分となり、後続stageでは追加取得・配合の判断を行う。[凍結条件](25_phase6_preparation.md)、[完了証拠](26_phase6_preparation_completion.md)
 
 ## 基本方針
 
-**確定**: 収集可能量をそのまま学習量にしない。50〜100B tokens相当のmaster corpus候補を構築し、実学習は100M → 1B → 2B → 5B → 10B → 20B → 50Bと段階的に進める。
+**確定**: 収集可能量をそのまま学習量にしない。50〜100B tokens相当のmaster corpus候補を構築し、実学習は100M比較 → 500M → 1B → 2B → 5B → 10B → 20B → 50Bと段階的に進める。
 
 10Mモデルでは容量不足が先に来る可能性があるため、雑多なデータ量より、日本語短文生成・対話に寄与する品質とmixtureを重視する。
 

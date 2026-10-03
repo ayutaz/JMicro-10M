@@ -68,18 +68,18 @@ Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの�
 - [x] BPB、処理bytes/GPU時間、更新数、生成失敗を比較し、T4K / NoQK-Norm / LR 0.002の1候補を選定する。
 - [x] dev/pilotを使い、品質閾値を最終test評価前に固定する（数値を維持し、100M結果前にtargets.statusをfrozenへ変更）。
 
-## Phase 6: 1B〜10B Base v1
+## Phase 6: 500M〜10B Base v1
 
-[詳細計画と開始条件](24_phase6_plan.md)。①②は完了し、残りは次回再開後の作業で、現在はPhase 6①②完了で停止中（③以降未開始）。
+[段階評価とgate](24_phase6_plan.md)、[③以降の目的・完了条件](27_phase6_remaining_plan.md)。①②は完了し、残りは次回再開後の作業で、現在はPhase 6①②完了で停止中（③以降未開始）。
 
 - [x] 500M開始用corpusのsource/revision/取得上限・unique量・Web 100%配合・反復とdev/test分離を固定し、全raw/cluster/shardを監査する（756M unique train stream tokens）。
 - [x] WSD stable/decay分岐を実装し、採用NoNorm・実shard・CUDA/BF16/mathで全state/loss/token列の完全一致を検証する。
-- [ ] math/compiled-math等の最大安定batch・速度・厳密resumeを測り、本学習effective batch/LR/予算を凍結する。
-- [ ] NoNormのUnicode・反復・自発停止と変換経路を切り分け、固定devで修正/対照を評価する。
-- [ ] 実CLI/restart command、永続log/PID/boot/start ticks/checkpoint SHA、枝computeと容量上限を保存する。
+- [ ] ③ 採用NoNorm・拡張shard・WSDに対応する測定入口を実装し、math/compiled-mathの最大安定batch・最速値・厳密再開/分岐・3×200更新/評価/saveを確認する。
+- [ ] ④ NoNormのUnicode・反復・EOS停止、native/cacheとHF/GGUF変換を切り分け、固定dev 400生成で修正/対照・未達を記録する。
+- [ ] ⑤ 採用batchの安定性を確認してeffective batch/LR/WSD数値予算と実CLI/restart commandを凍結し、log/PID/boot/start ticks/checkpoint SHA、枝compute・保持数・容量上限を保存する。
 
 - [ ] 500M/1B/2Bで段階評価し、5Bまでに本命1モデルを決める。
-- [ ] 検証済みのデータ処理を拡張し、50〜100B master corpus候補を段階整備する。
+- [ ] 段階評価で必要と判断した場合にデータを追加する。現在のPhase 6 dev/test保護・変更系列のprovenanceを先に実装し、取得上限を固定する。50〜100B全量を500M開始条件にしない。
 - [ ] 固定mixture系列と変更系列、継続stable枝と評価decay枝を区別する。
 - [ ] 10B Base v1のartifactと固定評価を作り、日本語短文の達成/未達を記録する。
 
@@ -101,7 +101,7 @@ Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの�
 
 ## Phase 9: 20Bと条件付き50B
 
-- [ ] 20B Base v2を評価し、10Bとの差・信頼区間・追加予算を報告する。
+- [ ] stable予算延長の明示forkと履歴・全state再開検証を実装してから20Bへ進め、10Bとの差・信頼区間・追加予算を報告する。
 - [ ] 改善継続と予算が成立する場合のみ50Bへ進む。
 - [ ] 新BaseをChatへ採用する場合は同じSFT/量子化/配布検証を再実行する。
 
@@ -118,7 +118,8 @@ Phase 0〜4: データ / Tokenizer / モデル / export / 学習器 / 評価 / G
   -> Phase 5は完了、Phase 6①②完了で停止中（③以降未開始）
   -> 100件overfit / 10M-token smokeは合格
   -> T4K/T8K・Norm・LRの100M比較、補助評価、候補選定も完了
-  -> 次回の再開指定後: 拡張corpus / WSD / 容量・高速化の検証
+  -> ①拡張corpus / ②WSD全state一致は完了
+  -> 次回の再開指定後: ③容量・高速化 -> ④生成/変換 -> ⑤予算凍結 -> 500M
 ```
 
-この一周は完了した。ユーザーのPhase 6再開指定後に、大規模データ処理と本系列へ進む。会話pilot・評価準備は早期から並行する。具体的な未解決事項と根拠は[追加技術調査](11_technical_research_gaps.md)、会話データは[Tokenizer・会話データ調査](13_tokenizer_dialogue_data_research.md)、推論経路は[評価・配布調査](14_evaluation_deployment_research.md)を参照する。
+この一周は完了した。ユーザーの③以降の再開指定後に、採用構成の測定入口実装から進む。会話pilot・評価準備は早期から並行する。具体的な未解決事項と根拠は[追加技術調査](11_technical_research_gaps.md)、会話データは[Tokenizer・会話データ調査](13_tokenizer_dialogue_data_research.md)、推論経路は[評価・配布調査](14_evaluation_deployment_research.md)を参照する。

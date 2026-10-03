@@ -1,6 +1,6 @@
 # 固定評価データ v1
 
-利用状況（2026-10-03）: Phase 4ではBase dev 80件について抑制ありgreedy・抑制なしgreedy・sampling seeds 42/43/44の400出力を各モデルで取得した。固定testとChat suiteは未使用。検証checkpointのEOS停止は0/80で、品質目標達成ではない。[評価report](../reports/phase4/base_evaluation_contract_report.json)
+利用状況（2026-10-03）: Phase 4に続きPhase 5のsmoke/100M候補でもBase dev 80件×5条件（抑制あり/なしgreedy、sampling seeds 42/43/44）の400出力を取得し、生成ID/flagを独立照合した。選定NoNormのgreedy EOS 0/80・反復54/80、sampling Unicode 2/240で品質目標は未達。[Phase 5完了記録](../docs/23_phase5_completion.md)。固定testとChat suiteはモデル評価に未使用。Phase 6①では固定suiteの検出された混入clusterを学習corpusから除外し、②の4 dev文書採点はcorpus側の状態保全確認で、固定生成suiteの新しい品質実験ではない。[準備完了証拠](../docs/26_phase6_preparation_completion.md)
 
 この評価例はプロジェクト用に独自作成したもので、学習データではない。Base 100件・Chat 100件をそれぞれ10 categoryに分け、categoryごとにdev 8件/test 2件、合計dev 80件/test 20件とした。ID・file hash・split membershipは[split_manifest.json](split_manifest.json)へ固定する。
 

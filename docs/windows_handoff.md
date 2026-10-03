@@ -10,17 +10,17 @@ Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの�
 |---|---|
 | コード・docs・lockの正本 | Windows `C:\Users\AiHUB\Desktop\japanese-tiny-llm-10m` |
 | Linux実行コピー | `/home/aihub_ubuntu/src/japanese-tiny-llm-10m` |
-| GitHub | [private repository](https://github.com/ayutaz/japanese-tiny-llm-10m)。最近のPhase 5コミットと文書更新は未push |
+| GitHub | [private repository](https://github.com/ayutaz/japanese-tiny-llm-10m)。Phase 5・Phase 6①②と文書更新のコミットは未push |
 | 公開pilot / Tokenizer | [固定Hub repository](https://huggingface.co/datasets/japanese-data-analyze/japanese-tiny-llm-10m-artifacts)、約107MB |
 | Hub commit | `0b1042979bf32899e24da30790e3ae6b239013c3` |
 | manifest SHA-256 | `8072bd218be26637a51c7c11540f1c8c636392c3b1a91f805a5e317e6ca55a09` |
 | 実機環境 | WSL package 3.0.1.0 / Ubuntu WSL 2、RTX 4090、Windows driver 616.92 |
 | Python / PyTorch | uv管理の3.12.7 / 2.14.1、CUDA 13.0 |
-| 完了済み | Phase 0〜5。pilot/Tokenizer、モデル/export、GPU学習器、overfit/smoke、100M比較・候補選定 |
+| 完了済み | Phase 0〜5とPhase 6①②。pilot/Tokenizer、モデル/export、GPU学習器、100M候補選定、756M拡張corpus、WSD全state再開/分岐完全一致 |
 | 現在の境界 | ①②は全監査を完了し停止。実行中jobなし。候補T4K / NoQK-Norm / LR 0.002 |
 | 未実施 | 長期Base本学習、Chat trainer、学習後の量子化品質 |
 
-HubにはpilotとTokenizerがあり、モデル重み・shard・checkpointは含まない。Phase 4の小さい学習済み検証checkpointはLinuxの`reports/phase4/gates-20261003/`へ保存してある。新規PCへは必要なcheckpoint/logも別途引き継ぐ。旧driver/アクセス拒否の履歴は[復旧履歴](autonomous_history_20261003.md)へ分離した。
+HubにはpilotとTokenizerがあり、モデル重み・shard・checkpointは含まない。Phase 4の検証checkpointはLinuxの`reports/phase4/gates-20261003/`、Phase 5は`reports/phase5/run-20261003-docoverfit/`、Phase 6準備の12 checkpointsは`reports/phase6/preparation-20261003/cuda/`へ保存してある。拡張raw/corpus/shardsは`~/jmicro-data/phase6/{raw,expanded-v2}/`で、Hub bundleには含まれない。新規PCへは必要なcheckpoint/logも別途引き継ぐ。旧driver/アクセス拒否の履歴は[復旧履歴](autonomous_history_20261003.md)へ分離した。
 
 ## 1. Windows側でWSLとGPUを確認
 
@@ -49,7 +49,7 @@ cd ~/src/japanese-tiny-llm-10m
 JMICRO_PROJECT_ROOT="$PWD" bash scripts/setup_wsl_environment.sh
 ```
 
-Linuxのsetup.log/environment、Windowsのwsl_setup reportに結果を保存する。既存環境は構築済みで、CUDA/BF16、入力付きprepare/verify、全64 tests / skip 0を確認した。
+Linuxのsetup.log/environment、Windowsのwsl_setup reportに結果を保存する。既存環境は構築済みで、CUDA/BF16、入力付きprepare/verify、Phase 4の全64 tests / skip 0を確認した。Phase 6①②まで含む最新suiteは全74 tests / skip 0で成功し、73 GPU checksも確認した。
 
 ## 2. Linux側でコードとuvを準備
 
@@ -105,7 +105,7 @@ uv run --frozen --extra hub --extra data --extra ml --extra export pytest -q -ra
 uv run --frozen --extra hub --extra data --extra ml --extra export scripts/experiment.py capture-environment --probe-torch --output reports/local/handoff/environment.json
 ```
 
-Phase 4のsuiteは64 tests / skip 0。artifact欠落によるskipを完了証拠にしない。CPU成功はCUDA学習・再開一致の代わりにならない。Linux/WSL、GPU/driver、cuda_available、BF16、Python/uv/lock/sourceをreportから確認する。`nvidia-smi`がPATHにない場合は`/usr/lib/wsl/lib/nvidia-smi`を確認する。
+Phase 4のsuiteは64 tests / skip 0、Phase 5は68、Phase 6①②完了時は74 tests / skip 0。[保存した結果](../reports/phase6/tests.xml)。artifact欠落によるskipを完了証拠にしない。CPU成功はCUDA学習・再開一致の代わりにならない。Linux/WSL、GPU/driver、cuda_available、BF16、Python/uv/lock/sourceをreportから確認する。`nvidia-smi`がPATHにない場合は`/usr/lib/wsl/lib/nvidia-smi`を確認する。
 
 環境captureの`training_target.verified=false`は準備用ラベル。最終判定は[handoff report](../reports/phase4/handoff_report.json)と実GPU結果を使う。wheel変更が必要な新規環境ではuvでlockを更新し、新しい条件で検証する。現在の固定構成は動作済み。
 
@@ -121,7 +121,7 @@ checkpoint version 2は完了updateでmodel/optimizer/scheduler/Python・NumPy�
 
 今回の①②は[準備完了記録](26_phase6_preparation_completion.md)と[独立監査](../reports/phase6/completion_audit.json)を正とする。WSL data rootの拡張corpusは756M unique train stream tokens、WSD stable/decayの実CUDA再開一致は成功済み。準備の中断復旧/読み取り再監査の実commandは完了記録に保存した。現在のjobは全終了しており、通常の次回作業は③の別測定からになる。
 
-次回のPhase 6準備順・開始条件・未凍結項目は[詳細計画](24_phase6_plan.md)を参照する。現在はPhase 6①②完了で停止中（③以降未開始）。WSDの実CLIと凍結run configはまだ存在しないため、③の測定後に本学習の起動・再開commandを追加する。
+次回の開始条件は[Phase 6 gate](24_phase6_plan.md)、③容量/高速化→④生成/変換→⑤予算凍結の目的・完了条件は[残りの実行計画](27_phase6_remaining_plan.md)を参照する。現在はPhase 6①②完了で停止中（③以降未開始）。WSDの実CLIと凍結した準備検証configは存在する。本学習の長期run configは未凍結で、③以降のgate通過後に起動・再開commandを追加する。Phase 4 benchmarkはNorm/pilot/cosine用なので、採用NoNorm/拡張shard/WSD用の測定入口を実装・適応してから使う。
 
 `scripts/train.py`にbuild-shards/train/evaluateを実装済み。trainはCLI引数を使用し、baseline JSONを自動読込しない。AdamW＋warmup/cosine・WSD stable/decayは実装済み、Muon・Chat trainer・複数source mixtureは未実装。
 
@@ -147,13 +147,13 @@ uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train
 uv run --frozen --extra hub --extra data --extra ml --extra export scripts/train.py evaluate --checkpoint /absolute/path/to/checkpoint.pt --shards "$HOME/jmicro-data/shards/t8k-overfit100" --tokenizer artifacts/phase2/8192/tokenizer.model --split dev --output reports/local/overfit-evaluation.json
 ```
 
-eager最大安定batchはT8K 57 / T4K 64、測定点の最高速度はcompile batch 8。Flash-onlyはmask非対応で失敗、compiled最大容量は未探索。次回の比較ではcontext/backend/precision/batch/更新数を固定し、最大容量と最高速度を区別する。Phase 4測定をそのまま有用なモデル品質として扱わない。[予算と制約](../reports/phase4/resource_budget.md)
+Phase 4 Norm/defaultのeager最大安定batchはT8K 57 / T4K 64、測定点の最高速度はcompile/default batch 8。Phase 5でdefault/compile-defaultは厳密resumeに失敗し、現候補はeager/math batch 8を採用した。NoNorm/mathの最大batchとcompiled/mathは未測定。Flash-onlyはmask非対応で失敗、compiled最大容量は未探索。次回の比較ではcontext/backend/precision/batch/更新数を固定し、最大容量と最高速度を区別する。Phase 4測定をそのまま有用なモデル品質として扱わない。[予算と制約](../reports/phase4/resource_budget.md)
 
 ## 次の担当へ渡す文面
 
 ```text
 AGENTS.md、docs/autonomous_status.md、docs/15_project_roadmap.md、docs/windows_handoff.md、docs/24_phase6_plan.mdを読んでください。
-Phase 0〜5は完了。今回のPhase 5は完了し、Phase 6①②完了で停止中（③以降未開始）です。ユーザーの再開指定があるまで本学習を起動しないでください。
+Phase 0〜5とPhase 6①②は完了し、③以降は停止中です。残る作業はdocs/27_phase6_remaining_plan.mdを参照してください。ユーザーの再開指定があるまで本学習を起動しないでください。
 最新コードの正本はWindows workspaceで、最近のコミットは未pushです。Linux実行sourceはsnapshot/hashで確認してください。
 固定公開Tokenizer/pilotは復元済み。Pythonは必ずuv run --frozen、依存変更はuv addを使ってください。
 既存process/checkpointを確認し、docs/24_phase6_plan.mdとdocs/26_phase6_preparation_completion.mdに従って進め、同じjobを二重起動しないでください。
@@ -163,4 +163,4 @@ Phase 0〜5は完了。今回のPhase 5は完了し、Phase 6①②完了で停�
 
 ## この手順の検証範囲
 
-固定公開25 payload、Python/uv/WSL/GPU、CUDA/BF16、全64 tests、入力付きprepare/verify、両モデルの全state resume一致、BPB/dev生成、容量・速度・予算まで現在のPCで検証済み。新規PCや変更したruntimeでは必要な環境gateを改めて確認する。学習後のBase/Chat品質・quantizationは未検証。
+固定公開25 payload、Python/uv/WSL/GPU、CUDA/BF16、Phase 4の全64 testsと両モデルの再開/容量/速度、Phase 5の100M候補選定、Phase 6①②の全74 tests・73 GPU checksと拡張corpus全監査を現在のPCで確認済み。採用NoNorm/mathの最大容量・compiled/math速度と長期予算は未確定。新規PCや変更したruntimeでは必要な環境gateを改めて確認する。学習後のBase/Chat品質・quantizationは未検証。

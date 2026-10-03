@@ -14,7 +14,7 @@ Phase 6①②完了（2026-10-03）: train 756,087,912 unique stream tokensの�
 | Python / Linux uv | 3.12.7 / 0.9.0 |
 | PyTorch / CUDA | 2.14.1 / 13.0、lock runtime 13.0.96 |
 | precision | FP32 parameters/optimizer、BF16 autocast |
-| 検証 | Phase 4: CUDA/BF16 finite forward/backward・64 tests、Phase 5: 68 tests・4構成のmath厳密resume（全skip 0） |
+| 検証 | Phase 4: CUDA/BF16 finite forward/backward・64 tests、Phase 5: 68 tests・4構成のmath厳密resume、Phase 6①②: 74 tests・73 GPU checks・WSD stable/decay全state完全一致（全skip 0） |
 
 WSL packageの3.xとdistributionのWSL 2は別のversion。NVIDIA driverはWindows側のものを使用し、WSLへLinux display driverを追加しない。[NVIDIA公式手順](https://docs.nvidia.com/cuda/wsl-user-guide/)。Linuxのnvidia-smi表示にはツール版615.71.08もあるが、driverの観測値は616.92。
 
@@ -37,7 +37,7 @@ Python実行は一時スクリプトも`uv run --frozen`。導入は`uv python i
 
 Phase 4の短い速度・有限値probeではdefault、math-only、compile/defaultが成功。Phase 5の厳密resumeではcompile/defaultとeager/defaultが失敗し、採用したeager/mathだけが全state一致を通過した。Flash-onlyはnon-null attention mask非対応で失敗を保持している。Flash対応のmask変更は未実装の改善候補。[Phase 4実測](21_phase4_completion.md)、[現在の速度と制約](../reports/phase5/performance_status.md)
 
-選択候補T4K NoNormの学習ピークallocated VRAMは約3.866 GiB、定常約121,139 tokens/s。Phase 4のNorm/default最大batch 64はこのmath/NoNorm構成の保証ではない。次回の容量・速度・再開gateは[Phase 6計画](24_phase6_plan.md#開始前に揃える条件)で定める。
+Phase 5の選択候補T4K NoNorm / math / batch 8の学習ピークallocated VRAMは約3.866 GiB、定常約121,139 tokens/s。拡張shard/WSDでの最大容量と速度は未測定。Phase 4のNorm/default最大batch 64はこのmath/NoNorm構成の保証ではない。次回の容量・速度・再開gateは[Phase 6計画](24_phase6_plan.md#開始前に揃える条件)で定める。
 
 ## ストレージ配置
 
@@ -49,18 +49,25 @@ Windowsコード正本は`C:\Users\AiHUB\Desktop\japanese-tiny-llm-10m`、Linux�
   data/phase1/processed/         固定pilot、manifest、sample
   reports/phase4/gates-20261003/ ログ、source snapshot、検証checkpoint
   reports/phase5/run-20261003-docoverfit/  実学習/評価・snapshot・checkpoint（終了済み）
+  reports/phase6/preparation-20261003/    準備audit/CUDA run・12 checkpoints（終了済み）
 ~/jmicro-data/
-  shards/{t8k-pilot,t4k-pilot}/   実学習入力
+  shards/{t8k-pilot,t4k-pilot}/   Phase 4〜5 pilot入力
+  phase6/raw/                    固定8 Parquet・条件資料・receipt
+  phase6/expanded-v2/            拡張corpus・SQLite・signatures・shards・全監査
   gpu.lock                      単一GPU job排他
 ```
 
-ユーザーの約8TBストレージ計画とWSL内の実容量は別。監査時のLinux空きは980,811,743,232 bytesで、VHDの上限は約1TB。8TB全体がLinuxから使えることは未確認。uv cache約19.27GB、venv約6.07GB、Phase 4成果物約1.47GBはapparent bytesで、hardlinkを重複排除していない。[実容量と予算](../reports/phase4/resource_budget.md)
+ユーザーの約8TBストレージ計画とWSL内の実容量は別。Phase 4監査時のLinux空きは980,811,743,232 bytesだった。Phase 6①②完了時は950,875,688,960 bytes（約885.6 GiB）、VHDの上限は約1TB。8TB全体がLinuxから使えることは未確認。uv cache約19.27GB、venv約6.07GB、Phase 4成果物約1.47GBはapparent bytesで、hardlinkを重複排除していない。[実容量と予算](../reports/phase4/resource_budget.md)
+
+Phase 6①②の拡張dataは15,431,198,093 apparent bytes、rawは別途2,152,539,810 bytes、CUDA runは1,447,634,238 apparent bytes。[測定証拠](../reports/phase6/completion_audit.json)。空き容量は各job開始時に再確認する。
 
 ## 事前tokenizeと実装済みshard
 
 学習中のon-the-fly tokenizationを避け、公開corpusのWeb trainを共通wrapperでencodeする。会話/sharealikeはBase系列へ混ぜていない。各split一本のlittle-endian uint16 `.bin`、document index、token-byte情報、hash付きJSON manifestを保存する。現在のpilot実装は複数shard/source mixtureの大規模loaderではない。
 
 T8K trainは18,022 docs / 6,884,183 stream tokens / 32,774,150 body bytes、T4Kは同じ文書・bytesで8,398,329 tokens。stream countはBOS/EOSを含む。固定長blockをseed/epochでshuffleし、文書を跨いでpackする。BOS targetsをmaskし、最後の不完全train blockは使用しない。dev/testは文書単位で別評価する。[データ手順](../data/README.md)
+
+Phase 6①では同じ公開T4Kでtrain 756,087,912 stream tokens / 1,604,292 docs / 2,946,200,160 body bytesの拡張shardを作成し、dev/testを別binへ分離して全件監査した。[保存先と契約](../data/README.md#phase-6拡張corpusと全件監査)。Web 100%の単一sourceで、複数source mixtureは未実装。
 
 50B tokensのID本体は約100GB、100Bは約200GBという算術値。二つのTokenizer版、raw、index、checkpoint、一時領域は別加算。50〜100B master corpusは未取得で、実容量を計測してから拡張する。
 
