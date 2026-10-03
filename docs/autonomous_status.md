@@ -33,6 +33,8 @@ T4KのQK-Normなし100M学習も**12,208更新 / 100,007,936 tokens**で終了�
 
 ## 実装と保存先
 
+VRAM/高速化に関する現在の回答を[実測記録](../reports/phase5/performance_status.md)へ保存した。学習はWSL 2 / Ubuntu上でuv経由。今回のmath / batch 8比較は学習ピークallocated VRAM約3.9〜4.5 GiB、速度約11〜12万tokens/sで、VRAM最大活用・高速化完了ではない。Phase 4のcompile/default約44〜45万tokens/sは測定済みだが、Phase 5の厳密resumeに失敗したため採用しない。mathの最大安定batchとcompiled/mathは未検証。今回の凍結比較を途中変更せず完了し、本学習前の追加検証をPhase 6引継ぎへ残す。
+
 Windowsの正本: `C:\Users\AiHUB\Desktop\japanese-tiny-llm-10m`。Linux実行コピー: `/home/aihub_ubuntu/src/japanese-tiny-llm-10m`。LinuxのGit HEADは元の移行時のものを含み、実際の実行sourceはrun snapshotとimplementation hashで特定する。WindowsのPhase 4保存コミットは`3168d79`と`9cc4a75`。最近のコミットはpushしていない。
 
 - `scripts/train.py`: `build-shards` / `train` / `evaluate`を実装済み。trainはCLI引数を使い、baseline JSONの自動読込はしない。
