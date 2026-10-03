@@ -60,6 +60,8 @@ command: `bash scripts/run_phase4_job.sh scripts/run_phase5.py --output reports/
 
 Phase 5の設定・実装を検証済みの区切りでコミットし、最後に実測reportと候補config・採否理由を保存する。Tokenizer再学習・Phase 3全作業・完了済みPhase 4測定は繰り返さない。
 
+最終独立監査を拡充し、実metricsから保存checkpointの予算点と最も近い点を再構成、auxiliary checkpointのhash/counters/source/data、候補entry/config、必須paired比較3件を検証する。さらにteacher/EOS集計とoverfit 100文書のexpected IDsをtrain shardへ照合する。完了済み3比較の実reportと意図的な集計破損の棄却で22項目を確認し、`reports/phase5/auditor_contract_checks.json`へ保存した。これは部分検証であり、全run完了後の独立監査は未実施。`resource_budget.json`も終了済み3学習・評価workerの実時間と永続成果物容量へ更新した（実行中なのでpartial）。
+
 overfit用shardはsupervisorが必要な場合のみ作成する。手動準備の形式（重複実行しない）:
 
 ```sh

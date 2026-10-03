@@ -1,33 +1,239 @@
 {
   "phase": 5,
-  "status": "measured_projection_before_100m",
-  "observed_at": "2026-10-03T02:59:32.2687224Z",
-  "sample_run": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/smoke-t8k",
-  "sample_completed_updates": 650,
-  "backend": "eager/math",
-  "context": 1024,
-  "batch": 8,
-  "steady_median_tokens_per_second": 117171.78045253165,
-  "tokens_per_comparison": 100007936,
-  "comparisons": 4,
-  "predicted_training_minutes_per_100m": 14.22525907599896,
-  "predicted_four_trainings_minutes": 56.90103630399584,
-  "excluded_time": [
-    "evaluation and generation",
-    "checkpoint saving",
-    "implementation and repair",
-    "overfit"
-  ],
-  "note": "Projection from partial smoke update wall times, not a completed comparison measurement.",
-  "measured_smoke": {
-    "updates": 1221,
-    "input_tokens": 10002432,
-    "fixed_dev_generation_outputs": 400,
-    "generated_tokens": 25600.0,
-    "evaluation_worker_wall_seconds": 354.0,
-    "body_scoring_seconds": 6.775161030999925,
-    "common_windows_scoring_seconds": 0.14182965399982095,
-    "note": "Evaluation worker wall time includes checkpoint load, scoring, generation, JSON output; later models may stop earlier."
+  "status": "measured_partial",
+  "observed_at": "2026-10-03T04:09:19.916237Z",
+  "active_stage": "100m-lr001",
+  "completed_comparison_trainings": {
+    "100m-t8k": {
+      "updates": 12208,
+      "input_tokens": 100007936,
+      "supervised_tokens": 99746101,
+      "body_bytes_seen": 476090448,
+      "unique_train": {
+        "tokens": 6884183,
+        "documents": 18022,
+        "body_bytes": 32774150,
+        "stream_sha256": "842ee82481edb243719b4d923864314e63f2bd9ad79a116eb22b8723793f7947",
+        "index_sha256": "fdb5b29513ac8f2b860803c7415efd40848f1adc6039c4352cf6cca4e367e573"
+      },
+      "sampler": {
+        "seed": 42,
+        "epoch": 14,
+        "position": 3556,
+        "context": 1024,
+        "blocks": 6722
+      },
+      "steady_tokens_per_second": 117118.79137954142,
+      "peak_vram_bytes": 4812925952,
+      "update_wall_seconds": 856.3645760569893,
+      "started_at": "2026-10-03T03:05:37.830698+00:00",
+      "ended_at": "2026-10-03T03:20:04.002592+00:00",
+      "worker_wall_seconds": 866.171894
+    },
+    "100m-t4k": {
+      "updates": 12208,
+      "input_tokens": 100007936,
+      "supervised_tokens": 99793312,
+      "body_bytes_seen": 390286307,
+      "unique_train": {
+        "tokens": 8398329,
+        "documents": 18022,
+        "body_bytes": 32774150,
+        "stream_sha256": "4fc83c84bb338eec1e891e22c472a19119341322a9cd8de611862f5f9d92dd65",
+        "index_sha256": "3a394a09a3311bce19d07919a4465e08e4dc9618126452df850c3be9db5459a1"
+      },
+      "sampler": {
+        "seed": 42,
+        "epoch": 11,
+        "position": 7453,
+        "context": 1024,
+        "blocks": 8201
+      },
+      "steady_tokens_per_second": 111693.12793024267,
+      "peak_vram_bytes": 4617184768,
+      "update_wall_seconds": 899.5331786119496,
+      "started_at": "2026-10-03T03:26:03.230121+00:00",
+      "ended_at": "2026-10-03T03:41:14.289499+00:00",
+      "worker_wall_seconds": 911.059378
+    },
+    "100m-no-qknorm": {
+      "updates": 12208,
+      "input_tokens": 100007936,
+      "supervised_tokens": 99793312,
+      "body_bytes_seen": 390286307,
+      "unique_train": {
+        "tokens": 8398329,
+        "documents": 18022,
+        "body_bytes": 32774150,
+        "stream_sha256": "4fc83c84bb338eec1e891e22c472a19119341322a9cd8de611862f5f9d92dd65",
+        "index_sha256": "3a394a09a3311bce19d07919a4465e08e4dc9618126452df850c3be9db5459a1"
+      },
+      "sampler": {
+        "seed": 42,
+        "epoch": 11,
+        "position": 7453,
+        "context": 1024,
+        "blocks": 8201
+      },
+      "steady_tokens_per_second": 121138.72531143633,
+      "peak_vram_bytes": 4151105024,
+      "update_wall_seconds": 827.8414653289838,
+      "started_at": "2026-10-03T03:48:09.734604+00:00",
+      "ended_at": "2026-10-03T04:02:07.298283+00:00",
+      "worker_wall_seconds": 837.563679
+    }
   },
-  "projection_four_evaluations_minutes_at_smoke_wall_time": 23.6
+  "completed_worker_stages": {
+    "resume-t8k": {
+      "started_at": "2026-10-03T02:51:33.500473+00:00",
+      "ended_at": "2026-10-03T02:52:06.386389+00:00",
+      "worker_wall_seconds": 32.885916
+    },
+    "initial-t8k": {
+      "started_at": "2026-10-03T02:52:06.398350+00:00",
+      "ended_at": "2026-10-03T02:52:14.568857+00:00",
+      "worker_wall_seconds": 8.170507
+    },
+    "resume-t4k": {
+      "started_at": "2026-10-03T02:52:14.577523+00:00",
+      "ended_at": "2026-10-03T02:52:49.996419+00:00",
+      "worker_wall_seconds": 35.418896
+    },
+    "initial-t4k": {
+      "started_at": "2026-10-03T02:52:49.996567+00:00",
+      "ended_at": "2026-10-03T02:52:56.781874+00:00",
+      "worker_wall_seconds": 6.785307
+    },
+    "resume-overfit": {
+      "started_at": "2026-10-03T02:52:56.790993+00:00",
+      "ended_at": "2026-10-03T02:53:20.034339+00:00",
+      "worker_wall_seconds": 23.243346
+    },
+    "overfit-t8k": {
+      "started_at": "2026-10-03T02:53:20.034569+00:00",
+      "ended_at": "2026-10-03T02:57:46.955033+00:00",
+      "worker_wall_seconds": 266.920464
+    },
+    "overfit-evaluation": {
+      "started_at": "2026-10-03T02:57:46.956498+00:00",
+      "ended_at": "2026-10-03T02:58:12.160677+00:00",
+      "worker_wall_seconds": 25.204179
+    },
+    "smoke-t8k-first-half": {
+      "started_at": "2026-10-03T02:58:12.168392+00:00",
+      "ended_at": "2026-10-03T02:58:57.323438+00:00",
+      "worker_wall_seconds": 45.155046
+    },
+    "smoke-t8k": {
+      "started_at": "2026-10-03T02:58:57.323774+00:00",
+      "ended_at": "2026-10-03T02:59:43.783824+00:00",
+      "worker_wall_seconds": 46.46005
+    },
+    "smoke-evaluation": {
+      "started_at": "2026-10-03T02:59:43.792785+00:00",
+      "ended_at": "2026-10-03T03:05:37.823724+00:00",
+      "worker_wall_seconds": 354.030939
+    },
+    "100m-t8k": {
+      "started_at": "2026-10-03T03:05:37.830698+00:00",
+      "ended_at": "2026-10-03T03:20:04.002592+00:00",
+      "worker_wall_seconds": 866.171894
+    },
+    "evaluate-100m-t8k": {
+      "started_at": "2026-10-03T03:20:04.003867+00:00",
+      "ended_at": "2026-10-03T03:26:03.221406+00:00",
+      "worker_wall_seconds": 359.217539
+    },
+    "100m-t4k": {
+      "started_at": "2026-10-03T03:26:03.230121+00:00",
+      "ended_at": "2026-10-03T03:41:14.289499+00:00",
+      "worker_wall_seconds": 911.059378
+    },
+    "evaluate-100m-t4k": {
+      "started_at": "2026-10-03T03:41:14.289953+00:00",
+      "ended_at": "2026-10-03T03:47:37.769075+00:00",
+      "worker_wall_seconds": 383.479122
+    },
+    "resume-no-qknorm": {
+      "started_at": "2026-10-03T03:47:37.779697+00:00",
+      "ended_at": "2026-10-03T03:48:09.726871+00:00",
+      "worker_wall_seconds": 31.947174
+    },
+    "100m-no-qknorm": {
+      "started_at": "2026-10-03T03:48:09.734604+00:00",
+      "ended_at": "2026-10-03T04:02:07.298283+00:00",
+      "worker_wall_seconds": 837.563679
+    },
+    "evaluate-no-qknorm": {
+      "started_at": "2026-10-03T04:02:07.307231+00:00",
+      "ended_at": "2026-10-03T04:07:31.706608+00:00",
+      "worker_wall_seconds": 324.399377
+    }
+  },
+  "total_completed_comparison_training_worker_seconds": 2614.794951,
+  "total_completed_generation_evaluation_worker_seconds": 1421.126977,
+  "persistent_artifact_storage": {
+    "run-20261003-docoverfit": {
+      "files": 653,
+      "apparent_bytes": 7284888344,
+      "checkpoint_files": 61
+    },
+    "run-20261003": {
+      "files": 8,
+      "apparent_bytes": 352373995,
+      "checkpoint_files": 3
+    },
+    "run-20261003-eager": {
+      "files": 8,
+      "apparent_bytes": 352374004,
+      "checkpoint_files": 3
+    },
+    "run-20261003-math": {
+      "files": 180,
+      "apparent_bytes": 1422746443,
+      "checkpoint_files": 12
+    }
+  },
+  "free_linux_bytes": 971095818240,
+  "original_smoke_projection": {
+    "phase": 5,
+    "status": "measured_projection_before_100m",
+    "observed_at": "2026-10-03T02:59:32.2687224Z",
+    "sample_run": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit/smoke-t8k",
+    "sample_completed_updates": 650,
+    "backend": "eager/math",
+    "context": 1024,
+    "batch": 8,
+    "steady_median_tokens_per_second": 117171.78045253165,
+    "tokens_per_comparison": 100007936,
+    "comparisons": 4,
+    "predicted_training_minutes_per_100m": 14.22525907599896,
+    "predicted_four_trainings_minutes": 56.90103630399584,
+    "excluded_time": [
+      "evaluation and generation",
+      "checkpoint saving",
+      "implementation and repair",
+      "overfit"
+    ],
+    "note": "Projection from partial smoke update wall times, not a completed comparison measurement.",
+    "measured_smoke": {
+      "updates": 1221,
+      "input_tokens": 10002432,
+      "fixed_dev_generation_outputs": 400,
+      "generated_tokens": 25600.0,
+      "evaluation_worker_wall_seconds": 354.0,
+      "body_scoring_seconds": 6.775161030999925,
+      "common_windows_scoring_seconds": 0.14182965399982095,
+      "note": "Evaluation worker wall time includes checkpoint load, scoring, generation, JSON output; later models may stop earlier."
+    },
+    "projection_four_evaluations_minutes_at_smoke_wall_time": 23.6
+  },
+  "notes": [
+    "Worker wall time includes startup, loading, checkpoint saves and reporting; update wall time comes from metrics.",
+    "Evaluation/scoring/generation and resume gates are separate stages, not included in training throughput.",
+    "Apparent storage sizes are not hardlink-deduplicated. Failed runs are retained separately.",
+    "Pilot repeated exposures are reported with unique data and sampler position; these are not 100M unique-token corpora.",
+    "Observed job wall time excludes earlier implementation/repair and does not measure total human/agent work time.",
+    "Only finished audited trainings appear here; the final update requires all four comparisons and terminal supervisor."
+  ]
 }

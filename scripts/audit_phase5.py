@@ -28,9 +28,9 @@ def require(condition, message):
         raise ValueError(message)
 
 
-def audit_body(body, expected):
+def audit_body(body, expected, split="dev"):
     rows = body["rows"]
-    require(body["split"] == "dev", "Held-out evaluation must use dev")
+    require(body["split"] == split, "Evaluation split differs")
     require(len(rows) == body["documents"] == len(expected), "Document count differs")
     require([(r["doc_id"], r["body_bytes"]) for r in rows] == expected, "Population differs")
     require(all(r["scored"] == r["body_tokens"] for r in rows), "Body not scored exactly once")
@@ -38,6 +38,11 @@ def audit_body(body, expected):
     require(math.isclose(body["body_nll"], sum(r["body_nll"] for r in rows), rel_tol=1e-12), "NLL sum differs")
     require(math.isclose(body["bpb"], body["body_nll"] / (math.log(2) * body["body_bytes"]), rel_tol=1e-12), "BPB differs")
     require(all(math.isfinite(r["body_nll"]) and math.isfinite(r["eos_nll"]) for r in rows), "Nonfinite evaluation")
+    tokens = sum(r["body_tokens"] for r in rows)
+    require(body["body_tokens"] == tokens, "Body token sum differs")
+    require(math.isclose(body["nll_per_token"], body["body_nll"] / tokens, rel_tol=1e-12), "Token NLL differs")
+    require(math.isclose(body["teacher_forced_accuracy"], sum(r["body_correct"] for r in rows) / tokens, rel_tol=1e-12), "Teacher accuracy differs")
+    require(math.isclose(body["eos_argmax_accuracy"], sum(r["eos_correct"] for r in rows) / len(rows), rel_tol=1e-12), "EOS accuracy differs")
 
 
 def generation_summary(generation, cases, tokenizer):
@@ -132,6 +137,8 @@ def main():
         del a, b
     overfit, smoke = read_json(run / "overfit_report.json"), read_json(run / "smoke_report.json")
     thresholds, train, recall = plan["overfit"], overfit["train"], overfit["continuation"]
+    overfit_shard = Shard(Path.home() / "jmicro-data/shards/t8k-overfit100", "train")
+    audit_body(train, [(r["doc_id"], r["bytes"]) for r in overfit_shard.index], split="train")
     require(overfit["status"] == "passed" and all(overfit["gates"].values()), "Overfit gate failed")
     require(train["split"] == "train" and train["documents"] == recall["documents"] == 100, "Overfit population differs")
     require(train["nll_per_token"] <= thresholds["max_nll_per_token"] and train["teacher_forced_accuracy"] >= thresholds["min_teacher_accuracy"], "Overfit numerical gates fail")
@@ -139,6 +146,21 @@ def main():
     train_ids = {r["doc_id"] for r in train["rows"]}
     require(train_ids == {r["doc_id"] for r in recall["outputs"]} == {r["doc_id"] for r in recall["eos_outputs"]}, "Recall population differs")
     require(math.isclose(recall["exact_rate"], sum(r["expected_ids"] == r["generated_ids"] for r in recall["outputs"]) / 100), "Recall rate differs")
+    overfit_records = {r["doc_id"]: r for r in overfit_shard.index}
+    for row in recall["outputs"]:
+        document = overfit_records[row["doc_id"]]
+        count, offset = document["body_tokens"], document["offset"]
+        prefix = min(32, max(1, count//2))
+        length = min(16, count-prefix)
+        expected_ids = overfit_shard.tokens[offset+prefix+1:offset+prefix+1+length].tolist()
+        require(row["canonical_sha256"] == document["canonical_sha256"] and
+            row["prefix_tokens"] == prefix and row["target_tokens"] == length and row["expected_ids"] == expected_ids,
+            "Overfit continuation target differs from pinned train shard")
+        require(row["exact"] == (row["expected_ids"] == row["generated_ids"]), "Overfit exact flag differs")
+    require(recall["eos_generation_rate"] == sum(r["generated_id"] == 3 for r in recall["eos_outputs"]) / 100,
+        "Overfit EOS rate differs from generated IDs")
+    require(all((r["stop_reason"] == "stop_id") == (r["generated_id"] == 3) for r in recall["eos_outputs"]),
+        "Overfit EOS stop reason differs")
     overfit_directory = run / "overfit-t8k"
     overfit_metrics = [json.loads(line) for line in (overfit_directory / "metrics.jsonl").read_text().splitlines()]
     require([r["update"] for r in overfit_metrics] == list(range(1, thresholds["updates"]+1)), "Overfit metrics missing updates")
@@ -176,6 +198,12 @@ def main():
         require(np.mean([r["loss"] for r in metrics[-100:]]) < np.mean([r["loss"] for r in metrics[:100]]), "Training loss did not decrease")
         require(sha256(Path(report["checkpoint"])) == report["checkpoint_sha256"], "Checkpoint hash differs")
         state = torch.load(report["checkpoint"], map_location="cpu", weights_only=False)
+        planned_spec = {key: plan[key] for key in
+            ("seed", "context", "batch", "accumulation", "lr", "weight_decay", "warmup", "dtype", "compile", "backend")}
+        planned_spec["schedule_updates"] = updates
+        if name == "100m-lr001":
+            planned_spec["lr"] = plan["selection"]["lr_comparison"]
+        require(state["spec"] == planned_spec, "Training settings differ from frozen plan")
         token_digests[name] = state["token_digest"]
         require(state["tokens"] == updates * plan["context"] * plan["batch"] * plan["accumulation"] == report["tokens_seen"], "Consumed token budget differs")
         require(state["update"] == updates and state["implementation_sha256"] == job["implementation_sha256"], "Checkpoint source/update differs")
