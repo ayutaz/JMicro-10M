@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Local 10B training corpus preparation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "scope",
+    "repository",
+    "revision",
+    "subset",
+    "source",
+    "license",
+    "bucket",
+    "attribution",
+    "terms_url",
+    "initial_files",
+    "maximum_files",
+    "maximum_raw_bytes",
+    "minimum_train_stream_tokens",
+    "tokenizer",
+    "tokenizer_sha256",
+    "seed",
+    "filters",
+    "dedup",
+    "split",
+    "mixture",
+    "protected_corpus",
+    "protected_corpus_sha256",
+    "workers",
+    "minimum_free_bytes",
+    "runtime_budget_seconds"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "scope": {
+      "const": "local_10b_dataset_preparation_only"
+    },
+    "repository": {
+      "const": "hotchpotch/fineweb-2-edu-japanese"
+    },
+    "revision": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "subset": {
+      "const": "small_tokens_cleaned"
+    },
+    "source": {
+      "const": "fineweb2_edu_ja"
+    },
+    "license": {
+      "const": "ODC-By-1.0"
+    },
+    "bucket": {
+      "const": "commercial_web"
+    },
+    "attribution": {
+      "type": "string",
+      "minLength": 1
+    },
+    "terms_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "initial_files": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 160
+    },
+    "maximum_files": {
+      "const": 160
+    },
+    "maximum_raw_bytes": {
+      "const": 50000000000
+    },
+    "minimum_train_stream_tokens": {
+      "const": 10000000000
+    },
+    "tokenizer": {
+      "const": "artifacts/phase2/4096/tokenizer.model"
+    },
+    "tokenizer_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "seed": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "filters": {
+      "type": "object",
+      "required": [
+        "web_min_chars",
+        "web_max_chars",
+        "min_japanese_ratio",
+        "min_language_score",
+        "min_quality_score"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "web_min_chars": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "web_max_chars": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "min_japanese_ratio": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "min_language_score": {
+          "type": "number",
+          "minimum": 0
+        },
+        "min_quality_score": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "dedup": {
+      "type": "object",
+      "required": [
+        "char_ngram",
+        "num_perm",
+        "bands",
+        "rows_per_band",
+        "jaccard_threshold",
+        "near_min_chars"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "char_ngram": {
+          "const": 5
+        },
+        "num_perm": {
+          "const": 128
+        },
+        "bands": {
+          "const": 32
+        },
+        "rows_per_band": {
+          "const": 4
+        },
+        "jaccard_threshold": {
+          "const": 0.85
+        },
+        "near_min_chars": {
+          "const": 64
+        }
+      }
+    },
+    "split": {
+      "type": "object",
+      "required": [
+        "train",
+        "dev",
+        "test"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "train": {
+          "const": 90
+        },
+        "dev": {
+          "const": 5
+        },
+        "test": {
+          "const": 5
+        }
+      }
+    },
+    "mixture": {
+      "type": "object",
+      "required": [
+        "fineweb2_edu_ja"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "fineweb2_edu_ja": {
+          "const": 1.0
+        }
+      }
+    },
+    "protected_corpus": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "protected_corpus_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "workers": {
+      "minimum": 1,
+      "type": "integer",
+      "maximum": 32
+    },
+    "minimum_free_bytes": {
+      "const": 450000000000
+    },
+    "runtime_budget_seconds": {
+      "const": 86400
+    }
+  }
+}

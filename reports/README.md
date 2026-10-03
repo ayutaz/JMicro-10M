@@ -86,7 +86,8 @@ raw evidenceと18 checkpointsはLinux `reports/phase6/base-20261003/`へ保持�
 
 ## 500M後の反復・EOS・データ構成の調査
 
-- [次回優先作業: 学習用データを2Bへ拡張](../docs/27_phase6_remaining_plan.md#次回の一区切り-学習用データを2bへ拡張する)。現train756Mから合計2B以上、5Bは後続段階。計画訂正のみで取得・構築・学習は未起動。
+- [実行中: ローカル10Bデータ整備](../docs/32_local_10b_corpus.md)。WSL保存、全件重複/heldout保護/token監査を行い学習前で停止する。全105tests成功。実10B構築・監査は未完了。
+- [以前の2B/5B計画](../docs/27_phase6_remaining_plan.md#次回の一区切り-学習用データを2bへ拡張する)は10Bの実行依頼へ更新した。
 - [保留したdecoder比較の計画](phase6/repetition_decoder_plan.json)、[以前の作業順序](../docs/27_phase6_remaining_plan.md#保留した案-学習済み10mモデルの生成方法を比較する)、[当時の計画の16項目照合](phase6/repetition_decoder_plan_audit.json)。同じ10Mパラメータの重みで640outputs/GPU15分上限を比較する案。監査は当時の計画を確認した記録で、現在の優先作業や実行結果ではない。
 - [事前計画](phase6/repetition_diagnosis_plan.json)、[判断と比較](phase6/repetition_diagnosis_review.md)、[数値/binding/20項目監査](phase6/repetition_diagnosis_review.json)、[225既存files保持](phase6/repetition_preservation.json)、[終了・同期監査](phase6/repetition_completion_audit.json)。
 - EOS教師欠落は確認されず、文書末尾予測は改善。反復は拡張131Mから多く、decayで70/80→66/80。全文の文書長と固定sample反復に大幅増加はない。短prefix/greedyと学習分布の違いを次の比較候補とし、因果未分離・精度差を残す。

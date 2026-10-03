@@ -1,0 +1,38 @@
+# ローカル10Bデータセットの整備
+
+2026-10-03。ユーザー指定「今後のために10bほどローカルに用意」に基づき、学習用データの準備を実行する。完了はT4Kで測ったtrain stream tokensが10,000,000,000以上あり、全件構造監査に通り、ローカルで利用可能なこと。周回、dev/test、上流の別Tokenizerによる推計は10Bへ含めない。これは学習の実行依頼ではなく、モデルは10,001,152パラメータのまま。
+
+## 保存先と容量
+
+bulk dataはすべてWSLのLinux filesystem、`/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/`へ保存する。`/mnt/c`からデータを逐次読む経路を使わない。Windowsコード/Git正本の変更をLinux実行コピーへ同期し、実行前にsource snapshot/hashを保存する。
+
+開始時はWindows C:空き約2.5TB、WSL約1TB/空き835GiB、RAM62GiB、CPU32 logical。raw・SQLite・signature・各bandの親配列・corpus・shards・監査の中間領域を別計上し、開始時の最低空きを450,000,000,000 bytesとする。現在はWSLディスク拡張不要。以後も実容量を監視し、必要なら既存データを保持して拡張する。仮想diskの空きだけでWindows物理diskの余裕を判断しない。
+
+## 取得と構築
+
+[新規config](../configs/phase6/corpus_10b.json)は既存のrevision/quality filter/T4K/32×4 LSH/Jaccard0.85を維持する。まずsmall_tokens_cleanedの先頭128filesを取得し、上流SHA-256と実sizeを確認する。最大160files/raw50GB。既取得の8filesはhash確認後にLinux hardlinkで再利用し、既存ファイルを変更しない。現8files→756Mの収率なら128filesで約12Bが見込まれるが、全体重複除去の収率は未確定。10B未達なら未達として記録し、取得上限内の追加と再構築方法を実測に基づいて判断する。
+
+取得は4並列・stage2時間上限、ネットワーク障害は限定した3回までの再試行。構築は16workers、SQLiteのfile単位transactionとsignatureのfsync後checkpoint。再開時は未commitのsignature末尾だけをcommitted row数へ戻す。raw/旧データ・完了済み出力は保持する。構築の状態JSONはtempへのfsync後にatomic replaceする。取得待機中にこの保存方式を追加し、初期preparedの待機jobを取り込み前に終了確認したうえでprepared-v2へ移行した。初期jobとsnapshotも保持する。
+
+元の巨大in-memory LSHを使わず、同じ128要素MinHashをuint32で保存し、32bandsを一つずつsortして等しい4要素の候補を列挙する。実文字列の5gram Jaccardで確認し、URL/exact/nearの全体connected componentsを作る。全rawを一緒に処理するためfile境界を越えた重複も扱う。band完了ごとのparent checkpointを保持する。LSH候補のrecallが確率的である限界は維持する。
+
+旧pilotの全Web文書と、expanded-v2のdev/test全178,901文書を保護用レコードとして先に登録する。固定評価suiteの混入判定も維持し、それらにつながる検出clusterを新trainから除外する。元trainは先頭8rawに含まれ、追加rawとのexact/near重複を統合処理する。旧corpus/shards/dev/testを上書きせず、新しいcluster単位90/5/5splitを別系列として出力する。旧モデルとの評価には既存devを保持する。
+
+JSONの全indexを巨大listへ溜めず、corpus・uint16 token stream・index JSON arrayを逐次書き出す。Tokenizeは並列、全文のdecode往復/hashを確認する。export中断時は部分出力を保持して別attemptへ再構築する。構築・独立監査の累積実行上限は24時間で、再開しても消費済み時間を引き継ぐ。これは完了時刻の見積りではない。旧8filesの構築652.7秒/監査846.9秒を参考値とし、今回の実データfile処理時間・容量を観測して残り時間を見直す。
+
+## 完了監査と停止
+
+[独立audit](../scripts/audit_corpus_10b.py)は全raw/hash、source payload、filter、保護判定、全signatureを再構築し、URL/exact/検出near componentsと新splitを再照合する。全採用corpusのmembership/index/BOS-body-EOS/token列/byte数を再encodeとdecode往復で検査し、train10B以上を要求する。test利用は構造検証だけで、モデル採点や選定には使わない。
+
+3個の追加testsは元LSHとの候補一致、transitive代表、file再開・未commit末尾復旧・旧heldoutのexact/near除外・独立auditとtoken破損棄却を検証する。全105tests成功、skip/failure/error0。新config用schemaの追加漏れで最初の全suiteが2件失敗した記録はログへ保持し、schemaを追加して修復した。小fixture成功を実10Bデータの監査成功へ読み替えない。
+
+起動入口は[scripts/acquire_corpus_10b.sh](../scripts/acquire_corpus_10b.sh)と[scripts/run_corpus_10b.sh](../scripts/run_corpus_10b.sh)。どちらもuv/Python3.12.7。hidden Windows wsl.exe launcherを保持し、Linux job.jsonにPID/boot/start_ticks/command/configを保存する。取得を待つ場合は記録のprocess identityを実/procで検証する。排他lockを持つ同じjobを重複起動しない。
+
+確認するファイル:
+
+- `ten-billion/raw/acquire_job.json`、`acquisition.json`、`sources.json`、`acquisition.log`。
+- `ten-billion/prepared-v2/job.json`、`source_snapshot.json`、`records.sqlite`、`progress.json`、`ingest_checkpoint.json`。
+- `dedup_checkpoint.json`、`manifest.json`、最終`export-NNN/corpus.jsonl`・`shards/`。
+- `corpus_audit.json`、`audit_progress.json`、`ten-billion/preparation-v2.log`。
+
+再開は実processが終了したことを確認してから、同じ入口と保存先を使う。source/config変更は通常再開で拒否する。学習・decoder比較・Chat・量子化をこのjobから起動しない。完了後は実tokens/documents/bytes/所要時間/容量・hash・監査・job終了をstatus/reportへ記録し、commitして停止する。

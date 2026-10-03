@@ -2,7 +2,15 @@
 
 最終更新: 2026-10-03（日本時間）。実測の正本はreportとWSLのrun/data、milestoneは[roadmap](15_project_roadmap.md)。
 
-## 次回計画: 学習用データを2Bへ拡張する（未起動）
+## 実行中: ローカル10Bデータの取得・構築・監査
+
+2026-10-03のユーザー依頼で、2B計画を約10Bのローカルデータ整備へ更新し、実行を再開した。[保存先・取得上限・実装・監査・停止条件](32_local_10b_corpus.md)。全bulk dataをWSLの`~/jmicro-data/phase6/ten-billion/`へ置き、Windowsとの境界越しデータ処理を避ける。WSL空き835GiB/Windows約2.5TBを確認し、現時点でdisk拡張は不要。原corpus/shards/heldoutを保持し、学習は開始しない。
+
+取得Windows launcher24348、Linux933704/boot`0b330ec7-c11f-4bb3-be7c-cae9b868f4af`/start_ticks21313。構築v2 launcher7876、Linux1105089/同boot/start_ticks75979。実/proc照合で双方live。取得128filesをまず目指し、117files完了時点を確認した。構築は取得process identityを確認しながら待機している。完了した初期8filesはhash確認してhardlink再利用。実tokensは構築後に確定するため、まだ10B用意済みではない。
+
+旧待機job1104732は取り込み開始前に終了確認し、checkpointのatomic保存を加えたprepared-v2へ移行。旧job/snapshotを保持し、取得jobはそのまま継続。新規config/取得runner/SQLite file再開・external-sort LSH・streaming shard export・全件再構築auditを追加。元のtrainer/evaluator/shards/expanded_data/configと歴史的reportは変更しない。全105tests成功（skip/failure/error0、fork関連warning6件）。小fixtureでは旧dev/testのexact/near保護、再開末尾復旧、元LSH候補一致、全token往復と破損棄却を確認した。今後は取得完了→実file速度/容量の確認→全体構築/監査→report/status/commit。goalは10Bの整備全体で、raw取得やcode完了だけでは達成としない。
+
+## 以前の次回計画: 学習用データを2Bへ拡張する（10B依頼で更新）
 
 2026-10-03のユーザー訂正を反映。次に取り組むのは、整備済みtrain756,087,912 stream tokensを、同じT4Kで測った合計2B以上へ拡張すること。5Bは後続の段階目標。公開元の総量は十分に大きく、現在の準備量が少ないのは初回500M開始用の取得範囲へ限定したため。[取得・構築・監査・停止条件](27_phase6_remaining_plan.md#次回の一区切り-学習用データを2bへ拡張する)を更新した。既存dev/test・評価suite・過去データを保持し、別config/outputで追加取得と統合重複除去を行う計画。構築時間/容量は開始前の実測で予算を定める。次回実行の完了は2Bデータの監査・報告・commitまでで、学習は別計画とする。
 
