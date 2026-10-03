@@ -4,6 +4,8 @@
 
 ## 実行中: ローカル10Bデータの取得・構築・監査
 
+2026-10-03 22:54 JST: [終了の観測だけを再開](../reports/phase6/corpus_10b_handoff_resume.json)。元の5分timeout・送信済みSIGINT時刻・PID/boot/start ticks一致を必須に、シグナル再送0の常駐watcherを起動。Windows28320/Linux1169492の実identityを確認した。108GiB SQLiteの実読み取りが続くため、終了の観測は90分上限とし、元processの終了・terminal state・累積runtime保存を確認してからcache audit入口を起動する。元timeoutを別JSON、再開codeを別snapshotとして保持する。5 guard tests成功（実CLI branchでもSIGINT再送0/retired job保持を確認）。候補・全件audit・受入条件は変更しない。現在は元1106994の終了待ちで、監査完了/実loader確認は未達。
+
 2026-10-03 22:52 JST: [監査引き継ぎ補助処理の待機上限](../reports/phase6/corpus_10b_handoff_timeout.json)。SIGINT後も元1106994が108GiB SQLiteの読み取り中で、5分の終了待機を超えたためwatcher1168675はterminal failedで終了し、replacementは起動していない。元PID/start ticks144729の実liveとCPU増加を確認、完成export/manifestは保持する。観測timeoutを元processの停止へ読み替えず、同じSIGINT/起動を反復しない。次は元processの実終了・terminal stateと累積runtimeを確認し、job-v3-retired.jsonを保存して`scripts/run_corpus_10b_cached_audit.sh`を直接起動する。全件audit・実loader・最終reportは未完了。外部操作を要するblockerではなく、既存processの終了待ち。
 
 2026-10-03 22:46 JST: [export完成](../reports/phase6/corpus_10b_export_complete.json)。実train **12,225,819,077 stream tokens /25,879,667文書 /47,525,339,486 body bytes**。dev678,132,065 tokens/test679,399,996 tokensは別split。`prepared-v2/export-001/`とroot/shard manifestが完成し、target_met true、manifest件数・hash参照・全split uint16 byte sizes一致を確認。これはbuilder成果物で、独立全件auditと実loaderはまだ未完了。13:46:32 UTCにidentityを照合してv3へSIGINTを一度送信、元processはSQLite読み取り中のため終了待ち（実/procとCPU増加を確認）。終了と累積runtime保存後にwatcherがcache監査を起動する。5分以内に終了しない場合はwatcherが失敗記録を残すため、次は元processの実終了を待ち、完成exportを保持して監査入口へ移行する。元processがliveの間は再起動しない。完成後report/commitで学習前に停止する。

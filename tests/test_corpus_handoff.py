@@ -13,6 +13,38 @@ spec.loader.exec_module(handoff)
 
 
 class HandoffGuards(unittest.TestCase):
+    def test_resumed_exit_wait_never_resends_signal(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory)
+            expected = dict(pid=123, boot_id='boot', start_ticks='456', execution='parallel_bands_v3',
+                            status='failed', cumulative_seconds=100)
+            previous = dict(status='failed', signal_sent_at='timestamp', prior_identity=expected.copy(),
+                            failure='TimeoutError: Prior process did not exit after SIGINT; no replacement launched')
+            handoff.write_json(output/'job.json', expected)
+            handoff.write_json(output/'audit_handoff.json', previous)
+            with patch.object(handoff.sys, 'argv', ['watcher', '--output', directory, '--resume-exit-wait']), \
+                    patch.object(handoff, 'alive', return_value=False), \
+                    patch.object(handoff.os, 'kill') as signal_process, \
+                    patch.object(handoff.subprocess, 'run') as launch:
+                handoff.main()
+            signal_process.assert_not_called()
+            launch.assert_called_once()
+            self.assertEqual(handoff.read_json(output/'job-v3-retired.json'), expected)
+            self.assertFalse(handoff.read_json(output/'audit_handoff.json')['signal_resent'])
+
+    def test_exit_resume_requires_recorded_signal_and_exact_identity(self):
+        expected = dict(pid=123, boot_id='boot', start_ticks='456', execution='parallel_bands_v3')
+        previous = dict(status='failed', signal_sent_at='timestamp', prior_identity=expected.copy(),
+                        failure='TimeoutError: Prior process did not exit after SIGINT; no replacement launched')
+        handoff.validate_exit_resume(expected, previous)
+        previous['prior_identity']['start_ticks'] = 'wrong'
+        with self.assertRaisesRegex(ValueError, 'identity differs'):
+            handoff.validate_exit_resume(expected, previous)
+        previous['prior_identity'] = expected.copy()
+        previous['signal_sent_at'] = None
+        with self.assertRaisesRegex(ValueError, 'recorded post-signal'):
+            handoff.validate_exit_resume(expected, previous)
+
     def test_exact_live_identity(self):
         record = dict(pid=os.getpid(), boot_id=Path('/proc/sys/kernel/random/boot_id').read_text().strip(),
                       start_ticks=Path('/proc/self/stat').read_text().split()[21])

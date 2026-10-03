@@ -42,10 +42,20 @@ def ready(output, job):
     return True
 
 
+def validate_exit_resume(expected, previous):
+    if (previous.get('status') != 'failed' or not previous.get('signal_sent_at') or
+            previous.get('failure') != 'TimeoutError: Prior process did not exit after SIGINT; no replacement launched'):
+        raise ValueError('Only the recorded post-signal exit timeout can be resumed')
+    if any(expected[k] != previous['prior_identity'][k] for k in ('pid', 'boot_id', 'start_ticks', 'execution')):
+        raise ValueError('Previously signaled identity differs; do not resume')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--observe-only', action='store_true')
+    parser.add_argument('--resume-exit-wait', action='store_true',
+                        help='Observe the already-signaled process for up to90minutes; never resend a signal')
     args = parser.parse_args()
     expected = read_json(args.output/'job.json')
     if expected['execution'] != 'parallel_bands_v3':
@@ -55,40 +65,54 @@ def main():
         return
     with (args.output/'audit_handoff.lock').open('a+') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        previous = None
+        if args.resume_exit_wait:
+            previous = read_json(args.output/'audit_handoff.json')
+            validate_exit_resume(expected, previous)
+            retired_watcher = args.output/'audit_handoff_timeout_original.json'
+            if retired_watcher.exists():
+                raise RuntimeError('Exit observation was already resumed; inspect its state')
+            write_json(retired_watcher, previous)
         record = dict(status='waiting_for_completed_export', pid=os.getpid(), started_at=now(),
                       boot_id=Path('/proc/sys/kernel/random/boot_id').read_text().strip(),
                       start_ticks=Path('/proc/self/stat').read_text().split()[21],
                       source_sha256=sha256(Path(__file__)), prior_identity=expected)
+        if previous is not None:
+            record.update(status='waiting_for_prior_exit', signal_sent_at=previous['signal_sent_at'],
+                          exit_wait_resumed=True, signal_resent=False)
         destination = args.output/'audit_handoff.json'
         write_json(destination, record)
         try:
-            deadline = time.monotonic()+5400
-            while time.monotonic() < deadline:
-                job = read_json(args.output/'job.json')
-                if any(job[k] != expected[k] for k in ('pid', 'boot_id', 'start_ticks', 'execution')):
-                    raise RuntimeError('Pipeline identity changed; do not signal or restart')
-                if job['status'] == 'complete':
-                    record.update(status='prior_pipeline_completed', completed_at=now())
-                    return
-                if job['status'] != 'running' or not alive(job):
-                    raise RuntimeError('Prior pipeline stopped before the handoff; inspect its evidence')
-                if ready(args.output, job):
-                    break
-                time.sleep(10)
-            else:
-                raise TimeoutError('Export handoff observation exceeded90minutes; no signal sent')
-            # Recheck the exact boot/PID/start identity immediately before the one signal.
-            if not alive(expected):
-                raise RuntimeError('Prior identity disappeared before signal')
-            record.update(status='waiting_for_prior_exit', signal_sent_at=now())
-            write_json(destination, record)
-            os.kill(expected['pid'], signal.SIGINT)
-            exit_deadline = time.monotonic()+300
+            if not args.resume_exit_wait:
+                deadline = time.monotonic()+5400
+                while time.monotonic() < deadline:
+                    job = read_json(args.output/'job.json')
+                    if any(job[k] != expected[k] for k in ('pid', 'boot_id', 'start_ticks', 'execution')):
+                        raise RuntimeError('Pipeline identity changed; do not signal or restart')
+                    if job['status'] == 'complete':
+                        record.update(status='prior_pipeline_completed', completed_at=now())
+                        return
+                    if job['status'] != 'running' or not alive(job):
+                        raise RuntimeError('Prior pipeline stopped before the handoff; inspect its evidence')
+                    if ready(args.output, job):
+                        break
+                    time.sleep(10)
+                else:
+                    raise TimeoutError('Export handoff observation exceeded90minutes; no signal sent')
+                # Recheck the exact boot/PID/start identity immediately before the one signal.
+                if not alive(expected):
+                    raise RuntimeError('Prior identity disappeared before signal')
+                record.update(status='waiting_for_prior_exit', signal_sent_at=now())
+                write_json(destination, record)
+                os.kill(expected['pid'], signal.SIGINT)
+            exit_deadline = time.monotonic()+(5400 if args.resume_exit_wait else 300)
             while alive(expected) and time.monotonic() < exit_deadline:
                 time.sleep(1)
             if alive(expected):
                 raise TimeoutError('Prior process did not exit after SIGINT; no replacement launched')
             retired = read_json(args.output/'job.json')
+            if any(retired[k] != expected[k] for k in ('pid', 'boot_id', 'start_ticks', 'execution')):
+                raise RuntimeError('Prior identity changed while waiting; do not replace')
             if retired['status'] == 'running' or 'cumulative_seconds' not in retired:
                 raise RuntimeError('Prior terminal state/runtime was not persisted')
             write_json(args.output/'job-v3-retired.json', retired)
