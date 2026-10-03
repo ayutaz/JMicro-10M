@@ -26,11 +26,11 @@ Phase 0の22件のテスト成功と54ファイルの準備run snapshot検証を
 
 Pythonは`.python-version`の3.12.7、依存変更は`uv add`、環境再構築は`uv sync --frozen`、実行は`uv run --frozen`で統一する。データ処理時は`--extra data`（PyArrow、datasketch、fsspec、aiohttp）、Tokenizer・モデル検証時は`--extra ml`を指定する。両extraを同時に使う処理では両方を指定する。GPU/CUDA互換性はPhase 4で確認済み。
 
-Phase 0〜5とPhase 6①②の成果物は各完了記録に実pathを示す。[①②の完了記録](26_phase6_preparation_completion.md)にあるcorpus/shards・WSD検証checkpoint・reportは存在する。本学習の凍結config・scaling checkpoint・Base/Chat完成artifactは**今後作成するもの**で、準備検証artifactと区別する。コードは`src/`、設定は`configs/`、検証は`tests/`、実行入口は`scripts/`を基本とする。小さな比較結果・判断記録は`reports/<run_id>/`、大型データ・重みは[外部データ領域](07_environment.md)へ置く。`docs`には仕様、計画、成果物への参照を残す。
+Phase 0〜5とPhase 6①〜⑤の成果物は各完了記録に実pathを示す。[①②の完了記録](26_phase6_preparation_completion.md)にあるcorpus/shards・WSD検証checkpoint・reportは存在する。本学習の凍結configは[version2](../configs/phase6/base_frozen.json)として検証済み。scaling checkpoint・Base/Chat完成artifactは**今後作成するもの**で、準備検証artifactと区別する。コードは`src/`、設定は`configs/`、検証は`tests/`、実行入口は`scripts/`を基本とする。小さな比較結果・判断記録は`reports/<run_id>/`、大型データ・重みは[外部データ領域](07_environment.md)へ置く。`docs`には仕様、計画、成果物への参照を残す。
 
-別PCで再開する時は[Windows/WSL＋RTX 4090の手順](windows_handoff.md)を入口とする。新規PCではコードと固定Hub成果物を復元して環境を確認する。Phase 5・Phase 6①②③と文書更新のコミットは未pushなので、最新のWindows正本も引き継ぐ。復元済みPCでは完了作業を繰り返さず、③の完了commit `a7d26e1`とsource/dataを確認し、④以降の再開指定まで停止する。
+別PCで再開する時は[Windows/WSL＋RTX 4090の手順](windows_handoff.md)を入口とする。新規PCではコードと固定Hub成果物を復元して環境を確認する。Phase 5・Phase 6①〜⑤と文書更新のコミットは未pushなので、最新のWindows正本も引き継ぐ。復元済みPCでは完了作業を繰り返さず、③の完了commit `a7d26e1`、④⑤の`93c7d1d`とsource/dataを確認し、本学習の再開指定まで停止する。
 
-各フェーズは、成果物が作られ、完了条件を証拠で確認した時に完了とする。条件を満たさない場合は修正・再比較へ戻り、未達事項を次フェーズへ黙って持ち越さない。現在の算術予算はPhase 6③の694,521 tokens/sを基準に500M約12分・10B約4時間。全文評価/保存/枝compute/LR調整は別に実測し、⑤の開始前予算へ加える。実装・修復を含む日付の締切は実測なしに保証しない。
+各フェーズは、成果物が作られ、完了条件を証拠で確認した時に完了とする。条件を満たさない場合は修正・再比較へ戻り、未達事項を次フェーズへ黙って持ち越さない。現在の凍結予算は⑤の693,666 tokens/sを基準に500M約12分・10B約4時間の純学習算術値。500Mの独立decayと全文dev/400生成を含め約24分、10Bまでの全5枝/評価は約5時間21分。起動/compile/保存/人手確認/実装/修復は別で、日付の締切を保証しない。
 
 ## 全体の順序
 
@@ -42,7 +42,7 @@ Phase 0〜5とPhase 6①②の成果物は各完了記録に実pathを示す。[
 | 3 | 完了・[証拠](19_phase3_completion.md) | iMac / CPU | 10Mモデルと推論経路を成立させる | 正しいモデル・cache・HF/float GGUF経路を確認する | 2 |
 | 4 | 完了・[実機証拠](21_phase4_completion.md) | Windows/WSL＋RTX 4090 | 長時間学習の再現性と実行可能性を確かめる | 保存再開・実shard学習・4090速度と予算を検証した | 1〜3 |
 | 5 | 完了 | Windows/WSL・RTX 4090 | 小予算で有望な候補を選ぶ | overfit、10M smoke、100M比較から最大2候補を選ぶ | 4 |
-| 6 | ①②③完了・本学習未着手 | Windows/WSL・RTX 4090 | 日本語Baseの能力を段階的に伸ばす | 500M→1B→2B→5B→10Bで評価し、Base v1を固定する | 5、[準備完了証拠](26_phase6_preparation_completion.md) |
+| 6 | 準備①〜⑤完了・本学習未着手 | Windows/WSL・RTX 4090 | 日本語Baseの能力を段階的に伸ばす | 500M→1B→2B→5B→10Bで評価し、Base v1を固定する | 5、[準備完了証拠](30_phase6_readiness_execution.md) |
 | 7 | 未着手 | Windows/WSL・RTX 4090 | Baseを短文雑談モデルへ仕上げる | mid-trainingとSFTの効果を分離し、Chat v1を評価する | 6、1の会話pilot |
 | 8 | 未着手 | 学習PC・独立したローカル検証環境 | ローカルで使える成果物を完成させる | Base/Chatと量子化版を独立環境で実行・再現できる | 7、3のexport経路 |
 | 9 | 未着手・50Bは条件付き | Windows/WSL・RTX 4090 | 追加学習に継続価値があるか検証する | 20B、条件付き50Bの効果と限界を報告する | 6、追加予算の見積もり |
@@ -232,6 +232,8 @@ Phase 4は以下の順で実施済み。新規環境への移行・実装変更�
 **状態**: 準備①〜⑤は完了し、本学習は未着手。756M unique train stream tokensのcorpus全監査とWSD stable/decayのCUDA全state再開一致を確認した。[準備完了記録](26_phase6_preparation_completion.md)。③はFlash＋compile batch 32、694,521 tokens/s、独立1286 checks・cold再開26 checks・79 testsを通過し、証拠は`a7d26e1`へcommit済み。④の生成/全文dev/CPU精度profileによる学習済み変換と⑤のLR3候補/厳密cold再開/設定version2凍結も`93c7d1d`で完了した。[高速化完了記録](29_phase6_performance_completion.md)。今後は[段階評価/gate](24_phase6_plan.md)と[残りの実行計画](27_phase6_remaining_plan.md)に沿い、ユーザーの再開指定後に凍結条件を照合して500Mの新規Base学習を始める。
 
 **目的**: 約10Mで日本語短文生成がどこまで成立するかを測り、Chatの土台を作る。
+
+次回の一区切りは[拡張データでの500M学習・評価計画](27_phase6_remaining_plan.md#次回の一区切り-拡張データで500mを学習評価する)。500M stableと独立decay、固定dev比較・report・commitまでを提案し、そこで停止して1B以降の判断を残す。今回は計画作成のみで本学習を開始しない。
 
 **ゴール**: 5Bまでに本命1モデルへ集約し、10Bの`JMicro-10M-Base-v1`と固定評価を残す。
 

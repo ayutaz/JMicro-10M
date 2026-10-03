@@ -2,6 +2,28 @@
 
 更新: 2026-10-03。Phase 0〜5とPhase 6①〜⑤の準備は完了。③は`a7d26e1`、④⑤は`93c7d1d`へcommit済み。[現在の状態](autonomous_status.md)、[④⑤の実測と停止記録](30_phase6_readiness_execution.md)。**現在は本学習前で停止している。今回の文書更新は学習再開の指定ではなく、500M以上を起動しない。**
 
+## 次回の一区切り: 拡張データで500Mを学習・評価する
+
+2026-10-03の次回計画依頼に基づく提案。次回のゴールは、準備済み拡張trainを使った500M Baseと独立decay枝を保存し、現在の100Mモデルと同じdevで比較して報告すること。**次回は500Mの評価・記録・commitを一区切りにして停止する計画とし、1B以降はその結果を踏まえた後続段階とする。今回の依頼は計画作成で、本学習は開始しない。**
+
+| 順序 | 実施すること | 終了時に確認すること |
+|---:|---|---|
+| 1 | 既存process/checkpoint、source/data/runtime hash、GPU、空き容量を確認しprepareする | 重複jobなし、有効な再開点か新規runかを識別、凍結条件一致、最低空き200 GiB |
+| 2 | seed42で新規初期化し、拡張trainで15,259 stable更新 | 500,006,912 input tokens、finite loss/gradient、全state checkpointと消費列・ログを保存 |
+| 3 | stable終端から別directoryへ763更新の独立decay枝 | 終端global16,022、追加25,001,984 tokens、元stable不変、次回の継続点を保持 |
+| 4 | decay終端の全文devと固定400生成を評価する | 同一89,416 dev文書のBPB、同一prompt/seed/上限のEOS・反復・Unicode・生成本文と時間 |
+| 5 | 比較・失敗・改善候補・次の判断をreport/statusへ保存してcommitする | stable/decayのcheckpoint SHA、実tokens/bytes/GPU時間、基準との差、1B継続か原因調査かを報告し停止 |
+
+データはpilotの18,022文書・T4K約8.398M stream tokensから、1,604,292文書・756,087,912 stream tokensへ約90倍に拡張済み。前回100Mの約11.91周に対し、新500M stableは約0.66周、独立decayを含む系列は約0.69周の算術露出になる。raw再取得やTokenizer再学習は開始条件にしない。データ量不足は仮説であり、今回はデータ・学習予算・scheduleも変わるため、結果だけでデータ量の因果効果を確定しない。
+
+比較基準は現在の100M checkpointを同じ拡張devで測ったBPB **1.2441264716**、固定生成のgreedy EOS **0/80**・反復 **48/80**、全400出力のUnicode **0/400**。生成はdecoding条件別に集計し、文法・関連性は生成本文で確認する。旧pilot BPBとの単純差を改善量にせず、testは使わない。人手採点を実施できなければ未実施と残し、自動判定を人手評価へ読み替えない。
+
+未統合のpaired CI/人手rubric集約は、次回の比較report作成に必要な実装と検証として別計上する。データ量だけの対照実験は今回の500M系列へ追加せず、結果が停滞・退行した場合に対照・予算・終了条件を定義して提案する。品質の達成基準は既存protocolを維持する。
+
+学習＋独立decay＋機械評価は現実測から約24分。compile/保存/起動確認、比較reportの実装、内容確認、修復時間は別で、全作業の完了時刻は保証しない。失敗時は有効checkpointと原因を保持して修復し、同条件で再開する。有限値/hash/再開/容量に問題があるまま1Bへ進めない。
+
+実出力はLinux `reports/phase6/base-20261003/`配下の`stable/`、`decay-500M/`、`evaluation-500M/full-dev.json`・`generation.json`、supervisor/log/snapshot。比較要約は今後作成する `reports/phase6/base_500m_review.json` と `base_500m_review.md`を提案する。checkpoint等の大型artifactはLinuxへ保持し、検証した小reportとstatusをGitへ保存する。
+
 ## 完了済みの準備と証拠
 
 | 作業 | 検証結果 | 正本 |
