@@ -18,6 +18,8 @@
 
 T8Kの100M学習は**12,208更新 / 100,007,936 tokens**で終了し、最終checkpoint SHA `a9dbdc35b5212a899cc3d6e6aad58a8338d50944a83d94f7497a5555dc6f035e`を保存した。全更新・weights・optimizer有限、source snapshot/hash・shard binding・予算一致を独立に確認。first/last 100更新の平均loss **7.7029 → 2.8532**、定常中央値 **117,119 tokens/s**、学習workerの実時間約14分26秒。全dev BPB **1.25886**でsmokeの1.41697から改善、共通短文windowと固定400生成も終了してID/flagを独立に照合した。抑制ありgreedyはEOS **0/80**、反復 **54/80**、Unicode/role/empty各0/80。文書末尾EOS argmaxは19.81%。`reports/phase5/100m-t8k_training_audit.json`と`100m-t8k_evaluation_audit.json`へ保存。smoke対100Mのpaired CIは文書不確実性を測り、学習seedの変動やbudget/schedule以外を揃えた純粋なscaling証明とはしない。候補の採用判断は全比較後に行う。
 
+T4Kの100M学習も**12,208更新 / 100,007,936 tokens**で終了し、checkpoint SHA `71a1a3bf6e057ad6e290047fb3db0f8ec8723f7c54839a51d50f58d89206cfec`を保存した。学習workerの実時間約15分11秒。全更新/weights/optimizer有限・source snapshot・shard/予算一致を独立監査し、`reports/phase5/100m-t4k_training_audit.json`へ保存。現在T4Kのdev/400生成を評価中。処理body bytesはT8K **476,090,448** / T4K **390,286,307**と異なり、同一token予算と同一bytes予算は区別する。後続の近いcheckpoint予算でも補助評価する。
+
 以下は完了済みPhase 4の証拠（2026-10-03 01:58 JST監査成功）。[完了記録](21_phase4_completion.md)とGit保存の`reports/phase4/handoff_report.json`を参照する。
 
 - T8K/T4Kともsource-boundの連続200 vs 100+100で消費列digest / loss / weights / optimizer / scheduler / RNG / samplerが完全一致。64 tests / skip 0、CUDA評価RNG保全、共通bytes・本文一度採点・共通短文window、compile BF16 logitsの既定許容差内一致を監査した。
