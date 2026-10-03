@@ -4,6 +4,8 @@
 
 ## 実行中: ローカル10Bデータの取得・構築・監査
 
+2026-10-04 00:50 JST: [逐次near監査8/32band通過](../reports/phase6/corpus_10b_edges_audit_quarter.json)。band0〜7の完了logが連続し、最初の8段階はraw完了後2344.360秒（約39.1分、移行込み）。同じaudit1170053/boot/start_ticks1074573が実live、完成export manifest SHAは不変。8段階平均が続く仮定で残りnear検証は約1.95時間だが、band候補量は変動し、後続の全代表・全membership/split/token/index往復と実loaderは別で未完了。全件合格とはしない。引き続き同じjobを監視し、学習更新0。
+
 2026-10-04 00:30 JST: [序盤3bandの実測](../reports/phase6/corpus_10b_audit_early_timing.json)は374.910/208.675/515.511秒、平均366.366秒（約6.1分、最初はrawからの移行込み）。同じaudit1170053は実liveで、全32band中3個が完了。序盤平均が続くという仮定だけなら残りnear検証は約2.95時間だが、bandごとの候補量は異なり、後続の全token逐次再encode/byte/index/membership照合と実loaderの時間はまだ未測定。以前の全体残り3〜5時間という暫定値が上振れする可能性をユーザーへ説明した。24時間累積上限と全件受入条件を保持し、健康なjobを再起動しない。最終合格・整備完了は未達、学習更新0。
 
 2026-10-04 00:18 JST: [逐次near重複監査の最初のband完了](../reports/phase6/corpus_10b_edges_audit_start.json)。全raw checkpoint後からband0完了まで374.910秒（約6分15秒、移行処理も含む）。全32band中1個の原逐次Jaccard検証を終え、同じaudit1170053/start_ticks1074573が実live。残り31band→全cluster/duplicate代表→全corpus/token/index往復→terminal/PID終了→実loaderは未完了。bandごとのgroup/candidate量が異なるため、この1個だけから全体速度や完了時刻を確定しない。原受入条件と完成exportを保持し、学習更新0。
