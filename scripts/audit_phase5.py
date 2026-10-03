@@ -161,7 +161,7 @@ def main():
     test_cases = list(xml.iter("testcase"))
     require(len(test_cases) >= 68 and not any(list(xml.iter(tag)) for tag in ("failure", "error", "skipped")), "Tests incomplete or failed/skipped")
     names = ["100m-t8k", "100m-t4k", "100m-no-qknorm", "100m-lr001"]
-    reports, compact, token_digests = {}, {}, {}
+    reports, compact, token_digests, measured_points = {}, {}, {}, {}
     for name in ["smoke", *names]:
         report = smoke if name == "smoke" else read_json(run / f"{name}.json")
         reports[name] = report
@@ -194,6 +194,24 @@ def main():
             for v in item.values() if isinstance(v, torch.Tensor)), "Nonfinite optimizer state")
         if name == "smoke":
             require((directory / "checkpoint-00000600.pt").exists() and "smoke-t8k-first-half" in job["completed_stages"], "Actual smoke pause missing")
+        else:
+            entry = comparison["entries"][name]
+            for key, actual in dict(bpb=report["body"]["bpb"], common_bpb=report["common_windows"]["bpb"],
+                    tokens=state["tokens"], body_bytes=state["body_bytes"], spec=state["spec"],
+                    model_config=state["model_config"], checkpoint=report["checkpoint"],
+                    checkpoint_sha256=report["checkpoint_sha256"]).items():
+                require(entry[key] == actual, f"Candidate entry differs: {name}/{key}")
+            cumulative = np.cumsum([r["seconds"] for r in metrics])
+            points = []
+            for path in sorted(directory.glob("checkpoint-*.pt")):
+                update = int(path.stem.split("-")[-1])
+                require(1 <= update <= updates, "Checkpoint update outside completed metrics")
+                row = metrics[update-1]
+                points.append(dict(path=str(path), update=update, tokens=row["tokens_seen"],
+                    body_bytes=row["body_bytes_seen"], training_seconds=float(cumulative[update-1])))
+            require(points == entry["budget_points"], "Recorded budget points differ from actual metrics/checkpoints")
+            require(entry["training_seconds"] == float(cumulative[-1]), "Recorded training duration differs")
+            measured_points[name] = points
         compact[name] = dict(body={k:v for k,v in report["body"].items() if k != "rows"},
             common_windows={k:v for k,v in report["common_windows"].items() if k != "rows"},
             generation=generation_summary(report["generation"], cases, tokenizers[model_name]),
@@ -219,19 +237,52 @@ def main():
     low_spec = dict(compact["100m-lr001"]["spec"]); low_spec["lr"] = plan["lr"]
     require(low_spec == compact[lr_baseline]["spec"] and compact["100m-lr001"]["spec"]["lr"] == .001, "LR comparison factors differ")
     require(token_digests["100m-lr001"] == token_digests[lr_baseline], "LR comparison consumed different token sequence")
+    expected_pairs = {f"100m-t8k_vs_100m-t4k", f"{baseline_winner}_vs_100m-no-qknorm",
+        f"{lr_baseline}_vs_100m-lr001"}
+    require(set(comparison["paired_comparisons"]) == expected_pairs, "Required paired comparisons missing")
     for key, recorded in comparison["paired_comparisons"].items():
         left_name, right_name = key.split("_vs_")
-        require(bootstrap_bpb(reports[left_name]["body"], reports[right_name]["body"]) == recorded, "Paired comparison differs")
+        require(bootstrap_bpb(reports[left_name]["body"], reports[right_name]["body"],
+            seed=plan["selection"]["bootstrap_seed"], repetitions=plan["selection"]["bootstrap_repetitions"]) == recorded,
+            "Paired comparison differs")
+    auxiliary = {}
     for field in ("body_bytes", "training_seconds"):
+        recorded_match = comparison["auxiliary_budget_matches"][field]
+        target = min(measured_points[f"100m-{name}"][-1][field] for name in ("t8k", "t4k")) * .8
+        require(recorded_match["target"] == target, "Auxiliary budget target differs")
+        verified = {}
         for name in ("t8k", "t4k"):
             report = read_json(run / f"budget-{field}-{name}.json")
             audit_body(report["body"], populations[name])
-            point = comparison["auxiliary_budget_matches"][field]["points"][f"100m-{name}"]
+            point = min(measured_points[f"100m-{name}"], key=lambda p: abs(p[field]-target))
+            require(recorded_match["points"][f"100m-{name}"] == point, "Auxiliary checkpoint is not nearest measured budget")
             require(report["checkpoint"] == point["path"] and report["tokens_seen"] == point["tokens"], "Auxiliary budget checkpoint differs")
+            require(sha256(Path(report["checkpoint"])) == report["checkpoint_sha256"], "Auxiliary checkpoint hash differs")
+            state = torch.load(report["checkpoint"], map_location="cpu", weights_only=False)
+            require(state["update"] == point["update"] and state["tokens"] == point["tokens"] and
+                state["body_bytes"] == point["body_bytes"], "Auxiliary checkpoint counters differ")
+            require(state["implementation_sha256"] == job["implementation_sha256"] and
+                state["shard_manifest_sha256"] == sha256(shards[name].directory / "manifest.json"), "Auxiliary source/data binding differs")
+            require(state["spec"] == compact[f"100m-{name}"]["spec"] and
+                state["model_config"] == report["model_config"] == reports[f"100m-{name}"]["model_config"], "Auxiliary configuration differs")
+            require(all(torch.isfinite(w).all() for w in state["model"].values()), "Auxiliary weights nonfinite")
             require(report["common_windows"]["text_manifest_sha256"] == reports["100m-t8k"]["common_windows"]["text_manifest_sha256"], "Auxiliary windows differ")
+            audit_body(report["common_windows"], common_population)
+            require(recorded_match["dev_bpb"][name] == report["body"]["bpb"], "Auxiliary reported BPB differs")
+            verified[name] = dict(**point, bpb=report["body"]["bpb"], common_bpb=report["common_windows"]["bpb"],
+                checkpoint_sha256=report["checkpoint_sha256"], raw_report_sha256=sha256(run / f"budget-{field}-{name}.json"))
+            del state
+        require(recorded_match["delta"] == verified["t8k"][field] - verified["t4k"][field], "Auxiliary budget delta differs")
+        auxiliary[field] = dict(target=target, points=verified, delta=recorded_match["delta"],
+            label=recorded_match["label"], paired_bpb=bootstrap_bpb(
+                read_json(run / f"budget-{field}-t8k.json")["body"], read_json(run / f"budget-{field}-t4k.json")["body"]))
     require(1 <= len(comparison["selected"]) <= 2 and len(set(comparison["selected"])) == len(comparison["selected"]), "Candidate count differs")
+    require(set(comparison["selected"]).issubset(names), "Unknown selected candidate")
+    for name in comparison["selected"]:
+        require(read_json(run / "candidates" / f"{name}.json") == comparison["entries"][name], "Selected candidate file differs")
     output.mkdir(parents=True, exist_ok=True)
-    write_json(output / "evaluation_summary.json", dict(status="passed", models=compact, overfit=overfit_compact, tokenizer_dev_fallback=fallback))
+    write_json(output / "evaluation_summary.json", dict(status="passed", models=compact, overfit=overfit_compact,
+        tokenizer_dev_fallback=fallback, auxiliary_budget_matches=auxiliary))
     write_json(output / "candidate_configs.json", {n: comparison["entries"][n] for n in comparison["selected"]})
     write_json(output / "independent_audit.json", dict(status="passed", created_at=now(), run=str(run),
         supervisor=job, resume_state_equality=resumes, checks=["plan/source/hash binding", "exact resume all state",

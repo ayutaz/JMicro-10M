@@ -12,7 +12,7 @@
 
 ## 実際の状態
 
-**最新: Phase 5のT8K/T4K 100M baseline比較が終了し、T4KのQK-Normなし100Mを実行中。** [詳細計画](22_phase5_plan.md)と`configs/phase5/plan.json`へ目的・合格条件・予算を固定した。固定blockの失敗を保持し、文書単位samplerへ修復した`34d932d`では全68 tests / skip 0と、新sourceのT8K/T4K/文書samplerのCUDA 200 vs 100+100全state一致が成功した。NoQK-NormのT4Kも全state完全一致を通過し、4構成のresume証拠を`reports/phase5/resume_report.json`へ保存した。100件overfitは6,000更新後、本文NLL/token **0.01277**、teacher accuracy **99.712%**、16-token continuation exact **100%**、EOS argmax/実生成停止 **100%**で全5 gateに合格した。raw証拠は`reports/phase5/overfit_report.json`に保存済み。品質目標の数値を維持した凍結は`5d6b72e`へ保存済み。公開25 payloadの固定revision/hash検証も成功済み。
+**最新: Phase 5のT8K/T4K・QK-Norm 100M比較が終了し、最後のT4K NoQK-Norm / LR 0.001を学習中。** [詳細計画](22_phase5_plan.md)と`configs/phase5/plan.json`へ目的・合格条件・予算を固定した。固定blockの失敗を保持し、文書単位samplerへ修復した`34d932d`では全68 tests / skip 0と、新sourceのT8K/T4K/文書samplerのCUDA 200 vs 100+100全state一致が成功した。NoQK-NormのT4Kも全state完全一致を通過し、4構成のresume証拠を`reports/phase5/resume_report.json`へ保存した。100件overfitは6,000更新後、本文NLL/token **0.01277**、teacher accuracy **99.712%**、16-token continuation exact **100%**、EOS argmax/実生成停止 **100%**で全5 gateに合格した。raw証拠は`reports/phase5/overfit_report.json`に保存済み。品質目標の数値を維持した凍結は`5d6b72e`へ保存済み。公開25 payloadの固定revision/hash検証も成功済み。
 
 10M smokeは600更新で保存・再開し、1,221更新 / **10,002,432 tokens**で終了。全更新・weights・optimizerの有限値、凍結設定、loss低下を独立に監査した。dev 924文書 / 1,633,458 bytesのBPBは初期**2.74787 → 1.41697**。固定dev 80件×5条件の400生成を実施し、IDから全flagを再計算して一致した。抑制ありgreedyはEOS **0/80**、反復 **63/80**、Unicode/role/emptyは各0/80で、Base/Chat品質目標は未達。文書末尾からの暗記EOS 100%と自発的な短文停止は区別する。smoke評価に約354秒を要した。`reports/phase5/smoke_report.json`と二つのsmoke auditへ保存する。
 
@@ -20,7 +20,7 @@ T8Kの100M学習は**12,208更新 / 100,007,936 tokens**で終了し、最終che
 
 T4Kの100M学習も**12,208更新 / 100,007,936 tokens**で終了し、checkpoint SHA `71a1a3bf6e057ad6e290047fb3db0f8ec8723f7c54839a51d50f58d89206cfec`を保存した。学習workerの実時間約15分11秒。全更新/weights/optimizer有限・source snapshot・shard/予算一致を独立監査し、`reports/phase5/100m-t4k_training_audit.json`へ保存。全dev BPB **1.23182**、抑制ありgreedyのEOS **0/80**・反復 **53/80**・Unicode/role/empty各0/80。400生成ID/flagを再計算して一致し、evaluation auditを保存した。T8K BPB−T4K BPBは**0.02704、95% CI 0.02481〜0.02939**。共通短文BPBはT8K **1.65006** / T4K **1.59139**。次のNorm比較は有望なT4Kで実施する。baseline比較を`reports/phase5/tokenizer_baseline_comparison.json`へ保存。model familyは語彙以外のarchitecture寸法も異なり、純粋な語彙のみの因果比較とはしない。処理body bytesはT8K **476,090,448** / T4K **390,286,307**と異なり、同一token予算と同一bytes予算は区別する。後続の近いcheckpoint予算でも補助評価する。
 
-T4KのQK-Normなし100M学習も**12,208更新 / 100,007,936 tokens**で終了。checkpoint SHA `e5583927efc5aa2041648bcae23f1b618b70f002be334c3581dea23472447d07`、消費token digest **92e575d3…**はT4K baselineと完全一致し、supervised tokens/body bytesも同じ。学習worker実時間約13分58秒。全更新/weights/optimizer有限・source snapshot・shard/予算一致を独立監査し、`reports/phase5/100m-no-qknorm_training_audit.json`に保存。現在dev/400生成を評価中。NoQK-NormのHF/GGUF adapterは未実装で、採否時に変換リスクを記載する。
+T4KのQK-Normなし100M学習も**12,208更新 / 100,007,936 tokens**で終了。checkpoint SHA `e5583927efc5aa2041648bcae23f1b618b70f002be334c3581dea23472447d07`、消費token digest **92e575d3…**はT4K baselineと完全一致し、supervised tokens/body bytesも同じ。学習worker実時間約13分58秒。全更新/weights/optimizer有限・source snapshot・shard/予算一致を独立監査し、`reports/phase5/100m-no-qknorm_training_audit.json`に保存。全dev BPB **1.22144**、共通短文BPB **1.54659**。抑制ありgreedy EOS **0/80**・反復 **54/80**・Unicode/role/empty各0/80。全400生成ID/flagを再計算して一致した。Normありとの差は **0.01038 BPB、95% CI 0.00850〜0.01226**で、定常速度は約8.5%向上。比較を`reports/phase5/norm_comparison.json`、生成監査をevaluation auditへ保存。NoQK-NormのHF/GGUF adapterは未実装で、採否時に変換リスクを記載する。最後のLR 0.001比較はこの構成で新規初期化して実行中。
 
 以下は完了済みPhase 4の証拠（2026-10-03 01:58 JST監査成功）。[完了記録](21_phase4_completion.md)とGit保存の`reports/phase4/handoff_report.json`を参照する。
 
@@ -56,7 +56,7 @@ command: `bash scripts/run_phase4_job.sh scripts/run_phase5.py --output reports/
 
 ## 次の具体的な作業
 
-実プロセスとjob/logを確認し、T8K/T4K 100M比較 → QK-Norm/LR比較 → 補助bytes/time予算評価 → 候補選定・独立監査を進める。新sourceのT8K/T4K/文書sampler resume、overfit、10M smokeは合格済み。NoQK-Normは比較前に別途resumeを検証する。smokeでの自発停止/反復の失敗を各100M結果と比較し、品質未達を隠さない。Phase 6には進まない。
+実プロセスとjob/logを確認し、T8K/T4K 100M比較 → QK-Norm/LR比較 → 補助bytes/time予算評価 → 候補選定・独立監査を進める。新sourceのT8K/T4K/文書sampler resume、overfit、10M smokeは合格済み。NoQK-Normの比較前resumeも全state一致済み。smokeでの自発停止/反復の失敗を各100M結果と比較し、品質未達を隠さない。Phase 6には進まない。
 
 Phase 5の設定・実装を検証済みの区切りでコミットし、最後に実測reportと候補config・採否理由を保存する。Tokenizer再学習・Phase 3全作業・完了済みPhase 4測定は繰り返さない。
 
