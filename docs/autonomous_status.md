@@ -12,7 +12,7 @@
 
 ## 実際の状態
 
-**最新: Phase 5を再開して実GPU検証中。** [詳細計画](22_phase5_plan.md)と`configs/phase5/plan.json`へ目的・合格条件・予算を固定した。QK-Normなし候補、batched本文/EOS評価、paired bootstrap、永続supervisorを実装。全67 tests / skip 0と公開25 payloadの固定revision/hash検証が成功した。
+**最新: Phase 5のoverfit修復を実GPU検証中。** [詳細計画](22_phase5_plan.md)と`configs/phase5/plan.json`へ目的・合格条件・予算を固定した。QK-Normなし候補、batched本文/EOS評価、paired bootstrap、永続supervisorを実装。固定blockのoverfitはlossが下がっても文書単独の暗記gateに失敗したため、train文書単位のsamplerへ修復する。全68 tests / skip 0が成功し、新sourceでCUDA全state resumeから再検証する。品質目標の数値を維持した凍結は`5d6b72e`へ保存済み。公開25 payloadの固定revision/hash検証も成功済み。
 
 以下は完了済みPhase 4の証拠（2026-10-03 01:58 JST監査成功）。[完了記録](21_phase4_completion.md)とGit保存の`reports/phase4/handoff_report.json`を参照する。
 
@@ -34,11 +34,13 @@ Windowsの正本: `C:\Users\AiHUB\Desktop\japanese-tiny-llm-10m`。Linux実行�
 
 ## 実行中ジョブ
 
-Phase 5の採用runはLinux checkoutの`reports/phase5/run-20261003-math/`。Windows hidden wsl.exe PID **15036**、Linuxの実PID/boot ID/start ticks/active_stageは同directoryの`job.json`を正とする。起動前に旧supervisorとGPU workerの終了を確認した。
+Phase 5の修復runはLinux checkoutの`reports/phase5/run-20261003-docoverfit/`。Windows hidden wsl.exe PID **17168**、Linuxの実PID/boot ID/start ticks/active_stageは同directoryの`job.json`を正とする。起動前に旧supervisorとGPU workerの終了を確認した。
 
-command: `bash scripts/run_phase4_job.sh scripts/run_phase5.py --output reports/phase5/run-20261003-math`。wrapperはuv/extras/data rootを設定する共通起動処理。Windowsにも同名directoryにlauncher.json/supervisor.logを保存する。supervisorとGPUの排他lockを使う。
+command: `bash scripts/run_phase4_job.sh scripts/run_phase5.py --output reports/phase5/run-20261003-docoverfit`。wrapperはuv/extras/data rootを設定する共通起動処理。Windowsにも同名directoryにlauncher.json/supervisor.logを保存する。supervisorとGPUの排他lockを使う。
 
 棄却run `run-20261003`（compile/default）と`run-20261003-eager`（eager/default）はterminal failed、Windows PID 6688/24632は終了済み。消費列/RNGは一致したが重み・optimizer・lossが一致しなかった。6更新の切り分けではdefaultの重み差約3.9e-5、math-onlyは0。閾値を緩めずbackendを変更し、math-onlyのT8K 200 vs 100+100全state一致が成功した。raw失敗・checkpoint・診断を保持する。
+
+`run-20261003-math`はT8K/T4Kの200 vs 100+100全state一致と初期評価を通過後、overfit-evaluationでterminal failed。Windows PID 15036 / Linux PID 437は終了済み。6,000更新のtrain loss約0.002に対し、文書単独のNLL/token 3.2063、teacher accuracy 65.40%、16-token exact 2%、EOS 69%。固定した連結blockの文脈に依存した疑いがある。raw失敗・checkpointを保持し、文書単位windowを使う修復runを新規初期化する。予算6,000更新と全閾値は維持し、padding input slotsと実教師token数を分ける。通常のsmoke/100Mのblock samplerは変えない。
 
 終了済みjobの記録: Windows supervisor PID 35316、Linux PID 404。Linux checkoutの`reports/phase4/gates-20261003/job.json`にboot ID/start ticks/stage、同directoryに全ログ・snapshot・checkpointを保持。Windows側にはlauncher/logと小さい集約reportを保存。GPU排他は`~/jmicro-data/gpu.lock`。再開時はPIDだけでなくboot ID/start ticksとcheckpointを照合する。
 

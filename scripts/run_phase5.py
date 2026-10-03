@@ -27,7 +27,7 @@ def spec(plan, updates, context=None, lr=None):
     result = {key: plan[key] for key in keys}
     result.update(schedule_updates=updates)
     if context is not None:
-        result.update(context=context, batch=plan['overfit']['batch'], warmup=plan['overfit']['warmup'])
+        result.update(context=context, batch=plan['overfit']['batch'], warmup=plan['overfit']['warmup'], sampler=plan['overfit']['sampler'])
     if lr is not None:
         result['lr'] = lr
     return result
@@ -35,7 +35,8 @@ def spec(plan, updates, context=None, lr=None):
 
 def resume_worker(args):
     plan, c = read_json(args.plan), read_json(args.model)
-    frozen = spec(plan, 200); frozen['warmup'] = 20
+    frozen = spec(plan, 200, context=plan['overfit']['context'] if args.mode == 'resume-overfit' else None)
+    frozen['warmup'] = 20
     data = Shard(args.shards)
     args.output.mkdir(parents=True, exist_ok=True)
     continuous = Trainer(c, data, frozen, 'cuda')
@@ -179,6 +180,7 @@ def supervisor(args):
                  '--schedule-updates',str(updates),'--save-every',str(plan['save_every']),'--log-every','500',
                  '--backend',s['backend']]
         if s['compile']: command.append('--compile')
+        if s.get('sampler'): command += ['--sampler', s['sampler']]
         if directory.exists():
             latest=read_json(directory/'latest.json')
             if sha256(Path(latest['path']))!=latest['sha256']: raise ValueError('Invalid latest checkpoint')
@@ -200,6 +202,7 @@ def supervisor(args):
         overfit=Path.home()/'jmicro-data/shards/t8k-overfit100'
         if not overfit.exists():
             build_shards(ROOT/'data/phase1/processed/corpus.jsonl',tokenizers['t8k'],overfit,plan['overfit']['documents_per_split'])
+        worker('resume-overfit','resume-overfit',models['t8k'],overfit,tokenizers['t8k'],run/'resume-overfit')
         checkpoint=train('overfit-t8k',models['t8k'],overfit,plan['overfit']['updates'],context=plan['overfit']['context'])
         worker('overfit-evaluation','overfit-eval',models['t8k'],overfit,tokenizers['t8k'],run/'overfit_report.json',checkpoint)
         checkpoint=train('smoke-t8k',models['t8k'],shards['t8k'],plan['smoke_updates'],split_at=600)
@@ -309,7 +312,7 @@ def summarize(run,plan,winner):
     assert smoke['body']['bpb']<read_json(run/'initial-t8k.json')['body']['bpb']
     audit=dict(status='passed',phase=5,created_at=now(),gates=dict(overfit=overfit['gates'],smoke_dev_improvement=True,
         finite_all_comparison_updates=True,held_out_common_bytes=True,common_windows=True,fixed_dev_generation=True,
-        exact_selected_backend_resume=all(read_json(run/f'resume-{n}/resume_report.json')['status']=='passed_exact' for n in ('t8k','t4k','no-qknorm')),
+        exact_selected_backend_resume=all(read_json(run/f'resume-{n}/resume_report.json')['status']=='passed_exact' for n in ('t8k','t4k','overfit','no-qknorm')),
         candidate_selection=True,test_unused=True,phase6_not_started=True),
         evidence={p.name:sha256(p) for p in [run/'plan.json',run/'overfit_report.json',run/'smoke_report.json',run/'tokenizer_model_comparison.json',run/'candidate_selection.md']},
         implementation_sha256=implementation_hashes(),selected=selected)
@@ -320,7 +323,7 @@ def summarize(run,plan,winner):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--mode',choices=['supervisor','resume','evaluate','budget-evaluate','overfit-eval'],default='supervisor')
+    parser.add_argument('--mode',choices=['supervisor','resume','resume-overfit','evaluate','budget-evaluate','overfit-eval'],default='supervisor')
     parser.add_argument('--plan',type=Path,default=ROOT/'configs/phase5/plan.json')
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--model',type=Path)
@@ -335,7 +338,7 @@ def main():
             supervisor(args)
     else:
         with gpu_lock('cuda'):
-            if args.mode=='resume': resume_worker(args)
+            if args.mode in ('resume','resume-overfit'): resume_worker(args)
             else: evaluation_worker(args)
 
 

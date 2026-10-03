@@ -94,6 +94,54 @@ def scoring_windows(body_tokens, context=1024, stride=512):
         yield start, end, first, end
 
 
+class DocumentSampler(BlockSampler):
+    """Train-only, document-local body/EOS windows for memorization checks.
+
+    Each epoch teaches every body token and EOS exactly once. Padding and
+    overlapping context are ignored in labels; no preceding document is visible.
+    """
+    def __init__(self, shard, context, seed):
+        if shard.split != "train" or context < 2:
+            raise ValueError("Document sampler requires train and context >= 2")
+        self.shard, self.context, self.seed = shard, context, seed
+        self.tasks = []
+        for document in shard.index:
+            offset, count = document["offset"], document["body_tokens"]
+            for start, end, first, last in scoring_windows(count, context, min(512, context-1)):
+                self.tasks.append((offset, start, end, first, last))
+            end = count + 1
+            self.tasks.append((offset, max(0, end+1-context), end, end, end+1))
+        self.blocks = len(self.tasks)
+        if not self.blocks:
+            raise ValueError("Empty document sampler")
+        self.epoch, self.position = 0, 0
+        self._shuffle()
+
+    def state_dict(self):
+        return dict(super().state_dict(), mode="document")
+
+    def load_state_dict(self, state):
+        if state.get("mode") != "document":
+            raise ValueError("Sampler mode differs")
+        super().load_state_dict(state)
+
+    def batch(self, size):
+        inputs = np.zeros((size, self.context), dtype=np.int64)
+        targets = np.full_like(inputs, -100)
+        for row in range(size):
+            if self.position == self.blocks:
+                self.epoch += 1
+                self.position = 0
+                self._shuffle()
+            offset, start, end, first, last = self.tasks[int(self.order[self.position])]
+            self.position += 1
+            ids = np.asarray(self.shard.tokens[offset+start:offset+end], dtype=np.int64)
+            inputs[row, :len(ids)] = ids
+            targets[row, first-start-1:last-start-1] = self.shard.tokens[offset+first:offset+last]
+        body_bytes = int(self.shard.byte_lengths[np.where(targets >= 0, targets, 0)].sum())
+        return torch.from_numpy(inputs), torch.from_numpy(targets), body_bytes
+
+
 def evaluate_body(model, shard, device, dtype="fp32", limit=None, context=1024):
     rows, body_nll, eos_nll, byte_count = [], 0.0, 0.0, 0
     with isolated_evaluation(model):
@@ -204,7 +252,11 @@ class Trainer:
             progress = min(1.0, (step - spec["warmup"]) / max(1, spec["schedule_updates"] - spec["warmup"]))
             return 0.1 + 0.9 * (1 + math.cos(math.pi * progress)) / 2
         self.scheduler = torch.optim.lr_scheduler.LambdaLR(self.optimizer, schedule)
-        self.sampler = BlockSampler(shard, spec["context"], spec["seed"])
+        sampler_mode = spec.get("sampler", "block")
+        if sampler_mode not in ("block", "document"):
+            raise ValueError("Unknown sampler mode")
+        sampler_class = DocumentSampler if sampler_mode == "document" else BlockSampler
+        self.sampler = sampler_class(shard, spec["context"], spec["seed"])
         self.update = self.tokens = self.supervised_tokens = self.body_bytes = 0
         self.token_digest = "00" * 32
         self.forward = torch.compile(self.model) if spec.get("compile") else self.model
@@ -230,7 +282,8 @@ class Trainer:
             selected = {"math": [SDPBackend.MATH], "flash": [SDPBackend.FLASH_ATTENTION],
                         "default": [SDPBackend.FLASH_ATTENTION, SDPBackend.EFFICIENT_ATTENTION, SDPBackend.MATH, SDPBackend.CUDNN_ATTENTION]}[backend]
             with sdpa_kernel(selected), autocast(self.device, self.spec["dtype"]):
-                logits = self.forward(x).logits
+                kwargs = {"attention_mask": x.ne(0)} if self.spec.get("sampler") == "document" else {}
+                logits = self.forward(x, **kwargs).logits
                 loss = F.cross_entropy(logits.reshape(-1, logits.shape[-1]), y.reshape(-1),
                                        ignore_index=-100, reduction="sum") / denominator
             loss.backward()
@@ -333,6 +386,8 @@ def gpu_lock(device):
 
 def train_command(args):
     spec = {key: getattr(args, key) for key in ("seed", "context", "batch", "accumulation", "lr", "weight_decay", "warmup", "schedule_updates", "dtype", "compile", "backend")}
+    if args.sampler != "block":
+        spec["sampler"] = args.sampler
     trainer = Trainer(read_json(args.model), Shard(args.shards), spec, args.device)
     run = args.output
     if args.resume:
@@ -433,6 +488,7 @@ def main():
     train.add_argument("--phase", type=int, default=4)
     train.add_argument("--compile", action="store_true")
     train.add_argument("--backend", choices=["default", "math", "flash"], default="default")
+    train.add_argument("--sampler", choices=["block", "document"], default="block")
     train.add_argument("--resume", type=Path)
     evaluation = commands.add_parser("evaluate")
     evaluation.add_argument("--checkpoint", type=Path, required=True)

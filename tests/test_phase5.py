@@ -1,5 +1,6 @@
 import hashlib
 import json
+from collections import Counter
 from types import SimpleNamespace
 
 import numpy as np
@@ -8,8 +9,8 @@ import torch
 
 from jmicro.experiment import ROOT, read_json
 from jmicro.model import JMicroModel
-from jmicro.phase5 import bootstrap_bpb, score_body
-from jmicro.training import evaluate_body
+from jmicro.phase5 import bootstrap_bpb, equal_state, score_body
+from jmicro.training import DocumentSampler, Trainer, evaluate_body
 
 
 def tiny_config(norm="rms_head_shared"):
@@ -64,3 +65,41 @@ def test_bootstrap_rejects_different_populations():
     other = dict(body, rows=[dict(body['rows'][0],body_bytes=4),body['rows'][1]])
     with pytest.raises(ValueError, match='bytes'):
         bootstrap_bpb(body, other)
+
+
+def test_document_sampler_teaches_all_body_and_eos_once_and_resumes_updates(tmp_path):
+    ids, index = [], []
+    for i, count in enumerate([3, 9, 17, 32]):
+        index.append(dict(doc_id=str(i), offset=len(ids), body_tokens=count, bytes=count*3))
+        ids.extend([2, *([8+i]*count), 3])
+    shard = SimpleNamespace(index=index, tokens=np.asarray(ids), split='train',
+        byte_lengths=np.asarray([0]*8 + [3]*8184),
+        manifest=dict(vocab_size=8192), directory=tmp_path)
+    sampler = DocumentSampler(shard, 16, 42)
+    inputs, targets, body_bytes = sampler.batch(sampler.blocks)
+    actual = Counter(targets[targets != -100].tolist())
+    assert actual == Counter({8:3, 9:9, 10:17, 11:32, 3:4})
+    assert body_bytes == 61*3 and not targets.eq(2).any()
+    assert torch.all(targets[inputs.eq(0)] == -100)
+    state = sampler.state_dict()
+    reference = sampler.batch(5)
+    restored = DocumentSampler(shard, 16, 42)
+    restored.load_state_dict(state)
+    assert all(torch.equal(a,b) for a,b in zip(reference[:2], restored.batch(5)[:2]))
+    with pytest.raises(ValueError, match='train'):
+        DocumentSampler(SimpleNamespace(split='dev'), 16, 42)
+    frozen = dict(seed=42, context=16, batch=3, accumulation=1, lr=.002, weight_decay=.1,
+        warmup=1, schedule_updates=6, dtype='fp32', compile=False, backend='math', sampler='document')
+    continuous = Trainer(tiny_config(), shard, frozen)
+    reference_losses = [continuous.step()['loss'] for _ in range(6)]
+    paused = Trainer(tiny_config(), shard, frozen)
+    losses = [paused.step()['loss'] for _ in range(3)]
+    # Exercise the actual complete-update payload and RNG/sampler restoration.
+    (tmp_path/'manifest.json').write_text('{}')
+    paused.save(tmp_path/'paused.pt')
+    resumed = Trainer(tiny_config(), shard, frozen)
+    resumed.load(tmp_path/'paused.pt')
+    losses += [resumed.step()['loss'] for _ in range(3)]
+    assert losses == reference_losses
+    assert equal_state(continuous.model.state_dict(), resumed.model.state_dict())
+    assert equal_state(continuous.optimizer.state_dict(), resumed.optimizer.state_dict())

@@ -21,13 +21,15 @@
 | 段階 | 予算・設定 | 合格条件 |
 |---|---|---|
 | 実装検証 | QK-Normなし候補、batched評価、同一環境resume | 関連CPU testsがskipなしで通り、CUDA有限値、token列・loss・全state再開一致 |
-| 100件overfit | T8K、train 100文書、context 256、batch 8、LR 0.002、最大6,000更新（12.288M stream tokens） | 同じtrain文書の本文NLL/token ≤0.5、teacher-forced正解率 ≥90%、train例の32-token prefixから16-token完全一致率 ≥50%、本文末尾からのEOS argmax正解率 ≥50% |
+| 100件overfit | T8K、train 100文書、文書単位sampler、context 256、batch 8、LR 0.002、最大6,000更新（12.288M padded input slots、実教師tokenを別記） | 同じtrain文書の本文NLL/token ≤0.5、teacher-forced正解率 ≥90%、train例の32-token prefixから16-token完全一致率 ≥50%、本文末尾からのEOS argmax正解率 ≥50% |
 | 10M smoke | T8K、全Web train、context 1024、batch 8、1,221更新（10,002,432 tokens） | 全loss/gradient有限、loss低下、初期重みよりdev BPB改善、保存再開一致、生成runnerが正常。固定suiteの自発EOS停止率は診断として残す |
 | 100M主比較 | T8K/T4K各12,208更新（100,007,936 tokens）、LR 0.002、warmup 200 | dev BPB改善、非発散、同じdev文書・bytes・共通短文window・固定生成条件で比較可能 |
 | QK-Norm比較 | 主比較で有望な一方のみQK-Normなし、同じ100M予算 | 正規化だけを変え、BPB・速度・生成失敗・推論経路の制約を比較 |
 | LR比較 | 上記で有望な構成のLR 0.001、同じ100M予算 | LRだけを変え、採否と理由を記録。0.003追加は発散/未改善の修復が必要な場合に限定 |
 
 overfitのprefix/末尾は固定したtrain文書だけから選び、対象件数・ID・hash・採点可能なtoken数を記録する。損失低下だけで「memorize成功」としない。未達なら原因を切り分け、閾値を緩めず別runで修復する。追加予算は修復理由と設定を開始前に記録する。
+
+修復記録（2026-10-03）: `run-20261003-math`の固定連結block overfitは6,000更新でloss約0.002でも文書単独NLL/token 3.206、teacher accuracy 65.4%、continuation 2%、EOS 69%となり不合格。blockの前後contextを覚えた疑いがあり、train 100文書をそれぞれ独立したbody/EOS windowで学習するsamplerへ変更する。windowの重複contextとpaddingは教師対象外、各epochで本文とEOSを一度ずつ教える。通常のsmoke/100Mは元のblock samplerを維持する。修復runは新規初期化・同じ6,000更新上限・同じ基準とし、変更sourceでT8K/T4Kと文書samplerの厳密resumeを再確認する。旧run/checkpoint/reportは保存する。
 
 ## 公平な評価と候補選定
 

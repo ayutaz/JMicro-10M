@@ -15,8 +15,9 @@
     "comparison_updates": {"type": "integer", "minimum": 1}, "save_every": {"type": "integer", "minimum": 1},
     "overfit": {
       "type": "object", "additionalProperties": false,
-      "required": ["documents_per_split", "context", "batch", "updates", "warmup", "max_nll_per_token", "min_teacher_accuracy", "min_continuation_exact_rate", "min_eos_argmax_accuracy"],
+      "required": ["sampler", "documents_per_split", "context", "batch", "updates", "warmup", "max_nll_per_token", "min_teacher_accuracy", "min_continuation_exact_rate", "min_eos_argmax_accuracy"],
       "properties": {
+        "sampler": {"const": "document"},
         "documents_per_split": {"const": 100}, "context": {"type": "integer", "minimum": 2, "maximum": 1024},
         "batch": {"type": "integer", "minimum": 1}, "updates": {"type": "integer", "minimum": 1},
         "warmup": {"type": "integer", "minimum": 0},
