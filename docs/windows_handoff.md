@@ -1,5 +1,7 @@
 # 別PCで続きを進める: Windows / WSL / RTX 4090
 
+2026-10-03: 拡張trainの500M stable＋独立763更新decayと全文dev/400生成評価を完了。同一dev BPB 1.244126→1.022491、抑制greedy EOS 0/80→0/80、反復48/80→66/80。全99 tests成功。人手blind採点・test・Chat・新重みの量子化は未実施。1B前で停止。 [最新状態](autonomous_status.md)。以下の初回復元・準備完了記録は履歴として保持する。
+
 Phase 6①②③完了（2026-10-03）。④生成/変換と⑤本学習設定の確定もユーザー指定の範囲で検証済み。[今回の固定計画](30_phase6_readiness_execution.md)と[実状態](autonomous_status.md)を参照する。④⑤は`93c7d1d`へcommitして停止済みで、500M以上の本学習は開始しない。
 
 最終更新: 2026-10-03。[Phase 4](21_phase4_completion.md)、[Phase 5](23_phase5_completion.md)、Phase 6①〜⑤の準備は完了。復元済みPCでは環境整備・Tokenizer学習・完了済み測定を繰り返さず、[現在の状態](autonomous_status.md)と既存job/checkpointを確認する。④⑤の限定比較と起動設定凍結も93c7d1dへcommitして終了した。Base/Chat本学習は未開始で、文書更新を学習再開の指定として扱わない。

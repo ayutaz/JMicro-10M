@@ -1,10 +1,10 @@
 # 次の実装タスク
 
-Phase 6①〜⑤の準備検証を完了し、`93c7d1d`へcommit済み（2026-10-03）。400生成・全文dev評価、学習済みNoNormのCPU推論精度profileによる全12変換比較、実CLI/重み監査149 checks、全90 testsが成功。本学習設定version2を凍結し、500M以上のBase本学習を開始せず停止中。
+2026-10-03: 拡張trainの500M stable＋独立763更新decayと全文dev/400生成評価を完了。同一dev BPB 1.244126→1.022491、抑制greedy EOS 0/80→0/80、反復48/80→66/80。全99 tests成功。人手blind採点・test・Chat・新重みの量子化は未実施。1B前で停止。 [最新結果](../reports/phase6/base_500m_review.json)。
 
 この文書は[フェーズ別実行計画](15_project_roadmap.md)の着手checklistである。Phase番号、目的、ゴール、成果物、完了条件、Go/No-Goは同計画を正とし、技術仕様は03〜08と12〜14を参照する。2026-10-02にiMac上のPhase 0を実施した。[完了記録](16_phase0_completion.md)を参照する。Phase 1のcorpus・manifest・split・会話pilotも完了した。[完了記録](17_phase1_completion.md)を参照する。[Phase 2](18_phase2_completion.md)・[Phase 3](19_phase3_completion.md)も完了。本学習は未実施。Windows/WSL実機検証は[Phase 4](21_phase4_completion.md)で完了した。
 
-**現在の境界**: [Phase 5](23_phase5_completion.md)は完了し、Phase 6①〜⑤の準備完了で停止中（本学習未開始）。①②のcorpus/WSDと③の高速化・容量・厳密/cold再開を完了し、性能証拠は`a7d26e1`へcommit済み。④⑤の生成/変換確認・設定凍結も`93c7d1d`へcommit済み。次の着手は再開指定後の500M Base学習。[③の完了](29_phase6_performance_completion.md)。Phase 4の学習器・評価・保存再開・最大安定batchは完了済み。Pythonは`uv run --frozen`、依存変更は`uv add`。
+**現在の境界**: [Phase 5](23_phase5_completion.md)は完了し、Phase 6①〜⑤と500M学習・評価が完了し、1B前で停止中。①②のcorpus/WSDと③の高速化・容量・厳密/cold再開を完了し、性能証拠は`a7d26e1`へcommit済み。④⑤の生成/変換確認・設定凍結も`93c7d1d`へcommit済み。次の着手候補は生成退行の原因調査。対照/予算/終了条件を定義し、ユーザーの再開指定を待つ。1Bへ自動継続しない。[③の完了](29_phase6_performance_completion.md)。Phase 4の学習器・評価・保存再開・最大安定batchは完了済み。Pythonは`uv run --frozen`、依存変更は`uv add`。
 
 完成までの時間短縮を優先し、[移行 → 最小学習経路 → 保存再開 → 最大batch/速度実測](15_project_roadmap.md#高速に完成させる進め方)を完了した。新規PCでは[再開手順](windows_handoff.md)に従い、最新コードとGit管理外の固定Tokenizer/pilotを引き継ぐ。復元済みPCでは再取得・Phase 3の再実装は不要。実装時間とGPU計算時間を分け、実測した計算時間に評価・保存・比較・データ処理を加えて見積もる。
 
@@ -58,7 +58,7 @@ Phase 6①〜⑤の準備検証を完了し、`93c7d1d`へcommit済み（2026-10
 - [x] syntheticと実shardでeager micro batchを最大安定値まで増やし、backend/compile、VRAM、data wait、速度を測る。
 - [x] 100M〜50Bの時間とストレージを実測から見積もる。
 
-[Phase 4実測・制約](21_phase4_completion.md)。Phase 5も完了し、Phase 6①〜⑤の準備完了で停止中（本学習未開始）。
+[Phase 4実測・制約](21_phase4_completion.md)。Phase 5も完了し、Phase 6①〜⑤と500M学習・評価が完了し、1B前で停止中。
 
 ## Phase 5: 最小pipelineと100M探索
 
@@ -70,13 +70,14 @@ Phase 6①〜⑤の準備検証を完了し、`93c7d1d`へcommit済み（2026-10
 
 ## Phase 6: 500M〜10B Base v1
 
-[段階評価とgate](24_phase6_plan.md)、[本学習以降の目的・完了条件](27_phase6_remaining_plan.md)。①〜⑤の準備は完了し、500M以上は次回再開後の作業で、現在はPhase 6①〜⑤の準備完了で停止中（本学習未開始）。
+[段階評価とgate](24_phase6_plan.md)、[本学習以降の目的・完了条件](27_phase6_remaining_plan.md)。①〜⑤の準備と500M学習・評価が完了し、1B以降は次回再開後の作業。
 
 - [x] 500M開始用corpusのsource/revision/取得上限・unique量・Web 100%配合・反復とdev/test分離を固定し、全raw/cluster/shardを監査する（756M unique train stream tokens）。
 - [x] WSD stable/decay分岐を実装し、採用NoNorm・実shard・CUDA/BF16/mathで全state/loss/token列の完全一致を検証する。
 - [x] ③ 採用NoNorm・拡張shard・WSDでmath/compiled-math/Flashの実演算・最大安定容量・最速値・厳密再開/分岐・6設定の3×200更新/評価/saveを確認。Flash＋compile batch 32=694,521 tokens/s、最大111、独立1286 checks・cold再開26 checks・全79 tests成功。[完了証拠](29_phase6_performance_completion.md)。
 - [x] ④ NoNormのUnicode・反復・EOS停止、native/cacheとHF/GGUF変換を切り分け、固定dev 400生成で修正/対照・未達を記録する。
 - [x] ⑤ 採用batchの安定性を確認してeffective batch/LR/WSD数値予算と実CLI/restart commandを凍結し、log/PID/boot/start ticks/checkpoint SHA、枝compute・保持数・容量上限を保存する。
+- [x] 拡張trainの500M stable・独立763更新decay・全文dev/400生成比較を完了し、全state checkpointと監査reportを保存する。
 
 - [ ] 500M/1B/2Bで段階評価し、5Bまでに本命1モデルを決める。
 - [ ] 段階評価で必要と判断した場合にデータを追加する。現在のPhase 6 dev/test保護・変更系列のprovenanceを先に実装し、取得上限を固定する。50〜100B全量を500M開始条件にしない。
@@ -115,7 +116,7 @@ Phase 6①〜⑤の準備検証を完了し、`93c7d1d`へcommit済み（2026-10
 
 ```text
 Phase 0〜4: データ / Tokenizer / モデル / export / 学習器 / 評価 / GPU再開・実測は完了
-  -> Phase 5は完了、Phase 6①〜⑤の準備完了で停止中（本学習未開始）
+  -> Phase 5は完了、Phase 6①〜⑤と500M学習・評価が完了し、1B前で停止中
   -> 100件overfit / 10M-token smokeは合格
   -> T4K/T8K・Norm・LRの100M比較、補助評価、候補選定も完了
   -> ①拡張corpus / ②WSD全state一致は完了

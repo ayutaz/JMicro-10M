@@ -114,6 +114,11 @@ def main():
     require('no_1B_started', not (run / 'decay-1B').exists() and stable['update'] == target['stable_updates'])
     ci = bootstrap_bpb(baseline['body'], scored['body'], seed=42, repetitions=2000)
     require('paired_CI_finite', all(math.isfinite(v) for v in [ci['point'], *ci['ci95']]))
+    regressions = [dict(condition=key, metric=metric, old=old_rates[key][metric],
+                        new=new_rates[key][metric], cases=new_rates[key]['cases'])
+        for key in ('greedy/suppressed=True', 'greedy/suppressed=False', 'sampling/suppressed=True')
+        for metric in ('repetition', 'unicode_failure', 'role_leak', 'empty')
+        if new_rates[key][metric] > old_rates[key][metric]]
     results = dict(status='passed_500M_training_and_evaluation_audit', completed_at=now(), checks=checks,
         scope='authorized steps 1–5: 500M stable, independent decay, dev comparison and reporting; stop before 1B',
         config_sha256=sha256(ROOT / 'configs/phase6/base_frozen.json'), checkpoints=checkpoints,
@@ -125,7 +130,10 @@ def main():
                        run / 'evaluation-500M/generation.json')}),
         quality_targets_achieved=False, human_scoring_performed=False, test_evaluated=False,
         comparison_limit='Data, training-token budget and schedule differ; not an isolated causal test of data amount.',
-        next_action='Stop and report; decide continuation to 1B from dev metrics and generated text.')
+        CI_limit='Document sampling uncertainty for one trained checkpoint per condition; not training-seed variance.',
+        generation_regressions=regressions,
+        next_action='Stop before 1B. Investigate generation regressions with a defined comparison and budget before proposing continuation.'
+                    if regressions else 'Stop and report; decide continuation to 1B from dev metrics and generated text.')
     write_json(args.output, results)
     lines = ['# 拡張データ500M Baseの学習・評価', '',
         f"全文dev {len(expected):,}文書: BPB {baseline['body']['bpb']:.6f} → {scored['body']['bpb']:.6f}。",
@@ -138,6 +146,8 @@ def main():
         lines.append('| ' + key + ' | ' + ' | '.join(values) + ' |')
     lines += ['', '500M stableと独立763更新decayの全state checkpointを保持。1Bは未開始。',
         '人手のblind採点・test・Chatは未実施。データ量だけの因果効果とは結論しない。',
+        'BPBは改善したが、生成の退行があるため、1Bへの自動継続は採用しない。原因調査の対照・予算・終了条件を先に定義する。'
+            if regressions else '追加学習は生成本文とdev結果を確認して判断する。',
         '', '## 固定devの生成例（全80件、greedy抑制あり）', '']
     for item in generated['generation']['outputs']:
         if item['decoding'] == 'greedy' and item['suppressed']:

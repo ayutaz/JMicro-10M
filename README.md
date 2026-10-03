@@ -1,10 +1,10 @@
 # JMicro-10M
 
-Phase 6①〜⑤の準備検証を完了し、`93c7d1d`へcommit済み（2026-10-03）。400生成・全文dev評価、学習済みNoNormのCPU推論精度profileによる全12変換比較、実CLI/重み監査149 checks、全90 testsが成功。本学習設定version2を凍結し、500M以上のBase本学習を開始せず停止中。
+2026-10-03: 拡張trainの500M stable＋独立763更新decayと全文dev/400生成評価を完了。同一dev BPB 1.244126→1.022491、抑制greedy EOS 0/80→0/80、反復48/80→66/80。全99 tests成功。人手blind採点・test・Chat・新重みの量子化は未実施。1B前で停止。 [最新結果](reports/phase6/base_500m_review.json)。
 
 日本語の短文生成と数ターンの雑談を目的に、約10Mの言語モデルをTokenizerからスクラッチ構築する。計画は[フェーズ別実行計画](docs/15_project_roadmap.md)、設計・調査一覧は[docs](docs/README.md)を参照。
 
-Phase 0〜5が完了。データpilot、4k/8k Tokenizer、約10Mモデル、cache、HF/実float GGUFをiMacで検証し、WSL＋RTX 4090で学習器・保存再開・最大安定batch・評価を実測した。[Tokenizer完了記録](docs/18_phase2_completion.md)、[モデル・export完了記録](docs/19_phase3_completion.md)、[Phase 4完了記録](docs/21_phase4_completion.md)を参照する。Phase 4は小さいGPU検証runで、Base/Chatの本学習と能力目標は未達。Phase 5の候補選定と独立監査も終了し、Phase 6①〜⑤の準備完了で停止中（本学習未開始）。
+Phase 0〜5が完了。データpilot、4k/8k Tokenizer、約10Mモデル、cache、HF/実float GGUFをiMacで検証し、WSL＋RTX 4090で学習器・保存再開・最大安定batch・評価を実測した。[Tokenizer完了記録](docs/18_phase2_completion.md)、[モデル・export完了記録](docs/19_phase3_completion.md)、[Phase 4完了記録](docs/21_phase4_completion.md)を参照する。Phase 4は小さいGPU検証runで、Base/Chatの本学習と能力目標は未達。Phase 5の候補選定と独立監査も終了し、Phase 6①〜⑤と500M学習・評価が完了し、1B前で停止中。
 
 **別PCで続きを進める場合は[Windows/WSL＋RTX 4090の再開手順](docs/windows_handoff.md)から始める。** 固定成果物の復元、uv環境・CUDA確認、実装済みCLIと引継ぎ条件をまとめている。Phase 5・Phase 6①〜⑤と文書更新のコミットはローカル保存で、GitHubへpushしていない。新規cloneだけで最新コードが揃うとは限らない。
 
@@ -67,9 +67,9 @@ uv add --optional ml <ml-package>
 
 ## 次に進めること
 
-①②の実量・GPU検証は[準備完了記録](docs/26_phase6_preparation_completion.md)、③の採用速度・容量・再開は[高速化完了記録](docs/29_phase6_performance_completion.md)を参照する。Flash＋compile reduce-overhead / batch 32で694,521 tokens/s、最速reference比5.436倍を検証した。④⑤も`93c7d1d`で完了し、batch32・LR0.002・WSD global305,176更新と保存/復旧/容量をversion2へ凍結した。現在は本学習前で停止している。再開後の500M→1B→2B→5B→10Bは[残りの計画](docs/27_phase6_remaining_plan.md)、段階評価は[Phase 6計画](docs/24_phase6_plan.md)に整理した。
+①②の実量・GPU検証は[準備完了記録](docs/26_phase6_preparation_completion.md)、③の採用速度・容量・再開は[高速化完了記録](docs/29_phase6_performance_completion.md)を参照する。Flash＋compile reduce-overhead / batch 32で694,521 tokens/s、最速reference比5.436倍を検証した。④⑤も`93c7d1d`で完了し、batch32・LR0.002・WSD global305,176更新と保存/復旧/容量をversion2へ凍結した。現在は500M評価後で停止している。再開後の1B→2B→5B→10Bは[残りの計画](docs/27_phase6_remaining_plan.md)、段階評価は[Phase 6計画](docs/24_phase6_plan.md)に整理した。
 
-Phase 5の100件overfit → 10M smoke → 100M比較・候補選定が完了し、Phase 6①〜⑤の準備完了で停止中（本学習未開始）。[完了記録](docs/23_phase5_completion.md)を参照する。Tokenizer再学習・成果物再取得・完了済みPhase 4測定を繰り返す必要はない。[実測と制約](docs/21_phase4_completion.md)、[次の作業](docs/10_next_steps.md)を参照する。
+Phase 5の100件overfit → 10M smoke → 100M比較・候補選定が完了し、Phase 6①〜⑤と500M学習・評価が完了し、1B前で停止中。[完了記録](docs/23_phase5_completion.md)を参照する。Tokenizer再学習・成果物再取得・完了済みPhase 4測定を繰り返す必要はない。[実測と制約](docs/21_phase4_completion.md)、[次の作業](docs/10_next_steps.md)を参照する。
 
 Git管理対象はコード・設定・docs・小さな検証report。本文・Tokenizer・checkpointは管理外なので固定Hub成果物とLinux保存先を引き継ぐ。Phase 4は全64 tests、Phase 5は全68 tests、Phase 6①②は全74 tests（すべてskip 0）と73 GPU checksを確認した。最新の④⑤は全90 tests / skip・error・failure 0、学習済み変換12比較、独立CLI/重み149 checks、GPU準備106 checks、総合37 checksが成功した。[証拠](reports/phase6/readiness_gate_audit.json)。これらは各段階の実装・準備検証で、Base/Chat品質合格ではない。新規cloneにはartifactと必要なLinux成果物を別途復元する。
 

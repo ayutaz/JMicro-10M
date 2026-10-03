@@ -2,15 +2,23 @@
 
 最終更新: 2026-10-03（日本時間）。実測の正本はreportとWSLのrun/data、milestoneは[roadmap](15_project_roadmap.md)。
 
-## 最新の実行範囲: 500M学習・評価を再開
+## 最新の結果: 500M学習・評価完了
 
-ユーザーが[次回計画の1〜5](27_phase6_remaining_plan.md#次回の一区切り-拡張データで500mを学習評価する)の実行を指定した。準備済み拡張trainで500M stable、新規seed42、独立763更新decay、全文dev/400生成比較、report/status/commitまで実施し、1B前で停止する。以下の「未起動・再開待ち」は計画作成時点の履歴で、この再開指定を現在の範囲として優先する。
+2026-10-03: 拡張trainの500M stable＋独立763更新decayと全文dev/400生成評価を完了。同一dev BPB 1.244126→1.022491、抑制greedy EOS 0/80→0/80、反復48/80→66/80。全99 tests成功。人手blind採点・test・Chat・新重みの量子化は未実施。1B前で停止。
 
-初回prepareは凍結source/model/tokenizer/data/runtimeの照合を通過し、15,259更新を確認した。実GPU compute processなし、既存Base出力なし、WSL空き837 GiBを確認。実行先はLinux `reports/phase6/base-20261003/`、永続起動入口は`scripts/run_base_500m.sh`。各stageは`supervisor.json`・worker log・checkpointを保存し、pipelineは`reports/local/base-500m-pipeline.state`へPID/boot/start ticks/stageを記録する。復旧は実processと有効checkpointを照合して同入口を再実行する。
+ユーザー指定の計画1〜5を実施した。[学習・評価監査と比較](../reports/phase6/base_500m_review.json)、[全80 greedy生成例](../reports/phase6/base_500m_review.md)、[preflight](../reports/phase6/base_500m_preflight.json)、[99 tests](../reports/phase6/base_500m_tests.json)。本文一度採点・同一89,416文書/164,344,743 bytes・FP32 CE・windowを検証した。document paired改善95% CIは[0.221163593157386, 0.22214939473619974]。これはdev文書のsampling不確実性で、学習seed変動やデータ量だけの因果効果ではない。
 
-実GPU stable runは進行中。Windows launcher16200、Linux pipeline465 / supervisor480 / worker515、boot `10cb0a08-77f7-4eb3-8b7e-63c4df31bfbe`、supervisor start ticks7959。4,550更新/149,094,400 input tokensを観測し、loss約3.094、有限gradient、約679k tokens/s。4,000更新の全state checkpointを保存済み。初回launcherは非login shellのuv PATH不足でGPU起動前に終了し、専用入口へuvのuser PATHを加えて修復した。失敗log/stateは`reports/local/base-500m-launcher.initial-failure.log`等へ保持する。
+[指定範囲の完了監査](../reports/phase6/base_500m_completion_audit.json)で起動条件・実stable/decay・全文dev/400生成・過去証拠保持・job終了・停止境界を11項目照合した。学習/比較の独立監査25項目も通過した。生成退行は品質未達の結果として保持し、技術検証の成功へ混同しない。
 
-比較の未統合部分を`scripts/review_base_500m.py`へ実装した。同一devの本文一度採点/bytes/順序/有限値を検証し、document paired bootstrap、実IDからの生成flag再計算、checkpoint/枝/全更新の監査と比較reportを作る。誤った母集団・teacher欠落・EOS混入等を拒否する9 testsを追加し、全99 tests / skip・failure・error 0を確認した。人手blind採点は未実施として保持する。
+stableは15,259更新/500,006,912 input tokens、decayは追加763更新/25,001,984 tokens。全state checkpointを保持し、parent SHA不変・全更新の有限値・保存間隔を監査した。stable SHA `775b14be60b755153fcfa03633e8a3a489fcddc6508db69f759b5547df57fbbf`、decay SHA `0a64cfc3ac18d411d0d2144d9d9c8185e7010872baf5247612dd365bd619514e`。Linux出力は`reports/phase6/base-20261003/`、stable/decay/evaluateのsupervisor・log・source snapshot・全checkpoint・raw評価を保持する。元のstableから同じglobal305,176更新のまま継続できる。
+
+Windows launcher16200 / Linux pipeline465と各GPU stageは終了。`supervisor-{stable,decay,evaluate}-500M.json`・pipeline stateを保持し、完了した500Mを再起動しない。初回の非login shell uv PATH不足はGPU起動前の失敗で、専用入口へuser uv PATHを設定して修復した。失敗log/stateを`reports/local/`へ保持する。比較用の旧small reportはWindows正本からLinuxへ同期し、元のdeep evidenceは変更していない。
+
+生成はgreedy反復48/80→66/80、sampling反復6/240→11/240、Unicode0/400→1/400で退行した。sampling EOSは0/240→1/240で、greedy EOSは0/80のまま。Unicode1件は64-token上限でmulti-byte列が途中終了したものだが、凍結metricの失敗として残す。[Codexによる20件の内容点検](../reports/phase6/base_500m_content_review.json)でも意味のある続きを展開せず反復する例を確認した。これはblind人手採点ではない。
+
+次の行動は停止。1Bへの単純拡大は現時点で推奨せず、EOS教師量・文書長と短文promptの違い・反復傾向・greedy/sampling差を既存artifactで点検し、対照/予算/終了条件を定義してから次の実験を提案する。生成品質の未達・人手評価未実施を保持する。今回の結果をBase v1/Chat完成や新学習重みのexport/量子化合格にしない。以下の未起動/再開待ちは以前の準備・計画作成時点の履歴である。
+
+## 以前の準備・計画作成記録（履歴）
 
 文書・計画の更新依頼に基づき、README/実装checklist/技術状況/引継ぎと[残りの計画](27_phase6_remaining_plan.md)を93c7d1dの検証結果へ揃えた。次回は500M stable→独立decay→全文dev/400生成評価から開始し、1B/2B/5B/10Bを段階判断する。必要なpaired CI・人手採点の集約は未統合として明記した。今回の更新では学習・実験を開始せず、凍結code/config/protocol・過去report/snapshotを保持する。
 

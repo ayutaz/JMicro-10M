@@ -72,3 +72,14 @@ raw logs/requests/compiled code/source snapshots/checkpointsはLinux `reports/ph
 | [documentation_refresh_readiness_20261003.json](phase6/documentation_refresh_readiness_20261003.json) | ④⑤完了後の25文書・残りの計画更新。凍結条件/CLI/算術予算、内部リンク、WSL同期、旧実装/設定/証拠の保持と停止を検証 |
 
 raw logs/checkpoints/weights/logits/snapshotsはLinux `reports/phase6/readiness-20261003/`、正式exportは同runの`export-stable-f32/`。専用CPU runtimeは`artifacts/runtime-stable-f32-v2`。Git/Hubだけでは復元できず、Windowsコードとともに引き継ぐ。現行の`launch_enabled=true`は技術gate成立で、ユーザーの再開指定まで500M以上の本学習を開始しない。
+
+
+## 拡張trainの500M学習・評価
+
+2026-10-03: 拡張trainの500M stable＋独立763更新decayと全文dev/400生成評価を完了。同一dev BPB 1.244126→1.022491、抑制greedy EOS 0/80→0/80、反復48/80→66/80。全99 tests成功。人手blind採点・test・Chat・新重みの量子化は未実施。1B前で停止。
+
+- [学習/評価/paired CI/全checkpoint監査](phase6/base_500m_review.json)、[全80 greedy生成例](phase6/base_500m_review.md)。
+- [起動前照合](phase6/base_500m_preflight.json)、[全99 tests](phase6/base_500m_tests.json)。
+- [固定20件の内容点検](phase6/base_500m_content_review.json)はCodexによる定性的な確認で、blind人手採点ではない。予測BPB改善と生成退行を分け、1B前で停止する。
+
+raw evidenceと18 checkpointsはLinux `reports/phase6/base-20261003/`へ保持する。今回の新しい重みのexport/量子化は未実施。
