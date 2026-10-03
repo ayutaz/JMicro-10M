@@ -1,0 +1,55 @@
+{
+  "status": "passed_baseline_comparison",
+  "created_at": "2026-10-03T03:48:26.026929Z",
+  "entries": {
+    "t8k": {
+      "bpb": 1.2588609609175505,
+      "common_window_bpb": 1.6500581816783852,
+      "tokens": 100007936,
+      "body_bytes": 476090448,
+      "steady_tokens_per_second": 117118.79137954142,
+      "suppressed_greedy": {
+        "cases": 80,
+        "eos": 0,
+        "unicode_failure": 0,
+        "repetition": 54,
+        "role_leak": 0,
+        "empty": 0,
+        "median_characters": 80.5
+      },
+      "raw_report_sha256": "04084c1ea6ff953875a8ba352c6bf3bf28fe583c6eb2a5d21c6b250b2784e590"
+    },
+    "t4k": {
+      "bpb": 1.2318226955287608,
+      "common_window_bpb": 1.5913857631955488,
+      "tokens": 100007936,
+      "body_bytes": 390286307,
+      "steady_tokens_per_second": 111693.12793024267,
+      "suppressed_greedy": {
+        "cases": 80,
+        "eos": 0,
+        "unicode_failure": 0,
+        "repetition": 53,
+        "role_leak": 0,
+        "empty": 0,
+        "median_characters": 77.0
+      },
+      "raw_report_sha256": "ce4a3fc91ddf25ed3554e91a7d8184b31c6d9b0b39865b4ffc9bf710ec39afa5"
+    }
+  },
+  "paired_t8k_minus_t4k": {
+    "direction": "left_bpb_minus_right_bpb",
+    "point": 0.02703826538878973,
+    "ci95": [
+      0.024808145493469175,
+      0.02938744500564506
+    ],
+    "seed": 42,
+    "repetitions": 2000,
+    "unit": "document"
+  },
+  "next_norm_ablation_family": "t4k",
+  "scope": "Tokenizer/model families differ in architecture dimensions within the approximately 10M design. Not a pure vocabulary-only intervention.",
+  "budget": "Same 100,007,936 stream-token budget; byte and time matches are separate pending auxiliary evaluations.",
+  "remaining": "Norm and LR comparisons, auxiliary budgets, final candidate selection/audit; test unused, Phase 6 not started."
+}

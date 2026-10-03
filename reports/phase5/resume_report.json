@@ -1,0 +1,200 @@
+{
+  "status": "passed",
+  "phase": 5,
+  "run": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase5/run-20261003-docoverfit",
+  "backend": "eager/math",
+  "continuous_updates": 200,
+  "resumed_updates": "100+100",
+  "trials": {
+    "t8k": {
+      "status": "passed_exact",
+      "checks": {
+        "model": true,
+        "optimizer": true,
+        "scheduler": true,
+        "rng": true,
+        "sampler": true,
+        "tokens": true,
+        "supervised_tokens": true,
+        "body_bytes": true,
+        "token_digest": true,
+        "implementation_sha256": true,
+        "losses": true,
+        "digests": true,
+        "batched_bytes_equal": true,
+        "batched_bpb_parity": true
+      },
+      "spec": {
+        "seed": 42,
+        "context": 1024,
+        "batch": 8,
+        "accumulation": 1,
+        "lr": 0.002,
+        "weight_decay": 0.1,
+        "warmup": 20,
+        "dtype": "bf16",
+        "compile": false,
+        "backend": "math",
+        "schedule_updates": 200
+      },
+      "tokens_per_run": 1638400,
+      "serial_bpb": 1.8139940594674133,
+      "batched_bpb": 1.8139951495748072,
+      "batched_bpb_tolerance": 0.01,
+      "implementation_sha256": {
+        "src/jmicro/model.py": "dfb0df9af5020de1c077d6135f4def8f36c7389d5a27e8bec327ec8d25bb6b4b",
+        "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+        "src/jmicro/training.py": "e4f95adcd09098b87f7b40b05e6e6d479b7a636ba30bf7f3cf9511d060bf1292",
+        "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+      },
+      "checkpoints": {
+        "resumed.pt": "3edbacdee6c233fba3d53ffc5ab98755e92e1bd182d45cd95e024b0584bae9bc",
+        "at-100.pt": "7d921931a0ea9d0aa4f609c9575e6fae1415bc04fd4d6cf7b7ef962dc89a3810",
+        "continuous.pt": "a7687213945a37c6552bd71d8198abbfc7d02800a0469bd22d81bd2db60cbc1e"
+      }
+    },
+    "t4k": {
+      "status": "passed_exact",
+      "checks": {
+        "model": true,
+        "optimizer": true,
+        "scheduler": true,
+        "rng": true,
+        "sampler": true,
+        "tokens": true,
+        "supervised_tokens": true,
+        "body_bytes": true,
+        "token_digest": true,
+        "implementation_sha256": true,
+        "losses": true,
+        "digests": true,
+        "batched_bytes_equal": true,
+        "batched_bpb_parity": true
+      },
+      "spec": {
+        "seed": 42,
+        "context": 1024,
+        "batch": 8,
+        "accumulation": 1,
+        "lr": 0.002,
+        "weight_decay": 0.1,
+        "warmup": 20,
+        "dtype": "bf16",
+        "compile": false,
+        "backend": "math",
+        "schedule_updates": 200
+      },
+      "tokens_per_run": 1638400,
+      "serial_bpb": 1.9956317232007093,
+      "batched_bpb": 1.9956245391010787,
+      "batched_bpb_tolerance": 0.01,
+      "implementation_sha256": {
+        "src/jmicro/model.py": "dfb0df9af5020de1c077d6135f4def8f36c7389d5a27e8bec327ec8d25bb6b4b",
+        "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+        "src/jmicro/training.py": "e4f95adcd09098b87f7b40b05e6e6d479b7a636ba30bf7f3cf9511d060bf1292",
+        "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+      },
+      "checkpoints": {
+        "resumed.pt": "8ffff4f6511c887a44353ca0dfdf4161d1230cf9ad5351df2df77c4d1ebb0088",
+        "at-100.pt": "0bb14a94032e5d656671f748afaa3d2145f56dfe70b5c8d26b9d2ae293521873",
+        "continuous.pt": "721ad715796726e91ad0961c6902a6f03b942d75529f6873ad1cec67614c2978"
+      }
+    },
+    "overfit": {
+      "status": "passed_exact",
+      "checks": {
+        "model": true,
+        "optimizer": true,
+        "scheduler": true,
+        "rng": true,
+        "sampler": true,
+        "tokens": true,
+        "supervised_tokens": true,
+        "body_bytes": true,
+        "token_digest": true,
+        "implementation_sha256": true,
+        "losses": true,
+        "digests": true,
+        "batched_bytes_equal": true,
+        "batched_bpb_parity": true
+      },
+      "spec": {
+        "seed": 42,
+        "context": 256,
+        "batch": 8,
+        "accumulation": 1,
+        "lr": 0.002,
+        "weight_decay": 0.1,
+        "warmup": 20,
+        "dtype": "bf16",
+        "compile": false,
+        "backend": "math",
+        "schedule_updates": 200,
+        "sampler": "document"
+      },
+      "tokens_per_run": 409600,
+      "serial_bpb": 2.135389741846593,
+      "batched_bpb": 2.1353603846018574,
+      "batched_bpb_tolerance": 0.01,
+      "implementation_sha256": {
+        "src/jmicro/model.py": "dfb0df9af5020de1c077d6135f4def8f36c7389d5a27e8bec327ec8d25bb6b4b",
+        "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+        "src/jmicro/training.py": "e4f95adcd09098b87f7b40b05e6e6d479b7a636ba30bf7f3cf9511d060bf1292",
+        "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+      },
+      "checkpoints": {
+        "resumed.pt": "a97aa3065fbeea17d88a72126d735b5b159f654af3537c2904bb6b151fe9aeb5",
+        "at-100.pt": "7e5c2251fa428505c23791217311ec765e4530e7c07f3641f9b1afc76bbd3ca1",
+        "continuous.pt": "e578d7f97f978aee41e3d81cda5f9248025b655e16f90d425ddd8dc392ffc1fb"
+      }
+    },
+    "no-qknorm": {
+      "status": "passed_exact",
+      "checks": {
+        "model": true,
+        "optimizer": true,
+        "scheduler": true,
+        "rng": true,
+        "sampler": true,
+        "tokens": true,
+        "supervised_tokens": true,
+        "body_bytes": true,
+        "token_digest": true,
+        "implementation_sha256": true,
+        "losses": true,
+        "digests": true,
+        "batched_bytes_equal": true,
+        "batched_bpb_parity": true
+      },
+      "spec": {
+        "seed": 42,
+        "context": 1024,
+        "batch": 8,
+        "accumulation": 1,
+        "lr": 0.002,
+        "weight_decay": 0.1,
+        "warmup": 20,
+        "dtype": "bf16",
+        "compile": false,
+        "backend": "math",
+        "schedule_updates": 200
+      },
+      "tokens_per_run": 1638400,
+      "serial_bpb": 2.0457380431302985,
+      "batched_bpb": 2.045736125447409,
+      "batched_bpb_tolerance": 0.01,
+      "implementation_sha256": {
+        "src/jmicro/model.py": "dfb0df9af5020de1c077d6135f4def8f36c7389d5a27e8bec327ec8d25bb6b4b",
+        "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+        "src/jmicro/training.py": "e4f95adcd09098b87f7b40b05e6e6d479b7a636ba30bf7f3cf9511d060bf1292",
+        "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+      },
+      "checkpoints": {
+        "resumed.pt": "fe907d189b64348ef90038068051ff06b63c996b96ab7b337f79a22ee3001f2e",
+        "at-100.pt": "16391d3c29b9d13fcd666ca193b62e277595ed67cf0ba46f25c65e7257262c8a",
+        "continuous.pt": "abf26cf09cb8b8ef85f56f9efe83a7e3a10ea746565e01b3e062e85e8e10f2a7"
+      }
+    }
+  },
+  "note": "Exact model/optimizer/scheduler/RNG/sampler/counters and loss/token digest comparison; batched CUDA BF16 scoring parity uses the predefined 0.01 BPB tolerance."
+}
