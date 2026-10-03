@@ -4,6 +4,12 @@
 
 ## 実行中: ローカル10Bデータの取得・構築・監査
 
+最新の実行はexecution v3。元の取り込み・品質基準・独立逐次auditを保持し、後続LSHだけを8workersのband並列へ移行した。[実1M全32bands比較](../reports/phase6/corpus_10b_parallel_probe.json)で524,480候補coverage/全cluster/duplicate代表完全一致、30.004秒→9.135秒（3.285倍）。旧v2を実PID確認後にSIGINTで終了し、累積680.554秒・24files/5,630,035レコードのcheckpointを保持して再開した。元source snapshotとデータは保持し、追加実行codeを別snapshotへ保存する。
+
+Windows launcher23824、Linux1106994/boot`0b330ec7-c11f-4bb3-be7c-cae9b868f4af`/start_ticks144729、stage ingestでlive。file24以降から再開し、file25内・約595万レコードの進行を確認。data rootは同じ`ten-billion/prepared-v2/`、現在ログは`preparation-v3.log`、再開入口は`scripts/run_corpus_10b_parallel.sh`。[移行と実装](32_local_10b_corpus.md#並列lshへの検証済み移行)。WSL空き約781GiBで拡張不要。10Bのtoken化と全件監査はまだ未完了。次は取り込み完了→並列LSH→export→元の全件逐次auditを監視し、実10B/token/heldout/hashを確認してreport/commitする。
+
+### 取得・初回構築の記録（履歴）
+
 2026-10-03のユーザー依頼で、2B計画を約10Bのローカルデータ整備へ更新し、実行を再開した。[保存先・取得上限・実装・監査・停止条件](32_local_10b_corpus.md)。全bulk dataをWSLの`~/jmicro-data/phase6/ten-billion/`へ置き、Windowsとの境界越しデータ処理を避ける。WSL空き835GiB/Windows約2.5TBを確認し、現時点でdisk拡張は不要。原corpus/shards/heldoutを保持し、学習は開始しない。
 
 取得Windows launcher24348、Linux933704/boot`0b330ec7-c11f-4bb3-be7c-cae9b868f4af`/start_ticks21313。構築v2 launcher7876、Linux1105089/同boot/start_ticks75979。取得は128files・約34.6GBを609.1秒で完了し、job terminal completeと実process終了を確認した。[取得記録](../reports/phase6/corpus_10b_acquisition.json)。構築v2は実/proc照合でlive、stageはingest。保護用198,899レコードの登録が完了し、実raw取り込みへ進んだ。最初の3raw filesのcommit/再開checkpointを確認し、100万超のレコードを処理した。[処理中の記録](../reports/phase6/corpus_10b_progress.json)。WSL空きは約800GiBで拡張不要。完了した初期8filesはhash確認してhardlink再利用。実tokensは構築後に確定するため、まだ10B用意済みではない。

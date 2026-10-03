@@ -98,6 +98,14 @@ def test_restartable_ingest_protects_previous_heldout_and_exports_losslessly(tmp
     parents=sha256(output/"groups.npy")
     module.deduplicate(output)
     assert sha256(output/"groups.npy")==parents
+    from jmicro.parallel_corpus_dedup import parallel_components
+    parallel=tmp_path/"parallel"
+    parallel_components(output,parallel,n,workers=2)
+    np.testing.assert_array_equal(np.load(parallel/"groups.npy"),np.load(output/"groups.npy"))
+    np.testing.assert_array_equal(np.load(parallel/"duplicates.npy"),np.load(output/"duplicates.npy"))
+    edge_hash=sha256(parallel/"band-00.edges.npy")
+    parallel_components(output,parallel,n,workers=2)
+    assert sha256(parallel/"band-00.edges.npy")==edge_hash
     result=module.export(config,output,workers=1)
     assert result["target_met"]
     artifact=Path(result["artifact_directory"])

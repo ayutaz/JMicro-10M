@@ -22,6 +22,16 @@ JSONの全indexを巨大listへ溜めず、corpus・uint16 token stream・index 
 
 ## 完了監査と停止
 
+### 並列LSHへの検証済み移行
+
+実1,000,000レコードの固定prefixについて、元の逐次方式と8workersのband並列方式を全32bandsで比較した。[実比較](../reports/phase6/corpus_10b_parallel_probe.json)は524,480候補ペアのcoverage一致、全1Mのcluster/duplicate代表完全一致。reference30.004秒→parallel9.135秒、3.285倍。小fixtureでも旧heldoutのnear除外・元方式との全代表一致・band checkpoint再利用を確認した。これは同じデータ処理の性能/整合性検証で、全10Bの監査結果ではない。
+
+候補・Jaccard0.85・保護対象・splitを変えず、各bandを独立に全候補検証し、最後に全体のconnected componentsを統合する。単一band内ですでに連結したduplicate同士だけを省略し、group-size上限や推定類似度による候補除外は行わない。8workersに制限し、巨大32個のhash mapを作らず、一度に最大8bandsを処理する。bandごとのedge/hashをcheckpointとして保存する。band間で重複するverified link数は逐次方式と異なり得るため、全体代表の一致を検証し、数値のscopeも記録する。元の独立auditは逐次再構築のまま維持する。
+
+移行前のlive ingestion1105089へSIGINTを送り、executor終了・SQLite rollback・終了時累積680.554秒の保存を確認した。完了24raw files/5,630,035レコードのcheckpointを保持し、同じprepared-v2へ新しいexecution v3を起動。データや旧source snapshotを書き換えず、追加実行codeは別snapshotへ保存する。元の24時間予算は引き継ぎ、取り込み済みfileを再処理しない。旧jobは`job-v2-retired.json`へ保持する。
+
+現在の起動/復旧入口は[scripts/run_corpus_10b_parallel.sh](../scripts/run_corpus_10b_parallel.sh)。Windows hidden launcher23824、Linux1106994/boot`0b330ec7-c11f-4bb3-be7c-cae9b868f4af`/start_ticks144729。ログは`ten-billion/preparation-v3.log`、band処理は`prepared-v2/parallel_bands/`、追加sourceは`execution_v3_snapshot/`。元入口は履歴として保持し、再開に使用する前に最新jobの実process identityを確認する。
+
 [独立audit](../scripts/audit_corpus_10b.py)は全raw/hash、source payload、filter、保護判定、全signatureを再構築し、URL/exact/検出near componentsと新splitを再照合する。全採用corpusのmembership/index/BOS-body-EOS/token列/byte数を再encodeとdecode往復で検査し、train10B以上を要求する。test利用は構造検証だけで、モデル採点や選定には使わない。
 
 3個の追加testsは元LSHとの候補一致、transitive代表、file再開・未commit末尾復旧・旧heldoutのexact/near除外・独立auditとtoken破損棄却を検証する。全105tests成功、skip/failure/error0。新config用schemaの追加漏れで最初の全suiteが2件失敗した記録はログへ保持し、schemaを追加して修復した。小fixture成功を実10Bデータの監査成功へ読み替えない。
