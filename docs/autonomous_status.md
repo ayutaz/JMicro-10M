@@ -4,6 +4,8 @@
 
 ## 実行中: ローカル10Bデータの取得・構築・監査
 
+2026-10-04 01:25 JST: [逐次near監査16/32band通過](../reports/phase6/corpus_10b_edges_audit_half.json)。band0〜15の連続した完了logを確認し、前半16段階はraw完了後4437.677秒（約74.0分、移行込み）。同じaudit1170053/boot/start_ticks1074573が実live、完成export manifest SHAは不変。前半平均が後半も続く仮定では残りnearは約1.23時間だが、後半の候補量は異なり、全代表・全corpus/membership/split/token/index照合と実loaderは別で未完了。途中結果を全件合格としない。後半16bandを継続し、学習更新0。
+
 2026-10-04 00:50 JST: [逐次near監査8/32band通過](../reports/phase6/corpus_10b_edges_audit_quarter.json)。band0〜7の完了logが連続し、最初の8段階はraw完了後2344.360秒（約39.1分、移行込み）。同じaudit1170053/boot/start_ticks1074573が実live、完成export manifest SHAは不変。8段階平均が続く仮定で残りnear検証は約1.95時間だが、band候補量は変動し、後続の全代表・全membership/split/token/index往復と実loaderは別で未完了。全件合格とはしない。引き続き同じjobを監視し、学習更新0。
 
 2026-10-04 00:30 JST: [序盤3bandの実測](../reports/phase6/corpus_10b_audit_early_timing.json)は374.910/208.675/515.511秒、平均366.366秒（約6.1分、最初はrawからの移行込み）。同じaudit1170053は実liveで、全32band中3個が完了。序盤平均が続くという仮定だけなら残りnear検証は約2.95時間だが、bandごとの候補量は異なり、後続の全token逐次再encode/byte/index/membership照合と実loaderの時間はまだ未測定。以前の全体残り3〜5時間という暫定値が上振れする可能性をユーザーへ説明した。24時間累積上限と全件受入条件を保持し、健康なjobを再起動しない。最終合格・整備完了は未達、学習更新0。
