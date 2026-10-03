@@ -1,0 +1,101 @@
+{
+  "status": "ingestion_bindings_checked_dedup_running",
+  "observed_at": "2026-10-03T12:23:08.065218Z",
+  "complete": {
+    "records": 29208256,
+    "bindings": {
+      "config": "0f4e738c2c4beb333bea3f5b2c410e2f5889d87f6aaffb8a92b281a19c43375e",
+      "acquisition": "baf265db84efd5db0ec423f1a8975be7dbb2518883d35c323053c10d9d26d888",
+      "protected": "c04961327a47ecc42bdfd026c598b00430d926db2237f988b379fc0351982fff",
+      "pilot": "fa5507445665c3dff556d7b04a5725ee3021c8f300cb02cc2e92f6e99c986a79",
+      "evaluation": {
+        "eval/base.jsonl": "93cd3a19f3e62c8d30d1660b431a9525823f58b9ceb1bf90c6ecbac2c19292eb",
+        "eval/chat.jsonl": "86ed01af44926370bbe2b863d6984dd00358dbb88b21a02cf124e7c388b67a86"
+      },
+      "code": {
+        "src/jmicro/large_corpus.py": "a373ce8629449ffed83d0a295be08d333d336c00cc1e43285db5c0ceb08fd844",
+        "src/jmicro/corpus_state.py": "5b89d5dc538486064ab43028007e2152f68b0a64bded46c56bd45a8cc65578d9",
+        "src/jmicro/expanded_data.py": "6e0bd03f05f4268746a57f4d06e644c49121ec4c8c6875b99a245db069d9bf1c",
+        "src/jmicro/data.py": "24b15285c9af6997c34d2b785dd5cca94d645c40ab03af936c0335ca943caa51",
+        "src/jmicro/tokenizer.py": "a437038f3c403b3473e662092205d036a4b18a9d0e2d26d9737f2a460b2443d5",
+        "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+      }
+    },
+    "elapsed_seconds": 2691.384231676
+  },
+  "job": {
+    "status": "running",
+    "pid": 1106994,
+    "started_at": "2026-10-03T11:35:08.794619Z",
+    "command": [
+      "scripts/prepare_corpus_10b_parallel.py",
+      "--raw",
+      "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/raw",
+      "--output",
+      "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2"
+    ],
+    "config_sha256": "0f4e738c2c4beb333bea3f5b2c410e2f5889d87f6aaffb8a92b281a19c43375e",
+    "execution": "parallel_bands_v3",
+    "boot_id": "0b330ec7-c11f-4bb3-be7c-cae9b868f4af",
+    "start_ticks": "144729",
+    "prior_cumulative_seconds": 680.553657957,
+    "stage": "parallel_external_lsh",
+    "heartbeat_at": "2026-10-03T12:20:08.025932Z",
+    "band_workers": 8
+  },
+  "completed_raw_files": 128,
+  "raw_records": 29009357,
+  "protected_records": 198899,
+  "signature_bytes": 14954627072,
+  "parallel_scope": {
+    "records": 29208256,
+    "eligible_records": 28998779,
+    "ids_sha256": "8d37aac375926c1f0ca0279f62aa81bb486be8245f149251c6fcba0ede059513",
+    "bands": 32
+  },
+  "live_band_workers": [
+    {
+      "pid": 1109198,
+      "start_ticks": "419419",
+      "cpu_ticks": 12505
+    },
+    {
+      "pid": 1109201,
+      "start_ticks": "419420",
+      "cpu_ticks": 12470
+    },
+    {
+      "pid": 1109202,
+      "start_ticks": "419420",
+      "cpu_ticks": 11514
+    },
+    {
+      "pid": 1109203,
+      "start_ticks": "419420",
+      "cpu_ticks": 11345
+    },
+    {
+      "pid": 1109204,
+      "start_ticks": "419420",
+      "cpu_ticks": 11776
+    },
+    {
+      "pid": 1109205,
+      "start_ticks": "419420",
+      "cpu_ticks": 11526
+    },
+    {
+      "pid": 1109206,
+      "start_ticks": "419420",
+      "cpu_ticks": 11857
+    },
+    {
+      "pid": 1109207,
+      "start_ticks": "419420",
+      "cpu_ticks": 10985
+    }
+  ],
+  "all_acquired_files_committed": true,
+  "all_file_receipt_hash_bindings_match": true,
+  "scope": "Ingested files/rows/signature-size/process checks only; no full corpus dedup, tokens, audit or readiness claim"
+}
