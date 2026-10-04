@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-04最新: ユーザー指定でstep3の[5B比較](../configs/phase6/base_5b_comparison.json)を再開。元2B/低LRWebの保存済み対照を再利用し、同じ全文devと400生成でfinal5Bを評価。short20はmixtureが違う参考条件。追加学習0、元品質基準維持、GPU上限30分。内容確認/report/commit後停止し10B/Chat/sweepへ進めない。[実状態](autonomous_status.md)。以下は履歴。
+
 2026-10-04最新: 次計画1・2（明示stable延長・総5B学習）を[完了](../reports/phase6/base_5b_review.json)。同じ10M/既存12.23B train、追加3.10B科学tokensと別524,288検証tokens、最後約5%decayを含む総5,000,003,584。CPU6tests/実CUDA全state再開一致、連続・有限更新、parent不変、GPU75分43秒で上限内。品質は未評価で元Base/Chat基準は維持。記録・commit後停止し、次は未実行のstep3全文dev/固定生成比較。10B/Chat/sweepへ自動移行しない。[実状態](autonomous_status.md)。以下は履歴。
 
 2026-10-04最新: ユーザーが次計画1・2（継続処理実装と総5B学習）を再開。[5B実行計画](35_base_5b_execution.md)。stable1.9Bから予算のみを延長する明示fork、Web100%、最終約5%decay、元品質基準を維持。学習完了/report/commitで止め、step3全文評価と10B/Chatは未開始。学習量到達と品質達成を区別する。[実状態](autonomous_status.md)。以下は履歴。

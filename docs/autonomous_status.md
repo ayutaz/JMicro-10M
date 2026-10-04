@@ -1,5 +1,13 @@
 # Codex継続作業の現在地
 
+## 5Bの比較を再開（2026-10-04）
+
+ユーザーが「比較を進めて」と指定。[固定config](../configs/phase6/base_5b_comparison.json)、[保存済み対照の照合](../reports/phase6/base_5b_comparison_preflight.json)。新しく評価するのはfinal5B checkpoint（SHA1d8e5274e1662063dedec355def1da3c9bcc972499a12b608c25c71b6758273a）だけ。元2B/低LRWeb100Mの完成結果を再利用し、short20は別mixtureの参考として併記する。共通12.23B trainのデータ量は変えず、今回追加学習0。低LR枝は曲線が異なり、2B対5Bでも総予算に応じ最終5%decay期間が伸びるため、全差を学習量だけの因果効果と断定しない。
+
+同じ保護dev89,416文書/164,344,743本文bytes/42,003,934本文tokens、context1024/stride512/batch16、CUDA BF16/Math/FP32 CEでBPBを比較。固定dev80prompt/64生成tokens、greedy抑制あり・なし＋sampling3seeds（42/43/44、temperature0.8/top_p0.9）、合計400。EOS bias/強制停止/penaltyなし。元suite/反復指標/品質基準を保持。全対照の同じ文書ID/本文token/byte数と400生成condition keysをCPUで照合成功、checkpoint hash/suite/Tokenizerも凍結。
+
+run `reports/phase6/base-5b-comparison-20261004/`、restart `bash scripts/compare_base_5b.sh`。launch/GPU lockとactual PID/boot/start ticksを照合しliveなら重複起動しない。全文devを先に保存して生成と分離する。既存unused CUDA cache解放を同条件で再利用、重み/数値演算は変更しない。GPU上限累積1,800秒、評価推定15〜20分、実装/報告は別。完了後に同じ80promptの内容を確認し、report/commitで停止。10B/Chat/追加学習やsweepは実行しない。以下は履歴。
+
 ## 次計画1・2を完了：総5B学習・停止（2026-10-04）
 
 [保存記録の確認結果](../reports/phase6/base_5b_review.json)、[完了証拠](../reports/phase6/base_5b_completion_audit.json)、[固定計画](35_base_5b_execution.md)。①予算だけを変更するstable延長処理を実装・凍結し、CPU6tests（失敗/skip0）と実CUDA16updates/524,288tokensのstable/decay両経路の連続4対2+保存再開2で全state/history一致。②同じ1.9B parentの重み/Adam/scheduler/RNG/データ位置からWeb100%を継続し、総5,000,003,584 input tokensへ到達した。新しい科学学習3,099,983,872 tokens、検証524,288は別計上。10,001,152 parameters、train12.23B、Tokenizer/core/設定は保持。sampler epoch0/position4,882,816、train blocksの周回なし。未使用dev/testを学習しない。

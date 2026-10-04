@@ -1,5 +1,7 @@
 # 別PCで続きを進める: Windows / WSL / RTX 4090
 
+2026-10-04最新: ユーザーが5B比較を再開。[config](../configs/phase6/base_5b_comparison.json)、run `reports/phase6/base-5b-comparison-20261004/`、restart `bash scripts/compare_base_5b.sh`。job.jsonのactual PID/boot/start ticksと/procを照合しliveなら重複起動しない。final5Bのみ同じdev89416/生成400を評価、元2B/低LRWeb/short20-reference結果は再実行しない。全文devと生成を別保存、source/weights/heldout保持、GPU累積1800秒。内容確認/report/commit後停止し新規学習/10B/Chat/sweepなし。[実状態](autonomous_status.md)。以下は履歴。
+
 2026-10-04最新: 次計画1・2（継続処理と総5B学習）を[完了](../reports/phase6/base_5b_review.json)。Linux run `reports/phase6/base-5b-20261004/` job complete、actual Linux450/Windows28760終了、GPU computeなし。final decay/checkpoint-00152588.pt、SHA1d8e5274e1662063dedec355def1da3c9bcc972499a12b608c25c71b6758273a、総5,000,003,584tokens。継続用stable/checkpoint-00144959.ptも保持。追加科学3,099,983,872＋検証524,288、CPU6testsと実CUDA全state再開一致、GPU75分43秒で120分上限内。全旧成果物/97科学checkpointを保持。ユーザー指定のコードpushはc68ff34までorigin/mainへ完了。記録・local commit後停止し、完成job再実行/全文評価/10B/Chat/sweepは開始しない。5B品質は未評価。次は別範囲のstep3比較。[実状態](autonomous_status.md)。以下は履歴。
 
 2026-10-04最新: 次計画1・2をユーザーが再開。[5B固定config](../configs/phase6/base_5b.json)、[実行計画](35_base_5b_execution.md)、run `reports/phase6/base-5b-20261004/`、restart `bash scripts/run_base_5b.sh`。actual job.json PID/boot/start ticksとlatest checkpointを照合しliveなら重複起動しない。stable1.9Bを別fork、LR0.002維持して総5B、最後約5%decay to0.0002。CPU6tests成功、実CUDA524,288検証後に追加3,099,983,872科学tokens。全旧成果物保持、uv/WSL4090/Linux data。学習/report/commitで停止し全文評価/10B/Chatへ進めない。5B品質は未判定。[実状態](autonomous_status.md)。以下は履歴。

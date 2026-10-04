@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "scope",
+    "output",
+    "checkpoint",
+    "checkpoint_sha256",
+    "checkpoint_tokens",
+    "dev_shards",
+    "dev_manifest_sha256",
+    "tokenizer",
+    "tokenizer_sha256",
+    "suite_sha256",
+    "split",
+    "documents",
+    "body_bytes",
+    "body_tokens",
+    "dtype",
+    "backend",
+    "context",
+    "stride",
+    "evaluation_batch",
+    "generation_cases",
+    "generation_outputs",
+    "max_new_tokens",
+    "sampling_seeds",
+    "temperature",
+    "top_p",
+    "memory_fraction",
+    "GPU_budget_seconds",
+    "references",
+    "implementation",
+    "source_sha256",
+    "growth_rules",
+    "quality_criteria_unchanged",
+    "created_at"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "scope": {
+      "const": "User requested step3 comparison only; no training, test selection,10B/Chat"
+    },
+    "output": {
+      "const": "reports/phase6/base-5b-comparison-20261004"
+    },
+    "checkpoint": {
+      "const": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-5b-20261004/decay/checkpoint-00152588.pt"
+    },
+    "checkpoint_sha256": {
+      "const": "1d8e5274e1662063dedec355def1da3c9bcc972499a12b608c25c71b6758273a"
+    },
+    "checkpoint_tokens": {
+      "const": 5000003584
+    },
+    "dev_shards": {
+      "const": "/home/aihub_ubuntu/jmicro-data/phase6/expanded-v2/shards"
+    },
+    "dev_manifest_sha256": {
+      "const": "75c7420a1434cf8a97797218b163c694a13ed838f389f09327dcc86f7164c12c"
+    },
+    "tokenizer": {
+      "const": "artifacts/phase2/4096/tokenizer.model"
+    },
+    "tokenizer_sha256": {
+      "const": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+    },
+    "suite_sha256": {
+      "const": "93cd3a19f3e62c8d30d1660b431a9525823f58b9ceb1bf90c6ecbac2c19292eb"
+    },
+    "split": {
+      "const": "dev"
+    },
+    "documents": {
+      "const": 89416
+    },
+    "body_bytes": {
+      "const": 164344743
+    },
+    "body_tokens": {
+      "const": 42003934
+    },
+    "dtype": {
+      "const": "bf16"
+    },
+    "backend": {
+      "const": "math"
+    },
+    "context": {
+      "const": 1024
+    },
+    "stride": {
+      "const": 512
+    },
+    "evaluation_batch": {
+      "const": 16
+    },
+    "generation_cases": {
+      "const": 80
+    },
+    "generation_outputs": {
+      "const": 400
+    },
+    "max_new_tokens": {
+      "const": 64
+    },
+    "sampling_seeds": {
+      "const": [
+        42,
+        43,
+        44
+      ]
+    },
+    "temperature": {
+      "const": 0.8
+    },
+    "top_p": {
+      "const": 0.9
+    },
+    "memory_fraction": {
+      "const": 0.94
+    },
+    "GPU_budget_seconds": {
+      "const": 1800
+    },
+    "references": {
+      "const": {
+        "base2B_body": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-2b-10bdata-20261004/evaluation-2B/full-dev.json",
+          "sha256": "5557e85eff99d694576c2c02fb9b66a7e99757e10f966f5b1bcdd1e4a8ef6407"
+        },
+        "base2B_generation": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-2b-10bdata-20261004/evaluation-2B/generation.json",
+          "sha256": "bc2054de8e7f6ea2ce258a853eb09a424236ee6f5c7e0f52636bdd0422430c2c"
+        },
+        "lowLR_web": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-low-lr-100m-20261004/web-full-evaluation.json",
+          "sha256": "2f568e874e1561a55cc0c80cbc78200c54785df840e75c3b044b77781f535a8a"
+        },
+        "short20_reference_only": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-low-lr-100m-20261004/short20-full-evaluation.json",
+          "sha256": "a506669d7bd3be93e36c5b14844bf002ce5f0703fc951b267776fbee7a425229"
+        }
+      }
+    },
+    "implementation": {
+      "const": {
+        "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+        "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+        "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+        "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+      }
+    },
+    "source_sha256": {
+      "const": {
+        "scripts/compare_base_5b.py": "1cf535ca7e3de85cdf5d5cf3987148b68f24602e0b10bc26ce97bca6296b14c8",
+        "scripts/compare_base_5b.sh": "eb2380d20ec26d7381f2cb92bbb6d83c81d3aa86c31ecd815836074ac9f46220",
+        "src/jmicro/readiness.py": "69a92251f4a697b551b9c3cfef9e2b992e776e2047c0331f7c43ba2331d172ea",
+        "src/jmicro/evaluation_memory.py": "ba22fb7ca7ddb6633a308c2b1a32a59147ecb38e568d9f838ab032300147c6b4",
+        "scripts/run_eos_short_pilot.py": "7a381414bdea5b24bbbbf7532f04db743cff948fa47f60e95f65019af2d3ec3d",
+        "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f"
+      }
+    },
+    "growth_rules": {
+      "const": {
+        "maximum_BPB_regression": 0.001,
+        "fixed_repetition_increase_must_be_less_than": 8,
+        "no_new_empty_role_unicode": true
+      }
+    },
+    "quality_criteria_unchanged": {
+      "const": true
+    },
+    "created_at": {
+      "const": "2026-10-04T07:27:16.435586Z"
+    }
+  }
+}
