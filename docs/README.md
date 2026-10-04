@@ -6,7 +6,7 @@
 
 モデルは10,001,152 parameters、T4K / NoQK-Norm / AdamW / context1024。主要Web5Bと同じ親から各100M仕上げ比較まで完了。準備済みtrainは12,225,819,077 tokens、独立全corpus監査は未完了。Phase 0〜5・Phase 6準備は完了済み。
 
-直接10Bの専用準備は完了（14関連tests、実CUDA全state保存再開、26 review checks）。本10B科学学習は実行中、品質評価は未開始。次は7.5Bを挟まず10Bまで学習し、同条件評価、結果報告・commitで停止する。ユーザーはstep2の学習を再開した。今回は学習と保存確認・report/commitで停止し、品質評価は後続のstep3。
+直接10Bの専用準備は完了（14関連tests、実CUDA全state保存再開、26 review checks）。本10B科学学習とCPU保存確認19項目も完了、品質評価は未開始。今回は学習結果のreport/commitで停止する。後続step3を再開する場合は、新10Bだけを同条件で評価する。
 
 本文BPBは改善したが、自然停止・反復・意味品質は不足。短文20%は固定EOS13/80へ改善したが全400 raw Unicode2件で最終採用不合格。表示helperの採用をraw品質成功とは扱わない。独立人手blind/test、Chat、新重みの量子化品質は未検証。
 
@@ -61,6 +61,7 @@
 - [38_eos_5b_finish_results.md](38_eos_5b_finish_results.md) — Web/短文比較の結果と採用不合格
 - [39_learning_scale_and_generation_plan.md](39_learning_scale_and_generation_plan.md) — 現行の直接10B・評価・報告と後続候補
 - [40_base_10b_preparation.md](40_base_10b_preparation.md) — 完了した専用10B準備。科学学習の完了ではない
+- [41_base_10b_training.md](41_base_10b_training.md) — 総10B学習・保存確認の完了、実測速度。品質比較は未実施
 運用文書: [最新状態](autonomous_status.md)、[復旧履歴](autonomous_history_20261003.md)、[Windows/WSL引継ぎ](windows_handoff.md)、[固定Hub復元](huggingface_handoff.md)、[自律runner](codex_automation.md)、[評価仕様](evaluation_protocol.md)。[data](../data/README.md)、[eval](../eval/README.md)、[reports](../reports/README.md)に各保存領域の手順を記載する。
 
 実行時の仕様は[評価仕様](evaluation_protocol.md)と[Windows/WSL移行手順](windows_handoff.md)を参照する。データとTokenizerの[Hugging Face公開版の取得手順](huggingface_handoff.md)も利用できる。

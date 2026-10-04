@@ -1,6 +1,6 @@
 # 学習計画
 
-最終更新: 2026-10-04。主要Web5Bと同じ5B親から各100MのWeb/短文仕上げ比較は完了。trainは12,225,819,077 tokens、モデルは10,001,152 parameters。直接10Bの専用準備を完了したが、本学習は実行中、品質評価は未開始。[現在地](autonomous_status.md)、[直接10B計画](39_learning_scale_and_generation_plan.md)を実行値の正本とする。
+最終更新: 2026-10-04。主要Web5Bと同じ5B親から各100MのWeb/短文仕上げ比較は完了。trainは12,225,819,077 tokens、モデルは10,001,152 parameters。直接10Bの準備・本学習・CPU保存確認19項目は完了、品質評価は未開始。[学習結果と速度](41_base_10b_training.md)。[現在地](autonomous_status.md)、[直接10B計画](39_learning_scale_and_generation_plan.md)を実行値の正本とする。
 
 AdamW、warmup/cosine、WSD stable/decay、stable予算の明示forkは実装済み。Muon・Chat trainerは未実装。通常resumeでは固定schedule/config/source/dataの変更を拒否するため、予算延長を同一runの再開として扱わない。依存変更はuv add、すべてのPythonはuv run --frozen、WSL/Linux dataを使用する。
 
@@ -13,7 +13,7 @@ Tokenizer・モデル・GPU学習器・保存再開・候補選定（完了）
   -> train12.23B利用準備（独立全corpus監査は未完了）
   -> 主要Web5B / 同じ親から各100M仕上げ（完了）
   -> 直接10B専用設定・CUDA保存再開（準備完了）
-  -> stable4.75B親から9.5B -> 独立decay -> 総10B（実行中）
+  -> stable4.75B親から9.5B -> 独立decay -> 総10B（学習・保存確認完了）
   -> 同じ全文dev/400生成比較 -> 報告・commitと停止
   -> 結果に応じEOS仕上げ / 別UTF8推論方式を判断
   -> Base品質判定 -> Dialogue/SFT -> Chat -> 量子化/独立ローカル検証
@@ -98,7 +98,7 @@ Phase 4〜5のFlash-only/mask失敗は保持した。③で固定長・PADなし
 
 ## Vast.ai
 
-**確定**: 初期のTokenizer学習とモデル実装・CPU検証はiMacで完了。学習器・GPU検証はローカルRTX 4090で完了した。次の10Bと将来のDialogue SFTはローカルで進める。20Bは改善・実測予算条件を満たす場合だけ判断する。
+**確定**: 初期のTokenizer学習とモデル実装・CPU検証はiMacで完了。学習器・GPU検証はローカルRTX 4090で完了した。10B学習はローカルで完了し、将来のDialogue SFTもローカルで進める。20Bは改善・実測予算条件を満たす場合だけ判断する。
 
 Vast.aiは後半に限定する。
 

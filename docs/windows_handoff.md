@@ -14,9 +14,9 @@
 | Python / PyTorch | uv Python 3.12.7 / PyTorch 2.14.1、CUDA 13.0 |
 | モデル・データ | 10,001,152 parameters / 準備済みtrain12,225,819,077 tokens |
 | 学習・比較 | 主要Web5B、各100M仕上げ比較完了。Base/Chat品質は未達 |
-| 次の実験 | 直接10Bの準備完了（local commit `4c3fbaf`）、科学学習step2は実行中。専用品質比較入口・品質評価は未実施 |
+| 次の実験 | 直接10Bの準備完了（local commit `4c3fbaf`）、科学学習step2とCPU保存確認19項目は完了。専用品質比較入口・品質評価は未実施 |
 
-現在のPCは復元・CUDA検証済み。setup、Tokenizer学習、完了済みGPU studyを再実行しない。今回はユーザー指定step2の本学習が実行中。総10B・保存結果確認・report/local commitまで行い、step3品質評価は開始しない。
+現在のPCは復元・CUDA検証済み。setup、Tokenizer学習、完了済みGPU studyを再実行しない。ユーザー指定step2の総10B学習と保存結果確認は完了。今回はreport/local commitで停止し、step3品質評価は開始しない。[本学習結果と速度](41_base_10b_training.md)。
 
 ## 1. Windows側でWSLとGPUを確認
 
@@ -63,7 +63,7 @@ Linux dataの `phase6/ten-billion/prepared-v2/export-001/shards`、必要なraw�
 
 - `reports/phase6/base-5b-20261004/`: stable親 `stable/checkpoint-00144959.pt`（4,750,016,512 tokens）とfinal5B `decay/checkpoint-00152588.pt`。
 - `reports/phase6/eos-5b-finish-100m-20261004/`: Web/short20の `checkpoint-00155640.pt`、raw生成・評価。
-- `reports/phase6/base-10b-20261004/`: 完了した準備検証。科学job/stableが実行中。最終resultとdecayは実際のrun状態を参照。
+- `reports/phase6/base-10b-20261004/`: 準備検証と科学job完了。stable9.5B/final10Bの両checkpoint、metrics/source/log/resultを保持。[保存結果](41_base_10b_training.md)。
 - 過去Phase 0〜5とPhase 6準備のreport、weights、native runtimeは保持する。
 
 checkpointはmodel/optimizer/scheduler/RNG/sampler位置/消費tokensを完了updateで保存する。通常resumeでschedule/config/source/dataを変更しない。4.75B親SHAと各重みSHAは[status](autonomous_status.md)および保存reportを参照する。
@@ -72,22 +72,22 @@ checkpointはmodel/optimizer/scheduler/RNG/sampler位置/消費tokensを完了up
 
 ## 6. 実装済みCLIと次回の再開
 
-AdamW、WSD stable/decay、StableExtensionTrainer、EOS短文mixture、学習/BPB/生成、表示helperは実装済み。Chat trainer、UTF8制約decoder、新10B専用品質比較は未実装・未適用。学習完了CPU reviewは実装し、実行中jobの完了拒否を確認済み。準備reviewを科学完了に流用しない。
+AdamW、WSD stable/decay、StableExtensionTrainer、EOS短文mixture、学習/BPB/生成、表示helperは実装済み。Chat trainer、UTF8制約decoder、新10B専用品質比較は未実装・未適用。学習完了CPU reviewは実装し、実際の終端保存stateと全metricsの19項目を確認済み。準備reviewを科学完了に流用しない。
 
-次回の科学学習は専用config/schema/launcherを維持してWSL project rootで:
+中断復旧用コマンド履歴（今回のrunは完了しているため再起動しない）:
 
 ```sh
 bash scripts/run_base_10b.sh --train
 ```
 
-引数なし/`--verify-only`は準備確認だけで、完了済みならGPU検証を繰り返さない。旧5BやPhase 5 launcherを新10Bのcommandとして起動しない。学習後、新10Bだけ全文dev/固定400で評価し、既存5B・Web5.1B結果を再利用する。学習・評価・報告・commitで停止する。[残りの手順](27_phase6_remaining_plan.md)
+引数なし/`--verify-only`は準備確認だけで、完了済みならGPU検証を繰り返さない。旧5BやPhase 5 launcherを新10Bのcommandとして起動しない。学習後、新10Bだけ全文dev/固定400で評価し、既存5B・Web5.1B結果を再利用する。今回は学習結果の報告・commitで停止し、step3評価は別の再開依頼で進める。[残りの手順](27_phase6_remaining_plan.md)
 
 ## 次の担当へ渡す文面
 
 ```text
 AGENTS.md、docs/autonomous_status.md、docs/15_project_roadmap.md、docs/windows_handoff.md、docs/39_learning_scale_and_generation_plan.mdを読んでください。
-主要Web5Bと追加各100M仕上げ比較、直接10Bの準備が完了しています。10B科学学習step2は実行中、品質評価step3は未実施です。
-現在の指定はstep2です。actual job/lock/checkpointを確認し、稼働中なら重複起動せず、総10B→保存結果確認→報告・commitまで続けて停止してください。中断時は専用--trainで復旧し、step3品質評価は開始しないでください。
+主要Web5Bと追加各100M仕上げ比較、直接10Bの準備が完了しています。10B科学学習step2とCPU保存確認19項目は完了、品質評価step3は未実施です。
+現在の指定step2は完了です。完了runを再起動しないでください。次回step3の依頼があれば専用品質比較入口を整え、新10Bだけ同条件評価して旧5B/最良Web結果と比較してください。指示なしにstep3や後続実験を始めないでください。
 完了済みGPU study、旧5B比較、Tokenizer学習、大型全corpus照合を繰り返さないでください。
 Pythonはuv、Linux dataを使用してください。actual process/lock/checkpointを確認して二重起動を避け、失敗証拠と未達品質を保持してください。
 Windows正本の最新local commitとLinuxのsource/hashを確認してください。自動pushはしないでください。

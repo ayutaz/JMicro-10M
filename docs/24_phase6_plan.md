@@ -1,6 +1,6 @@
 # Phase 6 Base学習の現在地と進行条件
 
-2026-10-04更新。Phase6全体の品質目標は未達。基盤①〜⑤、データ12.23B、2B・5B学習、各100M仕上げ比較、10B専用設定の準備は完了した。**本学習10Bは実行中。品質評価は未実施。** [現在地](autonomous_status.md)、[次の詳細計画](39_learning_scale_and_generation_plan.md)、[準備証拠](40_base_10b_preparation.md)。旧計画全文は [履歴](autonomous_history_20261004.md) に保持する。
+2026-10-04更新。Phase6全体の品質目標は未達。基盤①〜⑤、データ12.23B、2B・5B学習、各100M仕上げ比較、10B専用設定の準備は完了した。**本学習10BとCPU保存確認19項目は完了。品質評価は未実施。** [現在地](autonomous_status.md)、[次の詳細計画](39_learning_scale_and_generation_plan.md)、[準備証拠](40_base_10b_preparation.md)。旧計画全文は [履歴](autonomous_history_20261004.md) に保持する。
 
 ## 完了した基盤と実験
 
@@ -13,12 +13,13 @@
 | 2B・5Bと比較 | 完了、EOS/反復/意味品質は未達 | [5B比較](36_base_5b_comparison.md) |
 | 5Bから各100M仕上げ | 完了、短文のraw失敗条件不合格 | [結果](38_eos_5b_finish_results.md) |
 | 直接10B準備 | 14tests/実CUDA保存再開一致、科学tokens0 | [準備](40_base_10b_preparation.md) |
+| 直接10B本学習 | 総10,000,007,168 tokens、CPU保存確認19項目成功、品質未評価 | [本学習](41_base_10b_training.md) |
 
 ## 現在の凍結設定
 
 選定候補はT4K / NoQK-Norm / AdamW / 10,001,152 parameters。新しい長期入口は [base_10b.json](../configs/phase6/base_10b.json)。以前のbase_frozen.jsonや5B launcherを新10B設定として起動しない。
 
-保存stable4.75Bから同じmodel/Adam/RNG/Web位置を維持する明示forkで、stable9.5B＋15,259-update decay、累積10,000,007,168 tokensへ到達する。予定追加科学5,249,990,656 tokensと、準備検証524,288 tokensは別。旧重み・旧reportsを保持し、7.5Bの別実験は省く。
+保存stable4.75Bから同じmodel/Adam/RNG/Web位置を維持する明示forkで、stable9.5B＋15,259-update decay、累積10,000,007,168 tokensへ到達した。[学習結果と速度](41_base_10b_training.md)。実追加科学5,249,990,656 tokensと、準備検証524,288 tokensは別。旧重み・旧reportsを保持し、7.5Bの別実験は省く。
 
 ## 評価と進行条件
 
@@ -28,7 +29,7 @@
 
 ## 終了点と予算
 
-現在の依頼はstep2の直接10B学習で、専用jobが実行中。中断時の復旧commandは `bash scripts/run_base_10b.sh --train`。引数なし/--verify-onlyは準備のみで完了結果を再利用する。actual job/lock/latestを確認して重複起動を避ける。
+現在の依頼step2の直接10B学習は完了し、専用jobと実processは終了済み。中断時の復旧commandは `bash scripts/run_base_10b.sh --train`。引数なし/--verify-onlyは準備のみで完了結果を再利用する。actual job/lock/latestを確認して重複起動を避ける。
 
 今回は学習・保存結果確認・報告/local commitで一区切り。全文/生成の品質比較は後続step3で未実施。学習GPU上限9,000秒に準備19.217秒を含め、別評価予約1,800秒、計10,800秒。見積もり145〜165分、実装・内容確認は別。短文仕上げ/UTF8制約、20B/50B/Chatへは自動移行しない。
 

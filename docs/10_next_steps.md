@@ -1,6 +1,6 @@
 # 次に進める作業
 
-2026-10-04更新。[現在地](autonomous_status.md)と[具体的な計画](39_learning_scale_and_generation_plan.md)に合わせる。**10B実行準備は完了、本学習step2は実行中。今回は総10B学習・保存確認・報告とcommitで停止する。** 同条件品質評価step3は未実施で今回の指定外。
+2026-10-04更新。[現在地](autonomous_status.md)と[具体的な計画](39_learning_scale_and_generation_plan.md)に合わせる。**総10B学習step2とCPU保存確認19項目を完了。今回は報告とcommitで停止する。** 同条件品質評価step3は未実施で今回の指定外。[結果と速度](41_base_10b_training.md)。
 
 ## 完了していること
 
@@ -13,9 +13,9 @@
 
 ## 次の実行区切り
 
-- [ ] 科学学習のactual job/lock/latestを確認し、保存stable4.75Bから総10Bへ明示forkで継続する。専用入口は `bash scripts/run_base_10b.sh --train`。
-- [ ] stable9.5Bと最終decay checkpoint、連続/有限更新、Adam/scheduler/RNG/cursor/消費counterを保存・確認する。
-- [ ] 10B完了確認と専用比較の入口を、実行前に整える。既存評価コードを再利用し、旧reportを上書きしない。準備reviewerだけで科学学習完了としない。
+- [x] 保存stable4.75Bから総10,000,007,168 tokens/update305176へ継続。実Linux/Windows processの終了を確認した。
+- [x] stable9.5Bと最終decay checkpoint、連続/有限更新、Adam/scheduler/RNG/cursor/消費counterを専用CPU reviewerで確認した。
+- [ ] 後続step3の専用品質比較入口を整える。既存評価コードを再利用し、旧reportを上書きしない。今回は起動しない。
 - [ ] 新10Bだけ同じ全文dev89,416/本文164,344,743bytesと400生成で評価する。5B/最良Web5.1Bの完成結果は再利用する。
 - [ ] BPB/EOS/反復/raw Unicode/empty/roleと同じpromptの内容を比較し、採否・未達を報告してlocal commit、一区切りで停止する。
 
