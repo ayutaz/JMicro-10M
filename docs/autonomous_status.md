@@ -1,5 +1,7 @@
 # Codex継続作業の現在地
 
+計画49段階1のGPU比較を永続起動: 準備commit70304d6、14関連CPU tests成功、専用config/schema凍結。hidden Windows34152、actual Linux139467 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks1364277、開始2026-10-04 16:13:58Z。実CUDA保存再開後、物語10%の100M学習を実行中。run`reports/phase6/story10-10b-100m-20261005`、`screen-job.json`とWindows`screen.*.log`へ保存。GPU中のみUI停止、finallyで元final10Bへ戻す。80内容診断・採用判定→条件付き各500Mまたは低LR比較→最終判断/提案が残るためgoalはactive。actual processを確認し、同じjobを重複起動しない。
+
 2026-10-05 JST・計画49段階1〜3を実行再開: ユーザー「3までを進めて判断をして提案をしてください」。[実行記録50](50_story10_and_budget_execution.md)へ条件を保存し、物語10%/100Mの専用runner・launcher・testsを準備中。既存25M poolと保存済みWeb/20%対照を再利用し、原gateは不変。採用条件を通る場合は各500M比較、未達なら一つの低LR同量比較→判断/提案/report/local commit・UI復帰で停止する。1B/20B/50B/Chat/test/pushは開始しない。現在科学GPU未開始、actual GPU processは既存UI49746のみ。過去完了runを再起動しない。
 
 2026-10-05 JST・次回計画のみ: 前回結果を踏まえた[配合・学習量計画49](49_next_mixture_and_training_budget_plan.md)を作成。最初は同じfinal10B親・同じLRで新物語10%を100M学習し、保存済みWeb/20%結果と比較する提案。既存25M poolで足り、新source取得は不要。原採用条件を通る場合のみ、pool約60MとWeb/物語10%各500Mの同量比較を別予算で計画する。学習不足仮説と10B対20B案を残す。BPB悪化上限は緩めず、未採用20%枝を自動延長しない。今回は計画保存/local commitで停止、GPU学習/評価・新data取得/構築は未開始、既存UIを維持する。前回段階1〜3の完了commitは6d0ab0c。

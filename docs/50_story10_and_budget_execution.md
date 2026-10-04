@@ -12,6 +12,10 @@
 
 一次GPU上限900秒、条件付き全文/長文1,800秒。旧run失敗・raw・失敗gateは保持する。GPU実行前にactual process/lockを確認し、UIを一時停止・finallyで元final10Bへ戻す。runはLinux`reports/phase6/story10-10b-100m-20261005`、process PID/boot/start_ticks/checkpoint/log/sourceを永続保存する。CPU/data準備時間とGPU計算時間は別。
 
-## 段階2と最終判断
+## 段階1の起動記録
+
+準備local commit70304d6、関連14 CPU tests成功。専用config/schemaを凍結し、2026-10-04 16:13:58Z（JST10月5日01:13）にhidden Windows34152を起動した。actual Linux139467 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks1364277を確認。`screen-job.json`、Windows`screen.stdout.log`/`screen.stderr.log`、各checkpoint/metricsへ永続保存。実CUDA保存再開を終え、800updates時点で実process継続と約695k tokens/sを確認した。UIはこのGPU処理中だけ停止し、launcher finallyで元final10Bへ復帰する。科学終端・一次評価・80内容診断と条件付き評価はまだ未完了で、重複起動しない。
+
+## 段階2と最終判断（次の条件付き作業）
 
 段階1の採用結果を確認してから条件を凍結する。通る場合は同じsource/選別の約60M pool、同じ親・同量各500Mと共通LR計画、中間100M/終端500Mの比較、GPU上限7,200秒を定義する。未達なら10%固定・peak LR0.0001のWeb/物語各100Mを一つの別比較として定義し、LR以外の変更を同時に行わない。失敗でも報告と次案を出して停止する。安全条件を緩めて未採用枝を増量しない。十分量・容量上限を断定せず、学習不足仮説と必要なら10B対20Bの次案を残す。
