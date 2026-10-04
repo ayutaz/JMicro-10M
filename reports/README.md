@@ -7,10 +7,10 @@
 | [corpus_10b_ready_review.json](phase6/corpus_10b_ready_review.json) | train12,225,819,077 tokensをbuilder/raw再構成/実loaderで受け入れ。独立全corpus auditは未完了 |
 | [base_5b_review.json](phase6/base_5b_review.json)、[比較review](phase6/base_5b_comparison_review.json) | 主要Web5,000,003,584 tokensの実学習・保存・全文dev/固定400評価 |
 | [eos_5b_finish_review.json](phase6/eos_5b_finish_review.json)、[Unicode原因確認](phase6/eos_5b_finish_unicode_review.json) | 同じ5B親から各100,007,936追加。Web BPB0.958092、短文0.959011、短文EOS13/80・反復51/80へ改善。ただしraw Unicode2/400で最終採用不合格 |
-| [base_10b_preparation_review.json](phase6/base_10b_preparation_review.json)、[14tests](phase6/base_10b_tests.xml) | 専用10B準備完了、26保存checksと実CUDA全state再開一致。16更新/524,288検証tokensは科学学習と別。10B科学学習は0tokens・未開始 |
+| [base_10b_preparation_review.json](phase6/base_10b_preparation_review.json)、[14tests](phase6/base_10b_tests.xml) | 専用10B準備完了、26保存checksと実CUDA全state再開一致。16更新/524,288検証tokensは科学学習と別。準備時の科学学習は0tokens。現在step2の10B科学学習が実行中 |
 | [documentation_refresh_20261004.json](phase6/documentation_refresh_20261004.json) | 現行文書と計画の整理、元13文書の履歴保存、内部リンク・凍結条件・WSL同期の確認。GPU jobは開始しない |
 
-科学10Bの専用比較入口・科学完了reviewは未整備。準備reviewを学習完了証拠に数えない。現在地は[status](../docs/autonomous_status.md)、次は[直接10B→同条件評価→報告と停止](../docs/39_learning_scale_and_generation_plan.md)。Base/Chat品質、独立人手blind/test、新重みの量子化品質は未達・未検証。
+科学10Bの専用品質比較入口は未整備。学習完了CPU reviewはscripts/review_base_10b_training.pyへ実装し、実行中jobの完了拒否を確認済み。学習終了後の適用はまだ行っていない。準備reviewを学習完了証拠に数えない。現在地は[status](../docs/autonomous_status.md)、次は[直接10B→同条件評価→報告と停止](../docs/39_learning_scale_and_generation_plan.md)。Base/Chat品質、独立人手blind/test、新重みの量子化品質は未達・未検証。
 
 ## 過去の記録の読み方
 

@@ -6,7 +6,7 @@
 
 モデルは10,001,152 parameters、T4K / NoQK-Norm / AdamW / context1024。主要Web5Bと同じ親から各100M仕上げ比較まで完了。準備済みtrainは12,225,819,077 tokens、独立全corpus監査は未完了。Phase 0〜5・Phase 6準備は完了済み。
 
-直接10Bの専用準備は完了（14関連tests、実CUDA全state保存再開、26 review checks）。本10B科学学習・評価は未開始。次は7.5Bを挟まず10Bまで学習し、同条件評価、結果報告・commitで停止する。今回は文書更新だけを行う。
+直接10Bの専用準備は完了（14関連tests、実CUDA全state保存再開、26 review checks）。本10B科学学習は実行中、品質評価は未開始。次は7.5Bを挟まず10Bまで学習し、同条件評価、結果報告・commitで停止する。ユーザーはstep2の学習を再開した。今回は学習と保存確認・report/commitで停止し、品質評価は後続のstep3。
 
 本文BPBは改善したが、自然停止・反復・意味品質は不足。短文20%は固定EOS13/80へ改善したが全400 raw Unicode2件で最終採用不合格。表示helperの採用をraw品質成功とは扱わない。独立人手blind/test、Chat、新重みの量子化品質は未検証。
 

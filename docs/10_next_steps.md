@@ -1,6 +1,6 @@
 # 次に進める作業
 
-2026-10-04更新。[現在地](autonomous_status.md)と[具体的な計画](39_learning_scale_and_generation_plan.md)に合わせる。**10B実行準備は完了、本学習は未開始。次の実行区切りは総10B学習・同じ評価での比較・報告。** 今回は文書更新のみで学習を起動しない。
+2026-10-04更新。[現在地](autonomous_status.md)と[具体的な計画](39_learning_scale_and_generation_plan.md)に合わせる。**10B実行準備は完了、本学習step2は実行中。今回は総10B学習・保存確認・報告とcommitで停止する。** 同条件品質評価step3は未実施で今回の指定外。
 
 ## 完了していること
 

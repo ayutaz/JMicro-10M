@@ -1,8 +1,8 @@
 # Codexによる環境整備・学習・改善の自動化
 
-現在地（2026-10-04）: Phase 0〜5、Phase 6準備、主要Web5B、各100M仕上げ比較、直接10B専用準備は完了。10B科学学習・品質評価は未開始。現在の指定範囲は文書・計画更新、保存とlocal commitで停止。[最新状態](autonomous_status.md)、[直接10B計画](39_learning_scale_and_generation_plan.md)、[準備証拠](40_base_10b_preparation.md)を参照する。
+現在地（2026-10-04）: Phase 0〜5、Phase 6準備、主要Web5B、各100M仕上げ比較、直接10B専用準備は完了。10B科学学習step2は実行中、品質評価step3は未開始。現在の指定範囲は総10B学習、保存結果確認、report/local commitで停止。[最新状態](autonomous_status.md)、[直接10B計画](39_learning_scale_and_generation_plan.md)、[準備証拠](40_base_10b_preparation.md)を参照する。
 
-Full accessは既に実効policyへ反映済みで、ユーザー側のrunner起動を学習開始条件にしない。起動前にAGENTS.mdの範囲とactual job/lock/checkpointを確認する。completeはその時の指定範囲を証拠で完了したことを示し、Base/Chat完成とは区別する。文書更新でGPU jobを開始しない。
+Full accessは既に実効policyへ反映済みで、ユーザー側のrunner起動を学習開始条件にしない。起動前にAGENTS.mdの範囲とactual job/lock/checkpointを確認する。completeはその時の指定範囲を証拠で完了したことを示し、Base/Chat完成とは区別する。現在の科学jobはユーザーのstep2再開指示で起動済み。actual job/lockを確認して二重起動を避ける。
 
 以下のCLI 0.159.3・アプリ設定・公式資料の説明は2026-10-03に確認した履歴で、今回の文書更新では製品設定を再調査・変更していない。旧作業の指示は[保存履歴](autonomous_history_20261004.md)を参照する。
 

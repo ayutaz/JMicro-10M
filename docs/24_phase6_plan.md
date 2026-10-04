@@ -1,6 +1,6 @@
 # Phase 6 Base学習の現在地と進行条件
 
-2026-10-04更新。Phase6全体の品質目標は未達。基盤①〜⑤、データ12.23B、2B・5B学習、各100M仕上げ比較、10B専用設定の準備は完了した。**本学習10Bは未開始。** [現在地](autonomous_status.md)、[次の詳細計画](39_learning_scale_and_generation_plan.md)、[準備証拠](40_base_10b_preparation.md)。旧計画全文は [履歴](autonomous_history_20261004.md) に保持する。
+2026-10-04更新。Phase6全体の品質目標は未達。基盤①〜⑤、データ12.23B、2B・5B学習、各100M仕上げ比較、10B専用設定の準備は完了した。**本学習10Bは実行中。品質評価は未実施。** [現在地](autonomous_status.md)、[次の詳細計画](39_learning_scale_and_generation_plan.md)、[準備証拠](40_base_10b_preparation.md)。旧計画全文は [履歴](autonomous_history_20261004.md) に保持する。
 
 ## 完了した基盤と実験
 
@@ -28,9 +28,9 @@
 
 ## 終了点と予算
 
-現在の依頼は文書同期。次に本学習を実行する場合は `bash scripts/run_base_10b.sh --train`。引数なし/--verify-onlyは準備のみで完了結果を再利用する。actual job/lock/latestを確認して重複起動を避ける。
+現在の依頼はstep2の直接10B学習で、専用jobが実行中。中断時の復旧commandは `bash scripts/run_base_10b.sh --train`。引数なし/--verify-onlyは準備のみで完了結果を再利用する。actual job/lock/latestを確認して重複起動を避ける。
 
-学習・比較・報告/local commitで一区切り。学習GPU上限9,000秒に準備19.217秒を含め、別評価予約1,800秒、計10,800秒。見積もり145〜165分、実装・内容確認は別。短文仕上げ/UTF8制約、20B/50B/Chatへは自動移行しない。
+今回は学習・保存結果確認・報告/local commitで一区切り。全文/生成の品質比較は後続step3で未実施。学習GPU上限9,000秒に準備19.217秒を含め、別評価予約1,800秒、計10,800秒。見積もり145〜165分、実装・内容確認は別。短文仕上げ/UTF8制約、20B/50B/Chatへは自動移行しない。
 
 ## 開始前に揃える条件
 

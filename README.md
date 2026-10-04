@@ -2,7 +2,7 @@
 
 日本語の短文生成と数ターンの雑談を目的に、Tokenizerからスクラッチ構築する約10Mの言語モデル。現在のモデルは **10,001,152 parameters**、準備済みtrainデータは **12,225,819,077 tokens**。
 
-2026-10-04現在、主系列の5B学習と、同じ5B親からWeb/短文20%を各100M追加する比較を完了した。**直接10Bへ継続する設定と実GPU保存再開検証は準備済みで、本学習10Bは未開始。** 現在の文書更新は学習の起動を伴わない。[現在地](docs/autonomous_status.md)、[次の計画](docs/39_learning_scale_and_generation_plan.md)、[10B準備結果](docs/40_base_10b_preparation.md)を参照する。
+2026-10-04現在、主系列の5B学習と、同じ5B親からWeb/短文20%を各100M追加する比較を完了した。**直接10Bへ継続する設定と実GPU保存再開検証は準備済みで、本学習10Bは実行中。** ユーザーがstep2を再開し、2026-10-04 09:36Zに専用--trainで起動した。今回は学習・保存結果確認・report/commitで停止し、step3の品質評価は開始しない。[現在地](docs/autonomous_status.md)、[次の計画](docs/39_learning_scale_and_generation_plan.md)、[10B準備結果](docs/40_base_10b_preparation.md)を参照する。
 
 ## 学習結果と残る課題
 
@@ -19,10 +19,10 @@
 ## 次の実行
 
 1. **10B設定準備は完了。** 関連14tests、実CUDA16updates/524,288検証tokensの全state/history保存再開一致、保存証拠26項目を確認した。
-2. **次は直接総10B学習。** 手元の12.23Bデータを使い、保存stable4.75Bから9.5B stable＋最終decayへ進む。7.5Bの中間実験と新データ収集は省く。
-3. **同じ全文dev/400生成で比較し、報告・commitして停止。** 本文予測とEOS・反復・文字化け・内容を分けて評価する。後続の短文仕上げ/UTF8制約/Chat等は別範囲。
+2. **直接総10B学習を実行中。** 手元の12.23Bデータを使い、保存stable4.75Bから9.5B stable＋最終decayへ進む。7.5Bの中間実験と新データ収集は省く。
+3. **後続step3: 同じ全文dev/400生成で比較。今回の指定外。** 本文予測とEOS・反復・文字化け・内容を分けて評価する。後続の短文仕上げ/UTF8制約/Chat等は別範囲。
 
-次段階を実行する場合のLinux repo内コマンド:
+有効checkpointから復旧する場合のLinux repo内コマンド（実process/lockを確認し、稼働中なら重複起動しない）:
 
 ```bash
 bash scripts/run_base_10b.sh --train

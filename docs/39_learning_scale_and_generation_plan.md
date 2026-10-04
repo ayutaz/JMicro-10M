@@ -1,8 +1,8 @@
 # 学習量拡大とEOS 反復 UTF8改善の次回計画
 
-実行準備の更新（2026-10-04）：ユーザー指定のstep1により[専用設定とGPU保存再開確認](40_base_10b_preparation.md)を完了。新config/schema/launcherは準備済み、14tests/実CUDA全state一致を確認した。本学習は未開始。今後の起動は `bash scripts/run_base_10b.sh --train`、引数なしは検証専用。
+実行準備の更新（2026-10-04）：ユーザー指定のstep1により[専用設定とGPU保存再開確認](40_base_10b_preparation.md)を完了。新config/schema/launcherは準備済み、14tests/実CUDA全state一致を確認した。ユーザー指定step2の本学習は2026-10-04 09:36Zから実行中。復旧commandは `bash scripts/run_base_10b.sh --train`、引数なしは検証専用。
 
-2026-10-04。ユーザーの訂正に従い、7.5Bの中間実験を省き、**既存12.23B train tokensを使って総10Bまで一度に学習し、そこで比較する計画**へ変更した。データセットは既に10Bを超えているため、新規収集ではなく学習する量を増やす。EOS・反復にはその後に短文仕上げを一度比較し、UTF8は別の推論方式として評価する。本学習・品質評価・decoder変更は未開始で、実CUDAは準備の保存再開検証だけを行った。[前回結果](38_eos_5b_finish_results.md)と[保存証拠](../reports/phase6/eos_5b_finish_review.json)を基準にする。
+2026-10-04。ユーザーの訂正に従い、7.5Bの中間実験を省き、**既存12.23B train tokensを使って総10Bまで一度に学習し、そこで比較する計画**へ変更した。データセットは既に10Bを超えているため、新規収集ではなく学習する量を増やす。EOS・反復にはその後に短文仕上げを一度比較し、UTF8は別の推論方式として評価する。本学習step2は実行中で、品質評価step3・decoder変更は未開始。実CUDA準備検証のtokensと科学学習tokensは別会計にする。[前回結果](38_eos_5b_finish_results.md)と[保存証拠](../reports/phase6/eos_5b_finish_review.json)を基準にする。
 
 ## 現在の根拠と未解決事項
 
@@ -50,7 +50,7 @@ stable4.75Bから9.5Bへ継続し、最後の独立decayで総10Bへ到達する
 
 10Bも同じ全文dev/400生成と内容で比較する。BPB改善だけでEOS・文法・正答率も改善したとは扱わない。退行時は最良の旧モデルを保持して報告し、20B/50B/データ再収集へ自動移行しない。今後データ量そのものを比較するなら、同じ学習tokens/曲線で小さいpoolの周回対大きいpoolの新規データを別実験にする必要がある。今回の主目的は既存pool内の学習量を増やす効果である。
 
-専用の10B比較入口と科学学習完了reviewは未整備。既存5B evaluator/reviewerを適用し、条件・tokens・resultラベルを確認してから使う。準備reviewerは準備だけを検証し、10B科学完了や品質達成を判定しない。
+専用の10B品質比較入口は未整備。学習完了CPU reviewerはscripts/review_base_10b_training.pyへ実装し、実行中jobの完了拒否guardを確認済み。学習終了後に実際の保存結果へ適用する。品質比較は既存5B evaluatorを適用し、条件・tokens・resultラベルを確認してから使う。準備reviewerは準備だけを検証し、10B科学完了や品質達成を判定しない。
 
 ## 4 結果報告・commitと停止
 
@@ -92,4 +92,4 @@ stable4.75Bから9.5Bへ継続し、最後の独立decayで総10Bへ到達する
 
 Pythonはすべてuv run --frozen＋必要extras、WSL2/4090/Linux data。起動前にactual PID/boot/start ticksとGPU lockを確認し、永続job/log/checkpoint/sourceを保存する。過剰な全データ照合や旧GPU評価の再実行はしない。各有意な結果でstatusを更新しlocal commit、pushはしない。
 
-今回は文書・計画更新と保存・commitで停止する。実行準備は前回完了済み。新run/config/schema/起動commandは準備済みだが、本学習は未開始。旧launcherを新予算のまま起動しない。20B/50B/Chat/Tokenizer再学習/unlikelihood/parameter sweepは今回の実行計画に含めない。
+今回はユーザーが再開したstep2の科学学習を総10Bまで実行し、保存結果確認・report/local commitで停止する。実行準備は前回完了済み、本学習は実行中。step3品質評価と後続EOS/UTF8実験は今回の指定外。旧launcherを新予算のまま起動しない。20B/50B/Chat/Tokenizer再学習/unlikelihood/parameter sweepは今回の実行計画に含めない。

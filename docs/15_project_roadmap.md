@@ -18,7 +18,7 @@
 
 Phase 0〜5とPhase 6①〜⑤、主要Web総5,000,003,584 tokens、同じ5B親からWeb/短文20%を各100,007,936 tokens追加した比較を完了。モデルは10,001,152 parameters、準備済みtrain12,225,819,077 tokens。独立全12.23B監査は未完了で、その事実を保持する。[実状態](autonomous_status.md)、[5B結果](35_base_5b_execution.md)、[仕上げ結果](38_eos_5b_finish_results.md)を参照する。
 
-直接10Bの専用config/schema/launcher、14関連tests、実CUDA全state保存再開と26 review checksは[準備完了](40_base_10b_preparation.md)。科学学習・専用品質評価は未開始。現在の文書更新ではGPUを起動しない。次の学習実行範囲は[直接10B計画](39_learning_scale_and_generation_plan.md)のstep2〜4（学習→同条件評価→報告・commitと停止）。7.5B専用枝、再収集、20B/50Bへ自動移行しない。
+直接10Bの専用config/schema/launcher、14関連tests、実CUDA全state保存再開と26 review checksは[準備完了](40_base_10b_preparation.md)。科学学習step2は実行中、専用品質評価step3は未開始。ユーザーの今回指定はstep2の学習・保存結果確認・report/commitまで。次の学習実行範囲は[直接10B計画](39_learning_scale_and_generation_plan.md)のstep2〜4（学習→同条件評価→報告・commitと停止）。7.5B専用枝、再収集、20B/50Bへ自動移行しない。
 
 本文BPBは5B0.964484、Web5.1B0.958092、短文5.1B0.959011。短文は固定EOS13/80と反復51/80へ改善したがraw Unicode2/400で最終採用不合格。Base/Chat品質、独立人手blind/test、新重みの量子化品質は未達・未実施。結果を見て元の品質条件を緩めない。
 
@@ -36,7 +36,7 @@ Pythonはuv管理3.12.7、依存変更はuv add。WSLでは `uv run --frozen --e
 | 3 | 完了・[証拠](19_phase3_completion.md) | iMac / CPU | 10Mモデルと推論経路を成立させる | 正しいモデル・cache・HF/float GGUF経路を確認する | 2 |
 | 4 | 完了・[実機証拠](21_phase4_completion.md) | Windows/WSL＋RTX 4090 | 長時間学習の再現性と実行可能性を確かめる | 保存再開・実shard学習・4090速度と予算を検証した | 1〜3 |
 | 5 | 完了 | Windows/WSL・RTX 4090 | 小予算で有望な候補を選ぶ | overfit、10M smoke、100M比較から最大2候補を選ぶ | 4 |
-| 6 | 5B・各100M比較・10B準備完了、10B科学未開始 | Windows/WSL・RTX 4090 | 日本語Baseの能力を段階的に伸ばす | 5B実績から直接10Bを評価し、Base品質を別判定する | 5、[準備完了証拠](30_phase6_readiness_execution.md) |
+| 6 | 5B・各100M比較・10B準備完了、10B科学実行中 | Windows/WSL・RTX 4090 | 日本語Baseの能力を段階的に伸ばす | 5B実績から直接10Bを評価し、Base品質を別判定する | 5、[準備完了証拠](30_phase6_readiness_execution.md) |
 | 7 | 未着手 | Windows/WSL・RTX 4090 | Baseを短文雑談モデルへ仕上げる | mid-trainingとSFTの効果を分離し、Chat v1を評価する | 6、1の会話pilot |
 | 8 | 未着手 | 学習PC・独立したローカル検証環境 | ローカルで使える成果物を完成させる | Base/Chatと量子化版を独立環境で実行・再現できる | 7、3のexport経路 |
 | 9 | 未着手・50Bは条件付き | Windows/WSL・RTX 4090 | 追加学習に継続価値があるか検証する | 20B、条件付き50Bの効果と限界を報告する | 6、追加予算の見積もり |
@@ -50,7 +50,7 @@ Phase 1の会話pilotは準備済みで、拡張と評価準備をBase学習と�
 
 ## 高速に完成させる進め方
 
-**確定（優先方針）**: ユーザーは完成までの時間短縮を優先する。Windows/WSLへの切替とPhase 4は完了した。Phase 5の候補選定まで完了し、Phase 6①〜⑤、5Bと各100M比較、10B準備が完了。本10B科学学習は未開始。Phase 3をGPUで最初からやり直すことは移行の前提にしない。
+**確定（優先方針）**: ユーザーは完成までの時間短縮を優先する。Windows/WSLへの切替とPhase 4は完了した。Phase 5の候補選定まで完了し、Phase 6①〜⑤、5Bと各100M比較、10B準備が完了。本10B科学学習は実行中。Phase 3をGPUで最初からやり直すことは移行の前提にしない。
 
 Phase 3の最終検証一式はM1 iMac上で24.62秒。これは実装後の検証時間で、コード作成・修正、Tokenizer学習、runtime初回build、docs更新を含まない。作業全体の約25分と区別し、GPUへの変更で実装時間まで短縮すると見積もらない。[実測report](../reports/phase3/export_parity_report.json)
 
@@ -177,7 +177,7 @@ Phase 4は以下の順で実施済み。新規環境への移行・実装変更�
 
 ## Phase 4: 学習器・shard・再開・4090 benchmark
 
-**状態**: 2026-10-03に完了。WSL 3.0.1.0 / Ubuntu WSL 2 / RTX 4090でCUDA/BF16確認と64 tests / skip 0、両モデルの200 vs 100+100完全一致、全dev・固定生成suite、最大batch・backend/compile・予算を実測・監査した。[完了記録と測定の制約](21_phase4_completion.md)を参照する。Phase 5も[完了](23_phase5_completion.md)し、Phase 6①〜⑤、5Bと各100M比較、10B準備が完了。本10B科学学習は未開始。
+**状態**: 2026-10-03に完了。WSL 3.0.1.0 / Ubuntu WSL 2 / RTX 4090でCUDA/BF16確認と64 tests / skip 0、両モデルの200 vs 100+100完全一致、全dev・固定生成suite、最大batch・backend/compile・予算を実測・監査した。[完了記録と測定の制約](21_phase4_completion.md)を参照する。Phase 5も[完了](23_phase5_completion.md)し、Phase 6①〜⑤、5Bと各100M比較、10B準備が完了。本10B科学学習は実行中。
 
 **目的**: 長期runを失わず、実際の計算・ストレージ予算に収める。
 
@@ -202,7 +202,7 @@ Phase 4は以下の順で実施済み。新規環境への移行・実装変更�
 
 ## Phase 5: overfit・10M smoke・100M比較
 
-**状態**: 2026-10-03に完了。4本の100Mと補助予算を評価し、T4K / NoQK-Norm / LR 0.002を1候補に選定。全68 tests / skip 0、CUDA厳密resumeと独立監査が成功。品質の未達も[完了記録](23_phase5_completion.md)へ保存し、Phase 6①〜⑤、5Bと各100M比較、10B準備が完了。本10B科学学習は未開始。
+**状態**: 2026-10-03に完了。4本の100Mと補助予算を評価し、T4K / NoQK-Norm / LR 0.002を1候補に選定。全68 tests / skip 0、CUDA厳密resumeと独立監査が成功。品質の未達も[完了記録](23_phase5_completion.md)へ保存し、Phase 6①〜⑤、5Bと各100M比較、10B準備が完了。本10B科学学習は実行中。
 
 **目的**: 実装不備を小予算で見つけ、長期学習へ渡す候補を根拠で選ぶ。
 
@@ -223,11 +223,11 @@ Phase 4は以下の順で実施済み。新規環境への移行・実装変更�
 
 ## Phase 6: 500M〜10B Base v1
 
-**状態**: 主要Web5Bと各100M仕上げ比較まで完了。準備済みtrain12.23Bを使う直接10Bの[専用準備](40_base_10b_preparation.md)も完了し、科学学習・評価は未開始。最速設定はFlash＋compile reduce-overhead / batch32、約694k tokens/s。過去の[準備①②](26_phase6_preparation_completion.md)、[高速化](29_phase6_performance_completion.md)、[④⑤](30_phase6_readiness_execution.md)を保持し、完了済みstudyを繰り返さない。
+**状態**: 主要Web5Bと各100M仕上げ比較まで完了。準備済みtrain12.23Bを使う直接10Bの[専用準備](40_base_10b_preparation.md)も完了し、科学学習は実行中、品質評価は未開始。最速設定はFlash＋compile reduce-overhead / batch32、約694k tokens/s。過去の[準備①②](26_phase6_preparation_completion.md)、[高速化](29_phase6_performance_completion.md)、[④⑤](30_phase6_readiness_execution.md)を保持し、完了済みstudyを繰り返さない。
 
 **目的**: 約10Mで日本語短文生成がどこまで成立するかを測り、Chatの土台を作る。
 
-次回の一区切りは[直接10Bの学習・同条件評価・報告と停止](39_learning_scale_and_generation_plan.md)。stable4.75B親から9.5Bへ継続し、独立decayで10Bへ到達する。既存5B/Web5.1B評価を再利用し、新10Bだけ評価する。今回の文書更新では本学習を開始しない。
+次回の一区切りは[直接10Bの学習・同条件評価・報告と停止](39_learning_scale_and_generation_plan.md)。stable4.75B親から9.5Bへ継続し、独立decayで10Bへ到達する。既存5B/Web5.1B評価を再利用し、新10Bだけ評価する。今回はstep2の学習を実行し、保存結果確認・report/commitで停止する。step3品質評価は今回の指定外。
 
 **ゴール**: 選定済み10M候補を直接10Bまで学習・評価し、10Bの`JMicro-10M-Base-v1`と固定評価を残す。
 
@@ -353,6 +353,6 @@ Vast.aiはローカルで検証済みの独立runを並列化する後半用途�
 
 全runでcode commit、config、依存version、Tokenizer/data hash、seed、tokens seen、unique docs/bytes/tokens、更新数、micro/effective batch、wall time、失敗理由を残す。SFTでは総系列tokensとAssistant教師tokens、WSDでは分岐ごとの履歴を分ける。比較する条件を変えたら別run IDにする。
 
-Phase 0〜4の骨格・データpilot・Tokenizer・両モデル/cache/export・Windows/WSL移行・学習器・評価・保存再開・実機速度は完了済み。Phase 5のoverfit/smoke・4本の100M比較・候補選定が完了し、Phase 6①〜⑤、5Bと各100M比較、10B準備が完了。本10B科学学習は未開始。巨大コーパス全量取得、50B開始、追加hybridを先行しない。
+Phase 0〜4の骨格・データpilot・Tokenizer・両モデル/cache/export・Windows/WSL移行・学習器・評価・保存再開・実機速度は完了済み。Phase 5のoverfit/smoke・4本の100M比較・候補選定が完了し、Phase 6①〜⑤、5Bと各100M比較、10B準備が完了。本10B科学学習は実行中。巨大コーパス全量取得、50B開始、追加hybridを先行しない。
 
 具体的な着手checklistは[次の実装タスク](10_next_steps.md)、各技術判断の根拠と実測待ち項目は[追加調査](11_technical_research_gaps.md)を参照する。
