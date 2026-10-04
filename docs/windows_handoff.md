@@ -1,5 +1,7 @@
 # 別PCで続きを進める: Windows / WSL / RTX 4090
 
+2026-10-04最新: 次計画1・2をユーザーが再開。[5B固定config](../configs/phase6/base_5b.json)、[実行計画](35_base_5b_execution.md)、run `reports/phase6/base-5b-20261004/`、restart `bash scripts/run_base_5b.sh`。actual job.json PID/boot/start ticksとlatest checkpointを照合しliveなら重複起動しない。stable1.9Bを別fork、LR0.002維持して総5B、最後約5%decay to0.0002。CPU6tests成功、実CUDA524,288検証後に追加3,099,983,872科学tokens。全旧成果物保持、uv/WSL4090/Linux data。学習/report/commitで停止し全文評価/10B/Chatへ進めない。5B品質は未判定。[実状態](autonomous_status.md)。以下は履歴。
+
 2026-10-04最新: [低LRの1〜3を完了](../reports/phase6/eos_low_lr_100m_review.json)。Linux `reports/phase6/eos-low-lr-100m-20261004/`のjobはcomplete、actual Linux498/Windows27984終了・GPU compute processなし。各100M/元2Bからのfork、Web/short全文BPB0.972969/0.974799、EOS0/27、反復55/41、各400 empty/role/Unicode0。12 testsと実CUDA全state再開一致、GPU2141.290秒で2700秒内。全checkpoint/旧成果物を保持、完成重みは同run/{web,short20}/checkpoint-00064088.pt、SHA等は[実状態](autonomous_status.md)。意味誤り/反復が残るため原Base/Chat品質未達。元増量条件は通るが、この依頼は1〜3で停止する。完了jobのrestart commandは復旧履歴であり再実行指示ではない。report/commit後停止し5B/Chat/sweepを開始しない。以下は履歴。
 
 2026-10-04最新: ユーザー指定の低LR計画1〜3を実行する。[config](../configs/phase6/eos_low_lr_100m.json)、run `reports/phase6/eos-low-lr-100m-20261004/`、restart `bash scripts/run_eos_low_lr.sh`。actual job PID/boot/start ticksとlauncherを照合し、liveなら重複起動しない。旧100Mと元2Bは保持し、学習率0.0002以外は同条件/各100M、既存pool/aux80を再利用。必要評価・report/commit後に停止して5B/Chatへ進めない。[実状態](autonomous_status.md)。以下は履歴。

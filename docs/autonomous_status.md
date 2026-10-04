@@ -1,5 +1,15 @@
 # Codex継続作業の現在地
 
+## 次計画1・2：5B継続処理と学習を再開（2026-10-04）
+
+ユーザーが「1,2を計画を立てて進めて」と指定。[固定config](../configs/phase6/base_5b.json)、[実行計画](35_base_5b_execution.md)。stable1,900,019,712/update57,984（SHA4edcefa7c81e05aa9403e4dc642bbe783dc68be15f140f88098ab7b2fcd3a597）から新directoryへ明示fork。core trainer/model/shards/lockは変更せず、StableExtensionTrainerが予算だけの増加を許可。Adam/scheduler/RNG/sampler/counterを保持しstableLR0.002は親と同じ。低LR100M後継学習と長期stable継続は別条件。
+
+stable global144,959/4,750,016,512 tokens、独立7,629-update decay後global152,588/5,000,003,584。追加科学3,099,983,872 tokens。約5%decayは最寄りupdate丸め、実割合をconfigに記録。CPU関連6tests成功・skip0、config/schema凍結。実CUDA16updates/524,288tokensでstable延長と短い4update decayの連続4対2+保存再開2を照合して本学習に入る。production decay7,629とgate4updatesを区別する。
+
+起動前actual project/GPU jobなし、WSL空き約560GB。既存12.23BをTrainViewで使用し全件再監査なし。uv/WSL4090/BF16/FP32parameters/Flash/compile/batch32/context1024。科学pure推定75分、保存等込み80〜100分、GPU累積上限7,200秒、実装時間は別。run `reports/phase6/base-5b-20261004/`、再開 `bash scripts/run_base_5b.sh`。job.jsonと/proc PID/boot/start ticksを照合しliveなら重複起動しない。全completed checkpoint/log/source保持。
+
+今回は1・2のみ。5B学習完了・記録・commitで停止し、step3全文dev/400生成、10B/Chat/sweepは開始しない。5B品質は未評価と記録する。以下は履歴。
+
 ## 依頼された低学習率計画1〜3を完了・停止（2026-10-04）
 
 [最終結果・完了証拠](../reports/phase6/eos_low_lr_100m_review.json)。①旧高LRログ/保存済み3点を調査し、追加200更新（6.55M tokens）でdev256 BPB1.080079、1600更新1.084941、2800更新1.083227、終了1.049848を確認。元2Bの保存済み全文評価の同じ256文書の参考再集計は1.015857（batch配置の違いを注記）。最初の保存点で退行、終盤decayで部分回復。正確な最初の悪化updateは未観測。
