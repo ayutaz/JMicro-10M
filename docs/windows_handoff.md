@@ -1,5 +1,7 @@
 # 別PCで続きを進める: Windows / WSL / RTX 4090
 
+2026-10-04最新: [低LRの1〜3を完了](../reports/phase6/eos_low_lr_100m_review.json)。Linux `reports/phase6/eos-low-lr-100m-20261004/`のjobはcomplete、actual Linux498/Windows27984終了・GPU compute processなし。各100M/元2Bからのfork、Web/short全文BPB0.972969/0.974799、EOS0/27、反復55/41、各400 empty/role/Unicode0。12 testsと実CUDA全state再開一致、GPU2141.290秒で2700秒内。全checkpoint/旧成果物を保持、完成重みは同run/{web,short20}/checkpoint-00064088.pt、SHA等は[実状態](autonomous_status.md)。意味誤り/反復が残るため原Base/Chat品質未達。元増量条件は通るが、この依頼は1〜3で停止する。完了jobのrestart commandは復旧履歴であり再実行指示ではない。report/commit後停止し5B/Chat/sweepを開始しない。以下は履歴。
+
 2026-10-04最新: ユーザー指定の低LR計画1〜3を実行する。[config](../configs/phase6/eos_low_lr_100m.json)、run `reports/phase6/eos-low-lr-100m-20261004/`、restart `bash scripts/run_eos_low_lr.sh`。actual job PID/boot/start ticksとlauncherを照合し、liveなら重複起動しない。旧100Mと元2Bは保持し、学習率0.0002以外は同条件/各100M、既存pool/aux80を再利用。必要評価・report/commit後に停止して5B/Chatへ進めない。[実状態](autonomous_status.md)。以下は履歴。
 
 2026-10-04最新: [完結単位100M対照と必要な全文評価は完了](../reports/phase6/eos_complete_100m_review.json)。固定EOS0/80→24/80、補助EOS0→42/80。全文BPB Web1.016473/short1.017580、短文full400のempty/role/Unicode全0、24関連tests成功。意味誤り/反復と元2Bより悪いBPBが残るため元2B基準を保持、短文重みは診断候補。各累積2,100,035,584 tokens、Linux r2/{web,short20}/checkpoint-00064088.ptと全旧job/log/準備poolを保持。main job.jsonは中断履歴のまま、evaluation-recovery-job.jsonがcomplete。Linux439/Windows25296実終了・GPU compute processなしを確認済み。GPU合計3305.199秒、原2700秒超過を明記。再起動・再学習・再評価・5B/Chat/sweepはせず、report/commit後停止する。詳細/checkpoint SHA/次回論点は[実状態](autonomous_status.md)。以下のlive PIDとrestart commandsは履歴であり現在の起動指示ではない。

@@ -1,6 +1,36 @@
 # Codex継続作業の現在地
 
+## 依頼された低学習率計画1〜3を完了・停止（2026-10-04）
+
+[最終結果・完了証拠](../reports/phase6/eos_low_lr_100m_review.json)。①旧高LRログ/保存済み3点を調査し、追加200更新（6.55M tokens）でdev256 BPB1.080079、1600更新1.084941、2800更新1.083227、終了1.049848を確認。元2Bの保存済み全文評価の同じ256文書の参考再集計は1.015857（batch配置の違いを注記）。最初の保存点で退行、終盤decayで部分回復。正確な最初の悪化updateは未観測。
+
+②同じ元2B親/Adam moments/RNG/Web cursor/既存完結pool/aux80から、LR曲線全体だけを10分の1（peak0.0002/末端0.00002）にしたWeb/short20を各100,007,936 input tokens学習。両枝全3052更新のtoken digestとEOS教師数が旧対応枝と一致、実CUDA8更新の連続対保存再開が全state/historyで完全一致。科学200,015,872＋検証262,144を別計上。12関連tests成功・失敗/skip0。初期jumpだけを分離した比較ではなく、この単一seed/100M条件でLR曲線を下げる効果を測った結果。
+
+③両枝を同じ89,416dev/164,344,743本文bytesと400生成で全文評価。以下のBPBは小さいほど良い。固定生成は元dev80/greedy/64上限、EOS bias・強制停止・penaltyなし。
+
+| 条件 | 全文dev BPB | 固定自然EOS | 固定反復 | 全400 empty/role/Unicode |
+|---|---:|---:|---:|---|
+| 元2B基準 | 0.982882 | 0/80 | 60/80 | 0/0/0 |
+| 旧高LR Web100M | 1.016473 | 0/80 | 50/80 | 対照全文BPBのみ・400未実施 |
+| 旧高LR short20 100M | 1.017580 | 24/80 | 49/80 | 0/0/0 |
+| 新低LR Web100M | 0.972969 | 0/80 | 55/80 | 0/0/0 |
+| 新低LR short20 100M | 0.974799 | 27/80（33.75%） | 41/80 | 0/0/0 |
+
+新short全文BPBは新Web比+0.18814%、元mixture/全文gate全合格。全400のEOSはWeb5/400・short225/400、反復119/400・84/400（複数decoding合計で固定80と混同しない）。補助EOSはWeb0/80・short37/80、短文teacher EOS NLL0.492/argmax66/80。補助は旧高LR short42/80から低下、反復29→37/80なので全指標改善とはしない。Web補助empty1も保持。補助の失敗を原固定suiteへ置き換えない。
+
+全27自然停止を内容確認し、12例の意味反復/個数/時刻/文脈の誤りをgeneration-content-review.jsonへ保存。原三回完全一致反復指標は変更せず、見落とす二回/言い換え反復を例として併記。独立した人手blind採点ではない。元Base文法70%/Chat停止95%等の品質目標は未達、test/Chat未実施。改善した重みは候補として保存するが、実用品質として短文枝を採用しない。元2Bも保持。Webの元増量条件（全文BPB+0.001以内、固定反復+8未満、新empty/role/Unicodeなし）は全合格。ただし依頼範囲1〜3で止め、5B/Chat/自動sweepは開始しない。
+
+完成重みはLinux `reports/phase6/eos-low-lr-100m-20261004/{web,short20}/checkpoint-00064088.pt`、各累積2,100,035,584 tokens。SHA Web660d646bc0f12d326ca3fdc5849877f51c5c42bd5aa37070712b6bf5be3b8598 / short64e232ce87576d9128ab65426a31a2fc2afb88e5ef31162dba608c60c1a4a141。pure学習160.932/149.528秒、定常690,619/693,787 tokens/s。累積GPU処理2141.290秒（35分41秒）、凍結2700秒以内。cache解放は各全文・生成で18回、数値演算/重み/評価条件は変更なし、全固定80 IDsもscreenと一致。観測reserved最大14,652,801,024bytesはforward間の観測値で、全kernel中の真のpeakとは区別する。旧core/Tokenizer/data/sourceは保持、全完了check合格。offline reviewerの単一optimizer groupという誤った仮定は、元親と同じ2 groupsを照合するよう修正し再照合成功（GPU再実行なし）。job complete、actual Linux498とhidden Windows27984終了、GPU compute processなしを確認。
+
+次の行動はreport/commitで停止。5Bを行う場合は別段階としてstable checkpointからの予算延長/学習率/decayを凍結し、今回の完成decay枝を通常resumeで延ばさない。低LR短い継続の成功を全長期学習率の最適値と一般化しない。以下の実行中・旧結果・停止境界は履歴。
+
 ## 低学習率対照の1〜3を開始（2026-10-04）
+
+③Web全文/400生成が完了。共通89,416dev/164,344,743bytes BPB0.9729687290810604、元2B0.9828815577636254・旧高LR1.016473459461069より改善。全文body採点380.659秒。固定EOS0/80/反復55、400全体EOS5/反復119/empty・role・Unicode全0。short20全文採点中。Web数値増量条件は満たすが、1〜3の実行境界に従い5B/Chatを開始しない。
+
+②の両100Mと元/補助screen完了、③全文評価中。LR0.0002 Webはdev256 BPB1.004728/EOS0/80/反復55/Unicode0、short20はBPB1.006904/EOS27/80/反復41/Unicode0。固定mixture gate全合格、補助EOSはWeb0→short37/80。Web補助にempty1があることも保持（原固定gateを補助suiteで置き換えない）。旧LR0.002のWeb/short BPB1.049848/1.049828、短文EOS24/反復49に対し今回改善。Web全3052更新のtoken digestが旧Webと一致、同じ入力でstable train loss中央値2.873557→2.677854。自然EOS27件を全て内容確認し12例をgeneration-content-review.jsonへ保存：意味反復/文脈/個数/時刻の誤りが残り実用品質として未採用。元の三回完全一致反復指標を変更せず、見落とす二回/言い換え反復は例として記録。人手blind採点ではない。actual PID498のままWeb全文採点中、shortの全文/400も条件に従い続ける。runner/config/sourceは凍結状態を維持。
+
+準備はe093bf4へcommit済み、12関連tests成功・skip0。hidden Windows27984/Linux498/boot a611e59d-22d2-4365-bfd8-446c6c51b98c/start_ticks8780でGPU jobを起動しactual psを確認。job.json/pipeline.logと有効なlatest checkpointを正本にする。①は終了：旧Web追加200更新（6,553,600tokens）dev256 BPB1.080079、1600更新1.084941、2800更新1.083227、終了3052更新1.049848。元2Bの保存済み全文評価の同じ256文書を追加GPUなしで再集計すると1.015857/472,055bytes（batch配置の違いを注記）。200更新の時点ですでに退行を観測、終盤decayで一部回復。正確な最初の退行stepやLRの因果効果は未確定。historical-analysis.json/3 probes/historical-parent-reference.jsonを保持。②は実CUDA全state再開gateを通りWeb低LR学習中。live processがある間はrunner/config/sourceを変更せず、このjobを監視する。
 
 ユーザーが「1,2,3を計画を立てて進めて」と指定。[凍結config](../configs/phase6/eos_low_lr_100m.json)、run `reports/phase6/eos-low-lr-100m-20261004/`、restart `bash scripts/run_eos_low_lr.sh`。まず旧Web100Mログと保存済み200/1600/2800更新checkpointを同じdev256で採点し、退行の観測時点を記録する（追加学習0、全文再評価なし）。その後、同じ元2BからpeakLR0.0002のWeb/short20を各100,007,936 input tokens、2900 stable＋152 decayで学習。旧比較の0.002に対してLRだけ変更し、元の32〜64-token pool/aux80/optimizer moments/RNG/Web cursorを再利用する。科学200,015,872、実CUDA全state再開gate262,144は別計上。core/旧pilot/Tokenizer/過去成果物は変更しない。
 
