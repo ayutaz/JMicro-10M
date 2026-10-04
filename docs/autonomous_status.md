@@ -1,5 +1,7 @@
 # Codex継続作業の現在地
 
+計画補足（2026-10-04、質問「学習量が足りない可能性」）: **学習量不足は未棄却で、収束を証明していない。** [計画47](47_post_evaluation_training_plan.md)へ、各100Mは配合screenであり総10Bに対して約1%に留まること、安全なA/Cを同量500M〜1Bまで比較する別段階案と、Web10B対20Bの直接比較案を追記した。100Mで内容が改善しないことを増量無効の証明にしない。旧品質gateは保持し、延長は別予算・終了点を先に凍結する提案。今回もGPU/data作業は未開始、UIを維持し、計画補足のlocal commitで停止する。
+
 最新依頼（2026-10-04）は追加評価に基づく次回計画と「データセット量を増やすべきか」の判断。[データ・学習改善計画](47_post_evaluation_training_plan.md)を保存した。推奨は意味の通る完結文poolをまず25M〜50M tokens準備し、同じfinal10B親からWeb100%/既存短文20%/新完結文20%を各100Mで比較する案。EOSだけでなく生成一貫性・適切な完結・反復・条件保持を測り、有望ならpool100M以上と追加500Mへ段階拡張する。新規source量と既存dataの再選別・学習tokensを分ける。元gateは保持し、数値・予算は次回凍結する提案。**今回は計画のみで、新data取得/構築・GPU推論/学習・suite変更は未開始。UIは維持し、local commitで停止する。**
 
 最新の評価追加依頼（2026-10-04、棚卸し後の実装再開）を完了した。[実施計画](45_japanese_base_evaluation_v2.md)、[結果と制限](46_japanese_base_evaluation_v2_results.md)、[15 evidence checksの集計](../reports/phase6/japanese_base_v2_review.json)、[終了・UI復帰記録](../reports/phase6/japanese_base_v2_completion.json)。新しいnative scorer/実行入口・8 CPU testsを追加し、既存契約/評価メモリと合わせた21 tests成功。WSL/RTX4090で現在の10M/総10Bモデルを実測した。JBLiMP sample SLOR74.62%、JCommonsenseQA30.38%、独自意味dev59.38%。意味の両文脈正答23/96＝23.96%でrandom期待25%を超える証拠はない。JNLI/JCoLAはlabel prior・多数派対照を含めると判別力が弱く、Base品質合格にはしない。
