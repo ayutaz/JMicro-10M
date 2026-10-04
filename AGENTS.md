@@ -4,6 +4,8 @@ Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/window
 
 ## Current state and scope
 
+- Latest user authorization (2026-10-05 JST): execute stages1–3 of `docs/49_next_mixture_and_training_budget_plan.md`, judge results and propose the next step. This resumes work beyond the earlier completed stop boundary. Execute the 10%100M fork with saved matched controls; if all adoption gates pass, prepare the required pool and run matched500M arms; otherwise run one bounded matched lower-LR comparison as planned. Then report/judge/propose, locally commit, restore the original UI and stop. No1B/20B/50B/Chat/test/publication. Record actual work in `docs/50_story10_and_budget_execution.md`. Prior completed jobs must not be restarted.
+
 - Current stop boundary (2026-10-05 JST): requested stages1–3 are complete, including bounded data/EOS inspection,25,000,067-token candidate pool, three matched100,007,936-token arms from final10B,240 content reviews and prespecified eligible full/long evaluation. Primary35/full43 evidence checks pass. New-story EOS/repetition improved but parent BPB regression+0.001746 exceeds+0.001; candidate is not adopted and Base/Chat quality targets remain unmet. Save final report/local commit, then stop. No500M/1B/20B/50B, Chat, protected test or publication. Scientific/evaluation jobs exited; UI restored to original final10B. See `docs/48_complete_text_10b_comparison.md` and completion record.
 
 - Model: 10,001,152 parameters; prepared Web train data:12,225,819,077 tokens; experimental story pool:25,000,067 tokens. Main Web training reached10,000,007,168 tokens; three comparison branches each reached10,100,015,104. Existing UI serves original final10B. Base/Chat quality targets remain unmet. The following dated bullets preserve earlier milestone history and do not supersede the stop boundary above.
@@ -16,7 +18,7 @@ Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/window
 
 ## Project rules
 
-Latest scope: stages1–3 of `docs/47_post_evaluation_training_plan.md` are complete as recorded in `docs/48_complete_text_10b_comparison.md`, including the prespecified conditional full/long evaluation inside stage3. Stop after comparison/report/local commit and UI restoration. Do not restart completed jobs. Later500M/1B/20B/Chat work remains proposed only and requires a new user continuation.
+Latest executable scope is the new plan49 stages1–3 authorization above; plan47's prior stages1–3 are complete in report48. Conditional500M work is now authorized under plan49's unchanged safety gates, not automatic extension of the failed20% arm. Stop after the requested experiments, judgment/proposal, local commit and original UI restoration.1B/20B/Chat remain proposed only.
 
 The user has authorized autonomous implementation, repair, local GPU work, and required WSL preparation within the requested scope. Continue routine decisions and authorized milestone transitions without renewed permission. Authorization cannot change execution sandbox or managed policy.
 
