@@ -18,6 +18,10 @@
 
 現在のPCは復元・CUDA検証済み。setup、Tokenizer学習、完了済みGPU studyを再実行しない。ユーザー指定step2の総10B学習と保存結果確認は完了。再開されたstep3品質評価も完了した。[品質結果](42_base_10b_quality_evaluation.md)。今回はreport/local commitで停止する。[本学習結果と速度](41_base_10b_training.md)。
 
+## 現モデルをローカルで試す
+
+2026-10-04の追加依頼で、学習済みfinal10BのWeb UIを起動した。Windowsのブラウザから `http://127.0.0.1:7860`。再起動は `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start_webui.ps1`、停止は `scripts/stop_webui.ps1`。WSL/RTX4090で推論し、稼働中はGPU lockを保持する。[操作・保存先](43_local_webui.md)。学習・後続実験は再開していない。
+
 ## 1. Windows側でWSLとGPUを確認
 
 新規PCや環境変更時にPowerShellで `wsl --version`、`wsl -l -v`、`nvidia-smi` を確認する。WSL package 3.xとdistributionのWSL 2は別の値。Windows driverでWSL CUDAを利用し、WSLへLinux display driverを追加しない。現在の固定構成は実CUDA/BF16学習で動作確認済み。

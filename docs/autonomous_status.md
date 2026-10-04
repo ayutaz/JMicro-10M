@@ -1,5 +1,9 @@
 # Codex継続作業の現在地
 
+最新の追加依頼（2026-10-04）は「現モデルを試すローカルWeb UIの作成・起動」。**実装・実モデルAPI・Edgeブラウザの生成/停止確認を完了し、WSL/RTX4090の推論サーバーを http://127.0.0.1:7860 で稼働したまま引き渡す。** 起動/停止は `scripts/start_webui.ps1` / `scripts/stop_webui.ps1`。[操作説明](43_local_webui.md)、[確認記録](../reports/phase6/local_webui_review.json)。追加学習0、既存checkpoint/評価結果は保持。後続のEOS/Chat/20B実験の停止境界は維持する。
+
+Web UI稼働中は `~/jmicro-data/gpu.lock` を保持する。次のGPU jobを開始する前はUIを停止し、WSL `reports/local/webui/server.json` のactual PID/boot/start ticksを確認する。Windows側launcher/process/logは `reports/local/webui/`。GPU推論はBF16/math attention＋KV cache。関連11 CPU tests、実モデルseed再現、旧greedy64 ID一致、切断後のlock解放/再生成、ブラウザdesktop/mobile生成と停止を確認済み。
+
 最終更新: 2026-10-04。**ユーザーが再開したstep3「10bの品質評価」を完了した。** 同条件の全文dev89,416文書・固定400生成、旧5B/最良Web5.1B比較、全固定80と自然停止9件の内容確認、CPU証拠確認23項目を完了。BPB0.954018 / 固定EOS0・反復53 / raw Unicode0。元増量gateは合格、Base/Chat品質目標は未達。report/local commitで停止する。[品質結果](42_base_10b_quality_evaluation.md)、[本学習の結果と速度](41_base_10b_training.md)。
 
 専用 `scripts/compare_base_10b.py` / `.sh` と凍結 `configs/phase6/base_10b_comparison.json` を用意し、関連23 CPU tests成功。初回は過去EOS設定5件のschema欠落で既存契約tests2件が失敗したため、元configを変更せず厳密const schemaを追加して修復した。[修復記録](../reports/phase6/base_10b_comparison_schema_repair.json)。GPU空きと既存job終了を確認済み。評価GPU上限1,800秒。旧結果・学習source/checkpointsを保持し、追加学習や後続実験は開始しない。

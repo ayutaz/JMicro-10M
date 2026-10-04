@@ -1,0 +1,77 @@
+{
+  "logs": "Windows reports/local/webui/server.log; Linux reports/local/webui/server.json",
+  "quality_targets_achieved": false,
+  "external_publication": false,
+  "restart": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start_webui.ps1",
+  "stop": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/stop_webui.ps1",
+  "tests": {
+    "passed": 11,
+    "xml_sha256": "26748cbea1ef169e874d98ede535978788846c7f2108a62a2d4cfbc562519df7",
+    "failed": 0
+  },
+  "linux_identity": {
+    "pid": 1036,
+    "start_ticks": "24533",
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe"
+  },
+  "source_sha256": {
+    "scripts/start_webui.ps1": "c1c2e491a9c809d31d936ae5a22f84da6718441c6a0d8ca58d73749a2804596a",
+    "scripts/webui.py": "125e096f17d01a3eca05d6967641822bbea0c08f01663a9b8f111f0f2b890ce3",
+    "webui/app.js": "ff4f325a878224e40acb5f4a5bcda832e854c6c55134307d9edb19bbeced0791",
+    "webui/index.html": "b408eaa70532db8e346bab3d2108bd07fe0e538ff56f89b792e1c3be77f4db3f",
+    "webui/style.css": "caa94b6db7e203f960cc23bed37dfca64704acf6adb52d2540c751dedfc716ab",
+    "tests/test_webui.py": "774507a642e3f1853acc12dd53e605e0d0fa2e41dac9070b42344c2a7f719cb2",
+    "scripts/stop_webui.ps1": "323fb3266032ab71a991ece07474ee7b59e991064f6708eb8de5582f6c989bba",
+    "src/jmicro/webui.py": "6c296a41c828088e1d226f6b6cf9d66fd57e150439757815d4a91fbccbdc773e"
+  },
+  "checks": {
+    "same_seed_ids_equal": true,
+    "windows_linux_sources_match": true,
+    "greedy_matches_accepted_evaluation": true,
+    "disconnect_releases_and_regenerates": true,
+    "duplicate_preserves_active_record": true,
+    "start_stop_scripts_verified": true,
+    "browser_generation": true,
+    "mobile_no_horizontal_overflow": true,
+    "checkpoint_tokenizer_sha_verified": true,
+    "windows_http_access": true,
+    "duplicate_start_rejected": true,
+    "actual_gpu_generation": true,
+    "browser_manual_stop": true
+  },
+  "status": "running_local_inference_verified",
+  "scope": "User requested current-model local Web UI; no training or later experiments",
+  "url": "http://127.0.0.1:7860",
+  "new_dependencies": false,
+  "additional_training_tokens": 0,
+  "checked_at": "2026-10-04T12:31:33.3837066Z",
+  "browser": {
+    "checked_at": "2026-10-04T12:31:09.628457Z",
+    "stop_button": "手動で停止",
+    "mobile_overflow": false,
+    "browser": "Microsoft Edge headless",
+    "desktop": "1280x1040",
+    "status": "passed",
+    "generation": {
+      "text": "パン屋の人に「いけばな」と聞く。すると、いけばなは「きょうだい」というものだった。\nパン屋の人に、「きょうだい」と聞くと、いけばなは「きょうだい」である",
+      "status": "生成量の上限で停止",
+      "error": false,
+      "metrics": "64 tokens · 1.81 秒 · 35.4 tok/s"
+    },
+    "mobile": "390x844"
+  },
+  "windows_pid": 32824,
+  "model": {
+    "name": "JMicro-10M",
+    "kind": "Base / 文章の続き",
+    "parameters": 10001152,
+    "training_tokens": 10000007168,
+    "update": 305176,
+    "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+    "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+    "device": "NVIDIA GeForce RTX 4090",
+    "precision": "BF16 / math attention",
+    "context": 1024
+  }
+}

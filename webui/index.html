@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JMicro Studio — ローカル生成</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="JMicro Studio ホーム"><span class="mark">jμ</span><span>JMicro <b>Studio</b></span></a>
+    <span class="connection" id="connection">接続を確認中</span>
+  </header>
+  <main>
+    <div class="intro"><span class="eyebrow">LOCAL MODEL PLAYGROUND</span><h1>小さなモデルの、文章の続き。</h1><p>書き出しを入れて、いまのJMicroがどんな続きを考えるか試してみましょう。</p></div>
+    <section class="modelbar" aria-label="使用モデル">
+      <div><span class="model-name">JMicro-10M</span><span class="tag">BASE</span></div>
+      <div class="model-details"><span>10M parameters</span><span id="training">10B tokens 学習済み</span><span id="device">WSL · GPU</span></div>
+    </section>
+    <form id="form" class="workspace">
+      <div class="editor-column">
+        <section class="panel input-panel">
+          <div class="panel-heading"><label for="prompt">01 <strong>書き出し</strong></label><span>日本語の文章</span></div>
+          <textarea id="prompt" name="prompt" required maxlength="8000" placeholder="例：散歩の帰りに小さなパン屋を見つけた。店に入ると、" autofocus></textarea>
+          <div class="examples"><span>試してみる</span><button type="button" data-example="散歩の帰りに小さなパン屋を見つけた。店に入ると、">日常のひとこま</button><button type="button" data-example="雨の日には、窓のそばで本を読むのが好きだ。今日は、">静かな午後</button><button type="button" data-example="おいしいお茶を入れるためには、まず">説明の続き</button></div>
+          <div class="input-footer"><span id="input-length">0 文字</span><div><button type="button" class="stop" id="stop" hidden>停止</button><button type="submit" class="primary" id="generate">続きを生成 <span>↗</span></button></div></div>
+        </section>
+        <section class="panel output-panel" aria-label="生成結果">
+          <div class="panel-heading"><span>02 <strong>生成された続き</strong></span><button type="button" class="copy" id="copy" disabled>コピー</button></div>
+          <div id="output" class="output" aria-live="polite" aria-busy="false"><div class="empty"><span class="empty-icon">✳</span><p>ここに文章の続きが表示されます</p><small>左上の書き出しを入力して、生成を始めてください。</small></div></div>
+          <div class="output-footer"><span id="status" role="status">生成待ち</span><span id="metrics">—</span></div>
+          <p id="error" class="error" role="alert" hidden></p>
+        </section>
+      </div>
+      <aside class="settings panel">
+        <div class="panel-heading"><strong>生成設定</strong><span>CONTROLS</span></div>
+        <div class="settings-body">
+          <label for="mode">生成方法</label><select id="mode"><option value="sampling">サンプリング</option><option value="greedy">Greedy（最も確率の高い続き）</option></select>
+          <p class="hint">サンプリングは続きに変化が出ます。同じ設定とシードで再現できます。</p>
+          <div class="slider-label"><label for="max-new-tokens">生成する量</label><output id="max-value">128 tokens</output></div><input id="max-new-tokens" type="range" min="16" max="512" step="16" value="128"><div class="range-ends"><span>短く</span><span>長く</span></div>
+          <div class="slider-label"><label for="temperature">Temperature</label><output id="temperature-value">0.80</output></div><input id="temperature" type="range" min="0.05" max="2" step="0.05" value="0.8"><div class="range-ends"><span>安定</span><span>多様</span></div>
+          <div class="slider-label"><label for="top-p">Top P</label><output id="top-p-value">0.90</output></div><input id="top-p" type="range" min="0.05" max="1" step="0.05" value="0.9">
+          <label for="seed" class="seed-label">シード</label><input id="seed" type="number" min="0" max="2147483647" step="1" value="42" required>
+          <div class="note"><span class="note-title">いまのモデルについて</span><p>文章の続きを学習したBaseモデルです。対話用の調整はまだ行っていません。</p><p>反復や意味の誤りが残り、設定した生成量の上限で止まることがあります。</p></div>
+          <details><summary>実行情報</summary><p id="runtime" class="runtime">モデルを確認中…</p></details>
+        </div>
+      </aside>
+    </form>
+    <footer class="page-footer"><span>あなたのPCで生成 · 外部APIへの送信なし</span><span>JMicro-10M / Research preview</span></footer>
+  </main>
+</body>
+</html>

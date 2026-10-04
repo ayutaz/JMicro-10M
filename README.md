@@ -4,6 +4,17 @@
 
 2026-10-04現在、主系列5Bと各100M仕上げ比較に続き、**総10,000,007,168 tokensの学習と保存状態19項目の確認を完了した。** WSL2/RTX4090で定常約69.5万tokens/秒、GPU時間約2時間8分。10Bの全文dev/固定400品質評価も完了した。BPB0.954018、固定EOS0/80・反復53/80、raw Unicode0/400。今回は報告・local commitで停止する。[評価結果と残る課題](docs/42_base_10b_quality_evaluation.md)。[10B学習結果と高速化](docs/41_base_10b_training.md)、[現在地](docs/autonomous_status.md)、[次の計画](docs/39_learning_scale_and_generation_plan.md)を参照する。
 
+## ローカルで試す
+
+現在の学習済み10Bモデルを使うWeb UI: **[http://127.0.0.1:7860](http://127.0.0.1:7860)**。文章の書き出しから続きを生成でき、生成量・Temperature・Top Pの調整、停止、コピーに対応する。推論はWSL/RTX4090で実行する。
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start_webui.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/stop_webui.ps1
+```
+
+[使い方と実行記録](docs/43_local_webui.md)。現在はBaseモデルで、Chat調整は未実施。
+
 ## 学習結果と残る課題
 
 同じ全文devのBPB（小さいほど良い）と固定80生成で比較した。各5.1Bは別のモデルで、学習量を合算しない。
