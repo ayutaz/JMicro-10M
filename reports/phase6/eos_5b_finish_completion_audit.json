@@ -1,0 +1,55 @@
+{
+  "status": "completed_requested_steps1_2_3_stopped",
+  "completed_at": "2026-10-04T08:49:59.4713021Z",
+  "objective": "Safe UTF8 display; equal final5B lowLR Web/short20 100M training; original evaluation, saved content review, reporting and local milestone commit",
+  "steps": {
+    "display_helper_verified": true,
+    "targeted_tests": 33,
+    "training_tokens_per_arm": 100007936,
+    "scientific_training_tokens": 200015872,
+    "verification_training_tokens": 262144,
+    "saved_evidence_checks_passed": 44,
+    "fixed_content_reviewed": 80,
+    "candidate_natural_stops_reviewed": 129,
+    "candidate_unique_stop_texts_reviewed": 116,
+    "auxiliary_natural_stops_reviewed": 28,
+    "control_natural_stops_reviewed": 13
+  },
+  "job": {
+    "status": "complete",
+    "original_pid": 464,
+    "original_boot_id": "bf739e34-e9d0-4ed9-90a5-afc9f90897aa",
+    "original_start_ticks": "10237",
+    "actual_original_linux_process_exited": true,
+    "actual_windows_launcher_exited": true,
+    "actual_GPU_compute_idle": true,
+    "gpu_elapsed_seconds": 2253.852938736,
+    "budget_seconds": 3000,
+    "job_sha256": "6f5b8d03475e33da9bebdf463ba817859c4c5f4d18995e8c52eb08e842744efd",
+    "result_sha256": "708c559d678c9ff6588f866ebff4dbe26c2b426d79fe004ec5087e1ac94b45e5"
+  },
+  "adoption_gate_passed": false,
+  "adoption_failure": "short20 all400 raw Unicode failure2: one interior invalid UTF8 and one max-token incomplete tail",
+  "original_gates_preserved": true,
+  "quality_targets_achieved": false,
+  "test_split_used": false,
+  "blind_human_score": false,
+  "stop_before": [
+    "10B",
+    "Chat",
+    "unlikelihood",
+    "decoder sweep"
+  ],
+  "artifacts_sha256": {
+    "src/jmicro/text_display.py": "88e317bc9734f47a24db607d5859eb075d3a526d26006c206016fa04237c7b7d",
+    "src/jmicro/inference.py": "10de8c1b847a7527ccdac72195c3c60874a5d5b717f8d7479d299061ba5e7c1a",
+    "tests/test_text_display.py": "55f7451b101aeb96844eedce71bc5a3d6cacd3c56bfccf86115bb2d79e7c0d97",
+    "configs/phase6/eos_5b_finish_100m.json": "ec768ac1ad0b258077fdf34f7e839975324c6232982f7b3884962fe68965762f",
+    "reports/phase6/text_display_verification.json": "866ebb2f45c82fe6d60d2cd24f4ce0245ee5d315dfd6cbfc4497a2861a00e3d9",
+    "reports/phase6/eos_5b_finish_review.json": "1114c816ec6ec43e7d4aa9e2b5bc1dc7a37d48991c62833f59565c8188e314aa",
+    "reports/phase6/eos_5b_content_review.json": "8f8417fc8dbcae4960bfeed7dea70c749c5b0dd31e06ddaa6e4d77da98a3bc97",
+    "reports/phase6/eos_5b_finish_unicode_review.json": "3b2ac64a38928bc62e0300c7ccfe02e8d4377c663cb0dfb8c6bdba9d713568d4",
+    "docs/38_eos_5b_finish_results.md": "dcebd377780d4955a0e5ea61ecfdd88dac6f6d4b0b06d2e2da5bbda476ef19f0"
+  },
+  "publication": "local commit only; no push"
+}

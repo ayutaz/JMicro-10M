@@ -147,13 +147,25 @@ def main():
                 all(full_checks.values())==result['automatic_full_gate_passed'])
     require('scientific_verification_budgets_separate',result['scientific_training_input_tokens']==200015872 and
             result['verification_training_input_tokens']==262144 and not result['test_split_used'] and not result['quality_targets_achieved'])
-    review = dict(status='verified5B_finishing_pending_content_review',verified_at=now(),checks=checks,
+    packet_path = run/'content-review-packet.json'
+    content_path = ROOT/'reports/phase6/eos_5b_content_review.json'
+    packet, content = read_json(packet_path), read_json(content_path)
+    require('all_fixed80_and_natural_stop_content_review',content['status']=='completed_saved_content_review' and
+        content['packet_sha256']==sha256(packet_path) and content['fixed80_reviewed_ids']==[r['id'] for r in screens['short20']['generation']['outputs']] and
+        content['candidate_natural_stops_reviewed']==packet['natural_stops_total'] and
+        content['candidate_unique_stop_text_indices_reviewed']==list(range(len(packet['unique_natural_stop_texts']))) and
+        content['control_natural_stops_reviewed']==len(packet['control_natural_stops']) and
+        content['auxiliary_natural_stop_ids_reviewed']==[r['id'] for r in screens['short20']['auxiliary']['outputs'] if r['stop_reason']=='stop_id'] and
+        all(sha256(ROOT/p)==digest for p,digest in packet['source_sha256'].items()) and
+        not content['blind_human_score'] and not content['quality_targets_achieved'])
+    review = dict(status='completed_verified5B_finishing_steps1_2_3',verified_at=now(),checks=checks,
         parent=plan['parent'],parent_full_BPB=plan['parent_full_BPB'],parent_auxiliary=parent_aux['auxiliary']['rates'],
         arms=arms,improvement_checks=mixture,full_adoption_checks=result['full_adoption_checks'],
         automatic_full_gate_passed=result['automatic_full_gate_passed'],growth_checks=result['growth_checks'],
         scientific_training_input_tokens=200015872,verification_training_input_tokens=262144,
         gpu_elapsed_seconds=job['gpu_elapsed_seconds'],GPU_budget_seconds=3000,
-        quality_targets_achieved=False,test_split_used=False,stop_before=result['stop_before'],binding=result['binding'])
+        quality_targets_achieved=False,test_split_used=False,stop_before=result['stop_before'],binding=result['binding'],
+        content_review_sha256=sha256(content_path))
     write_json(ROOT/'reports/phase6/eos_5b_finish_review.json',review)
     print(json.dumps(dict(status=review['status'],checks=checks,arms=arms),ensure_ascii=False))
 

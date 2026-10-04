@@ -29,10 +29,18 @@ def main():
             unique[key] = dict(id=row['id'],prefix=row['prefix'],text=row['text'],conditions=[])
         unique[key]['conditions'].append(dict(index=index,decoding=row['decoding'],
             suppressed=row['suppressed'],seed=row.get('seed',42)))
+    control_path = run/'web-full-evaluation.json'
+    control_stops = []
+    if control_path.exists():
+        control_stops = [dict(id=r['id'],prefix=r['prefix'],text=r['text'],
+            decoding=r['decoding'],suppressed=r['suppressed'],seed=r['seed'])
+            for r in read_json(control_path)['generation']['outputs'] if r['stop_reason']=='stop_id']
     packet = dict(status='pending_content_review',created_at=now(),fixed80=fixed,
         natural_stops_total=total,unique_natural_stop_texts=list(unique.values()),
+        control_natural_stops=control_stops,
         source_sha256={str(p.relative_to(ROOT)):sha256(p) for p in
-            [run/'web-evaluation.json',run/'short20-evaluation.json',*([full_path] if full_path.exists() else [])]},
+            [run/'web-evaluation.json',run/'short20-evaluation.json',*([full_path] if full_path.exists() else []),
+             *([control_path] if control_path.exists() else [])]},
         blind_human_score=False,test_used=False)
     write_json(run/'content-review-packet.json',packet)
     print(dict(fixed80=len(fixed),natural_stops=total,unique_natural_stop_texts=len(unique)))

@@ -1,6 +1,20 @@
 # Codex継続作業の現在地
 
+## EOS・反復・末尾処理の1〜3を完了・停止（2026-10-04）
+
+[最終結果](38_eos_5b_finish_results.md)、[保存証拠44項目](../reports/phase6/eos_5b_finish_review.json)、[完了証拠](../reports/phase6/eos_5b_finish_completion_audit.json)、[全自然停止の内容確認](../reports/phase6/eos_5b_content_review.json)。①production UTF8末尾helperを共通inferenceに接続し関連33tests失敗/skip0、旧400件398正常不変/2raw失敗保持。②同じfinal5Bから低LR Web/short20を各100,007,936 tokens、実CUDA再開8updates/262,144検証は別計上。両枝update155640/累積5,100,011,520、全3,052更新有限・連続、Adam/scheduler/RNG/両cursor等保存済み。準備train12.23B/10,001,152parametersは不変、短文は19,988,480tokensでpoolを周回しない。
+
+③同じ全文dev89,416/本文164,344,743bytesでBPB親0.964484→Web0.958092/short0.959011。固定EOS0→0/13、反復59→57/51、両固定raw Unicode0。全400はWeb EOS13/反復121/Unicode0、short EOS129/反復103/Unicode2、両empty/role0。短文BPBは新対照比+0.095894%で許容内だが、元の全400 raw失敗0条件が不合格。短文重みは正式採用せず診断用として保持する。増量gateも短文不合格、Web数値gateは合格だがBase/Chat品質は両未達。自然EOSを正答率と混同せず、数量・時刻・否定・意味反復の誤りを記録。短文固定全80/自然停止129件の116種類、補助28、対照自然停止13を内容確認、blind採点/testは未実施。
+
+[2件のCPU診断](../reports/phase6/eos_5b_finish_unicode_review.json)：base-039 sampling43は途中byte30のinvalid start byteで末尾helperでは直らない。base-084 sampling42は上限の未完成末尾1byteで表示だけ保留可。どちらもraw不合格のまま。GPU再推論・新学習・全コーパス再監査は追加なし。
+
+GPU累積2,253.853秒（37分34秒）/上限3,000秒。job complete、actual Linux464/bootbf739e34-e9d0-4ed9-90a5-afc9f90897aa/start_ticks10237およびWindows21524は終了、GPU compute processなし。Linux run `reports/phase6/eos-5b-finish-100m-20261004/` の最終 `{web,short20}/checkpoint-00155640.pt` を保持。SHA Web `c1b83c8e03f653af378797fbfea604ea33aec2134a6fea936ea0bb2157a9e0bb`、short `19a960feb5b809c277cd710f23765e14d27099502153561ba437eee20dd42d54`、親SHA不変。学習区間実時間Web160.883/short149.772秒（IO含む）、科学合計200,015,872tokens。全旧成果物/ログ/凍結source/全文400/補助を保持。完了restart commandを再実行しない。
+
+目的と指定終了点を達成し、最終report/local commitで停止。次回候補は保存重みで途中不正UTF8とcap末尾を分けた単一decoder制約比較、または元計画の反復loss対照であり、今回は未実装・未起動。10B/Chat/UL/自動sweepへ移行しない。以下のlive/未完了/計画のみの記述は履歴。
+
 ## EOS改善の1〜3を実行再開（2026-10-04）
+
+③screen全gate合格、両枝全文評価中。元固定80でWeb→short20の自然EOS0→13、反復57→51、rawUnicode/empty/role両枝0。dev256 BPB悪化+0.108%で1%以内。既存補助80はEOS0→28、反復35→27、teacher EOS argmax0→45/NLL3.724968（親）→1.093626（short）。原固定指標を補助で置き換えない。[固定80の内容確認](../reports/phase6/eos_5b_fixed_content_review.json)を保存：13自然停止を含む全80を読み、数量誤り/文脈不一致/意味反復が残る。これは人手blind採点ではない。両100M完了記録とCPUreview準備を`dfbe0c1`でcommit。全文/400と保存stateのCPU確認、最終内容確認は継続する。現在Linux464の対照全文採点が13万/21万窓、GPU累積926秒で上限3000秒内、failureなし。以下は履歴。
 
 ②両科学学習完了、③評価中。[保存済み学習記録](../reports/phase6/eos_5b_finish_training_progress.json)。両枝update155640/累積5,100,011,520tokens、各追加100,007,936、合計200,015,872。pure学習Web160.883秒/short149.772秒。短文条件の内訳Web80,019,456/short19,988,480tokens、短文poolを周回しない。checkpointは新runの各`{web,short20}/checkpoint-00155640.pt`。Web固定EOS0/80・反復57・rawUnicode/empty/role0、補助EOS0/反復35。dev256 BPB Web0.989835741/short0.990903548（+0.108%、両全文ではない）。短文の自然EOS/反復等はまだ評価中、全文採否/内容確認/保存stateのCPUreviewは未完了。Linux464は継続しfailureなし。以下の学習中/起動前は履歴。
 

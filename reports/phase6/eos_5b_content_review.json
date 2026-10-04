@@ -1,0 +1,668 @@
+{
+  "status": "completed_saved_content_review",
+  "reviewed_at": "2026-10-04T08:46:09.8549038Z",
+  "fixed80_reviewed_ids": [
+    "base-001",
+    "base-002",
+    "base-004",
+    "base-005",
+    "base-006",
+    "base-007",
+    "base-009",
+    "base-010",
+    "base-011",
+    "base-012",
+    "base-014",
+    "base-015",
+    "base-016",
+    "base-017",
+    "base-019",
+    "base-020",
+    "base-021",
+    "base-022",
+    "base-024",
+    "base-025",
+    "base-026",
+    "base-027",
+    "base-029",
+    "base-030",
+    "base-031",
+    "base-032",
+    "base-034",
+    "base-035",
+    "base-036",
+    "base-037",
+    "base-039",
+    "base-040",
+    "base-041",
+    "base-042",
+    "base-044",
+    "base-045",
+    "base-046",
+    "base-047",
+    "base-049",
+    "base-050",
+    "base-051",
+    "base-052",
+    "base-054",
+    "base-055",
+    "base-056",
+    "base-057",
+    "base-059",
+    "base-060",
+    "base-061",
+    "base-062",
+    "base-064",
+    "base-065",
+    "base-066",
+    "base-067",
+    "base-069",
+    "base-070",
+    "base-071",
+    "base-072",
+    "base-074",
+    "base-075",
+    "base-076",
+    "base-077",
+    "base-079",
+    "base-080",
+    "base-081",
+    "base-082",
+    "base-084",
+    "base-085",
+    "base-086",
+    "base-087",
+    "base-089",
+    "base-090",
+    "base-091",
+    "base-092",
+    "base-094",
+    "base-095",
+    "base-096",
+    "base-097",
+    "base-099",
+    "base-100"
+  ],
+  "fixed13_natural_stop_ids": [
+    "base-027",
+    "base-041",
+    "base-044",
+    "base-046",
+    "base-054",
+    "base-057",
+    "base-066",
+    "base-070",
+    "base-080",
+    "base-081",
+    "base-091",
+    "base-095",
+    "base-100"
+  ],
+  "sources": {
+    "reports/phase6/eos-5b-finish-100m-20261004/web-evaluation.json": "81ffc4d09a6cb780b300d5135249009fd4bf4ea0d97699e06520494250f3d5ef",
+    "reports/phase6/eos-5b-finish-100m-20261004/short20-evaluation.json": "8b8a715b8b484fd75fb20846a3edc39fdcb9db10859bec8a56d521fe9b69a45f"
+  },
+  "examples": [
+    {
+      "id": "base-027",
+      "prefix": "姉と山を登っている途中で、霧が出てきた。私たちは",
+      "parent": "、山を登るのが好きで、山を登るのが好きで、山を登るのが好きで、山を登るのが好きで、山を登るのが好きで、山を登るのが好きで、山を登るのが好きで、",
+      "control": "、山を登るのが好きで、山を登るのが好きで、山を登るのが好きで、山を登るのが好きで、山を登るのが好きで、山を登るのが好きで、山を登るのが好きで、",
+      "candidate": "、霧に囲まれて、霧に囲まれた山を登っている。",
+      "candidate_EOS": true,
+      "candidate_repetition": false,
+      "note": "霧に囲まれる内容を二度言い換える。EOS成功でも意味反復あり。"
+    },
+    {
+      "id": "base-041",
+      "prefix": "このマグカップは、手のひらに収まる大きさで、",
+      "parent": "手のひらに乗せると、そのままの形になってしまう。\nこのマグカップは、手のひらに乗せると、手のひらに乗せると、手のひらに乗せると、手のひらに乗せると、手の",
+      "control": "手のひらに乗せて、そのまま持ち運びができるのが特徴です。\nまた、手のひらに乗せて持ち運ぶと、手のひらに乗せたときに、手のひらに乗せたときに、手のひらに乗せ",
+      "candidate": "手のひらに収まる大きさのものを指します。",
+      "candidate_EOS": true,
+      "candidate_repetition": false,
+      "note": "prefixの大きさの説明をそのまま言い換える同義反復。"
+    },
+    {
+      "id": "base-044",
+      "prefix": "水を入れた花瓶を、窓辺に",
+      "parent": "置いておく。\n水を入れた花瓶を、水を入れた花瓶に入れて、水を入れる。\n水を入れた花瓶を、窓辺に置いておく。\n水を入れた花瓶を、窓辺に置いておく。\n",
+      "control": "置いておくと、水が入ってこないようになっています。\n水を入れた花瓶を、窓辺に置いておくと、水が入ってこないようになっています。\n水を入れた花瓶を、窓辺に置いておくと、窓辺",
+      "candidate": "置いておくと、水が入ってこないようになっています。",
+      "candidate_EOS": true,
+      "candidate_repetition": false,
+      "note": "窓辺に置く冒頭は自然だが水が入らないという続きは前提から不自然。"
+    },
+    {
+      "id": "base-046",
+      "prefix": "新しい靴は少し硬いが、歩くと",
+      "parent": "足の裏が硬くなり、足の裏が硬くなり、足の裏が硬くなり、足の裏が硬くなり、足の裏が硬くなり、足の裏が硬くなり、足の裏が硬くなり、足の裏が硬くなり、",
+      "control": "足の裏が硬くなり、足の裏が硬くなり、足の裏が硬くなり、足の裏が硬くなり、足の裏が硬くなり、足の裏が硬くなり、足の裏が硬くなり、足の裏が硬くなり、",
+      "candidate": "足の裏が痛くなり、足の裏が痛い。",
+      "candidate_EOS": true,
+      "candidate_repetition": false,
+      "note": "足の裏が痛い内容を二度繰り返して停止。"
+    },
+    {
+      "id": "base-054",
+      "prefix": "2024年に引っ越して、翌年の2025年には",
+      "parent": "、\n「日本の人口は、2025年には、\n2025年には、\n2025年には、\n2025年には、\n2025年には、\n2025年には、\n2025年には、\n2025年には、\n2025年には、\n20",
+      "control": "、\n「新たな人材」を求めています。\n「新たな人材」を求めるのは、\n「新たな人材」を求めるのは、\n「新たな人材」を求めるのは、\n「新たな人材」",
+      "candidate": "、新たな住まいを建てる予定です。",
+      "candidate_EOS": true,
+      "candidate_repetition": false,
+      "note": "住まいを建てる予定という短い一文で停止。親/対照の人口・人材への脱線と反復から改善。"
+    },
+    {
+      "id": "base-056",
+      "prefix": "温度計を見ると20度だった。昨日の15度より",
+      "parent": "は、温度が上がり、温度が上がり、温度が上がり、温度が上がり、温度が上がり、温度が上がり、温度が上がり、温度が上がり、温度が上がり",
+      "control": "低い温度だった。\nこの温度は、日本の温度は、日本の温度は、日本の温度は、日本の温度は、日本の温度は、日本の温度は、日本の温度は、日本の温度は、日本の温度",
+      "candidate": "低い。\nこの温度計は、1日の平均気温が150度以上の場合、1日の平均気温が150度以上の場合、1日の平均気温が150度以上の場合、1日の平均気温が1",
+      "candidate_EOS": false,
+      "candidate_repetition": true,
+      "note": "20>15なのに低いと答える。親の温度が上がるから対照/候補とも冒頭退行。"
+    },
+    {
+      "id": "base-057",
+      "prefix": "箱には赤い玉が2個、青い玉が1個入っている。全部で",
+      "parent": "2個入っている。\n箱の中に、赤い玉が入っている。\n箱の中に、赤い玉が入っている。\n箱の中に、赤い玉が入っている。\n箱の中に、赤い玉が入っている。\n箱の中に、赤",
+      "control": "2個入っている。\n箱の中に赤い玉が入っている。\n箱の中に赤い玉が入っている。\n箱の中に赤い玉が入っている。\n箱の中に赤い玉が入っている。\n箱の中に赤い玉が入っている",
+      "candidate": "2個入っている。",
+      "candidate_EOS": true,
+      "candidate_repetition": false,
+      "note": "2+1を2個と誤回答。停止しても数量の正解にはならない。"
+    },
+    {
+      "id": "base-066",
+      "prefix": "駅の名前は「桜町」だった。私は看板を見て",
+      "parent": "「桜町」と書いて「桜町」と書いた。\n桜町は、桜町の名称の「桜町」に由来する。桜町は、桜町の名称の「桜町」に由来する。桜町は、桜町の名称の",
+      "control": "「桜町」と書いた。\n桜町は、桜の名所として知られる。桜の名所として知られるのは、桜の名所として知られる。桜の名所として知られるのは、桜の名所として知られる。\n桜の名所として知",
+      "candidate": "「桜町」と書いた。\n駅の名前は「桜町」だった。駅の名前は「桜町」だった。駅の名前は「桜町」だった。",
+      "candidate_EOS": true,
+      "candidate_repetition": true,
+      "note": "同じ駅名の文を三回繰り返してからEOS。元反復指標もtrue。"
+    },
+    {
+      "id": "base-070",
+      "prefix": "会議室「楓」に入ると、すでに",
+      "parent": "「楓」の音が聞こえてきそうです。\n「楓」は、楓の音が聞こえる音です。\n「楓」は、楓の音が聞こえる音です。\n「楓」は、�",
+      "control": "会議室の中に入っている人たちが、\n「会議室の中に入っていない」\nと、いうことになりました。\n「会議室の中に入っていない」\nといっても、\n「会議室の中に入っていない」\n",
+      "candidate": "「会議室」のスタッフが、会議室のスタッフを務めている。",
+      "candidate_EOS": true,
+      "candidate_repetition": false,
+      "note": "自然EOSにより以前のUTF8末尾切断なし。ただしスタッフがスタッフを務めるという同義反復。"
+    },
+    {
+      "id": "base-080",
+      "prefix": "「またね！」と手を振ると、",
+      "parent": "\n「あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、",
+      "control": "\n「あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、",
+      "candidate": "その場で「ああ、これでいいのか」と思えるほどの、素晴らしい作品です。",
+      "candidate_EOS": true,
+      "candidate_repetition": false,
+      "note": "手を振る場面から作品評価へ脱線して停止。"
+    },
+    {
+      "id": "base-081",
+      "prefix": "母は花が好きだ。今日は母の誕生日なので、私は",
+      "parent": "花が好きだ。\n花は、花の色を変えるのに役立つ。\n花は、花の色を変えるのに役立つ。\n花は、花の色を変えるのに役立つ。\n花は、花の色を変えるの",
+      "control": "花を愛でる。\n母の誕生日は、母の誕生日の日。\n母の誕生日は、母の誕生日の日。\n母の誕生日は、母の誕生日の日。\n母の誕生日は、母の",
+      "candidate": "花を好きだ。",
+      "candidate_EOS": true,
+      "candidate_repetition": false,
+      "note": "母の誕生日の条件に沿う行動を答えず、花を好きだという助詞も不自然。"
+    },
+    {
+      "id": "base-091",
+      "prefix": "氷を暖かい部屋に置いておくと、少しずつ",
+      "parent": "暖かくなっていきます。\n冬の寒さに負けないように、冬の寒さに負けないように、冬の寒さに負けないように、冬の寒さに負けないように、冬の寒さに負けないように、冬の寒さに負け",
+      "control": "暖かい空気が入ってくるので、暖かい部屋に置くと、暖かい空気が入ってくるので、暖かい部屋に置くと、暖かい空気が入ってくるので、暖かい部屋に置くと、暖かい部屋",
+      "candidate": "暖かい部屋に入れておくと、暖かい部屋に入れるのが楽になります。",
+      "candidate_EOS": true,
+      "candidate_repetition": false,
+      "note": "氷の変化を述べず暖かい部屋を繰り返す不自然な因果。"
+    },
+    {
+      "id": "base-092",
+      "prefix": "夜になって部屋が暗くなったので、電気を",
+      "parent": "つけてみました。\n電気をつけた後は、電気をつけた後に、電気をつけた後に、電気をつけた後に、電気をつけた後に、電気をつけた後に、電気をつけた後に、電気をつけた後に、電気を",
+      "control": "つけてみました。\n電気をつけてみると、部屋が暗くなったので、電気をつけてみました。\n電気をつけてみると、部屋が暗くなったので、電気をつけてみました。\n電気をつけてみると、部屋が暗くなったので、電気をつけ",
+      "candidate": "つけてみました。\n電気をつけるには、電気をつける前に、電気をつける前に、電気をつける前に、電気をつける前に、電気をつける前に、電気をつける前に、電気をつける前に、電気をつける前に、電気をつける",
+      "candidate_EOS": false,
+      "candidate_repetition": true,
+      "note": "親/対照/候補とも電気をつける冒頭は自然だが、その後に反復し停止しない。"
+    },
+    {
+      "id": "base-095",
+      "prefix": "喉が渇いたので、コップに水を",
+      "parent": "入れて、水を足して、水を足して、水を足して、水を足して、水を足して、水を足して、水を足して、水を足して、水を足して、水を足して、水を足して、水を足して、水",
+      "control": "入れて、水を入れて、水を入れて、水を入れて、水を入れて、水を入れて、水を入れて、水を入れて、水を入れて、水を入れて、水を入れて、水を入れて、水を入れて、水",
+      "candidate": "入れて、お湯を注いで、お湯を注いで、お湯を注ぐ。",
+      "candidate_EOS": true,
+      "candidate_repetition": false,
+      "note": "お湯を注ぐという行為を繰り返して停止。原指標falseでも意味反復あり。"
+    },
+    {
+      "id": "base-099",
+      "prefix": "濡れた靴下を脱いで、乾いた",
+      "parent": "布団に入れて、靴下を脱いで、靴下を脱いで、靴下を脱いで、靴下を脱いで、靴下を脱いで、靴下を脱いで、靴下を脱いで、靴下を脱いで、靴下",
+      "control": "靴下を履く。\n靴下を脱いで、靴下を脱いで、靴下を脱いで、靴下を脱いで、靴下を脱いで、靴下を脱いで、靴下を脱いで、靴下を脱いで、靴",
+      "candidate": "靴下を履く。\n靴下を履くと、靴下が濡れて、靴下が濡れて、靴下が濡れて、靴下が濡れて、靴下が濡れて、靴下が濡れて、靴下が濡れて、靴下が濡れて、靴下",
+      "candidate_EOS": false,
+      "candidate_repetition": true,
+      "note": "親の乾いた布団から靴下へ冒頭改善。ただし履くと濡れるという不自然な続きと反復。"
+    },
+    {
+      "id": "base-100",
+      "prefix": "外に出る前に、玄関で靴を",
+      "parent": "履いてみるのもいいかもしれません。\n玄関の外に出る前に、靴を履いてみるのもいいかもしれません。\n玄関の外に出る前に、外に出る前に、外に出る前に、靴を履いてみるのもいいかもしれません。\n",
+      "control": "履くようにしましょう。\n玄関の外に出る前に、靴を履くようにしましょう。\n靴を履く前に、靴を履くようにしましょう。\n靴を履く前に、靴を履くようにしましょう。\n靴を履く前に、靴を履くようにしましょう。",
+      "candidate": "履くようにしましょう。",
+      "candidate_EOS": true,
+      "candidate_repetition": false,
+      "note": "靴を履くという文脈に合う一文で自然停止。親/対照は同じ方向の冒頭から反復した。"
+    }
+  ],
+  "blind_human_score": false,
+  "test_used": false,
+  "quality_targets_achieved": false,
+  "conclusion": "Natural EOS improves13vs0 and repetitions51vs57, but stopping does not prove correct content. Quantitative adoption awaits full evaluation; context/count/grammar/semantic-repeat errors remain.",
+  "auxiliary28_natural_stop_reviewed_ids": [
+    "aux-short-003",
+    "aux-short-004",
+    "aux-short-006",
+    "aux-short-016",
+    "aux-short-022",
+    "aux-short-023",
+    "aux-short-024",
+    "aux-short-026",
+    "aux-short-031",
+    "aux-short-032",
+    "aux-short-035",
+    "aux-short-037",
+    "aux-short-039",
+    "aux-short-040",
+    "aux-short-042",
+    "aux-short-043",
+    "aux-short-050",
+    "aux-short-052",
+    "aux-short-053",
+    "aux-short-054",
+    "aux-short-056",
+    "aux-short-057",
+    "aux-short-060",
+    "aux-short-061",
+    "aux-short-067",
+    "aux-short-070",
+    "aux-short-072",
+    "aux-short-078"
+  ],
+  "control13_full_natural_stops_reviewed": [
+    {
+      "id": "base-001",
+      "seed": 42,
+      "prefix": "朝、カーテンを開けると、",
+      "text": "うっすらした青が舞い散り、イマイチだった。\n新緑に染まったあの光景を思い出しながら、もっと見てみよう。\n『リトール・カーテン』"
+    },
+    {
+      "id": "base-006",
+      "seed": 43,
+      "prefix": "駅の改札を出ると、",
+      "text": "学校の庭に続き、街並みを眺めることができました。\n屋根は、天井の床と合わさり、全体的に紫色に染まっています。\n※下図は、日本最初の図書館のひとつです。\n\n\n\n\n\n"
+    },
+    {
+      "id": "base-014",
+      "seed": 42,
+      "prefix": "電車が遅れたため、待ち合わせに",
+      "text": "来た途端、悪人(タクシー)に誘われ、転倒をしたという。\n\n\n\n\n\n"
+    },
+    {
+      "id": "base-014",
+      "seed": 43,
+      "prefix": "電車が遅れたため、待ち合わせに",
+      "text": "向かわなかった。\n気になった点を書いてみる。\n:-"
+    },
+    {
+      "id": "base-024",
+      "seed": 44,
+      "prefix": "友人から届いた葉書には、海の絵が描かれていた。裏を見ると",
+      "text": "、水面に浮かんでいる本が、この本の内容に沿ってまた一冊読んだ。"
+    },
+    {
+      "id": "base-026",
+      "seed": 44,
+      "prefix": "父が昔使っていた時計を直した。針が動き出すと",
+      "text": "動かなくなるが、針はこの時計の時計の指を叩くと動かなくなる。このときは、その時計の指を叩くと音がする。この時計を動かさないと音がしない。"
+    },
+    {
+      "id": "base-027",
+      "seed": 43,
+      "prefix": "姉と山を登っている途中で、霧が出てきた。私たちは",
+      "text": "、『常識』の大転換期の時間に、少年の出身地を訪ねた。"
+    },
+    {
+      "id": "base-029",
+      "seed": 44,
+      "prefix": "夜、窓をたたく音がした。そっと開けると",
+      "text": "、ピンとくる。\n\n"
+    },
+    {
+      "id": "base-030",
+      "seed": 44,
+      "prefix": "落とした財布を届けてくれた人は、近所の店員だった。私は",
+      "text": "、同業者がいる中で、誰もが「道」に通じるものを、誰かが持っていけば、いつでもどこでも、道が開けられる、素敵なものだと思う。"
+    },
+    {
+      "id": "base-056",
+      "seed": 42,
+      "prefix": "温度計を見ると20度だった。昨日の15度より",
+      "text": "暑いが、今朝の6時から5時の気温も上昇した。"
+    },
+    {
+      "id": "base-071",
+      "seed": 43,
+      "prefix": "「ありがとう」と言うと、彼女は",
+      "text": "私を乗り越え、彼女が生まれ変わる。\n彼女は、自分が生まれ変わったときの、私たちの生涯を、後悔することなく、これからも生きていけることを願い、取り組んでいます。\n\n\n\n\n\n\n\n\n"
+    },
+    {
+      "id": "base-077",
+      "seed": 44,
+      "prefix": "嬉しい！思わず声を上げて、",
+      "text": "たとえ泣いても泣いても、ちょっとずつ声をあげて、遊びを進めていきたいと思います。\n最後に、今日は心温まる朝でした。"
+    },
+    {
+      "id": "base-081",
+      "seed": 42,
+      "prefix": "母は花が好きだ。今日は母の誕生日なので、私は",
+      "text": "花を撮りたくない。友達を作ってきて、花に興味を持った。"
+    }
+  ],
+  "auxiliary_examples": [
+    {
+      "id": "aux-short-004",
+      "prefix": "名前の由来は当時「第一次世界大",
+      "text": "戦」の時に、戦国時代の武将・武田信玄が、戦国時代の武将・武田信玄の名を冠したと伝えられています。",
+      "reference_continuation": "戦」に「勝った」ことからカッターシャツと名づけられたそうです。"
+    },
+    {
+      "id": "aux-short-057",
+      "prefix": "体の揺れが軽減されるため、ドライバ",
+      "text": "ブを使った運動をするのがおすすめです。",
+      "reference_continuation": "ーだけでなく同乗者の方にも、より快適にドライブを楽しんでいただけます。"
+    },
+    {
+      "id": "aux-short-070",
+      "prefix": "そこで日本の新聞やテレビは日本孤立論を流したわけだが、こ",
+      "text": "の中で日本の新聞は日本の新聞を流したわけだ。",
+      "reference_continuation": "れを孤立というのかどうか。日本が断固とした姿勢を示した結果、それまでモジモジしていたカナダとロシアが日本に同調した。"
+    }
+  ],
+  "auxiliary_content_note": "28補助自然停止も全て確認。第一次世界大戦から武田信玄へ年代を混同、ドライバブという語の誤接続、新聞を流すという同義反復等が残る。参照本文への完全一致は要求しないが停止だけで内容正確とは扱わない。対照の全400中13自然停止も確認し脱線/不自然な文脈等を保持。",
+  "packet_sha256": "89bcbcfc4570bf73ad763766d6af0e6e7d8363c4982f56532c10b5b6c55f701a",
+  "candidate_natural_stops_reviewed": 129,
+  "candidate_unique_stop_text_indices_reviewed": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115
+  ],
+  "control_natural_stops_reviewed": 13,
+  "auxiliary_natural_stop_ids_reviewed": [
+    "aux-short-003",
+    "aux-short-004",
+    "aux-short-006",
+    "aux-short-016",
+    "aux-short-022",
+    "aux-short-023",
+    "aux-short-024",
+    "aux-short-026",
+    "aux-short-031",
+    "aux-short-032",
+    "aux-short-035",
+    "aux-short-037",
+    "aux-short-039",
+    "aux-short-040",
+    "aux-short-042",
+    "aux-short-043",
+    "aux-short-050",
+    "aux-short-052",
+    "aux-short-053",
+    "aux-short-054",
+    "aux-short-056",
+    "aux-short-057",
+    "aux-short-060",
+    "aux-short-061",
+    "aux-short-067",
+    "aux-short-070",
+    "aux-short-072",
+    "aux-short-078"
+  ],
+  "candidate_unique_stop_text_count": 116,
+  "source_sha256": {
+    "reports/phase6/eos-5b-finish-100m-20261004/web-evaluation.json": "81ffc4d09a6cb780b300d5135249009fd4bf4ea0d97699e06520494250f3d5ef",
+    "reports/phase6/eos-5b-finish-100m-20261004/short20-evaluation.json": "8b8a715b8b484fd75fb20846a3edc39fdcb9db10859bec8a56d521fe9b69a45f",
+    "reports/phase6/eos-5b-finish-100m-20261004/short20-full-evaluation.json": "aeaa6742dfe61d7b77978c9740396c6bbf89632a5cb7944957234053d8961553",
+    "reports/phase6/eos-5b-finish-100m-20261004/web-full-evaluation.json": "daff1e28207f2914aa602fd994fcd94975c4d5f6d586bf5f0e1565ca20aa41d6"
+  },
+  "all_natural_stop_content_notes": [
+    "116 unique candidate EOS texts reviewed, covering all 129 natural stops. Stops after false arithmetic, wrong time, contextual contradiction, incomplete meaning and semantic repetition remain. No aggregate accuracy score inferred.",
+    "base-056 sampling includes correct 高かった and incorrect 30度低い; greedy remains wrong.",
+    "base-057 EOS after 2個 or 15個 is incorrect for 2+1. base-059 EOS after 午後3時から3時 is incorrect for a one-hour break from 3pm.",
+    "base-085 sampling EOS contradicts 姉は甘いものを食べない. base-095 sampling 水を入れて飲んでいます and base-099 乾いた靴下を履いておきます are plausible coherent stops.",
+    "base-100 greedy 履くようにしましょう is coherent, but sampling 取り付けて or 落として is contextually wrong.",
+    "Natural EOS improvements are diagnostic; original fixed repetition metric and raw Unicode gate retained. Full-adoption gate fails on two sampling Unicode failures."
+  ],
+  "sampling_examples": [
+    {
+      "packet_index": 63,
+      "id": "base-056",
+      "prefix": "温度計を見ると20度だった。昨日の15度より",
+      "text": "ぐっと高かった。",
+      "conditions": [
+        {
+          "index": 224,
+          "decoding": "sampling",
+          "suppressed": true,
+          "seed": 44
+        }
+      ]
+    },
+    {
+      "packet_index": 65,
+      "id": "base-057",
+      "prefix": "箱には赤い玉が2個、青い玉が1個入っている。全部で",
+      "text": "15個の玉が入っている。箱には白い玉が2個入っている。",
+      "conditions": [
+        {
+          "index": 228,
+          "decoding": "sampling",
+          "suppressed": true,
+          "seed": 43
+        }
+      ]
+    },
+    {
+      "packet_index": 66,
+      "id": "base-059",
+      "prefix": "午後3時から1時間休憩すると、終わるのは",
+      "text": "午後3時から3時になる。",
+      "conditions": [
+        {
+          "index": 232,
+          "decoding": "sampling",
+          "suppressed": true,
+          "seed": 42
+        }
+      ]
+    },
+    {
+      "packet_index": 93,
+      "id": "base-085",
+      "prefix": "姉は甘いものを食べない。お土産には、お菓子より",
+      "text": "甘いものを食べて、満面の笑みでお菓子を食べていた。",
+      "conditions": [
+        {
+          "index": 338,
+          "decoding": "sampling",
+          "suppressed": true,
+          "seed": 43
+        }
+      ]
+    },
+    {
+      "packet_index": 108,
+      "id": "base-095",
+      "prefix": "喉が渇いたので、コップに水を",
+      "text": "入れて飲んでいます。",
+      "conditions": [
+        {
+          "index": 379,
+          "decoding": "sampling",
+          "suppressed": true,
+          "seed": 44
+        }
+      ]
+    },
+    {
+      "packet_index": 111,
+      "id": "base-099",
+      "prefix": "濡れた靴下を脱いで、乾いた",
+      "text": "靴下を履いておきます。",
+      "conditions": [
+        {
+          "index": 392,
+          "decoding": "sampling",
+          "suppressed": true,
+          "seed": 42
+        }
+      ]
+    },
+    {
+      "packet_index": 115,
+      "id": "base-100",
+      "prefix": "外に出る前に、玄関で靴を",
+      "text": "落としておきましょう。",
+      "conditions": [
+        {
+          "index": 399,
+          "decoding": "sampling",
+          "suppressed": true,
+          "seed": 44
+        }
+      ]
+    }
+  ]
+}
