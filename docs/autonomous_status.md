@@ -1,5 +1,13 @@
 # Codex継続作業の現在地
 
+最新の評価追加依頼（2026-10-04、棚卸し後の実装再開）を完了した。[実施計画](45_japanese_base_evaluation_v2.md)、[結果と制限](46_japanese_base_evaluation_v2_results.md)、[15 evidence checksの集計](../reports/phase6/japanese_base_v2_review.json)、[終了・UI復帰記録](../reports/phase6/japanese_base_v2_completion.json)。新しいnative scorer/実行入口・8 CPU testsを追加し、既存契約/評価メモリと合わせた21 tests成功。WSL/RTX4090で現在の10M/総10Bモデルを実測した。JBLiMP sample SLOR74.62%、JCommonsenseQA30.38%、独自意味dev59.38%。意味の両文脈正答23/96＝23.96%でrandom期待25%を超える証拠はない。JNLI/JCoLAはlabel prior・多数派対照を含めると判別力が弱く、Base品質合格にはしない。
+
+保存済み80×2の全160をCodexで文法/関連性/一貫性各0/1/2採点。10Bは文法2点38/80、関連性2点25/80、一貫性2点0/80。独立人手blindは未実施で、元70%人手目標へ代入しない。追加greedy128/512は各20件で自然EOS0、char4-gram反復83.26%/95.76%。元の自然EOS9件の適切な内容完結はCodex診断1/9。JSQuAD事前固定dev100は独自EM0%、文字F1 12.69%、外部Wikipedia100本文51,362 bytesのBPB1.335143。詳細は結果文書を正とする。
+
+GPU初回pilot7.505秒、本評価320.820秒、語彙family重複を直した意味診断192件のみのrevision1.686秒で完了。元のraw/source/configを保持し、cluster CIの問題重みとJNLI image groupingは保存値からCPU修正した。追加学習0、公式test未取得/未採点、旧v1/学習コード/重み不変。rawとsourceはLinux `reports/phase6/japanese-base-v2-20261004/{pilot,full,cpu}`、修正版意味診断は`reports/phase6/japanese-base-v2-20261004-r1/pilot`。評価jobは終了し、Web UIを http://127.0.0.1:7860 へ復帰した（LinuxPID482 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks275771、ready13:12Z）。終了記録を確認し、完了GPU runを再起動しない。**今回はlocal commitで停止する。追加学習・test・参照重み・JMMLUは開始しない。**
+
+以下は直前の棚卸し・実行履歴。現行の評価追加状況は上記を正とする。
+
 最新依頼（2026-10-04）は日本語Base評価の追加に向けた「まず現行評価と改善部分を洗い出す」。**コード・固定suite・保存結果の棚卸しと公開日本語評価の調査を完了し、[評価改善案](44_japanese_base_evaluation_audit.md)へまとめた。** [CPU inventory](../reports/phase6/base_eval_inventory_20261004.json): dev80のchecksは全件共通の説明文、保存400のhuman_scoresは全null、400出力は80入力×5条件。BPB/EOS/raw flagsは測定済みでも、文法・関連性・一貫性の定量採点と公開日本語benchmark成績は未実施。
 
 P0は既存結果から内容採点/category/反復/CIを追加し、否定・数量・時刻等の基本意味診断を設計する。P1はJBLiMP（原論文SLORと独自尤度診断を区別）・JCommonsenseQA・JNLI・domain別本文予測。次はv2の取得version/template/score/split/予算と新規基準を凍結し、Base向け候補尤度scorerを実装する案。今回は実装・GPU新評価・追加学習・参照重み取得・test採点を開始していない。旧protocol/gate/checkpoints/結果は不変。Web UIは維持する。

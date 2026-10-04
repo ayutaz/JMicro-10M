@@ -2,6 +2,8 @@
 
 最終更新: 2026-10-04。[現在地](autonomous_status.md)と[直接10B計画](39_learning_scale_and_generation_plan.md)を最初に読む。以前の停止境界・process情報・移行履歴は[2026-10-04保存履歴](autonomous_history_20261004.md)、初期復旧は[2026-10-03履歴](autonomous_history_20261003.md)に残す。
 
+追加した日本語Base評価v2.1は[実施計画](45_japanese_base_evaluation_v2.md)/[実測結果](46_japanese_base_evaluation_v2_results.md)と`reports/phase6/japanese_base_v2_review.json`を参照する。移行時はLinux `reports/phase6/japanese-base-v2-20261004/`のraw/source/cpu、`japanese-base-v2-20261004-r1/pilot`の修正版意味診断、`~/jmicro-data/evaluation-v2`の公開評価cache/manifestも保存する。完了runのGPU再実行は不要。UIは評価後に復帰済み。新規評価の一括入口は`scripts/run_japanese_evaluation.ps1`で、UIを停止・finally復帰する。
+
 ## 引継ぎ先と現在地
 
 | 項目 | 現在の内容 |

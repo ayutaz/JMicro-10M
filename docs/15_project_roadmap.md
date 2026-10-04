@@ -16,6 +16,8 @@
 
 ## 現在地と計画の使い方
 
+2026-10-04の追加依頼で[日本語Base評価v2.1の実装・実測](46_japanese_base_evaluation_v2_results.md)も完了した。基本意味・公開benchmarks・生成内容と長文反復を追加したが、元のBase/Chat品質条件は不変で未達。独立人手blind・test・公開Base参照・JMMLUは未実施。今回は評価/report/local commitで停止し、追加学習は再開しない。
+
 Phase 0〜5とPhase 6①〜⑤、主要Web総5,000,003,584 tokens、同じ5B親からWeb/短文20%を各100,007,936 tokens追加した比較を完了。モデルは10,001,152 parameters、準備済みtrain12,225,819,077 tokens。独立全12.23B監査は未完了で、その事実を保持する。[実状態](autonomous_status.md)、[5B結果](35_base_5b_execution.md)、[仕上げ結果](38_eos_5b_finish_results.md)を参照する。
 
 直接10Bの専用config/schema/launcher、14関連tests、実CUDA全state保存再開と26 review checksは[準備完了](40_base_10b_preparation.md)。科学学習step2とCPU保存確認19項目は完了、専用品質評価step3も完了。[学習結果](41_base_10b_training.md)、[品質結果](42_base_10b_quality_evaluation.md)。ユーザーがstep3の品質評価を再開し、今回その評価・内容確認まで完了した。報告・commitで停止し、後続実験は始めない。7.5B専用枝、再収集、20B/50Bへ自動移行しない。

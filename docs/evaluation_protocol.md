@@ -1,6 +1,6 @@
 # 評価仕様 v1
 
-2026-10-04の現行評価棚卸し: [不足と日本語Base評価v2案](44_japanese_base_evaluation_audit.md)。最新版10Bの内容確認は定性的診断で、保存400件のhuman_scoresはすべて未入力。v1の計算・split・閾値は維持し、v2の新しい意味/公開benchmark採点は未実装・未実測。以下の過去の実装状況メモを最新10Bの成績と混同しない。
+2026-10-04の現行評価棚卸し: [不足と日本語Base評価v2案](44_japanese_base_evaluation_audit.md)。その後[仕様v2.1](45_japanese_base_evaluation_v2.md)/[実測結果](46_japanese_base_evaluation_v2_results.md)を追加した。元の保存400件のhuman_scoresは未入力のまま保持し、Codex内容診断は別reportにした。v1の計算・split・閾値は不変。独立人手の成績へCodex診断を代入しない。以下の過去の実装状況メモを最新10Bの成績と混同しない。
 
 実装状況更新: 2026-10-03。機械可読protocolの閾値・split・数値許容値は維持し、品質目標は100M選定前に凍結済み。Base評価、overfit/smoke・100M比較、同一dev文書のpaired bootstrapと生成ID/flag照合は実施済み。Chat品質評価・rollout・文法等の全件blind人手採点は未実施。[Phase 5の品質実測](23_phase5_completion.md)、[Phase 6①②の準備検証](26_phase6_preparation_completion.md)
 

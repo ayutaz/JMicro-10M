@@ -1,6 +1,8 @@
 # 固定評価データ v1
 
-2026-10-04の棚卸し: Base dev80の`checks`は全件共通の説明文で、自動意味採点には未接続。10Bの保存400出力は80入力×5条件、human_scoresは全null。固定testはモデル採点・選定に使っていない。[日本語Base評価の不足と追加案](../docs/44_japanese_base_evaluation_audit.md)。本suiteと過去の結果は不変で、新しいv2問題/採点はまだ追加していない。
+2026-10-04の棚卸し: Base dev80の`checks`は全件共通の説明文で、v1の自動意味採点には未接続。10Bの保存400出力は80入力×5条件、human_scoresは全null。固定testはモデル採点・選定に使っていない。[日本語Base評価の不足と追加案](../docs/44_japanese_base_evaluation_audit.md)。その後v2を追加し、v1と過去の結果を保持した。[v2.1実測結果](../docs/46_japanese_base_evaluation_v2_results.md)。
+
+追加診断は[japanese_semantics_v2_1.jsonl](japanese_semantics_v2_1.jsonl)。否定・数量・時間・比較・照応・因果の120 family/240 context、dev96 family/192件とtest24 family/48件。family内で同じ二候補の正解を反転させる。学習には使わず、testは採点しない。同型templateの合成診断で、専門家検証やtemplate汎化の保証はない。`japanese_semantics_v2.jsonl`は初回の語彙family重複を含むsuperseded版として保存し、採用成績には使わない。公開評価データはversion/hash固定のLinux専用cache。Codex内容採点は別reportに保存し、v1のhuman_scoresや人手目標を上書きしない。
 
 利用状況（2026-10-03）: Phase 4に続きPhase 5のsmoke/100M候補でもBase dev 80件×5条件（抑制あり/なしgreedy、sampling seeds 42/43/44）の400出力を取得し、生成ID/flagを独立照合した。選定NoNormのgreedy EOS 0/80・反復54/80、sampling Unicode 2/240で品質目標は未達。[Phase 5完了記録](../docs/23_phase5_completion.md)。固定testとChat suiteはモデル評価に未使用。Phase 6①では固定suiteの検出された混入clusterを学習corpusから除外し、②の4 dev文書採点はcorpus側の状態保全確認で、固定生成suiteの新しい品質実験ではない。[準備完了証拠](../docs/26_phase6_preparation_completion.md)。④の現在sourceでは400生成360.684秒、Unicode0/400、greedy EOS0/80・反復48/80で未達を記録した。新dev89,416文書のBPB1.2441264716と採点336.292秒、⑤のdev256文書LR3候補比較は別の母集団・予算として管理する。[④⑤の証拠](../docs/30_phase6_readiness_execution.md)。停止fixtureの実argmax成功はcontroller検証で、学習済みモデルのEOS到達品質に数えない。
 

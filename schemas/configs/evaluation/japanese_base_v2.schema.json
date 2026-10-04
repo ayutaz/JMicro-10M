@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "revision",
+    "family_policy",
+    "checkpoint",
+    "checkpoint_sha256",
+    "tokenizer",
+    "tokenizer_sha256",
+    "data",
+    "output",
+    "semantic_suite",
+    "tasks",
+    "pilot_seed",
+    "pilot_examples",
+    "jsquad_examples",
+    "gpu_pilot_budget_seconds",
+    "gpu_full_budget_seconds",
+    "context",
+    "batch",
+    "dtype",
+    "backend",
+    "loss_dtype",
+    "bootstrap_seed",
+    "bootstrap_repetitions",
+    "unigram_tokens",
+    "unigram_smoothing",
+    "unigram_train",
+    "score_policy",
+    "new_acceptance",
+    "v1_quality_criteria_unchanged",
+    "protected_test_enabled",
+    "long_generation",
+    "external_reference",
+    "JMMLU"
+  ],
+  "properties": {
+    "version": {
+      "const": 2
+    },
+    "revision": {
+      "const": 1
+    },
+    "family_policy": {
+      "const": "semantic paired contexts; JNLI image ID; JSQuAD paragraph; other question ID"
+    },
+    "checkpoint": {
+      "const": "reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt"
+    },
+    "checkpoint_sha256": {
+      "const": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+    },
+    "tokenizer": {
+      "const": "artifacts/phase2/4096/tokenizer.model"
+    },
+    "tokenizer_sha256": {
+      "const": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+    },
+    "data": {
+      "const": "/home/aihub_ubuntu/jmicro-data/evaluation-v2"
+    },
+    "output": {
+      "const": "reports/phase6/japanese-base-v2-20261004-r1"
+    },
+    "semantic_suite": {
+      "const": "eval/japanese_semantics_v2_1.jsonl"
+    },
+    "tasks": {
+      "const": [
+        "semantics",
+        "jblimp",
+        "jcqa",
+        "jnli",
+        "jcola_in",
+        "jcola_out",
+        "jsquad"
+      ]
+    },
+    "pilot_seed": {
+      "const": 20261004
+    },
+    "pilot_examples": {
+      "const": 200
+    },
+    "jsquad_examples": {
+      "const": 100
+    },
+    "gpu_pilot_budget_seconds": {
+      "const": 120
+    },
+    "gpu_full_budget_seconds": {
+      "const": 900
+    },
+    "context": {
+      "const": 1024
+    },
+    "batch": {
+      "const": 16
+    },
+    "dtype": {
+      "const": "bf16"
+    },
+    "backend": {
+      "const": "math"
+    },
+    "loss_dtype": {
+      "const": "fp32"
+    },
+    "bootstrap_seed": {
+      "const": 42
+    },
+    "bootstrap_repetitions": {
+      "const": 2000
+    },
+    "unigram_tokens": {
+      "const": 2000000
+    },
+    "unigram_smoothing": {
+      "const": 1.0
+    },
+    "unigram_train": {
+      "const": "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2/export-001/shards/train.bin"
+    },
+    "score_policy": {
+      "const": {
+        "candidate_primary": "sum conditional log likelihood of candidate body; no EOS",
+        "candidate_secondary": "mean conditional log likelihood per target token; no result-based selection",
+        "boundary": "protected newline; require prefix encoding to be exact prefix of joint encoding; otherwise reject",
+        "ties": "fractional credit 1/number_of_tied_maxima; report ties; first maximum only for confusion matrix",
+        "jblimp_primary": "train-sample SLOR; not a reproduction of original paper",
+        "jblimp_secondary": "raw sentence log likelihood",
+        "jnli_jcola": "fixed balanced train exemplars; same exemplars for every dev example; label-string likelihood",
+        "jsquad": "100 preselected dev answers; generation EM and character F1 separately from answer NLL; no truncation"
+      }
+    },
+    "new_acceptance": {
+      "const": "diagnostic only; CI lower bound above chance indicates above-chance evidence, not Base quality acceptance"
+    },
+    "v1_quality_criteria_unchanged": {
+      "const": true
+    },
+    "protected_test_enabled": {
+      "const": false
+    },
+    "long_generation": {
+      "const": {
+        "dev_prefixes": 20,
+        "selection": "first 2 per category in frozen dev order",
+        "max_new_tokens": [
+          128,
+          512
+        ],
+        "decoding": "greedy",
+        "suppressed": true
+      }
+    },
+    "external_reference": {
+      "const": "deferred; chance/majority/train-unigram controls in initial report; no reference weight download required"
+    },
+    "JMMLU": {
+      "const": "deferred P3 after foundational diagnostics; not initial report acceptance"
+    }
+  }
+}
