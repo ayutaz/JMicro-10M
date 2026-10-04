@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-04最新（調査/計画のみ）: [EOS・反復・UTF8改善計画](37_eos_repetition_utf8_improvement_plan.md)。保存EOS損失は5Bで改善しても自由生成停止0。既存低LR短文比較の成功を根拠に、表示末尾処理と同じ5B親のWeb/short20各100M対照を次回案とする。元raw評価/採用条件/品質目標を維持し合格時のみ全文/400、GPU上限50分。CPU saved-artifact研究のみ完了、新学習/推論/production修正なし。計画を記録/commitして停止。[実状態](autonomous_status.md)。以下は履歴。
+
 2026-10-04最新: step3の[5B比較を完了](36_base_5b_comparison.md)。同じ全文dev BPB0.964484で元2B比1.87%改善、固定EOS0/80/反復59/80、UTF8末尾切断1/80・全400で同じ例2件。元の新Unicode失敗なし条件を保持して増量gate不合格とする。内容確認でも数量/文脈誤り・意味反復が残りBase/Chat品質は未達。追加学習0、GPU13分8秒で30分以内、GPU job終了。記録/commitで停止し10B/Chat/sweepに移行しない。[実状態](autonomous_status.md)。以下は履歴。
 
 2026-10-04最新: ユーザー指定でstep3の[5B比較](../configs/phase6/base_5b_comparison.json)を再開。元2B/低LRWebの保存済み対照を再利用し、同じ全文devと400生成でfinal5Bを評価。short20はmixtureが違う参考条件。追加学習0、元品質基準維持、GPU上限30分。内容確認/report/commit後停止し10B/Chat/sweepへ進めない。[実状態](autonomous_status.md)。以下は履歴。

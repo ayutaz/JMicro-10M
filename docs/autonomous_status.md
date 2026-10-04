@@ -1,5 +1,13 @@
 # Codex継続作業の現在地
 
+## EOS・反復・UTF8改善の調査と計画を完了（2026-10-04、計画のみ）
+
+ユーザー指定で[調査と次回計画](37_eos_repetition_utf8_improvement_plan.md)を作成。[保存記録のCPU調査](../reports/phase6/eos_5b_improvement_research.json)、[機械可読の提案](../reports/phase6/eos_5b_improvement_plan.json)。同じ全文devの保存EOS平均NLLは元2B2.302868→5B2.223077と改善する一方、自由生成の自然EOS0/80は未解決。教師文末のNLLを自由生成のEOS確率/順位と混同しない。生成400件は398正常text不変、同じbase-070の2件で末尾未完成2bytesだけをincremental decoderに保留可能とCPUで確認。日本語/emoji途中1〜3bytesと不正UTF8の9probe成功。これはproduction修正/モデル改善ではなく、旧rawUnicode2とmax-token停止を保持する研究結果。
+
+次回案は①CPU表示末尾helperを実装、②同じfinal5B model/Adam/RNG/Web位置を親としてpeakLR0.0002のWeb100%対short20を各100,007,936tokens、③原固定80/dev256＋既存補助80で元gate、合格時だけ全文/400と内容を確認。科学200,015,872＋実CUDA再開8updates/262,144検証を別計上、GPU累積上限3,000秒/目安35〜45分、実装・記録を含め約1.5〜2.5時間。既存accepted短文445,501件/21,000,010tokensを再利用し新データ抽出・全コーパス照合は不要。rawEOS/反復/Unicodeと表示の効果を分離し、採用失敗を免除しない。UL/decoder制約/Chatは後続提案に留める。
+
+今回のGPU推論0秒/追加学習0。新5B仕上げrunner/config/schemaと表示helperは未実装、実行jobなし。調査/計画/report/commitで停止。次に実行する場合は上記実装・凍結と必要な保存再開確認を済ませてから一対だけ比較し、記録で一区切り。10B/Chat/UL/自動sweepへ移行しない。以下は履歴。
+
 ## 5B比較を完了・停止（2026-10-04）
 
 [比較結果](36_base_5b_comparison.md)、[保存証拠の確認](../reports/phase6/base_5b_comparison_review.json)、[内容確認](../reports/phase6/base_5b_content_review.json)。同じ10,001,152 parameters/準備済み12,225,819,077 train tokensを保持し、追加学習0。新たにfinal5Bだけを同じ89,416保護dev/164,344,743本文bytes/42,003,934本文tokensと固定400生成で評価。元2B/低LRWeb/short20の完成結果は再実行せず再利用した。全条件の文書・本文数・生成key一致、元Tokenizer/品質基準/反復指標を保持。

@@ -1,0 +1,111 @@
+{
+  "status": "proposal_only_not_executable",
+  "created_at": "2026-10-04T07:57:12.2342956Z",
+  "user_scope": "Research and plan EOS/repetition/UTF8 improvements; no new GPU jobs or production fixes in this task",
+  "document": "docs/37_eos_repetition_utf8_improvement_plan.md",
+  "research": "reports/phase6/eos_5b_improvement_research.json",
+  "parent": {
+    "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-5b-20261004/decay/checkpoint-00152588.pt",
+    "sha256": "1d8e5274e1662063dedec355def1da3c9bcc972499a12b608c25c71b6758273a",
+    "input_tokens": 5000003584,
+    "update": 152588,
+    "full_BPB": 0.9644840703259737,
+    "fixed_EOS": 0,
+    "fixed_repetition": 59,
+    "fixed_raw_unicode_failures": 1
+  },
+  "utf8_display": {
+    "implemented": false,
+    "policy": "Strict incremental decoder; hide only incomplete cap-tail in display, keep raw IDs/bytes/validity/stop reason; reject interior invalid bytes and record incomplete EOS/EOT",
+    "old_raw_metrics_unchanged": true,
+    "new_inference_tokens": 0,
+    "tests": "Japanese, emoji, partial1-3 bytes, valid output preservation, cap vsEOS/EOT, interior invalid, unknown token"
+  },
+  "proposed_pair": {
+    "implemented": false,
+    "arms": [
+      "Web100percent",
+      "Web80percent_short20percent"
+    ],
+    "parent_state": "Same final5B model/Adam/RNG/Web cursor; explicit equal lowLR finishing fork",
+    "peak_lr": 0.0002,
+    "final_lr": 2E-05,
+    "stable_updates": 2900,
+    "decay_updates": 152,
+    "updates_per_arm": 3052,
+    "batch": 32,
+    "context": 1024,
+    "seed": 42,
+    "tokens_per_update": 32768,
+    "input_tokens_per_arm": 100007936,
+    "total_science_input_tokens": 200015872,
+    "short_updates": 610,
+    "short_input_tokens": 19988480,
+    "short_pool": "/home/aihub_ubuntu/jmicro-data/phase6/eos-complete-100m-20261004-r2",
+    "short_pool_manifest_sha256": "8bc227ec9616cd7e6702645595f535a38c8a0f49d9b8b988bd918a0becf57ce7",
+    "short_pool_input_tokens": 21000010,
+    "auxiliary_suite_sha256": "ce8b0652066b89681258d7c447f101bce3b718728005ef868f2040ce0981f987",
+    "short_sampler_epoch": 0,
+    "final_cumulative_input_tokens": 5100011520,
+    "final_update": 155640,
+    "CUDA_resume_verification_updates": 8,
+    "CUDA_resume_verification_tokens": 262144
+  },
+  "gates": {
+    "fixed_suite": "Original dev80 greedy suppressed64 newtokens; noEOS bias, penalty or forced stop",
+    "EOS_gain_vs_matching_control_at_least": 8,
+    "repetition_no_worse_than_matching_control": true,
+    "fixed_empty_role_raw_unicode_failures": 0,
+    "no_punctuation_only_stops": true,
+    "dev256_BPB_regression_ratio_max": 0.01,
+    "full_BPB_regression_ratio_vs_control_max": 0.01,
+    "full400_empty_role_raw_unicode_failures": 0,
+    "screen_full_generated_IDs_match": true,
+    "original_growth_BPB_regression_max": 0.001,
+    "original_growth_repetition_increase_must_be_less_than": 8,
+    "original_quality_targets_unchanged": true,
+    "display_repair_counts_as_model_improvement": false
+  },
+  "evaluation": {
+    "parent_fixed_and_full": "Reuse completed5B; no rescoring",
+    "new_parent_auxiliary": "Existing80 dev short units, teacher EOS rank/NLL and greedy output; only when execution resumes",
+    "screen": "Both branches: dev256, original80, sameauxiliary80",
+    "conditional_full": "A full/400 only if original2B raw safety plus5B repetition safety; B full/400 only if original mixture gate passes; ifB passes andA unsafe, A body-only for common-BPB control",
+    "test_used": false,
+    "old_2B_trials_rerun": false
+  },
+  "budgets": {
+    "GPU_cumulative_seconds": 3000,
+    "GPU_expected_minutes": [
+      35,
+      45
+    ],
+    "pure_science_training_minutes": 5,
+    "CPU_small_preflight_seconds": 300,
+    "implementation_and_reporting_expected_hours": [
+      1.5,
+      2.5
+    ],
+    "new_corpus_extraction": false,
+    "full_corpus_audit": false
+  },
+  "deferred": {
+    "sequence_unlikelihood": "Only a later proposal if repetition dominates and first pair fails; CE vsCE+sequenceUL one25M-per-arm pair; coefficient0.1 hypothesis, no sweep; maximum900GPU seconds screen-only including rollout and resume gate",
+    "UTF8_constrained_decoding": "Separate policy comparison if raw completeness is required; never replace historical raw results",
+    "Chat": "Assistant body+EOT training is a separate milestone",
+    "automatically_start": false
+  },
+  "completion": "Display handling, one5B100M pair, eligible evaluation and content review, report/commit then stop before10B/Chat/UL/decoder sweeps",
+  "executed_this_task": {
+    "GPU_inference_seconds": 0,
+    "training_tokens": 0,
+    "production_decoder_changed": false,
+    "CPU_saved_research": "completed_CPU_saved_evidence_research_planning_only"
+  },
+  "sources": [
+    "https://docs.python.org/3.12/library/codecs.html#codecs.IncrementalDecoder.decode",
+    "https://aclanthology.org/2020.emnlp-main.448/",
+    "https://arxiv.org/abs/1904.09751",
+    "https://arxiv.org/abs/1908.04319"
+  ]
+}
