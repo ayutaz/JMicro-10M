@@ -1,6 +1,8 @@
 # 学習量拡大とEOS 反復 UTF8改善の次回計画
 
-2026-10-04。ユーザーの訂正に従い、7.5Bの中間実験を省き、**既存12.23B train tokensを使って総10Bまで一度に学習し、そこで比較する計画**へ変更した。データセットは既に10Bを超えているため、新規収集ではなく学習する量を増やす。EOS・反復にはその後に短文仕上げを一度比較し、UTF8は別の推論方式として評価する。今回は計画更新のみで、学習・GPU推論・decoder変更は開始しない。[前回結果](38_eos_5b_finish_results.md)と[保存証拠](../reports/phase6/eos_5b_finish_review.json)を基準にする。
+実行準備の更新（2026-10-04）：ユーザー指定のstep1により[専用設定とGPU保存再開確認](40_base_10b_preparation.md)を完了。新config/schema/launcherは準備済み、14tests/実CUDA全state一致を確認した。本学習は未開始。今後の起動は `bash scripts/run_base_10b.sh --train`、引数なしは検証専用。
+
+2026-10-04。ユーザーの訂正に従い、7.5Bの中間実験を省き、**既存12.23B train tokensを使って総10Bまで一度に学習し、そこで比較する計画**へ変更した。データセットは既に10Bを超えているため、新規収集ではなく学習する量を増やす。EOS・反復にはその後に短文仕上げを一度比較し、UTF8は別の推論方式として評価する。本学習・品質評価・decoder変更は未開始で、実CUDAは準備の保存再開検証だけを行った。[前回結果](38_eos_5b_finish_results.md)と[保存証拠](../reports/phase6/eos_5b_finish_review.json)を基準にする。
 
 ## 現在の根拠と未解決事項
 
@@ -28,7 +30,7 @@
 | final終端 | update305176 / 10,000,007,168 tokens |
 | stable4.75B親からの追加科学学習 | 5,249,990,656 tokens |
 
-1update32,768tokensに丸めた提案値。新config/schema/launcher/reviewerの実装と凍結が必要で、旧5B launcherは新実験の実行commandではない。既存stable-extension経路を再利用し、変更部分の関連checksとstable/decayの実CUDA連続対保存再開を実行前に確認する。検証tokensを科学tokensへ混ぜない。
+1update32,768tokensに丸めた凍結設定値。専用config/schema/launcher/準備reviewerの実装と凍結は完了した。旧5B launcherは新実験の実行commandではない。既存stable-extension経路を再利用し、関連14testsとstable/decayの実CUDA連続対保存再開を確認済み。検証16updates/524,288tokensを科学tokensへ混ぜない。
 
 stable4.75Bから9.5Bへ継続し、最後の独立decayで総10Bへ到達する。7.5B地点の専用decay・全文評価・仕上げ対照は行わない。定期checkpointと有限loss/勾配の監視は保持し、発散や実行予算超過時には停止する。
 
@@ -80,4 +82,4 @@ stable4.75Bから9.5Bへ継続し、最後の独立decayで総10Bへ到達する
 
 Pythonはすべてuv run --frozen＋必要extras、WSL2/4090/Linux data。起動前にactual PID/boot/start ticksとGPU lockを確認し、永続job/log/checkpoint/sourceを保存する。過剰な全データ照合や旧GPU評価の再実行はしない。各有意な結果でstatusを更新しlocal commit、pushはしない。
 
-今回はこの計画と状態記録の保存・commitで停止する。新run/config/schema/実行commandはまだ未作成で、旧launcherを新予算のまま起動しない。20B/50B/Chat/Tokenizer再学習/unlikelihood/parameter sweepは今回の実行計画に含めない。
+今回はユーザー指定の実行準備と状態記録の保存・commitで停止する。新run/config/schema/起動commandは準備済みだが、本学習は未開始。旧launcherを新予算のまま起動しない。20B/50B/Chat/Tokenizer再学習/unlikelihood/parameter sweepは今回の実行計画に含めない。

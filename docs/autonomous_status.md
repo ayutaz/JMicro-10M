@@ -1,5 +1,21 @@
 # Codex継続作業の現在地
 
+## 10B用実行設定の準備を完了して停止（2026-10-04 step1）
+
+[準備完了結果](40_base_10b_preparation.md)、[保存証拠26項目](../reports/phase6/base_10b_preparation_review.json)、[完了証拠](../reports/phase6/base_10b_preparation_completion_audit.json)。ユーザー指定の直前チャット①「10B用設定・保存再開・GPU確認」を完了した。専用config/schema/runner/launcherを凍結、関連14tests failure/error/skip0。実WSL2/RTX4090/Python3.12.7 uv/BF16/Flash/compile/batch32/context1024でstable-extensionとdecay各連続4対2+保存再開2、計16updates/524,288検証tokensの全state/history/finite checks成功。元core/model/shards/uv.lock/旧runnerは不変、親4.75Bと旧final5B・両5.1B主要重みのhashを保持した。
+
+GPU19.217秒/準備上限600秒。preparation-job complete、actual Linux459/boot077f04cc-5ba2-4da6-87d3-778c8c756de7/start_ticks9675/Windows29620終了、GPU computeなし。run `reports/phase6/base-10b-20261004/` のpreparation.json/cuda-resume-gate.json/verification checkpoints/log/environment/sourceを保持。scienceのstable/decay/result/jobは存在せず、本学習消費tokens0。引数なしshellを一度実行しalready_complete/mode=verifyで終了、検証再実行や科学学習が始まらないことも確認した。
+
+設定済みの科学到達点は9.5B stable＋15,259更新decay、総10,000,007,168/update305176、追加5,249,990,656tokens。予定checkpoint約20.4GB/上限32GiB、空き約545GB、既存train12.23B/epoch0を使う。新規データ取得・全コーパス再監査・旧GPU評価なし。準備検証19.217秒は将来の科学学習GPU累積上限9,000秒へ含め、評価予約1,800秒は別。原品質条件は維持し、検証成功を品質達成としない。
+
+準備/report/local commitで停止。本学習の次段階commandはWSL repoで `bash scripts/run_base_10b.sh --train`、検証専用は `--verify-only`（完了済み）。科学10B/全文評価/短文仕上げ/UTF8制約/Chatは未実行。以下のactive/live/未実装notesは履歴。
+
+## 10B用実行設定の準備を再開（2026-10-04 step1のみ）
+
+ユーザーの「1を対応」に従い、直前チャットの①10B用設定の準備・保存再開/GPU確認だけを実行する。新 `configs/phase6/base_10b.json`、`scripts/run_base_10b.py` とshellを実装・凍結。親4.75B stableを保持し、科学追加5,249,990,656/最終10,000,007,168を予定。関連14 CPU tests成功・failure/error/skip0。旧core/既存5B runner/旧成果物は変更なし。GPU compute jobなし、WSL空き約545GBを確認した。
+
+次は `bash scripts/run_base_10b.sh --verify-only` で実CUDA stable/decay各連続4対2+保存再開2、合計16updates/524,288検証tokensだけを確認する。本学習は開始しない。新shellの引数なしはverify-only、長期学習は明示 `--train` が必要。run `reports/phase6/base-10b-20261004/` のpreparation-job.json/actual PID・boot・start ticks/ログ/verification checkpointを永続化し、重複jobを避ける。準備結果のCPUreview・報告・local commit後に停止。以下は履歴。
+
 ## 中間7.5Bを省き直接10Bへ進む計画へ訂正（2026-10-04 計画のみ）
 
 ユーザーの「中途半端に7.5Bにせずにいっきに10B」に従い、[次回計画](39_learning_scale_and_generation_plan.md)を更新。既存データは12,225,819,077 train tokensなので追加収集は不要で、増やす対象は累積学習量。保存stable4.75B/update144959から明示forkし、9.5B stable＋独立15,259-update decayで総10,000,007,168 tokens/update305176へ直接進む。今回の追加科学tokensは5,249,990,656。旧7.5Bの専用decay374,996,992tokensと全文/400評価は省く。定期checkpoint・有限loss/勾配・保存再開・GPU予算の監視は保持する。

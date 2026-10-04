@@ -1,5 +1,9 @@
 # 別PCで続きを進める: Windows / WSL / RTX 4090
 
+2026-10-04最新: [10B設定準備step1完了](40_base_10b_preparation.md)。configs/phase6/base_10b.json/schema凍結、14tests/実CUDA全state再開一致（16updates/524288検証tokens）、GPU19.217秒。Linux459/Windows29620実終了、GPU computeなし、science outputsなし。run reports/phase6/base-10b-20261004/のprep/gate/checkpoints/source/logを保持。今後の本学習起動はbash scripts/run_base_10b.sh --train、引数なし/--verify-onlyは検証専用で完了済み結果を返す。今回の科学学習は未開始、準備report/local commitで停止。旧runnerを再利用起動しない。[実状態](autonomous_status.md)。以下は履歴。
+
+2026-10-04最新: step1の10B設定準備をユーザーが指定。新config configs/phase6/base_10b.json とbash scripts/run_base_10b.sh --verify-onlyを準備。引数なしもverify-only。run reports/phase6/base-10b-20261004/で検証16updates/524288tokensだけを実行し保存再開を確認する。科学学習は明示--trainの別範囲。job identity/lock/logを確認して重複起動しない。準備review/report/local commit後停止。[実状態](autonomous_status.md)。以下は履歴。
+
 2026-10-04最新（計画訂正のみ）: ユーザー指定で[直接総10Bの案](39_learning_scale_and_generation_plan.md)に変更、7.5B専用decay/全文評価を省く。親は旧5B stable/checkpoint-00144959.pt（4.75B）、既存12.23B内で9.5B stable＋独立decayを新しい明示forkとして実装・凍結する必要がある。追加科学5,249,990,656tokens、最後に同じ全文/400で比較。新run/config/schema/起動command未作成、新GPU jobは未起動。旧完成runnerを再実行しない。計画/local commitで停止。[実状態](autonomous_status.md)。以下の段階7.5B案は訂正前の履歴。
 
 2026-10-04最新（計画のみ）: [総7.5Bと条件付き10Bの次回案](39_learning_scale_and_generation_plan.md)を保存。長期親は旧5B stable/checkpoint-00144959.pt、最終低LR枝の通常resumeではなく明示forkを新規実装・凍結する。既存12.23Bと旧全文/400を再利用し、raw安全gateと改善を確認して段階を進める。最後の新親短文対照とUTF8制約policy比較は別条件。新run/config/schema/起動commandは未作成、今回新GPU jobを起動していない。旧完成runnerを新予算用に再実行しない。計画/local commitで停止。[実状態](autonomous_status.md)。以下は履歴。

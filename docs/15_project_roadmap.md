@@ -1,5 +1,9 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-04最新: ユーザー指定のチャットstep1（10B実行設定準備）を[完了](40_base_10b_preparation.md)。専用config/schema/runner凍結、14tests/実CUDA16更新524288検証tokensの全state保存再開一致、保存証拠26項目成功。GPU19.217秒、actual jobs終了、科学tokens0。旧core/重み/品質条件を保持。本学習は明示--trainの次段階であり今回は未開始。report/local commitで停止。[実状態](autonomous_status.md)。以下は履歴。
+
+2026-10-04最新: ユーザーが直前計画の①10B用設定準備を指定。専用config/runner/schemaを実装・凍結、関連14tests成功。saved4.75Bからの実CUDA保存再開確認のみ行い科学10B学習は未開始。既存データ/旧重み/coreを保持して準備report/local commitで停止。本学習には明示--trainが必要。[実状態](autonomous_status.md)。以下は履歴。
+
 2026-10-04最新（計画訂正のみ）: ユーザー指定で[次回案](39_learning_scale_and_generation_plan.md)の中間7.5Bを省き、既存12.23B trainで直接総10Bへ学習する方針へ更新。保存stable4.75Bから9.5B＋最終decay、追加科学5,249,990,656tokens。10Bで同じ全文/400と原raw条件を評価し、改善・合格時だけ新親EOS対照へ進む。データ収集ではなく学習量の拡大。GPU約145〜165分/上限3時間、計画更新/local commitのみで実行未開始。[実状態](autonomous_status.md)。以下の7.5B段階案は履歴。
 
 2026-10-04最新（計画のみ）: [学習量拡大と生成改善の次回案](39_learning_scale_and_generation_plan.md)。既存12.23B trainで総7.5Bを比較し、改善と元raw増量安全条件を満たせば10B。最良新親の短文仕上げを一対、UTF8制約は別推論policyとして比較する。本文BPB・停止・反復・意味・raw Unicodeを分け、表示/制約成功を元学習gateの免除にしない。新run/config/command未作成、GPU学習/推論は開始せず計画/local commitで停止。20B/50B/Chat/UL/sweepなし。[実状態](autonomous_status.md)。以下は履歴。
