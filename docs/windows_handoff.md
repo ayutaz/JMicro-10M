@@ -1,5 +1,7 @@
 # 別PCで続きを進める: Windows / WSL / RTX 4090
 
+2026-10-04実行再開: [完結単位100M対照config](../configs/phase6/eos_complete_100m.json)と`bash scripts/run_eos_complete_100m.sh`を使用。新run `reports/phase6/eos-complete-100m-20261004-r1/`のjob.json/boot/PID/start ticksとWindows launcher記録を照合し、liveなら重複起動しない。CPU事前確認で旧poolの名詞断片/見出しを除外してr1へ変更。旧CPU準備/guarded worker cleanupは保持、GPU学習開始前の変更であり結果を見て条件変更したものではない。20関連tests成功。比較・必要な全文評価・report/commit後に停止し、5B/Chatへ自動移行しない。[実状態](autonomous_status.md)。
+
 2026-10-04最新の依頼は次の計画作成。[100M対照/5B以降の提案](27_phase6_remaining_plan.md)と[JSON予算](../reports/phase6/eos_next_plan.json)を保存し、実行は未開始。次の実行前に32〜64-token完結単位builder/補助dev80/100M runner/reviewerを実装し、actual pool/配置/phase budgetを凍結する。旧25M runnerは完成runを返す入口であり100Mを実行するcommandではない。5B stable予算延長forkも未実装。既存2B/25M成果物とcore sourceを保持し、完了job/全件監査を再起動しない。[実状態](autonomous_status.md)。以下は履歴。
 
 2026-10-04短文混合の[対照実験も完了](../reports/phase6/eos_short_pilot_review.json)。Linux `reports/phase6/eos-short-pilot-20261004-r1/`はjob complete、実process/GPU jobなし。各25MでEOS0/80対0/80、反復62対54/80、dev256 BPB1.068518対1.069161。短文条件はEOS gate未達で未採用。Web controlは旧`eos-short-pilot-20261004/web/checkpoint-00061799.pt`を再学習せず厳密再利用、short重みはr1/short20同名checkpoint。旧jobのinterruptedはshort開始前の省略文filter修正のためで、初回pool/runner/plan/log/gateも保持。bulk short poolは`~/jmicro-data/phase6/eos-short-pilot-20261004-r1/`。元2B基準を保持し、完了pilot/診断/全文dev評価を再実行しない。次の32〜64-token比較/5B/Chatは未開始。[最新状態](autonomous_status.md)。以下は履歴。

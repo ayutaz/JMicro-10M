@@ -1,5 +1,15 @@
 # Codex継続作業の現在地
 
+## 実行を再開: 完結単位100M対照（2026-10-04）
+
+学習前準備はr2で完了：[準備証拠](../reports/phase6/eos_complete_100m_preparation.json)。445,501単位/21,000,010 input tokens、94,157親文書、本文平均45.14（32〜64）tokens、exact重複2,031除去、8 CPU workers/4.578秒。22関連tests成功・skip0。最初16＋均等配置12のtrain単位、補助dev8の内容と元文書span/Tokenizer/BOS/EOSを少量確認し、content-review.jsonを保存。人手blind意味採点ではなく、元Webの文体/文脈依存は残る。r1の長い見出し/表記号を除外し、旧CPU-only pool/評価準備を保持。最終run/bulkは`eos-complete-100m-20261004-r2`。config/source snapshotも保存済み。次はCUDA全state保存再開gateと2枝学習。以下r1準備中の記録は履歴。
+
+ユーザーが「次に案を計画を立てて実行して」と指定。[実行config](../configs/phase6/eos_complete_100m.json)で同じ2B親から各100,007,936 input tokensを新しく学習する。科学比較合計200,015,872、短文19,988,480（約20%）、2,900 stable＋152 decay更新。元dev256/固定80 greedy64を維持し、補助dev80を学習前に固定。EOS+8/80等の元gateと原Base/Chat品質基準を保持。CPU600秒/GPU2700秒上限、全文評価はWebのscreen非退行時とshort採用gate合格時、最大2枝。実行境界は比較/必要な全文評価/report/commitまでで5B/Chatは開始しない。
+
+完結単位builder/100M runner/parameterized reviewerを実装。既存Trainer.step/BlockSampler/PilotTrainerと旧runnerの検証済み学習・評価関数を再利用し、core model/trainer/Tokenizer/既存corpusは変更しない。現在20関連tests成功・skip0。CPU poolワーカーが親のSIGTERM handlerを継承して終了処理が停止したため、親PID/boot/start ticks/8子PIDを照合しidle CPU childrenだけguarded SIGKILL、旧親はpreparedで正常終了した。worker initでsignalを既定へ戻し、親にcooperative handlerがある条件を関連testに追加した。GPUは未使用。
+
+初回pool441,323単位/21,000,019 tokens/65,750親文書を抽出したが、事前内容確認で名詞断片・短い見出し混入を発見。単位filterを保守的な述語終端/短い見出し除外で修正し、学習前にr1へ作り直す。旧pool/job/cleanup記録は`reports/phase6/eos-complete-100m-20261004/`と同名bulk poolへ保持。新runは`reports/phase6/eos-complete-100m-20261004-r1/`、bulkは同名r1、`bash scripts/run_eos_complete_100m.sh`で有効な完成準備/checkpointを再利用。job.jsonのactual PID/boot/start ticksとlauncher記録を確認して重複起動しない。次はr1 poolの少量内容確認を保存し、実CUDA全state再開gate後に2枝学習・固定/補助評価へ進む。過去の計画のみ/完了記録は以下に保持。
+
 ## 次の計画を更新・実行は未開始（2026-10-04）
 
 ユーザーの「ここまでの検証を踏まえた計画」に応じ、[次回100M対照と5B以降の計画](27_phase6_remaining_plan.md)と[提案JSON](../reports/phase6/eos_next_plan.json)を作成。今回の依頼は計画作成で、データ抽出/推論/学習は開始していない。EOS教師1.684倍でも停止0、32〜128poolの平均105と64以下1.49%、25M追加が親2Bの1.25%という実測を踏まえ、train内の完結した32〜64-token文/段落単位を21M以上準備してWeb対照と各100,007,936 input tokensで1回だけ比較する案。単位の終端は新しいrecordの定義であり、元Web記事のEOSと同じ位置とは主張しない。
