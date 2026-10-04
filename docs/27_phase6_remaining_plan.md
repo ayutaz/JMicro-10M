@@ -1,5 +1,50 @@
 # 準備完了後の実行計画: Base本学習からChat・量子化まで
 
+## 2026-10-04の次回案: 終了単位を揃えた100M比較、その後5B
+
+今回は計画作成のみ。学習/推論/データ抽出は開始していない。[機械可読の提案と根拠](../reports/phase6/eos_next_plan.json)、[現在の状態](autonomous_status.md)。以下の旧計画は履歴。モデルは10,001,152parametersのまま、一般Web trainは12.23B tokensを用意済みで、次の5B/10B消費予算に追加取得は不要。
+
+根拠は[2B学習](../reports/phase6/base_2b_10b_data_review.json)、[EOS調査](../reports/phase6/eos_2b_review.json)、[25M対照](../reports/phase6/eos_short_pilot_review.json)。2Bでは全文dev BPB1.022491→0.982882と改善したがgreedy停止0/80。短文20%の25Mでは反復62→54/80、EOS NLL2.424873→2.331916だが停止0/80、BPBは対照比+0.06025%。EOS教師は1.684倍でも自由生成の停止に移らなかった。前回pool平均104.60/中央値107 tokens、64以下は712/47,844件（1.49%）。25Mは親2Bの約1.25%、短文露出5Mは約0.25%である。
+
+**観測と仮説**: 教師漏れ/停止controllerの不具合は見つからず、EOSを選ぶと実際に停止する。原greedyは512 tokensでも0/20停止だったため、64-token制限や平均文書長だけを失敗の原因にしない。完結単位/短文生成の分布のずれ、追加学習量、greedyの反復feedbackを切り分ける。次回は長さ条件と総予算を変更するため、前回との差だけでどちらの因果効果かを判断しない。同じ100M予算のWeb controlで短文mixtureの効果を比較する。
+
+| 次回の順序 | 作業 | 条件・予算・終了点 |
+|---:|---|---|
+| 1 | trainから32〜64-tokenの完結した文/段落単位を準備 | 元親文書のtrain membershipを継承。文として完結した境界を単位の終端と定義しEOSを教師にする。任意token切断は不可。21M以上の多様なinput tokensを用意し、712件の周回で埋めない。CPU処理上限600秒、未達なら部分量/理由を記録して学習前に止める |
+| 2 | 新しい対照100Mと短文20%条件100Mを学習 | 同じ完成2B重み/Adam moments/RNG/Web cursor、同じLR/optimizer/context/batch/seed。各3,052更新/100,007,936 input tokens、2,900 stable＋152 decay。短文610更新/19,988,480 tokens（19.9869%）。合計200,015,872科学tokens、検証computeは別計上 |
+| 3 | 固定評価と短文の補助診断 | 元のdev256/greedy80/64上限を維持。新dev補助80件は同じ完結単位の定義で既存devから作り、生成prefixと残り本文が64内に収まるよう学習前に固定する。train/testとは分離。EOS率だけでなく文法・早期終了・反復・EOS順位/NLLを記録 |
+| 4 | 採否と次の段階を一度で決める | 下記の元mixture採用gateを維持。短文枝はgate合格時だけ全文89,416 dev/400生成。Web100MはBase増量判断に使うため、screenで重大退行がなければ全文評価。最大2枝と予算へ計上。report/commitで一区切り、比率/LR/損失重みの自動sweepはしない |
+
+データ単位の変更を明示する。今回は元Web文書の最後だけを教師にする条件から、完結した文/段落を独立学習recordとして扱う条件へ変える。元文書のEOS位置と同じだとは主張しない。括弧・引用内の句点、数値/URL、箇条書き/断片、省略終端を保守的に除外し、少数例で単位の内容を確認する。正規化/Tokenizerは保持し、同一親文書の単位は同一split。重複除去は新しい小poolのexact本文と保護されたdev単位に限定し、12.23B全件near監査を再実行しない。poolの量/長さ/親文書数を記録し、恣意的な切断による偽の完結例を増やさない。
+
+100Mではscheduleが変わるため、前回の完成25M Web controlをそのまま対照に使わない。両100M枝を新しく同じ2B親から作る。前回の32〜128pool/25M成果物は保持する。必要なbuilder/補助suite/100M runner/parameterized reviewerを実装してから起動し、存在しないcommandを実行済みとはしない。既存step/samplerは再利用し、変更箇所に必要な最小testsと短い実CUDA全state再開を確認する。長いGPU jobはPID/boot/start ticks/lock/log/latest checkpointを永続化し、valid checkpointから再開する。
+
+**短文mixtureの採用条件は維持**: 元の固定80 greedyでWeb100Mより自然EOS停止が8件以上増え、反復が対照以下、empty/role/Unicode失敗0、共通dev256 BPBの悪化が対照比1%以内。空応答や句読点だけの早期停止を有用な改善にしない。補助80件は原因を調べる追加診断であり、元の固定suite/gateの代替にしない。EOS logit bias/強制終了/penaltyによる停止を学習成果に加算しない。
+
+screen合格後の全文評価でも短文枝のBPBをWeb100M比1%以内に保ち、固定80のgenerated IDsがscreenと一致することを確認する。全400生成で元2Bに対する新しいempty/role/Unicode失敗があれば採用しない。fullの不合格をscreen合格で上書きしない。
+
+| 次回の結果 | 判断 |
+|---|---|
+| 固定80と短文補助の両方で改善 | 有望な短文仕上げ枝として保存し全文評価。Base v1/Chat達成とは別。5B Baseへ同じ仕上げを適用する価値を記録 |
+| 補助短文だけ改善、固定80は未達 | 完結単位を学ぶが既存promptへ転移しない仮説。混合を未採用とし、生成例/長さ/文法を記録。小さなmixture再調整を無制限に継続しない |
+| 両方未改善または明らかな退行 | この100M/20%条件を棄却。EOSを増やすだけで解決とはせず、次の用途を短文response/EOT学習へ絞る案を残す。Web100MをBase増量の対照として評価し、失敗を消さない |
+
+**Baseの5Bは次の独立した段階**: EOS8件増は短文mixtureの採用gateであり、Base全体の予測精度やChat停止95%の判定と混同しない。短文枝が不合格でも、Web100Mの全文dev/固定生成が重大退行しないならWeb100%の5B増量比較を検討できる。開始前にgo/no-goを記録し、直前の2Bに対する全文BPB悪化が数値比較の0.001 BPBを越える、固定80反復が8件以上増える、新しいempty/role/Unicode失敗が出る場合は進めない。この進行条件は能力達成基準の緩和ではなく、次の増量実験へ進む条件である。
+
+5Bは保存済みstable1,900,019,712 tokens/update57,984から予算延長を明示した別forkで再開する。完成2Bのdecay枝やshort試行を通常resumeで延長しない。dataは既存Web12.23Bのまま。global144,959更新/4,750,016,512 stable tokensまで継続し、別の7,629-update decayでglobal152,588/5,000,003,584 tokensへ到達する。必要な追加学習は3,099,983,872 tokens。model/optimizer/scheduler/RNG/samplerと消費counterを維持するstable-budget延長処理は未実装なので、実装/短い全state再開確認後に凍結する。
+
+5B主系列には未採用の短文mixtureを混ぜない。有望だった場合の短文仕上げは独立枝で、別予算を記録する。21Mのpilot poolを5B系列の20%に繰り返して一般データ増量と呼ばない。5B終了で全文BPB、greedy/sampling各条件のEOS/反復/Unicodeと生成内容を同じ評価で比較し、report/commitで再度一区切りにする。予測精度の改善が続き重大退行がなければ、その結果から10B案を立てる。5Bで品質目標未達なら未達と明記し、自動的に10B/20B/50Bへ延ばさない。
+
+その後はroadmapのBase→Chatへ進む。Base文法70%等の元基準を保持し、必要なBase品質を確認してからDialogue mid-training/SFTを実装・比較する。ChatではAssistant body＋EOTを教師にする。停止95%以上/空5%以下/役割1%以下/固定suite Unicode0の最終基準を維持する。人手blind採点と未使用testが未実施なら、その能力達成を主張しない。Baseのopen continuation EOSとChatのresponse終端はそれぞれ報告する。
+
+**時間見積り**: 現在の25M学習は1枝約45.5秒、定常655k〜707k tokens/s、全文dev＋400生成は約12分。100M対照2枝の純学習は約5分、元/補助生成とdev256を含めGPU10〜15分。Webだけ全文評価なら約25〜30分、短文枝も合格して2枝を全文評価する場合は約35〜40分（GPU上限案2700秒）。新poolのCPU上限10分、実装・内容確認・修復時間は別。5Bは追加3.10Bの純学習約73〜79分、compile/I/O/保存/全文評価を含め約90〜120分を目安とする。これは実測からの推定で、未実装処理の所要時間や完了時刻の保証ではない。WSL/4090、uv、BF16/Flash/compile batch32/context1024を継続し、完了済み環境/Tokenizer/全件監査は再実行しない。
+
+背景として、RNNでは有限列を学習してもgreedy等の不完全decodingが停止しない場合が報告されている。[Welleck et al., EMNLP 2020](https://arxiv.org/abs/2002.02492)。同じ重みでもdecodingで反復等の生成品質が変わるという研究もある。[Holtzman et al., ICLR 2020](https://arxiv.org/abs/1904.09751)。これらは比較設計の背景であり、このTransformerの原因や上記改善の成功を証明するものではない。
+
+---
+
+以下は過去の計画・実行記録。
+
 2026-10-04最新: 実train12.23Bのローカル整備と[新データでのユーザー指定2B学習・既存評価を完了](../reports/phase6/base_2b_10b_data_review.json)。同じdev BPB0.982882、greedy反復60/80/EOS0/80を記録し、report/commitして停止する。5B/10B/Chat/decoder比較は未開始。以下の実行中・学習前停止・2B/5Bデータ増量案は履歴。[現在の状態](autonomous_status.md)。
 
 更新: 2026-10-03。Phase 0〜5とPhase 6①〜⑤の準備は完了。③は`a7d26e1`、④⑤は`93c7d1d`へcommit済み。[現在の状態](autonomous_status.md)、[④⑤の実測と停止記録](30_phase6_readiness_execution.md)。**計画1〜5の実行をユーザーが再開し、500M stable・独立decay・全文dev/400生成比較を完了した。現在は1B前で停止している。**

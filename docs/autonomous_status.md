@@ -1,5 +1,15 @@
 # Codex継続作業の現在地
 
+## 次の計画を更新・実行は未開始（2026-10-04）
+
+ユーザーの「ここまでの検証を踏まえた計画」に応じ、[次回100M対照と5B以降の計画](27_phase6_remaining_plan.md)と[提案JSON](../reports/phase6/eos_next_plan.json)を作成。今回の依頼は計画作成で、データ抽出/推論/学習は開始していない。EOS教師1.684倍でも停止0、32〜128poolの平均105と64以下1.49%、25M追加が親2Bの1.25%という実測を踏まえ、train内の完結した32〜64-token文/段落単位を21M以上準備してWeb対照と各100,007,936 input tokensで1回だけ比較する案。単位の終端は新しいrecordの定義であり、元Web記事のEOSと同じ位置とは主張しない。
+
+各3,052更新（2,900 stable＋152 decay）、短文610更新/19,988,480 tokens、約20%混合。科学比較合計200,015,872 tokens。100Mではscheduleが異なるため旧25M controlをそのまま再利用しない。固定80 greedy/dev256に、trainと分離した補助短文dev80を追加して学習前に凍結。mixture採用gateはEOS+8/80/反復非悪化/empty-role-Unicode0/BPB+1%以内を維持。補助suiteで元の失敗を置き換えない。pool CPU上限案600秒、GPU上限案2700秒。screenは10〜15分、全文1枝なら25〜30分、2枝なら35〜40分がGPU推定で、実装時間は別。
+
+次回の実行境界案はこの1回の比較/必要な全文評価/report/commitまで。不合格で小mixtureの自動sweepを続けない。短文gateはmixture採用を決める基準であり、Base増量やChat停止95%の判定とは分ける。Web100Mの全文/生成に重大退行がなければ、次の独立段階としてWeb100%の5B比較を検討する。保存済みstable1.900Bから明示的予算延長fork（未実装）で4.750B stable＋0.250B decay＝総5.000B、追加3.100B、学習/保存/評価90〜120分の案。元2B decayやshort枝を通常resumeで延ばさず、21M poolを主系列の20%に何十周も混ぜない。5B結果で10B/必要なBase品質/Chatへ進む判断を残し、元の70%文法/95%停止等の能力基準は維持する。
+
+次の具体的作業は、完結単位builder/補助suite/100M runner/parameterized reviewerの実装とpool確認。既存step/sampler/Tokenizers/WSL設定を維持し、差分の最小checksと全state保存再開、actual process identity/latest checkpointを必要範囲で確認する。全件corpus再監査・追加一般データ取得は計画の前提にしない。以下の停止/実行中記録は履歴。
+
 ## 完了・停止: EOS短文混合の対照学習（2026-10-04）
 
 ユーザー指定の改善計画を[凍結config](../configs/phase6/eos_short_pilot.json)で実行し、[実測・完了確認・次の案](../reports/phase6/eos_short_pilot_review.json)を保存。科学比較は同じ2B model/Adam moments/RNG/Web cursorから2枝を作り、各763更新/25,001,984 input tokens（725 stable＋38 decay）、合計50,003,968 tokens。両枝LR0.002から末尾減衰で0.0002。検証2回計16 GPU更新/524,288 input tokensは科学予算と分けた。各重みの累積学習量は2,025,029,632 tokensで、2枝の学習量を1モデルへ合算しない。

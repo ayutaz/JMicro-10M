@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-04次の[計画を更新](27_phase6_remaining_plan.md)：32〜64-token完結単位を準備し同じ2B親からWeb対short20%を各100Mで1回比較、固定80/dev256と補助短文80、採用条件は維持。比較/必要な全文評価で一区切り。Web100Mに重大退行がなければ、別のWeb100% stable延長forkで総5Bを検討し、5B結果から10B/必要Base品質/Chatへ進む。mixture採用gateとBase/Chat品質目標を分け、失敗を消さない。今回は計画のみ、100M/5Bの実行は未開始。[提案と予算](../reports/phase6/eos_next_plan.json)。以下は履歴。
+
 2026-10-04短文混合の[対照学習を完了](../reports/phase6/eos_short_pilot_review.json)。同じ2B親から各25,001,984 input tokens、Web対短文20.0524%混合。固定80 greedy64のEOSは両方0/80、反復62→54/80、共通dev256 BPB1.068518→1.069161（+0.06025%）。EOS改善gate未達で短文条件を未採用、conditional全文再評価を省略。対照実験として完了し元2B基準/両新checkpointを保持、report/commitで停止。5B/Chat未開始。次の32〜64-token完結単位比較は未起動案で、pool/予算凍結を先に行う。[実状態](autonomous_status.md)。以下は履歴。
 
 2026-10-04 EOS調査を完了：[実測と改善案](../reports/phase6/eos_2b_review.json)。真の末尾EOS argmax35/256→46/256と改善するが、同じ20ケースのgreedyは512 tokensでも停止0/20/反復20/20。penalty1.1は停止5/20（435〜491 tokens）/反復20/20で解決には足りない。固定64-token基準は維持。次の比較案は短い完結train文書20%混合と既存Webの25Mずつ2枝、改善確認後に手元12.23Bを使う5B学習へ増量。学習比較/5Bは未開始。全件監査を繰り返さず、[実状態](autonomous_status.md)を参照する。以下の停止境界/実行中記録は履歴。

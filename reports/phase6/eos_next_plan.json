@@ -1,0 +1,187 @@
+{
+  "status": "proposal_planning_only_not_executable",
+  "date": "2026-10-04",
+  "goal": "One corrected-completion-unit100M comparison, decide short-mixture adoption separately from Base5B scaling, then roadmap Base/Chat milestones",
+  "evidence": {
+    "base2B": {
+      "path": "reports/phase6/base_2b_10b_data_review.json",
+      "sha256": "97f6163d78536af6f261de560a02a9529b93d47db184056bf25d252aa9824588"
+    },
+    "EOS_diagnosis": {
+      "path": "reports/phase6/eos_2b_review.json",
+      "sha256": "6a14da3c27504ee7a583b7e712576acc62d9cac23d4157c7dd14ac9223a3a927"
+    },
+    "short25M": {
+      "path": "reports/phase6/eos_short_pilot_review.json",
+      "sha256": "afee8268e2029b3b64be72f031654b22adb0a7f30b144137397039c11d438798"
+    }
+  },
+  "confirmed": {
+    "model_parameters": 10000152,
+    "prepared_general_train_tokens": 12225819077,
+    "base2B_input_tokens": 2000027648,
+    "short25M_EOS_teacher_ratio": 1.6841481537217133,
+    "short25M_fixed_greedy_EOS": [
+      0,
+      0
+    ],
+    "short25M_repetition": [
+      62,
+      54
+    ],
+    "short25M_BPB_relative_change_percent": 0.060247786149569826,
+    "short_pool_mean_body_tokens": 104.59871666248641,
+    "short_pool_fraction_at_most64": 0.014881698854610818,
+    "greedy512_EOS_in20_cases": 0
+  },
+  "unresolved": [
+    "Length mismatch is a hypothesis;512 greedy failures mean the64-token cap alone is insufficient.",
+    "25M is1.25percent of2B; small added training does not rule out other doses or short-unit definitions.",
+    "Finite EOS supervision and improved heldout EOS NLL do not guarantee natural greedy termination.",
+    "Data volume and consumed training tokens both changed in the old500M-to-new2B comparison; data-only causality is not established."
+  ],
+  "next_trial": {
+    "stage": "proposed_not_started",
+    "parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-2b-10bdata-20261004/decay-2B/checkpoint-00061036.pt",
+      "sha256": "165f9c177961a82b3da1c5ab1d21a32078b35b02e594fb2eb09edd7dbd4ea183",
+      "update": 61036,
+      "tokens_seen": 2000027648
+    },
+    "short_unit_definition": "Complete Japanese sentence/paragraph units32-64 body tokens extracted from existing train parent documents; define each complete unit as a record withEOS. Do not claim it uses the original articleEOS position.",
+    "pool_minimum_unique_input_tokens": 21000000,
+    "pool_prepare_budget_seconds": 600,
+    "pool_constraints": [
+      "inherit parent train split; keep dev/test isolated",
+      "balanced quotations and complete sentence boundaries; reject fragments/list/code/URL/ellipsis endings",
+      "exact canonical dedup for the new small pool; exclude auxiliary dev unit text",
+      "no arbitrary token cuts or cycling the712 short documents; no full12B near-audit",
+      "record unit lengths, parent-document diversity and small content sample"
+    ],
+    "arms": [
+      "existing Web100percent",
+      "short19.9869percent plusWeb remainder"
+    ],
+    "same_initial_weights_optimizer_RNG_web_cursor": true,
+    "updates_per_arm": 3052,
+    "stable_updates": 2900,
+    "decay_updates": 152,
+    "input_tokens_per_arm": 100007936,
+    "scientific_total_input_tokens": 200015872,
+    "short_updates": 610,
+    "short_input_tokens": 19988480,
+    "reuse_completed25M_control": false,
+    "control_reason": "100M terminal decay schedule differs; need equal new100M control, preserve the old25M result.",
+    "settings": {
+      "batch": 32,
+      "context": 1024,
+      "dtype": "BF16 withFP32 parameters",
+      "backend": "Flash+compile reduce-overhead",
+      "seed": 42,
+      "peak_lr": 0.002,
+      "decay_floor_lr": 0.0002
+    },
+    "missing_implementation": [
+      "complete-unit builder and manifests",
+      "frozen auxiliary80-dev short-unit suite",
+      "100M runner and parameterized reviewer",
+      "required targeted checks and CUDA all-state save/resume"
+    ],
+    "evaluation": {
+      "unchanged_fixed_greedy_cases": 80,
+      "max_new_tokens": 64,
+      "unchanged_dev_documents": 256,
+      "supplementary_short_dev_cases": 80,
+      "supplementary_suite_replaces_fixed_suite": false,
+      "short_adoption_gate": {
+        "EOS_more_than100M_control_at_least": 8,
+        "repetition_no_worse": true,
+        "empty_role_unicode": 0,
+        "relative_BPB_degradation_max": 0.01,
+        "punctuation_only_or_useless_earlyEOS_not_accepted": true
+      },
+      "full_evaluation_policy": "Web100M if screening has no major regression, to decide Base scaling; short100M only if mixture gate passes. At most2 full89416-dev/400-generation evaluations.",
+      "test_split_used": false,
+      "full_short_adoption_checks": {
+        "BPB_degradation_max_relative_vs_Web100M": 0.01,
+        "all_fixed80_generated_IDs_match_screen": true,
+        "new_empty_role_unicode_failures_vs_original2B_reject": true
+      }
+    },
+    "GPU_budget_seconds_proposed": 2700,
+    "typical_GPU_minutes_with_one_full": [
+      25,
+      30
+    ],
+    "GPU_minutes_if_two_full": [
+      35,
+      40
+    ],
+    "interpretation": "Changing both unit definition and100M dose means differences from the old25M trial do not isolate length versus dose; the equal100M control isolates mixture effect at this dose.",
+    "stop_boundary": "Finish the one paired trial and eligible full evaluations, report/commit; no automatic LR/ratio/weight sweep or5B launch."
+  },
+  "next_trial_failure_policy": "Reject the mixture without lowering its gate. Use Web100M to decide a separate general5B experiment; do not treat failed mixture adoption as proof that Base data scaling is useless.",
+  "base5B": {
+    "stage": "conditional_proposal_not_started",
+    "data": "Existing12.23B Web only; keep targeted short finishing in a separate optional experiment.",
+    "go_no_go_before_launch": {
+      "full_dev_BPB_increase_at_most_absolute_vs2B": 0.001,
+      "fixed80_repetition_increase_stops_at": 8,
+      "new_empty_role_unicode_failure_stops": true,
+      "short_mixture_EOS_gate_is_mixture_adoption_not_Base_quality_completion": true
+    },
+    "parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-2b-10bdata-20261004/stable/checkpoint-00057984.pt",
+      "sha256": "4edcefa7c81e05aa9403e4dc642bbe783dc68be15f140f88098ab7b2fcd3a597",
+      "update": 57984,
+      "tokens_seen": 1900019712
+    },
+    "explicit_stable_budget_extension_required": true,
+    "extension_implementation_exists": false,
+    "stable_end_update": 144959,
+    "stable_input_tokens": 4750016512,
+    "decay_updates": 7629,
+    "final_update": 152588,
+    "final_cumulative_input_tokens": 5000003584,
+    "additional_input_tokens_from_preserved_stable": 3099983872,
+    "pure_training_minutes_estimate": [
+      73,
+      79
+    ],
+    "training_save_evaluation_minutes_estimate": [
+      90,
+      120
+    ],
+    "stop_boundary": "At5B evaluate same full-dev/generation/content metrics, report/commit; decide10B from evidence, no automatic20B/50B.",
+    "adopted_short_finishing_requires_its_own_post5B_budget": true
+  },
+  "later_roadmap": {
+    "Base_quality": "Keep grammar2/2>=70percent and report repetition/corruption; do not claim Basev1 with missing human/test evidence",
+    "Chat": "After sufficient Base quality, implement/evaluate Dialogue mid-training and assistant-body+EOT SFT separately.",
+    "Chat_final_targets": {
+      "stop_success_min": 0.95,
+      "empty_max": 0.05,
+      "role_leak_max": 0.01,
+      "fixed_suite_unicode_failures": 0
+    },
+    "no_human_or_test_completion_claim_without_actual_evidence": true
+  },
+  "environment": {
+    "execution": "WSL2 Ubuntu RTX4090, allPython viauv run --frozen with required extras",
+    "no_tokenizer_retraining_or_repeated_full_audit": true,
+    "persist_process_identity_logs_checkpoints": true
+  },
+  "primary_background": [
+    {
+      "title": "Welleck et al. EMNLP2020",
+      "url": "https://arxiv.org/abs/2002.02492",
+      "scope": "Recurrent-model incomplete-decoding nontermination; not a causal proof for this Transformer"
+    },
+    {
+      "title": "Holtzman et al. ICLR2020",
+      "url": "https://arxiv.org/abs/1904.09751",
+      "scope": "Decoding affects degeneration with same weights; not evidence that a new decoder solves this project"
+    }
+  ],
+  "authorization_scope_this_turn": "Plan and report only; no dataset preparation, inference or training started."
+}
