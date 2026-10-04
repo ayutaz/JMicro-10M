@@ -1,6 +1,6 @@
 # Codexによる環境整備・学習・改善の自動化
 
-現在地（2026-10-04）: Phase 0〜5、Phase 6準備、主要Web5B、各100M仕上げ比較、直接10B専用準備は完了。10B科学学習step2とCPU保存確認19項目は完了、品質評価step3は未開始。[学習結果](41_base_10b_training.md)。現在の指定範囲は総10B学習、保存結果確認、report/local commitで停止。[最新状態](autonomous_status.md)、[直接10B計画](39_learning_scale_and_generation_plan.md)、[準備証拠](40_base_10b_preparation.md)を参照する。
+現在地（2026-10-04）: Phase 0〜5、Phase 6準備、主要Web5B、各100M仕上げ比較、直接10B専用準備は完了。10B科学学習step2とCPU保存確認19項目は完了、同条件品質評価step3も完了。[品質結果](42_base_10b_quality_evaluation.md)。[学習結果](41_base_10b_training.md)。現在の指定範囲は再開された10B品質評価で、評価・内容確認を完了しreport/local commitで停止。[最新状態](autonomous_status.md)、[直接10B計画](39_learning_scale_and_generation_plan.md)、[準備証拠](40_base_10b_preparation.md)を参照する。
 
 Full accessは既に実効policyへ反映済みで、ユーザー側のrunner起動を学習開始条件にしない。起動前にAGENTS.mdの範囲とactual job/lock/checkpointを確認する。completeはその時の指定範囲を証拠で完了したことを示し、Base/Chat完成とは区別する。科学jobはユーザーのstep2再開指示で実行・完了し、実processも終了済み。完了runを再起動せず、今回のreport/local commitで停止する。
 

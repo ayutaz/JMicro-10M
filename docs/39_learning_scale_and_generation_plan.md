@@ -2,7 +2,7 @@
 
 実行準備の更新（2026-10-04）：ユーザー指定のstep1により[専用設定とGPU保存再開確認](40_base_10b_preparation.md)を完了。新config/schema/launcherは準備済み、14tests/実CUDA全state一致を確認した。ユーザー指定step2の本学習は2026-10-04 11:43:52Zに総10,000,007,168 tokensで完了。CPU保存確認19項目成功。[本学習結果と速度](41_base_10b_training.md)。復旧commandは `bash scripts/run_base_10b.sh --train`、引数なしは検証専用。
 
-2026-10-04。ユーザーの訂正に従い、7.5Bの中間実験を省き、**既存12.23B train tokensを使って総10Bまで一度に学習し、そこで比較する計画**へ変更した。データセットは既に10Bを超えているため、新規収集ではなく学習する量を増やす。EOS・反復にはその後に短文仕上げを一度比較し、UTF8は別の推論方式として評価する。本学習step2と保存確認は完了し、品質評価step3・decoder変更は未開始。実CUDA準備検証のtokensと科学学習tokensは別会計にする。[前回結果](38_eos_5b_finish_results.md)と[保存証拠](../reports/phase6/eos_5b_finish_review.json)を基準にする。
+2026-10-04。ユーザーの訂正に従い、7.5Bの中間実験を省き、**既存12.23B train tokensを使って総10Bまで一度に学習し、そこで比較する計画**へ変更した。データセットは既に10Bを超えているため、新規収集ではなく学習する量を増やす。EOS・反復にはその後に短文仕上げを一度比較し、UTF8は別の推論方式として評価する。本学習step2と保存確認は完了し、品質評価step3も完了（BPB0.954018 / 固定EOS0・反復53 / raw Unicode0）。[品質結果](42_base_10b_quality_evaluation.md)。decoder変更は未開始。実CUDA準備検証のtokensと科学学習tokensは別会計にする。[前回結果](38_eos_5b_finish_results.md)と[保存証拠](../reports/phase6/eos_5b_finish_review.json)を基準にする。
 
 ## 現在の根拠と未解決事項
 
@@ -14,7 +14,7 @@
 | 元5B | 0.964484 | 0/80 | 59/80 | 2/400 |
 | 5BからWeb100M仕上げ | 0.958092 | 0/80 | 57/80 | 0/400 |
 | 5Bから短文20%仕上げ | 0.959011 | 13/80 | 51/80 | 2/400 |
-| 新10B | 未評価 | 未評価 | 未評価 | 未評価 |
+| 新10B | 0.954018 | 0/80 | 53/80 | 0/400 |
 
 本文予測は改善しているが、自然停止と意味品質は十分でない。2B対5Bは学習率の減衰期間にも差があり、全差を学習量だけの効果とは断定しない。短文比較は同じ親・同じ追加量・同じLRであり、今回の条件では自然停止と反復への効果を確認できた。ただし途中不正UTF81件とcap末尾切断1件で最終採用不合格、数量・時刻・否定・文脈の誤りも残る。表示helperは採用済みだがraw品質を改善した証拠ではない。
 
@@ -41,7 +41,7 @@ stable4.75Bから9.5Bへ継続し、最後の独立decayで総10Bへ到達する
 
 今回の追加科学学習は5,249,990,656 tokens。減衰前のstable4.75Bへ戻るため、単に「直近5.1Bから4.9B追加」ではない。旧final5Bのdecay区間は別枝として保持する。各枝のWeb cursor/epochを保存し、10Bは準備済み12.23B内で進める。枝間で再使用した区間は記録し、ユニークデータ量の増加に数えない。旧案にあった独立7.5B decayの374,996,992科学tokensと中間全文評価を省ける。
 
-## 3 10Bを同じ評価で比較する
+## 3 10Bを同じ評価で比較する（完了）
 
 現在の最良Web仕上げBPB0.958091981と元5B0.964484070の保存評価を再利用し、新10Bだけ同じ保護dev89,416文書/164,344,743本文bytesと固定400生成で評価する。dev256は進捗診断に留め、全文BPBと比較しない。固定80 greedy64、抑制あり・なしとsampling3seedsの元条件を保持。EOS bias/penalty/強制停止を入れない。内容の改善・退行も同じpromptで読む。
 
@@ -51,7 +51,7 @@ stable4.75Bから9.5Bへ継続し、最後の独立decayで総10Bへ到達する
 
 10Bも同じ全文dev/400生成と内容で比較する。BPB改善だけでEOS・文法・正答率も改善したとは扱わない。退行時は最良の旧モデルを保持して報告し、20B/50B/データ再収集へ自動移行しない。今後データ量そのものを比較するなら、同じ学習tokens/曲線で小さいpoolの周回対大きいpoolの新規データを別実験にする必要がある。今回の主目的は既存pool内の学習量を増やす効果である。
 
-専用の10B品質比較入口は未整備。学習完了CPU reviewerはscripts/review_base_10b_training.pyへ実装し、実行中jobの完了拒否guardを確認済み。実際の終端保存結果と全科学metricsへ適用し、19項目成功した。品質比較は既存5B evaluatorを適用し、条件・tokens・resultラベルを確認してから使う。準備reviewerは準備だけを検証し、10B科学完了や品質達成を判定しない。
+専用10B品質比較入口とCPU reviewerを実装し、実GPU全文dev/400、全固定80と自然停止9件の内容確認、CPU保存確認23項目を完了した。[品質結果と証拠](42_base_10b_quality_evaluation.md)。既存5Bの評価経路を維持し、10Bの条件・tokens・resultラベルを確認して使った。学習完了CPU reviewerの19項目とは別の評価証拠である。準備reviewerは準備だけを検証し、10B科学完了や品質達成を判定しない。
 
 ## 4 結果報告・commitと停止
 
@@ -93,4 +93,4 @@ stable4.75Bから9.5Bへ継続し、最後の独立decayで総10Bへ到達する
 
 Pythonはすべてuv run --frozen＋必要extras、WSL2/4090/Linux data。起動前にactual PID/boot/start ticksとGPU lockを確認し、永続job/log/checkpoint/sourceを保存する。過剰な全データ照合や旧GPU評価の再実行はしない。各有意な結果でstatusを更新しlocal commit、pushはしない。
 
-今回はユーザーが再開したstep2の科学学習を総10Bまで実行し、保存結果確認・report/local commitで停止する。実行準備・本学習・保存確認は完了済み。step3品質評価と後続EOS/UTF8実験は今回の指定外。旧launcherを新予算のまま起動しない。20B/50B/Chat/Tokenizer再学習/unlikelihood/parameter sweepは今回の実行計画に含めない。
+step2の科学学習・保存確認に続き、ユーザーが再開したstep3品質評価も完了した。今回はreport/local commitで停止する。後続EOS/UTF8実験は今回の指定外。旧launcherを新予算のまま起動しない。20B/50B/Chat/Tokenizer再学習/unlikelihood/parameter sweepは今回の実行計画に含めない。

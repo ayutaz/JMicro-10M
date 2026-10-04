@@ -1,12 +1,12 @@
 # Codex継続作業の現在地
 
-最終更新: 2026-10-04。**ユーザーがstep3「10bの品質評価」を再開した。** step2の総10,000,007,168 tokens / update305176とCPU保存確認19項目は完了、学習プロセスは終了済み。今回の範囲は同条件の全文dev89,416文書・固定400生成、旧5B/最良Web5.1B比較、内容確認、report/local commitと停止。[本学習の結果と速度](41_base_10b_training.md)。
+最終更新: 2026-10-04。**ユーザーが再開したstep3「10bの品質評価」を完了した。** 同条件の全文dev89,416文書・固定400生成、旧5B/最良Web5.1B比較、全固定80と自然停止9件の内容確認、CPU証拠確認23項目を完了。BPB0.954018 / 固定EOS0・反復53 / raw Unicode0。元増量gateは合格、Base/Chat品質目標は未達。report/local commitで停止する。[品質結果](42_base_10b_quality_evaluation.md)、[本学習の結果と速度](41_base_10b_training.md)。
 
 専用 `scripts/compare_base_10b.py` / `.sh` と凍結 `configs/phase6/base_10b_comparison.json` を用意し、関連23 CPU tests成功。初回は過去EOS設定5件のschema欠落で既存契約tests2件が失敗したため、元configを変更せず厳密const schemaを追加して修復した。[修復記録](../reports/phase6/base_10b_comparison_schema_repair.json)。GPU空きと既存job終了を確認済み。評価GPU上限1,800秒。旧結果・学習source/checkpointsを保持し、追加学習や後続実験は開始しない。
 
-評価jobは2026-10-04 11:56Z開始、LinuxPID442 / boot0f175ee3-e772-41f7-8f7a-76387be1f2e4 / start_ticks14858、hidden WindowsPID31900。実process生存と全文dev進捗を確認済み。[起動記録](../reports/phase6/base_10b_comparison_launch.json)。Linux `reports/phase6/base-10b-comparison-20261004/{job.json,pipeline.log,full-dev.json,generation.json,result.json}` に永続保存する。中断復旧は実identityとGPU lockを確認したうえで `bash scripts/compare_base_10b.sh`。完了stageを再利用し、旧学習launcherは起動しない。
+評価jobは2026-10-04 11:56Z開始、12:09Zにcomplete。LinuxPID442 / boot0f175ee3-e772-41f7-8f7a-76387be1f2e4 / start_ticks14858、hidden WindowsPID31900は実process終了を確認済み。[起動記録](../reports/phase6/base_10b_comparison_launch.json)、[完了記録](../reports/phase6/base_10b_comparison_completion.json)。GPU時間786.881秒（全文376.052秒・生成409.008秒）、上限1,800秒以内。Linux `reports/phase6/base-10b-comparison-20261004/` にjob/log/文書別NLL/400生成/result/比較packet/sourceを保持する。完了済みの評価・旧学習launcherを再起動しない。
 
-完了CPU reviewer `scripts/review_base_10b_comparison.py` を実装し、実際に稼働中のjobを完了扱いしないguardとCLI helpを確認した。GPU評価・固定80および自然停止の内容確認が終わった後に適用する。生成IDから全raw flags、全文BPB、元安全gate、旧reference hash、評価隔離、実process終了を確認し、失敗gateもそのまま報告する。
+完了CPU reviewer `scripts/review_base_10b_comparison.py` を実際の保存結果と内容診断へ適用し、23項目成功。生成IDから全raw flags、全文BPB、元安全gate、旧reference hash、評価隔離、実process終了を確認した。[review](../reports/phase6/base_10b_comparison_review.json)、[全80と自然停止の内容診断](../reports/phase6/base_10b_content_review.json)。追加学習tokens0、旧結果はGPU再評価せず再利用。独立人手blind/test/Chat/量子化は未実施。
 
 [現在の計画](39_learning_scale_and_generation_plan.md)、[10B準備結果](40_base_10b_preparation.md)、[原ロードマップと品質条件](15_project_roadmap.md)、[引き継ぎ](windows_handoff.md)。過去の実行中メモ・停止境界・7.5B案は[2026-10-04までの履歴](autonomous_history_20261004.md)へ移した。旧メモのPIDやコマンドを現在の起動指示にしない。
 
@@ -21,6 +21,7 @@
 | UTF8表示 | 共通helper実装済み。上限の未完成末尾だけを表示から保留し、raw失敗と停止理由は保持 |
 | 10B準備 | 専用config/schema/launcher凍結。14tests、実CUDA16updates/524,288検証tokensの全state/history一致、保存証拠26項目成功。[準備確認](../reports/phase6/base_10b_preparation_review.json) |
 | 10B本学習 | stable9,500,000,256＋decay500,006,912＝総10,000,007,168 tokens。追加科学5,249,990,656 tokens。[保存状態19checks成功](../reports/phase6/base_10b_training_review.json) |
+| 10B品質評価 | 同条件dev/400・全固定80と自然停止9件の内容確認、CPU証拠確認23項目成功。[品質結果](42_base_10b_quality_evaluation.md) |
 | 品質と後続 | Base/Chat品質未達。独立人手blind採点・test・Chat学習・新重みの量子化品質は未実施 |
 
 ## 現在の評価結果
@@ -33,7 +34,7 @@
 | 元5B | 0.964484 | 0/80 | 59/80 | 2/400 |
 | Web仕上げ5.1B | 0.958092 | 0/80 | 57/80 | 0/400 |
 | 短文仕上げ5.1B | 0.959011 | 13/80 | 51/80 | 2/400 |
-| 新10B | 未評価 | 未評価 | 未評価 | 未評価 |
+| 新10B | 0.954018 | 0/80 | 53/80 | 0/400 |
 
 短文の全400自然EOS129/反復103、Web13/121。短文の全文BPB悪化は対照比+0.095894%で許容内だが、raw Unicode2により最終採用gate不合格。1件は途中不正UTF8、1件はcap末尾切断。短文重みは診断用として保持する。Webの増量数値gateは合格、両モデルとも意味・数量・時刻・否定条件の誤りが残る。自然停止増加を正答率・実用品質の達成にしない。2B→5BにはLR曲線差もあり、全差を学習量だけの因果効果とは断定しない。
 
@@ -60,7 +61,7 @@
 
 1. **実行設定準備: 完了。** 専用設定と保存再開確認を再実行する必要はない。
 2. **本学習と保存確認: 完了。** 保存stable4.75Bから9.5B stable＋15,259-update decayで総10,000,007,168/update305176へ到達。追加科学5,249,990,656 tokens、7.5B中間実験・追加収集なし。専用CPU reviewer19項目成功。
-3. **同じ評価で比較: 今回の実行対象。** 新10Bだけ全文dev/400を測り、5Bと最良Web5.1Bの保存結果を再利用する。専用比較入口と凍結設定を準備済み。学習完了専用CPU reviewerは実際の終端保存stateと全科学metricsへ適用済み。準備reviewerは本学習完了や品質を判定するものではない。
+3. **同じ評価と内容比較: 完了。** 新10Bだけ全文dev/400を測り、旧5B/最良Web5.1Bを再利用した。全文BPBはWeb比−0.425169%、固定反復57→53、raw Unicode0。固定EOS0のまま、数量・時刻・否定・因果誤りと局所退行が残る。元増量gateは合格し、次の仕上げ候補として保持する。実用品質達成とはしない。
 4. **報告・local commit・停止。** 原raw品質条件を保持し、改善と残る課題を明示する。EOS仕上げ/UTF8制約は別の後続候補で、現在未起動。
 
 以下は中断復旧用のWSL repo内コマンド履歴。今回のrunは完了しているため再起動しない:
@@ -69,7 +70,7 @@
 bash scripts/run_base_10b.sh --train
 ```
 
-将来別のrunを起動する前はactual PID/boot/start ticksとGPU lockを確認する。引数なしと `--verify-only` は検証専用で、完了結果を再利用する。科学学習GPU上限9,000秒に準備19.217秒を含め、評価予約1,800秒は今回未使用。次の具体的な作業は、ユーザーがstep3を再開した場合に専用品質比較入口を整え、新10Bだけを同条件で評価すること。20B/50B/Chat/UL/sweepへ自動移行しない。
+将来別のrunを起動する前はactual PID/boot/start ticksとGPU lockを確認する。科学学習GPU上限9,000秒、評価上限1,800秒はともに予算内で完了。次の具体的な候補は、ユーザーがEOS仕上げを再開した場合に保存final10B親の単一Web/短文20%各100M比較を整えること。元raw採用gateを保持し、20B/50B/Chat/UL/sweepへ自動移行しない。
 
 ## 前回の文書整理の検証（起動前の履歴）
 

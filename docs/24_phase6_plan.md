@@ -1,6 +1,6 @@
 # Phase 6 Base学習の現在地と進行条件
 
-2026-10-04更新。Phase6全体の品質目標は未達。基盤①〜⑤、データ12.23B、2B・5B学習、各100M仕上げ比較、10B専用設定の準備は完了した。**本学習10BとCPU保存確認19項目は完了。品質評価は未実施。** [現在地](autonomous_status.md)、[次の詳細計画](39_learning_scale_and_generation_plan.md)、[準備証拠](40_base_10b_preparation.md)。旧計画全文は [履歴](autonomous_history_20261004.md) に保持する。
+2026-10-04更新。Phase6全体の品質目標は未達。基盤①〜⑤、データ12.23B、2B・5B学習、各100M仕上げ比較、10B専用設定の準備は完了した。**本学習10BとCPU保存確認19項目、同条件品質評価とCPU確認23項目は完了。Base/Chat品質目標は未達。** [現在地](autonomous_status.md)、[次の詳細計画](39_learning_scale_and_generation_plan.md)、[準備証拠](40_base_10b_preparation.md)。旧計画全文は [履歴](autonomous_history_20261004.md) に保持する。
 
 ## 完了した基盤と実験
 
@@ -13,7 +13,8 @@
 | 2B・5Bと比較 | 完了、EOS/反復/意味品質は未達 | [5B比較](36_base_5b_comparison.md) |
 | 5Bから各100M仕上げ | 完了、短文のraw失敗条件不合格 | [結果](38_eos_5b_finish_results.md) |
 | 直接10B準備 | 14tests/実CUDA保存再開一致、科学tokens0 | [準備](40_base_10b_preparation.md) |
-| 直接10B本学習 | 総10,000,007,168 tokens、CPU保存確認19項目成功、品質未評価 | [本学習](41_base_10b_training.md) |
+| 直接10B本学習 | 総10,000,007,168 tokens、CPU保存確認19項目成功 | [本学習](41_base_10b_training.md) |
+| 直接10B品質評価 | 同条件dev/400、CPU23項目成功。BPB0.954018 / EOS0・反復53 / Unicode0、品質目標未達 | [品質結果](42_base_10b_quality_evaluation.md) |
 
 ## 現在の凍結設定
 
@@ -31,7 +32,7 @@
 
 現在の依頼step2の直接10B学習は完了し、専用jobと実processは終了済み。中断時の復旧commandは `bash scripts/run_base_10b.sh --train`。引数なし/--verify-onlyは準備のみで完了結果を再利用する。actual job/lock/latestを確認して重複起動を避ける。
 
-今回は学習・保存結果確認・報告/local commitで一区切り。全文/生成の品質比較は後続step3で未実施。学習GPU上限9,000秒に準備19.217秒を含め、別評価予約1,800秒、計10,800秒。見積もり145〜165分、実装・内容確認は別。短文仕上げ/UTF8制約、20B/50B/Chatへは自動移行しない。
+今回は再開された品質評価も完了し、報告/local commitで一区切り。全文/生成のstep3品質比較も完了。[結果](42_base_10b_quality_evaluation.md)。学習GPU上限9,000秒に準備19.217秒を含め、別評価予約1,800秒、計10,800秒。見積もり145〜165分、実装・内容確認は別。短文仕上げ/UTF8制約、20B/50B/Chatへは自動移行しない。
 
 ## 開始前に揃える条件
 

@@ -8,16 +8,16 @@ Phase 0〜5、Phase 6①〜⑤、主要Webの総5,000,003,584 tokens学習、同
 
 準備済みtrainは12,225,819,077 tokens。builder/raw再構成/実loaderで利用を確認したが、独立全corpus監査は未完了のまま記録する。新規取得や全件再照合を10B学習の前提にしない。
 
-[10B専用準備](40_base_10b_preparation.md)は完了。関連14 CPU tests、stable/decayの実CUDA連続対保存再開16更新、保存review26 checksが成功した。これは準備の証拠であり、ユーザー指定step2の科学学習とCPU保存確認19項目も完了した。[本学習結果](41_base_10b_training.md)。品質評価は未実施。
+[10B専用準備](40_base_10b_preparation.md)は完了。関連14 CPU tests、stable/decayの実CUDA連続対保存再開16更新、保存review26 checksが成功した。これは準備の証拠であり、ユーザー指定step2の科学学習とCPU保存確認19項目も完了した。[本学習結果](41_base_10b_training.md)。再開された同条件品質評価も完了。[品質結果](42_base_10b_quality_evaluation.md)。
 
-## 直接10Bの完了状況と次回の品質評価
+## 直接10Bの学習・品質評価の完了状況
 
 1. 実行設定の準備は完了。既存process、GPU lock、runとcheckpointを読み取り確認して二重起動を避ける。
 2. 保存済みstable4.75B親から専用設定で9.5Bまで継続し、独立decayで総10,000,007,168 tokensへ到達済み。追加科学学習は5,249,990,656 tokens。7.5B専用decay・評価は省く。
-3. 新10Bだけ同じ全文devと固定400生成で評価し、元5Bおよび最良Web5.1Bの保存評価と比較する。専用品質比較入口は未整備。学習完了CPU reviewはscripts/review_base_10b_training.pyに実装し、実行中jobを完了扱いしないguardを確認済み。実際の終端保存stateと全科学metricsへ適用し、19項目成功した。
+3. 新10Bだけ同じ全文devと固定400生成で評価し、元5Bおよび最良Web5.1Bの保存評価と比較する。専用品質比較入口を実装し、同条件dev/400と全固定80・自然停止9件の内容確認を完了。CPU評価確認23項目成功。学習完了CPU reviewはscripts/review_base_10b_training.pyに実装し、実行中jobを完了扱いしないguardを確認済み。実際の終端保存stateと全科学metricsへ適用し、19項目成功した。
 4. BPB、EOS、反復、raw Unicode、内容の誤り、学習量とGPU時間を報告してcommitし、停止する。到達tokensとBase品質達成を別に判定する。
 
-中断復旧用コマンド履歴はWSL project rootで `bash scripts/run_base_10b.sh --train`。引数なし/`--verify-only`は準備確認で、科学学習を開始しない。今回のstep2学習と保存結果確認は完了し、report/commitで停止する。完了runを再起動しない。step3の全文/生成品質評価は指定外で開始しない。
+中断復旧用コマンド履歴はWSL project rootで `bash scripts/run_base_10b.sh --train`。引数なし/`--verify-only`は準備確認で、科学学習を開始しない。今回のstep2学習と保存結果確認は完了し、report/commitで停止する。完了runを再起動しない。ユーザーが再開したstep3の全文/生成品質評価も完了し、追加学習は開始しない。
 
 科学学習GPU上限9,000秒（準備検証19.217秒を含む）、評価予約1,800秒、合計10,800秒。学習区間約126分、評価込み145〜165分の見積もりで、実装・内容確認は別。[専用設定](../configs/phase6/base_10b.json)を変更せず、通常resumeで終端budgetを変更しない。
 

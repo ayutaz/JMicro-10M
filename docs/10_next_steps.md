@@ -1,6 +1,6 @@
 # 次に進める作業
 
-2026-10-04更新。[現在地](autonomous_status.md)と[具体的な計画](39_learning_scale_and_generation_plan.md)に合わせる。**総10B学習step2とCPU保存確認19項目を完了。今回は報告とcommitで停止する。** 同条件品質評価step3は未実施で今回の指定外。[結果と速度](41_base_10b_training.md)。
+2026-10-04更新。[現在地](autonomous_status.md)と[具体的な計画](39_learning_scale_and_generation_plan.md)に合わせる。**総10B学習step2とCPU保存確認19項目を完了。今回は報告とcommitで停止する。** ユーザーが再開した同条件品質評価step3も完了。[評価結果](42_base_10b_quality_evaluation.md)。[結果と速度](41_base_10b_training.md)。
 
 ## 完了していること
 
@@ -15,9 +15,9 @@
 
 - [x] 保存stable4.75Bから総10,000,007,168 tokens/update305176へ継続。実Linux/Windows processの終了を確認した。
 - [x] stable9.5Bと最終decay checkpoint、連続/有限更新、Adam/scheduler/RNG/cursor/消費counterを専用CPU reviewerで確認した。
-- [ ] 後続step3の専用品質比較入口を整える。既存評価コードを再利用し、旧reportを上書きしない。今回は起動しない。
-- [ ] 新10Bだけ同じ全文dev89,416/本文164,344,743bytesと400生成で評価する。5B/最良Web5.1Bの完成結果は再利用する。
-- [ ] BPB/EOS/反復/raw Unicode/empty/roleと同じpromptの内容を比較し、採否・未達を報告してlocal commit、一区切りで停止する。
+- [x] step3の専用品質比較入口とCPU reviewerを実装し、関連23tests成功。旧reportは保持。
+- [x] 新10Bだけ全文dev89,416/本文164,344,743bytesと400生成を評価し、5B/最良Web5.1Bを再利用した。
+- [x] BPB/EOS/反復/raw flagsと全固定80・自然停止9件の内容を比較。CPU保存確認23項目成功。元増量gateは合格、Base/Chat品質未達を報告し、local commitで停止する。
 
 既存12.23Bを使用し、7.5B専用decay/中間全文評価、新しい収集、旧GPU比較、全コーパス再監査は追加しない。学習GPU上限9,000秒（準備19.217秒を含む）、別評価予約1,800秒。見積もり145〜165分、実装と内容確認は別。
 

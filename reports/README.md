@@ -8,10 +8,11 @@
 | [base_5b_review.json](phase6/base_5b_review.json)、[比較review](phase6/base_5b_comparison_review.json) | 主要Web5,000,003,584 tokensの実学習・保存・全文dev/固定400評価 |
 | [eos_5b_finish_review.json](phase6/eos_5b_finish_review.json)、[Unicode原因確認](phase6/eos_5b_finish_unicode_review.json) | 同じ5B親から各100,007,936追加。Web BPB0.958092、短文0.959011、短文EOS13/80・反復51/80へ改善。ただしraw Unicode2/400で最終採用不合格 |
 | [base_10b_preparation_review.json](phase6/base_10b_preparation_review.json)、[14tests](phase6/base_10b_tests.xml) | 専用10B準備完了、26保存checksと実CUDA全state再開一致。16更新/524,288検証tokensは科学学習と別。準備時の科学学習は0tokens |
-| [base_10b_training_review.json](phase6/base_10b_training_review.json)、[終了記録](phase6/base_10b_training_completion.json) | 科学学習総10,000,007,168 tokens完了、終端state/全metrics等19checks成功。実process終了、GPU7,657.678秒、品質評価未実施 |
+| [base_10b_training_review.json](phase6/base_10b_training_review.json)、[終了記録](phase6/base_10b_training_completion.json) | 科学学習総10,000,007,168 tokens完了、終端state/全metrics等19checks成功。実process終了、GPU7,657.678秒。当時は品質評価未実施で、後続comparison reviewに評価結果を保存 |
+| [base_10b_comparison_review.json](phase6/base_10b_comparison_review.json)、[内容確認](phase6/base_10b_content_review.json)、[終了確認](phase6/base_10b_comparison_completion.json) | 同条件全文dev/400完了、CPU23checks成功。BPB0.954018 / EOS0・反復53 / Unicode0、元増量gate合格、実用品質未達。GPU786.881秒 |
 | [documentation_refresh_20261004.json](phase6/documentation_refresh_20261004.json) | 現行文書と計画の整理、元13文書の履歴保存、内部リンク・凍結条件・WSL同期の確認。GPU jobは開始しない |
 
-科学10Bの専用品質比較入口は未整備。学習完了CPU reviewerは実際の終端stateと全科学metricsへ適用し、19項目成功。起動時のlaunchとrunning reviewは進捗履歴として保持する。[学習結果と速度](../docs/41_base_10b_training.md)、[status](../docs/autonomous_status.md)、[後続の同条件評価計画](../docs/39_learning_scale_and_generation_plan.md)。今回は報告・local commitで停止する。Base/Chat品質、独立人手blind/test、新重みの量子化品質は未達・未検証。
+科学10Bの専用品質比較入口・同条件dev/400・全固定80と自然停止9件の内容確認も完了。[品質結果](../docs/42_base_10b_quality_evaluation.md)。学習完了CPU reviewerは実際の終端stateと全科学metricsへ適用し、19項目成功。起動時のlaunchとrunning reviewは進捗履歴として保持する。[学習結果と速度](../docs/41_base_10b_training.md)、[status](../docs/autonomous_status.md)、[後続の同条件評価計画](../docs/39_learning_scale_and_generation_plan.md)。今回は報告・local commitで停止する。Base/Chat品質、独立人手blind/test、新重みの量子化品質は未達・未検証。
 
 ## 過去の記録の読み方
 
