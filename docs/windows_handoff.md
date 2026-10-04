@@ -1,5 +1,7 @@
 # 別PCで続きを進める: Windows / WSL / RTX 4090
 
+2026-10-04最新: ユーザー指定の低LR計画1〜3を実行する。[config](../configs/phase6/eos_low_lr_100m.json)、run `reports/phase6/eos-low-lr-100m-20261004/`、restart `bash scripts/run_eos_low_lr.sh`。actual job PID/boot/start ticksとlauncherを照合し、liveなら重複起動しない。旧100Mと元2Bは保持し、学習率0.0002以外は同条件/各100M、既存pool/aux80を再利用。必要評価・report/commit後に停止して5B/Chatへ進めない。[実状態](autonomous_status.md)。以下は履歴。
+
 2026-10-04最新: [完結単位100M対照と必要な全文評価は完了](../reports/phase6/eos_complete_100m_review.json)。固定EOS0/80→24/80、補助EOS0→42/80。全文BPB Web1.016473/short1.017580、短文full400のempty/role/Unicode全0、24関連tests成功。意味誤り/反復と元2Bより悪いBPBが残るため元2B基準を保持、短文重みは診断候補。各累積2,100,035,584 tokens、Linux r2/{web,short20}/checkpoint-00064088.ptと全旧job/log/準備poolを保持。main job.jsonは中断履歴のまま、evaluation-recovery-job.jsonがcomplete。Linux439/Windows25296実終了・GPU compute processなしを確認済み。GPU合計3305.199秒、原2700秒超過を明記。再起動・再学習・再評価・5B/Chat/sweepはせず、report/commit後停止する。詳細/checkpoint SHA/次回論点は[実状態](autonomous_status.md)。以下のlive PIDとrestart commandsは履歴であり現在の起動指示ではない。
 
 最終比較runは`reports/phase6/eos-complete-100m-20261004-r2/`、bulkも同名r2。Windows launcher16164/Linux453/boot44655da4-5b8c-4da8-a7a5-47ae16b364c1/start_ticks39818でGPU jobを起動済み。r1は学習前の内容修正で保持したCPU-only履歴。r2のjob.json・actual process identity・latest checkpointを正本とし、旧準備を再起動しない。学習前pool445,501単位/21,000,010 tokens、22 tests成功。[準備証拠](../reports/phase6/eos_complete_100m_preparation.json)。

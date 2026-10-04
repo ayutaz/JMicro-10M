@@ -1,5 +1,11 @@
 # Codex継続作業の現在地
 
+## 低学習率対照の1〜3を開始（2026-10-04）
+
+ユーザーが「1,2,3を計画を立てて進めて」と指定。[凍結config](../configs/phase6/eos_low_lr_100m.json)、run `reports/phase6/eos-low-lr-100m-20261004/`、restart `bash scripts/run_eos_low_lr.sh`。まず旧Web100Mログと保存済み200/1600/2800更新checkpointを同じdev256で採点し、退行の観測時点を記録する（追加学習0、全文再評価なし）。その後、同じ元2BからpeakLR0.0002のWeb/short20を各100,007,936 input tokens、2900 stable＋152 decayで学習。旧比較の0.002に対してLRだけ変更し、元の32〜64-token pool/aux80/optimizer moments/RNG/Web cursorを再利用する。科学200,015,872、実CUDA全state再開gate262,144は別計上。core/旧pilot/Tokenizer/過去成果物は変更しない。
+
+採否は元固定80/dev256と同じmixture gate、Web screen-safe時だけ全文dev/400、short gate合格時だけ全文dev/400。shortが合格しWeb生成が不適格なら、Web全文BPBだけ対照として測る。元2B BPB+0.001/反復+8未満/新失敗なしの増量条件、原Base/Chat基準は維持。cache管理を最初から適用し、調査・学習・評価を合計GPU2700秒で制限、実際の消費と有効checkpointを保存する。CPU準備は既存poolの再利用と新LR経路の関連testsのみ。report/commit後停止し5B/Chat/sweepへ移行しない。以下は旧100M完了時の履歴。
+
 ## 完結単位100M対照を完了・停止（2026-10-04）
 
 [最終結果と照合済み証拠](../reports/phase6/eos_complete_100m_review.json)。同じ完成2B親から各100,007,936 input tokens、合計200,015,872を学習。検証262,144 tokensは別計上。固定80/64上限はWeb EOS0/80、short20 EOS24/80（30%）、反復50→49/80、Unicode1→0。補助短文80はEOS0→42（52.5%）、反復51→29、真の終端EOS NLL4.046→0.449/argmax0→72。EOS bias/強制停止/penaltyを使わない自然停止の改善。
