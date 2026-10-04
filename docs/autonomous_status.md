@@ -1,5 +1,13 @@
 # Codex継続作業の現在地
 
+## 学習量拡大を主軸にした次回計画を保存（2026-10-04 計画のみ）
+
+ユーザーの「ここまでの内容を踏まえて計画」に従い、[次回計画](39_learning_scale_and_generation_plan.md)を作成。手元のtrain12.23Bを利用し①総7.5Bと同じ全文/400の比較、②BPB改善と元raw増量安全条件を満たした場合だけ総10B、③採用可能な新親で短文20%対Webの各100Mを一対、④保存重みの単一UTF8制約policyを元方式と別評価する案。データ収集・全件再照合・旧GPU評価を先に増やさない。文字制約の成功で元raw学習gateを合格に書き換えない。
+
+長期親は保存stable4.75B/update144959/SHA916c4105ba7ab62597334a059cd34839d675fde29bb82b6fca6d30f889df6be5。final低LR枝の通常resumeではなく新しい明示fork。7.5Bはstable7.125B＋独立decay、10Bは合格時に7.125B stableから延長して9.5B＋独立decay。両段階に進む追加科学tokens合計5,624,987,648、検証と短文対照は別。GPU見積もり各80〜105分、全段階約3.5〜4.5時間/上限案4時間45分、CPU実装・内容確認は別。最初の実行区切りは7.5Bの学習・全文/400・報告・commit。
+
+今回は計画と状態記録の保存/local commitのみ。新run/config/schema/実行commandは未作成、新学習・GPU推論・decoder実装は開始していない。旧完成launcherを再実行しない。20B/50B/Chat/UL/Tokenizer再学習/自動sweepは含めず停止する。以下は完了結果と以前の履歴。
+
 ## EOS・反復・末尾処理の1〜3を完了・停止（2026-10-04）
 
 [最終結果](38_eos_5b_finish_results.md)、[保存証拠44項目](../reports/phase6/eos_5b_finish_review.json)、[完了証拠](../reports/phase6/eos_5b_finish_completion_audit.json)、[全自然停止の内容確認](../reports/phase6/eos_5b_content_review.json)。①production UTF8末尾helperを共通inferenceに接続し関連33tests失敗/skip0、旧400件398正常不変/2raw失敗保持。②同じfinal5Bから低LR Web/short20を各100,007,936 tokens、実CUDA再開8updates/262,144検証は別計上。両枝update155640/累積5,100,011,520、全3,052更新有限・連続、Adam/scheduler/RNG/両cursor等保存済み。準備train12.23B/10,001,152parametersは不変、短文は19,988,480tokensでpoolを周回しない。

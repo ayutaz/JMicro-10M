@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-04最新（計画のみ）: [学習量拡大と生成改善の次回案](39_learning_scale_and_generation_plan.md)。既存12.23B trainで総7.5Bを比較し、改善と元raw増量安全条件を満たせば10B。最良新親の短文仕上げを一対、UTF8制約は別推論policyとして比較する。本文BPB・停止・反復・意味・raw Unicodeを分け、表示/制約成功を元学習gateの免除にしない。新run/config/command未作成、GPU学習/推論は開始せず計画/local commitで停止。20B/50B/Chat/UL/sweepなし。[実状態](autonomous_status.md)。以下は履歴。
+
 2026-10-04最新: EOS/UTF8改善の1〜3を[完了](38_eos_5b_finish_results.md)。共通表示helper/33tests、同じ5Bから各100Mと別CUDA再開検証、両全文dev/400と全自然停止の内容確認を実行。固定EOS0→13/反復57→51、全文BPB対照比+0.095894%だが短文sampling rawUnicode2により原採用/増量gate不合格。意味誤りも残りBase/Chat品質未達、診断重みとして保持。GPU37分34秒/50分以内、actual jobs終了。report/local commitで停止し10B/Chat/UL/decoder sweep未開始。[実状態](autonomous_status.md)。以下は履歴。
 
 2026-10-04最新: ユーザーが[改善計画](37_eos_repetition_utf8_improvement_plan.md)の1〜3を実行指定。UTF8末尾helperを実装/CPU確認し、final5Bの各100M低LRWeb/short20対照を実装・凍結、実CUDA再開gate後に学習/原screen/合格時の全文と内容確認へ進む。GPU上限50分、元品質/採用基準を保持し表示修正を学習効果に数えない。1〜3完了/report/commitで停止。[実状態](autonomous_status.md)。以下は履歴。

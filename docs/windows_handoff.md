@@ -1,5 +1,7 @@
 # 別PCで続きを進める: Windows / WSL / RTX 4090
 
+2026-10-04最新（計画のみ）: [総7.5Bと条件付き10Bの次回案](39_learning_scale_and_generation_plan.md)を保存。長期親は旧5B stable/checkpoint-00144959.pt、最終低LR枝の通常resumeではなく明示forkを新規実装・凍結する。既存12.23Bと旧全文/400を再利用し、raw安全gateと改善を確認して段階を進める。最後の新親短文対照とUTF8制約policy比較は別条件。新run/config/schema/起動commandは未作成、今回新GPU jobを起動していない。旧完成runnerを新予算用に再実行しない。計画/local commitで停止。[実状態](autonomous_status.md)。以下は履歴。
+
 2026-10-04最新: EOS/UTF8改善1〜3は[完了・停止](38_eos_5b_finish_results.md)。Linux `reports/phase6/eos-5b-finish-100m-20261004/` job complete、actual Linux464/Windows21524終了、GPU computeなし。GPU2253.853/3000秒、同じ5Bから各100M/別262144検証、最終 `{web,short20}/checkpoint-00155640.pt` を保持。共通表示末尾helper/33tests/44項目保存確認成功。短文固定EOS13/80・反復51/80だが全400 rawUnicode2で原最終採用gate不合格、意味品質未達。途中invalidとcap未完成尾をCPU分類しraw失敗保持。完成runner `bash scripts/run_eos_5b_finish.sh` を再実行しない。全旧成果物/新診断checkpointを保持してreport/local commitで停止、10B/Chat/UL/sweep未開始。[実状態とSHA](autonomous_status.md)。以下は履歴。
 
 2026-10-04最新: 改善計画1〜3をユーザーが再開。新実行config `configs/phase6/eos_5b_finish_100m.json`、run `reports/phase6/eos-5b-finish-100m-20261004/`、restart `bash scripts/run_eos_5b_finish.sh`。jobのactual PID/boot/start ticksを照合しliveなら重複起動しない。final5Bから同じ低LRの各100M、旧accepted short/auxと元raw評価を維持。表示helperは実装/CPU確認済み、GPU学習/評価はまだ起動前。全指定比較・内容確認・report/commit後10B/Chat/UL/sweep前で停止。[実状態](autonomous_status.md)。以下は履歴。
