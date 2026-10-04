@@ -1,5 +1,13 @@
 # Codex継続作業の現在地
 
+段階2完了・三条件GPU比較の起動準備: 新公開物語pool25,000,067 tokens / 276,369全文 / 108,582親familyを82.876秒で構築し、100例をCodex確認。合成語・弱い展開・未解決末尾などの残る例を[標本記録](../reports/phase6/complete_text_data_review.json)へ明記した。全例意味保証や独立人手認定ではなく、元gateを保持した実験用候補として採用。両Web候補は未採用のまま保存。38関連CPU tests成功、同じfinal10Bから各100,007,936 tokensのconfig/schemaを凍結。GPU科学学習はまだ未開始、既存UI482のみ実在。次はUIを一時停止し、実CUDA保存再開→三条件の学習/一次評価→内容240件採点→報告/local commitで停止する。
+
+段階2の内容確認により学習前に方針を修正: Web r2も30,235,206 tokensまで232.351秒で準備したが、無作為100例に意味の崩れ・前文依存が残り未採用。初回とr2は保存。公開SimpleStories-JAの作者MIT表記・revision `d25370316dd77ec0ee4fd9db57bfe57075cf4b90`・train parquet hash/サイズを固定し、必要な25M tokensの物語全文を準備中（hidden Windows33712、`prepare-stories.*.log`）。Cは2〜8文/32〜128tokensとなり、旧短文との長さ一致は学習前に撤回してsource/長さ/EOS密度を含む配合全体の比較と明示した。[改訂条件48](48_complete_text_10b_comparison.md)。原モデル/学習量/LR/gateは不変、関連38 CPU tests成功。現在もGPU科学学習は未開始、UI維持。
+
+段階1を完了し、[実行記録48](48_complete_text_10b_comparison.md)へ保存。Web/既存短文各100の限定抽出、EOS/BOS/shift四条件成功、本文special混入0、句読点末尾63/100と100/100。句読点だけでは前文依存・意味の崩れを除けない。初回候補30,230,920 tokensを215.570秒で構築したが、無作為100例の前文依存・説明予告を確認して学習前に選別を修正。旧候補は保持し、r2をWSL12CPU workersで構築中（Linux17005、hidden Windows33952、ログ`reports/phase6/complete-text-10b-100m-20261004/prepare-r2.*.log`）。新しい選別・分岐と既存EOS/尤度/契約/評価メモリの関連36 CPU tests成功。科学GPU学習はまだ未開始、UI継続。次は修正poolの100例確認→凍結→UI停止→新poolの実CUDA保存再開と三条件各100M。
+
+実行再開（ユーザー「3まで進めてください」）: 計画の段階1〜3、限定data/EOS確認→25M〜50M完結文pool→同じfinal10BからWeb/既存短文20%/新完結文20%各100Mの実学習と比較を開始する。以前の計画のみの停止境界はこの範囲で更新。まず実装・既存train/poolと実processを確認中。現在UIのLinuxPID482は実在し、GPU学習processなし、Linux空き526GiB。GPU開始時のみUI停止・完了時復帰。段階4の500M〜1B、20B/50B、Chat、公開は開始せず、三条件の評価・報告・local commitで停止する。
+
 計画補足（2026-10-04、質問「学習量が足りない可能性」）: **学習量不足は未棄却で、収束を証明していない。** [計画47](47_post_evaluation_training_plan.md)へ、各100Mは配合screenであり総10Bに対して約1%に留まること、安全なA/Cを同量500M〜1Bまで比較する別段階案と、Web10B対20Bの直接比較案を追記した。100Mで内容が改善しないことを増量無効の証明にしない。旧品質gateは保持し、延長は別予算・終了点を先に凍結する提案。今回もGPU/data作業は未開始、UIを維持し、計画補足のlocal commitで停止する。
 
 最新依頼（2026-10-04）は追加評価に基づく次回計画と「データセット量を増やすべきか」の判断。[データ・学習改善計画](47_post_evaluation_training_plan.md)を保存した。推奨は意味の通る完結文poolをまず25M〜50M tokens準備し、同じfinal10B親からWeb100%/既存短文20%/新完結文20%を各100Mで比較する案。EOSだけでなく生成一貫性・適切な完結・反復・条件保持を測り、有望ならpool100M以上と追加500Mへ段階拡張する。新規source量と既存dataの再選別・学習tokensを分ける。元gateは保持し、数値・予算は次回凍結する提案。**今回は計画のみで、新data取得/構築・GPU推論/学習・suite変更は未開始。UIは維持し、local commitで停止する。**

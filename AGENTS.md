@@ -4,6 +4,8 @@ Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/window
 
 ## Current state and scope
 
+- Active user authorization: execute stages1–3 of the post-evaluation plan (bounded data/EOS inspection, 25M–50M complete-text preparation, three matched100M training/evaluation arms from final10B). This supersedes the earlier planning/evaluation-only stop boundary for this work. Report and locally commit the comparison, then stop; stages4–5, Chat,20B/50B and publication remain outside scope. Preserve/restore the existing UI around the GPU job.
+
 - Model: 10,001,152 parameters; prepared train data: 12,225,819,077 tokens. Main Web training reached5B, and independent Web/short20 finishing branches each reached5.1B. Base/Chat quality targets remain unmet.
 - Direct10B preparation is complete at code commit `4c3fbaf`: frozen `configs/phase6/base_10b.json`, schema, dedicated runner/launcher,14 CPU tests and actualCUDA16-update/524288-token exact stable/decay save-resume verification. See `docs/40_base_10b_preparation.md` and `reports/phase6/base_10b_preparation_review.json`.
 - Scientific10B training completed on 2026-10-04 at11:43:52Z: total10,000,007,168tokens/update305176; additional scientific tokens5,249,990,656 from saved4.75B stable parent. Stable9.5B plus final decay and all saved states/metrics passed19 CPU review checks. Linux427/Windows30148 exited. Verification tokens are separate. See `docs/41_base_10b_training.md` and `reports/phase6/base_10b_training_review.json`.
@@ -14,7 +16,7 @@ Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/window
 
 ## Project rules
 
-Latest planning request (2026-10-04): use the completed Japanese evaluations to propose the next data/training plan. See `docs/47_post_evaluation_training_plan.md`: bounded data sampling, 25M–50M coherent complete-text pool, proposed three-arm100M comparison from final10B, conditional later expansion. Planning is complete; the proposed data/GPU work is not started or authorized by this planning-only turn. Existing stop boundary and UI serving remain.
+Latest executable scope: the user resumed stages1–3 of `docs/47_post_evaluation_training_plan.md`; actual execution is recorded in `docs/48_complete_text_10b_comparison.md`. Bounded data/EOS inspection,25M–50M coherent complete-text selection and three matched100M training/evaluation arms from final10B are authorized. Stop after comparison/report/local commit and UI restoration. Later500M/1B/20B/Chat work remains proposed only.
 
 The user has authorized autonomous implementation, repair, local GPU work, and required WSL preparation within the requested scope. Continue routine decisions and authorized milestone transitions without renewed permission. Authorization cannot change execution sandbox or managed policy.
 
