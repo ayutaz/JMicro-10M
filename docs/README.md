@@ -6,6 +6,8 @@
 
 評価後の提案は[データ・学習改善計画](47_post_evaluation_training_plan.md)。ユーザーが再開した段階1〜3の実行は[完結文配合の三条件100M比較](48_complete_text_10b_comparison.md)に記録する。追加500M〜1B/20Bは次回以降。
 
+比較後の最新提案は[配合・学習量計画49](49_next_mixture_and_training_budget_plan.md)。新物語10%・100Mを先に比較し、安全条件を通ればpool60Mと各500Mの学習量比較を検討する。今回は計画のみで、追加学習は開始しない。
+
 ## 現在の要約
 
 モデルは10,001,152 parameters、T4K / NoQK-Norm / AdamW / context1024。主要Web総10Bと、同じ親からWeb/既存短文20%/新物語20%各100Mの比較を完了した。新物語poolは25,000,067 tokens。固定EOS0/3/24、反復60/55/24（各80）、新物語の全文BPB0.955765は元親0.954018からの悪化上限を超え未採用。一次35/全文43証拠checks成功、UIは元final10Bを維持。準備済みWeb trainは12,225,819,077 tokens、独立全corpus監査は未完了。Phase 0〜5・Phase 6準備は完了済み。

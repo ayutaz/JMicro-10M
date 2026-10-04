@@ -1,5 +1,7 @@
 # Codex継続作業の現在地
 
+2026-10-05 JST・次回計画のみ: 前回結果を踏まえた[配合・学習量計画49](49_next_mixture_and_training_budget_plan.md)を作成。最初は同じfinal10B親・同じLRで新物語10%を100M学習し、保存済みWeb/20%結果と比較する提案。既存25M poolで足り、新source取得は不要。原採用条件を通る場合のみ、pool約60MとWeb/物語10%各500Mの同量比較を別予算で計画する。学習不足仮説と10B対20B案を残す。BPB悪化上限は緩めず、未採用20%枝を自動延長しない。今回は計画保存/local commitで停止、GPU学習/評価・新data取得/構築は未開始、既存UIを維持する。前回段階1〜3の完了commitは6d0ab0c。
+
 2026-10-05 JST・段階1〜3完了: 限定data/EOS確認、SimpleStories-JA候補25,000,067 tokens、同じfinal10BからWeb/既存短文20%/新物語20%を各100,007,936 tokens学習し、一次240内容診断と事前条件付き全文/長文評価まで完了した。[最終報告48](48_complete_text_10b_comparison.md)、[全文/長文結果](../reports/phase6/complete_text_10b_full_result.json)、[要求別完了記録](../reports/phase6/complete_text_10b_comparison_completion.json)。一次35・全文43証拠checks、38関連tests・修復15 tests・実CUDA全state保存再開成功。新物語は固定EOS0→24/80、反復60→24/80、Codex一貫性2点0→10/80へ改善したが、全文BPB0.955765は元親0.954018より+0.001746で既存+0.001上限を超え、正式採用は見送る。理解改善の確証・独立人手品質合格・Base/Chat品質目標達成とはしない。GPU合計2,731.428秒、追加科学300,023,808 / 検証262,144 tokensは別会計。科学Linux17951、旧失敗19791、修復37818はいずれも終了。UIは元final10Bへ復帰しHTTP応答/busy=false、Linux49746 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks1043870を実確認。最終report/local commitで停止する。次の具体的行動は新しい依頼が来るまで追加学習を開始しないこと。500M/1B/20B/50B/Chat/test/pushは未開始。
 
 以下は当時の進捗履歴。現行状態と停止境界は上記を正とする。
