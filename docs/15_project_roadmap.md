@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-04最新: [完結単位の各100M対照と全文評価を完了](../reports/phase6/eos_complete_100m_review.json)。固定自然EOS0→24/80、補助0→42/80、自動mixture gate合格。ただし意味誤り/反復が残り、両100M枝の全文BPBは元2Bより悪化。短文枝は診断候補として保持し、元2Bを基準にする。原Base/Chat品質目標は未達、WebのUnicode退行により5B条件も未達。関連24 tests成功/実CUDA全state再開一致、全GPU job実終了、累積GPU55分5秒で原45分予算超過を記録。report/commit後に停止し、5B/Chat/自動sweepは開始しない。以下の計画のみ/未実行は履歴。[実状態](autonomous_status.md)。
+
 2026-10-04次の[計画を更新](27_phase6_remaining_plan.md)：32〜64-token完結単位を準備し同じ2B親からWeb対short20%を各100Mで1回比較、固定80/dev256と補助短文80、採用条件は維持。比較/必要な全文評価で一区切り。Web100Mに重大退行がなければ、別のWeb100% stable延長forkで総5Bを検討し、5B結果から10B/必要Base品質/Chatへ進む。mixture採用gateとBase/Chat品質目標を分け、失敗を消さない。今回は計画のみ、100M/5Bの実行は未開始。[提案と予算](../reports/phase6/eos_next_plan.json)。以下は履歴。
 
 2026-10-04短文混合の[対照学習を完了](../reports/phase6/eos_short_pilot_review.json)。同じ2B親から各25,001,984 input tokens、Web対短文20.0524%混合。固定80 greedy64のEOSは両方0/80、反復62→54/80、共通dev256 BPB1.068518→1.069161（+0.06025%）。EOS改善gate未達で短文条件を未採用、conditional全文再評価を省略。対照実験として完了し元2B基準/両新checkpointを保持、report/commitで停止。5B/Chat未開始。次の32〜64-token完結単位比較は未起動案で、pool/予算凍結を先に行う。[実状態](autonomous_status.md)。以下は履歴。

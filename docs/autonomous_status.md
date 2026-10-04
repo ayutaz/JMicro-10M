@@ -1,6 +1,30 @@
 # Codex継続作業の現在地
 
+## 完結単位100M対照を完了・停止（2026-10-04）
+
+[最終結果と照合済み証拠](../reports/phase6/eos_complete_100m_review.json)。同じ完成2B親から各100,007,936 input tokens、合計200,015,872を学習。検証262,144 tokensは別計上。固定80/64上限はWeb EOS0/80、short20 EOS24/80（30%）、反復50→49/80、Unicode1→0。補助短文80はEOS0→42（52.5%）、反復51→29、真の終端EOS NLL4.046→0.449/argmax0→72。EOS bias/強制停止/penaltyを使わない自然停止の改善。
+
+同じ89,416 dev/164,344,743本文bytesの全文BPBはWeb1.0164734594610705、short1.0175798867261283（対照比約+0.10885%）。短文full400はEOS232/400、反復101/400、empty/role/Unicode全0。400件は複数decoding条件の合計でありgreedy EOS30%と混同しない。元screen採用条件/全文BPB1%/固定80生成IDs一致/新規失敗0は合格。ただし内容確認で計算・時刻・文脈の誤りと意味反復が残り、実用品質としては未採用。元2B全文BPB0.9828815577636254より両枝が悪化し、Web screenのUnicode退行もあるので5Bへ進めない。原Base文法70%/Chat停止95%の品質目標は未達、人手blind/test/Chatは未実施。元2Bを基準として保持し、改善した短文重みを診断候補として保存。
+
+完成重みはLinux run `reports/phase6/eos-complete-100m-20261004-r2/{web,short20}/checkpoint-00064088.pt`、各累積2,100,035,584 tokens。Web SHA837173885946c5a8953a717e7aa7d7993abf2ac09399e1ea150cbd8f85561eb2、short SHA6ccfa4e9957701ab860891a7efbeb55ebfd3e9c0fa45c0c1fb886e9cf1c67802。実CUDA8更新の連続/保存再開全state一致、関連22＋cache2 tests成功・skip0、offline reviewer完了チェック全合格。train pool445,501単位/21,000,010 tokensはWSL内に保持。学習定常約689k/694k tokens/s、各160.259/149.460秒。
+
+評価の可変shapeによるunused CUDA cache膨張へ対応し、32 forwardごとの条件付きcache解放で全文採点を完了。数値演算/重み/入力/backendは変更せず、固定80生成IDsもscreenと完全一致。mainの中断2250.340秒は保持、別の凍結1200秒復旧は1054.859秒で完了。累積GPU3305.199秒（55分5秒）は原2700秒上限を超過し、`original_total_GPU_budget_respected:false`として記録。元上限達成とは扱わない。旧job/中断判断/log/checkpointsを保持し、`evaluation-recovery-job.json`のみcomplete。Linux439とWindows25296の実終了、GPU compute processなしを確認。復旧に追加学習はない。
+
+次の境界はreport/commit後に停止。5B/Chat/自動sweep/完了評価の再実行はしない。次回検討は意味整合・反復と元2BからのBPB退行を含む品質改善であり、停止率だけで実用品質と判断しない。単一seed/この100M条件の結果であり、旧25Mとの差は単位長と量を同時変更したため個別因果を分離できない。以下の実行中/準備/計画のみ記述は履歴。
+
 ## 実行を再開: 完結単位100M対照（2026-10-04）
+
+キャッシュ管理付きの復旧評価へ移行。fresh processでもnative CUDAの確保済みVRAMが再び24GiBへ増えて減速したため、旧PID447をidentity照合してSIGTERM、旧main jobはinterrupted/GPU2250.340秒のまま保存。新しい`jmicro.evaluation_memory`は32 forwardごとにreserved>8GiBかつ未使用>4GiBならunused cacheだけ解放し、weights/input/backend/採点条件を変更しない。2関連tests成功・skip0。`recover_eos_complete_evaluation.py`は同じ完成checkpointsと全screen/gateを再利用し、短文全文dev/400生成とWebの全文BPBのみを完了させる。[復旧config](../configs/phase6/eos_complete_evaluation_recovery.json)で別処理1200秒上限を凍結。元2700秒の計画は変更せず、累積超過の有無をreportで明示し、元上限超過を合格とは記録しない。科学予算/品質基準は維持し追加学習0。
+
+現在のWindows launcher25296/Linux439/boot44655da4-5b8c-4da8-a7a5-47ae16b364c1/start_ticks270963、`evaluation-recovery-job.json`/evaluation-recovery.logが正本。restartは`bash scripts/run_eos_complete_evaluation_recovery.sh`。初期wrapper/SIGTERM判断/旧jobは保持。復旧334秒/199,680採点時点でcache解放3回、reserved最大観測8.49GiB、実GPU使用約6.46GiB。VRAM24GiB時の減速を回避している。mainは再起動せず、この復旧jobのactual process identity/完了成果物を確認する。未起動の旧full-BPB専用CLIは準備履歴。次は両枝の同じ全文BPB、shortのfull400と固定80 IDs、cache/GPU予算をreviewしreport/commitして停止。以下は経過履歴。
+
+評価processを切り替えて再開中。旧PID453は全文採点205,824/213,432付近でVRAM24,057MiB/低い採点速度となったため、actual boot/PID/start ticksを照合して単一SIGTERM。2枝の完成100M checkpoints/固定・補助screen/CUDA gateは保持し、GPU消費1659.014秒を累積へ引き継ぐ。未完了の全文採点だけをfresh processでやり直す。Windows launcher26364/Linux447/boot44655da4-5b8c-4da8-a7a5-47ae16b364c1/start_ticks208235、restartは`bash scripts/run_eos_complete_evaluation_resume.sh`。元main runner/config/source hashを変更せず、wrapperで元のseed/TF32無効/決定性flagsを明示。初期VRAMは3,417MiBへ低下。学習由来のGPU allocation保持が影響した仮説は支持されるが、具体的cache機構はprofileしていない。旧job/中断snapshot/判断を`evaluation-process-restart.json`等へ保存、原GPU2700秒上限を維持する。次の対照BPBもfresh processで採点する。以下は切替前の経過。
+
+2枝100M学習と固定/補助screenは完了。Web100Mは固定EOS0/80/反復50/80/Unicode1、短文100MはEOS24/80/反復49/80/Unicode0、dev256 BPB1.049848対1.049828。補助短文はEOS0→42/80/反復51→29/80、teacher EOS NLL4.046→0.449。短文は元改善gateを通り、main jobで短文の全文dev/400生成を評価中。一方WebのUnicode退行で通常の全文/5B進行は不適格。同予算での全文BPB1%比較に必要な対照BPBだけを[別config](../configs/phase6/eos_complete_100m_full_bpb.json)/`bash scripts/run_eos_complete_full_bpb.sh`でmain processの実終了後に測る。元main config/重み/80生成/科学予算と初期結果は変更せず、原累積GPU2700秒へ加算する。対照400生成・学習は再実行しない。
+
+全24停止出力を内容確認し、玉2+1への「2個」、15時+1時間への「15時」、暖かい部屋の氷への寒い部屋の説明等、文脈制約の誤りと意味反復を`generation-content-review.json`に保存。EOS24件の改善は保持するが、元の「無意味な停止を採用しない」条件に従い実用品質を達成したとはしない。三回の完全一致を検出する既存反復指標は二回/言い換え反復を見落とすので、元指標を置き換えず生成例を併記する。人手blind採点/test/Chat/5Bは未実施。次は2枝の同じ全文BPBと短文full400失敗/IDsの確認、review/report/commitして停止。以下は起動時の履歴。
+
+GPU比較を永続起動済み：Windows hidden launcher16164、Linux PID453/boot44655da4-5b8c-4da8-a7a5-47ae16b364c1/start_ticks39818、`reports/phase6/eos-complete-100m-20261004-r2/job.json`とpipeline.logを保存。起動時のactual ps/GPUを確認、stageはresume-gate。実装・学習前準備は713f497へcommit済み。valid completed-update checkpointのlatest.jsonから再開し、source/config bindingと累積GPU2700秒予算を保持。以下は起動前の経過。
 
 学習前準備はr2で完了：[準備証拠](../reports/phase6/eos_complete_100m_preparation.json)。445,501単位/21,000,010 input tokens、94,157親文書、本文平均45.14（32〜64）tokens、exact重複2,031除去、8 CPU workers/4.578秒。22関連tests成功・skip0。最初16＋均等配置12のtrain単位、補助dev8の内容と元文書span/Tokenizer/BOS/EOSを少量確認し、content-review.jsonを保存。人手blind意味採点ではなく、元Webの文体/文脈依存は残る。r1の長い見出し/表記号を除外し、旧CPU-only pool/評価準備を保持。最終run/bulkは`eos-complete-100m-20261004-r2`。config/source snapshotも保存済み。次はCUDA全state保存再開gateと2枝学習。以下r1準備中の記録は履歴。
 

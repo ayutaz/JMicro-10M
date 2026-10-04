@@ -1,5 +1,9 @@
 # 別PCで続きを進める: Windows / WSL / RTX 4090
 
+2026-10-04最新: [完結単位100M対照と必要な全文評価は完了](../reports/phase6/eos_complete_100m_review.json)。固定EOS0/80→24/80、補助EOS0→42/80。全文BPB Web1.016473/short1.017580、短文full400のempty/role/Unicode全0、24関連tests成功。意味誤り/反復と元2Bより悪いBPBが残るため元2B基準を保持、短文重みは診断候補。各累積2,100,035,584 tokens、Linux r2/{web,short20}/checkpoint-00064088.ptと全旧job/log/準備poolを保持。main job.jsonは中断履歴のまま、evaluation-recovery-job.jsonがcomplete。Linux439/Windows25296実終了・GPU compute processなしを確認済み。GPU合計3305.199秒、原2700秒超過を明記。再起動・再学習・再評価・5B/Chat/sweepはせず、report/commit後停止する。詳細/checkpoint SHA/次回論点は[実状態](autonomous_status.md)。以下のlive PIDとrestart commandsは履歴であり現在の起動指示ではない。
+
+最終比較runは`reports/phase6/eos-complete-100m-20261004-r2/`、bulkも同名r2。Windows launcher16164/Linux453/boot44655da4-5b8c-4da8-a7a5-47ae16b364c1/start_ticks39818でGPU jobを起動済み。r1は学習前の内容修正で保持したCPU-only履歴。r2のjob.json・actual process identity・latest checkpointを正本とし、旧準備を再起動しない。学習前pool445,501単位/21,000,010 tokens、22 tests成功。[準備証拠](../reports/phase6/eos_complete_100m_preparation.json)。
+
 2026-10-04実行再開: [完結単位100M対照config](../configs/phase6/eos_complete_100m.json)と`bash scripts/run_eos_complete_100m.sh`を使用。新run `reports/phase6/eos-complete-100m-20261004-r1/`のjob.json/boot/PID/start ticksとWindows launcher記録を照合し、liveなら重複起動しない。CPU事前確認で旧poolの名詞断片/見出しを除外してr1へ変更。旧CPU準備/guarded worker cleanupは保持、GPU学習開始前の変更であり結果を見て条件変更したものではない。20関連tests成功。比較・必要な全文評価・report/commit後に停止し、5B/Chatへ自動移行しない。[実状態](autonomous_status.md)。
 
 2026-10-04最新の依頼は次の計画作成。[100M対照/5B以降の提案](27_phase6_remaining_plan.md)と[JSON予算](../reports/phase6/eos_next_plan.json)を保存し、実行は未開始。次の実行前に32〜64-token完結単位builder/補助dev80/100M runner/reviewerを実装し、actual pool/配置/phase budgetを凍結する。旧25M runnerは完成runを返す入口であり100Mを実行するcommandではない。5B stable予算延長forkも未実装。既存2B/25M成果物とcore sourceを保持し、完了job/全件監査を再起動しない。[実状態](autonomous_status.md)。以下は履歴。

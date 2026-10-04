@@ -1,0 +1,634 @@
+{
+  "status": "completed_verified_two_arm_complete_unit100M_comparison",
+  "completed_at": "2026-10-04T04:55:22.106763Z",
+  "plan": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/eos_complete_100m.json",
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-2b-10bdata-20261004/decay-2B/checkpoint-00061036.pt",
+    "sha256": "165f9c177961a82b3da1c5ab1d21a32078b35b02e594fb2eb09edd7dbd4ea183",
+    "update": 61036,
+    "tokens_seen": 2000027648
+  },
+  "model_parameters": 10000152,
+  "arms": {
+    "web": {
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-complete-100m-20261004-r2/web/checkpoint-00064088.pt",
+        "sha256": "837173885946c5a8953a717e7aa7d7993abf2ac09399e1ea150cbd8f85561eb2"
+      },
+      "additional_input_tokens": 100007936,
+      "cumulative_input_tokens": 2100035584,
+      "training_seconds": 160.25853035300003,
+      "steady_median_tokens_per_second": 688512.4388197099,
+      "source_tokens": {
+        "web": 100007936,
+        "short": 0
+      },
+      "source_eos_teachers": {
+        "web": 211668,
+        "short": 0
+      },
+      "dev256_bpb": 1.049848231893219,
+      "dev256_mean_eos_nll": 2.306647309807886,
+      "greedy64": {
+        "outputs": 80,
+        "eos": 0,
+        "repetition": 50,
+        "unicode_failure": 1,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "auxiliary_greedy64": {
+        "outputs": 80,
+        "eos": 0,
+        "repetition": 51,
+        "unicode_failure": 1,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "auxiliary_teacher_mean_eos_nll": 4.046178846061229,
+      "auxiliary_teacher_eos_argmax": 0
+    },
+    "short20": {
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-complete-100m-20261004-r2/short20/checkpoint-00064088.pt",
+        "sha256": "6ccfa4e9957701ab860891a7efbeb55ebfd3e9c0fa45c0c1fb886e9cf1c67802"
+      },
+      "additional_input_tokens": 100007936,
+      "cumulative_input_tokens": 2100035584,
+      "training_seconds": 149.46011188700004,
+      "steady_median_tokens_per_second": 694140.689340279,
+      "source_tokens": {
+        "web": 80019456,
+        "short": 19988480
+      },
+      "source_eos_teachers": {
+        "web": 169417,
+        "short": 424017
+      },
+      "dev256_bpb": 1.0498282426647252,
+      "dev256_mean_eos_nll": 2.4797677566384664,
+      "greedy64": {
+        "outputs": 80,
+        "eos": 24,
+        "repetition": 49,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "auxiliary_greedy64": {
+        "outputs": 80,
+        "eos": 42,
+        "repetition": 29,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "auxiliary_teacher_mean_eos_nll": 0.4488925912650302,
+      "auxiliary_teacher_eos_argmax": 72
+    }
+  },
+  "scientific_training_input_tokens": 200015872,
+  "verification_training_input_tokens": 262144,
+  "actual_GPU_seconds": 3305.1991996450006,
+  "main_job_GPU_seconds": 2250.340065227,
+  "short_pool": {
+    "status": "ready_train_only_complete_units",
+    "source_manifest_sha256": "2edfd35bf077cd1aa583713c01341c0db52f39adc5701f30ede0aacae840b2de",
+    "manifest_sha256": "8bc227ec9616cd7e6702645595f535a38c8a0f49d9b8b988bd918a0becf57ce7",
+    "auxiliary_sha256": "ce8b0652066b89681258d7c447f101bce3b718728005ef868f2040ce0981f987",
+    "selection": {
+      "source": "Accepted train parent documents only",
+      "body_tokens_min": 32,
+      "body_tokens_max": 64,
+      "definition": "Complete Japanese sentence/paragraph units define new records with EOS; original article EOS position is not retained",
+      "arbitrary_truncation_EOS": false,
+      "balanced_quotes_brackets": true,
+      "exact_pool_dedup": true,
+      "exclude_auxiliary_dev_text": true,
+      "reject_fragment_URL_list_ellipsis": true,
+      "conservative_predicate_end": "Reject nominal fragments, heading lines of any length and table markers; all internal nonempty lines must have complete predicate endings"
+    },
+    "documents": 445501,
+    "tokens": 21000010,
+    "parent_documents": 94157,
+    "duplicates_removed": 2031,
+    "protected_units_excluded": 0,
+    "body_token_histogram": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      18467,
+      18397,
+      18657,
+      18301,
+      18169,
+      18037,
+      17863,
+      17719,
+      17445,
+      17150,
+      16968,
+      16680,
+      16008,
+      15617,
+      15391,
+      14885,
+      14326,
+      13517,
+      13092,
+      12407,
+      11988,
+      11437,
+      11013,
+      10421,
+      9916,
+      9393,
+      8877,
+      8385,
+      7878,
+      7380,
+      6950,
+      6600,
+      6167
+    ],
+    "body_tokens_mean": 45.13796377561442,
+    "seconds": 4.577704413999982,
+    "workers": 8,
+    "samples": [
+      {
+        "char_start": 519,
+        "char_end": 559,
+        "text_sha256": "47152d687dc5775b9a6e56d72c9b41e77c351db8c71d5c98bf7f3df615de9eb5",
+        "source_start": 0,
+        "source_end": 821,
+        "text": "現在の民防衛隊員のガスマスク普及率は3人に1人の割合(33.2%)となっている。",
+        "body_tokens": 33
+      },
+      {
+        "char_start": 559,
+        "char_end": 647,
+        "text_sha256": "1f282689454c537b37717b5f1df25858f9959dc29b55c340fbf6537ea4d1a76a",
+        "source_start": 0,
+        "source_end": 821,
+        "text": "国民全体のガスマスク普及率はさらに低く、2.6%にすぎない。政府は、有事の際には自ら身を守ることができるよう、国民1人当たり1個のガスマスクを確保することを推奨していく計画だ。",
+        "body_tokens": 64
+      },
+      {
+        "char_start": 0,
+        "char_end": 49,
+        "text_sha256": "62c8b8965ed0cbd5fe987a7bee0d97a970d24918e8679ff4291b82beb6623c9d",
+        "source_start": 822,
+        "source_end": 1367,
+        "text": "2017年 初春、明けましておめでとうございます。今年も毎年恒例の、初春早朝初詣に行ってきました。",
+        "body_tokens": 38
+      },
+      {
+        "char_start": 50,
+        "char_end": 97,
+        "text_sha256": "bb108ca7bcfde17e0d8b03edb4edbe7fdfa98f7cc6d498d7c2299f48e150b601",
+        "source_start": 822,
+        "source_end": 1367,
+        "text": "干支絵馬は神社の参拝時にいろいろ祈願をする一つとして神社に寄進したのが始まりといわれています。",
+        "body_tokens": 34
+      },
+      {
+        "char_start": 97,
+        "char_end": 141,
+        "text_sha256": "410a92050f4aacdcf41ed3e6ab9d0858b55a9a5823dd3b7bdd8cb77627548742",
+        "source_start": 822,
+        "source_end": 1367,
+        "text": "京都北野天満宮の絵馬堂は有名ですが、どの神社にも祈願・寄進された絵馬が掲額されています。",
+        "body_tokens": 33
+      },
+      {
+        "char_start": 141,
+        "char_end": 194,
+        "text_sha256": "701847c7c1623efbd53d31e07c55fdd687630b8809aebfbd2c841ed70abb710a",
+        "source_start": 822,
+        "source_end": 1367,
+        "text": "現代は干支絵馬や祈願絵馬がありますが、もともと絵馬は神社や寺に祈願するとき奉納する絵が描かれた木の板です。",
+        "body_tokens": 43
+      },
+      {
+        "char_start": 287,
+        "char_end": 351,
+        "text_sha256": "ce057fda6dc0a00261a733c48561d03274a9bc15a3b41d98d689284c06bb2256",
+        "source_start": 822,
+        "source_end": 1367,
+        "text": "祈願絵馬は願い事を書きこんで絵馬掛に結び、願いが叶ったらお礼参りに訪れたり、家に飾ったりするもので平安の昔から続いてきています。",
+        "body_tokens": 51
+      },
+      {
+        "char_start": 352,
+        "char_end": 410,
+        "text_sha256": "f0bfc8e92f4c4b48c61f5c48227ecbec2665e6a569a6c92bdc70bcbf9d4a5011",
+        "source_start": 822,
+        "source_end": 1367,
+        "text": "明治神宮の森は隣接する代々木公園や神宮外苑と合わせ、今や大都市東京にとって規模的にも機能的にも極めて重要な緑地です。",
+        "body_tokens": 46
+      },
+      {
+        "char_start": 410,
+        "char_end": 488,
+        "text_sha256": "6ac580527c2e41d099f68224c678460b19f7638eda3ae92e5b86dfc63f8170b7",
+        "source_start": 822,
+        "source_end": 1367,
+        "text": "明治天皇崩御の後、林や畑であった土地に造園の先達が計画・造営に関係し植樹され作り上げられ維持管理され今日の深遠・荘厳で神々しい自然林中心の森になっています。",
+        "body_tokens": 59
+      },
+      {
+        "char_start": 488,
+        "char_end": 555,
+        "text_sha256": "ab32f5853aaa36ef2327a6950128cfe69a4e86dde28f05f0e707dccd92f5bd22",
+        "source_start": 822,
+        "source_end": 1367,
+        "text": "2016年初詣の参拝者は317万人とされていますが、この歴史的経緯と今の緑の役割をどのくらいの人が理解しているか気にかかるところです。",
+        "body_tokens": 44
+      },
+      {
+        "char_start": 640,
+        "char_end": 687,
+        "text_sha256": "2e4fb278ff733fcb9ead213aa3fd1ee7520685ccf6b396e999d439d226a17902",
+        "source_start": 822,
+        "source_end": 1367,
+        "text": "今年も各地を訪れる旅の折に各神社で絵馬を買い求め家内安全、健康第一を祈願することにしています。",
+        "body_tokens": 35
+      },
+      {
+        "char_start": 0,
+        "char_end": 59,
+        "text_sha256": "0fafbd4f676080b3b211c4891066c4485c6d4d2ffb99fa4c58e0eaff247525c4",
+        "source_start": 1368,
+        "source_end": 1654,
+        "text": "「宅地建物取引主任者」という国家資格を御存知だろうか?\n自動車運転免許試験の受験者に次ぐ受験者数が多い国家資格試験だ。",
+        "body_tokens": 48
+      },
+      {
+        "char_start": 59,
+        "char_end": 120,
+        "text_sha256": "f5262c5b4e91b0afaa6dab95f9872864534c424a517912547640f87aaa2c8066",
+        "source_start": 1368,
+        "source_end": 1654,
+        "text": "毎年10月の第2か第3日曜日に試験が行われている。以前は楽に合格できる試験 だったが、最近は結構、難しくなってきたようだ。",
+        "body_tokens": 43
+      },
+      {
+        "char_start": 121,
+        "char_end": 202,
+        "text_sha256": "092e6987f63c6d732f68ca7be2f815b98a10f7bb5f6db29d6ec4ab8815bca3d4",
+        "source_start": 1368,
+        "source_end": 1654,
+        "text": "実はこの資格、不動産業を開業したり、支店を設けたり、従業員を増員したりする時に、この主任者資格を持った人がいないと営業出来ない事になってい るので経営者は大変だ。",
+        "body_tokens": 57
+      },
+      {
+        "char_start": 202,
+        "char_end": 280,
+        "text_sha256": "9c9ca876f7ec0b4931354533eebcf186e46bf5746fa60141a870d623b1347250",
+        "source_start": 1368,
+        "source_end": 1654,
+        "text": "すぐに主任者資格を持っている人を探さなければならない。\nしかし、なかなか見つからないのが現状だ。そこであなたがこの資格を持っていたら名義を貸してあげよう!!",
+        "body_tokens": 46
+      },
+      {
+        "char_start": 281,
+        "char_end": 352,
+        "text_sha256": "2fad1a72ceddc19b7c006dc6a4bfffe69b6ed9b3ade641a84770c1d61a852b49",
+        "source_start": 1368,
+        "source_end": 1654,
+        "text": "宅地建物取引主任者の名義貸しは法律で禁止されています。しかし、実際には勤務しているとういう見せかけの状況証拠を作り行われているのが現状で す。",
+        "body_tokens": 52
+      }
+    ],
+    "heldout_used": false,
+    "content_limit": "Conservative complete sentence boundaries; semantic quality is not certified by blind human review"
+  },
+  "original_planned_GPU_budget_seconds": 2700,
+  "original_total_GPU_budget_respected": false,
+  "separate_recovery_GPU_seconds": 1054.8591344180004,
+  "evaluation_runtime_recovery_performed": true,
+  "common_dev_documents": 256,
+  "common_dev_body_bytes": 472055,
+  "short_vs_control_BPB_change_percent": -0.001904011254816318,
+  "improvement_checks": {
+    "EOS_at_least8_more": true,
+    "repetition_no_worse": true,
+    "no_empty_role_unicode": true,
+    "BPB_degradation_at_most1percent": true,
+    "no_punctuation_only_stops": true
+  },
+  "improvement_gate_passed": true,
+  "short_mixture_adopted": false,
+  "raw_full_adoption_checks": {
+    "BPB_within1percent_full_control": true,
+    "all80_screen_IDs_match": true,
+    "no_new_empty_role_unicode_vs2B": true
+  },
+  "full_adoption_checks": {
+    "BPB_within1percent_full_control": true,
+    "all80_screen_IDs_match": true,
+    "no_new_empty_role_unicode_vs2B": true
+  },
+  "automatic_full_gate_passed": true,
+  "full_evaluations": {
+    "short20": {
+      "bpb": 1.0175798867261283,
+      "body_bytes": 164344743,
+      "documents": 89416,
+      "greedy_rates": {
+        "outputs": 80,
+        "eos": 24,
+        "repetition": 49,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "all400_rates": {
+        "outputs": 400,
+        "eos": 232,
+        "repetition": 101,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      }
+    }
+  },
+  "full_control_BPB_reference": {
+    "bpb": 1.016473459461069,
+    "documents": 89416,
+    "body_bytes": 164344743,
+    "scope": "Same100M full-dev BPB reference only; Web Unicode regression still blocks5B.",
+    "GPU_seconds_scope": "Included in shared recovery job",
+    "checkpoint_sha256": "837173885946c5a8953a717e7aa7d7993abf2ac09399e1ea150cbd8f85561eb2"
+  },
+  "generation_content_review": {
+    "reviewed_at": "2026-10-04T04:12:56.418919Z",
+    "reviewer": "Codex; qualitative examples, not independent blind human scores",
+    "screening_sha256": "fb3659c04c340774eb1dda25daad76abc4d8c2c34d07a0814a07fe93f02cd0b1",
+    "scope": "Viewed all24 naturally stopped fixed greedy outputs",
+    "blind_human_evaluation": false,
+    "usable_generation_accepted": false,
+    "notes": [
+      "Natural EOS stopping improved24/80; this physical stop count is preserved.",
+      "Several stopped responses violate explicit prefix constraints and contain semantic repetition.",
+      "The existing triple-exact-substring repetition flag remains49/80; it misses many twice-repeated or paraphrased sentences.",
+      "No new automatic repetition definition or human grammar score replaces the frozen metrics."
+    ],
+    "examples": [
+      {
+        "id": "base-054",
+        "prefix": "2024年に引っ越して、翌年の2025年には",
+        "text": "、2024年の2024年の引っ越しを予定している。",
+        "observation": "Prefix advances from2024 to2025; output says2024 again."
+      },
+      {
+        "id": "base-057",
+        "prefix": "箱には赤い玉が2個、青い玉が1個入っている。全部で",
+        "text": "2個、赤い玉が1個入っている。",
+        "observation": "Two red balls plus one blue ball should total3; output starts2."
+      },
+      {
+        "id": "base-059",
+        "prefix": "午後3時から1時間休憩すると、終わるのは",
+        "text": "午後3時からです。\n午後3時からは、午後3時からの休憩です。",
+        "observation": "15:00 plus one hour should be16:00; output says15:00."
+      },
+      {
+        "id": "base-085",
+        "prefix": "姉は甘いものを食べない。お土産には、お菓子より",
+        "text": "お菓子が食べられる。お土産は、お土産のお土産に、お土産のお土産を食べられる。",
+        "observation": "Prefix says sister does not eat sweets; output proposes sweets."
+      },
+      {
+        "id": "base-091",
+        "prefix": "氷を暖かい部屋に置いておくと、少しずつ",
+        "text": "寒い部屋に入っていきます。\n寒い部屋に置いておくと、寒い部屋に入っていきます。",
+        "observation": "Ice in a warm room should melt; output switches to cold-room placement."
+      },
+      {
+        "id": "base-097",
+        "prefix": "紙が風で飛びそうなので、上に",
+        "text": "向かって飛びます。\nこの時、飛び方を変えると、飛び方が変わります。",
+        "observation": "Prefix asks how to keep paper from blowing away; output describes paper flying upward."
+      }
+    ]
+  },
+  "EOS_improvement_confirmed_at_this_condition": true,
+  "base5B_go_no_go": {},
+  "base5B_eligible": false,
+  "decision": "Short branch improves natural EOS, but remains a diagnostic candidate: content errors/repetition and original quality targets remain.",
+  "test_split_used": false,
+  "quality_targets_achieved": false,
+  "tests": {
+    "tests": 22,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "recovery_tests": {
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "completion_checks_passed": true,
+  "completion_checks": {
+    "job_complete_and_actual_process_exited": true,
+    "original_main_job_preserved_terminal": true,
+    "recovery_frozen_sources": true,
+    "recovery_numerical_implementation_unchanged": true,
+    "original_main_counter_carried_without_reset": true,
+    "frozen_plan_and_parent": true,
+    "unchanged_core_implementation": true,
+    "unchanged_pilot": true,
+    "unchanged_runner": true,
+    "source_src/jmicro/complete_units.py": true,
+    "source_scripts/prepare_complete_units.py": true,
+    "source_scripts/run_eos_short_pilot.py": true,
+    "source_src/jmicro/readiness.py": true,
+    "unchanged_parent_checkpoint": true,
+    "original_main_GPU_budget": true,
+    "recovery_plan_binding_and_measured_budget": true,
+    "actual_CUDA_continuous_vs_resumed_all_state": true,
+    "baseline8_IDs_reproduced": true,
+    "targeted_tests_no_failures_or_skips": true,
+    "recovery_cache_policy_tests": true,
+    "auxiliary80_frozen_dev_only": true,
+    "pool_unique_complete_train_budget": true,
+    "pool_auxiliary_binding": true,
+    "pool_manifest_binding": true,
+    "pretraining_content_review": true,
+    "web_checkpoint_sha": true,
+    "web_all_resume_fields": true,
+    "web_updates_tokens_routes": true,
+    "web_source_accounting": true,
+    "web_same_parent_schedule": true,
+    "web_scheduler_optimizer_RNG": true,
+    "web_short_epoch0": true,
+    "web_finite_weights_optimizer": true,
+    "web_all_completed_updates": true,
+    "web_finite_training": true,
+    "web_evaluation_checkpoint": true,
+    "web_body256_exact_scoring": true,
+    "web_original80_fixed_cases": true,
+    "web_actual_frozen_case_IDs_prefixes": true,
+    "web_same_auxiliary80": true,
+    "web_rates_recomputed": true,
+    "web_fixed_naturalEOS_valid64": true,
+    "web_fixed_decoded_text_matches_IDs": true,
+    "web_aux_naturalEOS_valid64": true,
+    "web_aux_decoded_text_matches_IDs": true,
+    "short20_checkpoint_sha": true,
+    "short20_all_resume_fields": true,
+    "short20_updates_tokens_routes": true,
+    "short20_source_accounting": true,
+    "short20_same_parent_schedule": true,
+    "short20_scheduler_optimizer_RNG": true,
+    "short20_short_epoch0": true,
+    "short20_finite_weights_optimizer": true,
+    "short20_all_completed_updates": true,
+    "short20_finite_training": true,
+    "short20_evaluation_checkpoint": true,
+    "short20_body256_exact_scoring": true,
+    "short20_original80_fixed_cases": true,
+    "short20_actual_frozen_case_IDs_prefixes": true,
+    "short20_same_auxiliary80": true,
+    "short20_rates_recomputed": true,
+    "short20_fixed_naturalEOS_valid64": true,
+    "short20_fixed_decoded_text_matches_IDs": true,
+    "short20_aux_naturalEOS_valid64": true,
+    "short20_aux_decoded_text_matches_IDs": true,
+    "same_dev256_documents_bytes": true,
+    "same_original80_cases": true,
+    "adoption_gate_independently_recomputed": true,
+    "scientific_and_verification_separate": true,
+    "short20_full89416_and400": true,
+    "short20_full_checkpoint": true,
+    "short20_full_fixed_matches_screen": true,
+    "conditional_full_web_screen_rule": true,
+    "conditional_full_short_only_if_screen_passes": true,
+    "full_adoption_checks_recomputed": true,
+    "full_adoption_gate": true,
+    "base5B_progression_checks_recomputed": true,
+    "full_control_reference_process_complete_exited": true,
+    "full_control_reference_same100M_checkpoint": true,
+    "reference_main_job_binding": true,
+    "reference_unchanged_evaluator": true,
+    "reference_zero_learning_generation": true,
+    "full_control_same89416_body": true,
+    "generation_content_review_bound_to_scored_outputs": true,
+    "content_failure_examples_match_actual_EOS_outputs": true
+  },
+  "raw_run": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-complete-100m-20261004-r2",
+  "reviewer_sha256": "0370877425cfe9c91d2de3c43e2b0b1b023516611cb41ec08f225bf4f40de4ed",
+  "raw_evidence": {
+    "job.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-complete-100m-20261004-r2/job.json",
+      "sha256": "06d39dc643f8bc51cab6a710c04e7e36d596dc1eb8423a136010462bc386925d"
+    },
+    "review-recovered.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-complete-100m-20261004-r2/review-recovered.json",
+      "sha256": "ad389dc399bc91f58edfac5fa379214d0e930350ff3f14b84be3d31359678ce8"
+    },
+    "resume-gate.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-complete-100m-20261004-r2/resume-gate.json",
+      "sha256": "d90882f0fbab8ee4e8b1ea91b3c76e1b19e7b0daa5bdebf77b4b945aa5b66b34"
+    },
+    "generation-baseline-check.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-complete-100m-20261004-r2/generation-baseline-check.json",
+      "sha256": "9e8e8512bcce1ed229f55759df40c3fe4fb5e4d93877cda8f844d76db4b2104b"
+    },
+    "auxiliary-dev.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-complete-100m-20261004-r2/auxiliary-dev.json",
+      "sha256": "ce8b0652066b89681258d7c447f101bce3b718728005ef868f2040ce0981f987"
+    },
+    "content-review.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-complete-100m-20261004-r2/content-review.json",
+      "sha256": "6a4062aea6b1cd8a81c697d2e01e13986280bef1ed39d129bde81c8c2cfd5f93"
+    },
+    "web-evaluation.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-complete-100m-20261004-r2/web-evaluation.json",
+      "sha256": "61c2314a1f32044b0e10142572ee51b8595d63108e0e5b8e8306a90454568ffd"
+    },
+    "short20-evaluation.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-complete-100m-20261004-r2/short20-evaluation.json",
+      "sha256": "fb3659c04c340774eb1dda25daad76abc4d8c2c34d07a0814a07fe93f02cd0b1"
+    },
+    "tests.xml": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-complete-100m-20261004-r2/tests.xml",
+      "sha256": "e259d968956b7021c7b1ea891888e0b027f9c008f303cd6d0ed166197a9d9a36"
+    },
+    "pipeline.log": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-complete-100m-20261004-r2/pipeline.log",
+      "sha256": "60712cad524ed43dc4a35419681204dc62526f5906918c4f70fd50d4b41e6beb"
+    },
+    "generation-content-review.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-complete-100m-20261004-r2/generation-content-review.json",
+      "sha256": "4a8c579b192b5dde5e0ba3809aad2d6a3ede7b736c29ad0ac37a679526bebf99"
+    },
+    "short20-full-evaluation.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-complete-100m-20261004-r2/short20-full-evaluation.json",
+      "sha256": "2cdcab5082824cd12da456cf17639bc7bd721d5d4eeb1efc8c50af0947c0f348"
+    },
+    "web-reference-full-dev.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-complete-100m-20261004-r2/web-reference-full-dev.json",
+      "sha256": "c1d103ca66512db308c6b45da488f4ac8d13d41bba1c065e285c97b009dad713"
+    },
+    "evaluation-recovery-job.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-complete-100m-20261004-r2/evaluation-recovery-job.json",
+      "sha256": "188a90e50ac12b2083f533e1130e93b92cff5b5411391df00c74084cf59ae31d"
+    },
+    "evaluation-recovery.log": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-complete-100m-20261004-r2/evaluation-recovery.log",
+      "sha256": "1a7988fb507b41896c0cb03c5bbc2f9365c27a1e840990a1813285c37324a225"
+    },
+    "evaluation-process-restart.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-complete-100m-20261004-r2/evaluation-process-restart.json",
+      "sha256": "dc72a1f1c6e1180db982fc2f7f09e591e1bee53e13d12ca63fa3808ce94d1d05"
+    },
+    "cache-recovery-decision.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-complete-100m-20261004-r2/cache-recovery-decision.json",
+      "sha256": "5b918730f92056fe3bf7736d9c4d5c35e066c7a0be5c88ff41374311bb21dd54"
+    },
+    "recovery-tests.xml": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-complete-100m-20261004-r2/recovery-tests.xml",
+      "sha256": "096ded43d0a229a5174f929466a3c2f4d3d90370ec559340da305e93e43fc344"
+    }
+  },
+  "limits": [
+    "Single seed and100M per arm; not a proof about all short-data conditions.",
+    "New unit definition and larger dose both differ from25M; only this equal-budget pair isolates mixture effect.",
+    "Auxiliary short dev diagnostic does not replace failing fixed80.",
+    "No blind human grammar/relevance scores, unused test scores,5B training or Chat completion.",
+    "New unit EOS defines a complete sentence record, not the original article end."
+  ]
+}
