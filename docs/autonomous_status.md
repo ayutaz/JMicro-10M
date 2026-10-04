@@ -2,6 +2,10 @@
 
 ## EOS改善の1〜3を実行再開（2026-10-04）
 
+②両科学学習完了、③評価中。[保存済み学習記録](../reports/phase6/eos_5b_finish_training_progress.json)。両枝update155640/累積5,100,011,520tokens、各追加100,007,936、合計200,015,872。pure学習Web160.883秒/short149.772秒。短文条件の内訳Web80,019,456/short19,988,480tokens、短文poolを周回しない。checkpointは新runの各`{web,short20}/checkpoint-00155640.pt`。Web固定EOS0/80・反復57・rawUnicode/empty/role0、補助EOS0/反復35。dev256 BPB Web0.989835741/short0.990903548（+0.108%、両全文ではない）。短文の自然EOS/反復等はまだ評価中、全文採否/内容確認/保存stateのCPUreviewは未完了。Linux464は継続しfailureなし。以下の学習中/起動前は履歴。
+
+起動後の実状態：準備commit `37f2c1f`、関連33tests失敗/skip0、保存400件のproduction表示確認合格。hidden Windows21524/Linux464/bootbf739e34-e9d0-4ed9-90a5-afc9f90897aa/start_ticks10237をactual psへ照合して稼働を確認。実CUDA連続対保存再開8updates/262,144tokensの全state/history/finite checks合格、同じ5B親の補助80はEOS0/反復35/Unicode・empty・role0。現在Web100%学習を継続、local1800updates/追加58,982,400tokens、定常約694k tokens/s、GPU92%/VRAM7,645MiBを観測。GPU累積199秒、failureなし。以降job.json/checkpointを正本としlive source/configは変更しない。以下の「起動前」は準備履歴。
+
 ユーザーが「1~3を目的とゴールを明確にして最後まで」と指定。目的はUTF8表示末尾の安全化と、5Bの自然EOS/反復を短文仕上げで改善できるか検証すること。終了点は①production末尾helperと関連checks、②同じfinal5Bから低LRWeb/short20を各100M、③原固定screen・合格時の全文評価・内容確認・結果/commit。結果が不合格でも元基準で判定し、実用品質を達成したと扱わない。
 
 ①`src/jmicro/text_display.py`を全backend共通のinference結果処理へ追加。text/display_textは完成文字だけ、raw_text/bytes/IDs/valid_utf8/stop_reasonは保持。max-token未完成尾だけ除き、途中不正/不完全EOS/EOTはerror記録、unknownは元codecの例外を保持。[保存400件の確認](../reports/phase6/text_display_verification.json)で398正常text不変、同じ2末尾失敗はraw不合格のまま。関連tests（torch/HF/GGUF共通結果処理はmockによるcontroller/codec tests、実backend重み比較ではない）を実行。
