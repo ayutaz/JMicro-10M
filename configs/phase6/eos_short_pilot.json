@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "authorization": "User: plan, execute the proposed EOS improvement comparison, report results on completion",
+  "output": "reports/phase6/eos-short-pilot-20261004-r1",
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-2b-10bdata-20261004/decay-2B/checkpoint-00061036.pt",
+    "sha256": "165f9c177961a82b3da1c5ab1d21a32078b35b02e594fb2eb09edd7dbd4ea183",
+    "update": 61036,
+    "tokens_seen": 2000027648
+  },
+  "web_shards": "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2/export-001/shards",
+  "web_manifest_sha256": "2edfd35bf077cd1aa583713c01341c0db52f39adc5701f30ede0aacae840b2de",
+  "dev_shards": "/home/aihub_ubuntu/jmicro-data/phase6/expanded-v2/shards",
+  "tokenizer": "artifacts/phase2/4096/tokenizer.model",
+  "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+  "suite_sha256": "93cd3a19f3e62c8d30d1660b431a9525823f58b9ceb1bf90c6ecbac2c19292eb",
+  "short_pool": "/home/aihub_ubuntu/jmicro-data/phase6/eos-short-pilot-20261004-r1",
+  "short_pool_minimum_tokens": 5100000,
+  "short_selection": {
+    "source": "accepted train.bin only",
+    "body_tokens_min": 32,
+    "body_tokens_max": 128,
+    "original_complete_documents": true,
+    "sentence_final_punctuation": [
+      "。",
+      "！",
+      "？",
+      ".",
+      "!",
+      "?"
+    ],
+    "closing_quotes_allowed": true,
+    "arbitrary_truncation_EOS": false,
+    "obvious_ellipsis_readmore_endings_excluded": true
+  },
+  "prepare_budget_seconds": 180,
+  "gpu_budget_seconds": 1800,
+  "updates_per_arm": 763,
+  "stable_updates": 725,
+  "decay_updates": 38,
+  "short_updates": 153,
+  "tokens_per_update": 32768,
+  "tokens_per_arm": 25001984,
+  "scientific_total_tokens": 50003968,
+  "short_fraction_actual": 0.20052424639580602,
+  "short_input_tokens": 5013504,
+  "initial_state": "Both forks use the same completed2B weights, Adam moments, RNG, web sampler position. Reset equal peakLR0.002 for725 stable updates and38 cosine decay updates to0.0002; preserve global counters and lineage. Ordinary parent resume is forbidden.",
+  "sampler": "Deterministic evenly distributed whole short batches; unchanged BlockSampler for each source; separate web/short cursors, route position and EOS/input counters saved at completed updates",
+  "resume_gate": "CUDA continuous4 versus2+save+resume2; two short/two web updates including stable-to-decay schedule boundary, all optimizer/scheduler/RNG/sampler/history exact",
+  "screening": {
+    "dev_documents": 256,
+    "generation_cases": 80,
+    "max_new_tokens": 64,
+    "decoding": "Original suppressed greedy, no penalty/forcedEOS/bias"
+  },
+  "improvement_gate": {
+    "EOS_more_than_control_at_least": 8,
+    "repetition_no_worse_than_control": true,
+    "empty_role_unicode_failures": 0,
+    "maximum_relative_BPB_degradation": 0.01
+  },
+  "conditional_full_evaluation": "Only if all screening gates pass: unchanged89416-doc dev and400 generated outputs. Compare full BPB to saved2B within1percent and match screening greedy rates.",
+  "completion": "Complete both25M arms, fixed comparisons and conditional full evaluation, record successes/failures and actual budgets/checkpoints, update docs and commit; stop before5B/Chat. Failed improvement still completes the comparison, not model quality.",
+  "avoid_redundant_validation": "Reuse accepted builder/loader policy and original corpus manifests. New short stream checksum and actual CUDA save/resume are required; no repeated full corpus/index audit.",
+  "reuse_completed_control": {
+    "result_path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-short-pilot-20261004/web/result.json",
+    "checkpoint_sha256": "a7a85bbe33ccf6f7bd6eadb0af2c80ed55aebf4e48bc070cff70a0cc91a0825f"
+  },
+  "retired_run": "reports/phase6/eos-short-pilot-20261004",
+  "retired_gpu_elapsed_seconds": 95.15652051500001,
+  "retired_gate_input_tokens": 262144,
+  "pre_treatment_refinement": "Initial pool examples revealed an ellipsis ending. Guarded SIGTERM interrupted control generation after its763-update training completed; no short treatment was started. Preserve initial plan/runner/job/pool/gate, reject obvious ellipsis/read-more endings before treatment; reuse the exact completed control after source/schedule/Web/no-short checks, not retrain it."
+}

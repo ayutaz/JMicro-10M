@@ -1,5 +1,42 @@
 # Codex継続作業の現在地
 
+## 完了・停止: EOS短文混合の対照学習（2026-10-04）
+
+ユーザー指定の改善計画を[凍結config](../configs/phase6/eos_short_pilot.json)で実行し、[実測・完了確認・次の案](../reports/phase6/eos_short_pilot_review.json)を保存。科学比較は同じ2B model/Adam moments/RNG/Web cursorから2枝を作り、各763更新/25,001,984 input tokens（725 stable＋38 decay）、合計50,003,968 tokens。両枝LR0.002から末尾減衰で0.0002。検証2回計16 GPU更新/524,288 input tokensは科学予算と分けた。各重みの累積学習量は2,025,029,632 tokensで、2枝の学習量を1モデルへ合算しない。
+
+| 条件（各25M、同じ評価） | 64 tokens以内EOS | 反復 | dev256 BPB（小さいほど良い） | dev256平均EOS NLL |
+|---|---:|---:|---:|---:|
+| 従来Webのみ | 0/80 | 62/80 | 1.068518 | 2.424873 |
+| 短文20.0524%混合 | 0/80 | 54/80 | 1.069161 | 2.331916 |
+
+両条件Unicode/role/empty失敗0。短文条件は反復8件減、末尾EOS予測lossが低下したが、自然EOS停止の改善は0件。本文BPBは対照比+0.06025%とほぼ同等だが僅かに悪化した。このBPBは共通256 dev/472,055 body bytesで、既存全文89,416 devのBPB0.982882とは直接比較しない。
+
+凍結改善gateの「EOS対照より8件以上増」が不合格で、反復非悪化/失敗0/BPB悪化1%以内は合格。短文20%条件を採用して解決済みとはせず、元2Bモデルを既存の基準として保持する。有望候補のみ全文dev/400生成という条件に従い、全文再評価は未実施。test採点/5B/Chat/追加sweepも未開始。実験の完了とモデル品質達成は区別する。
+
+新poolは元trainのBOS/body/EOSを保持した32〜128-body-token文書47,844件/5,100,109 tokens、抽出5.443秒。句末記号に加え明らかな省略記号/続きを読む等の終端を除外。平均104.60/中央値107 tokensで、64以下は712件（約1.49%）しかない。意味完結性はblind人手採点で保証したものではない。mixingは153更新/5,013,504 short input tokens＋610更新/19,988,480 Web input tokens。実EOS教師数はWebのみ53,161、混合42,506＋47,025＝89,531で教師露出は増えたが、greedy停止は改善しなかった。データ量一般や全ての短文条件が無効という結論にはしない。
+
+次の未起動案は十分に多様な32〜64-token完結単位をtrainから定義/準備して1回の25M treatment比較を行うこと。文/段落の単位と完結境界を明示し、712文書だけを何十周も繰り返したり任意token位置を切ってEOSを付けたりしない。同じparent/Web/settingsなら完成controlを再利用できる。gateと元Base/Chat品質基準は維持し、追加予算/データを凍結してから実行する。現poolの長さと固定64生成のずれは検証仮説で、停止失敗の単一因果原因として確定していない。
+
+raw runはLinux `reports/phase6/eos-short-pilot-20261004-r1/`、job complete（PID487/boot58a2da81-1901-4608-99ee-ea8177369e7a/start_ticks28827）。旧95.1565秒を含むGPU累積337.027秒（5分37秒）、1800秒上限内。学習control45.425秒/short45.546秒、定常中央値655,336/658,177 tokens/s。Windows launcher25436/Linux jobは実終了、GPU計算job0。5 unit tests成功、実CUDA連続4対2+保存再開2（short/web/安定→減衰を含む）でmodel/optimizer/scheduler/RNG/sampler/counters/history全一致、元生成8件のIDsも再現。完成checkpoint2つの実hash/保存state/counters・全763更新finite・共通dev/body採点/80固定case/自然EOS IDを確認。元2B checkpoint SHAも不変。新データ全件監査は繰り返していない。
+
+Web control重みは旧run `eos-short-pilot-20261004/web/checkpoint-00061799.pt`、SHA `a7a85bbe33ccf6f7bd6eadb0af2c80ed55aebf4e48bc070cff70a0cc91a0825f`。短文重みはr1 `short20/checkpoint-00061799.pt`、SHA `2cf8d81b709f25f6bddba68abcc3f954263010bd3ced6e72abc7a96b080c3abe`。checkpointへmodel/optimizer/scheduler/RNG/両source sampler/route位置/token/EOS counters/lineage/source bindingを保存。core model/training/shards sourceは変更せず、新しい `jmicro.eos_pilot`から既存Trainer.step/BlockSamplerを使用。Pythonは全てuv。
+
+初回poolの省略終端を内容確認で発見し、short開始前にguarded SIGTERMで旧pipelineを停止。完成controlはsettings/module/parent/Web routes/short input0・cursor0を確認して再利用し再学習しなかった。未完了の80生成だけを再評価。旧計画/runner/job/log/pool/gateは保持し、fixed評価結果を見てから条件変更したものではない。初回8更新とr1の8検証更新も上記に含める。`bash scripts/run_eos_short_pilot.sh`は完了jobを再実行しない。対照実験を完了したためreport/commitで停止。以下は起動時の履歴。
+
+### 起動経過（過去の実行中記録）
+
+短文pool例に省略終端`...`が含まれたため、短文treatment前に単一のguarded SIGTERMで旧pipelineを停止し、元から省略された終端/続きを読む等の除外を追加。旧Web controlは763更新/25,001,984 tokensを完了済み、short input0/short cursor0を保存checkpointで確認して引き継ぎ、再学習しない。旧計画/runner/job/log/最初のpool/gateは保持。新版poolは47,844文書/5,100,109 tokens、5.304秒で抽出済み。句末filterに加えて明らかな省略を除外する5 tests成功。新poolによる実CUDA保存再開gateと元生成8件再現も成功した。
+
+現在のLinux runは`reports/phase6/eos-short-pilot-20261004-r1/`、poolも同名r1。Windows hidden launcher25436、Linux487/boot58a2da81-1901-4608-99ee-ea8177369e7a/start_ticks28827。job.jsonはgeneration80/running（Web controlの固定80評価中）。本比較ではWeb controlの学習settings/source/parent/全Web routesとzero-shortをcheckpointで検証し、完成したcontrolを再利用する。途中で中断した生成評価のみ必要分を再実行する。旧95.1565秒もGPU累積上限へ加算し、2回のgate検証は科学比較50Mとは別に計524,288 input tokensと記録する。固定評価を見てから選択条件を変えたものではなく、元データ内容の確認でtreatment前に修正した。
+
+ユーザーが上記改善計画の立案・実行・結果報告を指定。[凍結計画](../configs/phase6/eos_short_pilot.json)：元2B model/Adam moments/RNG/Web cursorから明示的に別forkを作り、両枝同じLR0.002を725更新、末尾38更新で0.0002へ減衰。各763更新/25,001,984 input tokens、対照2枝計50,003,968 tokens。短文混合枝の153更新/5,013,504 tokens（20.0524%）は既存trainの元から完結した32〜128-body-token文書、残りはWeb。EOS強制/加点/loss重み変更はしない。句末記号のfilterは意味品質を保証する人手採点ではない。
+
+新しい`jmicro.eos_pilot`は既存Trainer.step/BlockSamplerを使い、2source cursor/混合位置/tokenとEOS実数/optimizer/scheduler/RNG/global counters/lineageを保存する。core model/train/shards sourceは変更しない。巨大train index/全件hashは再読しない軽量train mmapを採用し、既存builder/loaderの受入policyを継承。新短文poolは5.1M以上を180秒以内に抽出し、その小stream hashを確認する。追加依存なし、Pythonはuv。
+
+route再開・EOS教師/BOS mask・chunk境界文書保持・schedule境界の4 unit testsは成功。GPU起動前の計算processは0件。実CUDA連続4 vs2+保存再開2（安定→減衰/short2+web2を含む、検証8更新262,144 input tokens）と元生成8ケース再現確認後、実対照学習へ進む。両枝は同じdev256/固定80 greedy64で評価し、EOSが対照より8件以上増加・反復非悪化・empty/role/Unicode0・BPB悪化1%以内の凍結改善gateを使う。中間改善判定であり元品質基準は変更しない。
+
+Linux run `reports/phase6/eos-short-pilot-20261004/`、short pool `~/jmicro-data/phase6/eos-short-pilot-20261004/`、起動/再開は`bash scripts/run_eos_short_pilot.sh`。job.jsonのPID/boot/start_ticksを実/procへ照合しliveなら重複起動しない。valid latest checkpointから再開し、完了stageは繰り返さない。GPU累積1800秒上限。科学比較50M tokensとは別に検証更新を明記。有望候補のみ全文dev/400生成を採点し、結果・失敗も保存/report/commit。今回のgoalは対照実験の完了と結果報告で、5B/Chatは未開始。以下は過去の完了/停止/提案。
+
 ## 完了: 2BモデルのEOS原因調査（2026-10-04）
 
 ユーザーの「まずEOS原因調査」により[限定計画](../reports/phase6/eos_2b_plan.json)を実施し、[結果と次の比較案](../reports/phase6/eos_2b_review.json)を保存。WSL/4090で298.556秒、学習更新0。旧調査と同じdev末尾256件/固定prefix80件、categoryごと2件の20prefixでgreedyと反復penalty1.1を512 tokensまで比較した。原greedyの最初64 IDsは保存済み評価と20/20件で完全一致。EOS3は抑制対象外、streamはBOS/body/EOSで、loss maskはBOSのみ。EOSが選ばれた5件は実際に停止し、停止controllerの不具合は見つからなかった。
