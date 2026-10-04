@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-04最新: [実train12.23Bデータ整備とユーザー指定2B学習・既存評価を完了](../reports/phase6/base_2b_10b_data_review.json)。同じ約10Mモデルで、減衰込み総2Bを実行。既存dev BPB1.022491→0.982882、greedy反復66/80→60/80、EOS0/80。品質目標は未達のままreport/commitして停止する。5B/10B/Chat・decoder比較は未起動。以下の学習中・旧停止境界の説明は履歴。[実状態](autonomous_status.md)。
+
 2026-10-04: [ローカルデータ整備](32_local_10b_corpus.md)は実train12.23B tokensで完了。ユーザー指示で過剰な独立再照合を省き、構築時の全件検査・独立raw再構築・実train loader合格を採用し、独立全件audit未完了を明記した。さらにユーザーが2B学習を指定し、同じ約10Mモデルを新データで別runとしてGPU学習中。減衰込み総2B、既存protected dev/生成比較、report/commitで停止する。5B/10B/Chat・生成方法の対照比較は未起動。[現在の実状態](autonomous_status.md)。
 
 2026-10-03: 500M後の反復/EOS/data調査も完了。[判断と比較](../reports/phase6/repetition_diagnosis_review.md)。EOS教師漏れは確認されず、文書末尾予測は改善し、反復は131Mから多い。decay後は70/80→66/80。原因をデータ量へ確定せず、次の対照を提案して停止。追加学習/1Bは未開始。

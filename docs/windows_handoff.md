@@ -1,5 +1,7 @@
 # 別PCで続きを進める: Windows / WSL / RTX 4090
 
+2026-10-04最新: [ローカル12.23Bデータと新データ2B学習・評価を完了して停止](../reports/phase6/base_2b_10b_data_review.json)。現在は再開・再評価しない。最終重みはLinux runのreports/phase6/base-2b-10bdata-20261004/decay-2B/checkpoint-00061036.pt、SHA165f9c177961a82b3da1c5ab1d21a32078b35b02e594fb2eb09edd7dbd4ea183。supervisor.jsonはevaluate/completeで、実project process/GPU計算jobは終了している。総学習2,000,027,648 tokens、同じdev BPB0.982882、greedy反復60/80/EOS0/80。旧データ・旧重み・全checkpoint・新shardsは保持する。以下の実行中の説明と再開commandは中断時の履歴で、完了runを繰り返す指示ではない。
+
 現在は[整備済みの実train12.23Bデータ](32_local_10b_corpus.md)で、ユーザー指定の2B学習を実行中。構築・全export往復確認済みで、ユーザーが過剰な独立再照合の省略を指定したため、独立監査は29/32near bandで停止（全raw再構築済み）。実train loaderは49.147秒で合格。[整備完了記録](../reports/phase6/corpus_10b_ready_review.json)は全件audit未完了を明記する。
 
 新shardsは`~/jmicro-data/phase6/ten-billion/prepared-v2/export-001/shards/`、新学習configは`configs/phase6/base_2b_10b_data.json`、runは`reports/phase6/base-2b-10bdata-20261004/`。`supervisor.json`と[実状態](autonomous_status.md)を/procのboot/PID/start_ticksへ照合し、liveなら重複起動しない。停止後の再開は`bash scripts/run_base_2b_10b_data.sh`で有効なcheckpointを再利用する。stable→decay→既存protected dev/400生成比較を順に進め、総2Bで停止する。旧corpus/shards/heldout/重みは保持し、新shardsを旧checkpointの通常resumeへ差し替えない。WSL約1TB/空き619GBで拡張不要。decoder/5B/10B/Chatは未起動。以下の停止境界は以前の履歴。

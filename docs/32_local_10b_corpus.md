@@ -1,5 +1,7 @@
 # ローカル10Bデータセットの整備
 
+2026-10-04最新: 整備済み実train12.23Bデータを使った[ユーザー指定の2B学習・既存評価も完了](../reports/phase6/base_2b_10b_data_review.json)し停止した。最後の約5%減衰を含む総2,000,027,648 tokens、全体約63分。既存dev BPB1.022491→0.982882、greedy反復66/80→60/80、EOS0/80の課題を記録した。以下の学習開始時・全件監査の説明は履歴。ユーザー指示で独立全件監査を省いた事実は維持する。
+
 2026-10-04現在: [ローカル整備完了](../reports/phase6/corpus_10b_ready_review.json)。WSL内`/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2/export-001/shards/`に実T4K train12,225,819,077 tokens/25,879,667文書を保存済み。新dev678,132,065/test679,399,996 tokensは別で、10Bに含めない。構築時に全32band重複処理と全採用文書のencode/decode/hash確認が済み、独立監査では全128raw/全signature再構築と29/32near bandまで検証した。
 
 ユーザーが過剰な照合の省略と学習開始を指示したため、残る独立重複再構築・全代表照合・全文再トークン化は省略。[停止記録](../reports/phase6/corpus_10b_validation_policy.json)に元job/manifest/config bindingを保存し、全件audit合格とは記録しない。代わりに未変更の`Shard`/`BlockSampler`による実train読み込み・checksum・語彙/教師mask・batch生成・位置再現が[49.147秒で合格](../reports/phase6/corpus_10b_loader_ready.json)。このユーザー指定の検証範囲で利用可能とする。旧データ・heldout・Tokenizer・重み・履歴は別pathで保持し、再export/再監査を行わない。

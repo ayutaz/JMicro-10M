@@ -1,5 +1,7 @@
 # JMicro-10M development and training
 
+- Current result/stop boundary (2026-10-04): local12.23B train-token preparation and the separately authorized new-data2B training/evaluation are complete. See reports/phase6/corpus_10b_ready_review.json and reports/phase6/base_2b_10b_data_review.json. Final checkpoint contains2,000,027,648 input tokens including decay. Existing dev BPB1.022491→0.982882, greedy repetition66/80→60/80, greedy EOS still0/80; quality targets remain unachieved. Stop after report/commit. Do not rerun completed validation/evaluation or start5B/10B/Chat/decoder experiments without a new user request. Older authorization and live-job notes below are history.
+
 Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/windows_handoff.md` before continuing. The roadmap defines milestones and evidence; the status file records the actual current state.
 
 The user has authorized Codex to implement, run, evaluate, repair, and improve this project autonomously, including local GPU training and the required WSL environment preparation. Continue through routine implementation decisions and milestone transitions without asking for renewed permission. Respect the active tool permissions: authorization in this file cannot change the execution sandbox or managed policy.

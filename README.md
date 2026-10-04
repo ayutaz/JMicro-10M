@@ -1,5 +1,7 @@
 # JMicro-10M
 
+2026-10-04完了: [実train12.23Bのローカル整備](reports/phase6/corpus_10b_ready_review.json)と[新データでの2B学習・既存評価](reports/phase6/base_2b_10b_data_review.json)を終えて停止した。モデルは約10M、減衰込み総2,000,027,648学習tokens、全体約63分。同じdev BPB1.022491→0.982882、greedy反復66/80→60/80、EOS0/80の課題は残る。5B/10B/Chatは未開始。以下の開始時・旧500M記録は履歴。[現在の実状態](docs/autonomous_status.md)。
+
 2026-10-04: [ローカル学習データを実train12.23B tokens整備](reports/phase6/corpus_10b_ready_review.json)。ユーザー指示で過剰な独立再照合を省き、構築時の全件確認と実loader合格を採用（独立全件auditは未完了と明記）。新データでユーザー指定の2B学習をWSL＋RTX4090で開始した。モデルは約10Mパラメータのまま。減衰込み2Bと既存dev/生成評価を終えて停止する。[現在の実状態](docs/autonomous_status.md)。
 
 2026-10-03: 拡張trainの500M stable＋独立763更新decayと全文dev/400生成評価を完了。同一dev BPB 1.244126→1.022491、抑制greedy EOS 0/80→0/80、反復48/80→66/80。全99 tests成功。人手blind採点・test・Chat・新重みの量子化は未実施。1B前で停止。 [最新結果](reports/phase6/base_500m_review.json)。

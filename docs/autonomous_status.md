@@ -2,7 +2,15 @@
 
 最終更新: 2026-10-03（日本時間）。実測の正本はreportとWSLのrun/data、milestoneは[roadmap](15_project_roadmap.md)。
 
-## 実行中: 新しい12.23Bデータで2B学習
+## 完了・停止: ローカル12.23Bデータと新データでの2B学習
+
+2026-10-04: [2B学習・既存評価・保存を完了](../reports/phase6/base_2b_10b_data_review.json)。stable1,900,019,712＋decay100,007,936＝総2,000,027,648 input tokens、61,036更新。epoch0/位置1,953,152で終了。stable47分10秒、decay3分44秒、既存評価11分47秒、全体62分44秒。定常学習中央値707,318 tokens/s。最終checkpointのhash/counterとmodel/optimizer/scheduler/RNG/samplerを含む保存stateを確認。元stable親のhashはdecay後も一致。全63checkpointを保持した。全件再監査・再学習・再採点は実施しない。
+
+旧500Mと同じdev89,416文書/164,344,743 body bytesでBPB1.022491→0.982882、約3.874%低下。固定400生成のcase/seed/decoding条件も同じで、greedy（抑制あり）は反復66/80→60/80、EOS0/80→0/80。sampling3seeds合計は反復11/240→2/240、EOS1/240→6/240、Unicode失敗1/240→0/240。予測性能は改善したが、greedy反復・停止の課題は残り、会話品質目標は未達。データと消費学習量が同時に変わったため、データ量だけの因果効果は確定しない。test採点・人手採点は未実施。
+
+最終重みはWSLのreports/phase6/base-2b-10bdata-20261004/decay-2B/checkpoint-00061036.pt、SHA165f9c177961a82b3da1c5ab1d21a32078b35b02e594fb2eb09edd7dbd4ea183。stable親はstable/checkpoint-00057984.pt、SHA4edcefa7c81e05aa9403e4dc642bbe783dc68be15f140f88098ab7b2fcd3a597。最終supervisor.jsonはevaluate/complete（999/start_ticks2671925）。pipeline/supervisor/workerは終了しGPU計算jobなし。新shardsと旧成果物は保持。ユーザー指定の2Bに達したため停止し、5B/10B/Chat/decoder比較へ進まない。
+
+以下は新run開始時とデータ整備・旧監査の経過記録。
 
 2026-10-04: ユーザーの「過剰な検証や照合はしなくていい」「学習に早く入りたい」に従い、独立監査の残りを停止。最後の進捗は29/32band、raw128files/全29,208,256records再構築は済み。構築時の全32band重複処理・全export往復検査と、[実train loaderの合格](../reports/phase6/corpus_10b_loader_ready.json)で[ローカル10B整備を完了](../reports/phase6/corpus_10b_ready_review.json)。train12,225,819,077 tokens/25,879,667文書、dev/testは別。loader49.147秒、batch2×1024・sampler再現一致。独立全件監査は未完了のまま明記し、`job.json`のInterruptedError/failedは[ユーザー指定の監査停止](../reports/phase6/corpus_10b_validation_policy.json)によるもの。構築済みmanifestと凍結sourceは変更せず、再監査・再exportしない。
 

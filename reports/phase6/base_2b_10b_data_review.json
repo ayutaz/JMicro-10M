@@ -1,0 +1,201 @@
+{
+  "status": "completed_2b_training_and_existing_evaluation",
+  "completed_at": "2026-10-04T02:25:42.635091Z",
+  "config": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_2b_10b_data.json",
+  "config_sha256": "11ca116e0702a2feba99f883f5d2471ba92f265a04c49a38e8b34e300f64b0ff",
+  "run": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-2b-10bdata-20261004",
+  "initialization": "new random weights, seed42; independent large-data run, same model/settings as prior500M; old checkpoints preserved",
+  "model_parameters": 10000152,
+  "prepared_train_tokens": 12225819077,
+  "actual_training_input_tokens": 2000027648,
+  "stable_input_tokens": 1900019712,
+  "decay_input_tokens": 100007936,
+  "final_checkpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-2b-10bdata-20261004/decay-2B/checkpoint-00061036.pt",
+    "sha256": "165f9c177961a82b3da1c5ab1d21a32078b35b02e594fb2eb09edd7dbd4ea183",
+    "update": 61036,
+    "tokens_seen": 2000027648
+  },
+  "stable_parent_checkpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-2b-10bdata-20261004/stable/checkpoint-00057984.pt",
+    "sha256": "4edcefa7c81e05aa9403e4dc642bbe783dc68be15f140f88098ab7b2fcd3a597",
+    "update": 57984,
+    "tokens_seen": 1900019712
+  },
+  "checkpoint_resume_fields_present": [
+    "model",
+    "optimizer",
+    "scheduler",
+    "rng",
+    "sampler",
+    "tokens",
+    "supervised_tokens",
+    "body_bytes",
+    "token_digest",
+    "spec",
+    "model_config",
+    "implementation_sha256",
+    "update"
+  ],
+  "sampler_state": {
+    "seed": 42,
+    "epoch": 0,
+    "position": 1953152,
+    "context": 1024,
+    "blocks": 11939276
+  },
+  "timings_seconds": {
+    "stable": 2830.329423,
+    "decay": 223.918018,
+    "evaluate": 707.199678,
+    "total": 3764.188829
+  },
+  "training": {
+    "stable": {
+      "logged_updates": 1160,
+      "last_logged": {
+        "update": 57950,
+        "loss": 2.8630685806274414,
+        "gradient_norm": 0.2885814905166626,
+        "lr": 0.002,
+        "tokens_seen": 1898905600,
+        "supervised_tokens": 1894886552,
+        "body_bytes_seen": 7381783886,
+        "token_digest": "794a7fee8bc6caed91d9a2845dbe7a206fb63eb6f19fdab7fb3c32d84bdbb8f3",
+        "seconds": 0.04694586500045261,
+        "data_wait_seconds": 0.00042657000085455365,
+        "tokens_per_second": 697995.446450589
+      },
+      "median_tokens_per_second": 707317.6520834768,
+      "retained_checkpoints": 58
+    },
+    "decay-2B": {
+      "logged_updates": 61,
+      "last_logged": {
+        "update": 61000,
+        "loss": 2.628424644470215,
+        "gradient_norm": 0.2630636990070343,
+        "lr": 0.00020065267075137843,
+        "tokens_seen": 1998848000,
+        "supervised_tokens": 1994617134,
+        "body_bytes_seen": 7770353790,
+        "token_digest": "a636d19fc0de3da8695df2d3177a89a184d7d5937aea5a0a3fdcad2e665671bf",
+        "seconds": 0.04625553699952434,
+        "data_wait_seconds": 0.0002511099992261734,
+        "tokens_per_second": 708412.4869274994
+      },
+      "median_tokens_per_second": 707054.737431701,
+      "retained_checkpoints": 5
+    }
+  },
+  "evaluation": {
+    "documents": 89416,
+    "body_bytes": 164344743,
+    "previous_500m_decay_bpb": 1.022491122502677,
+    "new_2b_bpb": 0.9828815577636254,
+    "relative_bpb_reduction_percent": 3.873829695665434,
+    "same_dev_population": true,
+    "same_400_generation_conditions": true,
+    "previous_generation_rates": {
+      "greedy-suppressed1-seed42": {
+        "outputs": 80,
+        "eos": 0,
+        "repetition": 66,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "greedy-suppressed0-seed42": {
+        "outputs": 80,
+        "eos": 0,
+        "repetition": 66,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "sampling-suppressed1-seed42": {
+        "outputs": 80,
+        "eos": 0,
+        "repetition": 5,
+        "unicode_failure": 1,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "sampling-suppressed1-seed43": {
+        "outputs": 80,
+        "eos": 0,
+        "repetition": 1,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "sampling-suppressed1-seed44": {
+        "outputs": 80,
+        "eos": 1,
+        "repetition": 5,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      }
+    },
+    "new_generation_rates": {
+      "greedy-suppressed1-seed42": {
+        "outputs": 80,
+        "eos": 0,
+        "repetition": 60,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "greedy-suppressed0-seed42": {
+        "outputs": 80,
+        "eos": 0,
+        "repetition": 60,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "sampling-suppressed1-seed42": {
+        "outputs": 80,
+        "eos": 5,
+        "repetition": 1,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "sampling-suppressed1-seed43": {
+        "outputs": 80,
+        "eos": 0,
+        "repetition": 1,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "sampling-suppressed1-seed44": {
+        "outputs": 80,
+        "eos": 1,
+        "repetition": 0,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      }
+    },
+    "test_evaluated": false,
+    "human_scoring_performed": false
+  },
+  "data_validation_scope": "built_export_and_actual_train_loader",
+  "full_independent_corpus_audit_passed": false,
+  "limitations": [
+    "Data quantity and training tokens both changed; cannot isolate data quantity as the cause",
+    "Greedy EOS remains0/80 and repetition60/80; conversational quality targets are not achieved",
+    "Independent full corpus audit was stopped at user request; builder and actual loader checks retained"
+  ],
+  "evidence": {
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-2b-10bdata-20261004/evaluation-2B/full-dev.json": "5557e85eff99d694576c2c02fb9b66a7e99757e10f966f5b1bcdd1e4a8ef6407",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-2b-10bdata-20261004/evaluation-2B/generation.json": "bc2054de8e7f6ea2ce258a853eb09a424236ee6f5c7e0f52636bdd0422430c2c",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-2b-10bdata-20261004/supervisor.json": "71220c534d976bb70f7fe32dea72892d3ef0b266a1c91d3fc6b2c83cc50c13ff",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/corpus_10b_ready_review.json": "07a33810efea63f081121c5bb2f63c92246745e1f3558e237bbf27fed56ae9cc"
+  },
+  "quality_targets_achieved": false,
+  "next_action": "Stop at user-authorized2B; retain checkpoints and prepared data. No5B/10B/Chat or further experiments started."
+}

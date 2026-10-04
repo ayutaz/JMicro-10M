@@ -1,5 +1,7 @@
 # 準備完了後の実行計画: Base本学習からChat・量子化まで
 
+2026-10-04最新: 実train12.23Bのローカル整備と[新データでのユーザー指定2B学習・既存評価を完了](../reports/phase6/base_2b_10b_data_review.json)。同じdev BPB0.982882、greedy反復60/80/EOS0/80を記録し、report/commitして停止する。5B/10B/Chat/decoder比較は未開始。以下の実行中・学習前停止・2B/5Bデータ増量案は履歴。[現在の状態](autonomous_status.md)。
+
 更新: 2026-10-03。Phase 0〜5とPhase 6①〜⑤の準備は完了。③は`a7d26e1`、④⑤は`93c7d1d`へcommit済み。[現在の状態](autonomous_status.md)、[④⑤の実測と停止記録](30_phase6_readiness_execution.md)。**計画1〜5の実行をユーザーが再開し、500M stable・独立decay・全文dev/400生成比較を完了した。現在は1B前で停止している。**
 
 ## 現在の実行: ローカル10Bデータセットの整備
