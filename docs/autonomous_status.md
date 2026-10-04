@@ -2,6 +2,8 @@
 
 ## 次計画1・2：5B継続処理と学習を再開（2026-10-04）
 
+途中経過（2026-10-04 06:55 UTC）：同じLinux450/boot76070d40-79fb-4edd-a970-8dbc1097cfde/start_ticks13218を毎回/procへ照合して継続を確認。global122,750/4,022,272,000 tokens、約694k tokens/s、GPU経過3,118.762秒、failureなし。終了後の保存記録確認commandは `uv run --frozen --extra hub --extra data --extra ml --extra export scripts/review_base_5b.py`（準備commit55a0f2c）。終了したjob、連続更新ログ、最終model/Adam/scheduler/RNG/sampler/counter、LR曲線、元親不変、token/GPU/保存容量を確認する。GPU再学習/全文評価/全件監査は追加しない。5Bはまだ学習中。
+
 実装/configの準備commit `be4be0f`。hidden Windows28760/Linux450/boot76070d40-79fb-4edd-a970-8dbc1097cfde/start_ticks13218をactual psへ照合し起動。実CUDA stable/decay両経路の全state/history/finite checkが全合格（16updates/524,288検証tokens）。科学stable学習開始、global58,400/1,913,651,200 tokens、初期約614k〜651k tokens/s、GPU88%/VRAM7,644MiBを実測。runのjob.json/pipeline.log/cuda-resume-gate.jsonを正本としlive source/configは変更しない。Windows launcherがWSLを保持。5B到達はまだ未完了。
 
 ユーザーが「1,2を計画を立てて進めて」と指定。[固定config](../configs/phase6/base_5b.json)、[実行計画](35_base_5b_execution.md)。stable1,900,019,712/update57,984（SHA4edcefa7c81e05aa9403e4dc642bbe783dc68be15f140f88098ab7b2fcd3a597）から新directoryへ明示fork。core trainer/model/shards/lockは変更せず、StableExtensionTrainerが予算だけの増加を許可。Adam/scheduler/RNG/sampler/counterを保持しstableLR0.002は親と同じ。低LR100M後継学習と長期stable継続は別条件。
