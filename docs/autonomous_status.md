@@ -1,5 +1,7 @@
 # Codex継続作業の現在地
 
+計画49段階1を完了し、段階2の低LR分岐へ: 物語10%/100MはGPU264.370秒、EOS17・反復40・raw0（固定80）。全80をCodex採点し、一貫性2点4/80で事前の対照差8件を満たさず未採用。元mixture条件は全通過だが内容条件を緩めない。全文/長文は未実施、500Mへ進めず、同じ親・10%・同量でpeak0.0001のWeb/物語各100M比較を一つ凍結した。[記録50](50_story10_and_budget_execution.md)。16関連CPU tests成功。先のLinux139467は終了、UIは元final10Bで復帰を確認。次は低LR二枝の科学200,015,872（検証262,144別）→160内容診断→条件付き全文→段階3判断/提案/report/local commit・UI復帰で停止。1B/20B/Chat/test/pushは開始しない。
+
 計画49段階1のGPU比較を永続起動: 準備commit70304d6、14関連CPU tests成功、専用config/schema凍結。hidden Windows34152、actual Linux139467 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks1364277、開始2026-10-04 16:13:58Z。実CUDA保存再開後、物語10%の100M学習を実行中。run`reports/phase6/story10-10b-100m-20261005`、`screen-job.json`とWindows`screen.*.log`へ保存。GPU中のみUI停止、finallyで元final10Bへ戻す。80内容診断・採用判定→条件付き各500Mまたは低LR比較→最終判断/提案が残るためgoalはactive。actual processを確認し、同じjobを重複起動しない。
 
 2026-10-05 JST・計画49段階1〜3を実行再開: ユーザー「3までを進めて判断をして提案をしてください」。[実行記録50](50_story10_and_budget_execution.md)へ条件を保存し、物語10%/100Mの専用runner・launcher・testsを準備中。既存25M poolと保存済みWeb/20%対照を再利用し、原gateは不変。採用条件を通る場合は各500M比較、未達なら一つの低LR同量比較→判断/提案/report/local commit・UI復帰で停止する。1B/20B/50B/Chat/test/pushは開始しない。現在科学GPU未開始、actual GPU processは既存UI49746のみ。過去完了runを再起動しない。
