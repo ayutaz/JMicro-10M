@@ -1,0 +1,106 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-04T14:41:08.314097Z",
+  "checks": {
+    "relevant_CPU_tests_pass": true,
+    "data_pool_25M_to_50M": true,
+    "data_inspection_100_each": true,
+    "EOS_BOS_packing_checks": true,
+    "actual_CUDA_exact_resume": true,
+    "GPU_within_frozen_budget": true,
+    "scientific_total_tokens": true,
+    "verification_tokens_separate": true,
+    "original_suite_and_protected_test": true,
+    "all240_content_reviewed": true,
+    "web_checkpoint_and_binding": true,
+    "web_finite_model_optimizer": true,
+    "web_matched_budget": true,
+    "web_finite_loss_gradient": true,
+    "web_source_accounting_no_short_epoch": true,
+    "web_saved_resume_state": true,
+    "web_evaluation_binding": true,
+    "web_complete_diagnostics": true,
+    "short20_checkpoint_and_binding": true,
+    "short20_finite_model_optimizer": true,
+    "short20_matched_budget": true,
+    "short20_finite_loss_gradient": true,
+    "short20_source_accounting_no_short_epoch": true,
+    "short20_saved_resume_state": true,
+    "short20_evaluation_binding": true,
+    "short20_complete_diagnostics": true,
+    "coherent20_checkpoint_and_binding": true,
+    "coherent20_finite_model_optimizer": true,
+    "coherent20_matched_budget": true,
+    "coherent20_finite_loss_gradient": true,
+    "coherent20_source_accounting_no_short_epoch": true,
+    "coherent20_saved_resume_state": true,
+    "coherent20_evaluation_binding": true,
+    "coherent20_complete_diagnostics": true,
+    "GPU_job_terminal_and_actual_process_exited": true
+  },
+  "summaries": {
+    "web": {
+      "count": 80,
+      "grammar_score2": 25,
+      "relevance_score2": 26,
+      "coherence_score2": 0,
+      "appropriate_EOS": 0,
+      "character4_repeat_mean": 0.6969755803764559
+    },
+    "short20": {
+      "count": 80,
+      "grammar_score2": 32,
+      "relevance_score2": 29,
+      "coherence_score2": 1,
+      "appropriate_EOS": 1,
+      "character4_repeat_mean": 0.6427202403529586
+    },
+    "coherent20": {
+      "count": 80,
+      "grammar_score2": 59,
+      "relevance_score2": 23,
+      "coherence_score2": 10,
+      "appropriate_EOS": 9,
+      "character4_repeat_mean": 0.377017677101203
+    }
+  },
+  "candidate_checks": {
+    "short20": {
+      "original_mixture_checks": {
+        "EOS_at_least8_more": false,
+        "repetition_no_worse": true,
+        "no_empty_role_unicode": true,
+        "BPB_degradation_at_most1percent": true,
+        "no_punctuation_only_stops": true
+      },
+      "coherence_gain_at_least8": false,
+      "paired_coherence_CI_lower_above0": false,
+      "coherence_difference_count": 1,
+      "paired_CI95": [
+        0.0,
+        0.0375
+      ],
+      "eligible_for_conditional_full": false
+    },
+    "coherent20": {
+      "original_mixture_checks": {
+        "EOS_at_least8_more": true,
+        "repetition_no_worse": true,
+        "no_empty_role_unicode": true,
+        "BPB_degradation_at_most1percent": true,
+        "no_punctuation_only_stops": true
+      },
+      "coherence_gain_at_least8": true,
+      "paired_coherence_CI_lower_above0": true,
+      "coherence_difference_count": 10,
+      "paired_CI95": [
+        0.0625,
+        0.2
+      ],
+      "eligible_for_conditional_full": true
+    }
+  },
+  "protected_test_used": false,
+  "completion_scope": "stages1–3 only; experiment completion is separate from model adoption",
+  "full_evaluation_needed": true
+}
