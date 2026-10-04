@@ -1,35 +1,24 @@
 # JMicro-10M 設計・調査ノート
 
-2026-10-03: 拡張trainの500M stable＋独立763更新decayと全文dev/400生成評価を完了。同一dev BPB 1.244126→1.022491、抑制greedy EOS 0/80→0/80、反復48/80→66/80。全99 tests成功。人手blind採点・test・Chat・新重みの量子化は未実施。1B前で停止。 [最新結果](../reports/phase6/base_500m_review.json)。
-
-このディレクトリは、日本語専用の約10Mパラメータ級Decoder-only Language Model `JMicro-10M` を、Tokenizerを含めてスクラッチ構築するための設計・調査記録である。
-
-## 文書内のラベル
-
-- **確定**: 会話でプロジェクト方針として合意した内容。
-- **確認済み**: 添付config、本人の過去成果、または一次資料から確認した事実。
-- **提案**: 現時点の推奨案。実測やA/Bテストで変更し得る。
-- **要検証**: 会話中の調査で得たが、実装前に最新版・原典・ライセンスを再確認すべき内容。
+最終更新: 2026-10-04。現在地は[status](autonomous_status.md)、次回の実行値と条件は[直接10B計画](39_learning_scale_and_generation_plan.md)、全体の品質目標は[roadmap](15_project_roadmap.md)を参照する。
 
 ## 現在の要約
 
-- **確定**: 目標は「約10M parameters、日本語専用、短文生成と数ターンの雑談対話」。高度な推論や長文RAGではなく、狭い能力を高密度に持たせる。
-- **確定**: Tokenizer、モデル重み、事前学習、Dialogue SFTまでスクラッチで構築する。
-- **確定**: Phase 0〜3はiMac、Phase 4はWindows/WSL＋RTX 4090で完了。WSL package 3.0.1.0 / Ubuntu WSL 2を使用。Phase 4のNorm/default最大安定batchはeager T8K 57 / T4K 64。③でNoNorm/math最大batch 45、compiled/math最大53、Flash/compile最大111を確認。最速はFlash/compile batch 32、694,521 tokens/s。約8TBはユーザー計画で、Phase 6①②完了時のLinux空き実測は950,875,688,960 bytes（約950.9GB / 885.6GiB）。
-- **選定済み（Phase 5の小予算比較）**: 本学習候補はT4K / NoQK-Norm / LR 0.002。hidden 256、13層、FFN 640、4Q/2KV GQA、SwiGLU、RoPE、RMSNorm、context 1024、tied embeddingで10,001,152 parameters。停止・反復・sampling UnicodeとNoNorm変換は未達・未対応。
-- **実測済み**: 4k/8kの100M比較と近似bytes/time比較は完了。同一tokenと近い時間ではT4Kが有望、近いbytesではT8Kが僅かに良く、語彙の普遍的な優劣は断定しない。
-- **確定**: 学習量は100M比較 → 500M → 1B → 2B → 5B → 10B → 20B → 50B tokensの段階評価。50Bは20B時点で改善が続く場合のみ実施する。
-- **確定**: Vast.aiは初期開発には使わず、後半の並列比較・スケーリング実験に限定する。
+モデルは10,001,152 parameters、T4K / NoQK-Norm / AdamW / context1024。主要Web5Bと同じ親から各100M仕上げ比較まで完了。準備済みtrainは12,225,819,077 tokens、独立全corpus監査は未完了。Phase 0〜5・Phase 6準備は完了済み。
 
-着手順と各フェーズの目的・ゴール・成果物・完了条件は[フェーズ別実行計画](15_project_roadmap.md)を参照する。まず再現可能な最小pipeline、10B Base、Chat、量子化ローカル実行までを完成させる。20Bの比較と条件付き50B、追加アーキテクチャ研究は後続系列として判断する。
+直接10Bの専用準備は完了（14関連tests、実CUDA全state保存再開、26 review checks）。本10B科学学習・評価は未開始。次は7.5Bを挟まず10Bまで学習し、同条件評価、結果報告・commitで停止する。今回は文書更新だけを行う。
 
-**完了範囲**: [4k/8k Tokenizer](18_phase2_completion.md)、[両モデル/cache/学習前export](19_phase3_completion.md)、GPU学習器・評価・再開・速度を検証済み。Phase 3重みはランダム初期化、Phase 4には小さい学習済み検証checkpointがある。Python 3.12.7、実行は`uv run --frozen`、依存変更は`uv add`。
+本文BPBは改善したが、自然停止・反復・意味品質は不足。短文20%は固定EOS13/80へ改善したが全400 raw Unicode2件で最終採用不合格。表示helperの採用をraw品質成功とは扱わない。独立人手blind/test、Chat、新重みの量子化品質は未検証。
 
-**現在地**: [Phase 4の実GPU検証](21_phase4_completion.md)と[Phase 5の候補選定](23_phase5_completion.md)が完了し、Phase 6①〜⑤と500M学習・評価が完了し、1B前で停止中。Base/Chatの本学習・能力目標は未達。①②は756M unique train stream tokensとWSD stable/decayのCUDA完全一致、全74 tests / skip 0、73 GPU checksを確認した。[完了証拠](26_phase6_preparation_completion.md)。最新の状態は[継続記録](autonomous_status.md)、④⑤の準備検証も`93c7d1d`で完了し、再開後の本学習は[残りの実行計画](27_phase6_remaining_plan.md)を参照する。
+学習はWSL2/RTX4090/Linux disk、Python3.12.7をuvから実行する。容量最大batch111と最速batch32（約694k tokens/s）を区別する。Tokenizer/モデルと学習前export、GPU学習器・評価・保存再開は実装済み。完成したBase/Chat・配布品質とは別である。
 
-**別PCでの再開入口**: [Windows/WSL＋RTX 4090の再開手順](windows_handoff.md)。GitHubの取得からHub成果物の復元、uv環境、CUDA確認、実装順までを順に実行できる。
+## 文書内のラベル
 
-**進め方**: 完成までの時間短縮を優先する。Phase 3の最終検証一式は実装後24.62秒で、実装・修正を含む作業時間とは別。Phase 3の再実装を移行条件にせず、既存artifactの引継ぎから進める。実装時間とGPU計算時間を分け、Phase 6③の実測694,521 tokens/sから純学習予算を更新済み。全文評価・保存・枝・調整を別計上し、完成時刻とは区別する。[詳細](15_project_roadmap.md#高速に完成させる進め方)
+- **確定**: 合意した方針・凍結条件。
+- **確認済み**: 保存した実装・測定・一次資料に証拠がある内容。
+- **提案/要検証**: 将来の比較候補。実行済みや品質達成とは扱わない。
+
+過去の調査・完了記録は当時の証拠。旧500M/2B/7.5B計画と指示は[保存履歴](autonomous_history_20261004.md)へ分離した。現在の指示はAGENTS.mdとstatusを正とする。[Windows/WSL引き継ぎ](windows_handoff.md)、[残りの作業](27_phase6_remaining_plan.md)、[checklist](10_next_steps.md)を入口にする。
 
 ## 文書一覧
 
@@ -56,14 +45,22 @@
 21. [21_phase4_completion.md](21_phase4_completion.md) — WSL/CUDA・学習器・保存再開・評価・容量・速度の実機証拠
 22. [22_phase5_plan.md](22_phase5_plan.md) — Phase 5の目的・条件・予算・scheduler判断
 23. [23_phase5_completion.md](23_phase5_completion.md) — overfit/smoke/100M比較・候補選定・品質未達・独立監査
-24. [24_phase6_plan.md](24_phase6_plan.md) — gateの完了/未着手、500M〜10B段階評価・予算
+24. [24_phase6_plan.md](24_phase6_plan.md) — 実学習5B・仕上げ結果と直接10Bの現在地・予算
 25. [25_phase6_preparation.md](25_phase6_preparation.md) — ①②の事前の目的、凍結条件と停止境界
 26. [26_phase6_preparation_completion.md](26_phase6_preparation_completion.md) — ①②の実量、全corpus/CUDA監査、保存先、実CLI
-27. [27_phase6_remaining_plan.md](27_phase6_remaining_plan.md) — ①〜⑤の完了証拠、再開後の500M〜10B、Chat・量子化・拡張の条件
+27. [27_phase6_remaining_plan.md](27_phase6_remaining_plan.md) — 直接10Bの残る作業、EOS/UTF8後続候補、Chat・量子化・条件付き拡張
 28. [28_phase6_performance.md](28_phase6_performance.md) — ③の実GPU高速化・backend実効確認・容量と厳密再開の比較
 29. [29_phase6_performance_completion.md](29_phase6_performance_completion.md) — ③の採用速度・最大容量・厳密/cold再開・独立監査と停止記録
 30. [30_phase6_readiness_execution.md](30_phase6_readiness_execution.md) — ④⑤の限定比較、CPU精度修復、正式検証・凍結設定・commitと停止記録
 
+
+- [32_local_10b_corpus.md](32_local_10b_corpus.md) — 大規模corpus構築の履歴。現行量・利用確認と独立監査の範囲はstatusを正とする
+- [35_base_5b_execution.md](35_base_5b_execution.md) — 主要5B学習の実行記録
+- [36_base_5b_comparison.md](36_base_5b_comparison.md) — 主要5Bの固定評価比較
+- [37_eos_repetition_utf8_improvement_plan.md](37_eos_repetition_utf8_improvement_plan.md) — EOS・反復・UTF8改善の事前計画
+- [38_eos_5b_finish_results.md](38_eos_5b_finish_results.md) — Web/短文比較の結果と採用不合格
+- [39_learning_scale_and_generation_plan.md](39_learning_scale_and_generation_plan.md) — 現行の直接10B・評価・報告と後続候補
+- [40_base_10b_preparation.md](40_base_10b_preparation.md) — 完了した専用10B準備。科学学習の完了ではない
 運用文書: [最新状態](autonomous_status.md)、[復旧履歴](autonomous_history_20261003.md)、[Windows/WSL引継ぎ](windows_handoff.md)、[固定Hub復元](huggingface_handoff.md)、[自律runner](codex_automation.md)、[評価仕様](evaluation_protocol.md)。[data](../data/README.md)、[eval](../eval/README.md)、[reports](../reports/README.md)に各保存領域の手順を記載する。
 
 実行時の仕様は[評価仕様](evaluation_protocol.md)と[Windows/WSL移行手順](windows_handoff.md)を参照する。データとTokenizerの[Hugging Face公開版の取得手順](huggingface_handoff.md)も利用できる。
@@ -85,4 +82,4 @@
 
 公開データの「商用利用可能」は、データセット配布ライセンスだけで最終判断しない。Common Crawl由来データでは、データベースライセンスと各Web文書の著作権は別問題である。公開・販売前に、採用した各source subsetの利用条件、帰属表示、ShareAlike条件、削除要求対応を再確認する。本書は法的助言ではない。
 
-最終更新: 2026-10-03。外部資料の調査日は各文書へ残し、研究候補と実装・実測結果を区別する。
+最終更新: 2026-10-04。外部資料の調査日は各文書へ残し、研究候補と実装・実測結果を区別する。

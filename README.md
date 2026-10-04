@@ -1,80 +1,58 @@
 # JMicro-10M
 
-2026-10-04完了: [実train12.23Bのローカル整備](reports/phase6/corpus_10b_ready_review.json)と[新データでの2B学習・既存評価](reports/phase6/base_2b_10b_data_review.json)を終えて停止した。モデルは約10M、減衰込み総2,000,027,648学習tokens、全体約63分。同じdev BPB1.022491→0.982882、greedy反復66/80→60/80、EOS0/80の課題は残る。5B/10B/Chatは未開始。以下の開始時・旧500M記録は履歴。[現在の実状態](docs/autonomous_status.md)。
+日本語の短文生成と数ターンの雑談を目的に、Tokenizerからスクラッチ構築する約10Mの言語モデル。現在のモデルは **10,001,152 parameters**、準備済みtrainデータは **12,225,819,077 tokens**。
 
-2026-10-04: [ローカル学習データを実train12.23B tokens整備](reports/phase6/corpus_10b_ready_review.json)。ユーザー指示で過剰な独立再照合を省き、構築時の全件確認と実loader合格を採用（独立全件auditは未完了と明記）。新データでユーザー指定の2B学習をWSL＋RTX4090で開始した。モデルは約10Mパラメータのまま。減衰込み2Bと既存dev/生成評価を終えて停止する。[現在の実状態](docs/autonomous_status.md)。
+2026-10-04現在、主系列の5B学習と、同じ5B親からWeb/短文20%を各100M追加する比較を完了した。**直接10Bへ継続する設定と実GPU保存再開検証は準備済みで、本学習10Bは未開始。** 現在の文書更新は学習の起動を伴わない。[現在地](docs/autonomous_status.md)、[次の計画](docs/39_learning_scale_and_generation_plan.md)、[10B準備結果](docs/40_base_10b_preparation.md)を参照する。
 
-2026-10-03: 拡張trainの500M stable＋独立763更新decayと全文dev/400生成評価を完了。同一dev BPB 1.244126→1.022491、抑制greedy EOS 0/80→0/80、反復48/80→66/80。全99 tests成功。人手blind採点・test・Chat・新重みの量子化は未実施。1B前で停止。 [最新結果](reports/phase6/base_500m_review.json)。
+## 学習結果と残る課題
 
-日本語の短文生成と数ターンの雑談を目的に、約10Mの言語モデルをTokenizerからスクラッチ構築する。計画は[フェーズ別実行計画](docs/15_project_roadmap.md)、設計・調査一覧は[docs](docs/README.md)を参照。
+同じ全文devのBPB（小さいほど良い）と固定80生成で比較した。各5.1Bは別のモデルで、学習量を合算しない。
 
-Phase 0〜5が完了。データpilot、4k/8k Tokenizer、約10Mモデル、cache、HF/実float GGUFをiMacで検証し、WSL＋RTX 4090で学習器・保存再開・最大安定batch・評価を実測した。[Tokenizer完了記録](docs/18_phase2_completion.md)、[モデル・export完了記録](docs/19_phase3_completion.md)、[Phase 4完了記録](docs/21_phase4_completion.md)を参照する。Phase 4は小さいGPU検証runで、Base/Chatの本学習と能力目標は未達。Phase 5の候補選定と独立監査も終了し、Phase 6①〜⑤と500M学習・評価が完了し、1B前で停止中。
+| 条件 | 全文BPB | 自然EOS / 80 | 反復 / 80 | 全400 raw Unicode失敗 |
+|---|---:|---:|---:|---:|
+| 元5B | 0.964484 | 0 | 59 | 2 |
+| Web仕上げ5.1B | 0.958092 | 0 | 57 | 0 |
+| 短文仕上げ5.1B | 0.959011 | 13 | 51 | 2 |
 
-**別PCで続きを進める場合は[Windows/WSL＋RTX 4090の再開手順](docs/windows_handoff.md)から始める。** 固定成果物の復元、uv環境・CUDA確認、実装済みCLIと引継ぎ条件をまとめている。Phase 5・Phase 6①〜⑤と文書更新のコミットはローカル保存で、GitHubへpushしていない。新規cloneだけで最新コードが揃うとは限らない。
+短文混合でEOS・反復は改善したが、途中不正UTF8とcap末尾切断が残り、最終採用条件は不合格。表示末尾helperは実装済みでもraw失敗を免除しない。数量・時刻・文脈の誤りも残り、Base/Chatの実用品質は未達。[比較と内容確認](docs/38_eos_5b_finish_results.md)。
 
-環境整備・学習・評価・改善をCodexへ継続して任せる場合は[自律実行の設定とrunner](docs/codex_automation.md)を参照する。次の担当の現在地は[継続作業の状態](docs/autonomous_status.md)、作業ルールは[AGENTS.md](AGENTS.md)。2026-10-03にFull accessが反映され、WSL・公開成果物復元・CUDA/BF16確認を通過した。
+## 次の実行
 
-## 開発環境
+1. **10B設定準備は完了。** 関連14tests、実CUDA16updates/524,288検証tokensの全state/history保存再開一致、保存証拠26項目を確認した。
+2. **次は直接総10B学習。** 手元の12.23Bデータを使い、保存stable4.75Bから9.5B stable＋最終decayへ進む。7.5Bの中間実験と新データ収集は省く。
+3. **同じ全文dev/400生成で比較し、報告・commitして停止。** 本文予測とEOS・反復・文字化け・内容を分けて評価する。後続の短文仕上げ/UTF8制約/Chat等は別範囲。
 
-TokenizerとpilotデータのHugging Face共有については[公開状態と取得手順](docs/huggingface_handoff.md)を参照する。[ライセンス・個人情報確認](docs/20_publication_review.md)を終え、出所・利用条件を付けた公開版の匿名取得・checksum検証が完了した。
+次段階を実行する場合のLinux repo内コマンド:
 
-Pythonと依存は`uv`で管理する。Pythonの実行は環境確認・自律runner・テスト・一時スクリプトも含め、必要なextraを付けた`uv run --frozen ...`に統一する。systemの`python`・`python3`・`py`を直接実行しない。`.python-version`は今回確認したPython 3.12.7、解決した依存versionと配布file hashは`uv.lock`へ固定。Python導入は`uv python install 3.12.7`、依存復元は`uv sync --frozen`、依存変更は`uv add`を使う。
-
-```sh
-uv sync --frozen --extra data --extra ml --extra export
-uv run --frozen --extra data scripts/validate_phase0.py --output reports/local/phase0_validation.json
-uv run --frozen --extra data --extra ml --extra export pytest -q
-uv run --frozen --extra data scripts/experiment.py capture-environment --output reports/local/environment.json
-uv run --frozen --extra data scripts/experiment.py prepare-run --name development
+```bash
+bash scripts/run_base_10b.sh --train
 ```
 
-最後のcommandが表示するrunディレクトリを指定して検証する。
+引数なしと `--verify-only` は検証専用。準備は完了しているので再学習・再検証せず結果を再利用する。学習・比較の目安は145〜165分、実装・内容確認は別。[引き継ぎ手順](docs/windows_handoff.md)で保存先と起動前のprocess確認を行う。
 
-```sh
-uv run --frozen --extra data scripts/experiment.py verify-run reports/<run_id>
+## 環境と保存先
+
+Pythonはuv管理3.12.7。WSL2/RTX4090/Torch2.14.1+cu130で実GPU検証済み。Pythonは一時スクリプト・tests・自律runnerもすべて `uv run --frozen`、依存変更は `uv add`。通常のWSL復元には全extrasを維持する。
+
+```bash
+uv python install 3.12.7
+uv sync --frozen --extra hub --extra data --extra ml --extra export
 ```
 
-新しい依存は用途に応じて追加する。
+Git/コード/docsの正本はWindows workspace、Linux実行コピーは `/home/aihub_ubuntu/src/japanese-tiny-llm-10m`、大容量データは `/home/aihub_ubuntu/jmicro-data`。重み・shards・大きなraw evidenceはGit管理外なので、別PCには別途引き継ぐ。固定HubはpilotとTokenizerの復元用で、学習済み重みや12.23Bデータは含まない。[公開成果物の取得](docs/huggingface_handoff.md)。
 
-```sh
-uv add <package>
-uv add --dev <test-package>
-uv add --optional data <data-package>
-uv add --optional ml <ml-package>
-```
+準備完了コードは `4c3fbaf` でlocal commit済み。今回pushは実行しない。Linux側のGit HEADだけで実行コードを判断せず、凍結source/config hashを確認する。
 
-`data` extraにはPyArrow、datasketch、fsspec、aiohttpを登録済み。Phase 1のデータ処理では`uv sync --frozen --extra data`と`uv run --frozen --extra data ...`を使う。
+## 文書と成果物
 
-`ml` extraにはNumPy、SentencePiece、protobuf、PyTorch、Transformers、datasets、safetensorsを登録済み。GGUF作成・検査には`export` extraも使う。WSLではPython 3.12.7、PyTorch 2.14.1 / CUDA 13.0、Windows driver 616.92でCUDA/BF16を検証済み。環境を保持する通常のWSL実行では`--extra hub --extra data --extra ml --extra export`を付ける。
+[docs一覧](docs/README.md)、[作業ルール](AGENTS.md)、[原ロードマップと品質条件](docs/15_project_roadmap.md)、[評価仕様](docs/evaluation_protocol.md)、[自律runner](docs/codex_automation.md)。過去の現在地メモは [履歴](docs/autonomous_history_20261004.md) に移し、Phase0〜3を含むhistorical report/weightsは保持する。
 
-## 配置
-
-| ディレクトリ | 内容 |
+| 保存領域 | 内容 |
 |---|---|
-| `src/jmicro/` | 環境・データ・Tokenizer・モデル・shards・学習・評価・export・推論 |
-| `configs/` | source台帳・pilot、T4K/T8K、学習候補、Tokenizer、評価、iMac/WSL設定 |
-| `schemas/` | データrecord・準備run・学習run・設定・評価例のJSON Schema |
-| `scripts/` | `uv run --frozen`で実行する入口 |
-| `tests/` | 日本語dedup・split・話者対応・取得上限、BPB、前処理、snapshot検証 |
-| `eval/` | Base/Chat各100件、dev/test manifest、採点・golden例 |
-| `data/` | pilot・manifest用。拡張corpus/raw/shardsはWSL外部領域・Git管理外 |
-| `reports/` | Phase 0〜5の履歴、Phase 6①〜⑤のデータ・GPU・評価・変換・設定監査、文書更新の検証 |
-| `docs/` | 設計、技術調査、評価仕様、移行手順 |
+| src/jmicro・scripts | Tokenizer/model/training/evaluation/export/inferenceと実行入口 |
+| configs・schemas | 凍結設定、入力とrun契約 |
+| tests・eval | 実装checksと保護された固定suite |
+| reports | 小さな結果・判断・監査。大型run/checkpointはLinux側に保持 |
+| docs | 現在の計画・状態・引き継ぎと設計/完了履歴 |
 
-評価方法は[evaluation_protocol.md](docs/evaluation_protocol.md)、環境切替は[windows_handoff.md](docs/windows_handoff.md)、Phase 0の結果は[完了記録](docs/16_phase0_completion.md)を参照。
-
-データpilotの取得・再生成・検証は[dataの手順](data/README.md)を参照する。過去のPhase 0記録を上書きせず、現在の開発検証は`reports/local/`へ保存する。
-
-## Tokenizer・モデル・ローカル推論
-
-再実行と各backendの起動は[Phase 3完了記録](docs/19_phase3_completion.md#再現と推論入口)を参照する。GGUF内蔵TokenizerはID契約が一致しないため、正式な入口は外部SentencePiece wrapperを使う`uv run --frozen --extra ml --extra export scripts/infer.py`。モデルとTokenizerのhashを照合する。学習済みNoNormの変換は[④⑤の検証記録](docs/30_phase6_readiness_execution.md)を参照。CPU精度profileの全12比較は成功し、成果物metadataに従って専用runtimeを使用する。未修正stock FP32での失敗と品質未達は保持する。
-
-## 次に進めること
-
-①②の実量・GPU検証は[準備完了記録](docs/26_phase6_preparation_completion.md)、③の採用速度・容量・再開は[高速化完了記録](docs/29_phase6_performance_completion.md)を参照する。Flash＋compile reduce-overhead / batch 32で694,521 tokens/s、最速reference比5.436倍を検証した。④⑤も`93c7d1d`で完了し、batch32・LR0.002・WSD global305,176更新と保存/復旧/容量をversion2へ凍結した。現在は500M評価後で停止している。再開後の1B→2B→5B→10Bは[残りの計画](docs/27_phase6_remaining_plan.md)、段階評価は[Phase 6計画](docs/24_phase6_plan.md)に整理した。
-
-Phase 5の100件overfit → 10M smoke → 100M比較・候補選定が完了し、Phase 6①〜⑤と500M学習・評価が完了し、1B前で停止中。[完了記録](docs/23_phase5_completion.md)を参照する。Tokenizer再学習・成果物再取得・完了済みPhase 4測定を繰り返す必要はない。[実測と制約](docs/21_phase4_completion.md)、[次の作業](docs/10_next_steps.md)を参照する。
-
-Git管理対象はコード・設定・docs・小さな検証report。本文・Tokenizer・checkpointは管理外なので固定Hub成果物とLinux保存先を引き継ぐ。Phase 4は全64 tests、Phase 5は全68 tests、Phase 6①②は全74 tests（すべてskip 0）と73 GPU checksを確認した。最新の④⑤は全90 tests / skip・error・failure 0、学習済み変換12比較、独立CLI/重み149 checks、GPU準備106 checks、総合37 checksが成功した。[証拠](reports/phase6/readiness_gate_audit.json)。これらは各段階の実装・準備検証で、Base/Chat品質合格ではない。新規cloneにはartifactと必要なLinux成果物を別途復元する。
-
-学習入口は`scripts/train.py`の`build-shards` / `train` / `evaluate`。`train`はCLI引数から設定を作り、`configs/training/baseline.json`を自動読込しない。AdamW＋warmup/cosine・WSD stable/decayは実装済み、Muon・Chat trainerは未実装。[利用例と保存再開](docs/windows_handoff.md#6-実装済みcliと次回の再開)を参照する。
+Phase0〜5とPhase6の基盤・データ・学習比較は完了済み。過去の48/64/68/90/99等のテスト件数は各時点の証拠で、現在の全suite件数を表すものではない。今回の14件は10B準備に関連するchecksで、品質合格ではない。完了済みTokenizer学習・Phase3 export・GPU study・全データ照合を再実行する必要はない。

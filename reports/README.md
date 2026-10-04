@@ -1,5 +1,21 @@
 # 実験台帳と検証結果
 
+## 現在の結果（2026-10-04）
+
+| 保存report | 実際に確認したこと |
+|---|---|
+| [corpus_10b_ready_review.json](phase6/corpus_10b_ready_review.json) | train12,225,819,077 tokensをbuilder/raw再構成/実loaderで受け入れ。独立全corpus auditは未完了 |
+| [base_5b_review.json](phase6/base_5b_review.json)、[比較review](phase6/base_5b_comparison_review.json) | 主要Web5,000,003,584 tokensの実学習・保存・全文dev/固定400評価 |
+| [eos_5b_finish_review.json](phase6/eos_5b_finish_review.json)、[Unicode原因確認](phase6/eos_5b_finish_unicode_review.json) | 同じ5B親から各100,007,936追加。Web BPB0.958092、短文0.959011、短文EOS13/80・反復51/80へ改善。ただしraw Unicode2/400で最終採用不合格 |
+| [base_10b_preparation_review.json](phase6/base_10b_preparation_review.json)、[14tests](phase6/base_10b_tests.xml) | 専用10B準備完了、26保存checksと実CUDA全state再開一致。16更新/524,288検証tokensは科学学習と別。10B科学学習は0tokens・未開始 |
+| [documentation_refresh_20261004.json](phase6/documentation_refresh_20261004.json) | 現行文書と計画の整理、元13文書の履歴保存、内部リンク・凍結条件・WSL同期の確認。GPU jobは開始しない |
+
+科学10Bの専用比較入口・科学完了reviewは未整備。準備reviewを学習完了証拠に数えない。現在地は[status](../docs/autonomous_status.md)、次は[直接10B→同条件評価→報告と停止](../docs/39_learning_scale_and_generation_plan.md)。Base/Chat品質、独立人手blind/test、新重みの量子化品質は未達・未検証。
+
+## 過去の記録の読み方
+
+以下は各段階完了時の証拠で、当時の停止境界や未開始の記述を現在の実行指示にしない。旧原文は[保存履歴](../docs/autonomous_history_20261004.md)にも保持する。完了reportやsnapshotは上書きしない。
+
 `phase0/`にiMacの環境・準備検証・完了監査を記録する。`p0-<name>-<UTC>-<random>/`は学習を実行しない準備runのsnapshotで、`experiments.jsonl`に追記する。大型/機械依存のrun snapshotはGit管理外。
 
 準備runは`kind=preparation,status=prepared,tokens_seen=0`。モデルconfigと学習済みTokenizer artifactを区別し、Phase 2前のTokenizer/data入力hashは`null`で未作成を示す。学習を実施した結果として扱わない。
@@ -8,7 +24,7 @@ snapshotにはcode/docs/config/eval/lockfile、各hash、環境、Git commitとd
 
 `phase1/`には実データpilotの統計、20件の内容レビュー、全件復元・split検証、再生成比較と完了監査を保存する。本文・原file・Parquet・大きなsplit membershipは`data/phase1/`のGit管理外領域に置き、reportのchecksumと[再生成手順](../data/README.md)から照合する。Phase 0の過去環境・監査を上書きせず、現在の開発検証には`reports/local/`等を使用する。
 
-`phase2/`にはTokenizer契約・全coverage候補・全corpus計数、`phase3/`には両実モデルの契約、native export parity、量子化実型・容量、完了監査とテスト結果を保存する。これらPhase 2〜3のモデル重みはランダム初期化。Phase 4では別途GPU検証学習を実施したが、Base/Chat本学習は未実施。大型Tokenizer/weights/native runtimeは`artifacts/`のGit管理外で、reportのhashを照合する。詳細は[Phase 2](../docs/18_phase2_completion.md)、[Phase 3](../docs/19_phase3_completion.md)。
+`phase2/`にはTokenizer契約・全coverage候補・全corpus計数、`phase3/`には両実モデルの契約、native export parity、量子化実型・容量、完了監査とテスト結果を保存する。これらPhase 2〜3のモデル重みはランダム初期化。Phase 4当時はGPU検証学習までで、Base/Chat本学習は未実施だった。現在の実績は上表を参照。大型Tokenizer/weights/native runtimeは`artifacts/`のGit管理外で、reportのhashを照合する。詳細は[Phase 2](../docs/18_phase2_completion.md)、[Phase 3](../docs/19_phase3_completion.md)。
 
 ## Phase 4の実機証拠
 
@@ -20,7 +36,7 @@ rawログ・source snapshot・checkpoint・生成出力はLinux実行コピー�
 
 `phase5/`にはoverfit/smoke、4本の100Mのtraining/evaluation audit、凍結plan、共通bytesと固定生成の集約、候補config、採用・棄却理由、独立監査、実測予算と停止確認を保存した。全68 tests / skip 0、4構成のCUDA厳密resume、overfit全5 gate、全比較と補助評価が成功。候補はT4K / NoQK-Norm / LR 0.002。停止・反復・sampling Unicodeの品質目標は未達で、Phase 5当時はNoNormのHF/GGUF adapterが未実装だった。現在は④でCPU精度profileによる学習済み変換を検証済み（下記④⑤）。[完了記録](../docs/23_phase5_completion.md)
 
-raw evidenceはLinux checkoutの`reports/phase5/run-20261003-docoverfit/`へ保持する。GPU job/launcherは終了済み。自動生成の`candidate_selection.md`と`completion_audit.json`をそのまま保存し、詳細な採否レビューを`candidate_selection_review.md`へ分けた。Phase 6本学習は未開始。
+raw evidenceはLinux checkoutの`reports/phase5/run-20261003-docoverfit/`へ保持する。GPU job/launcherは終了済み。自動生成の`candidate_selection.md`と`completion_audit.json`をそのまま保存し、詳細な採否レビューを`candidate_selection_review.md`へ分けた。Phase 5終了当時はPhase 6本学習未開始だった。
 
 将来のrunを再実行する場合は別directoryへ出力する。既存run/reportやPhase 0〜3のhashを更新で上書きしない。現在の文書検証等は`reports/local/`へ保存する。
 
@@ -40,7 +56,7 @@ raw evidenceはLinux checkoutの`reports/phase5/run-20261003-docoverfit/`へ保�
 | [documentation_audit.json](phase6/documentation_audit.json)、[final_package_audit.json](phase6/final_package_audit.json) | ①②完了時点の43 Markdown / 393内部リンク、Windows/WSL 91 source filesの同期、包装監査13 checks |
 | [documentation_update_20261003.json](phase6/documentation_update_20261003.json) | ①②後の文書・残りの計画更新を別監査した当時の記録。旧report/実装/config/lock/eval不変、文書リンク・CLI・WSL同期・停止境界を確認 |
 
-大型dataは`~/jmicro-data/phase6/{raw,expanded-v2}/`、CUDA checkpoints/log/source snapshotsはLinux checkoutの`reports/phase6/preparation-20261003/cuda/`。①〜⑤のjobは終了済みで、本学習前で停止中。Git clone/Hub bundleだけで拡張data/checkpointsが揃うとは扱わない。既存snapshotと完了reportは当時の証拠として保持し、現在の文書を過去snapshotへ書き戻さない。今後の実行順は[本学習以降の計画](../docs/27_phase6_remaining_plan.md)。
+大型dataは`~/jmicro-data/phase6/{raw,expanded-v2}/`、CUDA checkpoints/log/source snapshotsはLinux checkoutの`reports/phase6/preparation-20261003/cuda/`。①〜⑤のjobは終了済みで、当時は本学習前で停止した。Git clone/Hub bundleだけで拡張data/checkpointsが揃うとは扱わない。既存snapshotと完了reportは当時の証拠として保持し、現在の文書を過去snapshotへ書き戻さない。今後の実行順は[本学習以降の計画](../docs/27_phase6_remaining_plan.md)。
 
 ## Phase 6③の高速化・容量・再開証拠
 
@@ -54,7 +70,7 @@ raw evidenceはLinux checkoutの`reports/phase5/run-20261003-docoverfit/`へ保�
 | [performance_documentation_audit.json](phase6/performance_documentation_audit.json) | ③完了時の文書/CLI/WSL同期・旧73 reports/lock保持と実装/report binding |
 | [plan_update_20261003.json](phase6/plan_update_20261003.json) | 今回の最新計画・完了チェック・算術予算・文書同期と旧成果/コード保持の監査 |
 
-raw logs/requests/compiled code/source snapshots/checkpointsはLinux `reports/phase6/performance-20261003-v3/`と`performance-cold-resume-20261003/`に保持する。④生成/変換と⑤長期設定凍結は完了した。今後は再開指定後に500M段階評価へ進む。
+raw logs/requests/compiled code/source snapshots/checkpointsはLinux `reports/phase6/performance-20261003-v3/`と`performance-cold-resume-20261003/`に保持する。④生成/変換と⑤長期設定凍結は完了した。当時の次段階は500M評価で、現在は5B/仕上げ比較まで完了した。
 
 ## Phase 6④⑤の検証・設定凍結と停止
 
@@ -71,7 +87,7 @@ raw logs/requests/compiled code/source snapshots/checkpointsはLinux `reports/ph
 | [旧version1](../configs/phase6/base_frozen_blocked_v1.json)、[base_launch_guard_report.json](phase6/base_launch_guard_report.json) | 修復前の起動不可設定と実起動拒否をbyte保持 |
 | [documentation_refresh_readiness_20261003.json](phase6/documentation_refresh_readiness_20261003.json) | ④⑤完了後の25文書・残りの計画更新。凍結条件/CLI/算術予算、内部リンク、WSL同期、旧実装/設定/証拠の保持と停止を検証 |
 
-raw logs/checkpoints/weights/logits/snapshotsはLinux `reports/phase6/readiness-20261003/`、正式exportは同runの`export-stable-f32/`。専用CPU runtimeは`artifacts/runtime-stable-f32-v2`。Git/Hubだけでは復元できず、Windowsコードとともに引き継ぐ。現行の`launch_enabled=true`は技術gate成立で、ユーザーの再開指定まで500M以上の本学習を開始しない。
+raw logs/checkpoints/weights/logits/snapshotsはLinux `reports/phase6/readiness-20261003/`、正式exportは同runの`export-stable-f32/`。専用CPU runtimeは`artifacts/runtime-stable-f32-v2`。Git/Hubだけでは復元できず、Windowsコードとともに引き継ぐ。当時の`launch_enabled=true`は技術gate成立を示し、当時は本学習前で停止した。現行10Bは専用configを使う。
 
 
 ## 拡張trainの500M学習・評価
@@ -86,11 +102,11 @@ raw evidenceと18 checkpointsはLinux `reports/phase6/base-20261003/`へ保持�
 
 ## 500M後の反復・EOS・データ構成の調査
 
-- [実行中: ローカル10Bデータ整備](../docs/32_local_10b_corpus.md)。WSL保存、全件重複/heldout保護/token監査を行い学習前で停止する。全105tests成功。実10B構築・監査は未完了。
+- [当時のローカル10Bデータ整備計画](../docs/32_local_10b_corpus.md)。WSL保存、全件重複/heldout保護/token監査を行い学習前で停止する。全105tests成功。この計画作成当時は実構築・監査未完了。現在は12.23Bを利用確認済み、独立全corpus監査未完了。
 - [LSH性能のprefix probe](phase6/corpus_10b_cost_probe.json)、[実1M・全32bandsでの並列比較](phase6/corpus_10b_parallel_probe.json)。候補coverageと全代表が一致、30.004→9.135秒（3.285倍）。取り込みcheckpointを保持したexecution v3へ移行した。全10Bの監査完了ではない。
-- [実ローダー利用確認の手順](../docs/32_local_10b_corpus.md#学習用ローダーでの最終利用確認)。Shard/BlockSamplerでtrain batch/mask/bytes/replayを検証する。小fixtureは成功、実10Bは全件audit・process終了待ち。
-- [以前の2B/5B計画](../docs/27_phase6_remaining_plan.md#次回の一区切り-学習用データを2bへ拡張する)は10Bの実行依頼へ更新した。
-- [保留したdecoder比較の計画](phase6/repetition_decoder_plan.json)、[以前の作業順序](../docs/27_phase6_remaining_plan.md#保留した案-学習済み10mモデルの生成方法を比較する)、[当時の計画の16項目照合](phase6/repetition_decoder_plan_audit.json)。同じ10Mパラメータの重みで640outputs/GPU15分上限を比較する案。監査は当時の計画を確認した記録で、現在の優先作業や実行結果ではない。
+- [実ローダー利用確認の手順](../docs/32_local_10b_corpus.md#学習用ローダーでの最終利用確認)。Shard/BlockSamplerでtrain batch/mask/bytes/replayを検証する。小fixtureは当時成功。現在の実loader確認と独立監査の範囲は上表を参照。
+- [以前の2B/5B計画](../docs/autonomous_history_20261004.md)は10Bの実行依頼へ更新した。
+- [保留したdecoder比較の計画](phase6/repetition_decoder_plan.json)、[以前の作業順序](../docs/autonomous_history_20261004.md)、[当時の計画の16項目照合](phase6/repetition_decoder_plan_audit.json)。同じ10Mパラメータの重みで640outputs/GPU15分上限を比較する案。監査は当時の計画を確認した記録で、現在の優先作業や実行結果ではない。
 - [事前計画](phase6/repetition_diagnosis_plan.json)、[判断と比較](phase6/repetition_diagnosis_review.md)、[数値/binding/20項目監査](phase6/repetition_diagnosis_review.json)、[225既存files保持](phase6/repetition_preservation.json)、[終了・同期監査](phase6/repetition_completion_audit.json)。
 - EOS教師欠落は確認されず、文書末尾予測は改善。反復は拡張131Mから多く、decayで70/80→66/80。全文の文書長と固定sample反復に大幅増加はない。短prefix/greedyと学習分布の違いを次の比較候補とし、因果未分離・精度差を残す。
 - 全102 tests成功。GPU推論249.75秒、学習更新0、1B未開始。Linux raw evidenceは`reports/phase6/repetition-diagnosis-20261003/`。次回案を開始せずcommit後停止する。
