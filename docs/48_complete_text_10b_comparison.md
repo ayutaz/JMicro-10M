@@ -1,6 +1,6 @@
 # 完結文配合の三条件100M比較
 
-ユーザー指定「3まで進めてください」に基づき、[計画47](47_post_evaluation_training_plan.md)と会話で整理した段階1〜3を実行する。段階3は三条件の学習・評価・比較報告まで。追加500M〜1B、20B/50B、Chatは開始しない。
+ユーザー指定「3まで進めてください」に基づき、[計画47](47_post_evaluation_training_plan.md)と会話で整理した段階1〜3を完了した（2026-10-05 JST）。段階3は三条件の学習・評価・条件付き全文/長文評価・比較報告まで。新物語配合は正式採用条件を満たさず、Base/Chat品質目標は未達。追加500M〜1B、20B/50B、Chatは開始しない。以下の準備・起動記録は当時の履歴として保持する。
 
 ## 段階1: データとEOS処理
 
@@ -88,3 +88,35 @@ GPU一次上限1,800秒、条件付き追加評価上限3,000秒。初回候補�
 初回conditional process19791は、Web全文本文と固定400の保存後、親の保存結果を`read_json(str)`へ渡す誤りで停止した。旧job/source/config/schema/log/raw結果は`conditional-full`へ保持。保存済みWebのcheckpoint hash・本文/400条件の一致・全raw ID flagsをCPU確認し、再計算せず、明示的な`reused_from`でr1へ引き継ぐ。本文BPB0.948957324851、本文評価389.088秒。失敗時点のGPU831.355秒も元3,000秒予算に含める。
 
 `parent_results`でJSON内のpathをPathへ変換し、同じ処理を実行とCPU reviewerで共用する。実ファイルの文字列pathを読み込む回帰testを追加し、関連15CPU tests成功。科学学習・Tokenizer・scorer・dev・suite・品質gateは変更しない。新しい凍結config/schemaは`complete_text_10b_full_r1`、runは`conditional-full-r1`。Linux37818、hidden Windows33788、2026-10-04 15:01:44Z（日本時間10月5日00:01）起動。Web長文→新物語全文/400・長文へ続け、完了後にreport/local commitとUI復帰で停止する。
+
+## 最終評価と採否
+
+条件付き評価は2026-10-04 15:20:32Z（日本時間10月5日00:20）に完了。全文dev89,416文書 / 164,344,743 bytes / 42,003,934本文tokensを同じcontext1024/stride512で評価した。保存済みWeb全文/400は明示的に再利用し、旧失敗runのGPU831.355秒も元予算へ含めた。追加学習は0、protected testは不使用。
+
+| 指標 | Web100%・総10.1B | 新物語20%・総10.1B |
+|---|---:|---:|
+| 全文本文BPB | 0.948957 | 0.955765 |
+| 固定80自然EOS | 0 | 24 |
+| 固定80反復 | 60 | 24 |
+| 全400自然EOS | 6 | 137 |
+| 全400反復 | 124 | 53 |
+| 全400 raw Unicode / role / empty失敗 | 0 / 0 / 0 | 0 / 0 / 0 |
+
+| 長文条件（各20prefix） | Web EOS / 20 | 新物語 EOS / 20 | Web平均char4反復率 | 新物語平均char4反復率 |
+|---|---:|---:|---:|---:|
+| 最大128tokens | 0 | 10 | 84.40% | 46.48% |
+| 最大512tokens | 0 | 10 | 96.15% | 55.13% |
+
+長文のraw UTF8失敗は全条件0。長文の追加内容採点は未実施で、10/20のEOSを意味的に適切な完結とは認定しない。一次240件のCodex診断も独立人手blindではない。
+
+**新物語は正式採用を見送る。** 対照Web比の全文BPB悪化は+0.717%でmixture上限+1%以内、EOS・反復・raw条件も通った。しかし元final10BのBPB0.9540184727984398からは+0.001746218490803253で、既存の増量安全条件「悪化+0.001以内」を超えた。失敗項目を保持し、`candidate_passes_all_full_conditions=false`とした。理解診断の対照差の95%区間は全て0を含み、理解能力の確実な改善も主張しない。Web枝の本文BPB改善も、生成品質合格やUIへの採用とは別である。
+
+停止・反復はデータ配合への反応を示したが、source/語彙/文体/長さ/EOS密度が同時に変わるため、意味品質だけの因果効果ではない。追加100Mは元10Bの約1%で、今回の未採用を学習量不足の否定としない。
+
+## 完了証拠と停止境界
+
+- [一次比較35項目](../reports/phase6/complete_text_10b_comparison_review.json)と[全文・長文43項目](../reports/phase6/complete_text_10b_full_review.json)の保存結果確認が成功。後者はcheckpoint/source/config、全文coverageとNLL、全400 raw ID、長文40件ずつのdecode/停止/反復、旧Web結果の完全再利用、変更していない採用条件を照合した。38関連CPU tests、修復後15 tests、実CUDA全state保存再開は成功済み。
+- [最終結果](../reports/phase6/complete_text_10b_full_result.json)。GPU一次774.624秒＋条件付き1,956.804秒＝2,731.428秒（約45分31秒）、元合計上限4,800秒以内。データ準備・実装・内容採点時間は別。科学300,023,808と検証262,144 tokensを分け、各枝100,007,936追加・総10,100,015,104/update308228を保持する。
+- Linux科学17951、旧失敗19791、修復37818は終了。raw/checkpoint/source/logは`reports/phase6/complete-text-10b-100m-20261004/`、最終評価は`conditional-full-r1/`、旧`conditional-full/`も保持する。完了jobを再起動しない。
+- Web UIは元final10B SHA `410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290`へ復帰。`http://127.0.0.1:7860/api/model`で総10,000,007,168 tokens / busy=falseを確認した。復帰時LinuxPID49746 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks1043870。最新identityは`reports/local/webui/server.json`を正とする。
+- [要求別完了・復帰記録](../reports/phase6/complete_text_10b_comparison_completion.json)とlocal commitに保存し、段階1〜3で停止する。500M/1B、20B/50B、Chat、protected test、push/publicationは開始しない。独立人手blind、全12.23B独立監査、新sourceの広域重複・benchmark混入確認は未実施のまま保持する。

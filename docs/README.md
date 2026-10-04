@@ -1,6 +1,6 @@
 # JMicro-10M 設計・調査ノート
 
-最終更新: 2026-10-04。現在地は[status](autonomous_status.md)、次回の実行値と条件は[直接10B計画](39_learning_scale_and_generation_plan.md)、全体の品質目標は[roadmap](15_project_roadmap.md)を参照する。
+最終更新: 2026-10-05 JST。現在地は[status](autonomous_status.md)、完了した最新比較は[完結文比較48](48_complete_text_10b_comparison.md)、全体の品質目標は[roadmap](15_project_roadmap.md)を参照する。段階1〜3完了で停止する。
 
 日本語Base追加評価は[計画・仕様v2.1](45_japanese_base_evaluation_v2.md)と[現在10Bの実測結果](46_japanese_base_evaluation_v2_results.md)。文法/常識/含意/容認度/読解・基本意味・長文反復・Codex内容診断を追加し、独立人手と品質合格は別に扱う。
 
@@ -8,11 +8,11 @@
 
 ## 現在の要約
 
-モデルは10,001,152 parameters、T4K / NoQK-Norm / AdamW / context1024。主要Web5Bと同じ親から各100M仕上げ比較まで完了。準備済みtrainは12,225,819,077 tokens、独立全corpus監査は未完了。Phase 0〜5・Phase 6準備は完了済み。
+モデルは10,001,152 parameters、T4K / NoQK-Norm / AdamW / context1024。主要Web総10Bと、同じ親からWeb/既存短文20%/新物語20%各100Mの比較を完了した。新物語poolは25,000,067 tokens。固定EOS0/3/24、反復60/55/24（各80）、新物語の全文BPB0.955765は元親0.954018からの悪化上限を超え未採用。一次35/全文43証拠checks成功、UIは元final10Bを維持。準備済みWeb trainは12,225,819,077 tokens、独立全corpus監査は未完了。Phase 0〜5・Phase 6準備は完了済み。
 
 直接10Bの専用準備は完了（14関連tests、実CUDA全state保存再開、26 review checks）。本10B科学学習とCPU保存確認19項目、再開された同条件品質評価とCPU確認23項目も完了。BPB0.954018・固定反復53・Unicode0、固定EOS0の課題は残る。今回はreport/commitで停止する。
 
-本文BPBは改善したが、自然停止・反復・意味品質は不足。短文20%は固定EOS13/80へ改善したが全400 raw Unicode2件で最終採用不合格。表示helperの採用をraw品質成功とは扱わない。独立人手blind/test、Chat、新重みの量子化品質は未検証。
+本文BPBは改善したが、自然停止・反復・意味品質は不足。以前の5B親での短文20%は固定EOS13/80へ改善したが全400 raw Unicode2件で最終採用不合格。表示helperの採用をraw品質成功とは扱わない。独立人手blind/test、Chat、新重みの量子化品質は未検証。
 
 学習はWSL2/RTX4090/Linux disk、Python3.12.7をuvから実行する。容量最大batch111と最速batch32（約694k tokens/s）を区別する。Tokenizer/モデルと学習前export、GPU学習器・評価・保存再開は実装済み。完成したBase/Chat・配布品質とは別である。
 
@@ -91,6 +91,6 @@
 公開データの「商用利用可能」は、データセット配布ライセンスだけで最終判断しない。Common Crawl由来データでは、データベースライセンスと各Web文書の著作権は別問題である。公開・販売前に、採用した各source subsetの利用条件、帰属表示、ShareAlike条件、削除要求対応を再確認する。本書は法的助言ではない。
 
 最終更新: 2026-10-04。外部資料の調査日は各文書へ残し、研究候補と実装・実測結果を区別する。
-# 次回計画の段階1〜3実行
+## 完結文比較の完了
 
-[完結文配合の三条件100M比較](48_complete_text_10b_comparison.md): 限定data/EOS確認、25M〜50M候補pool、同じfinal10Bからの三条件学習・評価。各500M〜1B/20Bは次回以降。
+[完結文配合の三条件100M比較](48_complete_text_10b_comparison.md): 限定data/EOS確認、25M候補pool、同じfinal10Bからの三条件学習・内容/全文/長文評価を完了。採用条件未達を保持し、report/local commitで停止。各500M〜1B/20Bは未開始。

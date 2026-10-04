@@ -65,9 +65,9 @@ def main():
         for row in long['rows']:
             ids=row['generated_ids'];require(arm+'_long_raw_ID_scope',0<len(ids)<=row['max_new_tokens'] and 3 not in ids[:-1])
             raw=tok.decode_bytes(ids)
-            try:raw.decode('utf-8');valid=True
-            except UnicodeDecodeError:valid=False
-            assert row['valid_utf8']==valid
+            try:text=raw.decode('utf-8');valid=True
+            except UnicodeDecodeError:text=raw.decode('utf-8',errors='replace');valid=False
+            assert row['text']==text and row['valid_utf8']==valid
             assert row['stop_reason']==('stop_id' if ids[-1]==3 else 'max_new_tokens')
             assert repetition_metrics(row)==row['metrics']
         require(arm+'_long_raw_metrics_recomputed',True)

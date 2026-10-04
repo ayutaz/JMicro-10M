@@ -16,6 +16,8 @@
 
 ## 現在地と計画の使い方
 
+最新（2026-10-05 JST）: ユーザー指定の改善計画段階1〜3を[完結文比較48](48_complete_text_10b_comparison.md)で完了した。25M物語pool、同じfinal10B親から各100M三条件と事前条件付き全文/長文評価を実施。新物語はEOS/反復を改善したが親BPB悪化上限を超え未採用。Phase 6のBase品質目標は引き続き未達で、Phase 7へ自動移行しない。report/local commit・UI復帰で停止し、500M/1B/20B/50B/Chatは開始しない。以下は以前のmilestone記録として保持する。
+
 2026-10-04の追加依頼で[日本語Base評価v2.1の実装・実測](46_japanese_base_evaluation_v2_results.md)も完了した。基本意味・公開benchmarks・生成内容と長文反復を追加したが、元のBase/Chat品質条件は不変で未達。独立人手blind・test・公開Base参照・JMMLUは未実施。今回は評価/report/local commitで停止し、追加学習は再開しない。
 
 Phase 0〜5とPhase 6①〜⑤、主要Web総5,000,003,584 tokens、同じ5B親からWeb/短文20%を各100,007,936 tokens追加した比較を完了。モデルは10,001,152 parameters、準備済みtrain12,225,819,077 tokens。独立全12.23B監査は未完了で、その事実を保持する。[実状態](autonomous_status.md)、[5B結果](35_base_5b_execution.md)、[仕上げ結果](38_eos_5b_finish_results.md)を参照する。
