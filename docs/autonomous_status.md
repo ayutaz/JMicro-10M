@@ -1,5 +1,13 @@
 # Codex継続作業の現在地
 
+## EOS改善の1〜3を実行再開（2026-10-04）
+
+ユーザーが「1~3を目的とゴールを明確にして最後まで」と指定。目的はUTF8表示末尾の安全化と、5Bの自然EOS/反復を短文仕上げで改善できるか検証すること。終了点は①production末尾helperと関連checks、②同じfinal5Bから低LRWeb/short20を各100M、③原固定screen・合格時の全文評価・内容確認・結果/commit。結果が不合格でも元基準で判定し、実用品質を達成したと扱わない。
+
+①`src/jmicro/text_display.py`を全backend共通のinference結果処理へ追加。text/display_textは完成文字だけ、raw_text/bytes/IDs/valid_utf8/stop_reasonは保持。max-token未完成尾だけ除き、途中不正/不完全EOS/EOTはerror記録、unknownは元codecの例外を保持。[保存400件の確認](../reports/phase6/text_display_verification.json)で398正常text不変、同じ2末尾失敗はraw不合格のまま。関連tests（torch/HF/GGUF共通結果処理はmockによるcontroller/codec tests、実backend重み比較ではない）を実行。
+
+②③は`configs/phase6/eos_5b_finish_100m.json`/新runner/schemaを凍結して実行する。親final5B update152588/5,000,003,584tokens、actualLR0.0002、Web cursorをCPU読込確認。科学200,015,872＋検証262,144、GPU上限3,000秒、run `reports/phase6/eos-5b-finish-100m-20261004/`、restart `bash scripts/run_eos_5b_finish.sh`。親補助dev80は新たに測定、親全文/400は再利用、全データ監査なし。実CUDAgate/学習は起動前。次の行動は凍結checks/commit後に重複jobなしを確認してpersistent起動。全指定範囲完了後停止し10B/Chat/UL/sweepなし。以下は履歴。
+
 ## EOS・反復・UTF8改善の調査と計画を完了（2026-10-04、計画のみ）
 
 ユーザー指定で[調査と次回計画](37_eos_repetition_utf8_improvement_plan.md)を作成。[保存記録のCPU調査](../reports/phase6/eos_5b_improvement_research.json)、[機械可読の提案](../reports/phase6/eos_5b_improvement_plan.json)。同じ全文devの保存EOS平均NLLは元2B2.302868→5B2.223077と改善する一方、自由生成の自然EOS0/80は未解決。教師文末のNLLを自由生成のEOS確率/順位と混同しない。生成400件は398正常text不変、同じbase-070の2件で末尾未完成2bytesだけをincremental decoderに保留可能とCPUで確認。日本語/emoji途中1〜3bytesと不正UTF8の9probe成功。これはproduction修正/モデル改善ではなく、旧rawUnicode2とmax-token停止を保持する研究結果。

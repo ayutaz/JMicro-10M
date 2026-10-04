@@ -1,5 +1,7 @@
 # 別PCで続きを進める: Windows / WSL / RTX 4090
 
+2026-10-04最新: 改善計画1〜3をユーザーが再開。新実行config `configs/phase6/eos_5b_finish_100m.json`、run `reports/phase6/eos-5b-finish-100m-20261004/`、restart `bash scripts/run_eos_5b_finish.sh`。jobのactual PID/boot/start ticksを照合しliveなら重複起動しない。final5Bから同じ低LRの各100M、旧accepted short/auxと元raw評価を維持。表示helperは実装/CPU確認済み、GPU学習/評価はまだ起動前。全指定比較・内容確認・report/commit後10B/Chat/UL/sweep前で停止。[実状態](autonomous_status.md)。以下は履歴。
+
 2026-10-04最新（調査/計画のみ）: [EOS・反復・UTF8の次回案](37_eos_repetition_utf8_improvement_plan.md)を作成。保存済み評価のCPU再集計とUTF8 buffering probesのみ実施、GPU推論/学習0、production codec/weightsは不変、実行jobなし。次回はCPU表示helperとfinal5Bの低LRWeb/short20各100Mを実装・凍結する必要があり、旧2B runnerをそのまま起動しない。既存短文pool/auxと元rawgateを保持、GPU上限3000秒、完了後10B/Chat/UL/sweep前で停止。この提案の起動commandは未実装。今回は計画/report/commitで停止。[実状態](autonomous_status.md)。以下は履歴。
 
 2026-10-04最新: [5B比較完了](36_base_5b_comparison.md)。Linux `reports/phase6/base-5b-comparison-20261004/` job complete、actual Linux477/Windows26484終了、GPU computeなし。GPU788.433秒/上限1800秒、追加学習0。全文BPB0.964484へ改善、固定EOS0/80/反復59/80/Unicode1/80、全400 Unicode2は同じbase-070末尾UTF8切断。元増量gate不合格、Base/Chat品質未達。保存済み結果のCPU reviewer18項目成功、全80内容確認と13例を保存。final5B/全対照weights/全文と生成を保持。完了launcherのrestartは再実行しない。比較/report/commitで停止、10B/Chat/新規学習/sweepなし。[実状態](autonomous_status.md)。以下は履歴。

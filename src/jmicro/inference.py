@@ -10,6 +10,7 @@ import torch
 from jmicro.experiment import ROOT, read_json, write_json, sha256
 from jmicro.model import JMicroModel
 from jmicro.tokenizer import Tokenizer, SUPPRESS_IDS
+from jmicro.text_display import decode_display
 
 
 def native(model: Path, request: dict, work: Path, bridge: Path | None = None) -> dict:
@@ -111,12 +112,8 @@ def generate(backend, artifact: Path, tok: Tokenizer, input_ids, max_new_tokens=
         with torch.inference_mode():
             ids, reason = greedy(input_ids, step, max_new_tokens, stop_ids, forced_first_id)
     raw = tok.decode_bytes(ids)
-    try:
-        text, valid = raw.decode("utf-8"), True
-    except UnicodeDecodeError:
-        text, valid = raw.decode("utf-8", errors="replace"), False
-    return {"input_ids": input_ids, "generated_ids": ids, "text": text,
-            "valid_utf8": valid, "generated_body_bytes_hex": raw.hex(), "stop_reason": reason,
+    return {"input_ids": input_ids, "generated_ids": ids, **decode_display(raw, reason),
+            "generated_body_bytes_hex": raw.hex(), "stop_reason": reason,
             "backend": backend, "stop_ids": stop_ids, "suppressed_ids": list(SUPPRESS_IDS)}
 
 
