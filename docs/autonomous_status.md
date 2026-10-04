@@ -1,5 +1,22 @@
 # Codex継続作業の現在地
 
+## 5B比較を完了・停止（2026-10-04）
+
+[比較結果](36_base_5b_comparison.md)、[保存証拠の確認](../reports/phase6/base_5b_comparison_review.json)、[内容確認](../reports/phase6/base_5b_content_review.json)。同じ10,001,152 parameters/準備済み12,225,819,077 train tokensを保持し、追加学習0。新たにfinal5Bだけを同じ89,416保護dev/164,344,743本文bytes/42,003,934本文tokensと固定400生成で評価。元2B/低LRWeb/short20の完成結果は再実行せず再利用した。全条件の文書・本文数・生成key一致、元Tokenizer/品質基準/反復指標を保持。
+
+| 条件 | 累積学習input tokens | 全文dev BPB↓ | 固定EOS | 固定反復 | 固定Unicode失敗 |
+|---|---:|---:|---:|---:|---:|
+| 元2B | 2,000,027,648 | 0.982882 | 0/80 | 60/80 | 0/80 |
+| 低LR Web100M | 2,100,035,584 | 0.972969 | 0/80 | 55/80 | 0/80 |
+| 新5B Web100% | 5,000,003,584 | 0.964484 | 0/80 | 59/80 | 1/80 |
+| 低LR short20・別mixtureの参考 | 2,100,035,584 | 0.974799 | 27/80 | 41/80 | 0/80 |
+
+本文BPBは元2B比約1.87%、低LRWeb比約0.87%改善。生成品質全体の改善とは扱わない。5Bの全400 EOS5/反復122/Unicode2、empty/role0。Unicode2はbase-070の同じgreedy出力（抑制あり・なし）：64-token上限で末尾UTF8がe6a5の2bytesに切れ、strict decodeがbyte168〜170でunexpected end of data。途中bytesは有効。上限処理の原因が判明しても失敗は免除せず、元の新Unicode失敗なし条件が不合格。BPB/反復の増量数値条件は通るがgrowth gate全体は不合格、10Bへの自動移行はしない。
+
+新固定80出力を全て読み、13例を元2B/低LRと照合保存。暗い部屋で電気をつける/外出前に靴を履く冒頭は改善、個数・時刻・否定条件・因果の誤りと意味反復は残る。三回完全一致の元指標がfalseでも二回/言い換え反復を確認。独立人手blind採点ではなく、Base/Chat品質目標は未達、test未使用。
+
+GPU788.433秒（13分8秒）で1,800秒以内、全文本文377.329秒、生成409.343秒。job complete、actual Linux477/Windows26484終了、GPU compute processなし。run `reports/phase6/base-5b-comparison-20261004/` のfull-dev.json/generation.json/result.json/aligned-content.json/source/ログを保持、final5B SHA1d8e5274e1662063dedec355def1da3c9bcc972499a12b608c25c71b6758273aは不変。保存記録のCPU確認18項目成功。完了jobのrestart commandを再実行しない。依頼された比較/report/commitで停止。次回の優先課題はEOS・反復の改善とUTF8末尾処理であり、10B/Chat/mixture/decoder sweepは未開始。以下は履歴。
+
 ## 5Bの比較を再開（2026-10-04）
 
 ユーザーが「比較を進めて」と指定。[固定config](../configs/phase6/base_5b_comparison.json)、[保存済み対照の照合](../reports/phase6/base_5b_comparison_preflight.json)。新しく評価するのはfinal5B checkpoint（SHA1d8e5274e1662063dedec355def1da3c9bcc972499a12b608c25c71b6758273a）だけ。元2B/低LRWeb100Mの完成結果を再利用し、short20は別mixtureの参考として併記する。共通12.23B trainのデータ量は変えず、今回追加学習0。低LR枝は曲線が異なり、2B対5Bでも総予算に応じ最終5%decay期間が伸びるため、全差を学習量だけの因果効果と断定しない。

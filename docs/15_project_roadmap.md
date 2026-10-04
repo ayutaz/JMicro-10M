@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-04最新: step3の[5B比較を完了](36_base_5b_comparison.md)。同じ全文dev BPB0.964484で元2B比1.87%改善、固定EOS0/80/反復59/80、UTF8末尾切断1/80・全400で同じ例2件。元の新Unicode失敗なし条件を保持して増量gate不合格とする。内容確認でも数量/文脈誤り・意味反復が残りBase/Chat品質は未達。追加学習0、GPU13分8秒で30分以内、GPU job終了。記録/commitで停止し10B/Chat/sweepに移行しない。[実状態](autonomous_status.md)。以下は履歴。
+
 2026-10-04最新: ユーザー指定でstep3の[5B比較](../configs/phase6/base_5b_comparison.json)を再開。元2B/低LRWebの保存済み対照を再利用し、同じ全文devと400生成でfinal5Bを評価。short20はmixtureが違う参考条件。追加学習0、元品質基準維持、GPU上限30分。内容確認/report/commit後停止し10B/Chat/sweepへ進めない。[実状態](autonomous_status.md)。以下は履歴。
 
 2026-10-04最新: 次計画1・2（明示stable延長・総5B学習）を[完了](../reports/phase6/base_5b_review.json)。同じ10M/既存12.23B train、追加3.10B科学tokensと別524,288検証tokens、最後約5%decayを含む総5,000,003,584。CPU6tests/実CUDA全state再開一致、連続・有限更新、parent不変、GPU75分43秒で上限内。品質は未評価で元Base/Chat基準は維持。記録・commit後停止し、次は未実行のstep3全文dev/固定生成比較。10B/Chat/sweepへ自動移行しない。[実状態](autonomous_status.md)。以下は履歴。

@@ -1,5 +1,7 @@
 # 別PCで続きを進める: Windows / WSL / RTX 4090
 
+2026-10-04最新: [5B比較完了](36_base_5b_comparison.md)。Linux `reports/phase6/base-5b-comparison-20261004/` job complete、actual Linux477/Windows26484終了、GPU computeなし。GPU788.433秒/上限1800秒、追加学習0。全文BPB0.964484へ改善、固定EOS0/80/反復59/80/Unicode1/80、全400 Unicode2は同じbase-070末尾UTF8切断。元増量gate不合格、Base/Chat品質未達。保存済み結果のCPU reviewer18項目成功、全80内容確認と13例を保存。final5B/全対照weights/全文と生成を保持。完了launcherのrestartは再実行しない。比較/report/commitで停止、10B/Chat/新規学習/sweepなし。[実状態](autonomous_status.md)。以下は履歴。
+
 2026-10-04最新: ユーザーが5B比較を再開。[config](../configs/phase6/base_5b_comparison.json)、run `reports/phase6/base-5b-comparison-20261004/`、restart `bash scripts/compare_base_5b.sh`。job.jsonのactual PID/boot/start ticksと/procを照合しliveなら重複起動しない。final5Bのみ同じdev89416/生成400を評価、元2B/低LRWeb/short20-reference結果は再実行しない。全文devと生成を別保存、source/weights/heldout保持、GPU累積1800秒。内容確認/report/commit後停止し新規学習/10B/Chat/sweepなし。[実状態](autonomous_status.md)。以下は履歴。
 
 2026-10-04最新: 次計画1・2（継続処理と総5B学習）を[完了](../reports/phase6/base_5b_review.json)。Linux run `reports/phase6/base-5b-20261004/` job complete、actual Linux450/Windows28760終了、GPU computeなし。final decay/checkpoint-00152588.pt、SHA1d8e5274e1662063dedec355def1da3c9bcc972499a12b608c25c71b6758273a、総5,000,003,584tokens。継続用stable/checkpoint-00144959.ptも保持。追加科学3,099,983,872＋検証524,288、CPU6testsと実CUDA全state再開一致、GPU75分43秒で120分上限内。全旧成果物/97科学checkpointを保持。ユーザー指定のコードpushはc68ff34までorigin/mainへ完了。記録・local commit後停止し、完成job再実行/全文評価/10B/Chat/sweepは開始しない。5B品質は未評価。次は別範囲のstep3比較。[実状態](autonomous_status.md)。以下は履歴。

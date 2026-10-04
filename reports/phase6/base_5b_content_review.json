@@ -1,0 +1,381 @@
+{
+  "status": "completed_saved_fixed80_content_review",
+  "reviewed_at": "2026-10-04T07:46:09.7824761Z",
+  "scope": "All80 new5B fixed greedy suppressed saved continuations read;13 selected aligned examples from original2B/lowLRWeb/new5B. No additional inference or training.",
+  "reviewed_ids": [
+    "base-001",
+    "base-002",
+    "base-004",
+    "base-005",
+    "base-006",
+    "base-007",
+    "base-009",
+    "base-010",
+    "base-011",
+    "base-012",
+    "base-014",
+    "base-015",
+    "base-016",
+    "base-017",
+    "base-019",
+    "base-020",
+    "base-021",
+    "base-022",
+    "base-024",
+    "base-025",
+    "base-026",
+    "base-027",
+    "base-029",
+    "base-030",
+    "base-031",
+    "base-032",
+    "base-034",
+    "base-035",
+    "base-036",
+    "base-037",
+    "base-039",
+    "base-040",
+    "base-041",
+    "base-042",
+    "base-044",
+    "base-045",
+    "base-046",
+    "base-047",
+    "base-049",
+    "base-050",
+    "base-051",
+    "base-052",
+    "base-054",
+    "base-055",
+    "base-056",
+    "base-057",
+    "base-059",
+    "base-060",
+    "base-061",
+    "base-062",
+    "base-064",
+    "base-065",
+    "base-066",
+    "base-067",
+    "base-069",
+    "base-070",
+    "base-071",
+    "base-072",
+    "base-074",
+    "base-075",
+    "base-076",
+    "base-077",
+    "base-079",
+    "base-080",
+    "base-081",
+    "base-082",
+    "base-084",
+    "base-085",
+    "base-086",
+    "base-087",
+    "base-089",
+    "base-090",
+    "base-091",
+    "base-092",
+    "base-094",
+    "base-095",
+    "base-096",
+    "base-097",
+    "base-099",
+    "base-100"
+  ],
+  "aligned_content_sha256": "f643fb16e0b28d6ff38360983f3332eaf58adcc98d0983cfa2e0f0c4417e02a7",
+  "blind_human_score": false,
+  "test_split_used": false,
+  "quality_targets_achieved": false,
+  "original_metrics_unchanged": true,
+  "conclusion": "Body BPB improves, but fixed EOS remains0/80, repetition59/80 vs55 lowLR, semantic/numerical/context failures persist; Unicode failure retained. Keep candidate weights, stop before10B/Chat/sweeps.",
+  "examples": [
+    {
+      "id": "base-012",
+      "prefix": "雨が降っているのに、彼は傘を",
+      "outputs": {
+        "base2B": {
+          "text": "持っていません。\n彼は、彼の傘を持っていません。\n彼は、傘を持っていません。\n彼は、傘を持っていません。\n彼は、傘を持っていません。\n彼は、傘を持っていません。\n彼",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        },
+        "lowLR_web": {
+          "text": "持っていない。\n「傘を持っていない」と言って、傘を持っていない。\n「傘を持っていない」と言って、傘を持っていない。\n「傘を持っていない」と言って、傘を持っていない。\n「傘を持って",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        },
+        "base5B": {
+          "text": "持って帰ってきてくれました。\n彼は、彼の傘を持って帰ってきてくれたのです。\n彼は、彼の傘を持って帰ってきてくれたのです。\n彼は、彼の傘を持って帰ってきてくれた",
+          "stop_reason": "max_new_tokens",
+          "repetition": false
+        }
+      },
+      "note": "帰ってきてくれました、の後に持ち帰りの言い換え反復。原三回反復指標はfalse。"
+    },
+    {
+      "id": "base-024",
+      "prefix": "友人から届いた葉書には、海の絵が描かれていた。裏を見ると",
+      "outputs": {
+        "base2B": {
+          "text": "、海の絵が描かれている。\n海の絵は、海の絵が描かれている。海の絵は、海の絵が描かれている。海の絵は、海の絵が描かれている。海の絵は、海の絵が描かれている。海の",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        },
+        "lowLR_web": {
+          "text": "、海の絵が描かれている。\n海の絵は、海の絵が描かれている。海の絵は、海の絵が描かれている。\n海の絵は、海の絵が描かれている。海の絵は、海の絵が描かれている。\n",
+          "stop_reason": "max_new_tokens",
+          "repetition": false
+        },
+        "base5B": {
+          "text": "、海の絵が描かれている。\n海の絵は、海の絵が描かれている。海の絵は、海の絵が描かれている。\n海の絵は、海の絵が描かれている。海の絵は、海の絵が描かれている。\n",
+          "stop_reason": "max_new_tokens",
+          "repetition": false
+        }
+      },
+      "note": "海の絵の同じ内容を繰り返す。原指標falseでも意味反復あり。"
+    },
+    {
+      "id": "base-044",
+      "prefix": "水を入れた花瓶を、窓辺に",
+      "outputs": {
+        "base2B": {
+          "text": "置いておくと、花瓶の中に花瓶が入ってきます。\n花瓶の中に花瓶を入れておくと、花瓶の中に花瓶が入ってきます。\n花瓶の中に花瓶を入れておくと、花瓶の中",
+          "stop_reason": "max_new_tokens",
+          "repetition": false
+        },
+        "lowLR_web": {
+          "text": "置いておくと、花瓶の中に水が入って、花瓶の中に水が入って、花瓶の中に水が入って、花瓶の中に水が入って、花瓶の中に水が入って、花瓶の中に水が入",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        },
+        "base5B": {
+          "text": "置いておく。\n水を入れた花瓶を、水を入れた花瓶に入れて、水を入れる。\n水を入れた花瓶を、窓辺に置いておく。\n水を入れた花瓶を、窓辺に置いておく。\n",
+          "stop_reason": "max_new_tokens",
+          "repetition": false
+        }
+      },
+      "note": "花瓶を花瓶に入れるという不自然な内容と二回反復。"
+    },
+    {
+      "id": "base-051",
+      "prefix": "りんごを3個買った。1個食べたので、残りは",
+      "outputs": {
+        "base2B": {
+          "text": "2個。\n1個食べたので、2個食べた。\n2個食べたので、2個食べた。\n3個食べたので、2個食べた。\n4個食べたので、2個食べた。\n5個食べたので、2個食べた。\n",
+          "stop_reason": "max_new_tokens",
+          "repetition": false
+        },
+        "lowLR_web": {
+          "text": "1個。\nりんごは、おいしい。\nりんごは、おいしい。\nりんごは、おいしい。\nりんごは、おいしい。\nりんごは、おいしい。\nりんごは、おいしい。\n",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        },
+        "base5B": {
+          "text": "、りんごのみ。\nりんごは、りんごの皮を剥いて、皮を剥いて、皮を剥いて、皮を剥いて、皮を剥いて、皮を剥いて、皮を剥いて、皮を剥いて、皮を剥いて、皮を",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        }
+      },
+      "note": "元2Bの冒頭2個は正しいが5Bは数量を答えない。学習増量で全問改善ではない。"
+    },
+    {
+      "id": "base-052",
+      "prefix": "集合時刻は午前9時です。8時50分に着けば、",
+      "outputs": {
+        "base2B": {
+          "text": "午後5時までに着けます。\n※ 着物の着付けは、着物の着付けをする前に、着付けをしてください。\n※ 着付けは、着付けをする前に、着付けをしてください。\n※ 着付けは、着付けをする前に",
+          "stop_reason": "max_new_tokens",
+          "repetition": false
+        },
+        "lowLR_web": {
+          "text": "午後5時までに集合します。\n集合場所は、東京都港区東新宿2-1-1 東京都港区西新宿2-1-1 東京都港区西新宿2-1-1 東京都港区西新宿2-",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        },
+        "base5B": {
+          "text": "午前9時から午後5時までの間に、午前9時から午後5時までの間に、午前9時から午後5時までの間に、午前9時から午後5時までの間に、午前9時から午後5",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        }
+      },
+      "note": "8:50と9:00の関係を答えず午後5時を混入。"
+    },
+    {
+      "id": "base-057",
+      "prefix": "箱には赤い玉が2個、青い玉が1個入っている。全部で",
+      "outputs": {
+        "base2B": {
+          "text": "2個入っている。\n箱の中に、箱の中に、赤い玉が入っている。\n箱の中に、赤い玉が入っている。\n箱の中に、赤い玉が入っている。\n箱の中に、赤い玉が入っている。\n箱",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        },
+        "lowLR_web": {
+          "text": "2個入っている。\n箱の中に入れる玉は、箱の中に入れる玉の中に入れる玉の中に入れる玉の中に入れる玉の中に入れる玉の中に入れる玉の中に入れる玉の中に入れる玉",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        },
+        "base5B": {
+          "text": "2個入っている。\n箱の中に、赤い玉が入っている。\n箱の中に、赤い玉が入っている。\n箱の中に、赤い玉が入っている。\n箱の中に、赤い玉が入っている。\n箱の中に、赤",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        }
+      },
+      "note": "2+1を2個と回答し数量誤り、続いて反復。"
+    },
+    {
+      "id": "base-070",
+      "prefix": "会議室「楓」に入ると、すでに",
+      "outputs": {
+        "base2B": {
+          "text": "「お茶の日」が始まっています。\n「お茶の日」は、お茶の日のことを「お茶の日」と呼びます。\nお茶の日は、お茶の日のことを「お茶の日」と呼びます。\nお茶",
+          "stop_reason": "max_new_tokens",
+          "repetition": false
+        },
+        "lowLR_web": {
+          "text": "会議室に入っていました。\n会議室の中には、会議室の中に、\n「会議室の中に、\n「会議室の中に、\n「会議室の中に、\n「会議室の中に、\n「会議室",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        },
+        "base5B": {
+          "text": "「楓」の音が聞こえてきそうです。\n「楓」は、楓の音が聞こえる音です。\n「楓」は、楓の音が聞こえる音です。\n「楓」は、�",
+          "stop_reason": "max_new_tokens",
+          "repetition": false
+        }
+      },
+      "note": "楓の音という不自然な内容、意味反復、末尾のUnicode失敗。自動指標を免除しない。"
+    },
+    {
+      "id": "base-084",
+      "prefix": "この犬は音を怖がる。花火が始まったので、私は",
+      "outputs": {
+        "base2B": {
+          "text": "花火を観るのが嫌だ。\n花火は、花火を観るのが嫌だ。花火は、花火を観るのが嫌だ。\n花火は、花火を観るのが嫌だ。花火は、花火を観るの",
+          "stop_reason": "max_new_tokens",
+          "repetition": false
+        },
+        "lowLR_web": {
+          "text": "花火を観るのが好きだ。\n花火は、花火を観るのが好きだ。\n花火は、花火を観るのが好きだ。\n花火は、花火を観るのが好きだ。\n花火は、花火を観",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        },
+        "base5B": {
+          "text": "花火を観に行く。\n花火は、花火の前には花火を打ち上げる。花火は、花火の前には花火を打ち上げる。花火は、花火の前には花火を打ち上げる。花火は、",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        }
+      },
+      "note": "音を怖がる犬の条件を踏まえず花火を観に行く。"
+    },
+    {
+      "id": "base-085",
+      "prefix": "姉は甘いものを食べない。お土産には、お菓子より",
+      "outputs": {
+        "base2B": {
+          "text": "お菓子の方がおいしい。\nお菓子のおいしさは、お菓子の味を引き立てる。\nお菓子のおいしさは、お菓子の味を引き立てる。\nお菓子のおいしさは、お菓",
+          "stop_reason": "max_new_tokens",
+          "repetition": false
+        },
+        "lowLR_web": {
+          "text": "お菓子の方がおいしい。\nお菓子のお菓子は、お菓子のお菓子のお菓子のお菓子のお菓子のお菓子のお菓子のお菓子のお菓子のお菓子のお菓子のお",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        },
+        "base5B": {
+          "text": "、お菓子の方が、おいしい。\nお菓子のお土産は、お土産のお土産を買うのが一番。\nお土産のお土産は、お土産のお土産を買うのが一番。\nお土産の",
+          "stop_reason": "max_new_tokens",
+          "repetition": false
+        }
+      },
+      "note": "甘いものを食べない条件を踏まえず菓子を選ぶ。"
+    },
+    {
+      "id": "base-090",
+      "prefix": "窓を開けると雨が吹き込んだ。私は急いで",
+      "outputs": {
+        "base2B": {
+          "text": "窓を開けた。\n窓を開けた後、窓を開けた。\n窓を開けた後、窓を開けた。\n窓を開けた後、窓を開けた。\n窓を開けた後、窓を開けた。\n窓",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        },
+        "lowLR_web": {
+          "text": "窓を開けた。\n窓を開けた後、窓を開けた。\n窓を開けた後、窓を開けた。\n窓を開けた後、窓を開けた。\n窓を開けた後、窓を開けた。\n窓",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        },
+        "base5B": {
+          "text": "窓を開けた。\n窓を開けると、窓の上に窓が見えた。窓の上に窓が見えた。窓の上に窓が見えた。窓の上に窓が見えた。窓の上に窓が見えた。窓の上に窓が",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        }
+      },
+      "note": "雨の吹き込みへの対応で窓を開けたと続ける誤りが残る。"
+    },
+    {
+      "id": "base-092",
+      "prefix": "夜になって部屋が暗くなったので、電気を",
+      "outputs": {
+        "base2B": {
+          "text": "消して、部屋の中に電気を流す。\n電気を消すと、部屋の中に電気が流れて、部屋の中に電気が流れて、部屋の中に電気が流れて、部屋の中に電気が流れて、部屋の中に電気が流れて、",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        },
+        "lowLR_web": {
+          "text": "消してみました。\n電気を消すと、電気が消えます。\n電気を消すと、電気が消えます。\n電気を消すと、電気が消えます。\n電気を消すと、電気が消えます。\n電気を消すと、",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        },
+        "base5B": {
+          "text": "つけてみました。\n電気をつけた後は、電気をつけた後に、電気をつけた後に、電気をつけた後に、電気をつけた後に、電気をつけた後に、電気をつけた後に、電気をつけた後に、電気を",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        }
+      },
+      "note": "元2B/低LRの消すから5Bのつけるへ冒頭改善、以降は反復しEOSなし。"
+    },
+    {
+      "id": "base-099",
+      "prefix": "濡れた靴下を脱いで、乾いた",
+      "outputs": {
+        "base2B": {
+          "text": "布で拭き取る。\n乾いた布で拭き取ったら、布が乾いた布で拭き取る。\n乾いた布で拭き取ったら、布が乾いた布で拭き取ったら、布が乾いた布で拭き取る。\n",
+          "stop_reason": "max_new_tokens",
+          "repetition": false
+        },
+        "lowLR_web": {
+          "text": "靴下を履く。\n靴下を履くと、靴下が濡れた靴下に変わります。\n靴下を履くと、靴下が濡れた靴下に変わります。\n靴下を履くと、靴下が濡れた靴下に変わ",
+          "stop_reason": "max_new_tokens",
+          "repetition": false
+        },
+        "base5B": {
+          "text": "布団に入れて、靴下を脱いで、靴下を脱いで、靴下を脱いで、靴下を脱いで、靴下を脱いで、靴下を脱いで、靴下を脱いで、靴下を脱いで、靴下",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        }
+      },
+      "note": "低LRの乾いた靴下から5Bの布団に変わり文脈悪化。"
+    },
+    {
+      "id": "base-100",
+      "prefix": "外に出る前に、玄関で靴を",
+      "outputs": {
+        "base2B": {
+          "text": "脱いだり、靴を脱いだり、靴を脱いだり、靴を脱いだり、靴を脱いだり、靴を脱いだり、靴を脱いだり、靴を脱いだり、靴を脱いだり、靴を脱",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        },
+        "lowLR_web": {
+          "text": "脱いでみましょう。\n玄関の扉を開けて、玄関の扉を開けてみましょう。\n玄関の扉を開けてみると、玄関の扉が開けて、玄関の扉を開けてみましょう。\n玄関の扉",
+          "stop_reason": "max_new_tokens",
+          "repetition": false
+        },
+        "base5B": {
+          "text": "履いてみるのもいいかもしれません。\n玄関の外に出る前に、靴を履いてみるのもいいかもしれません。\n玄関の外に出る前に、外に出る前に、外に出る前に、靴を履いてみるのもいいかもしれません。\n",
+          "stop_reason": "max_new_tokens",
+          "repetition": true
+        }
+      },
+      "note": "元/低LRの脱ぐから5Bの履くへ冒頭改善、以降は意味反復しEOSなし。"
+    }
+  ]
+}
