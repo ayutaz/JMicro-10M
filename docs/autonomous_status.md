@@ -1,5 +1,9 @@
 # Codex継続作業の現在地
 
+条件付き評価のWeb対照全文本文を完了: dev89,416文書 / 164,344,743 bytes、BPB0.948957324851、本文評価389.088秒。現在は同じ対照の固定400生成中、Linux19791は実在。新物語の全文/長文結果と最終CPU確認・報告・UI復帰が残るのでgoalは未完了。全240一次採点と各枝100Mは完了済みで再学習しない。保存result/長文を原IDから確認する`scripts/review_complete_text_full.py`を準備した。中断は同一conditional jobの保存済みstageを再利用し、completed primary job17951を再起動しない。
+
+条件付き全文/長文評価を2026-10-04 14:43:42Zに永続起動した。hidden Windows34244、Linux19791 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks822481、actual process実在。Linux `reports/phase6/complete-text-10b-100m-20261004/conditional-full/job.json`、Windows`full.stdout.log`/`full.stderr.log`。現在Web全文本文を評価中、追加学習0、上限3,000秒。準備と一次比較結果はlocal commit7e3b6cdへ保存。終端を確認するまで重複起動しない。UIはこの評価中のみ停止しlauncher finallyで元final10Bへ復帰する。stage3は条件付き評価と完了報告/commitが残るため未完了。
+
 一次比較完了・条件付き評価へ: 三条件GPU774.624秒で完了し、全240をCodex内容採点、35証拠checks成功。Web/既存短文/新物語のEOS0/3/24、反復60/55/24、raw失敗0、Codex一貫性2点0/1/10（各80）。新物語は適切完結9/80、関連性2点23/80で対照26/80より減少し、元品質目標未達。一次の事前gateを全て通ったため、新物語とWebのみ原全文dev/400と20prefix128/512へ進む。専用conditional runner/config/schemaと14CPU testsを準備した。追加学習0、予算3,000秒。GPU科学process17951は終了、UIは元final10BでHTTP応答確認済み。次は条件付き評価の実行→結果確認→report/local commit・UI復帰で停止する。
 
 三条件の科学学習は各100,007,936 tokensを完了し、各枝総10,100,015,104 tokens/update308228の終端checkpointを保存した。学習時間はWeb159.169秒、既存短文148.389秒、新物語148.383秒。Linux17951は実在し、最後の新物語条件の一次評価中。WebのEOS0/反復60/文字破損0、既存短文のEOS3/反復55/文字破損0（各固定80、全文評価ではない）。新物語結果は未確定。終了後に240出力内容診断とCPU証拠確認、UI復帰・report/local commitで停止する。
