@@ -1,5 +1,7 @@
 # Codex継続作業の現在地
 
+2026-10-05 JST: conditional読み込みを修復しr1を再開。初回Linux19791はWeb全文/400保存後の`read_json(str)`型エラーで終了、UI復帰を確認。旧job/source/config/rawを保持し、15CPU tests（Path回帰含む）成功。Web全文/400をhash・同条件・raw IDから確認して明示的に再利用、既消費GPU831.355秒を元3,000秒予算に含め、学習/評価仕様/gateを変更しない。新run`reports/phase6/complete-text-10b-100m-20261004/conditional-full-r1`、hidden Windows33788、Linux37818 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks930807のactual processを確認。現在Web長文中、Windows`full-r1.*.log`、終端job/resultが揃ってから`scripts/review_complete_text_full.py`を実行する。三条件学習/240内容診断は完了、goalは最終評価/report/commit/UI復帰が残るためactive。重複起動しない。
+
 条件付き評価のWeb対照全文本文を完了: dev89,416文書 / 164,344,743 bytes、BPB0.948957324851、本文評価389.088秒。現在は同じ対照の固定400生成中、Linux19791は実在。新物語の全文/長文結果と最終CPU確認・報告・UI復帰が残るのでgoalは未完了。全240一次採点と各枝100Mは完了済みで再学習しない。保存result/長文を原IDから確認する`scripts/review_complete_text_full.py`を準備した。中断は同一conditional jobの保存済みstageを再利用し、completed primary job17951を再起動しない。
 
 条件付き全文/長文評価を2026-10-04 14:43:42Zに永続起動した。hidden Windows34244、Linux19791 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks822481、actual process実在。Linux `reports/phase6/complete-text-10b-100m-20261004/conditional-full/job.json`、Windows`full.stdout.log`/`full.stderr.log`。現在Web全文本文を評価中、追加学習0、上限3,000秒。準備と一次比較結果はlocal commit7e3b6cdへ保存。終端を確認するまで重複起動しない。UIはこの評価中のみ停止しlauncher finallyで元final10Bへ復帰する。stage3は条件付き評価と完了報告/commitが残るため未完了。

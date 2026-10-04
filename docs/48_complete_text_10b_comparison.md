@@ -71,3 +71,20 @@ GPU一次上限1,800秒、条件付き追加評価上限3,000秒。初回候補�
 全240出力をモデル名を除いたpacketで単独Codex採点。独立人手blindではない。新物語は一貫性差10/80、prompt paired bootstrap95%差区間[0.0625,0.2]で事前条件を通り、EOS・反復・BPB対照比+1%・raw失敗・句読点停止の一次条件も通った。BPBは対照比約+0.741%、旧全文BPBとdev256は異なる標本なので直接比べない。関連性2点は26→23へ減少し、数量・時刻・局所条件を失う例は残る。24停止のうち内容として適切な完結は9で、EOSだけを品質合格にしない。
 
 事前に定めた条件付き全文/長文評価を新物語とWeb対照だけに行う。専用`evaluate_complete_text_full.py`/`.ps1`とconfig/schemaを凍結し、関連14CPU tests成功。原全文dev89,416/164,344,743 bytes、固定400、同じ20prefixのgreedy128/512を測る。追加学習0、GPU上限3,000秒、元raw条件と親BPB+0.001条件を保持する。一次結果・旧親・旧benchmarksの再学習や評価仕様変更は行わない。
+
+### 日本語Base診断（保存済み一次結果）
+
+| 指標 | Web100% | 既存短文20% | 新物語20% |
+|---|---:|---:|---:|
+| 基本意味192正答率 | 60.94% | 61.46% | 62.50% |
+| 基本意味の両文脈正答 / 96 | 23 | 25 | 26 |
+| JBLiMP331 train-sample SLOR正答率 | 74.02% | 76.13% | 75.53% |
+| JCommonsenseQA dev1,119正答率 | 32.62% | 29.80% | 34.58% |
+
+追加推論なしで保存した同一問題のcredit差をfamily単位paired bootstrapした。[CPU差の記録](../reports/phase6/complete_text_10b_choice_comparison.json)。新物語の対照差は基本意味+1.563 percentage points（95%区間−1.042〜+4.167）、JBLiMP+1.511（−1.813〜+4.532）、常識+1.966（−0.089〜+4.111）で、いずれも差の区間が0を含む。点推定上昇を理解能力の確実な改善と断定しない。既存短文の常識差は−2.815（−4.246〜−1.385）で退行が見られる。学習seed一つのdev診断であり、未実施の独立人手・test・公開Base参照を代替しない。旧quantity助数詞等の既知制限を保持し、今回の採用gateは変更していない。
+
+### 条件付き評価の読み込み修復
+
+初回conditional process19791は、Web全文本文と固定400の保存後、親の保存結果を`read_json(str)`へ渡す誤りで停止した。旧job/source/config/schema/log/raw結果は`conditional-full`へ保持。保存済みWebのcheckpoint hash・本文/400条件の一致・全raw ID flagsをCPU確認し、再計算せず、明示的な`reused_from`でr1へ引き継ぐ。本文BPB0.948957324851、本文評価389.088秒。失敗時点のGPU831.355秒も元3,000秒予算に含める。
+
+`parent_results`でJSON内のpathをPathへ変換し、同じ処理を実行とCPU reviewerで共用する。実ファイルの文字列pathを読み込む回帰testを追加し、関連15CPU tests成功。科学学習・Tokenizer・scorer・dev・suite・品質gateは変更しない。新しい凍結config/schemaは`complete_text_10b_full_r1`、runは`conditional-full-r1`。Linux37818、hidden Windows33788、2026-10-04 15:01:44Z（日本時間10月5日00:01）起動。Web長文→新物語全文/400・長文へ続け、完了後にreport/local commitとUI復帰で停止する。

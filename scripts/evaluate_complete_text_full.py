@@ -30,8 +30,8 @@ from evaluate_japanese_base import evaluate_long
 from compare_base_10b import require_alignment,growth_checks
 from compare_base_5b import summarize
 
-CONFIG=ROOT/'configs/phase6/complete_text_10b_full.json'
-OUTPUT=RUN/'conditional-full'
+CONFIG=ROOT/'configs/phase6/complete_text_10b_full_r1.json'
+OUTPUT=RUN/'conditional-full-r1'
 SOURCES=('scripts/evaluate_complete_text_full.py','scripts/evaluate_complete_text_full.ps1',
  'scripts/run_eos_5b_finish.py','scripts/compare_base_10b.py','scripts/compare_base_5b.py',
  'scripts/run_eos_complete_100m.py','scripts/evaluate_japanese_base.py',
@@ -43,12 +43,16 @@ def selected_candidate(review):
     assert len(eligible)==1,'Only a single fully eligible screened candidate is authorized here'
     return eligible[0]
 
+def parent_results(config):
+    return (read_json(Path(config['parent_body']['path']))['body'],
+            read_json(Path(config['parent_generation']['path']))['generation'])
+
 def freeze():
     assert not (OUTPUT/'job.json').exists(),'Do not refreeze a started evaluation'
     plan=read_json(PLAN); review=read_json(RUN/'review.json'); screen=read_json(RUN/'result.json')
     candidate=selected_candidate(review)
     parent=ROOT/'reports/phase6/base-10b-comparison-20261004'
-    config=dict(version=1,scope='Conditional evaluation within stages1–3; no additional training',
+    config=dict(version=2,scope='Conditional evaluation within stages1–3; no additional training; Path repair preserves completed Web evaluation',
       primary_config_sha256=sha256(PLAN),review_sha256=sha256(RUN/'review.json'),
       arms={a:{'checkpoint':screen['arms'][a]['checkpoint'],'sha256':screen['arms'][a]['checkpoint_sha256']} for a in ('web',candidate)},
       candidate=candidate,output=str(OUTPUT.relative_to(ROOT)),gpu_budget_seconds=plan['conditional_full_evaluation_budget_seconds'],
@@ -61,8 +65,32 @@ def freeze():
       rules={'maximum_candidate_control_full_BPB_ratio':1.01,'maximum_candidate_parent_BPB_regression':.001,
              'fixed_repetition_increase_must_be_less_than':8,'all400_raw_failures_zero':True},
       protected_test_used=False,created_at=now())
+    legacy_config=ROOT/'configs/phase6/complete_text_10b_full.json'
+    legacy_run=RUN/'conditional-full'
+    previous=read_json(legacy_config);failed=read_json(legacy_run/'job.json')
+    assert failed['status']=='failed' and not alive(failed)
+    assert failed['error_type']=='AttributeError' and failed['error']=="'str' object has no attribute 'read_text'"
+    assert previous['rules']==config['rules'] and previous['arms']==config['arms']
+    assert previous['gpu_budget_seconds']==config['gpu_budget_seconds']==3000
+    assert previous['implementation']==config['implementation']
+    assert failed['binding']['config_sha256']==sha256(legacy_config)
+    assert all(config['source_sha256'][p]==digest for p,digest in previous['source_sha256'].items() if p!='scripts/evaluate_complete_text_full.py')
+    completed_path=legacy_run/'web-full.json';completed=read_json(completed_path)
+    expected={**failed['binding'],'arm':'web','checkpoint_sha256':config['arms']['web']['sha256']}
+    assert completed['binding']==expected and completed['full'] and completed['evaluation_RNG_isolated']
+    assert sha256(Path(completed['checkpoint']))==completed['checkpoint_sha256']==config['arms']['web']['sha256']
+    parent_body,parent_generation=parent_results(config)
+    require_alignment(completed['body'],completed['generation'],parent_body,parent_generation)
+    summarize('web',10100015104,completed['body'],completed['generation'])
+    from review_eos_5b_finish import validate_rows
+    validate_rows(completed['generation']['outputs'],Tokenizer(ROOT/config['tokenizer']))
+    config['repair']={'reason':'Path conversion for parent reads; scoring/model/data/gates unchanged',
+      'legacy_config':str(legacy_config),'legacy_config_sha256':sha256(legacy_config),
+      'legacy_job':str(legacy_run/'job.json'),'legacy_job_sha256':sha256(legacy_run/'job.json'),
+      'retired_GPU_seconds':failed['gpu_elapsed_seconds'],
+      'reused_web_full':{'path':str(completed_path),'sha256':sha256(completed_path),'binding':expected}}
     write_json(CONFIG,config)
-    write_json(ROOT/'schemas/configs/phase6/complete_text_10b_full.schema.json',
+    write_json(ROOT/'schemas/configs/phase6/complete_text_10b_full_r1.schema.json',
       dict(type='object',additionalProperties=False,required=list(config),properties={k:{'const':v} for k,v in config.items()}))
     print('Conditional full protocol frozen; zero additional learning',flush=True)
 
@@ -70,7 +98,7 @@ def main():
     parser=argparse.ArgumentParser();parser.add_argument('--freeze',action='store_true');args=parser.parse_args()
     assert sys.version_info[:3]==(3,12,7);torch.set_num_threads(2)
     if args.freeze:freeze();return
-    config=read_json(CONFIG);validate(config,read_json(ROOT/'schemas/configs/phase6/complete_text_10b_full.schema.json'))
+    config=read_json(CONFIG);validate(config,read_json(ROOT/'schemas/configs/phase6/complete_text_10b_full_r1.schema.json'))
     assert sha256(PLAN)==config['primary_config_sha256'] and sha256(RUN/'review.json')==config['review_sha256']
     assert selected_candidate(read_json(RUN/'review.json'))==config['candidate']
     assert config['source_sha256']=={p:sha256(ROOT/p) for p in SOURCES} and config['implementation']==implementation_hashes()
@@ -80,13 +108,18 @@ def main():
     for value in (*config['arms'].values(),config['parent_body'],config['parent_generation']):
         assert sha256(Path(value.get('checkpoint',value.get('path'))))==value['sha256']
     binding={'config_sha256':sha256(CONFIG),'source_sha256':config['source_sha256']}
+    repair=config['repair']
+    assert sha256(Path(repair['legacy_config']))==repair['legacy_config_sha256']
+    assert sha256(Path(repair['legacy_job']))==repair['legacy_job_sha256']
+    reused=repair['reused_web_full'];assert sha256(Path(reused['path']))==reused['sha256']
+    parent_body,parent_generation=parent_results(config)
     OUTPUT.mkdir(parents=True,exist_ok=True);job_path=OUTPUT/'job.json'
     old=read_json(job_path) if job_path.exists() else {}
     if old:
         assert not alive(old),'Actual job is still live'
         assert old['binding']==binding
         if old['status']=='complete':print('Reuse completed conditional evaluation');return
-    prior=old.get('gpu_elapsed_seconds',0);started=[None];stopped=[False]
+    prior=old.get('gpu_elapsed_seconds',repair['retired_GPU_seconds']);started=[None];stopped=[False]
     job=dict(status='running',**identity(),binding=binding,started_at=old.get('started_at',now()),
              gpu_elapsed_seconds=prior,restart_command='scripts/evaluate_complete_text_full.ps1',additional_training_tokens=0)
     signal.signal(signal.SIGTERM,lambda *_:stopped.__setitem__(0,True));signal.signal(signal.SIGINT,lambda *_:stopped.__setitem__(0,True))
@@ -104,6 +137,11 @@ def main():
             dest=OUTPUT/'source'/relative;dest.parent.mkdir(parents=True,exist_ok=True)
             if dest.exists():assert dest.read_bytes()==(ROOT/relative).read_bytes()
             else:shutil.copyfile(ROOT/relative,dest)
+        alias=OUTPUT/'web-full.json'
+        if not alias.exists():
+            completed=read_json(Path(reused['path']));assert completed['binding']==reused['binding']
+            write_json(alias,{**completed,'binding':{**binding,'arm':'web','checkpoint_sha256':config['arms']['web']['sha256']},
+                             'reused_from':reused,'reuse_reason':repair['reason']})
         seed_all(42);torch.use_deterministic_algorithms(True)
         dev=Shard(Path(config['dev_shards']),'dev');tok=Tokenizer(ROOT/config['tokenizer'])
         full,long={},{}
@@ -114,7 +152,7 @@ def main():
                 heartbeat(arm+'-full')
                 full[arm]=evaluate(Path(value['checkpoint']),dev,tok,None,OUTPUT/(arm+'-full.json'),branch,heartbeat,check,full=True)
                 current=full[arm]
-                require_alignment(current['body'],current['generation'],read_json(config['parent_body']['path'])['body'],read_json(config['parent_generation']['path'])['generation'])
+                require_alignment(current['body'],current['generation'],parent_body,parent_generation)
                 fixed={r['id']:r for r in current['generation']['outputs'] if r['decoding']=='greedy' and r['suppressed']}
                 assert all(fixed[r['id']]['generated_ids']==r['generated_ids'] for r in read_json(RUN/arm/'evaluation/generation.json')['outputs'])
                 state=torch.load(value['checkpoint'],map_location='cpu',weights_only=False)
@@ -128,7 +166,7 @@ def main():
                 del model,state;gc.collect();torch.cuda.empty_cache()
             candidate=config['candidate']
             summaries={a:summarize(a,10100015104,v['body'],v['generation']) for a,v in full.items()}
-            parent=summarize('parent10B',10000007168,read_json(config['parent_body']['path'])['body'],read_json(config['parent_generation']['path'])['generation'])
+            parent=summarize('parent10B',10000007168,parent_body,parent_generation)
             mixture=adoption_checks(full['web'],full[candidate])
             checks=dict(original_full_mixture=mixture,parent_growth=growth_checks(summaries[candidate],parent),
                         all400_candidate_raw_failures_zero=all(summaries[candidate]['all400'][k]==0 for k in ('empty','role_leak','unicode_failure')))

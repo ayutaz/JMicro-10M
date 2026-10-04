@@ -10,7 +10,7 @@ from jmicro.tokenizer import Tokenizer
 from jmicro.training import implementation_hashes
 from jmicro.japanese_evaluation import repetition_metrics
 from phase6_performance import alive
-from evaluate_complete_text_full import CONFIG,OUTPUT,SOURCES,selected_candidate
+from evaluate_complete_text_full import CONFIG,OUTPUT,SOURCES,selected_candidate,parent_results
 from run_complete_text_comparison import RUN,PLAN
 from compare_base_10b import require_alignment,growth_checks
 from compare_base_5b import summarize
@@ -28,12 +28,15 @@ def main():
     require('screen_bound_and_passed',sha256(PLAN)==config['primary_config_sha256'] and sha256(RUN/'review.json')==config['review_sha256'] and selected_candidate(read_json(RUN/'review.json'))==config['candidate'])
     require('GPU_budget',result['GPU_seconds']<=job['gpu_elapsed_seconds']<=config['gpu_budget_seconds']==3000)
     require('no_extra_learning_test_or_quality_claim',result['additional_training_tokens']==0 and not result['protected_test_used'] and not result['quality_targets_achieved'])
-    suites=list(ET.parse(RUN/'conditional-tests.xml').getroot().iter('testsuite'))
-    require('14_related_CPU_tests',sum(int(s.attrib.get('tests',0)) for s in suites)==14 and not any(int(s.attrib.get(k,0)) for s in suites for k in ('errors','failures','skipped')))
+    suites=list(ET.parse(RUN/'conditional-tests-r1.xml').getroot().iter('testsuite'))
+    require('15_related_CPU_tests_including_Path_regression',sum(int(s.attrib.get('tests',0)) for s in suites)==15 and not any(int(s.attrib.get(k,0)) for s in suites for k in ('errors','failures','skipped')))
     tok=Tokenizer(ROOT/config['tokenizer'])
     require('tokenizer_dev_suite_frozen',sha256(ROOT/config['tokenizer'])==config['tokenizer_sha256'] and sha256(Path(config['dev_shards'])/'manifest.json')==config['dev_manifest_sha256'] and sha256(ROOT/'eval/base.jsonl')==config['suite_sha256'])
-    parent_body=read_json(config['parent_body']['path'])['body'];parent_generation=read_json(config['parent_generation']['path'])['generation']
+    parent_body,parent_generation=parent_results(config)
     require('parent_results_preserved',all(sha256(Path(config[k]['path']))==config[k]['sha256'] for k in ('parent_body','parent_generation')))
+    repair=config['repair'];reused=repair['reused_web_full']
+    require('repair_history_preserved',sha256(Path(repair['legacy_config']))==repair['legacy_config_sha256'] and sha256(Path(repair['legacy_job']))==repair['legacy_job_sha256'] and sha256(Path(reused['path']))==reused['sha256'])
+    require('retired_GPU_budget_included',job['gpu_elapsed_seconds']>=repair['retired_GPU_seconds']>0)
     summaries={};full={};failures={};raw_hashes={}
     cases=[json.loads(line) for line in (ROOT/'eval/base.jsonl').read_text().splitlines()]
     counts={};selected=[]
@@ -45,6 +48,9 @@ def main():
         require(arm+'_checkpoint_binding',sha256(Path(detail['checkpoint']))==detail['sha256']==record['checkpoint_sha256'] and record['binding']=={**result['binding'],'arm':arm,'checkpoint_sha256':detail['sha256']})
         require(arm+'_RNG_isolation',record['evaluation_RNG_isolated'])
         body=record['body'];generation=record['generation']
+        if arm=='web':
+            original=read_json(Path(reused['path']))
+            require('completed_Web_evaluation_reused_exactly',record['reused_from']==reused and body==original['body'] and generation==original['generation'])
         require_alignment(body,generation,parent_body,parent_generation)
         require(arm+'_exact_dev_and400_alignment',True)
         require(arm+'_full_body_accounting',len(body['rows'])==body['documents']==89416 and body['body_bytes']==164344743 and body['body_tokens']==42003934 and all(r['body_tokens']==r['scored_body_tokens'] for r in body['rows']))
