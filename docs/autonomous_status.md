@@ -6,6 +6,8 @@
 
 評価jobは2026-10-04 11:56Z開始、LinuxPID442 / boot0f175ee3-e772-41f7-8f7a-76387be1f2e4 / start_ticks14858、hidden WindowsPID31900。実process生存と全文dev進捗を確認済み。[起動記録](../reports/phase6/base_10b_comparison_launch.json)。Linux `reports/phase6/base-10b-comparison-20261004/{job.json,pipeline.log,full-dev.json,generation.json,result.json}` に永続保存する。中断復旧は実identityとGPU lockを確認したうえで `bash scripts/compare_base_10b.sh`。完了stageを再利用し、旧学習launcherは起動しない。
 
+完了CPU reviewer `scripts/review_base_10b_comparison.py` を実装し、実際に稼働中のjobを完了扱いしないguardとCLI helpを確認した。GPU評価・固定80および自然停止の内容確認が終わった後に適用する。生成IDから全raw flags、全文BPB、元安全gate、旧reference hash、評価隔離、実process終了を確認し、失敗gateもそのまま報告する。
+
 [現在の計画](39_learning_scale_and_generation_plan.md)、[10B準備結果](40_base_10b_preparation.md)、[原ロードマップと品質条件](15_project_roadmap.md)、[引き継ぎ](windows_handoff.md)。過去の実行中メモ・停止境界・7.5B案は[2026-10-04までの履歴](autonomous_history_20261004.md)へ移した。旧メモのPIDやコマンドを現在の起動指示にしない。
 
 ## 実際に完了したこと
