@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Added 2026-10-04 to validate the existing historical frozen config; not its original schema.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "main_plan",
+    "main_plan_sha256",
+    "GPU_budget_seconds",
+    "authorization",
+    "reason",
+    "outputs",
+    "stop"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "main_plan": {
+      "const": "configs/phase6/eos_complete_100m.json"
+    },
+    "main_plan_sha256": {
+      "const": "56e0ec36d507bc6a2f153e5c65495ca00f67c468046b331c088497f85c059c29"
+    },
+    "GPU_budget_seconds": {
+      "const": 1200
+    },
+    "authorization": {
+      "const": "Same requested100M comparison; complete missing evaluation with preserved checkpoints,0 extra optimizer updates."
+    },
+    "reason": {
+      "const": "Evaluation allocations again reach24GiB in a fresh process; unused-cache cleanup is needed. Preserve original2700second budget and actual overrun; quality/scientific gates unchanged."
+    },
+    "outputs": {
+      "const": "Short full89416-dev/400-generation, equal100M Web full BPB only, original screens/checkpoints/gate reused."
+    },
+    "stop": {
+      "const": "Report/commit and stop before5B/Chat/sweeps."
+    }
+  }
+}

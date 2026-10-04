@@ -1,6 +1,10 @@
 # Codex継続作業の現在地
 
-最終更新: 2026-10-04 20:49 JST。**step2の直接10B学習とCPU保存確認19項目を完了した。総10,000,007,168 tokens / update305176、学習プロセスは終了済み。** 今回は報告・local commitで停止し、step3の全文/生成品質評価は開始しない。[本学習の結果と速度](41_base_10b_training.md)。
+最終更新: 2026-10-04。**ユーザーがstep3「10bの品質評価」を再開した。** step2の総10,000,007,168 tokens / update305176とCPU保存確認19項目は完了、学習プロセスは終了済み。今回の範囲は同条件の全文dev89,416文書・固定400生成、旧5B/最良Web5.1B比較、内容確認、report/local commitと停止。[本学習の結果と速度](41_base_10b_training.md)。
+
+専用 `scripts/compare_base_10b.py` / `.sh` と凍結 `configs/phase6/base_10b_comparison.json` を用意し、関連23 CPU tests成功。初回は過去EOS設定5件のschema欠落で既存契約tests2件が失敗したため、元configを変更せず厳密const schemaを追加して修復した。[修復記録](../reports/phase6/base_10b_comparison_schema_repair.json)。GPU空きと既存job終了を確認済み。評価GPU上限1,800秒。旧結果・学習source/checkpointsを保持し、追加学習や後続実験は開始しない。
+
+評価jobは2026-10-04 11:56Z開始、LinuxPID442 / boot0f175ee3-e772-41f7-8f7a-76387be1f2e4 / start_ticks14858、hidden WindowsPID31900。実process生存と全文dev進捗を確認済み。[起動記録](../reports/phase6/base_10b_comparison_launch.json)。Linux `reports/phase6/base-10b-comparison-20261004/{job.json,pipeline.log,full-dev.json,generation.json,result.json}` に永続保存する。中断復旧は実identityとGPU lockを確認したうえで `bash scripts/compare_base_10b.sh`。完了stageを再利用し、旧学習launcherは起動しない。
 
 [現在の計画](39_learning_scale_and_generation_plan.md)、[10B準備結果](40_base_10b_preparation.md)、[原ロードマップと品質条件](15_project_roadmap.md)、[引き継ぎ](windows_handoff.md)。過去の実行中メモ・停止境界・7.5B案は[2026-10-04までの履歴](autonomous_history_20261004.md)へ移した。旧メモのPIDやコマンドを現在の起動指示にしない。
 
@@ -50,11 +54,11 @@
 
 ## 次に行うことと終了点
 
-直前チャットの番号に揃える。ユーザーは今回step2だけを指定したため、10B学習・保存state確認・報告とcommitで止め、品質評価や後続実験は始めない。
+直前チャットの番号に揃える。前回step2の学習・保存確認は完了し、commit1344b4eで停止した。今回ユーザーはstep3の品質評価を再開した。評価・内容確認・報告とcommitで停止する。
 
 1. **実行設定準備: 完了。** 専用設定と保存再開確認を再実行する必要はない。
 2. **本学習と保存確認: 完了。** 保存stable4.75Bから9.5B stable＋15,259-update decayで総10,000,007,168/update305176へ到達。追加科学5,249,990,656 tokens、7.5B中間実験・追加収集なし。専用CPU reviewer19項目成功。
-3. **同じ評価で比較: 未実行・今回のstep2指定外。** 新10Bだけ全文dev/400を測り、5Bと最良Web5.1Bの保存結果を再利用する。10B専用比較入口は未整備。学習完了専用CPU reviewerは実際の終端保存stateと全科学metricsへ適用済み。準備reviewerは本学習完了や品質を判定するものではない。
+3. **同じ評価で比較: 今回の実行対象。** 新10Bだけ全文dev/400を測り、5Bと最良Web5.1Bの保存結果を再利用する。専用比較入口と凍結設定を準備済み。学習完了専用CPU reviewerは実際の終端保存stateと全科学metricsへ適用済み。準備reviewerは本学習完了や品質を判定するものではない。
 4. **報告・local commit・停止。** 原raw品質条件を保持し、改善と残る課題を明示する。EOS仕上げ/UTF8制約は別の後続候補で、現在未起動。
 
 以下は中断復旧用のWSL repo内コマンド履歴。今回のrunは完了しているため再起動しない:

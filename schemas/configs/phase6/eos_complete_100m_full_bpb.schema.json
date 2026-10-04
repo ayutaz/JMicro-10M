@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Added 2026-10-04 to validate the existing historical frozen config; not its original schema.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "main_plan",
+    "main_plan_sha256",
+    "reason",
+    "gate",
+    "report_scope"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "main_plan": {
+      "const": "configs/phase6/eos_complete_100m.json"
+    },
+    "main_plan_sha256": {
+      "const": "56e0ec36d507bc6a2f153e5c65495ca00f67c468046b331c088497f85c059c29"
+    },
+    "reason": {
+      "const": "Short branch passes fixed EOS+8 screen; paired full BPB is required for the planned1percent adoption check. Web Unicode failure still blocks5B. Measure Web full BPB only, preserve original main plan/job/results and all quality gates."
+    },
+    "gate": {
+      "const": "Main process actually exited and complete; short full evaluation available; same original cumulative2700-second GPU budget; no repeated training/generation."
+    },
+    "report_scope": {
+      "const": "Full dev89416/164344743bytes, same evaluator/dtype/backend as short candidate;0 optimizer updates and0 generated outputs."
+    }
+  }
+}

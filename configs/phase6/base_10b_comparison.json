@@ -1,0 +1,88 @@
+{
+  "dev_shards": "/home/aihub_ubuntu/jmicro-data/phase6/expanded-v2/shards",
+  "dev_manifest_sha256": "75c7420a1434cf8a97797218b163c694a13ed838f389f09327dcc86f7164c12c",
+  "tokenizer": "artifacts/phase2/4096/tokenizer.model",
+  "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+  "suite_sha256": "93cd3a19f3e62c8d30d1660b431a9525823f58b9ceb1bf90c6ecbac2c19292eb",
+  "split": "dev",
+  "documents": 89416,
+  "body_bytes": 164344743,
+  "body_tokens": 42003934,
+  "dtype": "bf16",
+  "backend": "math",
+  "context": 1024,
+  "stride": 512,
+  "evaluation_batch": 16,
+  "generation_cases": 80,
+  "generation_outputs": 400,
+  "max_new_tokens": 64,
+  "sampling_seeds": [
+    42,
+    43,
+    44
+  ],
+  "temperature": 0.8,
+  "top_p": 0.9,
+  "memory_fraction": 0.94,
+  "GPU_budget_seconds": 1800,
+  "version": 1,
+  "scope": "User requested step3 final10B quality evaluation only; no training/test/Chat",
+  "output": "reports/phase6/base-10b-comparison-20261004",
+  "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+  "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+  "checkpoint_tokens": 10000007168,
+  "checkpoint_update": 305176,
+  "training_review": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_10b_training_review.json",
+    "sha256": "0fae5ed3d34cfa167f974bdd73a0ddde740d569688ee898f1abf33c28493213b"
+  },
+  "references": {
+    "base2B_body": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-2b-10bdata-20261004/evaluation-2B/full-dev.json",
+      "sha256": "5557e85eff99d694576c2c02fb9b66a7e99757e10f966f5b1bcdd1e4a8ef6407"
+    },
+    "base2B_generation": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-2b-10bdata-20261004/evaluation-2B/generation.json",
+      "sha256": "bc2054de8e7f6ea2ce258a853eb09a424236ee6f5c7e0f52636bdd0422430c2c"
+    },
+    "base5B_body": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-5b-comparison-20261004/full-dev.json",
+      "sha256": "1dda7d1b1cc8dacc1f4ef0f6643912c757a48d1dc095f2555ce6ba39d69b3a4c"
+    },
+    "base5B_generation": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-5b-comparison-20261004/generation.json",
+      "sha256": "2c037be166253839116a784764f079bb3fa8c1baf0220403ee4ef73530b8cbf7"
+    },
+    "web5_1B_full": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-5b-finish-100m-20261004/web-full-evaluation.json",
+      "sha256": "daff1e28207f2914aa602fd994fcd94975c4d5f6d586bf5f0e1565ca20aa41d6"
+    },
+    "short5_1B_reference_only": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-5b-finish-100m-20261004/short20-full-evaluation.json",
+      "sha256": "aeaa6742dfe61d7b77978c9740396c6bbf89632a5cb7944957234053d8961553"
+    }
+  },
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "source_sha256": {
+    "scripts/compare_base_10b.py": "bacea1be511e08f4d005084ad309ff840bf0b32de1650c349392aaafbd218291",
+    "scripts/compare_base_10b.sh": "e14092e6533d36928e83245d02b902dd7637f1196fe174b5f81a383e7cf95af3",
+    "scripts/compare_base_5b.py": "1cf535ca7e3de85cdf5d5cf3987148b68f24602e0b10bc26ce97bca6296b14c8",
+    "src/jmicro/readiness.py": "69a92251f4a697b551b9c3cfef9e2b992e776e2047c0331f7c43ba2331d172ea",
+    "src/jmicro/evaluation_memory.py": "ba22fb7ca7ddb6633a308c2b1a32a59147ecb38e568d9f838ab032300147c6b4",
+    "scripts/run_eos_short_pilot.py": "7a381414bdea5b24bbbbf7532f04db743cff948fa47f60e95f65019af2d3ec3d",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f"
+  },
+  "growth_rules": {
+    "maximum_BPB_regression": 0.001,
+    "fixed_repetition_increase_must_be_less_than": 8,
+    "raw_unicode_empty_role_must_be_zero": true,
+    "BPB_must_improve_best_web": true
+  },
+  "quality_criteria_unchanged": true,
+  "created_at": "2026-10-04T11:55:59.877723Z"
+}

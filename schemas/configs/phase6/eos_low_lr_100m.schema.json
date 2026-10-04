@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Added 2026-10-04 to validate the existing historical frozen config; not its original schema.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "authorization",
+    "output",
+    "parent",
+    "web_shards",
+    "web_manifest_sha256",
+    "dev_shards",
+    "tokenizer",
+    "tokenizer_sha256",
+    "suite_sha256",
+    "short_pool",
+    "short_pool_minimum_tokens",
+    "short_selection",
+    "prepare_budget_seconds",
+    "gpu_budget_seconds",
+    "updates_per_arm",
+    "stable_updates",
+    "decay_updates",
+    "short_updates",
+    "tokens_per_update",
+    "tokens_per_arm",
+    "scientific_total_tokens",
+    "short_fraction_actual",
+    "short_input_tokens",
+    "initial_state",
+    "sampler",
+    "resume_gate",
+    "screening",
+    "improvement_gate",
+    "conditional_full_evaluation",
+    "completion",
+    "avoid_redundant_validation",
+    "prepare_workers",
+    "base2B_full_bpb",
+    "proposal_sha256",
+    "preserved_preparation",
+    "peak_lr",
+    "previous_run",
+    "diagnostic_updates",
+    "auxiliary_sha256",
+    "short_manifest_sha256",
+    "diagnostic_checkpoint_sha256"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "authorization": {
+      "const": "User requested planning and execution of steps1,2,3: log diagnosis, low-LR paired100M, eligible full evaluation/report/commit; stop before5B/Chat."
+    },
+    "output": {
+      "const": "reports/phase6/eos-low-lr-100m-20261004"
+    },
+    "parent": {
+      "const": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-2b-10bdata-20261004/decay-2B/checkpoint-00061036.pt",
+        "sha256": "165f9c177961a82b3da1c5ab1d21a32078b35b02e594fb2eb09edd7dbd4ea183",
+        "update": 61036,
+        "tokens_seen": 2000027648
+      }
+    },
+    "web_shards": {
+      "const": "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2/export-001/shards"
+    },
+    "web_manifest_sha256": {
+      "const": "2edfd35bf077cd1aa583713c01341c0db52f39adc5701f30ede0aacae840b2de"
+    },
+    "dev_shards": {
+      "const": "/home/aihub_ubuntu/jmicro-data/phase6/expanded-v2/shards"
+    },
+    "tokenizer": {
+      "const": "artifacts/phase2/4096/tokenizer.model"
+    },
+    "tokenizer_sha256": {
+      "const": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+    },
+    "suite_sha256": {
+      "const": "93cd3a19f3e62c8d30d1660b431a9525823f58b9ceb1bf90c6ecbac2c19292eb"
+    },
+    "short_pool": {
+      "const": "/home/aihub_ubuntu/jmicro-data/phase6/eos-complete-100m-20261004-r2"
+    },
+    "short_pool_minimum_tokens": {
+      "const": 21000000
+    },
+    "short_selection": {
+      "const": {
+        "source": "Accepted train parent documents only",
+        "body_tokens_min": 32,
+        "body_tokens_max": 64,
+        "definition": "Complete Japanese sentence/paragraph units define new records with EOS; original article EOS position is not retained",
+        "arbitrary_truncation_EOS": false,
+        "balanced_quotes_brackets": true,
+        "exact_pool_dedup": true,
+        "exclude_auxiliary_dev_text": true,
+        "reject_fragment_URL_list_ellipsis": true,
+        "conservative_predicate_end": "Reject nominal fragments, heading lines of any length and table markers; all internal nonempty lines must have complete predicate endings"
+      }
+    },
+    "prepare_budget_seconds": {
+      "const": 600
+    },
+    "gpu_budget_seconds": {
+      "const": 2700
+    },
+    "updates_per_arm": {
+      "const": 3052
+    },
+    "stable_updates": {
+      "const": 2900
+    },
+    "decay_updates": {
+      "const": 152
+    },
+    "short_updates": {
+      "const": 610
+    },
+    "tokens_per_update": {
+      "const": 32768
+    },
+    "tokens_per_arm": {
+      "const": 100007936
+    },
+    "scientific_total_tokens": {
+      "const": 200015872
+    },
+    "short_fraction_actual": {
+      "const": 0.1998689384010485
+    },
+    "short_input_tokens": {
+      "const": 19988480
+    },
+    "initial_state": {
+      "const": "Same original completed2B model/Adam/RNG/Web cursor; explicit peakLR0.0002 fork,2900 stable+152 decay; all other conditions match the completed peakLR0.002 pair."
+    },
+    "sampler": {
+      "const": "Deterministic evenly distributed whole short batches; unchanged BlockSampler for each source; separate web/short cursors, route position and EOS/input counters saved at completed updates"
+    },
+    "resume_gate": {
+      "const": "CUDA continuous4 versus2+save+resume2; two short/two web updates including stable-to-decay schedule boundary, all optimizer/scheduler/RNG/sampler/history exact"
+    },
+    "screening": {
+      "const": {
+        "dev_documents": 256,
+        "generation_cases": 80,
+        "max_new_tokens": 64,
+        "decoding": "Original suppressed greedy, no penalty/forcedEOS/bias",
+        "supplementary_dev_cases": 80
+      }
+    },
+    "improvement_gate": {
+      "const": {
+        "EOS_more_than_control_at_least": 8,
+        "repetition_no_worse_than_control": true,
+        "empty_role_unicode_failures": 0,
+        "maximum_relative_BPB_degradation": 0.01
+      }
+    },
+    "conditional_full_evaluation": {
+      "const": "Web full dev/400 if screen-safe; short full dev/400 only if original mixture gate passes. If short passes but Web screen is unsafe, Web full body BPB reference only. Original quality gates maintained."
+    },
+    "completion": {
+      "const": "Three saved high-LR checkpoint dev256 probes, two low-LR100M arms, fixed/aux screens, eligible full evaluation and content review, report/commit; stop before5B/Chat/sweeps."
+    },
+    "avoid_redundant_validation": {
+      "const": "Reuse accepted builder/loader policy and original corpus manifests. New short stream checksum and actual CUDA save/resume are required; no repeated full corpus/index audit."
+    },
+    "prepare_workers": {
+      "const": 8
+    },
+    "base2B_full_bpb": {
+      "const": 0.9828815577636254
+    },
+    "proposal_sha256": {
+      "const": "3ff1cdd39ef74cc7c68b12811d413c03740f9604a8f5efcc6fedbd55b854f86a"
+    },
+    "preserved_preparation": {
+      "const": "Initial and r1 CPU-only pools and evidence retained. r1 evenly-spaced sample exposed long heading/table markers missed by first refinement. Final conservative filter revised before training; zero GPU training/inference in either discarded preparation."
+    },
+    "peak_lr": {
+      "const": 0.0002
+    },
+    "previous_run": {
+      "const": "reports/phase6/eos-complete-100m-20261004-r2"
+    },
+    "diagnostic_updates": {
+      "const": [
+        200,
+        1600,
+        2800
+      ]
+    },
+    "auxiliary_sha256": {
+      "const": "ce8b0652066b89681258d7c447f101bce3b718728005ef868f2040ce0981f987"
+    },
+    "short_manifest_sha256": {
+      "const": "8bc227ec9616cd7e6702645595f535a38c8a0f49d9b8b988bd918a0becf57ce7"
+    },
+    "diagnostic_checkpoint_sha256": {
+      "const": {
+        "2800": "1dccb72a7f934538eeb83733cc193ec47af39cc05f3b7ae483d25887b9da28eb",
+        "1600": "170c03d2a0a2c22a13e0ed7541df2b4518afddef83c1e34557b241c990a4c6e7",
+        "200": "1e2ee304bb367e7dab8e10e2ff724f1ef33cf7fe77eeeec94e4b2b792513aee1"
+      }
+    }
+  }
+}
