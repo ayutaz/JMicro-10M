@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-04 EOS調査を完了：[実測と改善案](../reports/phase6/eos_2b_review.json)。真の末尾EOS argmax35/256→46/256と改善するが、同じ20ケースのgreedyは512 tokensでも停止0/20/反復20/20。penalty1.1は停止5/20（435〜491 tokens）/反復20/20で解決には足りない。固定64-token基準は維持。次の比較案は短い完結train文書20%混合と既存Webの25Mずつ2枝、改善確認後に手元12.23Bを使う5B学習へ増量。学習比較/5Bは未開始。全件監査を繰り返さず、[実状態](autonomous_status.md)を参照する。以下の停止境界/実行中記録は履歴。
+
 2026-10-04最新: [実train12.23Bデータ整備とユーザー指定2B学習・既存評価を完了](../reports/phase6/base_2b_10b_data_review.json)。同じ約10Mモデルで、減衰込み総2Bを実行。既存dev BPB1.022491→0.982882、greedy反復66/80→60/80、EOS0/80。品質目標は未達のままreport/commitして停止する。5B/10B/Chat・decoder比較は未起動。以下の学習中・旧停止境界の説明は履歴。[実状態](autonomous_status.md)。
 
 2026-10-04: [ローカルデータ整備](32_local_10b_corpus.md)は実train12.23B tokensで完了。ユーザー指示で過剰な独立再照合を省き、構築時の全件検査・独立raw再構築・実train loader合格を採用し、独立全件audit未完了を明記した。さらにユーザーが2B学習を指定し、同じ約10Mモデルを新データで別runとしてGPU学習中。減衰込み総2B、既存protected dev/生成比較、report/commitで停止する。5B/10B/Chat・生成方法の対照比較は未起動。[現在の実状態](autonomous_status.md)。

@@ -1,5 +1,7 @@
 # 別PCで続きを進める: Windows / WSL / RTX 4090
 
+2026-10-04 EOS調査も完了：[結果と次の比較案](../reports/phase6/eos_2b_review.json)。Linux `reports/phase6/eos-diagnosis-2b-20261004-r1/`のjob.jsonはcomplete、run.log/result/末尾probe/40 continuations/testsを保存。298.556秒、追加学習0、GPU計算job終了。EOS教師・停止controllerの不具合は見つからず、生成中にEOSより続きを優先する。原greedyは512でも0/20停止/20/20反復、penalty1.1も5/20の遅い停止で反復が残る。完了run/全文dev再評価を再起動しない。次の短い完結文を混ぜた対照学習案は未実装/未起動で、元2B checkpointを普通にresumeして実行する指示ではない。[最新状態](autonomous_status.md)。以下は履歴。
+
 2026-10-04最新: [ローカル12.23Bデータと新データ2B学習・評価を完了して停止](../reports/phase6/base_2b_10b_data_review.json)。現在は再開・再評価しない。最終重みはLinux runのreports/phase6/base-2b-10bdata-20261004/decay-2B/checkpoint-00061036.pt、SHA165f9c177961a82b3da1c5ab1d21a32078b35b02e594fb2eb09edd7dbd4ea183。supervisor.jsonはevaluate/completeで、実project process/GPU計算jobは終了している。総学習2,000,027,648 tokens、同じdev BPB0.982882、greedy反復60/80/EOS0/80。旧データ・旧重み・全checkpoint・新shardsは保持する。以下の実行中の説明と再開commandは中断時の履歴で、完了runを繰り返す指示ではない。
 
 現在は[整備済みの実train12.23Bデータ](32_local_10b_corpus.md)で、ユーザー指定の2B学習を実行中。構築・全export往復確認済みで、ユーザーが過剰な独立再照合の省略を指定したため、独立監査は29/32near bandで停止（全raw再構築済み）。実train loaderは49.147秒で合格。[整備完了記録](../reports/phase6/corpus_10b_ready_review.json)は全件audit未完了を明記する。

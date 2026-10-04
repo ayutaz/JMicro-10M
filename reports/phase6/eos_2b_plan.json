@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "authorization": "User 2026-10-04: investigate EOS failure first, before increasing training",
+  "checkpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-2b-10bdata-20261004/decay-2B/checkpoint-00061036.pt",
+    "sha256": "165f9c177961a82b3da1c5ab1d21a32078b35b02e594fb2eb09edd7dbd4ea183",
+    "update": 61036,
+    "tokens_seen": 2000027648
+  },
+  "destination": "reports/phase6/eos-diagnosis-2b-20261004-r1",
+  "suite_sha256": "93cd3a19f3e62c8d30d1660b431a9525823f58b9ceb1bf90c6ecbac2c19292eb",
+  "selected_ids": [
+    "base-001",
+    "base-002",
+    "base-011",
+    "base-012",
+    "base-021",
+    "base-022",
+    "base-031",
+    "base-032",
+    "base-041",
+    "base-042",
+    "base-051",
+    "base-052",
+    "base-061",
+    "base-062",
+    "base-071",
+    "base-072",
+    "base-081",
+    "base-082",
+    "base-091",
+    "base-092"
+  ],
+  "selection": "First two dev cases per category, fixed before inference",
+  "teacher_ending_documents": 256,
+  "short_prefix_cases": 80,
+  "precision_ending_documents": 8,
+  "penalties": [
+    1.0,
+    1.1
+  ],
+  "penalty_scope": "Sign-aware penalty on unique previously generated body IDs >=8, EOS exempt; no prompt penalty",
+  "max_new_tokens": 512,
+  "inference_budget_seconds": 600,
+  "comparison": "Same2B weights: raw greedy versus penalty1.1 on same20 dev cases. Raw first64 must exactly reproduce saved fixed generation. Same first256 heldout true endings as old EOS study.",
+  "completion": "Report EOS/length/repetition/UTF8, ending rank/probability, matched old-to-new ending metrics. No test use or training. Keep fixed64 benchmark unchanged.",
+  "decision": "A small decoder result is diagnostic, not a new accepted model or proof of training cause. Additional training requires a separate bounded plan; stop after this report.",
+  "full_dataset_validation": "Not repeated; reuse recorded builder/loader and user-reduced-validation decision.",
+  "setup_correction": "Initial setup stopped before model loading: raw file hash incorrectly compared to existing CRLF-normalized implementation hash. Corrected to unchanged training.implementation_hashes(); failed attempt preserved."
+}

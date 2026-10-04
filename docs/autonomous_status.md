@@ -1,6 +1,23 @@
 # Codex継続作業の現在地
 
-最終更新: 2026-10-03（日本時間）。実測の正本はreportとWSLのrun/data、milestoneは[roadmap](15_project_roadmap.md)。
+## 完了: 2BモデルのEOS原因調査（2026-10-04）
+
+ユーザーの「まずEOS原因調査」により[限定計画](../reports/phase6/eos_2b_plan.json)を実施し、[結果と次の比較案](../reports/phase6/eos_2b_review.json)を保存。WSL/4090で298.556秒、学習更新0。旧調査と同じdev末尾256件/固定prefix80件、categoryごと2件の20prefixでgreedyと反復penalty1.1を512 tokensまで比較した。原greedyの最初64 IDsは保存済み評価と20/20件で完全一致。EOS3は抑制対象外、streamはBOS/body/EOSで、loss maskはBOSのみ。EOSが選ばれた5件は実際に停止し、停止controllerの不具合は見つからなかった。
+
+| 同じ20 devケース | 64 tokens以内EOS | 512 tokens以内EOS | 最初64 tokensの反復 | 全出力の反復 |
+|---|---:|---:|---:|---:|
+| 原greedy | 0/20 | 0/20 | 17/20 | 20/20 |
+| 反復penalty1.1 | 0/20 | 5/20 | 6/20 | 20/20 |
+
+penaltyによる停止は435/452/478/485/491 tokensで、長い反復の後だった。EOSを強制/加点していないが、短く正常に終わる改善には足りないため、このdecoderを採用して解決済みとはしない。両条件Unicode/role失敗0。64-token固定評価は変更しない。原greedyは全10,240生成位置でEOSを選ばず、反復を続けた。制限を512へ延長するだけでは停止しない。
+
+同じ真の末尾256件のEOS argmaxは旧35→新46件、平均EOS確率18.11%→21.52%。210/256件は実際の末尾でも続きを優先する。既存全文devのEOS NLLを再利用すると平均2.536982→2.302868、幾何平均確率7.91%→10.00%と改善している。8件だけのFP32/BF16末尾比較はargmax差0（全precision影響を排除する結果ではない）。EOS未学習/教師漏れの証拠はなく、直接観測された機構は生成中にEOSの順位が続きのtokenより低く、反復のfeedbackを続けること。新trainはmanifest上平均body470.41 tokens/EOS stream比率0.21168%。Web文書の終わりと短文完結の分布差は次の検証仮説で、単一の学習原因やデータ量だけの因果効果は未確定。
+
+次の案は同じ2B checkpointから別experimentとして25Mずつの対照2枝（計50M、decay含む）：既存Webのみと、train内の元から完結した32〜128-body-token文書を20% input tokens混ぜた条件。恣意的な切断位置にEOSを追加せず、dev/testは学習に使わない。固定80 greedy/256 devの差を測り、有望な候補だけ既存全文dev/400生成を評価する。これは未起動の案で、実fork/保存再開・短文pool・丸めた予算を実装/凍結してから実行する。元の品質基準は維持。EOS改善確認後の増量案は5B消費tokensで、手元12.23B trainを使うため追加取得は不要。
+
+Linux raw runは`reports/phase6/eos-diagnosis-2b-20261004-r1/`、jobはcomplete（PID613/boot0a914750-3adc-463c-8eb2-0f6e7d2cc45d/start_ticks5457）。process/GPU計算jobは終了。model tensors不変/checkpoint stat不変を確認し、元の2B checkpointを保持。decoderに関係する3 testsはuv経由で成功。初回setupは既存のCRLF正規化hashをraw hashとして比較した誤りでGPU開始前に終了し、既存implementation_hashesに合わせて修正。失敗jobとlogは元の`eos-diagnosis-2b-20261004/`に保持し、同じ失敗を再試行していない。新データ全件監査・旧GPU調査・全文dev再採点は実行していない。以下の停止境界と実行中説明は履歴。
+
+最終更新: 2026-10-04（日本時間）。実測の正本はreportとWSLのrun/data、milestoneは[roadmap](15_project_roadmap.md)。
 
 ## 完了・停止: ローカル12.23Bデータと新データでの2B学習
 
