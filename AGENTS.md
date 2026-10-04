@@ -4,6 +4,8 @@ Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/window
 
 ## Current state and scope
 
+- Current stop boundary (2026-10-05 JST): plan49 stages1–3 are complete through the prespecified failure branch: normalLR10%100M, matched lowerLRWeb/10%100M, all240 content reviews, actual state/metrics/diagnostics checks, judgment and proposal in `docs/51_story10_judgment_and_next_proposal.md`. Both candidates fail the unchanged coherence gain8 gate (4/6), so conditional full/long and500M/pool expansion were not entered. Scientific300,023,808/verification524,288 tokens separate. Jobs139467/140216 exited; UI restored to original final10B. Save final report/local commit, then stop.20%lowerLR/500M/1B/20B/Chat/test/publication remain future proposals. Base/Chat quality targets remain unmet. Following authorization/progress bullets preserve history, not a new launch instruction.
+
 - Latest user authorization (2026-10-05 JST): execute stages1–3 of `docs/49_next_mixture_and_training_budget_plan.md`, judge results and propose the next step. This resumes work beyond the earlier completed stop boundary. Execute the 10%100M fork with saved matched controls; if all adoption gates pass, prepare the required pool and run matched500M arms; otherwise run one bounded matched lower-LR comparison as planned. Then report/judge/propose, locally commit, restore the original UI and stop. No1B/20B/50B/Chat/test/publication. Record actual work in `docs/50_story10_and_budget_execution.md`. Prior completed jobs must not be restarted.
 
 - Current stop boundary (2026-10-05 JST): requested stages1–3 are complete, including bounded data/EOS inspection,25,000,067-token candidate pool, three matched100,007,936-token arms from final10B,240 content reviews and prespecified eligible full/long evaluation. Primary35/full43 evidence checks pass. New-story EOS/repetition improved but parent BPB regression+0.001746 exceeds+0.001; candidate is not adopted and Base/Chat quality targets remain unmet. Save final report/local commit, then stop. No500M/1B/20B/50B, Chat, protected test or publication. Scientific/evaluation jobs exited; UI restored to original final10B. See `docs/48_complete_text_10b_comparison.md` and completion record.
@@ -18,7 +20,7 @@ Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/window
 
 ## Project rules
 
-Latest executable scope is the new plan49 stages1–3 authorization above; plan47's prior stages1–3 are complete in report48. Conditional500M work is now authorized under plan49's unchanged safety gates, not automatic extension of the failed20% arm. Stop after the requested experiments, judgment/proposal, local commit and original UI restoration.1B/20B/Chat remain proposed only.
+Latest plan49 stages1–3 scope has completed its prespecified lowerLR failure branch in reports50/51.500M entry was not met; do not launch a new experiment from an earlier conditional authorization or restart completed jobs. Stop after report/judgment/proposal, local commit and original UI restoration. The next20%lowerLR100M and subsequent500M/1B/20B/Chat remain proposed only until a new user continuation.
 
 The user has authorized autonomous implementation, repair, local GPU work, and required WSL preparation within the requested scope. Continue routine decisions and authorized milestone transitions without renewed permission. Authorization cannot change execution sandbox or managed policy.
 

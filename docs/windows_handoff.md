@@ -4,6 +4,8 @@
 
 最新の移行対象: Linux `reports/phase6/complete-text-10b-100m-20261004/`（三枝checkpoint/metrics/raw240内容採点/source、旧失敗`conditional-full/`、完了`conditional-full-r1/`全文/400/長文rawを含む）と`~/jmicro-data/phase6/simple-stories-ja-20261004/`（固定source metadata/二つのtrain parquet/25,000,067-token shards）。Windowsの最終review/result/completionと最新local commitも移す。Linux17951/19791/37818は終了、再実行しない。新物語は親BPB悪化上限を超え未採用、Base/Chat品質目標は未達。UIは元final10B SHA410f975d…へ復帰、復帰時Linux49746 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks1043870、HTTP応答確認済み。現在のUI identityは`reports/local/webui/server.json`とactual processを照合する。完了比較の再開commandを追加学習に流用しない。
 
+さらに新しい計画49の実行は[50](50_story10_and_budget_execution.md)/[判断51](51_story10_judgment_and_next_proposal.md)。Linux`reports/phase6/story10-10b-100m-20261005/`と`story10-low-lr-10b-100m-20261005/`のcheckpoints/metrics/source/raw generation/全240 annotations/tests/job/result/reviewも引き継ぐ。両10%枝は一貫性差4/6で未採用、全文と500Mは条件により未実施、科学139467/140216は終了。完了runnerを再起動しない。最新復帰時UI140800 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks1468219、元final10BでHTTP応答。次案20%低LR100Mは未実行で、今回はreport/local commitで停止する。
+
 追加した日本語Base評価v2.1は[実施計画](45_japanese_base_evaluation_v2.md)/[実測結果](46_japanese_base_evaluation_v2_results.md)と`reports/phase6/japanese_base_v2_review.json`を参照する。移行時はLinux `reports/phase6/japanese-base-v2-20261004/`のraw/source/cpu、`japanese-base-v2-20261004-r1/pilot`の修正版意味診断、`~/jmicro-data/evaluation-v2`の公開評価cache/manifestも保存する。完了runのGPU再実行は不要。UIは評価後に復帰済み。新規評価の一括入口は`scripts/run_japanese_evaluation.ps1`で、UIを停止・finally復帰する。
 
 ## 引継ぎ先と現在地

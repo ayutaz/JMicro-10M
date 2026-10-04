@@ -1,5 +1,9 @@
 # Codex継続作業の現在地
 
+2026-10-05 JST・計画49段階1〜3完了: 通常LR物語10%100M→事前失敗時分岐の低LR Web/物語10%各100M→[判断と次案51](51_story10_judgment_and_next_proposal.md)を完了した。[実行50](50_story10_and_budget_execution.md)。通常LR10%はEOS17/反復40/一貫性4、低LR Webは0/59/0、低LR10%は16/36/6（各固定80）。両候補は事前一貫性差8件未達で未採用、全文/長文・500M/pool拡張の開始条件を満たさず未実施。常識5択の低LR配合対照差+3.038pp・95%区間+0.894〜+5.004は診断上の改善で、基本意味の対照差は負、幅広い理解能力・Base/Chat品質達成とはしない。科学300,023,808/検証524,288別会計、GPU775.522秒、CPU14/16 tests、実CUDA保存再開各25項目成功、追加全240出力内容診断済み。[要求別確認](../reports/phase6/story10_execution_completion.json)。科学139467/140216は終了。UIは元final10BでHTTP応答/busy=false、復帰時Linux140800 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks1468219。次案は20%・peak0.0001一条件100Mを保存済み同LR Web対照と比較する提案で、今回は開始しない。report/local commitで停止。500M/1B/20B/50B/Chat/test/push未実施、独立人手/全12.23B監査/広域混入確認は未実施のまま。
+
+以下は今回の準備・起動履歴。最新状態と停止境界は上記を正とする。
+
 低LRの同量比較を永続起動: 準備commitd3b762a、16関連CPU tests、peak0.0001/10%/Web対照各100Mの専用config/schemaを凍結。hidden Windows28816、actual Linux140216 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks1416619、開始2026-10-04 16:22:41Z。run`reports/phase6/story10-low-lr-10b-100m-20261005`とWindows`screen.*.log`へ永続保存。現在Web対照学習中、二枝評価と160内容診断→事前条件付き全文→段階3判断/次案が残る。UIはfinally復帰。科学140216のactual processを確認して同じjobを追跡、重複起動しない。
 
 計画49段階1を完了し、段階2の低LR分岐へ: 物語10%/100MはGPU264.370秒、EOS17・反復40・raw0（固定80）。全80をCodex採点し、一貫性2点4/80で事前の対照差8件を満たさず未採用。元mixture条件は全通過だが内容条件を緩めない。全文/長文は未実施、500Mへ進めず、同じ親・10%・同量でpeak0.0001のWeb/物語各100M比較を一つ凍結した。[記録50](50_story10_and_budget_execution.md)。16関連CPU tests成功。先のLinux139467は終了、UIは元final10Bで復帰を確認。次は低LR二枝の科学200,015,872（検証262,144別）→160内容診断→条件付き全文→段階3判断/提案/report/local commit・UI復帰で停止。1B/20B/Chat/test/pushは開始しない。

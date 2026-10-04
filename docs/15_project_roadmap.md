@@ -16,6 +16,8 @@
 
 ## 現在地と計画の使い方
 
+最新追加比較（2026-10-05 JST）: [計画49の実行50](50_story10_and_budget_execution.md)を未達時分岐まで完了し、[判断/次案51](51_story10_judgment_and_next_proposal.md)へ保存。物語10%/低LR各100MでEOS/反復は改善したが、一貫性差4/6は事前8件に届かず、条件付き全文と500Mは未実施。科学三枝300,023,808/検証524,288を分け、元final10B UIへ復帰しreport/local commitで停止。Phase 6 Base/Chat品質未達、20%低LRや20Bは次の提案のみ。
+
 最新（2026-10-05 JST）: ユーザー指定の改善計画段階1〜3を[完結文比較48](48_complete_text_10b_comparison.md)で完了した。25M物語pool、同じfinal10B親から各100M三条件と事前条件付き全文/長文評価を実施。新物語はEOS/反復を改善したが親BPB悪化上限を超え未採用。Phase 6のBase品質目標は引き続き未達で、Phase 7へ自動移行しない。report/local commit・UI復帰で停止し、500M/1B/20B/50B/Chatは開始しない。以下は以前のmilestone記録として保持する。
 
 2026-10-04の追加依頼で[日本語Base評価v2.1の実装・実測](46_japanese_base_evaluation_v2_results.md)も完了した。基本意味・公開benchmarks・生成内容と長文反復を追加したが、元のBase/Chat品質条件は不変で未達。独立人手blind・test・公開Base参照・JMMLUは未実施。今回は評価/report/local commitで停止し、追加学習は再開しない。

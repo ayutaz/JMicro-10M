@@ -2,6 +2,8 @@
 
 2026-10-05 JST。ユーザー「3までを進めて判断をして提案をしてください」により[計画49](49_next_mixture_and_training_budget_plan.md)の段階1〜3を再開した。まず物語10%の各100Mと同条件保存対照を比較する。原採用条件を全て通る場合、同じ親からWeb/物語10%各500Mの学習量比較へ進む。未達なら計画の低LR同量比較を一つ定義して実施し、結果に基づく判断・次案の報告/local commit・UI復帰で停止する。1B/20B/50B/Chat/test/pushは今回は提案のみで開始しない。
 
+**現在: 段階1・段階2の低LR分岐・段階3判断/提案を完了。** [最終判断51](51_story10_judgment_and_next_proposal.md)。両10%条件は一貫性改善幅8件に達せず未採用、全文/長文と500M/pool拡張の開始条件を満たさなかったため未実施。元gateを保持し、local commit・UI復帰で停止する。以下の準備/起動表現は当時の履歴。
+
 ## 段階1の固定条件
 
 親は元final10B SHA410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290。同じmodel/Adam/RNG/Web cursorから明示fork。100,007,936追加tokens/3,052 updates、物語305 updates=9,994,240 tokens、Web90,013,696、実配合9.993%。既存25,000,067-token物語poolを使用し、新source/filter/長さは変更しない。peak LR0.0002、stable2900/decay152、floor0.00002、context1024/batch32/BF16/Flash/compileは前回と共通。終端総10,100,015,104/update308228。
@@ -27,5 +29,7 @@
 計画49の失敗時分岐に沿い、同じ10%を保った低LR同量比較を一つ凍結した。peak0.0001→floor0.00001、Web/物語各100,007,936追加tokens、同じfinal10B親・stable2900/decay152・Tokenizer/model/pool/evaluation/gates。科学合計200,015,872、実CUDA検証262,144は別。元LRのWeb対照を低LR対照へ流用せず、二枝とも新たに学習する。16関連CPU tests成功。新config/schema/専用runner・launcherを使用し、一次GPU上限1,800秒、条件を通る場合のみ両枝全文/長文3,000秒。これを終えて段階3の判断/提案とlocal commit・UI復帰で停止し、追加の混合率/LR/seed探索や500Mを自動開始しない。
 
 低LR準備commitd3b762a、2026-10-04 16:22:41Z（JST10月5日01:22）にhidden Windows28816を起動した。actual Linux140216 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks1416619を確認。Linux `reports/phase6/story10-low-lr-10b-100m-20261005/screen-job.json`、Windows`screen.stdout.log`/`screen.stderr.log`と二枝checkpoint/metricsへ永続保存。完了していない同じjobを追跡し、重複起動しない。UIはGPU中だけ停止、finally復帰する。
+
+低LR比較はGPU511.152秒で完了し、各枝100,007,936追加・総10,100,015,104/update308228を保存した。Webのdev256 BPB0.977459/EOS0/反復59、物語10%のBPB0.981203/EOS16/反復36/raw0。一貫性0→6/80、適切な完結0→6/80で事前8件条件は未達。全160をCodex採点、実checkpoint/model/optimizer/RNG/sampler/finite metrics・raw80×2・日本語診断・固定条件をCPU確認した。常識対照差+3.038pp（95%+0.894〜+5.004）を記録するが幅広い理解・Base品質合格とはしない。全文/長文は条件により実行せず、500Mを開始しない。科学140216は終了、UI140800で元final10Bへ復帰。最終科学300,023,808/検証524,288、GPU775.522秒を別記し、[次案51](51_story10_judgment_and_next_proposal.md)と要求別完了確認へ保存する。
 
 段階1の採用結果を確認してから条件を凍結する。通る場合は同じsource/選別の約60M pool、同じ親・同量各500Mと共通LR計画、中間100M/終端500Mの比較、GPU上限7,200秒を定義する。未達なら10%固定・peak LR0.0001のWeb/物語各100Mを一つの別比較として定義し、LR以外の変更を同時に行わない。失敗でも報告と次案を出して停止する。安全条件を緩めて未採用枝を増量しない。十分量・容量上限を断定せず、学習不足仮説と必要なら10B対20Bの次案を残す。
