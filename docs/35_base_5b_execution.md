@@ -1,5 +1,7 @@
 # 次計画1・2：10Mモデルを総5Bまで学習
 
+2026-10-04完了：[実際の保存記録](../reports/phase6/base_5b_review.json)、[完了証拠](../reports/phase6/base_5b_completion_audit.json)。総5,000,003,584 tokens、追加3,099,983,872科学tokens、別524,288検証tokens。6testsと実CUDA全state再開一致、連続94,604科学updates、parent不変、全97科学checkpoint保持。GPU4,543.110秒で7,200秒以内、実job終了。final decay/checkpoint-00152588.pt、SHA1d8e5274e1662063dedec355def1da3c9bcc972499a12b608c25c71b6758273a。5B品質は未評価。記録/local commitで停止。以下は凍結した実行計画であり、完成jobの再実行指示ではない。
+
 2026-10-04。ユーザー指定範囲は継続処理の実装・凍結・保存再開確認と5B学習。全文評価・Chatは次の段階。元2B/低LR100M/短文枝を含む全旧成果物を保持する。
 
 | 条件 | 固定値 |

@@ -1,0 +1,112 @@
+{
+  "status": "completed_requested_steps1_2_training_only",
+  "checks": {
+    "terminal_job_exited": true,
+    "frozen_binding_unchanged": true,
+    "immutable_parent_hash": true,
+    "accepted_train_manifest": true,
+    "exact_CUDA_resume": true,
+    "tests_report_bound": true,
+    "stable_checkpoint_state_and_contiguous_metrics": true,
+    "decay_checkpoint_state_and_contiguous_metrics": true,
+    "total5B_including_decay": true,
+    "scientific_and_verification_separate": true,
+    "original_training_settings_and_train_only_cursor": true,
+    "GPU_budget_respected": true,
+    "no_evaluation_or_quality_claim": true,
+    "periodic_checkpoints_retained": true,
+    "output_within_frozen_capacity": true
+  },
+  "plan_sha256": "6501d972eb7eb04b80b8432660420de051d85699316179712622ce24a814ef99",
+  "binding": {
+    "plan_sha256": "6501d972eb7eb04b80b8432660420de051d85699316179712622ce24a814ef99",
+    "implementation": {
+      "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+      "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+      "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+      "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+    },
+    "source_sha256": {
+      "src/jmicro/stable_extension.py": "d9ed219a6ffaaadace93f0c54b5751bbe3a2f49ce0989eec308d8989b496db6e",
+      "src/jmicro/eos_pilot.py": "84b23a04455475b598056b8973a1cf89346aa3faf766e9162fef2ff7e17dbb08",
+      "scripts/run_base_5b.py": "64c62cf95a3a829325ee32596881006a2980d417301ef90805c150b113999670",
+      "scripts/run_base_5b.sh": "183729e4ea23d96c2159f1bc5c3b21e3aecf1cb382f8cf975811b9443673cebe",
+      "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f"
+    },
+    "parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-2b-10bdata-20261004/stable/checkpoint-00057984.pt",
+      "sha256": "4edcefa7c81e05aa9403e4dc642bbe783dc68be15f140f88098ab7b2fcd3a597",
+      "update": 57984,
+      "tokens": 1900019712,
+      "spec": {
+        "seed": 42,
+        "context": 1024,
+        "batch": 32,
+        "accumulation": 1,
+        "lr": 0.002,
+        "weight_decay": 0.1,
+        "warmup": 200,
+        "schedule_updates": 61036,
+        "dtype": "bf16",
+        "compile": true,
+        "backend": "flash",
+        "training_fast_path": true,
+        "deterministic": true,
+        "compile_mode": "reduce-overhead",
+        "scheduler": "wsd"
+      },
+      "token_digest": "af54d201d315cccbce31550c9da187ca758d98e798787360bbd7de5fdf968335"
+    }
+  },
+  "stages": {
+    "stable": {
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-5b-20261004/stable/checkpoint-00144959.pt",
+      "sha256": "916c4105ba7ab62597334a059cd34839d675fde29bb82b6fca6d30f889df6be5",
+      "update": 144959,
+      "tokens": 4750016512,
+      "additional_tokens": 2849996800,
+      "updates": 86975,
+      "first_loss": 2.878419876098633,
+      "last_loss": 2.847641944885254,
+      "training_step_seconds": 4131.84754440607,
+      "steady_tokens_per_second": 693786.378435323,
+      "retained_checkpoint_count": 88,
+      "next_lr": 0.002
+    },
+    "decay": {
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-5b-20261004/decay/checkpoint-00152588.pt",
+      "sha256": "1d8e5274e1662063dedec355def1da3c9bcc972499a12b608c25c71b6758273a",
+      "update": 152588,
+      "tokens": 5000003584,
+      "additional_tokens": 249987072,
+      "updates": 7629,
+      "first_loss": 2.786776304244995,
+      "last_loss": 2.584000825881958,
+      "training_step_seconds": 362.4457988769427,
+      "steady_tokens_per_second": 694097.9906154912,
+      "retained_checkpoint_count": 9,
+      "next_lr": 0.0002
+    }
+  },
+  "total_training_input_tokens": 5000003584,
+  "scientific_additional_input_tokens": 3099983872,
+  "verification_input_tokens": 524288,
+  "tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_5b_tests.xml",
+    "sha256": "f75d64b1732cfd7859091e99cb4946b8b2588deb308de4b2dfc4e5a1581acd25",
+    "counts": {
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "gpu_elapsed_seconds": 4543.10980537,
+  "output_bytes": 12538319395,
+  "actual_training_process_exited": true,
+  "quality_targets_achieved": false,
+  "evaluation_started": false,
+  "next_action": "Protected full dev and fixed generation comparison; not executed in steps1,2",
+  "stop_boundary": "Report/commit and stop before evaluation,10B/Chat/sweeps",
+  "completed_at": "2026-10-04T07:20:11.140258Z"
+}

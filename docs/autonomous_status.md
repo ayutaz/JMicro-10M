@@ -1,5 +1,22 @@
 # Codex継続作業の現在地
 
+## 次計画1・2を完了：総5B学習・停止（2026-10-04）
+
+[保存記録の確認結果](../reports/phase6/base_5b_review.json)、[完了証拠](../reports/phase6/base_5b_completion_audit.json)、[固定計画](35_base_5b_execution.md)。①予算だけを変更するstable延長処理を実装・凍結し、CPU6tests（失敗/skip0）と実CUDA16updates/524,288tokensのstable/decay両経路の連続4対2+保存再開2で全state/history一致。②同じ1.9B parentの重み/Adam/scheduler/RNG/データ位置からWeb100%を継続し、総5,000,003,584 input tokensへ到達した。新しい科学学習3,099,983,872 tokens、検証524,288は別計上。10,001,152 parameters、train12.23B、Tokenizer/core/設定は保持。sampler epoch0/position4,882,816、train blocksの周回なし。未使用dev/testを学習しない。
+
+| 区間 | global updates | 累積input tokens | 今回の追加tokens | 定常速度tokens/s |
+|---|---:|---:|---:|---:|
+| stable終端 | 144,959 | 4,750,016,512 | 2,849,996,800 | 693,786 |
+| 最終decay終端 | 152,588 | 5,000,003,584 | 249,987,072 | 694,098 |
+
+科学94,604updatesのログは全て連続/有限値で、保存済みstateのupdate/token digest/教師tokens/本文bytes/scheduler/Adam step/cursorと一致。親actualLR0.002を維持し、最後7,629updatesで0.0002へ減衰。最終checkpointにはPython/NumPy/Torch/CUDA1device RNGも保存されていることを実CPU読込で確認した。教師tokens4,989,419,356、本文bytes19,436,638,948。元1.9B親SHAは不変。全97科学checkpointを保持、run出力12,538,319,395bytesで20GiB以内。
+
+完成重みはLinux `reports/phase6/base-5b-20261004/decay/checkpoint-00152588.pt`、SHA `1d8e5274e1662063dedec355def1da3c9bcc972499a12b608c25c71b6758273a`。継続用stableは同run/stable/checkpoint-00144959.pt、SHA `916c4105ba7ab62597334a059cd34839d675fde29bb82b6fca6d30f889df6be5`。科学pure学習4,494.293秒（74分54秒）、GPU累積4,543.110秒（75分43秒）、上限7,200秒以内。job complete、actual Linux450/Windows28760終了、GPU compute processなし。完了jobを再起動しない。
+
+途中のユーザー指定「現時点のコードをpushして」に従い、`origin/main`へ`c68ff34`まで通常pushし、remote/local head一致を確認済み。同じpush依頼に基づき、学習完了記録も同じ`origin/main`へ反映して停止する。
+
+1・2の範囲で停止。5B全文BPB、自然EOS、反復、意味/文法、人手blind/testは未評価。train lossの低下を品質改善と扱わない。次の具体的な作業はstep3の同じ保護dev/固定生成による元2B・低LRWeb100Mとの比較であり、今回開始していない。10B/Chat/sweepも未開始。以下の途中経過・旧stop/live notesは履歴。
+
 ## 次計画1・2：5B継続処理と学習を再開（2026-10-04）
 
 途中経過（2026-10-04 06:55 UTC）：同じLinux450/boot76070d40-79fb-4edd-a970-8dbc1097cfde/start_ticks13218を毎回/procへ照合して継続を確認。global122,750/4,022,272,000 tokens、約694k tokens/s、GPU経過3,118.762秒、failureなし。終了後の保存記録確認commandは `uv run --frozen --extra hub --extra data --extra ml --extra export scripts/review_base_5b.py`（準備commit55a0f2c）。終了したjob、連続更新ログ、最終model/Adam/scheduler/RNG/sampler/counter、LR曲線、元親不変、token/GPU/保存容量を確認する。GPU再学習/全文評価/全件監査は追加しない。5Bはまだ学習中。
