@@ -2,6 +2,8 @@
 
 ## 次計画1・2：5B継続処理と学習を再開（2026-10-04）
 
+実装/configの準備commit `be4be0f`。hidden Windows28760/Linux450/boot76070d40-79fb-4edd-a970-8dbc1097cfde/start_ticks13218をactual psへ照合し起動。実CUDA stable/decay両経路の全state/history/finite checkが全合格（16updates/524,288検証tokens）。科学stable学習開始、global58,400/1,913,651,200 tokens、初期約614k〜651k tokens/s、GPU88%/VRAM7,644MiBを実測。runのjob.json/pipeline.log/cuda-resume-gate.jsonを正本としlive source/configは変更しない。Windows launcherがWSLを保持。5B到達はまだ未完了。
+
 ユーザーが「1,2を計画を立てて進めて」と指定。[固定config](../configs/phase6/base_5b.json)、[実行計画](35_base_5b_execution.md)。stable1,900,019,712/update57,984（SHA4edcefa7c81e05aa9403e4dc642bbe783dc68be15f140f88098ab7b2fcd3a597）から新directoryへ明示fork。core trainer/model/shards/lockは変更せず、StableExtensionTrainerが予算だけの増加を許可。Adam/scheduler/RNG/sampler/counterを保持しstableLR0.002は親と同じ。低LR100M後継学習と長期stable継続は別条件。
 
 stable global144,959/4,750,016,512 tokens、独立7,629-update decay後global152,588/5,000,003,584。追加科学3,099,983,872 tokens。約5%decayは最寄りupdate丸め、実割合をconfigに記録。CPU関連6tests成功・skip0、config/schema凍結。実CUDA16updates/524,288tokensでstable延長と短い4update decayの連続4対2+保存再開2を照合して本学習に入る。production decay7,629とgate4updatesを区別する。
