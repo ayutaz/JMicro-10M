@@ -1,5 +1,7 @@
 # Codex継続作業の現在地
 
+低LRの同量比較を永続起動: 準備commitd3b762a、16関連CPU tests、peak0.0001/10%/Web対照各100Mの専用config/schemaを凍結。hidden Windows28816、actual Linux140216 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks1416619、開始2026-10-04 16:22:41Z。run`reports/phase6/story10-low-lr-10b-100m-20261005`とWindows`screen.*.log`へ永続保存。現在Web対照学習中、二枝評価と160内容診断→事前条件付き全文→段階3判断/次案が残る。UIはfinally復帰。科学140216のactual processを確認して同じjobを追跡、重複起動しない。
+
 計画49段階1を完了し、段階2の低LR分岐へ: 物語10%/100MはGPU264.370秒、EOS17・反復40・raw0（固定80）。全80をCodex採点し、一貫性2点4/80で事前の対照差8件を満たさず未採用。元mixture条件は全通過だが内容条件を緩めない。全文/長文は未実施、500Mへ進めず、同じ親・10%・同量でpeak0.0001のWeb/物語各100M比較を一つ凍結した。[記録50](50_story10_and_budget_execution.md)。16関連CPU tests成功。先のLinux139467は終了、UIは元final10Bで復帰を確認。次は低LR二枝の科学200,015,872（検証262,144別）→160内容診断→条件付き全文→段階3判断/提案/report/local commit・UI復帰で停止。1B/20B/Chat/test/pushは開始しない。
 
 計画49段階1のGPU比較を永続起動: 準備commit70304d6、14関連CPU tests成功、専用config/schema凍結。hidden Windows34152、actual Linux139467 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks1364277、開始2026-10-04 16:13:58Z。実CUDA保存再開後、物語10%の100M学習を実行中。run`reports/phase6/story10-10b-100m-20261005`、`screen-job.json`とWindows`screen.*.log`へ保存。GPU中のみUI停止、finallyで元final10Bへ戻す。80内容診断・採用判定→条件付き各500Mまたは低LR比較→最終判断/提案が残るためgoalはactive。actual processを確認し、同じjobを重複起動しない。

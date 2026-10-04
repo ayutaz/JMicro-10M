@@ -26,4 +26,6 @@
 
 計画49の失敗時分岐に沿い、同じ10%を保った低LR同量比較を一つ凍結した。peak0.0001→floor0.00001、Web/物語各100,007,936追加tokens、同じfinal10B親・stable2900/decay152・Tokenizer/model/pool/evaluation/gates。科学合計200,015,872、実CUDA検証262,144は別。元LRのWeb対照を低LR対照へ流用せず、二枝とも新たに学習する。16関連CPU tests成功。新config/schema/専用runner・launcherを使用し、一次GPU上限1,800秒、条件を通る場合のみ両枝全文/長文3,000秒。これを終えて段階3の判断/提案とlocal commit・UI復帰で停止し、追加の混合率/LR/seed探索や500Mを自動開始しない。
 
+低LR準備commitd3b762a、2026-10-04 16:22:41Z（JST10月5日01:22）にhidden Windows28816を起動した。actual Linux140216 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks1416619を確認。Linux `reports/phase6/story10-low-lr-10b-100m-20261005/screen-job.json`、Windows`screen.stdout.log`/`screen.stderr.log`と二枝checkpoint/metricsへ永続保存。完了していない同じjobを追跡し、重複起動しない。UIはGPU中だけ停止、finally復帰する。
+
 段階1の採用結果を確認してから条件を凍結する。通る場合は同じsource/選別の約60M pool、同じ親・同量各500Mと共通LR計画、中間100M/終端500Mの比較、GPU上限7,200秒を定義する。未達なら10%固定・peak LR0.0001のWeb/物語各100Mを一つの別比較として定義し、LR以外の変更を同時に行わない。失敗でも報告と次案を出して停止する。安全条件を緩めて未採用枝を増量しない。十分量・容量上限を断定せず、学習不足仮説と必要なら10B対20Bの次案を残す。
