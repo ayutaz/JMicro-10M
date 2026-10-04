@@ -4,6 +4,8 @@
 
 日本語Base追加評価は[計画・仕様v2.1](45_japanese_base_evaluation_v2.md)と[現在10Bの実測結果](46_japanese_base_evaluation_v2_results.md)。文法/常識/含意/容認度/読解・基本意味・長文反復・Codex内容診断を追加し、独立人手と品質合格は別に扱う。
 
+評価後の次回提案は[データ・学習改善計画](47_post_evaluation_training_plan.md)。意味の通る完結文dataを少量準備し、同じ学習量で対照比較してから量を増やす。計画のみで新しいjobは未開始。
+
 ## 現在の要約
 
 モデルは10,001,152 parameters、T4K / NoQK-Norm / AdamW / context1024。主要Web5Bと同じ親から各100M仕上げ比較まで完了。準備済みtrainは12,225,819,077 tokens、独立全corpus監査は未完了。Phase 0〜5・Phase 6準備は完了済み。

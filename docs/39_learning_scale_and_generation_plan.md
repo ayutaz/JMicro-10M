@@ -1,5 +1,7 @@
 # 学習量拡大とEOS 反復 UTF8改善の次回計画
 
+追加評価後（2026-10-04）の最新の提案は[データ・学習改善計画](47_post_evaluation_training_plan.md)。以下の直接10B学習と評価は完了済みで、再起動しない。次回は一般Web増量だけでなく、意味の通る完結文poolの配合を対照比較する案。新しいdata/GPU workは未開始。
+
 実行準備の更新（2026-10-04）：ユーザー指定のstep1により[専用設定とGPU保存再開確認](40_base_10b_preparation.md)を完了。新config/schema/launcherは準備済み、14tests/実CUDA全state一致を確認した。ユーザー指定step2の本学習は2026-10-04 11:43:52Zに総10,000,007,168 tokensで完了。CPU保存確認19項目成功。[本学習結果と速度](41_base_10b_training.md)。復旧commandは `bash scripts/run_base_10b.sh --train`、引数なしは検証専用。
 
 2026-10-04。ユーザーの訂正に従い、7.5Bの中間実験を省き、**既存12.23B train tokensを使って総10Bまで一度に学習し、そこで比較する計画**へ変更した。データセットは既に10Bを超えているため、新規収集ではなく学習する量を増やす。EOS・反復にはその後に短文仕上げを一度比較し、UTF8は別の推論方式として評価する。本学習step2と保存確認は完了し、品質評価step3も完了（BPB0.954018 / 固定EOS0・反復53 / raw Unicode0）。[品質結果](42_base_10b_quality_evaluation.md)。decoder変更は未開始。実CUDA準備検証のtokensと科学学習tokensは別会計にする。[前回結果](38_eos_5b_finish_results.md)と[保存証拠](../reports/phase6/eos_5b_finish_review.json)を基準にする。

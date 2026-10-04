@@ -14,6 +14,8 @@ Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/window
 
 ## Project rules
 
+Latest planning request (2026-10-04): use the completed Japanese evaluations to propose the next data/training plan. See `docs/47_post_evaluation_training_plan.md`: bounded data sampling, 25M–50M coherent complete-text pool, proposed three-arm100M comparison from final10B, conditional later expansion. Planning is complete; the proposed data/GPU work is not started or authorized by this planning-only turn. Existing stop boundary and UI serving remain.
+
 The user has authorized autonomous implementation, repair, local GPU work, and required WSL preparation within the requested scope. Continue routine decisions and authorized milestone transitions without renewed permission. Authorization cannot change execution sandbox or managed policy.
 
 - Target WSL package3.x, WSL2 Linux, RTX4090. Use pinned Python3.12.7 and uv; dependency changes use `uv add`. Preserve historical Phase0–3 reports and all prior checkpoints/results.

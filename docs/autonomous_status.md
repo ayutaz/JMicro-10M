@@ -1,5 +1,7 @@
 # Codex継続作業の現在地
 
+最新依頼（2026-10-04）は追加評価に基づく次回計画と「データセット量を増やすべきか」の判断。[データ・学習改善計画](47_post_evaluation_training_plan.md)を保存した。推奨は意味の通る完結文poolをまず25M〜50M tokens準備し、同じfinal10B親からWeb100%/既存短文20%/新完結文20%を各100Mで比較する案。EOSだけでなく生成一貫性・適切な完結・反復・条件保持を測り、有望ならpool100M以上と追加500Mへ段階拡張する。新規source量と既存dataの再選別・学習tokensを分ける。元gateは保持し、数値・予算は次回凍結する提案。**今回は計画のみで、新data取得/構築・GPU推論/学習・suite変更は未開始。UIは維持し、local commitで停止する。**
+
 最新の評価追加依頼（2026-10-04、棚卸し後の実装再開）を完了した。[実施計画](45_japanese_base_evaluation_v2.md)、[結果と制限](46_japanese_base_evaluation_v2_results.md)、[15 evidence checksの集計](../reports/phase6/japanese_base_v2_review.json)、[終了・UI復帰記録](../reports/phase6/japanese_base_v2_completion.json)。新しいnative scorer/実行入口・8 CPU testsを追加し、既存契約/評価メモリと合わせた21 tests成功。WSL/RTX4090で現在の10M/総10Bモデルを実測した。JBLiMP sample SLOR74.62%、JCommonsenseQA30.38%、独自意味dev59.38%。意味の両文脈正答23/96＝23.96%でrandom期待25%を超える証拠はない。JNLI/JCoLAはlabel prior・多数派対照を含めると判別力が弱く、Base品質合格にはしない。
 
 保存済み80×2の全160をCodexで文法/関連性/一貫性各0/1/2採点。10Bは文法2点38/80、関連性2点25/80、一貫性2点0/80。独立人手blindは未実施で、元70%人手目標へ代入しない。追加greedy128/512は各20件で自然EOS0、char4-gram反復83.26%/95.76%。元の自然EOS9件の適切な内容完結はCodex診断1/9。JSQuAD事前固定dev100は独自EM0%、文字F1 12.69%、外部Wikipedia100本文51,362 bytesのBPB1.335143。詳細は結果文書を正とする。
