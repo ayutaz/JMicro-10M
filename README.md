@@ -15,6 +15,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/stop_webui.ps1
 
 [使い方と実行記録](docs/43_local_webui.md)。現在はBaseモデルで、Chat調整は未実施。
 
+日本語としての意味・話題維持を測る評価の不足と、JBLiMP/JCommonsenseQA/JNLI等の追加案は[評価の棚卸し](docs/44_japanese_base_evaluation_audit.md)を参照。現在のBPB改善や実装checks成功を、自然な文章生成の合格とは扱わない。
+
 ## 学習結果と残る課題
 
 同じ全文devのBPB（小さいほど良い）と固定80生成で比較した。各5.1Bは別のモデルで、学習量を合算しない。

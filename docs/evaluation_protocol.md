@@ -1,5 +1,7 @@
 # 評価仕様 v1
 
+2026-10-04の現行評価棚卸し: [不足と日本語Base評価v2案](44_japanese_base_evaluation_audit.md)。最新版10Bの内容確認は定性的診断で、保存400件のhuman_scoresはすべて未入力。v1の計算・split・閾値は維持し、v2の新しい意味/公開benchmark採点は未実装・未実測。以下の過去の実装状況メモを最新10Bの成績と混同しない。
+
 実装状況更新: 2026-10-03。機械可読protocolの閾値・split・数値許容値は維持し、品質目標は100M選定前に凍結済み。Base評価、overfit/smoke・100M比較、同一dev文書のpaired bootstrapと生成ID/flag照合は実施済み。Chat品質評価・rollout・文法等の全件blind人手採点は未実施。[Phase 5の品質実測](23_phase5_completion.md)、[Phase 6①②の準備検証](26_phase6_preparation_completion.md)
 
 ④⑤では新dev89,416文書を全文採点してBPB1.2441264716/336.292秒、400生成360.684秒を記録した。greedy EOS0/80・反復48/80で品質未達。NoNormのCPU精度profileは学習済み短/1024・full/cacheの12比較と実CLI/重み149 checksで検証済み。固定protocol・閾値・split・入力は変更していない。[④⑤の実測](30_phase6_readiness_execution.md)。未修正stock FP32の失敗と学習後量子化品質未検証を保持する。

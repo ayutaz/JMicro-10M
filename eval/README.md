@@ -1,5 +1,7 @@
 # 固定評価データ v1
 
+2026-10-04の棚卸し: Base dev80の`checks`は全件共通の説明文で、自動意味採点には未接続。10Bの保存400出力は80入力×5条件、human_scoresは全null。固定testはモデル採点・選定に使っていない。[日本語Base評価の不足と追加案](../docs/44_japanese_base_evaluation_audit.md)。本suiteと過去の結果は不変で、新しいv2問題/採点はまだ追加していない。
+
 利用状況（2026-10-03）: Phase 4に続きPhase 5のsmoke/100M候補でもBase dev 80件×5条件（抑制あり/なしgreedy、sampling seeds 42/43/44）の400出力を取得し、生成ID/flagを独立照合した。選定NoNormのgreedy EOS 0/80・反復54/80、sampling Unicode 2/240で品質目標は未達。[Phase 5完了記録](../docs/23_phase5_completion.md)。固定testとChat suiteはモデル評価に未使用。Phase 6①では固定suiteの検出された混入clusterを学習corpusから除外し、②の4 dev文書採点はcorpus側の状態保全確認で、固定生成suiteの新しい品質実験ではない。[準備完了証拠](../docs/26_phase6_preparation_completion.md)。④の現在sourceでは400生成360.684秒、Unicode0/400、greedy EOS0/80・反復48/80で未達を記録した。新dev89,416文書のBPB1.2441264716と採点336.292秒、⑤のdev256文書LR3候補比較は別の母集団・予算として管理する。[④⑤の証拠](../docs/30_phase6_readiness_execution.md)。停止fixtureの実argmax成功はcontroller検証で、学習済みモデルのEOS到達品質に数えない。
 
 この評価例はプロジェクト用に独自作成したもので、学習データではない。Base 100件・Chat 100件をそれぞれ10 categoryに分け、categoryごとにdev 8件/test 2件、合計dev 80件/test 20件とした。ID・file hash・split membershipは[split_manifest.json](split_manifest.json)へ固定する。
