@@ -4,6 +4,8 @@ Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/window
 
 ## Current state and scope
 
+- Latest user authorization (2026-10-05 JST): execute stages1–4 of `docs/52_story20_low_lr_execution.md` following proposal51. Run one20% lowerLR100M arm with immutable saved matched Web control; evaluate eligible full/long only when original gates pass; run matched500M arms only if all full gates pass; otherwise judge the failure and propose the next diagnostic/content action. Finish judgment/report/local commit, restore original final10B UI and stop. No1B/20B/50B/Chat/test/push/publication. Prior completed stop-boundary bullets below are history and do not prevent this newly requested scope.
+
 - Current stop boundary (2026-10-05 JST): plan49 stages1–3 are complete through the prespecified failure branch: normalLR10%100M, matched lowerLRWeb/10%100M, all240 content reviews, actual state/metrics/diagnostics checks, judgment and proposal in `docs/51_story10_judgment_and_next_proposal.md`. Both candidates fail the unchanged coherence gain8 gate (4/6), so conditional full/long and500M/pool expansion were not entered. Scientific300,023,808/verification524,288 tokens separate. Jobs139467/140216 exited; UI restored to original final10B. Save final report/local commit, then stop.20%lowerLR/500M/1B/20B/Chat/test/publication remain future proposals. Base/Chat quality targets remain unmet. Following authorization/progress bullets preserve history, not a new launch instruction.
 
 - Latest user authorization (2026-10-05 JST): execute stages1–3 of `docs/49_next_mixture_and_training_budget_plan.md`, judge results and propose the next step. This resumes work beyond the earlier completed stop boundary. Execute the 10%100M fork with saved matched controls; if all adoption gates pass, prepare the required pool and run matched500M arms; otherwise run one bounded matched lower-LR comparison as planned. Then report/judge/propose, locally commit, restore the original UI and stop. No1B/20B/50B/Chat/test/publication. Record actual work in `docs/50_story10_and_budget_execution.md`. Prior completed jobs must not be restarted.
@@ -20,7 +22,7 @@ Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/window
 
 ## Project rules
 
-Latest plan49 stages1–3 scope has completed its prespecified lowerLR failure branch in reports50/51.500M entry was not met; do not launch a new experiment from an earlier conditional authorization or restart completed jobs. Stop after report/judgment/proposal, local commit and original UI restoration. The next20%lowerLR100M and subsequent500M/1B/20B/Chat remain proposed only until a new user continuation.
+Plan49 stages1–3 completed in reports50/51. The new user continuation authorizes plan52 stages1–4 only. Preserve original adoption gates, reuse saved matched controls and do not restart completed jobs. Stop after judgment/report/local commit and original UI restoration;500M is conditional, while1B/20B/Chat remain future proposals.
 
 The user has authorized autonomous implementation, repair, local GPU work, and required WSL preparation within the requested scope. Continue routine decisions and authorized milestone transitions without renewed permission. Authorization cannot change execution sandbox or managed policy.
 
