@@ -6,7 +6,7 @@
   "old_numerical7_preserved": true,
   "stages": [
     {
-      "status": "running",
+      "status": "evidence_complete_candidates_rejected",
       "deliverables": [
         "matched train/dev history",
         "matched lowLR200M vs saved reheat",
@@ -15,10 +15,11 @@
       ],
       "run": "reports/phase6/lr-recovery-20261006",
       "id": 1,
-      "config": "configs/phase6/lr_recovery.json"
+      "config": "configs/phase6/lr_recovery.json",
+      "review": "reports/phase6/lr_recovery_review.json"
     },
     {
-      "status": "preparation_v1_failed_v2_pending",
+      "status": "new_Wikipedia_source_preparing",
       "id": 2,
       "deliverables": [
         "10-50M literal quality pilot",
@@ -26,7 +27,14 @@
         "fixed64 content",
         "same-teacher comparison and selection"
       ],
-      "preparation_v1": "reports/phase6/realistic_curriculum_v1_content-review.json"
+      "preparation_v1": "reports/phase6/realistic_curriculum_v1_content-review.json",
+      "failures_preserved": [
+        "Webv1 weak33/64",
+        "Webv2 whole daily supply96,088 tokens below3M",
+        "Literaryv1 weak30/64",
+        "Literaryv2 weak32/64"
+      ],
+      "active_run": "reports/phase6/wikipedia-curriculum-20261006"
     },
     {
       "status": "conditional_pending",

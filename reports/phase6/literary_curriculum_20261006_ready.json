@@ -1,0 +1,145 @@
+{
+  "status": "prepared_pending_content_review",
+  "binding": {
+    "source_pin_sha256": "d189308fc43c87fdf80e935f5a02b0d26042b4e91aa6d4560a31e24a5541b1a9",
+    "web_corpus_sha256": "521867e6c7c21ba8153c5e8226f1840362acaaa8e6772332bca54b289100ab0d",
+    "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+    "train_targets": {
+      "literary": 3000000,
+      "explanation": 7000000
+    },
+    "dev_targets": {
+      "literary": 150000,
+      "explanation": 350000
+    },
+    "maximum_per_work_units": 16,
+    "source_sha256": {
+      "scripts/prepare_literary_curriculum.py": "a2f284b4214ae0aab20815f414e8ed2e255349eeb37737630c4ec43296318958",
+      "src/jmicro/literary_curriculum.py": "e1e92dfe3106f8e5198794d63f5fa277b0ca68c67e49e467bc72912e1b22b5ab",
+      "src/jmicro/realistic_curriculum.py": "e703501e0ee2098edda3f3895d80375ae1993359b700a0a9733880544a6e5c1d",
+      "src/jmicro/realistic_curriculum_v2.py": "16d71c2fead39da24a0ab74bc5232aa18fb926174c04eae3af3132cf8f92be64"
+    },
+    "download_budget_seconds": 300,
+    "CPU_budget_seconds": 600,
+    "workers": 8,
+    "seed": 2026100602,
+    "protected_test_used": false
+  },
+  "pool": "/home/aihub_ubuntu/jmicro-data/phase6/literary-curriculum-20261006/shards",
+  "manifest_sha256": "d57c5a946fd8f9ab76da8731049812289145934c607bcf3e53630d0569e25e52",
+  "splits": {
+    "train": {
+      "tokens": 10000222,
+      "documents": 60924,
+      "body_bytes": 38204810,
+      "stream_sha256": "13ee7b7dcc6455fe2acd97092e4a8a458443bd3a8426affdb56bfe86980a4635",
+      "index_sha256": "2142d4b471c5b98464eb478df60e544891a790192ebf2191e55c6545ada46f9a"
+    },
+    "dev": {
+      "tokens": 500136,
+      "documents": 2824,
+      "body_bytes": 1903809,
+      "stream_sha256": "341dc3ecf6485942c1d441f9403fc6fc5b7a47bbf0a798d7e3deb68ec03c4631",
+      "index_sha256": "5126f7562ce03849db5e00cfccb6e456cc4922c1aa75ceadec7015c1ed3fb7fe"
+    },
+    "test": {
+      "tokens": 0,
+      "documents": 0,
+      "body_bytes": 0,
+      "stream_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "index_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    }
+  },
+  "sample_sha256": "090a28fdbba444d6cdbeba13e2403e1349c929489c177ed9f025f20fec7a6dd6",
+  "dev32_sha256": "80bf1dfc6cf2d0eb41f9a59cf3edabc349a0456dbff20c14c1cb3cf16ae8b4d8",
+  "tokens_by_group": {
+    "train_explanation": 7000177,
+    "dev_explanation": 350068,
+    "train_literary": 3000045,
+    "dev_literary": 150068
+  },
+  "sources": {
+    "literary": {
+      "repository": "globis-university/aozorabunko-clean",
+      "revision": "42a9c9c0f1d67e6a5554d9bea4201973dc9b049c",
+      "files": [
+        {
+          "path": ".gitattributes",
+          "size": 2373,
+          "sha256": null
+        },
+        {
+          "path": "README.md",
+          "size": 2957,
+          "sha256": null
+        },
+        {
+          "path": "aozorabunko-dedupe-clean.jsonl.gz",
+          "size": 240780659,
+          "sha256": "3f41359c59b4bb1bf2d5692131463afc3f34a8208b987a563c1d60f9ab90d278"
+        }
+      ],
+      "license": "CC-BY-4.0",
+      "dataset_card": "https://huggingface.co/datasets/globis-university/aozorabunko-clean",
+      "filter": "meta文字遣い種別=新字新仮名, works marked copyrightなし; keep work/person/library-card attribution",
+      "proposed_use": "Separate narrative source after two bounded Web revisions; paragraph units with whole-work family split; genre and historical-style limitation retained",
+      "maximum_raw_bytes": 500000000,
+      "protected_test_used": false,
+      "created_at": "2026-10-05T15:33:26.953885Z"
+    },
+    "Web": {
+      "version": 1,
+      "scope": "local_10b_dataset_preparation_only",
+      "repository": "hotchpotch/fineweb-2-edu-japanese",
+      "revision": "180ca004c6a89b590daaad86cb062a07a5353c69",
+      "subset": "small_tokens_cleaned",
+      "source": "fineweb2_edu_ja",
+      "license": "ODC-By-1.0",
+      "bucket": "commercial_web",
+      "attribution": "hotchpotch/fineweb-2-edu-japanese; derived from HuggingFaceFW/fineweb-2 and Common Crawl",
+      "terms_url": "https://commoncrawl.org/terms-of-use",
+      "initial_files": 128,
+      "maximum_files": 160,
+      "maximum_raw_bytes": 50000000000,
+      "minimum_train_stream_tokens": 10000000000,
+      "tokenizer": "artifacts/phase2/4096/tokenizer.model",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "seed": 42,
+      "filters": {
+        "web_min_chars": 60,
+        "web_max_chars": 20000,
+        "min_japanese_ratio": 0.2,
+        "min_language_score": 0.7,
+        "min_quality_score": 2.5
+      },
+      "dedup": {
+        "char_ngram": 5,
+        "num_perm": 128,
+        "bands": 32,
+        "rows_per_band": 4,
+        "jaccard_threshold": 0.85,
+        "near_min_chars": 64
+      },
+      "split": {
+        "train": 90,
+        "dev": 5,
+        "test": 5
+      },
+      "mixture": {
+        "fineweb2_edu_ja": 1.0
+      },
+      "protected_corpus": "/home/aihub_ubuntu/jmicro-data/phase6/expanded-v2/corpus.jsonl",
+      "protected_corpus_sha256": "c04961327a47ecc42bdfd026c598b00430d926db2237f988b379fc0351982fff",
+      "workers": 16,
+      "minimum_free_bytes": 450000000000,
+      "runtime_budget_seconds": 86400
+    }
+  },
+  "editorial": "Whole literary paragraphs, whole Web EOS parents; wording retained; no synthetic generation/name variants",
+  "audit": "Local exact/first-sentence matching; literary author family and Web original-parent family splits; cross-original-corpus/site-author near-duplicate audit incomplete",
+  "limitations": "New orthography does not ensure present-day vocabulary or realistic events; source/genre/length/EOS composition changes, not amount-only experiment",
+  "seconds": 18.841556864004815,
+  "CPU_seconds": 7.515111970991711,
+  "protected_test_used": false,
+  "created_at": "2026-10-05T15:38:31.216664Z"
+}
