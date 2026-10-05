@@ -11,4 +11,6 @@ Pythonはすべてuv管理3.12.7、WSL2/RTX4090で実行する。protected test�
 
 ## 実行状態
 
+2026-10-05 00:05:25Zに永続起動。準備commitca5dac0、hidden Windows30420、actual Linux143237 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks4192785。Linux`reports/phase6/story20-low-lr-10b-100m-20261005/screen-job.json`とWindows同名folderの`screen.stdout.log`/`screen.stderr.log`を追跡する。launcherはfinallyで元final10B UIへ復帰する。以下は起動前の確認記録。
+
 専用runner/config/schemaを凍結した。20関連CPU tests成功（1.78秒）、CPU上で元親checkpointの実SHA/finite state/update/tokens/batch/context/implementationと凍結source/参照を確認済み。実process確認では既存UI140800のみ、旧科学jobは終了。4090はdriver616.92、GPU使用2%/VRAM881MiBで推論待機中。科学GPUはまだ開始していない。準備commitを保存し、永続launcherがUIを停止して実CUDA保存再開→100M学習/一次評価を行い、finallyで元UIへ戻す。
