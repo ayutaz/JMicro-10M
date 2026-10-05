@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "scope": "User requested all five steps; this experiment only covers stage1",
+  "parents": {
+    "continuation": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/curriculum-strategy-20261005-v3/continuation/checkpoint-00308251.pt",
+      "sha256": "ff1fe9689e841753e7e88cd8f7df58cdcbf6e01fe3bd038efcf60d277b284ddb",
+      "update": 308251,
+      "tokens_seen": 10100768768
+    },
+    "fresh": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/curriculum-strategy-20261005-v3/fresh/checkpoint-00003075.pt",
+      "sha256": "0d514fbc6f5ec8a512d45f1e7acabefb8b60b2408724e803ce5896288f09bae8",
+      "update": 3075,
+      "tokens_seen": 100761600
+    }
+  },
+  "peak_lr": {
+    "continuation": 1e-05,
+    "fresh": 0.0002
+  },
+  "goals": {
+    "web": 0,
+    "short": 200000000
+  },
+  "reference_sha256": "e3a5fab3db4f2ce1cc2ae1848147fff97c755d899ecf56692ce49df7c0f224c6",
+  "base_sha256": "ff3dbdd3d4db9266d3a77d2193c0cf3ac7c9fc3c6279f48dc3d3cbd6cf70e911",
+  "previous_contract_sha256": "58fa89d27b5cc6b5319a64aba44004ede09cba041723ec0084a662554f78493f",
+  "strategy_contract_sha256": "d272a3d14f532794de28cceedfd038c934a5e129e0ca799ddf1669b7b3e45fce",
+  "source_sha256": {
+    "scripts/run_lr_recovery.py": "f3de523cf6446100bc6ce152610b29c56785122b864c8dc69058c28c333549bd",
+    "scripts/run_lr_recovery.ps1": "295aec32d3705a501cbab1416b648c7ba72197ff9f147596a236fe8d583abc4e",
+    "scripts/probe_lr_history.py": "cae9a4021064f94f41562cb65975bc97d8c53a65a5b7e78c5245a9966387f8e9",
+    "tests/test_lr_recovery.py": "c0efe7c02bb2b6daed84c9cadcb064ede5ce6208ce0c7d1d4ab2c48c37aa4d23"
+  },
+  "gpu_budget_seconds": 1800,
+  "train_budget_seconds": 600,
+  "selection_rule": "For recipe selection, prefer low LR only when common official BPB improves by at least1percent relative to reheat and no new empty/role/Unicode failures; inspect all80 content. This does not lower adoption or Base criteria.",
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "created_at": "2026-10-05T15:18:48.907029Z"
+}

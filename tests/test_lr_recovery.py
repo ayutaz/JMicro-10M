@@ -1,0 +1,46 @@
+import copy
+from pathlib import Path
+import sys
+from types import SimpleNamespace
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
+import numpy as np
+import pytest
+import torch
+from jmicro.experiment import ROOT,read_json,write_json
+from jmicro.training import Trainer
+from jmicro.curriculum_strategy import StrategyTrainer
+from run_lr_recovery import ColdExtensionTrainer,terminal_peak
+from run_eos_short_pilot import equal_state
+
+
+def test_cold_extension_inherits_actual_terminal_rate_and_moments(tmp_path):
+    torch.set_num_threads(2)
+    config=read_json(ROOT/'configs/models/t4k.json')
+    config.update(hidden_size=32,num_attention_heads=2,num_key_value_heads=1,head_dim=16,rotary_dim=16,
+        num_hidden_layers=2,intermediate_size=48,attention_scale=.25,qk_norm_type='none')
+    write_json(tmp_path/'manifest.json',dict(vocab_size=4096))
+    shard=SimpleNamespace(directory=tmp_path,split='train',tokens=np.array([2,8,9,10,3]*500,dtype='<u2'),
+        index=[dict(offset=i*5,body_tokens=3,split='train') for i in range(500)],
+        manifest=dict(vocab_size=4096),byte_lengths=np.array([0]*8+[1]*4088))
+    settings=dict(seed=42,context=1024,batch=1,accumulation=1,lr=.002,weight_decay=.1,warmup=0,
+        schedule_updates=100000,dtype='fp32',compile=False,backend='math',training_fast_path=True,deterministic=True,scheduler='wsd')
+    initial=Trainer(config,shard,settings,'cpu');initial.save(tmp_path/'initial.pt')
+    parent=torch.load(tmp_path/'initial.pt',map_location='cpu',weights_only=False)
+    binding=dict(parent=dict(path='test'),peak_lr=.002,warmup_updates=0,optimizer_policy='inherit',initialization='test')
+    first=StrategyTrainer(parent,shard,shard,'shuffle',dict(web=0,short=1500),binding,'cpu')
+    while first.sampler.source_teachers['short']<1500:first.step()
+    first.save(tmp_path/'trained.pt');trained=torch.load(tmp_path/'trained.pt',map_location='cpu',weights_only=False)
+    actual=terminal_peak(trained);assert actual==pytest.approx(.0002)
+    cold=dict(binding,peak_lr=actual)
+    fork=ColdExtensionTrainer(trained,shard,shard,'shuffle',dict(web=0,short=3000),cold,'cpu')
+    assert equal_state(first.optimizer.state_dict()['state'],fork.optimizer.state_dict()['state'])
+    assert equal_state(first.model.state_dict(),fork.model.state_dict())
+    assert fork.sampler.short.state_dict()==trained['sampler']['short']
+    assert fork.step()['lr']==pytest.approx(actual)
+    with pytest.raises(AssertionError):
+        ColdExtensionTrainer(trained,shard,shard,'shuffle',dict(web=0,short=3000),binding,'cpu')
+
+
+def test_terminal_rate_rejects_nonfinite_or_different_groups():
+    for rates in ([float('nan')],[0.],[.01,.02]):
+        with pytest.raises(ValueError):terminal_peak(dict(optimizer=dict(param_groups=[dict(lr=x) for x in rates])))

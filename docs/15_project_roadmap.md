@@ -471,3 +471,19 @@ BPB、意味/文法の選択式評価、自由生成の文法/関連性/一貫�
 科学教師は合計600,000,000、valid/physical入力604,504,064、実CUDA再開32 optimizer updates/検証教師1,040,748は別会計。段階3GPU1396.456秒（上限1800秒）、診断76.895秒（上限600秒）。CPU変更関連tests、実CUDA再開、全四終端の教師/LR/保存state/共通bytes評価、320個別内容と完了監査は成功。内容判定は非blind Codexで、独立人手認証は未実施。結果72の数値7失敗は残している。
 
 可搬証拠はreports/phase6/generation_transfer_review.json、curriculum_strategy_ready/content_v2/v3・review/annotations、strategy_extension_eligibility/review/annotations、strategy_scope_completion.json、strategy_scope_evidence.json.gz（153members/32,891,478bytes）。全rawのsource/metrics/gold/generation/失敗/理由を保存し、checkpoint/shards/corpusはWSLへ保持。モデル・dataの設定/hashは三つの凍結configへ結び付く。元10B UIのactual444875/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start9599628、HTTP親SHA410f975d…/10,000,007,168/busy=falseを確認。科学396752/426421、基準429834、延長441415は終了・不在。local commit後に停止し、段階4・新構成学習・Chat・20B/50B・test・push/公開は未開始。
+
+### 実行再開契約: 提示した項目1〜5（2026-10-06 JST）
+
+ユーザーの「5まで進めてください」で、直前の五項目全体を再開する。1)同じ100M出発でLR切り分け、2)10〜50M教材改訂の同量比較、3)必要時の10M内構成比較、4)入れ子100M/500Mの教材量と同教材100M〜2B教師の学習量比較、5)改善Base本学習1B/2B/5B/10Bから、採用Base→Chat→量子化/ローカル検証までが実行対象。昔の段階1〜3の停止は今回の再開で解除される。診断や準備だけ、候補不採用だけでこの目標を完了としない。
+
+1は既存100M/300M履歴を再利用し、固定train32/dev32の学習前後を測る（新科学学習0/診断GPU300秒以内）。元各100M重み・Adam・RNG・教材順序から、100M終端LR以下をpeakとする追加200Mを各条件実行（教師400M、同じ90%stable/10%decay、warmupなし、各学習600/比較評価1800秒）。既存reheat枝は再学習しない。実CUDA保存再開、公式dev256/全日本語と固定各80内容を確認し、train/dev悪化とLRを切り分ける。候補の採用gateを変更せず、LR選定と実用Base採用は別に記録する。
+
+2は現教材の幻想/擬人化/宣伝や主体・数・因果の弱い部分を改善する。現v3や古いreportの閾値・原文・判定を変更しない。新source/編集単位を別versionで準備し、10〜50M pilotの局所exact/family分割と固定64内容を確認する。一度のsource/selector比較は準備CPU600秒×最大2改訂、同量の各300M以下教師/GPU1800秒枠として凍結し、失敗なら次のsource/仮説へ有効に進む。trainだけ改善する条件は本学習へ採用しない。引用/条件/否定/時間/数/照応を保持し、自然文と合成の由来を表示する。
+
+3は良い教材でgoldは学べるが未見文が弱い時に、現13層256・提案9層256/6層384の最大2新構成を、全条件fresh・同Tokenizer/教材/seed/教師量/スケジュールで比較する。各300M教師を初期上限、構成ごとに実CUDA安定batch・連続/再開を確認。GPU各600秒学習＋共通評価、全比較3600秒枠を実行前に固定。容量不足を先に断定しない。
+
+4は新しい固有教材100M/500Mの供給を実確認してから、source/長さ/EOSを揃えた入れ子の各1B教師比較を行う。同500M教材の安定経路100M/500M/1B/2B節目に同量decay評価枝を使う。基準を見て学習量を決め、量が用意できない場合はsource供給を改善して進める。旧巨大コーパス全量再照合は行わない。全初期研究は主経路約3B＋評価枝約100Mの案で、正確な量・計測時間・停止条件は準備後にconfigへ凍結する。準備量、実露出、教師量、valid/physical、EOS/bytes/時間を別会計とする。
+
+5は選定したレシピの安定経路1B/2B/5B/10Bを評価し、Baseの既存品質目標を満たすまで教材/設定/構成の有効な次の仮説へ戻る。未達を達成として報告しない。採用Base後にChatの10M/30M/100M総系列tokens（Assistant教師別）、Assistant本文＋EOT、2〜4ターン/訂正/否定/停止を学習・評価。float/HF/GGUF parity、Q8/Q4品質/容量/速度、実WebUIと再現手順を揃える。技術的成果物だけで全目標達成としない。
+
+実行中は永続job/PID/boot/start/ログ/checkpointとstage ledgerを保存し、各有意なmilestoneでchecks/status/local commit。GPU占有時にUIを停止しjob終端で元の採用UIを復帰する。保護testは既存ロードマップの最終レシピ凍結後の用途だけで、日常の教材選別に使わない。20B/50B・外部公開・push・有料cloudは別の範囲で今回自動開始しない。独立した人間のblind評価は未実施と表示し、実際に取得していない人間評価を作らない。
