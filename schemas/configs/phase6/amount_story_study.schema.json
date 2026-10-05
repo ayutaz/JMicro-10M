@@ -1,0 +1,291 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "scope",
+    "output",
+    "parent",
+    "web_shards",
+    "web_manifest_sha256",
+    "dev_shards",
+    "dev_manifest_sha256",
+    "tokenizer",
+    "tokenizer_sha256",
+    "suite_sha256",
+    "pool",
+    "evaluation",
+    "arms",
+    "updates_per_arm",
+    "stable_updates",
+    "decay_updates",
+    "tokens_per_update",
+    "tokens_per_arm",
+    "final_update",
+    "final_tokens",
+    "peak_lr",
+    "screen_gpu_budget_seconds",
+    "full_gpu_budget_seconds",
+    "reference",
+    "implementation",
+    "source_sha256",
+    "tests_sha256",
+    "gates",
+    "parent_BPB_maximum_regression",
+    "protected_test_used",
+    "created_at",
+    "scientific_total_tokens",
+    "total_GPU_budget_seconds",
+    "pool_ready",
+    "pool_content",
+    "midpoint_update",
+    "stage",
+    "selection"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "scope": {
+      "const": "Authorized plan56 stages1–3; amount"
+    },
+    "output": {
+      "const": "reports/phase6/story-constant-lr-1b-20261005"
+    },
+    "parent": {
+      "const": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+        "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+        "update": 305176,
+        "tokens_seen": 10000007168
+      }
+    },
+    "web_shards": {
+      "const": "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2/export-001/shards"
+    },
+    "web_manifest_sha256": {
+      "const": "2edfd35bf077cd1aa583713c01341c0db52f39adc5701f30ede0aacae840b2de"
+    },
+    "dev_shards": {
+      "const": "/home/aihub_ubuntu/jmicro-data/phase6/expanded-v2/shards"
+    },
+    "dev_manifest_sha256": {
+      "const": "75c7420a1434cf8a97797218b163c694a13ed838f389f09327dcc86f7164c12c"
+    },
+    "tokenizer": {
+      "const": "artifacts/phase2/4096/tokenizer.model"
+    },
+    "tokenizer_sha256": {
+      "const": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+    },
+    "suite_sha256": {
+      "const": "93cd3a19f3e62c8d30d1660b431a9525823f58b9ceb1bf90c6ecbac2c19292eb"
+    },
+    "pool": {
+      "const": {
+        "pool": "/home/aihub_ubuntu/jmicro-data/phase6/simple-stories-ja-budget-20261005/shards",
+        "manifest_sha256": "213e11ddad72763ca5d1cb08b7a2c2a98a65989fe03dc194465d9ec4beec0921"
+      }
+    },
+    "evaluation": {
+      "const": {
+        "dev_documents": 256,
+        "fixed_dev_prefixes": 80,
+        "max_new_tokens": 64,
+        "tasks": [
+          "semantics",
+          "jblimp",
+          "jcqa"
+        ],
+        "config": "configs/evaluation/japanese_base_v2.json",
+        "config_sha256": "661dc8d4db7de836ddb99ac3ed5bbf3e10636c24d00e5fb0869773ace4fa03a8",
+        "semantic_suite": "eval/japanese_semantics_v2_1.jsonl",
+        "semantic_sha256": "53e28d39368251a60750ff22da7c261cb20c3136fb5231aa4324ec2d6285ffd9",
+        "data_manifest_sha256": "b5016f3d926dc08c83c5c73c33212a9f40c5c066511bc3ce1574c616046f4402"
+      }
+    },
+    "arms": {
+      "const": {
+        "fixed20": {
+          "pool": "/home/aihub_ubuntu/jmicro-data/phase6/simple-stories-ja-budget-20261005/shards",
+          "manifest_sha256": "213e11ddad72763ca5d1cb08b7a2c2a98a65989fe03dc194465d9ec4beec0921",
+          "short_updates": 6102
+        }
+      }
+    },
+    "updates_per_arm": {
+      "const": 30518
+    },
+    "stable_updates": {
+      "const": 30518
+    },
+    "decay_updates": {
+      "const": 1
+    },
+    "tokens_per_update": {
+      "const": 32768
+    },
+    "tokens_per_arm": {
+      "const": 1000013824
+    },
+    "final_update": {
+      "const": 335694
+    },
+    "final_tokens": {
+      "const": 11000020992
+    },
+    "peak_lr": {
+      "const": 0.0001
+    },
+    "screen_gpu_budget_seconds": {
+      "const": 2400
+    },
+    "full_gpu_budget_seconds": {
+      "const": 3000
+    },
+    "reference": {
+      "const": {
+        "parent_body": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-comparison-20261004/full-dev.json",
+          "sha256": "4cb01a95227be5950e035d72719075cea650c80bbdba18ca1713edf939891ae2"
+        },
+        "parent_generation": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-comparison-20261004/generation.json",
+          "sha256": "aed50510227af26e857201bce855a5a738802062786d5c7d655f2d0a6a91b3eb"
+        },
+        "old_review": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/review.json",
+          "sha256": "b78385bd235d7a9281a5b6b4283902078e5abd8db743076aa886ecf88fed0465"
+        },
+        "old_training": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/result.json",
+          "sha256": "0b8c52cf64e1d3441419a924af55dfc2a45b7677666a2c88e57e55b31a1757d9"
+        },
+        "web_screen": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/evaluation/result/web/evaluation/result.json",
+          "sha256": "5e0f346d1c657b2f8f1a35d9e8079ce896abab3451e34dc697792394a0df6796"
+        },
+        "story_screen": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/evaluation/result/coherent20/evaluation/result.json",
+          "sha256": "338fa68df832a8fddfa63c6038c1b8f9c840ccbd9d8ee508c617494f4498a455"
+        },
+        "web_full": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/full/web-full.json",
+          "sha256": "60400a8873cc4a142472f5bdf3fead7cead87b6d390433bc69349fa860db3932"
+        },
+        "story_full": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/full/coherent20-full.json",
+          "sha256": "65b1e23a790b6c59c0838fcadcb9aae8e99565c7fd10327dd1ea7ae535e0e471"
+        },
+        "old_full_review": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/full/review.json",
+          "sha256": "04c8280a3ac871f58711ebcf9bc723b97e5fc9163ad0e9c4175d16fe7e965172"
+        }
+      }
+    },
+    "implementation": {
+      "const": {
+        "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+        "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+        "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+        "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+      }
+    },
+    "source_sha256": {
+      "const": {
+        "scripts/run_matched_story_study.py": "1ae7933b4708f31ea7b2f758ee89e3c42e9382d95b21c46f1c5441dddc82dd32",
+        "scripts/run_matched_story_study.ps1": "94f7eb53169e54076a777544c73663a21a1d3e45cd55562ac055a58d091742f1",
+        "scripts/review_matched_story_study.py": "439c990c4d2781937573927df08bdaef860041c78fd05f0d6afde4458351f315",
+        "scripts/prepare_matched_story_pools.py": "4d7bff7106aa834180f537fc613cf7c8773851deabbfa0a0f230d8eab0a27768",
+        "src/jmicro/story_quality.py": "23955328391a9361a38ba6a5a15b61c1e6e88260ff8412327611b82c171635d7",
+        "scripts/run_story20_budget.py": "9e1874f15c93eec841020b5fb78714a08509c4f9df79d31b1724b42e3808ade4",
+        "scripts/run_story20_budget.ps1": "7f31cc6120b00853e3850a20617ff9bdc8bc7eeec10a394214a0028dcc7bf28a",
+        "scripts/prepare_story20_budget.py": "29cd73a6e2b3ccefa0251a63a250c8cc490c5bdb71261e3a62c9c6f7c77fc1a1",
+        "scripts/prepare_story20_budget.ps1": "bdc4d8fbcd2ea8fe4248a7fdea03feb2b1463af18d6bd528ab196a78e752094f",
+        "scripts/review_story20_budget.py": "19170c57d31edfaa64272888bcf8dae2618192bfe7a33e3b74f9a08cd55a72a3",
+        "scripts/run_story20_low_lr.py": "68e320a7d16b468b3eec37074ae53e3489c631de95b6206d1ab6f740f2a5efb2",
+        "scripts/run_story20_low_lr.ps1": "85beea6cdcd9f36aa51c19d5eb53b5f7700e256cdec1b7bff886d7d1239a807d",
+        "scripts/run_story10_low_lr.py": "5f47de181085b44bb194cb5b7ac9549008a4ead715df8007c61be73e7f336647",
+        "scripts/run_story10_low_lr.ps1": "e14c1f44205c49db8611bad88865e8fa993a9a441ec403e04a7c82b9ab2ae85f",
+        "scripts/run_story10_comparison.py": "3f693393992fd18bde70f9a7d4ec16a85169857183c4c9bc503064b9a11a56a0",
+        "scripts/run_story10_comparison.ps1": "f85ff6dbee30a45aa3143ac000a9db28d6ee6f17cf2424bde01babf863feb0ea",
+        "scripts/run_complete_text_comparison.py": "9d91d1d6124e62e4f40f7a99762f948186602e95cc362be10bfe03297874d8f7",
+        "scripts/run_complete_text_comparison.ps1": "7fb1a82d9450daf7f6955d56093be61cf31c25dd479e23715372b1d8db345e5b",
+        "src/jmicro/coherent_units.py": "7b0e8cef7726b652f7b88187749090ded2b05042ac4c5fe076c30b5f5e637459",
+        "scripts/prepare_coherent_text.py": "d91f65d6c469690cbb2c01971bddfad73a4b0ae61211a277fa3d522e17901149",
+        "scripts/inspect_complete_text_data.py": "bf18510673c0c4352df911df850e3f598f921977cc34d580aa3fc87e8e8df626",
+        "scripts/prepare_story_text.py": "ecbd5d1a320d59a318b282026b36e4b7ad9284d897169f0c57e77f6dae5c90fa",
+        "src/jmicro/eos_pilot.py": "84b23a04455475b598056b8973a1cf89346aa3faf766e9162fef2ff7e17dbb08",
+        "src/jmicro/low_lr_pilot.py": "dcb6a1374c64c2852086b57a50433720b1e6b60263d5581eb742c3a1864ff64e",
+        "scripts/run_eos_short_pilot.py": "7a381414bdea5b24bbbbf7532f04db743cff948fa47f60e95f65019af2d3ec3d",
+        "scripts/run_eos_complete_100m.py": "62232fd440efbe32d65f25a3fffe8ec9fd7d7a96c74db329ddc3cc3443871a9d",
+        "scripts/evaluate_japanese_base.py": "9cabf705a67181b6a45eb20c1a62b69335140f2465b24ac2066f05e51ee48d02",
+        "src/jmicro/japanese_evaluation.py": "8693e2a54e63c1b085b617b207cc5db618ae80af1eb7cb54133ba8b254da6801",
+        "src/jmicro/readiness.py": "69a92251f4a697b551b9c3cfef9e2b992e776e2047c0331f7c43ba2331d172ea",
+        "src/jmicro/evaluation_memory.py": "ba22fb7ca7ddb6633a308c2b1a32a59147ecb38e568d9f838ab032300147c6b4",
+        "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+        "scripts/evaluate_complete_text_full.py": "9be7d2c3dda500571f9f95215021054b48708585cead582325d63e5da289dc9b",
+        "scripts/evaluate_complete_text_full.ps1": "ecd8c8e7341192ae32551c3309f7d20db8ac294c318c6c5e7c97dc8b34b3b3a5",
+        "scripts/run_eos_5b_finish.py": "e37c2fd3a32441690d94aa3f0a903b3d2b944707881177824e65b29fc81826c4",
+        "scripts/compare_base_10b.py": "bacea1be511e08f4d005084ad309ff840bf0b32de1650c349392aaafbd218291",
+        "scripts/compare_base_5b.py": "1cf535ca7e3de85cdf5d5cf3987148b68f24602e0b10bc26ce97bca6296b14c8"
+      }
+    },
+    "tests_sha256": {
+      "const": "8ade3f280fe7d4afc0528b0075b98f3980649e9da46a1ae3a1a48d20fbdc809b"
+    },
+    "gates": {
+      "const": {
+        "v1_unchanged": true,
+        "EOS_gain": 8,
+        "max_BPB_ratio": 1.01,
+        "coherence_gain": 8,
+        "paired_coherence_ci_lower_above": 0,
+        "raw_failure_count": 0
+      }
+    },
+    "parent_BPB_maximum_regression": {
+      "const": 0.001
+    },
+    "protected_test_used": {
+      "const": false
+    },
+    "created_at": {
+      "const": "2026-10-05T06:39:43.901639Z"
+    },
+    "scientific_total_tokens": {
+      "const": 1000013824
+    },
+    "total_GPU_budget_seconds": {
+      "const": 5400
+    },
+    "pool_ready": {
+      "const": {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase6/matched-story-content-20261005/ready.json",
+        "sha256": "1432de22c7a6acc3e62f01bd3216911463e079ac16633da0d7228813bd6b329a"
+      }
+    },
+    "pool_content": {
+      "const": {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase6/matched-story-content-20261005/content-review.json",
+        "sha256": "953a5f7954e8637c82680af68e7166b78a1f9b1b897fa9782430c1183f50ac6d"
+      }
+    },
+    "midpoint_update": {
+      "const": 320435
+    },
+    "stage": {
+      "const": "amount"
+    },
+    "selection": {
+      "const": {
+        "reason": "Content condition not adopted; retained accepted story59.96M",
+        "content_review": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/matched-story-content-500m-20261005/review.json",
+          "sha256": "ad61faf65667eca43f994e8bb9461dd937b3e25d5b876904cfb87206f5a3c4ad"
+        },
+        "selected_refined": false
+      }
+    }
+  }
+}
