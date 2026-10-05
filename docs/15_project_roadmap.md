@@ -700,6 +700,6 @@ job/PID/boot/start/source/recipeとnative section別progressを保存し、上�
 
 large保存80件ではこの研究用4gram候補が50件/1501位置あり、うち一貫性2は2件、候補なしでも一貫性<2が18件。候補は自然な反復も含み、旧自動反復19/80や採否基準を置換しない。反復目的だけで全意味崩れを直せるとは言わない。
 
-条件付き案は両教材比較の実終端/全160後、延長/採用根拠が得られず反復が残る場合にのみ検討する。largeの完了1B+20M親を両条件に固定、同25M CE教師/継承Adam・RNG・cursor、peak LRは実親以下かつ0.0002以下で再加熱なし。CE対CE+sequence UL(alpha0/0.1)、4更新ごと最大8 train prefixes32token/最大64greedy continuation、同計算policy。全GPU比較1800秒を上限案とし、実CUDA速度/batchと連続4対2+2 gateの測定後にrecipeを凍結する。新永続paired runner/採否はまだ未実装、実GPU学習0で自動起動しない。全日本語/同dev256/全新80件ずつと旧relative/absolute/original-Web基準で採否を残す。反復だけの改善や短い出力をBase採用にしない。詳細は`reports/phase6/sequence_unlikelihood_research_preparation.json`。
+条件付き案は両教材比較の実終端/全160後、延長/採用根拠が得られず反復が残る場合にのみ検討する。largeの完了1B+20M親を両条件に固定、同25M CE教師/継承Adam・RNG・cursor、peak LRは実親以下かつ0.0002以下で再加熱なし。CE対CE+sequence UL(alpha0/0.1)、4更新ごと最大8 train prefixes32token/最大64greedy continuation、同計算policy。全GPU比較1800秒を上限案とし、実CUDA速度/batchと連続4対2+2 gateの測定後にrecipeを凍結する。新永続paired runner/採否は689f74fで実装、sourceの実終端/採否・新probe/final recipeなしには起動できない。実GPU学習0。actual probeは各alphaの連続4対2+2計16検証更新を300秒枠で測り、完了証拠から同25M各条件と評価がprobe込み1800秒へ収まる場合だけ本比較recipeを凍結する。全日本語/同dev256/全新80件ずつと旧relative/absolute/original-Web基準で採否を残す。反復だけの改善や短い出力をBase採用にしない。詳細は`reports/phase6/sequence_unlikelihood_research_preparation.json`。
 
 採用候補の独立training seed/full dev/保護test→実mid-training/SFT対direct/retention/全sampling内容→実人間評価→HF/GGUF/Q8/Q4/実UIという全五目標の後続は維持する。準備/CPU検証はこの完了証拠ではない。
