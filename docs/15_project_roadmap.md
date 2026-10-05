@@ -602,3 +602,13 @@ SFT configは`route=direct-sft`または`midtraining-sft`。`parent`は直前の
 主mid/SFTは`batch_evidence`のSHA・実完了job・親・data binding・trainer・context/dtype/backend/compile等とselected batchを確認する。probeだけは`require_batch=False`で前段確認を行い、CLI本学習で測定証拠の要求を外せない。採用Base未達なのでまだprobe config/GPU測定は0。関連15CPUtestsは実CPU mid→SFT weights/fresh Adam/full resumeと、不正な親/live jobの拒否、選択ルールのプロトコルfixtureの証拠のみ。CLI help/PS構文も成功。
 
 Tokenizer codec/Assistant sampler本体は変えず、採用Base確認後のTokenizeにinstance LRU100kを使い、probe/再開builderで同じ本文の再encodeを省く。固定実train2688の全40366窓で元binding d5676756…と一致し、CPU1.742秒/hit1258820/miss74810を記録した（sft_cached_binding_check.json）。元IDs/教師mask/split/原文を保持し、未使用testやモデル品質を評価しない。GPU速度の実測値ではない。次は現在の5B本学習と品質採否が先で、主mid-training/SFT対直接SFTの実GPU/同条件ablation/全内容採点は未完了。
+
+### Chat全内容採点と同条件比較の実装準備（2026-10-06 JST、実Chat GPU0）
+
+`review_chat_sft.py --evaluation reports/phase7/<completed-eval>/result.json --template reports/phase7/<new-notes>.json`で、実終了した評価jobとcheckpoint/source/suite/TokenizerのSHAを確認して未採点templateと実history付きitemsを生成する。既存notes/itemsは上書きしない。primary80、役割抑制なしcontrol80、自生成履歴24family/59応答の全219を対象とする。token IDsからraw bytes/text/terminal/役割/反復と実promptを再構築し、提供された正解Assistantをown-historyへ混ぜない。各応答の文法/関連性/文脈0・1・2と具体的理由が必要で、欠損・重複・未採点・boolean値・別raw SHAを拒否する。
+
+採点後は同コマンドの`--notes <notes>`で`content_review.json`へ保存する。文法・関連性が同時に2のprimary応答70%以上（56/80）、own-history最終文脈2が60%以上（15/24）と既存の停止95%・空5%以下・役割1%以下・Unicode0・固定history保持を集計する。文脈の単位は59独立応答ではなく24family。先行turnの内容/機械失敗は隠さず別表示し、category別と応答文字数分布も保存する。dev screen合格はChat採用ではなく、Base流暢性・複数seed sampling・独立blind人間評価/一致率・条件固定後のtestは別の未達項目。Codex非blind判定を人間証拠として登録できない。
+
+`review_chat_ablation.py --direct-config <recipe> --direct-evaluation <result> --direct-notes <notes> --main-config <recipe> --main-evaluation <result> --main-notes <notes> --output reports/phase7/<new>/chat_ablation_report.json`は、実終了したdirect-SFTとmid-training→SFT、既存Base採用証拠と完了mid親、実CUDA再開gate・checkpoint counters/lineageを確認する。同root Base、SFT seed/batch/context/LR/warmup/source/train/budget、実SFT窓・系列・教師・入力・EOTが同じ場合だけ比較し、候補側の追加mid-training系列/教師/physical/GPUは別会計する。総教師/GPUが同量の比較とは記載しない。固定protocolの80primary/24own-finalについてfamily-paired差とbootstrap CIを出すが、多重比較補正なしの記述的評価で独立confirmation・採用を宣言しない。Base対mid対SFTの保持評価は別途必要。
+
+関連CPU16tests/2.07秒と両CLI helpに成功。raw改変/履歴混入/集計改変/採点欠損/他SHA/boolean、人間への誤ラベル、70%・60%の境界、未終了/live job、実SFT量やbatchの不一致を検証した。fixtureの採点はモデル品質の証拠ではなく、対話GPU学習と実内容採点は0。可搬準備は`reports/phase7/chat_content_review_preparation.json`/tests XML。5B本流actual487071は継続し、凍結Base sourceやTokenizerを変更していない。次は5B終端・同decay・全日本語/80内容からBase品質を決め、後続の実比較へ進む。

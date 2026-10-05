@@ -49,7 +49,7 @@ def run(args):
     binding = dict(checkpoint=str(checkpoint),checkpoint_sha256=sha256(checkpoint),tokenizer_sha256=sha256(args.tokenizer),
         suite_sha256=sha256(ROOT/"eval/chat.jsonl"),max_new_tokens=64,dtype="bf16",backend="math",GPU_budget_seconds=args.gpu_budget_seconds,
         source_sha256={p:sha256(ROOT/p) for p in SOURCES},implementation=implementation_hashes(),
-        decoding="greedy",scored_split="dev",protected_test_used=False,
+        decoding="greedy",evaluation_seed=42,model_context=state["model_config"]["max_position_embeddings"],scored_split="dev",protected_test_used=False,
         protocol="provided80 suppressed + provided80 unsuppressed role control +24 own-history2-4turn dialogues")
     directory.mkdir(parents=True,exist_ok=True);job_path = directory/"job.json"
     previous = read_json(job_path) if job_path.exists() else {}

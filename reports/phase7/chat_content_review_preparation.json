@@ -1,0 +1,47 @@
+{
+  "status": "implementation_and_CPU_protocol_checks_complete_actual_Chat_quality_pending",
+  "completed_at": "2026-10-05T19:06:52.3022033Z",
+  "commands": [
+    "scripts/review_chat_sft.py",
+    "scripts/review_chat_ablation.py"
+  ],
+  "raw_responses_required": 219,
+  "provided_primary": 80,
+  "provided_role_control": 80,
+  "own_history_turns": 59,
+  "context_scoring_families": 24,
+  "CPU_tests": 16,
+  "CPU_test_seconds": 2.07,
+  "test_command": "uv run --frozen --extra hub --extra data --extra ml --extra export pytest -q tests/test_chat_review.py tests/test_chat_evaluation.py tests/test_sft_routes.py tests/test_chat_training.py --junitxml reports/phase7/chat_content_review_tests.xml",
+  "test_evidence": "reports/phase7/chat_content_review_tests.xml",
+  "CLI_help_checks_passed": true,
+  "fixtures_are_quality_evidence": false,
+  "actual_Chat_GPU_teacher_tokens": 0,
+  "independent_human_blind_evidence_verified": false,
+  "protected_test_used": false,
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "requested_five_steps_complete": false,
+  "current_Base_job": {
+    "pid": 487071,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "10923679",
+    "ps_confirmed": true,
+    "verified_at": "2026-10-05T19:06:52.3022033Z",
+    "heartbeat_at": "2026-10-05T19:06:48.389708Z",
+    "teachers": 2758467573,
+    "teacher_budget": 5000000000,
+    "loss": 2.600839376449585
+  },
+  "pending": [
+    "actual adopted Base",
+    "actual masked batch measurement",
+    "matched mid-training/SFT versus direct SFT GPU learning",
+    "actual all219 content judgments",
+    "Base/mid-training retention comparison",
+    "multiple-seed sampling",
+    "blind human provenance and agreement",
+    "final recipe then protected test",
+    "quantization and actual local UI"
+  ]
+}
