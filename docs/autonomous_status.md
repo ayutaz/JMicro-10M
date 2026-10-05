@@ -130,3 +130,8 @@ builder actual363349/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start_ticks7716977
 次回案は、意図の否定・物の所在・出来事と結論の不整合を、今回の確認sampleと分離したtrain診断例で検出できるか固定比較すること。selector凍結後、未確認の各40を一度だけ確認し、元準備条件を満たす場合に限定した各100Mを提案する。目的と限界は結果63へ記載し、追加の改修・抽出・学習は未開始。
 
 独立人手blind、保護test、主Web独立全件監査、実用Chat、新重みの量子化/local品質は未実施。原ロードマップの品質目標と採用条件を維持する。旧進捗は[2026-10-05履歴](autonomous_history_20261005.md)と番号付き実験記録へ保持する。
+
+
+### Chat教師処理の先行実装（2026-10-06 JST）
+
+Base採用後に使うsrc/jmicro/assistant_sampler.pyを追加。train dialogueのみ、Assistant本文+EOTだけを一度ずつ教師化し、役割/system/user/過去Assistant/PADをmaskする。入力contextに収まる完全な現在user/assistant pairを保持し、古い完了turnのみ削除。総系列tokens・valid入力・Assistant教師・physical/PAD・EOT・反復epochを分離し、data/mask内容bindingとsampler全cursorを保存再開する。tests/test_assistant_sampler.pyのCPU3testsがWSL uv3.12.7で成功（0.88秒）。実model causal lossとのシフト照合、epoch境界の再開順序、変更データ/dev/過大targetの拒否を確認。CPU検証でありChat学習/実CUDAゲート/品質達成ではない。Chatの実行コマンド/実GPU学習/評価は未実装・未開始、Base採用を先に満たす。並行stage3 actual475615は生存し9層の終端評価/生成80へ進行、6層は未学習。
