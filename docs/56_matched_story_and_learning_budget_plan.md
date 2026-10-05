@@ -39,3 +39,5 @@
 関連CPU10tests通過。config/schema/actual量/source/tests/内容確認を凍結し、local commit `a8215aa`。2026-10-05 06:09:29.617Zにhidden Windows34620から起動、actual Linux234687/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start_ticks6377461。実CUDA安定/減衰保存再開25項目成功、対照500M学習中。runはLinux `reports/phase6/matched-story-content-500m-20261005`、Windows同runにstdout/stderr/launch記録。元UIはGPU中停止してwrapper finallyで復帰。
 
 段階2のrouteは30518更新/物語6102更新に固定する。前後各15259更新に物語3051更新ずつで、500Mまでのrouteは段階1と厳密同じ。物語実比率19.9948%、中間99,975,168/終端199,950,336物語tokens。段階2は新しい一定LR実CUDA保存再開検証262,144tokensを使い、段階1との検証計524,288tokensを維持する。実科学量は二教材枝合計1,000,013,824と連続1B枝1,000,013,824で計2,000,027,648。中間500Mを科学会計に重複計上しない。今は段階2/全320内容/最終判断が未完了。
+
+最終（2026-10-05 07:10Z以降）: 段階1〜3の実学習・評価・採否判断と要求別31checksを完了。[結果57](57_matched_story_and_learning_budget_results.md)に両研究の改善指標と未達基準を保存した。科学2,000,027,648/検証524,288、一次GPU3331.359秒、全320内容。両新候補は不採用で条件付き全文未開始。元10B UI237483へ復帰しactual/HTTPを確認。local commitで停止し、新提案は実行しない。前の未完了記録は当時の履歴。

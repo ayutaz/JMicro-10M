@@ -1,8 +1,10 @@
 # JMicro-10M development and training
 
-Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/windows_handoff.md` before continuing. The status records actual results; `docs/53_story20_low_lr_judgment.md` records the completed current scope. Older authorizations and dated progress notes are history and do not authorize a new experiment after the current stop boundary.
+Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/windows_handoff.md` before continuing. The status records actual results; `docs/57_matched_story_and_learning_budget_results.md` records the completed current scope. Older authorizations and dated progress notes are history and do not authorize a new experiment after the current stop boundary.
 
 ## Current state and scope
+
+- Current stop boundary (2026-10-05 JST): plan56 stages1–3 complete. Matched content each500M and required retained-data constant-LR continuous1B/500M midpoint comparison, full Japanese diagnostics/all320 individual content reviews, judgment/report/31 final checks/original10B UI restoration are complete. Content condition rejected; learning amount improved semantics/repetition/BPB and coherence11 to19, but all primary/practical adoption conditions remain unmet. Conditional full not entered for either study. Scientific2,000,027,648/verification524,288 separate. GPU jobs234687/236557 and builder234279 exited. Original UI237483 is live. Save local delivery and stop; no new GPU/data/20B/50B/Chat/protected test/push/publication. The small semantic-learning diagnostic and LR-decay comparison in report57 are proposals, not launch instructions. Older authorizations/progress/stop boundaries below are history.
 
 - Latest user authorization (2026-10-05 JST): execute stages1–3 of docs/56_matched_story_and_learning_budget_plan.md: matched story-content pools and each500M comparison, then selected fixed-data continuous1B study with constant-LR500M/1B checkpoints, Japanese/content evaluations and conditional full gates, judgment/report/local commit/original UI restore and stop. Stage2 remains required if stage1 candidate fails (use retained accepted story pool). No20B/50B/Chat/protected test/push/publication. Older plan54/52 stop boundaries are completed history and do not prevent this newly resumed scope.
 

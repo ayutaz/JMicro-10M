@@ -2,6 +2,8 @@
 
 日本語の短文生成と数ターンの雑談を目的に、Tokenizerからスクラッチ構築する約10Mの言語モデル。現在のモデルは **10,001,152 parameters**、準備済みtrainデータは **12,225,819,077 tokens**。
 
+最新（2026-10-05）: [教材内容と学習量の比較57](docs/57_matched_story_and_learning_budget_results.md)まで完了し停止。量/長さ/EOS位置を一致させた教材二組各500Mでは一貫性11→11/80で追加選別を不採用。従来教材固定・一定LRの500M→1Bでは一貫性11→19/80、反復21→10/80、意味60.4→66.1%と改善したが、原採用条件とBase/Chat品質は未達。科学計2Bは別枝の合計で、最長枝の累積は11B。全320内容/日本語診断/最終31checksを保存し元10B UIへ復帰。新GPU/20B/Chat等は未開始。[現在地](docs/autonomous_status.md)、[最終確認](reports/phase6/matched_story_completion.json)。以下は以前の結果と停止記録。
+
 最新（2026-10-05）: [計画52](docs/52_story20_low_lr_execution.md)段階1〜4の学習・評価・判断を完了。物語20%条件は共通scheduleの100M→500MでEOS22→37、反復29→18、一貫性/適切完結9→19/80に改善した。500M全文BPB0.948798、Web対照比+0.888%・元10Bより改善、全文/長文とCPU30項目も成功し、原比較基準を通過した研究候補として採用する。意味・常識の改善とBase/Chat品質目標は未達。物語pool59,963,449 tokensを約1.667周使用し、新規unique100Mとは扱わない。[最終判断と次案53](docs/53_story20_low_lr_judgment.md)、[現在地](docs/autonomous_status.md)。報告/local commit・元final10B UI復帰で停止し、次のデータ構成比較は提案のみ。以下の旧結果・停止記録は履歴。
 
 2026-10-04現在、主系列5Bと各100M仕上げ比較に続き、**総10,000,007,168 tokensの学習と保存状態19項目の確認を完了した。** WSL2/RTX4090で定常約69.5万tokens/秒、GPU時間約2時間8分。10Bの全文dev/固定400品質評価も完了した。BPB0.954018、固定EOS0/80・反復53/80、raw Unicode0/400。今回は報告・local commitで停止する。[評価結果と残る課題](docs/42_base_10b_quality_evaluation.md)。[10B学習結果と高速化](docs/41_base_10b_training.md)、[現在地](docs/autonomous_status.md)、[次の計画](docs/39_learning_scale_and_generation_plan.md)を参照する。

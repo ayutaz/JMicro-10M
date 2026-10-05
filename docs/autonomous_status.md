@@ -1,5 +1,14 @@
 # Codex継続作業の現在地
 
+計画56段階1〜3完了・停止（2026-10-05 JST）: matched教材各22,977,241tokens/253,119全文の各500M比較を完了。対照→追加選別はEOS39→44/反復16→17/一貫性11→11/適切完結14→15（各80）で不採用。段階2も省略せず旧59,963,449-token物語固定/一定LR0.0001で連続1Bを完了し、500M→1BはBPB0.982953243→0.981611241/EOS31→35/反復21→10/一貫性11→19/適切完結15→20。意味60.417→66.146%（対応95%+1.563〜+10.417pp）と複数指標は改善したが、一貫性95%下限0、EOS35<37、内容各27未達、Web BPB比+1.0335%で原採用条件未達。両条件付き全文は未開始。CPU10tests/実CUDA25・13/一次32・29/最終要求別31checks成功、全320内容保存。科学2,000,027,648/検証524,288別、一次GPU3331.359秒。元final10B UI actual237483/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start_ticks6728695/ready07:08:04.599378Z、HTTP親SHA410f975d…/tokens10,000,007,168/busy=falseとactual process確認。科学234687/236557/教材234279は終了し再起動しない。結果と提案はdocs/57_matched_story_and_learning_budget_results.md、最終確認reports/phase6/matched_story_completion.json。11B checkpoint・両run全raw/metrics/source/annotationsをLinuxへ保存。追加学習の効果を否定せずBase/Chat未達、次の小規模条件保持教材診断/LR減衰/新data/GPU/20B/50B/Chat/protected test/pushは提案のみで未開始。local commitで今回停止し、以下は実行当時の履歴。
+
+
+計画56段階2・500M中間保存／連続1B学習中: actual236557が500,006,912追加/総10,500,014,080/update320435を746.529秒で中間保存（SHA 17cb40a158c51a52e93ff31ba492067fff9c9cbebaa784da167fe036da60aad0）。Web400031744/story99975168、EOS教師Web846893/story1105092、一定LR0.0001。評価を挟まず同じ学習を1Bまで続行中。500Mを新たな科学枝として重複計上しない。新一定LRの実CUDA13checks成功/検証262,144別。1B終端/両地点日本語・160内容/最終判断は未完了。
+
+
+計画56段階2実行中: hidden Windows34216/actual Linux236557/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start_ticks6560977。旧59,963,449-token物語を固定、一定LR0.0001/30518更新/科学1,000,013,824tokens、500M中間と1B終端を保存し1B後に両地点評価する。新一定LRの実CUDA保存再開を実行中、科学は未完了。Linux reports/phase6/story-constant-lr-1b-20261005/screen-job.json・fixed20/metrics.jsonl/latest.json と Windows同runログを追跡。段階1科学234687終了・32evidencechecks成功/内容改善未達、commit04acf40。段階2全160内容/必要時全文/最終判断/report/commit/UI復帰まで進め停止する。
+
+
 計画56段階1完了／段階2凍結: matched各22,977,241-token教材で各500,006,912追加tokens、実EOS教師Web846,893/story1,101,267を一致。GPU1659.584秒・科学1,000,013,824/検証262,144別。dev/日本語全完了・全160個別内容・CPU32evidencechecks成功。対照→候補BPB0.979944438→0.980233205、EOS39→44/反復16→17/一貫性11→11/適切完結14→15（各80）、対応95%−8.75〜+8.75ppで改善条件未達・不採用。条件付き全文は開始しない。次は旧採用59,963,449-token物語pool固定、元10Bから一定LR0.0001で追加連続1,000,013,824tokens、500M中間/1B終端を保存して両地点評価。段階1科学234687終了、元UI235943へ復帰確認済み。段階2config/schema/sourceを凍結したが新科学はまだ未開始。
 
 
