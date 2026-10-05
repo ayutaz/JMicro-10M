@@ -516,3 +516,8 @@ BPB、意味/文法の選択式評価、自由生成の文法/関連性/一貫�
 amount_learning_comparison.jsonで同じfresh現13層・Tokenizer4096・seed42・context1024/batch32/BF16 Flash compiled・LRpeak.002/初200更新warmupを凍結。500M教材の安定経路を100M/500M/1B/2B教師で分岐し、100M教材は1B教師で分岐する。各分岐に同20M教師のcosine decay（最低peakの.1、warmup再実行なし）を適用して全日本語/固定80内容を評価する。主経路3B＋評価枝5×20M=100Mの科学3.1B、保存再開検証教師は別、GPU占有上限7200秒。まず500M側を実行して早い100M評価を得る。各節目から毎回新規学習せず、枝は主経路のAdam/RNG/cursorへ戻す。本流/枝とも完了更新だけ保存・計数する。学習秒数は完了step metricsの合計で、保存/評価等は総GPU占有に別記する。
 
 準備量と反復を含む教師量、valid/physical入力、実source別教師/EOS、epoch/block cursorを別記する。全tokenの固有露出unionは独立計測していないため、準備全量を学習済み固有量と呼ばない。遅延doc shuffleは従来と同じ文書/ブロック順序を保持し、全epochを毎回連結せずmmapから必要部分だけ読む。CPU5testsは入力/epoch/再開/学習state/decay復帰/metrics回復の証拠、GPU学習や品質の証拠ではない。実CUDA gate成功後に本流を開始する。量/学習比較GPU、全400内容、改善Base/Chat/量子化はこの凍結時点では未完了。
+### stage4の最初の100M評価（2026-10-06 JST、比較継続中）
+
+500,000,785準備tokensの現13層fresh経路で、本流100,000,000教師（valid/physical100,499,456、step149.842秒）から同20,000,000教師decayを分岐。実CUDA連続/再開の全state・有限loss/gradient、安定経路の実LR/教師/保存cursorを確認。共通Web dev256 BPB1.231780、意味46.875%、JBLiMP78.248%、JCQA30.206%。全80の非blind Codex内容は文法2=32、関連2=16、一貫性2=9、適切完結13、EOS31、反復20、raw Unicode0。理由とraw生成のhashをamount_learning_large-100000000_notes/content_reviewへ保存。独立人手評価ではない。
+
+この一点は実用基準未達でBase採用なし。別教材の旧モデルとの値の違いを量だけの効果と扱わず、同500M教材の500M/1B/2Bと入れ子100M教材の同1Bを固定条件のまま実行する。100M枝を終えたactual481317は最新安定stateを復帰して学習継続中。全五項目・段階4全400内容と採否は未完了で、生成品質達成を宣言しない。

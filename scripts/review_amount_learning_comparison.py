@@ -64,6 +64,34 @@ def audit_checkpoint(d,history,c,mode,teachers):
     return state
 
 
+def point_review(key):
+    """Review one fully evaluated point while later stable learning continues."""
+    c = load_config();progress = read_json(RUN/"progress-result.json")
+    ev,d = progress["evaluations"][key],progress["decay"][key]
+    assert ev["checkpoint_sha256"] == d["checkpoint_sha256"] and ev["binding"] == d["binding"]
+    assert ev["evaluation_RNG_isolated"] and not ev["protected_test_used"]
+    assert all(ev["diagnostics"][k]["complete"] and ev["diagnostics"][k]["count"] == n for k,n in {"semantics":192,"jblimp":331,"jcqa":1119}.items())
+    rows = ev["generation"]["outputs"];validate_rows(rows,Tokenizer(ROOT/c["tokenizer"]))
+    cases = {r["id"]:r for r in (json.loads(s) for s in (ROOT/"eval/base.jsonl").read_text().splitlines()) if r["split"] == "dev"}
+    assert len(rows) == 80 and {r["id"] for r in rows} == set(cases)
+    assert all(r["prefix"] == cases[r["id"]]["prefix"] for r in rows) and ev["greedy_rates"] == rate(rows)
+    path = ROOT/f"reports/phase6/amount_learning_{key}_notes.json";notes = read_json(path)["notes"]
+    scores = {n[0]:dict(grammar=n[1],relevance=n[2],coherence=n[3],completion=n[4],rationale=n[5]) for n in notes}
+    assert len(notes) == len(scores) == 80 and set(scores) == set(cases)
+    assert all(len(s["rationale"]) >= 12 and all(s[k] in (0,1,2) for k in ("grammar","relevance","coherence")) and s["completion"] in (0,1) for s in scores.values())
+    assert all(not scores[r["id"]]["completion"] or r["stop_reason"] == "stop_id" and scores[r["id"]]["relevance"] >= 1 and scores[r["id"]]["coherence"] >= 1 for r in rows)
+    report = dict(status="single_evaluated_point_and_all80_content_complete",point=key,checkpoint_sha256=d["checkpoint_sha256"],
+        stable_teachers=progress["stable"][key]["additional_supervised_tokens"],decay_teachers=d["additional_supervised_tokens"],
+        BPB=ev["body"]["bpb"],rates=ev["greedy_rates"],Japanese={k:ev["diagnostics"][k]["primary"]["accuracy"]["point"] for k in ("semantics","jblimp","jcqa")},
+        grammar2=sum(s["grammar"] == 2 for s in scores.values()),relevance2=sum(s["relevance"] == 2 for s in scores.values()),
+        coherent=sum(s["coherence"] == 2 for s in scores.values()),appropriate=sum(s["completion"] for s in scores.values()),
+        notes_sha256=sha256(path),generation_sha256=sha256(RUN/"evaluation"/key/"evaluation/generation.json"),
+        independent_human_blind=False,other_comparison_points_not_asserted=True,Base_adopted=False,requested_five_steps_complete=False,created_at=now())
+    write_json(RUN/("content-review-"+key+".json"),report)
+    write_json(ROOT/f"reports/phase6/amount_learning_{key}_content_review.json",report)
+    print(json.dumps(report),flush=True)
+
+
 def audit():
     c = load_config(); result = read_json(RUN/"compare-result.json"); job = read_json(RUN/"job.json")
     assert job["status"] == "complete" and not alive(job)
@@ -142,7 +170,8 @@ def audit():
 
 if __name__ == "__main__":
     assert sys.version_info[:3] == (3,12,7);torch.set_num_threads(2)
-    parser = argparse.ArgumentParser();parser.add_argument("--checkpoint");args = parser.parse_args()
+    parser = argparse.ArgumentParser();group = parser.add_mutually_exclusive_group()
+    group.add_argument("--checkpoint");group.add_argument("--content-point");args = parser.parse_args()
     if args.checkpoint:
         c = load_config();d = read_json(RUN/"progress-result.json")["stable"][args.checkpoint]
         arm,point = args.checkpoint.split("-")
@@ -155,4 +184,5 @@ if __name__ == "__main__":
             requested_five_steps_complete=False,created_at=now())
         write_json(RUN/("checkpoint-audit-"+args.checkpoint+".json"),record)
         print(json.dumps(record),flush=True)
+    elif args.content_point: point_review(args.content_point)
     else: audit()
