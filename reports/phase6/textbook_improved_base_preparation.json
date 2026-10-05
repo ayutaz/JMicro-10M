@@ -1,0 +1,49 @@
+{
+  "status": "conditional_three_source_extension_commands_and_CPU_evidence_ready",
+  "commands": [
+    "scripts/run_textbook_improved_base.py",
+    "scripts/run_textbook_improved_base.ps1",
+    "scripts/review_textbook_improved_base.py"
+  ],
+  "trainer": "scripts/extend_textbook_quantity_trainer.py",
+  "target_stable_teachers": [
+    2000000000,
+    5000000000,
+    10000000000
+  ],
+  "policy": "Completed actual comparison and all160 raw-bound judgments required; relative unchanged quality improvement or absolute screen permits research only; no automatic Base adoption/next extension",
+  "preserved_state": [
+    "model",
+    "Adam",
+    "scheduler",
+    "RNG",
+    "sampler_cursor",
+    "source_teachers",
+    "genre_teachers",
+    "genre_EOS",
+    "completed_update_counters"
+  ],
+  "tests": {
+    "command_review_passed": 4,
+    "curve": "reports/phase6/textbook_curve_extension_tests.xml",
+    "command_review": "reports/phase6/textbook_improved_base_tests.xml",
+    "curve_passed": 2
+  },
+  "checks": {
+    "CLI_help": true,
+    "PowerShell_parser": true
+  },
+  "limitations": [
+    "CPU fixtures are not actual CUDA learning/quality",
+    "Candidate/recipe selection and additional GPU learning not started",
+    "Independent training seed/full evaluation/protected test still pending"
+  ],
+  "actual_extension_CUDA_updates": 0,
+  "actual_extension_teacher_tokens": 0,
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "requested_five_steps_complete": false,
+  "created_at": "2026-10-05T21:30:15.7922977Z"
+}
