@@ -1,49 +1,25 @@
 # Windows/WSL引き継ぎ
 
-最新・計画58段階1〜3完了・停止（2026-10-05 JST）: [結果60](60_dataset_expansion_results.md)。教材200,000,192tokens/新140,036,743、旧/新各追加1B、日本語192/331/1119・dev256・全160個別内容、一次35/最終20checks完了。常識は改善したがEOS34→25/一貫性15→9等で候補不採用、条件付き全文未開始。科学2,000,027,648/検証262,144別、GPU3129.607秒。actual239609は終了し、完成screenを追加学習として再起動しない。元UI actual359102/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start_ticks7216365/ready08:29:21.306388Z、HTTP親SHA410f975d…/tokens10,000,007,168/busy=false復帰確認。引継ぎはLinux `reports/phase6/dataset-expansion-1b-20261005/` の両終端・500M中間checkpoint/metrics/source/全評価raw/160annotations/review/judgment/completion/jobと、`~/jmicro-data/phase6/dataset-expansion-20261005/` の200M shards/manifest/ready/content-review/新source pin・README/receipt、旧60M source・元10B/既存run、Windows正本最新local commitを含む。Git/Hubだけでこのデータとweightsを復元できない。primary reviewは別v2でLR記録時点を厳密修正、凍結v1/科学source/品質gate不変。新source/長さ/EOS密度差・独立corpus監査/人手blind未完了を保持し、量だけの効果としない。新data/GPU/20B/50B/Chat/test/push/publicationは今回対象外。以下の実行中identityや旧停止は履歴。
+最終更新: 2026-10-05 JST。最新完了は[結果60](60_dataset_expansion_results.md)、次回は[計画61・未実行](61_condition_preservation_next_plan.md)。現在の依頼は文書更新だけ。旧/新各追加1Bを含む計画58は完了し、不採用・条件付き全文未起動で停止した。完成runを追加学習として再起動しない。
 
-最新・計画58段階1〜3実行中（2026-10-05 JST）: 教材200,000,192 tokens（旧59,963,449＋新公開TinyStories日本語訳140,036,743）準備、40全文レビューで弱例18開示、CPU5tests、config/schema/source凍結commit03346a7。平均長/EOS密度も変わるため量だけの比較ではない。hidden Windows21040/actual Linux239609/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start_ticks6902884で旧/新各追加1Bを実行中。実CUDA保存再開25checks成功/検証262,144別、旧pool対照学習中。Linux `reports/phase6/dataset-expansion-1b-20261005/screen-job.json`・各枝metrics/latest/checkpointとWindows同run stdout/stderr/launchを追跡し、actual liveなら新起動しない。元UIはGPU中停止、wrapper finallyで元10Bへ復帰する。終了後、同じ日本語192/331/1119・dev256・全160内容と原採否条件、必要時だけ全文/400/長文、report/local commit/復帰確認まで必要。教材 `~/jmicro-data/phase6/dataset-expansion-20261005/` と新source pinned README/receipt/全raw、旧60M source・元10B/既存全runを移す。中断復旧コマンドは `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run_dataset_expansion.ps1 -Mode screen`、actual process終端と有効checkpointを先に確認する。20B/50B/Chat/protected test/pushは対象外。以下の計画56停止は完了履歴。
+## 現在の構成と確認先
 
-計画56段階1〜3完了・停止（2026-10-05 JST）: matched教材各22,977,241tokens/253,119全文の各500M比較を完了。対照→追加選別はEOS39→44/反復16→17/一貫性11→11/適切完結14→15（各80）で不採用。段階2も省略せず旧59,963,449-token物語固定/一定LR0.0001で連続1Bを完了し、500M→1BはBPB0.982953243→0.981611241/EOS31→35/反復21→10/一貫性11→19/適切完結15→20。意味60.417→66.146%（対応95%+1.563〜+10.417pp）と複数指標は改善したが、一貫性95%下限0、EOS35<37、内容各27未達、Web BPB比+1.0335%で原採用条件未達。両条件付き全文は未開始。CPU10tests/実CUDA25・13/一次32・29/最終要求別31checks成功、全320内容保存。科学2,000,027,648/検証524,288別、一次GPU3331.359秒。元final10B UI actual237483/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start_ticks6728695/ready07:08:04.599378Z、HTTP親SHA410f975d…/tokens10,000,007,168/busy=falseとactual process確認。科学234687/236557/教材234279は終了し再起動しない。結果と提案はdocs/57_matched_story_and_learning_budget_results.md、最終確認reports/phase6/matched_story_completion.json。11B checkpoint・両run全raw/metrics/source/annotationsをLinuxへ保存。追加学習の効果を否定せずBase/Chat未達、次の小規模条件保持教材診断/LR減衰/新data/GPU/20B/50B/Chat/protected test/pushは提案のみで未開始。local commitで今回停止し、以下は実行当時の履歴。
-
-
-計画56段階1完了／段階2凍結: matched各22,977,241-token教材で各500,006,912追加tokens、実EOS教師Web846,893/story1,101,267を一致。GPU1659.584秒・科学1,000,013,824/検証262,144別。dev/日本語全完了・全160個別内容・CPU32evidencechecks成功。対照→候補BPB0.979944438→0.980233205、EOS39→44/反復16→17/一貫性11→11/適切完結14→15（各80）、対応95%−8.75〜+8.75ppで改善条件未達・不採用。条件付き全文は開始しない。次は旧採用59,963,449-token物語pool固定、元10Bから一定LR0.0001で追加連続1,000,013,824tokens、500M中間/1B終端を保存して両地点評価。段階1科学234687終了、元UI235943へ復帰確認済み。段階2config/schema/sourceを凍結したが新科学はまだ未開始。
-
-
-計画56段階1〜3実行中（2026-10-05 JST）: 二組各22,977,241tokens/253,119全文、body平均88.7764（旧88.4621）、同じ長さ並び/BOS/EOS位置。CPU抽出11.146秒、random40各に弱例14/12を個別明記してbounded比較を受入。CPU10tests成功・凍結commit a8215aa。2026-10-05 06:09頃、hidden Windows34620/actual Linux234687/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start_ticks6377461で教材二条件各500Mを開始。実CUDA25checks通過、対照学習中。Linux reports/phase6/matched-story-content-500m-20261005/screen-job.json と Windows同run screen.stdout.log/stderr.logを追跡。UIはGPU中停止/finally復帰。段階1未達でも段階2の固定教材・一定LR連続1B（500M中間/1B終端）は必要。全320内容と日本語評価・事前条件付き全文、判断/report/local commit/元UI復帰で停止。科学・一次結果は未確定、20B/Chat/test/pushは開始しない。
-
-
-最新完了（2026-10-05 JST）: [計画54](54_complete_document_500m_execution.md)段階1〜4を[結果55](55_complete_document_500m_results.md)まで完了、新110M完結文500M条件は不採用、CPU一次22/最終51項目成功。条件付き全文は未開始。元final10B UI actual232991/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start_ticks6169021/ready05:34:47Z、HTTP SHA410f975d…/tokens10,000,007,168/busy=false。科学232272/教材231819・231975は終了し再起動しない。Linux reports/phase6/complete-document-500m-20261005/のcheckpoint/metrics/source/全raw/80annotations/review/source-origin-diagnosis/judgment/completion/jobと、~/jmicro-data/phase6/complete-documents-20261005/のfirst4B job・継続job・110M shards/index/manifest/ready/random40/content-reviewを引継ぐ。Windowsのcomplete_document_*.json/実装/config/schema/最終report/local commitを保存して停止。次案は未実行で、新GPU/1B/20B/Chat/test/pushは自動開始しない。以下の旧現在地・identityは履歴。
-
-最新完了（2026-10-05 JST）: [計画52段階1〜4](52_story20_low_lr_execution.md)の学習・評価・判断を完了し、[最終判断/次案53](53_story20_low_lr_judgment.md)・local commitで停止する。各500M/四地点一次/全320内容診断/条件付き全文・400・長文を実施、CPU37/全文30項目成功、候補は原比較条件を全通過した研究候補。品質目標は未達。科学174280/全文177987は完了・終了、旧runを再起動しない。元final10B UIがLinux231106 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks4964393 / ready2026-10-05 02:14:01.602203Zで復帰し、actual processとHTTP SHA410f975d…/tokens10,000,007,168/busy=falseを確認した。引継ぎには100M run全raw、500M runの四checkpoint/全metrics/四地点raw/320annotations/primary reviewとfull全raw/source/job/result/review、`~/jmicro-data/phase6/simple-stories-ja-budget-20261005/`のsource/shards/content-reviewを含める。物語pool59,963,449 tokens/約1.667周使用。科学1,100,021,760/検証524,288別会計。次のデータ構成比較は提案のみで、今回未開始。要求別確認は`reports/phase6/story20_execution_completion.json`。以下の旧停止境界は履歴として保持する。
-
-最終更新: 2026-10-05 JST。[現在地](autonomous_status.md)と[最新比較48](48_complete_text_10b_comparison.md)を最初に読む。改善計画段階1〜3の学習・評価を完了し、最終report/local commit・UI復帰で停止する。以下の旧milestone記録は履歴として保持する。以前の停止境界・process情報・移行履歴は[2026-10-04保存履歴](autonomous_history_20261004.md)、初期復旧は[2026-10-03履歴](autonomous_history_20261003.md)に残す。
-
-最新の移行対象: Linux `reports/phase6/complete-text-10b-100m-20261004/`（三枝checkpoint/metrics/raw240内容採点/source、旧失敗`conditional-full/`、完了`conditional-full-r1/`全文/400/長文rawを含む）と`~/jmicro-data/phase6/simple-stories-ja-20261004/`（固定source metadata/二つのtrain parquet/25,000,067-token shards）。Windowsの最終review/result/completionと最新local commitも移す。Linux17951/19791/37818は終了、再実行しない。新物語は親BPB悪化上限を超え未採用、Base/Chat品質目標は未達。UIは元final10B SHA410f975d…へ復帰、復帰時Linux49746 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks1043870、HTTP応答確認済み。現在のUI identityは`reports/local/webui/server.json`とactual processを照合する。完了比較の再開commandを追加学習に流用しない。
-
-さらに新しい計画49の実行は[50](50_story10_and_budget_execution.md)/[判断51](51_story10_judgment_and_next_proposal.md)。Linux`reports/phase6/story10-10b-100m-20261005/`と`story10-low-lr-10b-100m-20261005/`のcheckpoints/metrics/source/raw generation/全240 annotations/tests/job/result/reviewも引き継ぐ。両10%枝は一貫性差4/6で未採用、全文と500Mは条件により未実施、科学139467/140216は終了。完了runnerを再起動しない。最新復帰時UI140800 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks1468219、元final10BでHTTP応答。次案20%低LR100Mは未実行で、今回はreport/local commitで停止する。
-
-追加した日本語Base評価v2.1は[実施計画](45_japanese_base_evaluation_v2.md)/[実測結果](46_japanese_base_evaluation_v2_results.md)と`reports/phase6/japanese_base_v2_review.json`を参照する。移行時はLinux `reports/phase6/japanese-base-v2-20261004/`のraw/source/cpu、`japanese-base-v2-20261004-r1/pilot`の修正版意味診断、`~/jmicro-data/evaluation-v2`の公開評価cache/manifestも保存する。完了runのGPU再実行は不要。UIは評価後に復帰済み。新規評価の一括入口は`scripts/run_japanese_evaluation.ps1`で、UIを停止・finally復帰する。
-
-## 引継ぎ先と現在地
-
-| 項目 | 現在の内容 |
+| 項目 | 値・確認方法 |
 |---|---|
-| コード・docs・lock正本 | Windows `C:\Users\AiHUB\Desktop\japanese-tiny-llm-10m` |
-| Linux実行コピー | `/home/aihub_ubuntu/src/japanese-tiny-llm-10m` |
-| Linux data | `/home/aihub_ubuntu/jmicro-data` |
-| repository | [private GitHub](https://github.com/ayutaz/japanese-tiny-llm-10m)。移行時はWindowsの最新local commitも引き継ぐ。remoteだけを最新と仮定しない |
-| 実測済み環境 | WSL package 3.0.1.0 / Ubuntu WSL 2 / RTX 4090 / Windows driver 616.92 |
-| Python / PyTorch | uv Python 3.12.7 / PyTorch 2.14.1、CUDA 13.0 |
-| モデル・データ | 10,001,152 parameters / 準備済みtrain12,225,819,077 tokens |
-| 学習・比較 | 主要Web10B、100M配合/LR比較、計画52の20%低LR100Mと各500M・一次/全文/長文評価完了。500M枝各総10.5B、物語pool59.96M。Base/Chat品質は未達 |
-| 次の行動 | 判断53・要求別確認・local commitを保存して停止。次の新pool/500Mデータ構成比較・各枝1B/20B/50B/Chatはユーザー再開まで開始しない |
+| 正本 | Windows `C:\Users\AiHUB\Desktop\japanese-tiny-llm-10m`。最新local commitを移し、remoteだけを最新と仮定しない |
+| Linux実行コピー / data | `/home/aihub_ubuntu/src/japanese-tiny-llm-10m` / `/home/aihub_ubuntu/jmicro-data` |
+| 既存実測環境 | WSL package3.0.1.0 / Ubuntu WSL2 / RTX4090 / Windows driver616.92 / uv Python3.12.7 / PyTorch2.14.1+cu130。新PCでは再確認する |
+| モデル | 10,001,152 parameters。主系列/UIの学習量10,000,007,168tokens |
+| 準備量 | Web12,225,819,077、短い物語200,000,192tokens |
+| 最新比較 | 旧60M/新200M各追加1,000,013,824、各累積11,000,020,992tokens。科学2,000,027,648/検証262,144別 |
+| 最新判断 | EOS34→25/一貫性15→9/適切完結20→19（各80）、候補不採用。常識は改善。Base/Chat未達 |
+| 完了証拠 | Windows dataset_expansion各JSON、実験完了local commit `afad164`。最新の文書更新commitも引き継ぐ |
 
-現在のPCは復元・CUDA検証済み。setup、Tokenizer学習、完了済みGPU studyを再実行しない。ユーザー指定step2の総10B学習と保存結果確認は完了。再開されたstep3品質評価も完了した。[品質結果](42_base_10b_quality_evaluation.md)。今回はreport/local commitで停止する。[本学習結果と速度](41_base_10b_training.md)。
+## 現モデルのUIとprocess
 
-## 現モデルをローカルで試す
+[UI](http://127.0.0.1:7860)は元final10Bを配信。今回読み取り確認したactual PID359102 / boot`53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe` / start_ticks7216365、HTTP親SHA`410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290`/training_tokens10,000,007,168/busy=false。科学PID239609は終了。後日の現在値はLinux `reports/local/webui/server.json`とactual identity/HTTPを照合し、保存PIDだけで判断しない。
 
-2026-10-04の追加依頼で、学習済みfinal10BのWeb UIを起動した。Windowsのブラウザから `http://127.0.0.1:7860`。再起動は `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start_webui.ps1`、停止は `scripts/stop_webui.ps1`。WSL/RTX4090で推論し、稼働中はGPU lockを保持する。[操作・保存先](43_local_webui.md)。学習・後続実験は再開していない。
+Windows rootで`powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start_webui.ps1`、停止は`scripts/stop_webui.ps1`。[操作43](43_local_webui.md)。稼働UIはGPU lockを保持する。今回の文書更新では停止・重み変更をしていない。
 
 ## 1. Windows側でWSLとGPUを確認
 
@@ -84,43 +60,39 @@ uv run --frozen --extra hub --extra data --extra ml --extra export scripts/exper
 
 最新10B準備は[14 CPU testsと実CUDA全state一致、26 review checks](40_base_10b_preparation.md)で確認済み。旧Phase 4/5/6準備の証拠は各完了記録を保持する。
 
-## 5. 入力・run・checkpointを引き継ぐ
 
-Linux dataの `phase6/ten-billion/prepared-v2/export-001/shards`、必要なraw、Tokenizer、以下のrunとsource snapshot/log/checkpointを別途コピーする。Git/Hubだけでは復元できない。
+## 5. データ・weights・runを移す
 
-- `reports/phase6/base-5b-20261004/`: stable親 `stable/checkpoint-00144959.pt`（4,750,016,512 tokens）とfinal5B `decay/checkpoint-00152588.pt`。
-- `reports/phase6/eos-5b-finish-100m-20261004/`: Web/short20の `checkpoint-00155640.pt`、raw生成・評価。
-- `reports/phase6/base-10b-20261004/`: 準備検証と科学job完了。stable9.5B/final10Bの両checkpoint、metrics/source/log/resultを保持。[保存結果](41_base_10b_training.md)。
-- `reports/phase6/base-10b-comparison-20261004/`: 完了した同条件品質評価の全文文書別NLL、400 raw生成、固定80比較packet、自然停止9件、job/result/log/sourceを保持。[品質結果](42_base_10b_quality_evaluation.md)。評価Linux442/Windows31900は終了済み。
-- 過去Phase 0〜5とPhase 6準備のreport、weights、native runtimeは保持する。
+Git/Hubだけでは学習済みweightsと大容量dataを復元できない。Windows正本のコード/config/schema/docs/小さなreportsと、Linuxの以下を別途保存する。元のcheckpoint/source/raw/reportを保持し、旧版も削除しない。
 
-checkpointはmodel/optimizer/scheduler/RNG/sampler位置/消費tokensを完了updateで保存する。通常resumeでschedule/config/source/dataを変更しない。4.75B親SHAと各重みSHAは[status](autonomous_status.md)および保存reportを参照する。
+| Linux上の保存先（repo相対またはdata下） | 引き継ぐ内容 |
+|---|---|
+| `artifacts/phase2/4096/`・`8192/`、必要な`data/phase1/processed/` | pinned Tokenizer/pilot。固定Hub復元後にhash確認 |
+| `~/jmicro-data/phase6/ten-billion/prepared-v2/export-001/shards` | 12.23B Web trainとsplit/manifest、必要なraw/source履歴 |
+| `reports/phase6/base-10b-20261004/` | stable9.5Bとfinal10B `decay/checkpoint-00305176.pt`、optimizer/scheduler/RNG/sampler/counters/source/metrics |
+| `reports/phase6/base-10b-comparison-20261004/`・日本語追加評価run | 全文NLL/400生成・固定80・日本語raw/source/job/review |
+| `reports/phase6/story20-low-lr-10b-500m-20261005/` | 採用された500M研究候補とWeb対照、全文/長文と全320内容。実用品質合格とはしない |
+| `reports/phase6/dataset-expansion-1b-20261005/` | control/refined両11B終端と500M中間checkpoint、全metrics/source/評価raw/annotations/review/judgment/completion/job |
+| `~/jmicro-data/phase6/dataset-expansion-20261005/` | 200M shards/manifest/ready/content-review、新source pin/README/receipt/raw。旧60M sourceも保持 |
+| 過去Phase0〜5、5B/100M/500M/一定LR1B等の各runとdata | 既存成果物・失敗/採用証拠・凍結config/source/重み。旧履歴の移行リストも参照 |
 
-長GPU jobはhidden Windows supervisorとLinuxのactual PID/boot ID/start ticks/stage/logを保存し、`~/jmicro-data/gpu.lock`で排他する。10B準備のLinux PID459・Windows PID29620は終了済みの履歴で、現在のjobではない。起動前に実process・GPU一覧・既存runを確認し、有効checkpointから再開する。
+最新の旧final SHA`fd10dc1b358327bdbd8d3d58118c2cb096fc53d02b036f070e453911edf2b82a`、新final SHA`7932c04d905c0903eee338f08da2b3c44f5bde8fffc8dae237381de1f15c9391`、pool manifest SHA`a33ad89783d7b9c2f65eadc96ceca06d19c1e397b0dc95852b148d408cec7b12`。移したpayloadを各保存manifest/hashへ照合する。全12.23Bの新たな独立監査を移行で完了したと扱わない。
 
-## 6. 実装済みCLIと次回の再開
+## 6. 実行と復旧の扱い
 
-AdamW、WSD stable/decay、StableExtensionTrainer、EOS短文mixture、学習/BPB/生成、表示helperは実装済み。Chat trainerとUTF8制約decoderは未実装・未適用。新10B専用品質比較は実装・実行済みで、同条件dev/400と内容確認を完了。学習完了CPU reviewは実装し、実際の終端保存stateと全metricsの19項目を確認済み。準備reviewを科学完了に流用しない。
+現在はplan58完了、plan61は提案。`scripts/run_dataset_expansion.ps1 -Mode screen`と旧`run_base_10b.sh --train`は完了したrunの履歴で、新実験として起動しない。plan61用のrunner/configはまだない。再開された実行範囲で必要なCLI・schema・関連checksを実装してから起動する。
 
-中断復旧用コマンド履歴（今回のrunは完了しているため再起動しない）:
-
-```sh
-bash scripts/run_base_10b.sh --train
-```
-
-引数なし/`--verify-only`は準備確認だけで、完了済みならGPU検証を繰り返さない。旧5BやPhase 5 launcherを新10Bのcommandとして起動しない。学習後、新10Bだけ全文dev/固定400で評価し、既存5B・Web5.1B結果を再利用する。今回はstep3評価も完了し報告・commitで停止する。後続実験は別の再開依頼で進める。[残りの手順](27_phase6_remaining_plan.md)
+本当に未完了のjobを復旧する場合だけactual PID/boot/start ticks・GPU lock・job/result・有効checkpoint・凍結条件を確認する。観測timeoutや残存lockだけを終了と判断せず、通常resumeでsource/schedule/budgetを変えない。UI復帰はactual processとHTTPのparent SHA/tokens/busyを確認する。
 
 ## 次の担当へ渡す文面
 
 ```text
-AGENTS.md、docs/autonomous_status.md、docs/15_project_roadmap.md、docs/windows_handoff.md、docs/39_learning_scale_and_generation_plan.mdを読んでください。
-主要Web5Bと追加各100M仕上げ比較、直接10Bの準備が完了しています。10B科学学習step2とCPU保存確認19項目は完了、同条件品質評価step3も完了しています。
-現在の指定step3も完了です。BPB0.954018 / 固定EOS0・反復53 / raw Unicode0、元増量gate合格と品質未達を保持してください。完了runを再起動せず、後続EOS/UTF8/Chat/20Bは新しい実行依頼に従ってください。
-完了済みGPU study、旧5B比較、Tokenizer学習、大型全corpus照合を繰り返さないでください。
-Pythonはuv、Linux dataを使用してください。actual process/lock/checkpointを確認して二重起動を避け、失敗証拠と未達品質を保持してください。
-Windows正本の最新local commitとLinuxのsource/hashを確認してください。自動pushはしないでください。
+AGENTS.md、docs/autonomous_status.md、docs/15_project_roadmap.md、docs/windows_handoff.md、最新結果60と次回計画61を読んでください。
+計画58段階1〜3は完了、不採用と条件付き全文未起動を保存し、元final10B UIへ戻しています。
+今回の文書更新は新しい学習の再開指示ではありません。plan61は未実行の提案です。
+保存証拠・current process/HTTP・最新local commitを確認し、完了run/Tokenizer/全量照合を再実行しないでください。
+Pythonはuv管理3.12.7、学習はWSL/Linux disk。Base/Chat未達・source/長さ/EOS差・独立監査/人手blind未完了を保持してください。
+新data/GPU/20B/50B/Chat/test/push/publicationは再開された明示範囲でだけ進めます。
 ```
 
-## この手順の検証範囲
-
-記載環境は現在のPCで動作確認済み。10B準備の実CUDA16更新/524,288検証tokensは科学学習tokensとは別会計。独立全12.23B監査は未完了。10Bの同条件自動評価と内容診断は完了、独立人手blind/test、Chat、新重みの量子化品質は未検証。品質基準を緩めず、新規環境では必要な変更部分を検証する。
+過去の移行・現在地の原文は[2026-10-05履歴](autonomous_history_20261005.md)、以前は[2026-10-04](autonomous_history_20261004.md)・[2026-10-03](autonomous_history_20261003.md)。凍結reportを現在値へ書き換えない。

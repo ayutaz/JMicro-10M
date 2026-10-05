@@ -1,32 +1,18 @@
-# JMicro-10M 設計・調査ノート
+# JMicro-10M 文書一覧
 
-最終更新: 2026-10-05 JST。現在地は[status](autonomous_status.md)、完了した最新比較は[完結文比較48](48_complete_text_10b_comparison.md)、全体の品質目標は[roadmap](15_project_roadmap.md)を参照する。段階1〜3完了で停止する。
+最終更新: 2026-10-05 JST。現在地は[status](autonomous_status.md)、最新完了は[結果60](60_dataset_expansion_results.md)、次回案は[計画61](61_condition_preservation_next_plan.md)。文書更新の依頼で、新data/GPUを開始していない。Phase0〜5と10B/追加比較は完了、Base/Chat品質未達。
 
-日本語Base追加評価は[計画・仕様v2.1](45_japanese_base_evaluation_v2.md)と[現在10Bの実測結果](46_japanese_base_evaluation_v2_results.md)。文法/常識/含意/容認度/読解・基本意味・長文反復・Codex内容診断を追加し、独立人手と品質合格は別に扱う。
+## 読む順序
 
-評価後の提案は[データ・学習改善計画](47_post_evaluation_training_plan.md)。ユーザーが再開した段階1〜3の実行は[完結文配合の三条件100M比較](48_complete_text_10b_comparison.md)に記録する。追加500M〜1B/20Bは次回以降。
+1. [status](autonomous_status.md): 実量、最新比較、採否、processと停止境界。
+2. [roadmap](15_project_roadmap.md): 全体の目的・各Phase・元品質条件。
+3. [結果60](60_dataset_expansion_results.md): 200M教材/各1Bの結果と解釈の限界。
+4. [計画61](61_condition_preservation_next_plan.md)と[checklist](10_next_steps.md): 次回の目的・準備条件・同量予算・判断/停止。
+5. [引継ぎ](windows_handoff.md): WSL/uv、Git管理外のweights/data、完成runの扱い。
 
-比較後の最新提案は[配合・学習量計画49](49_next_mixture_and_training_budget_plan.md)。新物語10%・100Mを先に比較し、安全条件を通ればpool60Mと各500Mの学習量比較を検討する。今回は計画のみで、追加学習は開始しない。
+主系列/UIは10,000,007,168学習tokens、最新比較枝は各11,000,020,992。モデルは10,001,152 parameters。Web準備12,225,819,077、短い物語準備200,000,192tokens。最新新条件は常識改善と生成/停止未達を分けて不採用。source/長さ/EOS密度も変わるので量だけの効果ではない。
 
-最新実行は[計画49の実行50](50_story10_and_budget_execution.md)、[判断・次案51](51_story10_judgment_and_next_proposal.md)。物語10%と失敗時の低LR同量比較を完了した。一貫性差4/6で8件基準に達せず、全文/500Mを開始せず停止。次案20%・低LR100Mは提案のみ。UIは元final10Bを維持する。
-
-## 現在の要約
-
-モデルは10,001,152 parameters、T4K / NoQK-Norm / AdamW / context1024。主要Web総10Bと、同じ親からWeb/既存短文20%/新物語20%各100Mの比較を完了した。新物語poolは25,000,067 tokens。固定EOS0/3/24、反復60/55/24（各80）、新物語の全文BPB0.955765は元親0.954018からの悪化上限を超え未採用。一次35/全文43証拠checks成功、UIは元final10Bを維持。準備済みWeb trainは12,225,819,077 tokens、独立全corpus監査は未完了。Phase 0〜5・Phase 6準備は完了済み。
-
-直接10Bの専用準備は完了（14関連tests、実CUDA全state保存再開、26 review checks）。本10B科学学習とCPU保存確認19項目、再開された同条件品質評価とCPU確認23項目も完了。BPB0.954018・固定反復53・Unicode0、固定EOS0の課題は残る。今回はreport/commitで停止する。
-
-本文BPBは改善したが、自然停止・反復・意味品質は不足。以前の5B親での短文20%は固定EOS13/80へ改善したが全400 raw Unicode2件で最終採用不合格。表示helperの採用をraw品質成功とは扱わない。独立人手blind/test、Chat、新重みの量子化品質は未検証。
-
-学習はWSL2/RTX4090/Linux disk、Python3.12.7をuvから実行する。容量最大batch111と最速batch32（約694k tokens/s）を区別する。Tokenizer/モデルと学習前export、GPU学習器・評価・保存再開は実装済み。完成したBase/Chat・配布品質とは別である。
-
-## 文書内のラベル
-
-- **確定**: 合意した方針・凍結条件。
-- **確認済み**: 保存した実装・測定・一次資料に証拠がある内容。
-- **提案/要検証**: 将来の比較候補。実行済みや品質達成とは扱わない。
-
-過去の調査・完了記録は当時の証拠。旧500M/2B/7.5B計画と指示は[保存履歴](autonomous_history_20261004.md)へ分離した。現在の指示はAGENTS.mdとstatusを正とする。[Windows/WSL引き継ぎ](windows_handoff.md)、[残りの作業](27_phase6_remaining_plan.md)、[checklist](10_next_steps.md)を入口にする。
+文書のラベルは「確定/確認済み/提案・未実行」を区別する。凍結report/source/rawは当時の証拠として保存し、過去の進捗を現在の指示にしない。
 
 ## 文書一覧
 
@@ -56,7 +42,7 @@
 24. [24_phase6_plan.md](24_phase6_plan.md) — 実学習5B・仕上げ結果と直接10Bの現在地・予算
 25. [25_phase6_preparation.md](25_phase6_preparation.md) — ①②の事前の目的、凍結条件と停止境界
 26. [26_phase6_preparation_completion.md](26_phase6_preparation_completion.md) — ①②の実量、全corpus/CUDA監査、保存先、実CLI
-27. [27_phase6_remaining_plan.md](27_phase6_remaining_plan.md) — 直接10Bの残る作業、EOS/UTF8後続候補、Chat・量子化・条件付き拡張
+27. [27_phase6_remaining_plan.md](27_phase6_remaining_plan.md) — 最新比較後の残作業、教材品質提案61、Chat・量子化・条件付き拡張
 28. [28_phase6_performance.md](28_phase6_performance.md) — ③の実GPU高速化・backend実効確認・容量と厳密再開の比較
 29. [29_phase6_performance_completion.md](29_phase6_performance_completion.md) — ③の採用速度・最大容量・厳密/cold再開・独立監査と停止記録
 30. [30_phase6_readiness_execution.md](30_phase6_readiness_execution.md) — ④⑤の限定比較、CPU精度修復、正式検証・凍結設定・commitと停止記録
@@ -67,7 +53,7 @@
 - [36_base_5b_comparison.md](36_base_5b_comparison.md) — 主要5Bの固定評価比較
 - [37_eos_repetition_utf8_improvement_plan.md](37_eos_repetition_utf8_improvement_plan.md) — EOS・反復・UTF8改善の事前計画
 - [38_eos_5b_finish_results.md](38_eos_5b_finish_results.md) — Web/短文比較の結果と採用不合格
-- [39_learning_scale_and_generation_plan.md](39_learning_scale_and_generation_plan.md) — 現行の直接10B・評価・報告と後続候補
+- [39_learning_scale_and_generation_plan.md](39_learning_scale_and_generation_plan.md) — 当時の直接10B・評価・報告案（完了履歴）
 - [40_base_10b_preparation.md](40_base_10b_preparation.md) — 完了した専用10B準備。科学学習の完了ではない
 - [41_base_10b_training.md](41_base_10b_training.md) — 総10B学習・保存確認の完了時の記録、実測速度。品質比較は後続42へ
 - [42_base_10b_quality_evaluation.md](42_base_10b_quality_evaluation.md) — 同条件dev/400品質比較、生成内容、元gateと未達課題
@@ -77,24 +63,18 @@
 
 実行時の仕様は[評価仕様](evaluation_protocol.md)と[Windows/WSL移行手順](windows_handoff.md)を参照する。データとTokenizerの[Hugging Face公開版の取得手順](huggingface_handoff.md)も利用できる。
 
-## 追加調査の要点（2026-10-02）
 
-未実装のまま残っていた技術判断を、一次資料と公式コードから補足した。最初は[追加調査の入口](11_technical_research_gaps.md)を読む。
+## 日本語評価と追加比較の履歴
 
-- **提案**: QK-NormをQwen3式のhead次元RMSNormとして具体化すると、T8Kは9,772,800、T4Kは10,002,816 parametersとなる。旧概算との差はgainの共有方式による。
-- **提案**: SentencePieceの正規化と構造tokenの挿入方式を固定し、本文中の役割表記と構造IDを区別する。
-- **提案**: BPBに加え、同一原文bytesと同一GPU時間での比較条件を用意する。
-- **提案**: 長期学習前にランダム重みでHF／GGUF互換性を確認する。FFN幅576／640ではK-quantの型fallbackを確認する。
-- **確認済み**: llama.cppの一般的なSentencePiece変換経路と独自Unigramの分割方式は同一ではない。内蔵Tokenizerへの互換性を検証し、必要なら外部SentencePieceでIDを作る経路を使う。
-- **現在の判断**: 4090速度はPhase 4、会話教師token量はPhase 2で実測済み。Phase 5の候補選定は完了。雑談品質・学習後の量子化品質と、拡張corpus/長期予算での優位性は未達・未実証。
+| 文書 | 位置付け |
+|---|---|
+| [45 日本語評価v2.1](45_japanese_base_evaluation_v2.md) / [46 実測結果](46_japanese_base_evaluation_v2_results.md) | 日本語Base評価の仕様と元10B実測 |
+| [47 改善計画](47_post_evaluation_training_plan.md) / [48 完結文比較](48_complete_text_10b_comparison.md) | 当時の提案と三条件100Mの完了結果 |
+| [49 配合計画](49_next_mixture_and_training_budget_plan.md) / [50 実行](50_story10_and_budget_execution.md) / [51 判断](51_story10_judgment_and_next_proposal.md) | 10%/低LR追加比較の完了結果・当時の次案 |
+| [52 20%低LR実行](52_story20_low_lr_execution.md) / [53 判断](53_story20_low_lr_judgment.md) | 100M/500M・条件付き全文、研究候補採用と実用品質未達 |
+| [54 全文pool計画](54_complete_document_500m_execution.md) / [55 結果](55_complete_document_500m_results.md) | 110M教材・500M比較、不採用 |
+| [56 教材/学習量計画](56_matched_story_and_learning_budget_plan.md) / [57 結果](57_matched_story_and_learning_budget_results.md) | matched教材と固定教材一定LR1B、採用未達 |
+| [58 増量案](58_dataset_expansion_proposal.md) / [59 実行](59_dataset_expansion_execution.md) / [60 結果](60_dataset_expansion_results.md) | 最新完了。物語60M→200M・各1B、不採用 |
+| [61 次回案](61_condition_preservation_next_plan.md) | 保存失敗診断・同source品質/長さ/EOSをそろえた比較。未実行 |
 
-追加調査は学習・推論実験を実施した結果ではない。既存の確定方針を維持し、実装候補と検証条件を追加している。
-
-## 重要な注意
-
-公開データの「商用利用可能」は、データセット配布ライセンスだけで最終判断しない。Common Crawl由来データでは、データベースライセンスと各Web文書の著作権は別問題である。公開・販売前に、採用した各source subsetの利用条件、帰属表示、ShareAlike条件、削除要求対応を再確認する。本書は法的助言ではない。
-
-最終更新: 2026-10-04。外部資料の調査日は各文書へ残し、研究候補と実装・実測結果を区別する。
-## 完結文比較の完了
-
-[完結文配合の三条件100M比較](48_complete_text_10b_comparison.md): 限定data/EOS確認、25M候補pool、同じfinal10Bからの三条件学習・内容/全文/長文評価を完了。採用条件未達を保持し、report/local commitで停止。各500M〜1B/20Bは未開始。
+過去の番号付き計画にある「次回」「未開始」は記載当時の状態。現在の実行範囲はAGENTS.mdとstatusを正とする。詳細な原文は[2026-10-05履歴](autonomous_history_20261005.md)へ保持する。

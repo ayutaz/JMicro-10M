@@ -1,30 +1,44 @@
-# 次に進める作業
+# 次回のチェックリスト
 
-2026-10-04更新。[現在地](autonomous_status.md)と[具体的な計画](39_learning_scale_and_generation_plan.md)に合わせる。**総10B学習step2とCPU保存確認19項目を完了。今回は報告とcommitで停止する。** ユーザーが再開した同条件品質評価step3も完了。[評価結果](42_base_10b_quality_evaluation.md)。[結果と速度](41_base_10b_training.md)。
+最終更新: 2026-10-05 JST。[最新状態](autonomous_status.md)、[最新結果60](60_dataset_expansion_results.md)、[次回計画61](61_condition_preservation_next_plan.md)へ合わせる。現在は文書更新まで。未チェック項目は未実行の提案で、新data/GPU jobを開始する指示ではない。
 
-## 完了していること
+## 完了済み・再実行しない
 
-- [x] Phase0〜5の環境・Tokenizer・モデル・GPU学習器・評価・保存再開・候補選定。
-- [x] 既存12.23B train tokens整備。独立全件auditの未完了は保持し、再照合を繰り返さない。
-- [x] 主系列総5B学習と同じdev/生成比較。
-- [x] final5BからWeb対短文20%各100Mと条件付き全文評価・内容確認。短文はraw Unicodeで採用不合格。
-- [x] UTF8表示末尾helperを実装し、raw失敗・IDs・bytes・停止理由を保持。
-- [x] 直接10B専用config/schema/launcher、14tests、実CUDA全state/history再開一致。[準備証拠](40_base_10b_preparation.md)。
+- [x] Phase0〜5の環境・Tokenizer・モデル・GPU学習器・保存再開・候補選定。
+- [x] 一般Web train12,225,819,077tokens整備と主要Web総10Bの学習・全文評価。独立全件監査未完了は保持。
+- [x] 元10Bの日本語Base追加評価と複数の100M/500M/1Bの教材・LR・学習量比較。
+- [x] 最新物語200,000,192tokensの準備、同じ親から旧/新各追加1,000,013,824tokensの学習。
+- [x] dev256/固定80/意味192/JBLiMP331/JCQA1119と全160個別内容診断、一次35/最終20checks、原gate採否。
+- [x] 最新候補不採用・条件付き全文未起動を記録、local commit `afad164`、元final10B UI復帰。
 
-## 次の実行区切り
+## 今回の文書更新
 
-- [x] 保存stable4.75Bから総10,000,007,168 tokens/update305176へ継続。実Linux/Windows processの終了を確認した。
-- [x] stable9.5Bと最終decay checkpoint、連続/有限更新、Adam/scheduler/RNG/cursor/消費counterを専用CPU reviewerで確認した。
-- [x] step3の専用品質比較入口とCPU reviewerを実装し、関連23tests成功。旧reportは保持。
-- [x] 新10Bだけ全文dev89,416/本文164,344,743bytesと400生成を評価し、5B/最良Web5.1Bを再利用した。
-- [x] BPB/EOS/反復/raw flagsと全固定80・自然停止9件の内容を比較。CPU保存確認23項目成功。元増量gateは合格、Base/Chat品質未達を報告し、local commitで停止する。
+- [x] 保存review/result/completion/report hashと実process/HTTPを読み取り確認。
+- [x] status/README/docs一覧/roadmap/引継ぎ/残作業/自動runnerの現在地を最新へ統一。
+- [x] 次回の目的・ゴール・比較条件・予算・終了/失敗時分岐を計画61へ保存。
 
-既存12.23Bを使用し、7.5B専用decay/中間全文評価、新しい収集、旧GPU比較、全コーパス再監査は追加しない。学習GPU上限9,000秒（準備19.217秒を含む）、別評価予約1,800秒。見積もり145〜165分、実装と内容確認は別。
+リンク・数値・元証拠保持・Linux同期とlocal commitの実確認は文書更新監査`reports/phase6/documentation_update_20261005.json`へ記録する。文書のチェック印だけを検証証拠とは扱わない。
 
-## その後の候補
+## 再開後の段階1: 保存結果の失敗診断
 
-10Bの改善と元raw増量安全条件を満たした場合、同じ新親のWeb/短文20%各100Mを一対だけ比較する。途中不正UTF8と未完成末尾には保存重みの単一制約decoderを別policyとして比較する案がある。これらは現在未実装・未起動で、元raw失敗を合格に書き換えない。
+- [ ] 既存160生成と教材40全文を再利用して人物/数量/否定/因果/反復/末尾の問題を分類。
+- [ ] 必要時だけ既存trainから32全文を抽出し、selectorで扱う欠陥と扱えない欠陥を確定。
+- [ ] 固定dev/testのprefix・正解・生成文を教材へ入れない。
 
-Base/Chat品質条件、人手blind評価、未使用test、Assistant body＋EOT学習、量子化/local品質は[ロードマップ](15_project_roadmap.md)の条件を維持する。20B/50B、Chat、unlikelihood、parameter sweep、外部出版・有料cloudは現在の作業範囲に含めない。
+## 再開後の段階2: 教材準備と凍結
 
-古い500M/1B前停止や未着手記録は [履歴](autonomous_history_20261004.md) に保存した。
+- [ ] 同じ取得済み翻訳sourceから従来/改善selector各約20M-tokenのwhole-doc poolを準備。
+- [ ] 量・平均長・EOS密度±5%・長さ分布・実source/split/hash/共有範囲を記録。
+- [ ] random40全文ずつを個別診断し、改善と候補弱例10/40以下の提案条件を確認。
+- [ ] CPU累積1800秒以内。条件不成立なら学習せず報告・停止。
+- [ ] 学習config/schema/source/data/参照結果と関連CPU/CUDA再開条件を凍結。
+
+## 再開後の段階3・4: 小予算比較と判断
+
+- [ ] actual process/boot/start ticks/GPU lock確認、元UI停止、必要な実CUDA保存再開確認。
+- [ ] 元10Bから各100,007,936tokens、Web80%/short20%、共通scheduleで二枝学習。
+- [ ] 同じ日本語診断/本文/生成と全160内容を採点し、原gateと実用条件を判定。
+- [ ] 一次GPU累積1200秒以内。全一次条件通過時だけ候補の全文/400/長文を追加1800秒以内で評価。
+- [ ] 採否・限界・次案、実state/checkpoint/raw、local commitと元10B UI復帰を確認して停止。
+
+500M/1B追加、20B/50B、Chat、保護test、量子化/公開はこの提案の自動後続ではない。実用Base/Chatの元品質目標とraw失敗を維持する。

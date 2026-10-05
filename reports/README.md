@@ -1,6 +1,20 @@
 # 実験台帳と検証結果
 
-## 現在の結果（2026-10-04）
+## 最新の保存結果（2026-10-05）
+
+最新は[比較結果60](../docs/60_dataset_expansion_results.md)。旧60M/新200Mの各追加1B、全160個別内容・日本語診断、原gateの不採用判断と元UI復帰を保存。次回は[計画61・未実行](../docs/61_condition_preservation_next_plan.md)。今回の文書更新監査と実験完了監査を区別する。
+
+| 保存report | 内容 |
+|---|---|
+| [dataset_expansion_result.json](phase6/dataset_expansion_result.json) | 両追加1Bの実tokens・checkpoint/比較結果、科学2,000,027,648/検証262,144別 |
+| [dataset_expansion_review.json](phase6/dataset_expansion_review.json) | 一次35evidencechecks、同条件指標と原gate、full不適格 |
+| [dataset_expansion_annotations.json](phase6/dataset_expansion_annotations.json) / [categories](phase6/dataset_expansion_categories.json) | 全160個別理由・カテゴリ。一人のCodex非blindで独立人手ではない |
+| [dataset_expansion_judgment.json](phase6/dataset_expansion_judgment.json) / [completion](phase6/dataset_expansion_completion.json) | 不採用・条件付き全文未起動と最終20checks/元UI実確認 |
+| [documentation_update_20261005.json](phase6/documentation_update_20261005.json) | 今回の文書更新のリンク・実量・旧原文/凍結証拠保持・同期確認。GPU学習/品質checksではない |
+
+大型weights/source/raw/jobはLinux `reports/phase6/dataset-expansion-1b-20261005/`、200M教材は`~/jmicro-data/phase6/dataset-expansion-20261005/`へ保持。Gitだけでは復元できない。[移行一覧](../docs/windows_handoff.md)。実験完了commit `afad164`、今回pushなし。
+
+## 主系列・基盤の保存結果（履歴）
 
 | 保存report | 実際に確認したこと |
 |---|---|

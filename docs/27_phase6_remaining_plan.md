@@ -1,40 +1,27 @@
 # Phase 6以降に残る作業
 
-最終更新: 2026-10-04。実際の現在地は[status](autonomous_status.md)、今回の数値・採否条件は[直接10B計画](39_learning_scale_and_generation_plan.md)を正とする。以前の500M、2Bデータ拡張、7.5B案と当時の指示は[履歴](autonomous_history_20261004.md)へ保存した。
+最終更新: 2026-10-05 JST。実状態は[status](autonomous_status.md)、最新比較は[結果60](60_dataset_expansion_results.md)、次の具体案は[計画61](61_condition_preservation_next_plan.md)。以下は未達課題と次回提案。今回の依頼は文書更新で、追加学習を開始していない。
 
 ## 完了した範囲
 
-Phase 0〜5、Phase 6①〜⑤、主要Webの総5,000,003,584 tokens学習、同じ5B親からWeb100%と短文20%を各100,007,936 tokens追加する比較を完了した。各仕上げモデルの累積は5,100,011,520 tokens。モデルは10,001,152 parametersであり、Bは学習tokensを表す。
+Phase0〜5、一般Web12,225,819,077tokens整備、主系列5B/10Bの学習と全文評価、日本語追加評価、配合/LR/教材内容/一定LR連続1B、物語60M→200M・同量各1B比較を完了した。モデルは10,001,152 parameters、主系列/UIは10,000,007,168学習tokens、最新各枝は11,000,020,992tokens。Bは学習tokensで、別枝を合算しない。
 
-準備済みtrainは12,225,819,077 tokens。builder/raw再構成/実loaderで利用を確認したが、独立全corpus監査は未完了のまま記録する。新規取得や全件再照合を10B学習の前提にしない。
+500M物語研究候補は元比較gateを通過したが、Base/Chatの実用品質は未達。最新200M候補は常識改善と生成/停止の未達を分けて報告し、不採用。条件付き全文は未起動。元UIへ戻し、実験完了commit `afad164`を保存した。旧run・Tokenizer・全コーパス照合を再実行しない。
 
-[10B専用準備](40_base_10b_preparation.md)は完了。関連14 CPU tests、stable/decayの実CUDA連続対保存再開16更新、保存review26 checksが成功した。これは準備の証拠であり、ユーザー指定step2の科学学習とCPU保存確認19項目も完了した。[本学習結果](41_base_10b_training.md)。再開された同条件品質評価も完了。[品質結果](42_base_10b_quality_evaluation.md)。
+## 次に切り分ける課題
 
-## 直接10Bの学習・品質評価の完了状況
+人物・数量・否定・因果の条件保持、一貫した展開と自然停止を優先する。量だけの拡張ではなく、最新比較で同時に変わったsource品質・長さ・EOS密度をそろえる。次回案61は保存失敗診断→同source各約20M教材→各100Mの同量比較→全一次条件通過時だけ全文/長文→採否・停止。準備不成立時は学習しない。
 
-1. 実行設定の準備は完了。既存process、GPU lock、runとcheckpointを読み取り確認して二重起動を避ける。
-2. 保存済みstable4.75B親から専用設定で9.5Bまで継続し、独立decayで総10,000,007,168 tokensへ到達済み。追加科学学習は5,249,990,656 tokens。7.5B専用decay・評価は省く。
-3. 新10Bだけ同じ全文devと固定400生成で評価し、元5Bおよび最良Web5.1Bの保存評価と比較する。専用品質比較入口を実装し、同条件dev/400と全固定80・自然停止9件の内容確認を完了。CPU評価確認23項目成功。学習完了CPU reviewはscripts/review_base_10b_training.pyに実装し、実行中jobを完了扱いしないguardを確認済み。実際の終端保存stateと全科学metricsへ適用し、19項目成功した。
-4. BPB、EOS、反復、raw Unicode、内容の誤り、学習量とGPU時間を報告してcommitし、停止する。到達tokensとBase品質達成を別に判定する。
+EOS教師の減少が停止悪化に関係した可能性はあるが未確定。データ増量が無効、学習飽和、10M容量限界とは断定しない。基本意味と常識の選択問題が良くなっても生成の保持能力は別に評価する。
 
-中断復旧用コマンド履歴はWSL project rootで `bash scripts/run_base_10b.sh --train`。引数なし/`--verify-only`は準備確認で、科学学習を開始しない。今回のstep2学習と保存結果確認は完了し、report/commitで停止する。完了runを再起動しない。ユーザーが再開したstep3の全文/生成品質評価も完了し、追加学習は開始しない。
+## BaseからChat・量子化へ進む条件
 
-科学学習GPU上限9,000秒（準備検証19.217秒を含む）、評価予約1,800秒、合計10,800秒。学習区間約126分、評価込み145〜165分の見積もりで、実装・内容確認は別。[専用設定](../configs/phase6/base_10b.json)を変更せず、通常resumeで終端budgetを変更しない。
+本文BPBだけで自然な日本語生成の合格とはしない。[原品質目標](15_project_roadmap.md#品質目標と判断ルール)とdev比較/実用gate、raw EOS/反復/Unicodeを維持する。Codex非blind内容診断を独立人手評価へ読み替えない。独立人手blind・保護test、主Web独立全corpus混入/重複監査は未完了。
 
-## EOS・反復・UTF8の後続候補
+Base成立後にDialogue mid-trainingとAssistant本文＋EOTだけを教師にするSFTを実装し、効果を分けて比較する。Chat trainerは未実装。Chat後の学習済み重みで量子化容量・CPU速度・独立環境品質を検証する。学習前のPhase3変換成功は新重みの配布品質の証拠ではない。
 
-短文20%は固定EOS 0→13/80、反復57→51/80へ改善したが、全400 raw Unicode失敗2件で最終採用不合格だった。表示helperは採用済みで、raw失敗を成功に数えない。[比較結果](38_eos_5b_finish_results.md)
+## 大規模追加と別研究
 
-10Bが本文BPB改善と元の安全条件を満たした場合だけ、新10B親からWeb/短文20%を各100Mで一対比較する候補がある。完了済み5B比較を繰り返さず、比率/LR sweepを先行しない。UTF8制約付き推論は別条件として未実装で、元方式と同じ400生成・上限・seedで比較する。詳細は[計画](39_learning_scale_and_generation_plan.md)。これらは10B結果報告後の判断対象であり、今回の文書更新で開始しない。
+20B/50Bは今回も計画61も対象外。StableExtensionTrainerの明示forkは既存だが、新予算・data・履歴・再開検証が必要。50Bは20BのBPB改善差の95%下限>0、重大退行なし、実測追加予算内という原条件を維持する。データ増量、容量拡大、loss変更、decoder変更の総当たりを先行しない。
 
-## Base品質からChat・量子化へ
-
-本文BPB改善だけで文法・意味・自然停止の合格とはしない。独立人手blind採点、保護test、Chat品質、新しい重みの量子化品質は未実施。[roadmapの品質目標](15_project_roadmap.md#品質目標と判断ルール)を維持する。
-
-Baseの短文生成が成立したらDialogue mid-trainingとAssistant本文＋EOTだけを教師にするSFTを実装し、効果を分けて比較する。Chat trainerは未実装。Chat後に量子化・実容量・CPU速度・独立環境での品質を検証する。既存のNoNorm CPU精度profileの変換成功を、未評価の新重みの配布品質へ流用しない。
-
-## 20B・50Bと追加研究
-
-20B/50Bは現在の実行範囲に含めない。StableExtensionTrainerの明示forkは実装済みだが、新しい予算・data・履歴・再開検証を固定してから使う。50Bは20BのBPB改善差の95%信頼区間下限が0を超え、重大な生成退行がなく、実測追加予算内の場合だけ候補にする。
-
-Tokenizer再学習、Muon、unlikelihood、architecture sweep、クラウド比較は先行しない。追加研究は比較対象・予算・終了条件を定め、有料クラウド、公開、他者への連絡には個別の指示が必要。Pythonはすべてuv、WSL/Linux data、checkpointと失敗証拠を保持し、local commitを行う。自動pushはしない。
+Pythonはすべてuv管理3.12.7、WSL/Linux dataを使う。未完了監査を保持し、反復する大規模照合を学習の開始条件にしない。有料cloud、他者への連絡、公開/pushは別の指示を要する。旧完了runの復旧コマンドは新実験の起動コマンドではない。

@@ -25,27 +25,13 @@
 
 ## 現在地と計画の使い方
 
-最新完了（2026-10-05 JST）: [計画58](58_dataset_expansion_proposal.md)段階1〜3を[結果60](60_dataset_expansion_results.md)へ保存。短い物語pool約60M→200M、旧/新各追加1B、同条件日本語・全160内容、原gate判断と一次35/最終20項目確認を完了。常識35.031→38.561%は改善したが、EOS34→25/一貫性15→9で不採用、条件付き全文は未開始。量・新source・長さ・EOS密度の複合比較で、データ量の一般的な効果や容量限界を確定しない。科学2,000,027,648/検証262,144別、元UI復帰・local commitで停止。Base/Chat未達。次の教材診断は未実行の提案で、新GPU/20B/Chat/test/pushは開始しない。以下の旧現在地は履歴、現在の実状態はstatusを正とする。
+2026-10-05 JST: Phase0〜5と主要Web10B、追加の教材/学習量比較は完了。最新は[計画58の結果60](60_dataset_expansion_results.md)。物語60M→200M・各追加1Bで常識は改善したが、生成一貫性とEOSは改善せず不採用。Base/Chat品質は未達で、Phase7へ移行していない。
 
-最新完了（2026-10-05 JST）: 新計画54の段階1〜4を[結果55](55_complete_document_500m_results.md)へ保存した。110M全文pool/一条件500M/日本語診断・80内容/一次22・最終51項目確認を完了。新構成は保存物語候補より停止・反復・一貫性が悪化し不採用、原事前分岐により条件付き全文は未実施。実物語比率とEOS密度も変わったためデータ量だけの否定ではない。元UI復帰・local commitで停止し、report55の新案は未実行。Base/Chat未達。以下の計画52等は履歴。
+モデル10,001,152 parameters、Web準備12,225,819,077 tokens、物語準備200,000,192tokens。主系列とUIは10,000,007,168学習tokens、最新二枝は各11,000,020,992tokens。別枝の合計科学2,000,027,648と検証262,144を区別する。長さ/source/EOS密度差を保持し、量だけの効果や容量限界は未確定。
 
-最新完了（2026-10-05 JST）: ユーザー「4まで進めて」に従い[計画52](52_story20_low_lr_execution.md)段階1〜4の学習・評価・判断を完了した。100M/全文通過後の各500M、四地点一次評価、全320内容診断、条件付き全文/400/長文を実施し、CPU37/全文30項目が成功。物語500Mは全文BPB0.948798/固定EOS37/反復18/一貫性・適切完結19（各80）で元比較条件を全通過し、研究候補として採用。物語source59,963,449 tokensを約1.667周使用し、新規unique100Mとは扱わない。基本意味・常識の改善とBase/Chat品質目標は未達。[判断/次案53](53_story20_low_lr_judgment.md)・report/local commit・元final10B UI復帰で停止する。科学174280/評価177987は終了、再起動しない。次の同量500Mデータ構成比較は提案のみ。保護test・各枝1B/20B/Chat・pushは今回対象外。以下の旧記録は履歴で、現在は[status](autonomous_status.md)を正とする。
+今回の範囲は文書と計画の更新。次回は[計画61](61_condition_preservation_next_plan.md)の保存失敗診断、同source品質・長さ・EOS密度の一致、各100Mの限定比較と条件付き採否を提案する。新data/GPU/20B/50B/Chat/test/pushは開始していない。実行順・段階ごとの目的/ゴール/予算/停止分岐は計画61、実際の状態は[status](autonomous_status.md)、移行は[引継ぎ](windows_handoff.md)、作業確認は[checklist](10_next_steps.md)を正とする。
 
-最新追加比較（2026-10-05 JST）: [計画49の実行50](50_story10_and_budget_execution.md)を未達時分岐まで完了し、[判断/次案51](51_story10_judgment_and_next_proposal.md)へ保存。物語10%/低LR各100MでEOS/反復は改善したが、一貫性差4/6は事前8件に届かず、条件付き全文と500Mは未実施。科学三枝300,023,808/検証524,288を分け、元final10B UIへ復帰しreport/local commitで停止。Phase 6 Base/Chat品質未達、20%低LRや20Bは次の提案のみ。
-
-最新（2026-10-05 JST）: ユーザー指定の改善計画段階1〜3を[完結文比較48](48_complete_text_10b_comparison.md)で完了した。25M物語pool、同じfinal10B親から各100M三条件と事前条件付き全文/長文評価を実施。新物語はEOS/反復を改善したが親BPB悪化上限を超え未採用。Phase 6のBase品質目標は引き続き未達で、Phase 7へ自動移行しない。report/local commit・UI復帰で停止し、500M/1B/20B/50B/Chatは開始しない。以下は以前のmilestone記録として保持する。
-
-2026-10-04の追加依頼で[日本語Base評価v2.1の実装・実測](46_japanese_base_evaluation_v2_results.md)も完了した。基本意味・公開benchmarks・生成内容と長文反復を追加したが、元のBase/Chat品質条件は不変で未達。独立人手blind・test・公開Base参照・JMMLUは未実施。今回は評価/report/local commitで停止し、追加学習は再開しない。
-
-Phase 0〜5とPhase 6①〜⑤、主要Web総5,000,003,584 tokens、同じ5B親からWeb/短文20%を各100,007,936 tokens追加した比較を完了。モデルは10,001,152 parameters、準備済みtrain12,225,819,077 tokens。独立全12.23B監査は未完了で、その事実を保持する。[実状態](autonomous_status.md)、[5B結果](35_base_5b_execution.md)、[仕上げ結果](38_eos_5b_finish_results.md)を参照する。
-
-直接10Bの専用config/schema/launcher、14関連tests、実CUDA全state保存再開と26 review checksは[準備完了](40_base_10b_preparation.md)。科学学習step2とCPU保存確認19項目は完了、専用品質評価step3も完了。[学習結果](41_base_10b_training.md)、[品質結果](42_base_10b_quality_evaluation.md)。ユーザーがstep3の品質評価を再開し、今回その評価・内容確認まで完了した。報告・commitで停止し、後続実験は始めない。7.5B専用枝、再収集、20B/50Bへ自動移行しない。
-
-本文BPBは5B0.964484、Web5.1B0.958092、短文5.1B0.959011。短文は固定EOS13/80と反復51/80へ改善したがraw Unicode2/400で最終採用不合格。Base/Chat品質、独立人手blind/test、新重みの量子化品質は未達・未実施。結果を見て元の品質条件を緩めない。
-
-Pythonはuv管理3.12.7、依存変更はuv add。WSLでは `uv run --frozen --extra hub --extra data --extra ml --extra export ...`、不足する環境だけuv syncで復元する。データはLinux diskを使う。別PCでは[引き継ぎ](windows_handoff.md)からWindows最新local commitとLinux data/checkpoint/sourceを移す。Git/Hubだけで学習済みweightsと12.23B shardsが復元できるとは扱わない。
-
-以下の各Phaseは元の目的と完了条件を保持する。過去の段階案と当時の指示は[保存履歴](autonomous_history_20261004.md)へ分離し、現行実行値は[専用10B設定](../configs/phase6/base_10b.json)を正とする。追加科学学習5,249,990,656 tokensは約126分、評価込み145〜165分の見積もり。上限は科学9,000秒（準備19.217秒含む）＋評価1,800秒。実装・内容確認時間は別。
+以下のPhase定義・品質目標は維持する。以前の現在地と次の実行案は[2026-10-05履歴](autonomous_history_20261005.md)、各実験の当時の計画は各番号の文書へ保持する。結果や提案を新jobの開始指示として扱わない。20B/50Bと有料cloud/公開は別範囲。
 
 ## 全体の順序
 
@@ -57,7 +43,7 @@ Pythonはuv管理3.12.7、依存変更はuv add。WSLでは `uv run --frozen --e
 | 3 | 完了・[証拠](19_phase3_completion.md) | iMac / CPU | 10Mモデルと推論経路を成立させる | 正しいモデル・cache・HF/float GGUF経路を確認する | 2 |
 | 4 | 完了・[実機証拠](21_phase4_completion.md) | Windows/WSL＋RTX 4090 | 長時間学習の再現性と実行可能性を確かめる | 保存再開・実shard学習・4090速度と予算を検証した | 1〜3 |
 | 5 | 完了 | Windows/WSL・RTX 4090 | 小予算で有望な候補を選ぶ | overfit、10M smoke、100M比較から最大2候補を選ぶ | 4 |
-| 6 | 5B/10B・各100M/500M比較と日本語追加評価完了、品質目標未達 | Windows/WSL・RTX 4090 | 日本語Baseの能力を段階的に伸ばす | 学習量・配合・生成/意味診断を比較し、Base品質を別判定する | 5、[準備証拠](30_phase6_readiness_execution.md)、[最新判断53](53_story20_low_lr_judgment.md) |
+| 6 | 主要10B・各100M/500M/1Bと200M教材比較完了、品質目標未達 | Windows/WSL・RTX 4090 | 日本語Baseの能力を段階的に伸ばす | 学習量・配合・生成/意味診断を比較し、Base品質を別判定する | 5、[準備証拠](30_phase6_readiness_execution.md)、[最新判断60](60_dataset_expansion_results.md)、[次案61](61_condition_preservation_next_plan.md) |
 | 7 | 未着手 | Windows/WSL・RTX 4090 | Baseを短文雑談モデルへ仕上げる | mid-trainingとSFTの効果を分離し、Chat v1を評価する | 6、1の会話pilot |
 | 8 | 未着手 | 学習PC・独立したローカル検証環境 | ローカルで使える成果物を完成させる | Base/Chatと量子化版を独立環境で実行・再現できる | 7、3のexport経路 |
 | 9 | 未着手・50Bは条件付き | Windows/WSL・RTX 4090 | 追加学習に継続価値があるか検証する | 20B、条件付き50Bの効果と限界を報告する | 6、追加予算の見積もり |
@@ -244,11 +230,11 @@ Phase 4は以下の順で実施済み。新規環境への移行・実装変更�
 
 ## Phase 6: 500M〜10B Base v1
 
-**状態**: 主要Web5Bと各100M仕上げ比較、直接10Bの[専用準備](40_base_10b_preparation.md)、総10,000,007,168 tokensの[本学習と保存確認](41_base_10b_training.md)を完了。10B同条件品質評価も完了（BPB0.954018 / 固定EOS0・反復53 / raw Unicode0）。最速設定はFlash＋compile reduce-overhead / batch32、今回の実学習も約694〜695k tokens/s。過去の[準備①②](26_phase6_preparation_completion.md)、[高速化](29_phase6_performance_completion.md)、[④⑤](30_phase6_readiness_execution.md)を保持し、完了済みstudyを繰り返さない。
+**状態**: 主要Web10Bと同条件全文評価、日本語追加評価、100M/500M/1Bの配合・品質・学習量比較、短い物語pool200Mへの拡張と各1B比較を完了。最新の一次35/最終20evidencechecksは成功したが、Base/Chat品質は未達。旧研究候補の保存と最新候補の不採用を区別する。[最新結果60](60_dataset_expansion_results.md)、[次回案61](61_condition_preservation_next_plan.md)。最新学習速度は約676k〜683k tokens/s。原GPU基盤・再開・高速化の完了証拠を保持し再実行しない。
 
 **目的**: 約10Mで日本語短文生成がどこまで成立するかを測り、Chatの土台を作る。
 
-次回の一区切りは[直接10Bの学習・同条件評価・報告と停止](39_learning_scale_and_generation_plan.md)。stable4.75B親から9.5Bへ継続し、独立decayで10Bへ到達する。既存5B/Web5.1B評価を再利用し、新10Bだけ評価する。step2学習に続くstep3品質評価も完了した。今回はreport/commitで停止し、後続学習は開始しない。
+主系列10Bとその評価は完了済みで再起動しない。計画52の500M研究候補は元比較gateを通過したが実用品質未達、後続の教材内容/一定LR1B/200M教材比較は報告済み。最新結果は[60](60_dataset_expansion_results.md)。次回の一区切りは[提案61](61_condition_preservation_next_plan.md)の限定教材品質比較と採否・停止であり、文書更新では実行しない。
 
 **ゴール**: 選定済み10M候補を直接10Bまで学習・評価し、10Bの`JMicro-10M-Base-v1`と固定評価を残す。
 

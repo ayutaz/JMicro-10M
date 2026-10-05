@@ -1,8 +1,8 @@
 # Codexによる環境整備・学習・改善の自動化
 
-現在地（2026-10-04）: Phase 0〜5、Phase 6準備、主要Web5B、各100M仕上げ比較、直接10B専用準備は完了。10B科学学習step2とCPU保存確認19項目は完了、同条件品質評価step3も完了。[品質結果](42_base_10b_quality_evaluation.md)。[学習結果](41_base_10b_training.md)。現在の指定範囲は再開された10B品質評価で、評価・内容確認を完了しreport/local commitで停止。[最新状態](autonomous_status.md)、[直接10B計画](39_learning_scale_and_generation_plan.md)、[準備証拠](40_base_10b_preparation.md)を参照する。
+現在地（2026-10-05 JST）: 計画58段階1〜3は[結果60](60_dataset_expansion_results.md)まで完了し、候補不採用・条件付き全文未起動、元10B UI復帰とlocal commit `afad164`を保存した。現在の依頼は文書と計画の更新。新data/GPUを再開しない。[status](autonomous_status.md)、[次回案61](61_condition_preservation_next_plan.md)、AGENTS.mdの停止境界を先に読む。
 
-Full accessは既に実効policyへ反映済みで、ユーザー側のrunner起動を学習開始条件にしない。起動前にAGENTS.mdの範囲とactual job/lock/checkpointを確認する。completeはその時の指定範囲を証拠で完了したことを示し、Base/Chat完成とは区別する。科学jobはユーザーのstep2再開指示で実行・完了し、実processも終了済み。完了runを再起動せず、今回のreport/local commitで停止する。
+実行権限と作業範囲を区別する。actual job/boot/start ticks/lock/checkpointを確認し、完成したrunを起動し直さない。completeは依頼された範囲の証拠付き完了で、Base/Chat品質達成とは異なる。次回案61は未実装・未起動の提案で、runnerへ新しい実行依頼を渡さず自動開始しない。
 
 以下のCLI 0.159.3・アプリ設定・公式資料の説明は2026-10-03に確認した履歴で、今回の文書更新では製品設定を再調査・変更していない。旧作業の指示は[保存履歴](autonomous_history_20261004.md)を参照する。
 
