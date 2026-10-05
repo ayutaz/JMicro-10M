@@ -11,6 +11,8 @@ Pythonはすべてuv管理3.12.7、WSL2/RTX4090で実行する。protected test�
 
 ## 実行状態
 
+段階3のWeb枝500M学習完了: 追加500,006,912科学tokens/15259更新、総10,500,014,080/update320435、学習747.396秒。終端checkpoint SHA d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4、100M中間も保存済み。同じactual Linux174280が起動約13分5秒時点で物語20%枝400更新を学習中、stderr空。両枝の評価は後続なのでWeb500MのBPB・生成品質は未測定。完了した実結果と未完了の物語学習/320内容診断/全文条件判定/段階4を分ける。[判断53](53_story20_low_lr_judgment.md)は途中原稿。
+
 段階3の科学比較を永続起動: 準備commit742ec45、2026-10-05 00:56:22.906739Z開始、hidden Windows33908 / actual Linux174280 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks4498545。actual processの存在を確認し、`screen-job.json`とWindows`screen.*.log`を追跡する。UI停止済みで、launcher finallyが元final10Bへ復帰する。現在CUDA保存再開確認段階、科学学習・320内容診断・条件付き全文・段階4判断は未完了。起動済みjobを重複起動しない。
 
 段階3データ準備完了・500M条件凍結: 固定4 train filesを使い切り、59,963,449 tokens / 662,857文書 / 125,613 parent groupsを194.534秒で構築した。120M目標は未達、source exhaustedを記録し、99,975,168物語input tokensには約1.66727周を使用する。新規unique100Mとは主張しない。各file先頭10採用文書、計40全文を確認し、14弱例と非ランダムsample・合成物語・広域重複未確認の限界をcontent-reviewへ保存した。限定比較の既存基準で使用し、完結や意味品質の全件認証とはしない。26関連CPU tests保存済み、config/schemaを凍結しprobe成功。実科学GPUは起動前。各500,006,912科学tokens、計1,000,013,824、100,007,936中間地点を共通14500 stable/759 decay scheduleで保存する。中間100Mは共通scheduleのstable中で、旧減衰済み100Mとの純粋な量だけの比較ではない。一次GPU上限4,200秒、条件付き全文3,000秒。次は永続起動とactual identity保存、320内容診断、原gate条件付き全文、段階4判断・報告・local commit・元UI復帰で停止。

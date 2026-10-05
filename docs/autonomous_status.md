@@ -1,5 +1,7 @@
 # Codex継続作業の現在地
 
+段階3・Web500M学習完了／物語20%学習中: actual Linux174280が起動約13分5秒時点で`coherent20-train`400更新へ移ったことを確認、stderr空。Web枝は15259更新/追加500,006,912/総10,500,014,080/update320435を747.396秒で学習し、終端SHA d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4を保存した。物語枝は同じ元final10Bから別に学習中。中間/終端の一次評価・320内容診断・条件付き全文・段階4採否/次案は未完了。[判断53](53_story20_low_lr_judgment.md)は100M実測と残要件を保存した途中原稿。元UIはGPU中のみ停止し、finally復帰予定。科学174280の同じ実行を追跡し、重複起動しない。
+
 段階3実行中・Web中間100M保存済み: actual Linux174280を起動約3分8秒時点で再確認した。実CUDA保存再開25checksすべて成功、検証262,144 tokensは科学会計と分離。Web枝は3300更新/追加108,134,400 tokensまで進み、100,007,936地点のupdate308228/総10,100,015,104 checkpointを保存した（SHA0813da0970485ec58d480f04f19b8dc92750421ce7086bef86232529f0626365）。GPU89%/VRAM7690MiB、stderr空。二枝の科学学習はまだ未完了、320内容診断/条件付き全文/段階4も未実施。新しい最終確認`scripts/review_story20_completion.py`は構文確認のみで、完了証拠としてまだ実行していない。job/metrics/latest/checkpointとactual identityを追跡し、同じrunを重複起動しない。README/roadmap/handoffに現52の再開状態を反映、local commit4f7260c。
 
 段階3の各500M比較を永続起動: 準備commit742ec45、2026-10-05 00:56:22.906739Z、hidden Windows33908 / actual Linux174280 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks4498545。actual process存在を確認した。Linux run`reports/phase6/story20-low-lr-10b-500m-20261005`の`screen-job.json`/arm metrics/checkpoint、Windows同run`screen.stdout.log`/`screen.stderr.log`を追跡する。CUDA実保存再開→二枝各500M→中間/終端の一次評価→全320内容診断→原gate条件付き全文/長文→段階4判断・report・local commit・元UI復帰で停止。起動済み同じjobを確認し、重複起動しない。
