@@ -774,3 +774,9 @@ actual501165は終了・ps不在。large1B＋20M親から各25M教師、計50M�
 明示する新研究は旧large1B stable（checkpoint30775/SHA df5295b9e7cfce14dff6a77ce2a9675fbbf67e48639045c4bb721063dce27fbf）から、CEのみ・同pool/原入力順・LR/Adam/RNG/cursorを保ち累積2B教師へ進め、同20M decayを評価する案。比較対照は旧large1B＋20M decayの全日本語/80件を一致確認して再利用し、25M目的比較のCEやUL枝とは混同しない。原stable1Bの実学習1502.646秒を速度の起点に追加1B/同20Mを見積もり、新実CUDA stable/decay保存再開・実速度からGPU上限案2700秒を事前凍結する。コマンド/設定は未実装・未凍結、科学学習0。
 
 既存の品質改善を前提とする自動延長コマンドは拒否条件を保持し、そのgateを変更・迂回して既存条件に合格したとは扱わない。この研究は学習被覆の仮説を明示して別契約/runner/reviewerで実装し、最終採否の一貫性対応+8/80・CI下限>0、文法56、一貫性/適切27、EOS37、反復18以下、Unicode/role/empty0、共通byte BPB/元Web条件を保持する。終了条件は実2B＋同20M・同入力/会計・日本語/全80・全品質採否・local commit/UI復帰。合格改善が得られた場合のみ次の5B等を測定予算付きで選び、独立training seed/full dev/protected testを経てBase採用する。Chat/retention/複数sampling/実人間評価→HF/GGUF/Q8/Q4/実WebUIという全五目標は維持し、今回の不採用や次案だけで目標を完了にしない。
+
+### 2B学習被覆比較の速度実測とv2科学レシピ（2026-10-06 JST）
+
+原CUDAのstable/decay22checksは完了。毎更新保存16stepを速度の起点にしたところ予測4520.080秒で旧2700秒案に収まらず、同親・原入力・学習状態を固定した64連続対64毎保存の診断を実施した。連続median49.303ms、毎保存median81.468ms、15終端stateとfirst16学習履歴一致。診断35.229秒/4,159,460検証教師、原probe60.141秒/1,039,730検証教師も全会計に残し、重みは科学に使わない。これは速度の証拠で品質改善ではない。
+
+原凍結source/config/resultは不変で、別run_textbook_coverage_v2.py/ps1・review_textbook_coverage_v2.py・textbook_coverage_2b_v2.jsonを凍結。科学条件は同2B prepared・stable1B親からCEのみ累積2B・同20M decay、旧large1B+20Mの全80/日本語を対照に再利用。250update durable saveの実測費用とwarmupを含め、学習・保存1571.308秒、30%余裕と評価480・実2B decay検証60を加え2582.700秒、新検証込み2678.070秒見込み。v2の全GPU上限は明示3000秒、本job2904.630秒。16CPUtests/2.33秒、構文/科学preflight成功。まだ科学学習0、次は永続本学習・全80採否、既存品質基準やBase/Chat採用条件は変えない。改善なら独立seed/full/testへ、不合格なら失敗例に基づく一要因比較へ進む。全五目標を候補の完了だけで完了にしない。
