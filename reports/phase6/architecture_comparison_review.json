@@ -1,0 +1,215 @@
+{
+  "status": "stage3_learning_and_content_evidence_complete",
+  "summaries": {
+    "current": {
+      "BPB": 2.1037092890318485,
+      "rates": {
+        "outputs": 80,
+        "eos": 54,
+        "repetition": 4,
+        "unicode_failure": 1,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "Japanese": {
+        "semantics": 0.4895833333333333,
+        "jblimp": 0.6978851963746223,
+        "jcqa": 0.23011617515638963
+      },
+      "grammar2": 16,
+      "relevance2": 0,
+      "coherent": 0,
+      "appropriate": 0,
+      "auxiliary": {
+        "dev32": {
+          "documents": 32,
+          "EOS": 25,
+          "repeated4gram": 20,
+          "teacher_NLL": 3.1972438797764196,
+          "teacher_top1_fraction": 0.4474556216822395
+        },
+        "train32-wikipedia": {
+          "documents": 32,
+          "EOS": 27,
+          "repeated4gram": 16,
+          "teacher_NLL": 1.6023945123778904,
+          "teacher_top1_fraction": 0.6602573690917933
+        }
+      },
+      "scientific_teachers": 300000000,
+      "valid_input_tokens": 302546944,
+      "physical_tokens": 302546944,
+      "seconds": 456.315090581993,
+      "peak_allocated_bytes": 6149073408,
+      "additional_EOS_teachers": {
+        "web": 0,
+        "short": 2539465
+      }
+    },
+    "fewer_layers_more_FFN": {
+      "parameters": 10011392,
+      "BPB": 2.166974904561069,
+      "rates": {
+        "outputs": 80,
+        "eos": 59,
+        "repetition": 7,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "Japanese": {
+        "semantics": 0.3697916666666667,
+        "jblimp": 0.6676737160120846,
+        "jcqa": 0.22788203753351208
+      },
+      "coherent": 0,
+      "appropriate": 2,
+      "grammar2": 18,
+      "relevance2": 8,
+      "auxiliary": {
+        "dev32": {
+          "documents": 32,
+          "EOS": 27,
+          "repeated4gram": 15,
+          "teacher_NLL": 3.206582329877556,
+          "teacher_top1_fraction": 0.45936884500010605
+        },
+        "train32-wikipedia": {
+          "documents": 32,
+          "EOS": 30,
+          "repeated4gram": 12,
+          "teacher_NLL": 1.5481321783983042,
+          "teacher_top1_fraction": 0.66022607205265
+        }
+      },
+      "scientific_teachers": 300000000,
+      "valid_input_tokens": 302546944,
+      "physical_tokens": 302546944,
+      "seconds": 410.50651979100076,
+      "peak_allocated_bytes": 5766197760
+    },
+    "wider_fewer_layers": {
+      "parameters": 9982848,
+      "BPB": 2.2215441668867637,
+      "rates": {
+        "outputs": 80,
+        "eos": 52,
+        "repetition": 6,
+        "unicode_failure": 2,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "Japanese": {
+        "semantics": 0.5,
+        "jblimp": 0.6797583081570997,
+        "jcqa": 0.2323503127792672
+      },
+      "coherent": 0,
+      "appropriate": 0,
+      "grammar2": 22,
+      "relevance2": 4,
+      "auxiliary": {
+        "dev32": {
+          "documents": 32,
+          "EOS": 27,
+          "repeated4gram": 17,
+          "teacher_NLL": 3.1138504257985358,
+          "teacher_top1_fraction": 0.4569498052485869
+        },
+        "train32-wikipedia": {
+          "documents": 32,
+          "EOS": 25,
+          "repeated4gram": 16,
+          "teacher_NLL": 1.5806725654523561,
+          "teacher_top1_fraction": 0.6568974613643838
+        }
+      },
+      "scientific_teachers": 300000000,
+      "valid_input_tokens": 302546944,
+      "physical_tokens": 302546944,
+      "seconds": 399.8533833870024,
+      "peak_allocated_bytes": 4837471744
+    }
+  },
+  "gates": {
+    "fewer_layers_more_FFN": {
+      "practical": {
+        "coherence_at_least27": false,
+        "appropriate_at_least27": false,
+        "EOS_at_least37": true,
+        "repetition_at_most18": true
+      },
+      "relative_to_current": {
+        "checks": {
+          "coherence_gain_at_least8": false,
+          "paired_CI_lower_above0": false,
+          "EOS_nonworsening": true,
+          "repetition_nonworsening": false,
+          "no_empty_role_unicode": true,
+          "BPB_gate": false,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": 0,
+        "CI95": [
+          0.0,
+          0.0
+        ]
+      },
+      "original_Web": {
+        "EOS_at_least8_more": true,
+        "repetition_no_worse": true,
+        "no_empty_role_unicode": true,
+        "BPB_degradation_at_most1percent": false,
+        "no_punctuation_only_stops": true
+      },
+      "adopted": false
+    },
+    "wider_fewer_layers": {
+      "practical": {
+        "coherence_at_least27": false,
+        "appropriate_at_least27": false,
+        "EOS_at_least37": true,
+        "repetition_at_most18": true
+      },
+      "relative_to_current": {
+        "checks": {
+          "coherence_gain_at_least8": false,
+          "paired_CI_lower_above0": false,
+          "EOS_nonworsening": false,
+          "repetition_nonworsening": false,
+          "no_empty_role_unicode": false,
+          "BPB_gate": false,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": 0,
+        "CI95": [
+          0.0,
+          0.0
+        ]
+      },
+      "original_Web": {
+        "EOS_at_least8_more": true,
+        "repetition_no_worse": true,
+        "no_empty_role_unicode": false,
+        "BPB_degradation_at_most1percent": false,
+        "no_punctuation_only_stops": true
+      },
+      "adopted": false
+    }
+  },
+  "scientific_teacher_tokens_new": 600000000,
+  "reused_current_teacher_tokens": 300000000,
+  "verification_teacher_tokens": 519816,
+  "CUDA_verification_optimizer_updates": 16,
+  "gpu_seconds": 975.8579462290072,
+  "result_sha256": "f2212a45f2b74ae189fc8710a7f9b949ccb13cc41e3d03b1417f41e05189db6c",
+  "annotations_sha256": "a011872fae22580ab4ff4a5cb4f8a3642b619e7a60706148f9afd29e8014660c",
+  "interpretation": "Fresh models from same initialization seed, same10M material, Tokenizer, batch32, warmup200 and each300M teachers. Depth/width/FFN allocation differ together; not isolated capacity proof.",
+  "numerical_failures72_unchanged": true,
+  "independent_human_blind": false,
+  "requested_five_steps_complete": false,
+  "protected_test_used": false,
+  "created_at": "2026-10-05T16:45:57.886318Z"
+}
