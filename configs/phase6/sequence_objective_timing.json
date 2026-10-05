@@ -1,0 +1,36 @@
+{
+  "kind": "continuous-objective-timing-not-scientific-learning",
+  "original_probe_sha256": "ade00a5fa1222ded951268aab7084911fe32661e408fe50f0095eb97856cfe53",
+  "measurement_sha256": "5f9b6929dd3cd6037633fc231a221c5189cce282b3827cdaca463050d5f865c9",
+  "original_probe_GPU_seconds": 54.62399182700028,
+  "GPU_budget_seconds": 245.37600817299972,
+  "timing_updates_per_arm": 16,
+  "continuous_checkpoints": {
+    "CE": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/sequence-objective-comparison-20261006/probe/resume-gate/CE/continuous.pt",
+      "sha256": "fd30b0d39c904ae1c4c70bd26fae79777c91cc7fdc200b5763e3ef47e5c0e58b"
+    },
+    "CE_UL": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/sequence-objective-comparison-20261006/probe/resume-gate/CE_UL/continuous.pt",
+      "sha256": "937ca46e5a2931167fe96f5994d115552af21751d4f8295ff8c122f5dd7f56ec"
+    }
+  },
+  "source_sha256": {
+    "scripts/measure_sequence_objective_timing.py": "8fd3028aaa98fca0fac135c63e310f87159fd8fbb8b6ff19fb836b486dc815ce",
+    "scripts/measure_sequence_objective_timing.ps1": "4ce422a379bcb3b1bc579de1be2aba116fdd5e1646a60dcd2260b539a7d5cece",
+    "scripts/sequence_objective_trainer.py": "035b08caf9c5f96885ae9599802e9e777ebfc79a3473614085a9dfafebee58ce",
+    "src/jmicro/sequence_unlikelihood.py": "3d54c3544e4e59f086459ce6053e342aa3133c39b990dae48ea1131f084e6cf3",
+    "scripts/textbook_quantity_trainer.py": "c11b8c3650e193118f20cac29122d917228b0b95322c642d061a04c8813cbab8"
+  },
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "scientific_teacher_tokens": 0,
+  "protected_test_used": false,
+  "Base_adopted": false,
+  "weights_used_for_scientific_parent": false,
+  "estimation_rule": "Record all16 updates per arm; first4 contain load/compile warmup and remain counted, use subsequent12 contiguous updates including3 real rollout cycles for steady median, no favorable-seed selection"
+}
