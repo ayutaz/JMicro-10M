@@ -1,0 +1,280 @@
+{
+  "web_shards": "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2/export-001/shards",
+  "web_manifest_sha256": "2edfd35bf077cd1aa583713c01341c0db52f39adc5701f30ede0aacae840b2de",
+  "dev_shards": "/home/aihub_ubuntu/jmicro-data/phase6/expanded-v2/shards",
+  "dev_manifest_sha256": "75c7420a1434cf8a97797218b163c694a13ed838f389f09327dcc86f7164c12c",
+  "tokenizer": "artifacts/phase2/4096/tokenizer.model",
+  "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+  "suite_sha256": "93cd3a19f3e62c8d30d1660b431a9525823f58b9ceb1bf90c6ecbac2c19292eb",
+  "evaluation": {
+    "dev_documents": 256,
+    "fixed_dev_prefixes": 80,
+    "max_new_tokens": 64,
+    "tasks": [
+      "semantics",
+      "jblimp",
+      "jcqa"
+    ],
+    "config": "configs/evaluation/japanese_base_v2.json",
+    "config_sha256": "661dc8d4db7de836ddb99ac3ed5bbf3e10636c24d00e5fb0869773ace4fa03a8",
+    "semantic_suite": "eval/japanese_semantics_v2_1.jsonl",
+    "semantic_sha256": "53e28d39368251a60750ff22da7c261cb20c3136fb5231aa4324ec2d6285ffd9",
+    "data_manifest_sha256": "b5016f3d926dc08c83c5c73c33212a9f40c5c066511bc3ce1574c616046f4402"
+  },
+  "reference": {
+    "parent_body": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-comparison-20261004/full-dev.json",
+      "sha256": "4cb01a95227be5950e035d72719075cea650c80bbdba18ca1713edf939891ae2"
+    },
+    "parent_generation": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-comparison-20261004/generation.json",
+      "sha256": "aed50510227af26e857201bce855a5a738802062786d5c7d655f2d0a6a91b3eb"
+    },
+    "web_screen": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/evaluation/result/web/evaluation/result.json",
+      "sha256": "5e0f346d1c657b2f8f1a35d9e8079ce896abab3451e34dc697792394a0df6796"
+    },
+    "story_screen": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/evaluation/result/coherent20/evaluation/result.json",
+      "sha256": "338fa68df832a8fddfa63c6038c1b8f9c840ccbd9d8ee508c617494f4498a455"
+    },
+    "web_full": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/full/web-full.json",
+      "sha256": "60400a8873cc4a142472f5bdf3fead7cead87b6d390433bc69349fa860db3932"
+    },
+    "story_full": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/full/coherent20-full.json",
+      "sha256": "65b1e23a790b6c59c0838fcadcb9aae8e99565c7fd10327dd1ea7ae535e0e471"
+    }
+  },
+  "goals": {
+    "web": 0,
+    "short": 300000000
+  },
+  "peak_lr": 0.002,
+  "warmup_updates": 200,
+  "optimizer_policy": "fresh",
+  "initialization": "new-random",
+  "isolated_batch": 256,
+  "diagnostic_train_budget_seconds": 600,
+  "mixed_train_budget_seconds": 600,
+  "schedule": "One continuous300M body/EOS teachers; first200updates warmup,90percent stable/10percent decay; no100M terminal/reheat",
+  "reference_sha256": {
+    "dev32.json": "e46ab5e3e6ea59467bb94f140b1e880c70dc16f388361feb568ff3f38a0dbdde",
+    "train32-control.json": "ca095151d3295491f82d7197fa2cb7859b2377c370a11d2fc01e2b3e6b3f8cd8",
+    "train32-wikipedia.json": "6b06337105fea596fe8cbaab052ac652f75ad09c297c1aa33cdc78607775e969"
+  },
+  "version": 1,
+  "scope": "User five items stage3: maximum two new10M architectures, current matched300M reused",
+  "pool": {
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/wikipedia-curriculum-20261006-v3/shards",
+    "manifest_sha256": "65fd3a97550ce3e696b4a2e869ed82f1e4842bf541c5c8b20ae29670bfbeaed9"
+  },
+  "arms": {
+    "fewer_layers_more_FFN": {
+      "model_config": {
+        "schema_version": 1,
+        "architecture": "decoder_only_transformer",
+        "hidden_size": 256,
+        "num_attention_heads": 4,
+        "num_key_value_heads": 2,
+        "head_dim": 64,
+        "activation": "swiglu",
+        "norm": "rmsnorm",
+        "rms_norm_eps": 1e-06,
+        "qk_norm_type": "none",
+        "qk_norm_before_rope": true,
+        "attention_scale": 0.125,
+        "rope_theta": 10000,
+        "rope_layout": "half_split",
+        "rotary_dim": 64,
+        "max_position_embeddings": 1024,
+        "tie_word_embeddings": true,
+        "attention_bias": false,
+        "mlp_bias": false,
+        "dropout": 0.0,
+        "initializer_std": 0.02,
+        "norm_initial_gain": 1.0,
+        "status": "proposal_parameter_count_only",
+        "name": "JMicro-10M-proposal-fewer_layers_more_FFN",
+        "vocab_size": 4096,
+        "num_hidden_layers": 9,
+        "intermediate_size": 1040,
+        "expected_parameter_count": 10011392
+      },
+      "parameters": 10011392,
+      "quality": "not evaluated; CPU parameter count only"
+    },
+    "wider_fewer_layers": {
+      "model_config": {
+        "schema_version": 1,
+        "architecture": "decoder_only_transformer",
+        "hidden_size": 384,
+        "num_attention_heads": 6,
+        "num_key_value_heads": 3,
+        "head_dim": 64,
+        "activation": "swiglu",
+        "norm": "rmsnorm",
+        "rms_norm_eps": 1e-06,
+        "qk_norm_type": "none",
+        "qk_norm_before_rope": true,
+        "attention_scale": 0.125,
+        "rope_theta": 10000,
+        "rope_layout": "half_split",
+        "rotary_dim": 64,
+        "max_position_embeddings": 1024,
+        "tie_word_embeddings": true,
+        "attention_bias": false,
+        "mlp_bias": false,
+        "dropout": 0.0,
+        "initializer_std": 0.02,
+        "norm_initial_gain": 1.0,
+        "status": "proposal_parameter_count_only",
+        "name": "JMicro-10M-proposal-wider_fewer_layers",
+        "vocab_size": 4096,
+        "num_hidden_layers": 6,
+        "intermediate_size": 832,
+        "expected_parameter_count": 9982848
+      },
+      "parameters": 9982848,
+      "quality": "not evaluated; CPU parameter count only"
+    }
+  },
+  "parent_spec": {
+    "seed": 42,
+    "context": 1024,
+    "batch": 32,
+    "accumulation": 1,
+    "lr": 0.002,
+    "weight_decay": 0.1,
+    "warmup": 200,
+    "schedule_updates": 100000,
+    "dtype": "bf16",
+    "compile": true,
+    "backend": "flash",
+    "training_fast_path": true,
+    "deterministic": true,
+    "compile_mode": "reduce-overhead",
+    "scheduler": "wsd"
+  },
+  "seed": 42,
+  "gpu_budget_seconds": 3600,
+  "reused_current": {
+    "status": "complete",
+    "binding": {
+      "config_sha256": "ec08e1522d1004b80117ec68cfc4cf53d568c80cc1771096c87b5e8ebbf66457",
+      "parent": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/curriculum-strategy-20261005-v3/initial-fresh.pt",
+        "sha256": "70d86a832f607faf4325992b5ec76d080a167b164efc78a6dc0b88133507ea85",
+        "update": 0,
+        "tokens_seen": 0
+      },
+      "peak_lr": 0.002,
+      "warmup_updates": 200,
+      "optimizer_policy": "fresh",
+      "initialization": "new-random",
+      "arm": "wikipedia",
+      "isolated_batch": 256,
+      "short_manifest_sha256": "65fd3a97550ce3e696b4a2e869ed82f1e4842bf541c5c8b20ae29670bfbeaed9",
+      "actual_parent_path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/curriculum-strategy-20261005-v3/initial-fresh.pt",
+      "mode": "shuffle",
+      "goals": {
+        "web": 0,
+        "short": 300000000
+      }
+    },
+    "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/material-comparison-20261006/wikipedia/checkpoint-00009233.pt",
+    "checkpoint_sha256": "2460fc539b659a899b4591baa2b0c9518a0a37337e0e9ff6b2963f6edb077a2e",
+    "mode": "shuffle",
+    "update": 9233,
+    "tokens": 302546944,
+    "additional_input_tokens": 302546944,
+    "additional_supervised_tokens": 300000000,
+    "physical_input_tokens": 302546944,
+    "source_teachers": {
+      "web": 0,
+      "short": 300000000
+    },
+    "source_tokens": {
+      "web": 0,
+      "short": 302546944
+    },
+    "source_eos_teachers": {
+      "web": 0,
+      "short": 2539465
+    },
+    "sampler": {
+      "kind": "exact-teacher-packing-study-v1",
+      "mode": "shuffle",
+      "goals": {
+        "web": 0,
+        "short": 300000000
+      },
+      "position": 9233,
+      "web": {
+        "seed": 42,
+        "epoch": 0,
+        "position": 0,
+        "context": 1024,
+        "blocks": 11939276
+      },
+      "short": {
+        "seed": 42,
+        "epoch": 30,
+        "position": 2506,
+        "context": 1024,
+        "blocks": 9765,
+        "mode": "shuffle-whole-documents-v1"
+      },
+      "source_tokens": {
+        "web": 0,
+        "short": 302546944
+      },
+      "source_physical_tokens": {
+        "web": 0,
+        "short": 302546944
+      },
+      "source_teachers": {
+        "web": 0,
+        "short": 300000000
+      },
+      "source_eos": {
+        "web": 0,
+        "short": 2539465
+      }
+    },
+    "body_bytes": 967225336,
+    "training_seconds": 456.315090581993,
+    "completed_at": "2026-10-05T16:22:19.357309Z",
+    "peak_allocated_bytes": 6149073408
+  },
+  "material_config_sha256": "ec08e1522d1004b80117ec68cfc4cf53d568c80cc1771096c87b5e8ebbf66457",
+  "material_review_sha256": "6bc444dcd3d4dd96f982698ffbd57325f1760ca8aab13c7a75219e9af0cfeee8",
+  "material_result_sha256": "c3d9c18975c6ceaa96840cf2c3347d4abd60659f98da1e255fbd1847fc417a36",
+  "proposal_sha256": "0b2f556339f9d2746e8de50ff802508b08baef2fea090e1f08c0a893211eb7a3",
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "source_sha256": {
+    "scripts/run_architecture_comparison.py": "63f9fe37390e4d67797ea7aeb43770974a8531328ed2780f77dafe8b8f190470",
+    "scripts/run_architecture_comparison.ps1": "d6bc2e68f432e8bb4b774bf40c2082e4a762031500a438efbc45d854d795e36c",
+    "scripts/run_material_comparison.py": "f0fa37b09ed7a312aee27d3e9d5fd929b3cd0b906c1f5a3c38c19c4671169cc3",
+    "scripts/resume_curriculum_strategy.py": "db5de75d522158a0829c7daa7efab2a28314277e9bbe8edf63a5b7145be2cbd4",
+    "scripts/run_curriculum_strategy.py": "8611b7c7b8d09b1599ef89ac3d5ac6acfe3c5c851a3c0fc9ec7665318d50e0e8",
+    "scripts/run_packing_study.py": "873d21613f90bf46fa3c70a0f430dd6349d91b2a3473fbb95b75605f281718ed",
+    "scripts/run_complete_text_comparison.py": "9d91d1d6124e62e4f40f7a99762f948186602e95cc362be10bfe03297874d8f7",
+    "src/jmicro/curriculum_strategy.py": "8c7700c653ad75fc36b9a1374a66e363e9f241c9acbb8aef3548785fe0444cea",
+    "src/jmicro/natural_learning.py": "677997e9676611e58ddfdf6c7322ec2f8256a91dd6c1a4f6d7637e9702422dec",
+    "src/jmicro/packing_study.py": "ef720498a1bf784ac2088ef864ae64e66d57c8bee1cc38739d421057ebc7fe32"
+  },
+  "interpretation": "Fresh models from same initialization seed, same10M material, Tokenizer, batch32, warmup200 and each300M teachers. Depth/width/FFN allocation differ together; not isolated capacity proof.",
+  "selection": "Compare unchanged practical quality and common BPB plus Japanese tasks, paired raw80 content and GPU time. Best research recipe is not automatically an accepted Base.",
+  "scientific_teacher_tokens_new": 600000000,
+  "reused_teacher_tokens": 300000000,
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "created_at": "2026-10-05T16:28:13.572098Z"
+}
