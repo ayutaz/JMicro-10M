@@ -556,3 +556,9 @@ prepare_chat_pilot.pyで、固定public pilot manifest/corpus/split/4K Tokenizer
 これらは準備量で消費済み学習量ではない。SFTの10M/30M/100M総系列予算はAssistant教師10M/30M/100Mとは異なり、このtrain窓の一周では教師は系列の約6.2%。元対話を一度ずつ数えた量もglobal unique-token unionではない。原文の相づちや同じ発話、口語・誤字を維持し、役割の交互性と空でないAssistant本文を保持する。固定train4全文を読んだ診断では、自然な話題継続の一方、自己紹介、未導入のフィジー等の背景、歴史の未検証の一般化を確認した。事実性/指示応答/訂正能力の保証ではなく、4例だけでsourceやtestを再選別しない。独立人手評価なし。
 
 Linuxのデータは`/home/aihub_ubuntu/jmicro-data/phase7/real-persona-pilot-20261006`（train/dev JSONL、manifest、sample4）、実job/reportは`reports/phase7/chat-pilot-20261006`。Windows可搬証拠はchat_pilot_preparation/prepare_job/sample4/content_notes各JSON。human source revision28d0b6b…/CC-BY-SA-4.0・帰属と元public pilotを保持する。shared speakersの非交差は保証しておらず、persona本文の追加復元はしない。次は量比較と改善Base品質を完了してからmid-training/SFT比較を凍結し、実CUDA安定batch/再開/対話評価を行う。
+
+### stage4の2B評価（2026-10-06 JST、同1B教材量比較は継続中）
+
+同500,000,785準備tokensで2,000,000,000教師の安定経路から同20,000,000教師decayを分岐し、全日本語/固定80のraw生成と内容理由を評価した。安定経路valid/physical2,009,956,352、更新61339、step2985.553秒。結果はBPB1.138590、意味48.438%、JBLiMP72.508%、JCQA34.048%、文法2=43、関連2=32、一貫性2=21、適切完結27、EOS40、反復21、Unicode0。1B比では生成の一貫性14→21・完結22→27・停止37→40とBPBは改善したが、反復20→21と選択式の一部は悪化した。既存Baseの文法56・一貫性27・反復18以下等を満たさず採用しない。
+
+全320/400内容済み。残small1Bは同じ科学jobで学習中で、同100M対500M教材の同1B結果と全400内容の採否を先に確定する。教材量が増えた効果と同教材の学習量効果を混同しない。有望な研究延長の選定は元の相対gate/絶対screenで行い、実用Base採用とは区別する。非blind Codex判定で独立人手なし、raw-bound notes/content_reviewとWSL全checkpointを保持。5B/10B追加GPU・Chat学習・最終test・量子化は未実行で全五目標は未完了。
