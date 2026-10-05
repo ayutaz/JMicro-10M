@@ -11,6 +11,8 @@ Pythonはすべてuv管理3.12.7、WSL2/RTX4090で実行する。protected test�
 
 ## 実行状態
 
+段階3の科学比較を永続起動: 準備commit742ec45、2026-10-05 00:56:22.906739Z開始、hidden Windows33908 / actual Linux174280 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks4498545。actual processの存在を確認し、`screen-job.json`とWindows`screen.*.log`を追跡する。UI停止済みで、launcher finallyが元final10Bへ復帰する。現在CUDA保存再開確認段階、科学学習・320内容診断・条件付き全文・段階4判断は未完了。起動済みjobを重複起動しない。
+
 段階3データ準備完了・500M条件凍結: 固定4 train filesを使い切り、59,963,449 tokens / 662,857文書 / 125,613 parent groupsを194.534秒で構築した。120M目標は未達、source exhaustedを記録し、99,975,168物語input tokensには約1.66727周を使用する。新規unique100Mとは主張しない。各file先頭10採用文書、計40全文を確認し、14弱例と非ランダムsample・合成物語・広域重複未確認の限界をcontent-reviewへ保存した。限定比較の既存基準で使用し、完結や意味品質の全件認証とはしない。26関連CPU tests保存済み、config/schemaを凍結しprobe成功。実科学GPUは起動前。各500,006,912科学tokens、計1,000,013,824、100,007,936中間地点を共通14500 stable/759 decay scheduleで保存する。中間100Mは共通scheduleのstable中で、旧減衰済み100Mとの純粋な量だけの比較ではない。一次GPU上限4,200秒、条件付き全文3,000秒。次は永続起動とactual identity保存、320内容診断、原gate条件付き全文、段階4判断・報告・local commit・元UI復帰で停止。
 
 段階2完了・合格: 全文BPBは候補0.952080669620、同LR Web0.945960821011、元親0.954018472798。候補は元親より−0.001937803179、同LR Web比約+0.647%で、原BPB両条件を通った。全400は候補EOS127/反復45/raw0、Web6/126/raw0。候補長文128/512各20はEOS9/9・文再出現8/8・4gram反復0.473527/0.585897・raw0。全文/長文GPU1,940.030秒、原条件と共通scoring protocolを実保存データから確認するCPU30項目成功。科学143237/全文143904は終了し、元UI復帰を確認した。Base/Chat品質・独立人手blindの達成とはしない。
