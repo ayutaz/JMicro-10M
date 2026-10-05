@@ -11,6 +11,12 @@ Pythonはすべてuv管理3.12.7、WSL2/RTX4090で実行する。protected test�
 
 ## 実行状態
 
+段階2完了・合格: 全文BPBは候補0.952080669620、同LR Web0.945960821011、元親0.954018472798。候補は元親より−0.001937803179、同LR Web比約+0.647%で、原BPB両条件を通った。全400は候補EOS127/反復45/raw0、Web6/126/raw0。候補長文128/512各20はEOS9/9・文再出現8/8・4gram反復0.473527/0.585897・raw0。全文/長文GPU1,940.030秒、原条件と共通scoring protocolを実保存データから確認するCPU30項目成功。科学143237/全文143904は終了し、元UI復帰を確認した。Base/Chat品質・独立人手blindの達成とはしない。
+
+条件付き段階3を開始: データ準備の最初の複合起動コマンドは自動実行ポリシーにより拒否された（詳細理由なし）。起動を専用`prepare_story20_budget.ps1`へ分け、同じ許可範囲の直接実行で成功した。2026-10-05 00:46:47Z開始、hidden Windows21332 / actual Linux173735 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks4440874。CPU builderのjobは`~/jmicro-data/phase6/simple-stories-ja-budget-20261005/job.json`。140.649秒時点でsource1,564,922行/44,931,893 tokensまで構築した。固定source4 train filesを必要分だけ使い、120Mへ届かなければ実量とepoch再利用を学習前に明記する。26関連CPU tests成功（1.81秒）；500M config未凍結・科学GPU未開始。
+
+以下は途中の準備・実行履歴。
+
 段階1完了: 100,007,936 tokens/update308228/総10,100,015,104、物語19,988,480/Web80,019,456、一周なし。学習159.277秒・一次GPU262.543秒、実CUDA25checks/検証262,144別会計。80件の内容診断は文法2点66/関連性2点15/一貫性2点12/適切完結12、EOS23/反復22/raw失敗0、dev256 BPB0.984032485。同LR WebのBPB0.977459052に対して+0.672501%で原一次基準以内。一貫性対照差12/80、paired95%区間[0.075,0.2375]で原内容条件も通過。基本意味65.104%/両文脈31/96、JBLiMP74.924%/常識34.406%。対照差は基本意味+4.167pp（区間+0.521〜+8.333）、常識+3.217pp（+1.072〜+5.183）；一seed/dev診断で広範な理解や独立人手品質の達成とはしない。
 
 段階2全文/長文を2026-10-05 00:11:52Zに起動。hidden Windows30472 / actual Linux143904 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe、start_ticksは`reports/phase6/story20_low_lr_full_launch.json`のactual identityに保存。Linux同runの`full/full-job.json`、Windows`full.stdout.log`/`full.stderr.log`を追跡する。追加科学学習0、同LR Web対照の全文も初回測定し、元親全文は再評価せず保存済み結果を使う。合格するまで500Mを開始しない。

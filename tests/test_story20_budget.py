@@ -3,6 +3,7 @@ import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 from run_story20_budget import budget_plan
 from run_eos_short_pilot import routes
+from review_story20_budget import expected_cursor
 
 
 def plan():
@@ -34,3 +35,15 @@ def test_both_arms_and_both_budgets_share_fixed_pool():
 def test_scientific_plus_full_evaluation_budget_is_bounded():
     p=plan()
     assert p['screen_gpu_budget_seconds']+p['full_gpu_budget_seconds']==p['total_GPU_budget_seconds']==7200
+
+
+def test_pool_reuse_counter_does_not_advance_epoch_before_boundary_is_crossed():
+    assert expected_cursor(0,1024,10)==(0,0)
+    assert expected_cursor(10*1024,1024,10)==(0,10)
+    assert expected_cursor(11*1024,1024,10)==(1,1)
+    assert expected_cursor(20*1024,1024,10)==(1,10)
+
+
+def test_repeated_exposures_do_not_imply_new_pool_tokens():
+    epoch,position=expected_cursor(99975168,1024,50000)
+    assert epoch==1 and epoch*50000+position==99975168//1024

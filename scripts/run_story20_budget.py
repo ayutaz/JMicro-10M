@@ -29,7 +29,7 @@ from prepare_story20_budget import POOL
 RUN=ROOT/'reports/phase6/story20-low-lr-10b-500m-20261005'
 CONFIG=ROOT/'configs/phase6/story20_low_lr_10b_500m.json'
 SCHEMA=ROOT/'schemas/configs/phase6/story20_low_lr_10b_500m.schema.json'
-SOURCES=tuple(dict.fromkeys(('scripts/run_story20_budget.py','scripts/run_story20_budget.ps1','scripts/prepare_story20_budget.py',*screen.SOURCES)))
+SOURCES=tuple(dict.fromkeys(('scripts/run_story20_budget.py','scripts/run_story20_budget.ps1','scripts/prepare_story20_budget.py','scripts/prepare_story20_budget.ps1','scripts/review_story20_budget.py',*screen.SOURCES)))
 
 
 def budget_plan(base,pool,manifest):

@@ -18,7 +18,8 @@ from run_eos_complete_100m import adoption_checks
 from review_eos_5b_finish import validate_rows
 
 
-def full_review():
+def full_review(module=None):
+    run=globals()['run'] if module is None else module
     config=run.load_config();output=run.RUN/'full';checks={}
     def require(name,value):
         checks[name]=bool(value);assert value,name
@@ -26,13 +27,13 @@ def full_review():
     require('actual_full_job_complete_exited',job['status']=='complete' and not alive(job))
     require('full_config_screen_review_binding',result['binding']==job['binding'] and result['binding']['plan_sha256']==sha256(run.CONFIG)
             and result['binding']['review_sha256']==sha256(run.RUN/'review.json'))
-    require('screen_was_eligible',primary['status']=='passed' and primary['selection']['eligible_for_full'])
+    require('screen_was_eligible',primary['status']=='passed' and (primary['selection']['eligible_for_full'] if module is None else primary['eligible_for_full']))
     require('full_budget_zero_learning_and_honest_scope',result['GPU_seconds']<=job['gpu_elapsed_seconds']<=config['full_gpu_budget_seconds']
             and result['additional_training_tokens']==0 and not result['protected_test_used'] and not result['quality_targets_achieved'])
     parent_body=read_json(Path(config['reference']['parent_body']['path']))['body']
     parent_generation=read_json(Path(config['reference']['parent_generation']['path']))['generation']
-    trained={'web':read_json(Path(config['reference']['control_training']['path']))['arms']['web'],
-             'coherent20':read_json(run.RUN/'result.json')['trained']}
+    trained=({'web':read_json(Path(config['reference']['control_training']['path']))['arms']['web'],
+              'coherent20':read_json(run.RUN/'result.json')['trained']} if module is None else read_json(run.RUN/'result.json')['arms'])
     tok=Tokenizer(ROOT/config['tokenizer']);full={};long={};sources={}
     counts={};selected=[]
     for line in (ROOT/'eval/base.jsonl').read_text().splitlines():
@@ -51,10 +52,11 @@ def full_review():
         require(arm+'_actual_BPB_from_finite_NLL',all(math.isfinite(r['body_nll']) and math.isfinite(r['eos_nll']) for r in body['rows']) and
                 math.isclose(body['bpb'],sum(r['body_nll'] for r in body['rows'])/math.log(2)/body['body_bytes'],rel_tol=1e-12))
         require_alignment(body,generation,parent_body,parent_generation)
+        require(arm+'_same_parent_body_scoring_protocol',all(body[k]==parent_body[k] for k in ('context','stride','batch','evaluator','teacher_scope')))
         require(arm+'_parent_aligned_documents_and400_requests',True)
         validate_rows(generation['outputs'],tok)
         require(arm+'_actual_raw400_ID_flags',len(generation['outputs'])==400)
-        original=read_json(Path(config['reference']['screen']['path'])) if arm=='web' else read_json(run.RUN/'coherent20/evaluation/result.json')
+        original=(read_json(Path(config['reference']['screen']['path'])) if arm=='web' else read_json(run.RUN/'coherent20/evaluation/result.json')) if module is None else read_json(run.RUN/'evaluation/result'/arm/'evaluation/result.json')
         fixed={r['id']:r for r in generation['outputs'] if r['decoding']=='greedy' and r['suppressed']}
         require(arm+'_fixed80_match_primary_IDs',all(fixed[r['id']]['generated_ids']==r['generated_ids'] for r in original['generation']['outputs']))
         long_path=output/arm/'long-generation.json';long[arm]=read_json(long_path);record_long=long[arm]
@@ -111,6 +113,7 @@ def completion():
     require('common256_complete_body_coverage',body['documents']==len(body['rows'])==256 and body['body_bytes']==472055 and body['body_tokens']==122343 and
             [(r['doc_id'],r['body_bytes'],r['body_tokens']) for r in body['rows']]==[(r['doc_id'],r['body_bytes'],r['body_tokens']) for r in control['body']['rows']] and
             all(r['body_tokens']==r['scored_body_tokens'] for r in body['rows']))
+    require('common256_same_body_scoring_protocol',all(body[k]==control['body'][k] for k in ('context','stride','batch','evaluator','teacher_scope')))
     require('screen_BPB_from_finite_document_NLL',all(math.isfinite(r['body_nll']) and math.isfinite(r['eos_nll']) for r in body['rows']) and
             math.isclose(body['bpb'],sum(r['body_nll'] for r in body['rows'])/math.log(2)/body['body_bytes'],rel_tol=1e-12))
     history=[json.loads(line) for line in (run.RUN/'coherent20/metrics.jsonl').read_text().splitlines()]
