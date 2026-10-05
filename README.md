@@ -2,7 +2,7 @@
 
 日本語の短文生成と数ターンの雑談を目的に、Tokenizerからスクラッチ構築する約10Mの言語モデル。現在のモデルは **10,001,152 parameters**、準備済みtrainデータは **12,225,819,077 tokens**。
 
-最新（2026-10-05）: [計画52](docs/52_story20_low_lr_execution.md)段階1〜4を実行中。物語20%・低学習率の追加100Mと全文評価は原比較条件を通過した。物語pool59,963,449 tokensを用意し、同じ元親からWeb/物語20%各500Mの学習量比較を開始した。物語入力約100Mには約1.667周使用し、新規unique100Mとは扱わない。100M中間/500M終端の内容・日本語診断と条件付き全文を比較して判断する。品質目標は未達。GPU学習中はUIを停止し、終了時は元final10Bへ戻す。[現在地](docs/autonomous_status.md)。以下の旧結果・停止記録は履歴。
+最新（2026-10-05）: [計画52](docs/52_story20_low_lr_execution.md)段階1〜4を実行中。各500M追加学習と四地点の一次評価・全320内容診断・CPU37項目を完了した。物語20%条件は100M→500MでEOS22→37、反復29→18、一貫性9→19/80に改善したが、意味・常識は一律に改善していない。原一次条件を通過して、追加学習なしの500M全文・長文を評価中。物語poolは59,963,449 tokens、物語入力約100Mには約1.667周使用し、新規unique100Mとは扱わない。採否・次案・完成報告/local commit・元final10B UI復帰で停止する。品質目標は未達。評価中はUI停止。[現在地](docs/autonomous_status.md)、[実測と判断途中](docs/53_story20_low_lr_judgment.md)。以下の旧結果・停止記録は履歴。
 
 2026-10-04現在、主系列5Bと各100M仕上げ比較に続き、**総10,000,007,168 tokensの学習と保存状態19項目の確認を完了した。** WSL2/RTX4090で定常約69.5万tokens/秒、GPU時間約2時間8分。10Bの全文dev/固定400品質評価も完了した。BPB0.954018、固定EOS0/80・反復53/80、raw Unicode0/400。今回は報告・local commitで停止する。[評価結果と残る課題](docs/42_base_10b_quality_evaluation.md)。[10B学習結果と高速化](docs/41_base_10b_training.md)、[現在地](docs/autonomous_status.md)、[次の計画](docs/39_learning_scale_and_generation_plan.md)を参照する。
 

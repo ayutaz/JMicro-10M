@@ -16,7 +16,7 @@
 
 ## 現在地と計画の使い方
 
-最新再開（2026-10-05 JST）: ユーザー「4まで進めて」に従い[実行計画52](52_story20_low_lr_execution.md)の段階1〜4を実行中。物語20%・peak0.0001の100Mと条件付き全文評価は原条件を通過した。固定物語sourceは59,963,449 tokensまで準備でき、120M目標未達と約1.667周の再利用を明記して、同じ元親からWeb/物語20%各500Mの共通schedule比較を永続起動した。実科学Linux174280を重複起動せず、100M中間/500M終端と320内容診断・条件付き全文→判断/report/local commit・元UI復帰で停止する。Base/Chat品質未達、保護test・各枝1B/20B/Chat・pushは今回対象外。以下の停止・未実施記録は当時の履歴で、現行状態は[status](autonomous_status.md)を正とする。
+最新再開（2026-10-05 JST）: ユーザー「4まで進めて」に従い[実行計画52](52_story20_low_lr_execution.md)の段階1〜4を実行中。100M/全文通過後の各500M追加学習・四地点一次評価・全320内容診断・CPU37項目を完了した。物語条件は一貫性9→19/80に改善したが、意味・常識の一律改善ではない。固定物語source59,963,449 tokensを約1.667周使い、新規unique100Mとは扱わない。原一次条件通過により、追加学習なしの500M全文・長文をactual Linux177987で実行中。完了済み科学174280を再起動しない。全文原条件→段階4判断/次案/report/local commit・元final10B UI復帰で停止する。Base/Chat品質未達、保護test・各枝1B/20B/Chat・pushは今回対象外。以下の停止・未実施記録は当時の履歴で、現行状態は[status](autonomous_status.md)を正とする。
 
 最新追加比較（2026-10-05 JST）: [計画49の実行50](50_story10_and_budget_execution.md)を未達時分岐まで完了し、[判断/次案51](51_story10_judgment_and_next_proposal.md)へ保存。物語10%/低LR各100MでEOS/反復は改善したが、一貫性差4/6は事前8件に届かず、条件付き全文と500Mは未実施。科学三枝300,023,808/検証524,288を分け、元final10B UIへ復帰しreport/local commitで停止。Phase 6 Base/Chat品質未達、20%低LRや20Bは次の提案のみ。
 
