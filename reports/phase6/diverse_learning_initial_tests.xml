@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="3" time="0.032" timestamp="2026-10-05T22:22:51.879457+09:00" hostname="DESKTOP-42CUV0C"><testcase classname="tests.test_diverse_text" name="test_preserves_complete_causal_text" time="0.001"><failure message="assert (None)">def test_preserves_complete_causal_text():
+        text='庭の土が乾いていたので、花の根元に水を注いだ。水が土にしみ込むのを確かめ、花の様子をもう一度見てからじょうろを片づけた。'
+        r=candidate(text,80)
+&gt;       assert r and r['text']==text and r['structure']=='declarative' and r['linked_transitions']==1
+E       assert (None)
+
+tests/test_diverse_text.py:7: AssertionError</failure></testcase><testcase classname="tests.test_diverse_text" name="test_rejects_noise_and_repeated_document" time="0.000" /><testcase classname="tests.test_diverse_text" name="test_structural_holdout_priority" time="0.000" /></testsuite></testsuites>
