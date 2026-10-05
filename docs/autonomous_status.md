@@ -1,5 +1,7 @@
 # Codex継続作業の現在地
 
+段階1/一次内容診断完了、段階2全文/長文を永続起動: 物語20%・peak0.0001は100,007,936 tokens追加、学習159.277秒・一次GPU262.543秒。固定80でEOS23/反復22/raw失敗0、一貫性2点12/80・適切完結12、同LR Web対照は0/59/0。元mixtureと一貫性差8/paired下限>0を全通過し、全文/長文へ進む。新科学143237は終了、UI復帰確認後、hidden Windows30472 / actual Linux143904 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticksはfull launch記録を正とする、2026-10-05 00:11:52Zに段階2開始。追加学習0、GPU上限3,000秒、同LR Webと候補の未測定全文/400/長文だけ測る。原親BPB+0.001/全raw条件が通るまで500Mへ進まない。同一jobを追跡し、終了後のCPU確認→条件分岐→判断/report/commit・元UI復帰が残る。
+
 物語20%・低LR100Mを永続起動: 準備commitca5dac0、20関連testsと実親/参照確認済み。hidden Windows30420、actual Linux143237 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks4192785、開始2026-10-05 00:05:25Z。run`reports/phase6/story20-low-lr-10b-100m-20261005`へjob/source/metrics/checkpoint/rawを保存する。実CUDA保存再開→新条件100M/一次評価→80内容診断→事前条件付き全文/各500M→段階4判断/report/commit・元UI復帰で停止。同じactual jobを追跡し、重複起動しない。
 
 2026-10-05 JST・段階1〜4を再開: ユーザー「4まで進めて」。[実行計画52](52_story20_low_lr_execution.md)に物語20%・低LR100M→有望時のみ全文/長文→全条件合格時のみ各500M→判断/次案/report/local commit・元UI復帰で停止の条件を保存した。保存済み同LR Web対照と25M poolを再利用し、原gateは不変。専用runner/config/schema凍結、20関連CPU tests成功、CPU実親finite/hash/元state・凍結参照確認済み、科学GPUは未開始。実process確認では既存UI140800のみ、旧科学job終了。次は準備commit後の永続起動。以下は過去の完了/起動履歴であり、現在の状態は本段落を正とする。

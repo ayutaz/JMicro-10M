@@ -11,6 +11,10 @@ Pythonはすべてuv管理3.12.7、WSL2/RTX4090で実行する。protected test�
 
 ## 実行状態
 
+段階1完了: 100,007,936 tokens/update308228/総10,100,015,104、物語19,988,480/Web80,019,456、一周なし。学習159.277秒・一次GPU262.543秒、実CUDA25checks/検証262,144別会計。80件の内容診断は文法2点66/関連性2点15/一貫性2点12/適切完結12、EOS23/反復22/raw失敗0、dev256 BPB0.984032485。同LR WebのBPB0.977459052に対して+0.672501%で原一次基準以内。一貫性対照差12/80、paired95%区間[0.075,0.2375]で原内容条件も通過。基本意味65.104%/両文脈31/96、JBLiMP74.924%/常識34.406%。対照差は基本意味+4.167pp（区間+0.521〜+8.333）、常識+3.217pp（+1.072〜+5.183）；一seed/dev診断で広範な理解や独立人手品質の達成とはしない。
+
+段階2全文/長文を2026-10-05 00:11:52Zに起動。hidden Windows30472 / actual Linux143904 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe、start_ticksは`reports/phase6/story20_low_lr_full_launch.json`のactual identityに保存。Linux同runの`full/full-job.json`、Windows`full.stdout.log`/`full.stderr.log`を追跡する。追加科学学習0、同LR Web対照の全文も初回測定し、元親全文は再評価せず保存済み結果を使う。合格するまで500Mを開始しない。
+
 2026-10-05 00:05:25Zに永続起動。準備commitca5dac0、hidden Windows30420、actual Linux143237 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks4192785。Linux`reports/phase6/story20-low-lr-10b-100m-20261005/screen-job.json`とWindows同名folderの`screen.stdout.log`/`screen.stderr.log`を追跡する。launcherはfinallyで元final10B UIへ復帰する。以下は起動前の確認記録。
 
 専用runner/config/schemaを凍結した。20関連CPU tests成功（1.78秒）、CPU上で元親checkpointの実SHA/finite state/update/tokens/batch/context/implementationと凍結source/参照を確認済み。実process確認では既存UI140800のみ、旧科学jobは終了。4090はdriver616.92、GPU使用2%/VRAM881MiBで推論待機中。科学GPUはまだ開始していない。準備commitを保存し、永続launcherがUIを停止して実CUDA保存再開→100M学習/一次評価を行い、finallyで元UIへ戻す。
