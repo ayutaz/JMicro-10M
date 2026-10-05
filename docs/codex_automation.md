@@ -1,8 +1,8 @@
 # Codexによる環境整備・学習・改善の自動化
 
-現在地（2026-10-05 JST）: 計画58段階1〜3は[結果60](60_dataset_expansion_results.md)まで完了し、候補不採用・条件付き全文未起動、元10B UI復帰とlocal commit `afad164`を保存した。現在の依頼は文書と計画の更新。新data/GPUを再開しない。[status](autonomous_status.md)、[次回案61](61_condition_preservation_next_plan.md)、AGENTS.mdの停止境界を先に読む。
+現在地（2026-10-05 JST）: 計画61は同source各20M/全80教材診断を実施し、候補12/40>10で準備失敗分岐の判断・報告・元10B UI確認まで完了して停止した。[結果63](63_condition_preservation_preparation_results.md)、[status](autonomous_status.md)、AGENTS.mdの停止境界を先に読む。新100M/全文は未起動。次案を自動開始しない。
 
-実行権限と作業範囲を区別する。actual job/boot/start ticks/lock/checkpointを確認し、完成したrunを起動し直さない。completeは依頼された範囲の証拠付き完了で、Base/Chat品質達成とは異なる。次回案61は未実装・未起動の提案で、runnerへ新しい実行依頼を渡さず自動開始しない。
+実行権限と作業範囲を区別する。actual job/boot/start ticks/lock/checkpointを確認し、完成したrunを起動し直さない。completeは依頼された範囲や明記された失敗分岐の証拠付き完了で、Base/Chat品質達成とは異なる。原計画61は実行前の契約として保存。結果63の次案は新しい実行依頼なしにrunnerから開始しない。
 
 以下のCLI 0.159.3・アプリ設定・公式資料の説明は2026-10-03に確認した履歴で、今回の文書更新では製品設定を再調査・変更していない。旧作業の指示は[保存履歴](autonomous_history_20261004.md)を参照する。
 

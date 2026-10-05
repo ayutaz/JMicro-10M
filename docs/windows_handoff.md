@@ -1,6 +1,6 @@
 # Windows/WSL引き継ぎ
 
-最終更新: 2026-10-05 JST。最新完了は[結果60](60_dataset_expansion_results.md)、次回は[計画61・未実行](61_condition_preservation_next_plan.md)。現在の依頼は文書更新だけ。旧/新各追加1Bを含む計画58は完了し、不採用・条件付き全文未起動で停止した。完成runを追加学習として再起動しない。
+最終更新: 2026-10-05 JST。最新完了は[結果63](63_condition_preservation_preparation_results.md)。計画61は両20,000,028-token教材を作ったが固定各40の候補弱例12>10で、準備失敗分岐の報告・採否・元UI確認まで完了して停止。新100M/全文は未起動。計画58各1Bの過去結果60も保持。完成runを再起動しない。
 
 ## 現在の構成と確認先
 
@@ -11,15 +11,17 @@
 | 既存実測環境 | WSL package3.0.1.0 / Ubuntu WSL2 / RTX4090 / Windows driver616.92 / uv Python3.12.7 / PyTorch2.14.1+cu130。新PCでは再確認する |
 | モデル | 10,001,152 parameters。主系列/UIの学習量10,000,007,168tokens |
 | 準備量 | Web12,225,819,077、短い物語200,000,192tokens |
-| 最新比較 | 旧60M/新200M各追加1,000,013,824、各累積11,000,020,992tokens。科学2,000,027,648/検証262,144別 |
-| 最新判断 | EOS34→25/一貫性15→9/適切完結20→19（各80）、候補不採用。常識は改善。Base/Chat未達 |
-| 完了証拠 | Windows dataset_expansion各JSON、実験完了local commit `afad164`。最新の文書更新commitも引き継ぐ |
+| 最新科学比較 | 旧60M/新200M各追加1,000,013,824、各累積11,000,020,992tokens。科学2,000,027,648/検証262,144別 |
+| 最新準備・判断 | 同source各20,000,028tokens/71,268全文、長さ/BOS/EOS位置一致、弱例21/40→12/40。候補10/40以下が未達、学習なし。Base/Chat未達 |
+| 完了証拠 | Windows condition_preservation各JSONと全80、CPU4tests/101準備証拠/10終了checks。過去実験afad164と最新local commitを引き継ぐ |
 
 ## 現モデルのUIとprocess
 
 [UI](http://127.0.0.1:7860)は元final10Bを配信。今回読み取り確認したactual PID359102 / boot`53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe` / start_ticks7216365、HTTP親SHA`410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290`/training_tokens10,000,007,168/busy=false。科学PID239609は終了。後日の現在値はLinux `reports/local/webui/server.json`とactual identity/HTTPを照合し、保存PIDだけで判断しない。
 
-Windows rootで`powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start_webui.ps1`、停止は`scripts/stop_webui.ps1`。[操作43](43_local_webui.md)。稼働UIはGPU lockを保持する。今回の文書更新では停止・重み変更をしていない。
+Windows rootで`powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start_webui.ps1`、停止は`scripts/stop_webui.ps1`。[操作43](43_local_webui.md)。稼働UIはGPU lockを保持する。今回の教材準備ではUIを停止せず、完了確認でactual identityとHTTPを照合した。
+
+今回のLinux教材は `/home/aihub_ubuntu/jmicro-data/phase6/condition-preservation-20261005/`、実行証拠は `reports/phase6/condition-preservation-100m-20261005/`。両20M stream/index/manifest/sampleと凍結selector/builder、ready/diagnosis/jobを別途移す。これらは既存200Mのsubsetで、新取得量へ足さない。100mというディレクトリ名は学習した証拠ではない。portable review/judgment/completionはGitに保存し、大容量shardsはGitに含めない。
 
 ## 1. Windows側でWSLとGPUを確認
 

@@ -2,7 +2,7 @@
 
 日本語短文生成と数ターンの雑談を目指す、Tokenizerからスクラッチ構築した10,001,152パラメータの言語モデル。現在はBaseで、Chat調整と実用品質目標は未達。
 
-最新（2026-10-05）: [短い物語60M→200Mの比較結果60](docs/60_dataset_expansion_results.md)まで完了し、実験を停止した。二枝を同じ追加1B tokensで学習し、常識問題35.0→38.6%は改善したが、EOS34→25/80・一貫性15→9/80で新条件不採用。文章長・EOS密度も変わったため、増量だけの因果効果とはしない。[現在地](docs/autonomous_status.md)、[次回計画61・提案](docs/61_condition_preservation_next_plan.md)を参照する。
+最新（2026-10-05）: [同source・長さ/EOS一致の教材準備結果63](docs/63_condition_preservation_preparation_results.md)を保存して停止。両20,000,028-token poolを用意し、固定各40全文で弱例21→12。候補10/40以下という学習開始条件が未達のため、新100M比較・全文評価は未起動。全80個別理由・準備失敗判断・元10B UI確認を保存した。[現在地](docs/autonomous_status.md)を参照する。
 
 ## 準備量・学習量・品質
 
@@ -12,7 +12,7 @@
 | 一般Web train準備量 | 12,225,819,077 tokens |
 | 短い物語準備量 | 200,000,192 tokens（旧59,963,449＋新140,036,743） |
 | 主系列とUIの学習量 | 10,000,007,168 tokens、元final10Bを配信 |
-| 最新比較枝の学習量 | 元10Bから各追加1,000,013,824、各累積11,000,020,992 tokens |
+| 最新科学比較枝の学習量 | 元10Bから各追加1,000,013,824、各累積11,000,020,992 tokens。今回の教材準備では追加学習0 |
 | 品質 | Base/Chat未達。候補比較の合格と実用品質の達成を区別する |
 
 別枝の学習tokensを足して一つのモデルの学習量とは扱わない。一般Webの独立全corpus混入・重複監査、人手blind、保護test評価は未完了。
@@ -43,7 +43,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/stop_webui.ps1
 
 ## 次回の計画
 
-[計画61](docs/61_condition_preservation_next_plan.md)は「保存した失敗の診断→同じsourceで品質・長さ・EOS条件をそろえる→同量各100M比較→条件付き全文と採否」。準備に失敗した場合と一次不合格の場合の停止分岐、実測に基づく予算を記載した。現在は文書更新だけで、新しいデータ・GPU jobを開始していない。20B/50B/Chat/test/publicationへ自動移行しない。
+[計画61](docs/61_condition_preservation_next_plan.md)の準備失敗分岐は[実行62](docs/62_condition_preservation_execution.md)と[結果63](docs/63_condition_preservation_preparation_results.md)まで完了。次回案は、意図/否定・対象の所在・結論の不整合を今回確認したsampleと分離したtrain例で扱えるか測り、selector凍結後に未確認の各40を一度だけ確認すること。元の準備条件を通過した場合に各100Mを提案する。今回は改修・新sample・学習を開始せず停止。20B/50B/Chat/test/publicationへ自動移行しない。
 
 計画58段階1〜3の実験完了はlocal commit `afad164`。旧runは完成しているので再起動しない。次の実行は再開された依頼の範囲で進める。
 

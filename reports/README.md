@@ -2,7 +2,9 @@
 
 ## 最新の保存結果（2026-10-05）
 
-最新は[比較結果60](../docs/60_dataset_expansion_results.md)。旧60M/新200Mの各追加1B、全160個別内容・日本語診断、原gateの不採用判断と元UI復帰を保存。次回は[計画61・未実行](../docs/61_condition_preservation_next_plan.md)。今回の文書更新監査と実験完了監査を区別する。
+最新は[準備結果63](../docs/63_condition_preservation_preparation_results.md)。計画61の同source各20M/全80診断は候補12/40>10で準備失敗。新GPUなし、条件を緩めず失敗分岐完了で停止した。[全80原文付きdata review](phase6/condition_preservation_data_review.json)、[個別notes](phase6/condition_preservation_source_notes.json)、[ready](phase6/condition_preservation_ready.json)、[diagnosis](phase6/condition_preservation_diagnosis.json)、[prepare job](phase6/condition_preservation_prepare_job.json)、[judgment](phase6/condition_preservation_judgment.json)、[completion/UI](phase6/condition_preservation_completion.json)、[CPU4tests](phase6/condition_preservation_tests.xml)を保存。
+
+以下は最新科学学習の[結果60](../docs/60_dataset_expansion_results.md)。旧60M/新200Mの各追加1B、全160内容・日本語診断・不採用判断・UIを保持。今回の教材診断とモデル評価を区別する。
 
 | 保存report | 内容 |
 |---|---|

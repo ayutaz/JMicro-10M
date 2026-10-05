@@ -1,18 +1,18 @@
 # JMicro-10M development and training
 
-Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/windows_handoff.md` before continuing. Completed latest scope: `docs/60_dataset_expansion_results.md`. Current next proposal: `docs/61_condition_preservation_next_plan.md`. Status is actual state; proposed plans are not evidence or launch instructions. Historical authorizations/progress are archived in `docs/autonomous_history_20261005.md` and dated experiment reports.
+Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/windows_handoff.md` before continuing. Completed latest scope: plan61's preparation-failure branch, `docs/63_condition_preservation_preparation_results.md`. Original plan61 is preserved as its pre-execution contract. Status is actual state; proposals are not evidence or launch instructions. Historical progress is archived in dated experiment reports.
 
 ## Current state and scope
 
-- Latest user request (2026-10-05 JST): update documentation and plans. This authorizes local documentation edits, read-only evidence/runtime checks, Linux documentation synchronization and a local verified commit. It does not resume new data acquisition/preparation, GPU training/evaluation,20B/50B/Chat,protected test,push/publication.
+- Latest scope (2026-10-05 JST) completed: plan61 stages1–4 through its explicit preparation-failure branch. Saved failure diagnosis and same-source/quantity/length/EOS-matched each20,000,028-token pools completed; fixed40 each weak21/12, candidate12>10 readiness gate failed. All80 raw-bound specific reviews,101 evidencechecks,10 completionchecks and CPU4tests passed. New scientific/verification/GPU evaluation0; each100M/primary/full not launched. Report63/judgment/original10B UI proof saved. No500M/1B continuation,20B/50B/Chat,protected test,push/publication.
 - Plan58 stages1–3 completed at local commit `afad164`: story pool59,963,449→200,000,192tokens; both arms additional1,000,013,824tokens; Japanese diagnostics and all160 individual content reviews;35 primary and20 completion evidence checks passed. JCQA35.031→38.561% improved, EOS34→25/coherence15→9/appropriate20→19(each80); candidate rejected under unchanged gates. Conditional full not launched. Source/length/EOS density changed; no amount-only causal claim. Scientific2,000,027,648/verification262,144 separate; Base/Chat quality remains unmet.
 - Training PID239609 exited. Original final10B UI was restored and rechecked at PID359102/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start_ticks7216365, HTTP parent SHA410f975d…/training_tokens10,000,007,168/busy=false. Revalidate actual identity and HTTP for later work; recorded PID alone is not current process evidence.
-- Current stop boundary: deliver current documentation/plan61 and local commit, then stop. Plan61 proposes saved failure diagnosis, same-source quality/length/EOS-matched pools, bounded equal-budget comparison and conditional full judgment. None of its data/GPU stages are launched by this request. New execution requires a resumed user task.
+- Current stop boundary: plan61 preparation-failure branch is complete; stop after verified local commit. Do not restart completed builders/plan58 jobs, adapt the selector to the inspected40, draw replacement samples or start new GPU jobs. A next proposal in report63 needs a resumed task; it is not authorization to launch.
 
 ## Project rules
 
 
-Plan58 stages1–3 are delivered at local commit afad164. Preserve all original adoption gates, frozen reports/source/raw/checkpoints and verification evidence. Current authorization is documentation/planning maintenance only. Plan61 is an unexecuted proposal, not a launch instruction. Stop after verified documentation delivery and local commit; do not restart completed jobs or launch data/GPU work.
+Plan58 stages1–3 are delivered at local commit afad164, documentation refresh at d8a8f95. Plan61 preparation-failure branch is delivered in report63. Preserve all original adoption gates, frozen reports/source/raw/checkpoints and verification evidence. Stop; old progress and proposals do not authorize extra jobs.
 
 The user has authorized autonomous implementation, repair, local GPU work, and required WSL preparation within the requested scope. Continue routine decisions and authorized milestone transitions without renewed permission. Authorization cannot change execution sandbox or managed policy.
 

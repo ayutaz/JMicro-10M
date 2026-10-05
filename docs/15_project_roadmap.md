@@ -1,13 +1,6 @@
 # JMicro-10M フェーズ別実行計画
 
-計画56段階1〜3完了・停止（2026-10-05 JST）: matched教材各22,977,241tokens/253,119全文の各500M比較を完了。対照→追加選別はEOS39→44/反復16→17/一貫性11→11/適切完結14→15（各80）で不採用。段階2も省略せず旧59,963,449-token物語固定/一定LR0.0001で連続1Bを完了し、500M→1BはBPB0.982953243→0.981611241/EOS31→35/反復21→10/一貫性11→19/適切完結15→20。意味60.417→66.146%（対応95%+1.563〜+10.417pp）と複数指標は改善したが、一貫性95%下限0、EOS35<37、内容各27未達、Web BPB比+1.0335%で原採用条件未達。両条件付き全文は未開始。CPU10tests/実CUDA25・13/一次32・29/最終要求別31checks成功、全320内容保存。科学2,000,027,648/検証524,288別、一次GPU3331.359秒。元final10B UI actual237483/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start_ticks6728695/ready07:08:04.599378Z、HTTP親SHA410f975d…/tokens10,000,007,168/busy=falseとactual process確認。科学234687/236557/教材234279は終了し再起動しない。結果と提案はdocs/57_matched_story_and_learning_budget_results.md、最終確認reports/phase6/matched_story_completion.json。11B checkpoint・両run全raw/metrics/source/annotationsをLinuxへ保存。追加学習の効果を否定せずBase/Chat未達、次の小規模条件保持教材診断/LR減衰/新data/GPU/20B/50B/Chat/protected test/pushは提案のみで未開始。local commitで今回停止し、以下は実行当時の履歴。
-
-
-計画56段階1完了／段階2凍結: matched各22,977,241-token教材で各500,006,912追加tokens、実EOS教師Web846,893/story1,101,267を一致。GPU1659.584秒・科学1,000,013,824/検証262,144別。dev/日本語全完了・全160個別内容・CPU32evidencechecks成功。対照→候補BPB0.979944438→0.980233205、EOS39→44/反復16→17/一貫性11→11/適切完結14→15（各80）、対応95%−8.75〜+8.75ppで改善条件未達・不採用。条件付き全文は開始しない。次は旧採用59,963,449-token物語pool固定、元10Bから一定LR0.0001で追加連続1,000,013,824tokens、500M中間/1B終端を保存して両地点評価。段階1科学234687終了、元UI235943へ復帰確認済み。段階2config/schema/sourceを凍結したが新科学はまだ未開始。
-
-
-計画56段階1〜3実行中（2026-10-05 JST）: 二組各22,977,241tokens/253,119全文、body平均88.7764（旧88.4621）、同じ長さ並び/BOS/EOS位置。CPU抽出11.146秒、random40各に弱例14/12を個別明記してbounded比較を受入。CPU10tests成功・凍結commit a8215aa。2026-10-05 06:09頃、hidden Windows34620/actual Linux234687/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start_ticks6377461で教材二条件各500Mを開始。実CUDA25checks通過、対照学習中。Linux reports/phase6/matched-story-content-500m-20261005/screen-job.json と Windows同run screen.stdout.log/stderr.logを追跡。UIはGPU中停止/finally復帰。段階1未達でも段階2の固定教材・一定LR連続1B（500M中間/1B終端）は必要。全320内容と日本語評価・事前条件付き全文、判断/report/local commit/元UI復帰で停止。科学・一次結果は未確定、20B/Chat/test/pushは開始しない。
-
+最新（2026-10-05 JST）: 計画61は保存失敗診断・同source各20M・全80教材診断を実施し、候補12/40>10で準備失敗分岐の採否・報告・元10B UI確認まで完了して停止。新GPUなし。最新状態はdocs/autonomous_status.md、結果はdocs/63_condition_preservation_preparation_results.md。以下のPhase定義と元品質条件は維持する。旧進捗は番号付き実験記録とautonomous_history_20261005.mdに保持する。
 
 作成日: 2026-10-02。最終更新: 2026-10-05（10Bと各100M/500M比較・日本語評価の実状態へ更新）。根拠は[プロジェクト目的](01_project_goal.md)、[設計](03_architecture.md)、[技術調査](11_technical_research_gaps.md)、[Phase 0完了記録](16_phase0_completion.md)、[Phase 1完了記録](17_phase1_completion.md)。既存の**確定**方針から逆算した計画であり、将来の成果物名・未凍結の実行値は**提案**である。品質目標・評価契約はPhase 5で凍結済みで、結果を見て緩めない。
 
@@ -25,11 +18,11 @@
 
 ## 現在地と計画の使い方
 
-2026-10-05 JST: Phase0〜5と主要Web10B、追加の教材/学習量比較は完了。最新は[計画58の結果60](60_dataset_expansion_results.md)。物語60M→200M・各追加1Bで常識は改善したが、生成一貫性とEOSは改善せず不採用。Base/Chat品質は未達で、Phase7へ移行していない。
+2026-10-05 JST: Phase0〜5と主要Web10B、追加教材/学習量比較は完了。最新は[計画61の準備結果63](63_condition_preservation_preparation_results.md)。同source各20Mで弱例21/40→12/40、候補10/40以下が未達で準備失敗分岐を完了し、新GPUなしで停止。最新科学学習は[結果60](60_dataset_expansion_results.md): 物語60M→200M・各追加1B、常識改善/一貫性EOS未達で不採用。Base/Chat品質未達、Phase7へ移行していない。
 
 モデル10,001,152 parameters、Web準備12,225,819,077 tokens、物語準備200,000,192tokens。主系列とUIは10,000,007,168学習tokens、最新二枝は各11,000,020,992tokens。別枝の合計科学2,000,027,648と検証262,144を区別する。長さ/source/EOS密度差を保持し、量だけの効果や容量限界は未確定。
 
-今回の範囲は文書と計画の更新。次回は[計画61](61_condition_preservation_next_plan.md)の保存失敗診断、同source品質・長さ・EOS密度の一致、各100Mの限定比較と条件付き採否を提案する。新data/GPU/20B/50B/Chat/test/pushは開始していない。実行順・段階ごとの目的/ゴール/予算/停止分岐は計画61、実際の状態は[status](autonomous_status.md)、移行は[引継ぎ](windows_handoff.md)、作業確認は[checklist](10_next_steps.md)を正とする。
+今回の範囲は[計画61](61_condition_preservation_next_plan.md)段階1〜4の準備失敗分岐まで完了した。各20,000,028-token教材を作成し、長さ全並び/BOS/EOS位置を一致させ、全80を内容診断した。条件未達で各100M/条件付き全文を起動しない。次回案は結果63、新しい選別改修/sample/GPU/20B/50B/Chat/test/pushは未開始。実際の状態は[status](autonomous_status.md)、移行は[引継ぎ](windows_handoff.md)、確認は[checklist](10_next_steps.md)を正とする。
 
 以下のPhase定義・品質目標は維持する。以前の現在地と次の実行案は[2026-10-05履歴](autonomous_history_20261005.md)、各実験の当時の計画は各番号の文書へ保持する。結果や提案を新jobの開始指示として扱わない。20B/50Bと有料cloud/公開は別範囲。
 
