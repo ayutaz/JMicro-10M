@@ -1,0 +1,177 @@
+{
+  "status": "matched_CE_sequence_UL_learning_and_all160_content_evidence_complete",
+  "summaries": {
+    "CE": {
+      "CE_teachers": 25000000,
+      "BPB": 1.1481113833477452,
+      "rates": {
+        "outputs": 80,
+        "eos": 42,
+        "repetition": 18,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 39,
+      "relevance2": 39,
+      "coherent": 12,
+      "appropriate": 22,
+      "Japanese": {
+        "semantics": 0.5260416666666666,
+        "jblimp": 0.7945619335347432,
+        "jcqa": 0.3163538873994638
+      },
+      "generation_sha256": "d2321dc359fbf3e0d1292f509debe26cb42767c1790dba8d2694de967e7c0871",
+      "notes_sha256": "6dd838612006ad7fdc33649f2f75dd16d6175ad7b65cfef4a92edbfe7cc3f430",
+      "Base_adopted": false,
+      "independent_human_blind": false
+    },
+    "CE_UL": {
+      "CE_teachers": 25000000,
+      "BPB": 1.2457162146538936,
+      "rates": {
+        "outputs": 80,
+        "eos": 32,
+        "repetition": 7,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 20,
+      "relevance2": 6,
+      "coherent": 0,
+      "appropriate": 6,
+      "Japanese": {
+        "semantics": 0.4583333333333333,
+        "jblimp": 0.7099697885196374,
+        "jcqa": 0.19928507596067918
+      },
+      "generation_sha256": "1ab29bb9e456243d49bbdbf5f3e3e39f083d300770866dab8ae4c19bdb511396",
+      "notes_sha256": "62082d5592ba0bd0c73e457b542682feed516684c6df48ee7134a6ea6617bb98",
+      "Base_adopted": false,
+      "independent_human_blind": false
+    }
+  },
+  "objective_comparison": {
+    "checks": {
+      "coherence_gain_at_least8": false,
+      "paired_CI_lower_above0": false,
+      "EOS_nonworsening": false,
+      "repetition_nonworsening": true,
+      "no_empty_role_unicode": true,
+      "BPB_gate": false,
+      "appropriate_completion_not_punctuation": true
+    },
+    "passed": false,
+    "difference_count": -12,
+    "CI95": [
+      -0.2375,
+      -0.075
+    ]
+  },
+  "practical": {
+    "CE": {
+      "checks": {
+        "grammar_at_least56": false,
+        "coherence_at_least27": false,
+        "appropriate_at_least27": false,
+        "EOS_at_least37": true,
+        "repetition_at_most18": true,
+        "no_empty_role_unicode": true
+      },
+      "original_Web": {
+        "EOS_at_least8_more": true,
+        "repetition_no_worse": true,
+        "no_empty_role_unicode": true,
+        "BPB_degradation_at_most1percent": false,
+        "no_punctuation_only_stops": true
+      },
+      "absolute_screen_pass": false,
+      "Base_adopted": false,
+      "final_seed_full_test_pending": true
+    },
+    "CE_UL": {
+      "checks": {
+        "grammar_at_least56": false,
+        "coherence_at_least27": false,
+        "appropriate_at_least27": false,
+        "EOS_at_least37": false,
+        "repetition_at_most18": true,
+        "no_empty_role_unicode": true
+      },
+      "original_Web": {
+        "EOS_at_least8_more": true,
+        "repetition_no_worse": true,
+        "no_empty_role_unicode": true,
+        "BPB_degradation_at_most1percent": false,
+        "no_punctuation_only_stops": true
+      },
+      "absolute_screen_pass": false,
+      "Base_adopted": false,
+      "final_seed_full_test_pending": true
+    }
+  },
+  "extra_generation_accounting": {
+    "CE": {
+      "source_sha256": {
+        "scripts/sequence_objective_trainer.py": "035b08caf9c5f96885ae9599802e9e777ebfc79a3473614085a9dfafebee58ce",
+        "src/jmicro/sequence_unlikelihood.py": "3d54c3544e4e59f086459ce6053e342aa3133c39b990dae48ea1131f084e6cf3"
+      },
+      "parent_actual_curve_mode": "decay",
+      "objective": {
+        "alpha": 0.0,
+        "every_updates": 4,
+        "prefixes": 8,
+        "prefix_tokens": 32,
+        "max_new_tokens": 64,
+        "ngram": 4
+      },
+      "rollout_batches": 192,
+      "skipped_rollouts": 0,
+      "generated_continuations": 1536,
+      "generated_body_tokens": 50320,
+      "generated_EOS": 1137,
+      "negative_token_positions": 17423,
+      "extra_valid_input_tokens": 200386,
+      "extra_physical_input_tokens": 288992,
+      "generated_digest": "b17429c03781aadf3f8af88f48f1885fa9d646f41efc162bb91ea7c0d5d769b5"
+    },
+    "CE_UL": {
+      "source_sha256": {
+        "scripts/sequence_objective_trainer.py": "035b08caf9c5f96885ae9599802e9e777ebfc79a3473614085a9dfafebee58ce",
+        "src/jmicro/sequence_unlikelihood.py": "3d54c3544e4e59f086459ce6053e342aa3133c39b990dae48ea1131f084e6cf3"
+      },
+      "parent_actual_curve_mode": "decay",
+      "objective": {
+        "alpha": 0.1,
+        "every_updates": 4,
+        "prefixes": 8,
+        "prefix_tokens": 32,
+        "max_new_tokens": 64,
+        "ngram": 4
+      },
+      "rollout_batches": 192,
+      "skipped_rollouts": 0,
+      "generated_continuations": 1536,
+      "generated_body_tokens": 74404,
+      "generated_EOS": 1053,
+      "negative_token_positions": 15118,
+      "extra_valid_input_tokens": 248188,
+      "extra_physical_input_tokens": 289760,
+      "generated_digest": "24a0f1572b5804adab4cc95d9388a0b94308106d9abadc4f9a5f8551ee730810"
+    }
+  },
+  "scientific_teacher_tokens": 50000000,
+  "verification_teacher_tokens": 1559884,
+  "scientific_GPU_seconds": 727.2658636560082,
+  "verification_GPU_seconds": 103.8341657530109,
+  "result_sha256": "debf5c2d78dbbb0ea95981b90f79d45e1923f0474cc215021263ee3fd304917e",
+  "annotations_sha256": "856aa648e2ae657fbb1319547026a97049119b11bd165a10a94ad44e2d4a6e1a",
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "independent_human_blind": false,
+  "protected_test_used": false,
+  "old_numerical7_preserved": true,
+  "requested_five_steps_complete": false,
+  "created_at": "2026-10-05T22:51:34.424422Z"
+}

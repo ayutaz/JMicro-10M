@@ -721,3 +721,20 @@ large保存80件ではこの研究用4gram候補が50件/1501位置あり、う�
 `configs/phase6/sequence_objective_comparison.json`（SHA8b8de74892c885c1680cf2d7755074b9938809b66dae09f6e276ac446ff43d19）へ各25M教師を凍結、科学GPU上限1696.165834秒。旧実probeのsnapshot/config/job/gatesをSHA検証し、driverの予算処理/reviewer会計以外のtrainer/core/forward/評価源変更は拒否する。Windowsworker31224、actual501165/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start12291147をps確認して永続起動、nativejob/log/checkpointsは`reports/phase6/sequence-objective-comparison-20261006`。起動時setup・新科学学習0で、品質改善は未評価。重複プロセスを確認してから`scripts/run_sequence_objective_comparison.ps1 -Mode Train -Worker`で保存済み完了更新から再開する。次は両実25M終端・全日本語/全160内容と採否。Base/Chat未採用、全五目標継続。
 
 採用候補の独立training seed/full dev/保護test→実mid-training/SFT対direct/retention/全sampling内容→実人間評価→HF/GGUF/Q8/Q4/実UIという全五目標の後続は維持する。準備/CPU検証はこの完了証拠ではない。
+
+### 同25M CE対sequence ULの完了・採否と次の診断（2026-10-06 JST）
+
+actual501165は終了・ps不在。large1B＋20M親から各25M教師、計50M科学教師を完了。両770更新/各25,231,360 valid・physical入力、同teacher/source/genre/EOS/cursor/token digestを実checkpointと全historyで確認した。継承Adam/scheduler/RNGと親cursor、再加熱なしLR、実CUDA再開各24checks、全日本語192/331/1119・共通dev256/122343 body tokens/472055 bytes、全160原文とSHA付き個別nonblind notesの監査が成功。科学GPU727.265864秒、検証48更新1559884教師/103.834166秒（失敗測定を含む）、合計831.100029秒で1800秒内。TensorはWSLに保持、81text/8,773,723bytesの可搬archive（gzip1,792,157bytes/SHA5b9fd1a2…）を保存した。
+
+| 条件 | 追加CE教師 | BPB↓ | 意味 | JBLiMP | JCQA | 文法2/80 | 関連2/80 | 一貫性2/80 | 適切完結/80 | EOS/80 | 自動反復/80 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| CE / alpha0 | 25M | 1.148111 | 52.604% | 79.456% | 31.635% | 39 | 39 | 12 | 22 | 42 | 18 |
+| CE＋sequence UL / alpha0.1 | 25M | 1.245716 | 45.833% | 70.997% | 19.929% | 20 | 6 | 0 | 6 | 32 | 7 |
+
+両条件Unicode/role/empty0。反復は減ったが一貫性差-12/95%CI[-.2375,-.075]、EOSとBPBも悪化し、既存relative/absolute/original-Webの全条件未達。alpha0.1候補は不採用、反復減少だけでBaseを採用しない。独立人手未実施、10M容量限界や教材増量一般の無効を証明したとはしない。旧10B UI502043/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start12369434とHTTP親SHA410f975d…/10,000,007,168tokens/busy=falseへ復帰を確認。詳細は`reports/phase6/sequence_objective_comparison_review.json`/`sequence_objective_comparison_completion.json`。
+
+保存済み生成をCPUだけで調べると、研究用token4gramの候補行はCE49→UL67、候補位置1517→1178。これは旧自動反復18→7とは異なる定義であり、どちらも改善・採用基準へ置き換えない。学習内の生成1536件/192rollout/skip0は両条件同じpolicy、body50320→74404、負例位置17423→15118、生成EOS1137→1053で、負例生成量は教師量と別に保存した。token候補の減少・補助lossの減少と、未見の文章品質の改善は一致しなかった。
+
+次の一手は**学習を伸ばす前の、trainのみ・optimizer更新0の勾配診断**。コマンドを実装してから、同じ固定train窓と完全な文書頭のprefixを使い、実親/CE終端/UL終端を比較する。GPU60秒上限を事前固定し、CEと補助lossの有限値、clip前勾配norm・cosine/層別比率、抑制special0/1/2/4/5/6/7への確率質量、負例token IDと復号片を記録する。alpha0/.01/.1の比率は同じ勾配から計算し、ここで新しい科学学習やモデル品質を主張しない。終了条件は3checkpoint/同train入力の全診断・実GPU時間・更新0・原重み不変・UI復帰の記録。dev/testの正解やprefixを学習へ入れず、巨大indexの再scanや全量重複照合を行わない。
+
+仮説は補助勾配の強さ、生成時のspecial抑制と損失分布の差、token4gramが罰する日本語の単位・prefix条件の不適合。いずれも今回の比較だけでは原因として確定していない。[一次論文](https://arxiv.org/html/1908.04319v2)は本文で単語単位、付録でGPT-2のBPE実験も扱うため、BPE一般に無効とは解釈しない。診断後に根拠のある変更を一つ選び、次の対照・教師量・GPU予算と終了条件を凍結する。失敗したalpha0.1の長期延長、無根拠のalpha探索、未採用BaseからのChatは始めない。Base採用→独立seed/full/test→Chat/retention/人手→量子化/実UIの全五目標は継続し、旧数値7失敗と品質条件は維持する。
