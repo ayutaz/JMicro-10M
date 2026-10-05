@@ -1,0 +1,69 @@
+{
+  "kind": "train-only-no-update-gradient-diagnosis",
+  "study_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/sequence_objective_comparison.json",
+    "sha256": "8b8de74892c885c1680cf2d7755074b9938809b66dae09f6e276ac446ff43d19"
+  },
+  "study_review": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/sequence-objective-comparison-20261006/review.json",
+    "sha256": "7fef26f2a1671a9b7c9a4df533dcff05b55f525b373bf79b24d182cdef4dd6a7"
+  },
+  "checkpoints": {
+    "parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook-quantity-comparison-20261006/large-1000000000/decay/checkpoint-00031391.pt",
+      "sha256": "fb3c725944d820549a3d3c7c6c4ddde75ee536288d351a92e9e0b6e20e513c56",
+      "update": 31391,
+      "tokens_seen": 1028620288,
+      "supervised_tokens": 1020000000
+    },
+    "CE": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/sequence-objective-comparison-20261006/CE/training/checkpoint-00032161.pt",
+      "sha256": "66f9479dc56e756675a1e0db7d48b1533de16908594ce2c475213d3c58d0a7c4"
+    },
+    "CE_UL": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/sequence-objective-comparison-20261006/CE_UL/training/checkpoint-00032161.pt",
+      "sha256": "b80efc504f0d1c76a3bc85fc7ed2baee171516532c3d94a65447b356011463e2"
+    }
+  },
+  "pool": {
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large",
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133"
+  },
+  "inputs": {
+    "selection": "first contiguous32x1024 accepted train tokens; first8 complete BOS heads with32 token prefix",
+    "token_offset": 0,
+    "x_y_sha256": "8c3f8a5c483c6bcf323b6f030ed7dfd303f1c768f1ad5a5c24e531cbc4606dd3",
+    "prefix_sha256": "fe2780ed85f14a6928050090fde44585fc6531dbb9fb7a7eab8c65313f613555",
+    "valid_input_tokens": 32768,
+    "scored_CE_targets": 32397,
+    "index_rescanned": false,
+    "representative_corpus_claim": false
+  },
+  "alphas": [
+    0.0,
+    0.01,
+    0.1
+  ],
+  "GPU_budget_seconds": 60,
+  "CE_path": "actual BF16 compiled Flash32x1024 fast training forward",
+  "UL_path": "native BF16 math cached8x32prefix/max64 continuation",
+  "source_sha256": {
+    "scripts/diagnose_sequence_objective.py": "a82e6b4a537ccdc3ac3c404bcaceb5f1eb39e7ce5023d4b52eb9e522b6c72911",
+    "scripts/diagnose_sequence_objective.ps1": "0c14f222240a68774f7cae735233526fb7578b7384aa9034bb6f43e398cdffd9",
+    "scripts/sequence_objective_trainer.py": "035b08caf9c5f96885ae9599802e9e777ebfc79a3473614085a9dfafebee58ce",
+    "src/jmicro/sequence_unlikelihood.py": "3d54c3544e4e59f086459ce6053e342aa3133c39b990dae48ea1131f084e6cf3"
+  },
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "tokenizer": "artifacts/phase2/4096/tokenizer.model",
+  "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+  "optimizer_updates": 0,
+  "scientific_teacher_tokens": 0,
+  "protected_test_used": false,
+  "Base_adopted": false,
+  "completion": "all3 actual checkpoints/same fixed train inputs; finite losses/gradients; norms/cosine/per-layer ratios/special mass/negative token units; exact parameter preservation; actual GPU<=60s"
+}

@@ -1,0 +1,40 @@
+{
+  "ui": {
+    "pid": 503513,
+    "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+    "verified_http_model": true
+  },
+  "result_path": "reports/phase6/sequence-objective-diagnostic-20261006/result.json",
+  "quality_evaluation": false,
+  "protected_test_used": false,
+  "actual_job": {
+    "status": "complete",
+    "pid": 503238,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "12448882",
+    "config_sha256": "20f17b2bddb539eaa3ebbbf236ee81a14019b9b5a82063ade7ca6aeefee12e0c",
+    "started_at": "2026-10-05T23:01:26.688362Z",
+    "gpu_elapsed_seconds": 25.557537383996532,
+    "optimizer_updates": 0,
+    "scientific_teacher_tokens": 0,
+    "restart_command": "scripts/diagnose_sequence_objective.ps1 -Worker",
+    "stage": "complete",
+    "heartbeat_at": "2026-10-05T23:01:53.181793Z",
+    "completed_at": "2026-10-05T23:01:53.184707Z"
+  },
+  "limitations": "One fixed first32K train window with8 document-head prefixes; not representative corpus, not whole-training causality, not independent quality evaluation",
+  "all_three_weights_unchanged": true,
+  "next_comparison": {
+    "rationale": "Fixed train sample parent weighted auxiliary/CE gradient ratio 2.017 at0.1 and0.202 at0.01; no causal or quality guarantee",
+    "preconditions": "freeze recipe from actual measured speed; actual CUDA fullstate resume gate; unchanged raw-bound Japanese/BPB/all80 criteria",
+    "control": "CE alpha0, reuse existing complete25M evidence only after exact unchanged recipe/data/source/evaluation binding",
+    "change": "sequence UL alpha 0.1 to 0.01 only",
+    "gpu_budget": "not yet measured/frozen; prior complete pair used831.100029 seconds including verification, not a promised new runtime",
+    "teacher_tokens_per_condition": 25000000,
+    "status": "planned_not_frozen_not_started",
+    "fallback": "If coefficient comparison fails, define one falsifiable numerical-path or negative-unit hypothesis; no automatic longer training"
+  },
+  "inputs_path": "reports/phase6/sequence-objective-diagnostic-20261006/inputs.json",
+  "result_sha256": "6509008cc02ea1ba6422e204f4533aabbfe3ae7b15280b31424cf3262fb7036e",
+  "status": "actual_train_only_diagnosis_complete_next_comparison_planned"
+}
