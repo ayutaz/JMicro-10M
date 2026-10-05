@@ -702,4 +702,18 @@ large保存80件ではこの研究用4gram候補が50件/1501位置あり、う�
 
 条件付き案は両教材比較の実終端/全160後、延長/採用根拠が得られず反復が残る場合にのみ検討する。largeの完了1B+20M親を両条件に固定、同25M CE教師/継承Adam・RNG・cursor、peak LRは実親以下かつ0.0002以下で再加熱なし。CE対CE+sequence UL(alpha0/0.1)、4更新ごと最大8 train prefixes32token/最大64greedy continuation、同計算policy。全GPU比較1800秒を上限案とし、実CUDA速度/batchと連続4対2+2 gateの測定後にrecipeを凍結する。新永続paired runner/採否は689f74fで実装、sourceの実終端/採否・新probe/final recipeなしには起動できない。実GPU学習0。actual probeは各alphaの連続4対2+2計16検証更新を300秒枠で測り、完了証拠から同25M各条件と評価がprobe込み1800秒へ収まる場合だけ本比較recipeを凍結する。全日本語/同dev256/全新80件ずつと旧relative/absolute/original-Web基準で採否を残す。反復だけの改善や短い出力をBase採用にしない。詳細は`reports/phase6/sequence_unlikelihood_research_preparation.json`。
 
+### 最新の実行確認と、ここからの計画（2026-10-06 JST）
+
+新75/20/5教材の500M対2Bを各1B教師＋同20M decayで完了、全160内容と実学習証拠を保存した。一貫性11→14/80、EOS51→43/80、反復14→19/80で既存改善・採用条件未達。単純増量の改善も10M容量限界も確定しない。次の同25M CE対sequence ULの実CUDA保存再開は各24checks合格、16検証更新/520076教師・54.624秒。本比較recipeは時間見積り超過で未凍結、科学学習0。
+
+連続速度測定はCE側16更新を保存後、metrics行をcheckpoint用finite_stateへ渡したためKeyError('model')で終了した。actual500028は不在。測定GPU21.623秒を既消費として保持し、CE最終checkpoint31411と全16行を保存した。両条件の測定完了・科学比較成功とは扱わない。元UIへの復帰ログあり。この確認では追加GPUを起動していない。
+
+1. 測定の確認コードを修正する。凍結済み旧config/source/jobを保存し、修正後のversionと継承根拠を明示する。metricsの有限値とmodel/Adamの有限値を別に確認し、実保存CE16更新を再利用可能なら再学習せず、未測定CE_ULだけを続ける。54.624＋21.623秒を含め検証総300秒以内、全比較案1800秒に計上する。
+2. 実測が予算内なら同じlarge1B＋20M親からCEのみ対CE＋sequence ULを各25M教師、計50Mで比較する。同じ教材・順序・Adam/RNG/cursor・LR方針を維持し、生成tokensと追加GPU時間は教師量と分ける。全日本語・共通byte BPB・固定80件ずつを一度評価する。反復だけでなく文法、関連性、一貫性、適切完結、EOS、Unicodeを既存条件で判定する。
+3. 全条件を満たす改善があれば、そのレシピを必要な学習量へ拡張し、独立seed・full dev・凍結後testでBase採用を確認する。反復だけ改善なら意味逸脱の残存例を分析し、次の一仮説・対照・予算を固定する。未改善の同じ設定を10Bへ自動延長しない。
+4. 品質Baseを得た後、直接SFT対対話中間学習→SFTを比較する。Assistant本文＋EOTを教師とし、2〜4ターン、訂正/否定、停止、Base能力保持、複数sampling seedを確認する。独立人手レビューは未実施として扱い、実評価者の結果をAIで代用しない。
+5. 合格Chatのfloat/HF/GGUF、Q8/Q4で品質退行・停止・Unicode・容量・応答速度を実測し、採用重みをローカルWebUIへ接続、再現手順と成果物を保存する。
+
+最終目標は10Mの自然な短い日本語Base、2〜4ターンのChat、量子化したローカル利用。1800秒は直近比較のGPU上限案であり全工程の納期ではない。WSL uvのみ、必要な確認を行い、既存巨大コーパスの全量再照合や過去評価の不要な反復を避ける。節目でverified local commit、pushなし。全五目標active、Base/Chat未採用、旧数値7失敗と品質基準を保持する。
+
 採用候補の独立training seed/full dev/保護test→実mid-training/SFT対direct/retention/全sampling内容→実人間評価→HF/GGUF/Q8/Q4/実UIという全五目標の後続は維持する。準備/CPU検証はこの完了証拠ではない。

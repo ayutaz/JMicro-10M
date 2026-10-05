@@ -1,0 +1,38 @@
+{
+  "status": "continuous_timing_failed_after_CE16_saved",
+  "observed_at": "2026-10-05T22:30:23.8759532Z",
+  "job": {
+    "status": "failed",
+    "pid": 500028,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "12242602",
+    "config_sha256": "a46af64a9fe2a769783f554d1f0b1775cba19c24137f088cc23c5946d9091c3c",
+    "started_at": "2026-10-05T22:27:03.784855Z",
+    "gpu_elapsed_seconds": 21.622512277011992,
+    "restart_command": "scripts/measure_sequence_objective_timing.ps1 -Worker",
+    "scientific_teacher_tokens": 0,
+    "stage": "CE-continuous-timing",
+    "heartbeat_at": "2026-10-05T22:28:19.462364Z",
+    "completed_updates": 16,
+    "total_updates": 16,
+    "error": "KeyError('model')"
+  },
+  "actual_process_live": false,
+  "CE_saved_updates": 16,
+  "CE_latest": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/sequence-objective-comparison-20261006/continuous-timing/CE/checkpoint-00031411.pt",
+    "sha256": "86a25c4ef643e9c3e2519380f2718e904966bfbd0a1e5f45d7f80f56b2cfeda3",
+    "update": 31411,
+    "tokens_seen": 1029275648
+  },
+  "original_probe_GPU_seconds": 54.62399182700028,
+  "spent_probe_plus_timing_GPU_seconds": 76.24650410401227,
+  "cause": "finite_state expects a model/optimizer checkpoint, but was called with a metrics row",
+  "repair_implemented": false,
+  "CE_UL_timing_complete": false,
+  "scientific_teacher_tokens": 0,
+  "scientific_recipe_frozen": false,
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "next_action": "Repair the finite-value check under an explicit preserved-source version; verify and reuse saved CE measurements, complete remaining CE_UL timing, account all prior GPU time before freezing each25M comparison"
+}
