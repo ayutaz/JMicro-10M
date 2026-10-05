@@ -1,5 +1,7 @@
 # Codex継続作業の現在地
 
+進行中（2026-10-05 JST）: ユーザーが結果63後の四項目を再開。別train例でselectorを検証・凍結し、未確認各40を含む同source各20Mを準備、条件成立時だけ各100M/日本語と全160/原gateの条件付き全文、判断/report/local commit/元UI確認で停止する。[実行64](64_condition_selector_v2_execution.md)が新範囲。旧sampleを再抽出・再採点せず保存。現時点で新GPU jobは未起動。以下の結果63完了は前回の履歴。
+
 最終更新: 2026-10-05 JST。**計画61段階1〜4の教材準備不成立の分岐まで完了・停止**。保存失敗診断と同sourceの各20,000,028-token教材を作ったが、候補の弱例12/40が学習開始条件10/40以下を満たさなかった。対照21/40。全80全文の個別理由、準備gate、採否、完了と元10B UIの実確認を保存した。新GPU学習/評価は開始していない。[結果63](63_condition_preservation_preparation_results.md)、[実行62](62_condition_preservation_execution.md)、[原計画61](61_condition_preservation_next_plan.md)を参照。
 
 ## 実際の現在地
