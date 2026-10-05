@@ -31,3 +31,5 @@
 対照1B完了: 2026-10-05T08:01:57.826188Z、1479.136秒、追加1,000,013,824/総11,000,020,992/update335694。終端SHA`fd10dc1b358327bdbd8d3d58118c2cb096fc53d02b036f070e453911edf2b82a`を実ファイルと照合。Web800,063,488/short199,950,336、EOS教師Web1,693,843/short2,210,250。同じjobが新教材条件へ移った。
 
 CPU評価照合の修正: `Trainer.step`はoptimizer.step前の使用LRをmetricsへ記録し、checkpointはscheduler.step後の次更新LRを保存する。凍結reviewer v1の全LR照合がstepを一つ進めていたため、凍結source/config/科学ジョブを変えず別`review_dataset_expansion_v2.py`を追加した。実使用率はstep−1、保存後optimizer/scheduler率はstepとして、両方を厳密確認する。実CPU schedulerのstable→decay境界・誤った使用率/保存率の拒否という2tests成功。これは評価処理の時点修正で、学習や品質採用基準の変更ではない。以後の一次評価はv2を使い、そのhashと凍結v1 hashをレビューへ保存する。
+
+新教材500M中間保存: 2026-10-05T08:14:11.748544Z、732.937秒、追加500,006,912/総10,500,014,080/update320435。SHA`4e98847ed502ba86afeb137a9254558ed1f9446aa58d437139efb1b74a7ccd19`を実ファイルと照合。Web400,031,744/short99,975,168で対照と同じ入力量だが、EOS教師はWeb846,893/short578,635となり、短文EOSは対照1,105,092の約52.36%。これは量だけの比較でない実際の教材差として保持する。評価を挟まず新条件1Bへ同じactual239609で続行中。対照1B全30,518更新の使用LR・保存後LRはv2で実CPU照合成功、最終使用1.0000096369e-5/保存後1e-5。
