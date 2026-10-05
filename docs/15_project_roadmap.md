@@ -16,6 +16,8 @@
 
 ## 現在地と計画の使い方
 
+最新再開（2026-10-05 JST）: ユーザー「4まで進めて」に従い[実行計画52](52_story20_low_lr_execution.md)の段階1〜4を実行中。物語20%・peak0.0001の100Mと条件付き全文評価は原条件を通過した。固定物語sourceは59,963,449 tokensまで準備でき、120M目標未達と約1.667周の再利用を明記して、同じ元親からWeb/物語20%各500Mの共通schedule比較を永続起動した。実科学Linux174280を重複起動せず、100M中間/500M終端と320内容診断・条件付き全文→判断/report/local commit・元UI復帰で停止する。Base/Chat品質未達、保護test・各枝1B/20B/Chat・pushは今回対象外。以下の停止・未実施記録は当時の履歴で、現行状態は[status](autonomous_status.md)を正とする。
+
 最新追加比較（2026-10-05 JST）: [計画49の実行50](50_story10_and_budget_execution.md)を未達時分岐まで完了し、[判断/次案51](51_story10_judgment_and_next_proposal.md)へ保存。物語10%/低LR各100MでEOS/反復は改善したが、一貫性差4/6は事前8件に届かず、条件付き全文と500Mは未実施。科学三枝300,023,808/検証524,288を分け、元final10B UIへ復帰しreport/local commitで停止。Phase 6 Base/Chat品質未達、20%低LRや20Bは次の提案のみ。
 
 最新（2026-10-05 JST）: ユーザー指定の改善計画段階1〜3を[完結文比較48](48_complete_text_10b_comparison.md)で完了した。25M物語pool、同じfinal10B親から各100M三条件と事前条件付き全文/長文評価を実施。新物語はEOS/反復を改善したが親BPB悪化上限を超え未採用。Phase 6のBase品質目標は引き続き未達で、Phase 7へ自動移行しない。report/local commit・UI復帰で停止し、500M/1B/20B/50B/Chatは開始しない。以下は以前のmilestone記録として保持する。
