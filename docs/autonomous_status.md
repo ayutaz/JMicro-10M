@@ -1,5 +1,7 @@
 # Codex継続作業の現在地
 
+計画58段階2・対照500M中間保存（2026-10-05 JST）: actual239609が500,006,912追加/総10,500,014,080/update320435を745.994秒で保存。`control/checkpoint-00320435.pt` SHA c5658fc5891f30ebb007e58427d1453fcf9cb47687222411ae8078a0ff1344f3を実ファイルと照合成功。Web400,031,744/short99,975,168、EOS教師Web846,893/short1,105,092。07:50:05Z時点で15700更新へ続行、実psで同一PID/13分経過を確認しstderr空。科学ジョブは止めていない。段階3未完了、対照1B→新200M教材1B→両終端の日本語/全160内容・採否と条件付き全文、report/local commit/元UI復帰まで追跡する。観測用functionsセル2370は終了したがGPUジョブとは別プロセス。
+
 計画58段階2開始（2026-10-05 JST）: 凍結commit03346a7。hidden Windows21040からwrapperを起動、actual Linux239609/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start_ticks6902884を実psで確認。元UI停止、科学は新poolによる実CUDA保存再開を開始したところ。Linux reports/phase6/dataset-expansion-1b-20261005/screen-job.jsonとWindows同run stdout/stderr/launchを追跡し、再起動しない。旧60M/新200M各追加1Bの終端、日本語全診断・全160内容と採否、report/local commit/元UI復帰が未完了。
 
 計画58段階1完了・段階2凍結（2026-10-05 JST）: 新pool200,000,192tokens/1,161,923全文（旧59,963,449＋新TinyStories日本語訳140,036,743）。元sourceの選別緩和やコピー増量ではなく、別公開trainを追加。準備145.021秒/1800秒、40全文の個別診断で弱例18を開示、CPU5tests成功。平均長88.462→170.129/EOS密度11.054→5.810で量だけの比較ではないとGPU前に具体化した。docs/59_dataset_expansion_execution.md・新config/schema/runner/reviewerを凍結。次は実CUDA stable/decay保存再開→旧/新各追加1B（同じ20%/stable29000・decay1518）→全日本語・160内容/原gate判断・必要時全文→report/local commit/元UI復帰で停止。科学はまだ未開始。Linux教材builder238695終了、元UI237483を保持。
