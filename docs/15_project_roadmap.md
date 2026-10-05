@@ -640,3 +640,27 @@ job/PID/boot/start/source/recipeとnative section別progressを保存し、上�
 終了後は`review_chat_base_retention.py --run <run> --template reports/phase7/<new-notes>.json`で全80の未採点notesを作り、raw generation SHA・nonblind Codexの0/1/2/完結0/1/具体的理由を固定して`--notes <notes>`へ渡す。採用Base notesは再採点せず、対象の全80のみ判定する。byte-weightedの本文BPB差と文書paired bootstrap CI、固定familyごとの内容差、文法・関連性・一貫性・適切完結、EOS/反復/空/役割/Unicodeと日本語集計差を報告する。文書BPBの単純平均は使わず、同じbytesを分母とする。既存Base絶対基準と歴史的BPB1% guardを報告し、Base/Chatを自動採用したり判定基準を緩めたりしない。非blind内容比較や集計日本語差は独立人間確認/paired日本語有意差と扱わない。
 
 関連CPU11tests/2.19秒、両CLI help/PS構文に成功。不均一bytesの重み、DocID/教師不足の拒否、一貫性・役割の退行と採用false維持、未終了/live評価の拒否を確認。実retention CUDA/全内容採点、Chat学習、人間提出は0。`reports/phase7/chat_base_retention_preparation.json`/tests XMLへ準備を保存し、現5Bの品質→実対話比較→retention/全seed・人間/最終test→量子化/実UIを継続する。
+
+### 5B本学習の完了・採否と次の教材比較（2026-10-06 JST）
+
+同500,000,785 prepared tokensを維持したstable5Bと20M decay、全256文書・日本語192/331/1119・固定80個別内容を完了。学習量と教材量を混同しない。
+
+| 指標 | stable2B＋20M | stable5B＋20M |
+|---|---:|---:|
+| 本文BPB↓ | 1.138590 | 1.127218 |
+| 基本意味 | 48.438% | 60.417% |
+| JBLiMP | 72.508% | 77.039% |
+| JCQA | 34.048% | 37.265% |
+| 文法2/80 | 43 | 35 |
+| 関連性2/80 | 32 | 31 |
+| 一貫性2/80 | 21 | 15 |
+| 適切完結/80 | 27 | 24 |
+| EOS/80 | 40 | 34 |
+| 自動反復/80 | 21 | 18 |
+| Unicode/role/empty | 全0 | 全0 |
+
+一貫性の差-6/paired CI[-.1875,.0375]。観測平均は低下したが独立seed/人間や有意な悪化の証明ではない。損失や選択式評価の改善を生成品質の合格に代えず、既存absolute基準（文法56・一貫性27・適切27・EOS37・反復18以下・失敗0）とrelative gate、歴史的Web BPB1% guardの未達を保持する。5Bは不採用、10Bへの自動延長なし、final-seed/full/test/Base採用/Chat/量子化は未達のまま五目標を続ける。
+
+実5B stableの追加は3B教師、decay20M、検証16CUDA更新/521760教師は別会計。全state/RNG/sampler/history/有限値の二gateは合格し、終端full optimizer/LR/会計/親cursor・全80rawを監査した。GPU4681.791秒・占有4681.798秒、7622秒枠内。科学PID487071は終了・不在、元10B UI489906と実boot/start/HTTP親SHA・tokens・busy=falseを確認。`improved_base_5b_notes.json`、`improved-base-5b-20261006_review.json`/annotations、`improved_base_5b_completion.json`、31text/14,094,878byte archive/manifestに保存し、大型tensorとshardsはWSLへ保持。内容判定は非blind Codexで独立人間評価ではない。旧数値7失敗と旧全比較も保持する。
+
+次の優先は同じ小poolの繰り返し追加ではなく、distinct教材の量・多様性を変える比較。manifestのみの`larger_material_supply_inventory.json`でWeb12,225,819,077/物語200,000,192 train tokensを確認した。80/20の2B教材には物語400M、5B教材には物語1Bが必要で、現在のtokenized sourceだけでは足りない。未処理のpinned TinyStories-JA train原文の供給を有限範囲で測り、必要時に追加sourceを準備する。source追加・mixture/長さ/EOSの変化は交絡として別表示し、同じ教師量を揃えた比較と採否・予算を開始前に凍結する。既存全量の再照合や重複を新量に数える処理は行わない。2B教材/新GPUはまだ未準備・未開始であり、Base品質→実Chat比較→人間/最終test→量子化/実UIの順を保持する。
