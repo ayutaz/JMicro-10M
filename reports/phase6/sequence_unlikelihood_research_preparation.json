@@ -1,0 +1,104 @@
+{
+  "status": "sequence_objective_trainer_rollout_loss_and_saved_raw_inspection_ready_no_GPU_training",
+  "hypothesis": "Explicitly reducing probabilities of repeats in model-generated training continuations may reduce autoregressive repetition; no claim that this also fixes nonrepetitive semantic incoherence",
+  "primary_sources": [
+    "https://arxiv.org/html/1908.04319v2#S5.SS2",
+    "https://github.com/facebookresearch/unlikelihood_training"
+  ],
+  "implementation": "Independent implementation from the mathematical objective; no external code or old dependency stack imported",
+  "files": [
+    "src/jmicro/sequence_unlikelihood.py",
+    "scripts/inspect_sequence_unlikelihood_candidates.py",
+    "tests/test_sequence_unlikelihood.py",
+    "scripts/sequence_objective_trainer.py",
+    "tests/test_sequence_objective_trainer.py"
+  ],
+  "CPU_checks": {
+    "tests": 10,
+    "passed": 10,
+    "seconds": 1.09,
+    "report": "reports/phase6/sequence_unlikelihood_core_tests.xml",
+    "initial_failure": "reports/phase6/sequence_unlikelihood_core_tests_initial_fp32_shape_failure.xml",
+    "initial_failure_resolution": "Full history length8 versus prefix-scoring length7 differs by5.96e-8 in FP32; the new alignment test uses numerical comparison atol1e-6/rtol1e-5 plus native backprop, not inappropriate bitwise equality. Historical numerical7 failures/thresholds unchanged"
+  },
+  "saved_actual_generation_diagnostic": {
+    "report": "reports/phase6/textbook_large_sequence_candidate_inspection.json",
+    "rows": 80,
+    "repeated_4gram_candidate_rows": 50,
+    "candidate_token_positions": 1501,
+    "candidate_rows_with_coherence2": 2,
+    "noncandidate_rows_with_coherence_below2": 18,
+    "interpretation": "Candidate presence is not equivalent to old automatic repetition failure19/80. Some repeated phrases are legitimate; unchanged quality notes/gates are retained"
+  },
+  "proposed_bounded_comparison": {
+    "launch_condition": "Finish actual500M_vs2B matched comparison/all160; only consider this objective comparison if unchanged extension/Base screens do not support the material continuation and substantial generated repetition remains",
+    "parent_rule": "Use the completed large1B+20M native checkpoint for both arms, chosen for the fixed wider75/20/5 train supply rather than favorable evaluation selection; require actual ended job and checkpoint/source binding",
+    "arms": [
+      "CE",
+      "CE_plus_sequence_UL"
+    ],
+    "same_fields": [
+      "10M architecture",
+      "4096 Tokenizer",
+      "75/20/5 accepted train pool",
+      "actual model Adam RNG and cursor parent",
+      "CE teachers",
+      "LR schedule",
+      "native evaluation",
+      "rollout/scoring computation"
+    ],
+    "CE_teacher_tokens_per_arm": 25000000,
+    "peak_LR_ceiling": 0.0002,
+    "no_reheat_or_warmup": true,
+    "objective_candidate": {
+      "alpha_control": 0.0,
+      "alpha_candidate": 0.1,
+      "generated_continuation_ngram": 4,
+      "rollout_every_completed_CE_updates": 4,
+      "train_prefixes_per_rollout": 8,
+      "prefix_tokens": 32,
+      "maximum_generated_tokens": 64,
+      "greedy_stop": "Native EOS3; no forced EOS or repetition-blocking policy",
+      "loss_denominator": "Generated valid body tokens, separate from CE teacher accounting",
+      "gold_continuations_as_negative_candidates": false,
+      "special_0_to_7_as_negative_candidates": false,
+      "equal_rollout_scoring_in_control": true
+    },
+    "GPU_comparison_ceiling_seconds": 1800,
+    "budget_status": "Proposal only: actual CUDA batch/throughput and continuous-vs-resume gates must be measured before freezing or launching; no silent overrun",
+    "evaluation": "Both actual Japanese192/331/1119, same256dev body bytes, all80 individually raw-bound continuations per arm; old relative+absolute+original-Web gates retained",
+    "completion_condition": "Actual ended jobs/checkpoints/accounting/resume gates/all160 notes and adoption decision saved; quality rejection is not project completion",
+    "continuation_condition": "Only unchanged all-condition quality evidence justifies extension/final Base validation; repetition alone or shortened output does not justify adoption",
+    "missing": [
+      "durable paired runner and measured frozen recipe",
+      "actual CUDA save-resume and finite batch proof",
+      "actual learning and quality evaluation"
+    ]
+  },
+  "actual_GPU_training_updates": 0,
+  "new_scientific_teacher_tokens": 0,
+  "new_model_quality_proven": false,
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "protected_test_used": false,
+  "requested_five_steps_complete": false,
+  "quality_criteria_unchanged": true,
+  "old_numerical7_preserved": true,
+  "integrated_trainer_CPU_checks": {
+    "tests": 4,
+    "seconds": 2.24,
+    "GPU_checks": 0,
+    "passed": 4,
+    "initial_failure": "reports/phase6/sequence_objective_trainer_tests_initial_shared_parent_failure.xml",
+    "resolution": "New trainer owns copied parent full state; CPU Adam tensor aliasing no longer mutates the source parent. Zero-alpha actual optimizer trajectory exactly matches historical CE; full resume/cursor/RNG and all extra-work counters match",
+    "report": "reports/phase6/sequence_objective_trainer_tests.xml"
+  },
+  "source_sha256": {
+    "scripts/inspect_sequence_unlikelihood_candidates.py": "a28e695aedb78a6f2af158210f470575661a05a0b01ac8e743db50f3bfb50c93",
+    "tests/test_sequence_unlikelihood.py": "1a04e5a6ece46335f4b65d72d5aad6648ff54b65d352de3e2e5b27fc505256a1",
+    "tests/test_sequence_objective_trainer.py": "e15afe3f3f60e4aceab12970f3811e14e401a9c6b25ea8a4efce44842c5bff75",
+    "scripts/sequence_objective_trainer.py": "035b08caf9c5f96885ae9599802e9e777ebfc79a3473614085a9dfafebee58ce",
+    "src/jmicro/sequence_unlikelihood.py": "3d54c3544e4e59f086459ce6053e342aa3133c39b990dae48ea1131f084e6cf3"
+  },
+  "created_at": "2026-10-05T22:09:11.2402075Z"
+}

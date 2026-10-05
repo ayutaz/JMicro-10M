@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="10" time="1.087" timestamp="2026-10-06T07:05:09.768365+09:00" hostname="DESKTOP-42CUV0C"><testcase classname="tests.test_sequence_unlikelihood" name="test_native_cached_rollout_matches_full_history_greedy_and_preserves_rng_mode" time="0.032" /><testcase classname="tests.test_sequence_unlikelihood" name="test_rollout_stops_rows_individually_and_keeps_actual_eos" time="0.000" /><testcase classname="tests.test_sequence_unlikelihood" name="test_generated_history_alignment_and_native_model_gradient" time="0.260"><failure message="AssertionError: Tensor-likes are not equal!&#10;&#10;Mismatched elements: 138 / 320 (43.1%)&#10;Greatest absolute difference: 5.960464477539063e-08 at index (0, 4, 9)&#10;Greatest relative difference: 9.054775728145614e-05 at index (1, 3, 11)">def test_generated_history_alignment_and_native_model_gradient():
+        model=small_model()
+        prefix=torch.tensor([[2,8,9],[2,10,11]])
+        generated=torch.tensor([[8,9,8,9,3],[10,11,10,11,3]])
+        logits=continuation_logits(model,prefix,generated)
+        joined=torch.cat((prefix,generated),dim=1)
+        full=model(joined).logits
+&gt;       torch.testing.assert_close(logits,full[:,2:7],atol=0,rtol=0)
+E       AssertionError: Tensor-likes are not equal!
+E       
+E       Mismatched elements: 138 / 320 (43.1%)
+E       Greatest absolute difference: 5.960464477539063e-08 at index (0, 4, 9)
+E       Greatest relative difference: 9.054775728145614e-05 at index (1, 3, 11)
+
+tests/test_sequence_unlikelihood.py:62: AssertionError</failure></testcase><testcase classname="tests.test_sequence_unlikelihood" name="test_rollout_refuses_padding_and_context_overflow" time="0.001" /><testcase classname="tests.test_sequence_unlikelihood" name="test_marks_later_whole_ngrams_once_and_keeps_sequences_separate" time="0.000" /><testcase classname="tests.test_sequence_unlikelihood" name="test_special_boundaries_stops_and_short_continuations" time="0.000" /><testcase classname="tests.test_sequence_unlikelihood" name="test_analytic_loss_gradient_and_unselected_positions" time="0.035" /><testcase classname="tests.test_sequence_unlikelihood" name="test_saturated_negative_is_finite_and_still_has_corrective_gradient" time="0.001" /><testcase classname="tests.test_sequence_unlikelihood" name="test_bf16_promotes_and_empty_candidates_keep_zero_gradient" time="0.001" /><testcase classname="tests.test_sequence_unlikelihood" name="test_refuses_special_candidates_and_misaligned_prediction_shapes" time="0.000" /></testsuite></testsuites>

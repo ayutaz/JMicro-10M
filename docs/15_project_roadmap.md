@@ -689,3 +689,17 @@ job/PID/boot/start/source/recipeとnative section別progressを保存し、上�
 次はWeb95%/物語5%を両方に使い、small500M（Web475M/story25M）とlarge2B（厳密4倍）を準備する。量だけの比較はこの新二条件間に限り、旧80/20との比較はmixture差として別に報告する。より広いWebを使い、物語のテンプレート偏りを減らす仮説でもあり、結果前に改善を断定しない。原文wholeまたは最初4段落のintact unit、長さ/4gram/末尾/主体の旧機械selectorと固定64弱<=10を保持し、受け入れ条件を緩めない。正確4倍のsource/body-length/unit-kind/EOSとsubsetを`FourGroups`で作る。devは同source95/5、train-family splitを保持し学習に使わない。global near/site/author auditは未実施のまま。
 
 実装は`prepare_larger_material.py/ps1`と`src/jmicro/larger_material.py`、CPU1800秒/8workers/seed2026100621。実WSLに326GB余裕を確認した。関連7CPUtests/0.86秒・PS構文成功、全5目標の達成証拠とはしない。`reports/phase6/larger_material_preparation.json`へsource SHA・CPU予算・条件を凍結してから永続CPU jobを起動する。未完了partialはreadyにせず既存旧runを上書きしない。新学習はactual供給と固定64採否を待ち、同じfresh10M/各1B教師・同20M decay、LR/seed/batch/教師範囲とGPU予算を次のconfigへ別途凍結する（現時点は案）。その後もBase品質→主mid/SFT対direct/retention/全seed内容→人間/最終test→量子化/実UIを完了するまで目標はactive、Chat/量子化未開始。追加取得/push/paidcloudなし。
+
+### 教材量比較の実行状態と反復目的の条件付き次案（2026-10-06 JST）
+
+上の95/5は不採用の旧準備案。現在の実比較は新75% Web/20% SyntheticTextbook-jp/5% story、small500,000,328対large2,000,001,312 prepared tokens、各同1B stable教師＋同20M decay、同fresh10M/LR/seed。`configs/phase6/textbook_quantity_comparison.json`の凍結source/GPU4861秒枠を保持する。large側の全日本語/原80件内容は完了し、文法44/一貫性14/適切25/EOS43/反復19で既存Base基準未達。small側はactual494779で学習中、全160/量効果/延長採否は未確定。両条件の終端と全内容判定を待ち、相対改善または絶対screenを満たす場合だけ既存の段階的延長を使う。未達なら有効な次のBase仮説へ進み、全五目標を候補不採用で完了にしない。
+
+次の反復仮説として、モデル自身がtrain prefixから生成した続きを負例にするsequence unlikelihoodを一次資料のsection5.2で確認した。[Welleck et al.](https://arxiv.org/html/1908.04319v2#S5.SS2)、[著者の実装説明](https://github.com/facebookresearch/unlikelihood_training)。英語大規模モデルの報告を日本語10Mの効果や意味保持の保証として扱わない。独立実装で旧CE/source/依存関係は変更しない。
+
+`sequence_unlikelihood.py`はnative EOS3を残すcached greedy rollout、実生成履歴の微分可能scoring、後続反復4gramの全所属tokenを一度だけnegativeにするlossを実装。EOS/EOTと特殊0..7は負例にせず、gold continuation/dev/testは使わない。`sequence_objective_trainer.py`は同じ更新へCE+alpha*ULを統合、trainの完全なdocument headだけをprefixにする。control alpha0も同rollout/scoringを実行し、CE教師と生成body/EOS/negative/extra valid・physical/digestを別保存する。実CPU連続/再開の全state一致・alpha0対旧CE完全一致などcore10/統合4tests成功。CPU Adam親tensorの共有は新trainerのfullstate copyで修正し、初回失敗XMLも保持。実CUDA品質は未測定。
+
+large保存80件ではこの研究用4gram候補が50件/1501位置あり、うち一貫性2は2件、候補なしでも一貫性<2が18件。候補は自然な反復も含み、旧自動反復19/80や採否基準を置換しない。反復目的だけで全意味崩れを直せるとは言わない。
+
+条件付き案は両教材比較の実終端/全160後、延長/採用根拠が得られず反復が残る場合にのみ検討する。largeの完了1B+20M親を両条件に固定、同25M CE教師/継承Adam・RNG・cursor、peak LRは実親以下かつ0.0002以下で再加熱なし。CE対CE+sequence UL(alpha0/0.1)、4更新ごと最大8 train prefixes32token/最大64greedy continuation、同計算policy。全GPU比較1800秒を上限案とし、実CUDA速度/batchと連続4対2+2 gateの測定後にrecipeを凍結する。新永続paired runner/採否はまだ未実装、実GPU学習0で自動起動しない。全日本語/同dev256/全新80件ずつと旧relative/absolute/original-Web基準で採否を残す。反復だけの改善や短い出力をBase採用にしない。詳細は`reports/phase6/sequence_unlikelihood_research_preparation.json`。
+
+採用候補の独立training seed/full dev/保護test→実mid-training/SFT対direct/retention/全sampling内容→実人間評価→HF/GGUF/Q8/Q4/実UIという全五目標の後続は維持する。準備/CPU検証はこの完了証拠ではない。
