@@ -135,3 +135,8 @@ builder actual363349/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start_ticks7716977
 ### Chat教師処理の先行実装（2026-10-06 JST）
 
 Base採用後に使うsrc/jmicro/assistant_sampler.pyを追加。train dialogueのみ、Assistant本文+EOTだけを一度ずつ教師化し、役割/system/user/過去Assistant/PADをmaskする。入力contextに収まる完全な現在user/assistant pairを保持し、古い完了turnのみ削除。総系列tokens・valid入力・Assistant教師・physical/PAD・EOT・反復epochを分離し、data/mask内容bindingとsampler全cursorを保存再開する。tests/test_assistant_sampler.pyのCPU3testsがWSL uv3.12.7で成功（0.88秒）。実model causal lossとのシフト照合、epoch境界の再開順序、変更データ/dev/過大targetの拒否を確認。CPU検証でありChat学習/実CUDAゲート/品質達成ではない。Chatの実行コマンド/実GPU学習/評価は未実装・未開始、Base採用を先に満たす。並行stage3 actual475615は生存し9層の終端評価/生成80へ進行、6層は未学習。
+
+
+### stage4入れ子教材の準備設定（2026-10-06 JST）
+
+prepare_nested_material.py/ps1とnested_material.pyを追加。既存固定Web12,225,819,077と物語200,000,192のtrain streamを再利用し、新規取得や旧全面hash照合をしない。小pool Web80M/story20M準備tokens、大poolはsource/本文長が同じ5文書groupから1文書を小にも入れる厳密5倍で、全文/BOS/EOSを保持。source・全長histogram・EOS密度も厳密同率。Web64〜1024/story32〜512本文tokens、全文完結/予告・広告/欠落欄/反復を除外、story強い魔法表現を除外。局所canonical exactとfirst-sentence-familyのdev分割、共通dev2M。旧全corpus site/author/near監査の代替ではない。CPU600秒/8workers、供給不足をreadyとしない。新固定64内容弱10以下を確認するまで新GPU/本学習採用なし。CPU2tests成功0.02秒（入れ子/同hist/完結・欠落等）、syntaxcompile成功。量の学習比較config/commandは準備とstage3採否後に別凍結。準備量の固有文書は今回pool内で増えるが、公開sourceを新取得した500Mと表記しない。
