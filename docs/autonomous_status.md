@@ -1,5 +1,7 @@
 # Codex継続作業の現在地
 
+段階3実行中・Web中間100M保存済み: actual Linux174280を起動約3分8秒時点で再確認した。実CUDA保存再開25checksすべて成功、検証262,144 tokensは科学会計と分離。Web枝は3300更新/追加108,134,400 tokensまで進み、100,007,936地点のupdate308228/総10,100,015,104 checkpointを保存した（SHA0813da0970485ec58d480f04f19b8dc92750421ce7086bef86232529f0626365）。GPU89%/VRAM7690MiB、stderr空。二枝の科学学習はまだ未完了、320内容診断/条件付き全文/段階4も未実施。新しい最終確認`scripts/review_story20_completion.py`は構文確認のみで、完了証拠としてまだ実行していない。job/metrics/latest/checkpointとactual identityを追跡し、同じrunを重複起動しない。README/roadmap/handoffに現52の再開状態を反映、local commit4f7260c。
+
 段階3の各500M比較を永続起動: 準備commit742ec45、2026-10-05 00:56:22.906739Z、hidden Windows33908 / actual Linux174280 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks4498545。actual process存在を確認した。Linux run`reports/phase6/story20-low-lr-10b-500m-20261005`の`screen-job.json`/arm metrics/checkpoint、Windows同run`screen.stdout.log`/`screen.stderr.log`を追跡する。CUDA実保存再開→二枝各500M→中間/終端の一次評価→全320内容診断→原gate条件付き全文/長文→段階4判断・report・local commit・元UI復帰で停止。起動済み同じjobを確認し、重複起動しない。
 
 段階3・各500M条件凍結済み、起動前: 固定train4filesの構築は59,963,449 tokens/662,857文書で完了、source exhausted/120M目標未達を記録。99,975,168物語inputには約1.66727周を使う。40全文サンプルと14弱例、非ランダムsample・synthetic・広域重複未確認の限界を`reports/phase6/story20_budget_pool_content_review.json`へ保存し、限定比較として使用する。26関連CPU tests、凍結config/schema/probe成功。各500,006,912科学tokensと共通schedule中間100Mの実比較を開始し、320内容診断・原gate条件付き全文→段階4判断/report/local commit・元UI復帰で停止する。[現計画52](52_story20_low_lr_execution.md)。旧完了jobは再起動しない。
