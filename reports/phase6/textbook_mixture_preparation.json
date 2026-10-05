@@ -1,0 +1,38 @@
+{
+  "status": "commands_ready_component_running_mixture_not_started",
+  "source_ratio": {
+    "story": 0.05,
+    "textbook": 0.2,
+    "web": 0.75
+  },
+  "small_targets": {
+    "story": 25000000,
+    "textbook": 100000000,
+    "web": 375000000
+  },
+  "large_ratio_exact": 4,
+  "mixture_CPU_budget_seconds": 900,
+  "component_CPU_budget_seconds": 1800,
+  "sample64_source_quota": {
+    "story": 16,
+    "textbook": 24,
+    "web": 24
+  },
+  "unchanged_content_gate": "weak<=10 of64",
+  "all_old64_families_excluded_from_new_mixture": true,
+  "old32_textbook_families_excluded_from_component": true,
+  "tests": {
+    "nested_cache_membership": "reports/phase6/textbook_mixture_tests.xml;3passed0.80s",
+    "native_family_worker": "reports/phase6/textbook_component_tests.xml;2passed0.94s"
+  },
+  "commands": {
+    "component": "scripts/prepare_textbook_component.ps1",
+    "mixture": "scripts/prepare_textbook_mixture.ps1",
+    "review": "scripts/review_textbook_mixture.py --template; fill all64 then run without --template"
+  },
+  "GPU_scientific_teacher_tokens": 0,
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "requested_five_steps_complete": false,
+  "limitations": "Synthetic facts/global near overlap unverified. Final 3-source training accounting requires implementation and CUDA resume checks; old 2-source trainer cannot consume textbook provenance."
+}
