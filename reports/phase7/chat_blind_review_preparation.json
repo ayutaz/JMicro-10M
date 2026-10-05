@@ -1,0 +1,43 @@
+{
+  "status": "blind_protocol_implementation_complete_actual_model_packets_and_human_evaluation_pending",
+  "verified_at": "2026-10-05T19:11:51.3197085Z",
+  "command": "scripts/chat_blind_review.py prepare|review",
+  "source_sha256": {
+    "src/jmicro/chat_blind_review.py": "d291dd97ed5a1bcd5f7aba44567ce2778e843b6b0c1f1f0333dcd3e7e7da032e",
+    "scripts/chat_blind_review.py": "2712b7c1d325e34c8caf33f60fa43163368205d5b6381248fd4c6603e565ef32",
+    "tests/test_chat_blind_review.py": "bf072cf29246c8f891d16c25bb78e6c09b8fa24a0a3ad66177d5446f58a5dca0"
+  },
+  "CPU_tests": 10,
+  "new_protocol_tests": 3,
+  "CPU_test_seconds": 1.2,
+  "test_command": "uv run --frozen --extra hub --extra data --extra ml --extra export pytest -q tests/test_chat_blind_review.py tests/test_chat_review.py --junitxml reports/phase7/chat_blind_review_tests.xml",
+  "CLI_help_checks_passed": true,
+  "fixtures_are_real_human_submissions": false,
+  "actual_model_packets": 0,
+  "actual_human_submissions": 0,
+  "actual_Chat_GPU_teacher_tokens": 0,
+  "independent_human_evidence": false,
+  "protected_test_used": false,
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "requested_five_steps_complete": false,
+  "current_Base_job": {
+    "pid": 487071,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "10923679",
+    "ps_confirmed": true,
+    "heartbeat_at": "2026-10-05T19:11:49.35078Z",
+    "teachers": 2957368683,
+    "teacher_budget": 5000000000,
+    "loss": 2.5132839679718018
+  },
+  "pending": [
+    "quality adopted Base",
+    "actual matched Chat model evaluation",
+    "actual human submissions and adjudication",
+    "multiple-seed sampling",
+    "Base midtraining SFT fluency retention",
+    "final test",
+    "quantization and UI"
+  ]
+}

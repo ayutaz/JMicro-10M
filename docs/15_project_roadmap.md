@@ -612,3 +612,11 @@ Tokenizer codec/Assistant sampler本体は変えず、採用Base確認後のToke
 `review_chat_ablation.py --direct-config <recipe> --direct-evaluation <result> --direct-notes <notes> --main-config <recipe> --main-evaluation <result> --main-notes <notes> --output reports/phase7/<new>/chat_ablation_report.json`は、実終了したdirect-SFTとmid-training→SFT、既存Base採用証拠と完了mid親、実CUDA再開gate・checkpoint counters/lineageを確認する。同root Base、SFT seed/batch/context/LR/warmup/source/train/budget、実SFT窓・系列・教師・入力・EOTが同じ場合だけ比較し、候補側の追加mid-training系列/教師/physical/GPUは別会計する。総教師/GPUが同量の比較とは記載しない。固定protocolの80primary/24own-finalについてfamily-paired差とbootstrap CIを出すが、多重比較補正なしの記述的評価で独立confirmation・採用を宣言しない。Base対mid対SFTの保持評価は別途必要。
 
 関連CPU16tests/2.07秒と両CLI helpに成功。raw改変/履歴混入/集計改変/採点欠損/他SHA/boolean、人間への誤ラベル、70%・60%の境界、未終了/live job、実SFT量やbatchの不一致を検証した。fixtureの採点はモデル品質の証拠ではなく、対話GPU学習と実内容採点は0。可搬準備は`reports/phase7/chat_content_review_preparation.json`/tests XML。5B本流actual487071は継続し、凍結Base sourceやTokenizerを変更していない。次は5B終端・同decay・全日本語/80内容からBase品質を決め、後続の実比較へ進む。
+
+### Chat blind packetと評価者一致率の準備（2026-10-06 JST、実人間評価0）
+
+`chat_blind_review.py prepare --evaluations <named path/SHA refs.json> --output reports/phase7/<new-packet>`は、実終了した複数の異なる学習済みChat checkpointの全219応答/モデルを検証して無作為に混ぜる。公開用`reviewer_packet.json`はopaque sample ID・実messages/checks/応答本文とrubricだけで、model/route/checkpoint/case名やprivate seedを含めない。対応表は別の`private_mapping.json`へ保存し、評価者には渡さない。未採点`reviewer_notes_template.json`を生成し、既存packetを上書きしない。外部送信/公開を行わない。
+
+`chat_blind_review.py review --packet-directory <packet> --notes <human-A.json> <human-B.json> --output reports/phase7/<new-report>.json`は、packet/entry/evaluation/checkpoint SHAと元raw/historyを再照合し、人間の本人名・独立性・blindの宣言と全応答0/1/2/理由を要求する。Codex/AI・未採点・欠損/重複・boolean・別packet・改変表示・同一評価者の表記揺れを拒否。モデルごとに全内容のdev集計、評価者ペアごとに文法/関連性/文脈のexact agreement、3×3混同行列、unweighted Cohen kappaを保存する。全同値では期待一致率1のためkappa=nullと明記する。相関するturn/conditionの応答単位であり独立familyの信頼区間と扱わず、統計が本人性・正しさを認証するとも記載しない。人間の本人性は自己申告に基づき、外部認証や実人間評価を捏造しない。自動合意・有利な評価者選択・Chat採用は行わない。
+
+関連CPU10tests（新3/既存7）1.20秒、CLI help成功。fixtureの人間ラベルはプロトコル入力で実人間ではない。実モデルpacket/人間提出/対話GPU学習は0、Base品質と実Chat比較待ち。`reports/phase7/chat_blind_review_preparation.json`とtests XMLに準備を記録し、独立人間評価未実施と全品質条件を保持する。
