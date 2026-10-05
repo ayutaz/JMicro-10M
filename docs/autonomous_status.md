@@ -1,5 +1,7 @@
 # Codex継続作業の現在地
 
+計画58段階2開始（2026-10-05 JST）: 凍結commit03346a7。hidden Windows21040からwrapperを起動、actual Linux239609/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start_ticks6902884を実psで確認。元UI停止、科学は新poolによる実CUDA保存再開を開始したところ。Linux reports/phase6/dataset-expansion-1b-20261005/screen-job.jsonとWindows同run stdout/stderr/launchを追跡し、再起動しない。旧60M/新200M各追加1Bの終端、日本語全診断・全160内容と採否、report/local commit/元UI復帰が未完了。
+
 計画58段階1完了・段階2凍結（2026-10-05 JST）: 新pool200,000,192tokens/1,161,923全文（旧59,963,449＋新TinyStories日本語訳140,036,743）。元sourceの選別緩和やコピー増量ではなく、別公開trainを追加。準備145.021秒/1800秒、40全文の個別診断で弱例18を開示、CPU5tests成功。平均長88.462→170.129/EOS密度11.054→5.810で量だけの比較ではないとGPU前に具体化した。docs/59_dataset_expansion_execution.md・新config/schema/runner/reviewerを凍結。次は実CUDA stable/decay保存再開→旧/新各追加1B（同じ20%/stable29000・decay1518）→全日本語・160内容/原gate判断・必要時全文→report/local commit/元UI復帰で停止。科学はまだ未開始。Linux教材builder238695終了、元UI237483を保持。
 
 計画58段階1〜3を再開（2026-10-05 JST）: ユーザーが「3まで進めてください」を指示。200M教材供給の実確認・必要分準備→旧/新各追加1Bの同条件学習→日本語/全160内容と原条件の採否判断、report/local commit/元UI復帰で停止する。actual process確認で科学学習なし、元UI237483稼働、WSL空き490GiB。新TinyStories日本語訳と合成教科書の公開train供給をpinして確認する。旧source現条件60M枯渇を避けるためだけのコピー・選別緩和はしない。新sourceの実量/長さ/EOS密度が変わる場合は開始前に比較条件を具体化して開示する。科学未開始、20B/Chat/protected test/pushは対象外。
