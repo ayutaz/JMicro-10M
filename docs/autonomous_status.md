@@ -1,3 +1,17 @@
+最新完了（2026-10-05 JST）: [結果69](69_packing_learning_results.md)。plan68の段階1〜3（三条件25M教師・条件付き両100M教師・日本語と全400内容評価）を完了して停止。教材は同じ1000全文/55,273準備tokens。train fixed75/shuffle100/isolated100、新dev74/85/76でshuffle選択。元同一10BからWeb80M＋教材20Mの混合はfixed train71/dev54、shuffle99/76。ただし候補未学習構文26/50、自由生成の一貫性0/80・適切完結0/80・EOS2/80・反復53/80で不採用。対照も一貫性0/適切完結0/EOS2/反復65。原品質目標を維持し、条件付き全文・追加学習は未開始。
+
+科学275,000,000教師tokens、valid入力277,092,898、physical311,066,624。実CUDA連続/再開三経路24更新625,842教師は別会計。CPU5tests、終端106学習/評価証拠checks成功。学習/検証/日本語GPU job1078.175秒＋旧dev参照2.723秒、計1080.897秒。source/config/五終端を維持した評価の旧file名alias修正を記録（再学習0）。実job367596失敗履歴・再開368468完了・旧dev評価も終了して不在。元UI370009/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start8580412、HTTP親SHA410f975d…/10,000,007,168tokens/busy=falseを完了監査で照合。品質達成や全プロジェクト完了ではなく、この三段階の完了。
+
+可搬証拠は reports/phase6/packing_study_*.json とpacking_study_tests.xml。Linuxrun reports/phase6/packing-study-20261005、元教材condition-learning-20261005-v2/compact、新dev/参照packing-study-20261005。五枝のoptimizer込み重み・metrics・全日本語rawを保持。次案は順序変更＋多様な自然短文の固定教材比較で、未開始。verified local commit後に停止、data取得/追加学習/20B/Chat/test/push/公開へ進まない。再開前にactual identityを確認し、完成runを再起動しない。
+
+以下は前段階の履歴。
+最新・実行中（2026-10-05 JST）: plan68の三条件25M教師と条件付き両100M教師の学習がすべて完了。fixed/shuffle/isolatedのtrainは75/100/100、新devは74/85/76。shuffleを固定規則で選択。Web混合ではfixed train71/dev54、shuffle train99/dev76。元同一10Bから計275M body/EOS教師、CUDA再開24更新625,842教師は別会計。一般日本語dev256・意味192/JBLiMP331/JCQA1119・全400生成内容を評価中。品質採用は未判定。
+
+旧helperがmixed-candidateだけexpanded-train-eval.jsonを参照し評価停止した。五学習終端は保存済みで再学習0。凍結された共通compact train100を同一SHA0d2cbacb…で別名保存し、source/config/教師予算/gateを変えず評価だけ再開。初回failed jobと修正理由をrunへ保存。現在actual368468/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start8537276、Windows launcherはevaluation-resume-launcher.json。live handleを確認して重複起動しない。完了後は旧dev100参照評価、採否・結果69・local commit・元10B UI復帰で停止。
+
+以下は前段階の履歴。
+実行中（2026-10-05 JST）: plan68 actual367596/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start8466273を確認。三経路の実CUDA連続/再開24更新成功、検証教師625,842tokens別会計。fixed教師25Mはtrain75/新dev74、shuffle教師25Mはtrain100/新dev85で目標達成。isolatedは約13.9M/25Mまで有限lossで進行。非fixedの凍結選択後、元10Bから二枝Web80M＋教材20M教師へ進む。元UIはGPU lockを譲るため一時停止、終端で復帰予定。
+
 最新（2026-10-05 JST）: ユーザーの『3まで進めてください』で[実行68](68_packing_learning_execution.md)を再開。共通compact1000全文にfixed/shuffle/isolatedを実装し、5CPUtests成功。PAD/BOSを除く本文＋EOS教師各25M、valid入力/physical/PADを別記録。旧devと重ならない新dev100を学習前に固定。元10Bから三条件を比較し、非fixedでtrain90%/新dev70%ならWeb80M＋教材20M教師の各100Mまで進む。実GPUは reports/phase6/packing-study-20261005/job.json のactual identity/logs/checkpointを確認する。旧結果67は保持、次の停止は評価/report/local commit/元UI復帰後。
 
 最新（2026-10-05 JST）: **[契約66](66_condition_learning_diagnostic_plan.md)の段階1〜4を実学習・拡張・総合評価まで完了し停止**。[結果67](67_condition_learning_diagnostic_results.md)。教材55,273/280,724tokens・1000/5000全文、両24,969,216学習tokens、train75/68・未見65/61。両診断目標90/70未達なので条件付き100Mは未開始。元block文脈付き95/95・96/96対単独72/95・65/96で文脈依存を実測。Base dev256 BPB1.268845/1.408409、EOS59/62だが一貫性1/2・適切完結6/5（各80）で不採用。全160個別理由、5CPUtests/26実CUDA再開/44学習評価/14完了checks成功。科学49,938,432、検証262,144別。GPU263.747884秒＋probe約2.319秒。元10B UI actual365612/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start7955441・HTTP親SHA410f975d…/10,000,007,168tokens/busy=false実確認。verified local commitで停止、新学習/20B/Chat/test/pushなし。次案は文書を跨がない学習との同量比較で未開始。
@@ -10,7 +24,7 @@
 
 # Codex継続作業の現在地
 
-最新（2026-10-05 JST）: **結果63後の四項目は、新たな準備不成立分岐まで完了して停止**。[実行64](64_condition_selector_v2_execution.md)/[結果65](65_condition_selector_v2_preparation_results.md)。別train32で弱例12、v2が弱例9/正しい4を除外し3273e77で凍結。両20,000,072tokens/71,268全文、長さ全並び/BOS/EOS一致、平均278.631868/EOS3.563387、共有10,232。既知152hashを両poolから除外し、未確認の固定40各を診断したが弱例対照12/候補14で「対照より少ない」「10/40以下」の両準備条件未達。全80理由、5CPUtests/101準備証拠/14完了checks、採否/元UI実確認を保存した。科学0/検証0、新GPU評価0。各100M/一次日本語と160生成/条件付き全文は開始しない。
+最新（2026-10-05 JST）: **結果63後の四項目は、新たな準備不成立分岐まで完了して停止**。[実行64](64_condition_selector_v2_execution.md)/[結果65](65_condition_selector_v2_preparation_results.md)。別train32で弱例12、v2が弱例9/正しい4を除外し3273e77で凍結。両20,000,072tokens/71,268全文、長さ全並び/BOS/EOS一致、平均278.631868/EOS3.563387、共有10,232。既知152hashを両poolから除外し、未確認の固定40各を診断したが弱例対照12/候補14で「対照より少ない」「10/40以下」の両準備条件未達。全80理由、5CPUtests/101準備証拠/13完了checks、採否/元UI実確認を保存した。科学0/検証0、新GPU評価0。各100M/一次日本語と160生成/条件付き全文は開始しない。
 
 builder actual363349/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start_ticks7716977は完了・不在。抽出を含む20.160553秒、新pool照合0.825141秒、reviewer末尾整形後の追加照合0.728438秒。selector/教材/seed/内容理由/gateは不変、初回監査はLinux archiveへ保持。元UI actual359102/boot同/start_ticks7216365、HTTP親SHA410f975d…/10,000,007,168tokens/busy=falseを新完了確認で照合。UIは停止していない。
 
