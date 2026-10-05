@@ -620,3 +620,13 @@ Tokenizer codec/Assistant sampler本体は変えず、採用Base確認後のToke
 `chat_blind_review.py review --packet-directory <packet> --notes <human-A.json> <human-B.json> --output reports/phase7/<new-report>.json`は、packet/entry/evaluation/checkpoint SHAと元raw/historyを再照合し、人間の本人名・独立性・blindの宣言と全応答0/1/2/理由を要求する。Codex/AI・未採点・欠損/重複・boolean・別packet・改変表示・同一評価者の表記揺れを拒否。モデルごとに全内容のdev集計、評価者ペアごとに文法/関連性/文脈のexact agreement、3×3混同行列、unweighted Cohen kappaを保存する。全同値では期待一致率1のためkappa=nullと明記する。相関するturn/conditionの応答単位であり独立familyの信頼区間と扱わず、統計が本人性・正しさを認証するとも記載しない。人間の本人性は自己申告に基づき、外部認証や実人間評価を捏造しない。自動合意・有利な評価者選択・Chat採用は行わない。
 
 関連CPU10tests（新3/既存7）1.20秒、CLI help成功。fixtureの人間ラベルはプロトコル入力で実人間ではない。実モデルpacket/人間提出/対話GPU学習は0、Base品質と実Chat比較待ち。`reports/phase7/chat_blind_review_preparation.json`とtests XMLに準備を記録し、独立人間評価未実施と全品質条件を保持する。
+
+### Base/mid/SFTの同条件Chat評価と複数seed sampling準備（2026-10-06 JST、実CUDA評価0）
+
+`evaluate_chat_stages.py --sft-config configs/phase7/<frozen-SFT>.json --stage base|mid-training|sft --decoding greedy|sampling --output reports/phase7/<new-run>`を用意。固定SFT recipeの採用root Baseとdata/source/実masked batchを確認し、Base controlにはroot、mid controlには実終了したmid親、SFTには実終了job/config/SHA/実CUDA4対2+2/full sampler/教師・系列・入力・physical/EOT/lineageが一致した終端を使う。未採用Base、未終了/live SFT、direct routeでのmid親、会計/shape/dataの不一致は拒否する。Base controlやmidをChat採用と扱わない。既存greedy seed42、BF16 math、64tokens、固定dev80と自生成履歴24family/59応答の条件を保持する。Base completionの流暢性保持は別suiteで後続確認する。
+
+samplingは`--seeds 42 43 44 --temperature .8 --top-p .9 --top-k 50`を既定案とし、3〜5 distinct seedsに限定する。temperature/top-p/top-kは始動前のbindingに固定し、学習RNGと別のlocal Generatorを使う。各User入力のseedとown-historyのseed+turn-1をraw rowに記録し、EOT7/EOS3、ID/byte/Unicode・役割・反復・空・max lengthを保存、表示修復を加えない。greedyはsamplingで置き換えない。各seedでprimary80/control80/own59の全219を保持し、繰り返したseedを独立80/24 familyの水増しと扱わない。良いseedだけを選ばず全seed結果が必要で、一seedの比較はその範囲と明記する。
+
+job/progress/recipe/source/各seed result/summaryとPID/boot/startを永続化する。累積GPU上限は最大1800秒、CLI argsを正確なrestart commandへ保存し、完了caseを再実行せず再開する。各seed leafの完了記録だけでなく親multi-seed jobの実終了・binding・identity・全体予算を要求する。各seedの`result.json`は既存`review_chat_sft.py`の全219 notesと`review_chat_ablation.py`、blind packetへ接続する。native IDs/実prompt/seed設定を再検証するが、機械集計だけで文法/関連性/文脈を採点しない。
+
+Windowsの永続起動は`evaluate_chat_stages.ps1 -SftConfig configs/phase7/<recipe>.json -Stage <stage> -Decoding <mode> -Output reports/phase7/<new-run>`、実process確認後の再開は同args＋`-Worker`。CPU preflightをUI/GPU変更前に行い、job中は元UIを止め終端で戻す。実科学jobと重複起動しない。関連CPU23tests/2.26秒、CLI help/PS構文に成功。native CPU seed再現/別seed/RNG非消費/フィルタとEOT/全219 raw/own turn seed/未終了親と予算超過拒否/実CPU SFT会計を確認した。実CUDAのstage/sampling、実Chat学習と品質、人間提出は0。`reports/phase7/chat_stage_sampling_preparation.json`/tests XMLへ保存し、Base品質→実Chat→全seed・全内容・人間/最終test→量子化/実UIの全目標を維持する。

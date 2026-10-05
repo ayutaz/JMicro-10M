@@ -18,6 +18,16 @@ def load_evaluation(path, tokenizer_path):
     job = read_json(path.parent/"job.json")
     if job["status"] != "complete" or alive(job):
         raise ValueError("Chat evaluation must actually finish before content review")
+    if "parent_job" in job:
+        parent_path = Path(job["parent_job"]).resolve()
+        assert parent_path.is_relative_to(ROOT/"reports/phase7")
+        parent = read_json(parent_path)
+        if parent["status"] != "complete" or alive(parent):
+            raise ValueError("Whole multi-seed evaluation must actually finish before content review")
+        assert parent["binding"] == job["parent_binding"]
+        assert all(parent[k] == job[k] for k in ("pid", "boot_id", "start_ticks"))
+        assert 0 < job["GPU_elapsed_seconds"] <= parent["GPU_elapsed_seconds"] <= parent["binding"]["GPU_budget_seconds"]
+        assert {k: v for k, v in job["binding"].items() if k not in ("evaluation_seed", "sampling")} == parent["binding"]
     ev = read_json(path); binding = ev["binding"]
     assert job["binding"] == binding and 0 < job["GPU_elapsed_seconds"] <= binding["GPU_budget_seconds"]
     assert binding["tokenizer_sha256"] == sha256(tokenizer_path)
@@ -25,14 +35,27 @@ def load_evaluation(path, tokenizer_path):
     assert all(sha256(path.parent/"source"/p) == value for p, value in binding["source_sha256"].items())
     checkpoint = Path(binding["checkpoint"])
     assert sha256(checkpoint) == binding["checkpoint_sha256"]
-    state = torch.load(checkpoint, map_location="cpu", weights_only=False)
-    assert finite_state(state) and state["update"] > 0 and state["spec"]["assistant_training"]
-    assert state["lineage"]["kind"] == "assistant-sft-fresh-optimizer"
+    if "stage_provenance" in binding:
+        from chat_stage_evidence import resolve_stage
+        provenance = binding["stage_provenance"]
+        ref = provenance["sft_config"]
+        assert sha256(Path(ref["path"])) == ref["sha256"]
+        state, _, current_provenance = resolve_stage(Path(ref["path"]), binding["stage"])
+        assert current_provenance == provenance
+        assert provenance["checkpoint"] == dict(path=str(checkpoint), sha256=binding["checkpoint_sha256"])
+    else:
+        state = torch.load(checkpoint, map_location="cpu", weights_only=False)
+        assert finite_state(state) and state["update"] > 0 and state["spec"]["assistant_training"]
+        assert state["lineage"]["kind"] == "assistant-sft-fresh-optimizer"
     assert state["implementation_sha256"] == binding["implementation"]
     tok = Tokenizer(tokenizer_path)
     assert tok.vocab_size == state["model_config"]["vocab_size"]
     context = state["model_config"]["max_position_embeddings"]
-    assert binding["model_context"] == context and binding["evaluation_seed"] == 42
+    assert binding["model_context"] == context
+    if binding["decoding"] == "greedy": assert binding["evaluation_seed"] == 42
+    else:
+        from evaluate_chat_stages import evaluation_seeds
+        assert binding["evaluation_seed"] in evaluation_seeds("sampling", binding["evaluation_seeds"])
     cases, _ = load_dev(tok, context)
     return ev, review_items(ev, cases, tok, context)
 

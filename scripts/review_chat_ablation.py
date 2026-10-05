@@ -15,6 +15,7 @@ from phase6_performance import alive
 from review_chat_sft import load_evaluation
 from run_chat_sft import preflight
 from run_eos_short_pilot import equal_state
+from chat_stage_evidence import validate_sft_terminal
 
 
 def load_arm(config_path, evaluation_path, notes_path, route):
@@ -38,16 +39,7 @@ def load_arm(config_path, evaluation_path, notes_path, route):
     ev, items = load_evaluation(evaluation_path, Path(recipe["tokenizer"]["path"]))
     assert ev["binding"]["checkpoint"] == result["checkpoint"] and ev["binding"]["checkpoint_sha256"] == result["checkpoint_sha256"]
     state = torch.load(result["checkpoint"], map_location="cpu", weights_only=False)
-    assert equal_state(state["sampler"], result["full_sampler"]) and equal_state(state["lineage"], result["Base_lineage"])
-    sampler = state["sampler"]
-    assert sampler["series_tokens"] == result["actual_series_tokens"] and sampler["series_budget"] == recipe["series_budget"]
-    assert sampler["teacher_tokens"] == state["supervised_tokens"] == result["Assistant_teacher_tokens"]
-    assert sampler["input_tokens"] == state["tokens"] == result["valid_input_tokens"]
-    assert sampler["physical_tokens"] == result["physical_tokens"] == state["update"]*recipe["spec"]["context"]*recipe["spec"]["batch"]
-    assert sampler["eot_teachers"] == sampler["examples"] == result["EOT_teachers"]
-    assert state["lineage"]["route"] == route and state["lineage"]["root_Base_checkpoint"] == result["adopted_Base"]
-    assert state["lineage"]["base_checkpoint"] == result["model_parent"] and state["lineage"]["optimizer_policy"] == "fresh"
-    assert {k: v for k, v in state["spec"].items() if k != "assistant_training"} == recipe["spec"]
+    validate_sft_terminal(state, result, recipe)
     notes = read_json(notes_path)
     report = content_review(ev, sha256(evaluation_path), notes, items)
     refs = dict(config_sha256=sha256(config_path), training_result_sha256=sha256(run/"result.json"),

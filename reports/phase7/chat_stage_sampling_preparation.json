@@ -1,0 +1,71 @@
+{
+  "status": "stage_and_sampling_implementation_CPU_protocol_complete_actual_GPU_quality_pending",
+  "verified_at": "2026-10-05T19:22:26.6620846Z",
+  "command": "scripts/evaluate_chat_stages.py/ps1",
+  "stages": [
+    "base",
+    "mid-training",
+    "sft"
+  ],
+  "source_sha256": {
+    "src/jmicro/chat_evaluation.py": "81282674705292a82e7689588d8b3061a5eb773cd04f5a286ddf7950e9af96fa",
+    "src/jmicro/chat_review.py": "53eabf79edea8a9205dc9b0f606866c07fa10a3f64fee33dd043549b7816af88",
+    "scripts/chat_stage_evidence.py": "eedae9cb29bf1c2dde3a323035206d8a016b59ee179c3cc336b9300ab12815e4",
+    "scripts/evaluate_chat_stages.py": "88053c79afdb9f87355c94de69aadfc832ffd1e586bde432617c0046f7b0cbba",
+    "scripts/evaluate_chat_stages.ps1": "2fe3ff29900ae252e43ac39463be44d46e4f74d8862cb7591ffe6a52fcfcf244",
+    "scripts/review_chat_sft.py": "a769901d6bf36621b343b596a59771e0e36d867cf37bd7b82007d6dd305cc66f",
+    "scripts/review_chat_ablation.py": "7e6553d96fc4cfaac13d9c36bde2349690902d8899ee17813752c97d462f79c7"
+  },
+  "comparison_modes": [
+    "fixed greedy seed42",
+    "sampling3-5 distinct seeds"
+  ],
+  "sampling_defaults": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "temperature": 0.8,
+    "top_p": 0.9,
+    "top_k": 50
+  },
+  "responses_per_seed": 219,
+  "context_scoring_families": 24,
+  "seeds_are_independent_cases": false,
+  "learning_RNG_consumed_by_CPU_sampling": false,
+  "CPU_tests": 23,
+  "CPU_test_seconds": 2.26,
+  "test_command": "uv run --frozen --extra hub --extra data --extra ml --extra export pytest -q tests/test_chat_sampling.py tests/test_chat_training.py tests/test_chat_evaluation.py tests/test_chat_review.py tests/test_chat_blind_review.py --junitxml reports/phase7/chat_stage_sampling_tests.xml",
+  "CLI_help_passed": true,
+  "PowerShell_syntax_passed": true,
+  "actual_CUDA_stage_evaluations": 0,
+  "actual_CUDA_sampling_evaluations": 0,
+  "actual_Chat_GPU_teacher_tokens": 0,
+  "actual_human_submissions": 0,
+  "protected_test_used": false,
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "requested_five_steps_complete": false,
+  "current_Base_job": {
+    "pid": 487071,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "10923679",
+    "ps_confirmed": true,
+    "heartbeat_at": "2026-10-05T19:22:26.063328Z",
+    "teachers": 3377996581,
+    "teacher_budget": 5000000000,
+    "loss": 2.5844333171844482
+  },
+  "pending": [
+    "5B full Japanese and all80 content review",
+    "quality adopted Base",
+    "actual masked CUDA batch",
+    "real mid/SFT vs direct learning",
+    "actual all stages greedy and multiple seed sampling",
+    "Base completion fluency retention",
+    "all content and human agreement",
+    "final test",
+    "quantization and actual UI"
+  ]
+}

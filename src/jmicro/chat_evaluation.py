@@ -1,5 +1,6 @@
 """Chat EOT/EOS, raw decoding and provided versus generated dialogue histories."""
 import re
+import math
 import torch
 from jmicro.japanese_evaluation import repetition_metrics
 from jmicro.tokenizer import SUPPRESS_IDS
@@ -15,11 +16,37 @@ def decode_reply(tokenizer,ids):
     return dict(text=text,valid_utf8=valid,raw_bytes_hex=raw.hex(),decode_error=None if valid else "invalid-utf8")
 
 
-def generate_reply(model,tokenizer,messages,device="cpu",dtype="fp32",max_new=64,suppressed=True,check=lambda:None):
+def validate_sampling(sampling, vocabulary):
+    assert set(sampling) == {"seed", "temperature", "top_p", "top_k"}
+    assert type(sampling["seed"]) is int and 0 <= sampling["seed"] < 2**63
+    assert type(sampling["temperature"]) in (float, int) and math.isfinite(sampling["temperature"]) and sampling["temperature"] > 0
+    assert type(sampling["top_p"]) in (float, int) and math.isfinite(sampling["top_p"]) and 0 < sampling["top_p"] <= 1
+    assert type(sampling["top_k"]) is int and 0 <= sampling["top_k"] <= vocabulary
+
+
+def sample_token(scores, sampling, generator):
+    values, indices = torch.sort(scores/sampling["temperature"], descending=True)
+    if sampling["top_k"]:
+        values[sampling["top_k"]:] = -torch.inf
+    probabilities = values.softmax(-1)
+    remove = probabilities.cumsum(-1) > sampling["top_p"]
+    remove[1:] = remove[:-1].clone(); remove[0] = False
+    values[remove] = -torch.inf
+    probabilities = values.softmax(-1)
+    if not torch.isfinite(probabilities).all() or probabilities.sum() <= 0:
+        raise ValueError("Nonfinite/empty sampling distribution")
+    return int(indices[torch.multinomial(probabilities, 1, generator=generator)])
+
+
+def generate_reply(model,tokenizer,messages,device="cpu",dtype="fp32",max_new=64,suppressed=True,check=lambda:None,*,sampling=None):
     context = model.config["max_position_embeddings"]
     if type(max_new) is not int or not 0 < max_new < context:
         raise ValueError("Positive generation budget must fit model context")
     prompt,removed = tokenizer.chat_prompt(messages,context-max_new)
+    generator = None
+    if sampling is not None:
+        validate_sampling(sampling, tokenizer.vocab_size)
+        generator = torch.Generator(device=device).manual_seed(sampling["seed"])
     ids = [];cache = None;current = torch.tensor([prompt],device=device)
     reason = "max_new_tokens"
     with isolated_evaluation(model):
@@ -29,7 +56,8 @@ def generate_reply(model,tokenizer,messages,device="cpu",dtype="fp32",max_new=64
             cache = output.cache;scores = output.logits[0,-1].float().clone()
             if not torch.isfinite(scores).all(): raise ValueError("Nonfinite Chat generation logits")
             if suppressed: scores[list(SUPPRESS_IDS)] = -torch.inf
-            token = int(scores.argmax());ids.append(token)
+            token = int(scores.argmax()) if sampling is None else sample_token(scores, sampling, generator)
+            ids.append(token)
             if token in (7,3):
                 reason = "eot" if token == 7 else "eos";break
             current = torch.tensor([[token]],device=device)
@@ -37,15 +65,16 @@ def generate_reply(model,tokenizer,messages,device="cpu",dtype="fp32",max_new=64
     row = dict(**decoded,generated_ids=ids,generated_tokens=len(ids),stop_reason=reason,
         role_leak=any(token in (4,5,6) for token in ids),unexpected_special=any(token in (0,1,2,4,5,6) for token in ids),
         empty_response=not decoded["text"].strip(),suppressed=suppressed,suppressed_ids=list(SUPPRESS_IDS) if suppressed else [],
-        decoding="greedy",prompt_ids=prompt,prompt_tokens=len(prompt),removed_turns=removed,
+        decoding="greedy" if sampling is None else "sampling",prompt_ids=prompt,prompt_tokens=len(prompt),removed_turns=removed,
         full_history_retained=removed == 0,user_turns=sum(m["role"] == "user" for m in messages),max_new_tokens=max_new)
+    if sampling is not None: row["sampling"] = dict(sampling)
     metrics = repetition_metrics(dict(row,stop_reason="stop_id" if reason in ("eot","eos") else reason))
     row["repetition"] = bool(re.search(r"(.{2,}?)\1\1",row["text"],re.DOTALL))
     row["repeat_metrics"] = {k:metrics[k] for k in ("char_4gram_repeat","token_4gram_repeat","same_sentence_reappears","first_adjacent_triple_repeat_char")}
     return row
 
 
-def rollout_dialogue(model,tokenizer,case,device="cpu",dtype="fp32",max_new=64,check=lambda:None):
+def rollout_dialogue(model,tokenizer,case,device="cpu",dtype="fp32",max_new=64,check=lambda:None,*,sampling=None):
     messages = case["messages"]
     if not messages or messages[-1]["role"] != "user": raise ValueError("Dev case must end in user")
     history = [dict(messages[0])] if messages[0]["role"] == "system" else []
@@ -53,7 +82,8 @@ def rollout_dialogue(model,tokenizer,case,device="cpu",dtype="fp32",max_new=64,c
     for message in messages:
         if message["role"] != "user": continue
         history.append(dict(message))
-        row = generate_reply(model,tokenizer,history,device,dtype,max_new,True,check)
+        turn_sampling = None if sampling is None else dict(sampling, seed=sampling["seed"]+len(replies))
+        row = generate_reply(model,tokenizer,history,device,dtype,max_new,True,check,sampling=turn_sampling)
         row.update(id=case["id"],turn=len(replies)+1,history_mode="model_generated_assistant_history")
         replies.append(row)
         # Match a text-based client: serialize decoded body as the next

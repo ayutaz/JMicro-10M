@@ -72,6 +72,18 @@ def test_real_optimizer_resume_and_masked_padding_counters(tmp_path):
     assert row["EOT_teachers"] == 1 and row["examples"] == 1
     assert row["padding_input_tokens"] > 0 and row["final_whole_window_overshoot"] < 129
     assert np.isfinite(row["loss"]) and np.isfinite(row["gradient_norm"])
+    # This is an actual CPU update/counter fixture, not adopted-Base/CUDA evidence.
+    import sys
+    sys.path.insert(0, str(ROOT/"scripts"))
+    from chat_stage_evidence import validate_sft_terminal
+    last.save(tmp_path/"final.pt")
+    state = torch.load(tmp_path/"final.pt", map_location="cpu", weights_only=False)
+    recipe = dict(spec=spec, series_budget=1, route="direct-sft", implementation=state["implementation_sha256"], dialogue_binding=last.sampler.binding)
+    result = dict(full_sampler=last.sampler.state_dict(), Base_lineage=last.lineage, actual_series_tokens=last.sampler.series_tokens,
+        Assistant_teacher_tokens=last.supervised_tokens, valid_input_tokens=last.tokens, physical_tokens=last.sampler.physical_tokens,
+        EOT_teachers=last.sampler.eot_teachers, adopted_Base=ref, model_parent=ref)
+    validate_sft_terminal(state, result, recipe)
+    with pytest.raises(AssertionError): validate_sft_terminal(state, dict(result, Assistant_teacher_tokens=last.supervised_tokens+1), recipe)
 
 
 def test_command_refuses_unadopted_base_before_dataset_or_gpu_work(tmp_path):

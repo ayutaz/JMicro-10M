@@ -7,7 +7,7 @@ Passing this development screen never adopts a Chat checkpoint.
 from collections import Counter
 import re
 
-from jmicro.chat_evaluation import decode_reply, summarize_chat
+from jmicro.chat_evaluation import decode_reply, summarize_chat, validate_sampling
 from jmicro.japanese_evaluation import repetition_metrics
 from jmicro.tokenizer import SUPPRESS_IDS
 
@@ -20,7 +20,7 @@ RUBRIC = {
 }
 
 
-def validate_reply(row, tokenizer, messages, context, suppressed):
+def validate_reply(row, tokenizer, messages, context, suppressed, sampling=None):
     ids = row["generated_ids"]
     assert isinstance(ids, list) and 0 < len(ids) <= 64
     assert all(type(i) is int and 0 <= i < tokenizer.vocab_size for i in ids)
@@ -28,7 +28,10 @@ def validate_reply(row, tokenizer, messages, context, suppressed):
     reason = "eot" if ids[-1] == 7 else "eos" if ids[-1] == 3 else "max_new_tokens"
     assert row["stop_reason"] == reason and (reason != "max_new_tokens" or len(ids) == 64)
     assert row["generated_tokens"] == len(ids) and row["max_new_tokens"] == 64
-    assert row["decoding"] == "greedy" and row["suppressed"] is suppressed
+    assert row["decoding"] == ("greedy" if sampling is None else "sampling") and row["suppressed"] is suppressed
+    if sampling is not None:
+        validate_sampling(sampling, tokenizer.vocab_size)
+        assert row["sampling"] == sampling
     assert row["suppressed_ids"] == (list(SUPPRESS_IDS) if suppressed else [])
     if suppressed:
         assert not any(i in SUPPRESS_IDS for i in ids)
@@ -53,7 +56,11 @@ def review_items(evaluation, cases, tokenizer, context):
     assert len({c["family_id"] for c in cases}) == 80
     assert all(c["split"] == "dev" for c in cases)
     binding = evaluation["binding"]
-    assert binding["decoding"] == "greedy" and binding["max_new_tokens"] == 64
+    assert binding["decoding"] in ("greedy", "sampling") and binding["max_new_tokens"] == 64
+    sampling = binding.get("sampling") if binding["decoding"] == "sampling" else None
+    if binding["decoding"] == "sampling":
+        validate_sampling(sampling, tokenizer.vocab_size)
+        assert sampling["seed"] == binding["evaluation_seed"]
     assert binding["scored_split"] == "dev" and binding["protected_test_used"] is False
     assert evaluation["evaluation_RNG_isolated"] is True and evaluation["protected_test_used"] is False
     assert evaluation["Chat_adopted"] is False and evaluation["requested_five_steps_complete"] is False
@@ -70,7 +77,7 @@ def review_items(evaluation, cases, tokenizer, context):
             row = provided[key]
             assert all(row[k] == case[k] for k in ("id", "family_id", "category", "split", "checks", "messages"))
             assert row["history_mode"] == "provided_assistant_history"
-            validate_reply(row, tokenizer, case["messages"], context, suppressed)
+            validate_reply(row, tokenizer, case["messages"], context, suppressed, sampling)
             items[key] = dict(key=key, id=case["id"], family_id=case["family_id"], category=case["category"],
                 condition=mode, messages=case["messages"], checks=case["checks"], response=row)
             rows.append(row)
@@ -89,7 +96,8 @@ def review_items(evaluation, cases, tokenizer, context):
             history.append(dict(user))
             assert row["id"] == case["id"] and row["turn"] == turn
             assert row["history_mode"] == "model_generated_assistant_history"
-            validate_reply(row, tokenizer, history, context, True)
+            turn_sampling = None if sampling is None else dict(sampling, seed=sampling["seed"]+turn-1)
+            validate_reply(row, tokenizer, history, context, True, turn_sampling)
             key = f"own-{case['id']}-turn-{turn}"
             items[key] = dict(key=key, id=case["id"], family_id=case["family_id"], category=case["category"],
                 condition="own-history", turn=turn, final_turn=turn == len(users), messages=[dict(m) for m in history],
@@ -177,6 +185,9 @@ def paired_chat_comparison(control_evaluation, candidate_evaluation, control_ite
     protocol_keys = ("tokenizer_sha256", "suite_sha256", "max_new_tokens", "model_context", "dtype", "backend",
                      "decoding", "evaluation_seed", "source_sha256", "implementation", "scored_split", "protected_test_used", "protocol")
     assert all(control_evaluation["binding"][k] == candidate_evaluation["binding"][k] for k in protocol_keys)
+    if control_evaluation["binding"]["decoding"] == "sampling":
+        assert control_evaluation["binding"]["sampling"] == candidate_evaluation["binding"]["sampling"]
+        assert control_evaluation["binding"]["evaluation_seeds"] == candidate_evaluation["binding"]["evaluation_seeds"]
     assert control_review["rubric"] == candidate_review["rubric"] == RUBRIC
     assert control_review["reviewer"] == candidate_review["reviewer"], "Keep the reviewer/protocol matched"
     assert set(control_items) == set(candidate_items)
@@ -216,5 +227,7 @@ def paired_chat_comparison(control_evaluation, candidate_evaluation, control_ite
         dev_screens=dict(direct_sft=control_review["dev_screen_passed"], midtraining_sft=candidate_review["dev_screen_passed"]),
         statistical_note="Family-paired descriptive bootstrap; multiple comparisons uncorrected, not independent confirmation",
         reviewer=control_review["reviewer"], independent_human_blind_evidence_verified=False,
+        generation_policy={k: control_evaluation["binding"][k] for k in ("decoding", "evaluation_seed")},
+        sampling_comparison_scope="One matched seed; final multi-seed claims require all configured seed reviews" if control_evaluation["binding"]["decoding"] == "sampling" else "Fixed greedy comparison",
         protected_test_used=False, Chat_adopted=False, requested_five_steps_complete=False,
         pending=candidate_review["pending"])
