@@ -24,6 +24,8 @@ from run_natural_learning import RUN,DATA,CONFIG,load_config
 
 def audit_stage(stage):
     c=load_config();result=read_json(RUN/(stage+'-result.json'));job=read_json(RUN/('job-'+stage+'.json'))
+    assert sha256(ROOT/c['tokenizer'])==c['tokenizer_sha256'] and sha256(ROOT/'eval/base.jsonl')==c['suite_sha256']
+    assert all(sha256(Path(v['path']))==v['sha256'] for v in c['reference'].values())
     assert job['status']=='complete' and not alive(job)
     assert result['gpu_seconds']<=job['gpu_elapsed_seconds']<=c[{'diagnostic':'diagnostic_gpu_budget_seconds','compare':'comparison_gpu_budget_seconds','expand':'expansion_gpu_budget_seconds'}[stage]]
     if stage=='expand':
@@ -87,9 +89,12 @@ def audit_stage(stage):
         atomic_json(RUN/'diagnostic-review.json',report)
     else:
         annotations=read_json(RUN/(stage+'-annotations.json'));scores={};evaluations=result['evaluations'];tok=Tokenizer(ROOT/c['tokenizer'])
+        cases={r['id']:r for r in (json.loads(line) for line in (ROOT/'eval/base.jsonl').read_text().splitlines()) if r['split']=='dev'}
         for arm,evaluation in evaluations.items():
             rows=evaluation['generation']['outputs'];validate_rows(rows,tok)
             assert len(rows)==80 and evaluation['checkpoint_sha256']==result['checkpoints'][arm]['checkpoint_sha256']
+            assert evaluation['binding']==result['checkpoints'][arm]['binding'] and not evaluation['protected_test_used']
+            assert {r['id'] for r in rows}==set(cases) and all(r['prefix']==cases[r['id']]['prefix'] for r in rows)
             assert evaluation['evaluation_RNG_isolated'] and evaluation['greedy_rates']==rate(rows)
             assert evaluation['body']['documents']==256 and evaluation['body']['body_bytes']==472055
             body=evaluation['body']
@@ -104,6 +109,7 @@ def audit_stage(stage):
             assert all(s['rationale'] and all(s[k] in (0,1,2) for k in ('grammar','relevance','coherence')) and s['completion'] in (0,1) for s in scores[arm].values())
             assert all(not scores[arm][r['id']]['completion'] or r['stop_reason']=='stop_id' and scores[arm][r['id']]['relevance']>=1 and scores[arm][r['id']]['coherence']>=1 for r in rows)
             summaries[arm].update(BPB=evaluation['body']['bpb'],rates=evaluation['greedy_rates'],
+                grammar_score2=sum(s['grammar']==2 for s in scores[arm].values()),relevance_score2=sum(s['relevance']==2 for s in scores[arm].values()),
                 coherent=sum(s['coherence']==2 for s in scores[arm].values()),appropriate=sum(s['completion'] for s in scores[arm].values()),
                 Japanese=evaluation['diagnostics'])
         if stage=='compare':
@@ -142,7 +148,7 @@ def audit_stage(stage):
     report.update(reviewer_sha256=sha256(Path(__file__)),config_sha256=sha256(CONFIG),result_sha256=sha256(RUN/(stage+'-result.json')),checked_at=now())
     if stage!='diagnostic':report['annotations_sha256']=sha256(RUN/(stage+'-annotations.json'))
     atomic_json(RUN/({'diagnostic':'diagnostic-review.json','compare':'review.json','expand':'expansion-review.json'}[stage]),report)
-    print(json.dumps(report,ensure_ascii=False),flush=True)
+    print(json.dumps(dict(status=report['status'],stage=stage,quality=report.get('quality'),practical=report.get('practical'),eligible_for_expansion=report.get('eligible_for_expansion'),scientific_teacher_tokens=report['scientific_teacher_tokens']),ensure_ascii=False),flush=True)
 
 
 def completion():
