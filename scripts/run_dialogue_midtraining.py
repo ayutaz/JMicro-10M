@@ -21,13 +21,15 @@ from run_eos_short_pilot import equal_state
 from run_amount_learning_comparison import latest_checkpoint, reconcile_metrics
 from amount_learning_trainer import CompactIndex
 from require_adopted_base import require_adopted_base
+from chat_batch_evidence import require_batch_evidence
 
 SOURCES = ("scripts/run_dialogue_midtraining.py", "scripts/run_dialogue_midtraining.ps1",
     "scripts/require_adopted_base.py", "src/jmicro/dialogue_training.py", "src/jmicro/tokenizer.py",
-    "scripts/amount_learning_trainer.py", "scripts/run_amount_learning_comparison.py", "scripts/phase6_performance.py")
+    "scripts/amount_learning_trainer.py", "scripts/run_amount_learning_comparison.py", "scripts/phase6_performance.py",
+    "scripts/chat_batch_evidence.py")
 
 
-def preflight(config):
+def preflight(config, *, require_batch=True):
     c = read_json(config)
     assert c["implementation"] == implementation_hashes()
     assert c["source_sha256"] == {p:sha256(ROOT/p) for p in SOURCES}
@@ -47,12 +49,7 @@ def preflight(config):
     assert sampler.binding == c["mixture_binding"]
     # Batch evidence must describe this new masked shape, rather than borrowing
     # an unrelated unpadded Base throughput measurement.
-    batch_ref = c["batch_evidence"]
-    assert sha256(Path(batch_ref["path"])) == batch_ref["sha256"]
-    batch = read_json(Path(batch_ref["path"]))
-    assert batch["actual_CUDA_BF16"] and batch["finite_forward_backward"]
-    assert batch["selected_batch"] == c["spec"]["batch"] and batch["context"] == c["spec"]["context"]
-    assert batch["mixture_binding"] == sampler.binding and batch["trainer_sha256"] == sha256(ROOT/"src/jmicro/dialogue_training.py")
+    if require_batch: require_batch_evidence(c,"mid-training",sampler.binding,"src/jmicro/dialogue_training.py")
     return c, tok, records, replay
 
 

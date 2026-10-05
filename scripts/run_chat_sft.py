@@ -14,45 +14,29 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"src"))
 import torch
 from jmicro.chat_training import AssistantTrainer,AssistantBudgetSampler
 from jmicro.experiment import ROOT,read_json,sha256,now
-from jmicro.tokenizer import Tokenizer
 from jmicro.training import atomic_json,gpu_lock,implementation_hashes
 from phase6_performance import alive,identity,finite_state
 from run_amount_learning_comparison import reconcile_metrics,latest_checkpoint
-from run_eos_short_pilot import equal_state,rate
-from review_eos_5b_finish import validate_rows
+from run_eos_short_pilot import equal_state
+from require_adopted_base import require_adopted_base,require_sft_parent
+from chat_batch_evidence import require_batch_evidence
 
 SOURCES = ("scripts/run_chat_sft.py","src/jmicro/chat_training.py","src/jmicro/assistant_sampler.py",
            "scripts/run_chat_sft.ps1",
            "scripts/phase6_performance.py","scripts/run_amount_learning_comparison.py",
-           "scripts/run_eos_short_pilot.py","scripts/review_eos_5b_finish.py","src/jmicro/tokenizer.py")
+           "scripts/run_eos_short_pilot.py","scripts/review_eos_5b_finish.py","src/jmicro/tokenizer.py",
+           "scripts/require_adopted_base.py","scripts/run_dialogue_midtraining.py","src/jmicro/dialogue_training.py",
+           "scripts/chat_batch_evidence.py")
 
 
-def preflight(config):
+def preflight(config, *, require_batch=True):
     c = read_json(config)
     assert c["implementation"] == implementation_hashes()
     assert c["source_sha256"] == {p:sha256(ROOT/p) for p in SOURCES}
-    for ref in (c["parent"],c["tokenizer"],c["train_records"],c["Base_acceptance"],c["Base_evaluation"],c["Base_annotations"]):
-        assert sha256(Path(ref["path"])) == ref["sha256"]
-    accepted = read_json(Path(c["Base_acceptance"]["path"]))
-    ev = read_json(Path(c["Base_evaluation"]["path"]))
-    if accepted.get("Base_adopted") is not True:
-        raise ValueError("A quality-adopted Base is required before SFT GPU training")
-    assert accepted["Base_adopted"] is True and accepted["checkpoint_sha256"] == c["parent"]["sha256"]
-    assert accepted["evaluation_sha256"] == c["Base_evaluation"]["sha256"] and accepted["annotations_sha256"] == c["Base_annotations"]["sha256"]
-    assert accepted["quality_criteria_unchanged"] is True
-    assert ev["checkpoint_sha256"] == c["parent"]["sha256"] and ev["evaluation_RNG_isolated"] and not ev["protected_test_used"]
-    tok = Tokenizer(c["tokenizer"]["path"]);rows = ev["generation"]["outputs"];validate_rows(rows,tok)
-    cases = {r["id"]:r for r in (json.loads(s) for s in (ROOT/"eval/base.jsonl").read_text().splitlines()) if r["split"] == "dev"}
-    assert len(rows) == 80 and {r["id"] for r in rows} == set(cases)
-    assert all(r["prefix"] == cases[r["id"]]["prefix"] for r in rows)
-    notes = read_json(Path(c["Base_annotations"]["path"]))["notes"]
-    scores = {n[0]:n for n in notes}
-    assert len(notes) == len(scores) == 80 and set(scores) == set(cases)
-    assert all(all(n[i] in (0,1,2) for i in (1,2,3)) and n[4] in (0,1) and len(n[5]) >= 12 for n in notes)
-    assert all(not scores[r["id"]][4] or r["stop_reason"] == "stop_id" and scores[r["id"]][2] >= 1 and scores[r["id"]][3] >= 1 for r in rows)
-    assert sum(n[1] == 2 for n in notes) >= 56 and sum(n[3] == 2 for n in notes) >= 27 and sum(n[4] for n in notes) >= 27
-    rates = rate(rows);assert rates == ev["greedy_rates"]
-    assert rates["eos"] >= 37 and rates["repetition"] <= 18 and all(rates[k] == 0 for k in ("unicode_failure","role_leak","empty"))
+    root_ref = c.get("adopted_Base",c["parent"])
+    tok = require_adopted_base(dict(c,parent=root_ref))
+    require_sft_parent(c,root_ref)
+    assert sha256(Path(c["train_records"]["path"])) == c["train_records"]["sha256"]
     with Path(c["train_records"]["path"]).open() as stream: records = [json.loads(s) for s in stream]
     sampler = AssistantBudgetSampler(records,tok,c["spec"]["context"],c["spec"]["seed"],c["series_budget"])
     assert sampler.binding == c["dialogue_binding"] and all(r["split"] == "train" for r in records)
@@ -62,6 +46,7 @@ def preflight(config):
     assert read_json(data_manifest)["train_records_sha256"] == c["train_records"]["sha256"]
     assert c["GPU_budget_seconds"] > 0
     assert (ROOT/c["output"]).resolve().is_relative_to(ROOT/"reports/phase7")
+    if require_batch: require_batch_evidence(c,"sft",sampler.binding,"src/jmicro/chat_training.py")
     return c,tok,records
 
 
@@ -140,6 +125,7 @@ def run(config):
                 requested_series_budget=c["series_budget"],actual_series_tokens=trainer.sampler.series_tokens,Assistant_teacher_tokens=trainer.supervised_tokens,
                 valid_input_tokens=trainer.tokens,physical_tokens=trainer.sampler.physical_tokens,EOT_teachers=trainer.sampler.eot_teachers,
                 full_sampler=trainer.sampler.state_dict(),Base_lineage=trainer.lineage,training_step_seconds=seconds,
+                route=c.get("route","direct-sft"),adopted_Base=c.get("adopted_Base",c["parent"]),model_parent=c["parent"],
                 resume_gate=gate,Chat_adopted=False,requested_five_steps_complete=False,completed_at=now())
             assert c["series_budget"] <= result["actual_series_tokens"] < c["series_budget"]+c["spec"]["context"]+1
             atomic_json(run/"result.json",result);heartbeat("learning-complete");job.update(status="complete",completed_at=now())

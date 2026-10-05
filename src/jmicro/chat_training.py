@@ -52,7 +52,7 @@ class AssistantBudgetSampler(AssistantSampler):
 
 
 class AssistantTrainer(Trainer):
-    """Base weights + fresh SFT Adam; local counters preserve Base lineage.
+    """Base/mid-trained weights + fresh SFT Adam; preserve both parent lineages.
 
     Does not certify Base quality or start a GPU job. A future run contract must
     validate the adopted Base, data split, budget and measured hardware batch.
@@ -80,11 +80,16 @@ class AssistantTrainer(Trainer):
         self.model.load_state_dict(parent["model"],strict=True)
         self.sampler = sampler
         self.scheduler = torch.optim.lr_scheduler.LambdaLR(self.optimizer,lambda _:1.)
+        inherited = parent.get("lineage") or {}
+        mid_trained = inherited.get("kind") == "dialogue-midtraining-fresh-optimizer"
+        root_ref = inherited["base_checkpoint"] if mid_trained else parent_ref
         self.lineage = dict(kind="assistant-sft-fresh-optimizer",parent_update=0,parent_tokens=0,
             local_counter_policy="SFT counters start at zero; Base exposure is recorded separately",
             base_checkpoint=dict(parent_ref),base_update=parent["update"],base_tokens=parent["tokens"],
             base_supervised_tokens=parent["supervised_tokens"],base_token_digest=parent["token_digest"],
-            optimizer_policy="fresh",RNG_policy="new frozen SFT seed")
+            optimizer_policy="fresh",RNG_policy="new frozen SFT seed",
+            route="midtraining-sft" if mid_trained else "direct-sft",root_Base_checkpoint=dict(root_ref),
+            model_parent_lineage=inherited if mid_trained else None)
         assert not self.optimizer.state and self.update == self.tokens == self.supervised_tokens == 0
         self._set_sft_lr()
 

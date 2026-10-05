@@ -592,3 +592,13 @@ run_dialogue_midtraining.py/ps1は固定config、採用Baseの評価・全80理�
 次は2Bのstable全stateから同500M教材を累積5Bへ明示延長（科学追加3B+同20M decay）、2Bを新比較の対照に固定し全日本語/80内容を判定する。実測step2B/2985.553秒を基にremaining3B/throughput×1.3+1800=7622秒のGPU上限を固定。stable-extension/decay各CUDA4対2+2 fullstate gateが本学習前に必要。5B/10Bは教材量ではなく累積教師量であり、教材2〜5B増量のsampler移行は別実装/別実験。10Bへ自動進行しない。5Bのdev screen合格でも最終seed/full/test等を実証するまでBase採用しない。Chat/量子化/実UIを含む全五目標は未完了。
 
 5B研究延長を実GPU起動した。actual487071/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start10923679、Windowsworker33740、config SHA f48ac242…を実確認。stable-extensionのCUDA連続4対2+2は全state/history/finite一致、検証8更新260906教師/262144inputを科学量と別に保存。累積教師2,001,989,075/loss2.654842有限から5Bへ継続し、GPU90%/VRAM7704MiB。現在の測定はbatch32/context1024の既存条件で、新たな最大VRAM/batch探索を行った証拠ではない。5B本流の終端、同20M decayの実CUDA再開、全日本語/全80内容、2Bとの採否は未完了。improved_base_5b_stable_gate.jsonとLinuxrun/job/source/metrics/checkpointsを保持し、実process確認後にのみ同restart_commandを使う。元UIはjob終端で復帰する。
+
+### 主mid-training→SFTの接続とmasked batch測定の準備（2026-10-06 JST、Chat GPU0）
+
+SFT configは`route=direct-sft`または`midtraining-sft`。`parent`は直前の学習済みmodel parent、`adopted_Base`は元の採用Baseを指し、後者のraw80評価/全理由/SHA/品質基準をそのまま確認する。主系列では`mid_training.config/result`のSHAと実job終了、同Base/train/Tokenizer/source、実CUDA再開gate、系列予算の完了とcheckpointの全会計/lineageを確認し、mid-trained parentをBase_adoptedと再ラベルしない。AssistantTrainerはparent重みを継ぎSFT optimizer/RNG/局所会計をfreshへ戻し、root Base・mid-training親・その履歴を別保存。Base流暢性保持/Chat採否は後続の比較評価で判定し、接続できたことを品質証明にしない。
+
+`probe_chat_batch.py/ps1 --config <frozen Phase7 probe recipe>`を用意。probe configは主trainingのBase/data/shape/予算に加えて`probe_kind=sft|mid-training`、`probe_source_sha256`、有限`candidate_batches`（最大12候補/各256以下）、warmup1〜20/measured4〜100更新、`probe_GPU_budget_seconds`（最大1800）、training outputとは別の`probe_output`を固定する。前段の採用Baseと実mid-training親を確認してからGPU lock下で各候補をfresh親から実測、教師tokens/秒中央値で選ぶ。系列/valid/physical throughput、allocated/reserved VRAM、OOMと完了更新教師を別報告し、probe重みを本学習の親へ使わない。候補範囲内の最大成功batchと速度最良batchを区別し、真の最大や全backend最適化を未測定で主張しない。
+
+主mid/SFTは`batch_evidence`のSHA・実完了job・親・data binding・trainer・context/dtype/backend/compile等とselected batchを確認する。probeだけは`require_batch=False`で前段確認を行い、CLI本学習で測定証拠の要求を外せない。採用Base未達なのでまだprobe config/GPU測定は0。関連15CPUtestsは実CPU mid→SFT weights/fresh Adam/full resumeと、不正な親/live jobの拒否、選択ルールのプロトコルfixtureの証拠のみ。CLI help/PS構文も成功。
+
+Tokenizer codec/Assistant sampler本体は変えず、採用Base確認後のTokenizeにinstance LRU100kを使い、probe/再開builderで同じ本文の再encodeを省く。固定実train2688の全40366窓で元binding d5676756…と一致し、CPU1.742秒/hit1258820/miss74810を記録した（sft_cached_binding_check.json）。元IDs/教師mask/split/原文を保持し、未使用testやモデル品質を評価しない。GPU速度の実測値ではない。次は現在の5B本学習と品質採否が先で、主mid-training/SFT対直接SFTの実GPU/同条件ablation/全内容採点は未完了。

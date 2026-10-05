@@ -154,10 +154,27 @@
         "start_ticks": "10923679",
         "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
         "pid": 487071,
-        "last_verified_at": "2026-10-05T18:48:32.8160626Z"
+        "last_verified_at": "2026-10-05T18:57:12.3796030Z"
       },
       "improved_Base_run": "reports/phase6/improved-base-5b-20261006",
-      "improved_Base_stable_gate": "reports/phase6/improved_base_5b_stable_gate.json"
+      "improved_Base_stable_gate": "reports/phase6/improved_base_5b_stable_gate.json",
+      "SFT_routes": {
+        "root_Base_and_model_parent_separate": true,
+        "routes": [
+          "direct-sft",
+          "midtraining-sft"
+        ],
+        "GPU_learning_tokens": 0,
+        "command": "scripts/run_chat_sft.py/ps1",
+        "tests": "reports/phase7/chat_routes_batch_tests.xml"
+      },
+      "Chat_batch_probe": {
+        "finite_candidate_range": true,
+        "selection": "median_teacher_tokens_per_second",
+        "command": "scripts/probe_chat_batch.py/ps1",
+        "actual_GPU_measurements": 0
+      },
+      "SFT_cached_binding_check": "reports/phase7/sft_cached_binding_check.json"
     }
   ],
   "independent_human_blind": "not performed",
