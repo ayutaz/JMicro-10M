@@ -1,3 +1,7 @@
+最新（2026-10-05 JST）: [結果67](67_condition_learning_diagnostic_results.md)が直近の実学習。固定小教材1000/拡張5000全文、準備55,273/280,724tokensから両24,969,216学習tokens、両update305938/10,024,976,384tokens。科学49,938,432・検証262,144別。train75/68・未見65/61で条件付き100M未開始。元packed文脈の正答100%対単独72/95・65/96で文脈依存を実測。両dev256/日本語診断/全160個別内容採点完了、不採用。元10B UI actual365612/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start7955441・HTTP親SHA/tokens/busy確認。verified local commitで停止。
+
+Linux実行 reports/phase6/condition-learning-20261005 にjob/二終端checkpoint/metrics/resume/日本語raw/条件train-dev全行/全160annotations/review/probe/completion。教材 /home/aihub_ubuntu/jmicro-data/phase6/condition-learning-20261005-v2。これらの大型fileはGit外なので別途引き継ぐ。最初の未使用教材と失敗testsはpreparation-v1として保持。次回は実job/UI identityとfrozen configを確認し、終了runを再起動しない。以下の結果65と旧UI identityの記述は以前の引き継ぎ履歴。
+
 # Windows/WSL引き継ぎ
 
 最終更新: 2026-10-05 JST。最新完了は[結果65](65_condition_selector_v2_preparation_results.md)。別train32でselector v2を凍結、両20,000,072-token教材と未確認各40を用意したが弱例12/14で両内容gateが未達。準備失敗分岐の報告・採否・元UI確認まで完了して停止。新100M/全文は未起動。結果60/63と全旧証拠を保持。完成runを再起動しない。

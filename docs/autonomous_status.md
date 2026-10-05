@@ -1,8 +1,14 @@
+最新（2026-10-05 JST）: **[契約66](66_condition_learning_diagnostic_plan.md)の段階1〜4を実学習・拡張・総合評価まで完了し停止**。[結果67](67_condition_learning_diagnostic_results.md)。教材55,273/280,724tokens・1000/5000全文、両24,969,216学習tokens、train75/68・未見65/61。両診断目標90/70未達なので条件付き100Mは未開始。元block文脈付き95/95・96/96対単独72/95・65/96で文脈依存を実測。Base dev256 BPB1.268845/1.408409、EOS59/62だが一貫性1/2・適切完結6/5（各80）で不採用。全160個別理由、5CPUtests/26実CUDA再開/44学習評価/14完了checks成功。科学49,938,432、検証262,144別。GPU263.747884秒＋probe約2.319秒。元10B UI actual365612/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start7955441・HTTP親SHA410f975d…/10,000,007,168tokens/busy=false実確認。verified local commitで停止、新学習/20B/Chat/test/pushなし。次案は文書を跨がない学習との同量比較で未開始。
+
+可搬証拠は reports/phase6/condition_learning_{ready,annotations,review,packing_probe,judgment,completion}.json とtests.xml。Linuxrun reports/phase6/condition-learning-20261005、教材 /home/aihub_ubuntu/jmicro-data/phase6/condition-learning-20261005-v2。再開時はactual job/UIとfreeze/checkpointを確認し、完了runを再起動しない。以前の結果65・以下の実行中の記述は履歴として保持する。
+
+## 過去の再開・準備記録
+
 最新（2026-10-05 JST）: ユーザーの『4まで進めてください』で[条件学習診断66](66_condition_learning_diagnostic_plan.md)の教材→短い学習→拡張→総合評価を再開。Codex作成の閉じた条件教材を1000/5000全文で固定、未見100（既知構文50/未学習構文50）、各24,969,216tokensで学習可能性を比較する。旧結果65のgate/準備失敗は保持。準備中の容量上限・全文重複を5CPUtestsで修正し、GPU前の初回準備をLinux preparation-v1へ保存。最終v2教材は別directory。新実学習はjob.jsonのactual identity/metrics/checkpointを確認する。原品質目標は不変、20B/Chat/test/pushなし。完了後は元10B UIとverified local commitで停止。
 
 # Codex継続作業の現在地
 
-最新（2026-10-05 JST）: **結果63後の四項目は、新たな準備不成立分岐まで完了して停止**。[実行64](64_condition_selector_v2_execution.md)/[結果65](65_condition_selector_v2_preparation_results.md)。別train32で弱例12、v2が弱例9/正しい4を除外し3273e77で凍結。両20,000,072tokens/71,268全文、長さ全並び/BOS/EOS一致、平均278.631868/EOS3.563387、共有10,232。既知152hashを両poolから除外し、未確認の固定40各を診断したが弱例対照12/候補14で「対照より少ない」「10/40以下」の両準備条件未達。全80理由、5CPUtests/101準備証拠/13完了checks、採否/元UI実確認を保存した。科学0/検証0、新GPU評価0。各100M/一次日本語と160生成/条件付き全文は開始しない。
+最新（2026-10-05 JST）: **結果63後の四項目は、新たな準備不成立分岐まで完了して停止**。[実行64](64_condition_selector_v2_execution.md)/[結果65](65_condition_selector_v2_preparation_results.md)。別train32で弱例12、v2が弱例9/正しい4を除外し3273e77で凍結。両20,000,072tokens/71,268全文、長さ全並び/BOS/EOS一致、平均278.631868/EOS3.563387、共有10,232。既知152hashを両poolから除外し、未確認の固定40各を診断したが弱例対照12/候補14で「対照より少ない」「10/40以下」の両準備条件未達。全80理由、5CPUtests/101準備証拠/14完了checks、採否/元UI実確認を保存した。科学0/検証0、新GPU評価0。各100M/一次日本語と160生成/条件付き全文は開始しない。
 
 builder actual363349/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start_ticks7716977は完了・不在。抽出を含む20.160553秒、新pool照合0.825141秒、reviewer末尾整形後の追加照合0.728438秒。selector/教材/seed/内容理由/gateは不変、初回監査はLinux archiveへ保持。元UI actual359102/boot同/start_ticks7216365、HTTP親SHA410f975d…/10,000,007,168tokens/busy=falseを新完了確認で照合。UIは停止していない。
 

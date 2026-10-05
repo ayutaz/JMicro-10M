@@ -1,3 +1,5 @@
+最新（2026-10-05 JST）: [契約66](66_condition_learning_diagnostic_plan.md)の四段階を実行、[結果67](67_condition_learning_diagnostic_results.md)。両追加24,969,216tokensでtrain75/68・未見65/61、目標未達で条件付き100Mは未開始。文脈付きtrain100%と単独の差を実測。全日本語・160内容評価済み、EOS改善のみでは一貫性/BPB未達で両不採用。Base/Chat品質未達、元10B UIを復帰してverified local commitで停止。次の文書単位学習比較は提案のみ。以下のPhase定義・原品質条件と以前の結果を維持する。
+
 # JMicro-10M フェーズ別実行計画
 
 最新（2026-10-05 JST）: 結果63後の四項目は別train32でselector v2を改修/凍結し、同source各20M/未確認全80を診断。対照弱例12/候補14で両内容gate未達、準備失敗分岐の採否・報告・元10B UI確認まで完了して停止。新GPUなし。状態はdocs/autonomous_status.md、結果はdocs/65_condition_selector_v2_preparation_results.md。以下のPhase定義と元品質条件は維持する。
