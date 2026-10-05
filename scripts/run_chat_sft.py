@@ -22,6 +22,7 @@ from run_eos_short_pilot import equal_state,rate
 from review_eos_5b_finish import validate_rows
 
 SOURCES = ("scripts/run_chat_sft.py","src/jmicro/chat_training.py","src/jmicro/assistant_sampler.py",
+           "scripts/run_chat_sft.ps1",
            "scripts/phase6_performance.py","scripts/run_amount_learning_comparison.py",
            "scripts/run_eos_short_pilot.py","scripts/review_eos_5b_finish.py","src/jmicro/tokenizer.py")
 

@@ -66,7 +66,7 @@
       "review": "reports/phase6/architecture_comparison_review.json"
     },
     {
-      "status": "actual_GPU_large_curve_running_100M_and500M_all160_reviews_complete",
+      "status": "actual_GPU_large_curve_running_100M_500M_1B_all240_reviews_complete",
       "id": 4,
       "deliverables": [
         "nested100M/500M prepared material",
@@ -78,7 +78,7 @@
       "actual_identity": {
         "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
         "start_ticks": "10369108",
-        "last_verified_at": "2026-10-05T17:37:11.8082805Z",
+        "last_verified_at": "2026-10-05T17:49:30.2558277Z",
         "pid": 481317
       },
       "previous_supply_failure": "reports/phase6/nested_material_v1_supply_failure.json",
@@ -94,11 +94,12 @@
       "first_point_review": "reports/phase6/amount_learning_large-100000000_content_review.json",
       "content_reviews": [
         "reports/phase6/amount_learning_large-100000000_content_review.json",
-        "reports/phase6/amount_learning_large-500000000_content_review.json"
+        "reports/phase6/amount_learning_large-500000000_content_review.json",
+        "reports/phase6/amount_learning_large-1000000000_content_review.json"
       ]
     },
     {
-      "status": "CPU_Assistant_trainer_command_prepared_Base_unadopted_no_Chat_GPU",
+      "status": "CPU_Assistant_training_Chat_evaluation_prepared_Base_unadopted_no_Chat_GPU",
       "id": 5,
       "deliverables": [
         "improvedBase stable1B/2B/5B/10B and unchangedquality",
@@ -108,9 +109,11 @@
         "Q8/Q4 quality size speed",
         "working local UI and reproduction"
       ],
-      "preparation_tests": "reports/phase7/chat_training_tests.xml",
+      "preparation_tests": "reports/phase7/chat_protocol_training_tests.xml",
       "training_command": "scripts/run_chat_sft.py --config <adopted-Base frozen SFT config>",
-      "Chat_GPU_teacher_tokens": 0
+      "Chat_GPU_teacher_tokens": 0,
+      "evaluation_command": "scripts/evaluate_chat_sft.py --checkpoint <learned-SFT> --output reports/phase7/<fixed-dev-evaluation>",
+      "own_history_protocol": "80dev provided suppressed/control;24 own-history2-4turn families,59 replies; content judgments pending"
     }
   ],
   "independent_human_blind": "not performed",
