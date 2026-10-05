@@ -1,5 +1,11 @@
 # Codex継続作業の現在地
 
+2026-10-05 JST・新計画54段階1〜4完了: train全文pool110,000,202 tokens（物語30M/Web80M）、一様ランダム40全文の弱例8を明記して受入、12CPUtests/実CUDA25save-resume/一次CPU22/最終要求別51項目成功。同じ元10Bから一条件500,006,912科学tokens（検証262,144別）、学習745.510秒・一次GPU853.678秒。BPB0.972888865/EOS17/反復31/一貫性9/適切完結8（各80）、日本語192/331/1119全完了・全80個別Codex診断。保存物語500MのEOS37/反復18/一貫性・完結19から悪化し、新改善条件未達で不採用、条件付き全文/400/長文は未開始。物語実比率20%→5.4531%、short EOS教師約111万→約61万で、増量だけの効果ではない。データ量・学習量不足を否定せず、次案は実物語比率/長さ/EOS密度を揃えた内容比較として報告55に保存（未実行）。科学232272/教材231819・231975は終了。元final10B UI actual232991/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start_ticks6169021、HTTP親SHA410f975d…/tokens10,000,007,168/busy=falseとactual processを確認。報告/判断/要求別確認/local commitで停止。Base/Chat品質未達、1B/20B/50B/Chat/protected test/push/publicationは未開始。以下は当時の履歴で旧jobを再起動しない。
+
+計画54・科学500M完了/一次評価中: actual232272がwhole20の追加500,006,912/総10,500,014,080/update320435を745.510秒で学習し終端を保存した。Web400,031,744/short99,975,168、EOS教師Web846,893/short607,745（旧物語short1,105,092より少ない）。同じjobがdev256/80生成/日本語192・331・1119を実行中。科学と検証262,144は別会計。80内容の個別採点・実CPUreview/条件付き全文・段階4採否/report/commit/UI復帰は未完了。重複学習や旧対照の再実行をしない。
+
+計画54・段階2実行中: hidden Windows32072/actual Linux232272/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start_ticks6083120、2026-10-05T05:20:28.697566Z起動。新110M教材を使う実CUDA exact save/resume25checks通過、検証262,144tokens別会計、whole20追加500Mの学習中。Linux reports/phase6/complete-document-500m-20261005/screen-job.json、Windows同run screen.stdout.log/screen.stderr.logとcheckpoint/latest.jsonを追跡。一次1800秒、必要時保存checkpointから同じ凍結条件で再開し、重複起動しない。UIはGPU中停止・wrapper finallyで元final10B復帰。一次評価/全80内容診断・条件付き全文・判断/報告/commit/停止は未完了。データと凍結実装のlocal commit aa53975。
+
 計画54・段階1完了: 新pool110,000,202 tokens=story30,000,063/Web80,000,139、668,680全文、抽出累計73.340秒。最初4Bで量未達後、原条件を維持して未走査範囲だけ6.84Bまで継続し必要量で停止。一様ランダム40全文に弱例8を明記してbounded研究比較として受入、独立意味/事実/unique認証ではない。CPU12tests成功、実量/config/schema/source/対照を凍結。次に新データ実save/resumeと一条件500Mを1800秒以内で実行し一次評価・全80内容診断へ進む。旧対照の再学習なし。
 
 2026-10-05 JST・新計画54の段階1〜4をユーザーが再開承認: 固定500Mで短文データ構成/準備量を改善する一条件を実行する。目標110M=低反復物語30M+短いWeb文書全文80M、trainのみ、CPU1800秒/Web最大4Bの必要分だけ抽出、無作為40全文を開始前確認。段階1教材builder/選別を実装し関連tests後に起動する。元UI231106のみ稼働、旧科学/evaluationは終了済み。保存Web/物語500M対照を再利用し、原条件を維持して採否/report/local commit/元UI復帰まで進め停止する。旧計画52の完了境界は履歴で新計画を阻まない。
