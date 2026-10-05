@@ -1,5 +1,5 @@
 {
-  "observed_at": "2026-10-05T22:37:53.9816748Z",
+  "observed_at": "2026-10-05T22:44:48.7716966Z",
   "job": {
     "status": "running",
     "pid": 501165,
@@ -7,16 +7,19 @@
     "start_ticks": "12291147",
     "config_sha256": "8b8de74892c885c1680cf2d7755074b9938809b66dae09f6e276ac446ff43d19",
     "started_at": "2026-10-05T22:35:09.31519Z",
-    "gpu_elapsed_seconds": 110.6115060840093,
+    "gpu_elapsed_seconds": 525.809264577998,
     "protected_test_used": false,
     "Base_adopted": false,
     "restart_command": "scripts/run_sequence_objective_comparison.ps1 -Mode Train -Worker",
-    "stage": "CE-training",
-    "heartbeat_at": "2026-10-05T22:37:51.091757Z",
-    "teachers": 9098364,
+    "stage": "CE_UL-training",
+    "heartbeat_at": "2026-10-05T22:44:46.28952Z",
+    "teachers": 14947435,
     "teacher_budget": 25000000,
-    "loss": 2.6022322177886963,
-    "sequence_UL": 0.6881098747253418
+    "loss": 2.5546555519104004,
+    "sequence_UL": 0.0206889808177948,
+    "completed_tasks": 618,
+    "total_tasks": 618,
+    "completed_cases": 80
   },
   "actual_process_live": true,
   "windows_worker_pid": 31224,
@@ -34,5 +37,12 @@
   "quality_evaluation_complete": false,
   "Base_adopted": false,
   "Chat_adopted": false,
-  "next_action": "Keep actual501165 running; complete CE and CE_UL25M, full Japanese/common-byte and all160 original content review, then quality decision"
+  "next_action": "Keep actual501165 running; finish CE_UL25M/Japanese/all80 raw content, then complete full paired checkpoint and quantity/quality audit",
+  "CE_completed_content_review": "reports/phase6/sequence_objective_CE_content_review.json",
+  "latest_CE_UL_checkpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/sequence-objective-comparison-20261006/CE_UL/training/checkpoint-00031791.pt",
+    "sha256": "844e61caca8d72d4710273c8669787fbf3f1d469b6d028a43915741656f9462c",
+    "update": 31791,
+    "tokens_seen": 1041727488
+  }
 }
