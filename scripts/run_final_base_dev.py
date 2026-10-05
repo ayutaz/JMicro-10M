@@ -43,6 +43,7 @@ SOURCES = ("scripts/run_final_base_dev.py", "scripts/run_final_base_dev.ps1", "s
     "scripts/review_eos_5b_finish.py", "scripts/review_textbook_quantity_comparison.py",
     "scripts/run_textbook_improved_base.py", "scripts/run_eos_complete_100m.py",
     "scripts/run_seeded_base_confirmation.py", "scripts/review_seeded_base_confirmation.py",
+    "scripts/run_textbook_coverage_v2.py", "scripts/review_textbook_coverage_v2.py",
     "src/jmicro/readiness.py", "src/jmicro/evaluation_memory.py",
     "src/jmicro/japanese_evaluation.py")
 
@@ -63,6 +64,19 @@ def screen_checks(ev, scores):
         no_empty_role_unicode=all(rates[k] == 0 for k in ("empty", "role_leak", "unicode_failure")))
 
 
+def coverage_source_recipe(training_config, run, point):
+    """Admit only the exact completed coverage candidate, with its frozen guards."""
+    from run_textbook_coverage_v2 import CONFIG, RUN, CANDIDATE, inspect
+    completed_source(run)
+    if (training_config.resolve() != CONFIG.resolve() or run.resolve() != RUN.resolve()
+            or point != CANDIDATE):
+        raise ValueError("Coverage source must be the frozen version2 candidate")
+    recipe, base, _, _ = inspect(CONFIG)
+    assert recipe["research_kind"] == "same_material_teacher_coverage"
+    assert recipe["recipe_version"] == 2 and recipe["quality_criteria_unchanged"]
+    return recipe, base
+
+
 def source_evidence(training_config, run, point):
     job = completed_source(run)
     assert run.resolve().is_relative_to(ROOT/"reports/phase6")
@@ -70,6 +84,9 @@ def source_evidence(training_config, run, point):
         base = load_config()
         assert run == QUANTITY_RUN
         status = "matched500M_2B_all160_and_actual_learning_evidence_complete"
+    elif read_json(training_config).get("research_kind") == "same_material_teacher_coverage":
+        recipe, base = coverage_source_recipe(training_config, run, point)
+        status = "coverage_learning_and_all80_evidence_complete"
     elif read_json(training_config).get("kind") == "independent-training-seed-confirmation":
         from run_seeded_base_confirmation import preflight as seed_preflight
         recipe, base, _ = seed_preflight(training_config)

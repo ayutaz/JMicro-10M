@@ -20,13 +20,14 @@ from jmicro.tokenizer import Tokenizer
 from jmicro.training import atomic_json, gpu_lock, implementation_hashes
 from phase6_performance import alive, identity, finite_state
 from seeded_textbook_trainer import make_zero_parent, SeededThreeSourceTrainer
-from textbook_quantity_trainer import ThreeSourceIndex, TAG_MAPPING, GENRES
+from textbook_quantity_trainer import TAG_MAPPING, GENRES
+from cached_three_source_index import CachedThreeSourceIndex
 from run_textbook_quantity_comparison import latest_checkpoint, reconcile_metrics, detail
 from run_final_base_dev import source_evidence, completed_source, ref
 from run_eos_short_pilot import equal_state
 import run_complete_text_comparison as evaluation
 
-SOURCES = ("scripts/run_seeded_base_confirmation.py", "scripts/run_seeded_base_confirmation.ps1",
+SOURCES = ("scripts/cached_three_source_index.py", "scripts/run_seeded_base_confirmation.py", "scripts/run_seeded_base_confirmation.ps1",
     "scripts/review_seeded_base_confirmation.py", "scripts/seeded_textbook_trainer.py",
     "scripts/run_final_base_dev.py", "scripts/textbook_quantity_trainer.py",
     "scripts/amount_learning_trainer.py", "scripts/run_complete_text_comparison.py",
@@ -45,6 +46,13 @@ def validate_zero(zero, original, seed):
     assert all(lineage[k] == seed for k in ("initialization_seed", "training_RNG_seed", "material_shuffle_seed"))
 
 
+def accepted_index_cache(pool):
+    path = Path(pool['pool'])/('.compact-index-'+pool['manifest_sha256'][:16])/'ready.json'
+    if not path.is_file():
+        raise ValueError('Independent seed needs accepted compact index; refuse original index rescan')
+    return ref(path)
+
+
 def preflight(path, recipe=None):
     c = read_json(path) if recipe is None else recipe
     source_run = Path(c["source_run"]); completed_source(source_run)
@@ -60,6 +68,7 @@ def preflight(path, recipe=None):
     assert c["boundaries"] == list(schedule["boundaries"]) and stable["sampler"]["source_teachers"]["short"] == c["teacher_budget"]
     assert c["training_seed"] == 43 and c["source_training_seed"] == stable["spec"]["seed"] == 42
     assert c["arm"] == stable["pilot_binding"]["arm"] and c["pool"] == base["pools"][c["arm"]]
+    assert c['index_cache_ready'] == accepted_index_cache(c['pool'])
     assert c["peak_lr"] == base["peak_lr"] and c["warmup_updates"] == base["warmup_updates"]
     assert c["decay_teacher_tokens"] == base["decay_teacher_tokens"] == 20000000
     assert c["original_zero"] == base["parent"] and sha256(Path(c["original_zero"]["path"])) == c["original_zero"]["sha256"]
@@ -92,6 +101,7 @@ def freeze(path, args):
         training_config=ref(training_config), source_result=ref(source_run/"compare-result.json"),
         source_review=ref(source_run/"review.json"), source_annotations=ref(source_run/"annotations.json"),
         stable_reference=ref(Path(stable["checkpoint"])), original_zero=base["parent"], arm=arm, pool=base["pools"][arm],
+        index_cache_ready=accepted_index_cache(base['pools'][arm]),
         training_seed=43, source_training_seed=42, teacher_budget=total, boundaries=list(schedule["boundaries"]),
         decay_teacher_tokens=20000000, peak_lr=base["peak_lr"], warmup_updates=base["warmup_updates"],
         GPU_budget_seconds=math.ceil((total+20000000)/throughput*1.3+1800),
@@ -169,7 +179,9 @@ def run(path):
             if target.exists(): assert target.read_bytes() == (ROOT/relative).read_bytes()
             else: shutil.copyfile(ROOT/relative,target)
         web = TrainView(base["web_shards"],base["web_manifest_sha256"])
-        pool = TrainView(c["pool"]["pool"],c["pool"]["manifest_sha256"]); pool.index = ThreeSourceIndex(pool)
+        pool = TrainView(c["pool"]["pool"],c["pool"]["manifest_sha256"])
+        pool.index = CachedThreeSourceIndex(pool)
+        assert pool.index.cache_reused, 'Independent seed must reuse the accepted compact index'
         dev = Shard(Path(base["dev_shards"]),"dev"); tok = Tokenizer(ROOT/base["tokenizer"])
         original = torch.load(c["original_zero"]["path"],map_location="cpu",weights_only=False)
         with gpu_lock("cuda"):
