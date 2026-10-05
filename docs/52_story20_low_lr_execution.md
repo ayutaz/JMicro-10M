@@ -11,6 +11,8 @@ Pythonはすべてuv管理3.12.7、WSL2/RTX4090で実行する。protected test�
 
 ## 実行状態
 
+段階3・両科学枝の学習完了: Web747.396秒、物語735.280秒、各500,006,912/総10,500,014,080/update320435。物語sourceはWeb400,031,744/short99,975,168、終端SHA f336806bee562cf11fe29506f833deae45de228c4b8acb1b942c7df21c82daac。保存short sampler epoch1/position39074/blocks58558で約1.667周の使用を確認。EOS教師はWeb846,893/short1,105,092で、短文側の密度が高い。各100M中間も保存済み、同じactual Linux174280が起動約25分3秒時点で最初のWeb80生成評価中。科学計1,000,013,824を一つのモデルの累積に合算しない。一次評価・320内容診断・原gate条件付き全文・段階4は未完了。
+
 段階3のWeb枝500M学習完了: 追加500,006,912科学tokens/15259更新、総10,500,014,080/update320435、学習747.396秒。終端checkpoint SHA d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4、100M中間も保存済み。同じactual Linux174280が起動約13分5秒時点で物語20%枝400更新を学習中、stderr空。両枝の評価は後続なのでWeb500MのBPB・生成品質は未測定。完了した実結果と未完了の物語学習/320内容診断/全文条件判定/段階4を分ける。[判断53](53_story20_low_lr_judgment.md)は途中原稿。
 
 段階3の科学比較を永続起動: 準備commit742ec45、2026-10-05 00:56:22.906739Z開始、hidden Windows33908 / actual Linux174280 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks4498545。actual processの存在を確認し、`screen-job.json`とWindows`screen.*.log`を追跡する。UI停止済みで、launcher finallyが元final10Bへ復帰する。現在CUDA保存再開確認段階、科学学習・320内容診断・条件付き全文・段階4判断は未完了。起動済みjobを重複起動しない。
