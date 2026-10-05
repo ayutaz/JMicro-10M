@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="2" time="1.848" timestamp="2026-10-06T06:38:21.902064+09:00" hostname="DESKTOP-42CUV0C"><testcase classname="tests.test_seeded_textbook_trainer" name="test_independent_zero_has_different_weights_rng_and_material_order_and_resumes" time="0.789"><failure message="KeyError: 'parent_update'">tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-55/test_independent_zero_has_diff0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x75165bb3b3b0&gt;
+
+    def test_independent_zero_has_different_weights_rng_and_material_order_and_resumes(tmp_path, monkeypatch):
+        monkeypatch.setattr(torch.cuda, "is_available", lambda:False)
+        _, original, shard, binding, _ = fixture(tmp_path)
+        zero_path = tmp_path/"seed43-zero.pt"
+&gt;       zero = make_zero_parent(original, shard, zero_path, seed=43)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_seeded_textbook_trainer.py:19: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/seeded_textbook_trainer.py:36: in make_zero_parent
+    trainer.save(path)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;jmicro.training.Trainer object at 0x75164cd67530&gt;
+path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-55/test_independent_zero_has_diff0/seed43-zero.pt')
+
+    def save(self, path):
+        started = time.perf_counter()
+        path.parent.mkdir(parents=True, exist_ok=True)
+        state = {"version": 2, "spec": self.spec, "model_config": self.model.config,
+            "model": self.model.state_dict(), "optimizer": self.optimizer.state_dict(),
+            "scheduler": self.scheduler.state_dict(), "rng": rng_state(),
+            "sampler": self.sampler.state_dict(), "update": self.update, "tokens": self.tokens,
+            "supervised_tokens": self.supervised_tokens, "body_bytes": self.body_bytes,
+            "token_digest": self.token_digest, "shard_manifest_sha256": sha256(self.shard.directory / "manifest.json"),
+            "implementation_sha256": implementation_hashes()}
+        if self.lineage is not None:
+            state["lineage"] = self.lineage
+&gt;           state["branch_updates"] = self.update-self.lineage["parent_update"]
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           KeyError: 'parent_update'
+
+src/jmicro/training.py:388: KeyError</failure></testcase><testcase classname="tests.test_seeded_textbook_trainer" name="test_independent_zero_refuses_same_seed_learned_parent_and_overwrite" time="0.155"><failure message="KeyError: 'parent_update'">tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-55/test_independent_zero_refuses_0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x75164d370650&gt;
+
+    def test_independent_zero_refuses_same_seed_learned_parent_and_overwrite(tmp_path, monkeypatch):
+        monkeypatch.setattr(torch.cuda, "is_available", lambda:False)
+        learned_path, original, shard, _, _ = fixture(tmp_path)
+        with pytest.raises(ValueError, match="distinct"):
+            make_zero_parent(original, shard, tmp_path/"same.pt", seed=42)
+        learned = torch.load(learned_path, map_location="cpu", weights_only=False)
+        with pytest.raises(ValueError, match="zero-update"):
+            make_zero_parent(learned, shard, tmp_path/"learned.pt", seed=43)
+&gt;       path = tmp_path/"new.pt"; make_zero_parent(original, shard, path, seed=43)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_seeded_textbook_trainer.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/seeded_textbook_trainer.py:36: in make_zero_parent
+    trainer.save(path)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;jmicro.training.Trainer object at 0x75164cc82b40&gt;
+path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-55/test_independent_zero_refuses_0/new.pt')
+
+    def save(self, path):
+        started = time.perf_counter()
+        path.parent.mkdir(parents=True, exist_ok=True)
+        state = {"version": 2, "spec": self.spec, "model_config": self.model.config,
+            "model": self.model.state_dict(), "optimizer": self.optimizer.state_dict(),
+            "scheduler": self.scheduler.state_dict(), "rng": rng_state(),
+            "sampler": self.sampler.state_dict(), "update": self.update, "tokens": self.tokens,
+            "supervised_tokens": self.supervised_tokens, "body_bytes": self.body_bytes,
+            "token_digest": self.token_digest, "shard_manifest_sha256": sha256(self.shard.directory / "manifest.json"),
+            "implementation_sha256": implementation_hashes()}
+        if self.lineage is not None:
+            state["lineage"] = self.lineage
+&gt;           state["branch_updates"] = self.update-self.lineage["parent_update"]
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           KeyError: 'parent_update'
+
+src/jmicro/training.py:388: KeyError</failure></testcase></testsuite></testsuites>

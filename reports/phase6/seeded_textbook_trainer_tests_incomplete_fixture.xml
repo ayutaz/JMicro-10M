@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="3" time="2.173" timestamp="2026-10-06T06:39:15.283029+09:00" hostname="DESKTOP-42CUV0C"><testcase classname="tests.test_seeded_textbook_trainer" name="test_independent_zero_has_different_weights_rng_and_material_order_and_resumes" time="0.894"><failure message="ValueError: Decay must inherit this replicate's actual stable cursor">tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-58/test_independent_zero_has_diff0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x71186fa13680&gt;
+
+    def test_independent_zero_has_different_weights_rng_and_material_order_and_resumes(tmp_path, monkeypatch):
+        monkeypatch.setattr(torch.cuda, "is_available", lambda:False)
+        _, original, shard, binding, _ = fixture(tmp_path)
+        zero_path = tmp_path/"seed43-zero.pt"
+        zero = make_zero_parent(original, shard, zero_path, seed=43)
+        assert zero["update"] == zero["tokens"] == zero["supervised_tokens"] == 0 and not zero["optimizer"]["state"]
+        assert not equal_state(original["model"], zero["model"])
+        assert not equal_state(original["rng"], zero["rng"])
+        replicate_binding = dict(binding, training_seed=43, parent=dict(path=str(zero_path), sha256=sha256(zero_path)))
+        def build():
+            return SeededThreeSourceTrainer(zero, shard, shard, "shuffle", dict(web=0,short=2000), replicate_binding, device="cpu")
+        trainer = build()
+        assert equal_state(trainer.model.state_dict(), zero["model"]) and equal_state(rng_state(), zero["rng"])
+        assert trainer.spec["seed"] == trainer.sampler.short.seed == 43
+        assert trainer.sampler.web.seed == 42 and trainer.sampler.goals["web"] == 0
+        from textbook_quantity_trainer import ThreeSourceTrainer
+        control = ThreeSourceTrainer(original, shard, shard, "shuffle", dict(web=0,short=2000), binding, device="cpu")
+        assert not (control.sampler.short.documents == trainer.sampler.short.documents).all()
+        trainer = build(); first = trainer.step(); trainer.save(tmp_path/"split.pt")
+        second = trainer.step(); trainer.save(tmp_path/"continuous.pt")
+        resumed = build(); resumed.load(tmp_path/"split.pt"); actual = resumed.step(); resumed.save(tmp_path/"resumed.pt")
+        a = torch.load(tmp_path/"continuous.pt", map_location="cpu", weights_only=False)
+        b = torch.load(tmp_path/"resumed.pt", map_location="cpu", weights_only=False)
+        assert all(equal_state(a[k],b[k]) for k in ("model","optimizer","scheduler","rng","sampler","lineage","tokens","supervised_tokens","update","token_digest"))
+        assert all(second[k] == actual[k] for k in ("loss","gradient_norm","lr","token_digest"))
+        assert first["lr"] == .001 and second["lr"] == .002
+        # Actual decay uses the stable replicate cursor/Adam/RNG, without silently
+        # going back to source seed42 or resetting the short-material position.
+        decay_binding = dict(replicate_binding, curve_mode="decay", curve_boundaries=[1000],
+            warmup_updates=0, optimizer_policy="inherit", initialization="stable-fork")
+&gt;       decay = SeededThreeSourceTrainer(a, shard, shard, "shuffle", dict(web=0,short=1000), decay_binding, device="cpu")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_seeded_textbook_trainer.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;seeded_textbook_trainer.SeededThreeSourceTrainer object at 0x71186fa136b0&gt;
+parent = {'version': 2, 'spec': {'seed': 43, 'context': 1024, 'batch': 1, 'accumulation': 1, ...}, 'model_config': {'schema_ver....0176,  ...,  0.0201, -0.0097, -0.0053],
+        [ 0.0207,  0.0082,  0.0233,  ...,  0.0363,  0.0194, -0.0228]])}), ...}
+web = namespace(directory=PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-58/test_independent_zero_has_diff0/data'), split='tr...c30c9c0b273df8dc64c828514e49ab2ad4bb521b4a36722029ecf6'}}}, byte_lengths=array([0, 0, 0, ..., 1, 1, 1], shape=(4096,)))
+pool = namespace(directory=PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-58/test_independent_zero_has_diff0/data'), split='tr...c30c9c0b273df8dc64c828514e49ab2ad4bb521b4a36722029ecf6'}}}, byte_lengths=array([0, 0, 0, ..., 1, 1, 1], shape=(4096,)))
+mode = 'shuffle', goals = {'web': 0, 'short': 1000}
+binding = {'config_sha256': 'old-fixture', 'parent': {'path': '/tmp/pytest-of-aihub_ubuntu/pytest-58/test_independent_zero_has_d...b59adb7ed5bdc3ebbc25101dc95576450ad10eca9b21e7efb0e3fd515db9f4'}, 'peak_lr': 0.002, 'optimizer_policy': 'inherit', ...}
+device = 'cpu'
+
+    def __init__(self, parent, web, pool, mode, goals, binding, device="cuda"):
+        seed = binding["training_seed"]
+        if type(seed) is not int or seed &lt; 0 or seed != parent["spec"]["seed"] or seed == 42:
+            raise ValueError("Explicit independent training seed must match the actual parent")
+        if goals["web"] != 0:
+            raise ValueError("Historical Web bootstrap cursor is unused in this replicate")
+        if binding["curve_mode"] == "stable":
+            initial = parent.get("lineage") or {}
+            if (initial.get("kind") != "independent-seed-zero" or parent["update"] != 0
+                    or initial.get("initialization_seed") != seed
+                    or initial.get("source_sha256") != sha256(Path(__file__))):
+                raise ValueError("Stable replicate must start from its bound independent zero parent")
+        elif binding["curve_mode"] == "decay":
+            provenance = parent["lineage"].get("independent_training_seed", {})
+            if (provenance.get("seed") != seed or parent["sampler"]["short"]["seed"] != seed
+                    or provenance.get("source_sha256") != sha256(Path(__file__))
+                    or parent["spec"]["curve_schedule"]["mode"] != "stable"
+                    or parent["sampler"]["source_teachers"]["short"] != parent["spec"]["curve_schedule"]["teachers"]):
+&gt;               raise ValueError("Decay must inherit this replicate's actual stable cursor")
+E               ValueError: Decay must inherit this replicate's actual stable cursor
+
+scripts/seeded_textbook_trainer.py:60: ValueError</failure></testcase><testcase classname="tests.test_seeded_textbook_trainer" name="test_independent_zero_refuses_same_seed_learned_parent_and_overwrite" time="0.135" /><testcase classname="tests.test_seeded_textbook_trainer" name="test_replicate_refuses_wrong_seed_resume_and_incomplete_stable_decay" time="0.213" /></testsuite></testsuites>
