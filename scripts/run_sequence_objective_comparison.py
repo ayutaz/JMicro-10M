@@ -40,6 +40,67 @@ SOURCES=("scripts/run_sequence_objective_comparison.py","scripts/run_sequence_ob
 def ref(path):return dict(path=str(path),sha256=sha256(path))
 
 
+def frozen_probe_evidence():
+    """Preserve the completed probe; only orchestration/review may be revised."""
+    c=read_json(PROBE_CONFIG);job=read_json(RUN/"probe/job.json");m=read_json(RUN/"probe/result.json")
+    assert job["status"]=="complete" and not alive(job) and m["passed"]
+    assert job["config_sha256"]==m["config_sha256"]==sha256(PROBE_CONFIG)
+    assert set(m["gates"])=={"CE","CE_UL"}
+    assert all(g["config_sha256"]==sha256(PROBE_CONFIG) and g["passed"] and all(g["checks"].values()) for g in m["gates"].values())
+    for relative,digest in c["source_sha256"].items():
+        assert sha256(RUN/"probe/source"/relative)==digest
+        if relative not in ("scripts/run_sequence_objective_comparison.py","scripts/review_sequence_objective_comparison.py"):
+            assert sha256(ROOT/relative)==digest,"Actual GPU training/evaluation sources changed since the probe"
+    assert c["implementation"]==implementation_hashes()
+    return job,m
+
+
+def continuous_measurement():
+    folder=RUN/"continuous-timing-v2";config_path=ROOT/"configs/phase6/sequence_objective_timing_v2.json"
+    c=read_json(config_path);job=read_json(folder/"job.json");result=read_json(folder/"result.json")
+    probe_job,probe=frozen_probe_evidence()
+    assert job["status"]=="complete" and not alive(job)
+    assert result["status"]=="actual_continuous_timing_complete" and set(result["arms"])=={"CE","CE_UL"}
+    assert job["config_sha256"]==result["config_sha256"]==sha256(config_path)
+    assert c["original_probe_sha256"]==sha256(PROBE_CONFIG) and c["measurement_sha256"]==sha256(RUN/"probe/result.json")
+    assert c["implementation"]==implementation_hashes()
+    for relative,digest in c["source_sha256"].items():
+        assert sha256(folder/"source"/relative)==sha256(ROOT/relative)==digest
+    recovery=c["recovery"]
+    for item in recovery.values():
+        if isinstance(item,dict) and "path" in item:assert sha256(Path(item["path"]))==item["sha256"]
+    failed=read_json(Path(recovery["job"]["path"]))
+    assert failed["status"]=="failed" and not alive(failed) and failed["gpu_elapsed_seconds"]==recovery["GPU_seconds"]==result["recovered_GPU_seconds"]
+    assert result["scientific_teacher_tokens"]==0 and not result["weights_used_for_scientific_parent"]
+    for arm,item in result["arms"].items():
+        assert sha256(Path(item["checkpoint"]))==item["checkpoint_sha256"] and item["weights_discarded_for_science"]
+        assert len(item["histories"])==16 and all(r["sequence_objective"]["skipped_rollouts"]==0 for r in item["histories"])
+        assert all(math.isfinite(r[k]) for r in item["histories"] for k in ("loss","sequence_UL","optimization_loss","seconds"))
+        assert item["verification_teacher_tokens"]>0
+    assert result["verification_teacher_tokens"]==sum(item["verification_teacher_tokens"] for item in result["arms"].values())
+    spent=probe_job["gpu_elapsed_seconds"]+recovery["GPU_seconds"]+job["gpu_elapsed_seconds"]
+    assert spent<=300 and job["gpu_elapsed_seconds"]<=c["GPU_budget_seconds"]
+    teachers=probe["verification_teacher_tokens"]+result["verification_teacher_tokens"]
+    return result,spent,teachers,dict(config=ref(config_path),job=ref(folder/"job.json"),result=ref(folder/"result.json"))
+
+
+def estimate_continuous_training(measurement):
+    estimated=0.;timings={}
+    for arm,item in measurement["arms"].items():
+        rows=item["histories"];assert len(rows)==16
+        # The first cycle remains in verification accounting, but excludes
+        # graph compilation/data warmup from the steady-time extrapolation.
+        steady=rows[4:];ordinary=statistics.median(r["seconds"] for i,r in enumerate(steady) if i%4!=3)
+        rollout=statistics.median(r["seconds"] for i,r in enumerate(steady) if i%4==3)
+        teachers=item["verification_teacher_tokens"]/16;updates=math.ceil(TOTAL_CE/teachers);extra=updates//4
+        estimate=(updates-extra)*ordinary+extra*rollout
+        timings[arm]=dict(ordinary_step_seconds=ordinary,rollout_step_seconds=rollout,measured_CE_teachers_per_update=teachers,
+                         measured_updates=16,warmup_updates_counted=4,steady_updates=12,
+                         estimated_updates=updates,estimated_training_seconds=estimate)
+        estimated+=estimate
+    return timings,estimated*1.3+480
+
+
 def source_contract():
     job=read_json(SOURCE_RUN/"job.json")
     if job["status"]!="complete" or alive(job):
@@ -83,7 +144,12 @@ def preflight(path):
     assert c["point"]==POINT and c["pool"]==base["pools"]["large"] and c["CE_teachers_per_arm"]==TOTAL_CE
     assert c["objectives"]=={a:dict(alpha=alpha,every_updates=4,prefixes=8,prefix_tokens=32,max_new_tokens=64,ngram=4) for a,alpha in (("CE",0.),("CE_UL",.1))}
     assert c["peak_lr"]==min(.0002,parent["optimizer"]["param_groups"][0]["lr"])
-    assert c["source_sha256"]=={p:sha256(ROOT/p) for p in SOURCES} and c["implementation"]==implementation_hashes()
+    current={p:sha256(ROOT/p) for p in SOURCES}
+    if c["kind"]=="sequence-objective-probe" and c["source_sha256"]!=current:
+        assert Path(path)==PROBE_CONFIG and c==read_json(PROBE_CONFIG)
+        frozen_probe_evidence()
+    else:assert c["source_sha256"]==current
+    assert c["implementation"]==implementation_hashes()
     assert not c["protected_test_used"] and c["quality_criteria_unchanged"] and 0<c["GPU_budget_seconds"]<=1800
     assert c["total_study_GPU_ceiling_seconds"]==1800
     output=RUN/"probe" if c["kind"]=="sequence-objective-probe" else RUN
@@ -94,7 +160,12 @@ def preflight(path):
         measurement=read_json(RUN/"probe/result.json");job=read_json(RUN/"probe/job.json")
         assert job["status"]=="complete" and not alive(job) and measurement["passed"]
         assert all(g["passed"] and all(g["checks"].values()) for g in measurement["gates"].values())
-        assert c["verification_GPU_seconds"]==job["gpu_elapsed_seconds"] and c["GPU_budget_seconds"]+c["verification_GPU_seconds"]==1800
+        timing,spent,teachers,refs=continuous_measurement()
+        assert c["continuous_measurement"]==refs and c["verification_teacher_tokens"]==teachers
+        assert c["verification_GPU_seconds"]==spent and math.isclose(c["GPU_budget_seconds"]+spent,1800,abs_tol=1e-9)
+        timings,estimate=estimate_continuous_training(timing)
+        assert c["measured_timings"]==timings and c["estimated_scientific_and_evaluation_GPU_seconds_with_margin"]==estimate
+        assert estimate+spent<=1800
     else:assert c["kind"]=="sequence-objective-probe" and c["GPU_budget_seconds"]==300
     return c,base,parent
 
@@ -108,22 +179,15 @@ def freeze():
     if CONFIG.exists():preflight(CONFIG);return
     c,_,_=preflight(PROBE_CONFIG);job=read_json(RUN/"probe/job.json");m=read_json(RUN/"probe/result.json")
     assert job["status"]=="complete" and not alive(job) and m["passed"]
-    estimated=0.;timings={}
-    for arm,g in m["gates"].items():
-        rows=[r for h in g["histories"] for r in h]
-        ordinary=statistics.median(r["seconds"] for i,r in enumerate(rows) if i%4!=3)
-        rollout=statistics.median(r["seconds"] for i,r in enumerate(rows) if i%4==3)
-        teachers=g["verification_teacher_tokens"]/8;updates=math.ceil(TOTAL_CE/teachers);extra=updates//4
-        estimate=(updates-extra)*ordinary+extra*rollout
-        timings[arm]=dict(ordinary_step_seconds=ordinary,rollout_step_seconds=rollout,measured_CE_teachers_per_update=teachers,
-                         estimated_updates=updates,estimated_training_seconds=estimate)
-        estimated+=estimate
-    estimate_with_margin=estimated*1.3+480
-    if estimate_with_margin+job["gpu_elapsed_seconds"]>1800:
+    timing,spent,teachers,refs=continuous_measurement()
+    timings,estimate_with_margin=estimate_continuous_training(timing)
+    if estimate_with_margin+spent>1800:
         raise ValueError("Measured full25M-per-arm study cannot fit unchanged1800s ceiling; retain measurement and revise explicitly")
     c.update(kind="sequence-objective-comparison",probe_config_sha256=sha256(PROBE_CONFIG),
-        measurement_sha256=sha256(RUN/"probe/result.json"),verification_GPU_seconds=job["gpu_elapsed_seconds"],
-        GPU_budget_seconds=1800-job["gpu_elapsed_seconds"],measured_timings=timings,
+        measurement_sha256=sha256(RUN/"probe/result.json"),verification_GPU_seconds=spent,verification_teacher_tokens=teachers,
+        continuous_measurement=refs,probe_training_sources_unchanged=True,
+        source_sha256={p:sha256(ROOT/p) for p in SOURCES},
+        GPU_budget_seconds=1800-spent,measured_timings=timings,
         estimated_scientific_and_evaluation_GPU_seconds_with_margin=estimate_with_margin)
     atomic_json(CONFIG,c);print(json.dumps(dict(status="measured recipe frozen",timings=timings,GPU_budget_seconds=c["GPU_budget_seconds"])))
 
@@ -219,7 +283,7 @@ def run(probe=False):
             else:
                 result.update(status="matched_CE_sequence_UL_complete_pending_all160_content",config_sha256=sha256(path),
                     scientific_teacher_tokens=sum(r["additional_supervised_tokens"] for r in result["checkpoints"].values()),
-                    verification_teacher_tokens=read_json(RUN/"probe/result.json")["verification_teacher_tokens"],
+                    verification_teacher_tokens=c["verification_teacher_tokens"],
                     scientific_GPU_seconds=prior+time.monotonic()-started[0],verification_GPU_seconds=c["verification_GPU_seconds"],
                     Base_adopted=False,Chat_adopted=False,protected_test_used=False,requested_five_steps_complete=False)
                 assert result["scientific_teacher_tokens"]==2*TOTAL_CE and len(result["evaluations"])==2

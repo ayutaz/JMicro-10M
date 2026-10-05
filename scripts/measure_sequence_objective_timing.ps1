@@ -2,7 +2,7 @@ param([switch]$Worker)
 $Mode='Timing'
 $ErrorActionPreference='Stop'
 $workspace=Split-Path -Parent $PSScriptRoot
-$runDir=Join-Path $workspace ('reports\phase6\sequence-objective-'+$Mode.ToLower()+'-launcher-20261006')
+$runDir=Join-Path $workspace ('reports\phase6\sequence-objective-'+$Mode.ToLower()+'-v2-launcher-20261006')
 New-Item -ItemType Directory -Force -Path $runDir | Out-Null
 if (-not $Worker) {
     $record=Join-Path $runDir 'launcher.json'

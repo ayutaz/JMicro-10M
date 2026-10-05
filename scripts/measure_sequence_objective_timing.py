@@ -2,6 +2,7 @@
 import argparse
 import gc
 import json
+import math
 import os
 from pathlib import Path
 import shutil
@@ -20,10 +21,43 @@ from textbook_quantity_trainer import ThreeSourceIndex
 from run_textbook_quantity_comparison import latest_checkpoint,reconcile_metrics
 from run_sequence_objective_comparison import RUN as STUDY,PROBE_CONFIG,preflight
 
-CONFIG=ROOT/"configs/phase6/sequence_objective_timing.json"
-RUN=STUDY/"continuous-timing"
+OLD_CONFIG=ROOT/"configs/phase6/sequence_objective_timing.json"
+OLD_RUN=STUDY/"continuous-timing"
+CONFIG=ROOT/"configs/phase6/sequence_objective_timing_v2.json"
+RUN=STUDY/"continuous-timing-v2"
 SOURCES=("scripts/measure_sequence_objective_timing.py","scripts/measure_sequence_objective_timing.ps1",
          "scripts/sequence_objective_trainer.py","src/jmicro/sequence_unlikelihood.py","scripts/textbook_quantity_trainer.py")
+
+
+def reference(path):
+    return dict(path=str(path),sha256=sha256(path))
+
+
+def validate_timing(rows,state,base_update,base_teachers):
+    """Metrics and full model/Adam state have different finite-value contracts."""
+    assert len(rows)==16 and [r["update"] for r in rows]==list(range(base_update+1,base_update+17))
+    assert all(r["sequence_objective"]["skipped_rollouts"]==0 for r in rows)
+    for row in rows:
+        assert all(math.isfinite(row[k]) for k in
+                   ("loss","sequence_UL","optimization_loss","gradient_norm","lr","seconds","data_wait_seconds","tokens_per_second"))
+        assert row["seconds"]>0 and 0<=row["data_wait_seconds"]<=row["seconds"]
+    assert finite_state(state)
+    assert state["update"]==rows[-1]["update"] and state["supervised_tokens"]==rows[-1]["supervised_tokens"]
+    assert state["lineage"]["sequence_objective"]==rows[-1]["sequence_objective"]
+    assert state["supervised_tokens"]>base_teachers
+
+
+def recovery_contract(recovery):
+    for item in recovery.values():
+        if isinstance(item,dict) and "path" in item:assert sha256(Path(item["path"]))==item["sha256"]
+    old=read_json(OLD_CONFIG);job=read_json(OLD_RUN/"job.json")
+    assert job["status"]=="failed" and not alive(job) and job["config_sha256"]==sha256(OLD_CONFIG)
+    assert job["error"]=="KeyError('model')" and job["completed_updates"]==16
+    assert recovery["GPU_seconds"]==job["gpu_elapsed_seconds"]
+    for relative,digest in old["source_sha256"].items():
+        assert sha256(OLD_RUN/"source"/relative)==digest
+        if relative not in SOURCES[:2]:assert sha256(ROOT/relative)==digest
+    assert old["implementation"]==implementation_hashes()
 
 
 def inspect():
@@ -31,7 +65,9 @@ def inspect():
     job=read_json(STUDY/"probe/job.json");m=read_json(STUDY/"probe/result.json")
     assert job["status"]=="complete" and not alive(job) and m["passed"]
     assert c["original_probe_sha256"]==sha256(PROBE_CONFIG) and c["measurement_sha256"]==sha256(STUDY/"probe/result.json")
-    assert c["original_probe_GPU_seconds"]==job["gpu_elapsed_seconds"] and c["GPU_budget_seconds"]+job["gpu_elapsed_seconds"]==300
+    recovery_contract(c["recovery"])
+    assert c["original_probe_GPU_seconds"]==job["gpu_elapsed_seconds"]
+    assert math.isclose(c["GPU_budget_seconds"]+job["gpu_elapsed_seconds"]+c["recovery"]["GPU_seconds"],300,abs_tol=1e-9)
     assert c["timing_updates_per_arm"]==16 and c["source_sha256"]=={p:sha256(ROOT/p) for p in SOURCES}
     assert c["implementation"]==implementation_hashes() and not c["protected_test_used"]
     for arm,ref in c["continuous_checkpoints"].items():
@@ -44,9 +80,17 @@ def prepare():
     if CONFIG.exists():inspect();return
     _,_,_=preflight(PROBE_CONFIG);job=read_json(STUDY/"probe/job.json");m=read_json(STUDY/"probe/result.json")
     assert job["status"]=="complete" and not alive(job) and m["passed"]
+    recovery=dict(config=reference(OLD_CONFIG),job=reference(OLD_RUN/"job.json"),
+        metrics=reference(OLD_RUN/"CE/metrics.jsonl"),checkpoint=reference(latest_checkpoint(OLD_RUN/"CE")),
+        GPU_seconds=read_json(OLD_RUN/"job.json")["gpu_elapsed_seconds"],recovered_arm="CE")
+    recovery_contract(recovery)
+    checkpoint=torch.load(recovery["checkpoint"]["path"],map_location="cpu",weights_only=False)
+    initial=torch.load(STUDY/"probe/resume-gate/CE/continuous.pt",map_location="cpu",weights_only=False)
+    validate_timing([json.loads(s) for s in Path(recovery["metrics"]["path"]).read_text().splitlines()],
+                    checkpoint,initial["update"],initial["supervised_tokens"])
     c=dict(kind="continuous-objective-timing-not-scientific-learning",original_probe_sha256=sha256(PROBE_CONFIG),
         measurement_sha256=sha256(STUDY/"probe/result.json"),original_probe_GPU_seconds=job["gpu_elapsed_seconds"],
-        GPU_budget_seconds=300-job["gpu_elapsed_seconds"],timing_updates_per_arm=16,
+        GPU_budget_seconds=300-job["gpu_elapsed_seconds"]-recovery["GPU_seconds"],timing_updates_per_arm=16,recovery=recovery,
         continuous_checkpoints={a:dict(path=str(STUDY/"probe/resume-gate"/a/"continuous.pt"),
             sha256=sha256(STUDY/"probe/resume-gate"/a/"continuous.pt")) for a in m["gates"]},
         source_sha256={p:sha256(ROOT/p) for p in SOURCES},implementation=implementation_hashes(),
@@ -86,6 +130,14 @@ def run():
             for arm,ref in c["continuous_checkpoints"].items():
                 state=torch.load(ref["path"],map_location="cpu",weights_only=False);binding=state["pilot_binding"]
                 trainer=SequenceObjectiveTrainer(parent,web,pool,"shuffle",dict(web=0,short=25000000),binding)
+                if arm==c["recovery"]["recovered_arm"]:
+                    recovered=c["recovery"];trainer.load(Path(recovered["checkpoint"]["path"]))
+                    rows=[json.loads(s) for s in Path(recovered["metrics"]["path"]).read_text().splitlines()]
+                    cp=Path(recovered["checkpoint"]["path"])
+                    validate_timing(rows,torch.load(cp,map_location="cpu",weights_only=False),state["update"],state["supervised_tokens"])
+                    result[arm]=dict(histories=rows,verification_teacher_tokens=trainer.supervised_tokens-state["supervised_tokens"],
+                        checkpoint=str(cp),checkpoint_sha256=sha256(cp),weights_discarded_for_science=True,recovered_without_updates=True)
+                    del trainer,state;gc.collect();torch.cuda.empty_cache();heartbeat("CE-recovered-without-updates");continue
                 folder=RUN/arm;folder.mkdir(parents=True,exist_ok=True);latest=latest_checkpoint(folder)
                 trainer.load(latest or Path(ref["path"]));base_update=state["update"];base_teachers=state["supervised_tokens"]
                 log=folder/"metrics.jsonl";reconcile_metrics(log,trainer.update)
@@ -95,14 +147,14 @@ def run():
                         trainer.save(folder/f"checkpoint-{trainer.update:08d}.pt")
                         heartbeat(arm+"-continuous-timing",completed_updates=trainer.update-base_update,total_updates=16)
                 rows=[json.loads(s) for s in log.read_text().splitlines()]
-                assert len(rows)==16 and all(r["sequence_objective"]["skipped_rollouts"]==0 for r in rows)
-                assert all(finite_state(r) for r in rows)
                 cp=latest_checkpoint(folder)
+                validate_timing(rows,torch.load(cp,map_location="cpu",weights_only=False),base_update,base_teachers)
                 result[arm]=dict(histories=rows,verification_teacher_tokens=trainer.supervised_tokens-base_teachers,
                     checkpoint=str(cp),checkpoint_sha256=sha256(cp),weights_discarded_for_science=True)
                 del trainer,state;gc.collect();torch.cuda.empty_cache()
             atomic_json(RUN/"result.json",dict(status="actual_continuous_timing_complete",config_sha256=sha256(CONFIG),
                 arms=result,verification_teacher_tokens=sum(r["verification_teacher_tokens"] for r in result.values()),
+                recovered_GPU_seconds=c["recovery"]["GPU_seconds"],
                 scientific_teacher_tokens=0,Base_adopted=False,protected_test_used=False,weights_used_for_scientific_parent=False))
             heartbeat("complete");job.update(status="complete",completed_at=now())
     except BaseException as error:job.update(status="failed",error=repr(error));raise

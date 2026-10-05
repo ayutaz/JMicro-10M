@@ -81,7 +81,10 @@ def audit():
     assert job["gpu_elapsed_seconds"]+c["verification_GPU_seconds"]<=1800
     measurement=read_json(RUN/"probe/result.json")
     assert all(g["config_sha256"]==sha256(PROBE_CONFIG) and g["passed"] and all(g["checks"].values()) for g in measurement["gates"].values())
-    assert result["verification_teacher_tokens"]==sum(g["verification_teacher_tokens"] for g in measurement["gates"].values())
+    from run_sequence_objective_comparison import continuous_measurement
+    _,spent,teachers,_=continuous_measurement()
+    assert result["verification_teacher_tokens"]==c["verification_teacher_tokens"]==teachers
+    assert c["verification_GPU_seconds"]==spent
     summaries={};scores={};annotations={};extras={};native=[]
     audit_config=dict(c,decay_teacher_tokens=TOTAL_CE)
     for arm,d in result["checkpoints"].items():

@@ -36,3 +36,19 @@ def test_extra_accounting_refuses_hidden_generated_teachers_and_missing_rollout(
     d=dict(binding=dict(arm="CE_UL"),sequence_objective=counters)
     history=[dict(sequence_objective=counters,sequence_UL=0.,optimization_loss=1.,loss=1.)]
     with pytest.raises(AssertionError):audit_extra(state,d,history,dict(objectives=dict(CE_UL=o)))
+
+
+def test_continuous_estimate_keeps_warmup_accounted_but_uses_all_three_steady_cycles():
+    histories=[dict(seconds=100. if i<4 else (1.2 if i%4==3 else .1)) for i in range(16)]
+    measured=dict(arms={arm:dict(histories=histories,verification_teacher_tokens=160000)
+                        for arm in ("CE","CE_UL")})
+    timings,estimate=runner.estimate_continuous_training(measured)
+    for row in timings.values():
+        assert row["measured_updates"]==16 and row["warmup_updates_counted"]==4 and row["steady_updates"]==12
+        assert row["estimated_updates"]==2500 and row["estimated_training_seconds"]==937.5
+    assert estimate==2*937.5*1.3+480
+
+
+def test_partial_continuous_measurement_cannot_freeze_a_scientific_budget():
+    measured=dict(arms=dict(CE=dict(histories=[dict(seconds=.1)]*15,verification_teacher_tokens=150000)))
+    with pytest.raises(AssertionError):runner.estimate_continuous_training(measured)
