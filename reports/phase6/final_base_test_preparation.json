@@ -1,0 +1,49 @@
+{
+  "status": "conditional_fixed_recipe_final_Base_test_commands_ready",
+  "commands": [
+    "scripts/run_final_base_test.py",
+    "scripts/run_final_base_test.ps1",
+    "scripts/review_final_base_test.py"
+  ],
+  "eligibility": "Both independent learned seeds42/43 pass unchanged screens and actual full dev/all400+long40 reviews; frozen seed42 selection before test",
+  "test_scope": {
+    "full_test_body": true,
+    "primary_test_families": 20,
+    "raw_outputs": 100,
+    "decoding": [
+      "greedy suppressed",
+      "greedy unsuppressed",
+      "sampling42",
+      "sampling43",
+      "sampling44"
+    ],
+    "max_new_tokens": 64,
+    "GPU_budget_seconds": 1200
+  },
+  "selection_policy": "Seal one recipe/seed42; do not choose another seed/recipe using protected test results",
+  "criteria": {
+    "grammar_2_rate": 0.7,
+    "stop_success_min": 0.95,
+    "coherence_2_rate": 0.3375,
+    "appropriate_completion_rate": 0.3375,
+    "repetition_max_rate": 0.225,
+    "all100_raw_failures_zero": true,
+    "dev_criteria_unchanged": true
+  },
+  "evidence_policy": "Actual terminal PID, config/result/source/notes binding, all100 individually reviewed, finite body and exact byte denominator, unchanged weights and isolated RNG; nonblind Codex review is not independent human",
+  "tests": {
+    "passed": 19,
+    "seconds": 1.86,
+    "path": "reports/phase6/final_base_test_protocol_tests.xml",
+    "CLI_help": true,
+    "PowerShell_parser": true
+  },
+  "actual_CUDA_test_evaluations": 0,
+  "protected_test_used": false,
+  "selection_frozen": false,
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "independent_human_blind": false,
+  "requested_five_steps_complete": false,
+  "created_at": "2026-10-05T23:50:23.9794200Z"
+}

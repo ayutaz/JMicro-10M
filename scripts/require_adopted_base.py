@@ -8,6 +8,30 @@ from review_eos_5b_finish import validate_rows
 from run_eos_short_pilot import rate
 
 
+def require_final_test_acceptance(accepted,parent_sha):
+    """An adoption flag alone cannot replace actual, completed test evidence."""
+    from phase6_performance import alive
+    assert accepted['selected_training_seed']==42 and accepted['independent_training_seed_confirmed']
+    assert accepted['protected_test_used']
+    for key in ('final_test_config','final_test_review','final_test_result'):
+        evidence=accepted[key];assert sha256(Path(evidence['path']))==evidence['sha256']
+    result_path=Path(accepted['final_test_result']['path'])
+    job=read_json(result_path.parent/'job.json')
+    if job['status']!='complete' or alive(job):
+        raise ValueError('Final protected test must have actually finished before Chat')
+    review=read_json(Path(accepted['final_test_review']['path']));result=read_json(result_path)
+    assert review['status']=='fixed_recipe_final_test_all100_content_evidence_complete'
+    assert review['final_test_passed'] and review['Base_adopted'] and all(review['checks'].values())
+    assert review['checkpoint_sha256']==parent_sha
+    assert review['result_sha256']==accepted['final_test_result']['sha256']
+    assert review['config_sha256']==job['config_sha256']==accepted['final_test_config']['sha256']
+    assert result['binding']['checkpoint_sha256']==parent_sha and result['binding']['config_sha256']==job['config_sha256']
+    assert result['GPU_seconds']==job['GPU_elapsed_seconds']
+    assert result['protected_test_used'] and result['weights_unchanged'] and result['evaluation_RNG_isolated']
+    assert result['additional_training_tokens']==0
+    assert sha256(Path(review['notes_path']))==review['notes_sha256']
+
+
 def require_adopted_base(config):
     for key in ("parent", "Base_acceptance", "Base_evaluation", "Base_annotations", "tokenizer"):
         ref = config[key]
@@ -19,6 +43,8 @@ def require_adopted_base(config):
     assert accepted["evaluation_sha256"] == config["Base_evaluation"]["sha256"]
     assert accepted["annotations_sha256"] == config["Base_annotations"]["sha256"]
     assert accepted["quality_criteria_unchanged"] is True
+    if accepted.get('kind') == 'final_Base_after_independent_seed_full_dev_and_protected_test':
+        require_final_test_acceptance(accepted,config['parent']['sha256'])
     ev = read_json(Path(config["Base_evaluation"]["path"]))
     assert ev["checkpoint_sha256"] == config["parent"]["sha256"] and ev["evaluation_RNG_isolated"] and not ev["protected_test_used"]
     tok = Tokenizer(config["tokenizer"]["path"])

@@ -92,7 +92,7 @@ def review(path, notes_path, template=False):
     for r in rows:
         group = row_key(r).split("|",1)[1]; groups.setdefault(group, []).append(scores[row_key(r)])
     report = dict(status="full_dev_all400_and_long40_content_evidence_complete", config_sha256=sha256(path),
-        result_sha256=sha256(output/"result.json"), notes_sha256=sha256(notes_path),
+        result_sha256=sha256(output/"result.json"), notes_sha256=sha256(notes_path), notes_path=str(notes_path),
         full_evaluation_sha256=result["full_evaluation_sha256"], long_generation_sha256=result["long_generation_sha256"],
         checks=checks, full_automatic_conditions_pass=result["full_automatic_conditions_pass"],
         content={key:dict(count=len(ns), grammar2=sum(n[1]==2 for n in ns), relevance2=sum(n[2]==2 for n in ns),
