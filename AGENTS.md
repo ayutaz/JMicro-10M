@@ -1,3 +1,5 @@
+Resumed current scope (2026-10-05 JST): user requested stages1–4 of docs/66_condition_learning_diagnostic_plan.md. Run the fixed compact/expanded condition-learning diagnostics, conditional mixed100M, Japanese/content evaluation, report, verified local commit and original10B UI restore; then stop. This supersedes the previous completed scope's stop for this bounded task only.
+
 # JMicro-10M development and training
 
 Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/windows_handoff.md` before continuing. Completed latest scope: plan61's preparation-failure branch, `docs/63_condition_preservation_preparation_results.md`. Original plan61 is preserved as its pre-execution contract. Status is actual state; proposals are not evidence or launch instructions. Historical progress is archived in dated experiment reports.

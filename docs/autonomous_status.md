@@ -1,3 +1,5 @@
+最新（2026-10-05 JST）: ユーザーの『4まで進めてください』で[条件学習診断66](66_condition_learning_diagnostic_plan.md)の教材→短い学習→拡張→総合評価を再開。Codex作成の閉じた条件教材を1000/5000全文で固定、未見100（既知構文50/未学習構文50）、各24,969,216tokensで学習可能性を比較する。旧結果65のgate/準備失敗は保持。準備中の容量上限・全文重複を5CPUtestsで修正し、GPU前の初回準備をLinux preparation-v1へ保存。最終v2教材は別directory。新実学習はjob.jsonのactual identity/metrics/checkpointを確認する。原品質目標は不変、20B/Chat/test/pushなし。完了後は元10B UIとverified local commitで停止。
+
 # Codex継続作業の現在地
 
 最新（2026-10-05 JST）: **結果63後の四項目は、新たな準備不成立分岐まで完了して停止**。[実行64](64_condition_selector_v2_execution.md)/[結果65](65_condition_selector_v2_preparation_results.md)。別train32で弱例12、v2が弱例9/正しい4を除外し3273e77で凍結。両20,000,072tokens/71,268全文、長さ全並び/BOS/EOS一致、平均278.631868/EOS3.563387、共有10,232。既知152hashを両poolから除外し、未確認の固定40各を診断したが弱例対照12/候補14で「対照より少ない」「10/40以下」の両準備条件未達。全80理由、5CPUtests/101準備証拠/13完了checks、採否/元UI実確認を保存した。科学0/検証0、新GPU評価0。各100M/一次日本語と160生成/条件付き全文は開始しない。

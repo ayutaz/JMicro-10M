@@ -1,0 +1,219 @@
+{
+  "source": "Codex-authored closed-world condition templates; not acquired public source",
+  "pools": {
+    "compact": {
+      "pool": "/home/aihub_ubuntu/jmicro-data/phase6/condition-learning-20261005-v2/compact",
+      "manifest_sha256": "43059fb1d24923c0b29998e03ec8755c9729de4fd558391f0bf609fbbbd1bf3c",
+      "unique_tokens": 55273,
+      "documents": 1000,
+      "corpus_sha256": "16b0744a502b93437a2bace268cdaee565c5ef18bc8fa6fafea73bef22262401",
+      "train_eval_sha256": "0d2cbacbe5a717d6937c54ba7090e82f4e571b9427cc9c932468bc718246621a",
+      "mean_body_tokens": 53.273,
+      "EOS_per_1000_tokens": 18.092015993342137
+    },
+    "expanded": {
+      "pool": "/home/aihub_ubuntu/jmicro-data/phase6/condition-learning-20261005-v2/expanded",
+      "manifest_sha256": "0945e82d54ee89d3bd3e8b93146a5930233189f9486c2cd766b80c4f6c9445a9",
+      "unique_tokens": 280724,
+      "documents": 5000,
+      "corpus_sha256": "e91970ff143dccc1fa82c358a13190ec9f38827f395405c797b7a5b8136d236b",
+      "train_eval_sha256": "5f4f8e1a2578de5b67c0caefddd127d7250e97a5ffc4233039e97c9b8e91d124",
+      "mean_body_tokens": 54.1448,
+      "EOS_per_1000_tokens": 17.811088471238655
+    }
+  },
+  "dev_documents": 100,
+  "dev_sha256": "a3c010a8a104218710e6675adc85527c8da355b10e7f12e6316b02465afffacf",
+  "train_dev_full_text_disjoint": true,
+  "dev_names_not_in_train": true,
+  "structural_dev_template_not_trained": true,
+  "fixed_eval_prefixes_not_in_train": true,
+  "shared_train_documents": 276,
+  "limits": "Authored mechanistic entailment; no independent human/blind validation; amount, lexical diversity, length and EOS density can differ",
+  "examples": {
+    "compact": [
+      {
+        "category": "reference",
+        "prefix": "なつは鍵をなおに渡した。なおは受け取った。今、鍵は誰が持っているか。\n",
+        "choices": [
+          "なつが持っている。",
+          "なおが持っている。"
+        ],
+        "label": 1,
+        "text": "なつは鍵をなおに渡した。なおは受け取った。今、鍵は誰が持っているか。\nなおが持っている。",
+        "rationale": "受け取り後の保持者はなお。以後の移動なし。",
+        "template": 0,
+        "id": "train-reference-0000-0",
+        "family": "train-reference-0000",
+        "split": "train",
+        "variant": 0,
+        "structural_holdout": false,
+        "canonical_sha256": "fb13385752d938d6e62823b13a6561194436ff5767e2e0f6dbd305edb2845be0"
+      },
+      {
+        "category": "quantity",
+        "prefix": "あきらは帽子を8個持っていた。その後、3個を友達に渡した。それ以外の増減はない。今、あきらの帽子はいくつあるか。\n",
+        "choices": [
+          "5個ある。",
+          "11個ある。"
+        ],
+        "label": 0,
+        "text": "あきらは帽子を8個持っていた。その後、3個を友達に渡した。それ以外の増減はない。今、あきらの帽子はいくつあるか。\n5個ある。",
+        "rationale": "8-3=5。",
+        "template": 0,
+        "id": "train-quantity-0000-0",
+        "family": "train-quantity-0000",
+        "split": "train",
+        "variant": 0,
+        "structural_holdout": false,
+        "canonical_sha256": "8a7b431346d0a502f27915532c93d9972708d854495892aa4f794c4b8fce8e66"
+      },
+      {
+        "category": "negation",
+        "prefix": "りんは今日はそばを食べないと決めた。食べ物はそばとうどんだけで、どちらか一つを食べる。りんは決めたことを守る。何を食べるか。\n",
+        "choices": [
+          "そばを食べる。",
+          "うどんを食べる。"
+        ],
+        "label": 1,
+        "text": "りんは今日はそばを食べないと決めた。食べ物はそばとうどんだけで、どちらか一つを食べる。りんは決めたことを守る。何を食べるか。\nうどんを食べる。",
+        "rationale": "二択でそばを除外したのでうどん。",
+        "template": 0,
+        "id": "train-negation-0000-0",
+        "family": "train-negation-0000",
+        "split": "train",
+        "variant": 0,
+        "structural_holdout": false,
+        "canonical_sha256": "c3a7fd7560ec40fb10410dfd05dc9319c4bd7447961e0fec9694cb187e28a862"
+      },
+      {
+        "category": "time",
+        "prefix": "ふみは「机を拭く」を終えてから「靴を磨く」をした。この二つの行動のうち、先にしたのはどちらか。\n",
+        "choices": [
+          "「机を拭く」が先である。",
+          "「靴を磨く」が先である。"
+        ],
+        "label": 0,
+        "text": "ふみは「机を拭く」を終えてから「靴を磨く」をした。この二つの行動のうち、先にしたのはどちらか。\n「机を拭く」が先である。",
+        "rationale": "明示された順序は机を拭く→靴を磨く。",
+        "template": 0,
+        "id": "train-time-0000-0",
+        "family": "train-time-0000",
+        "split": "train",
+        "variant": 0,
+        "structural_holdout": false,
+        "canonical_sha256": "e1734376921e6956da3d6f776a9794ecedfc6ef3f66b7a7750c0baae30a68b4f"
+      },
+      {
+        "category": "cause",
+        "prefix": "けんは鍵が置かれた部屋にいる。明かりは初め消えていた。このスイッチを押すと明かりがつく。けんはスイッチを押した。他の操作や変化はない。今の明かりはどうなっているか。\n",
+        "choices": [
+          "明かりはついている。",
+          "明かりは消えている。"
+        ],
+        "label": 0,
+        "text": "けんは鍵が置かれた部屋にいる。明かりは初め消えていた。このスイッチを押すと明かりがつく。けんはスイッチを押した。他の操作や変化はない。今の明かりはどうなっているか。\n明かりはついている。",
+        "rationale": "初期消灯、押すことだけで点灯、他の変化なし。押したので点灯。",
+        "template": 0,
+        "id": "train-cause-0000-0",
+        "family": "train-cause-0000",
+        "split": "train",
+        "variant": 0,
+        "structural_holdout": false,
+        "canonical_sha256": "7e3564a014e961777295bdca1c861f9c008c13367415c31fd405ab5e8e07ff6c"
+      }
+    ],
+    "expanded": [
+      {
+        "category": "reference",
+        "prefix": "りょうは鍵をたくみに渡した。たくみは受け取った。今、鍵は誰が持っているか。\n",
+        "choices": [
+          "りょうが持っている。",
+          "たくみが持っている。"
+        ],
+        "label": 1,
+        "text": "りょうは鍵をたくみに渡した。たくみは受け取った。今、鍵は誰が持っているか。\nたくみが持っている。",
+        "rationale": "受け取り後の保持者はたくみ。以後の移動なし。",
+        "template": 0,
+        "id": "train-reference-0000-0",
+        "family": "train-reference-0000",
+        "split": "train",
+        "variant": 0,
+        "structural_holdout": false,
+        "canonical_sha256": "d9025d36f55796d3e5da6d4acdd9410e6acaba4dad9b4c5e5de9613f1b5bd6b9"
+      },
+      {
+        "category": "quantity",
+        "prefix": "ひなたは手紙を7個持っていた。その後、4個を友達に渡した。それ以外の増減はない。今、ひなたの手紙はいくつあるか。\n",
+        "choices": [
+          "3個ある。",
+          "11個ある。"
+        ],
+        "label": 0,
+        "text": "ひなたは手紙を7個持っていた。その後、4個を友達に渡した。それ以外の増減はない。今、ひなたの手紙はいくつあるか。\n3個ある。",
+        "rationale": "7-4=3。",
+        "template": 0,
+        "id": "train-quantity-0000-0",
+        "family": "train-quantity-0000",
+        "split": "train",
+        "variant": 0,
+        "structural_holdout": false,
+        "canonical_sha256": "4e393b426f726519661341fbf7c955cb42d6a1fb685417f0e95e8c2fa78d3e9d"
+      },
+      {
+        "category": "negation",
+        "prefix": "はるは今日はクッキーを食べないと決めた。食べ物はクッキーとおにぎりだけで、どちらか一つを食べる。はるは決めたことを守る。何を食べるか。\n",
+        "choices": [
+          "クッキーを食べる。",
+          "おにぎりを食べる。"
+        ],
+        "label": 1,
+        "text": "はるは今日はクッキーを食べないと決めた。食べ物はクッキーとおにぎりだけで、どちらか一つを食べる。はるは決めたことを守る。何を食べるか。\nおにぎりを食べる。",
+        "rationale": "二択でクッキーを除外したのでおにぎり。",
+        "template": 0,
+        "id": "train-negation-0000-0",
+        "family": "train-negation-0000",
+        "split": "train",
+        "variant": 0,
+        "structural_holdout": false,
+        "canonical_sha256": "7af8b0ddc2e7fca53f45d3090b226b50396182d3ef84813638bb2d9bbc20f691"
+      },
+      {
+        "category": "time",
+        "prefix": "はるは「窓を開ける」を終えてから「花に水をやる」をした。この二つの行動のうち、先にしたのはどちらか。\n",
+        "choices": [
+          "「窓を開ける」が先である。",
+          "「花に水をやる」が先である。"
+        ],
+        "label": 0,
+        "text": "はるは「窓を開ける」を終えてから「花に水をやる」をした。この二つの行動のうち、先にしたのはどちらか。\n「窓を開ける」が先である。",
+        "rationale": "明示された順序は窓を開ける→花に水をやる。",
+        "template": 0,
+        "id": "train-time-0000-0",
+        "family": "train-time-0000",
+        "split": "train",
+        "variant": 0,
+        "structural_holdout": false,
+        "canonical_sha256": "a55d751077ea594c09867bcd4eb4586388cfcfa285587e63483c000f89a57fa4"
+      },
+      {
+        "category": "cause",
+        "prefix": "けんは手紙が置かれた部屋にいる。明かりは初め消えていた。このスイッチを押すと明かりがつく。けんはスイッチを押した。他の操作や変化はない。今の明かりはどうなっているか。\n",
+        "choices": [
+          "明かりはついている。",
+          "明かりは消えている。"
+        ],
+        "label": 0,
+        "text": "けんは手紙が置かれた部屋にいる。明かりは初め消えていた。このスイッチを押すと明かりがつく。けんはスイッチを押した。他の操作や変化はない。今の明かりはどうなっているか。\n明かりはついている。",
+        "rationale": "初期消灯、押すことだけで点灯、他の変化なし。押したので点灯。",
+        "template": 0,
+        "id": "train-cause-0000-0",
+        "family": "train-cause-0000",
+        "split": "train",
+        "variant": 0,
+        "structural_holdout": false,
+        "canonical_sha256": "79e0ac1c9554ce9eddaca72ca049722332a22a22da872e4b4480cad37c43c561"
+      }
+    ]
+  }
+}
