@@ -1,6 +1,6 @@
 # JMicro-10M フェーズ別実行計画
 
-最新（2026-10-05 JST）: 計画61は保存失敗診断・同source各20M・全80教材診断を実施し、候補12/40>10で準備失敗分岐の採否・報告・元10B UI確認まで完了して停止。新GPUなし。最新状態はdocs/autonomous_status.md、結果はdocs/63_condition_preservation_preparation_results.md。以下のPhase定義と元品質条件は維持する。旧進捗は番号付き実験記録とautonomous_history_20261005.mdに保持する。
+最新（2026-10-05 JST）: 結果63後の四項目は別train32でselector v2を改修/凍結し、同source各20M/未確認全80を診断。対照弱例12/候補14で両内容gate未達、準備失敗分岐の採否・報告・元10B UI確認まで完了して停止。新GPUなし。状態はdocs/autonomous_status.md、結果はdocs/65_condition_selector_v2_preparation_results.md。以下のPhase定義と元品質条件は維持する。
 
 作成日: 2026-10-02。最終更新: 2026-10-05（10Bと各100M/500M比較・日本語評価の実状態へ更新）。根拠は[プロジェクト目的](01_project_goal.md)、[設計](03_architecture.md)、[技術調査](11_technical_research_gaps.md)、[Phase 0完了記録](16_phase0_completion.md)、[Phase 1完了記録](17_phase1_completion.md)。既存の**確定**方針から逆算した計画であり、将来の成果物名・未凍結の実行値は**提案**である。品質目標・評価契約はPhase 5で凍結済みで、結果を見て緩めない。
 
@@ -18,11 +18,11 @@
 
 ## 現在地と計画の使い方
 
-2026-10-05 JST: Phase0〜5と主要Web10B、追加教材/学習量比較は完了。最新は[計画61の準備結果63](63_condition_preservation_preparation_results.md)。同source各20Mで弱例21/40→12/40、候補10/40以下が未達で準備失敗分岐を完了し、新GPUなしで停止。最新科学学習は[結果60](60_dataset_expansion_results.md): 物語60M→200M・各追加1B、常識改善/一貫性EOS未達で不採用。Base/Chat品質未達、Phase7へ移行していない。
+2026-10-05 JST: Phase0〜5と主要Web10B、追加教材/学習量比較は完了。最新は[selector v2準備結果65](65_condition_selector_v2_preparation_results.md)。同source各20Mの未確認40各で弱例12/40→14/40、両内容条件未達で準備失敗分岐を完了、新GPUなしで停止。最新科学学習は[結果60](60_dataset_expansion_results.md): 物語60M→200M・各追加1B、常識改善/一貫性EOS未達で不採用。Base/Chat未達、Phase7へ移行していない。
 
 モデル10,001,152 parameters、Web準備12,225,819,077 tokens、物語準備200,000,192tokens。主系列とUIは10,000,007,168学習tokens、最新二枝は各11,000,020,992tokens。別枝の合計科学2,000,027,648と検証262,144を区別する。長さ/source/EOS密度差を保持し、量だけの効果や容量限界は未確定。
 
-今回の範囲は[計画61](61_condition_preservation_next_plan.md)段階1〜4の準備失敗分岐まで完了した。各20,000,028-token教材を作成し、長さ全並び/BOS/EOS位置を一致させ、全80を内容診断した。条件未達で各100M/条件付き全文を起動しない。次回案は結果63、新しい選別改修/sample/GPU/20B/50B/Chat/test/pushは未開始。実際の状態は[status](autonomous_status.md)、移行は[引継ぎ](windows_handoff.md)、確認は[checklist](10_next_steps.md)を正とする。
+今回の範囲は[実行64](64_condition_selector_v2_execution.md)の四項目の準備失敗分岐まで完了した。別train32でv2を凍結し、各20,000,072-token教材・長さ全並び/BOS/EOS一致・未確認全80を診断した。条件未達で各100M/条件付き全文を起動しない。次回案は結果65。新たな小教材設計/data/GPU/20B/50B/Chat/test/pushは未開始。状態は[status](autonomous_status.md)、移行は[引継ぎ](windows_handoff.md)、確認は[checklist](10_next_steps.md)を正とする。
 
 以下のPhase定義・品質目標は維持する。以前の現在地と次の実行案は[2026-10-05履歴](autonomous_history_20261005.md)、各実験の当時の計画は各番号の文書へ保持する。結果や提案を新jobの開始指示として扱わない。20B/50Bと有料cloud/公開は別範囲。
 

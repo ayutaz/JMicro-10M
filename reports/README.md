@@ -2,7 +2,7 @@
 
 ## 最新の保存結果（2026-10-05）
 
-最新は[準備結果63](../docs/63_condition_preservation_preparation_results.md)。計画61の同source各20M/全80診断は候補12/40>10で準備失敗。新GPUなし、条件を緩めず失敗分岐完了で停止した。[全80原文付きdata review](phase6/condition_preservation_data_review.json)、[個別notes](phase6/condition_preservation_source_notes.json)、[ready](phase6/condition_preservation_ready.json)、[diagnosis](phase6/condition_preservation_diagnosis.json)、[prepare job](phase6/condition_preservation_prepare_job.json)、[judgment](phase6/condition_preservation_judgment.json)、[completion/UI](phase6/condition_preservation_completion.json)、[CPU4tests](phase6/condition_preservation_tests.xml)を保存。
+最新は[selector v2準備結果65](../docs/65_condition_selector_v2_preparation_results.md)。別train32の[開発比較](phase6/condition_v2_calibration_review.json)後に凍結し、同source各20M/未確認全80を診断したが弱例対照12/候補14で両内容gate未達。新GPUなし、準備失敗分岐完了で停止。[全80原文付きdata review](phase6/condition_v2_data_review.json)、[notes](phase6/condition_v2_source_notes.json)、[ready](phase6/condition_v2_ready.json)、[prepare job](phase6/condition_v2_prepare_job.json)、[judgment](phase6/condition_v2_judgment.json)、[completion/UI](phase6/condition_v2_completion.json)、[CPU5tests](phase6/condition_v2_selector_tests.xml)を保存。旧結果63とcondition_preservation証拠は保持。
 
 以下は最新科学学習の[結果60](../docs/60_dataset_expansion_results.md)。旧60M/新200Mの各追加1B、全160内容・日本語診断・不採用判断・UIを保持。今回の教材診断とモデル評価を区別する。
 

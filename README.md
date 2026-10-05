@@ -2,7 +2,7 @@
 
 日本語短文生成と数ターンの雑談を目指す、Tokenizerからスクラッチ構築した10,001,152パラメータの言語モデル。現在はBaseで、Chat調整と実用品質目標は未達。
 
-最新（2026-10-05）: [同source・長さ/EOS一致の教材準備結果63](docs/63_condition_preservation_preparation_results.md)を保存して停止。両20,000,028-token poolを用意し、固定各40全文で弱例21→12。候補10/40以下という学習開始条件が未達のため、新100M比較・全文評価は未起動。全80個別理由・準備失敗判断・元10B UI確認を保存した。[現在地](docs/autonomous_status.md)を参照する。
+最新（2026-10-05）: [selector v2の準備結果65](docs/65_condition_selector_v2_preparation_results.md)を保存して停止。別train32で改修・凍結し、同source/長さ/EOS一致の両20,000,072-token poolを準備。未確認各40の弱例は対照12/候補14で「対照より少ない」「候補10/40以下」の両条件未達。新100M比較・全文評価は未起動。全80理由・採否・元10B UI実確認を保存。[現在地](docs/autonomous_status.md)を参照する。
 
 ## 準備量・学習量・品質
 
@@ -43,7 +43,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/stop_webui.ps1
 
 ## 次回の計画
 
-[計画61](docs/61_condition_preservation_next_plan.md)の準備失敗分岐は[実行62](docs/62_condition_preservation_execution.md)と[結果63](docs/63_condition_preservation_preparation_results.md)まで完了。次回案は、意図/否定・対象の所在・結論の不整合を今回確認したsampleと分離したtrain例で扱えるか測り、selector凍結後に未確認の各40を一度だけ確認すること。元の準備条件を通過した場合に各100Mを提案する。今回は改修・新sample・学習を開始せず停止。20B/50B/Chat/test/publicationへ自動移行しない。
+[実行64](docs/64_condition_selector_v2_execution.md)の別train例でのselector改修と新教材準備は[結果65](docs/65_condition_selector_v2_preparation_results.md)まで完了し、準備不成立で停止。開発例での改善が新しい受け入れ例へ転移した証拠は得られず、モデル精度の変化は未測定。次回案は意味を個別に確認できる小さなwhole-doc教材による同量学習比較の設計。これは別契約として提案するもので今回のgateは変更しない。新設計/data/GPU/20B/50B/Chat/test/publicationへ自動移行しない。
 
 計画58段階1〜3の実験完了はlocal commit `afad164`。旧runは完成しているので再起動しない。次の実行は再開された依頼の範囲で進める。
 

@@ -1,13 +1,13 @@
 # JMicro-10M 文書一覧
 
-最終更新: 2026-10-05 JST。現在地は[status](autonomous_status.md)、最新完了は[教材準備結果63](63_condition_preservation_preparation_results.md)。計画61は同source各20M/全80個別診断まで実施し、候補弱例12/40>10で準備失敗分岐を完了して停止。新GPUなし。Phase0〜5と10B/過去追加比較は完了、Base/Chat品質未達。
+最終更新: 2026-10-05 JST。現在地は[status](autonomous_status.md)、最新完了は[selector v2準備結果65](65_condition_selector_v2_preparation_results.md)。別train32で改修/凍結、同source両20M/未確認全80を診断したが弱例対照12/候補14で準備失敗分岐完了・停止。新GPUなし。Phase0〜5と10B/過去追加比較は完了、Base/Chat品質未達。
 
 ## 読む順序
 
 1. [status](autonomous_status.md): 実量、最新比較、採否、processと停止境界。
 2. [roadmap](15_project_roadmap.md): 全体の目的・各Phase・元品質条件。
-3. [結果63](63_condition_preservation_preparation_results.md): 全80診断・準備失敗判断・次回案。最新科学学習は[結果60](60_dataset_expansion_results.md)。
-4. [計画61](61_condition_preservation_next_plan.md)と[実行62](62_condition_preservation_execution.md)、[checklist](10_next_steps.md): 原準備条件と実際の停止分岐。
+3. [結果65](65_condition_selector_v2_preparation_results.md): 開発32と未確認80診断・準備失敗判断。最新科学学習は[結果60](60_dataset_expansion_results.md)。
+4. [実行64](64_condition_selector_v2_execution.md)、原[計画61](61_condition_preservation_next_plan.md)、[checklist](10_next_steps.md): 原準備条件と実際の停止分岐。
 5. [引継ぎ](windows_handoff.md): WSL/uv、Git管理外のweights/data、完成runの扱い。
 
 主系列/UIは10,000,007,168学習tokens、最新比較枝は各11,000,020,992。モデルは10,001,152 parameters。Web準備12,225,819,077、短い物語準備200,000,192tokens。最新新条件は常識改善と生成/停止未達を分けて不採用。source/長さ/EOS密度も変わるので量だけの効果ではない。
@@ -75,6 +75,7 @@
 | [54 全文pool計画](54_complete_document_500m_execution.md) / [55 結果](55_complete_document_500m_results.md) | 110M教材・500M比較、不採用 |
 | [56 教材/学習量計画](56_matched_story_and_learning_budget_plan.md) / [57 結果](57_matched_story_and_learning_budget_results.md) | matched教材と固定教材一定LR1B、採用未達 |
 | [58 増量案](58_dataset_expansion_proposal.md) / [59 実行](59_dataset_expansion_execution.md) / [60 結果](60_dataset_expansion_results.md) | 最新科学学習。物語60M→200M・各1B、不採用 |
-| [61 原計画](61_condition_preservation_next_plan.md) / [62 実行](62_condition_preservation_execution.md) / [63 結果](63_condition_preservation_preparation_results.md) | 最新完了。保存失敗診断・同source各20M/全80内容、準備失敗分岐で学習前停止 |
+| [61 原計画](61_condition_preservation_next_plan.md) / [62 実行](62_condition_preservation_execution.md) / [63 結果](63_condition_preservation_preparation_results.md) | 前回完了。保存失敗診断・同source各20M/全80内容、準備失敗分岐で学習前停止 |
+| [64 新selector実行](64_condition_selector_v2_execution.md) / [65 結果](65_condition_selector_v2_preparation_results.md) | 最新完了。別train32で改修・凍結し、未確認各40で準備改善未確認、学習前停止 |
 
 過去の番号付き計画にある「次回」「未開始」は記載当時の状態。現在の実行範囲はAGENTS.mdとstatusを正とする。詳細な原文は[2026-10-05履歴](autonomous_history_20261005.md)へ保持する。
