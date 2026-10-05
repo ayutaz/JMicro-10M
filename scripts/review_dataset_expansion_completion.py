@@ -2,6 +2,7 @@
 import json
 from pathlib import Path
 import sys
+import xml.etree.ElementTree as ET
 from urllib.request import urlopen
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'src'))
 from jmicro.experiment import ROOT,read_json,write_json,sha256,now
@@ -27,6 +28,9 @@ def main():
     require('stage2_actual_CUDA_save_resume_exact',result['resume_gate']['passed'] and all(result['resume_gate']['checks'].values()))
     require('stage2_actual_matching_routes_schedule_and_midpoints',all(review['checks'][a+'_actual_all_LR_stable_decay'] and review['checks'][a+'_actual_source_routes_short_cursors'] and review['checks'][a+'_actual500M_saved_same_lineage'] for a in ('control','refined')) and review['checks']['same_actual_Web_routes_tokens_and_final_cursor'])
     require('stage3_all_primary_evidence_checks_pass',review['status']=='passed' and all(review['checks'].values()) and review['result_sha256']==sha256(run/'result.json') and review['annotations_sha256']==sha256(run/'annotations.json'))
+    require('stage3_correct_applied_LR_reviewer_provenance',review['reviewer_version']==2 and review['reviewer_sha256']==sha256(ROOT/'scripts/review_dataset_expansion_v2.py') and review['frozen_v1_reviewer_sha256']==c['source_sha256']['scripts/review_dataset_expansion.py'])
+    suites=list(ET.parse(run/'reviewer-tests.xml').getroot().iter('testsuite'))
+    require('stage3_LR_audit_real_scheduler_tests',sum(int(s.attrib['tests']) for s in suites)>=2 and all(int(s.attrib[k])==0 for s in suites for k in ('errors','failures','skipped')))
     require('stage3_all160_individual_content_reviews',all(len(review['scored_outputs'][a])==80 and review['checks'][a+'_all80_individual_notes'] for a in ('control','refined')))
     require('stage3_Japanese192_331_1119_and_common256',all(review['checks'][a+'_Japanese_complete_RNG_isolated'] and review['checks'][a+'_common256_actual_NLL_BPB'] for a in ('control','refined')))
     eligible=review['eligible_for_full'];full=None

@@ -1,5 +1,7 @@
 # Codex継続作業の現在地
 
+計画58段階2・対照1B完了／新教材学習中（2026-10-05 JST）: actual239609が対照追加1,000,013,824/総11,000,020,992/update335694を1479.136秒で保存（2026-10-05T08:01:57.826188Z、SHA fd10dc1b358327bdbd8d3d58118c2cb096fc53d02b036f070e453911edf2b82aを実ファイルと照合）。Web800,063,488/short199,950,336、EOS教師Web1,693,843/short2,210,250。元final10Bから新200M条件へ同一jobで移り、actualPID稼働・stderr空を確認。metric.lrは使用した率、saved scheduler/optimizer.lrは次更新の率であり、旧CPU reviewerの照合に1更新ずれを発見。凍結した旧source/config/学習は変えず、別reviewer v2で使用率(step−1)と保存後率(step)を厳密照合し、実CPU scheduler境界と誤率拒否の2tests成功。品質gateは不変。新条件1B・両終端日本語/160内容・原gate判断・必要時全文/report/local commit/元UI復帰は未完了。
+
 計画58段階2・対照500M中間保存（2026-10-05 JST）: actual239609が500,006,912追加/総10,500,014,080/update320435を745.994秒で保存。`control/checkpoint-00320435.pt` SHA c5658fc5891f30ebb007e58427d1453fcf9cb47687222411ae8078a0ff1344f3を実ファイルと照合成功。Web400,031,744/short99,975,168、EOS教師Web846,893/short1,105,092。07:50:05Z時点で15700更新へ続行、実psで同一PID/13分経過を確認しstderr空。科学ジョブは止めていない。段階3未完了、対照1B→新200M教材1B→両終端の日本語/全160内容・採否と条件付き全文、report/local commit/元UI復帰まで追跡する。観測用functionsセル2370は終了したがGPUジョブとは別プロセス。
 
 計画58段階2開始（2026-10-05 JST）: 凍結commit03346a7。hidden Windows21040からwrapperを起動、actual Linux239609/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start_ticks6902884を実psで確認。元UI停止、科学は新poolによる実CUDA保存再開を開始したところ。Linux reports/phase6/dataset-expansion-1b-20261005/screen-job.jsonとWindows同run stdout/stderr/launchを追跡し、再起動しない。旧60M/新200M各追加1Bの終端、日本語全診断・全160内容と採否、report/local commit/元UI復帰が未完了。

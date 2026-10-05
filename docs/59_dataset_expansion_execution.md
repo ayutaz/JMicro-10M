@@ -27,3 +27,7 @@
 現在は教材準備とCPU5tests完了。内容review・config凍結・GPU・評価・採否の実施結果は後続記録へ追記する。
 
 段階2実行中: 凍結commit03346a7、hidden Windows21040/actual Linux239609/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start_ticks6902884。新poolによる実CUDA stable→decay連続/再開一致25項目成功（検証262,144は別）。対照500Mの中間を2026-10-05T07:49:44.684084Zに745.994秒で保存した。実追加500,006,912/総10,500,014,080/update320435、Web400,031,744/short99,975,168、EOS教師Web846,893/short1,105,092。中間SHA`c5658fc5891f30ebb007e58427d1453fcf9cb47687222411ae8078a0ff1344f3`を実ファイルと照合。評価を挟まず対照1Bへ継続中。新教材1Bと両終端評価・160内容・採否は未完了。元UIはGPU中停止した状態で、wrapperの復帰処理を終了後に実確認する。
+
+対照1B完了: 2026-10-05T08:01:57.826188Z、1479.136秒、追加1,000,013,824/総11,000,020,992/update335694。終端SHA`fd10dc1b358327bdbd8d3d58118c2cb096fc53d02b036f070e453911edf2b82a`を実ファイルと照合。Web800,063,488/short199,950,336、EOS教師Web1,693,843/short2,210,250。同じjobが新教材条件へ移った。
+
+CPU評価照合の修正: `Trainer.step`はoptimizer.step前の使用LRをmetricsへ記録し、checkpointはscheduler.step後の次更新LRを保存する。凍結reviewer v1の全LR照合がstepを一つ進めていたため、凍結source/config/科学ジョブを変えず別`review_dataset_expansion_v2.py`を追加した。実使用率はstep−1、保存後optimizer/scheduler率はstepとして、両方を厳密確認する。実CPU schedulerのstable→decay境界・誤った使用率/保存率の拒否という2tests成功。これは評価処理の時点修正で、学習や品質採用基準の変更ではない。以後の一次評価はv2を使い、そのhashと凍結v1 hashをレビューへ保存する。
