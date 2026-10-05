@@ -1,0 +1,270 @@
+{
+  "status": "large_point_learning_Japanese_and_all80_content_complete_small_learning_running",
+  "config": "configs/phase6/textbook_quantity_comparison.json",
+  "point": "large-1000000000",
+  "prepared_tokens": 2000001312,
+  "science_completed_large_stable_teacher_tokens": 1000000000,
+  "science_completed_large_decay_teacher_tokens": 20000000,
+  "stable": {
+    "status": "complete",
+    "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook-quantity-comparison-20261006/large/stable/checkpoint-00030775.pt",
+    "checkpoint_sha256": "df5295b9e7cfce14dff6a77ce2a9675fbbf67e48639045c4bb721063dce27fbf",
+    "binding": {
+      "config_sha256": "f1baece77f9e85d6086f1ac5d1e624a59d19910a90af2202a104fb125c379d98",
+      "parent": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/curriculum-strategy-20261005-v3/initial-fresh.pt",
+        "sha256": "70d86a832f607faf4325992b5ec76d080a167b164efc78a6dc0b88133507ea85",
+        "update": 0,
+        "tokens_seen": 0
+      },
+      "arm": "large",
+      "peak_lr": 0.002,
+      "warmup_updates": 200,
+      "optimizer_policy": "fresh",
+      "initialization": "new-random",
+      "curve_mode": "stable",
+      "curve_boundaries": [
+        1000000000
+      ],
+      "short_manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133"
+    },
+    "update": 30775,
+    "tokens": 1008435200,
+    "supervised_tokens": 1000000000,
+    "additional_supervised_tokens": 1000000000,
+    "additional_input_tokens": 1008435200,
+    "physical_input_tokens": 1008435200,
+    "source_eos_teachers": {
+      "web": 0,
+      "short": 8416904
+    },
+    "sampler": {
+      "kind": "teacher-learning-curve-v1",
+      "mode": "shuffle",
+      "goals": {
+        "web": 0,
+        "short": 1000000000
+      },
+      "position": 30775,
+      "web": {
+        "seed": 42,
+        "epoch": 0,
+        "position": 0,
+        "context": 1024,
+        "blocks": 11939276
+      },
+      "short": {
+        "seed": 42,
+        "epoch": 0,
+        "position": 984800,
+        "context": 1024,
+        "blocks": 1953126,
+        "mode": "lazy-shuffle-whole-documents-v1"
+      },
+      "source_tokens": {
+        "web": 0,
+        "short": 1008435200
+      },
+      "source_physical_tokens": {
+        "web": 0,
+        "short": 1008435200
+      },
+      "source_teachers": {
+        "web": 0,
+        "short": 1000000000
+      },
+      "source_eos": {
+        "web": 0,
+        "short": 8416904
+      },
+      "boundaries": [
+        1000000000
+      ],
+      "genre_teachers": {
+        "web": 749597935,
+        "story": 50125405,
+        "textbook": 200276660
+      },
+      "genre_eos": {
+        "web": 6548672,
+        "story": 384503,
+        "textbook": 1483729
+      },
+      "genre_tag_mapping": {
+        "web": 0,
+        "story": 1,
+        "textbook": 2
+      }
+    },
+    "genre_teachers": {
+      "web": 749597935,
+      "story": 50125405,
+      "textbook": 200276660
+    },
+    "genre_eos": {
+      "web": 6548672,
+      "story": 384503,
+      "textbook": 1483729
+    },
+    "training_step_seconds": 1502.6460372112488,
+    "timing_policy": "Sum completed metric update seconds; compile within step included, constructor/saving/evaluation excluded; total occupancy separately recorded",
+    "peak_allocated_bytes": 6149073408
+  },
+  "decay": {
+    "status": "complete",
+    "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook-quantity-comparison-20261006/large-1000000000/decay/checkpoint-00031391.pt",
+    "checkpoint_sha256": "fb3c725944d820549a3d3c7c6c4ddde75ee536288d351a92e9e0b6e20e513c56",
+    "binding": {
+      "config_sha256": "f1baece77f9e85d6086f1ac5d1e624a59d19910a90af2202a104fb125c379d98",
+      "parent": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook-quantity-comparison-20261006/large/stable/checkpoint-00030775.pt",
+        "sha256": "df5295b9e7cfce14dff6a77ce2a9675fbbf67e48639045c4bb721063dce27fbf",
+        "update": 30775,
+        "tokens_seen": 1008435200,
+        "supervised_tokens": 1000000000
+      },
+      "arm": "large-1000000000",
+      "peak_lr": 0.002,
+      "warmup_updates": 0,
+      "optimizer_policy": "inherit",
+      "initialization": "stable-fork",
+      "curve_mode": "decay",
+      "curve_boundaries": [
+        20000000
+      ],
+      "short_manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133"
+    },
+    "update": 31391,
+    "tokens": 1028620288,
+    "supervised_tokens": 1020000000,
+    "additional_supervised_tokens": 20000000,
+    "additional_input_tokens": 20185088,
+    "physical_input_tokens": 20185088,
+    "source_eos_teachers": {
+      "web": 0,
+      "short": 168065
+    },
+    "sampler": {
+      "kind": "teacher-learning-curve-v1",
+      "mode": "shuffle",
+      "goals": {
+        "web": 0,
+        "short": 20000000
+      },
+      "position": 616,
+      "web": {
+        "seed": 42,
+        "epoch": 0,
+        "position": 0,
+        "context": 1024,
+        "blocks": 11939276
+      },
+      "short": {
+        "seed": 42,
+        "epoch": 0,
+        "position": 1004512,
+        "context": 1024,
+        "blocks": 1953126,
+        "mode": "lazy-shuffle-whole-documents-v1"
+      },
+      "source_tokens": {
+        "web": 0,
+        "short": 20185088
+      },
+      "source_physical_tokens": {
+        "web": 0,
+        "short": 20185088
+      },
+      "source_teachers": {
+        "web": 0,
+        "short": 20000000
+      },
+      "source_eos": {
+        "web": 0,
+        "short": 168065
+      },
+      "boundaries": [
+        20000000
+      ],
+      "genre_teachers": {
+        "web": 14943480,
+        "story": 1001829,
+        "textbook": 4054691
+      },
+      "genre_eos": {
+        "web": 130354,
+        "story": 7710,
+        "textbook": 30001
+      },
+      "genre_tag_mapping": {
+        "web": 0,
+        "story": 1,
+        "textbook": 2
+      }
+    },
+    "genre_teachers": {
+      "web": 14943480,
+      "story": 1001829,
+      "textbook": 4054691
+    },
+    "genre_eos": {
+      "web": 130354,
+      "story": 7710,
+      "textbook": 30001
+    },
+    "training_step_seconds": 31.521933098949376,
+    "timing_policy": "Sum completed metric update seconds; compile within step included, constructor/saving/evaluation excluded; total occupancy separately recorded",
+    "peak_allocated_bytes": 6149073408
+  },
+  "summary": {
+    "prepared_tokens": 2000001312,
+    "stable_teachers": 1000000000,
+    "decay_teachers": 20000000,
+    "BPB": 1.157867943031557,
+    "rates": {
+      "outputs": 80,
+      "eos": 43,
+      "repetition": 19,
+      "unicode_failure": 0,
+      "role_leak": 0,
+      "empty": 0
+    },
+    "Japanese": {
+      "semantics": 0.5,
+      "jblimp": 0.7915407854984894,
+      "jcqa": 0.3145665773011618
+    },
+    "grammar2": 44,
+    "relevance2": 40,
+    "coherent": 14,
+    "appropriate": 25,
+    "generation_sha256": "12475de573b5e86f00f2a7dd349e1e20ed8daa5b2cb74033ad55c50881cc36df",
+    "notes_sha256": "b4cef9b5409834535c431b90cf5eb1b40f56bb30b6893a7c536cbd1df9e949d8",
+    "Base_adopted": false,
+    "independent_human_blind": false
+  },
+  "references": {
+    "content_review": "reports/phase6/textbook_quantity_large-1000000000_content_review.json",
+    "notes": "reports/phase6/textbook_quantity_large-1000000000_notes.json",
+    "equal_decay_CUDA": "reports/phase6/textbook_quantity_equal_decay_resume_gate.json",
+    "generation": "reports/phase6/textbook_quantity_large-1000000000_generation.json",
+    "small_CUDA": "reports/phase6/textbook_quantity_small_resume_gate.json"
+  },
+  "unchanged_absolute_screen": {
+    "grammar_44_less_than_56": false,
+    "EOS_43_at_least37": true,
+    "appropriate_25_less_than_27": false,
+    "no_raw_failures": true,
+    "repetition_19_greater_than18": false,
+    "coherence_14_less_than_27": false
+  },
+  "decision": "Large does not pass absolute Base criteria; finish small same1B+20M/all80 before quantity/extension conclusion",
+  "quantity_causal_comparison_complete": false,
+  "Base_adopted": false,
+  "independent_human_blind": false,
+  "protected_test_used": false,
+  "old_numerical7_preserved": true,
+  "quality_criteria_unchanged": true,
+  "requested_five_steps_complete": false,
+  "created_at": "2026-10-05T21:56:54.8302556Z"
+}
