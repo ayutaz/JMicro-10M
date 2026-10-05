@@ -716,4 +716,8 @@ large保存80件ではこの研究用4gram候補が50件/1501位置あり、う�
 
 最終目標は10Mの自然な短い日本語Base、2〜4ターンのChat、量子化したローカル利用。1800秒は直近比較のGPU上限案であり全工程の納期ではない。WSL uvのみ、必要な確認を行い、既存巨大コーパスの全量再照合や過去評価の不要な反復を避ける。節目でverified local commit、pushなし。全五目標active、Base/Chat未採用、旧数値7失敗と品質基準を保持する。
 
+測定修正と本比較の再開（2026-10-06 JST、2717458）: `continuous-timing-v2`で旧CE16更新を実fullstate/SHA確認して再学習せず再利用、CE_UL残16更新をCUDA実測完了。metricsとmodel/Adamの有限値を別に検証する8回帰testsと、予算/既存guardを含む13CPUtestsに合格。旧config/source/jobは不変で、実CUDAprobe16更新520076教師、連続測定32更新1039808教師、計48更新1559884検証教師は科学学習とは別。既消費GPU54.623992＋失敗21.622512＋v2 27.587662＝103.834166秒を全て計上、検証300秒以内。両16行を記録し、最初4更新のcompile/data warmupは会計に残して後12連続更新/全3rollout cycleの中央値を使用。CE通常0.098622/rollout1.252964秒、CE_UL0.068504/1.287814秒、教師32494/update、各770更新見込み。科学学習合計584.429秒×1.3＋評価480秒＝1239.757秒、検証込み1343.591秒で1800秒案以内。
+
+`configs/phase6/sequence_objective_comparison.json`（SHA8b8de74892c885c1680cf2d7755074b9938809b66dae09f6e276ac446ff43d19）へ各25M教師を凍結、科学GPU上限1696.165834秒。旧実probeのsnapshot/config/job/gatesをSHA検証し、driverの予算処理/reviewer会計以外のtrainer/core/forward/評価源変更は拒否する。Windowsworker31224、actual501165/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start12291147をps確認して永続起動、nativejob/log/checkpointsは`reports/phase6/sequence-objective-comparison-20261006`。起動時setup・新科学学習0で、品質改善は未評価。重複プロセスを確認してから`scripts/run_sequence_objective_comparison.ps1 -Mode Train -Worker`で保存済み完了更新から再開する。次は両実25M終端・全日本語/全160内容と採否。Base/Chat未採用、全五目標継続。
+
 採用候補の独立training seed/full dev/保護test→実mid-training/SFT対direct/retention/全sampling内容→実人間評価→HF/GGUF/Q8/Q4/実UIという全五目標の後続は維持する。準備/CPU検証はこの完了証拠ではない。

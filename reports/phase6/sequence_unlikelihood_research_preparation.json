@@ -1,5 +1,5 @@
 {
-  "status": "conditional_persistent_probe_paired_runner_and_all160_reviewer_ready_no_GPU_training",
+  "status": "actual_probe_and_continuous_timing_complete_matched25M_GPU_live_quality_pending",
   "hypothesis": "Explicitly reducing probabilities of repeats in model-generated training continuations may reduce autoregressive repetition; no claim that this also fixes nonrepetitive semantic incoherence",
   "primary_sources": [
     "https://arxiv.org/html/1908.04319v2#S5.SS2",
@@ -123,5 +123,44 @@
     "accounting": "CE50M scientific;16 CUDA verification updates separate; generated body/EOS/negative and extra valid/physical/digest separate from CE",
     "probe": "--prepare-probe CPU freeze after completed material/source review; actual Probe hidden durable worker under300s cap, continuous4 vs2+2 for each alpha",
     "completion": "both Japanese192/331/1119 and all160 raw-bound content/review, full-state/history/LR/cursor/accounting, unchanged quality criteria, no automatic Base adoption"
+  },
+  "initial_preparation_status": "conditional_persistent_probe_paired_runner_and_all160_reviewer_ready_no_GPU_training",
+  "current_actual_progress": {
+    "observed_at": "2026-10-05T22:37:53.9816748Z",
+    "job": {
+      "status": "running",
+      "pid": 501165,
+      "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+      "start_ticks": "12291147",
+      "config_sha256": "8b8de74892c885c1680cf2d7755074b9938809b66dae09f6e276ac446ff43d19",
+      "started_at": "2026-10-05T22:35:09.31519Z",
+      "gpu_elapsed_seconds": 110.6115060840093,
+      "protected_test_used": false,
+      "Base_adopted": false,
+      "restart_command": "scripts/run_sequence_objective_comparison.ps1 -Mode Train -Worker",
+      "stage": "CE-training",
+      "heartbeat_at": "2026-10-05T22:37:51.091757Z",
+      "teachers": 9098364,
+      "teacher_budget": 25000000,
+      "loss": 2.6022322177886963,
+      "sequence_UL": 0.6881098747253418
+    },
+    "actual_process_live": true,
+    "windows_worker_pid": 31224,
+    "latest_CE_checkpoint": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/sequence-objective-comparison-20261006/CE/training/checkpoint-00031591.pt",
+      "sha256": "1b80baa30e6b534d9343087841567acca5aeda601869467a926224ba56461b96",
+      "update": 31591,
+      "tokens_seen": 1035173888
+    },
+    "verified_probe_report": "reports/phase6/sequence_objective_actual_probe_result.json",
+    "continuous_timing_report": "reports/phase6/sequence_objective_continuous_timing_result.json",
+    "verification_teacher_tokens": 1559884,
+    "verification_GPU_seconds": 103.8341657530109,
+    "scientific_CE_teacher_budget_per_arm": 25000000,
+    "quality_evaluation_complete": false,
+    "Base_adopted": false,
+    "Chat_adopted": false,
+    "next_action": "Keep actual501165 running; complete CE and CE_UL25M, full Japanese/common-byte and all160 original content review, then quality decision"
   }
 }
