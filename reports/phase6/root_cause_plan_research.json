@@ -1,0 +1,48 @@
+{
+  "status": "read_only_research_and_plan_completed_execution_unstarted",
+  "plan": "docs/70_root_cause_investigation_plan.md",
+  "plan_sha256": "fbd39c76d979a19b68572fb6901ab66e0e585562151f6e11e64ab00b5114d171",
+  "previous_result_commit": "41d3ced",
+  "evidence_and_source_raw_sha256": {
+    "docs/60_dataset_expansion_results.md": "cad4b747c769207527c05d661fe155d362a3e330e03fecb84f1f8385d75549cb",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "reports/phase5/overfit_report.json": "9b0da62a07963fee62b65453b40178472eea70de7b03fb699383b6e58f474f2a",
+    "reports/phase6/packing_study_review.json": "7c9810d534b97609666cc07ee023ca0a111ee3182d1151bcfc7ffce52677b4a7",
+    "docs/42_base_10b_quality_evaluation.md": "ea1829c6c48f948c7b981f767105163e67569df81098d1d5e07746c734f1f1c0",
+    "docs/37_eos_repetition_utf8_improvement_plan.md": "960f96bfaa2fcacf79917cf6b59513178246f9ea09c212368f5d76a2990a685b",
+    "tests/test_training_performance.py": "8e90016c1eb951bac75c058653d496ab3eb84035c96a9ac739cebf481e4cce52",
+    "src/jmicro/japanese_evaluation.py": "8693e2a54e63c1b085b617b207cc5db618ae80af1eb7cb54133ba8b254da6801",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/webui.py": "6c296a41c828088e1d226f6b6cf9d66fd57e150439757815d4a91fbccbdc773e",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "docs/69_packing_learning_results.md": "d40cc6e7a110b48ee650246bda81b9636fba0f4536e7fa2fe9999169d449a789",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c"
+  },
+  "checked_primary_sources": [
+    "https://arxiv.org/abs/2305.07759",
+    "https://arxiv.org/abs/1904.09751",
+    "https://arxiv.org/abs/1908.04319",
+    "https://arxiv.org/abs/2203.15556"
+  ],
+  "known": [
+    "Old T8K isolated overfit: continuation100%, EOS100%; cannot infer current10B T4K generalization",
+    "Same-material shuffle improves condition scores, general generation still fails",
+    "Sampling already reduced repetitions in old5B but EOS5/240; not an EOS solution",
+    "Trainer targets shifted once; EOS3 is not suppressed in source; new CUDA behavior not measured"
+  ],
+  "root_cause_proven": false,
+  "quality_resolved": false,
+  "additional_training_tokens": 0,
+  "new_GPU_evaluation_seconds": 0,
+  "new_data_preparation": 0,
+  "proposed_execution": {
+    "budgets_status": "Proposal, not frozen execution contract",
+    "optional_two_condition_comparisons_max_teacher_tokens": 100000000,
+    "optional_positive_control_teacher_tokens": 24000000,
+    "initial_GPU_wall_seconds_cap": 600,
+    "targeted_comparison_GPU_wall_seconds_cap": 1200,
+    "initial_stages": "0–2: bind existing evidence, current checkpoint CUDA paths, teacher/free-running EOS and repetition",
+    "positive_control_GPU_wall_seconds_cap": 600
+  },
+  "checked_at": "2026-10-05T12:31:30.1850864Z"
+}

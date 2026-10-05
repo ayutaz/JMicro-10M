@@ -1,3 +1,5 @@
+最新提案（2026-10-05 JST）: [根本調査計画70](70_root_cause_investigation_plan.md)。実装の経路差→EOS/反復の発生点→必要な自然文陽性対照→原因別小比較→条件付き同10M設計比較の順。既存証拠を再利用し、単純増量や再学習を結論にしない。今回は文献/source/保存結果の調査と計画のみ、実行は未開始。下記の結果69・元品質目標は維持する。
+
 最新完了（2026-10-05 JST）: [実行68](68_packing_learning_execution.md)段階1〜3、[結果69](69_packing_learning_results.md)。同教材の連結/順序変更/文書単位を各25M教師で実学習しtrain75/100/100、新dev74/85/76。shuffleを選び元10BからWeb80M＋短文20Mの各100Mを比較、対照train71/dev54→候補99/76。ただし一般自由生成は両一貫性0/適切完結0、EOS2/2、反復65/53（各80）で候補不採用。新五終端の日本語/全400個別内容評価、旧dev参照、24CUDA再開625,842教師別会計、106終端証拠checks完了。科学275M教師。Base/Chat品質未達、Phase7へ移行せず、元10B UI復帰・verified local commitで停止。次の多様な自然短文教材比較は提案のみ。以下の歴史的記録・原Phase定義と品質条件を維持する。
 最新（2026-10-05 JST）: [契約66](66_condition_learning_diagnostic_plan.md)の四段階を実行、[結果67](67_condition_learning_diagnostic_results.md)。両追加24,969,216tokensでtrain75/68・未見65/61、目標未達で条件付き100Mは未開始。文脈付きtrain100%と単独の差を実測。全日本語・160内容評価済み、EOS改善のみでは一貫性/BPB未達で両不採用。Base/Chat品質未達、元10B UIを復帰してverified local commitで停止。次の文書単位学習比較は提案のみ。以下のPhase定義・原品質条件と以前の結果を維持する。
 
