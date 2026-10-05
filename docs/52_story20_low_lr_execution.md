@@ -11,6 +11,8 @@ Pythonはすべてuv管理3.12.7、WSL2/RTX4090で実行する。protected test�
 
 ## 実行状態
 
+段階3データ準備完了・500M条件凍結: 固定4 train filesを使い切り、59,963,449 tokens / 662,857文書 / 125,613 parent groupsを194.534秒で構築した。120M目標は未達、source exhaustedを記録し、99,975,168物語input tokensには約1.66727周を使用する。新規unique100Mとは主張しない。各file先頭10採用文書、計40全文を確認し、14弱例と非ランダムsample・合成物語・広域重複未確認の限界をcontent-reviewへ保存した。限定比較の既存基準で使用し、完結や意味品質の全件認証とはしない。26関連CPU tests保存済み、config/schemaを凍結しprobe成功。実科学GPUは起動前。各500,006,912科学tokens、計1,000,013,824、100,007,936中間地点を共通14500 stable/759 decay scheduleで保存する。中間100Mは共通scheduleのstable中で、旧減衰済み100Mとの純粋な量だけの比較ではない。一次GPU上限4,200秒、条件付き全文3,000秒。次は永続起動とactual identity保存、320内容診断、原gate条件付き全文、段階4判断・報告・local commit・元UI復帰で停止。
+
 段階2完了・合格: 全文BPBは候補0.952080669620、同LR Web0.945960821011、元親0.954018472798。候補は元親より−0.001937803179、同LR Web比約+0.647%で、原BPB両条件を通った。全400は候補EOS127/反復45/raw0、Web6/126/raw0。候補長文128/512各20はEOS9/9・文再出現8/8・4gram反復0.473527/0.585897・raw0。全文/長文GPU1,940.030秒、原条件と共通scoring protocolを実保存データから確認するCPU30項目成功。科学143237/全文143904は終了し、元UI復帰を確認した。Base/Chat品質・独立人手blindの達成とはしない。
 
 条件付き段階3を開始: データ準備の最初の複合起動コマンドは自動実行ポリシーにより拒否された（詳細理由なし）。起動を専用`prepare_story20_budget.ps1`へ分け、同じ許可範囲の直接実行で成功した。2026-10-05 00:46:47Z開始、hidden Windows21332 / actual Linux173735 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks4440874。CPU builderのjobは`~/jmicro-data/phase6/simple-stories-ja-budget-20261005/job.json`。140.649秒時点でsource1,564,922行/44,931,893 tokensまで構築した。固定source4 train filesを必要分だけ使い、120Mへ届かなければ実量とepoch再利用を学習前に明記する。26関連CPU tests成功（1.81秒）；500M config未凍結・科学GPU未開始。
