@@ -1,5 +1,5 @@
 {
-  "status": "sequence_objective_trainer_rollout_loss_and_saved_raw_inspection_ready_no_GPU_training",
+  "status": "conditional_persistent_probe_paired_runner_and_all160_reviewer_ready_no_GPU_training",
   "hypothesis": "Explicitly reducing probabilities of repeats in model-generated training continuations may reduce autoregressive repetition; no claim that this also fixes nonrepetitive semantic incoherence",
   "primary_sources": [
     "https://arxiv.org/html/1908.04319v2#S5.SS2",
@@ -11,7 +11,11 @@
     "scripts/inspect_sequence_unlikelihood_candidates.py",
     "tests/test_sequence_unlikelihood.py",
     "scripts/sequence_objective_trainer.py",
-    "tests/test_sequence_objective_trainer.py"
+    "tests/test_sequence_objective_trainer.py",
+    "scripts/run_sequence_objective_comparison.py",
+    "scripts/run_sequence_objective_comparison.ps1",
+    "scripts/review_sequence_objective_comparison.py",
+    "tests/test_sequence_objective_comparison.py"
   ],
   "CPU_checks": {
     "tests": 10,
@@ -70,9 +74,9 @@
     "completion_condition": "Actual ended jobs/checkpoints/accounting/resume gates/all160 notes and adoption decision saved; quality rejection is not project completion",
     "continuation_condition": "Only unchanged all-condition quality evidence justifies extension/final Base validation; repetition alone or shortened output does not justify adoption",
     "missing": [
-      "durable paired runner and measured frozen recipe",
-      "actual CUDA save-resume and finite batch proof",
-      "actual learning and quality evaluation"
+      "completed paired material comparison and all160 source notes before selection",
+      "actual CUDA save-resume and finite batch/rollout timing proof",
+      "measured frozen scientific recipe and actual learning/quality evaluation"
     ]
   },
   "actual_GPU_training_updates": 0,
@@ -94,11 +98,30 @@
     "report": "reports/phase6/sequence_objective_trainer_tests.xml"
   },
   "source_sha256": {
+    "tests/test_sequence_objective_trainer.py": "e15afe3f3f60e4aceab12970f3811e14e401a9c6b25ea8a4efce44842c5bff75",
+    "tests/test_sequence_objective_comparison.py": "90da9956e7965c134dbab8b5e8c871125cc7b9b0676d0ca2ac7ac0b2f303cb75",
+    "scripts/review_sequence_objective_comparison.py": "3130c2eb19cc848a189d9846149e47d7c191425c1bdeca0d7b0b2e65cc48dee5",
+    "scripts/run_sequence_objective_comparison.py": "d920f23882132d98d760f00a862a1d786aa5da8ea2bb153b3ae0073aae2d6448",
     "scripts/inspect_sequence_unlikelihood_candidates.py": "a28e695aedb78a6f2af158210f470575661a05a0b01ac8e743db50f3bfb50c93",
     "tests/test_sequence_unlikelihood.py": "1a04e5a6ece46335f4b65d72d5aad6648ff54b65d352de3e2e5b27fc505256a1",
-    "tests/test_sequence_objective_trainer.py": "e15afe3f3f60e4aceab12970f3811e14e401a9c6b25ea8a4efce44842c5bff75",
+    "src/jmicro/sequence_unlikelihood.py": "3d54c3544e4e59f086459ce6053e342aa3133c39b990dae48ea1131f084e6cf3",
     "scripts/sequence_objective_trainer.py": "035b08caf9c5f96885ae9599802e9e777ebfc79a3473614085a9dfafebee58ce",
-    "src/jmicro/sequence_unlikelihood.py": "3d54c3544e4e59f086459ce6053e342aa3133c39b990dae48ea1131f084e6cf3"
+    "scripts/run_sequence_objective_comparison.ps1": "71e4ac114b343864d2b0d67e623c7bdd4e379c0c895ec7cb8a316a3cef538316"
   },
-  "created_at": "2026-10-05T22:09:11.2402075Z"
+  "created_at": "2026-10-05T22:09:11.2402075Z",
+  "paired_runner_CPU_checks": {
+    "PowerShell_syntax": "passed",
+    "seconds": 0.91,
+    "actual_CUDA": 0,
+    "tests": 3,
+    "report": "reports/phase6/sequence_objective_comparison_tests.xml",
+    "passed": 3,
+    "CLI_help": "both passed"
+  },
+  "persistent_runner_protocol": {
+    "science": "--freeze requires actual ended passed probe and estimated25M each/evaluation with1.3x training margin fits1800s total incl probe; separate hidden Train worker",
+    "accounting": "CE50M scientific;16 CUDA verification updates separate; generated body/EOS/negative and extra valid/physical/digest separate from CE",
+    "probe": "--prepare-probe CPU freeze after completed material/source review; actual Probe hidden durable worker under300s cap, continuous4 vs2+2 for each alpha",
+    "completion": "both Japanese192/331/1119 and all160 raw-bound content/review, full-state/history/LR/cursor/accounting, unchanged quality criteria, no automatic Base adoption"
+  }
 }
