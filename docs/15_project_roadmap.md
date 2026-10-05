@@ -508,3 +508,11 @@ BPB、意味/文法の選択式評価、自由生成の文法/関連性/一貫�
 新科学600,000,000教師、valid/physical605,093,888、実CUDA連続/再開16更新・検証519,816教師別。各学習410.507/399.853秒、結果GPU975.858秒・job占有976.383秒。batch32の実BF16 forward/backwardとfull state再開を確認し、新構成の最大batch/最高速度を網羅的に探索したとは主張しない。全160新内容理由・日本語診断・同byte評価・教師LR/stateを監査済み。可搬証拠architecture_comparison各JSONと57text rawtar、各重みとsource教材はWSLに保持。非blind Codex評価で独立人手レビューは未実施。元10B UIを復帰した。
 
 次のstage4はWiki単独を採用せず、広いWebと物語の新しい入れ子100M/500M教材を実準備する。同source・本文長・EOS密度を厳密5倍に揃え、同教師量で量の効果を調べる。構成比較で明確な改善が得られなかったので、数量比較の研究対照には現13層を保持する案とし、教材準備・内容基準の確認後に学習configへ凍結する。これは現Baseの品質合格を意味しない。stage4学習と改善Base/Chat/量子化を完了するまで全五項目の目標を保持する。
+
+### 五項目stage4の実準備と凍結条件（2026-10-06 JST）
+
+入れ子v2の実準備は100,000,157対500,000,785 tokens、dev2,000,207。Web80%/物語20%のsource・本文長・EOS・原文全文/冒頭完結段落の編集単位を厳密1:5に揃えた。固定64内容は弱10で既定基準内。合格は学習比較への受け入れであり、自然文だけ/全事実認証/実用Base合格を意味しない。原文・各理由・旧v1供給失敗をnested_material各JSONに保持する。
+
+amount_learning_comparison.jsonで同じfresh現13層・Tokenizer4096・seed42・context1024/batch32/BF16 Flash compiled・LRpeak.002/初200更新warmupを凍結。500M教材の安定経路を100M/500M/1B/2B教師で分岐し、100M教材は1B教師で分岐する。各分岐に同20M教師のcosine decay（最低peakの.1、warmup再実行なし）を適用して全日本語/固定80内容を評価する。主経路3B＋評価枝5×20M=100Mの科学3.1B、保存再開検証教師は別、GPU占有上限7200秒。まず500M側を実行して早い100M評価を得る。各節目から毎回新規学習せず、枝は主経路のAdam/RNG/cursorへ戻す。本流/枝とも完了更新だけ保存・計数する。学習秒数は完了step metricsの合計で、保存/評価等は総GPU占有に別記する。
+
+準備量と反復を含む教師量、valid/physical入力、実source別教師/EOS、epoch/block cursorを別記する。全tokenの固有露出unionは独立計測していないため、準備全量を学習済み固有量と呼ばない。遅延doc shuffleは従来と同じ文書/ブロック順序を保持し、全epochを毎回連結せずmmapから必要部分だけ読む。CPU5testsは入力/epoch/再開/学習state/decay復帰/metrics回復の証拠、GPU学習や品質の証拠ではない。実CUDA gate成功後に本流を開始する。量/学習比較GPU、全400内容、改善Base/Chat/量子化はこの凍結時点では未完了。
