@@ -144,3 +144,8 @@ Base採用後に使うsrc/jmicro/assistant_sampler.pyを追加。train dialogue�
 prepare_nested_material.py/ps1とnested_material.pyを追加。既存固定Web12,225,819,077と物語200,000,192のtrain streamを再利用し、新規取得や旧全面hash照合をしない。小pool Web80M/story20M準備tokens、大poolはsource/本文長が同じ5文書groupから1文書を小にも入れる厳密5倍で、全文/BOS/EOSを保持。source・全長histogram・EOS密度も厳密同率。Web64〜1024/story32〜512本文tokens、全文完結/予告・広告/欠落欄/反復を除外、story強い魔法表現を除外。局所canonical exactとfirst-sentence-familyのdev分割、共通dev2M。旧全corpus site/author/near監査の代替ではない。CPU600秒/8workers、供給不足をreadyとしない。新固定64内容弱10以下を確認するまで新GPU/本学習採用なし。CPU2tests成功0.02秒（入れ子/同hist/完結・欠落等）、syntaxcompile成功。量の学習比較config/commandは準備とstage3採否後に別凍結。準備量の固有文書は今回pool内で増えるが、公開sourceを新取得した500Mと表記しない。
 
 CPU入れ子準備actual477999/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start10170871とWindows worker31096を実確認。reports/phase6/nested-material-20261006/prepare-job.json、launcher stdout/stderr/結果へ永続保存。既存rawbinのBOS/本文/EOSを再利用。全体600秒内の供給/内容基準は未達・進行中で、100M/500M準備済みとはまだ表記しない。GPU科学actual475615は同時に6層学習を継続し重複なし。
+
+
+### stage4全文供給不足と段落単位への改訂（2026-10-06 JST）
+
+actual477999は592.386秒で終了・不在、Webtrain全12,225,819,077を一度抽出対象として読み、large Web315,728,705/small63,145,741/dev1,600,197しか確保できずWeb400M目標に供給不足。保存heartbeatは最終batchより少し前なので正確な終端はerrorのtotalsと閉じたindex/streamから得る。元失敗job・全partial bin/indexを保持、story未処理、学習0。新v2は元の閉じた1:5 prefixを再利用し、追加対象を原文冒頭4blocks以内の完結した段落まで広げる。現在userの文やEOSを切らず、本文は原文そのまま、段落のみretokenize、source offset/char span/親manifestを保持。source/本文長/編集単位の5文書groupから1文書を小poolにも入れ、全量hist/EOS同率を維持。source/history/近重複監査の限界と固定64弱10以下は不変。v2もCPU600秒/8workers、同じ供給不足の再実行ではなく編集単位を変え、取得済みrawと抽出済みprefixを利用する。CPU2tests成功0.02秒、初回fixture61tokensで64下限に不適合だった失敗を解決し下限は維持、script syntax成功。実v2供給/内容/学習は未実行・未達。
