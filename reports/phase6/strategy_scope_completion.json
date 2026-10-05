@@ -1,0 +1,94 @@
+{
+  "status": "complete_requested_roadmap1_to3_quality_unmet",
+  "completed_at": "2026-10-05T15:09:30.950778Z",
+  "stage1": {
+    "job": {
+      "status": "complete",
+      "pid": 396752,
+      "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+      "start_ticks": "9311576",
+      "started_at": "2026-10-05T14:18:33.106385Z",
+      "config_sha256": "54de2d2beda0fae682282f63e4bb9595c24cc080dbf5cc2ab86459bea6872c9b",
+      "gpu_elapsed_seconds": 76.8951607140043,
+      "scientific_teacher_tokens": 0,
+      "restart_command": "scripts/run_generation_transfer.ps1",
+      "stage": "diverse-48-greedy256",
+      "heartbeat_at": "2026-10-05T14:19:43.197746Z",
+      "completed_at": "2026-10-05T14:19:50.001455Z"
+    },
+    "review_sha256": "f34ecb9e31146ce7ee0380c9ff68da982c4462fdc018acda3713518a9c94da60",
+    "scientific_teacher_tokens": 0
+  },
+  "stage2": {
+    "train_prepared_tokens": 10000208,
+    "dev_prepared_tokens": 500319,
+    "weak64": 10,
+    "ready_sha256": "d64b3074b820e3ac428b4633e9e2baae1b8521ffbc9fb47b3cebe85c4a6cc499"
+  },
+  "stage3": {
+    "teacher_tokens_per_strategy": 300000000,
+    "scientific_teacher_tokens": 600000000,
+    "valid_input_tokens": 604504064,
+    "physical_tokens": 604504064,
+    "verification_teacher_tokens": 1040748,
+    "CUDA_resume_optimizer_updates": 32,
+    "gpu_seconds": 1396.455665194997,
+    "original100M_review_sha256": "417875007d82376a7e5c07ce98442bfd3a1b70ee6186cc4154c3674827f953ac",
+    "extension_review_sha256": "daa2f2e247958d3452f5a49d68403882870fabcbe6e74616916aece8f2309c88",
+    "all_individual_generation_reviews": 320,
+    "independent_human_blind": false
+  },
+  "jobs_terminal_absent": true,
+  "UI": {
+    "actual": {
+      "pid": 444875,
+      "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+      "start_ticks": "9599628"
+    },
+    "model": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    }
+  },
+  "tests": {
+    "generation_transfer_tests.xml": {
+      "tests": 2,
+      "sha256": "c72b80eb6b05a688fd3d740d2defac959ac4de3422d9d66c2b008a08590c3f77"
+    },
+    "curriculum_strategy_tests.xml": {
+      "tests": 5,
+      "sha256": "7975b104d0fc25732fd6e31e7dc34480e04c69e24a8222d55df4ea9627afc53a"
+    },
+    "curriculum_strategy_bootstrap_tests.xml": {
+      "tests": 1,
+      "sha256": "fa98e252886f306091fdd8a0bc8d5de2d6c4411343c49d1bf93d8faaa9d2eb8a"
+    },
+    "strategy_extension_tests.xml": {
+      "tests": 1,
+      "sha256": "f8ea4743e1d40f21d1fbfc445038572a9482e3dd2006772a3899db31900297af"
+    }
+  },
+  "archive": {
+    "path": "reports/phase6/strategy_scope_evidence.json.gz",
+    "sha256": "471a404992a33b4418673797715f3da1d31e660b9b9bde456f780c9fa35c7e03",
+    "members": 153,
+    "bytes": 32891478
+  },
+  "decision": "Both300M candidates rejected under unchanged gates; original10B UI retained; architecture experiment remains a proposal",
+  "old_numerical_failures72_preserved": true,
+  "stage4_started": false,
+  "Chat_started": false,
+  "protected_test_used": false,
+  "pushed": false,
+  "next": "Stop after results/local commit. Next proposed research is realistic material/source revision with matched budget and learning-curve design; no automatic large scaling."
+}

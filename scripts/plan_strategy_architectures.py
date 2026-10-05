@@ -16,6 +16,7 @@ def plan():
         config=copy.deepcopy(base);config.update(changes)
         model=JMicroModel(config);count=sum(p.numel() for p in model.parameters())
         assert 9900000<=count<=10100000
+        config.update(expected_parameter_count=count,status='proposal_parameter_count_only',name='JMicro-10M-proposal-'+name)
         candidates[name]=dict(model_config=config,parameters=count,quality='not evaluated; CPU parameter count only')
         del model
     report=dict(status='proposal_not_launch_contract',candidates=candidates,

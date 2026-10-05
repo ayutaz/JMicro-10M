@@ -1,0 +1,249 @@
+{
+  "status": "verified_learning_and_content_evidence",
+  "summaries": {
+    "continuation": {
+      "BPB": 1.2557731792857416,
+      "rates": {
+        "outputs": 80,
+        "eos": 31,
+        "repetition": 5,
+        "unicode_failure": 1,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "Japanese": {
+        "semantics": {
+          "point": 0.5572916666666666,
+          "ci95": [
+            0.5104166666666666,
+            0.6041666666666666
+          ],
+          "units": 96,
+          "examples": 192,
+          "unit": "family/prompt",
+          "seed": 42,
+          "repetitions": 2000,
+          "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+        },
+        "jblimp": {
+          "point": 0.7552870090634441,
+          "ci95": [
+            0.7099697885196374,
+            0.8036253776435045
+          ],
+          "units": 331,
+          "examples": 331,
+          "unit": "family/prompt",
+          "seed": 42,
+          "repetitions": 2000,
+          "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+        },
+        "jcqa": {
+          "point": 0.26899016979445933,
+          "ci95": [
+            0.24396782841823056,
+            0.2949061662198391
+          ],
+          "units": 1119,
+          "examples": 1119,
+          "unit": "family/prompt",
+          "seed": 42,
+          "repetitions": 2000,
+          "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+        }
+      },
+      "grammar2": 34,
+      "relevance2": 17,
+      "coherent": 8,
+      "appropriate": 15,
+      "auxiliary": {
+        "documents": 32,
+        "EOS": 7,
+        "repeated4gram": 21,
+        "teacher_NLL": 2.2789345787954574,
+        "teacher_top1_fraction": 0.530294233275204
+      },
+      "additional_teacher_tokens": 200000000,
+      "cumulative_teacher_tokens": 300000000,
+      "valid_input_tokens": 201490432,
+      "physical_tokens": 201490432,
+      "seconds": 304.9521164320031,
+      "peak_allocated_bytes": 6149073408,
+      "EOS_teachers": {
+        "web": 0,
+        "short": 1476083
+      }
+    },
+    "fresh": {
+      "BPB": 1.6054100927035742,
+      "rates": {
+        "outputs": 80,
+        "eos": 22,
+        "repetition": 2,
+        "unicode_failure": 1,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "Japanese": {
+        "semantics": {
+          "point": 0.4947916666666667,
+          "ci95": [
+            0.46875,
+            0.5208333333333334
+          ],
+          "units": 96,
+          "examples": 192,
+          "unit": "family/prompt",
+          "seed": 42,
+          "repetitions": 2000,
+          "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+        },
+        "jblimp": {
+          "point": 0.7129909365558912,
+          "ci95": [
+            0.6616314199395771,
+            0.7613293051359517
+          ],
+          "units": 331,
+          "examples": 331,
+          "unit": "family/prompt",
+          "seed": 42,
+          "repetitions": 2000,
+          "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+        },
+        "jcqa": {
+          "point": 0.26541554959785524,
+          "ci95": [
+            0.23949955317247543,
+            0.29135388739946366
+          ],
+          "units": 1119,
+          "examples": 1119,
+          "unit": "family/prompt",
+          "seed": 42,
+          "repetitions": 2000,
+          "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+        }
+      },
+      "grammar2": 27,
+      "relevance2": 15,
+      "coherent": 5,
+      "appropriate": 13,
+      "auxiliary": {
+        "documents": 32,
+        "EOS": 7,
+        "repeated4gram": 20,
+        "teacher_NLL": 2.661717681731758,
+        "teacher_top1_fraction": 0.4922780780060575
+      },
+      "additional_teacher_tokens": 200000000,
+      "cumulative_teacher_tokens": 300000000,
+      "valid_input_tokens": 201490432,
+      "physical_tokens": 201490432,
+      "seconds": 305.4485366970039,
+      "peak_allocated_bytes": 6149073408,
+      "EOS_teachers": {
+        "web": 0,
+        "short": 1476083
+      }
+    }
+  },
+  "gates": {
+    "continuation": {
+      "practical": {
+        "coherence_at_least27": false,
+        "appropriate_at_least27": false,
+        "EOS_at_least37": false,
+        "repetition_at_most18": true
+      },
+      "relative_to100M": {
+        "checks": {
+          "coherence_gain_at_least8": false,
+          "paired_CI_lower_above0": false,
+          "EOS_nonworsening": true,
+          "repetition_nonworsening": true,
+          "no_empty_role_unicode": false,
+          "BPB_gate": false,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": 2,
+        "CI95": [
+          -0.0375,
+          0.0878124999999983
+        ]
+      },
+      "original_Web": {
+        "EOS_at_least8_more": true,
+        "repetition_no_worse": true,
+        "no_empty_role_unicode": false,
+        "BPB_degradation_at_most1percent": false,
+        "no_punctuation_only_stops": true
+      },
+      "adopted": false
+    },
+    "fresh": {
+      "practical": {
+        "coherence_at_least27": false,
+        "appropriate_at_least27": false,
+        "EOS_at_least37": false,
+        "repetition_at_most18": true
+      },
+      "relative_to100M": {
+        "checks": {
+          "coherence_gain_at_least8": false,
+          "paired_CI_lower_above0": false,
+          "EOS_nonworsening": true,
+          "repetition_nonworsening": true,
+          "no_empty_role_unicode": false,
+          "BPB_gate": false,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": -1,
+        "CI95": [
+          -0.075,
+          0.05
+        ]
+      },
+      "original_Web": {
+        "EOS_at_least8_more": true,
+        "repetition_no_worse": true,
+        "no_empty_role_unicode": false,
+        "BPB_degradation_at_most1percent": false,
+        "no_punctuation_only_stops": true
+      },
+      "adopted": false
+    }
+  },
+  "between_strategies": {
+    "checks": {
+      "coherence_gain_at_least8": false,
+      "paired_CI_lower_above0": false,
+      "EOS_nonworsening": true,
+      "repetition_nonworsening": false,
+      "no_empty_role_unicode": false,
+      "BPB_gate": true,
+      "appropriate_completion_not_punctuation": true
+    },
+    "passed": false,
+    "difference_count": 3,
+    "CI95": [
+      -0.0375,
+      0.125
+    ]
+  },
+  "scientific_teacher_tokens": 400000000,
+  "cumulative_scientific_teacher_tokens": 600000000,
+  "verification_teacher_tokens": 520252,
+  "gpu_seconds": 839.733485528006,
+  "stage3_total_GPU_seconds": 1396.455665194997,
+  "result_sha256": "e3a5fab3db4f2ce1cc2ae1848147fff97c755d899ecf56692ce49df7c0f224c6",
+  "annotations_sha256": "10209a5af9fc05c67effe9f8cd5de5b8de79c49fd32087e86197317538ad0f73",
+  "decision": "No more extension in this scope; retain original UI unless all unchanged adoption gates pass",
+  "interpretation": "Learning strategy comparison with staged reheat, not capacity proof or uninterrupted300M; auxiliary Web may be parent-known; official dev remains separate",
+  "numerical_failures72_unchanged": true,
+  "independent_human_blind": false,
+  "protected_test_used": false,
+  "created_at": "2026-10-05T15:08:32.442238Z"
+}

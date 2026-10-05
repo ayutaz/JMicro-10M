@@ -20,11 +20,13 @@ def finish():
     diagnostic=ROOT/'reports/phase6/generation-transfer-20261006'
     jobs=[read_json(p) for p in (diagnostic/'job.json',BASE/'job.json',BASE/'baselines-job.json',RUN/'job.json')]
     assert all(j['status']=='complete' and not alive(j) for j in jobs)
+    assert jobs[0]['scientific_teacher_tokens']==0 and jobs[0]['gpu_elapsed_seconds']<=600
+    assert len(read_json(diagnostic/'review.json')['reviews'])==128
     data=Path('/home/aihub_ubuntu/jmicro-data/phase6/curriculum-strategy-20261005-v3')
     ready=read_json(data/'ready.json');content=read_json(BASE/'content-review.json')
     assert ready['splits']['train']['tokens']>=10000000 and content['documents']==64 and content['weak_documents']<=10
     tests={}
-    for name in ('generation_transfer_tests.xml','curriculum_strategy_tests.xml','strategy_bootstrap_tests.xml','strategy_extension_tests.xml'):
+    for name in ('generation_transfer_tests.xml','curriculum_strategy_tests.xml','curriculum_strategy_bootstrap_tests.xml','strategy_extension_tests.xml'):
         path=ROOT/'reports/phase6'/name
         if not path.exists():continue
         suites=list(ET.parse(path).getroot().iter('testsuite'))
@@ -40,8 +42,11 @@ def finish():
     runs=[diagnostic,BASE,RUN,ROOT/'reports/phase6/curriculum-strategy-20261005',ROOT/'reports/phase6/curriculum-strategy-20261005-v2']
     for run in runs:
         for path in sorted(run.rglob('*')):
-            if path.is_file() and path.suffix in ('.json','.jsonl','.xml','.py','.ps1'):
+            if path.is_file() and path.suffix in ('.json','.jsonl','.xml','.py','.ps1','.log'):
                 text=path.read_text(encoding='utf-8');sources[str(path.relative_to(ROOT))]=dict(sha256=sha256(path),text=text)
+    for path in (ROOT/'reports/phase6').iterdir():
+        if path.is_file() and path.suffix in ('.json','.xml') and path.name.startswith(('generation_transfer_','curriculum_strategy_','strategy_extension_','strategy_architecture_')):
+            sources[str(path.relative_to(ROOT))]=dict(sha256=sha256(path),text=path.read_text(encoding='utf-8'))
     for path in (data/'ready.json',data/'sample64.json',CONFIG,ROOT/'configs/phase6/curriculum_strategy.json',ROOT/'configs/phase6/generation_transfer.json'):
         if path.exists():sources[str(path)]=dict(sha256=sha256(path),text=path.read_text(encoding='utf-8'))
     bundle=ROOT/'reports/phase6/strategy_scope_evidence.json.gz'
