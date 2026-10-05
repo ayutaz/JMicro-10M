@@ -1,0 +1,173 @@
+{
+  "record_type": "Primary GPU summary; complete raw/checkpoint/sampler evidence retained in Linux run",
+  "source_result_path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/result.json",
+  "source_result_sha256": "0b8c52cf64e1d3441419a924af55dfc2a45b7677666a2c88e57e55b31a1757d9",
+  "status": "complete_pending_content_review",
+  "scientific_tokens": 1000013824,
+  "verification_tokens": 262144,
+  "GPU_seconds": 1878.7058998310022,
+  "completed_at": "2026-10-05T01:27:43.032848Z",
+  "arms": {
+    "web": {
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+      "checkpoint_sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4",
+      "update": 320435,
+      "tokens": 10500014080,
+      "additional_input_tokens": 500006912,
+      "source_tokens": {
+        "web": 500006912,
+        "short": 0
+      },
+      "training_seconds": 747.3961857169998
+    },
+    "coherent20": {
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/coherent20/checkpoint-00320435.pt",
+      "checkpoint_sha256": "f336806bee562cf11fe29506f833deae45de228c4b8acb1b942c7df21c82daac",
+      "update": 320435,
+      "tokens": 10500014080,
+      "additional_input_tokens": 500006912,
+      "source_tokens": {
+        "web": 400031744,
+        "short": 99975168
+      },
+      "training_seconds": 735.2801723750017
+    }
+  },
+  "BPB": {
+    "web": {
+      "intermediate100M": 0.9786423269745784,
+      "result": 0.9715702494156145
+    },
+    "coherent20": {
+      "intermediate100M": 0.985129409148557,
+      "result": 0.9799114534563707
+    }
+  },
+  "rates": {
+    "web": {
+      "intermediate100M": {
+        "outputs": 80,
+        "eos": 0,
+        "repetition": 55,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "result": {
+        "outputs": 80,
+        "eos": 0,
+        "repetition": 62,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      }
+    },
+    "coherent20": {
+      "intermediate100M": {
+        "outputs": 80,
+        "eos": 22,
+        "repetition": 29,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "result": {
+        "outputs": 80,
+        "eos": 37,
+        "repetition": 18,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      }
+    }
+  },
+  "diagnostics": {
+    "web": {
+      "intermediate100M": {
+        "semantics": 0.609375,
+        "jblimp_SLOR": 0.7462235649546828,
+        "jcqa": 0.3136729222520107,
+        "semantic_both_contexts": {
+          "correct": 23,
+          "total": 96,
+          "fraction": 0.23958333333333334
+        },
+        "complete_tasks": {
+          "semantics": true,
+          "jcqa": true,
+          "jblimp": true
+        }
+      },
+      "result": {
+        "semantics": 0.6041666666666666,
+        "jblimp_SLOR": 0.7552870090634441,
+        "jcqa": 0.3154602323503128,
+        "semantic_both_contexts": {
+          "correct": 21,
+          "total": 96,
+          "fraction": 0.21875
+        },
+        "complete_tasks": {
+          "semantics": true,
+          "jcqa": true,
+          "jblimp": true
+        }
+      }
+    },
+    "coherent20": {
+      "intermediate100M": {
+        "semantics": 0.6302083333333334,
+        "jblimp_SLOR": 0.7552870090634441,
+        "jcqa": 0.3386952636282395,
+        "semantic_both_contexts": {
+          "correct": 27,
+          "total": 96,
+          "fraction": 0.28125
+        },
+        "complete_tasks": {
+          "semantics": true,
+          "jcqa": true,
+          "jblimp": true
+        }
+      },
+      "result": {
+        "semantics": 0.6197916666666666,
+        "jblimp_SLOR": 0.7854984894259819,
+        "jcqa": 0.3351206434316354,
+        "semantic_both_contexts": {
+          "correct": 25,
+          "total": 96,
+          "fraction": 0.2604166666666667
+        },
+        "complete_tasks": {
+          "semantics": true,
+          "jcqa": true,
+          "jblimp": true
+        }
+      }
+    }
+  },
+  "protected_test_used": false,
+  "quality_targets_achieved": false,
+  "content_review_status": "Web160 complete; story160 pending",
+  "original_UI": {
+    "name": "JMicro-10M",
+    "kind": "Base / 文章の続き",
+    "parameters": 10001152,
+    "training_tokens": 10000007168,
+    "update": 305176,
+    "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+    "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+    "device": "NVIDIA GeForce RTX 4090",
+    "precision": "BF16 / math attention",
+    "context": 1024,
+    "busy": false
+  },
+  "UI_identity": {
+    "pid": 176353,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "4686981",
+    "ready_at": "2026-10-05T01:27:47.469972Z"
+  }
+}
