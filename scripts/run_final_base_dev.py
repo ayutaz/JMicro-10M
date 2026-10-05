@@ -42,6 +42,7 @@ SOURCES = ("scripts/run_final_base_dev.py", "scripts/run_final_base_dev.ps1", "s
     "scripts/compare_base_10b.py", "scripts/compare_base_5b.py",
     "scripts/review_eos_5b_finish.py", "scripts/review_textbook_quantity_comparison.py",
     "scripts/run_textbook_improved_base.py", "scripts/run_eos_complete_100m.py",
+    "scripts/run_seeded_base_confirmation.py", "scripts/review_seeded_base_confirmation.py",
     "src/jmicro/readiness.py", "src/jmicro/evaluation_memory.py",
     "src/jmicro/japanese_evaluation.py")
 
@@ -69,13 +70,18 @@ def source_evidence(training_config, run, point):
         base = load_config()
         assert run == QUANTITY_RUN
         status = "matched500M_2B_all160_and_actual_learning_evidence_complete"
+    elif read_json(training_config).get("kind") == "independent-training-seed-confirmation":
+        from run_seeded_base_confirmation import preflight as seed_preflight
+        recipe, base, _ = seed_preflight(training_config)
+        assert run == ROOT/recipe["output"]
+        status = "independent_training_seed_all80_and_learning_evidence_complete"
     else:
         recipe, base, _, _, _ = extension_preflight(training_config)
         assert run == ROOT/recipe["output"]
         status = "improved_base_stage_evidence_complete"
     reviewed, result = read_json(run/"review.json"), read_json(run/"compare-result.json")
     assert reviewed["status"] == status
-    if status == "improved_base_stage_evidence_complete":
+    if status != "matched500M_2B_all160_and_actual_learning_evidence_complete":
         assert reviewed["quality_criteria_unchanged"] is True
     assert not reviewed["protected_test_used"] and not reviewed["Base_adopted"]
     assert reviewed["result_sha256"] == sha256(run/"compare-result.json")
@@ -106,7 +112,7 @@ def source_evidence(training_config, run, point):
     original = adoption_checks(read_json(Path(base["reference"]["web_screen"]["path"])), ev)
     if not (all(absolute.values()) and all(original.values())):
         raise ValueError("Unchanged absolute Base and original-Web screens must pass before full dev evaluation")
-    if status == "improved_base_stage_evidence_complete":
+    if status != "matched500M_2B_all160_and_actual_learning_evidence_complete":
         assert reviewed["point"] == point and reviewed["eligible_for_final_Base_validation"]
         assert reviewed["absolute_dev_screen"] == absolute and reviewed["original_Web"] == original
     else:

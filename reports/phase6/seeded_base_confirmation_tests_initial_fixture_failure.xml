@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="10" time="1.907" timestamp="2026-10-06T06:45:09.784717+09:00" hostname="DESKTOP-42CUV0C"><testcase classname="tests.test_seeded_base_confirmation" name="test_seed_confirmation_refuses_live_source_before_model_or_recipe_creation" time="0.002"><failure message="AssertionError">tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-60/test_seed_confirmation_refuses0')
+
+    def test_seed_confirmation_refuses_live_source_before_model_or_recipe_creation(tmp_path):
+        run=tmp_path/"learning";run.mkdir();write_json(run/"job.json",dict(status="running"))
+        config=tmp_path/"config.json";write_json(config,dict(source_run=str(run)))
+        with pytest.raises(ValueError,match="actually finish"):preflight(config)
+        write_json(run/"job.json",dict(status="complete",**identity()))
+        target=tmp_path/"new.json"
+        args=SimpleNamespace(source_run=run,training_config=tmp_path/"missing.json",point="large-1000000000")
+&gt;       with pytest.raises(ValueError,match="actually finish"):freeze(target,args)
+                                                               ^^^^^^^^^^^^^^^^^^^
+
+tests/test_seeded_base_confirmation.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-60/test_seed_confirmation_refuses0/new.json')
+args = namespace(source_run=PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-60/test_seed_confirmation_refuses0/learning'), trai...ixPath('/tmp/pytest-of-aihub_ubuntu/pytest-60/test_seed_confirmation_refuses0/missing.json'), point='large-1000000000')
+
+    def freeze(path, args):
+        if path.exists(): preflight(path); print("Frozen independent seed recipe retained; no GPU started"); return
+        if any(v is None for v in (args.source_run, args.training_config, args.point)):
+            raise ValueError("Freeze needs completed --source-run, --training-config and --point")
+        source_run = (ROOT/args.source_run).resolve(); training_config = args.training_config.resolve()
+&gt;       assert training_config.is_relative_to(ROOT/"configs/phase6")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError
+
+scripts/run_seeded_base_confirmation.py:82: AssertionError</failure></testcase><testcase classname="tests.test_seeded_base_confirmation" name="test_unfinished_replicate_review_cannot_publish_confirmation" time="0.001" /><testcase classname="tests.test_seeded_base_confirmation" name="test_actual_cpu_zero_and_learning_counters_prove_distinct_seed_and_reject_lost_history" time="0.920" /><testcase classname="tests.test_final_base_dev" name="test_final_dev_rejects_running_and_actually_live_learning_before_other_reads" time="0.002" /><testcase classname="tests.test_final_base_dev" name="test_full_body_requires_all_targets_common_byte_denominator_and_no_duplicate_documents" time="0.001" /><testcase classname="tests.test_final_base_dev" name="test_full_native_generation_preserves_failures_in_unsuppressed_and_sampling_conditions" time="0.008" /><testcase classname="tests.test_final_base_dev" name="test_full_generation_rejects_missing_modes_changed_seed_and_different_screen_ids" time="0.016" /><testcase classname="tests.test_final_base_dev" name="test_absolute_base_screen_does_not_accept_loss_or_good_grammar_alone" time="0.004" /><testcase classname="tests.test_final_base_dev" name="test_full_content_review_requires_every_raw_condition_and_real_EOS" time="0.008" /><testcase classname="tests.test_final_base_dev" name="test_long_review_checks_both_limits_native_bytes_and_saved_repetition_metrics" time="0.007" /></testsuite></testsuites>
