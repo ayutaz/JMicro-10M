@@ -1,8 +1,10 @@
 # JMicro-10M development and training
 
-Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/windows_handoff.md` before continuing. The status records actual results; `docs/48_complete_text_10b_comparison.md` records the completed current scope. Historical authorizations and progress notes are in `docs/autonomous_history_20261004.md` and do not define the current task.
+Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/windows_handoff.md` before continuing. The status records actual results; `docs/53_story20_low_lr_judgment.md` records the completed current scope. Older authorizations and dated progress notes are history and do not authorize a new experiment after the current stop boundary.
 
 ## Current state and scope
+
+- Current stop boundary (2026-10-05 JST): plan52 stages1–4 are complete, including20% lowerLR100M, its eligible full evaluation, prepared59,963,449-token pool with disclosed reuse, actual paired500M arms, all320 content diagnoses, eligible500M full/long, judgment and next proposal in report53. Primary37/full30 evidence checks pass;500M passes unchanged comparison gates and is a research candidate, while Base/Chat quality remains unmet. Scientific1,100,021,760/verification524,288 separate. All scientific/evaluation jobs exited and original final10B UI was restored. Save/verify final local delivery and stop. New pool, another500M/each1B/20B/50B/Chat/protected test/push/publication require a resumed user task; report53 is a proposal, not a launch instruction. Older authorizations below are history.
 
 - Latest user authorization (2026-10-05 JST): execute stages1–4 of `docs/52_story20_low_lr_execution.md` following proposal51. Run one20% lowerLR100M arm with immutable saved matched Web control; evaluate eligible full/long only when original gates pass; run matched500M arms only if all full gates pass; otherwise judge the failure and propose the next diagnostic/content action. Finish judgment/report/local commit, restore original final10B UI and stop. No1B/20B/50B/Chat/test/push/publication. Prior completed stop-boundary bullets below are history and do not prevent this newly requested scope.
 
@@ -22,7 +24,7 @@ Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/window
 
 ## Project rules
 
-Plan49 stages1–3 completed in reports50/51. The new user continuation authorizes plan52 stages1–4 only. Preserve original adoption gates, reuse saved matched controls and do not restart completed jobs. Stop after judgment/report/local commit and original UI restoration;500M is conditional, while1B/20B/Chat remain future proposals.
+Plan49 stages1–3 completed in reports50/51; plan52 stages1–4 completed in report53 including its entered paired500M/full branch. Preserve original adoption gates and all saved evidence. Do not restart completed jobs or execute report53's future data proposal automatically. Stop after verified final local delivery and original UI restoration until the user resumes work.
 
 The user has authorized autonomous implementation, repair, local GPU work, and required WSL preparation within the requested scope. Continue routine decisions and authorized milestone transitions without renewed permission. Authorization cannot change execution sandbox or managed policy.
 

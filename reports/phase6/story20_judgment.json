@@ -1,0 +1,54 @@
+{
+  "stage4_status": "complete",
+  "completed_at": "2026-10-05T02:20:23.2296679Z",
+  "scope": "Plan52 actual stages1-4 including conditional paired500M and full/long",
+  "candidate500M_passes_acceptance": true,
+  "adoption": "Accepted by unchanged comparison gates as a research candidate; Base and Chat quality targets remain unmet",
+  "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/coherent20/checkpoint-00320435.pt",
+  "checkpoint_sha256": "f336806bee562cf11fe29506f833deae45de228c4b8acb1b942c7df21c82daac",
+  "model_parameters": 10001152,
+  "model_training_input_tokens": 10500014080,
+  "scientific_tokens": 1100021760,
+  "verification_tokens": 524288,
+  "GPU_seconds": 6007.147478496008,
+  "primary_review_sha256": "b78385bd235d7a9281a5b6b4283902078e5abd8db743076aa886ecf88fed0465",
+  "full_review_sha256": "04c8280a3ac871f58711ebcf9bc723b97e5fc9163ad0e9c4175d16fe7e965172",
+  "report_sha256": "3c6eb0457ed7fe136d687425de290b879de66baf4b823ca82d8cc462a03df80b",
+  "quality_targets_achieved": false,
+  "protected_test_used": false,
+  "independent_human_blind": "not performed",
+  "stop_after_delivery": true,
+  "next_proposal": {
+    "executed": false,
+    "purpose": "At fixed500M learning, test whether a broader complete-short-text composition improves context-consistent generation and semantics",
+    "comparison": {
+      "new_conditions": 1,
+      "parent": "Original final10B",
+      "Web_fraction": 0.8,
+      "short_fraction": 0.2,
+      "learning_tokens": 500006912,
+      "peak_lr": 0.0001,
+      "floor_lr": 1E-05,
+      "stable_updates": 14500,
+      "decay_updates": 759,
+      "references": "Reuse saved current story20%500M and matched Web500M primary and full results",
+      "data": "Prepare100-120M tokens of filtered story plus permitted complete short Web train documents, bounded extraction, no corpus-wide scan",
+      "interpretation": "New data composition as a whole; pool size, content and reuse change together, not a pure quality-only or unique-volume-only intervention"
+    },
+    "budgets": {
+      "scientific_tokens": 500006912,
+      "primary_GPU_seconds": 1800,
+      "conditional_new_candidate_full_GPU_seconds": 1800,
+      "actual_config_and_data_must_be_frozen_before_execution": true,
+      "CPU_preparation_and_content_review": "Separate, bounded to required data; failure to secure intended amount/content stops before GPU"
+    },
+    "completion_condition": "40 reproducibly random training texts reviewed and actual sources/amount/reuse disclosed; all80 generations graded; unchanged original gates and at least8 more coherent outputs versus current19/80 with paired95% lower>0, EOS/repetition non-regression; eligible new-candidate full/long only, report/adopt-or-reject and stop; no automatic1B/20B/Chat/test/publication"
+  },
+  "limitations": [
+    "One training seed and repeatedly used dev",
+    "Codex content scoring is not independent human blind",
+    "Full corpus independent audit and broad duplicate/benchmark contamination checks remain incomplete",
+    "Current source synthetic and source40 sample non-random",
+    "100M intermediate and500M final are different phases of one common LR schedule"
+  ]
+}

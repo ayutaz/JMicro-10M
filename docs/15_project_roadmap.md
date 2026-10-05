@@ -1,6 +1,6 @@
 # JMicro-10M フェーズ別実行計画
 
-作成日: 2026-10-02。最終更新: 2026-10-04（5Bと各100M比較、直接10B準備完了の実状態へ更新）。根拠は[プロジェクト目的](01_project_goal.md)、[設計](03_architecture.md)、[技術調査](11_technical_research_gaps.md)、[Phase 0完了記録](16_phase0_completion.md)、[Phase 1完了記録](17_phase1_completion.md)。既存の**確定**方針から逆算した計画であり、将来の成果物名・未凍結の実行値は**提案**である。品質目標・評価契約はPhase 5で凍結済みで、結果を見て緩めない。
+作成日: 2026-10-02。最終更新: 2026-10-05（10Bと各100M/500M比較・日本語評価の実状態へ更新）。根拠は[プロジェクト目的](01_project_goal.md)、[設計](03_architecture.md)、[技術調査](11_technical_research_gaps.md)、[Phase 0完了記録](16_phase0_completion.md)、[Phase 1完了記録](17_phase1_completion.md)。既存の**確定**方針から逆算した計画であり、将来の成果物名・未凍結の実行値は**提案**である。品質目標・評価契約はPhase 5で凍結済みで、結果を見て緩めない。
 
 ## 最終的に実現すること
 
@@ -16,7 +16,7 @@
 
 ## 現在地と計画の使い方
 
-最新再開（2026-10-05 JST）: ユーザー「4まで進めて」に従い[実行計画52](52_story20_low_lr_execution.md)の段階1〜4を実行中。100M/全文通過後の各500M追加学習・四地点一次評価・全320内容診断・CPU37項目を完了した。物語条件は一貫性9→19/80に改善したが、意味・常識の一律改善ではない。固定物語source59,963,449 tokensを約1.667周使い、新規unique100Mとは扱わない。原一次条件通過により、追加学習なしの500M全文・長文をactual Linux177987で実行中。完了済み科学174280を再起動しない。全文原条件→段階4判断/次案/report/local commit・元final10B UI復帰で停止する。Base/Chat品質未達、保護test・各枝1B/20B/Chat・pushは今回対象外。以下の停止・未実施記録は当時の履歴で、現行状態は[status](autonomous_status.md)を正とする。
+最新完了（2026-10-05 JST）: ユーザー「4まで進めて」に従い[計画52](52_story20_low_lr_execution.md)段階1〜4の学習・評価・判断を完了した。100M/全文通過後の各500M、四地点一次評価、全320内容診断、条件付き全文/400/長文を実施し、CPU37/全文30項目が成功。物語500Mは全文BPB0.948798/固定EOS37/反復18/一貫性・適切完結19（各80）で元比較条件を全通過し、研究候補として採用。物語source59,963,449 tokensを約1.667周使用し、新規unique100Mとは扱わない。基本意味・常識の改善とBase/Chat品質目標は未達。[判断/次案53](53_story20_low_lr_judgment.md)・report/local commit・元final10B UI復帰で停止する。科学174280/評価177987は終了、再起動しない。次の同量500Mデータ構成比較は提案のみ。保護test・各枝1B/20B/Chat・pushは今回対象外。以下の旧記録は履歴で、現在は[status](autonomous_status.md)を正とする。
 
 最新追加比較（2026-10-05 JST）: [計画49の実行50](50_story10_and_budget_execution.md)を未達時分岐まで完了し、[判断/次案51](51_story10_judgment_and_next_proposal.md)へ保存。物語10%/低LR各100MでEOS/反復は改善したが、一貫性差4/6は事前8件に届かず、条件付き全文と500Mは未実施。科学三枝300,023,808/検証524,288を分け、元final10B UIへ復帰しreport/local commitで停止。Phase 6 Base/Chat品質未達、20%低LRや20Bは次の提案のみ。
 
@@ -44,7 +44,7 @@ Pythonはuv管理3.12.7、依存変更はuv add。WSLでは `uv run --frozen --e
 | 3 | 完了・[証拠](19_phase3_completion.md) | iMac / CPU | 10Mモデルと推論経路を成立させる | 正しいモデル・cache・HF/float GGUF経路を確認する | 2 |
 | 4 | 完了・[実機証拠](21_phase4_completion.md) | Windows/WSL＋RTX 4090 | 長時間学習の再現性と実行可能性を確かめる | 保存再開・実shard学習・4090速度と予算を検証した | 1〜3 |
 | 5 | 完了 | Windows/WSL・RTX 4090 | 小予算で有望な候補を選ぶ | overfit、10M smoke、100M比較から最大2候補を選ぶ | 4 |
-| 6 | 5B・各100M比較・10B準備完了、10B学習・同条件評価完了、品質目標未達 | Windows/WSL・RTX 4090 | 日本語Baseの能力を段階的に伸ばす | 5B実績から直接10Bを評価し、Base品質を別判定する | 5、[準備完了証拠](30_phase6_readiness_execution.md) |
+| 6 | 5B/10B・各100M/500M比較と日本語追加評価完了、品質目標未達 | Windows/WSL・RTX 4090 | 日本語Baseの能力を段階的に伸ばす | 学習量・配合・生成/意味診断を比較し、Base品質を別判定する | 5、[準備証拠](30_phase6_readiness_execution.md)、[最新判断53](53_story20_low_lr_judgment.md) |
 | 7 | 未着手 | Windows/WSL・RTX 4090 | Baseを短文雑談モデルへ仕上げる | mid-trainingとSFTの効果を分離し、Chat v1を評価する | 6、1の会話pilot |
 | 8 | 未着手 | 学習PC・独立したローカル検証環境 | ローカルで使える成果物を完成させる | Base/Chatと量子化版を独立環境で実行・再現できる | 7、3のexport経路 |
 | 9 | 未着手・50Bは条件付き | Windows/WSL・RTX 4090 | 追加学習に継続価値があるか検証する | 20B、条件付き50Bの効果と限界を報告する | 6、追加予算の見積もり |

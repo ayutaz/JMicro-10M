@@ -1,6 +1,6 @@
 # Windows/WSL引き継ぎ
 
-最新再開（2026-10-05 JST）: [計画52段階1〜4](52_story20_low_lr_execution.md)を実行中。各500M学習/四地点一次評価/全320内容診断/CPU37項目を完了、原一次条件を通過した。追加学習0の500M全文/400/長文評価がactual Linux177987 / hidden Windows34068 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks4771336、2026-10-05 01:41:50.837298Zから実行中。Linux`reports/phase6/story20-low-lr-10b-500m-20261005/full/full-job.json`とWindows同run`full.*.log`を追跡し、actual identityを照合して二重起動しない。完了済み科学174280は再起動しない。UIは評価中だけ停止、launcher finallyで元final10Bへ復帰する。引継ぎには100M run全raw、500M runの四checkpoint/全metrics/四地点raw/320annotations/reviewと進行中full source/job、`~/jmicro-data/phase6/simple-stories-ja-budget-20261005/`のsource/shards/content-reviewを含める。物語pool59,963,449 tokens/約1.667周使用。全文原条件・段階4判断/次案/完成report/local commit・元UI復帰が残る。以下の旧停止境界は履歴として保持する。
+最新完了（2026-10-05 JST）: [計画52段階1〜4](52_story20_low_lr_execution.md)の学習・評価・判断を完了し、[最終判断/次案53](53_story20_low_lr_judgment.md)・local commitで停止する。各500M/四地点一次/全320内容診断/条件付き全文・400・長文を実施、CPU37/全文30項目成功、候補は原比較条件を全通過した研究候補。品質目標は未達。科学174280/全文177987は完了・終了、旧runを再起動しない。元final10B UIがLinux231106 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks4964393 / ready2026-10-05 02:14:01.602203Zで復帰し、actual processとHTTP SHA410f975d…/tokens10,000,007,168/busy=falseを確認した。引継ぎには100M run全raw、500M runの四checkpoint/全metrics/四地点raw/320annotations/primary reviewとfull全raw/source/job/result/review、`~/jmicro-data/phase6/simple-stories-ja-budget-20261005/`のsource/shards/content-reviewを含める。物語pool59,963,449 tokens/約1.667周使用。科学1,100,021,760/検証524,288別会計。次のデータ構成比較は提案のみで、今回未開始。要求別確認は`reports/phase6/story20_execution_completion.json`。以下の旧停止境界は履歴として保持する。
 
 最終更新: 2026-10-05 JST。[現在地](autonomous_status.md)と[最新比較48](48_complete_text_10b_comparison.md)を最初に読む。改善計画段階1〜3の学習・評価を完了し、最終report/local commit・UI復帰で停止する。以下の旧milestone記録は履歴として保持する。以前の停止境界・process情報・移行履歴は[2026-10-04保存履歴](autonomous_history_20261004.md)、初期復旧は[2026-10-03履歴](autonomous_history_20261003.md)に残す。
 
@@ -21,8 +21,8 @@
 | 実測済み環境 | WSL package 3.0.1.0 / Ubuntu WSL 2 / RTX 4090 / Windows driver 616.92 |
 | Python / PyTorch | uv Python 3.12.7 / PyTorch 2.14.1、CUDA 13.0 |
 | モデル・データ | 10,001,152 parameters / 準備済みtrain12,225,819,077 tokens |
-| 学習・比較 | 主要Web10B、同じ親から三条件各100M・一次/全文/長文評価完了。実験枝各総10.1B、新物語pool25M。Base/Chat品質は未達 |
-| 次の行動 | 最終report/local commitで停止。500M/1B/20B/50B/Chatは新しい依頼まで開始しない |
+| 学習・比較 | 主要Web10B、100M配合/LR比較、計画52の20%低LR100Mと各500M・一次/全文/長文評価完了。500M枝各総10.5B、物語pool59.96M。Base/Chat品質は未達 |
+| 次の行動 | 判断53・要求別確認・local commitを保存して停止。次の新pool/500Mデータ構成比較・各枝1B/20B/50B/Chatはユーザー再開まで開始しない |
 
 現在のPCは復元・CUDA検証済み。setup、Tokenizer学習、完了済みGPU studyを再実行しない。ユーザー指定step2の総10B学習と保存結果確認は完了。再開されたstep3品質評価も完了した。[品質結果](42_base_10b_quality_evaluation.md)。今回はreport/local commitで停止する。[本学習結果と速度](41_base_10b_training.md)。
 
