@@ -132,7 +132,18 @@
         "train_original_dialogue_tokens": 1341764
       },
       "improved_Base_review_command": "scripts/review_improved_base.py --config <completed recipe> --notes <raw-SHA-bound 80 notes> --archive; no automatic Base adoption; CPU6tests; GPU review pending",
-      "improved_Base_review_tests": "reports/phase6/improved_base_review_tests.xml"
+      "improved_Base_review_tests": "reports/phase6/improved_base_review_tests.xml",
+      "Dialogue_midtraining_preparation": {
+        "module": "src/jmicro/dialogue_training.py",
+        "GPU_learning_tokens": 0,
+        "train_dialogues": 2688,
+        "prepared_all_teacher_tokens": 1339076,
+        "command": "scripts/run_dialogue_midtraining.py/ps1",
+        "tests": "reports/phase7/dialogue_and_chat_tests.xml",
+        "pending": "actual masked CUDA batch probe; adopted Base; main midtraining->SFT route; direct SFT ablation and quality",
+        "report": "reports/phase7/dialogue_midtraining_preparation.json",
+        "prepared_series_tokens": 1341764
+      }
     }
   ],
   "independent_human_blind": "not performed",

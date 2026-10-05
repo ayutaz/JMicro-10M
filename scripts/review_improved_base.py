@@ -130,7 +130,7 @@ def review(config, notes_path):
     # of judgments from a different trained point with the same 80 case IDs.
     assert notes_document["generation_sha256"] == sha256(raw_path)
     scores = validate_content(notes_document["notes"], ev, tok, cases)
-    inherited = read_json(recipe["source_annotations"]["path"])["arms"][parent_key]
+    inherited = read_json(Path(recipe["source_annotations"]["path"]))["arms"][parent_key]
     old_scores = validate_content(inherited["notes"], result["evaluations"][parent_key], tok, cases)
     body, old_body = ev["body"], result["evaluations"][parent_key]["body"]
     assert body["documents"] == len(body["rows"]) == 256 and body["body_bytes"] == 472055 and body["body_tokens"] == 122343
@@ -147,7 +147,7 @@ def review(config, notes_path):
     absolute = dict(grammar_at_least56=summary["grammar2"] >= 56, coherence_at_least27=summary["coherent"] >= 27,
         appropriate_at_least27=summary["appropriate"] >= 27, EOS_at_least37=rates["eos"] >= 37,
         repetition_at_most18=rates["repetition"] <= 18, no_empty_role_unicode=all(rates[k] == 0 for k in ("empty", "role_leak", "unicode_failure")))
-    original_web = adoption_checks(read_json(base["reference"]["web_screen"]["path"]), ev)
+    original_web = adoption_checks(read_json(Path(base["reference"]["web_screen"]["path"])), ev)
     annotations = dict(reviewer="Codex nonblind", independent_human_blind=False, arms={parent_key:inherited,
         key:dict(notes=notes_document["notes"], notes_sha256=sha256(notes_path), generation_sha256=sha256(raw_path))})
     write_json(run/"annotations.json", annotations)

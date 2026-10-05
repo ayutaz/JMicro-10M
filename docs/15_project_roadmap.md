@@ -564,3 +564,11 @@ Linuxのデータは`/home/aihub_ubuntu/jmicro-data/phase7/real-persona-pilot-20
 全320/400内容済み。残small1Bは同じ科学jobで学習中で、同100M対500M教材の同1B結果と全400内容の採否を先に確定する。教材量が増えた効果と同教材の学習量効果を混同しない。有望な研究延長の選定は元の相対gate/絶対screenで行い、実用Base採用とは区別する。非blind Codex判定で独立人手なし、raw-bound notes/content_reviewとWSL全checkpointを保持。5B/10B追加GPU・Chat学習・最終test・量子化は未実行で全五目標は未完了。
 
 review_improved_base.pyは完了した同教材延長の新metric範囲と累積stable stateを区別し、親のoptimizer/RNG/cursor lineage、同20M decay、CUDA再開gate、科学/検証教師・valid/physical入力、固定80raw SHA付きnotes、日本語全suite/共通byte BPBを監査する。研究継続gate・絶対dev screen・元Web品質を別報告し、最終seed/full/test等の未実施項目を残してBase_adopted=falseを保持する。採点済みnotesを自動作成せず、`uv run --frozen --extra hub --extra data --extra ml --extra export scripts/review_improved_base.py --config configs/phase6/<completed-recipe>.json --notes reports/phase6/<raw-bound-80-notes>.json --archive`でレビュー・可搬text保存を行う。CPU6tests/CLI helpは実装準備の証拠で、追加5B/10B GPU品質の証拠ではない。
+
+### Dialogue mid-trainingの実装・train窓確認（2026-10-06 JST、GPU0）
+
+src/jmicro/dialogue_training.pyは主系列の会話全体（User/Assistant本文・役割・EOT）を教える窓と、Base再学習本文/EOSのdocument samplerを混ぜる。source別の総系列予算を固定し、最後の窓を途中で切らない上限context+1のovershoot、valid/physical入力、全教師とAssistant教師等を区別する。長い対話をcomplete pair境界で分割し、前のpair/systemは必要時にcontext-only maskへ戻し、各原文targetを一度ずつ教える。元の139対話の最終Userは原文の未返信として保持し、Assistantを作らない。Base重みのみを継ぎAdam/RNG/局所会計はfresh、Base履歴は別lineage。SFTのAssistant-only窓・maskは変更しない。
+
+inspect_dialogue_midtraining.pyは固定train2688のみを点検し、全2688窓、系列1,341,764、input/教師1,339,076（User584515/Assistant592819/role80871/EOT80871）、capacity2,752,512を記録。全元発話targetを一度ずつ保つことを実sourceで確認、CPU0.910秒、GPU0。dev/testはwindow化しない。dialogue_midtraining_preparation.jsonを保存。sourceの自然な末尾Userを誤って偶数turn限定にした初版は修正し、raw文やsplitを変えない。
+
+run_dialogue_midtraining.py/ps1は固定config、採用Baseの評価・全80理由・SHA、train/source・mixture、実CUDA/BF16の新masked batch測定を先に要求する。実CUDA4対2+2全state一致の後に系列予算まで学習し、250完了更新checkpointとmetric・PID/boot/start・累積GPU予算・source snapshotを保存する。未採用Baseから起動しないCPUtestを含む関連10tests/CLI help/PS構文成功。Base評価reviewのPath型読込も修正し関連6tests再成功。これは準備で、実CUDA batch probe専用コマンド、mid-training後のSFT接続と直接SFTとの同条件ablation/内容評価は未完了。Base品質と現在の量比較を先に確定する。
