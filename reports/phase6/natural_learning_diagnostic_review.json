@@ -1,0 +1,94 @@
+{
+  "status": "passed_learning_evidence",
+  "stage": "diagnostic",
+  "summaries": {
+    "adam-inherit": {
+      "teacher_tokens": 8000000,
+      "valid_input": 8001560,
+      "physical_input": 19496960,
+      "updates": 595,
+      "train": {
+        "documents": 64,
+        "teacher_targets": 2236,
+        "teacher_correct": 2236,
+        "teacher_accuracy": 1.0,
+        "exact_gold": 64,
+        "exact_fraction": 1.0,
+        "eos": 64,
+        "appropriate_gold_eos": 64,
+        "appropriate_fraction": 1.0
+      },
+      "dev": {
+        "documents": 128,
+        "teacher_targets": 4472,
+        "teacher_correct": 4471,
+        "teacher_accuracy": 0.9997763864042933,
+        "exact_gold": 127,
+        "exact_fraction": 0.9921875,
+        "eos": 128,
+        "appropriate_gold_eos": 127,
+        "appropriate_fraction": 0.9921875
+      },
+      "diagnostic_pass": true,
+      "training_seconds": 73.92264497099677,
+      "peak_allocated_bytes": 10076272128,
+      "optimizer_policy": "inherit",
+      "EOS_teachers": {
+        "web": 0,
+        "short": 152290
+      }
+    },
+    "adam-fresh": {
+      "teacher_tokens": 8000000,
+      "valid_input": 8001560,
+      "physical_input": 19496960,
+      "updates": 595,
+      "train": {
+        "documents": 64,
+        "teacher_targets": 2236,
+        "teacher_correct": 2236,
+        "teacher_accuracy": 1.0,
+        "exact_gold": 64,
+        "exact_fraction": 1.0,
+        "eos": 64,
+        "appropriate_gold_eos": 64,
+        "appropriate_fraction": 1.0
+      },
+      "dev": {
+        "documents": 128,
+        "teacher_targets": 4472,
+        "teacher_correct": 4472,
+        "teacher_accuracy": 1.0,
+        "exact_gold": 128,
+        "exact_fraction": 1.0,
+        "eos": 128,
+        "appropriate_gold_eos": 128,
+        "appropriate_fraction": 1.0
+      },
+      "diagnostic_pass": true,
+      "training_seconds": 74.37676723299955,
+      "peak_allocated_bytes": 10076272128,
+      "optimizer_policy": "fresh",
+      "EOS_teachers": {
+        "web": 0,
+        "short": 152290
+      }
+    }
+  },
+  "selection": {
+    "selected": "adam-inherit",
+    "optimizer_policy": "inherit",
+    "prerequisite_met": true,
+    "new_init_positive_control": null,
+    "rule": "Passing maximum exact EOS gold, then teacher accuracy, then inherit; C only if neither A/B passes"
+  },
+  "verification_teacher_tokens": 215168,
+  "scientific_teacher_tokens": 16000000,
+  "gpu_seconds": 186.757103217009,
+  "quality_targets_achieved": false,
+  "protected_test_used": false,
+  "reviewer_sha256": "9e5b8c419f124999fdfc208a6118dc4622ceecedcd9a0daaaf062455d01b2b01",
+  "config_sha256": "5bb615dfb2ce80affb874cc36c3568d1726ca2c4bddeb121961f93ccd6821b94",
+  "result_sha256": "72a2df7edcf01cd3a44af9b81eb4330364665138a81c9fb1dd89bcd00e9b2588",
+  "checked_at": "2026-10-05T13:08:41.055527Z"
+}

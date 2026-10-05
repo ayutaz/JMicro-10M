@@ -18,6 +18,7 @@ from run_eos_complete_100m import adoption_checks
 from run_eos_short_pilot import rate
 from review_eos_5b_finish import validate_rows
 from jmicro.tokenizer import Tokenizer
+from jmicro.japanese_evaluation import clustered_ci
 from run_natural_learning import RUN,DATA,CONFIG,load_config
 
 
@@ -25,8 +26,13 @@ def audit_stage(stage):
     c=load_config();result=read_json(RUN/(stage+'-result.json'));job=read_json(RUN/('job-'+stage+'.json'))
     assert job['status']=='complete' and not alive(job)
     assert result['gpu_seconds']<=job['gpu_elapsed_seconds']<=c[{'diagnostic':'diagnostic_gpu_budget_seconds','compare':'comparison_gpu_budget_seconds','expand':'expansion_gpu_budget_seconds'}[stage]]
-    assert result['binding']==job['binding'] and result['binding']['plan_sha256']==sha256(CONFIG)
-    summaries={}
+    if stage=='expand':
+        parent=read_json(RUN/'compare-result.json')['checkpoints']['mixed-natural']
+        assert result['binding']==dict(job['binding'],growth_parent=parent['checkpoint_sha256'])
+    else:
+        assert result['binding']==job['binding']
+    assert result['binding']['plan_sha256']==sha256(CONFIG) and not result['protected_test_used']
+    summaries={};samplers={}
     for arm,detail in result['checkpoints'].items():
         assert sha256(Path(detail['checkpoint']))==detail['checkpoint_sha256']
         state=torch.load(detail['checkpoint'],map_location='cpu',weights_only=False)
@@ -40,6 +46,8 @@ def audit_stage(stage):
         assert all(math.isfinite(r['loss']) and math.isfinite(r['gradient_norm']) for r in history)
         assert state['token_digest']==history[-1]['token_digest']
         assert state['sampler']['source_physical_tokens']==detail['sampler']['source_physical_tokens']
+        assert sum(state['sampler']['source_physical_tokens'].values())==detail['physical_input_tokens']>=detail['additional_input_tokens']
+        samplers[arm]=state['sampler']
         previous=0;peak=detail['binding']['peak_lr'];total=detail['additional_supervised_tokens']
         for row in history:
             assert math.isclose(row['lr'],teacher_lr(previous,total,peak),rel_tol=1e-12)
@@ -84,6 +92,9 @@ def audit_stage(stage):
             assert len(rows)==80 and evaluation['checkpoint_sha256']==result['checkpoints'][arm]['checkpoint_sha256']
             assert evaluation['evaluation_RNG_isolated'] and evaluation['greedy_rates']==rate(rows)
             assert evaluation['body']['documents']==256 and evaluation['body']['body_bytes']==472055
+            body=evaluation['body']
+            assert body['body_tokens']==122343 and all(r['scored_body_tokens']==r['body_tokens'] and math.isfinite(r['body_nll']) for r in body['rows'])
+            assert math.isclose(body['bpb'],sum(r['body_nll'] for r in body['rows'])/math.log(2)/body['body_bytes'],rel_tol=1e-12)
             assert all(evaluation['diagnostics'][k]['complete'] and evaluation['diagnostics'][k]['count']==n for k,n in {'semantics':192,'jblimp':331,'jcqa':1119}.items())
             entry=annotations['arms'][arm]
             assert entry['generation_sha256']==sha256(RUN/'evaluation'/arm/'evaluation/generation.json')
@@ -99,6 +110,13 @@ def audit_stage(stage):
             left,right='mixed-control','mixed-natural'
             a,b=evaluations[left],evaluations[right]
             assert [(r['id'],r['prefix']) for r in a['generation']['outputs']]==[(r['id'],r['prefix']) for r in b['generation']['outputs']]
+            assert samplers[left]['web']==samplers[right]['web']
+            assert [(r['doc_id'],r['body_bytes']) for r in a['body']['rows']]==[(r['doc_id'],r['body_bytes']) for r in b['body']['rows']]
+            differences={}
+            for task in ('semantics','jblimp','jcqa'):
+                l,r=[{v['id']:v for v in read_json(RUN/'evaluation'/name/'evaluation'/(task+'.json'))['rows']} for name in (left,right)]
+                assert set(l)==set(r)
+                differences[task]=clustered_ci([dict(id=k,family=r[k].get('family',k),difference=r[k]['credit']-l[k]['credit']) for k in l],key='difference')
             quality=quality_gates(a,b,scores[left],scores[right],'content')
             practical=dict(coherence_at_least27=summaries[right]['coherent']>=27,appropriate_at_least27=summaries[right]['appropriate']>=27,
                 EOS_at_least37=b['greedy_rates']['eos']>=37,repetition_at_most18=b['greedy_rates']['repetition']<=18)
@@ -106,6 +124,7 @@ def audit_stage(stage):
             report=dict(status='passed_learning_content_evidence',summaries=summaries,quality=quality,practical=practical,original_Web_gates=original,
                 eligible_for_expansion=quality['passed'] and all(practical.values()) and all(original.values()),
                 scientific_teacher_tokens=result['scientific_teacher_tokens'],gpu_seconds=result['gpu_seconds'],
+                paired_Japanese_differences=differences,
                 independent_human_blind=False,quality_targets_achieved=False,protected_test_used=False)
             atomic_json(RUN/'review.json',report)
         else:
@@ -120,6 +139,9 @@ def audit_stage(stage):
                 adopted=quality['passed'] and all(practical.values()) and all(original.values()),scientific_teacher_tokens=result['scientific_teacher_tokens'],
                 gpu_seconds=result['gpu_seconds'],independent_human_blind=False,protected_test_used=False)
             atomic_json(RUN/'expansion-review.json',report)
+    report.update(reviewer_sha256=sha256(Path(__file__)),config_sha256=sha256(CONFIG),result_sha256=sha256(RUN/(stage+'-result.json')),checked_at=now())
+    if stage!='diagnostic':report['annotations_sha256']=sha256(RUN/(stage+'-annotations.json'))
+    atomic_json(RUN/({'diagnostic':'diagnostic-review.json','compare':'review.json','expand':'expansion-review.json'}[stage]),report)
     print(json.dumps(report,ensure_ascii=False),flush=True)
 
 
@@ -141,7 +163,7 @@ def completion():
     assert ui['boot_id']==Path('/proc/sys/kernel/random/boot_id').read_text().strip()
     assert int(ui['start_ticks'])==int(Path(f'/proc/{ui["pid"]}/stat').read_text().split()[21])
     with urllib.request.urlopen('http://127.0.0.1:7860/api/model',timeout=3) as response:model=json.load(response)
-    assert model['checkpoint_sha256']==c['parent']['sha256'] and not model['busy']
+    assert model['checkpoint_sha256']==c['parent']['sha256'] and model['training_tokens']==c['parent']['tokens_seen'] and not model['busy']
     files={str(p.relative_to(RUN)):p.read_text() for p in RUN.rglob('*.json') if 'source' not in p.parts}
     bundle=ROOT/'reports/phase6/natural_learning_evidence.json.gz'
     bundle.write_bytes(gzip.compress(json.dumps(files,ensure_ascii=False,separators=(',',':')).encode(),compresslevel=6,mtime=0))

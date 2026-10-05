@@ -1,3 +1,5 @@
+進捗（2026-10-05 JST）: 契約73の段階2完了、両Adam各8M教師でtrain64/64完全再現＋EOS。inherit別名dev127/128、fresh128/128（同じ32sceneなので一般汎化ではない）。規則でinherit選択、新規重みC不要。科学16M、検証215168別、GPU186.757秒、終端full resume/教師会計/有限値/原文評価監査成功。段階3 compare actual378856/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start8887284が元10Bから従来/自然各25Mを実行中。全160個別内容と日本語評価後、全既存gate合格時のみ段階4追加100M。元UI一時停止、終端復帰。重複起動しない。
+
 進捗（2026-10-05 JST）: 契約73の実CUDA Adam二方針連続/再開16更新が成功。actual375687/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start8860724で単一diagnostic job稼働。Adam引継ぎ8M教師を完了、train64/64完全再現＋適切EOS・teacher2236/2236、別名dev127/128完全再現（同じ32scene、一般汎化ではない）。fresh側8Mを学習中。元UI一時停止、両終端で復帰。stage2両結果確認後、合格方針でstage3元10Bから各25M/全160内容評価へ継続。
 
 実行中（2026-10-05 JST）: ユーザーの「4まで進めてください」で契約73を再開。自然64全文3426tokens、自然train1000全文52791tokens、条件付き増量9192全文501559tokens、未学習128を固定。32日常sceneの因果/対象/完結と64実原文をCodex確認、CPU4tests成功。A/B Adam引継ぎ/fresh各8M教師、必要時新規初期化C8M。記憶gate合格後に元10Bから従来/自然混合各25M、全日本語と160内容評価、全品質gate合格時のみ追加100M/増量。GPU各段階600/1200/1200秒、検証教師別。actual job-diagnostic/compare/expandを確認して重複起動しない。元UIを一時停止し各job終端で復帰。結果72の数値7失敗は保持。全範囲の結果/採否/local commit後停止、20B/Chat/test/pushなし。
