@@ -487,3 +487,8 @@ BPB、意味/文法の選択式評価、自由生成の文法/関連性/一貫�
 5は選定したレシピの安定経路1B/2B/5B/10Bを評価し、Baseの既存品質目標を満たすまで教材/設定/構成の有効な次の仮説へ戻る。未達を達成として報告しない。採用Base後にChatの10M/30M/100M総系列tokens（Assistant教師別）、Assistant本文＋EOT、2〜4ターン/訂正/否定/停止を学習・評価。float/HF/GGUF parity、Q8/Q4品質/容量/速度、実WebUIと再現手順を揃える。技術的成果物だけで全目標達成としない。
 
 実行中は永続job/PID/boot/start/ログ/checkpointとstage ledgerを保存し、各有意なmilestoneでchecks/status/local commit。GPU占有時にUIを停止しjob終端で元の採用UIを復帰する。保護testは既存ロードマップの最終レシピ凍結後の用途だけで、日常の教材選別に使わない。20B/50B・外部公開・push・有料cloudは別の範囲で今回自動開始しない。独立した人間のblind評価は未実施と表示し、実際に取得していない人間評価を作らない。
+
+
+### 五項目stage2の教材比較結果（2026-10-06 JST）
+
+同じfresh0重みから、従来v3と固定64弱8のWikipedia説明文を各300M教師・LR.002/warmup200・連続90stable/10decayで比較した。科学600M、valid/physical604,766,208、GPU1148.505秒。各80のEOS18→54に対し、一貫性/適切完結9→0、共通Web BPB1.637138→2.103709、Unicode0→1。両候補不採用で全目標未完了。Wikipediaは本学習の単独レシピへ採用しない。内容確認と教師予測の改善は自然生成の合格を保証しなかった。自source dev32も反復20/32なので、条件付きstage3の2新構成で同教材・同LR・同300Mの内部汎化と一般生成を比較する。現構成のmatched300Mは再利用し、新科学は最大600M。sourceの不足と構成はまだ単独原因として確定していない。量比較時の教材は広い日本語と日常文を保持する必要がある。証拠reports/phase6/material_comparison_review.jsonとannotations/rawtar、実行config material_comparison.jsonを参照。

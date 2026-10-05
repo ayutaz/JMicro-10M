@@ -1,0 +1,200 @@
+{
+  "status": "stage2_learning_and_content_evidence_complete",
+  "summaries": {
+    "control": {
+      "BPB": 1.6371379027992048,
+      "rates": {
+        "outputs": 80,
+        "eos": 18,
+        "repetition": 7,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "Japanese": {
+        "semantics": 0.4635416666666667,
+        "jblimp": 0.7280966767371602,
+        "jcqa": 0.24664879356568364
+      },
+      "grammar2": 17,
+      "relevance2": 12,
+      "coherent": 9,
+      "appropriate": 9,
+      "auxiliary": {
+        "dev32": {
+          "documents": 32,
+          "EOS": 1,
+          "repeated4gram": 32,
+          "teacher_NLL": 4.616787987666959,
+          "teacher_top1_fraction": 0.2789767941743445
+        },
+        "train32-control": {
+          "documents": 32,
+          "EOS": 15,
+          "repeated4gram": 19,
+          "teacher_NLL": 0.889119795359957,
+          "teacher_top1_fraction": 0.756962338169511
+        }
+      },
+      "scientific_teachers": 300000000,
+      "valid_input_tokens": 302219264,
+      "physical_tokens": 302219264,
+      "seconds": 457.4738244909968,
+      "peak_allocated_bytes": 6149073408,
+      "additional_EOS_teachers": {
+        "web": 0,
+        "short": 2214055
+      }
+    },
+    "wikipedia": {
+      "BPB": 2.1037092890318485,
+      "rates": {
+        "outputs": 80,
+        "eos": 54,
+        "repetition": 4,
+        "unicode_failure": 1,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "Japanese": {
+        "semantics": 0.4895833333333333,
+        "jblimp": 0.6978851963746223,
+        "jcqa": 0.23011617515638963
+      },
+      "grammar2": 16,
+      "relevance2": 0,
+      "coherent": 0,
+      "appropriate": 0,
+      "auxiliary": {
+        "dev32": {
+          "documents": 32,
+          "EOS": 25,
+          "repeated4gram": 20,
+          "teacher_NLL": 3.1972438797764196,
+          "teacher_top1_fraction": 0.4474556216822395
+        },
+        "train32-wikipedia": {
+          "documents": 32,
+          "EOS": 27,
+          "repeated4gram": 16,
+          "teacher_NLL": 1.6023945123778904,
+          "teacher_top1_fraction": 0.6602573690917933
+        }
+      },
+      "scientific_teachers": 300000000,
+      "valid_input_tokens": 302546944,
+      "physical_tokens": 302546944,
+      "seconds": 456.315090581993,
+      "peak_allocated_bytes": 6149073408,
+      "additional_EOS_teachers": {
+        "web": 0,
+        "short": 2539465
+      }
+    }
+  },
+  "gates": {
+    "control": {
+      "practical": {
+        "coherence_at_least27": false,
+        "appropriate_at_least27": false,
+        "EOS_at_least37": false,
+        "repetition_at_most18": true
+      },
+      "relative": {
+        "checks": {
+          "coherence_gain_at_least8": true,
+          "paired_CI_lower_above0": true,
+          "EOS_nonworsening": false,
+          "repetition_nonworsening": false,
+          "no_empty_role_unicode": true,
+          "BPB_gate": true,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": 9,
+        "CI95": [
+          0.05,
+          0.1875
+        ]
+      },
+      "original_Web": {
+        "EOS_at_least8_more": true,
+        "repetition_no_worse": true,
+        "no_empty_role_unicode": true,
+        "BPB_degradation_at_most1percent": false,
+        "no_punctuation_only_stops": true
+      },
+      "adopted": false
+    },
+    "wikipedia": {
+      "practical": {
+        "coherence_at_least27": false,
+        "appropriate_at_least27": false,
+        "EOS_at_least37": true,
+        "repetition_at_most18": true
+      },
+      "relative": {
+        "checks": {
+          "coherence_gain_at_least8": false,
+          "paired_CI_lower_above0": false,
+          "EOS_nonworsening": true,
+          "repetition_nonworsening": true,
+          "no_empty_role_unicode": false,
+          "BPB_gate": false,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": -9,
+        "CI95": [
+          -0.1875,
+          -0.05
+        ]
+      },
+      "original_Web": {
+        "EOS_at_least8_more": true,
+        "repetition_no_worse": true,
+        "no_empty_role_unicode": false,
+        "BPB_degradation_at_most1percent": false,
+        "no_punctuation_only_stops": true
+      },
+      "adopted": false
+    }
+  },
+  "baseline": {
+    "dev32": {
+      "documents": 32,
+      "EOS": 0,
+      "repeated4gram": 32,
+      "teacher_NLL": 8.373770481640996,
+      "teacher_top1_fraction": 0.0
+    },
+    "train32-control": {
+      "documents": 32,
+      "EOS": 0,
+      "repeated4gram": 32,
+      "teacher_NLL": 8.356423676243791,
+      "teacher_top1_fraction": 0.0
+    },
+    "train32-wikipedia": {
+      "documents": 32,
+      "EOS": 0,
+      "repeated4gram": 32,
+      "teacher_NLL": 8.36586314406932,
+      "teacher_top1_fraction": 0.0
+    }
+  },
+  "scientific_teacher_tokens": 600000000,
+  "valid_input_tokens": 604766208,
+  "physical_input_tokens": 604766208,
+  "verification_teacher_tokens": 520156,
+  "CUDA_verification_optimizer_updates": 16,
+  "gpu_seconds": 1148.1025174840033,
+  "result_sha256": "c3d9c18975c6ceaa96840cf2c3347d4abd60659f98da1e255fbd1847fc417a36",
+  "annotations_sha256": "582ce6198fd380f5d67195b968f4cf35d790f673c81a492d46d0b9e69bee8563",
+  "interpretation": "Source/genre/length/EOS-density comparison, not amount-only. Same fresh weights/RNG/Adam seed, teacher budget and LR schedule.",
+  "numerical_failures72_unchanged": true,
+  "independent_human_blind": false,
+  "requested_five_steps_complete": false,
+  "protected_test_used": false,
+  "created_at": "2026-10-05T16:26:24.327178Z"
+}
