@@ -1,0 +1,129 @@
+{
+  "status": "pinned_supply_pending_inspection",
+  "started_at": "2026-10-05T07:29:51.415480Z",
+  "seconds": 3.412968451011693,
+  "sources": {
+    "shibatch/TinyStories-JA": {
+      "repository": "shibatch/TinyStories-JA",
+      "revision": "155b4e5842076c90e07a4934d5b68410fe21f65f",
+      "license": "cdla-sharing-1.0",
+      "card_sha256": "41378a0687b6ef56a9532b075c15486690f4b843bd2b650394e110a21c8f68d1",
+      "card_path": "/home/aihub_ubuntu/jmicro-data/phase6/dataset-expansion-20261005/shibatch.README.source.md",
+      "files": [
+        {
+          "path": "data/train-00000-of-00004.jsonl",
+          "bytes": 1348591301,
+          "sha256": "323bfb2ecc47e5c0f820fb90e6d12bb144d9039f6b323f5efddc4fac3a29c00a"
+        },
+        {
+          "path": "data/train-00001-of-00004.jsonl",
+          "bytes": 1345806462,
+          "sha256": "0517f8b6030f77862ec896459e9ef770ad6dbde103e585cf97631518c7ca0534"
+        },
+        {
+          "path": "data/train-00002-of-00004.jsonl",
+          "bytes": 1334017206,
+          "sha256": "6ab18dc824d6e68c72741990f7d0882982fa7b39c9801089b216b58d427e875f"
+        },
+        {
+          "path": "data/train-00003-of-00004.jsonl",
+          "bytes": 1343026088,
+          "sha256": "cfc37d057d14b67b6b56cd49ec9c0fac1b457f5069f59c191217303e7a535136"
+        }
+      ],
+      "declared_notes": "---\nlanguage: [ja, en]\nlicense: cdla-sharing-1.0\npretty_name: TinyStories Japanese\ntask_categories:\n  - text-generation\n  - translation\ntags:\n  - tinystories\n  - japanese\n  - english\n  - translation\n  - synthetic\nsize_categories:\n  - 1M<n<10M\nconfigs:\n  - config_name: default\n    data_files:\n      - split: train\n        path:\n          - data/train-00000-of-00004.jsonl\n          - data/train-00001-of-00004.jsonl\n          - data/train-00002-of-00004.jsonl\n          - data/train-00003-of-00004.jsonl\n      - split: validation\n        path:\n          - data/validation-00000-of-00001.jsonl\n---\n\n# TinyStories Japanese\n\nThis dataset is a Japanese translation of the TinyStories dataset.\n\nThe dataset preserves the original TinyStories train/validation split structure and record order. Each record contains the original English story, its SHA-256 hash, and the Japanese translation.\n\n## Dataset structure\n\nEach record has the following fields:\n\n* `text_hash`: SHA-256 hash of `text_en` encoded as UTF-8.\n* `text_en`: Original English TinyStories text.\n* `text_ja`: Japanese translation.\n\nExample:\n\n```json\n{\"text_hash\":\"...\",\"text_en\":\"Once upon a time, ...\",\"text_ja\":\"むかしむかし、...\"}\n```\n\n## Files\n\n```text\ntrain-00000-of-00004.jsonl\ntrain-00001-of-00004.jsonl\ntrain-00002-of-00004.jsonl\ntrain-00003-of-00004.jsonl\nvalidation-00000-of-00001.jsonl\n```\n\nThe files follow the same split structure as the source dataset:\n\n* `train`: 4 JSONL shards\n* `validation`: 1 JSONL shard\n\n## Translation process\n\nThe Japanese translations were generated primarily using `google/gemma-4-26B-A4B` from the original English TinyStories texts.\n\nAfter translation, the records were realigned to the original TinyStories order using `text_hash`, which is the SHA-256 hash of `text_en` encoded as UTF-8.\n\nA small number of missing or problematic records were manually corrected.\n\nThe translations are not fully human-reviewed, and some translation errors, unnatural wording, or artifacts may remain.\n\n## License\n\nThis dataset is released under the Community Data License Agreement – Sharing, Version 1.0 (`CDLA-Sharing-1.0`), following the license of the original TinyStories dataset.\n\n## Credits\n\nJapanese translation, alignment, and dataset preparation: Naoki Shibata.\n\nThis dataset is derived from the original TinyStories dataset. The translations were generated primarily using `google/gemma-4-26B-A4B`.\n\n## Notes\n\nThe translations are not fully human-reviewed. Users should be aware that some translation errors, unnatural wording, or artifacts may remain.\n\nThe field `text_hash` can be used to match records with the original English text.\n"
+    },
+    "KeisukeMiyamoto/SyntheticTextbook-jp": {
+      "repository": "KeisukeMiyamoto/SyntheticTextbook-jp",
+      "revision": "f928b35fde6732f7d981860d32a18ef451cd539e",
+      "license": "apache-2.0",
+      "card_sha256": "7149dfaefed740de4b7b11df7fb3c5cc1041b84c8e46f92ac7df834909ab1ad3",
+      "card_path": "/home/aihub_ubuntu/jmicro-data/phase6/dataset-expansion-20261005/KeisukeMiyamoto.README.source.md",
+      "files": [
+        {
+          "path": "train-00000.parquet",
+          "bytes": 265038889,
+          "sha256": "7e9a92760e3b9fa1c1ff8de9d8c1ccd604a7c4b9407af9fae478c6922b86b65b"
+        },
+        {
+          "path": "train-00001.parquet",
+          "bytes": 264082112,
+          "sha256": "9a0d807ea27670d6d4b311747f253d4cf8c76b576db216f95f5296936502b17e"
+        },
+        {
+          "path": "train-00002.parquet",
+          "bytes": 264096381,
+          "sha256": "9f14e12517f3fa553c8121ef92db0ec9cc4dd37ddf9d34a09eaccd5b4dbf4a7b"
+        },
+        {
+          "path": "train-00003.parquet",
+          "bytes": 264646168,
+          "sha256": "884a915a705385aa8ce5fa6db9b2cfd67e9fce8bfa5ed688f2d9a7103e249422"
+        },
+        {
+          "path": "train-00004.parquet",
+          "bytes": 264832976,
+          "sha256": "508e061beb4fb69c49f2cd43f5e4d2fd2cc0ed903b788947764beda58abd877d"
+        },
+        {
+          "path": "train-00005.parquet",
+          "bytes": 263764837,
+          "sha256": "0d81a5db7ab921f65939cc312c27789716a80ebf148cee5c51ccf0d0c9782c33"
+        },
+        {
+          "path": "train-00006.parquet",
+          "bytes": 264056662,
+          "sha256": "773f979316592eb27216a364a1aa6daec3c0614c11ad1580ada87fac952b28bf"
+        },
+        {
+          "path": "train-00007.parquet",
+          "bytes": 264182541,
+          "sha256": "89e51cf9e81a39de6117c92fbc56b398aa71d1859d22b1d92f5bb26ca540990b"
+        },
+        {
+          "path": "train-00008.parquet",
+          "bytes": 264459631,
+          "sha256": "5cdb27f9dfa9946e8409258ee546ae79647bbefdd363b61499d52f559bb25cff"
+        },
+        {
+          "path": "train-00009.parquet",
+          "bytes": 264440524,
+          "sha256": "68272eab68d881a0458bcea0222956387048c0de8e3e5033d0f38d112b3c2554"
+        },
+        {
+          "path": "train-00010.parquet",
+          "bytes": 263753053,
+          "sha256": "f5d35a1eaf448efd88d50cbfc9fe12de6da8a3f6bbcabbaf5af6b58188f4e515"
+        },
+        {
+          "path": "train-00011.parquet",
+          "bytes": 263908125,
+          "sha256": "e24159589f24343080fcaba9c6bf2f41c192770597858c08aa4dd45971f07146"
+        },
+        {
+          "path": "train-00012.parquet",
+          "bytes": 264169570,
+          "sha256": "00ef31ece9c7572676bfb7f96c6d328f4b36999c2c175e23805efb672c6558b3"
+        },
+        {
+          "path": "train-00013.parquet",
+          "bytes": 264263492,
+          "sha256": "da8a362406f5867de03053849210e14e08b396a82d788cfa99bbe5542c0143d5"
+        },
+        {
+          "path": "train-00014.parquet",
+          "bytes": 264609719,
+          "sha256": "b9757e608203c10fe8001c6b5cdc2503ef3c8b040b5b54130537c779102f6448"
+        },
+        {
+          "path": "train-00015.parquet",
+          "bytes": 264071756,
+          "sha256": "f734b3068bd6e4dea9ad34c43a0b0ff49812168bfdd8d7f9b98948616674d8e1"
+        }
+      ],
+      "declared_notes": "---\nlicense: apache-2.0\nlanguage:\n  - ja\npretty_name: SyntheticTextbook-jp\nannotations_creators:\n  - no-annotation\nlanguage_creators:\n  - machine-generated\nmultilinguality:\n  - monolingual\nsource_datasets:\n  - hotchpotch/fineweb-2-edu-japanese\ntask_categories:\n  - text-generation\nmodels:\n  - google/gemma-4-26B-A4B\n  - google/gemma-4-31B\ntags:\n  - japanese\n  - synthetic\n  - textbook\n  - education\n  - continual-pretraining\n  - pretraining\n  - parquet\nsize_categories:\n  - 1M<n<10M\nconfigs:\n  - config_name: default\n    data_files:\n      - split: train\n        path: train-*.parquet\n      - split: validation\n        path: validation.parquet\n      - split: test\n        path: test.parquet\n---\n\n# SyntheticTextbook-jp\n\nSyntheticTextbook-jp is a Japanese synthetic text dataset generated with Gemma 4 26B and Gemma 4 31B. The dataset was created by rewriting noisy source text into textbook-style Japanese for elementary school, junior high school, and high school levels. The rewritten text keeps only general knowledge from the source text.\n\n## Purpose\n\nThe main purpose of this dataset is to help LLMs learn natural Japanese text flow. This dataset is designed around topics that an average Japanese student may learn in school classes.\n## Source Data\n\nThe source text comes from: https://huggingface.co/datasets/hotchpotch/fineweb-2-edu-japanese\n\n## Dataset Size\n\n| Split | Rows | Output tokens |\n|---|---:|---:|\n| Train | 1,067,212 | 974.0M |\n| Validation | 10,889 | 10.0M |\n| Test | 10,889 | 10.0M |\n| **Total** | **1,088,990** | **993.9M** |\n\nRows were shuffled with seed 42 before the 98% train, 1% validation, and 1% test split. Token counts were measured with the Gemma 4 tokenizer.\n\n## Columns\n\n| Column | Description |\n|---|---|\n| `source_id` | ID of the source text. |\n| `url` | URL from the source dataset. |\n| `source_text` | Original noisy source text. |\n| `prompt_type` | Target school level: `elementary-school`, `junior-high-school`, or `high-school`. |\n| `prompt` | Input text used for rewriting. |\n| `rewrite` | Synthetic textbook-style Japanese text. |\n| `output_tokens` | Number of tokens in `rewrite`. |\n| `output_chars` | Number of characters in `rewrite`. |\n\n## Example\n\n```python\nfrom datasets import load_dataset\n\ndataset = load_dataset(\"MK0727/SyntheticTextbook-jp\", split=\"train\")\nprint(dataset[0][\"rewrite\"])\n```\n\n## Notes\n\nThe prompts were designed carefully, but the dataset may still include hallucinations generated by Gemma 4.\n\n---\n\n## Support Lambda\n\n[Lambda](https://github.com/KeisukeMiyamoto1324/lambda) is an open-source project for building small Japanese language models from scratch. As a student, I have funded this project with income from my part-time job, but the growing training costs are becoming difficult to cover.\n\nYour support helps cover GPU costs and develop larger models. Thank you for helping Lambda continue to grow.\n\n### Vast.ai\n\nVast.ai offers affordable cloud GPUs for AI training, with **NVIDIA H100 SXM GPUs available from around $1.54 per hour**. If you purchase credits through the link below, I receive 3% in GPU credits at no extra cost to you.\n\nhttps://cloud.vast.ai/?ref_id=521936\n\n### Ko-fi\n\nSupport Lambda with a donation starting from $5.\n\n<a href=\"https://ko-fi.com/lambda_llm\">\n  <img src=\"assets/support_me_on_kofi_badge_blue.png\" alt=\"Support Lambda on Ko-fi\" width=\"240\">\n</a>\n"
+    }
+  },
+  "official_validation_test_acquired": false,
+  "preparation_budget_seconds": 1800
+}

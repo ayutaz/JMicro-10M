@@ -1,0 +1,129 @@
+{
+  "status": "inspected",
+  "source": {
+    "repository": "shibatch/TinyStories-JA",
+    "revision": "155b4e5842076c90e07a4934d5b68410fe21f65f",
+    "license": "cdla-sharing-1.0",
+    "card_sha256": "41378a0687b6ef56a9532b075c15486690f4b843bd2b650394e110a21c8f68d1",
+    "card_path": "/home/aihub_ubuntu/jmicro-data/phase6/dataset-expansion-20261005/shibatch.README.source.md",
+    "files": [
+      {
+        "path": "data/train-00000-of-00004.jsonl",
+        "bytes": 1348591301,
+        "sha256": "323bfb2ecc47e5c0f820fb90e6d12bb144d9039f6b323f5efddc4fac3a29c00a"
+      },
+      {
+        "path": "data/train-00001-of-00004.jsonl",
+        "bytes": 1345806462,
+        "sha256": "0517f8b6030f77862ec896459e9ef770ad6dbde103e585cf97631518c7ca0534"
+      },
+      {
+        "path": "data/train-00002-of-00004.jsonl",
+        "bytes": 1334017206,
+        "sha256": "6ab18dc824d6e68c72741990f7d0882982fa7b39c9801089b216b58d427e875f"
+      },
+      {
+        "path": "data/train-00003-of-00004.jsonl",
+        "bytes": 1343026088,
+        "sha256": "cfc37d057d14b67b6b56cd49ec9c0fac1b457f5069f59c191217303e7a535136"
+      }
+    ],
+    "declared_notes": "---\nlanguage: [ja, en]\nlicense: cdla-sharing-1.0\npretty_name: TinyStories Japanese\ntask_categories:\n  - text-generation\n  - translation\ntags:\n  - tinystories\n  - japanese\n  - english\n  - translation\n  - synthetic\nsize_categories:\n  - 1M<n<10M\nconfigs:\n  - config_name: default\n    data_files:\n      - split: train\n        path:\n          - data/train-00000-of-00004.jsonl\n          - data/train-00001-of-00004.jsonl\n          - data/train-00002-of-00004.jsonl\n          - data/train-00003-of-00004.jsonl\n      - split: validation\n        path:\n          - data/validation-00000-of-00001.jsonl\n---\n\n# TinyStories Japanese\n\nThis dataset is a Japanese translation of the TinyStories dataset.\n\nThe dataset preserves the original TinyStories train/validation split structure and record order. Each record contains the original English story, its SHA-256 hash, and the Japanese translation.\n\n## Dataset structure\n\nEach record has the following fields:\n\n* `text_hash`: SHA-256 hash of `text_en` encoded as UTF-8.\n* `text_en`: Original English TinyStories text.\n* `text_ja`: Japanese translation.\n\nExample:\n\n```json\n{\"text_hash\":\"...\",\"text_en\":\"Once upon a time, ...\",\"text_ja\":\"むかしむかし、...\"}\n```\n\n## Files\n\n```text\ntrain-00000-of-00004.jsonl\ntrain-00001-of-00004.jsonl\ntrain-00002-of-00004.jsonl\ntrain-00003-of-00004.jsonl\nvalidation-00000-of-00001.jsonl\n```\n\nThe files follow the same split structure as the source dataset:\n\n* `train`: 4 JSONL shards\n* `validation`: 1 JSONL shard\n\n## Translation process\n\nThe Japanese translations were generated primarily using `google/gemma-4-26B-A4B` from the original English TinyStories texts.\n\nAfter translation, the records were realigned to the original TinyStories order using `text_hash`, which is the SHA-256 hash of `text_en` encoded as UTF-8.\n\nA small number of missing or problematic records were manually corrected.\n\nThe translations are not fully human-reviewed, and some translation errors, unnatural wording, or artifacts may remain.\n\n## License\n\nThis dataset is released under the Community Data License Agreement – Sharing, Version 1.0 (`CDLA-Sharing-1.0`), following the license of the original TinyStories dataset.\n\n## Credits\n\nJapanese translation, alignment, and dataset preparation: Naoki Shibata.\n\nThis dataset is derived from the original TinyStories dataset. The translations were generated primarily using `google/gemma-4-26B-A4B`.\n\n## Notes\n\nThe translations are not fully human-reviewed. Users should be aware that some translation errors, unnatural wording, or artifacts may remain.\n\nThe field `text_hash` can be used to match records with the original English text.\n"
+  },
+  "file": {
+    "path": "data/train-00000-of-00004.jsonl",
+    "bytes": 1348591301,
+    "sha256": "323bfb2ecc47e5c0f820fb90e6d12bb144d9039f6b323f5efddc4fac3a29c00a"
+  },
+  "local_path": "/home/aihub_ubuntu/.cache/huggingface/hub/datasets--shibatch--TinyStories-JA/snapshots/155b4e5842076c90e07a4934d5b68410fe21f65f/data/train-00000-of-00004.jsonl",
+  "records_inspected": 10000,
+  "histogram": {
+    "le384": 7975,
+    "le512": 1048,
+    "le128": 15,
+    "over512": 962
+  },
+  "selection": {
+    "whole_64_384_rows": 1720,
+    "whole_64_384_tokens": 425833,
+    "old_selection_rows": 3,
+    "old_selection_tokens": 379
+  },
+  "examples": [
+    {
+      "text": "ある日、リリーという名前の小さな女の子が、自分の部屋で針を見つけました。針はとても鋭いので、それで遊ぶのは難しいということを彼女は知っていました。リリーはお母さんとその針を一緒に使って、シャツのボタンを縫い付けてもらいたいと思いました。\n\nリリーはお母さんのところへ行って言いました。「お母さん、この針を見つけたよ。一緒に使って、私のシャツを縫ってくれる？」お母さんはにっこり笑って言いました。「ええ、リリー。一緒に針を使って、あなたのシャツを直しましょうね。」\n\n二人は一緒に針を使い、リリーのシャツにボタンを縫い付けました。助け合いながら一緒に使ったので、二人にとって難しいことではありませんでした。終わったあと、リリーはお母さんに、針を一緒に使ってシャツを直してくれたことへのお礼を言いました。二人で協力して分かち合うことができたので、とても幸せな気持ちになりました。",
+      "body_tokens": 248,
+      "old_accepted": false,
+      "whole_accepted": false
+    },
+    {
+      "text": "むかしむかし、ビープという名前の小さな車がいました。ビープは、速く走ることとお日様の下で遊ぶことが大好きでした。ビープはいつも良い燃料を入れているので、とても元気な車でした。良い燃料は、ビープを幸せで強くしてくれました。\n\nある日のこと、ビープが公園をドライブしていると、大きな木を見つけました。その木にはたくさんの葉っぱがついていて、次々と落ちていました。ビープは葉っぱが落ちてくる様子が大好きで、一緒に遊びたいと思いました。ビープは木の下を走り、葉っぱが自分に落ちてくるのを眺めました。ビープは笑いながら、クラクションを鳴らしました。\n\nビープは一日中、落ちてくる葉っぱと一緒に遊びました。家に帰る時間になると、ビープはもっと燃料が必要だと気づきました。ビープは燃料スタンドへ行き、元気が出る良い燃料をたくさんもらいました。これで、ビープはまた明日、速く走って遊ぶ準備ができました。そして、ビープはいつまでも幸せに暮らしました。",
+      "body_tokens": 289,
+      "old_accepted": false,
+      "whole_accepted": false
+    },
+    {
+      "text": "ある日、フィンという名前の小さな魚が、岸の近くを泳いでいました。フィンは大きなカニを見つけて、友達になりたいと思いました。「こんにちは、僕はフィン。一緒に遊ばない？」と小さな魚は尋ねました。カニはフィンを見て、「いいえ、遊びたくないよ。寒いし、気分も良くないんだ」と言いました。\n\nフィンは悲しくなりましたが、カニの気分が良くなるように手伝いたいと思いました。彼は泳いで離れていき、作戦を考えました。太陽は物を温かくしてくれることを、彼は思い出しました。そこでフィンは水面まで泳いでいき、太陽に向かって呼びかけました。「太陽さん、お願い。新しい友達が元気になって、凍えないように助けてあげて！」\n\n太陽はフィンの呼びかけを聞いて、岸に温かい光を照らしました。カニは体が温まり始め、寒さが和らぎました。カニはフィンを見て、「小さな魚さん、気分を良くしてくれてありがとう。もう凍えそうにないよ。一緒に遊ぼう！」と言いました。こうして、フィンとカニは一緒に遊び、仲良しの友達になりました。",
+      "body_tokens": 317,
+      "old_accepted": false,
+      "whole_accepted": false
+    },
+    {
+      "text": "むかしむかし、木がたくさん生えている場所に、小さなサクラの木がありました。サクラの木は、友達がいなかったので、とても悲しんでいました。ほかの木はどれも大きくて強そうでしたが、サクラの木は小さくて弱かったのです。サクラの木は、大きな木たちがうらやましくてたまりませんでした。\n\nある日のこと、サクラの木の枝がくすぐったくなりました。それは、小さな春の風でした。風はサクラの木に、悲しまないでと言いました。風はこう言いました。「みんなが大好きな、甘いさくらんぼを持っているあなたは、特別な存在だよ」。サクラの木は、少しだけ元気になりました。\n\n時がたつにつれて、サクラの木にはどんどんたくさんのさくらんぼが実りました。その土地の動物たちがみんな、さくらんぼを食べたり、サクラの木の下で遊んだりするためにやってきました。サクラの木にはたくさんの友達ができたので、とても幸せでした。サクラの木は、人とは違っていても、それは良いことなのだと学びました。そして、みんなでずっと幸せに暮らしました。",
+      "body_tokens": 323,
+      "old_accepted": false,
+      "whole_accepted": false
+    },
+    {
+      "text": "むかしむかし、リリーという名前の小さな女の子がいました。リリーは、自分が人気のあるお姫様になったつもりで遊ぶのが大好きでした。彼女は、大好きな友達である猫と犬と一緒に、大きな お城に住んでいました。\n\nある日のこと、お城で遊んでいたリリーは、大きなクモの巣を見つけました。クモの巣のせいで、楽しい遊びができません。リリーはそれを片付けたかったのですが、そこに住んでいるクモが怖くてできませんでした。\n\nリリーは友達の猫と犬に、助けてほしいとお願いしました。みんなで力を合わせて、クモの巣をきれいにしました。クモは悲しんでしまいましたが、外に新しいお家を見つけることができました。リリーと猫と犬は、クモの巣がなくなって、また楽しく遊べるようになったので、とても幸せでした。そして、みんなずっと幸せに暮らしました。",
+      "body_tokens": 244,
+      "old_accepted": false,
+      "whole_accepted": false
+    },
+    {
+      "text": "むかしむかし、大きな湖に、茶色のカヤックがありました。茶色のカヤックは、一日中、水の中でくるくる回るのが大好きでした。湖でくるくる回ったり、水をはねさせたりできるときは、とても幸せな気持ちになりました。\n\nある日、ティムという名前の小さな男の子が、茶色のカヤックで遊びに来ました。ティムと茶色のカヤックは、一緒に水の中でくるくる回りました。二人は笑い合い、とても楽しい時間を過ごしました。太陽はキラキラと輝き、水は温かかったです。\n\nしばらくして、ティムが家に帰る時間がやってきました。彼は茶色のカヤックにさよならを言い、ぎゅっと抱きしめました。茶色のカヤックは、ティムが行ってしまうのが寂しかったけれど、またすぐに一緒に遊べることを知っていました。だから、茶色のカヤックは、ティムとまた楽しい一日を過ごせるのを待ちながら、水の中でくるくる回り続けました。",
+      "body_tokens": 266,
+      "old_accepted": false,
+      "whole_accepted": false
+    },
+    {
+      "text": "むかしむかし、ある小さな町に、リリーという名前の、元気のない女の子がいました。彼女は、お気に入りの三角形のおもちゃをなくしてしまったので、いつも悲しんでいました。家の中をあらゆるところまで探しましたが、どうしても見つかりませんでした。\n\nある晴れた日、リリーは遊びに公園へ行きました。彼女は大きな水たまりを見つけると、そこにおもちゃがあるかもしれないと思いました。リリーは水に手を浸して、おもちゃを探しました。すると、水たまりの底に何かを感じました。\n\nリリーがそれを取り出すと、それはお気に入りの三角形のおもちゃでした！見つけることができて、彼女はとても幸せな気持ちになりました。その日から、リリーが悲しむことはもうありませんでした。彼女は毎日三角形のおもちゃで遊び、いつも大切に持ち歩きました。そして水たまりを見かけるたびに、おもちゃを見つけた時のことを思い出して、にっこり笑うようになりました。",
+      "body_tokens": 267,
+      "old_accepted": false,
+      "whole_accepted": false
+    },
+    {
+      "text": "むかしむかし、ある穏やかな町に、ティムという名前の小さな男の子が住んでいました。ティムは外を走り回って遊ぶのが大好きでした。ある日のこと、ティムは公園でレースが行われているのを見かけました。彼はワクワクして、自分もレースに参加したいと思いました。\n\nティムは友達のサラのところへ行って、「一緒にレースをしよう！」と言いました。サラはにっこり笑って、「うん、そうしよう！」と答えました。二人は他の子供たちと一緒に列に並んで、レースが始まるのを待ちました。「スタート！」という合図が聞こえると、二人は精一杯の速さで走り出しました。\n\nティムとサラは、笑いながらとても楽しそうに、全力で走りました。ゴールに向かって走っていると、髪に風を感じることができました。最後には、ティムがレースに勝ち、サラは二等になりました。二人はとても幸せで、自分たちのことを誇らしく思いました。二人は友達とお祝いをして、公園で素晴らしい一日を過ごしました。",
+      "body_tokens": 293,
+      "old_accepted": false,
+      "whole_accepted": false
+    },
+    {
+      "text": "むかしむかし、マックスという名前の、とてもかしこい小さな犬がいました。マックスは、公園で友達と一緒に走り回ったり遊んだりするのが大好きでした。ある日のこと、マックスがとても速く走っていたとき、転んで膝を痛めてしまいました。\n\nマックスは友達である、物知りなフクロウさんのところへ行って言いました。「フクロウさん、膝が痛いよ。どうしたらいいかな？」フクロウさんは少し考えてから言いました。「マックス、膝の状態を確かめてごらん。ゆっくり歩いてみて、まだ痛むかどうか見てみるんだよ」\n\nそこでマックスは、ゆっくり歩いて膝を確かめてみました。最初は少し痛かったけれど、すぐにマックスの具合は良くなりました。マックスは言いました。「助けてくれてありがとう、フクロウさん。これでまた友達と遊べるよ」\n\nマックスは、痛みなく友達と遊べるようになって、とても幸せでした。彼は、時にはゆっくり進んで、自分の体の声を聞くことも大切だということを学びました。それからというもの、マックスと友達は公園でずっと仲良く楽しく遊びました。",
+      "body_tokens": 311,
+      "old_accepted": false,
+      "whole_accepted": false
+    },
+    {
+      "text": "ある日、ティムという名前のスピードの速い運転手が、大きな音のする車でドライブに出かけました。彼は通りを飛ばして走り、髪に風を感じるのが大好きでした。運転していると、道のそばに友達のサムが立っているのが見えました。\n\n「やあ、サム！」ティムが声をかけました。「一緒にドライブに行かないかい？」\n\n「うん、ぜひ！」サムはそう言って、車に乗り込みました。二人は町の中を走り回り、スピードを出して楽しく過ごしました。車はとても大きな音がしたので、みんなが二人が来るのに気づきました。\n\nついに、二人は遊ぶために公園で車を止めました。二人は家に帰る時間になるまで、走り回って笑い合いました。ティムとサムは、大きな音のする車でスピードを出したり、公園で遊んだりして、一緒に素晴らしい一日を過ごしました。",
+      "body_tokens": 253,
+      "old_accepted": false,
+      "whole_accepted": true
+    },
+    {
+      "text": "むかしむかし、ディペンダブルという名前の大きな車がいました。ディペンダブルには、とても大切な仕事がありました。それは、毎日ある家族を公園へ連れていくことです。その家族は、お父さんとお母さん、そしてリリーという名前の小さな女の子でした。みんな、お互いのことをとても大切に思っていました。\n\nある日のこと、公園に着くと、「今日は楽しいレースがあります！」と書かれた大きな看板がありました。家族はとてもワクワクしました。ディペンダブルはとても速いので、レースに勝てるはずだとみんなは思いました。そこで、家族はレースに参加することに決めました。\n\nレースが始まると、ディペンダブルはとても速く走りました。ほかの車たちが追いかけようとしましたが、ディペンダブルはとても速くて追いつけません。そして最後には、ディペンダブルがレースに勝ちました！家族はとても嬉しくなり、自分たちの車を誇らしく思いました。お互いを愛し、ディペンダブルを信じていたからこそ、レースに勝てたのだとみんなは感じました。それからというもの、家族は世界で一番速くて頼りになる車がいることを知り、公園での時間をこれまで以上に楽しむようになりました。",
+      "body_tokens": 329,
+      "old_accepted": false,
+      "whole_accepted": false
+    },
+    {
+      "text": "むかしむかし、ティムという名前の男の子がいました。彼は大きくて黒い帽子をかぶるのが大好きでした。その帽子は、彼が一番お気に入りのものでした。ティムはどこへ行くときも、その帽子をかぶっていました。\n\nある日、ティムは地面に落ちている鉛筆を見つけました。その鉛筆は小さくて黄色いものでした。ティムはその鉛筆がとても気に入りました。彼は鉛筆を帽子の中に入れ、一緒に持ち歩くことにしました。\n\nティムはその鉛筆で絵を描きました。太陽や木、そして猫を描きました。ティムは新しい鉛筆がとても嬉しかったです。彼は黒い帽子をかぶって、毎日絵を描きました。",
+      "body_tokens": 191,
+      "old_accepted": false,
+      "whole_accepted": false
+    }
+  ],
+  "seconds": 27.947294042998692,
+  "checked_at": "2026-10-05T07:30:50.198352Z",
+  "official_validation_test_acquired": false
+}
