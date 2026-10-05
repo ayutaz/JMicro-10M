@@ -1,3 +1,5 @@
+実行中（2026-10-05 JST）: ユーザーの三項目の再開範囲は契約71（計画70内部段階0〜2）。実装整合性、EOS/反復確率、教材適合性を診断する。32 train入力・128全文・三checkpoint SHAを凍結、CPU4tests成功。GPU占有上限600秒、学習/optimizer更新0。自然文記憶や次の学習比較は範囲外。元UIを一時停止し、診断終端で元10B UIへ戻して結果・local commit後に停止。reports/phase6/root-cause-20261005/job.json のactual PID/boot/start/logを確認し、重複起動しない。
+
 最新提案（2026-10-05 JST）: [根本調査計画70](70_root_cause_investigation_plan.md)。実装の経路差→EOS/反復の発生点→必要な自然文陽性対照→原因別小比較→条件付き同10M設計比較の順。既存証拠を再利用し、単純増量や再学習を結論にしない。今回は文献/source/保存結果の調査と計画のみ、実行は未開始。下記の結果69・元品質目標は維持する。
 
 最新完了（2026-10-05 JST）: [実行68](68_packing_learning_execution.md)段階1〜3、[結果69](69_packing_learning_results.md)。同教材の連結/順序変更/文書単位を各25M教師で実学習しtrain75/100/100、新dev74/85/76。shuffleを選び元10BからWeb80M＋短文20Mの各100Mを比較、対照train71/dev54→候補99/76。ただし一般自由生成は両一貫性0/適切完結0、EOS2/2、反復65/53（各80）で候補不採用。新五終端の日本語/全400個別内容評価、旧dev参照、24CUDA再開625,842教師別会計、106終端証拠checks完了。科学275M教師。Base/Chat品質未達、Phase7へ移行せず、元10B UI復帰・verified local commitで停止。次の多様な自然短文教材比較は提案のみ。以下の歴史的記録・原Phase定義と品質条件を維持する。

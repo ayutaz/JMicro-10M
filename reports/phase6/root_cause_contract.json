@@ -1,0 +1,127 @@
+{
+  "created_at": "2026-10-05T12:43:07.315484Z",
+  "checkpoints": {
+    "original": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+    },
+    "mixed": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/packing-study-20261005/mixed-candidate/checkpoint-00308245.pt",
+      "sha256": "5d7df8eec30eaaf3799f2cc1c494c733747e0f0a98563941cef0cbd3353a9ab1"
+    },
+    "story": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/coherent20/checkpoint-00320435.pt",
+      "sha256": "f336806bee562cf11fe29506f833deae45de228c4b8acb1b942c7df21c82daac"
+    }
+  },
+  "pools": {
+    "web": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2/export-001/shards",
+      "manifest_sha256": "2edfd35bf077cd1aa583713c01341c0db52f39adc5701f30ede0aacae840b2de",
+      "prepared": {
+        "tokens": 12225819077,
+        "documents": 25879667,
+        "body_bytes": 47525339486,
+        "stream_sha256": "e7e76fe564965a612a8f126b490a63101cd5af999efaede26d14413f2a467b97",
+        "index_sha256": "55eab1644d974ac8a4f1695301a8756048158a10ab71297b0ac3bc6637bcfd17"
+      },
+      "sample_selection": "token-offset random; length strata, not uniform document; no source subbucket index scan",
+      "raw_stratum_counts": [
+        0,
+        16,
+        16,
+        16
+      ],
+      "scanned_candidates": 4112,
+      "full_corpus_audit": "not repeated; independently incomplete"
+    },
+    "story200m": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/dataset-expansion-20261005/shards",
+      "manifest_sha256": "a33ad89783d7b9c2f65eadc96ceca06d19c1e397b0dc95852b148d408cec7b12",
+      "prepared": {
+        "tokens": 200000192,
+        "documents": 1161923,
+        "body_bytes": 822869721,
+        "stream_sha256": "d5dcb6c51cab0cae2d3a2f57dd514b0658131730409a4950336405e66fc97768",
+        "index_sha256": "36b9e7795e94752e93c1a3a24afdacba48a90558545309bb9173700ab670cc07",
+        "index_format": "jsonl"
+      },
+      "sample_selection": "token-offset random; length strata, not uniform document; no source subbucket index scan",
+      "raw_stratum_counts": [
+        16,
+        16,
+        16,
+        16
+      ],
+      "scanned_candidates": 374,
+      "full_corpus_audit": "not repeated; independently incomplete"
+    }
+  },
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "source_sha256": "01126ff6c5ab3d290994586b4e30755570ab96a2955a8d4f9022a053b0df5e29",
+  "files": {
+    "cases.json": "ffa0c32410f20d4af652e8ac64712dab39aeabb29a7fc6e86132e72bcdcf87ac",
+    "corpus.json": "9ab331e825903ecd960783f7746b8923bed6c50130bc09177131009a5617207c",
+    "codec.json": "19e171d82c924a1c5627a3a786e4c7559ef2ab3d88b42c20a7a83620cdeba870"
+  },
+  "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+  "cases": 32,
+  "corpus_documents": 128,
+  "train_cases_sha256": "0d2cbacbe5a717d6937c54ba7090e82f4e571b9427cc9c932468bc718246621a",
+  "scope": "User-facing steps1-3 = plan70 internal stages0-2; inference/backward only, no training",
+  "gpu_budget_seconds": 600,
+  "seed": 42,
+  "max_new_tokens": 64,
+  "sampling_seeds": [
+    42,
+    43,
+    44
+  ],
+  "optional_128": "not scheduled; previous512 negative evidence reused",
+  "precision": {
+    "status": "initial_proposal_verify_before_backend_comparison",
+    "fp32_reference_logits": {
+      "atol": 1e-05,
+      "rtol": 0.0001
+    },
+    "bf16_logits": {
+      "atol": 0.05,
+      "rtol": 0.02
+    },
+    "strict_fp32_resume_weights": {
+      "atol": 1e-07,
+      "rtol": 1e-06
+    },
+    "strict_fp32_resume_loss": {
+      "atol": 1e-06,
+      "rtol": 1e-05
+    },
+    "consumed_token_ids": "exact_equality",
+    "parameter_count": "exact_equality",
+    "tf32_in_reference": false,
+    "cross_platform_bitwise_equality_required": false,
+    "fast_backend_resume_tolerance": "freeze_after_phase4_baseline_before_resume_comparison"
+  },
+  "gradient_checks": "FP32 math full vs causal atol1e-7 rtol1e-6; BF16 finite only, compare reported norms/cosines without new pass threshold",
+  "fp32_loss": {
+    "atol": 1e-06,
+    "rtol": 1e-05
+  },
+  "numerical_failures": "report unchanged thresholds, investigate error size; no false pass",
+  "numeric_lengths": [
+    64,
+    1024
+  ],
+  "existing_story_result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/evaluation/result/coherent20/evaluation/result.json",
+    "sha256": "338fa68df832a8fddfa63c6038c1b8f9c840ccbd9d8ee508c617494f4498a455"
+  },
+  "quality_goals_changed": false,
+  "scientific_training_tokens": 0,
+  "protected_test_used": false
+}

@@ -1,3 +1,5 @@
+実行中（2026-10-05 JST）: ユーザーの三項目の再開範囲は契約71（計画70内部段階0〜2）。実装整合性、EOS/反復確率、教材適合性を診断する。32 train入力・128全文・三checkpoint SHAを凍結、CPU4tests成功。GPU占有上限600秒、学習/optimizer更新0。自然文記憶や次の学習比較は範囲外。元UIを一時停止し、診断終端で元10B UIへ戻して結果・local commit後に停止。reports/phase6/root-cause-20261005/job.json のactual PID/boot/start/logを確認し、重複起動しない。
+
 最新計画（2026-10-05 JST）: docs/70_root_cause_investigation_plan.md、reports/phase6/root_cause_plan_research.json。read-onlyの証拠/source/一次文献調査と計画作成、追加学習/新GPU評価/data準備0。原checkpoint/Tokenizer/学習コード/旧reportsを保持。次に実行する案は計画70の段階0〜2（小sampleで実経路と生成確率を切り分ける）で未開始。計画のGPU上限/教師量は未測定の提案、実行前に別契約へ固定する。元UIを止めていない。下記の最新実学習69と保存先は不変。
 
 最新完了（2026-10-05 JST）: [結果69](69_packing_learning_results.md)、契約68段階1〜3。三条件各25M body/EOS教師、選択shuffleとfixedの元10B Web80M＋短文20M各100M。五学習終端/五日本語評価/400raw-bound個別理由/旧dev参照/採否を保存、一般品質未達で候補不採用、元UIを復帰して停止。科学275M教師・valid277,092,898・physical311,066,624、検証625,842別。GPU占有1080.897秒。Windows可搬証拠はpacking_study各JSON/tests.xml、凍結開始e1d340bと最終verified local commitを引き継ぐ。自動pushなし。

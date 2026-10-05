@@ -1,3 +1,5 @@
+実行中（2026-10-05 JST）: ユーザーの三項目の再開範囲は契約71（計画70内部段階0〜2）。実装整合性、EOS/反復確率、教材適合性を診断する。32 train入力・128全文・三checkpoint SHAを凍結、CPU4tests成功。GPU占有上限600秒、学習/optimizer更新0。自然文記憶や次の学習比較は範囲外。元UIを一時停止し、診断終端で元10B UIへ戻して結果・local commit後に停止。reports/phase6/root-cause-20261005/job.json のactual PID/boot/start/logを確認し、重複起動しない。
+
 最新調査・計画（2026-10-05 JST）: 根本原因の調査と[計画70](70_root_cause_investigation_plan.md)を作成。過去の実overfit成功/連結依存、5B/10Bのsampling、結果60/69、現行label/causal/cache/codec/生成実装、一次文献を確認。データ量だけ、greedyだけ、10M容量だけという原因確定はしない。次の提案は実checkpoint/CUDA経路の不足証拠と、正解本文対自由生成のEOS/反復確率を小sampleで切り分ける段階0〜2。出発重み/Adamの自然文陽性対照、原因別同量比較、設計比較は条件付き。全段階に終了条件と予算案を保存。今回は追加学習0・新GPU評価0・新data作成0、元UI/過去凍結結果を保持。計画のみのlocal commit後に停止。根本原因の確定や品質問題の解決は未完了。
 
 最新完了（2026-10-05 JST）: [結果69](69_packing_learning_results.md)。plan68の段階1〜3（三条件25M教師・条件付き両100M教師・日本語と全400内容評価）を完了して停止。教材は同じ1000全文/55,273準備tokens。train fixed75/shuffle100/isolated100、新dev74/85/76でshuffle選択。元同一10BからWeb80M＋教材20Mの混合はfixed train71/dev54、shuffle99/76。ただし候補未学習構文26/50、自由生成の一貫性0/80・適切完結0/80・EOS2/80・反復53/80で不採用。対照も一貫性0/適切完結0/EOS2/反復65。原品質目標を維持し、条件付き全文・追加学習は未開始。
