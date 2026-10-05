@@ -543,3 +543,16 @@ Chatはevaluate_chat_sft.py/chat_evaluation.pyと永続run_chat_sft.ps1を用意
 run_improved_base.py/ps1を追加し、一段ずつ5Bまたは10Bの同教材stable延長→同20M decay→共通256本文/日本語全suite/固定80生成を永続実行するコマンドを用意した。先行jobの実終了、raw80/全内容とreview/annotations/result/親/sourceのbindingを確認し、既存の相対改善gateまたは絶対Base研究screenを満たす場合だけ研究継続を受け入れる。研究継続の選定はBase採用ではなく、本学習後の全80内容と既存品質条件は別途必要。未終了比較からconfigを固定しない。各段のGPU予算は実測完了step throughputから「残教師/throughput×1.3＋1800秒」で見積もり、stableとdecayの実CUDA連続4対2+2全state/history一致を本学習前に要求する。科学の追加stable・decay教師、累積教師、valid/physical、検証教師、GPU占有を分け、途中失敗は最後の完了更新checkpointから再開する。全80内容未判定で次の段へ自動進行しない。
 
 CPU2testsでは未終了記録と、complete記録でも実際に生きているPID/boot/startの拒否・config未作成を確認。CLI help/PowerShell構文も成功。GPU予算延長のgate/学習/品質評価は未実行、configsの採用候補は未凍結。WSLから`uv run --frozen --extra hub --extra data --extra ml --extra export scripts/run_improved_base.py --config configs/phase6/<new-recipe>.json --freeze --source-run reports/phase6/<completed-run> --parent-point <stable-point> --reference-point <quality-control-point> --target-teachers 5000000000`で、実比較完了と採否後に固定する。Windowsの永続起動は`scripts/run_improved_base.ps1 -Config configs/phase6/<new-recipe>.json`、中断後は実processを確認して同コマンドに`-Worker`を付ける。PythonはWSL uvのみ、同4090の科学jobを重複起動しない。
+
+### Chat pilotの実準備（2026-10-06 JST、Base品質待ち）
+
+prepare_chat_pilot.pyで、固定public pilot manifest/corpus/split/4K Tokenizerのhashを確認し、既存RealPersonaChatのtrain2,688/dev150対話だけを再利用した。splitは元のwhole-dialogue/connected-familyを保持し、testは選択・tokenize・採点しない。全量near判定や再取得・Tokenizer再学習を繰り返していない。入力原文と役割、canonical hash、train/dev family非交差、全Assistantターゲットの一回ずつの本文＋EOT、current pairを切らないwindowを実データで確認した。CPU準備2.315秒で完了・actual484206終了不在、Chat GPU0。
+
+| 準備した分割 | 対話 | 元本文tokens（発話を一度ずつ） | 元対話系列tokens（役割等込み） | SFT窓 | 窓系列tokens（履歴反復込み） | Assistant本文＋EOT教師 | 古い履歴を切った窓 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| train | 2,688 | 1,177,334 | 1,341,764 | 40,366 | 10,189,157 | 633,185 | 0 |
+| dev | 150 | 65,216 | 74,386 | 2,250 | 560,873 | 35,054 | 0 |
+
+これらは準備量で消費済み学習量ではない。SFTの10M/30M/100M総系列予算はAssistant教師10M/30M/100Mとは異なり、このtrain窓の一周では教師は系列の約6.2%。元対話を一度ずつ数えた量もglobal unique-token unionではない。原文の相づちや同じ発話、口語・誤字を維持し、役割の交互性と空でないAssistant本文を保持する。固定train4全文を読んだ診断では、自然な話題継続の一方、自己紹介、未導入のフィジー等の背景、歴史の未検証の一般化を確認した。事実性/指示応答/訂正能力の保証ではなく、4例だけでsourceやtestを再選別しない。独立人手評価なし。
+
+Linuxのデータは`/home/aihub_ubuntu/jmicro-data/phase7/real-persona-pilot-20261006`（train/dev JSONL、manifest、sample4）、実job/reportは`reports/phase7/chat-pilot-20261006`。Windows可搬証拠はchat_pilot_preparation/prepare_job/sample4/content_notes各JSON。human source revision28d0b6b…/CC-BY-SA-4.0・帰属と元public pilotを保持する。shared speakersの非交差は保証しておらず、persona本文の追加復元はしない。次は量比較と改善Base品質を完了してからmid-training/SFT比較を凍結し、実CUDA安定batch/再開/対話評価を行う。

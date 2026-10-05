@@ -1,0 +1,33 @@
+{
+  "scope": "Fixed four prepared train dialogues; descriptive diagnosis, not selection, model evaluation or all-corpus certification",
+  "sample_sha256": "bafebfa9a0c92feda406360e741630c4ce6ec817954cfe364d37048d746bba53",
+  "prepared_manifest_sha256": "1ad9f04c0b7d43c4fc253c7cdc8057e9a09d7ef34b9073e53d972aeef278e0ee",
+  "reviewer": "Codex nonblind; independent human blind review not performed",
+  "notes": [
+    {
+      "dialogue": "07364.json",
+      "observation": "アニメから黒板の絵、チョーク、掃除、ロボットへ、相づちと質問で話題がつながる。IKEAや作品名と自己経験を含み、表記の揺れは原文のまま保持した。",
+      "limitation": "自然な雑談の例であり、製品情報や自己経験の事実性を認証したものではない。"
+    },
+    {
+      "dialogue": "13314.json",
+      "observation": "猫の頭数、過去の頭数、トイレ、飼育、脱走へと会話の対象を保つ。猫を飼う相談に応答しているが、話者個人の経験に基づく主張を含む。",
+      "limitation": "モデル自身が猫を飼うという自己紹介を正当化するデータではなく、飼育上の主張も独立した専門的検証はしていない。"
+    },
+    {
+      "dialogue": "06802.json",
+      "observation": "好きな冬から花粉とキャンプ、料理、道具、始めた理由へ、直前の発話に応答する流れが自然。短い相づち、口語、誤字、句読点の欠落を保持した。",
+      "limitation": "個人の好みと経験の対話であり、訂正指示や否定を正確に扱う能力の直接的な教材・評価ではない。"
+    },
+    {
+      "dialogue": "11438.json",
+      "observation": "海外生活と通訳から歴史の意見、英国車へ話題が移る。本文だけでは場所が導入されないままフィジーが出現し、省略したpersona等の情報を前提とする可能性がある。",
+      "limitation": "戦争原因などの強い一般化は話者の未検証の主張であり、原文の自然さと事実性を分ける。欠けた背景情報を創作して補わず原文を保存した。"
+    }
+  ],
+  "decision": "Preserve existing split and literal source for bounded Chat pilot; retain domain/factual/persona limitations. No new filtering or GPU training based on these four samples.",
+  "Chat_GPU_teacher_tokens": 0,
+  "Chat_adopted": false,
+  "protected_test_used": false,
+  "requested_five_steps_complete": false
+}
