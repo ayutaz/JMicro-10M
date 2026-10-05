@@ -572,3 +572,21 @@ src/jmicro/dialogue_training.pyは主系列の会話全体（User/Assistant本�
 inspect_dialogue_midtraining.pyは固定train2688のみを点検し、全2688窓、系列1,341,764、input/教師1,339,076（User584515/Assistant592819/role80871/EOT80871）、capacity2,752,512を記録。全元発話targetを一度ずつ保つことを実sourceで確認、CPU0.910秒、GPU0。dev/testはwindow化しない。dialogue_midtraining_preparation.jsonを保存。sourceの自然な末尾Userを誤って偶数turn限定にした初版は修正し、raw文やsplitを変えない。
 
 run_dialogue_midtraining.py/ps1は固定config、採用Baseの評価・全80理由・SHA、train/source・mixture、実CUDA/BF16の新masked batch測定を先に要求する。実CUDA4対2+2全state一致の後に系列予算まで学習し、250完了更新checkpointとmetric・PID/boot/start・累積GPU予算・source snapshotを保存する。未採用Baseから起動しないCPUtestを含む関連10tests/CLI help/PS構文成功。Base評価reviewのPath型読込も修正し関連6tests再成功。これは準備で、実CUDA batch probe専用コマンド、mid-training後のSFT接続と直接SFTとの同条件ablation/内容評価は未完了。Base品質と現在の量比較を先に確定する。
+
+### stage4の完了と5B研究延長の凍結（2026-10-06 JST）
+
+全5点・全400個別内容とactual state監査を完了。科学stable3B+decay100M=3.1B教師、actual CUDA24更新/検証782564教師別、GPU5190.079秒。actual481317終了・不在、元10B UIを復帰確認した。
+
+| 準備教材tokens | stable教師 | 同decay教師 | BPB↓ | 文法2/80 | 一貫性2/80 | 適切完結/80 | EOS/80 | 反復/80 |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 500,000,785 | 100M | 20M | 1.231780 | 32 | 9 | 13 | 31 | 20 |
+| 同上 | 500M | 20M | 1.167477 | 30 | 9 | 14 | 26 | 30 |
+| 同上 | 1B | 20M | 1.152110 | 36 | 14 | 22 | 37 | 20 |
+| 同上 | 2B | 20M | 1.138590 | 43 | 21 | 27 | 40 | 21 |
+| 100,000,157 | 1B | 20M | 1.159479 | 32 | 9 | 26 | 34 | 21 |
+
+同1Bの100M→500M教材ではBPB・文法・一貫性は平均改善したが、coherence+5のpaired CI[-.0375,.1625]はゼロを含み、改善基準未達。適切完結26→22も悪化し、増量すれば全指標が良くなるとは言わない。同500Mの全隣接学習比較も既存gate未達。全Base採用条件は未達で、量不足や容量限界の単独確定ではない。全Unicode/role/emptyは0、非blind Codex判定で独立人手なし。
+
+量比較のcompleted-source review/annotations/result/親hashを確認した上でconfigs/phase6/improved-base-5b-20261006.jsonを固定した。候補2Bはこの曲線の文法/一貫性/BPBが最良で、500M→2Bの広い区間ではcoherence+12/CI[.0375,.2625]、EOS26→40、反復30→21と全既存相対gateを満たす。ただしこの区間の採用は結果を見た後の探索的選定で、多重比較補正や独立confirmationではない。1B→2Bのcoherence+7/CIゼロ含有と反復20→21の失敗をそのまま保持し、研究継続とBase採用を分ける。improved_base_5b_selection.jsonへ全失敗も保存。
+
+次は2Bのstable全stateから同500M教材を累積5Bへ明示延長（科学追加3B+同20M decay）、2Bを新比較の対照に固定し全日本語/80内容を判定する。実測step2B/2985.553秒を基にremaining3B/throughput×1.3+1800=7622秒のGPU上限を固定。stable-extension/decay各CUDA4対2+2 fullstate gateが本学習前に必要。5B/10Bは教材量ではなく累積教師量であり、教材2〜5B増量のsampler移行は別実装/別実験。10Bへ自動進行しない。5Bのdev screen合格でも最終seed/full/test等を実証するまでBase採用しない。Chat/量子化/実UIを含む全五目標は未完了。

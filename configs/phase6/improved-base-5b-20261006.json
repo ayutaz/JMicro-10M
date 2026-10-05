@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "source_run": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/amount-learning-20261006",
+  "source_result_sha256": "d009051c444b8213fe42b79ce7d3a068a64e62b39975314cb97e054a19f8991d",
+  "source_review": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/amount-learning-20261006/review.json",
+    "sha256": "c92ea6f73c5f579e7730edea4ea3b59c1ec589694f348dbe43f575f743b510c8"
+  },
+  "source_annotations": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/amount-learning-20261006/annotations.json",
+    "sha256": "84ee7412a80d009f74e35860a72f27b8d9dbf509c5db017a14be0f0828450bc5"
+  },
+  "parent_point": "large-2000000000",
+  "quality_reference_point": "large-500000000",
+  "comparison_kind": "amount",
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/amount-learning-20261006/large/stable/checkpoint-00061339.pt",
+    "sha256": "27492c5f1c51bc7ff768e006e4c7874a47ee7ee3793755da5c2a4359832c1136"
+  },
+  "target_teachers": 5000000000,
+  "decay_teacher_tokens": 20000000,
+  "GPU_budget_seconds": 7622,
+  "budget_estimate": {
+    "measured_teacher_tokens": 2000000000,
+    "measured_step_seconds": 2985.552511660542,
+    "teacher_tokens_per_second": 669892.7559266458,
+    "remaining_stable_teachers": 3000000000,
+    "rule": "Stable remaining/observed step throughput*1.3 +1800s for verification/decay/evaluation/saving; estimate, not measured end-to-end completion"
+  },
+  "output": "reports/phase6/improved-base-5b-20261006",
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "original_config_sha256": "f4c32912b250e733bfd78e7d56f66f012484e32b4e4edb12fbca2b8c1e315fb8",
+  "source_sha256": {
+    "scripts/run_improved_base.py": "fff5e4aad240c3bf00499110c2b14098559e04567a22e4236698e40b331f2569",
+    "scripts/run_improved_base.ps1": "10a8ef9d25c3aae47ecd1fe7f6231ce5b74075ca74680c25c72c05a2cf8187be",
+    "scripts/extend_amount_learning_trainer.py": "cfd2885a3a32b3dc44189a91d825e4ea9410d39a6a5d16caeb1e99f802c0ca23",
+    "scripts/amount_learning_trainer.py": "274995c8f2af319e12251f98e0184bb23474246c2d7b789015d9699c6bbaeb6c",
+    "src/jmicro/learning_curve.py": "a0fddda579bfccfd50ecca596165738233622f45f9888b97267e8258e13222dd",
+    "scripts/run_amount_learning_comparison.py": "7d7cb24045533e55a0d72b85aaedf66c9e14e84d8b42221fb682a106ccb31767",
+    "scripts/review_matched_story_study.py": "439c990c4d2781937573927df08bdaef860041c78fd05f0d6afde4458351f315",
+    "scripts/run_complete_text_comparison.py": "9d91d1d6124e62e4f40f7a99762f948186602e95cc362be10bfe03297874d8f7"
+  },
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "scope": "One same-material stable extension, equal20M decay, all80 content required afterwards; no automatic next-stage training",
+  "Base_adopted": false,
+  "requested_five_steps_complete": false,
+  "created_at": "2026-10-05T18:45:56.028013Z"
+}

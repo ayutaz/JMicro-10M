@@ -1,0 +1,97 @@
+{
+  "quality_criteria_unchanged": true,
+  "quantity_conclusion": "100M->500M at same1B changes coherence9->14 and BPB1.159479->1.152110, but confidence includes zero and all unchanged improvement gates do not pass; neither dataset sufficiency nor a capacity limit is proved",
+  "reference_for_research_eligibility": "large-500000000",
+  "all_prespecified_adjacent_and_quantity_comparisons": {
+    "quantity100Mvs500M": {
+      "checks": {
+        "coherence_gain_at_least8": false,
+        "paired_CI_lower_above0": false,
+        "EOS_nonworsening": true,
+        "repetition_nonworsening": true,
+        "no_empty_role_unicode": true,
+        "BPB_gate": true,
+        "appropriate_completion_not_punctuation": true
+      },
+      "passed": false,
+      "difference_count": 5,
+      "CI95": [
+        -0.0375,
+        0.1625
+      ]
+    },
+    "learning100Mvs500M": {
+      "checks": {
+        "coherence_gain_at_least8": false,
+        "paired_CI_lower_above0": false,
+        "EOS_nonworsening": false,
+        "repetition_nonworsening": false,
+        "no_empty_role_unicode": true,
+        "BPB_gate": true,
+        "appropriate_completion_not_punctuation": true
+      },
+      "passed": false,
+      "difference_count": 0,
+      "CI95": [
+        -0.1,
+        0.1
+      ]
+    },
+    "learning500Mvs1B": {
+      "checks": {
+        "coherence_gain_at_least8": false,
+        "paired_CI_lower_above0": false,
+        "EOS_nonworsening": true,
+        "repetition_nonworsening": true,
+        "no_empty_role_unicode": true,
+        "BPB_gate": true,
+        "appropriate_completion_not_punctuation": true
+      },
+      "passed": false,
+      "difference_count": 5,
+      "CI95": [
+        -0.025,
+        0.15
+      ]
+    },
+    "learning1Bvs2B": {
+      "checks": {
+        "coherence_gain_at_least8": false,
+        "paired_CI_lower_above0": false,
+        "EOS_nonworsening": true,
+        "repetition_nonworsening": false,
+        "no_empty_role_unicode": true,
+        "BPB_gate": true,
+        "appropriate_completion_not_punctuation": true
+      },
+      "passed": false,
+      "difference_count": 7,
+      "CI95": [
+        -0.025,
+        0.2
+      ]
+    }
+  },
+  "exploratory_wider_interval": {
+    "existing_relative_gates_pass": true,
+    "multiple_comparison_adjustment": "not performed; exploratory evidence only",
+    "paired_CI95": [
+      0.0375,
+      0.2625
+    ],
+    "coherence_difference_count": 12,
+    "chosen_after_observing_results": true
+  },
+  "status": "frozen_exploratory_5B_research_continuation_not_Base_adoption",
+  "independent_human_blind": false,
+  "reason": "2B has the best grammar/coherence in this actual matched learning curve and better BPB; broader500M->2B passes unchanged gates, but adjacent1B->2B fails and repetition rises20->21; next5B experiment is frozen separately",
+  "requested_five_steps_complete": false,
+  "Base_adopted": false,
+  "config_sha256": "f48ac2426675e4f0124f0a8598e6afc934683c1ff2fe3eff4eb29a1aa0732fdd",
+  "protected_test_used": false,
+  "created_at": "2026-10-05T18:46:59.1781223Z",
+  "config": "configs/phase6/improved-base-5b-20261006.json",
+  "source_review_sha256": "c92ea6f73c5f579e7730edea4ea3b59c1ec589694f348dbe43f575f743b510c8",
+  "parent_point": "large-2000000000",
+  "next_actual_comparison": "same500M material stable2B vs5B; identical20M decay and full Japanese/raw80 content; 10B not automatically started"
+}

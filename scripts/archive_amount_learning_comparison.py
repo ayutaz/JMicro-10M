@@ -1,5 +1,6 @@
 """Preserve completed stage4 text evidence; retain tensors/shards at WSL paths."""
 from pathlib import Path
+import os
 import sys
 import tarfile
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"src"))
@@ -23,8 +24,12 @@ def archive():
         "reports/phase6/nested_material_v2_prepare_job.json"))
     files.update(ROOT/f"reports/phase6/amount_learning_{key}_notes.json" for key in review["summaries"])
     files = sorted(files);target = ROOT/"reports/phase6/amount_learning_evidence.tar.gz"
-    with tarfile.open(target,"w:gz",compresslevel=3) as bundle:
+    missing = [str(path) for path in files if not path.is_file()]
+    assert not missing, f"Copy required portable evidence to the WSL archive root first: {missing}"
+    temporary = target.with_suffix(target.suffix+".tmp")
+    with tarfile.open(temporary,"w:gz",compresslevel=3) as bundle:
         for path in files: bundle.add(path,arcname=str(path.relative_to(ROOT)),recursive=False)
+    os.replace(temporary,target)
     report = dict(path=str(target.relative_to(ROOT)),sha256=sha256(target),bytes=target.stat().st_size,
         members=[dict(path=str(p.relative_to(ROOT)),sha256=sha256(p),bytes=p.stat().st_size) for p in files],
         limitations="Checkpoint tensors and large data streams/indexes remain at their bound WSL paths; source history/global near-duplicate limitations retained",
