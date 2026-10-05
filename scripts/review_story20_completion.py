@@ -66,6 +66,18 @@ def main():
                 and result['binding']['review_sha256'] == sha256(module.RUN / 'review.json')
                 and result['GPU_seconds'] <= job['gpu_elapsed_seconds']
                 and not result['protected_test_used'] and not result['quality_targets_achieved'])
+        if module is study:
+            from evaluate_story20_budget_full import CONFIG as full_config, SCHEMA as full_schema, load_config
+            _, plan = load_config()
+            require('500M_full_separate_frozen_plan_and_sources',
+                    result['binding']['full_plan_sha256'] == sha256(full_config)
+                    and result['binding']['source_sha256'] == plan['sources']
+                    and plan['additional_training_tokens'] == 0 and not plan['protected_test_used'])
+            for relative, digest in plan['sources'].items():
+                require('500M_full_saved_source_' + relative,
+                        sha256(directory / 'source' / relative) == digest)
+            remember(full_config)
+            remember(full_schema)
         if expected_pass is not None:
             require(str(directory.relative_to(ROOT)) + '_entry_pass', result['candidate_passes_all_full_conditions'] == expected_pass)
         remember(directory / 'review.json')
@@ -195,10 +207,13 @@ def main():
         require('ineligible500M_full_not_launched', not (study.RUN / 'full/full-job.json').exists())
     decision = read_json(ROOT / 'reports/phase6/story20_judgment.json')
     accepted = eligible and final_full['candidate_passes_all_full_conditions']
-    require('stage4_actual_decision_and_next_proposal', decision['candidate500M_passes_acceptance'] == accepted
+    require('stage4_actual_decision_and_next_proposal', decision['stage4_status'] == 'complete'
+            and decision['candidate500M_passes_acceptance'] == accepted
             and decision['primary_review_sha256'] == sha256(study.RUN / 'review.json')
             and decision['full_review_sha256'] == (sha256(study.RUN / 'full/review.json') if eligible else None)
-            and decision['next_proposal'] and not decision['quality_targets_achieved'] and decision['stop_after_delivery'])
+            and all(decision['next_proposal'].get(k) for k in ('purpose', 'comparison', 'budgets', 'completion_condition'))
+            and not decision['next_proposal']['executed'] and not decision['quality_targets_achieved']
+            and decision['stop_after_delivery'] and decision['report_sha256'] == sha256(ROOT / 'docs/53_story20_low_lr_judgment.md'))
     server = read_json(ROOT / 'reports/local/webui/server.json')
     require('actual_original_UI_identity_live', server['status'] == 'running' and alive(server))
     with urllib.request.urlopen('http://127.0.0.1:7860/api/model', timeout=5) as response:
