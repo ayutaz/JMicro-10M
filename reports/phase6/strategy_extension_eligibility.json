@@ -1,0 +1,96 @@
+{
+  "rule": {
+    "auxiliary_BPB_relative_improvement_at_least": 0.01,
+    "auxiliary_EOS_gain_at_least": 4,
+    "repetition_nonworsening": true,
+    "no_empty_or_unicode": true,
+    "equal_budget_pair_requires_both_strategies_eligible": true,
+    "purpose": "At most300M cumulative teachers per strategy, not adoption; original quality gates unchanged",
+    "schedule": "If eligible, continue each100M checkpoint for additional200M using inherited optimizer and sampler, original peaks/no repeat warmup, stable90percent then10percent decay. Staged reheating, not uninterrupted300M.",
+    "max_total_strategy_GPU_seconds": 1800,
+    "created_at": "2026-10-05T14:49:47.187543Z"
+  },
+  "results": {
+    "before_continuation": {
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+        "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+        "update": 305176,
+        "tokens_seen": 10000007168
+      },
+      "body_bytes": 20359,
+      "body_NLL": 14348.360681672217,
+      "BPB": 1.0167645169377029,
+      "EOS": 0,
+      "repeated4gram": 32,
+      "empty": 0,
+      "invalid_UTF8": 0
+    },
+    "before_fresh": {
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/curriculum-strategy-20261005-v3/initial-fresh.pt",
+        "sha256": "70d86a832f607faf4325992b5ec76d080a167b164efc78a6dc0b88133507ea85"
+      },
+      "body_bytes": 20359,
+      "body_NLL": 41800.81864118576,
+      "BPB": 2.96212160512489,
+      "EOS": 0,
+      "repeated4gram": 32,
+      "empty": 0,
+      "invalid_UTF8": 1
+    },
+    "after_continuation": {
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/curriculum-strategy-20261005-v3/continuation/checkpoint-00308251.pt",
+        "sha256": "ff1fe9689e841753e7e88cd8f7df58cdcbf6e01fe3bd038efcf60d277b284ddb"
+      },
+      "body_bytes": 20359,
+      "body_NLL": 12802.188450171987,
+      "BPB": 0.9071984768205261,
+      "EOS": 6,
+      "repeated4gram": 24,
+      "empty": 0,
+      "invalid_UTF8": 0
+    },
+    "after_fresh": {
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/curriculum-strategy-20261005-v3/fresh/checkpoint-00003075.pt",
+        "sha256": "0d514fbc6f5ec8a512d45f1e7acabefb8b60b2408724e803ce5896288f09bae8"
+      },
+      "body_bytes": 20359,
+      "body_NLL": 15131.192519034248,
+      "BPB": 1.0722381457805832,
+      "EOS": 7,
+      "repeated4gram": 19,
+      "empty": 0,
+      "invalid_UTF8": 0
+    }
+  },
+  "eligibility": {
+    "continuation": {
+      "checks": {
+        "BPB": true,
+        "EOS": true,
+        "repetition": true,
+        "no_empty_UTF8": true
+      },
+      "eligible": true
+    },
+    "fresh": {
+      "checks": {
+        "BPB": true,
+        "EOS": true,
+        "repetition": true,
+        "no_empty_UTF8": true
+      },
+      "eligible": true
+    }
+  },
+  "equal300M_pair_eligible": true,
+  "scientific_teacher_tokens": 0,
+  "GPU_seconds": 16.30984483199427,
+  "source_history": "Auxiliary Web includes original train; official general quality evaluated separately",
+  "interpretation": "Repetition here is raw repeated4gram presence, not independently judged semantic-loop rate; eligibility is research budget only",
+  "protected_test_used": false,
+  "created_at": "2026-10-05T14:50:03.497262Z"
+}
