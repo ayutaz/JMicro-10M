@@ -1,0 +1,136 @@
+{
+  "status": "prepared_pending_content_review",
+  "binding": {
+    "sources": {
+      "story": {
+        "directory": "/home/aihub_ubuntu/jmicro-data/phase6/simple-stories-ja-budget-20261005/shards",
+        "sha256": "213e11ddad72763ca5d1cb08b7a2c2a98a65989fe03dc194465d9ec4beec0921"
+      },
+      "web": {
+        "directory": "/home/aihub_ubuntu/jmicro-data/phase6/complete-documents-20261005/shards",
+        "sha256": "2d7b3d0b21fa9267c8f3bf8121f1a156f68f843c9676c2b2b004b01ab77d30de"
+      }
+    },
+    "train_prepared_targets": {
+      "short": 1000000,
+      "narrative": 4000000,
+      "general": 5000000
+    },
+    "dev_fraction": 0.05,
+    "CPU_budget_seconds": 600,
+    "max_index_rows_per_source": 700000,
+    "seed": 202610082,
+    "selector_sha256": "8c7700c653ad75fc36b9a1374a66e363e9f241c9acbb8aef3548785fe0444cea",
+    "builder_sha256": "c766006ea809c0730c2a1f23b8a9c74d1cdb6e18b2f5638b79790e537e3c2c10"
+  },
+  "pool": "/home/aihub_ubuntu/jmicro-data/phase6/curriculum-strategy-20261005-v3/shards",
+  "manifest_sha256": "da5c3658381c47187f8dbb56c3460562aa48d87443c66afaac615d9f10eab68d",
+  "corpus_sha256": "e822c12c7fa5cd6d661454195a8e024ccb7d90380dcb42eed1d6a3519ef26965",
+  "sample_sha256": "7174f181e7a9ae5d44e8fa7756ae2081123613ef1e0cddb48f4e69ff89c1717f",
+  "splits": {
+    "train": {
+      "tokens": 10000208,
+      "documents": 73260,
+      "body_bytes": 39567776,
+      "stream_sha256": "8c79a30657494565dbeab557496466ba2c67e72440717e8b94e55fb6b475ab99",
+      "index_sha256": "2e3e83db40656d2714e40636214508eec29794cf575b6c63eb49848e2ae1b07f"
+    },
+    "dev": {
+      "tokens": 500319,
+      "documents": 3690,
+      "body_bytes": 1977958,
+      "stream_sha256": "cc0fd4f855704b219fd39cba832dd53a7d4b312f6c088bba0db64c1afe325176",
+      "index_sha256": "2d8a44069274e88f91f4620e816daa8bea2ba8a0cdf4fab150e45415113c8b27"
+    },
+    "test": {
+      "tokens": 0,
+      "documents": 0,
+      "body_bytes": 0,
+      "stream_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "index_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    }
+  },
+  "tokens_by_group": {
+    "train_short": 1000044,
+    "train_narrative": 4000080,
+    "dev_narrative": 200074,
+    "dev_short": 50051,
+    "train_general": 5000084,
+    "dev_general": 250194
+  },
+  "documents_by_source": {
+    "story": 55648,
+    "web": 21302
+  },
+  "structures": {
+    "other": 35773,
+    "quote": 37772,
+    "conditional": 3405
+  },
+  "family_split": "source parent_id/Web source_start; one document per family and normalized first sentence",
+  "overlap_audit": "local exact/family/head only; no completed full old-corpus near-duplicate audit",
+  "source_history": "Web was part of original train; auxiliary dev is not wholly unseen by10B parent. Official dev remains separate.",
+  "source_provenance": {
+    "story": {
+      "repo": "SimpleStories/SimpleStories-JA",
+      "revision": "d25370316dd77ec0ee4fd9db57bfe57075cf4b90",
+      "license": "MIT as declared by dataset author",
+      "card_sha256": "1dbe06648bbbdd41f64c50707e9ac584a919ea13a7a513151a320fc45af49fbf",
+      "files": [
+        {
+          "path": "data/train-00000-of-00004.parquet",
+          "bytes": 178169487,
+          "lfs_sha256": "54bd792d9442c0bc1471d061bdc2228c889d2e3dd5c9a9fe258cd7791bd8ae1b"
+        },
+        {
+          "path": "data/train-00001-of-00004.parquet",
+          "bytes": 178287917,
+          "lfs_sha256": "5cbf763a7e9eb7d16635965a67dc068b4701974fc51005ab380619b926ac0dbd"
+        },
+        {
+          "path": "data/train-00002-of-00004.parquet",
+          "bytes": 178159237,
+          "lfs_sha256": "08718c3cc8879bffcbcc79455415df69d91e71eab15c9d3c32953aa7e854cfe9"
+        },
+        {
+          "path": "data/train-00003-of-00004.parquet",
+          "bytes": 177941619,
+          "lfs_sha256": "451b79dca66acc5db1086788b2935956a132b1a4ab1610a737eb6bf3db8e7ac1"
+        }
+      ],
+      "url": "https://huggingface.co/datasets/SimpleStories/SimpleStories-JA/tree/d25370316dd77ec0ee4fd9db57bfe57075cf4b90",
+      "generation": "gpt-4o-mini per author; already public synthetic text, no paid generation",
+      "official_validation_or_test_downloaded": false,
+      "pinned_at": "2026-10-04T14:16:08.940891Z"
+    },
+    "web": {
+      "sources": {
+        "story": {
+          "directory": "/home/aihub_ubuntu/jmicro-data/phase6/simple-stories-ja-budget-20261005/shards",
+          "manifest_sha256": "213e11ddad72763ca5d1cb08b7a2c2a98a65989fe03dc194465d9ec4beec0921"
+        },
+        "web": {
+          "directory": "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2/export-001/shards",
+          "manifest_sha256": "2edfd35bf077cd1aa583713c01341c0db52f39adc5701f30ede0aacae840b2de"
+        }
+      },
+      "targets": {
+        "story": 30000000,
+        "web": 80000000
+      },
+      "max_web_scan": 8000000000,
+      "budget_seconds": 1800,
+      "seed": 20261005,
+      "source_sha256": "e83f8b0f2d3647104c682359aa6579e3e292a26e125927a177d3bd4df9265fc8",
+      "selector_sha256": "a9ae435d2e1686b66f2596ffabdfe157701aa1ede0f7d29ebc3bdce596971d40",
+      "continuation": {
+        "original_job_sha256": "cadbaebe99eb15c0b1e7296462dfae6925a3cd112a6e5b0a4b3578071261bfa9",
+        "start_web_offset": 4000000000,
+        "reason": "Initial bounded extraction yielded76.77M in44.48s; read unseen remainder without weakening quality or amount gates"
+      }
+    }
+  },
+  "CPU_seconds": 70.49038187001133,
+  "protected_test_used": false,
+  "created_at": "2026-10-05T14:29:21.705117Z"
+}
