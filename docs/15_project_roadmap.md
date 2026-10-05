@@ -630,3 +630,13 @@ samplingは`--seeds 42 43 44 --temperature .8 --top-p .9 --top-k 50`を既定案
 job/progress/recipe/source/各seed result/summaryとPID/boot/startを永続化する。累積GPU上限は最大1800秒、CLI argsを正確なrestart commandへ保存し、完了caseを再実行せず再開する。各seed leafの完了記録だけでなく親multi-seed jobの実終了・binding・identity・全体予算を要求する。各seedの`result.json`は既存`review_chat_sft.py`の全219 notesと`review_chat_ablation.py`、blind packetへ接続する。native IDs/実prompt/seed設定を再検証するが、機械集計だけで文法/関連性/文脈を採点しない。
 
 Windowsの永続起動は`evaluate_chat_stages.ps1 -SftConfig configs/phase7/<recipe>.json -Stage <stage> -Decoding <mode> -Output reports/phase7/<new-run>`、実process確認後の再開は同args＋`-Worker`。CPU preflightをUI/GPU変更前に行い、job中は元UIを止め終端で戻す。実科学jobと重複起動しない。関連CPU23tests/2.26秒、CLI help/PS構文に成功。native CPU seed再現/別seed/RNG非消費/フィルタとEOT/全219 raw/own turn seed/未終了親と予算超過拒否/実CPU SFT会計を確認した。実CUDAのstage/sampling、実Chat学習と品質、人間提出は0。`reports/phase7/chat_stage_sampling_preparation.json`/tests XMLへ保存し、Base品質→実Chat→全seed・全内容・人間/最終test→量子化/実UIの全目標を維持する。
+
+### 対話学習によるBase流暢性保持の準備（2026-10-06 JST、実retention CUDA0）
+
+`run_chat_base_retention.py --sft-config configs/phase7/<recipe>.json --stage mid-training|sft --output reports/phase7/<new-retention>`は、採用root Baseの保存済み評価/内容notesを対照として再利用し、対照のGPU再評価を行わない。native reference configの同dev256のDocID/body tokens/bytes、manifest/Tokenizer/固定Base80/日本語sourceをCPU preflightで照合し、実終了したmid親/SFT終端とCUDA保存再開・全会計に結び付く重みを評価する。変更対象の旧sourceを編集せず、`run_complete_text_comparison.evaluate`を別process内で呼び、BF16 math/FP32 CEと同じ本文・EOS別損失、greedy64/全80、日本語192・331・1119を保存する。BaseはBOS/plain prefix・EOS3のみで止まり、Chat EOT7は役割漏出として保持する。Chat headerやEOT停止へ置き換えて保持に合格させない。
+
+job/PID/boot/start/source/recipeとnative section別progressを保存し、上限1800秒の累積GPU予算内で再開する。正確なuv restart commandを記録し、Windowsは同名ps1の`-SftConfig ... -Stage ... -Output ...`（reference変更時は`-ReferenceConfig ...`）で永続化、actual確認後の再開は`-Worker`。UI/GPU変更前にCPU preflightを行い、他の科学jobを重複起動しない。
+
+終了後は`review_chat_base_retention.py --run <run> --template reports/phase7/<new-notes>.json`で全80の未採点notesを作り、raw generation SHA・nonblind Codexの0/1/2/完結0/1/具体的理由を固定して`--notes <notes>`へ渡す。採用Base notesは再採点せず、対象の全80のみ判定する。byte-weightedの本文BPB差と文書paired bootstrap CI、固定familyごとの内容差、文法・関連性・一貫性・適切完結、EOS/反復/空/役割/Unicodeと日本語集計差を報告する。文書BPBの単純平均は使わず、同じbytesを分母とする。既存Base絶対基準と歴史的BPB1% guardを報告し、Base/Chatを自動採用したり判定基準を緩めたりしない。非blind内容比較や集計日本語差は独立人間確認/paired日本語有意差と扱わない。
+
+関連CPU11tests/2.19秒、両CLI help/PS構文に成功。不均一bytesの重み、DocID/教師不足の拒否、一貫性・役割の退行と採用false維持、未終了/live評価の拒否を確認。実retention CUDA/全内容採点、Chat学習、人間提出は0。`reports/phase7/chat_base_retention_preparation.json`/tests XMLへ準備を保存し、現5Bの品質→実対話比較→retention/全seed・人間/最終test→量子化/実UIを継続する。

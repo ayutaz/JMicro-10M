@@ -1,0 +1,51 @@
+{
+  "status": "Base_retention_implementation_CPU_protocol_complete_actual_GPU_quality_pending",
+  "verified_at": "2026-10-05T19:43:51.2349458Z",
+  "source_sha256": {
+    "scripts/run_chat_base_retention.py": "2663527faf4b4525c81cb148cdf35c6464a79c233dc82c140276a7410b3d5265",
+    "scripts/run_chat_base_retention.ps1": "0742221e9cd6a5fefbd2f6dff0b3ddfcc99c1b6ff5f49c3d22c0972d22635284",
+    "scripts/review_chat_base_retention.py": "69e8b1b2cecfe38d0b2f6bbd318a8180c25678229ed22f356149eaf3f05aefdd",
+    "tests/test_chat_base_retention.py": "70f468d10eee2156d26fbf7657589f827d4ca77f326b2a841a21d6954cef631b"
+  },
+  "command": "scripts/run_chat_base_retention.py/ps1; scripts/review_chat_base_retention.py",
+  "reused_control": "adopted Base saved evaluation and annotations; no repeated Base GPU",
+  "heldout_documents": 256,
+  "fixed_Base_completions": 80,
+  "Japanese_counts": {
+    "semantics": 192,
+    "jblimp": 331,
+    "jcqa": 1119
+  },
+  "BPB_comparison": "paired document bootstrap with common-byte denominator",
+  "native_Base_policy": "BOS/plain prefix, EOS3 only, EOT7 remains role leak",
+  "CPU_tests": 11,
+  "CPU_test_seconds": 2.19,
+  "test_command": "uv run --frozen --extra hub --extra data --extra ml --extra export pytest -q tests/test_chat_base_retention.py tests/test_improved_base_review.py tests/test_chat_sampling.py --junitxml reports/phase7/chat_base_retention_tests.xml",
+  "CLI_help_passed": true,
+  "PowerShell_syntax_passed": true,
+  "actual_CUDA_retention_evaluations": 0,
+  "actual_Chat_GPU_teacher_tokens": 0,
+  "actual_human_submissions": 0,
+  "protected_test_used": false,
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "requested_five_steps_complete": false,
+  "current_Base_job": {
+    "pid": 487071,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "10923679",
+    "ps_confirmed": true,
+    "heartbeat_at": "2026-10-05T19:43:47.329943Z",
+    "teachers": 4225772971,
+    "teacher_budget": 5000000000,
+    "loss": 2.515439510345459
+  },
+  "pending": [
+    "5B actual native evaluations and all80 judgments",
+    "quality adopted Base",
+    "real masked CUDA batch and mid/SFT vs direct training",
+    "actual retention and all stages/seed contents",
+    "human agreement and final test",
+    "quantization and UI"
+  ]
+}
