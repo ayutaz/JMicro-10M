@@ -1,0 +1,80 @@
+{
+  "kind": "low-alpha-probe",
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook-quantity-comparison-20261006/large-1000000000/decay/checkpoint-00031391.pt",
+    "sha256": "fb3c725944d820549a3d3c7c6c4ddde75ee536288d351a92e9e0b6e20e513c56",
+    "update": 31391,
+    "tokens_seen": 1028620288,
+    "supervised_tokens": 1020000000
+  },
+  "pool": {
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large",
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133"
+  },
+  "peak_lr": 0.0002,
+  "CE_teachers": 25000000,
+  "objective": {
+    "alpha": 0.01,
+    "every_updates": 4,
+    "prefixes": 8,
+    "prefix_tokens": 32,
+    "max_new_tokens": 64,
+    "ngram": 4
+  },
+  "prior_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/sequence_objective_comparison.json",
+    "sha256": "8b8de74892c885c1680cf2d7755074b9938809b66dae09f6e276ac446ff43d19"
+  },
+  "prior_result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/sequence-objective-comparison-20261006/compare-result.json",
+    "sha256": "debf5c2d78dbbb0ea95981b90f79d45e1923f0474cc215021263ee3fd304917e"
+  },
+  "prior_review": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/sequence-objective-comparison-20261006/review.json",
+    "sha256": "7fef26f2a1671a9b7c9a4df533dcff05b55f525b373bf79b24d182cdef4dd6a7"
+  },
+  "diagnosis": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/sequence-objective-diagnostic-20261006/result.json",
+    "sha256": "6509008cc02ea1ba6422e204f4533aabbfe3ae7b15280b31424cf3262fb7036e"
+  },
+  "control_notes": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/sequence_objective_CE_notes.json",
+    "sha256": "6dd838612006ad7fdc33649f2f75dd16d6175ad7b65cfef4a92edbfe7cc3f430"
+  },
+  "control_generation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/sequence-objective-comparison-20261006/evaluation/CE/evaluation/generation.json",
+    "sha256": "d2321dc359fbf3e0d1292f509debe26cb42767c1790dba8d2694de967e7c0871"
+  },
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "source_sha256": {
+    "scripts/run_sequence_objective_low_alpha.py": "b5c2cd5405e75ab50ef0f9d0a58eb125bbcb275a27f4b7bfbd9773fb1e99632d",
+    "scripts/run_sequence_objective_low_alpha.ps1": "424aa40c05b42f3f88c37d6d7bfadd77ad82800c53fdafe48818872aa5341f94",
+    "scripts/review_sequence_objective_low_alpha.py": "07addde5c61f8743ed6325341b53cf83ea56991c7b63a9c12f72a5e23f0436a7",
+    "scripts/cached_three_source_index.py": "c66a38606d2602c7b2193d41ebcefca7220491d1bb50c5f729dbab01f277bb85",
+    "scripts/run_sequence_objective_comparison.py": "a665f3651e076df2422a7351e4a67c6a374529b162990a8bfe818941a6cfbd08",
+    "scripts/run_sequence_objective_comparison.ps1": "71e4ac114b343864d2b0d67e623c7bdd4e379c0c895ec7cb8a316a3cef538316",
+    "scripts/sequence_objective_trainer.py": "035b08caf9c5f96885ae9599802e9e777ebfc79a3473614085a9dfafebee58ce",
+    "src/jmicro/sequence_unlikelihood.py": "3d54c3544e4e59f086459ce6053e342aa3133c39b990dae48ea1131f084e6cf3",
+    "scripts/review_sequence_objective_comparison.py": "f36c5bead8a14933d459112c1185e1a9b3ba7da7ef9231dc5124df52db038785",
+    "scripts/run_complete_text_comparison.py": "9d91d1d6124e62e4f40f7a99762f948186602e95cc362be10bfe03297874d8f7",
+    "scripts/textbook_quantity_trainer.py": "c11b8c3650e193118f20cac29122d917228b0b95322c642d061a04c8813cbab8",
+    "scripts/amount_learning_trainer.py": "274995c8f2af319e12251f98e0184bb23474246c2d7b789015d9699c6bbaeb6c",
+    "src/jmicro/learning_curve.py": "a0fddda579bfccfd50ecca596165738233622f45f9888b97267e8258e13222dd"
+  },
+  "GPU_budget_seconds": 300,
+  "total_new_GPU_ceiling_seconds": 1800,
+  "scientific_teacher_tokens": 0,
+  "new_teacher_tokens_planned": 25000000,
+  "compared_teacher_tokens": 50000000,
+  "control_reused_without_training_or_evaluation": true,
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "requested_five_steps_complete": false
+}
