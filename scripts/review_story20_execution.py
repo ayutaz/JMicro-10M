@@ -119,6 +119,13 @@ def completion():
             [r['update'] for r in history]==list(range(305177,308229)) and all(math.isfinite(r['loss']) and math.isfinite(r['gradient_norm']) for r in history))
     require('actual_lowLR_schedule',history[0]['lr']==.0001 and math.isclose(history[-1]['lr'],.00001,rel_tol=.001))
     require('actual20percent_source_counts_no_wrap',trained['source_tokens']==dict(web=80019456,short=19988480) and trained['sampler']['short']['epoch']==0)
+    normal_config=read_json(ROOT/'configs/phase6/complete_text_10b_100m.json')
+    normal_history=ROOT/'reports/phase6/complete-text-10b-100m-20261004/coherent20/metrics.jsonl'
+    normal_last=json.loads(normal_history.read_text().splitlines()[-1])
+    require('same20percent_input_digest_as_normalLR_reference',normal_config['parent']==config['parent'] and
+            normal_config['arms']['coherent20']['manifest_sha256']==config['pool']['manifest_sha256'] and
+            normal_last['token_digest']==history[-1]['token_digest'] and normal_last['tokens_seen']==history[-1]['tokens_seen'])
+    sources[str(normal_history)]=sha256(normal_history)
     require('saved_matched_Web_control_explicitly_reused',screen['control_reused']==config['reference'] and
             read_json(Path(config['reference']['control_config']['path']))['peak_lr']==.0001)
     tok=Tokenizer(ROOT/config['tokenizer']);validate_rows(evaluation['generation']['outputs'],tok)
@@ -154,6 +161,7 @@ def completion():
                 checks=checks,scientific_tokens=100007936,verification_tokens=262144,GPU_seconds=GPU,conditional_full_performed=full,
                 pool_expansion_performed=False,conditional500M_performed=False,original_acceptance_gates_unchanged=True,
                 checkpoint=trained['checkpoint'],checkpoint_sha256=trained['checkpoint_sha256'],original_UI=model,
+                normalLR20_and_lowerLR20_same_input_digest=history[-1]['token_digest'],
                 UI_identity={k:server[k] for k in ('pid','boot_id','start_ticks','ready_at')},sources=sources,reviewer_sha256=sha256(Path(__file__)),
                 quality_targets_achieved=False,protected_test_used=False,independent_human_blind='not performed',
                 remaining_delivery='Verify final local commit, clean worktree and evidence hashes before marking goal complete')

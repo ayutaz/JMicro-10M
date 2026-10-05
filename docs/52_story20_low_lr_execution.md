@@ -15,6 +15,10 @@ Pythonはすべてuv管理3.12.7、WSL2/RTX4090で実行する。protected test�
 
 段階2全文/長文を2026-10-05 00:11:52Zに起動。hidden Windows30472 / actual Linux143904 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe、start_ticksは`reports/phase6/story20_low_lr_full_launch.json`のactual identityに保存。Linux同runの`full/full-job.json`、Windows`full.stdout.log`/`full.stderr.log`を追跡する。追加科学学習0、同LR Web対照の全文も初回測定し、元親全文は再評価せず保存済み結果を使う。合格するまで500Mを開始しない。
 
+途中保存の実測: 同LR Web全文BPB0.945960821（dev89,416/164,344,743 bytes）、固定80はEOS0/反復59。長文128/512は各20件・EOS0/0、文再出現12/13、文字4gram反復率0.819828/0.953841。2026-10-05 00:30:17Zには同じactual Linux143904が候補全文47,104/213,432 windowsを処理中。ジョブheartbeatが長文中に止まっていても、actual processと保存済み40件の結果で進行を確認した。最終原gate判定はまだ未確定。
+
+条件付き段階3の実装準備: 元親から各500,006,912 tokens/update320435/総10,500,014,080、common stable14500/decay759・peak0.0001/floor0.00001、100,007,936地点の中間checkpointを保存する学習/一次評価経路を準備。両枝を学習し終えてから中間/終端を評価し、評価が後続学習RNGへ影響しない順序とする。新poolを最大120M目標に同じ固定public train source/選別条件で構築するbuilderは、全文reviewの合格を開始条件に持つ。sourceを使い切って目標未達なら実量と必要epoch再利用を記録し、unique増量を偽らない。4つの新関連checksを含む24 CPU tests成功（3.30秒）。500M configは未凍結、データ構築/取得・500M GPUは未開始。実行が必要になった場合だけ実data検査・config/予算凍結・実CUDA保存再開へ進む。
+
 2026-10-05 00:05:25Zに永続起動。準備commitca5dac0、hidden Windows30420、actual Linux143237 / boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe / start_ticks4192785。Linux`reports/phase6/story20-low-lr-10b-100m-20261005/screen-job.json`とWindows同名folderの`screen.stdout.log`/`screen.stderr.log`を追跡する。launcherはfinallyで元final10B UIへ復帰する。以下は起動前の確認記録。
 
 専用runner/config/schemaを凍結した。20関連CPU tests成功（1.78秒）、CPU上で元親checkpointの実SHA/finite state/update/tokens/batch/context/implementationと凍結source/参照を確認済み。実process確認では既存UI140800のみ、旧科学jobは終了。4090はdriver616.92、GPU使用2%/VRAM881MiBで推論待機中。科学GPUはまだ開始していない。準備commitを保存し、永続launcherがUIを停止して実CUDA保存再開→100M学習/一次評価を行い、finallyで元UIへ戻す。
