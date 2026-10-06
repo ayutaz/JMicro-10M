@@ -1,0 +1,513 @@
+{
+  "status": "completed_CPU_two_documented_parent_and_registered_route_audit",
+  "created_at": "2026-10-06T05:23:40.443340+00:00",
+  "CPU_seconds": 0.3233729990024585,
+  "GPU_seconds": 0,
+  "new_scientific_teacher_tokens": 0,
+  "optimizer_updates": 0,
+  "states": {
+    "originalWeb10B": {
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+        "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+      },
+      "update": 305176,
+      "input_tokens": 10000007168,
+      "teacher_tokens": 9978838479,
+      "body_bytes": 38873077273,
+      "actual_optimizer_LRs": [
+        0.0002,
+        0.0002
+      ],
+      "saved_spec_peak_lr": 0.002,
+      "optimizer_state_entries": 119,
+      "optimizer_step_range": [
+        305176.0,
+        305176.0
+      ],
+      "scheduler": {
+        "base_lrs": [
+          0.002,
+          0.002
+        ],
+        "last_epoch": 305176,
+        "_step_count": 305177,
+        "_is_initial": false,
+        "_get_lr_called_within_step": false,
+        "_last_lr": [
+          0.0002,
+          0.0002
+        ],
+        "lr_lambdas": [
+          null,
+          null
+        ]
+      },
+      "sampler_kind": "original_block_sampler",
+      "sampler_keys": [
+        "blocks",
+        "context",
+        "epoch",
+        "position",
+        "seed"
+      ],
+      "block_sampler_cursors": [
+        {
+          "path": "sampler",
+          "seed": 42,
+          "epoch": 0,
+          "position": 9765632,
+          "context": 1024,
+          "blocks": 11939276
+        }
+      ],
+      "sampler_position": 9765632,
+      "model_config": {
+        "schema_version": 1,
+        "architecture": "decoder_only_transformer",
+        "hidden_size": 256,
+        "num_attention_heads": 4,
+        "num_key_value_heads": 2,
+        "head_dim": 64,
+        "activation": "swiglu",
+        "norm": "rmsnorm",
+        "rms_norm_eps": 1e-06,
+        "qk_norm_type": "none",
+        "qk_norm_before_rope": true,
+        "attention_scale": 0.125,
+        "rope_theta": 10000,
+        "rope_layout": "half_split",
+        "rotary_dim": 64,
+        "max_position_embeddings": 1024,
+        "tie_word_embeddings": true,
+        "attention_bias": false,
+        "mlp_bias": false,
+        "dropout": 0.0,
+        "initializer_std": 0.02,
+        "norm_initial_gain": 1.0,
+        "status": "phase5_ablation",
+        "name": "JMicro-10M-T4K-NoQKNorm",
+        "vocab_size": 4096,
+        "num_hidden_layers": 13,
+        "intermediate_size": 640,
+        "expected_parameter_count": 10001152
+      },
+      "model_tensor_count": 120,
+      "shard_manifest_sha256": "2edfd35bf077cd1aa583713c01341c0db52f39adc5701f30ede0aacae840b2de",
+      "implementation_sha256": {
+        "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+        "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+        "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+        "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+      },
+      "lineage": {
+        "kind": "wsd_decay",
+        "parent_checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/stable/checkpoint-00289917.pt",
+        "parent_sha256": "122a013c651bad258f1b374a268ee11e8c4dc6ad2e6859ec76804e6779fae8fb",
+        "parent_update": 289917,
+        "parent_tokens": 9500000256,
+        "parent_spec": {
+          "seed": 42,
+          "context": 1024,
+          "batch": 32,
+          "accumulation": 1,
+          "lr": 0.002,
+          "weight_decay": 0.1,
+          "warmup": 200,
+          "schedule_updates": 289917,
+          "dtype": "bf16",
+          "compile": true,
+          "backend": "flash",
+          "training_fast_path": true,
+          "deterministic": true,
+          "compile_mode": "reduce-overhead",
+          "scheduler": "wsd"
+        },
+        "parent_token_digest": "7a8cc70bc3704f86d215f63705764e4a6dbc4c97f29221ff0b51944c1eb6a2a0"
+      },
+      "complete_optimizer_scheduler_RNG_sampler_present": true
+    },
+    "historicalWeb": {
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+        "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+      },
+      "update": 320435,
+      "input_tokens": 10500014080,
+      "teacher_tokens": 10477786961,
+      "body_bytes": 40816800491,
+      "actual_optimizer_LRs": [
+        1e-05,
+        1e-05
+      ],
+      "saved_spec_peak_lr": 0.0001,
+      "optimizer_state_entries": 119,
+      "optimizer_step_range": [
+        320435.0,
+        320435.0
+      ],
+      "scheduler": {
+        "base_lrs": [
+          0.0001,
+          0.0001
+        ],
+        "last_epoch": 320435,
+        "_step_count": 320436,
+        "_is_initial": false,
+        "_get_lr_called_within_step": false,
+        "_last_lr": [
+          1e-05,
+          1e-05
+        ],
+        "lr_lambdas": [
+          null,
+          null
+        ]
+      },
+      "sampler_kind": "eos-pilot-mixture-v1",
+      "sampler_keys": [
+        "kind",
+        "position",
+        "routes",
+        "short",
+        "source_eos",
+        "source_tokens",
+        "web"
+      ],
+      "block_sampler_cursors": [
+        {
+          "path": "sampler/web",
+          "seed": 42,
+          "epoch": 0,
+          "position": 10253920,
+          "context": 1024,
+          "blocks": 11939276
+        },
+        {
+          "path": "sampler/short",
+          "seed": 42,
+          "epoch": 0,
+          "position": 0,
+          "context": 1024,
+          "blocks": 58558
+        }
+      ],
+      "sampler_position": 15259,
+      "model_config": {
+        "schema_version": 1,
+        "architecture": "decoder_only_transformer",
+        "hidden_size": 256,
+        "num_attention_heads": 4,
+        "num_key_value_heads": 2,
+        "head_dim": 64,
+        "activation": "swiglu",
+        "norm": "rmsnorm",
+        "rms_norm_eps": 1e-06,
+        "qk_norm_type": "none",
+        "qk_norm_before_rope": true,
+        "attention_scale": 0.125,
+        "rope_theta": 10000,
+        "rope_layout": "half_split",
+        "rotary_dim": 64,
+        "max_position_embeddings": 1024,
+        "tie_word_embeddings": true,
+        "attention_bias": false,
+        "mlp_bias": false,
+        "dropout": 0.0,
+        "initializer_std": 0.02,
+        "norm_initial_gain": 1.0,
+        "status": "phase5_ablation",
+        "name": "JMicro-10M-T4K-NoQKNorm",
+        "vocab_size": 4096,
+        "num_hidden_layers": 13,
+        "intermediate_size": 640,
+        "expected_parameter_count": 10001152
+      },
+      "model_tensor_count": 120,
+      "shard_manifest_sha256": "2edfd35bf077cd1aa583713c01341c0db52f39adc5701f30ede0aacae840b2de",
+      "implementation_sha256": {
+        "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+        "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+        "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+        "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+      },
+      "lineage": {
+        "kind": "eos-short-pilot",
+        "parent_update": 305176,
+        "parent_tokens": 10000007168,
+        "parent_spec": {
+          "seed": 42,
+          "context": 1024,
+          "batch": 32,
+          "accumulation": 1,
+          "lr": 0.002,
+          "weight_decay": 0.1,
+          "warmup": 200,
+          "schedule_updates": 305176,
+          "dtype": "bf16",
+          "compile": true,
+          "backend": "flash",
+          "training_fast_path": true,
+          "deterministic": true,
+          "compile_mode": "reduce-overhead",
+          "scheduler": "wsd_decay",
+          "branch_at": 289917,
+          "decay_updates": 15259,
+          "minimum_lr_ratio": 0.1
+        },
+        "parent_token_digest": "2eeede097b4260035c80f9817d6b8383b089e2f00a8ed577db467221c803d4e8",
+        "parent_checkpoint": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+          "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+          "update": 305176,
+          "tokens_seen": 10000007168
+        },
+        "learning_rate_fork": {
+          "parent_base_lrs": [
+            0.002,
+            0.002
+          ],
+          "parent_actual_lrs": [
+            0.0002,
+            0.0002
+          ],
+          "new_peak_lr": 0.0001,
+          "moments_weights_RNG_cursors_preserved": true
+        }
+      },
+      "complete_optimizer_scheduler_RNG_sampler_present": true
+    }
+  },
+  "quality": {
+    "originalWeb10B": {
+      "BPB": 0.9858907549313023,
+      "greedy_rates": {
+        "outputs": 80,
+        "eos": 0,
+        "repetition": 53,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "original_Web_1percent_threshold": 0.9812859519097707,
+      "original_Web_guard_passes": false
+    },
+    "historicalWeb": {
+      "BPB": 0.9715702494156145,
+      "greedy_rates": {
+        "outputs": 80,
+        "eos": 0,
+        "repetition": 62,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "original_Web_1percent_threshold": 0.9812859519097707,
+      "original_Web_guard_passes": true
+    }
+  },
+  "historical_Web_extra_input_tokens": 500006912,
+  "historical_Web_extra_teacher_tokens": 498948482,
+  "historical_Web_extra_updates": 15259,
+  "existing_lowLR": {
+    "parents": {
+      "continuation": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/curriculum-strategy-20261005-v3/continuation/checkpoint-00308251.pt",
+        "sha256": "ff1fe9689e841753e7e88cd8f7df58cdcbf6e01fe3bd038efcf60d277b284ddb",
+        "update": 308251,
+        "tokens_seen": 10100768768
+      },
+      "fresh": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/curriculum-strategy-20261005-v3/fresh/checkpoint-00003075.pt",
+        "sha256": "0d514fbc6f5ec8a512d45f1e7acabefb8b60b2408724e803ce5896288f09bae8",
+        "update": 3075,
+        "tokens_seen": 100761600
+      }
+    },
+    "peak_lr": {
+      "continuation": 1e-05,
+      "fresh": 0.0002
+    },
+    "goals": {
+      "web": 0,
+      "short": 200000000
+    },
+    "continuation_BPB": 1.0898779879735516,
+    "continuation_coherent": 4,
+    "equivalent_to_same100M_original_Web_mixture": false
+  },
+  "registered_configs": {
+    "configs/phase6/amount_learning_comparison.json": "f4c32912b250e733bfd78e7d56f66f012484e32b4e4edb12fbca2b8c1e315fb8",
+    "configs/phase6/amount_story_study.json": "93e08f45eaf36fb6904ac8656605d593f66ee512ba5d4da25877b9ff08f3fcdb",
+    "configs/phase6/architecture_comparison.json": "33876ad915db583e02b12f53fbd4602f050f4ac55b2907a841b43bd28d85eef3",
+    "configs/phase6/base_10b.json": "b0949a59bc8254d5f1f68f410ee8928be445ceff8a4e9ee0a7c800892af4e396",
+    "configs/phase6/base_10b_comparison.json": "b052ca523abb20297cfd72a060f59a1a50a6ae3bee3e8c47f9883fe964bf98fa",
+    "configs/phase6/base_2b_10b_data.json": "11ca116e0702a2feba99f883f5d2471ba92f265a04c49a38e8b34e300f64b0ff",
+    "configs/phase6/base_5b.json": "6501d972eb7eb04b80b8432660420de051d85699316179712622ce24a814ef99",
+    "configs/phase6/base_5b_comparison.json": "0ecb4db12ab103c8cd5f9294ace5f4b62c9009821e7f5fa0885523aa8b3b6599",
+    "configs/phase6/base_frozen.json": "6e2b509e92e84202bcc2fc9e68043b7edc6025ef4218315b3c27e9d7f9848d59",
+    "configs/phase6/base_frozen_blocked_v1.json": "f50081fa42384214c44870fd3f915d7853f868b390249cbe0336aa30080d617b",
+    "configs/phase6/broad_context_diagnostic.json": "36ee1fecd016fd49a1039e766d023e852d7fb2e34145b32abe3f28f5ac2b915b",
+    "configs/phase6/complete_document_500m.json": "2e0ec1f3f5aec4ff3d9dc08a2a8b3799ebb205a5ef24faa5a0747be09fde8413",
+    "configs/phase6/complete_text_10b_100m.json": "97d2b486f9c1d955f3647ac0dd19a7146ea7b99fb36f3cd614aef647ba9fe265",
+    "configs/phase6/complete_text_10b_full.json": "f63717dc0caa3671f9afed105002e1cf63ce2a88ad7a3522204dad3ae6ecfa40",
+    "configs/phase6/complete_text_10b_full_r1.json": "56ff56f31a6f535573623076fb49686977a0caa70093e88899cacec5894b552c",
+    "configs/phase6/condition_diversity_comparison.json": "87b4ed4070fb92d5c97ffbb9563d20ad3d649414d81c11426cabe0540a7f80d0",
+    "configs/phase6/condition_diversity_probe.json": "715b6dc9ea032608d72dddeebb11f85d0c0868565d69bdcc442179477819143a",
+    "configs/phase6/condition_learning.json": "2547a27ad546f90e02614132f640e16a02ee2435ab74bebe569f974c822e3205",
+    "configs/phase6/condition_positive_comparison.json": "5af7b204dd45f1f7a19821572889e2fa7ccf70577c268518b412a381ddb64ec9",
+    "configs/phase6/condition_positive_probe.json": "42afea17e5141a3cc38243227fd7e7bf9efd0a4f904fe855d9be500d24c4b5d8",
+    "configs/phase6/condition_query_balance_comparison.json": "aa65e594d47b996df3dbe3e7aa42466cfc3d13604e84a75afd8950c708ff0297",
+    "configs/phase6/condition_query_balance_probe.json": "3f2fc3e210db9df48b2a65dde313996954423652c3cea711bc87b97551118904",
+    "configs/phase6/condition_relation_comparison.json": "248651b0c7a25b3ab9950fce40f0e40a57b21a386201cf47c87eef4717911fac",
+    "configs/phase6/condition_relation_probe.json": "cbb902115f79963ffb1e68c5fd6babb68cde76957adf0f779280dc23143ed07d",
+    "configs/phase6/condition_source_learning_100m.json": "c3f3b9d077a5a0c8f61ec16ff614488d5a6146e658141f771349d9e5e90d860e",
+    "configs/phase6/condition_source_learning_probe.json": "7570107ae0a45cb0bf7184264ce1d8744e06d590e81373f032fc7b017452d47b",
+    "configs/phase6/condition_source_ranking.json": "ddca20908c914d05dde9392b6221e49db07cc6b794f1be17f54e66a7846800ad",
+    "configs/phase6/condition_trainfit_diagnostic.json": "1bbad30fbee91786c5e1c992930097b42c835663da8ea4235233291ff4a098af",
+    "configs/phase6/condition_transfer_comparison.json": "ca4422521d43a59a287de954a5f9bef58edc66f60a1df32313d6abdf7154015b",
+    "configs/phase6/condition_transfer_probe.json": "a57cfaa1ab789f7639c39d280eb809b69971793539c9c550a7002fb53b8fa8f2",
+    "configs/phase6/content_story_study.json": "2b510e5ef88f66f1423e2887885001281a1f5f5ccaee4ab9e86c765941f1c061",
+    "configs/phase6/corpus_10b.json": "0f4e738c2c4beb333bea3f5b2c410e2f5889d87f6aaffb8a92b281a19c43375e",
+    "configs/phase6/curriculum_strategy.json": "d272a3d14f532794de28cceedfd038c934a5e129e0ca799ddf1669b7b3e45fce",
+    "configs/phase6/dataset_expansion_1b.json": "02749bb953abc0d4a6eb565d899e071e3199d271b61e0f7db3a4dae9c62469a2",
+    "configs/phase6/early_exposure_comparison.json": "83ee2dfc699d6f2e8e8f7572b0625d7dad8987ebae2f205a2b4e805ecc664dde",
+    "configs/phase6/eos_5b_finish_100m.json": "ec768ac1ad0b258077fdf34f7e839975324c6232982f7b3884962fe68965762f",
+    "configs/phase6/eos_complete_100m.json": "56e0ec36d507bc6a2f153e5c65495ca00f67c468046b331c088497f85c059c29",
+    "configs/phase6/eos_complete_100m_full_bpb.json": "070581297ceab0d391ed1e34e741a8571eb90f416d47cb97d00b536252c8e2ea",
+    "configs/phase6/eos_complete_evaluation_recovery.json": "605e90b2e6df08058883b423d3c6d3d257be4b7723cccf4ee7393b975b3a70bc",
+    "configs/phase6/eos_low_lr_100m.json": "c51dbfe3f7db561bc5f3a93a38be68dbf35dbc5db5bd24f10685070d6d10e290",
+    "configs/phase6/eos_short_pilot.json": "3cd5739578f0a7c8ef833fd5c4a98643b73e5c2ef295299f90bbc9639798fd42",
+    "configs/phase6/generation_transfer.json": "54de2d2beda0fae682282f63e4bb9595c24cc080dbf5cc2ab86459bea6872c9b",
+    "configs/phase6/improved-base-5b-20261006.json": "f48ac2426675e4f0124f0a8598e6afc934683c1ff2fe3eff4eb29a1aa0732fdd",
+    "configs/phase6/lr_recovery.json": "b9ba0c0759ac7700d9b2639e90487c220795b9ea72c73114b65b1e0f4cd55d90",
+    "configs/phase6/material_comparison.json": "ec08e1522d1004b80117ec68cfc4cf53d568c80cc1771096c87b5e8ebbf66457",
+    "configs/phase6/mature_base_condition_comparison.json": "9ffffb298af3f4a404c1d2c63eda044ff9036772680ba0f5d77048cf45f123fb",
+    "configs/phase6/mature_base_condition_probe.json": "7c2cc1daa986cbe9b4862f40b5cd120cfcf04945dcc288f8ef8ec229dffae077",
+    "configs/phase6/narrative_comparison.json": "6de7f709657b41a884161e0a6e5f0465a05f4d60c0e84ec05de31f49db193d00",
+    "configs/phase6/natural_learning.json": "5bb615dfb2ce80affb874cc36c3568d1726ca2c4bddeb121961f93ccd6821b94",
+    "configs/phase6/original_web_retention_comparison.json": "5d7d10c7d5ed14a14da372cade700eb429601bd4413967a669400d3507209de3",
+    "configs/phase6/original_web_retention_probe.json": "8e95a0ff31740789a61fc73d533d64931b35d6cf3e944137fe041abd8458e600",
+    "configs/phase6/packing_study.json": "01f4e1f96f576ee8d928a8f7f7b72f4e753f8e83b8d75c8ca0f0a6945d67c942",
+    "configs/phase6/performance.json": "749041575550a828a30d03c7261736eefac0efd3e21fd04efdeba100d0b1f609",
+    "configs/phase6/preparation.json": "7fff66637c64ba55ec3cca637da4b12c1bb534207f945bc21f0692f70e97c0ee",
+    "configs/phase6/readiness.json": "6a2627ef4577fb0498c5f4d0fd4db3333ab7cfff94854f01a1e9d5cde08461cc",
+    "configs/phase6/sequence_objective_comparison.json": "8b8de74892c885c1680cf2d7755074b9938809b66dae09f6e276ac446ff43d19",
+    "configs/phase6/sequence_objective_diagnostic.json": "20f17b2bddb539eaa3ebbbf236ee81a14019b9b5a82063ade7ca6aeefee12e0c",
+    "configs/phase6/sequence_objective_low_alpha.json": "cc53b0f7fda68282977ec535d54cbdfa962558085c5cc51eb185c39fe1f57925",
+    "configs/phase6/sequence_objective_low_alpha_probe.json": "1a36a60524a84a7a901f03fae3266e89ba1c3899e2720a4e09b92c806c0f080e",
+    "configs/phase6/sequence_objective_probe.json": "ade00a5fa1222ded951268aab7084911fe32661e408fe50f0095eb97856cfe53",
+    "configs/phase6/sequence_objective_timing.json": "a46af64a9fe2a769783f554d1f0b1775cba19c24137f088cc23c5946d9091c3c",
+    "configs/phase6/sequence_objective_timing_v2.json": "818b44ed725c586435bea360761e04a7cdb3e58e4c72b243dd30a1178acfaf80",
+    "configs/phase6/source_gradient_interference.json": "8114972e29e846f07fc0372969d167dad6897799ec7f23f213f3b88ff5750ef2",
+    "configs/phase6/story10_10b_100m.json": "bae19d568010da7cfdd1bc5d5a057a9e35cb8a228c85949fad5d8f97a97a8053",
+    "configs/phase6/story10_low_lr_10b_100m.json": "d91831366c5b6051e5aca47ae10712ea98ce5f39199d58b2581c6fa65575bbf3",
+    "configs/phase6/story20_low_lr_10b_100m.json": "c5eba034c32877deb104a315923eacd6c0d1a2f489c01dc5f3e89905fabe0fab",
+    "configs/phase6/story20_low_lr_10b_500m.json": "bca826c47b66c3707588ff058381e1e95eef093c171f3c8cc72b9d2d771262d1",
+    "configs/phase6/story20_low_lr_500m_full.json": "8a8589dfedd1c1957930a851ca182612235781f04ff478f49c1a6f1350bf6549",
+    "configs/phase6/story_weight_comparison.json": "e5ee42c4bc923632faa5b49eceb76f32e92c9d632bb7d2d292a88117f3938f04",
+    "configs/phase6/story_weight_probe.json": "d096f6e9f76a6173e7502c51180f201543c9621dc1a850bf9b79e305a81f8a91",
+    "configs/phase6/strategy_extension.json": "58fa89d27b5cc6b5319a64aba44004ede09cba041723ec0084a662554f78493f",
+    "configs/phase6/textbook_coverage_2b_v2.json": "6f8a7d582e430e3ef259b407cc96bde50d75aa7a05346fd756fe8aa6f5f2d337",
+    "configs/phase6/textbook_coverage_probe.json": "f5ab28c98def419f17ad7640bc13b105850c328f2e59a9265ac80f11d93574da",
+    "configs/phase6/textbook_quantity_comparison.json": "f1baece77f9e85d6086f1ac5d1e624a59d19910a90af2202a104fb125c379d98"
+  },
+  "historical_parent_training_matches": [],
+  "historical_parent_matched_short_source_route_in_registry": false,
+  "references": {
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_parent_baseline_audit_proposal.json": "ad1ba6c588acc737a1e7c985a12f9959ed864cadaaf20def88e2ba4358355e1f",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition_query_balance_comparison_review.json": "825912e1e51db49d453912e5f431c49b9e31509115e5079e65a32e746310ca38",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-query-balance-comparison-20261006/compare-result.json": "6e2428c5788cb673c653d215ac934c5fcc5f3f61700572a6dcba4f741695c06c",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/early_exposure_comparison_review.json": "b74a03e9c19d5977f8ad22bd7a41dbe779845970398bf3fc85d464360a92b9b4",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/mature_base_condition_comparison_review.json": "0697baeb505b3fe36aac77faa1caa4e2f5228f66f514ec8825ae39c38d848dbc",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/lr_recovery.json": "b9ba0c0759ac7700d9b2639e90487c220795b9ea72c73114b65b1e0f4cd55d90",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/lr_recovery_review.json": "3ce404eeab1b3448242b2a453d6a8776aa842939dcd697a2d2012f51d6f73ef1",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/evaluation/result/web/evaluation/result.json": "5e0f346d1c657b2f8f1a35d9e8079ce896abab3451e34dc697792394a0df6796",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_10b.json": "b0949a59bc8254d5f1f68f410ee8928be445ceff8a4e9ee0a7c800892af4e396",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_parent_budget_inventory.json": "3c5acfbfcd63f1acd992fac9892919225e2fa7744a5fbab084034bd08208a9cf",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/mature_base_condition_comparison.json": "9ffffb298af3f4a404c1d2c63eda044ff9036772680ba0f5d77048cf45f123fb",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/mature-base-condition-comparison-20261006/evaluation/parent10B/evaluation/result.json": "75f1e940a3118c8b223c8a290e9524bddaf36ed6e6fd172109e8be1431c1e57c",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/story20_low_lr_10b_500m.json": "bca826c47b66c3707588ff058381e1e95eef093c171f3c8cc72b9d2d771262d1",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/amount_learning_comparison.json": "f4c32912b250e733bfd78e7d56f66f012484e32b4e4edb12fbca2b8c1e315fb8",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/amount_story_study.json": "93e08f45eaf36fb6904ac8656605d593f66ee512ba5d4da25877b9ff08f3fcdb",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/architecture_comparison.json": "33876ad915db583e02b12f53fbd4602f050f4ac55b2907a841b43bd28d85eef3",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_10b_comparison.json": "b052ca523abb20297cfd72a060f59a1a50a6ae3bee3e8c47f9883fe964bf98fa",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_2b_10b_data.json": "11ca116e0702a2feba99f883f5d2471ba92f265a04c49a38e8b34e300f64b0ff",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_5b.json": "6501d972eb7eb04b80b8432660420de051d85699316179712622ce24a814ef99",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_5b_comparison.json": "0ecb4db12ab103c8cd5f9294ace5f4b62c9009821e7f5fa0885523aa8b3b6599",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_frozen.json": "6e2b509e92e84202bcc2fc9e68043b7edc6025ef4218315b3c27e9d7f9848d59",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_frozen_blocked_v1.json": "f50081fa42384214c44870fd3f915d7853f868b390249cbe0336aa30080d617b",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/broad_context_diagnostic.json": "36ee1fecd016fd49a1039e766d023e852d7fb2e34145b32abe3f28f5ac2b915b",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/complete_document_500m.json": "2e0ec1f3f5aec4ff3d9dc08a2a8b3799ebb205a5ef24faa5a0747be09fde8413",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/complete_text_10b_100m.json": "97d2b486f9c1d955f3647ac0dd19a7146ea7b99fb36f3cd614aef647ba9fe265",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/complete_text_10b_full.json": "f63717dc0caa3671f9afed105002e1cf63ce2a88ad7a3522204dad3ae6ecfa40",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/complete_text_10b_full_r1.json": "56ff56f31a6f535573623076fb49686977a0caa70093e88899cacec5894b552c",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/condition_diversity_comparison.json": "87b4ed4070fb92d5c97ffbb9563d20ad3d649414d81c11426cabe0540a7f80d0",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/condition_diversity_probe.json": "715b6dc9ea032608d72dddeebb11f85d0c0868565d69bdcc442179477819143a",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/condition_learning.json": "2547a27ad546f90e02614132f640e16a02ee2435ab74bebe569f974c822e3205",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/condition_positive_comparison.json": "5af7b204dd45f1f7a19821572889e2fa7ccf70577c268518b412a381ddb64ec9",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/condition_positive_probe.json": "42afea17e5141a3cc38243227fd7e7bf9efd0a4f904fe855d9be500d24c4b5d8",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/condition_query_balance_comparison.json": "aa65e594d47b996df3dbe3e7aa42466cfc3d13604e84a75afd8950c708ff0297",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/condition_query_balance_probe.json": "3f2fc3e210db9df48b2a65dde313996954423652c3cea711bc87b97551118904",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/condition_relation_comparison.json": "248651b0c7a25b3ab9950fce40f0e40a57b21a386201cf47c87eef4717911fac",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/condition_relation_probe.json": "cbb902115f79963ffb1e68c5fd6babb68cde76957adf0f779280dc23143ed07d",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/condition_source_learning_100m.json": "c3f3b9d077a5a0c8f61ec16ff614488d5a6146e658141f771349d9e5e90d860e",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/condition_source_learning_probe.json": "7570107ae0a45cb0bf7184264ce1d8744e06d590e81373f032fc7b017452d47b",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/condition_source_ranking.json": "ddca20908c914d05dde9392b6221e49db07cc6b794f1be17f54e66a7846800ad",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/condition_trainfit_diagnostic.json": "1bbad30fbee91786c5e1c992930097b42c835663da8ea4235233291ff4a098af",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/condition_transfer_comparison.json": "ca4422521d43a59a287de954a5f9bef58edc66f60a1df32313d6abdf7154015b",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/condition_transfer_probe.json": "a57cfaa1ab789f7639c39d280eb809b69971793539c9c550a7002fb53b8fa8f2",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/content_story_study.json": "2b510e5ef88f66f1423e2887885001281a1f5f5ccaee4ab9e86c765941f1c061",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/corpus_10b.json": "0f4e738c2c4beb333bea3f5b2c410e2f5889d87f6aaffb8a92b281a19c43375e",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/curriculum_strategy.json": "d272a3d14f532794de28cceedfd038c934a5e129e0ca799ddf1669b7b3e45fce",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/dataset_expansion_1b.json": "02749bb953abc0d4a6eb565d899e071e3199d271b61e0f7db3a4dae9c62469a2",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/early_exposure_comparison.json": "83ee2dfc699d6f2e8e8f7572b0625d7dad8987ebae2f205a2b4e805ecc664dde",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/eos_5b_finish_100m.json": "ec768ac1ad0b258077fdf34f7e839975324c6232982f7b3884962fe68965762f",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/eos_complete_100m.json": "56e0ec36d507bc6a2f153e5c65495ca00f67c468046b331c088497f85c059c29",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/eos_complete_100m_full_bpb.json": "070581297ceab0d391ed1e34e741a8571eb90f416d47cb97d00b536252c8e2ea",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/eos_complete_evaluation_recovery.json": "605e90b2e6df08058883b423d3c6d3d257be4b7723cccf4ee7393b975b3a70bc",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/eos_low_lr_100m.json": "c51dbfe3f7db561bc5f3a93a38be68dbf35dbc5db5bd24f10685070d6d10e290",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/eos_short_pilot.json": "3cd5739578f0a7c8ef833fd5c4a98643b73e5c2ef295299f90bbc9639798fd42",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/generation_transfer.json": "54de2d2beda0fae682282f63e4bb9595c24cc080dbf5cc2ab86459bea6872c9b",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/improved-base-5b-20261006.json": "f48ac2426675e4f0124f0a8598e6afc934683c1ff2fe3eff4eb29a1aa0732fdd",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/material_comparison.json": "ec08e1522d1004b80117ec68cfc4cf53d568c80cc1771096c87b5e8ebbf66457",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/mature_base_condition_probe.json": "7c2cc1daa986cbe9b4862f40b5cd120cfcf04945dcc288f8ef8ec229dffae077",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/narrative_comparison.json": "6de7f709657b41a884161e0a6e5f0465a05f4d60c0e84ec05de31f49db193d00",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/natural_learning.json": "5bb615dfb2ce80affb874cc36c3568d1726ca2c4bddeb121961f93ccd6821b94",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/original_web_retention_comparison.json": "5d7d10c7d5ed14a14da372cade700eb429601bd4413967a669400d3507209de3",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/original_web_retention_probe.json": "8e95a0ff31740789a61fc73d533d64931b35d6cf3e944137fe041abd8458e600",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/packing_study.json": "01f4e1f96f576ee8d928a8f7f7b72f4e753f8e83b8d75c8ca0f0a6945d67c942",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/performance.json": "749041575550a828a30d03c7261736eefac0efd3e21fd04efdeba100d0b1f609",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/preparation.json": "7fff66637c64ba55ec3cca637da4b12c1bb534207f945bc21f0692f70e97c0ee",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/readiness.json": "6a2627ef4577fb0498c5f4d0fd4db3333ab7cfff94854f01a1e9d5cde08461cc",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/sequence_objective_comparison.json": "8b8de74892c885c1680cf2d7755074b9938809b66dae09f6e276ac446ff43d19",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/sequence_objective_diagnostic.json": "20f17b2bddb539eaa3ebbbf236ee81a14019b9b5a82063ade7ca6aeefee12e0c",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/sequence_objective_low_alpha.json": "cc53b0f7fda68282977ec535d54cbdfa962558085c5cc51eb185c39fe1f57925",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/sequence_objective_low_alpha_probe.json": "1a36a60524a84a7a901f03fae3266e89ba1c3899e2720a4e09b92c806c0f080e",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/sequence_objective_probe.json": "ade00a5fa1222ded951268aab7084911fe32661e408fe50f0095eb97856cfe53",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/sequence_objective_timing.json": "a46af64a9fe2a769783f554d1f0b1775cba19c24137f088cc23c5946d9091c3c",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/sequence_objective_timing_v2.json": "818b44ed725c586435bea360761e04a7cdb3e58e4c72b243dd30a1178acfaf80",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/source_gradient_interference.json": "8114972e29e846f07fc0372969d167dad6897799ec7f23f213f3b88ff5750ef2",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/story10_10b_100m.json": "bae19d568010da7cfdd1bc5d5a057a9e35cb8a228c85949fad5d8f97a97a8053",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/story10_low_lr_10b_100m.json": "d91831366c5b6051e5aca47ae10712ea98ce5f39199d58b2581c6fa65575bbf3",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/story20_low_lr_10b_100m.json": "c5eba034c32877deb104a315923eacd6c0d1a2f489c01dc5f3e89905fabe0fab",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/story20_low_lr_500m_full.json": "8a8589dfedd1c1957930a851ca182612235781f04ff478f49c1a6f1350bf6549",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/story_weight_comparison.json": "e5ee42c4bc923632faa5b49eceb76f32e92c9d632bb7d2d292a88117f3938f04",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/story_weight_probe.json": "d096f6e9f76a6173e7502c51180f201543c9621dc1a850bf9b79e305a81f8a91",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/strategy_extension.json": "58fa89d27b5cc6b5319a64aba44004ede09cba041723ec0084a662554f78493f",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/textbook_coverage_2b_v2.json": "6f8a7d582e430e3ef259b407cc96bde50d75aa7a05346fd756fe8aa6f5f2d337",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/textbook_coverage_probe.json": "f5ab28c98def419f17ad7640bc13b105850c328f2e59a9265ac80f11d93574da",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/textbook_quantity_comparison.json": "f1baece77f9e85d6086f1ac5d1e624a59d19910a90af2202a104fb125c379d98"
+  },
+  "source_sha256": "7e37676983af4f51ec99062df9858b28e103e4e1f88fdc2c00ab7edbb709407f",
+  "Base_adopted": false,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "old_numerical7_preserved": true,
+  "limitations": "Exactly two preselected documented checkpoints, saved evaluations and registered phase6 config parents. No new model scoring, external experiment discovery or favorable checkpoint search. No direct parent match in the registry does not prove no unregistered experiment exists. Parent states differ in Web amount/order, Adam/RNG/sampler/scheduler and actual LR; comparison of inherited routes is not a pure parent-weight or LR causal effect. Original10B failing the unchanged historical BPB guard does not invalidate other independent quality failures or justify relaxing any gate."
+}
