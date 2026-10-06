@@ -1,3 +1,9 @@
+Base専用Fisher anchor: preparation（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+同mixed親6d/継承Adam・RNG/scheduler・LR.00001/同full CE100M/Web75M-story5M-ordinary10M-conditional10M/lambda.04161064039180984、差分は固定mean1 Fisher fieldのみ。既存一律L2対照100M/全80/日本語/devを再利用、再GPUなし。field実3.623030秒/64MC score gradient・65276sampled labelはsource CEと別。新CPU予算1test/1.47秒・PS構文合格、CPU準備0.264034秒、本学習0。次はownCUDA4対2+2全state/history/固定field・anchor/継承状態と32timingを120秒内で測定。field+probe+本科学+評価を実測margin付き1800秒内の場合のみ科学凍結、同eval/旧全gateを保持。
+
+全旧失敗/数値7/Phase0–3/既存相対・絶対・歴史Web1%品質基準保持。field/seed/回数/lambda/source/mask/CP/decoder救済sweepなし。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用Fisher parameter field: terminal（2026-10-06 JST）。Base未完成・完成時通知して停止、Chat/Dialogue/SFT/量子化なし。
 
 固定conditional MC Fisher field実完了、actual647866は実不在。GPU3.623030秒/120、実64score gradient/65276model-sampled label/65536physical、source CE/optimizer0。10,001,152 unique119/weights・RNG・Param.grad不変/会計合格、field globalmean1.00000000、max41089.039062、zero0。model-sampled conditional Fisherの局所近似で有限保持/日本語品質の証明ではない。field.ptはnative保存/親・memory・source・tensor/rawSHA拘束。次はown inherited-state CUDA4対2+2/32timing/保存費用を120秒内で測り、field+probe+本科学+評価1800秒予測内のみ同parent/Adam/source/full100M CE/lambdaの一候補比較を凍結する。旧uniform全80/日本語/dev対照は再実行せず再利用。
