@@ -1,0 +1,99 @@
+{
+  "status": "defined_readonly_context_ablation_not_implemented_not_launched",
+  "created_at": "2026-10-06T11:19:34.338262Z",
+  "trigger": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source_gradient_attribution_completion.json",
+    "sha256": "fd7c6d9a74bb305c240daf59a76fd468d81c5de922da8e5de073fc999f6dd279"
+  },
+  "evidence": {
+    "conditional_teacher_fraction": 0.017721826103143413,
+    "original_conditional_CE": 2.798207910061164,
+    "completed_conditional_CE": 0.17014298397684083,
+    "original_conditional_EOS_CE": 6.615145723319348,
+    "completed_conditional_EOS_CE": 0.008565040381908907,
+    "original_conditional_gradient_total_squared_norm_contribution": 0.2059382125735283,
+    "completed_conditional_gradient_total_squared_norm_contribution": 0.003440591273829341
+  },
+  "interpretation": "Conditional source has1.77percent of these actual labels but initially about20.59percent median contribution to total gradient squared norm, then fits its TRAIN body/EOS closely while natural generation remains rejected. Label count alone does not establish insufficient optimization dose. Do not automatically normalize/reweight CE or restart a ratio/EOS/mask sweep. Source coverage, packing dependence and generalization remain distinct possibilities.",
+  "question": "Does the completed model rely on other documents in the packed TRAIN history to achieve its low conditional outcome/EOS loss?",
+  "hypothesis": "The original unpadded1024 blocks contain multiple BOS-marked documents but causal attention has no document boundary reset. Compare existing full causal history with same-document causal history at identical fixed inputs/targets/positions. An isolated prompt at generation has no previous packed documents. Cross-document reliance is a testable context mismatch, not a proven cause.",
+  "frozen_checkpoints": {
+    "original_fullparent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+      "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+    },
+    "completed_masked_mixed": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+      "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+    }
+  },
+  "fixed_inputs": {
+    "samples": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-gradient-attribution-20261006/samples.pt",
+      "sha256": "d06b94ba1b78d07aeee70f4fe29b002fc16eaf05c4af2ff4686def02742640c7"
+    },
+    "metadata": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-gradient-attribution-20261006/samples.json",
+      "sha256": "4204dcd5e8a430e2af231097b2ba5f8a392195dbcfe10f0e77a719ee3eb3f37c"
+    },
+    "logical_batch": 32,
+    "microbatch": 8,
+    "context": 1024,
+    "consecutive_TRAIN_batches_per_model": 16
+  },
+  "cached_full_causal_reference": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-gradient-attribution-20261006/result.json",
+    "sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+  },
+  "source_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/source_gradient_attribution.json",
+    "sha256": "ae7fac43011af7b28cd2349e2331d1a852546bb205711dc3fb6d06e3aeac034e"
+  },
+  "sole_new_forward": "Native learned model/BF16/math eval. For each sequence define document_id=cumsum(input_id==BOS2). Allowed keys are causal keys with the same document_id as the query. The leading partial document is its own segment. Keep original absolute RoPE positions, all input IDs, body/EOS labels, logical denominator and8-sequence numeric chunks unchanged. No parameter, vocabulary, role, target mask, source ratio, source text, CE coefficient, sampler or decoder changes.",
+  "reference_reuse": "Reuse all32 existing full-causal point CE/group counts unchanged. No full old-model/old-suite GPU reevaluation. One first8-sequence control per fixed checkpoint must verify custom full-causal path equals the native existing fast path before interpreting isolated scores.",
+  "numerical_protocol": "CPU actual small-model control allclose atol1e-6/rtol1e-6 and boundary isolation/noninterference/correct causal direction. Own BF16 control allclose atol.02/rtol.002, record maximum absolute/RMS differences and native-vs-custom CE difference. Both paths at first8 only; all16 ablation deltas use cached native original scores and retain any numeric difference as a limitation. A failed control ends this assay; do not widen tolerances.",
+  "read_only": "No optimizer construction/step or autograd graph. Verify actual weights unchanged/grad absent/eval/finite/RNG restored, all identical input/group counts/teacher denominators and frozen references. Persist actual PID/boot/start/log/task positions; inspect existing jobs before launch and restore original UI afterwards.",
+  "summaries": "Report all32 fixed point deltas and teacher-weighted group CE differences, conditional outcome/EOS separately, per-point direction counts and descriptive min/median/max. All16 shared input batches are correlated local TRAIN evidence, not independent natural-language quality.",
+  "CPU_preparation_ceiling_seconds": 15,
+  "total_new_GPU_ceiling_seconds": 30,
+  "optimizer_updates": 0,
+  "new_teacher_tokens": 0,
+  "descriptive_marker": {
+    "completed_conditional_CE_increase_at_least_nats": 0.1,
+    "completed_logical_batches_with_increase_at_least_nats": 0.1,
+    "completed_batches_at_least": 12,
+    "learned_endpoint_only_not_parent_selection": true
+  },
+  "completion": "Actual all16 isolated point evaluations at both fixed checkpoints/control checks/all deltas/readonly invariant/terminal/UI/portable evidence/commit. No new learning, generation rescoring, protected test or Base adoption.",
+  "followup": "Only if the predeclared TRAIN dependence marker is supported, define a separate paired Base learning comparison of packed attention policies. Both learning arms must use identical inputs/masked targets/source quotas/model/Adam/LR and the same measured numerical batch/backend, own CUDA resume/timing/finite-budget checks, and all unchanged strong-relative/absolute/historicalWeb quality gates. Cached old Flash/compile trajectory cannot be the sole matched numeric control. If the marker is unsupported, finish this packing hypothesis without a training/packing/source/mask variant.",
+  "failure": "End the one fixed assay on readiness/numeric/source/budget failure; no input/endpoint reselection or tolerance/weight/ratio/mask/source/LR/decoder sweep.",
+  "original_UI": {
+    "identity": {
+      "pid": 637630,
+      "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+      "start_ticks": "16848446"
+    },
+    "actual_alive_verified": true,
+    "HTTP": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    }
+  },
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "next_action": "Implement the native document-boundary causal forward, meaningful CPU isolation/control tests and persistent bounded read-only runner before any CUDA."
+}
