@@ -1,3 +1,12 @@
+Base専用・固定未確認64の原親/保持本文の全内容採否完了（2026-10-07 JST）。
+
+[全64の原親/span-bound個別採点](../reports/phase6/base_hq_acceptance_review.json): 文法2=57、一貫性2=54、原記事完結2=53、dominantサイト運用等4。全条件を同時に満たす41/64、弱23で、取得前の凍結基準54以上/弱10以下を不合格。本文内部の切れた節/引用、宣言した内容や例文の欠落、未説明の参照、反復する翻訳構文、UIを具体的に記録。正当な抽象・要旨・手順・名詞句・プロフィール・問い・署名・少数OCRを自動失敗扱いせず、政治/医療/法律/歴史/製品等の事実保証とも区別した。全原親と連続spanのSHA、char/UTF8境界、family/固定file数、元契約SHAと終端processを実WSL uvで照合し成功。検査はこの小sample内だけ、旧corpus再scan/新取得/新教師/GPU0。レビューの検査成功を内容合格とはしない。
+
+固定構造抽出branchをここで終了し、この候補から大量学習しない。結果後のselector修正・閾値変更・同条件source再抽選なし。元取得の46.318秒/14.54MBと46463tokensはsource inspectionであって新training preparedではない。全64原文はnative base-hq-acceptance-20261007、可搬理由・原文index・コード・契約・master archiveを保存。actual665631は終了/ps不在。元10B UI actual663394とHTTP SHA410f975d…/10000007168tokens/busy=falseを維持。全Base基準と合格時の独立学習seed/full dev/protected test/adoptionは未達のまま。
+
+次は構造抽出の再調整をせず、公開日本語対応の学習済みモデルによる文法・局所参照・記事完結の判定という別機構の可否を有限比較として定義する。重み取得前に公開性・ライセンス・4090への適合を確認し、一モデル/一prompt・固定holdout、採用条件と実GPU/供給処理の上限を先に決める。既存64採点は変更しない。判定器のholdout精度と新source適性/固有供給/family除外が確認された場合だけ新しい対照付きBase学習へ進む。判定器を研究用に使うことは本プロジェクトのChat学習開始ではない。
+
+Base未完成、完成時に通知して停止。Chat/Dialogue/SFT/量子化なし。Python3.12.7はWSL uv/local commitのみ、pushなし。旧失敗・数値7・Phase0–3を保持。以下は過去の履歴。
 Base専用・未確認source64件の抽出完了（2026-10-07 JST）。
 
 固定4files/各16、distinct URL family64の原親と原文連続記事bodyを取得。actual665631/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18466229はjob completeかつ実ps不在。原親およびbodyと全range SHAはnative /home/aihub_ubuntu/jmicro-data/phase6/base-hq-acceptance-20261007/ 保存。145候補中、旧URL12/旧本文exact27/new holdout19/文末構造22/日本語不足1を除外、結果後の再抽選なし。46463 native body tokens/171664 original span bytes、取得14544548bytes/28requests/46.318秒<60、CPU0.624秒<30。語句/句読点の補作なし・全連続byte範囲一致。原親と抽出bodyはまだ内容未判定0/64、新training prepared0/科学教師0/GPU0。既存near-family/suite除外は次の供給準備で未達のまま。元UI actual663394/start18278075/HTTP元10B SHA・10000007168tokens/busy=falseを確認、GPU科学jobなし。
