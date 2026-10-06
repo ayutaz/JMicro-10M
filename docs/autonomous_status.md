@@ -1,3 +1,12 @@
+Base専用・高品質日本語sourceの取得検証完了（2026-10-07 JST）。
+
+[取得・固定64件](../reports/phase6/base_hq_source_sample.json)、[footer検証](../reports/phase6/base_hq_footer_inspection.json)、[公開source pin](../reports/phase6/base_hq_source_feasibility.json)。epfml/FineWeb2-HQ Japaneseをrevision c0c06e94fd3a44ae9e802b2b0fc533817601eb5eへ固定、公開非gated・565 Parquetを確認。実206 exact Rangeを用いる選択列readerを実装し、ignored Rangeをbody読み取り前に拒否、byte上限とseek/cache、実Parquet embedding大列を取得しないCPU3tests/0.45秒に合格。約1GBの先頭fileはfooter412484bytes/5.506秒だけで83816行・84 groupsを確認。固定seed2026100723のgroups26/40/48/59からtext/id/url/quality_scoreのみを取得し、既存SQLite exact/URL索引で全旧登録を照会（旧本文・protected test本文は読まない）。131候補中、exact37/URL14/new URL family holdout16を除外し固定64件、reroll/品質・長さ・score選別なし。実4000行decode、取得13793569bytes/18requests/30.978秒（100MiB/60秒以内）、CPU0.456秒/30、embedding列要求なし。元UI actual663394・HTTP元10B SHA410f975d…/10000007168tokens/busy=falseを確認。
+
+抽出64件の本文は67194 native tokens/238511bytes、89〜10681tokens。これは内容未確認のinspectionで、新学習prepared0/科学教師0/GPU0。先頭fileの概算87.999Mはeligible64の平均×file行数だけで、global/独立固有/品質採用済み供給量にしない。HQは既存Eduと同じFineWeb2祖先、実際の旧一致51件も保持。未検出のnear-family/評価suite重複は未保証。論文の1Bモデル結果を日本語10Mの改善・高速化保証にしない。全64原文・取得range SHAはnative /home/aihub_ubuntu/jmicro-data/phase6/base-hq-sample-20261007/ に保存、可搬版はpin/plan/row SHA・ID indexと測定値のみ。研究用source適性をまだ採用しない。
+
+次の具体的アクション: 同64原文を全件個別に読み、文法/文脈一貫性/自然な文・段落・文書の終了とboilerplate/反復をbyte-bound notesへ記録する。元本文の書換え・都合のよい再抽出なし。適性がある場合だけ、既存protected-familyと固定suite除外・新教材の供給見積りを有限予算で定義し、次の新しい多様性/品質に関する対照付きBase学習の条件・教師/GPU予算を先に凍結する。旧CE/DPO/newsのsource/係数/epoch/LR/CP救済として続けない。検証だけでBase完成とはせず、元relative/absolute/historical BPB条件、合格時の独立学習seed/full dev/protected test/adoptionを維持する。
+
+Base未完成、完成時に通知して停止。Chat/Dialogue/SFT/量子化には進まない。既存失敗・旧数値7・Phase0–3を保持、WSL uv Python3.12.7/local commitのみ/pushなし。以下は過去の履歴。
 Base同source一般化diagnostic: complete（2026-10-07 JST）。
 
 実4CP・TRAIN56/DEV64の同mask共通bytes/全64個別DEV生成をGPU61.120621秒/120で完了、actual663168不在・元UI復帰。共通→CE→DPO: TRAIN completion CE2.957661→0.006942→0.007069、DEV body BPB1.161984→1.485290→1.484922、DEV一貫性0→2→1/16、事前flag={'chosen_CE_terminal': {'memorization_signal': True, 'domain_specialization_signal': False}, 'chosen_CE_DPO_terminal': {'memorization_signal': True, 'domain_specialization_signal': False}}。全4weights/parentSHA/RNG不変・eval・gradなし、学習更新/科学教師0、TEST0。小sample/非blind/oldWeboverlap未保証/旧数値7を保持、単独原因や10M容量不足の証明にしない。このreadonly診断を終了。旧固定CE/DPOrecipe不採用と全基準を維持し、実TRAIN/DEV転移証拠から新しい機構の比較を定義する。source/coefficient/epoch/LR/CP救済なし。
