@@ -1,0 +1,106 @@
+{
+  "status": "defined_not_implemented_not_launched",
+  "created_at": "2026-10-06T10:49:38.969519Z",
+  "trigger": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/shared-prefix-web-loss-20261006/result.json",
+    "sha256": "f24eccad6b29b5325526ba5eba9b8e67bc92cd49d59a7b26fffcdade3b5ac49d"
+  },
+  "question": "With the same conditional outcome+EOS targets and same four source quotas, does the original interleaved order retain Web loss while preserving Japanese continuation quality?",
+  "motivation": "Shared-prefix WebBPB already exceeds the historical guard, and the final masked suffix adds further loss. Existing unmasked interleaved control retains Web loss but failed generation. The missing order-by-target cell can test their interaction.",
+  "frozen_original_fullparent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+    "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+  },
+  "original_mixed_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/historical_parent_condition_comparison_v3.json",
+    "sha256": "8201c995e37421869d43361fe9b381e0bd90ee16bfd8b54fca90f93b093dc99d"
+  },
+  "cells": {
+    "full_targets_interleaved": {
+      "result": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/historical-parent-condition-comparison-v3-20261006/compare-result.json",
+        "sha256": "b45b55ac4e332d97ccfe717b85b7972db60478ba3fa027d7bb94acf5363251b2"
+      },
+      "config": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/historical_parent_condition_comparison_v3.json",
+        "sha256": "8201c995e37421869d43361fe9b381e0bd90ee16bfd8b54fca90f93b093dc99d"
+      },
+      "cached_BPB": 0.9748195810331843
+    },
+    "full_targets_staged": {
+      "result": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/compare-result.json",
+        "sha256": "cbca7936ebf395b1d5ccd45022ee4cb85de704a636c8bdae48ff2c24a8adc303"
+      }
+    },
+    "outcome_EOS_targets_staged": {
+      "result": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/conditional-prefix-mask-20261006/compare-result.json",
+        "sha256": "f27236c59a63cdd95470c894b4774e98b65c8a39dbc6e259be85548227110811"
+      },
+      "review": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/conditional-prefix-mask-20261006/review.json",
+        "sha256": "f6abb4d5ebc9f78a36c7b6e34e9f478fb2f527593f5740018cc05651eabcd574"
+      },
+      "new_run": false
+    },
+    "outcome_EOS_targets_interleaved": {
+      "new_run": true,
+      "still_unstarted": true
+    }
+  },
+  "candidate": "From the same original10.5B fullstate, use the original mixed sampler min(reference_source_teachers/reference_goals) and existing source tie order. Continue actual Web cursor; seed42 short-source streams. Keep existing conditional focus body+EOS only. All other source labels, text, relative within-source order, mask, nominal quotas and actual LR0.00001 remain fixed. No aux loss, role labels or reheat.",
+  "reference_teacher_goals": {
+    "web": 75000000,
+    "story": 5000000,
+    "ordinary_textbook": 10000000,
+    "conditional_textbook": 10000000
+  },
+  "original_nominal_reference_teachers": 100000000,
+  "predicted_actual_hard_teachers": 91641755,
+  "predicted_actual_teachers_by_source": {
+    "web": 75000000,
+    "story": 5000000,
+    "ordinary_textbook": 10000000,
+    "conditional_textbook": 1641755
+  },
+  "accounting": "The staged masked whole recipe reused shared-prefix89840363 labels plus its suffix1801392 labels. Interleaved candidate newly learns all91641755 actual labels from original parent. Report reused versus new exposure and GPU separately. Verify source content/order/EOS/input windows and masked target hashes per source against both original mixed stream and existing staged recipe. Global batch order differs by design; do not claim identical global token digest.",
+  "source_order_factor": "Original progress-balanced interleaving versus original exhaust-Web/story/ordinary/conditional order; source ratios are unchanged.",
+  "content_target_factor": "All original conditional targets versus its same fixed outcome+EOS targets. No mask/EOS coefficient or source variant.",
+  "accepted_data": {
+    "pool": {
+      "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large",
+      "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133"
+    },
+    "positive_data": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006",
+      "manifest_sha256": "154f13da4a817aaa21586fba2cd335faea7c79358be410e73166f5d0052bf936"
+    },
+    "original_web": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2/export-001/shards",
+      "manifest_sha256": "2edfd35bf077cd1aa583713c01341c0db52f39adc5701f30ede0aacae840b2de"
+    },
+    "accepted_compact_index": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large/.compact-index-8cde6396d433644b/ready.json",
+      "sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606"
+    }
+  },
+  "CPU_preparation_ceiling_seconds": 60,
+  "probe_GPU_ceiling_seconds": 120,
+  "total_new_GPU_ceiling_seconds": 900,
+  "prerequisites": "Implement owned mixed mask sampler/fullstate accounting/runner and meaningful CPU tests before CUDA. Reuse217MB compact cache, no full source scan/dedup. Verify actual continuous8 vs resumed4+4 with mixed sources and active mask, finite BF16 fullstate/optimizer/scheduler/RNG/cursors/digests/counters, own32 timings. Science estimate1.3x+save+evaluation150+50 plus all probe/failed GPU must fit900 before freeze.",
+  "evaluation": "Reuse all three completed cell evaluations/notes unchanged. New cell gets same256 common body/Japanese192-331-1119/greedy80 individually read/bridge128-retention128. Report paired source-order differences within each target scope and their interaction; one learned seed/shared data/repeated dev is not independent causal proof.",
+  "mandatory_quality_guards": "Preserve strong staged23+8 coherence/paired CI lower>0/EOS>=76/repetition<=2; all absolute/practical and historicalWebBPB<=0.9812859519097707. Report the observed masked-staged35/EOS79/rep1 comparison as well, without favorable rescoring or silent baseline substitution.",
+  "failure": "End the one predeclared fourth cell on readiness/quality/budget failure. No order list, ratio, mask position, EOS weight, source text, checkpoint, LR or decoder sweep to rescue it. All old failed cells remain unadopted.",
+  "completion": "Actual new cell/whole scientific teacher accounting/all80/full evaluation/four-cell comparison/terminal/UI/commit. Only a qualified recipe permits independent learned seed/full dev/protected test/adoption.",
+  "new_teacher_tokens_so_far": 0,
+  "optimizer_updates_so_far": 0,
+  "GPU_seconds_so_far": 0,
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "next_action": "Implement one original-interleaved order with fixed outcome+EOS targets as the missing four-cell recipe comparison; own gates and measured budget before science."
+}

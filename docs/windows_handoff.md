@@ -1,3 +1,21 @@
+固定shared-prefix Web loss診断を実完了、学習順序×教師対象の未測定一条件を定義（2026-10-06 JST）。前mask全学習/80不採用は4a9d124。Baseのみ品質・独立学習seed/full dev/protected test/採用まで継続し実完成時に通知/停止、Chat/Dialogue/SFT/量子化なし。
+
+actual633971/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16678125はcomplete・不在。固定CP323185一つだけに全256 full body122343/common472055byteのnativeBF16/mathを新評価、教師・optimizer0、GPU2.093511秒/上限30。weights不変/no gradients/eval/finite/RNG復元の全5checks成功。関連CPU3tests/0.10秒、実準備0.159927秒/上限10、既3model評価再利用・旧GPU再実行0。
+
+歴史WebBPB.971570249→conditional教師0のshared prefix1.013622108→full-target staged1.133612866、masked suffix1.086812357。prefix差+.042051859/paired byte-weighted CI[.040278905,.043796689]、full suffix差+.119990758/CI[.116045128,.124765116]、mask suffix差+.073190249/CI[.069758141,.077377444]、全差で256/256増加。mask全Web悪化の約36.490%は既prefix側で観測され、mask前から歴史guard<=.981285952を超える。残159637普通文教師もsuffixに含むのでconditional単独原因とはしない。source順序/範囲/独立seedを変えていない局所観測で、個々sourceや10M容量限界の証明ではない。原mask採否・全品質基準はそのまま、旧Phase0–3/数値7失敗も保持。
+
+全256paired差/原raw/actual PID/readonly/コード/tests/configをshared_prefix_web_loss_completion/portable.json/archiveへ保存。元10B UI634033/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16678784をactual ps/HTTP親410f975d…/10000007168/busy=falseで確認。関連series累積2928.663008秒（全project費用ではない）。Base未採用/独立学習seed/full dev/protected test未実施。
+
+次はinterleaved_outcome_order_proposal.jsonの未測定一条件。同元10.5B fullparent/実LR.00001、元mixed samplerのmin(reference source教師/quota)による混在順序を使い、conditionalの既outcome+EOS maskと全source比率75/5/10/10・source原文/相対stream順序を固定する。全target/mixed・全target/staged・mask/stagedの既3条件にmask/mixedだけを加え学習レシピ4条件で交互作用を調べる。旧mask比較は結果を変更せず終了、source比率/新素材/mask位置/係数/EOS/decoder/CP選別を追加しない。global順序は変わるがsource別同窓/元target/maskedtarget/cursor/会計をCPUで確認。whole mask recipeの実教師予測91641755（conditional1641755+他90000000）、元reference100Mをactualと混同せず旧shared-prefix/対照学習を新教師に加えない。
+
+新mixed mask sampler/trainer/accounting/runnerとCPUtestsを先に実装、CPU準備60秒/GPUprobe120/新全900秒。own mixed8対4+4実mask/source保存再開・32timing・実測1.3×+save+評価150+50/all probe失敗込みを通してからscience凍結。new科学/検証/GPU0、未実装/未起動。全256/Japanese192-331-1119/80個別/bridge-ret128、元strong23+8/CI正/EOS76/反復2・absolute/歴史WebBPB全guardとmasked-staged35/EOS79/反復1の差を明示。qualified recipe後だけ独立学習seed/full dev/protected test/adoption、失敗は一条件で終了しsweep救済なし。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
+shared-prefix固定Web loss診断を実装・CPU準備完了（2026-10-06 JST）。前mask科学/全80/不採用は4a9d124。Baseのみ完了まで継続し通知/停止、Chat/Dialogue/SFT/量子化なし。
+
+CP323185は元source会計のみで固定されたconditional教師0のshared fullstate。既cached historical/strong/maskedの全256body122343/common472055bytesを再利用し、sole new CPのみnativeBF16/math・body/EOS別評価する。関連CPU3tests/0.10秒で不均一byte重み/phase加算/ID・byte・token・非有限値拒否を確認、実準備0.159927秒/上限10。model/Adam有限/実source会計とcached全ID・共通分母を確認しconfigs/phase6/shared_prefix_web_loss.jsonを凍結、GPU全上限30秒/教師・optimizer0。PS構文成功。元UI632547を直前ps確認、newGPUはまだ未実行。
+
+次はscripts/diagnose_shared_prefix_web_loss.ps1で永続read-only起動→全256body/paired byte-weighted差をprefixとsuffixへ分解→実weights不変/no gradients/eval/有限値/RNG隔離/終端/UI/可搬証拠/commit。ordinary残159637もsuffixに含むためconditional単独因果としない。checkpoint選別・旧GPU再評価・Base採用・元品質条件の緩和なし。Base未完了・旧Phase0–3/数値7失敗保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 conditional prefix maskの同入力suffix学習/全評価/80個別読解を完了。生成は改善、Web保持で不採用（2026-10-06 JST）。ownCUDA準備は5ac0fb0へ保存したprogress。Baseのみ実完成時に通知して停止、Chat/Dialogue/SFT/量子化なし。
 
 actual632307/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16632215はcomplete・不在。CP323185→323503の科学318更新/同input10420224、reference教師10159637に対し実masked hard教師1801392、削除prefix8358245。他3source/全source順序/元target digest/全終端samplerが元対照と一致。既先行learning/old100M controlは新教師に加えず同教師比較とはしない。実LR.00001/model/Adam/scheduler/RNGを継承、conditionalのみ既outcome+EOS教師、penalty/KL/rank/newsourceなし。probe48更新/653485教師別、実scienceGPU50.638847+probe17.082727=新全67.721573秒/上限600。CPUreview1test/1.77秒でreference教師をactualへ混同/欠損更新/改変reference digestを拒否。
