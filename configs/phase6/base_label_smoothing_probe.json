@@ -1,0 +1,73 @@
+{
+  "created_at": "2026-10-06T20:24:33.000499Z",
+  "proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_label_smoothing_proposal.json",
+    "sha256": "dc515f409e3a3a384e4eb269ac02409d3658d2f7bbdceb34afbae4da72aa10c7"
+  },
+  "CPU_tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_label_smoothing_trainer_tests.xml",
+    "sha256": "8430fed72364ae304693ba5cd948ef761aa89ba1a51a7afcfbc4faed2d0745bc"
+  },
+  "previous_completion": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_residual_dropout_comparison_completion.json",
+    "sha256": "2b9bc2aa77b9077b478ee025ea476433347fa539bfc177246a3dfe0a3e515c84"
+  },
+  "sources": {
+    "scripts/base_label_smoothing.py": "f9679815618cb5460bf3cd2a16925ded798dc4d28462e74211a098c7def121c5",
+    "scripts/base_label_smoothing_trainer.py": "5f0ed52329777c1821c133e63c61515f899f17b5f4ff0b0c8e8e580187c67b83",
+    "scripts/probe_base_label_smoothing.py": "99ab63e58c3d1e476c9871b2954670779c18d231fe1d669fc58c87b135542bf2",
+    "scripts/probe_base_label_smoothing.ps1": "8ec7962a4f3db360e78b218f79fe1476db059dcd4140b1e1cc6f4732f697ab46",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "scripts/natural_context_contrast_memory.py": "85735b203e1a6f845078046379c6463b51cdc61068a463a379d93c79368f62e2",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "tests/test_base_label_smoothing.py": "7dc18c1bb9b71674c6d5ad2c2924d5b05551dd147a9141783e34681c0758fdbe",
+    "tests/test_base_label_smoothing_trainer.py": "49e0939a59358e91dcde8dd1aeeea28116b663487ef7bf0f5039e67d599e9498",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca"
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "parent_size": 120181763,
+  "parent_mtime_ns": 1791114231712428007,
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "goals": {
+    "web": 75000000,
+    "textbook": 20000000,
+    "story": 5000000
+  },
+  "payload": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/natural-context-contrast-capacity-20261007/maximum-original-window.json",
+    "sha256": "518b7158e824a6504e71404864b57d7072d592cd6f200869844e96670c1c5fee"
+  },
+  "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+  "epsilon": 0.1,
+  "native_parameters": 10001152,
+  "train_only_parameters": 0,
+  "GPU_limit_seconds": 180,
+  "seed": 42,
+  "batch_candidates": [
+    48
+  ],
+  "warmup_updates": 3,
+  "timed_updates": 5,
+  "matched_scientific_batch": 48,
+  "resident_allocator_fraction": 0.9,
+  "policy": "Probe original full-source CE; initialize Adam, stress actual longest1024 window, stop capacity growth after first OOM. Four continuous versus two-save-resume-two checks native/uniform accounting/RNG/state/history. Discard all probe weights. No science before persistent command and measured forecast.",
+  "scientific_teacher_tokens": 0,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false
+}

@@ -1,0 +1,40 @@
+{
+  "created_at": "2026-10-06T20:27:04.997889Z",
+  "probe_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_label_smoothing_probe.json",
+    "sha256": "8dc1c2b30ab78e579752c4961195cb0926fa075a606ee781f0e3f82dbde4665e"
+  },
+  "probe_result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-label-smoothing-probe-20261007/result.json",
+    "sha256": "c1e1e918a504e864ddaaa07a35e0c90a8c9330d71c5f6ffb4d0e24e2ff50c5c4"
+  },
+  "probe_checkpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-label-smoothing-probe-20261007/resume-gate/continuous.pt",
+    "sha256": "4bf6b08b9341d54f8b91d0691b2500f2b96ac0aa0b25c74b81e7eab991e3d381"
+  },
+  "steps": 32,
+  "batch": 48,
+  "original_samples": [
+    26172.692057477998,
+    26754.21745776561,
+    33021.92008262101,
+    44971.7736169058,
+    38036.09730246829
+  ],
+  "initial_budget_estimate": 4836.778953941484,
+  "pooled_samples": 37,
+  "GPU_limit_seconds": 174,
+  "total_probe_GPU_ceiling_seconds": 180,
+  "science_GPU_ceiling_seconds": 3965,
+  "sources": {
+    "scripts/measure_base_label_smoothing_timing.py": "457d5a67c36fdde3af4359b1b5a7f65df55f148175034811aeecb87499770cfc",
+    "scripts/measure_base_label_smoothing_timing.ps1": "2ba2e9355113b914d46a1b286f4ed58b6cf017e33da446190e22bb94c1bc0dec"
+  },
+  "purpose": "Initial5 timings span1.72x and pessimistic estimate exceeds cap. Measure exactly32 subsequent native updates from completed4-update probe state, pool all37 values without exclusions. No repeated initialization/resume/stress checks, parameter/loss/source/batch change or favorable endpoint selection.",
+  "completion": "All32 steps and source/accounting finite, all37 timing observations retained. If pooled measured budget still exceeds3965, do not start science or extend this timing protocol again.",
+  "scientific_teacher_tokens": 0,
+  "probe_weights_discarded": true,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false
+}

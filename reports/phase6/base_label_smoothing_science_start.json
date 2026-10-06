@@ -1,0 +1,57 @@
+{
+  "created_at": "2026-10-06T20:37:02.719760Z",
+  "status": "actual_scientific_GPU_running_quality_pending",
+  "job_snapshot": {
+    "status": "running",
+    "pid": 693649,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "20212215",
+    "started_at": "2026-10-06T20:35:19.497657Z",
+    "config_sha256": "0332d41532e2b861559bf7c28395e1dca91263154bebf8ef72630b51cb63d16d",
+    "GPU_occupancy_seconds": 101.96690636500716,
+    "Base_complete": false,
+    "Chat_started": false,
+    "quantization_started": false,
+    "restart_command": "scripts/run_base_label_smoothing.ps1 -Worker; inspect actual PID/boot/start first; resume only valid completed-update checkpoints within same frozen budget",
+    "resident_memory_policy": {
+      "torch_version": "2.14.1+cu130",
+      "device": "NVIDIA GeForce RTX 4090",
+      "visible_device_bytes": 25756696576,
+      "process_fraction": 0.8999999999844701,
+      "allocator_allowance_bytes": 23181026918,
+      "expected_worst_peak_bytes": 10756030976
+    },
+    "stage": "smoothing-training",
+    "heartbeat_at": "2026-10-06T20:37:02.606062Z",
+    "scientific_CE_teacher_tokens": 6661649,
+    "local_update": 1180,
+    "loss": 3.6344122886657715,
+    "latest_checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-label-smoothing-comparison-20261007/smoothing/checkpoint-00001000.pt"
+  },
+  "actual_process_verified_alive": true,
+  "windows_worker_pid": 32536,
+  "config_sha256": "0332d41532e2b861559bf7c28395e1dca91263154bebf8ef72630b51cb63d16d",
+  "latest_saved_checkpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-label-smoothing-comparison-20261007/smoothing/checkpoint-00001000.pt",
+    "bytes": 124374269
+  },
+  "prototype_completion": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_label_smoothing_prototype_completion.json",
+    "sha256": "25e3685a66ea10878ec824ce92b3725a3e494c42838ac61bde0c3ef7290edb7e"
+  },
+  "CPU_checks": {
+    "packed": 2,
+    "runner": 5,
+    "reviewer": 22
+  },
+  "review_policy": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_label_smoothing_review.json",
+    "sha256": "6c0cab7b181375e32b6084a9a4ebc970c57e4b47b249e4eb702259b2c555d4ac"
+  },
+  "restart_command": "scripts/run_base_label_smoothing.ps1 -Worker; first inspect actual PID/boot/start and completed-update checkpoint; same frozen cumulative GPU budget only",
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "next_action": "Finish bounded100M and native evaluation; read all80 new raw outputs and apply frozen unchanged matched/strong/absolute/historical gates. Only qualified candidate advances to independent learned seed/full DEV/protected final TEST/adoption. Notify and stop at completed Base."
+}
