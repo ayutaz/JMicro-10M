@@ -1,0 +1,528 @@
+{
+  "status": "fixed_TRAIN_gradient_attribution_complete_Base_unfinished",
+  "created_at": "2026-10-06T11:14:57.023463Z",
+  "config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/source_gradient_attribution.json",
+    "sha256": "ae7fac43011af7b28cd2349e2331d1a852546bb205711dc3fb6d06e3aeac034e"
+  },
+  "CPU_preparation_seconds": 3.1626082150032744,
+  "logical_batch": 32,
+  "microbatch": 8,
+  "context": 1024,
+  "consecutive_TRAIN_batches_per_model": 16,
+  "checkpoints": {
+    "original_fullparent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+      "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+    },
+    "completed_masked_mixed": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+      "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+    }
+  },
+  "samples_metadata": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-gradient-attribution-20261006/samples.json",
+    "sha256": "4204dcd5e8a430e2af231097b2ba5f8a392195dbcfe10f0e77a719ee3eb3f37c"
+  },
+  "numerical_decomposition_relative_L2_tolerance": 0.02,
+  "GPU_ceiling_seconds": 90,
+  "scientific_teacher_tokens": 0,
+  "optimizer_updates": 0,
+  "GPU_seconds": 36.00103650402161,
+  "original_UI": {
+    "identity": {
+      "pid": 637630,
+      "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+      "start_ticks": "16848446"
+    },
+    "actual_alive_verified": true,
+    "HTTP": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    }
+  },
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "next_action": "Interpret fixed TRAIN gradient evidence with completed four-cell comparison; define one distinct Base intervention with fixed comparison/budget and unchanged quality gates before further learning.",
+  "result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-gradient-attribution-20261006/result.json",
+    "sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+  },
+  "actual_terminal_job": {
+    "status": "complete",
+    "pid": 637533,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "16844400",
+    "config_sha256": "ae7fac43011af7b28cd2349e2331d1a852546bb205711dc3fb6d06e3aeac034e",
+    "GPU_seconds": 36.00103650402161,
+    "started_at": "2026-10-06T11:14:01.571440Z",
+    "restart_command": "scripts/diagnose_source_gradient_attribution.ps1 -Worker",
+    "optimizer_updates": 0,
+    "new_teacher_tokens": 0,
+    "stage": "completed_masked_mixed-gradient",
+    "heartbeat_at": "2026-10-06T11:14:37.273900Z",
+    "batch": 15,
+    "completed_batches": 15,
+    "total_batches": 16,
+    "completed_at": "2026-10-06T11:14:38.501102Z"
+  },
+  "actual_process_absent": true,
+  "read_only_checks": {
+    "original_fullparent": {
+      "weights_unchanged": true,
+      "no_gradients": true,
+      "eval_mode": true,
+      "finite_weights": true,
+      "RNG_unchanged_during_gradients": true
+    },
+    "completed_masked_mixed": {
+      "weights_unchanged": true,
+      "no_gradients": true,
+      "eval_mode": true,
+      "finite_weights": true,
+      "RNG_unchanged_during_gradients": true
+    }
+  },
+  "RNG_restored": true,
+  "summaries": {
+    "original_fullparent": {
+      "groups": {
+        "web": {
+          "teachers": 390352,
+          "teacher_fraction": 0.8164463900642319,
+          "teacher_weighted_CE": 2.5678080346792767,
+          "median_contribution_gradient_norm": 0.47432316839694977,
+          "median_contribution_to_total_squared_norm": 0.5233193337917328,
+          "median_group_mean_gradient_norm": 0.584060426764142
+        },
+        "story": {
+          "teachers": 26425,
+          "teacher_fraction": 0.05526959220766726,
+          "teacher_weighted_CE": 2.671443316875591,
+          "median_contribution_gradient_norm": 0.2094431221485138,
+          "median_contribution_to_total_squared_norm": 0.1290992759168148,
+          "median_group_mean_gradient_norm": 3.344717310180883
+        },
+        "ordinary_textbook": {
+          "teachers": 52861,
+          "teacher_fraction": 0.11056219162495738,
+          "teacher_weighted_CE": 2.449688866533515,
+          "median_contribution_gradient_norm": 0.22884675860404968,
+          "median_contribution_to_total_squared_norm": 0.1423601433634758,
+          "median_group_mean_gradient_norm": 2.181564511263325
+        },
+        "conditional_outcome_body": {
+          "teachers": 7258,
+          "teacher_fraction": 0.015180575222071863,
+          "teacher_weighted_CE": 2.159246840467792,
+          "median_contribution_gradient_norm": 0.20064283162355423,
+          "median_contribution_to_total_squared_norm": 0.1125064417719841,
+          "median_group_mean_gradient_norm": 13.565023127978781
+        },
+        "conditional_EOS": {
+          "teachers": 1215,
+          "teacher_fraction": 0.0025412508810715505,
+          "teacher_weighted_CE": 6.615145723319348,
+          "median_contribution_gradient_norm": 0.17955031245946884,
+          "median_contribution_to_total_squared_norm": 0.08795671537518501,
+          "median_group_mean_gradient_norm": 74.82060359597253
+        },
+        "conditional_total": {
+          "teachers": 8473,
+          "teacher_fraction": 0.017721826103143413,
+          "teacher_weighted_CE": 2.798207910061164,
+          "median_contribution_gradient_norm": 0.2710151821374893,
+          "median_contribution_to_total_squared_norm": 0.2059382125735283,
+          "median_group_mean_gradient_norm": 15.999407536273107
+        },
+        "independent_total": {
+          "teachers": 478111,
+          "teacher_fraction": 1.0,
+          "teacher_weighted_CE": 2.5645595068871847,
+          "median_contribution_gradient_norm": 0.6719653606414795,
+          "median_contribution_to_total_squared_norm": 1.0,
+          "median_group_mean_gradient_norm": 0.6719653606414795
+        }
+      },
+      "pairs": {
+        "web__story": {
+          "supported_batches": 16,
+          "median_cosine": 0.013920952557014917,
+          "minimum_cosine": -0.0838408069809434,
+          "maximum_cosine": 0.09516270101132931,
+          "negative_batches": 6
+        },
+        "web__ordinary_textbook": {
+          "supported_batches": 16,
+          "median_cosine": 0.0228982338244494,
+          "minimum_cosine": -0.060104430108118057,
+          "maximum_cosine": 0.09119318096737133,
+          "negative_batches": 3
+        },
+        "web__conditional_outcome_body": {
+          "supported_batches": 16,
+          "median_cosine": 0.03306477703284784,
+          "minimum_cosine": -0.03220633014450081,
+          "maximum_cosine": 0.09200355941836309,
+          "negative_batches": 6
+        },
+        "web__conditional_EOS": {
+          "supported_batches": 16,
+          "median_cosine": -0.017431459990137947,
+          "minimum_cosine": -0.05929891960722183,
+          "maximum_cosine": 0.08243576411600011,
+          "negative_batches": 11
+        },
+        "web__independent_total": {
+          "supported_batches": 16,
+          "median_cosine": 0.7221281891809017,
+          "minimum_cosine": 0.663942285699582,
+          "maximum_cosine": 0.7992796449622521,
+          "negative_batches": 0
+        },
+        "web__conditional_total": {
+          "supported_batches": 16,
+          "median_cosine": 0.010003392343895115,
+          "minimum_cosine": -0.05426338835477458,
+          "maximum_cosine": 0.049894930810335206,
+          "negative_batches": 6
+        },
+        "story__ordinary_textbook": {
+          "supported_batches": 16,
+          "median_cosine": 0.15167690468150916,
+          "minimum_cosine": 0.07020940902739269,
+          "maximum_cosine": 0.24697266261288175,
+          "negative_batches": 0
+        },
+        "story__conditional_outcome_body": {
+          "supported_batches": 16,
+          "median_cosine": 0.1831707193839082,
+          "minimum_cosine": 0.13466088739873336,
+          "maximum_cosine": 0.24704599265878632,
+          "negative_batches": 0
+        },
+        "story__conditional_EOS": {
+          "supported_batches": 16,
+          "median_cosine": 0.08765168226949445,
+          "minimum_cosine": -0.03813707643645029,
+          "maximum_cosine": 0.13892946364388625,
+          "negative_batches": 1
+        },
+        "story__independent_total": {
+          "supported_batches": 16,
+          "median_cosine": 0.4076998311950205,
+          "minimum_cosine": 0.30582910394833207,
+          "maximum_cosine": 0.5237406513392878,
+          "negative_batches": 0
+        },
+        "story__conditional_total": {
+          "supported_batches": 16,
+          "median_cosine": 0.20935325511151076,
+          "minimum_cosine": 0.0978959459648309,
+          "maximum_cosine": 0.26260725688817,
+          "negative_batches": 0
+        },
+        "ordinary_textbook__conditional_outcome_body": {
+          "supported_batches": 16,
+          "median_cosine": -0.02936563100699585,
+          "minimum_cosine": -0.12279788896100012,
+          "maximum_cosine": 0.06863678810736247,
+          "negative_batches": 11
+        },
+        "ordinary_textbook__conditional_EOS": {
+          "supported_batches": 16,
+          "median_cosine": 0.10415022234769329,
+          "minimum_cosine": -0.005521688008749713,
+          "maximum_cosine": 0.1443421803218673,
+          "negative_batches": 1
+        },
+        "ordinary_textbook__independent_total": {
+          "supported_batches": 16,
+          "median_cosine": 0.43265346356663087,
+          "minimum_cosine": 0.3016807113641621,
+          "maximum_cosine": 0.5631504107323162,
+          "negative_batches": 0
+        },
+        "ordinary_textbook__conditional_total": {
+          "supported_batches": 16,
+          "median_cosine": 0.03816463429480443,
+          "minimum_cosine": -0.057679188173042455,
+          "maximum_cosine": 0.12189470499217295,
+          "negative_batches": 2
+        },
+        "conditional_outcome_body__conditional_EOS": {
+          "supported_batches": 16,
+          "median_cosine": 0.02937869276693579,
+          "minimum_cosine": 0.010427240659207257,
+          "maximum_cosine": 0.04916537505776272,
+          "negative_batches": 0
+        },
+        "conditional_outcome_body__independent_total": {
+          "supported_batches": 16,
+          "median_cosine": 0.37698805855596274,
+          "minimum_cosine": 0.2791722926358529,
+          "maximum_cosine": 0.43531588555184053,
+          "negative_batches": 0
+        },
+        "conditional_outcome_body__conditional_total": {
+          "supported_batches": 16,
+          "median_cosine": 0.7460327156847761,
+          "minimum_cosine": 0.7264007738804239,
+          "maximum_cosine": 0.767497425837358,
+          "negative_batches": 0
+        },
+        "conditional_EOS__independent_total": {
+          "supported_batches": 16,
+          "median_cosine": 0.3333631179473144,
+          "minimum_cosine": 0.2716432107651548,
+          "maximum_cosine": 0.44940289335875416,
+          "negative_batches": 0
+        },
+        "conditional_EOS__conditional_total": {
+          "supported_batches": 16,
+          "median_cosine": 0.6895414136046554,
+          "minimum_cosine": 0.6491782330407168,
+          "maximum_cosine": 0.7103857562945459,
+          "negative_batches": 0
+        },
+        "independent_total__conditional_total": {
+          "supported_batches": 16,
+          "median_cosine": 0.5029276372073712,
+          "minimum_cosine": 0.4115219134581761,
+          "maximum_cosine": 0.575190022482843,
+          "negative_batches": 0
+        }
+      },
+      "maximum_decomposition_relative_L2_error": 0.002434558467939496
+    },
+    "completed_masked_mixed": {
+      "groups": {
+        "web": {
+          "teachers": 390352,
+          "teacher_fraction": 0.8164463900642319,
+          "teacher_weighted_CE": 2.5674472875603302,
+          "median_contribution_gradient_norm": 0.4899661988019943,
+          "median_contribution_to_total_squared_norm": 0.8414106667041779,
+          "median_group_mean_gradient_norm": 0.6061202236765688
+        },
+        "story": {
+          "teachers": 26425,
+          "teacher_fraction": 0.05526959220766726,
+          "teacher_weighted_CE": 2.0299729343439568,
+          "median_contribution_gradient_norm": 0.13466192036867142,
+          "median_contribution_to_total_squared_norm": 0.05709401145577431,
+          "median_group_mean_gradient_norm": 2.1536650296595665
+        },
+        "ordinary_textbook": {
+          "teachers": 52861,
+          "teacher_fraction": 0.11056219162495738,
+          "teacher_weighted_CE": 2.2048023242856263,
+          "median_contribution_gradient_norm": 0.17108605802059174,
+          "median_contribution_to_total_squared_norm": 0.09797612950205803,
+          "median_group_mean_gradient_norm": 1.6184371177655938
+        },
+        "conditional_outcome_body": {
+          "teachers": 7258,
+          "teacher_fraction": 0.015180575222071863,
+          "teacher_weighted_CE": 0.19719137216474963,
+          "median_contribution_gradient_norm": 0.029477511532604694,
+          "median_contribution_to_total_squared_norm": 0.0031392857199534774,
+          "median_group_mean_gradient_norm": 1.8265827717823144
+        },
+        "conditional_EOS": {
+          "teachers": 1215,
+          "teacher_fraction": 0.0025412508810715505,
+          "teacher_weighted_CE": 0.008565040381908907,
+          "median_contribution_gradient_norm": 0.0013197638909332454,
+          "median_contribution_to_total_squared_norm": -9.137919732893351e-06,
+          "median_group_mean_gradient_norm": 0.602427129565245
+        },
+        "conditional_total": {
+          "teachers": 8473,
+          "teacher_fraction": 0.017721826103143413,
+          "teacher_weighted_CE": 0.17014298397684083,
+          "median_contribution_gradient_norm": 0.031056429259479046,
+          "median_contribution_to_total_squared_norm": 0.003440591273829341,
+          "median_group_mean_gradient_norm": 1.6840597125173038
+        },
+        "independent_total": {
+          "teachers": 478111,
+          "teacher_fraction": 1.0,
+          "teacher_weighted_CE": 2.4551618673301543,
+          "median_contribution_gradient_norm": 0.5362850725650787,
+          "median_contribution_to_total_squared_norm": 1.0,
+          "median_group_mean_gradient_norm": 0.5362850725650787
+        }
+      },
+      "pairs": {
+        "web__story": {
+          "supported_batches": 16,
+          "median_cosine": -0.01646629429199163,
+          "minimum_cosine": -0.06391938006729393,
+          "maximum_cosine": 0.04720396392423472,
+          "negative_batches": 12
+        },
+        "web__ordinary_textbook": {
+          "supported_batches": 16,
+          "median_cosine": -0.028541026141300507,
+          "minimum_cosine": -0.09770233567805697,
+          "maximum_cosine": 0.04015366230393252,
+          "negative_batches": 13
+        },
+        "web__conditional_outcome_body": {
+          "supported_batches": 16,
+          "median_cosine": 0.006941853716976729,
+          "minimum_cosine": -0.05589262959514133,
+          "maximum_cosine": 0.05277536967460644,
+          "negative_batches": 7
+        },
+        "web__conditional_EOS": {
+          "supported_batches": 16,
+          "median_cosine": -0.03832357260392667,
+          "minimum_cosine": -0.10456802900020994,
+          "maximum_cosine": 0.0813897652419354,
+          "negative_batches": 11
+        },
+        "web__independent_total": {
+          "supported_batches": 16,
+          "median_cosine": 0.9143190739956353,
+          "minimum_cosine": 0.8683421465525681,
+          "maximum_cosine": 0.9396723503463709,
+          "negative_batches": 0
+        },
+        "web__conditional_total": {
+          "supported_batches": 16,
+          "median_cosine": -0.0016139320091399173,
+          "minimum_cosine": -0.05752317489382353,
+          "maximum_cosine": 0.056866309365434756,
+          "negative_batches": 8
+        },
+        "story__ordinary_textbook": {
+          "supported_batches": 16,
+          "median_cosine": -0.002257503214963778,
+          "minimum_cosine": -0.05449158301154168,
+          "maximum_cosine": 0.04791563686638346,
+          "negative_batches": 8
+        },
+        "story__conditional_outcome_body": {
+          "supported_batches": 16,
+          "median_cosine": -0.014703659752465419,
+          "minimum_cosine": -0.07461863296934514,
+          "maximum_cosine": 0.0851571572088423,
+          "negative_batches": 10
+        },
+        "story__conditional_EOS": {
+          "supported_batches": 16,
+          "median_cosine": -0.003353236296693921,
+          "minimum_cosine": -0.24140509408106353,
+          "maximum_cosine": 0.07487223916644904,
+          "negative_batches": 9
+        },
+        "story__independent_total": {
+          "supported_batches": 16,
+          "median_cosine": 0.22200082684841008,
+          "minimum_cosine": 0.14242779816439113,
+          "maximum_cosine": 0.28492307170274084,
+          "negative_batches": 0
+        },
+        "story__conditional_total": {
+          "supported_batches": 16,
+          "median_cosine": -0.014521414611332053,
+          "minimum_cosine": -0.07402328504726187,
+          "maximum_cosine": 0.08500170817923408,
+          "negative_batches": 10
+        },
+        "ordinary_textbook__conditional_outcome_body": {
+          "supported_batches": 16,
+          "median_cosine": -0.004081934168428096,
+          "minimum_cosine": -0.0501364291103598,
+          "maximum_cosine": 0.036759805853249256,
+          "negative_batches": 9
+        },
+        "ordinary_textbook__conditional_EOS": {
+          "supported_batches": 16,
+          "median_cosine": 0.052516287804754466,
+          "minimum_cosine": -0.06840964335290164,
+          "maximum_cosine": 0.13641311349971136,
+          "negative_batches": 5
+        },
+        "ordinary_textbook__independent_total": {
+          "supported_batches": 16,
+          "median_cosine": 0.30548965913104215,
+          "minimum_cosine": 0.2550712859487544,
+          "maximum_cosine": 0.42168077391180137,
+          "negative_batches": 0
+        },
+        "ordinary_textbook__conditional_total": {
+          "supported_batches": 16,
+          "median_cosine": -0.004104496845008978,
+          "minimum_cosine": -0.046233463299165084,
+          "maximum_cosine": 0.09311516491753762,
+          "negative_batches": 10
+        },
+        "conditional_outcome_body__conditional_EOS": {
+          "supported_batches": 16,
+          "median_cosine": 0.039087223899302234,
+          "minimum_cosine": -0.03173417609869855,
+          "maximum_cosine": 0.2561613677017855,
+          "negative_batches": 5
+        },
+        "conditional_outcome_body__independent_total": {
+          "supported_batches": 16,
+          "median_cosine": 0.05806538901226898,
+          "minimum_cosine": 0.007064888158155072,
+          "maximum_cosine": 0.1020951383516549,
+          "negative_batches": 0
+        },
+        "conditional_outcome_body__conditional_total": {
+          "supported_batches": 16,
+          "median_cosine": 0.9989075524375968,
+          "minimum_cosine": 0.7173202209654399,
+          "maximum_cosine": 0.9998619493545278,
+          "negative_batches": 0
+        },
+        "conditional_EOS__independent_total": {
+          "supported_batches": 16,
+          "median_cosine": 0.0037546718499841154,
+          "minimum_cosine": -0.07204468051912491,
+          "maximum_cosine": 0.10967999103339382,
+          "negative_batches": 8
+        },
+        "conditional_EOS__conditional_total": {
+          "supported_batches": 16,
+          "median_cosine": 0.09685338210185643,
+          "minimum_cosine": 0.0012427809149061135,
+          "maximum_cosine": 0.7171614669390887,
+          "negative_batches": 0
+        },
+        "independent_total__conditional_total": {
+          "supported_batches": 16,
+          "median_cosine": 0.059494997865773024,
+          "minimum_cosine": 0.00469147840988003,
+          "maximum_cosine": 0.11598515806898015,
+          "negative_batches": 0
+        }
+      },
+      "maximum_decomposition_relative_L2_error": 0.002827463438734412
+    }
+  },
+  "gradient_teacher_targets_per_model": 478111,
+  "distinct_TRAIN_input_tokens": 524288,
+  "previous_related_GPU_seconds_preserved": 3207.952092749066,
+  "related_GPU_seconds": 3243.953129253088,
+  "limitations": "Local unchanged token-mean CE at16 fixed TRAIN batches/two preselected endpoints/one learned seed; BF16/math eager8-sequence chunks. Not optimizer directions, GPU learning, model quality, causal dilution proof or an automatic reweighting recommendation."
+}
