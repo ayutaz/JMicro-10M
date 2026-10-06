@@ -1,0 +1,29 @@
+{
+  "status": "defined_CPU_public_whole_prose_preparation_not_student_training",
+  "created_at": "2026-10-06T05:58:41.4342947Z",
+  "CPU_limit_seconds": 600,
+  "GPU_seconds": 0,
+  "student_scientific_teacher_tokens": 0,
+  "target_serialized_tokens": 10000000,
+  "Chat_started": false,
+  "quantization_started": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "source_revision": "4f949e18cfa01d99abe6f92e5629157d69737e6d",
+  "source_metadata_sha256": "f7de9bd46bfd1fd396619149c44adbad6fd39a1ee846a6a2cec62336402e64b9",
+  "recovery_sha256": "e8ddb18932621bc75ccc1c4008b848e231c628f981f38b45ae5f329e5313c017",
+  "source_sha256": {
+    "scripts/prepare_public_magpie_prose.py": "3f97e752b81f6ed3155cd133bc2603c19b0231f9c8fa850d644ac53518130f9e",
+    "scripts/prepare_public_magpie_prose.ps1": "14909eb774ef6de7d9f716cdb3fbf2d63571a28e75ce23da1f8cabe1a0a589a2",
+    "tests/test_public_magpie_prose.py": "24010081ee9a2bac851a99d76e45fea53cdb6ab48dbc28752c7e62e0bc1ff5cf"
+  },
+  "source_url": "https://huggingface.co/datasets/llm-jp/magpie-sft-v1.0",
+  "source_license": "apache-2.0",
+  "rationale": "Local public4B source pilot rejected weak37/64 and raw10M generation estimate12.74h. Magpie publicly provides pre-generated Qwen2.5-32B Japanese Assistant text, not previously registered project material. SimpleStories-JA already used and not a new source.",
+  "processing": "One bounded scan of pinned132k public train records/284MB, local exact-body dedup only, no global corpus audit. Fixed whole-body selector, familySHA train/dev split before selection, exclude existing dev prefixes only, no protected-test read. Strip outer whitespace only; never rewrite/cut internal body. Random whole-record order seed2026100682; target10M serialized BOS/body/EOS source tokens, not learned teachers.",
+  "source_content_gate": "Read all64 uniform-document samples, seed2026100683, nonblind Codex with raw text/ID/family/seed bound. Same weak at most10/64 and unresolved retained grammar0; standalone complete Japanese prose without role/instruction/code markup. Insufficient volume or failed content rejects source, no automatic selector relaxation.",
+  "learning_role": "Candidate ordinary Base full-body plus EOS CE weight1; focus0; no User/Assistant/EOT tokens, no conversation masking or project SFT. Student model stays10,001,152 parameters. Source preparation is not student training.",
+  "next_comparison": "Only after source10M is prepared and separately accepted: same original10B fullstate/actualLR.0002/Web cursor/seed42,100M learned teachers Web75M/story5M/ordinary10M/newprose10M versus cached originalWeb100M control. Three unchanged source streams/counters must match. Same256byte/Japanese/80/relative/absolute/historicalWeb gates. Source amount/content/diversity/provenance change together, not pure volume causality. Actual CUDA resume and measured budget required before science.",
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true
+}

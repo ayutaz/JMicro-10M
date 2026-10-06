@@ -1,3 +1,15 @@
+Base用公開教材の2候補を実確認し両方不採用（2026-10-06 JST）: 最新境界は品質・独立学習seed/full dev/protected test/採用を満たすBaseの実完了まで継続し、完了時に知らせて停止。Chat/Dialogue/SFT/量子化/最終deploymentは始めない。本turnの学生学習0・新checkpoint0、Base未完了/未採用。
+
+固定13完了reportの整理を実CPU0.016503秒/GPU0で完了（base_failure_route_synthesis.json）。24 summary appearancesは独立24実験とはせず、既知raw10種類とhash未記録10行を区別。量・学習量・親/actualLR・shape・train fit/局所transferの改善だけで自由生成の基準達成とはならない。容量の限界や唯一原因は断定しない。
+
+公開Apache2 Qwen3-4B-Instruct-2507 revision cdbee75f…を匿名で8.06GB回復/全hash確認（103.276秒）。既存評価promptを与えず独立train familyの自然文64件を実BF16生成、teacher inference34.447秒/全GPU36.393399秒/peak allocated8.57GB、teacher6611・student body7511 tokens、64EOS。全64個別読解で弱37/64（上限10）・format12/content24/grammar7/language4（重複あり）、不採用。raw body218.046 tokens/secから10Mは約12.74h、除外/packingを含まない見積で全量生成なし。同teacherのprompt/settings再試行なし。上流teacherを使った教材調査でありproject Chat/SFT学習ではない。
+
+既使用SimpleStories-JAを新教材と数えず、公開llm-jp/magpie-sft-v1.0（Assistant生成Qwen2.5-32B、Apache2、revision4f949e…）の284MBを匿名回復/全hash確認10.163秒。固定whole-body条件でtrain132476行を一度だけ走査、実CPU3.754377秒/GPU0、16057文/4,226,508 serialized source tokens（body4,194,394/fullCE候補4,210,451/EOS16057）。目標10M未達。固定uniform-document64件を全件読解、会話応答18件など弱23/64>10（content3/language3/grammar1、重複あり）で内容も不採用。外部事実の網羅確認はしておらず未flag文を正しい事実の保証にしない。候補は隔離保持し学生学習へ入れない。元のsource/selector/reviewを変更して合格にしない。
+
+4 actual jobs 577732/578050/578629/578816は全complete・boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe・実process不在。UI578328/start14899123の実identityとHTTP元10B親410f975d…/10,000,007,168/busy=falseを確認。public_prose_feasibility_completion.jsonに正確identity、reviewsとraw SHAを保存。関連CPU2+3tests成功（3.41秒/0.89秒）、PS構文成功。可搬121text/872890bytes、gzip219606/SHA78a692a006bc45a4ccd965f0e17955a59877be2455ca14913e6be236209f952d、全Windows raw/archive SHA一致。8GB weights/284MB raw/arraysはarchiveへ重複しない。旧数値7失敗・全品質条件/Phase0–3を維持、PythonはWSL uv3.12.7、local commitのみ、pushなし。
+
+次の具体作業: 新規日本語の短い物語/独立説明文の公開候補を最大4件までmetadata/cardのみで調べ、license/gated/language/upstream teacher・whole-document規模/split・既試行との重複を一覧にする。bulk download/GPUなし、必要な10M sourceを供給できる見込みと新規性がある1候補だけに実供給/固定64内容pilotを定義する。見つからない場合はnone-feasibleを記録し、無制限の教材/filter/model sweepへ進めない。採用sourceが用意できた場合だけ元10B fullstate/.0002・同100M教師/Web75/story5/ordinary10/newprose10Mと保存controlを比べ、実CUDA再開/実測予算と全256byte/Japanese/80・relative/absolute/歴史Web1%基準を維持。source量/内容/多様性/上流生成を同時に変えるため単純増量の因果とはしない。最終seed/full/testは品質pilot合格後。以下は過去の履歴。
+
 歴史Web親の100Mと全80評価を完了・不採用（2026-10-06 JST）: 前準備17a46ddは実CPU parent監査/修正の凍結/全32CUDA保存再開/100M起動まで。本turnはactual571973/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start14810743の実終了・ps不在と終端を確認。最新境界は品質・独立学習seed/full dev/protected test/採用までBaseだけを続けて完了通知・停止、Chat/Dialogue/SFT/量子化なし。
 
 歴史10.5B Web fullstate d18e3e17…/実LR.00001/Adam/scheduler/RNG/実nested Web cursorを維持しreheatなし。新science100,000,000教師/100,532,224input/3068updates、元relation2048の同Web75M/story5M/ordinary10M/conditional10M。CPupdate323503 SHA6d901bd290cc5b7ab0b52a3a2309232d1e08c7fba32ecb8ec1e5656fe1a2f5a0、train160.611815秒、scienceGPU249.078194+成功probe16.049172+失敗2件13.190772=278.318138秒<900。成功40/失敗8の検証更新と計1,565,061検証教師はscience別、V1更新0/V2保存state8更新も全証拠を保持。3短sourceの終端cursor/教師/EOS/input/bytes/focusは旧controlと全一致、実Web73421blocks継続を確認。heartbeat99,765,337ではなく完了CPの100Mを採用。
