@@ -1,3 +1,20 @@
+正解語によるWeb本文replayの100M比較を全評価まで完了・不採用（2026-10-06 JST）。実CUDA検証/永続起動は91369daへ保存。Baseだけを品質・独立学習seed/full dev/protected test/採用まで進め、実完成時に通知して停止する。Baseは未完了・未採用、Chat/Dialogue/SFT/量子化なし。
+
+owned WSL598415/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start15588101はcomplete・実ps不在。通常CE100,000,000教師/maininput100,532,224/3068更新、参照input25,133,056/gold body教師25,026,383/main込み125,026,383 hard positions、combined student input125,665,280。親nonEOS probability mass24,981,892.629882812は整数教師数と別保存。新教材量0・既存train重複replay。親fullstate/Adam/scheduler/RNG/実LR.00001と4primary source quotas/順序を保持。全4終端source cursor/counterと全3068主/参照input-digest-mask-source counters、全32/3068の親probability massが終了済conditionalKLと完全一致。教師はsoft distributionから実gold wordへ変わり、同露出でもhard supervision情報量は同じではない。
+
+train280.87秒、science GPU349.432259＋CUDA検証28.810827＝新研究378.243087秒<新900秒。旧関連KL研究795.352305秒を消さず、累積1173.595391秒を別記。40検証更新/CE1,307,967/aux gold326,339/input327,680/mass325,778.16796875を科学学習へ加算しない。CPU math初回丸め差とrunner初回self-importの失敗XMLを保管、実GPUsource凍結前に修正、科学失敗の隠蔽や基準/余裕変更なし。
+
+conditionalKL→gold replay: BPB.983031489→.985528435悪化、文法2=58→45/関連2=49→56/一貫性2=11→17/適切28→34/EOS44→53/自動反復20→15、Unicode-role-empty両方0（各80）。意味57.292→56.771%/JBLiMP74.320→77.039%/JCQA33.959→33.780%。一貫性差+6/paired95%CI[0,.15]、gain8/CI lower>0未達。強い元staged CE23/EOS76/反復2に対して一貫性差-6/CI[-.2,.05]で有意な悪化の独立証明ではないが、relative EOS/反復・absolute文法56/一貫性27・歴史Web1% BPB(.981285952)を満たさず不採用。Base完成とはしない。
+
+全256全文472055bytes/122343bodytokens、日本語192-331-1119、全80greedy64、bridge/retention各128family/512requests完了。80件全てを個別に読み、59新観察/同id-prefix-raw-stop21件だけ旧notesを再利用。原文/notes SHAと観察TSV、all32/3068入力・mass audit、review/completionを保存。独立人間blindなし。CPU既存全文paired集計でconditionalKL比は本文203悪化53改善/goldEOS160改善96悪化、元staged比は本文256改善/goldEOS201悪化55改善。末尾lossと生成一貫性を同一視しない。
+
+sumLLでbridge両極正答54→40/128（語彙42→33/64、構造12→7/64）、同じ候補を両文脈で選ぶfamily70→77/128、文脈反転方向のmargin shiftは98→98/128。旧retention両極正答33→20/128。停止の改善と文脈判断の悪化は両方記録し、対象語のprior変化と文脈応答の弱さをまだ区別できない。これだけでcontextを全く無視する/教師コピーだけが唯一原因と断定しない。
+
+可搬372text/15,569,125rawbytes、gzip2,739,302/SHAbfed0f3ce84e8f3d41edd01d4db92ec3facdb8afaca3d95623f9ba47b7780a27。全Windows raw/archive SHA一致、モデルtensorsと150MBcache/31GB原文はnativeのみ。科学GPU job0、元10B UI599823/同boot/start15623625の実identityとHTTP親410f975d…/10,000,007,168/busy=falseを確認。workspace stateと次のproposalはarchive後の別metadataとして保存。
+
+この単一gold-replay比較は終了し、係数/温度/normalizer/order/LR/source-weight/batchのvariant、自動延長、有利なCP探索、追加data量だけの学習へ進まない。次はcontext_prior_diagnostic_proposal.jsonの有限CPU診断（GPU0/最大180秒/8threads）だけ。実歴史親・staged CE・conditionalKL・gold replayの4checkpointに対し、既存bridge128/retention128の全encoded requestsをoriginal prefixとBOS2-onlyで測る。両条件を同じCPU FP32/math/eval/no-gradで再計算し、元GPU BF16とCPU FP32の数値を混ぜて引かない。target_ids/span/byte分母は同一のまま、family単位の元margin・候補prior margin・差による文脈寄与をsum/tokenmean/bytemean別に報告する。BOS-onlyの位置/文法差やshared generator/一部train形重複の限界を明記する。PMI補正を採用スコア/生成/品質基準の変更に使わない。
+
+次の具体作業はown read-only CPU commandとencoded target保持の確認→全4model/2suite/全256family/両contextの有限スコアとweights/RNG/eval/grad不変・elapsed台帳→原文family/category表。候補priorのoffsetと文脈応答の退行、または両方のどれが実際に支持されるかを調べ、結果から次の1つの有限Base比較/修正を定義する。診断のtimeoutでcapを拡張しない。品質pilot合格時だけ独立学習seed/full dev/protected testへ進む。既存relative/absolute/歴史Web guard、旧Phase0–3/数値7失敗を維持。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
 正解語でWeb本文を再学習する100M比較の実CUDA検証を完了・学習を開始（2026-10-06 JST）。前goal turnは終了済EOS成分比較と全評価の不採用をf684137へ保存したprogress。最新ユーザー境界を保ち、Baseだけを品質・独立学習seed/full dev/protected test/採用まで進め、実完成時に通知して停止する。Base未完了・未採用、Chat/Dialogue/SFT/量子化なし。
 
 hard_body_web_replay.pyとown trainer/resident adapterを実装。元10.5B親fullstate/Adam/scheduler/RNG/実LR.00001、main100M CE/Web75M-story5M-ordinary10M-conditional10Mの順序、同参照8x1024/親non-EOS mass重み/学生EOS3を除く4095語彙を保ち、soft distributionから実gold body label>=8のCEへ教師を変更。新hard target数とfloat probability massを別にhistory/checkpointへ保存する。新教材量0・既存train重複入力であり、同露出でもsoft対照とhard supervision情報量は同じではない。

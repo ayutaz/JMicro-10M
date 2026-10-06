@@ -1,0 +1,461 @@
+{
+  "status": "gold_Web_replay_CE100M_all80_and_cached_stagedCE100M_reviewed",
+  "created_at": "2026-10-06T07:52:57.694278Z",
+  "quality_screen_baseline": "cached-staged-CE23-EOS76-repetition2-all-original-gates",
+  "mechanism_comparison": {
+    "checks": {
+      "coherence_gain_at_least8": false,
+      "paired_CI_lower_above0": false,
+      "EOS_nonworsening": true,
+      "repetition_nonworsening": true,
+      "no_empty_role_unicode": true,
+      "BPB_gate": true,
+      "appropriate_completion_not_punctuation": true
+    },
+    "passed": false,
+    "difference_count": 6,
+    "CI95": [
+      0.0,
+      0.15
+    ]
+  },
+  "mechanism_summary": {
+    "BPB": 0.9830314888729699,
+    "rates": {
+      "outputs": 80,
+      "eos": 44,
+      "repetition": 20,
+      "unicode_failure": 0,
+      "role_leak": 0,
+      "empty": 0
+    },
+    "grammar2": 58,
+    "relevance2": 49,
+    "coherent": 11,
+    "appropriate": 28,
+    "generation_sha256": "c3805846c57796df38fe32c4ea4f4e7a834cc2ef62f4128348a5df5d00984db6",
+    "notes_sha256": "5be5a2e6914ff8ad35c089462b657298a91daec7deca6080acba86de13c55ba2",
+    "Japanese": {
+      "semantics": 0.5729166666666666,
+      "jblimp": 0.743202416918429,
+      "jcqa": 0.33958891867739055
+    },
+    "additional_teacher_tokens": 100000000,
+    "independent_human_blind": false
+  },
+  "all3068_main_and_reference_input_protocols_equal": true,
+  "previous_related_study_GPU_seconds": 795.3523048920615,
+  "summaries": {
+    "control": {
+      "BPB": 1.1336128657420816,
+      "rates": {
+        "outputs": 80,
+        "eos": 76,
+        "repetition": 2,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 65,
+      "relevance2": 39,
+      "coherent": 23,
+      "appropriate": 26,
+      "generation_sha256": "d5b5a7c6b5d971de9bc46c77f52ac5ea19132cab7b97f034c274974cdbe2620e",
+      "notes_sha256": "6b143e08096a1ee2365a643c008d5c009d2c2ff48dd1d42a9749ac5301766d2d",
+      "Japanese": {
+        "semantics": 0.5625,
+        "jblimp": 0.7824773413897281,
+        "jcqa": 0.26541554959785524
+      },
+      "additional_teacher_tokens": 100000000,
+      "independent_human_blind": false
+    },
+    "hard_body_web_replay": {
+      "BPB": 0.9855284349290349,
+      "rates": {
+        "outputs": 80,
+        "eos": 53,
+        "repetition": 15,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 45,
+      "relevance2": 56,
+      "coherent": 17,
+      "appropriate": 34,
+      "generation_sha256": "922f3fc83dd609d93ba9d61e51f41e39747f411e55fdd675f9ff544c58e92c84",
+      "notes_sha256": "b856804788da0b67ebf95ba5dd76787e9b644e1322bf322a7a56235a6113fcc5",
+      "Japanese": {
+        "semantics": 0.5677083333333334,
+        "jblimp": 0.770392749244713,
+        "jcqa": 0.3378016085790885
+      },
+      "additional_teacher_tokens": 100000000,
+      "independent_human_blind": false
+    }
+  },
+  "primary_comparison": "gold-body-CE-replay-vs-cached-conditionalKL-same-inputs",
+  "quality_comparison_baseline": "mandatory stronger stagedCE",
+  "quality_comparison": {
+    "checks": {
+      "coherence_gain_at_least8": false,
+      "paired_CI_lower_above0": false,
+      "EOS_nonworsening": false,
+      "repetition_nonworsening": false,
+      "no_empty_role_unicode": true,
+      "BPB_gate": true,
+      "appropriate_completion_not_punctuation": true
+    },
+    "passed": false,
+    "difference_count": -6,
+    "CI95": [
+      -0.2,
+      0.05
+    ]
+  },
+  "absolute_dev_screen": {
+    "grammar_at_least56": false,
+    "coherence_at_least27": false,
+    "appropriate_at_least27": true,
+    "EOS_at_least37": true,
+    "repetition_at_most18": true,
+    "no_empty_role_unicode": true
+  },
+  "original_Web": {
+    "EOS_at_least8_more": true,
+    "repetition_no_worse": true,
+    "no_empty_role_unicode": true,
+    "BPB_degradation_at_most1percent": false,
+    "no_punctuation_only_stops": true
+  },
+  "retained_source_checks": {
+    "all_four_source_cursors_and_accounting_equal": true,
+    "original_Web_cursor_retained": true,
+    "Web_blocks_consumed": 73421
+  },
+  "reference_accounting": {
+    "reference_hard_body_teacher_tokens": 25026383,
+    "combined_hard_teacher_positions": 125026383,
+    "reference_non_EOS_teacher_probability_mass": 24981892.629882812,
+    "frozen_parent_teacher_digest_verified": true,
+    "reference_cursor_blocks": 24544,
+    "reference_input_tokens": 25133056,
+    "reference_hard_body_target_positions": 25026383,
+    "ignored_special_positions": 106673,
+    "main_ordinary_CE_teacher_tokens": 100000000,
+    "combined_student_physical_input_tokens": 125665280,
+    "newly_prepared_source_tokens": 0,
+    "replay_overlaps_primary_Web": true,
+    "labels": "Main100M ordinary CE and auxiliary gold-body hard targets are separate. Same physical replay windows as conditionalKL, but different gold-word supervision; additional corpus0."
+  },
+  "eligible_for_final_Base_validation": false,
+  "transfer_aggregates": {
+    "control": {
+      "sum_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.65234375,
+          "both_correct": 59,
+          "same_unique_candidate": 49,
+          "aligned_context_margin_shift": 85
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.8984375,
+          "both_correct": 51,
+          "same_unique_candidate": 13,
+          "aligned_context_margin_shift": 64
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.40625,
+          "both_correct": 8,
+          "same_unique_candidate": 36,
+          "aligned_context_margin_shift": 21
+        }
+      },
+      "mean_token_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.65234375,
+          "both_correct": 59,
+          "same_unique_candidate": 49,
+          "aligned_context_margin_shift": 85
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.8984375,
+          "both_correct": 51,
+          "same_unique_candidate": 13,
+          "aligned_context_margin_shift": 64
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.40625,
+          "both_correct": 8,
+          "same_unique_candidate": 36,
+          "aligned_context_margin_shift": 21
+        }
+      },
+      "mean_byte_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.6640625,
+          "both_correct": 62,
+          "same_unique_candidate": 46,
+          "aligned_context_margin_shift": 85
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.8984375,
+          "both_correct": 51,
+          "same_unique_candidate": 13,
+          "aligned_context_margin_shift": 64
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.4296875,
+          "both_correct": 11,
+          "same_unique_candidate": 33,
+          "aligned_context_margin_shift": 21
+        }
+      }
+    },
+    "hard_body_web_replay": {
+      "sum_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.61328125,
+          "both_correct": 40,
+          "same_unique_candidate": 77,
+          "aligned_context_margin_shift": 98
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.7578125,
+          "both_correct": 33,
+          "same_unique_candidate": 31,
+          "aligned_context_margin_shift": 62
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.46875,
+          "both_correct": 7,
+          "same_unique_candidate": 46,
+          "aligned_context_margin_shift": 36
+        }
+      },
+      "mean_token_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.62890625,
+          "both_correct": 45,
+          "same_unique_candidate": 71,
+          "aligned_context_margin_shift": 95
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.78125,
+          "both_correct": 36,
+          "same_unique_candidate": 28,
+          "aligned_context_margin_shift": 62
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.4765625,
+          "both_correct": 9,
+          "same_unique_candidate": 43,
+          "aligned_context_margin_shift": 33
+        }
+      },
+      "mean_byte_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.63671875,
+          "both_correct": 48,
+          "same_unique_candidate": 67,
+          "aligned_context_margin_shift": 93
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.8203125,
+          "both_correct": 41,
+          "same_unique_candidate": 23,
+          "aligned_context_margin_shift": 62
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.453125,
+          "both_correct": 7,
+          "same_unique_candidate": 44,
+          "aligned_context_margin_shift": 31
+        }
+      }
+    }
+  },
+  "retention_aggregates": {
+    "control": {
+      "sum_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.62890625,
+          "both_correct": 36,
+          "same_unique_candidate": 89,
+          "aligned_context_margin_shift": 100
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.6953125,
+          "both_correct": 25,
+          "same_unique_candidate": 39,
+          "aligned_context_margin_shift": 54
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.5625,
+          "both_correct": 11,
+          "same_unique_candidate": 50,
+          "aligned_context_margin_shift": 46
+        }
+      },
+      "mean_token_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.65234375,
+          "both_correct": 42,
+          "same_unique_candidate": 83,
+          "aligned_context_margin_shift": 99
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.734375,
+          "both_correct": 30,
+          "same_unique_candidate": 34,
+          "aligned_context_margin_shift": 53
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.5703125,
+          "both_correct": 12,
+          "same_unique_candidate": 49,
+          "aligned_context_margin_shift": 46
+        }
+      },
+      "mean_byte_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.65625,
+          "both_correct": 43,
+          "same_unique_candidate": 82,
+          "aligned_context_margin_shift": 100
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.75,
+          "both_correct": 32,
+          "same_unique_candidate": 32,
+          "aligned_context_margin_shift": 54
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.5625,
+          "both_correct": 11,
+          "same_unique_candidate": 50,
+          "aligned_context_margin_shift": 46
+        }
+      }
+    },
+    "hard_body_web_replay": {
+      "sum_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.5625,
+          "both_correct": 20,
+          "same_unique_candidate": 104,
+          "aligned_context_margin_shift": 100
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.6171875,
+          "both_correct": 16,
+          "same_unique_candidate": 47,
+          "aligned_context_margin_shift": 49
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.5078125,
+          "both_correct": 4,
+          "same_unique_candidate": 57,
+          "aligned_context_margin_shift": 51
+        }
+      },
+      "mean_token_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.57421875,
+          "both_correct": 22,
+          "same_unique_candidate": 103,
+          "aligned_context_margin_shift": 100
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.6328125,
+          "both_correct": 18,
+          "same_unique_candidate": 45,
+          "aligned_context_margin_shift": 49
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.515625,
+          "both_correct": 4,
+          "same_unique_candidate": 58,
+          "aligned_context_margin_shift": 51
+        }
+      },
+      "mean_byte_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.58984375,
+          "both_correct": 26,
+          "same_unique_candidate": 99,
+          "aligned_context_margin_shift": 100
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.640625,
+          "both_correct": 18,
+          "same_unique_candidate": 46,
+          "aligned_context_margin_shift": 49
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.5390625,
+          "both_correct": 8,
+          "same_unique_candidate": 53,
+          "aligned_context_margin_shift": 51
+        }
+      }
+    }
+  },
+  "new_scientific_auxiliary_hard_body_teacher_tokens": 25026383,
+  "new_scientific_combined_hard_teacher_positions": 125026383,
+  "new_scientific_teacher_tokens": 100000000,
+  "reused_control_teacher_tokens": 100000000,
+  "verification_teacher_tokens": 1307967,
+  "GPU_seconds": 349.4322593070101,
+  "verification_reference_non_EOS_teacher_probability_mass": 325778.16796875,
+  "verification_reference_input_tokens": 327680,
+  "verification_reference_hard_positions": 326339,
+  "verification_GPU_seconds": 28.81082727899775,
+  "prior_probe_GPU_seconds": 0.0,
+  "result_sha256": "1a02f99177e8d9fe23e382d74651d1cc5cb20ac210498be857caf7e24a842e9e",
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "independent_human_blind": false,
+  "quality_criteria_unchanged": true,
+  "old_numerical7_preserved": true,
+  "limitations": "Gold words replace conditional soft distributions on identical replay windows, with identical frozen parent mass weights and non-EOS vocabulary. Main100M ordinary CE plus separately counted auxiliary gold-body teachers; not equal supervision/information to conditionalKL or plain stagedCE. New corpus0, train overlaps. One seed/nonblind repeated fixeddev; independent seed/full dev/protected test/adoption pending."
+}

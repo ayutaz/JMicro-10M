@@ -1,0 +1,105 @@
+{
+  "status": "one_read_only_context_prior_diagnostic_proposed_not_executed",
+  "created_at": "2026-10-06T07:56:15.5494225Z",
+  "trigger": {
+    "bridge_both_correct_54_to_40": true,
+    "retention_both_correct_33_to_20": true,
+    "bridge_same_unique_candidate_70_to_77": true,
+    "coherence_11_to_17_BPB_worse_not_qualified": true,
+    "current_completion": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/hard_body_web_replay_comparison_completion.json",
+      "sha256": "b6d93193c07f1f1c82df3efd50a7997ff1190aeed3efeb8b992b1af39d266338"
+    },
+    "bridge_aligned_context_shift_98_to_98": true
+  },
+  "hypothesis": "Gold replay improves EOS/repetition but worsens contextual discrimination. Aligned context-margin shifts stay98/128 while both-pole correctness falls54to40; a change in continuation prior may contribute along with context weakness. This is not proof of sole cause or that context is wholly ignored.",
+  "question": "With identical FP32 CPU likelihood for the original prefix and BOS-only context, how much of each candidate margin comes from context versus candidate prior, across actual historical parent, stagedCE, conditionalKL and gold-replay checkpoints?",
+  "checkpoints": {
+    "conditional_KL": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-decoupled-web-kl-comparison-20261006/eos_decoupled_web_kl/training/checkpoint-00323503.pt",
+      "sha256": "a27547b6223c3708d6dbf8c9f211631b44fb9518771ed7c08a89ae40506e1213"
+    },
+    "staged_CE": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323503.pt",
+      "sha256": "fb43f2618c0679ca6c6f7a0c5b9faf1b336be8985271c8513f2e4bbfde3cd7ae"
+    },
+    "gold_body_replay": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/hard-body-web-replay-comparison-20261006/hard_body_web_replay/training/checkpoint-00323503.pt",
+      "sha256": "c03d1d4a0071af756bc39591e0e457daac411e72c847437f8a1d6ba674e99235"
+    },
+    "historical_parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+      "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+    }
+  },
+  "references": {
+    "source_cases": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/transfer-probes.json",
+      "sha256": "4e9c11d18395b03aeeb8a9ac7caec86f8ef6f59ca598ca00bf14bac447f85823"
+    },
+    "review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/hard_body_web_replay_comparison_review.json",
+      "sha256": "cb16c30b77a42729eb62fca1686b52b53a081333591d0149775218ee2d2c139d"
+    },
+    "retention_cases": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/retention-probes.json",
+      "sha256": "daf92018a167c24db83a4d3bd029d45973bd7f34f3fd452f52419ccc0b651d83"
+    },
+    "scientific_config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/hard_body_web_replay_comparison.json",
+      "sha256": "69f48a2e7c2e6de551cc164d3c12b1a2c42df64679d0c35e97ce0f696b79f872"
+    },
+    "result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/hard-body-web-replay-comparison-20261006/compare-result.json",
+      "sha256": "1a02f99177e8d9fe23e382d74651d1cc5cb20ac210498be857caf7e24a842e9e"
+    }
+  },
+  "fixed_protocol": {
+    "precision": "Recompute original AND BOS-only scores under identical CPU FP32 math attention/eval/no-grad. Do not subtract cached GPU BF16 scores from CPU FP32 scores.",
+    "families_per_suite": 128,
+    "family_unit": "Compare two context poles of each same128 family, report prior margin and original-minus-prior context contribution. Correlated poles/metrics are not independent examples.",
+    "conditions": [
+      "exact original encoded prefix",
+      "BOS2 only followed by exact same stored target_ids"
+    ],
+    "requests_per_suite": 512,
+    "positions": "Target IDs and scored target spans must be unchanged; neutral prefix has context_tokens1. Preserve EOS inclusion/masking exactly as existing encoded request. Do not splice raw text and change candidate segmentation.",
+    "metrics": [
+      "sum_log_likelihood",
+      "mean_token_log_likelihood",
+      "mean_byte_log_likelihood"
+    ],
+    "checkpoints": 4,
+    "original_encoded_requests": 4096,
+    "suites": [
+      "bridge128",
+      "retention128"
+    ]
+  },
+  "total_CPU_ceiling_seconds": 180,
+  "CPU_threads": 8,
+  "GPU_seconds": 0,
+  "optimizer_updates": 0,
+  "new_prepared_corpus_tokens": 0,
+  "prior_related_GPU_seconds": 1173.5953914780694,
+  "completion_conditions": [
+    "Own read-only command implemented, CPU request-transform check with target span preservation",
+    "All4 frozen checkpoints/two suites/both contexts/exact target budgets accounted, finite scores and every family retained",
+    "Weights/RNG/eval/no-gradient invariant checks and runtime bound recorded; a timeout is a rejected diagnostic, never automatically enlarged",
+    "Raw per-request and per-family/per-category tables, continue existing stronger stagedCE/absolute/historical quality guards",
+    "Use results to define exactly one subsequent bounded Base learning comparison or repair; no automatic source/weight/order/LR/batch sweep"
+  ],
+  "interpretation_limits": [
+    "BOS-only is a neutral diagnostic reference, not a natural continuation context; position and grammar differ",
+    "Existing local probes share generator rules and some training forms; this is not independent language quality",
+    "PMI/context contribution may explain likelihood bias but cannot change greedy generation outcomes, grading, adoption metric, or quality acceptance",
+    "No decoder or prompt settings sweep, favorable checkpoint selection, dataset quantity expansion or more GPU training until this bounded question is resolved"
+  ],
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "next_action": "Implement own CPU context-prior diagnostic and verify encoded target preservation; run original and BOS-only under identical precision for all4 checkpoints/all256 families, within180seconds. Determine whether the measured discrimination regression is largely prior offset, context response loss, or both before selecting the next Base learning comparison."
+}

@@ -1,0 +1,8446 @@
+{
+  "binding": "{\"binding\": {\"arm\": \"hard_body_web_replay\", \"auxiliary_policy\": {\"coefficient\": 1.0, \"direction\": \"gold_to_student\", \"every_completed_update\": 1, \"kind\": \"frozen-parent-mass-weighted-gold-Web-body-non-EOS-CE-v1\", \"masked_targets\": \"Gold labels>=8; ignore EOS/BOS/role/padding target positions. Exclude EOS3 only from student vocabulary; retain all other vocabulary IDs.\", \"objective\": \"Mean over valid body positions: (1-parent_P(EOS3))*(-log student_P(gold|non-EOS)). Do not divide by probability mass.\", \"reference_batch\": 8, \"reference_context\": 1024, \"reference_teacher\": \"Immutable actual historical10.5B parent supplies detached non-EOS probability mass only, not soft targets.\", \"replay_policy\": \"separate fork of actual historical parent Web cursor; train only, overlaps first75M primary Web, never dev/test\", \"temperature\": 1.0}, \"config_sha256\": \"69f48a2e7c2e6de551cc164d3c12b1a2c42df64679d0c35e97ce0f696b79f872\", \"loss\": \"ordinary original body+EOS CE, outcome weight1\", \"optimizer_policy\": \"inherit\", \"original_web\": {\"manifest_sha256\": \"2edfd35bf077cd1aa583713c01341c0db52f39adc5701f30ede0aacae840b2de\", \"path\": \"/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2/export-001/shards\"}, \"outcome_weight\": 1, \"parent\": {\"path\": \"/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt\", \"sha256\": \"d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4\"}, \"peak_lr\": 1e-05, \"positive_manifest_sha256\": \"154f13da4a817aaa21586fba2cd335faea7c79358be410e73166f5d0052bf936\", \"reference_teacher\": {\"path\": \"/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt\", \"sha256\": \"d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4\"}, \"sampler_policy\": \"Same historical fullstate/actualLR.00001/main staged100M streams as cached control, plus separately counted parent-mass-weighted gold Web body CE replay. Main and reference cursors separate; no reheat/reset/new corpus.\", \"short_manifest_sha256\": \"8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133\", \"study_kind\": \"historical_parent_staged_CE_parent_mass_weighted_gold_Web_body_replay_100M\", \"teacher_goals\": {\"conditional_textbook\": 10000000, \"ordinary_textbook\": 10000000, \"story\": 5000000, \"web\": 75000000}}, \"checkpoint_sha256\": \"c03d1d4a0071af756bc39591e0e457daac411e72c847437f8a1d6ba674e99235\"}",
+  "rows": [
+    {
+      "id": "negation-00-0",
+      "family": "negation-00",
+      "category": "negation",
+      "split": "dev",
+      "context": "太郎は今日、りんごを買った。今日太郎が買った物について言えば、\n",
+      "choices": [
+        "りんごを買った。",
+        "りんごを買わなかった。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -5.067495224764571,
+        -5.4381174796726555
+      ],
+      "raw_log_likelihood": [
+        -5.067495224764571,
+        -5.4381174796726555
+      ],
+      "target_tokens": [
+        7,
+        8
+      ],
+      "token_normalized": [
+        -0.7239278892520815,
+        -0.6797646849590819
+      ],
+      "train_sample_slor": [
+        5.190385771924284,
+        5.4723866296988195
+      ],
+      "unigram_scores": [
+        -41.400195628234556,
+        -49.21721051726321
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "negation-00-1",
+      "family": "negation-00",
+      "category": "negation",
+      "split": "dev",
+      "context": "太郎は今日、りんごを買わなかった。今日太郎が買った物について言えば、\n",
+      "choices": [
+        "りんごを買った。",
+        "りんごを買わなかった。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -7.151270611444488,
+        -2.117588985012844
+      ],
+      "raw_log_likelihood": [
+        -7.151270611444488,
+        -2.117588985012844
+      ],
+      "target_tokens": [
+        7,
+        8
+      ],
+      "token_normalized": [
+        -1.0216100873492127,
+        -0.2646986231266055
+      ],
+      "train_sample_slor": [
+        4.892703573827153,
+        5.887452691531296
+      ],
+      "unigram_scores": [
+        -41.400195628234556,
+        -49.21721051726321
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "negation-01-0",
+      "family": "negation-01",
+      "category": "negation",
+      "split": "dev",
+      "context": "花子は今日、みかんを買った。今日花子が買った物について言えば、\n",
+      "choices": [
+        "みかんを買わなかった。",
+        "みかんを買った。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -5.591357743367553,
+        -5.168787343427539
+      ],
+      "raw_log_likelihood": [
+        -5.591357743367553,
+        -5.168787343427539
+      ],
+      "target_tokens": [
+        8,
+        7
+      ],
+      "token_normalized": [
+        -0.6989197179209441,
+        -0.7383981919182199
+      ],
+      "train_sample_slor": [
+        5.35093259564858,
+        5.0590023251571425
+      ],
+      "unigram_scores": [
+        -48.39881850855619,
+        -40.581803619527534
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "negation-01-1",
+      "family": "negation-01",
+      "category": "negation",
+      "split": "dev",
+      "context": "花子は今日、みかんを買わなかった。今日花子が買った物について言えば、\n",
+      "choices": [
+        "みかんを買わなかった。",
+        "みかんを買った。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -2.217093164101243,
+        -6.962326776236296
+      ],
+      "raw_log_likelihood": [
+        -2.217093164101243,
+        -6.962326776236296
+      ],
+      "target_tokens": [
+        8,
+        7
+      ],
+      "token_normalized": [
+        -0.2771366455126554,
+        -0.9946181108908994
+      ],
+      "train_sample_slor": [
+        5.772715668056868,
+        4.802782406184463
+      ],
+      "unigram_scores": [
+        -48.39881850855619,
+        -40.581803619527534
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "negation-02-0",
+      "family": "negation-02",
+      "category": "negation",
+      "split": "dev",
+      "context": "健太は今日、本を買った。今日健太が買った物について言えば、\n",
+      "choices": [
+        "本を買った。",
+        "本を買わなかった。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -10.514160603284836,
+        -10.480536550283432
+      ],
+      "raw_log_likelihood": [
+        -10.514160603284836,
+        -10.480536550283432
+      ],
+      "target_tokens": [
+        5,
+        6
+      ],
+      "token_normalized": [
+        -2.1028321206569673,
+        -1.7467560917139053
+      ],
+      "train_sample_slor": [
+        3.7180193058420534,
+        4.40678924520672
+      ],
+      "unigram_scores": [
+        -29.104257132495103,
+        -36.92127202152375
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "negation-02-1",
+      "family": "negation-02",
+      "category": "negation",
+      "split": "dev",
+      "context": "健太は今日、本を買わなかった。今日健太が買った物について言えば、\n",
+      "choices": [
+        "本を買った。",
+        "本を買わなかった。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -11.173494935035706,
+        -6.351133678108454
+      ],
+      "raw_log_likelihood": [
+        -11.173494935035706,
+        -6.351133678108454
+      ],
+      "target_tokens": [
+        5,
+        6
+      ],
+      "token_normalized": [
+        -2.234698987007141,
+        -1.0585222796847422
+      ],
+      "train_sample_slor": [
+        3.5861524394918796,
+        5.095023057235882
+      ],
+      "unigram_scores": [
+        -29.104257132495103,
+        -36.92127202152375
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "negation-03-0",
+      "family": "negation-03",
+      "category": "negation",
+      "split": "dev",
+      "context": "美咲は今日、鉛筆を買った。今日美咲が買った物について言えば、\n",
+      "choices": [
+        "鉛筆を買わなかった。",
+        "鉛筆を買った。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -7.46587002556771,
+        -7.200232255272567
+      ],
+      "raw_log_likelihood": [
+        -7.46587002556771,
+        -7.200232255272567
+      ],
+      "target_tokens": [
+        7,
+        6
+      ],
+      "token_normalized": [
+        -1.0665528607953871,
+        -1.2000387092120945
+      ],
+      "train_sample_slor": [
+        6.097412142667518,
+        5.855084646656521
+      ],
+      "unigram_scores": [
+        -50.14775502424034,
+        -42.33074013521169
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "negation-03-1",
+      "family": "negation-03",
+      "category": "negation",
+      "split": "dev",
+      "context": "美咲は今日、鉛筆を買わなかった。今日美咲が買った物について言えば、\n",
+      "choices": [
+        "鉛筆を買わなかった。",
+        "鉛筆を買った。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -4.790216361172497,
+        -9.325772351585329
+      ],
+      "raw_log_likelihood": [
+        -4.790216361172497,
+        -9.325772351585329
+      ],
+      "target_tokens": [
+        7,
+        6
+      ],
+      "token_normalized": [
+        -0.6843166230246425,
+        -1.5542953919308882
+      ],
+      "train_sample_slor": [
+        6.479648380438263,
+        5.500827963937727
+      ],
+      "unigram_scores": [
+        -50.14775502424034,
+        -42.33074013521169
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "negation-05-0",
+      "family": "negation-05",
+      "category": "negation",
+      "split": "dev",
+      "context": "洋介は今日、りんごを買った。今日洋介が買った物について言えば、\n",
+      "choices": [
+        "りんごを買わなかった。",
+        "りんごを買った。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -5.120805118931457,
+        -4.561755907488987
+      ],
+      "raw_log_likelihood": [
+        -5.120805118931457,
+        -4.561755907488987
+      ],
+      "target_tokens": [
+        8,
+        7
+      ],
+      "token_normalized": [
+        -0.6401006398664322,
+        -0.6516794153555695
+      ],
+      "train_sample_slor": [
+        5.512050674791469,
+        5.262634245820796
+      ],
+      "unigram_scores": [
+        -49.21721051726321,
+        -41.400195628234556
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "negation-05-1",
+      "family": "negation-05",
+      "category": "negation",
+      "split": "dev",
+      "context": "洋介は今日、りんごを買わなかった。今日洋介が買った物について言えば、\n",
+      "choices": [
+        "りんごを買わなかった。",
+        "りんごを買った。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -2.068240281427279,
+        -6.996911142254248
+      ],
+      "raw_log_likelihood": [
+        -2.068240281427279,
+        -6.996911142254248
+      ],
+      "target_tokens": [
+        8,
+        7
+      ],
+      "token_normalized": [
+        -0.2585300351784099,
+        -0.9995587346077498
+      ],
+      "train_sample_slor": [
+        5.8936212794794915,
+        4.914754926568615
+      ],
+      "unigram_scores": [
+        -49.21721051726321,
+        -41.400195628234556
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "negation-06-0",
+      "family": "negation-06",
+      "category": "negation",
+      "split": "dev",
+      "context": "真理は今日、みかんを買った。今日真理が買った物について言えば、\n",
+      "choices": [
+        "みかんを買った。",
+        "みかんを買わなかった。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -5.736619306728244,
+        -7.526547787711024
+      ],
+      "raw_log_likelihood": [
+        -5.736619306728244,
+        -7.526547787711024
+      ],
+      "target_tokens": [
+        7,
+        8
+      ],
+      "token_normalized": [
+        -0.8195170438183206,
+        -0.940818473463878
+      ],
+      "train_sample_slor": [
+        4.977883473257042,
+        5.109033840105646
+      ],
+      "unigram_scores": [
+        -40.581803619527534,
+        -48.39881850855619
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "negation-06-1",
+      "family": "negation-06",
+      "category": "negation",
+      "split": "dev",
+      "context": "真理は今日、みかんを買わなかった。今日真理が買った物について言えば、\n",
+      "choices": [
+        "みかんを買った。",
+        "みかんを買わなかった。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -7.7923411298543215,
+        -4.025364508852363
+      ],
+      "raw_log_likelihood": [
+        -7.7923411298543215,
+        -4.025364508852363
+      ],
+      "target_tokens": [
+        7,
+        8
+      ],
+      "token_normalized": [
+        -1.1131915899791889,
+        -0.5031705636065453
+      ],
+      "train_sample_slor": [
+        4.684208927096173,
+        5.546681749962978
+      ],
+      "unigram_scores": [
+        -40.581803619527534,
+        -48.39881850855619
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "negation-07-0",
+      "family": "negation-07",
+      "category": "negation",
+      "split": "dev",
+      "context": "翔太は今日、本を買った。今日翔太が買った物について言えば、\n",
+      "choices": [
+        "本を買わなかった。",
+        "本を買った。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -10.708015784621239,
+        -10.626501068472862
+      ],
+      "raw_log_likelihood": [
+        -10.708015784621239,
+        -10.626501068472862
+      ],
+      "target_tokens": [
+        6,
+        5
+      ],
+      "token_normalized": [
+        -1.7846692974368732,
+        -2.1253002136945724
+      ],
+      "train_sample_slor": [
+        4.368876039483752,
+        3.6955512128044483
+      ],
+      "unigram_scores": [
+        -36.92127202152375,
+        -29.104257132495103
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "negation-07-1",
+      "family": "negation-07",
+      "category": "negation",
+      "split": "dev",
+      "context": "翔太は今日、本を買わなかった。今日翔太が買った物について言えば、\n",
+      "choices": [
+        "本を買わなかった。",
+        "本を買った。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -6.635766224935651,
+        -11.19879512861371
+      ],
+      "raw_log_likelihood": [
+        -6.635766224935651,
+        -11.19879512861371
+      ],
+      "target_tokens": [
+        6,
+        5
+      ],
+      "token_normalized": [
+        -1.1059610374892752,
+        -2.239759025722742
+      ],
+      "train_sample_slor": [
+        5.04758429943135,
+        3.5810924007762788
+      ],
+      "unigram_scores": [
+        -36.92127202152375,
+        -29.104257132495103
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "negation-08-0",
+      "family": "negation-08",
+      "category": "negation",
+      "split": "dev",
+      "context": "明子は今日、鉛筆を買った。今日明子が買った物について言えば、\n",
+      "choices": [
+        "鉛筆を買った。",
+        "鉛筆を買わなかった。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -8.950959965353832,
+        -7.910492256050929
+      ],
+      "raw_log_likelihood": [
+        -8.950959965353832,
+        -7.910492256050929
+      ],
+      "target_tokens": [
+        6,
+        7
+      ],
+      "token_normalized": [
+        -1.4918266608923052,
+        -1.13007032229299
+      ],
+      "train_sample_slor": [
+        5.56329669497631,
+        6.033894681169916
+      ],
+      "unigram_scores": [
+        -42.33074013521169,
+        -50.14775502424034
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "negation-08-1",
+      "family": "negation-08",
+      "category": "negation",
+      "split": "dev",
+      "context": "明子は今日、鉛筆を買わなかった。今日明子が買った物について言えば、\n",
+      "choices": [
+        "鉛筆を買った。",
+        "鉛筆を買わなかった。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -10.720827982760966,
+        -5.541553038172424
+      ],
+      "raw_log_likelihood": [
+        -10.720827982760966,
+        -5.541553038172424
+      ],
+      "target_tokens": [
+        6,
+        7
+      ],
+      "token_normalized": [
+        -1.7868046637934942,
+        -0.791650434024632
+      ],
+      "train_sample_slor": [
+        5.268318692075121,
+        6.372314569438274
+      ],
+      "unigram_scores": [
+        -42.33074013521169,
+        -50.14775502424034
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "negation-10-0",
+      "family": "negation-10",
+      "category": "negation",
+      "split": "dev",
+      "context": "拓也は今日、りんごを買った。今日拓也が買った物について言えば、\n",
+      "choices": [
+        "りんごを買った。",
+        "りんごを買わなかった。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -5.480027563869953,
+        -5.613868735730648
+      ],
+      "raw_log_likelihood": [
+        -5.480027563869953,
+        -5.613868735730648
+      ],
+      "target_tokens": [
+        7,
+        8
+      ],
+      "token_normalized": [
+        -0.7828610805528504,
+        -0.701733591966331
+      ],
+      "train_sample_slor": [
+        5.131452580623515,
+        5.45041772269157
+      ],
+      "unigram_scores": [
+        -41.400195628234556,
+        -49.21721051726321
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "negation-10-1",
+      "family": "negation-10",
+      "category": "negation",
+      "split": "dev",
+      "context": "拓也は今日、りんごを買わなかった。今日拓也が買った物について言えば、\n",
+      "choices": [
+        "りんごを買った。",
+        "りんごを買わなかった。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -7.767620935570449,
+        -2.368537521455437
+      ],
+      "raw_log_likelihood": [
+        -7.767620935570449,
+        -2.368537521455437
+      ],
+      "target_tokens": [
+        7,
+        8
+      ],
+      "token_normalized": [
+        -1.1096601336529213,
+        -0.2960671901819296
+      ],
+      "train_sample_slor": [
+        4.804653527523444,
+        5.856084124475972
+      ],
+      "unigram_scores": [
+        -41.400195628234556,
+        -49.21721051726321
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "negation-11-0",
+      "family": "negation-11",
+      "category": "negation",
+      "split": "dev",
+      "context": "恵子は今日、みかんを買った。今日恵子が買った物について言えば、\n",
+      "choices": [
+        "みかんを買わなかった。",
+        "みかんを買った。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -6.458299990743399,
+        -6.047653388231993
+      ],
+      "raw_log_likelihood": [
+        -6.458299990743399,
+        -6.047653388231993
+      ],
+      "target_tokens": [
+        8,
+        7
+      ],
+      "token_normalized": [
+        -0.8072874988429248,
+        -0.8639504840331418
+      ],
+      "train_sample_slor": [
+        5.242564814726599,
+        4.93345003304222
+      ],
+      "unigram_scores": [
+        -48.39881850855619,
+        -40.581803619527534
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "negation-11-1",
+      "family": "negation-11",
+      "category": "negation",
+      "split": "dev",
+      "context": "恵子は今日、みかんを買わなかった。今日恵子が買った物について言えば、\n",
+      "choices": [
+        "みかんを買わなかった。",
+        "みかんを買った。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -2.7652689665555954,
+        -7.671261318027973
+      ],
+      "raw_log_likelihood": [
+        -2.7652689665555954,
+        -7.671261318027973
+      ],
+      "target_tokens": [
+        8,
+        7
+      ],
+      "token_normalized": [
+        -0.3456586208194494,
+        -1.0958944740039962
+      ],
+      "train_sample_slor": [
+        5.704193692750074,
+        4.701506043071366
+      ],
+      "unigram_scores": [
+        -48.39881850855619,
+        -40.581803619527534
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "negation-12-0",
+      "family": "negation-12",
+      "category": "negation",
+      "split": "dev",
+      "context": "直樹は今日、本を買った。今日直樹が買った物について言えば、\n",
+      "choices": [
+        "本を買った。",
+        "本を買わなかった。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -9.974383145570755,
+        -9.994877696037292
+      ],
+      "raw_log_likelihood": [
+        -9.974383145570755,
+        -9.994877696037292
+      ],
+      "target_tokens": [
+        5,
+        6
+      ],
+      "token_normalized": [
+        -1.994876629114151,
+        -1.6658129493395488
+      ],
+      "train_sample_slor": [
+        3.8259747973848697,
+        4.487732387581076
+      ],
+      "unigram_scores": [
+        -29.104257132495103,
+        -36.92127202152375
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "negation-12-1",
+      "family": "negation-12",
+      "category": "negation",
+      "split": "dev",
+      "context": "直樹は今日、本を買わなかった。今日直樹が買った物について言えば、\n",
+      "choices": [
+        "本を買った。",
+        "本を買わなかった。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -10.907802827656269,
+        -6.15003383345902
+      ],
+      "raw_log_likelihood": [
+        -10.907802827656269,
+        -6.15003383345902
+      ],
+      "target_tokens": [
+        5,
+        6
+      ],
+      "token_normalized": [
+        -2.181560565531254,
+        -1.0250056389098365
+      ],
+      "train_sample_slor": [
+        3.6392908609677668,
+        5.128539698010788
+      ],
+      "unigram_scores": [
+        -29.104257132495103,
+        -36.92127202152375
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "negation-13-0",
+      "family": "negation-13",
+      "category": "negation",
+      "split": "dev",
+      "context": "遥は今日、鉛筆を買った。今日遥が買った物について言えば、\n",
+      "choices": [
+        "鉛筆を買わなかった。",
+        "鉛筆を買った。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -7.689694429282099,
+        -8.252520556095988
+      ],
+      "raw_log_likelihood": [
+        -7.689694429282099,
+        -8.252520556095988
+      ],
+      "target_tokens": [
+        7,
+        6
+      ],
+      "token_normalized": [
+        -1.0985277756117284,
+        -1.3754200926826645
+      ],
+      "train_sample_slor": [
+        6.065437227851177,
+        5.67970326318595
+      ],
+      "unigram_scores": [
+        -50.14775502424034,
+        -42.33074013521169
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "negation-13-1",
+      "family": "negation-13",
+      "category": "negation",
+      "split": "dev",
+      "context": "遥は今日、鉛筆を買わなかった。今日遥が買った物について言えば、\n",
+      "choices": [
+        "鉛筆を買わなかった。",
+        "鉛筆を買った。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -5.1971508513670415,
+        -9.807614614022896
+      ],
+      "raw_log_likelihood": [
+        -5.1971508513670415,
+        -9.807614614022896
+      ],
+      "target_tokens": [
+        7,
+        6
+      ],
+      "token_normalized": [
+        -0.742450121623863,
+        -1.6346024356704827
+      ],
+      "train_sample_slor": [
+        6.421514881839043,
+        5.420520920198133
+      ],
+      "unigram_scores": [
+        -50.14775502424034,
+        -42.33074013521169
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "negation-15-0",
+      "family": "negation-15",
+      "category": "negation",
+      "split": "dev",
+      "context": "彩は今日、りんごを買った。今日彩が買った物について言えば、\n",
+      "choices": [
+        "りんごを買わなかった。",
+        "りんごを買った。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -6.528725989279337,
+        -5.549452826497145
+      ],
+      "raw_log_likelihood": [
+        -6.528725989279337,
+        -5.549452826497145
+      ],
+      "target_tokens": [
+        8,
+        7
+      ],
+      "token_normalized": [
+        -0.8160907486599172,
+        -0.7927789752138779
+      ],
+      "train_sample_slor": [
+        5.336060565997984,
+        5.121534685962487
+      ],
+      "unigram_scores": [
+        -49.21721051726321,
+        -41.400195628234556
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "negation-15-1",
+      "family": "negation-15",
+      "category": "negation",
+      "split": "dev",
+      "context": "彩は今日、りんごを買わなかった。今日彩が買った物について言えば、\n",
+      "choices": [
+        "りんごを買わなかった。",
+        "りんごを買った。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -2.4352324759820476,
+        -7.417659729369916
+      ],
+      "raw_log_likelihood": [
+        -2.4352324759820476,
+        -7.417659729369916
+      ],
+      "target_tokens": [
+        8,
+        7
+      ],
+      "token_normalized": [
+        -0.30440405949775595,
+        -1.0596656756242737
+      ],
+      "train_sample_slor": [
+        5.8477472551601455,
+        4.854647985552091
+      ],
+      "unigram_scores": [
+        -49.21721051726321,
+        -41.400195628234556
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "negation-16-0",
+      "family": "negation-16",
+      "category": "negation",
+      "split": "dev",
+      "context": "和也は今日、みかんを買った。今日和也が買った物について言えば、\n",
+      "choices": [
+        "みかんを買った。",
+        "みかんを買わなかった。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -5.515686463564634,
+        -5.9181818552315235
+      ],
+      "raw_log_likelihood": [
+        -5.515686463564634,
+        -5.9181818552315235
+      ],
+      "target_tokens": [
+        7,
+        8
+      ],
+      "token_normalized": [
+        -0.7879552090806621,
+        -0.7397727319039404
+      ],
+      "train_sample_slor": [
+        5.0094453079947,
+        5.310079581665583
+      ],
+      "unigram_scores": [
+        -40.581803619527534,
+        -48.39881850855619
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "negation-16-1",
+      "family": "negation-16",
+      "category": "negation",
+      "split": "dev",
+      "context": "和也は今日、みかんを買わなかった。今日和也が買った物について言えば、\n",
+      "choices": [
+        "みかんを買った。",
+        "みかんを買わなかった。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -7.188018685206771,
+        -2.3729917854070663
+      ],
+      "raw_log_likelihood": [
+        -7.188018685206771,
+        -2.3729917854070663
+      ],
+      "target_tokens": [
+        7,
+        8
+      ],
+      "token_normalized": [
+        -1.0268598121723957,
+        -0.2966239731758833
+      ],
+      "train_sample_slor": [
+        4.770540704902966,
+        5.75322834039364
+      ],
+      "unigram_scores": [
+        -40.581803619527534,
+        -48.39881850855619
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "negation-17-0",
+      "family": "negation-17",
+      "category": "negation",
+      "split": "dev",
+      "context": "陽子は今日、本を買った。今日陽子が買った物について言えば、\n",
+      "choices": [
+        "本を買わなかった。",
+        "本を買った。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -9.764514289796352,
+        -9.214531727135181
+      ],
+      "raw_log_likelihood": [
+        -9.764514289796352,
+        -9.214531727135181
+      ],
+      "target_tokens": [
+        6,
+        5
+      ],
+      "token_normalized": [
+        -1.627419048299392,
+        -1.8429063454270362
+      ],
+      "train_sample_slor": [
+        4.526126288621232,
+        3.9779450810719843
+      ],
+      "unigram_scores": [
+        -36.92127202152375,
+        -29.104257132495103
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "negation-17-1",
+      "family": "negation-17",
+      "category": "negation",
+      "split": "dev",
+      "context": "陽子は今日、本を買わなかった。今日陽子が買った物について言えば、\n",
+      "choices": [
+        "本を買わなかった。",
+        "本を買った。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -5.755818722769618,
+        -10.164165802299976
+      ],
+      "raw_log_likelihood": [
+        -5.755818722769618,
+        -10.164165802299976
+      ],
+      "target_tokens": [
+        6,
+        5
+      ],
+      "token_normalized": [
+        -0.959303120461603,
+        -2.032833160459995
+      ],
+      "train_sample_slor": [
+        5.194242216459021,
+        3.7880182660390256
+      ],
+      "unigram_scores": [
+        -36.92127202152375,
+        -29.104257132495103
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "negation-18-0",
+      "family": "negation-18",
+      "category": "negation",
+      "split": "dev",
+      "context": "大輔は今日、鉛筆を買った。今日大輔が買った物について言えば、\n",
+      "choices": [
+        "鉛筆を買った。",
+        "鉛筆を買わなかった。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -8.418644707649946,
+        -7.893217336386442
+      ],
+      "raw_log_likelihood": [
+        -8.418644707649946,
+        -7.893217336386442
+      ],
+      "target_tokens": [
+        6,
+        7
+      ],
+      "token_normalized": [
+        -1.403107451274991,
+        -1.1276024766266346
+      ],
+      "train_sample_slor": [
+        5.6520159045936245,
+        6.036362526836271
+      ],
+      "unigram_scores": [
+        -42.33074013521169,
+        -50.14775502424034
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "negation-18-1",
+      "family": "negation-18",
+      "category": "negation",
+      "split": "dev",
+      "context": "大輔は今日、鉛筆を買わなかった。今日大輔が買った物について言えば、\n",
+      "choices": [
+        "鉛筆を買った。",
+        "鉛筆を買わなかった。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -10.721038460964337,
+        -5.354638129705563
+      ],
+      "raw_log_likelihood": [
+        -10.721038460964337,
+        -5.354638129705563
+      ],
+      "target_tokens": [
+        6,
+        7
+      ],
+      "token_normalized": [
+        -1.7868397434940562,
+        -0.7649483042436519
+      ],
+      "train_sample_slor": [
+        5.268283612374559,
+        6.399016699219254
+      ],
+      "unigram_scores": [
+        -42.33074013521169,
+        -50.14775502424034
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "quantity-00-0",
+      "family": "quantity-00",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱にりんごが2個あった。1個を追加した。今、箱の中にあるりんごは、\n",
+      "choices": [
+        "3個だ。",
+        "5個だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -8.19331532344222,
+        -9.25596906710416
+      ],
+      "raw_log_likelihood": [
+        -8.19331532344222,
+        -9.25596906710416
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.048328830860555,
+        -2.31399226677604
+      ],
+      "train_sample_slor": [
+        4.198972996308052,
+        4.028662596554161
+      ],
+      "unigram_scores": [
+        -24.98920730867443,
+        -25.370619453320806
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "quantity-00-1",
+      "family": "quantity-00",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱にりんごが4個あった。1個を追加した。今、箱の中にあるりんごは、\n",
+      "choices": [
+        "3個だ。",
+        "5個だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -7.7836721036583185,
+        -8.51100708404556
+      ],
+      "raw_log_likelihood": [
+        -7.7836721036583185,
+        -8.51100708404556
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.9459180259145796,
+        -2.12775177101139
+      ],
+      "train_sample_slor": [
+        4.301383801254028,
+        4.214903092318812
+      ],
+      "unigram_scores": [
+        -24.98920730867443,
+        -25.370619453320806
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "quantity-01-0",
+      "family": "quantity-01",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱にみかんが3個あった。2個を追加した。今、箱の中にあるみかんは、\n",
+      "choices": [
+        "9個だ。",
+        "5個だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -10.269172120839357,
+        -8.92394697573036
+      ],
+      "raw_log_likelihood": [
+        -10.269172120839357,
+        -8.92394697573036
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.5672930302098393,
+        -2.23098674393259
+      ],
+      "train_sample_slor": [
+        3.860579197821246,
+        4.111668119397612
+      ],
+      "unigram_scores": [
+        -25.71148891212434,
+        -25.370619453320806
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "quantity-01-1",
+      "family": "quantity-01",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱にみかんが7個あった。2個を追加した。今、箱の中にあるみかんは、\n",
+      "choices": [
+        "9個だ。",
+        "5個だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -9.292475713416934,
+        -8.33717742934823
+      ],
+      "raw_log_likelihood": [
+        -9.292475713416934,
+        -8.33717742934823
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.3231189283542335,
+        -2.0842943573370576
+      ],
+      "train_sample_slor": [
+        4.104753299676852,
+        4.258360505993144
+      ],
+      "unigram_scores": [
+        -25.71148891212434,
+        -25.370619453320806
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "quantity-02-0",
+      "family": "quantity-02",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱に本が4個あった。3個を追加した。今、箱の中にある本は、\n",
+      "choices": [
+        "7個だ。",
+        "13個だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -10.437183255329728,
+        -11.742527337744832
+      ],
+      "raw_log_likelihood": [
+        -10.437183255329728,
+        -11.742527337744832
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.609295813832432,
+        -2.935631834436208
+      ],
+      "train_sample_slor": [
+        3.8358705415370524,
+        3.899630875627609
+      ],
+      "unigram_scores": [
+        -25.780665421477938,
+        -27.341050840255267
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "quantity-02-1",
+      "family": "quantity-02",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱に本が10個あった。3個を追加した。今、箱の中にある本は、\n",
+      "choices": [
+        "7個だ。",
+        "13個だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -10.162918530404568,
+        -10.30780771188438
+      ],
+      "raw_log_likelihood": [
+        -10.162918530404568,
+        -10.30780771188438
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.540729632601142,
+        -2.576951927971095
+      ],
+      "train_sample_slor": [
+        3.9044367227683425,
+        4.258310782092722
+      ],
+      "unigram_scores": [
+        -25.780665421477938,
+        -27.341050840255267
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "quantity-03-0",
+      "family": "quantity-03",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱に鉛筆が5個あった。4個を追加した。今、箱の中にある鉛筆は、\n",
+      "choices": [
+        "17個だ。",
+        "9個だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -10.570346573367715,
+        -9.279274471104145
+      ],
+      "raw_log_likelihood": [
+        -10.570346573367715,
+        -9.279274471104145
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.6425866433419287,
+        -2.3198186177760363
+      ],
+      "train_sample_slor": [
+        4.116892112633483,
+        4.108053610255049
+      ],
+      "unigram_scores": [
+        -27.037915023901647,
+        -25.71148891212434
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "quantity-03-1",
+      "family": "quantity-03",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱に鉛筆が13個あった。4個を追加した。今、箱の中にある鉛筆は、\n",
+      "choices": [
+        "17個だ。",
+        "9個だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -9.694201365113258,
+        -8.971304539591074
+      ],
+      "raw_log_likelihood": [
+        -9.694201365113258,
+        -8.971304539591074
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.4235503412783146,
+        -2.2428261348977685
+      ],
+      "train_sample_slor": [
+        4.335928414697097,
+        4.185046093133317
+      ],
+      "unigram_scores": [
+        -27.037915023901647,
+        -25.71148891212434
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "quantity-05-0",
+      "family": "quantity-05",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱にりんごが7個あった。2個を追加した。今、箱の中にあるりんごは、\n",
+      "choices": [
+        "13個だ。",
+        "9個だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -10.176043718121946,
+        -8.86209374293685
+      ],
+      "raw_log_likelihood": [
+        -10.176043718121946,
+        -8.86209374293685
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.5440109295304865,
+        -2.2155234357342124
+      ],
+      "train_sample_slor": [
+        4.29125178053333,
+        4.212348792296873
+      ],
+      "unigram_scores": [
+        -27.341050840255267,
+        -25.71148891212434
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "quantity-05-1",
+      "family": "quantity-05",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱にりんごが11個あった。2個を追加した。今、箱の中にあるりんごは、\n",
+      "choices": [
+        "13個だ。",
+        "9個だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -9.358969384338707,
+        -9.004948858637363
+      ],
+      "raw_log_likelihood": [
+        -9.358969384338707,
+        -9.004948858637363
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.3397423460846767,
+        -2.2512372146593407
+      ],
+      "train_sample_slor": [
+        4.49552036397914,
+        4.176635013371745
+      ],
+      "unigram_scores": [
+        -27.341050840255267,
+        -25.71148891212434
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "quantity-06-0",
+      "family": "quantity-06",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱にみかんが8個あった。3個を追加した。今、箱の中にあるみかんは、\n",
+      "choices": [
+        "11個だ。",
+        "17個だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -10.314931007102132,
+        -10.403623018879443
+      ],
+      "raw_log_likelihood": [
+        -10.314931007102132,
+        -10.403623018879443
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.578732751775533,
+        -2.600905754719861
+      ],
+      "train_sample_slor": [
+        4.1753565739311345,
+        4.158573001255551
+      ],
+      "unigram_scores": [
+        -27.01635730282667,
+        -27.037915023901647
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "quantity-06-1",
+      "family": "quantity-06",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱にみかんが14個あった。3個を追加した。今、箱の中にあるみかんは、\n",
+      "choices": [
+        "11個だ。",
+        "17個だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -10.279117438010871,
+        -9.97814160399139
+      ],
+      "raw_log_likelihood": [
+        -10.279117438010871,
+        -9.97814160399139
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.569779359502718,
+        -2.4945354009978473
+      ],
+      "train_sample_slor": [
+        4.18430996620395,
+        4.264943354977564
+      ],
+      "unigram_scores": [
+        -27.01635730282667,
+        -27.037915023901647
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "quantity-07-0",
+      "family": "quantity-07",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱に本が9個あった。4個を追加した。今、箱の中にある本は、\n",
+      "choices": [
+        "21個だ。",
+        "13個だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -12.306347228586674,
+        -10.478209732100368
+      ],
+      "raw_log_likelihood": [
+        -12.306347228586674,
+        -10.478209732100368
+      ],
+      "target_tokens": [
+        5,
+        4
+      ],
+      "token_normalized": [
+        -2.4612694457173347,
+        -2.619552433025092
+      ],
+      "train_sample_slor": [
+        3.7297709129814707,
+        4.215710277038725
+      ],
+      "unigram_scores": [
+        -30.955201793494027,
+        -27.341050840255267
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "quantity-07-1",
+      "family": "quantity-07",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱に本が17個あった。4個を追加した。今、箱の中にある本は、\n",
+      "choices": [
+        "21個だ。",
+        "13個だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -11.048136699944735,
+        -10.093301560729742
+      ],
+      "raw_log_likelihood": [
+        -11.048136699944735,
+        -10.093301560729742
+      ],
+      "target_tokens": [
+        5,
+        4
+      ],
+      "token_normalized": [
+        -2.209627339988947,
+        -2.5233253901824355
+      ],
+      "train_sample_slor": [
+        3.9814130187098584,
+        4.311937319881381
+      ],
+      "unigram_scores": [
+        -30.955201793494027,
+        -27.341050840255267
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "quantity-08-0",
+      "family": "quantity-08",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱に鉛筆が10個あった。1個を追加した。今、箱の中にある鉛筆は、\n",
+      "choices": [
+        "11個だ。",
+        "13個だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -9.3803067561239,
+        -9.851702554151416
+      ],
+      "raw_log_likelihood": [
+        -9.3803067561239,
+        -9.851702554151416
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.345076689030975,
+        -2.462925638537854
+      ],
+      "train_sample_slor": [
+        4.409012636675692,
+        4.372337071525963
+      ],
+      "unigram_scores": [
+        -27.01635730282667,
+        -27.341050840255267
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "quantity-08-1",
+      "family": "quantity-08",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱に鉛筆が12個あった。1個を追加した。今、箱の中にある鉛筆は、\n",
+      "choices": [
+        "11個だ。",
+        "13個だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -9.580546915531158,
+        -9.495327666401863
+      ],
+      "raw_log_likelihood": [
+        -9.580546915531158,
+        -9.495327666401863
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.3951367288827896,
+        -2.3738319166004658
+      ],
+      "train_sample_slor": [
+        4.358952596823878,
+        4.461430793463351
+      ],
+      "unigram_scores": [
+        -27.01635730282667,
+        -27.341050840255267
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "quantity-10-0",
+      "family": "quantity-10",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱にりんごが12個あった。3個を追加した。今、箱の中にあるりんごは、\n",
+      "choices": [
+        "15個だ。",
+        "21個だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -8.711519612930715,
+        -12.416562661528587
+      ],
+      "raw_log_likelihood": [
+        -8.711519612930715,
+        -12.416562661528587
+      ],
+      "target_tokens": [
+        4,
+        5
+      ],
+      "token_normalized": [
+        -2.1778799032326788,
+        -2.4833125323057175
+      ],
+      "train_sample_slor": [
+        4.636931157138726,
+        3.707727826393088
+      ],
+      "unigram_scores": [
+        -27.259244241485618,
+        -30.955201793494027
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "quantity-10-1",
+      "family": "quantity-10",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱にりんごが18個あった。3個を追加した。今、箱の中にあるりんごは、\n",
+      "choices": [
+        "15個だ。",
+        "21個だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -8.521507628727704,
+        -12.08300145342946
+      ],
+      "raw_log_likelihood": [
+        -8.521507628727704,
+        -12.08300145342946
+      ],
+      "target_tokens": [
+        4,
+        5
+      ],
+      "token_normalized": [
+        -2.130376907181926,
+        -2.416600290685892
+      ],
+      "train_sample_slor": [
+        4.684434153189478,
+        3.7744400680129133
+      ],
+      "unigram_scores": [
+        -27.259244241485618,
+        -30.955201793494027
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "quantity-11-0",
+      "family": "quantity-11",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱にみかんが13個あった。4個を追加した。今、箱の中にあるみかんは、\n",
+      "choices": [
+        "25個だ。",
+        "17個だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -10.205729546956718,
+        -9.710921813733876
+      ],
+      "raw_log_likelihood": [
+        -10.205729546956718,
+        -9.710921813733876
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.5514323867391795,
+        -2.427730453433469
+      ],
+      "train_sample_slor": [
+        4.3511486540850655,
+        4.331748302541943
+      ],
+      "unigram_scores": [
+        -27.61032416329698,
+        -27.037915023901647
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "quantity-11-1",
+      "family": "quantity-11",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱にみかんが21個あった。4個を追加した。今、箱の中にあるみかんは、\n",
+      "choices": [
+        "25個だ。",
+        "17個だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -9.707305213902146,
+        -9.580759709700942
+      ],
+      "raw_log_likelihood": [
+        -9.707305213902146,
+        -9.580759709700942
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.4268263034755364,
+        -2.3951899274252355
+      ],
+      "train_sample_slor": [
+        4.4757547373487085,
+        4.364288828550176
+      ],
+      "unigram_scores": [
+        -27.61032416329698,
+        -27.037915023901647
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "quantity-12-0",
+      "family": "quantity-12",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱に本が14個あった。1個を追加した。今、箱の中にある本は、\n",
+      "choices": [
+        "15個だ。",
+        "17個だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -9.597806055098772,
+        -10.821129649877548
+      ],
+      "raw_log_likelihood": [
+        -9.597806055098772,
+        -10.821129649877548
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.399451513774693,
+        -2.705282412469387
+      ],
+      "train_sample_slor": [
+        4.4153595465967115,
+        4.054196343506025
+      ],
+      "unigram_scores": [
+        -27.259244241485618,
+        -27.037915023901647
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "quantity-12-1",
+      "family": "quantity-12",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱に本が16個あった。1個を追加した。今、箱の中にある本は、\n",
+      "choices": [
+        "15個だ。",
+        "17個だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -9.70362675562501,
+        -10.527058912441134
+      ],
+      "raw_log_likelihood": [
+        -9.70362675562501,
+        -10.527058912441134
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.4259066889062524,
+        -2.6317647281102836
+      ],
+      "train_sample_slor": [
+        4.388904371465152,
+        4.127714027865128
+      ],
+      "unigram_scores": [
+        -27.259244241485618,
+        -27.037915023901647
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "quantity-13-0",
+      "family": "quantity-13",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱に鉛筆が15個あった。2個を追加した。今、箱の中にある鉛筆は、\n",
+      "choices": [
+        "21個だ。",
+        "17個だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -11.356718558818102,
+        -9.853939546272159
+      ],
+      "raw_log_likelihood": [
+        -11.356718558818102,
+        -9.853939546272159
+      ],
+      "target_tokens": [
+        5,
+        4
+      ],
+      "token_normalized": [
+        -2.2713437117636204,
+        -2.4634848865680397
+      ],
+      "train_sample_slor": [
+        3.919696646935185,
+        4.295993869407372
+      ],
+      "unigram_scores": [
+        -30.955201793494027,
+        -27.037915023901647
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "quantity-13-1",
+      "family": "quantity-13",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱に鉛筆が19個あった。2個を追加した。今、箱の中にある鉛筆は、\n",
+      "choices": [
+        "21個だ。",
+        "17個だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -11.254770655184984,
+        -10.132836444303393
+      ],
+      "raw_log_likelihood": [
+        -11.254770655184984,
+        -10.132836444303393
+      ],
+      "target_tokens": [
+        5,
+        4
+      ],
+      "token_normalized": [
+        -2.250954131036997,
+        -2.5332091110758483
+      ],
+      "train_sample_slor": [
+        3.9400862276618085,
+        4.226269644899563
+      ],
+      "unigram_scores": [
+        -30.955201793494027,
+        -27.037915023901647
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "quantity-15-0",
+      "family": "quantity-15",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱にりんごが17個あった。4個を追加した。今、箱の中にあるりんごは、\n",
+      "choices": [
+        "29個だ。",
+        "21個だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -11.407682038843632,
+        -12.133034156635404
+      ],
+      "raw_log_likelihood": [
+        -11.407682038843632,
+        -12.133034156635404
+      ],
+      "target_tokens": [
+        5,
+        5
+      ],
+      "token_normalized": [
+        -2.2815364077687263,
+        -2.4266068313270805
+      ],
+      "train_sample_slor": [
+        4.10308244332628,
+        3.7644335273717244
+      ],
+      "unigram_scores": [
+        -31.923094255475032,
+        -30.955201793494027
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "quantity-15-1",
+      "family": "quantity-15",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱にりんごが25個あった。4個を追加した。今、箱の中にあるりんごは、\n",
+      "choices": [
+        "29個だ。",
+        "21個だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -11.482793575152755,
+        -12.412434544414282
+      ],
+      "raw_log_likelihood": [
+        -11.482793575152755,
+        -12.412434544414282
+      ],
+      "target_tokens": [
+        5,
+        5
+      ],
+      "token_normalized": [
+        -2.296558715030551,
+        -2.4824869088828563
+      ],
+      "train_sample_slor": [
+        4.088060136064455,
+        3.708553449815949
+      ],
+      "unigram_scores": [
+        -31.923094255475032,
+        -30.955201793494027
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "quantity-16-0",
+      "family": "quantity-16",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱にみかんが18個あった。1個を追加した。今、箱の中にあるみかんは、\n",
+      "choices": [
+        "19個だ。",
+        "21個だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -9.351972255855799,
+        -13.57309285365045
+      ],
+      "raw_log_likelihood": [
+        -9.351972255855799,
+        -13.57309285365045
+      ],
+      "target_tokens": [
+        4,
+        5
+      ],
+      "token_normalized": [
+        -2.3379930639639497,
+        -2.71461857073009
+      ],
+      "train_sample_slor": [
+        4.303909130288799,
+        3.4764217879687154
+      ],
+      "unigram_scores": [
+        -26.567608777010996,
+        -30.955201793494027
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "quantity-16-1",
+      "family": "quantity-16",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱にみかんが20個あった。1個を追加した。今、箱の中にあるみかんは、\n",
+      "choices": [
+        "19個だ。",
+        "21個だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -9.919181821867824,
+        -14.42528819013387
+      ],
+      "raw_log_likelihood": [
+        -9.919181821867824,
+        -14.42528819013387
+      ],
+      "target_tokens": [
+        4,
+        5
+      ],
+      "token_normalized": [
+        -2.479795455466956,
+        -2.885057638026774
+      ],
+      "train_sample_slor": [
+        4.162106738785793,
+        3.3059827206720316
+      ],
+      "unigram_scores": [
+        -26.567608777010996,
+        -30.955201793494027
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "quantity-17-0",
+      "family": "quantity-17",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱に本が19個あった。2個を追加した。今、箱の中にある本は、\n",
+      "choices": [
+        "25個だ。",
+        "21個だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -11.156267940998077,
+        -10.738985335454345
+      ],
+      "raw_log_likelihood": [
+        -11.156267940998077,
+        -10.738985335454345
+      ],
+      "target_tokens": [
+        4,
+        5
+      ],
+      "token_normalized": [
+        -2.7890669852495193,
+        -2.147797067090869
+      ],
+      "train_sample_slor": [
+        4.113514055574726,
+        4.043243291607936
+      ],
+      "unigram_scores": [
+        -27.61032416329698,
+        -30.955201793494027
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "quantity-17-1",
+      "family": "quantity-17",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱に本が23個あった。2個を追加した。今、箱の中にある本は、\n",
+      "choices": [
+        "25個だ。",
+        "21個だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -11.021419877186418,
+        -10.03405718691647
+      ],
+      "raw_log_likelihood": [
+        -11.021419877186418,
+        -10.03405718691647
+      ],
+      "target_tokens": [
+        4,
+        5
+      ],
+      "token_normalized": [
+        -2.7553549692966044,
+        -2.006811437383294
+      ],
+      "train_sample_slor": [
+        4.147226071527641,
+        4.184228921315511
+      ],
+      "unigram_scores": [
+        -27.61032416329698,
+        -30.955201793494027
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "quantity-18-0",
+      "family": "quantity-18",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱に鉛筆が20個あった。3個を追加した。今、箱の中にある鉛筆は、\n",
+      "choices": [
+        "23個だ。",
+        "29個だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -12.519447732716799,
+        -10.804065559059381
+      ],
+      "raw_log_likelihood": [
+        -12.519447732716799,
+        -10.804065559059381
+      ],
+      "target_tokens": [
+        5,
+        5
+      ],
+      "token_normalized": [
+        -2.50388954654336,
+        -2.1608131118118763
+      ],
+      "train_sample_slor": [
+        3.7362729838616646,
+        4.22380573928313
+      ],
+      "unigram_scores": [
+        -31.20081265202512,
+        -31.923094255475032
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "quantity-18-1",
+      "family": "quantity-18",
+      "category": "quantity",
+      "split": "dev",
+      "context": "箱に鉛筆が26個あった。3個を追加した。今、箱の中にある鉛筆は、\n",
+      "choices": [
+        "23個だ。",
+        "29個だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -11.21026536822319,
+        -9.455897523090243
+      ],
+      "raw_log_likelihood": [
+        -11.21026536822319,
+        -9.455897523090243
+      ],
+      "target_tokens": [
+        5,
+        5
+      ],
+      "token_normalized": [
+        -2.2420530736446382,
+        -1.8911795046180486
+      ],
+      "train_sample_slor": [
+        3.9981094567603863,
+        4.493439346476958
+      ],
+      "unigram_scores": [
+        -31.20081265202512,
+        -31.923094255475032
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "time-00-0",
+      "family": "time-00",
+      "category": "time",
+      "split": "dev",
+      "context": "太郎は午前1時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前2時だ。",
+        "午前3時だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -13.989058857783675,
+        -14.758082071319222
+      ],
+      "raw_log_likelihood": [
+        -13.989058857783675,
+        -14.758082071319222
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.3315098096306124,
+        -2.4596803452198706
+      ],
+      "train_sample_slor": [
+        4.327665012553062,
+        4.236601818764524
+      ],
+      "unigram_scores": [
+        -39.95504893310205,
+        -40.17769298390637
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "time-00-1",
+      "family": "time-00",
+      "category": "time",
+      "split": "dev",
+      "context": "太郎は午前2時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前2時だ。",
+        "午前3時だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -13.755914948880672,
+        -14.655486268922687
+      ],
+      "raw_log_likelihood": [
+        -13.755914948880672,
+        -14.655486268922687
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.292652491480112,
+        -2.442581044820448
+      ],
+      "train_sample_slor": [
+        4.366522330703563,
+        4.253701119163947
+      ],
+      "unigram_scores": [
+        -39.95504893310205,
+        -40.17769298390637
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "time-01-0",
+      "family": "time-01",
+      "category": "time",
+      "split": "dev",
+      "context": "花子は午前2時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前4時だ。",
+        "午前3時だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -14.882721709087491,
+        -14.572192266583443
+      ],
+      "raw_log_likelihood": [
+        -14.882721709087491,
+        -14.572192266583443
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.4804536181812487,
+        -2.4286987110972404
+      ],
+      "train_sample_slor": [
+        4.294537437299771,
+        4.267583452887155
+      ],
+      "unigram_scores": [
+        -40.64994633288612,
+        -40.17769298390637
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "time-01-1",
+      "family": "time-01",
+      "category": "time",
+      "split": "dev",
+      "context": "花子は午前3時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前4時だ。",
+        "午前3時だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -14.630799487233162,
+        -14.174346281215549
+      ],
+      "raw_log_likelihood": [
+        -14.630799487233162,
+        -14.174346281215549
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.438466581205527,
+        -2.362391046869258
+      ],
+      "train_sample_slor": [
+        4.3365244742754925,
+        4.333891117115137
+      ],
+      "unigram_scores": [
+        -40.64994633288612,
+        -40.17769298390637
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "time-02-0",
+      "family": "time-02",
+      "category": "time",
+      "split": "dev",
+      "context": "健太は午前3時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前4時だ。",
+        "午前5時だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -14.863237090408802,
+        -13.936636734753847
+      ],
+      "raw_log_likelihood": [
+        -14.863237090408802,
+        -13.936636734753847
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.4772061817348003,
+        -2.3227727891256413
+      ],
+      "train_sample_slor": [
+        4.297784873746219,
+        4.437078065633149
+      ],
+      "unigram_scores": [
+        -40.64994633288612,
+        -40.559105128552744
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "time-02-1",
+      "family": "time-02",
+      "category": "time",
+      "split": "dev",
+      "context": "健太は午前4時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前4時だ。",
+        "午前5時だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -13.901601314544678,
+        -13.398275338113308
+      ],
+      "raw_log_likelihood": [
+        -13.901601314544678,
+        -13.398275338113308
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.316933552424113,
+        -2.233045889685551
+      ],
+      "train_sample_slor": [
+        4.4580575030569065,
+        4.526804965073239
+      ],
+      "unigram_scores": [
+        -40.64994633288612,
+        -40.559105128552744
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "time-03-0",
+      "family": "time-03",
+      "category": "time",
+      "split": "dev",
+      "context": "美咲は午前4時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前6時だ。",
+        "午前5時だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -13.11714407429099,
+        -12.687646232545376
+      ],
+      "raw_log_likelihood": [
+        -13.11714407429099,
+        -12.687646232545376
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.1861906790484986,
+        -2.114607705424229
+      ],
+      "train_sample_slor": [
+        4.616999522542944,
+        4.645243149334561
+      ],
+      "unigram_scores": [
+        -40.819141209548654,
+        -40.559105128552744
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "time-03-1",
+      "family": "time-03",
+      "category": "time",
+      "split": "dev",
+      "context": "美咲は午前5時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前6時だ。",
+        "午前5時だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -12.857522267848253,
+        -12.549029812216759
+      ],
+      "raw_log_likelihood": [
+        -12.857522267848253,
+        -12.549029812216759
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.142920377974709,
+        -2.091504968702793
+      ],
+      "train_sample_slor": [
+        4.6602698236167335,
+        4.668345886055998
+      ],
+      "unigram_scores": [
+        -40.819141209548654,
+        -40.559105128552744
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "time-05-0",
+      "family": "time-05",
+      "category": "time",
+      "split": "dev",
+      "context": "洋介は午前6時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前8時だ。",
+        "午前7時だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -13.545636642724276,
+        -13.41122318804264
+      ],
+      "raw_log_likelihood": [
+        -13.545636642724276,
+        -13.41122318804264
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.2576061071207127,
+        -2.2352038646737733
+      ],
+      "train_sample_slor": [
+        4.576069844600416,
+        4.592987984777873
+      ],
+      "unigram_scores": [
+        -41.00205571032677,
+        -40.96915109670988
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "time-05-1",
+      "family": "time-05",
+      "category": "time",
+      "split": "dev",
+      "context": "洋介は午前7時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前8時だ。",
+        "午前7時だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -12.966280292719603,
+        -12.78490886092186
+      ],
+      "raw_log_likelihood": [
+        -12.966280292719603,
+        -12.78490886092186
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.161046715453267,
+        -2.1308181434869766
+      ],
+      "train_sample_slor": [
+        4.672629236267862,
+        4.69737370596467
+      ],
+      "unigram_scores": [
+        -41.00205571032677,
+        -40.96915109670988
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "time-06-0",
+      "family": "time-06",
+      "category": "time",
+      "split": "dev",
+      "context": "真理は午前7時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前8時だ。",
+        "午前9時だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -12.20852591469884,
+        -12.732247199863195
+      ],
+      "raw_log_likelihood": [
+        -12.20852591469884,
+        -12.732247199863195
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.034754319116473,
+        -2.122041199977199
+      ],
+      "train_sample_slor": [
+        4.798921632604656,
+        4.694621231248848
+      ],
+      "unigram_scores": [
+        -41.00205571032677,
+        -40.89997458735628
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "time-06-1",
+      "family": "time-06",
+      "category": "time",
+      "split": "dev",
+      "context": "真理は午前8時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前8時だ。",
+        "午前9時だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -11.999639447778463,
+        -11.998074915260077
+      ],
+      "raw_log_likelihood": [
+        -11.999639447778463,
+        -11.998074915260077
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -1.9999399079630773,
+        -1.9996791525433462
+      ],
+      "train_sample_slor": [
+        4.833736043758051,
+        4.816983278682701
+      ],
+      "unigram_scores": [
+        -41.00205571032677,
+        -40.89997458735628
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "time-07-0",
+      "family": "time-07",
+      "category": "time",
+      "split": "dev",
+      "context": "翔太は午前8時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前10時だ。",
+        "午前9時だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -13.419536722823977,
+        -13.219161849468946
+      ],
+      "raw_log_likelihood": [
+        -13.419536722823977,
+        -13.219161849468946
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.236589453803996,
+        -2.203193641578158
+      ],
+      "train_sample_slor": [
+        4.62844899016321,
+        4.613468789647889
+      ],
+      "unigram_scores": [
+        -41.190230663803234,
+        -40.89997458735628
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "time-07-1",
+      "family": "time-07",
+      "category": "time",
+      "split": "dev",
+      "context": "翔太は午前9時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前10時だ。",
+        "午前9時だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -13.071661287918687,
+        -12.650520412251353
+      ],
+      "raw_log_likelihood": [
+        -13.071661287918687,
+        -12.650520412251353
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.1786102146531143,
+        -2.108420068708559
+      ],
+      "train_sample_slor": [
+        4.6864282293140915,
+        4.708242362517488
+      ],
+      "unigram_scores": [
+        -41.190230663803234,
+        -40.89997458735628
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "time-08-0",
+      "family": "time-08",
+      "category": "time",
+      "split": "dev",
+      "context": "明子は午前1時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前2時だ。",
+        "午前3時だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -13.536514353007078,
+        -14.345426935702562
+      ],
+      "raw_log_likelihood": [
+        -13.536514353007078,
+        -14.345426935702562
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.2560857255011797,
+        -2.3909044892837605
+      ],
+      "train_sample_slor": [
+        4.403089096682495,
+        4.305377674700634
+      ],
+      "unigram_scores": [
+        -39.95504893310205,
+        -40.17769298390637
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "time-08-1",
+      "family": "time-08",
+      "category": "time",
+      "split": "dev",
+      "context": "明子は午前2時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前2時だ。",
+        "午前3時だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -13.215371824800968,
+        -14.221706157550216
+      ],
+      "raw_log_likelihood": [
+        -13.215371824800968,
+        -14.221706157550216
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.2025619708001614,
+        -2.3702843595917025
+      ],
+      "train_sample_slor": [
+        4.456612851383514,
+        4.325997804392692
+      ],
+      "unigram_scores": [
+        -39.95504893310205,
+        -40.17769298390637
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "time-10-0",
+      "family": "time-10",
+      "category": "time",
+      "split": "dev",
+      "context": "拓也は午前3時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前4時だ。",
+        "午前5時だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -14.522758033126593,
+        -13.577968567609787
+      ],
+      "raw_log_likelihood": [
+        -14.522758033126593,
+        -13.577968567609787
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.4204596721877656,
+        -2.2629947612682977
+      ],
+      "train_sample_slor": [
+        4.354531383293254,
+        4.496856093490493
+      ],
+      "unigram_scores": [
+        -40.64994633288612,
+        -40.559105128552744
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "time-10-1",
+      "family": "time-10",
+      "category": "time",
+      "split": "dev",
+      "context": "拓也は午前4時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前4時だ。",
+        "午前5時だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -13.665595084428787,
+        -13.10328597202897
+      ],
+      "raw_log_likelihood": [
+        -13.665595084428787,
+        -13.10328597202897
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.277599180738131,
+        -2.183880995338162
+      ],
+      "train_sample_slor": [
+        4.497391874742888,
+        4.575969859420629
+      ],
+      "unigram_scores": [
+        -40.64994633288612,
+        -40.559105128552744
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "time-11-0",
+      "family": "time-11",
+      "category": "time",
+      "split": "dev",
+      "context": "恵子は午前4時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前6時だ。",
+        "午前5時だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -13.531674977391958,
+        -13.244446951895952
+      ],
+      "raw_log_likelihood": [
+        -13.531674977391958,
+        -13.244446951895952
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.2552791628986597,
+        -2.207407825315992
+      ],
+      "train_sample_slor": [
+        4.547911038692782,
+        4.552443029442799
+      ],
+      "unigram_scores": [
+        -40.819141209548654,
+        -40.559105128552744
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "time-11-1",
+      "family": "time-11",
+      "category": "time",
+      "split": "dev",
+      "context": "恵子は午前5時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前6時だ。",
+        "午前5時だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -13.406111393123865,
+        -13.150966044515371
+      ],
+      "raw_log_likelihood": [
+        -13.406111393123865,
+        -13.150966044515371
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.2343518988539777,
+        -2.191827674085895
+      ],
+      "train_sample_slor": [
+        4.568838302737465,
+        4.5680231806728955
+      ],
+      "unigram_scores": [
+        -40.819141209548654,
+        -40.559105128552744
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "time-12-0",
+      "family": "time-12",
+      "category": "time",
+      "split": "dev",
+      "context": "直樹は午前5時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前6時だ。",
+        "午前7時だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -13.476909477263689,
+        -13.420567896217108
+      ],
+      "raw_log_likelihood": [
+        -13.476909477263689,
+        -13.420567896217108
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.246151579543948,
+        -2.2367613160361848
+      ],
+      "train_sample_slor": [
+        4.557038622047494,
+        4.591430533415462
+      ],
+      "unigram_scores": [
+        -40.819141209548654,
+        -40.96915109670988
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "time-12-1",
+      "family": "time-12",
+      "category": "time",
+      "split": "dev",
+      "context": "直樹は午前6時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前6時だ。",
+        "午前7時だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -13.134898159652948,
+        -13.535666193813086
+      ],
+      "raw_log_likelihood": [
+        -13.134898159652948,
+        -13.535666193813086
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.1891496932754912,
+        -2.2559443656355143
+      ],
+      "train_sample_slor": [
+        4.614040508315951,
+        4.572247483816132
+      ],
+      "unigram_scores": [
+        -40.819141209548654,
+        -40.96915109670988
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "time-13-0",
+      "family": "time-13",
+      "category": "time",
+      "split": "dev",
+      "context": "遥は午前6時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前8時だ。",
+        "午前7時だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -13.294046953320503,
+        -13.164563596248627
+      ],
+      "raw_log_likelihood": [
+        -13.294046953320503,
+        -13.164563596248627
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.2156744922200837,
+        -2.1940939327081046
+      ],
+      "train_sample_slor": [
+        4.618001459501045,
+        4.634097916743542
+      ],
+      "unigram_scores": [
+        -41.00205571032677,
+        -40.96915109670988
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "time-13-1",
+      "family": "time-13",
+      "category": "time",
+      "split": "dev",
+      "context": "遥は午前7時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前8時だ。",
+        "午前7時だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -12.707103863358498,
+        -12.473995015025139
+      ],
+      "raw_log_likelihood": [
+        -12.707103863358498,
+        -12.473995015025139
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.117850643893083,
+        -2.0789991691708565
+      ],
+      "train_sample_slor": [
+        4.715825307828045,
+        4.74919268028079
+      ],
+      "unigram_scores": [
+        -41.00205571032677,
+        -40.96915109670988
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "time-15-0",
+      "family": "time-15",
+      "category": "time",
+      "split": "dev",
+      "context": "彩は午前8時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前10時だ。",
+        "午前9時だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -12.867821130901575,
+        -12.891122460365295
+      ],
+      "raw_log_likelihood": [
+        -12.867821130901575,
+        -12.891122460365295
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.1446368551502624,
+        -2.1485204100608826
+      ],
+      "train_sample_slor": [
+        4.7204015888169435,
+        4.668142021165164
+      ],
+      "unigram_scores": [
+        -41.190230663803234,
+        -40.89997458735628
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "time-15-1",
+      "family": "time-15",
+      "category": "time",
+      "split": "dev",
+      "context": "彩は午前9時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前10時だ。",
+        "午前9時だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -12.726457092911005,
+        -12.423891320824623
+      ],
+      "raw_log_likelihood": [
+        -12.726457092911005,
+        -12.423891320824623
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.121076182151834,
+        -2.0706485534707704
+      ],
+      "train_sample_slor": [
+        4.743962261815372,
+        4.746013877755277
+      ],
+      "unigram_scores": [
+        -41.190230663803234,
+        -40.89997458735628
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "time-16-0",
+      "family": "time-16",
+      "category": "time",
+      "split": "dev",
+      "context": "和也は午前1時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前2時だ。",
+        "午前3時だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -13.395317703485489,
+        -14.179547548294067
+      ],
+      "raw_log_likelihood": [
+        -13.395317703485489,
+        -14.179547548294067
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.232552950580915,
+        -2.3632579247156777
+      ],
+      "train_sample_slor": [
+        4.42662187160276,
+        4.333024239268717
+      ],
+      "unigram_scores": [
+        -39.95504893310205,
+        -40.17769298390637
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "time-16-1",
+      "family": "time-16",
+      "category": "time",
+      "split": "dev",
+      "context": "和也は午前2時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前2時だ。",
+        "午前3時だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -13.046127710491419,
+        -14.010903231799603
+      ],
+      "raw_log_likelihood": [
+        -13.046127710491419,
+        -14.010903231799603
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.1743546184152365,
+        -2.335150538633267
+      ],
+      "train_sample_slor": [
+        4.484820203768439,
+        4.361131625351128
+      ],
+      "unigram_scores": [
+        -39.95504893310205,
+        -40.17769298390637
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "time-17-0",
+      "family": "time-17",
+      "category": "time",
+      "split": "dev",
+      "context": "陽子は午前2時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前4時だ。",
+        "午前3時だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -15.048177009448409,
+        -14.69106948748231
+      ],
+      "raw_log_likelihood": [
+        -15.048177009448409,
+        -14.69106948748231
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.5080295015747347,
+        -2.4485115812470517
+      ],
+      "train_sample_slor": [
+        4.266961553906285,
+        4.247770582737343
+      ],
+      "unigram_scores": [
+        -40.64994633288612,
+        -40.17769298390637
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "time-17-1",
+      "family": "time-17",
+      "category": "time",
+      "split": "dev",
+      "context": "陽子は午前3時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前4時だ。",
+        "午前3時だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -14.74536345154047,
+        -14.249583099037409
+      ],
+      "raw_log_likelihood": [
+        -14.74536345154047,
+        -14.249583099037409
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.457560575256745,
+        -2.3749305165062347
+      ],
+      "train_sample_slor": [
+        4.3174304802242744,
+        4.32135164747816
+      ],
+      "unigram_scores": [
+        -40.64994633288612,
+        -40.17769298390637
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "time-18-0",
+      "family": "time-18",
+      "category": "time",
+      "split": "dev",
+      "context": "大輔は午前3時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前4時だ。",
+        "午前5時だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -14.759267844259739,
+        -13.769906986504793
+      ],
+      "raw_log_likelihood": [
+        -14.759267844259739,
+        -13.769906986504793
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.4598779740432897,
+        -2.2949844977507987
+      ],
+      "train_sample_slor": [
+        4.31511308143773,
+        4.464866357007992
+      ],
+      "unigram_scores": [
+        -40.64994633288612,
+        -40.559105128552744
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "time-18-1",
+      "family": "time-18",
+      "category": "time",
+      "split": "dev",
+      "context": "大輔は午前4時に出発し、ちょうど1時間後に到着した。到着した時刻は、\n",
+      "choices": [
+        "午前4時だ。",
+        "午前5時だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -14.084425695240498,
+        -13.368872735649347
+      ],
+      "raw_log_likelihood": [
+        -14.084425695240498,
+        -13.368872735649347
+      ],
+      "target_tokens": [
+        6,
+        6
+      ],
+      "token_normalized": [
+        -2.347404282540083,
+        -2.228145455941558
+      ],
+      "train_sample_slor": [
+        4.427586772940937,
+        4.531705398817233
+      ],
+      "unigram_scores": [
+        -40.64994633288612,
+        -40.559105128552744
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "comparison-00-0",
+      "family": "comparison-00",
+      "category": "comparison",
+      "split": "dev",
+      "context": "太郎の身長は美咲より高い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "太郎だ。",
+        "美咲だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -6.7976966998539865,
+        -9.810649901628494
+      ],
+      "raw_log_likelihood": [
+        -6.7976966998539865,
+        -9.810649901628494
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.6994241749634966,
+        -2.4526624754071236
+      ],
+      "train_sample_slor": [
+        5.29189569784206,
+        4.533598021285874
+      ],
+      "unigram_scores": [
+        -27.965279491222226,
+        -27.94504198677199
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "comparison-00-1",
+      "family": "comparison-00",
+      "category": "comparison",
+      "split": "dev",
+      "context": "太郎の身長は美咲より低い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "太郎だ。",
+        "美咲だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -6.589639024809003,
+        -9.486526161432266
+      ],
+      "raw_log_likelihood": [
+        -6.589639024809003,
+        -9.486526161432266
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.6474097562022507,
+        -2.3716315403580666
+      ],
+      "train_sample_slor": [
+        5.343910116603306,
+        4.614628956334931
+      ],
+      "unigram_scores": [
+        -27.965279491222226,
+        -27.94504198677199
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "comparison-01-0",
+      "family": "comparison-01",
+      "category": "comparison",
+      "split": "dev",
+      "context": "花子の身長は直子より高い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "直子だ。",
+        "花子だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -7.505149230360985,
+        -7.705142370425165
+      ],
+      "raw_log_likelihood": [
+        -7.505149230360985,
+        -7.705142370425165
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.8762873075902462,
+        -1.9262855926062912
+      ],
+      "train_sample_slor": [
+        4.384016601013634,
+        4.36597665887506
+      ],
+      "unigram_scores": [
+        -25.041215634415522,
+        -25.169049005925405
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "comparison-01-1",
+      "family": "comparison-01",
+      "category": "comparison",
+      "split": "dev",
+      "context": "花子の身長は直子より低い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "直子だ。",
+        "花子だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -7.395087085664272,
+        -7.306003644131124
+      ],
+      "raw_log_likelihood": [
+        -7.395087085664272,
+        -7.306003644131124
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.848771771416068,
+        -1.826500911032781
+      ],
+      "train_sample_slor": [
+        4.4115321371878125,
+        4.46576134044857
+      ],
+      "unigram_scores": [
+        -25.041215634415522,
+        -25.169049005925405
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "comparison-02-0",
+      "family": "comparison-02",
+      "category": "comparison",
+      "split": "dev",
+      "context": "健太の身長は洋介より高い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "健太だ。",
+        "洋介だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -8.860215336550027,
+        -5.892075316980481
+      ],
+      "raw_log_likelihood": [
+        -8.860215336550027,
+        -5.892075316980481
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.215053834137507,
+        -1.4730188292451203
+      ],
+      "train_sample_slor": [
+        4.7746479100416455,
+        5.748159462577432
+      ],
+      "unigram_scores": [
+        -27.95880697671661,
+        -28.884713167290208
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "comparison-02-1",
+      "family": "comparison-02",
+      "category": "comparison",
+      "split": "dev",
+      "context": "健太の身長は洋介より低い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "健太だ。",
+        "洋介だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -8.985166837926954,
+        -5.75832306756638
+      ],
+      "raw_log_likelihood": [
+        -8.985166837926954,
+        -5.75832306756638
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.2462917094817385,
+        -1.439580766891595
+      ],
+      "train_sample_slor": [
+        4.743410034697414,
+        5.781597524930957
+      ],
+      "unigram_scores": [
+        -27.95880697671661,
+        -28.884713167290208
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "comparison-03-0",
+      "family": "comparison-03",
+      "category": "comparison",
+      "split": "dev",
+      "context": "美咲の身長は真理より高い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "真理だ。",
+        "美咲だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -7.499906416982412,
+        -11.33709679916501
+      ],
+      "raw_log_likelihood": [
+        -7.499906416982412,
+        -11.33709679916501
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.874976604245603,
+        -2.8342741997912526
+      ],
+      "train_sample_slor": [
+        4.606473536912178,
+        4.151986296901745
+      ],
+      "unigram_scores": [
+        -25.925800564631125,
+        -27.94504198677199
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "comparison-03-1",
+      "family": "comparison-03",
+      "category": "comparison",
+      "split": "dev",
+      "context": "美咲の身長は真理より低い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "真理だ。",
+        "美咲だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -6.824301145970821,
+        -11.232694912701845
+      ],
+      "raw_log_likelihood": [
+        -6.824301145970821,
+        -11.232694912701845
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.7060752864927053,
+        -2.8081737281754613
+      ],
+      "train_sample_slor": [
+        4.775374854665076,
+        4.178086768517536
+      ],
+      "unigram_scores": [
+        -25.925800564631125,
+        -27.94504198677199
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "comparison-05-0",
+      "family": "comparison-05",
+      "category": "comparison",
+      "split": "dev",
+      "context": "洋介の身長は明子より高い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "明子だ。",
+        "洋介だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -9.325310051441193,
+        -7.372239199990872
+      ],
+      "raw_log_likelihood": [
+        -9.325310051441193,
+        -7.372239199990872
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.331327512860298,
+        -1.843059799997718
+      ],
+      "train_sample_slor": [
+        3.823594916678995,
+        5.378118491824834
+      ],
+      "unigram_scores": [
+        -24.619689718157172,
+        -28.884713167290208
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "comparison-05-1",
+      "family": "comparison-05",
+      "category": "comparison",
+      "split": "dev",
+      "context": "洋介の身長は明子より低い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "明子だ。",
+        "洋介だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -9.182046335190535,
+        -7.260529849154409
+      ],
+      "raw_log_likelihood": [
+        -9.182046335190535,
+        -7.260529849154409
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.2955115837976336,
+        -1.8151324622886023
+      ],
+      "train_sample_slor": [
+        3.8594108457416594,
+        5.40604582953395
+      ],
+      "unigram_scores": [
+        -24.619689718157172,
+        -28.884713167290208
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "comparison-06-0",
+      "family": "comparison-06",
+      "category": "comparison",
+      "split": "dev",
+      "context": "真理の身長は悠人より高い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "真理だ。",
+        "悠人だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -8.485125692561269,
+        -8.91750032454729
+      ],
+      "raw_log_likelihood": [
+        -8.485125692561269,
+        -8.91750032454729
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.121281423140317,
+        -2.2293750811368227
+      ],
+      "train_sample_slor": [
+        4.360168718017464,
+        4.857806801863266
+      ],
+      "unigram_scores": [
+        -25.925800564631125,
+        -28.348727532000353
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "comparison-06-1",
+      "family": "comparison-06",
+      "category": "comparison",
+      "split": "dev",
+      "context": "真理の身長は悠人より低い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "真理だ。",
+        "悠人だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -8.129982180893421,
+        -8.882632135413587
+      ],
+      "raw_log_likelihood": [
+        -8.129982180893421,
+        -8.882632135413587
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.0324955452233553,
+        -2.2206580338533968
+      ],
+      "train_sample_slor": [
+        4.448954595934426,
+        4.866523849146692
+      ],
+      "unigram_scores": [
+        -25.925800564631125,
+        -28.348727532000353
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "comparison-07-0",
+      "family": "comparison-07",
+      "category": "comparison",
+      "split": "dev",
+      "context": "翔太の身長は拓也より高い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "拓也だ。",
+        "翔太だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -9.748724792152643,
+        -6.002490588463843
+      ],
+      "raw_log_likelihood": [
+        -9.748724792152643,
+        -6.002490588463843
+      ],
+      "target_tokens": [
+        4,
+        6
+      ],
+      "token_normalized": [
+        -2.437181198038161,
+        -1.0004150980773072
+      ],
+      "train_sample_slor": [
+        5.582160251226666,
+        6.6966499727353
+      ],
+      "unigram_scores": [
+        -32.07736579705931,
+        -46.18239042487564
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "comparison-07-1",
+      "family": "comparison-07",
+      "category": "comparison",
+      "split": "dev",
+      "context": "翔太の身長は拓也より低い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "拓也だ。",
+        "翔太だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -9.61444965004921,
+        -5.99255824345164
+      ],
+      "raw_log_likelihood": [
+        -9.61444965004921,
+        -5.99255824345164
+      ],
+      "target_tokens": [
+        4,
+        6
+      ],
+      "token_normalized": [
+        -2.4036124125123024,
+        -0.99875970724194
+      ],
+      "train_sample_slor": [
+        5.6157290367525246,
+        6.698305363570667
+      ],
+      "unigram_scores": [
+        -32.07736579705931,
+        -46.18239042487564
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "comparison-08-0",
+      "family": "comparison-08",
+      "category": "comparison",
+      "split": "dev",
+      "context": "明子の身長は恵子より高い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "明子だ。",
+        "恵子だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -5.42182105127722,
+        -8.518359116278589
+      ],
+      "raw_log_likelihood": [
+        -5.42182105127722,
+        -8.518359116278589
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.355455262819305,
+        -2.129589779069647
+      ],
+      "train_sample_slor": [
+        4.799467166719988,
+        4.563413821893825
+      ],
+      "unigram_scores": [
+        -24.619689718157172,
+        -26.772014403853888
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "comparison-08-1",
+      "family": "comparison-08",
+      "category": "comparison",
+      "split": "dev",
+      "context": "明子の身長は恵子より低い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "明子だ。",
+        "恵子だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -5.433727427385747,
+        -8.796539236791432
+      ],
+      "raw_log_likelihood": [
+        -5.433727427385747,
+        -8.796539236791432
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.3584318568464369,
+        -2.199134809197858
+      ],
+      "train_sample_slor": [
+        4.796490572692856,
+        4.493868791765614
+      ],
+      "unigram_scores": [
+        -24.619689718157172,
+        -26.772014403853888
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "comparison-10-0",
+      "family": "comparison-10",
+      "category": "comparison",
+      "split": "dev",
+      "context": "拓也の身長は遥より高い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "拓也だ。",
+        "遥だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -8.863080374896526,
+        -11.150518324226141
+      ],
+      "raw_log_likelihood": [
+        -8.863080374896526,
+        -11.150518324226141
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -2.2157700937241316,
+        -3.716839441408714
+      ],
+      "train_sample_slor": [
+        5.803571355540695,
+        3.863010343454384
+      ],
+      "unigram_scores": [
+        -32.07736579705931,
+        -22.739549354589293
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "comparison-10-1",
+      "family": "comparison-10",
+      "category": "comparison",
+      "split": "dev",
+      "context": "拓也の身長は遥より低い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "拓也だ。",
+        "遥だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -8.891269158571959,
+        -11.064419526606798
+      ],
+      "raw_log_likelihood": [
+        -8.891269158571959,
+        -11.064419526606798
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -2.2228172896429896,
+        -3.688139842202266
+      ],
+      "train_sample_slor": [
+        5.796524159621837,
+        3.8917099426608317
+      ],
+      "unigram_scores": [
+        -32.07736579705931,
+        -22.739549354589293
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "comparison-11-0",
+      "family": "comparison-11",
+      "category": "comparison",
+      "split": "dev",
+      "context": "恵子の身長は秀樹より高い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "秀樹だ。",
+        "恵子だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -9.64688245789148,
+        -8.956355191767216
+      ],
+      "raw_log_likelihood": [
+        -9.64688245789148,
+        -8.956355191767216
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.41172061447287,
+        -2.239088797941804
+      ],
+      "train_sample_slor": [
+        4.9311464978566795,
+        4.453914803021668
+      ],
+      "unigram_scores": [
+        -29.371468449318197,
+        -26.772014403853888
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "comparison-11-1",
+      "family": "comparison-11",
+      "category": "comparison",
+      "split": "dev",
+      "context": "恵子の身長は秀樹より低い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "秀樹だ。",
+        "恵子だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -9.78005060297437,
+        -9.101608508266509
+      ],
+      "raw_log_likelihood": [
+        -9.78005060297437,
+        -9.101608508266509
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.4450126507435925,
+        -2.275402127066627
+      ],
+      "train_sample_slor": [
+        4.897854461585957,
+        4.417601473896845
+      ],
+      "unigram_scores": [
+        -29.371468449318197,
+        -26.772014403853888
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "comparison-12-0",
+      "family": "comparison-12",
+      "category": "comparison",
+      "split": "dev",
+      "context": "直樹の身長は彩より高い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "直樹だ。",
+        "彩だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -5.810330096632242,
+        -10.958852089941502
+      ],
+      "raw_log_likelihood": [
+        -5.810330096632242,
+        -10.958852089941502
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -1.4525825241580606,
+        -3.652950696647167
+      ],
+      "train_sample_slor": [
+        5.440912052187229,
+        2.9068088233187432
+      ],
+      "unigram_scores": [
+        -27.573978305381157,
+        -19.679278559897732
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "comparison-12-1",
+      "family": "comparison-12",
+      "category": "comparison",
+      "split": "dev",
+      "context": "直樹の身長は彩より低い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "直樹だ。",
+        "彩だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -5.620209721848369,
+        -10.70813474431634
+      ],
+      "raw_log_likelihood": [
+        -5.620209721848369,
+        -10.70813474431634
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -1.4050524304620922,
+        -3.5693782481054463
+      ],
+      "train_sample_slor": [
+        5.488442145883197,
+        2.990381271860464
+      ],
+      "unigram_scores": [
+        -27.573978305381157,
+        -19.679278559897732
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "comparison-13-0",
+      "family": "comparison-13",
+      "category": "comparison",
+      "split": "dev",
+      "context": "遥の身長は和也より高い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "和也だ。",
+        "遥だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -8.375225069001317,
+        -11.42933721281588
+      ],
+      "raw_log_likelihood": [
+        -8.375225069001317,
+        -11.42933721281588
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -2.0938062672503293,
+        -3.8097790709386268
+      ],
+      "train_sample_slor": [
+        5.17550159827584,
+        3.7700707139244707
+      ],
+      "unigram_scores": [
+        -29.077231462104677,
+        -22.739549354589293
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "comparison-13-1",
+      "family": "comparison-13",
+      "category": "comparison",
+      "split": "dev",
+      "context": "遥の身長は和也より低い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "和也だ。",
+        "遥だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -8.251021707430482,
+        -11.522625233978033
+      ],
+      "raw_log_likelihood": [
+        -8.251021707430482,
+        -11.522625233978033
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -2.0627554268576205,
+        -3.8408750779926777
+      ],
+      "train_sample_slor": [
+        5.206552438668549,
+        3.73897470687042
+      ],
+      "unigram_scores": [
+        -29.077231462104677,
+        -22.739549354589293
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "comparison-15-0",
+      "family": "comparison-15",
+      "category": "comparison",
+      "split": "dev",
+      "context": "彩の身長は大輔より高い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "大輔だ。",
+        "彩だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -9.237232495099306,
+        -15.274221817031503
+      ],
+      "raw_log_likelihood": [
+        -9.237232495099306,
+        -15.274221817031503
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -2.3093081237748265,
+        -5.091407272343834
+      ],
+      "train_sample_slor": [
+        4.909418075273095,
+        1.4683522476220763
+      ],
+      "unigram_scores": [
+        -28.874904796191686,
+        -19.679278559897732
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "comparison-15-1",
+      "family": "comparison-15",
+      "category": "comparison",
+      "split": "dev",
+      "context": "彩の身長は大輔より低い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "大輔だ。",
+        "彩だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -9.000001199543476,
+        -15.319920506328344
+      ],
+      "raw_log_likelihood": [
+        -9.000001199543476,
+        -15.319920506328344
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -2.250000299885869,
+        -5.1066401687761145
+      ],
+      "train_sample_slor": [
+        4.968725899162052,
+        1.4531193511897957
+      ],
+      "unigram_scores": [
+        -28.874904796191686,
+        -19.679278559897732
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "comparison-16-0",
+      "family": "comparison-16",
+      "category": "comparison",
+      "split": "dev",
+      "context": "和也の身長は千尋より高い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "和也だ。",
+        "千尋だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -7.6036329828202724,
+        -8.310081051662564
+      ],
+      "raw_log_likelihood": [
+        -7.6036329828202724,
+        -8.310081051662564
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.9009082457050681,
+        -2.077520262915641
+      ],
+      "train_sample_slor": [
+        5.368399619821101,
+        5.470499804539466
+      ],
+      "unigram_scores": [
+        -29.077231462104677,
+        -30.19208026982043
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "comparison-16-1",
+      "family": "comparison-16",
+      "category": "comparison",
+      "split": "dev",
+      "context": "和也の身長は千尋より低い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "和也だ。",
+        "千尋だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -7.452594900503755,
+        -8.345272189937532
+      ],
+      "raw_log_likelihood": [
+        -7.452594900503755,
+        -8.345272189937532
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.8631487251259387,
+        -2.086318047484383
+      ],
+      "train_sample_slor": [
+        5.406159140400231,
+        5.4617020199707245
+      ],
+      "unigram_scores": [
+        -29.077231462104677,
+        -30.19208026982043
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "comparison-17-0",
+      "family": "comparison-17",
+      "category": "comparison",
+      "split": "dev",
+      "context": "陽子の身長は太郎より高い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "太郎だ。",
+        "陽子だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -6.732314132153988,
+        -8.11197705194354
+      ],
+      "raw_log_likelihood": [
+        -6.732314132153988,
+        -8.11197705194354
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.683078533038497,
+        -2.027994262985885
+      ],
+      "train_sample_slor": [
+        5.30824133976706,
+        4.49681436854371
+      ],
+      "unigram_scores": [
+        -27.965279491222226,
+        -26.09923452611838
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "comparison-17-1",
+      "family": "comparison-17",
+      "category": "comparison",
+      "split": "dev",
+      "context": "陽子の身長は太郎より低い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "太郎だ。",
+        "陽子だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -6.776590755209327,
+        -7.971893317066133
+      ],
+      "raw_log_likelihood": [
+        -6.776590755209327,
+        -7.971893317066133
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.6941476888023317,
+        -1.9929733292665333
+      ],
+      "train_sample_slor": [
+        5.297172184003225,
+        4.531835302263062
+      ],
+      "unigram_scores": [
+        -27.965279491222226,
+        -26.09923452611838
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "comparison-18-0",
+      "family": "comparison-18",
+      "category": "comparison",
+      "split": "dev",
+      "context": "大輔の身長は花子より高い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "大輔だ。",
+        "花子だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -6.452609842643142,
+        -6.7561484929174185
+      ],
+      "raw_log_likelihood": [
+        -6.452609842643142,
+        -6.7561484929174185
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.6131524606607854,
+        -1.6890371232293546
+      ],
+      "train_sample_slor": [
+        5.605573738387136,
+        4.603225128251997
+      ],
+      "unigram_scores": [
+        -28.874904796191686,
+        -25.169049005925405
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "comparison-18-1",
+      "family": "comparison-18",
+      "category": "comparison",
+      "split": "dev",
+      "context": "大輔の身長は花子より低い。この二人のうち身長が高いのは、\n",
+      "choices": [
+        "大輔だ。",
+        "花子だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -6.405489720404148,
+        -6.293386122211814
+      ],
+      "raw_log_likelihood": [
+        -6.405489720404148,
+        -6.293386122211814
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.601372430101037,
+        -1.5733465305529535
+      ],
+      "train_sample_slor": [
+        5.617353768946884,
+        4.718915720928398
+      ],
+      "unigram_scores": [
+        -28.874904796191686,
+        -25.169049005925405
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "coreference-00-0",
+      "family": "coreference-00",
+      "category": "coreference",
+      "split": "dev",
+      "context": "太郎は美咲に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "美咲だ。",
+        "太郎だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -8.851893480867147,
+        -6.528735124971718
+      ],
+      "raw_log_likelihood": [
+        -8.851893480867147,
+        -6.528735124971718
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.212973370216787,
+        -1.6321837812429294
+      ],
+      "train_sample_slor": [
+        4.773287126476211,
+        5.359136091562627
+      ],
+      "unigram_scores": [
+        -27.94504198677199,
+        -27.965279491222226
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "coreference-00-1",
+      "family": "coreference-00",
+      "category": "coreference",
+      "split": "dev",
+      "context": "美咲は太郎に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "美咲だ。",
+        "太郎だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -9.331736961379647,
+        -4.5532497661188245
+      ],
+      "raw_log_likelihood": [
+        -9.331736961379647,
+        -4.5532497661188245
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.332934240344912,
+        -1.1383124415297061
+      ],
+      "train_sample_slor": [
+        4.653326256348086,
+        5.85300743127585
+      ],
+      "unigram_scores": [
+        -27.94504198677199,
+        -27.965279491222226
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "coreference-01-0",
+      "family": "coreference-01",
+      "category": "coreference",
+      "split": "dev",
+      "context": "花子は直子に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "花子だ。",
+        "直子だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -8.174714900087565,
+        -3.9998227627947927
+      ],
+      "raw_log_likelihood": [
+        -8.174714900087565,
+        -3.9998227627947927
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.0436787250218913,
+        -0.9999556906986982
+      ],
+      "train_sample_slor": [
+        4.24858352645946,
+        5.260348217905182
+      ],
+      "unigram_scores": [
+        -25.169049005925405,
+        -25.041215634415522
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "coreference-01-1",
+      "family": "coreference-01",
+      "category": "coreference",
+      "split": "dev",
+      "context": "直子は花子に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "花子だ。",
+        "直子だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -7.560430613346398,
+        -3.7474587447941303
+      ],
+      "raw_log_likelihood": [
+        -7.560430613346398,
+        -3.7474587447941303
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.8901076533365995,
+        -0.9368646861985326
+      ],
+      "train_sample_slor": [
+        4.402154598144752,
+        5.323439222405348
+      ],
+      "unigram_scores": [
+        -25.169049005925405,
+        -25.041215634415522
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "coreference-02-0",
+      "family": "coreference-02",
+      "category": "coreference",
+      "split": "dev",
+      "context": "健太は洋介に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "洋介だ。",
+        "健太だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -9.788818053202704,
+        -8.160754278302193
+      ],
+      "raw_log_likelihood": [
+        -9.788818053202704,
+        -8.160754278302193
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.447204513300676,
+        -2.040188569575548
+      ],
+      "train_sample_slor": [
+        4.773973778521876,
+        4.949513174603604
+      ],
+      "unigram_scores": [
+        -28.884713167290208,
+        -27.95880697671661
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "coreference-02-1",
+      "family": "coreference-02",
+      "category": "coreference",
+      "split": "dev",
+      "context": "洋介は健太に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "洋介だ。",
+        "健太だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -9.739526288118213,
+        -9.651762326713651
+      ],
+      "raw_log_likelihood": [
+        -9.739526288118213,
+        -9.651762326713651
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.4348815720295534,
+        -2.412940581678413
+      ],
+      "train_sample_slor": [
+        4.786296719792999,
+        4.576761162500739
+      ],
+      "unigram_scores": [
+        -28.884713167290208,
+        -27.95880697671661
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "coreference-03-0",
+      "family": "coreference-03",
+      "category": "coreference",
+      "split": "dev",
+      "context": "美咲は真理に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "美咲だ。",
+        "真理だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -8.1577631495893,
+        -7.640677370131016
+      ],
+      "raw_log_likelihood": [
+        -8.1577631495893,
+        -7.640677370131016
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.039440787397325,
+        -1.910169342532754
+      ],
+      "train_sample_slor": [
+        4.9468197092956725,
+        4.571280798625027
+      ],
+      "unigram_scores": [
+        -27.94504198677199,
+        -25.925800564631125
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "coreference-03-1",
+      "family": "coreference-03",
+      "category": "coreference",
+      "split": "dev",
+      "context": "真理は美咲に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "美咲だ。",
+        "真理だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -8.009338017553091,
+        -7.675965014845133
+      ],
+      "raw_log_likelihood": [
+        -8.009338017553091,
+        -7.675965014845133
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.0023345043882728,
+        -1.9189912537112832
+      ],
+      "train_sample_slor": [
+        4.983925992304725,
+        4.562458887446498
+      ],
+      "unigram_scores": [
+        -27.94504198677199,
+        -25.925800564631125
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "coreference-05-0",
+      "family": "coreference-05",
+      "category": "coreference",
+      "split": "dev",
+      "context": "洋介は明子に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "洋介だ。",
+        "明子だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -9.353411129908636,
+        -5.244919913820922
+      ],
+      "raw_log_likelihood": [
+        -9.353411129908636,
+        -5.244919913820922
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.338352782477159,
+        -1.3112299784552306
+      ],
+      "train_sample_slor": [
+        4.882825509345393,
+        4.843692451084062
+      ],
+      "unigram_scores": [
+        -28.884713167290208,
+        -24.619689718157172
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "coreference-05-1",
+      "family": "coreference-05",
+      "category": "coreference",
+      "split": "dev",
+      "context": "明子は洋介に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "洋介だ。",
+        "明子だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -9.541326544131152,
+        -4.832881382666528
+      ],
+      "raw_log_likelihood": [
+        -9.541326544131152,
+        -4.832881382666528
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.385331636032788,
+        -1.208220345666632
+      ],
+      "train_sample_slor": [
+        4.835846655789764,
+        4.946702083872661
+      ],
+      "unigram_scores": [
+        -28.884713167290208,
+        -24.619689718157172
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "coreference-06-0",
+      "family": "coreference-06",
+      "category": "coreference",
+      "split": "dev",
+      "context": "真理は悠人に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "悠人だ。",
+        "真理だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -6.10112227499485,
+        -8.02620692178607
+      ],
+      "raw_log_likelihood": [
+        -6.10112227499485,
+        -8.02620692178607
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.5252805687487125,
+        -2.0065517304465175
+      ],
+      "train_sample_slor": [
+        5.561901314251376,
+        4.474898410711264
+      ],
+      "unigram_scores": [
+        -28.348727532000353,
+        -25.925800564631125
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "coreference-06-1",
+      "family": "coreference-06",
+      "category": "coreference",
+      "split": "dev",
+      "context": "悠人は真理に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "悠人だ。",
+        "真理だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -9.682247247546911,
+        -9.212193731218576
+      ],
+      "raw_log_likelihood": [
+        -9.682247247546911,
+        -9.212193731218576
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.420561811886728,
+        -2.303048432804644
+      ],
+      "train_sample_slor": [
+        4.6666200711133605,
+        4.178401708353137
+      ],
+      "unigram_scores": [
+        -28.348727532000353,
+        -25.925800564631125
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "coreference-07-0",
+      "family": "coreference-07",
+      "category": "coreference",
+      "split": "dev",
+      "context": "翔太は拓也に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "翔太だ。",
+        "拓也だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -4.980478649260476,
+        -6.925194185227156
+      ],
+      "raw_log_likelihood": [
+        -4.980478649260476,
+        -6.925194185227156
+      ],
+      "target_tokens": [
+        6,
+        4
+      ],
+      "token_normalized": [
+        -0.830079774876746,
+        -1.731298546306789
+      ],
+      "train_sample_slor": [
+        6.866985295935861,
+        6.288042902958038
+      ],
+      "unigram_scores": [
+        -46.18239042487564,
+        -32.07736579705931
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "coreference-07-1",
+      "family": "coreference-07",
+      "category": "coreference",
+      "split": "dev",
+      "context": "拓也は翔太に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "翔太だ。",
+        "拓也だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -5.334555333014578,
+        -5.912745873443782
+      ],
+      "raw_log_likelihood": [
+        -5.334555333014578,
+        -5.912745873443782
+      ],
+      "target_tokens": [
+        6,
+        4
+      ],
+      "token_normalized": [
+        -0.8890925555024296,
+        -1.4781864683609456
+      ],
+      "train_sample_slor": [
+        6.807972515310177,
+        6.541154980903881
+      ],
+      "unigram_scores": [
+        -46.18239042487564,
+        -32.07736579705931
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "coreference-08-0",
+      "family": "coreference-08",
+      "category": "coreference",
+      "split": "dev",
+      "context": "明子は恵子に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "恵子だ。",
+        "明子だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -6.7361912578344345,
+        -4.939644023776054
+      ],
+      "raw_log_likelihood": [
+        -6.7361912578344345,
+        -4.939644023776054
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.6840478144586086,
+        -1.2349110059440136
+      ],
+      "train_sample_slor": [
+        5.008955786504863,
+        4.920011423595279
+      ],
+      "unigram_scores": [
+        -26.772014403853888,
+        -24.619689718157172
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "coreference-08-1",
+      "family": "coreference-08",
+      "category": "coreference",
+      "split": "dev",
+      "context": "恵子は明子に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "恵子だ。",
+        "明子だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -5.76675475621596,
+        -6.167353083379567
+      ],
+      "raw_log_likelihood": [
+        -5.76675475621596,
+        -6.167353083379567
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.44168868905399,
+        -1.5418382708448917
+      ],
+      "train_sample_slor": [
+        5.251314911909482,
+        4.613084158694401
+      ],
+      "unigram_scores": [
+        -26.772014403853888,
+        -24.619689718157172
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "coreference-10-0",
+      "family": "coreference-10",
+      "category": "coreference",
+      "split": "dev",
+      "context": "拓也は遥に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "遥だ。",
+        "拓也だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -8.907962007448077,
+        -8.676510913297534
+      ],
+      "raw_log_likelihood": [
+        -8.907962007448077,
+        -8.676510913297534
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -2.969320669149359,
+        -2.1691277283243835
+      ],
+      "train_sample_slor": [
+        4.610529115713739,
+        5.8502137209404435
+      ],
+      "unigram_scores": [
+        -22.739549354589293,
+        -32.07736579705931
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "coreference-10-1",
+      "family": "coreference-10",
+      "category": "coreference",
+      "split": "dev",
+      "context": "遥は拓也に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "遥だ。",
+        "拓也だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -9.317812327295542,
+        -9.807955365628004
+      ],
+      "raw_log_likelihood": [
+        -9.317812327295542,
+        -9.807955365628004
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -3.105937442431847,
+        -2.451988841407001
+      ],
+      "train_sample_slor": [
+        4.473912342431251,
+        5.567352607857826
+      ],
+      "unigram_scores": [
+        -22.739549354589293,
+        -32.07736579705931
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "coreference-11-0",
+      "family": "coreference-11",
+      "category": "coreference",
+      "split": "dev",
+      "context": "恵子は秀樹に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "恵子だ。",
+        "秀樹だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -6.743748983833939,
+        -7.000523903872818
+      ],
+      "raw_log_likelihood": [
+        -6.743748983833939,
+        -7.000523903872818
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.6859372459584847,
+        -1.7501309759682044
+      ],
+      "train_sample_slor": [
+        5.007066355004987,
+        5.592736136361345
+      ],
+      "unigram_scores": [
+        -26.772014403853888,
+        -29.371468449318197
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "coreference-11-1",
+      "family": "coreference-11",
+      "category": "coreference",
+      "split": "dev",
+      "context": "秀樹は恵子に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "恵子だ。",
+        "秀樹だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -8.492874674499035,
+        -6.266636501532048
+      ],
+      "raw_log_likelihood": [
+        -8.492874674499035,
+        -6.266636501532048
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -2.1232186686247587,
+        -1.566659125383012
+      ],
+      "train_sample_slor": [
+        4.569784932338713,
+        5.776207986946537
+      ],
+      "unigram_scores": [
+        -26.772014403853888,
+        -29.371468449318197
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "coreference-12-0",
+      "family": "coreference-12",
+      "category": "coreference",
+      "split": "dev",
+      "context": "直樹は彩に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "彩だ。",
+        "直樹だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -10.359858095645905,
+        -4.679454589262605
+      ],
+      "raw_log_likelihood": [
+        -10.359858095645905,
+        -4.679454589262605
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -3.453286031881968,
+        -1.1698636473156512
+      ],
+      "train_sample_slor": [
+        3.1064734880839424,
+        5.723630929029638
+      ],
+      "unigram_scores": [
+        -19.679278559897732,
+        -27.573978305381157
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "coreference-12-1",
+      "family": "coreference-12",
+      "category": "coreference",
+      "split": "dev",
+      "context": "彩は直樹に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "彩だ。",
+        "直樹だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -11.814326006919146,
+        -5.414616201072931
+      ],
+      "raw_log_likelihood": [
+        -11.814326006919146,
+        -5.414616201072931
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -3.9381086689730487,
+        -1.3536540502682328
+      ],
+      "train_sample_slor": [
+        2.621650850992862,
+        5.5398405260770565
+      ],
+      "unigram_scores": [
+        -19.679278559897732,
+        -27.573978305381157
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "coreference-13-0",
+      "family": "coreference-13",
+      "category": "coreference",
+      "split": "dev",
+      "context": "遥は和也に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "遥だ。",
+        "和也だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -9.461132736876607,
+        -9.55367979966104
+      ],
+      "raw_log_likelihood": [
+        -9.461132736876607,
+        -9.55367979966104
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -3.1537109122922025,
+        -2.38841994991526
+      ],
+      "train_sample_slor": [
+        4.426138872570895,
+        4.880887915610909
+      ],
+      "unigram_scores": [
+        -22.739549354589293,
+        -29.077231462104677
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "coreference-13-1",
+      "family": "coreference-13",
+      "category": "coreference",
+      "split": "dev",
+      "context": "和也は遥に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "遥だ。",
+        "和也だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -9.381877621635795,
+        -8.428470396436751
+      ],
+      "raw_log_likelihood": [
+        -9.381877621635795,
+        -8.428470396436751
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -3.1272925405452647,
+        -2.1071175991091877
+      ],
+      "train_sample_slor": [
+        4.452557244317833,
+        5.162190266416982
+      ],
+      "unigram_scores": [
+        -22.739549354589293,
+        -29.077231462104677
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "coreference-15-0",
+      "family": "coreference-15",
+      "category": "coreference",
+      "split": "dev",
+      "context": "彩は大輔に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "彩だ。",
+        "大輔だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -11.53157002851367,
+        -7.5156768672168255
+      ],
+      "raw_log_likelihood": [
+        -11.53157002851367,
+        -7.5156768672168255
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -3.843856676171223,
+        -1.8789192168042064
+      ],
+      "train_sample_slor": [
+        2.7159028437946873,
+        5.339806982243715
+      ],
+      "unigram_scores": [
+        -19.679278559897732,
+        -28.874904796191686
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "coreference-15-1",
+      "family": "coreference-15",
+      "category": "coreference",
+      "split": "dev",
+      "context": "大輔は彩に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "彩だ。",
+        "大輔だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -10.610185574740171,
+        -5.250931303948164
+      ],
+      "raw_log_likelihood": [
+        -10.610185574740171,
+        -5.250931303948164
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -3.5367285249133906,
+        -1.312732825987041
+      ],
+      "train_sample_slor": [
+        3.0230309950525203,
+        5.9059933730608805
+      ],
+      "unigram_scores": [
+        -19.679278559897732,
+        -28.874904796191686
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "coreference-16-0",
+      "family": "coreference-16",
+      "category": "coreference",
+      "split": "dev",
+      "context": "和也は千尋に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "千尋だ。",
+        "和也だ。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -4.572648555971682,
+        -7.717418837361038
+      ],
+      "raw_log_likelihood": [
+        -4.572648555971682,
+        -7.717418837361038
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.1431621389929205,
+        -1.9293547093402594
+      ],
+      "train_sample_slor": [
+        6.404857928462187,
+        5.33995315618591
+      ],
+      "unigram_scores": [
+        -30.19208026982043,
+        -29.077231462104677
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "coreference-16-1",
+      "family": "coreference-16",
+      "category": "coreference",
+      "split": "dev",
+      "context": "千尋は和也に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "千尋だ。",
+        "和也だ。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -4.163245718926191,
+        -9.200696382671595
+      ],
+      "raw_log_likelihood": [
+        -4.163245718926191,
+        -9.200696382671595
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.0408114297315478,
+        -2.3001740956678987
+      ],
+      "train_sample_slor": [
+        6.50720863772356,
+        4.969133769858271
+      ],
+      "unigram_scores": [
+        -30.19208026982043,
+        -29.077231462104677
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "coreference-17-0",
+      "family": "coreference-17",
+      "category": "coreference",
+      "split": "dev",
+      "context": "陽子は太郎に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "陽子だ。",
+        "太郎だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -6.8097833981737494,
+        -3.746284223161638
+      ],
+      "raw_log_likelihood": [
+        -6.8097833981737494,
+        -3.746284223161638
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.7024458495434374,
+        -0.9365710557904094
+      ],
+      "train_sample_slor": [
+        4.822362781986158,
+        6.054748817015147
+      ],
+      "unigram_scores": [
+        -26.09923452611838,
+        -27.965279491222226
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "coreference-17-1",
+      "family": "coreference-17",
+      "category": "coreference",
+      "split": "dev",
+      "context": "太郎は陽子に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "陽子だ。",
+        "太郎だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -6.5587939862161875,
+        -4.181047052145004
+      ],
+      "raw_log_likelihood": [
+        -6.5587939862161875,
+        -4.181047052145004
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.6396984965540469,
+        -1.045261763036251
+      ],
+      "train_sample_slor": [
+        4.885110134975548,
+        5.9460581097693055
+      ],
+      "unigram_scores": [
+        -26.09923452611838,
+        -27.965279491222226
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "coreference-18-0",
+      "family": "coreference-18",
+      "category": "coreference",
+      "split": "dev",
+      "context": "大輔は花子に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "花子だ。",
+        "大輔だ。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -6.543686896562576,
+        -4.794757775962353
+      ],
+      "raw_log_likelihood": [
+        -6.543686896562576,
+        -4.794757775962353
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.635921724140644,
+        -1.1986894439905882
+      ],
+      "train_sample_slor": [
+        4.656340527340707,
+        6.020036755057333
+      ],
+      "unigram_scores": [
+        -25.169049005925405,
+        -28.874904796191686
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "coreference-18-1",
+      "family": "coreference-18",
+      "category": "coreference",
+      "split": "dev",
+      "context": "花子は大輔に本を貸した。その本を借りた人は、\n",
+      "choices": [
+        "花子だ。",
+        "大輔だ。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -6.999942689202726,
+        -5.862276924774051
+      ],
+      "raw_log_likelihood": [
+        -6.999942689202726,
+        -5.862276924774051
+      ],
+      "target_tokens": [
+        4,
+        4
+      ],
+      "token_normalized": [
+        -1.7499856723006815,
+        -1.4655692311935127
+      ],
+      "train_sample_slor": [
+        4.54227657918067,
+        5.753156967854409
+      ],
+      "unigram_scores": [
+        -25.169049005925405,
+        -28.874904796191686
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "causality-00-0",
+      "family": "causality-00",
+      "category": "causality",
+      "split": "dev",
+      "context": "太郎は水を冷凍庫に入れて十分に冷やした。その水は、\n",
+      "choices": [
+        "凍った。",
+        "沸騰した。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -9.388738751411438,
+        -12.990314722061157
+      ],
+      "raw_log_likelihood": [
+        -9.388738751411438,
+        -12.990314722061157
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -3.1295795838038125,
+        -3.2475786805152893
+      ],
+      "train_sample_slor": [
+        3.789696783529113,
+        4.545582209765934
+      ],
+      "unigram_scores": [
+        -20.757829101998777,
+        -31.172643561124893
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "causality-00-1",
+      "family": "causality-00",
+      "category": "causality",
+      "split": "dev",
+      "context": "太郎は水をやかんに入れて十分に加熱した。その水は、\n",
+      "choices": [
+        "凍った。",
+        "沸騰した。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -13.571608781814575,
+        -13.850946247577667
+      ],
+      "raw_log_likelihood": [
+        -13.571608781814575,
+        -13.850946247577667
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -4.523869593938191,
+        -3.462736561894417
+      ],
+      "train_sample_slor": [
+        2.395406773394734,
+        4.3304243283868065
+      ],
+      "unigram_scores": [
+        -20.757829101998777,
+        -31.172643561124893
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "causality-01-0",
+      "family": "causality-01",
+      "category": "causality",
+      "split": "dev",
+      "context": "花子は水を冷凍庫に入れて十分に冷やした。その水は、\n",
+      "choices": [
+        "沸騰した。",
+        "凍った。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -13.445334196090698,
+        -9.443204879760742
+      ],
+      "raw_log_likelihood": [
+        -13.445334196090698,
+        -9.443204879760742
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -3.3613335490226746,
+        -3.1477349599202475
+      ],
+      "train_sample_slor": [
+        4.431827341258549,
+        3.7715414074126783
+      ],
+      "unigram_scores": [
+        -31.172643561124893,
+        -20.757829101998777
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "causality-01-1",
+      "family": "causality-01",
+      "category": "causality",
+      "split": "dev",
+      "context": "花子は水をやかんに入れて十分に加熱した。その水は、\n",
+      "choices": [
+        "沸騰した。",
+        "凍った。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -14.633990943431854,
+        -13.81269657611847
+      ],
+      "raw_log_likelihood": [
+        -14.633990943431854,
+        -13.81269657611847
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -3.6584977358579636,
+        -4.60423219203949
+      ],
+      "train_sample_slor": [
+        4.13466315442326,
+        2.3150441752934356
+      ],
+      "unigram_scores": [
+        -31.172643561124893,
+        -20.757829101998777
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "causality-02-0",
+      "family": "causality-02",
+      "category": "causality",
+      "split": "dev",
+      "context": "健太は水を冷凍庫に入れて十分に冷やした。その水は、\n",
+      "choices": [
+        "凍った。",
+        "沸騰した。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -9.02985942363739,
+        -13.53186148405075
+      ],
+      "raw_log_likelihood": [
+        -9.02985942363739,
+        -13.53186148405075
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -3.0099531412124634,
+        -3.3829653710126877
+      ],
+      "train_sample_slor": [
+        3.909323226120462,
+        4.410195519268536
+      ],
+      "unigram_scores": [
+        -20.757829101998777,
+        -31.172643561124893
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "causality-02-1",
+      "family": "causality-02",
+      "category": "causality",
+      "split": "dev",
+      "context": "健太は水をやかんに入れて十分に加熱した。その水は、\n",
+      "choices": [
+        "凍った。",
+        "沸騰した。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -13.228803992271423,
+        -14.13807886838913
+      ],
+      "raw_log_likelihood": [
+        -13.228803992271423,
+        -14.13807886838913
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -4.409601330757141,
+        -3.5345197170972824
+      ],
+      "train_sample_slor": [
+        2.5096750365757843,
+        4.258641173183941
+      ],
+      "unigram_scores": [
+        -20.757829101998777,
+        -31.172643561124893
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "causality-03-0",
+      "family": "causality-03",
+      "category": "causality",
+      "split": "dev",
+      "context": "美咲は水を冷凍庫に入れて十分に冷やした。その水は、\n",
+      "choices": [
+        "沸騰した。",
+        "凍った。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -14.224241614341736,
+        -9.724190831184387
+      ],
+      "raw_log_likelihood": [
+        -14.224241614341736,
+        -9.724190831184387
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -3.556060403585434,
+        -3.241396943728129
+      ],
+      "train_sample_slor": [
+        4.237100486695789,
+        3.6778794236047965
+      ],
+      "unigram_scores": [
+        -31.172643561124893,
+        -20.757829101998777
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "causality-03-1",
+      "family": "causality-03",
+      "category": "causality",
+      "split": "dev",
+      "context": "美咲は水をやかんに入れて十分に加熱した。その水は、\n",
+      "choices": [
+        "沸騰した。",
+        "凍った。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -15.391632914543152,
+        -14.565512955188751
+      ],
+      "raw_log_likelihood": [
+        -15.391632914543152,
+        -14.565512955188751
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -3.847908228635788,
+        -4.855170985062917
+      ],
+      "train_sample_slor": [
+        3.9452526616454353,
+        2.0641053822700086
+      ],
+      "unigram_scores": [
+        -31.172643561124893,
+        -20.757829101998777
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "causality-05-0",
+      "family": "causality-05",
+      "category": "causality",
+      "split": "dev",
+      "context": "洋介は水を冷凍庫に入れて十分に冷やした。その水は、\n",
+      "choices": [
+        "沸騰した。",
+        "凍った。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -12.899612247943878,
+        -9.073507070541382
+      ],
+      "raw_log_likelihood": [
+        -12.899612247943878,
+        -9.073507070541382
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -3.2249030619859695,
+        -3.0245023568471274
+      ],
+      "train_sample_slor": [
+        4.568257828295254,
+        3.8947740104857984
+      ],
+      "unigram_scores": [
+        -31.172643561124893,
+        -20.757829101998777
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "causality-05-1",
+      "family": "causality-05",
+      "category": "causality",
+      "split": "dev",
+      "context": "洋介は水をやかんに入れて十分に加熱した。その水は、\n",
+      "choices": [
+        "沸騰した。",
+        "凍った。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -13.71718230843544,
+        -13.645226657390594
+      ],
+      "raw_log_likelihood": [
+        -13.71718230843544,
+        -13.645226657390594
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -3.42929557710886,
+        -4.5484088857968645
+      ],
+      "train_sample_slor": [
+        4.363865313172363,
+        2.370867481536061
+      ],
+      "unigram_scores": [
+        -31.172643561124893,
+        -20.757829101998777
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "causality-06-0",
+      "family": "causality-06",
+      "category": "causality",
+      "split": "dev",
+      "context": "真理は水を冷凍庫に入れて十分に冷やした。その水は、\n",
+      "choices": [
+        "凍った。",
+        "沸騰した。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -8.803171634674072,
+        -13.047066390514374
+      ],
+      "raw_log_likelihood": [
+        -8.803171634674072,
+        -13.047066390514374
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -2.9343905448913574,
+        -3.2617665976285934
+      ],
+      "train_sample_slor": [
+        3.984885822441568,
+        4.53139429265263
+      ],
+      "unigram_scores": [
+        -20.757829101998777,
+        -31.172643561124893
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "causality-06-1",
+      "family": "causality-06",
+      "category": "causality",
+      "split": "dev",
+      "context": "真理は水をやかんに入れて十分に加熱した。その水は、\n",
+      "choices": [
+        "凍った。",
+        "沸騰した。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -14.266461849212646,
+        -14.266209304332733
+      ],
+      "raw_log_likelihood": [
+        -14.266461849212646,
+        -14.266209304332733
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -4.755487283070882,
+        -3.5665523260831833
+      ],
+      "train_sample_slor": [
+        2.1637890842620435,
+        4.22660856419804
+      ],
+      "unigram_scores": [
+        -20.757829101998777,
+        -31.172643561124893
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "causality-07-0",
+      "family": "causality-07",
+      "category": "causality",
+      "split": "dev",
+      "context": "翔太は水を冷凍庫に入れて十分に冷やした。その水は、\n",
+      "choices": [
+        "沸騰した。",
+        "凍った。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -12.573099732398987,
+        -10.124032020568848
+      ],
+      "raw_log_likelihood": [
+        -12.573099732398987,
+        -10.124032020568848
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -3.1432749330997467,
+        -3.3746773401896157
+      ],
+      "train_sample_slor": [
+        4.649885957181477,
+        3.5445990271433097
+      ],
+      "unigram_scores": [
+        -31.172643561124893,
+        -20.757829101998777
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "causality-07-1",
+      "family": "causality-07",
+      "category": "causality",
+      "split": "dev",
+      "context": "翔太は水をやかんに入れて十分に加熱した。その水は、\n",
+      "choices": [
+        "沸騰した。",
+        "凍った。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -13.732202112674713,
+        -14.325010895729065
+      ],
+      "raw_log_likelihood": [
+        -13.732202112674713,
+        -14.325010895729065
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -3.4330505281686783,
+        -4.775003631909688
+      ],
+      "train_sample_slor": [
+        4.360110362112545,
+        2.1442727354232374
+      ],
+      "unigram_scores": [
+        -31.172643561124893,
+        -20.757829101998777
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "causality-08-0",
+      "family": "causality-08",
+      "category": "causality",
+      "split": "dev",
+      "context": "明子は水を冷凍庫に入れて十分に冷やした。その水は、\n",
+      "choices": [
+        "凍った。",
+        "沸騰した。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -8.946421146392822,
+        -12.721277296543121
+      ],
+      "raw_log_likelihood": [
+        -8.946421146392822,
+        -12.721277296543121
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -2.982140382130941,
+        -3.1803193241357803
+      ],
+      "train_sample_slor": [
+        3.937135985201985,
+        4.612841566145443
+      ],
+      "unigram_scores": [
+        -20.757829101998777,
+        -31.172643561124893
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "causality-08-1",
+      "family": "causality-08",
+      "category": "causality",
+      "split": "dev",
+      "context": "明子は水をやかんに入れて十分に加熱した。その水は、\n",
+      "choices": [
+        "凍った。",
+        "沸騰した。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -12.777469515800476,
+        -13.585210084915161
+      ],
+      "raw_log_likelihood": [
+        -12.777469515800476,
+        -13.585210084915161
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -4.259156505266826,
+        -3.3963025212287903
+      ],
+      "train_sample_slor": [
+        2.6601198620661,
+        4.396858369052433
+      ],
+      "unigram_scores": [
+        -20.757829101998777,
+        -31.172643561124893
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "causality-10-0",
+      "family": "causality-10",
+      "category": "causality",
+      "split": "dev",
+      "context": "拓也は水を冷凍庫に入れて十分に冷やした。その水は、\n",
+      "choices": [
+        "凍った。",
+        "沸騰した。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -8.772279024124146,
+        -13.116545379161835
+      ],
+      "raw_log_likelihood": [
+        -8.772279024124146,
+        -13.116545379161835
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -2.924093008041382,
+        -3.2791363447904587
+      ],
+      "train_sample_slor": [
+        3.9951833592915436,
+        4.514024545490765
+      ],
+      "unigram_scores": [
+        -20.757829101998777,
+        -31.172643561124893
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "causality-10-1",
+      "family": "causality-10",
+      "category": "causality",
+      "split": "dev",
+      "context": "拓也は水をやかんに入れて十分に加熱した。その水は、\n",
+      "choices": [
+        "凍った。",
+        "沸騰した。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -13.0805104970932,
+        -14.182250201702118
+      ],
+      "raw_log_likelihood": [
+        -13.0805104970932,
+        -14.182250201702118
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -4.360170165697734,
+        -3.5455625504255295
+      ],
+      "train_sample_slor": [
+        2.559106201635192,
+        4.247598339855694
+      ],
+      "unigram_scores": [
+        -20.757829101998777,
+        -31.172643561124893
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "causality-11-0",
+      "family": "causality-11",
+      "category": "causality",
+      "split": "dev",
+      "context": "恵子は水を冷凍庫に入れて十分に冷やした。その水は、\n",
+      "choices": [
+        "沸騰した。",
+        "凍った。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -13.505202174186707,
+        -9.03138518333435
+      ],
+      "raw_log_likelihood": [
+        -13.505202174186707,
+        -9.03138518333435
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -3.3763005435466766,
+        -3.0104617277781167
+      ],
+      "train_sample_slor": [
+        4.416860346734547,
+        3.9088146395548087
+      ],
+      "unigram_scores": [
+        -31.172643561124893,
+        -20.757829101998777
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "causality-11-1",
+      "family": "causality-11",
+      "category": "causality",
+      "split": "dev",
+      "context": "恵子は水をやかんに入れて十分に加熱した。その水は、\n",
+      "choices": [
+        "沸騰した。",
+        "凍った。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -14.30355429649353,
+        -13.255648970603943
+      ],
+      "raw_log_likelihood": [
+        -14.30355429649353,
+        -13.255648970603943
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -3.5758885741233826,
+        -4.418549656867981
+      ],
+      "train_sample_slor": [
+        4.217272316157841,
+        2.5007267104649444
+      ],
+      "unigram_scores": [
+        -31.172643561124893,
+        -20.757829101998777
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "causality-12-0",
+      "family": "causality-12",
+      "category": "causality",
+      "split": "dev",
+      "context": "直樹は水を冷凍庫に入れて十分に冷やした。その水は、\n",
+      "choices": [
+        "凍った。",
+        "沸騰した。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -9.63219952583313,
+        -12.708410561084747
+      ],
+      "raw_log_likelihood": [
+        -9.63219952583313,
+        -12.708410561084747
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -3.21073317527771,
+        -3.177102640271187
+      ],
+      "train_sample_slor": [
+        3.7085431920552154,
+        4.6160582500100364
+      ],
+      "unigram_scores": [
+        -20.757829101998777,
+        -31.172643561124893
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 0.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "causality-12-1",
+      "family": "causality-12",
+      "category": "causality",
+      "split": "dev",
+      "context": "直樹は水をやかんに入れて十分に加熱した。その水は、\n",
+      "choices": [
+        "凍った。",
+        "沸騰した。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -13.546470046043396,
+        -13.600975304841995
+      ],
+      "raw_log_likelihood": [
+        -13.546470046043396,
+        -13.600975304841995
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -4.515490015347798,
+        -3.400243826210499
+      ],
+      "train_sample_slor": [
+        2.403786351985127,
+        4.3929170640707245
+      ],
+      "unigram_scores": [
+        -20.757829101998777,
+        -31.172643561124893
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "causality-13-0",
+      "family": "causality-13",
+      "category": "causality",
+      "split": "dev",
+      "context": "遥は水を冷凍庫に入れて十分に冷やした。その水は、\n",
+      "choices": [
+        "沸騰した。",
+        "凍った。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -12.147052884101868,
+        -8.951622128486633
+      ],
+      "raw_log_likelihood": [
+        -12.147052884101868,
+        -8.951622128486633
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -3.036763221025467,
+        -2.983874042828878
+      ],
+      "train_sample_slor": [
+        4.756397669255756,
+        3.935402324504048
+      ],
+      "unigram_scores": [
+        -31.172643561124893,
+        -20.757829101998777
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "causality-13-1",
+      "family": "causality-13",
+      "category": "causality",
+      "split": "dev",
+      "context": "遥は水をやかんに入れて十分に加熱した。その水は、\n",
+      "choices": [
+        "沸騰した。",
+        "凍った。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -13.049157083034515,
+        -13.053332567214966
+      ],
+      "raw_log_likelihood": [
+        -13.049157083034515,
+        -13.053332567214966
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -3.262289270758629,
+        -4.351110855738322
+      ],
+      "train_sample_slor": [
+        4.530871619522594,
+        2.5681655115946036
+      ],
+      "unigram_scores": [
+        -31.172643561124893,
+        -20.757829101998777
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "causality-15-0",
+      "family": "causality-15",
+      "category": "causality",
+      "split": "dev",
+      "context": "彩は水を冷凍庫に入れて十分に冷やした。その水は、\n",
+      "choices": [
+        "沸騰した。",
+        "凍った。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -13.554837346076965,
+        -9.814928889274597
+      ],
+      "raw_log_likelihood": [
+        -13.554837346076965,
+        -9.814928889274597
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -3.3887093365192413,
+        -3.2716429630915322
+      ],
+      "train_sample_slor": [
+        4.404451553761982,
+        3.647633404241393
+      ],
+      "unigram_scores": [
+        -31.172643561124893,
+        -20.757829101998777
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "causality-15-1",
+      "family": "causality-15",
+      "category": "causality",
+      "split": "dev",
+      "context": "彩は水をやかんに入れて十分に加熱した。その水は、\n",
+      "choices": [
+        "沸騰した。",
+        "凍った。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -15.21168565750122,
+        -14.390200853347778
+      ],
+      "raw_log_likelihood": [
+        -15.21168565750122,
+        -14.390200853347778
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -3.802921414375305,
+        -4.796733617782593
+      ],
+      "train_sample_slor": [
+        3.990239475905918,
+        2.1225427495503326
+      ],
+      "unigram_scores": [
+        -31.172643561124893,
+        -20.757829101998777
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "causality-16-0",
+      "family": "causality-16",
+      "category": "causality",
+      "split": "dev",
+      "context": "和也は水を冷凍庫に入れて十分に冷やした。その水は、\n",
+      "choices": [
+        "凍った。",
+        "沸騰した。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -9.63075304031372,
+        -13.151577174663544
+      ],
+      "raw_log_likelihood": [
+        -9.63075304031372,
+        -13.151577174663544
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -3.2102510134379068,
+        -3.287894293665886
+      ],
+      "train_sample_slor": [
+        3.7090253538950186,
+        4.505266596615337
+      ],
+      "unigram_scores": [
+        -20.757829101998777,
+        -31.172643561124893
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "causality-16-1",
+      "family": "causality-16",
+      "category": "causality",
+      "split": "dev",
+      "context": "和也は水をやかんに入れて十分に加熱した。その水は、\n",
+      "choices": [
+        "凍った。",
+        "沸騰した。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -14.10072261095047,
+        -14.191975772380829
+      ],
+      "raw_log_likelihood": [
+        -14.10072261095047,
+        -14.191975772380829
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -4.700240870316823,
+        -3.547993943095207
+      ],
+      "train_sample_slor": [
+        2.2190354970161024,
+        4.245166947186016
+      ],
+      "unigram_scores": [
+        -20.757829101998777,
+        -31.172643561124893
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "causality-17-0",
+      "family": "causality-17",
+      "category": "causality",
+      "split": "dev",
+      "context": "陽子は水を冷凍庫に入れて十分に冷やした。その水は、\n",
+      "choices": [
+        "沸騰した。",
+        "凍った。"
+      ],
+      "label": 1,
+      "prediction": 1,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -12.652834355831146,
+        -9.056066274642944
+      ],
+      "raw_log_likelihood": [
+        -12.652834355831146,
+        -9.056066274642944
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -3.1632085889577866,
+        -3.018688758214315
+      ],
+      "train_sample_slor": [
+        4.629952301323437,
+        3.900587609118611
+      ],
+      "unigram_scores": [
+        -31.172643561124893,
+        -20.757829101998777
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "causality-17-1",
+      "family": "causality-17",
+      "category": "causality",
+      "split": "dev",
+      "context": "陽子は水をやかんに入れて十分に加熱した。その水は、\n",
+      "choices": [
+        "沸騰した。",
+        "凍った。"
+      ],
+      "label": 0,
+      "prediction": 1,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -13.755646884441376,
+        -13.149765729904175
+      ],
+      "raw_log_likelihood": [
+        -13.755646884441376,
+        -13.149765729904175
+      ],
+      "target_tokens": [
+        4,
+        3
+      ],
+      "token_normalized": [
+        -3.438911721110344,
+        -4.383255243301392
+      ],
+      "train_sample_slor": [
+        4.354249169170879,
+        2.536021124031534
+      ],
+      "unigram_scores": [
+        -31.172643561124893,
+        -20.757829101998777
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 1,
+      "unigram_credit": 0.0
+    },
+    {
+      "id": "causality-18-0",
+      "family": "causality-18",
+      "category": "causality",
+      "split": "dev",
+      "context": "大輔は水を冷凍庫に入れて十分に冷やした。その水は、\n",
+      "choices": [
+        "凍った。",
+        "沸騰した。"
+      ],
+      "label": 0,
+      "prediction": 0,
+      "credit": 1.0,
+      "ties": 1,
+      "scores": [
+        -9.30656385421753,
+        -12.838336050510406
+      ],
+      "raw_log_likelihood": [
+        -9.30656385421753,
+        -12.838336050510406
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -3.1021879514058432,
+        -3.2095840126276016
+      ],
+      "train_sample_slor": [
+        3.8170884159270826,
+        4.583576877653622
+      ],
+      "unigram_scores": [
+        -20.757829101998777,
+        -31.172643561124893
+      ],
+      "normalized_prediction": 0,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 1.0
+    },
+    {
+      "id": "causality-18-1",
+      "family": "causality-18",
+      "category": "causality",
+      "split": "dev",
+      "context": "大輔は水をやかんに入れて十分に加熱した。その水は、\n",
+      "choices": [
+        "凍った。",
+        "沸騰した。"
+      ],
+      "label": 1,
+      "prediction": 0,
+      "credit": 0.0,
+      "ties": 1,
+      "scores": [
+        -13.574513912200928,
+        -14.073812454938889
+      ],
+      "raw_log_likelihood": [
+        -13.574513912200928,
+        -14.073812454938889
+      ],
+      "target_tokens": [
+        3,
+        4
+      ],
+      "token_normalized": [
+        -4.524837970733643,
+        -3.518453113734722
+      ],
+      "train_sample_slor": [
+        2.394438396599283,
+        4.274707776546501
+      ],
+      "unigram_scores": [
+        -20.757829101998777,
+        -31.172643561124893
+      ],
+      "normalized_prediction": 1,
+      "normalized_credit": 1.0,
+      "unigram_prediction": 0,
+      "unigram_credit": 0.0
+    }
+  ],
+  "expected": 192,
+  "complete": true,
+  "summary": {
+    "count": 192,
+    "primary": {
+      "accuracy": {
+        "point": 0.5677083333333334,
+        "ci95": [
+          0.515625,
+          0.6197916666666666
+        ],
+        "units": 96,
+        "examples": 192,
+        "unit": "family/prompt",
+        "seed": 42,
+        "repetitions": 2000,
+        "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+      },
+      "count": 192,
+      "hard_accuracy": 0.5677083333333334,
+      "macro_f1": 0.566284734507253,
+      "mcc": 0.13631448295313947,
+      "confusion_matrix": [
+        [
+          49,
+          47
+        ],
+        [
+          36,
+          60
+        ]
+      ],
+      "confusion_ties": "first maximum; accuracy CI uses fractional credit"
+    },
+    "per_token_secondary": {
+      "accuracy": {
+        "point": 0.5833333333333334,
+        "ci95": [
+          0.5364583333333334,
+          0.6354166666666666
+        ],
+        "units": 96,
+        "examples": 192,
+        "unit": "family/prompt",
+        "seed": 42,
+        "repetitions": 2000,
+        "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+      },
+      "count": 192,
+      "hard_accuracy": 0.5833333333333334,
+      "macro_f1": 0.5826086956521739,
+      "mcc": 0.16724840200141816,
+      "confusion_matrix": [
+        [
+          52,
+          44
+        ],
+        [
+          36,
+          60
+        ]
+      ],
+      "confusion_ties": "first maximum; accuracy CI uses fractional credit"
+    },
+    "unigram_control": {
+      "accuracy": {
+        "point": 0.5,
+        "ci95": [
+          0.5,
+          0.5
+        ],
+        "units": 96,
+        "examples": 192,
+        "unit": "family/prompt",
+        "seed": 42,
+        "repetitions": 2000,
+        "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+      },
+      "count": 192,
+      "hard_accuracy": 0.5,
+      "macro_f1": 0.4991304347826087,
+      "mcc": 0.0,
+      "confusion_matrix": [
+        [
+          44,
+          52
+        ],
+        [
+          44,
+          52
+        ]
+      ],
+      "confusion_ties": "first maximum; accuracy CI uses fractional credit"
+    },
+    "chance": 0.5,
+    "above_chance_evidence": true,
+    "train_majority_accuracy": 0.5,
+    "categories": {
+      "negation": {
+        "point": 0.875,
+        "ci95": [
+          0.75,
+          0.96875
+        ],
+        "units": 16,
+        "examples": 32,
+        "unit": "family/prompt",
+        "seed": 42,
+        "repetitions": 2000,
+        "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+      },
+      "quantity": {
+        "point": 0.5625,
+        "ci95": [
+          0.5,
+          0.65625
+        ],
+        "units": 16,
+        "examples": 32,
+        "unit": "family/prompt",
+        "seed": 42,
+        "repetitions": 2000,
+        "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+      },
+      "time": {
+        "point": 0.46875,
+        "ci95": [
+          0.375,
+          0.5625
+        ],
+        "units": 16,
+        "examples": 32,
+        "unit": "family/prompt",
+        "seed": 42,
+        "repetitions": 2000,
+        "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+      },
+      "comparison": {
+        "point": 0.5,
+        "ci95": [
+          0.40625,
+          0.59375
+        ],
+        "units": 16,
+        "examples": 32,
+        "unit": "family/prompt",
+        "seed": 42,
+        "repetitions": 2000,
+        "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+      },
+      "coreference": {
+        "point": 0.40625,
+        "ci95": [
+          0.28125,
+          0.53125
+        ],
+        "units": 16,
+        "examples": 32,
+        "unit": "family/prompt",
+        "seed": 42,
+        "repetitions": 2000,
+        "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+      },
+      "causality": {
+        "point": 0.59375,
+        "ci95": [
+          0.5,
+          0.71875
+        ],
+        "units": 16,
+        "examples": 32,
+        "unit": "family/prompt",
+        "seed": 42,
+        "repetitions": 2000,
+        "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+      }
+    },
+    "tie_examples": 0,
+    "limitations": "single model training seed; dev diagnostic, no practical-quality acceptance"
+  },
+  "control": {
+    "chance": 0.5,
+    "train_majority_label": 0,
+    "constant_candidate": "paired variants have identical candidates and opposite gold labels"
+  }
+}
