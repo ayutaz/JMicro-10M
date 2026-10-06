@@ -1,0 +1,52 @@
+{
+  "status": "defined_bounded_CPU_parent_and_guard_route_audit_not_executed",
+  "created_at": "2026-10-06T05:19:35.723363+00:00",
+  "question": "Is the documented original10B experimental parent distinct from the better historical10.5B Web guard in optimizer state, consumed teachers and schedule, and has its use as a parent for matched short-source learning already been tested?",
+  "references": {
+    "current_review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition_query_balance_comparison_review.json",
+      "sha256": "825912e1e51db49d453912e5f431c49b9e31509115e5079e65a32e746310ca38"
+    },
+    "current_result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-query-balance-comparison-20261006/compare-result.json",
+      "sha256": "6e2428c5788cb673c653d215ac934c5fcc5f3f61700572a6dcba4f741695c06c"
+    },
+    "original_exposure_review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/early_exposure_comparison_review.json",
+      "sha256": "b74a03e9c19d5977f8ad22bd7a41dbe779845970398bf3fc85d464360a92b9b4"
+    },
+    "mature_review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/mature_base_condition_comparison_review.json",
+      "sha256": "0697baeb505b3fe36aac77faa1caa4e2f5228f66f514ec8825ae39c38d848dbc"
+    },
+    "existing_lowLR_config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/lr_recovery.json",
+      "sha256": "b9ba0c0759ac7700d9b2639e90487c220795b9ea72c73114b65b1e0f4cd55d90"
+    },
+    "existing_lowLR_review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/lr_recovery_review.json",
+      "sha256": "3ce404eeab1b3448242b2a453d6a8776aa842939dcd697a2d2012f51d6f73ef1"
+    },
+    "historical_web": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/evaluation/result/web/evaluation/result.json",
+      "sha256": "5e0f346d1c657b2f8f1a35d9e8079ce896abab3451e34dc697792394a0df6796"
+    },
+    "original_recipe": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_10b.json",
+      "sha256": "b0949a59bc8254d5f1f68f410ee8928be445ceff8a4e9ee0a7c800892af4e396"
+    }
+  },
+  "scope": "Read only two explicitly documented parent/guard fullstate metadata and their saved evaluations, and the completed LR-recovery/500M Web branch provenance. Check config recordedLR vs actual optimizer groups, body/input/teacher/byte budgets, sampler/Adam/scheduler lineage and completed comparisons. No broad checkpoint scan, forward/backward, tokenization/corpus audit or new scoring. Historical guard stays unchanged; do not select a favorable checkpoint by outcome.",
+  "CPU_limit_seconds": 30,
+  "GPU_seconds": 0,
+  "new_scientific_teacher_tokens": 0,
+  "optimizer_updates": 0,
+  "completion": "Persist a small table linking actual parent/guard SHA and budgets/LR/quality; explicitly identify whether the proposed parent route is genuinely untested or a duplicate. If duplicate or not justified, reject it and do not launch a speculative repeated sweep. A new training proposal requires a defined matched comparison and measured budget; no automatic extension.",
+  "limitations": "Descriptive state/provenance audit cannot prove quality improves with a different parent. Low LR with100% short-only material is not automatically equivalent to75% original Web plus three short sources. The current query intervention reduced train last-entity correlation but still failed both quality and its predefined secondary mechanism screen.",
+  "Base_adopted": false,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true
+}

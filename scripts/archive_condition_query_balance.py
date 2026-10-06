@@ -25,7 +25,9 @@ def archive(mode):
         if job['status'] != 'complete' or alive(job) or review['result_sha256'] != sha(study.RUN / 'compare-result.json'):
             raise ValueError('Terminal actual reviewed all80 evidence required')
         paths.update((study.CONFIG, ROOT / 'reports/phase6/condition_query_balance_notes.json',
-                      ROOT / 'reports/phase6/condition_query_balance_comparison_review.json'))
+                      ROOT / 'reports/phase6/condition_query_balance_comparison_review.json',
+                      ROOT / 'scripts/prepare_query_balance_content_review.py',
+                      ROOT / 'reports/phase6/condition_query_balance_observations.tsv'))
         paths.update(p for p in study.RUN.rglob('*') if p.is_file() and p.suffix in ('.json','.jsonl','.py','.xml','.ps1'))
     if any(not p.is_file() for p in paths):
         raise ValueError('Required evidence file absent')

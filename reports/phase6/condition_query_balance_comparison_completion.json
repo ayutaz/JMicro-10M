@@ -1,0 +1,239 @@
+{
+  "status": "actual_same_parent_query_balanced100M_and_all80_complete_candidate_rejected",
+  "completed_at": "2026-10-06T05:20:15.5746975Z",
+  "run": "reports/phase6/condition-query-balance-comparison-20261006",
+  "actual_scientific_process_absent": true,
+  "actual_identity": {
+    "status": "complete",
+    "pid": 566992,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "14661392",
+    "config_sha256": "aa65e594d47b996df3dbe3e7aa42466cfc3d13604e84a75afd8950c708ff0297",
+    "started_at": "2026-10-06T05:10:11.783003Z",
+    "GPU_elapsed_seconds": 253.21383405599045,
+    "Base_adopted": false,
+    "protected_test_used": false,
+    "restart_command": "scripts/run_condition_query_balance_comparison.ps1 -Mode Train -Worker",
+    "stage": "complete",
+    "heartbeat_at": "2026-10-06T05:14:25.483008Z",
+    "teachers": 99765470,
+    "teacher_budget": 100000000,
+    "source_teachers": {
+      "web": 74823740,
+      "story": 4988661,
+      "ordinary_textbook": 9976547,
+      "conditional_textbook": 9976522
+    },
+    "loss": 2.312191963195801,
+    "completed_tasks": 618,
+    "total_tasks": 618,
+    "completed_cases": 80,
+    "completed_requests": 512,
+    "total_requests": 512,
+    "completed_at": "2026-10-06T05:14:25.630307Z"
+  },
+  "checkpoint": {
+    "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-query-balance-comparison-20261006/query_balanced/training/checkpoint-00308244.pt",
+    "checkpoint_sha256": "001b12678273465d1468ae737a9a6b4c0c7d502ccd649c5dbb5446f834109a4e",
+    "binding": {
+      "config_sha256": "aa65e594d47b996df3dbe3e7aa42466cfc3d13604e84a75afd8950c708ff0297",
+      "arm": "query_balanced",
+      "parent": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+        "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+      },
+      "short_manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+      "teacher_goals": {
+        "web": 75000000,
+        "story": 5000000,
+        "ordinary_textbook": 10000000,
+        "conditional_textbook": 10000000
+      },
+      "optimizer_policy": "inherit",
+      "peak_lr": 0.0002,
+      "loss": "ordinary original body+EOS CE, outcome weight1",
+      "study_kind": "comparison_query_balance_same100M",
+      "sampler_policy": "Actual original Web parent cursor and fresh seed42 streams remain. Same2048 conditional IDs/order; only172 train queries/targets change, not heldout forms. Query words/target entities/lengths can differ; not pure position causality.",
+      "outcome_weight": 1,
+      "positive_manifest_sha256": "fd39c41e2ba270c104cb560c7a9a73ff8ea2f237132f02d4e137cfe8750ca987",
+      "original_web": {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2/export-001/shards",
+        "manifest_sha256": "2edfd35bf077cd1aa583713c01341c0db52f39adc5701f30ede0aacae840b2de"
+      }
+    },
+    "update": 308244,
+    "tokens": 10100539392,
+    "supervised_tokens": 10078838479,
+    "additional_supervised_tokens": 100000000,
+    "additional_input_tokens": 100532224,
+    "source_teachers": {
+      "web": 75000000,
+      "story": 5000000,
+      "ordinary_textbook": 10000000,
+      "conditional_textbook": 10000000
+    },
+    "source_eos": {
+      "web": 159044,
+      "story": 38240,
+      "ordinary_textbook": 74183,
+      "conditional_textbook": 234328
+    },
+    "source_input_tokens": {
+      "web": 75183104,
+      "story": 5039104,
+      "ordinary_textbook": 10075136,
+      "conditional_textbook": 10234880
+    },
+    "source_focus_teachers": {
+      "web": 0,
+      "story": 0,
+      "ordinary_textbook": 0,
+      "conditional_textbook": 1407426
+    },
+    "focus_teacher_tokens": 1407426,
+    "focus_token_digest": "7fb17043657b5ac1ae6a0bfc526b60996429b232622157be785d1a4c18932a3b",
+    "weighted_teacher_mass": 100000000,
+    "outcome_weight": 1,
+    "training_seconds": 160.27298541355412,
+    "completed_at": "2026-10-06T05:12:57.070235Z"
+  },
+  "new_scientific_teacher_tokens": 100000000,
+  "new_scientific_input_tokens": 100532224,
+  "scientific_optimizer_updates": 3068,
+  "training_seconds": 160.27298541355412,
+  "GPU_seconds": 253.21383405599045,
+  "verification_GPU_seconds": 16.879823619005037,
+  "total_new_GPU_seconds": 270.0936576749955,
+  "verification_teacher_tokens": 1304156,
+  "GPU_limit_seconds": 900,
+  "reused_control_teachers": 100000000,
+  "independent_learned_seed": false,
+  "summaries": {
+    "control": {
+      "BPB": 0.9909362016606469,
+      "rates": {
+        "outputs": 80,
+        "eos": 34,
+        "repetition": 21,
+        "unicode_failure": 1,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 72,
+      "relevance2": 68,
+      "coherent": 12,
+      "appropriate": 26,
+      "generation_sha256": "b8f3c968c5956cd2497cbeff14d27a84ebae7996a0e3bb199927c3e7433c3d37",
+      "notes_sha256": "3992ec51e542cfc38cbb57c68b43540400ae1a7f37b1729c7e5fee5292c12ccc",
+      "Japanese": {
+        "semantics": 0.5989583333333334,
+        "jblimp": 0.7552870090634441,
+        "jcqa": 0.355674709562109
+      },
+      "additional_teacher_tokens": 100000000,
+      "independent_human_blind": false
+    },
+    "query_balanced": {
+      "BPB": 0.9908565345182468,
+      "rates": {
+        "outputs": 80,
+        "eos": 35,
+        "repetition": 25,
+        "unicode_failure": 1,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 74,
+      "relevance2": 69,
+      "coherent": 10,
+      "appropriate": 24,
+      "generation_sha256": "4e557a48e8e63e77e73bc9b453b10136462cc15517aa6adb107766b839587f18",
+      "notes_sha256": "9814abaac7e6b5878ec69e9e3237434781d3df1819a095908f0362aea0da4a9c",
+      "Japanese": {
+        "semantics": 0.59375,
+        "jblimp": 0.7462235649546828,
+        "jcqa": 0.3610366398570152
+      },
+      "additional_teacher_tokens": 100000000,
+      "independent_human_blind": false
+    }
+  },
+  "quality_comparison": {
+    "checks": {
+      "coherence_gain_at_least8": false,
+      "paired_CI_lower_above0": false,
+      "EOS_nonworsening": true,
+      "repetition_nonworsening": false,
+      "no_empty_role_unicode": false,
+      "BPB_gate": true,
+      "appropriate_completion_not_punctuation": true
+    },
+    "passed": false,
+    "difference_count": -2,
+    "CI95": [
+      -0.075,
+      0.025
+    ]
+  },
+  "mechanism_screen": {
+    "control": {
+      "both_correct": 1,
+      "both_reversed": 22
+    },
+    "candidate": {
+      "both_correct": 4,
+      "both_reversed": 16
+    },
+    "passed": false,
+    "secondary_only": true
+  },
+  "retained_source_checks": {
+    "three_unchanged_sources_cursors_and_accounting_equal": true,
+    "original_Web_cursor_retained": true,
+    "Web_blocks_consumed": 73421
+  },
+  "all80_individually_read": true,
+  "exact_prior_notes_reused": 37,
+  "new_content_observations": 43,
+  "eligible_for_final_Base_validation": false,
+  "Base_adopted": false,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "old_numerical7_preserved": true,
+  "result_sha256": "6e2428c5788cb673c653d215ac934c5fcc5f3f61700572a6dcba4f741695c06c",
+  "review_sha256": "825912e1e51db49d453912e5f431c49b9e31509115e5079e65a32e746310ca38",
+  "archive": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition_query_balance_comparison_evidence.tar.gz",
+    "sha256": "03e46203a8b27733a4365a69be3b3429dff476160312583489eefb5b3d18f8fa",
+    "bytes": 3953663
+  },
+  "portable_text_files_verified": 314,
+  "actual_UI": {
+    "actual_identity": {
+      "pid": 567465,
+      "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+      "start_ticks": "14687227"
+    },
+    "model": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    },
+    "original_UI_restored": true,
+    "scientific_process_absent": true
+  },
+  "next_proposal": "reports/phase6/base_parent_baseline_audit_proposal.json",
+  "next_action": "Base only: execute the predefined CPU30s audit of actual original10B parent versus historical10.5B Web guard and completed lowLR recovery provenance, without GPU/learning/CP search/criterion changes. Establish whether a matched historical-parent short-source route is genuinely new before defining any next finite training comparison. Base remains unqualified; independent learned seed/full dev/protected test/adoption await a quality-passing candidate. Chat and quantization deferred."
+}
