@@ -1,3 +1,11 @@
+Base限定・同64の次token尤度転移診断完了（2026-10-07 JST）。
+
+[全3モデル×3prefix view](../reports/phase6/natural_context_contrast_likelihood_transfer_review.json): 同suffix16,509token/63,511byte、元前文BPB元10B0.981316/CE0.995055/contrast1.000546。contrast−CE+0.005491/文書byte-weighted CI[0.003823,0.007581]で、このsampleでは次token予測が改善しない。全モデルで元前文は有用、前文benefit変化のCIは0を含む。GPU2.122014秒/60・新教師/更新0、actual683973終了・ps不在/元UI復帰。前の識別改善をBase採用としない、suffix-only BPBをfull DEV guardへ代入しない。
+
+[次のtrain-only projection仮説](../reports/phase6/natural_context_contrast_projection_proposal.json)を実装し、native語彙経路とaux識別の計算空間を分ける。推論Base10,001,152は保持、98,304の学習専用headは別計数して評価で破棄。視覚表現の[SimCLR一次論文](https://arxiv.org/abs/2002.05709v3)からの仮説で、日本語改善未証明。CPU30秒/実CUDA180秒のnative/head初期一致・有限梯度・全state再開と全source容量/速度に合格してから、同source/100M教師・同親/optimizerの一科学比較を実測予算で凍結する。既存CE/direct対照を再GPUしない。未実装・未開始、旧recipe救済やhead sweepなし。
+
+Base未完成。元全quality gate/全80/独立学習seed/full DEV/protected final TEST/adoptionを保持し、完成時通知停止。Chat/Dialogue/SFT/量子化なし、旧失敗・Phase0–3保存。以下は過去の履歴。
+
 Base限定・readonly DEV表現転移の診断完了（2026-10-07 JST）。
 
 [元10B/CE/contrast同64の実レビュー](../reports/phase6/natural_context_contrast_dev_transfer_review.json): unique識別7.031%/7.813%/18.750%、contrast−CE+10.938ポイント/文書paired CI[3.906,19.531]ポイント。GPU1.501791秒/60・更新/新教師0、actual683176終了・ps不在、元UI復帰。固定DEVで識別が一部改善しても元全80生成とBase全gateの失敗は変更しない。near-family/反復DEVの限界、二方向の相関を保持。

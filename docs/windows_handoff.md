@@ -1,3 +1,13 @@
+Base限定・同DEV64条件付き尤度の一回診断完了（2026-10-07 JST）。
+
+[終端と可搬記録](../reports/phase6/natural_context_contrast_likelihood_transfer_completion.json)。actual683973/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start19402153はcomplete・実ps不在、GPU2.122014秒/60、新教師/更新0。元10B/CE/contrast×元前文/cyclic別前文/BOSのみの9section、同suffix16,509token/63,511byteを完全に評価。CE→contrastの元前文BPB0.995055→1.000546で予測改善なし、前の全80/品質不合格を保持。CPU3tests/0.81秒、準備0.028179秒、実CPU reviewer成功。終了済み `scripts/run_natural_context_contrast_likelihood_transfer.ps1` を再起動しない。
+
+19text/1277484byte archive（manifest SHAcea9dbe3…）に同64pairs/全9raw/終端identity/source/tests/config/レビューを保存。元10B UI actual684031/同boot/start19402674、HTTP元親SHA410f975d…/10000007168tokens/busy=falseと実ps確認。GPU科学jobなし、tensor/全corpusは元WSL pathを維持。
+
+次は[単一train-only projection仮説](../reports/phase6/natural_context_contrast_projection_proposal.json)のnative/head分離trainer・実probe commandを実装する。推論Base10Mのまま、学習時だけ256→256/ReLU→128の98,304param headをaux側へ追加し評価で破棄。CPU30秒/実CUDA180秒でfinite gradient/全state4対2+2と全source容量/速度を確認後のみ、既存CE/direct100Mを対照に新科学予算を凍結。まだ未実装/新GPU0、推測commandを実行しない。新GPU前に実process確認、UI必要期間だけ停止/finally元UI復帰。旧source/LR/係数/epoch救済やhead sweepなし。
+
+Base未完成、元全品質基準を満たしたら通知停止、Chat/Dialogue/SFT/量子化なし。WSL pinned uv Python3.12.7/frozen extras hub,data,ml,export、local verified commitのみ/pushなし、全旧失敗/Phase0–3保存。以下は過去の履歴。
+
 Base限定・readonly DEV64表現転移の診断完了（2026-10-07 JST）。
 
 [終端記録](../reports/phase6/natural_context_contrast_dev_transfer_completion.json)。actual683176/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start19353239はcomplete・実ps不在、Windowsworker17484終了。元10B/CE/contrast同64 raw matrixをGPU1.501791秒/60で完了、更新/新教師0。paired識別はCE7.813%→contrast18.750%だが、自然文生成の元全gateは不合格のまま。runner `scripts/run_natural_context_contrast_dev_transfer.ps1` は一回の診断を終了済み、再起動しない。CPU4tests/0.74秒、原byte準備0.309380秒/除外0、body wrapperの初回CPU読込誤りを修正して元条件のまま成功。元科学code/config/既存CPを変更しない。

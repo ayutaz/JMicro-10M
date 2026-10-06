@@ -1,3 +1,17 @@
+Base限定・同64原文suffixの条件付き尤度転移を実測完了（2026-10-07 JST）。
+
+[終端・結果・UI復帰](../reports/phase6/natural_context_contrast_likelihood_transfer_completion.json)・[全9sectionの実レビュー](../reports/phase6/natural_context_contrast_likelihood_transfer_review.json)。元10B/CE100M/contrast100Mの同固定DEV64を、元前文/固定cyclic別前文/BOSのみで比較。各sectionの同suffix16,509token/63,511byteを一度ずつ評価、EOSはtarget外だがsoftmax語彙からは除かない。context1024/target stride512、元byte/IDs・prefix/suffix境界を保持、窓先頭BOSや末尾EOSの補作・target欠損なし。actual683973/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start19402153はcomplete・実ps不在、GPU2.122014秒/60。新教師/optimizer0、149k弱の評価targetを科学学習量へ足さない。
+
+元10B→CE→contrastのmatched suffix BPB0.981316→0.995055→1.000546、cyclic1.118537→1.132645→1.138741、BOSのみ1.066998→1.085956→1.092467。全モデルで元前文が予測に役立つ。一方、contrast−CEのmatched BPB差+0.005491/paired文書byte-weighted CI[0.003823,0.007581]、cyclic−matchedの前文benefit変化+0.000606/CI[-0.000569,0.001761]。このsampleでは前後表現識別の改善が実際の次token予測改善には結び付かない。前文を全く使っていないとも、tieが原因とも断定しない。suffix-only BPBを元full DEV/historical Web gateへ代入せず、元全80生成/品質不合格を保持。
+
+CPU3tests/0.81秒でrolling windowの元文脈/単一shift/全target、同suffix-byte分母、native FP32直接参照・weights/grad不変、特殊token/不正geometry拒否を確認。CPU準備0.028179秒、新source/再選別/旧巨大corpus再scan0。scorer/永続PS launcherと全section raw・終端identity・source/config/tests/レビューを19text/1,277,484byte archive（manifest SHAcea9dbe3…）へ保存。元10B UI actual684031/start19402674、HTTP元親SHA410f975d…/10000007168tokens/busy=falseと実ps確認。この一回の尤度診断を終了し、同64を繰り返して都合のよい結果を探さない。
+
+[次の単一mechanism案](../reports/phase6/natural_context_contrast_projection_proposal.json): native last-valid256表現へ直接InfoNCEをかける代わりに、学習時だけbias-free256→256/ReLU→128の98,304param headを追加し、その後の表現でaux lossを測る。推論/evaluationではheadを捨て、元10,001,152のBase/語彙head/tied4096/Tokenizerを保持する（training全10,099,456は別計数）。これは[SimCLR一次論文](https://arxiv.org/abs/2002.05709v3)の非線形projectionの視覚表現学習知見を日本語へ移す仮説で、改善や干渉の因果証明ではない。[weight tyingの一次論文](https://arxiv.org/abs/1608.05859v3)と既存8K100Mの負の比較から、入力/出力重みの自動分離・Tokenizer再学習やarchitecture sweepを開始しない。native推論経路を変えた旧readout adapterやWeb gradient projectorとは計算先/推論artifactが異なる。確認したsource/config registryにこのtrain-only nonlinear contrast headはないが、外部未登録runの不存在とはしない。
+
+次の具体的アクションは専用head/native分離state・独立初期化RNG・有限shared/head梯度・元native初期logits/CE会計・4対2+保存再開+2全model/head/Adam/scheduler/RNG/sampler/counter/historyのCPU/実CUDA確認を実装すること。fixed TRAIN64は実装probeにだけ再利用、CPU30秒/GPU180秒。accepted2B全sourceでresident安定batch/実速度と保存再開を実測後のみ、同親/同source75/20/5・同native seed42/fresh AdamW LR1e-5/WD0.1・温度/係数各0.1のprojected100M科学を別config/実測予算で凍結する。終了済みCE/direct contrast100Mの対照は再GPUせず再利用し、全CE digest/quota/cursorとhead/aux/physical/GPU別会計を守る。案はまだ未実装・新GPU/教師0。旧失敗recipeの係数/LR/source/epoch救済や新headのwidth/activation/seed sweepなし。
+
+Base未完成。元strong/matched/absolute/historical Webの全基準・全80内容、資格候補の独立学習seed/full DEV/protected final TEST/adoptionを満たしたら通知停止。Chat/Dialogue/SFT/量子化なし、WSL uv Python3.12.7/local verified commitのみ/pushなし、全旧失敗/数値7/Phase0–3を保持。以下は過去の履歴。
+
 Base限定・未学習DEV64への表現識別転移を実測完了（2026-10-07 JST）。
 
 [実結果・終端・UI復帰](../reports/phase6/natural_context_contrast_dev_transfer_completion.json)・[全3モデル/同64のレビュー](../reports/phase6/natural_context_contrast_dev_transfer_review.json)。元固定DEV256の順序から最初の64原文をそのまま利用、全64のbody byte SHA/元IDsを確認、除外0・CPU準備0.309380秒。上下限は実model contextへの適合条件（16..2046 body、各half8..1023）で、品質選別や本文の切捨てはない。actual683176/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start19353239は終了・実ps不在、GPU1.501791秒/60、optimizer/新教師0。元10B・正確CE100M・contrast100Mの同plain-BOS/last-valid/BF16 math表現を測り、元suffixを別文書prefixと照合する。特別な生成ルールやEOS変更なし。
