@@ -1,0 +1,64 @@
+{
+  "created_at": "2026-10-06T18:11:51.646240Z",
+  "proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural_context_contrast_dev_transfer_proposal.json",
+    "sha256": "092606705f03759fa385afe4bd5754eb42247922a145e6e86f7546cbfd115f85"
+  },
+  "recipe": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/natural_context_contrast_comparison.json",
+    "sha256": "70b87bf762f3225fd83f40d3bde301c13e5a4b4243372e541af1a1e38e88bc29"
+  },
+  "reference_body": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/evaluation/CE/evaluation/body.json",
+    "sha256": "5d0892ca43dfd06cfecc8ad7122ac5b5c43a54521a6127320a33b7671bb2ae10"
+  },
+  "cases": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-dev-transfer-20261007/cases.json",
+    "sha256": "1d34e15bce7e5105b10d26dfacc11e856e3fd63943de006c24e136c1b112b3a9"
+  },
+  "dev_manifest": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/expanded-v2/shards/manifest.json",
+    "sha256": "75c7420a1434cf8a97797218b163c694a13ed838f389f09327dcc86f7164c12c"
+  },
+  "checkpoints": {
+    "original": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "size": 120181763,
+      "mtime_ns": 1791114231712428007
+    },
+    "CE": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/CE/checkpoint-00017698.pt",
+      "sha256": "f691a7587c03c51293a2e77889307da0efa18d2349c13e4f77439fd339586967",
+      "size": 124373565,
+      "mtime_ns": 1791307063680713152
+    },
+    "contrast": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/contrast/checkpoint-00017698.pt",
+      "sha256": "b3c88153624b9d9c1e9114314c7c19f7feeaf5e4c51650b3e78f0dd40c407707",
+      "size": 124373565,
+      "mtime_ns": 1791309374331361221
+    }
+  },
+  "source_sha256": {
+    "scripts/run_natural_context_contrast_dev_transfer.py": "20e7240c74b822ad013d9cc4f015553afbcb1bd87e8308a9568f6e9f5a600e8e",
+    "scripts/run_natural_context_contrast_dev_transfer.ps1": "d3d466f41ef75663a16d951a97c8cf4c5d6cee173dd41460b7549819c49378c5",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca"
+  },
+  "GPU_limit_seconds": 60,
+  "preparation_CPU_seconds": 0.30937964702025056,
+  "pairs": 64,
+  "microbatch_sequences": 16,
+  "selection": "Fixed DEV256 order; first64 distinct original bodies,16..2046 tokens, each half8..1023 and valid UTF8. No text rewriting/truncation, outcome-based selection or alternate source.",
+  "DEV_stream_full_hash_repeated": false,
+  "selected_original_body_hashes_verified": true,
+  "new_teacher_tokens": 0,
+  "optimizer_updates": 0,
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false
+}

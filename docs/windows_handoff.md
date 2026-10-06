@@ -1,3 +1,13 @@
+Base限定・readonly DEV64表現転移の診断完了（2026-10-07 JST）。
+
+[終端記録](../reports/phase6/natural_context_contrast_dev_transfer_completion.json)。actual683176/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start19353239はcomplete・実ps不在、Windowsworker17484終了。元10B/CE/contrast同64 raw matrixをGPU1.501791秒/60で完了、更新/新教師0。paired識別はCE7.813%→contrast18.750%だが、自然文生成の元全gateは不合格のまま。runner `scripts/run_natural_context_contrast_dev_transfer.ps1` は一回の診断を終了済み、再起動しない。CPU4tests/0.74秒、原byte準備0.309380秒/除外0、body wrapperの初回CPU読込誤りを修正して元条件のまま成功。元科学code/config/既存CPを変更しない。
+
+14text/1408455byte archiveに元64pairs・3 raw matrix・終端identity・config/source/tests/採否を保存。元10B UI actual683235/同boot/start19353701、HTTP親SHA410f975d…/10000007168tokens/busy=falseと実ps確認。GPU診断jobなし。
+
+次は[同固定64のprefix別条件付き尤度診断案](../reports/phase6/natural_context_contrast_likelihood_transfer_proposal.json)の実commandを実装。CPU30秒/GPU60秒、元前文/固定cyclic別前文/BOSのみで同suffix本文を完全に測り、表現識別とtoken分布を分ける。未実装commandを推測して実行しない。元条件の救済学習なし。新GPU前に実processを確認し必要な間だけUI停止、finally元UI復帰。
+
+Base未完成、完成時通知停止、Chat/Dialogue/SFT/量子化なし。WSL pinned uv Python3.12.7/frozen extras hub,data,ml,export、local verified commit/pushなし、元全品質条件/失敗/Phase0–3を保持。以下は過去の履歴。
+
 Base限定・各100M科学比較終了と元UI復帰（2026-10-07 JST）。
 
 actual676378/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18891158はcomplete・実ps不在。元runnerを再起動しない。両17,698更新/正確100M教師・同CE digest/cursor、GPU3762.998秒/5229。全160理由/日本語/終端stateから両recipe不採用。[最終記録](../reports/phase6/natural_context_contrast_comparison_completion.json)・[採否](../reports/phase6/natural_context_contrast_comparison_review.json)。contrast EOS6/反復53/一貫性0はCE19/45/2より悪く、Base未完成。

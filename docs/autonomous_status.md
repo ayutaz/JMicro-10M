@@ -1,3 +1,17 @@
+Base限定・未学習DEV64への表現識別転移を実測完了（2026-10-07 JST）。
+
+[実結果・終端・UI復帰](../reports/phase6/natural_context_contrast_dev_transfer_completion.json)・[全3モデル/同64のレビュー](../reports/phase6/natural_context_contrast_dev_transfer_review.json)。元固定DEV256の順序から最初の64原文をそのまま利用、全64のbody byte SHA/元IDsを確認、除外0・CPU準備0.309380秒。上下限は実model contextへの適合条件（16..2046 body、各half8..1023）で、品質選別や本文の切捨てはない。actual683176/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start19353239は終了・実ps不在、GPU1.501791秒/60、optimizer/新教師0。元10B・正確CE100M・contrast100Mの同plain-BOS/last-valid/BF16 math表現を測り、元suffixを別文書prefixと照合する。特別な生成ルールやEOS変更なし。
+
+同DEV原文の双方向unique-top1識別は元10B7.031%/CE7.813%/contrast18.750%、InfoNCE4.084063/3.966296/3.463104。contrast−CEは+10.938ポイント、paired64文書bootstrap CI[3.906,19.531]ポイント。相関する二方向を独立128例と数えず、near-family相関と反復DEVの限界を保持する。このpacketで原文前後の識別に一部転移がある一方、前の全80生成/全Base gate不合格はそのまま。文書識別や非ゼロvarianceを自然な続きを書く能力・全feature非collapseの証明としない。
+
+commands/scorer/永続PS launcherとraw matrix/tie/rank/全同64レビューを実装。CPU4tests/0.74秒（元byte/UTF8境界/固定順/重複、DEV以外・binding/会計/本文改変拒否、tieをunique成功としない）に合格。最初の準備は保存済みbody wrapperをtop-level rowsと誤読してKeyError、GPU/出力0。その同cache構造とcheckpoint bindingに合わせて修正し回帰testを追加、source条件や元科学configは変更しない。終端reviewerの実CPU処理成功、既存cache/GPU再開gate・巨大corpusの重複検査なし。
+
+全64元pairs・3 raw matrix・終端job/結果/実装/tests/configを14text/1,408,455byte可搬archive、manifest SHA25c9cee9…へ保存。元10B UI actual683235/start19353701、HTTP親SHA410f975d…/10000007168tokens/busy=falseと実psを確認。元checkpointと本教材はWSLに保持。この一回の表現診断を終了し、同条件を繰り返して有利な結果を探さない。
+
+次は[同64の条件付き尤度転移診断案](../reports/phase6/natural_context_contrast_likelihood_transfer_proposal.json)を実装する。元前文・固定cyclic別文書前文・BOSのみの三viewで、同じ元suffix本文を各一度ずつteacher-forceして、表現識別の差が実際の次token分布へ移るかを分ける。CPU30秒/GPU60秒・更新/新教師0、1024 rolling context/stride512・境界BOS/EOS補作やtarget欠損なし、同byte BPB/paired NLLを保存。まだ未実装・未起動。これはteacher-forced診断で生成品質やBase採用gateを代替せず、旧ranking/CE/contrastのsource/係数/LR/epoch救済を開始しない。
+
+Base未完成。資格のある未来の固定candidateだけ独立学習seed/full DEV/protected final TEST/adoptionを満たしたら通知して停止。Chat/Dialogue/SFT/量子化なし、WSL uv Python3.12.7/local verified commitのみ/pushなし、全旧失敗/品質条件/数値7/Phase0–3を保持。以下は過去の履歴。
+
 Base限定・各100M CE対contrast比較と全160内容を完了、不採用（2026-10-07 JST）。
 
 [終端・採否・UI復帰の記録](../reports/phase6/natural_context_contrast_comparison_completion.json)・[元全gateの実レビュー](../reports/phase6/natural_context_contrast_comparison_review.json)。actual676378/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18891158は完了・実ps不在。各17,698更新/正確100M教師、Web75M/textbook20M/story5M、両armの元CE digest/counter/sampler一致。科学計200M教師、GPU占有3762.998秒（62.72分）/上限5229秒。auxiliary input/pairs/physicalとprobe112検証更新は科学教師へ加算しない。終端CPはCE f691a758…/contrast b3c88153…、テンソルと本教材は元WSLに保持。

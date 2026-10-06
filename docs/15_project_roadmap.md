@@ -1,3 +1,11 @@
+Base限定・readonly DEV表現転移の診断完了（2026-10-07 JST）。
+
+[元10B/CE/contrast同64の実レビュー](../reports/phase6/natural_context_contrast_dev_transfer_review.json): unique識別7.031%/7.813%/18.750%、contrast−CE+10.938ポイント/文書paired CI[3.906,19.531]ポイント。GPU1.501791秒/60・更新/新教師0、actual683176終了・ps不在、元UI復帰。固定DEVで識別が一部改善しても元全80生成とBase全gateの失敗は変更しない。near-family/反復DEVの限界、二方向の相関を保持。
+
+[次の同64・3prefix view条件付き尤度診断](../reports/phase6/natural_context_contrast_likelihood_transfer_proposal.json)を実装し、元前文/固定別文書前文/BOSだけで同suffix本文のNLL/共通byteを一度ずつ測る。CPU30秒/GPU60秒・学習0、context1024/stride512・suffix target完全保持。未実装・未起動で実commandを準備してから実行する。表現の変化が次token分布へ移るかの診断で、旧recipe再調整・Base採用にしない。
+
+Base完成時に通知停止、Chat/Dialogue/SFT/量子化なし、元全品質条件/独立学習seed/full DEV/protected TEST/adoption/失敗を保持。以下は過去の履歴。
+
 Base限定・固定各100M比較終了、不採用（2026-10-07 JST）。
 
 [終端と全160採否](../reports/phase6/natural_context_contrast_comparison_completion.json): 同CE accounting/cursor・各100M教師、GPU3762.998秒/5229、actual676378終了・ps不在。CE→contrastで一貫性2→0/EOS19→6/反復45→53（各80）、BPB0.998487→1.002890。意味差1.042ポイント/CI[-2.083,4.167]ポイントは改善の確証でない。全strong/matched/absolute/historical Web条件不合格、両固定recipeを終了し救済sweep・自動延長なし。

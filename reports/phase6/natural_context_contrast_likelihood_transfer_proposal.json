@@ -1,0 +1,25 @@
+{
+  "completion": "All3 models x3 context views x64 complete paired records; finite NLL/common suffix-byte BPB, matched-minus-other-prefix and matched-minus-BOS differences, all target counts, config/checkpoint/input source hashes, actual terminal identity and cumulative GPU budget. Preserve all prior rejected Base decisions. Close the one-shot diagnostic after result, with no automatic training or favorable repeated attempts.",
+  "CPU_preparation_seconds_limit": 30,
+  "Base_adopted": false,
+  "GPU_seconds_limit": 60,
+  "references": {
+    "comparison_review": "reports/phase6/natural_context_contrast_comparison_review.json",
+    "DEV64_review_sha256": "32c309825a5944068a4937777de182f4c03f49b23a93406751e95295270ac2b0",
+    "DEV64_config_sha256": "28d77d83444f2d7bf85015967e2f12f1501812fc5c9eaf70215ba5499ef8f56c"
+  },
+  "quality_criteria_unchanged": true,
+  "Chat_started": false,
+  "optimizer_updates": 0,
+  "quantization_started": false,
+  "comparison": "For each of64 suffixes, compare teacher-forced raw conditional likelihood with its observed prefix, cyclically next stored document prefix (index+1 mod64) and BOS-only. All views score the exact same original suffix body tokens/bytes once, EOS excluded from targets but retained in vocabulary normalization. Rolling original1024-token context with target stride512 handles long views; no new BOS at a window boundary and no artificial EOS, truncation or target omission. Wrong prefix is an association ablation, not a factually false labeled continuation.",
+  "Base_complete": false,
+  "status": "conditional_likelihood_transfer_diagnostic_defined_not_implemented",
+  "limitations": "Retrospective original DEV article association and lexical topic overlap are not factual reasoning or free-generation coherence. Structured retrieval success and teacher-forced improvement cannot replace unchanged Base gates or independent learned seed/full dev/protected test/adoption.",
+  "implementation_requirements": "Implement explicit suffix-position masking and rolling windows, verify single-shift/complete target counts and context limit before execution. Durable job/log identity, GPU lock and saved partial sections; inspect live jobs and restore original10B UI after the bounded run.",
+  "source": "Reuse exactly the already frozen64 original prefix/suffix token pairs and original/CE/contrast checkpoints. No new sampling, reordering, source selection, raw download, tokenizer change or train/test use.",
+  "reason": "Frozen DEV64 representation retrieval improved after contrast but all80 free generation worsened. Distinguish whether source association gains reach the next-token output distribution before selecting any new learning objective.",
+  "created_at": "2026-10-06T18:15:41.8581588Z",
+  "protected_test_used": false,
+  "new_teacher_tokens": 0
+}
