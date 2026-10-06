@@ -1,0 +1,43 @@
+{
+  "status": "actual_CPU_math_and_fullstate_fixture_passed_not_GPU_quality_evidence",
+  "created_at": "2026-10-06T07:15:21.046996Z",
+  "proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos_decoupled_web_kl_comparison_proposal.json",
+    "sha256": "f219cfa379f41d473fcaec5f6d63244877348c236833c227de7736b3237de700"
+  },
+  "diagnostic": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web_kl_EOS_component_diagnostic.json",
+    "sha256": "07432ad723d2e1be2267ccd3e1633de8a50ab99ea62beb2f29ca3ff9ec4a3e93"
+  },
+  "tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos_decoupled_web_kl_prototype_tests.xml",
+    "sha256": "12332f60841409f37ba165d05ca30ec524a45549e3eac2d2f5f7f1dd254f325b"
+  },
+  "source_sha256": {
+    "scripts/eos_decoupled_web_kl_preservation.py": "5abe753fcdd5273ee9033b9e3dc8e207124f294d85e6f1dbb0bd8207252571e1",
+    "scripts/eos_decoupled_web_kl_condition_trainer.py": "40602f92d9abe710442aabb24d60af232956020fe2cccec7917b676ce8621320",
+    "scripts/eos_decoupled_resident_web_kl_trainer.py": "a95b7941382ae6ecddcafcb2b7a5da014afd2158fc8480603a15d77390ca401e",
+    "scripts/prepare_eos_decoupled_web_kl.py": "e8b5675ce97780dbc39107303742ec9f47dd1b1a9449ea263768baa6ba289f61",
+    "scripts/propose_eos_decoupled_web_kl_comparison.py": "d08f915c4bbd93083918c314721480eeaba913cf7a3a58de2d4eaef1ddd2436d",
+    "tests/test_eos_decoupled_web_kl_preservation.py": "4573df5a12572f84c22560ad0d3f3dd42b41a03af9cff4b8e271481c1da2023e",
+    "tests/test_eos_decoupled_web_kl_condition_trainer.py": "6f1f615742767b64570b8ace6ee482818bcc84e870aa31beef45cb716e72060f"
+  },
+  "CPU_fixture": {
+    "continuous4_vs2plus2_all_state_equal": true,
+    "main_input_tokens": 96,
+    "reference_input_tokens": 64,
+    "parent_Adam_model_RNG_and_actualLR_preserved": true,
+    "frozen_teacher_verified": true,
+    "new_probability_mass_saved_resumed_and_history_equal": true
+  },
+  "initial_failure": "Identical logits produced -1.8694e-8 KL from subtracting FP32 normalizers; preserved XML. Compute teacher conditional logsoftmax directly, preserving the exact mathematical component and exact-zero identical-logit check. Tests not weakened.",
+  "actual_GPU_seconds": 0,
+  "actual_scientific_teacher_tokens": 0,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "next_action": "Implement own runner/reviewer/durablePS, reference probability-mass accounting and two cached controls. Preserve stronger original staged quality screen. Inspect existing processes, verify actualCUDA full continuous4 vs2+2 including new mass and both samplers, measure32 combined timings/save and freeze100M science only within900 new GPU seconds. No coefficient/temperature/order/source/LR/batch sweeps."
+}

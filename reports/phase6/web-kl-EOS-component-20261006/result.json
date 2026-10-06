@@ -1,0 +1,182 @@
+{
+  "status": "actual_CPU16_train_window_EOS_component_diagnostic_complete",
+  "created_at": "2026-10-06T07:11:27.409838Z",
+  "proposal_sha256": "f9166d23c2e8bb671c1f5a7ecec9d37fe8819d17973a90175c7914d4dbee0cbc",
+  "source_sha256": {
+    "scripts/diagnose_web_kl_eos_component.py": "56c0bd57f149dd5011983235c7c5f6b18184fac6116ec0a76a0e9a61c98ea844",
+    "scripts/web_kl_eos_decomposition.py": "5b60964952db3b81e8b3394bb561057b7f80dcbac08d34a9971e8a5d2125215d",
+    "tests/test_web_kl_eos_decomposition.py": "0ce9cda43ab877868d3624fd7d41975980bea67bc4245de39a2fcabd53e63c75",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "scripts/resident_web_window.py": "9b2c003cbd028e366dfed7dfebeffe2a7839300dc9e78f53ea5d7d64ba847926"
+  },
+  "models": {
+    "staged_CE_parent_KL": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web-kl-comparison-v3-20261006/web_kl/training/checkpoint-00323503.pt",
+      "sha256": "646683b704f9c8fb25dbfdeebef0d7eb29776e45d11c15aea272d30efcfc9afc"
+    },
+    "parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+      "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+    },
+    "staged_CE": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323503.pt",
+      "sha256": "fb43f2618c0679ca6c6f7a0c5b9faf1b336be8985271c8513f2e4bbfde3cd7ae"
+    }
+  },
+  "windows": 16,
+  "physical_input_tokens": 16384,
+  "soft_body_positions": 16320,
+  "ignored_special_positions": 64,
+  "input_label_digest": "5815fd19ced9f7be827f4204780293622ef4c3408a3a113421e1baad01174cc9",
+  "resident_manifest_sha256": "9fdbcf13d69cdb8098bb9ce16f7166dadc892e4a84e8660779f75f77fb22d6c0",
+  "precision": "read-only CPU FP32 model math; float64 probability decomposition. Diagnostic only, not training CUDA/BF16 or quality evidence.",
+  "results": {
+    "staged_CE": {
+      "full_KL": {
+        "mean": 0.50314191683914,
+        "quantiles": [
+          5.683331385396811e-06,
+          0.13171754002292416,
+          0.3344966664107534,
+          0.6284409078509591,
+          11.791072097860967
+        ]
+      },
+      "EOS_mass_KL": {
+        "mean": 0.013618256547452306,
+        "quantiles": [
+          4.2115160210351e-14,
+          2.729340676561054e-07,
+          2.639163267845803e-06,
+          2.5497295664734825e-05,
+          4.975801787216803
+        ]
+      },
+      "weighted_conditional_non_EOS_KL": {
+        "mean": 0.48952366029168776,
+        "quantiles": [
+          5.682912973087056e-06,
+          0.12782112431816528,
+          0.3287723459273261,
+          0.6165211421617567,
+          11.65251701779297
+        ]
+      },
+      "parent_EOS_probability": {
+        "mean": 0.0018135968412875117,
+        "quantiles": [
+          2.4041046914342617e-10,
+          1.1226483897228767e-06,
+          6.03755568297929e-06,
+          4.191233322992931e-05,
+          0.8292607418661353
+        ]
+      },
+      "student_EOS_probability": {
+        "mean": 0.01081806552018662,
+        "quantiles": [
+          4.9655418037711394e-11,
+          6.73503954095807e-07,
+          4.049319529414161e-06,
+          3.22185301764926e-05,
+          0.9959061727267919
+        ]
+      },
+      "EOS_logit_KL_derivative": {
+        "mean": 0.009004468678899109,
+        "quantiles": [
+          -0.36903349545447856,
+          -5.270678813847222e-06,
+          -1.3429745997044943e-07,
+          4.141424613453116e-06,
+          0.9524116588148166
+        ]
+      },
+      "EOS_gradient_position_counts": {
+        "positive": 7386,
+        "negative": 8934,
+        "zero": 0
+      },
+      "full_KL_mean_chain_rule_absolute_error": 5.551115123125783e-17
+    },
+    "staged_CE_parent_KL": {
+      "full_KL": {
+        "mean": 0.030157402851664683,
+        "quantiles": [
+          7.10812875738947e-07,
+          0.007593161182155605,
+          0.018494725072976923,
+          0.034742248524671185,
+          2.7046986870251333
+        ]
+      },
+      "EOS_mass_KL": {
+        "mean": 0.00021607731409352093,
+        "quantiles": [
+          3.997901703588955e-15,
+          6.239238547843307e-08,
+          5.168829092284908e-07,
+          4.09731398490194e-06,
+          0.14512986684224768
+        ]
+      },
+      "weighted_conditional_non_EOS_KL": {
+        "mean": 0.029941325537571166,
+        "quantiles": [
+          7.106736125815322e-07,
+          0.007342089288851716,
+          0.018262281168301316,
+          0.03442683572083462,
+          2.7042919613320526
+        ]
+      },
+      "parent_EOS_probability": {
+        "mean": 0.0018135968412875117,
+        "quantiles": [
+          2.4041046914342617e-10,
+          1.1226483897228767e-06,
+          6.03755568297929e-06,
+          4.191233322992931e-05,
+          0.8292607418661353
+        ]
+      },
+      "student_EOS_probability": {
+        "mean": 0.0016391239363889502,
+        "quantiles": [
+          3.191257087459707e-10,
+          1.711751111712247e-06,
+          9.295435808464713e-06,
+          6.018777125860324e-05,
+          0.7121796456430152
+        ]
+      },
+      "EOS_logit_KL_derivative": {
+        "mean": -0.0001744729048985614,
+        "quantiles": [
+          -0.18634314001451668,
+          7.17768339301587e-08,
+          1.314351969990275e-06,
+          1.0075728894734274e-05,
+          0.20511024322139357
+        ]
+      },
+      "EOS_gradient_position_counts": {
+        "positive": 13377,
+        "negative": 2943,
+        "zero": 0
+      },
+      "full_KL_mean_chain_rule_absolute_error": 3.469446951953614e-18
+    }
+  },
+  "CPU_elapsed_seconds": 9.290633116994286,
+  "GPU_seconds": 0,
+  "optimizer_updates": 0,
+  "scientific_teacher_tokens": 0,
+  "newly_prepared_source_tokens": 0,
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "limitations": "Small overlapping train-replay window, FP32 diagnostic and shared weights; an EOS-gradient sign does not prove unique cause of free generation failure or generalization. No teacher/coefficient/temperature/order/LR/source sweep is authorized by this diagnostic."
+}

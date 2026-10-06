@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="3" time="1.858" timestamp="2026-10-06T16:12:58.164506+09:00" hostname="DESKTOP-42CUV0C"><testcase classname="tests.test_eos_decoupled_web_kl_preservation" name="test_weighted_conditional_component_and_zero_direct_EOS_gradient" time="0.055" /><testcase classname="tests.test_eos_decoupled_web_kl_preservation" name="test_changing_only_student_EOS_logit_leaves_loss_identical" time="0.001" /><testcase classname="tests.test_eos_decoupled_web_kl_condition_trainer" name="test_combined_CPU_updates_full_resume_teacher_immutable_and_separate_reference_ledger" time="0.771"><failure message="assert -1.8694388259632433e-08 == 0.0">tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-97/test_combined_CPU_updates_full0')
+
+    def test_combined_CPU_updates_full_resume_teacher_immutable_and_separate_reference_ledger(tmp_path):
+        pool,parent,binding,positive=setup(tmp_path)
+        cursor=copy.deepcopy(parent['sampler'])
+        parent=copy.deepcopy(parent)
+        parent.update(update=320435,tokens=10500014080,supervised_tokens=10477786961,
+            sampler=dict(kind='eos-pilot-mixture-v1',position=0,routes=[],web=cursor,short=dict(position=0),
+                source_tokens=dict(web=0,short=0),source_eos=dict(web=0,short=0)))
+        for g in parent['optimizer']['param_groups']:
+            g['lr']=.00001;g['initial_lr']=.0001
+        parent['scheduler']['base_lrs']=[.0001]*len(parent['optimizer']['param_groups'])
+        parent['scheduler']['_last_lr']=[.00001]*len(parent['optimizer']['param_groups'])
+        parent['scheduler']['last_epoch']=320435
+        goals=dict(web=83,story=31,ordinary_textbook=29,conditional_textbook=37)
+        def build():return WebKLTrainer(parent,pool,pool,positive,goals,binding,'cpu',8,3,2)
+        continuous=build()
+        assert equal_state(continuous.model.state_dict(),parent['model'])
+        assert equal_state(continuous.optimizer.state_dict(),parent['optimizer'])
+        assert equal_state(rng_state(),parent['rng'])
+        a=[continuous.step() for _ in range(4)];continuous.save(tmp_path/'continuous.pt')
+        split=build();b=[split.step() for _ in range(2)];split.save(tmp_path/'split.pt')
+        resumed=build();resumed.load(tmp_path/'split.pt');b.extend(resumed.step() for _ in range(2));resumed.save(tmp_path/'resumed.pt')
+        left=torch.load(tmp_path/'continuous.pt',map_location='cpu',weights_only=False)
+        right=torch.load(tmp_path/'resumed.pt',map_location='cpu',weights_only=False)
+        assert equal_state(left,right)
+        for x,y in zip(a,b,strict=True):
+            for key in ('loss','ordinary_CE_loss','reference_KL_loss','gradient_norm','token_digest','reference_digest','reference_soft_target_body_positions'):
+                assert x[key]==y[key],key
+        assert resumed.replay.physical_input_tokens==64
+        assert resumed.tokens-parent['tokens']==96
+        assert resumed.supervised_tokens-parent['supervised_tokens']==sum(resumed.sampler.source_teachers.values())
+&gt;       assert a[0]['reference_KL_loss']==0.
+E       assert -1.8694388259632433e-08 == 0.0
+
+tests/test_eos_decoupled_web_kl_condition_trainer.py:42: AssertionError</failure></testcase></testsuite></testsuites>
