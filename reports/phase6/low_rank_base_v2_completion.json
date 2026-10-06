@@ -1,0 +1,220 @@
+{
+  "status": "fixed_rank4_and_fresh_full_control_rejected",
+  "created_at": "2026-10-06T11:50:22.540033Z",
+  "config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/low_rank_base_v2_comparison.json",
+    "sha256": "a0772ed4fb0b1257bfb44947e42ff76267279fe8874d9c8d9ab44be407503eaf"
+  },
+  "result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/low-rank-base-comparison-v2-20261006/compare-result.json",
+    "sha256": "6d4248efd068a273c9b1ca34f5df288e307c1cd4cf295e4c982f742ce7c8a0e2"
+  },
+  "review": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/low-rank-base-comparison-v2-20261006/review.json",
+    "sha256": "863ec1ecc2baf411299e8b542b7fc4480f740ae178a0fbc2210cc80bc3827c01"
+  },
+  "actual_terminal_job": {
+    "status": "complete",
+    "pid": 641226,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "16983459",
+    "config_sha256": "a0772ed4fb0b1257bfb44947e42ff76267279fe8874d9c8d9ab44be407503eaf",
+    "GPU_elapsed_seconds": 539.8163853790029,
+    "started_at": "2026-10-06T11:37:12.141059Z",
+    "restart_command": "scripts/run_low_rank_base_comparison.ps1 -Mode Train -Worker",
+    "stage": "rank4_frozen_backbone-jcqa",
+    "heartbeat_at": "2026-10-06T11:46:03.794687Z",
+    "arm": "rank4_frozen_backbone",
+    "completed_updates": 3060,
+    "total_updates": 3068,
+    "actual_teachers": 91426867,
+    "loss": 2.561180353164673,
+    "completed_tasks": 618,
+    "total_tasks": 618,
+    "completed_cases": 80,
+    "completed_at": "2026-10-06T11:46:12.642876Z"
+  },
+  "actual_process_absent": true,
+  "original_UI": {
+    "identity": {
+      "pid": 642223,
+      "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+      "start_ticks": "17037931"
+    },
+    "actual_alive_verified": true,
+    "HTTP": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    }
+  },
+  "scientific_teacher_tokens": 183283510,
+  "teacher_tokens_per_arm": 91641755,
+  "nominal_reference_teacher_tokens_per_arm": 100000000,
+  "physical_input_tokens": 201064448,
+  "scientific_optimizer_updates": 6136,
+  "verification_teacher_tokens": 2867838,
+  "verification_optimizer_updates": 96,
+  "scientific_GPU_seconds": 539.8163853790029,
+  "probe_GPU_seconds": 58.92843314999482,
+  "total_new_GPU_seconds": 598.7448185289977,
+  "GPU_ceiling_seconds": 1800,
+  "previous_related_GPU_seconds_preserved": 3250.1644225021005,
+  "related_GPU_seconds": 3848.909241031098,
+  "related_series_is_not_whole_project_cost": true,
+  "summaries": {
+    "full_fresh_Adam": {
+      "BPB": 0.9731125484176233,
+      "rates": {
+        "outputs": 80,
+        "eos": 23,
+        "repetition": 37,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 31,
+      "relevance2": 63,
+      "coherent": 10,
+      "appropriate": 11,
+      "notes_sha256": "aef67ea301ef9ced00b526fc09b81ce8d5c24e892f375086c5a421722708e581",
+      "generation_sha256": "076ea651ea6c14da8ca8370a711a90258737750c339c648f53b06d67c5e153ff",
+      "Japanese": {
+        "semantics": 0.6041666666666666,
+        "jblimp": 0.7673716012084593,
+        "jcqa": 0.353887399463807
+      }
+    },
+    "rank4_frozen_backbone": {
+      "BPB": 0.9729061351952771,
+      "rates": {
+        "outputs": 80,
+        "eos": 13,
+        "repetition": 64,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 18,
+      "relevance2": 59,
+      "coherent": 3,
+      "appropriate": 3,
+      "notes_sha256": "5f27ccc46d3809ae02fd5e312c6babadb6cbc102ca6be5a55f93f6f28df986d8",
+      "generation_sha256": "6042967682ea3142b13b060955f247aaa51b1279ff24a5e105593a5029e7902f",
+      "Japanese": {
+        "semantics": 0.6041666666666666,
+        "jblimp": 0.7522658610271903,
+        "jcqa": 0.3342269883824844
+      }
+    }
+  },
+  "gates": {
+    "full_fresh_Adam": {
+      "relative_to_unchanged_strong": {
+        "checks": {
+          "coherence_gain_at_least8": false,
+          "paired_CI_lower_above0": false,
+          "EOS_nonworsening": false,
+          "repetition_nonworsening": false,
+          "no_empty_role_unicode": true,
+          "BPB_gate": true,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": -13,
+        "CI95": [
+          -0.275,
+          -0.0375
+        ]
+      },
+      "absolute": {
+        "grammar_at_least56": false,
+        "coherence_at_least27": false,
+        "appropriate_at_least27": false,
+        "EOS_at_least37": false,
+        "repetition_at_most18": false,
+        "no_empty_role_unicode": true
+      },
+      "historical_Web": {
+        "EOS_at_least8_more": true,
+        "repetition_no_worse": true,
+        "no_empty_role_unicode": true,
+        "BPB_degradation_at_most1percent": true,
+        "no_punctuation_only_stops": true
+      },
+      "eligible_for_final_Base_validation": false
+    },
+    "rank4_frozen_backbone": {
+      "relative_to_unchanged_strong": {
+        "checks": {
+          "coherence_gain_at_least8": false,
+          "paired_CI_lower_above0": false,
+          "EOS_nonworsening": false,
+          "repetition_nonworsening": false,
+          "no_empty_role_unicode": true,
+          "BPB_gate": true,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": -20,
+        "CI95": [
+          -0.35,
+          -0.1375
+        ]
+      },
+      "absolute": {
+        "grammar_at_least56": false,
+        "coherence_at_least27": false,
+        "appropriate_at_least27": false,
+        "EOS_at_least37": false,
+        "repetition_at_most18": false,
+        "no_empty_role_unicode": true
+      },
+      "historical_Web": {
+        "EOS_at_least8_more": true,
+        "repetition_no_worse": false,
+        "no_empty_role_unicode": true,
+        "BPB_degradation_at_most1percent": true,
+        "no_punctuation_only_stops": false
+      },
+      "eligible_for_final_Base_validation": false
+    }
+  },
+  "matched_rank4_vs_full_fresh": {
+    "checks": {
+      "coherence_gain_at_least8": false,
+      "paired_CI_lower_above0": false,
+      "EOS_nonworsening": false,
+      "repetition_nonworsening": false,
+      "no_empty_role_unicode": true,
+      "BPB_gate": true,
+      "appropriate_completion_not_punctuation": true
+    },
+    "passed": false,
+    "difference_count": -7,
+    "CI95": [
+      -0.175,
+      -0.0125
+    ]
+  },
+  "eligible_recipes": [],
+  "all160_individually_read": true,
+  "independent_human_blind": false,
+  "raw_probe_field_clarification": "merge.frozen_backbone_unchanged is only applicable to the rank4 arm; original merge helper set it true in both arms. Full fresh-Adam backbone is trainable. Actual endpoint audits above independently verify each policy.",
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "next_action": "Qualified recipe only: independent learned recipe seed/full dev/protected test/adoption; otherwise end rank4/reset comparison and identify a distinct evidence-backed Base mechanism. No salvage sweep."
+}

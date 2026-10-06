@@ -1,0 +1,324 @@
+{
+  "status": "fixed_rank4_and_fresh_full_control_rejected",
+  "created_at": "2026-10-06T11:48:29.603792Z",
+  "result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/low-rank-base-comparison-v2-20261006/compare-result.json",
+    "sha256": "6d4248efd068a273c9b1ca34f5df288e307c1cd4cf295e4c982f742ce7c8a0e2"
+  },
+  "config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/low_rank_base_v2_comparison.json",
+    "sha256": "a0772ed4fb0b1257bfb44947e42ff76267279fe8874d9c8d9ab44be407503eaf"
+  },
+  "summaries": {
+    "full_fresh_Adam": {
+      "BPB": 0.9731125484176233,
+      "rates": {
+        "outputs": 80,
+        "eos": 23,
+        "repetition": 37,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 31,
+      "relevance2": 63,
+      "coherent": 10,
+      "appropriate": 11,
+      "notes_sha256": "aef67ea301ef9ced00b526fc09b81ce8d5c24e892f375086c5a421722708e581",
+      "generation_sha256": "076ea651ea6c14da8ca8370a711a90258737750c339c648f53b06d67c5e153ff",
+      "Japanese": {
+        "semantics": 0.6041666666666666,
+        "jblimp": 0.7673716012084593,
+        "jcqa": 0.353887399463807
+      }
+    },
+    "rank4_frozen_backbone": {
+      "BPB": 0.9729061351952771,
+      "rates": {
+        "outputs": 80,
+        "eos": 13,
+        "repetition": 64,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 18,
+      "relevance2": 59,
+      "coherent": 3,
+      "appropriate": 3,
+      "notes_sha256": "5f27ccc46d3809ae02fd5e312c6babadb6cbc102ca6be5a55f93f6f28df986d8",
+      "generation_sha256": "6042967682ea3142b13b060955f247aaa51b1279ff24a5e105593a5029e7902f",
+      "Japanese": {
+        "semantics": 0.6041666666666666,
+        "jblimp": 0.7522658610271903,
+        "jcqa": 0.3342269883824844
+      }
+    }
+  },
+  "accounting": {
+    "full_fresh_Adam": {
+      "updates": 3068,
+      "actual_new_hard_teachers": 91641755,
+      "original_nominal_reference_teachers": 100000000,
+      "physical_input_tokens": 100532224,
+      "all_original_mixed_global_inputs_match": true,
+      "all_per_source_both_order_windows_targets_and_cursors_match": true,
+      "actual_source_accounting": {
+        "teachers": {
+          "web": 75000000,
+          "story": 5000000,
+          "ordinary_textbook": 10000000,
+          "conditional_textbook": 1641755
+        },
+        "eos": {
+          "web": 159170,
+          "story": 38240,
+          "ordinary_textbook": 74183,
+          "conditional_textbook": 234328
+        },
+        "body_bytes": {
+          "web": 292149840,
+          "story": 20452979,
+          "ordinary_textbook": 42739471,
+          "conditional_textbook": 6014813
+        },
+        "focus": {
+          "web": 0,
+          "story": 0,
+          "ordinary_textbook": 0,
+          "conditional_textbook": 1407427
+        },
+        "removed_prefix": {
+          "web": 0,
+          "story": 0,
+          "ordinary_textbook": 0,
+          "conditional_textbook": 8358245
+        }
+      },
+      "source_digests": {
+        "web": {
+          "input": "285b95126c7ccffcfdf960ff855c447ce9bb68296bb7cd74a619eff29808f6ae",
+          "reference_target": "dbd2c2d51d48e08e83243134f545268fbab66ddd526fa3f00312723debe59acd",
+          "masked_target": "dbd2c2d51d48e08e83243134f545268fbab66ddd526fa3f00312723debe59acd",
+          "focus": "e400d0cabaa8bb597d84b29a1b5ec4c22612cccb3883ee1857d71d3d1b2a60aa"
+        },
+        "story": {
+          "input": "c30b3d6829177c3087783b081f61e4d62bd55cfbe78c3a973b747f6e0b6958f3",
+          "reference_target": "9bd153f53fd5fda26d29c3efa300936bb475b47171a9ff5ec3f117fb152a3d3e",
+          "masked_target": "9bd153f53fd5fda26d29c3efa300936bb475b47171a9ff5ec3f117fb152a3d3e",
+          "focus": "70f1576e7296f2604347e9e8584e3c132beef37594af8e7ea2e856cf415ca6c8"
+        },
+        "ordinary_textbook": {
+          "input": "90324eb40ed2b7bab559b32ca5324c9dbe3b2a78f38d68bceababe0b70cf1df0",
+          "reference_target": "5c42c19debbb2c0db5c0267f91f4f79f248289e65cd3ad5117d1729e91899461",
+          "masked_target": "5c42c19debbb2c0db5c0267f91f4f79f248289e65cd3ad5117d1729e91899461",
+          "focus": "11ff893601b3eaa2ac0b43c890d57fbd6e506cbd6499245e0312f92130699412"
+        },
+        "conditional_textbook": {
+          "input": "7cdf0453ee2a1b9c080119aa746ef4431fcab51c478fd44fe64e74b38888bd1e",
+          "reference_target": "c27025ad3d62d1181934b97f647f5d348f3ee7386c3e6ef6df6c06d31437b28d",
+          "masked_target": "81158e2896a63fa58023e009e38b0ffbbf53f23d5f0c5a434b4791739a7914e6",
+          "focus": "2e81aad72356276a99f671d94981a473179a841263f2e36034824450f1746afa"
+        }
+      },
+      "native_parameters": 10001152,
+      "trainable_parameters": 10001152,
+      "optimizer_policy": "fresh_Adam_both_arms",
+      "original_backbone_unchanged": false
+    },
+    "rank4_frozen_backbone": {
+      "updates": 3068,
+      "actual_new_hard_teachers": 91641755,
+      "original_nominal_reference_teachers": 100000000,
+      "physical_input_tokens": 100532224,
+      "all_original_mixed_global_inputs_match": true,
+      "all_per_source_both_order_windows_targets_and_cursors_match": true,
+      "actual_source_accounting": {
+        "teachers": {
+          "web": 75000000,
+          "story": 5000000,
+          "ordinary_textbook": 10000000,
+          "conditional_textbook": 1641755
+        },
+        "eos": {
+          "web": 159170,
+          "story": 38240,
+          "ordinary_textbook": 74183,
+          "conditional_textbook": 234328
+        },
+        "body_bytes": {
+          "web": 292149840,
+          "story": 20452979,
+          "ordinary_textbook": 42739471,
+          "conditional_textbook": 6014813
+        },
+        "focus": {
+          "web": 0,
+          "story": 0,
+          "ordinary_textbook": 0,
+          "conditional_textbook": 1407427
+        },
+        "removed_prefix": {
+          "web": 0,
+          "story": 0,
+          "ordinary_textbook": 0,
+          "conditional_textbook": 8358245
+        }
+      },
+      "source_digests": {
+        "web": {
+          "input": "285b95126c7ccffcfdf960ff855c447ce9bb68296bb7cd74a619eff29808f6ae",
+          "reference_target": "dbd2c2d51d48e08e83243134f545268fbab66ddd526fa3f00312723debe59acd",
+          "masked_target": "dbd2c2d51d48e08e83243134f545268fbab66ddd526fa3f00312723debe59acd",
+          "focus": "e400d0cabaa8bb597d84b29a1b5ec4c22612cccb3883ee1857d71d3d1b2a60aa"
+        },
+        "story": {
+          "input": "c30b3d6829177c3087783b081f61e4d62bd55cfbe78c3a973b747f6e0b6958f3",
+          "reference_target": "9bd153f53fd5fda26d29c3efa300936bb475b47171a9ff5ec3f117fb152a3d3e",
+          "masked_target": "9bd153f53fd5fda26d29c3efa300936bb475b47171a9ff5ec3f117fb152a3d3e",
+          "focus": "70f1576e7296f2604347e9e8584e3c132beef37594af8e7ea2e856cf415ca6c8"
+        },
+        "ordinary_textbook": {
+          "input": "90324eb40ed2b7bab559b32ca5324c9dbe3b2a78f38d68bceababe0b70cf1df0",
+          "reference_target": "5c42c19debbb2c0db5c0267f91f4f79f248289e65cd3ad5117d1729e91899461",
+          "masked_target": "5c42c19debbb2c0db5c0267f91f4f79f248289e65cd3ad5117d1729e91899461",
+          "focus": "11ff893601b3eaa2ac0b43c890d57fbd6e506cbd6499245e0312f92130699412"
+        },
+        "conditional_textbook": {
+          "input": "7cdf0453ee2a1b9c080119aa746ef4431fcab51c478fd44fe64e74b38888bd1e",
+          "reference_target": "c27025ad3d62d1181934b97f647f5d348f3ee7386c3e6ef6df6c06d31437b28d",
+          "masked_target": "81158e2896a63fa58023e009e38b0ffbbf53f23d5f0c5a434b4791739a7914e6",
+          "focus": "2e81aad72356276a99f671d94981a473179a841263f2e36034824450f1746afa"
+        }
+      },
+      "native_parameters": 10001152,
+      "trainable_parameters": 232960,
+      "optimizer_policy": "fresh_Adam_both_arms",
+      "original_backbone_unchanged": true
+    }
+  },
+  "gates": {
+    "full_fresh_Adam": {
+      "relative_to_unchanged_strong": {
+        "checks": {
+          "coherence_gain_at_least8": false,
+          "paired_CI_lower_above0": false,
+          "EOS_nonworsening": false,
+          "repetition_nonworsening": false,
+          "no_empty_role_unicode": true,
+          "BPB_gate": true,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": -13,
+        "CI95": [
+          -0.275,
+          -0.0375
+        ]
+      },
+      "absolute": {
+        "grammar_at_least56": false,
+        "coherence_at_least27": false,
+        "appropriate_at_least27": false,
+        "EOS_at_least37": false,
+        "repetition_at_most18": false,
+        "no_empty_role_unicode": true
+      },
+      "historical_Web": {
+        "EOS_at_least8_more": true,
+        "repetition_no_worse": true,
+        "no_empty_role_unicode": true,
+        "BPB_degradation_at_most1percent": true,
+        "no_punctuation_only_stops": true
+      },
+      "eligible_for_final_Base_validation": false
+    },
+    "rank4_frozen_backbone": {
+      "relative_to_unchanged_strong": {
+        "checks": {
+          "coherence_gain_at_least8": false,
+          "paired_CI_lower_above0": false,
+          "EOS_nonworsening": false,
+          "repetition_nonworsening": false,
+          "no_empty_role_unicode": true,
+          "BPB_gate": true,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": -20,
+        "CI95": [
+          -0.35,
+          -0.1375
+        ]
+      },
+      "absolute": {
+        "grammar_at_least56": false,
+        "coherence_at_least27": false,
+        "appropriate_at_least27": false,
+        "EOS_at_least37": false,
+        "repetition_at_most18": false,
+        "no_empty_role_unicode": true
+      },
+      "historical_Web": {
+        "EOS_at_least8_more": true,
+        "repetition_no_worse": false,
+        "no_empty_role_unicode": true,
+        "BPB_degradation_at_most1percent": true,
+        "no_punctuation_only_stops": false
+      },
+      "eligible_for_final_Base_validation": false
+    }
+  },
+  "matched_rank4_vs_full_fresh": {
+    "checks": {
+      "coherence_gain_at_least8": false,
+      "paired_CI_lower_above0": false,
+      "EOS_nonworsening": false,
+      "repetition_nonworsening": false,
+      "no_empty_role_unicode": true,
+      "BPB_gate": true,
+      "appropriate_completion_not_punctuation": true
+    },
+    "passed": false,
+    "difference_count": -7,
+    "CI95": [
+      -0.175,
+      -0.0125
+    ]
+  },
+  "strong_historical_control_reused_unchanged": {
+    "BPB": 1.1336128657420816,
+    "rates": {
+      "outputs": 80,
+      "eos": 76,
+      "repetition": 2,
+      "unicode_failure": 0,
+      "role_leak": 0,
+      "empty": 0
+    },
+    "grammar2": 65,
+    "relevance2": 39,
+    "coherent": 23,
+    "appropriate": 26,
+    "notes_sha256": "6b143e08096a1ee2365a643c008d5c009d2c2ff48dd1d42a9749ac5301766d2d",
+    "generation_sha256": "d5b5a7c6b5d971de9bc46c77f52ac5ea19132cab7b97f034c274974cdbe2620e",
+    "Japanese": {
+      "semantics": 0.5625,
+      "jblimp": 0.7824773413897281,
+      "jcqa": 0.26541554959785524
+    }
+  },
+  "eligible_recipes": [],
+  "all160_individually_read": true,
+  "independent_human_blind": false,
+  "actual_science_GPU_seconds": 539.8163853790029,
+  "own_probe_GPU_seconds": 58.92843314999482,
+  "raw_probe_field_clarification": "merge.frozen_backbone_unchanged is only applicable to the rank4 arm; original merge helper set it true in both arms. Full fresh-Adam backbone is trainable. Actual endpoint audits above independently verify each policy.",
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "next_action": "Only qualified recipe enters independent learned seed/full dev/protected test/adoption. Failure ends this fixed comparison without rank/module/scale/LR/source/mask/decoder/checkpoint salvage sweep."
+}
