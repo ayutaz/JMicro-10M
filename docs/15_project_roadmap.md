@@ -1,3 +1,9 @@
+Base専用gated出力変換: launch（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+科学actual654827/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start17811675の実稼働、stagereadout-adapter-Base-training/観測教師4577776/100Mを確認。科学GPU上限876.205509秒。250更新ごと全state原子的CP、中断時は実PID不在を確認して scripts/run_readout_adapter_comparison.ps1 -Worker で再開。元UIは終端finallyで復帰。学習終端/全日本語/80内容/採否は未完了。
+
+全旧失敗/数値7/Phase0–3/既存相対・絶対・歴史Web1%品質基準保持。幅/activation/placement/LR/初期値/source/CP/decoder救済sweepなし。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用gated出力変換: preparation（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
 
 own実CUDA/全state再開/32timingのGPU23.794491秒を再利用し、専用科学runner・同native評価factory・全80採点/採否経路を実装して凍結。同mixed親6d/元119重み全凍結/新98,304の2tensorだけfresh Adam・LR.0001/WD0、同full CE100Mのcached native対照は再GPUしない。新CPU2tests（source/費用と明示評価factory復旧）・PS構文成功、旧core/source不変。科学GPU予測798.859647秒、ownprobe込み822.654138/900、科学未開始。次は一候補100M実学習→同日本語・dev256・native80/内容→旧相対・絶対・歴史Web基準の採否。
