@@ -1,3 +1,13 @@
+TRAIN由来の短文教材16384件を実準備・固定64全読解し不採用（2026-10-06 JST）。前診断・単一source案はdbdd9c5へ保存したprogress。Baseだけを品質・独立学習seed/full dev/protected test/採用まで継続し、実完成時に通知して停止。Base未完了・未採用、Chat/Dialogue/SFT/量子化なし。
+
+narrative_condition_source_freeze.jsonでproposal/accepted TRAIN input/owned renderer/prep/reviewer/test/seedをactual source生成前に凍結。既accepted1024facts/両branch/各8surfaceの全16384文、同48category×surfaceの固定48＋追加16の64を一度だけ準備。実CPU1.353232秒/上限60、body1056722、serialized1089490、本文+EOS1073106、EOS16384。native4096 exact bytes/BOS/EOS/wholebody入力1024内、重複全体文0/切捨て0/role-pad本文0。新独立semantic families/原文corpus0で、表現数増加を意味の独立例数・新公開自然文に置換しない。元24source formsは場面/関係/機構に残り、同surface内でも元formの違いがある。
+
+CPU4tests/1.02秒で実TRAIN全coverage・ opposed状態/数量/時刻/人物/機構・native96 fixture codecと中途document再開・raw content改変拒否が成功。fixtureはactual内容レビューではない。固定64は全件個別に読みraw SHA/rationaleをcontent-notes/reviewへ保存、弱7/64でweak<=10は通るが未解消文法表現3・grounding時系列1のゼロ条件に失敗。causalityの重ねた主語2件、靴の非購入で退店前に「持ち帰ることはなかったのを見て」とする観測理由が問題。grammar旗は自然な文法表現の未解消で、全て形式的に構文解析不可能という証明ではない。全件nonblind Codex、人間/外部事実認証なし。
+
+教材全体を不採用、実native loaderも拒否。凍結後renderer/pilot/selector修正・良い例だけ選択・rerollなし、提案100Mはcontent prerequisiteで取り消し、CUDA probe/学生科学・検証教師/optimizer/新GPUすべて0。失敗は今回の生成表現/時系列でありモデルの学習効果・容量限界・唯一原因を証明しない。既存強いstagedCE/absolute/歴史WebBPB guardの全基準を保持、過去関連GPU2289.596018秒も消さない。準備済みsource/tensorはnative/data、text/source/proposal/tests/全64は可搬archiveへ保存。
+
+次は既存の採用済み自然物語TRAINのmanifest・provenance/content acceptanceと完了same-parent対照だけを有限CPUで確認し、過去と重複しない単一source置換比較を定義する。この不採用sourceは再試行しない。別source/protocolの準備・実CUDA4vs2+2/steady timings/予算gate前にGPUを開始しない。品質pilot合格時だけ独立学習seed/full dev/protected test/adoptionへ進む。科学GPUjob0、元10B UI618479/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16015140とHTTP親410f975d…/10000007168/busy=falseを確認。旧Phase0–3/数値7失敗を保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 同一入力の選択位置・完全greedy本文診断を完了（2026-10-06 JST）。前turnのpositive-anchor100M/全評価不採用を7afe0bfへ保存したprogress。Baseだけを品質・独立学習seed/full dev/protected test/採用まで継続し、実完成時に通知して停止。Base未完了・未採用、Chat/Dialogue/SFT/量子化なし。
 
 decision_span_diagnostic_result/completion.jsonに強いstagedCE/relative ranking/positive anchorの3実終了model×bridge128/retention128×両context/candidateの全3072既存BF16 score requestsを集計。実CPU0.975498秒/上限10、GPU0/newforward0/optimizer0。1536pair rows全てに候補の最初の異なるtarget位置があり、そこまでの完全input IDs一致を確認、共有先行token NLL差最大0。全18cohortと全categoryを保持、元のsum/tokenmean/bytemean・全対照aggregate完全再現。prefix包含を明示するhelper、後続NLLで誤った選択が隠れるcounterexample/argmax連言と候補順位の区別にCPU2tests/.03秒成功。新チェックポイント推論/旧zero-context再測定/巨大index再scanなし。
