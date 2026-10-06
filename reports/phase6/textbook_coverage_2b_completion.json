@@ -1,0 +1,140 @@
+{
+  "status": "scientific_learning_evaluation_and_all80_complete_candidate_rejected",
+  "created_at": "2026-10-06T00:21:53.3986854Z",
+  "job_completed_at": "2026-10-06T00:06:38.164385Z",
+  "run": "reports/phase6/textbook-coverage-2b-20261006",
+  "config": "configs/phase6/textbook_coverage_2b_v2.json",
+  "config_sha256": "6f8a7d582e430e3ef259b407cc96bde50d75aa7a05346fd756fe8aa6f5f2d337",
+  "actual_identity": {
+    "actual_process_absent": true,
+    "pid": 507801,
+    "start_ticks": "12673788",
+    "last_verified_at": "2026-10-06T00:21:53.3986854Z",
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe"
+  },
+  "prepared_tokens": 2000001312,
+  "cumulative_stable_teacher_tokens": 2000000000,
+  "new_scientific_stable_teacher_tokens": 1000000000,
+  "new_scientific_decay_teacher_tokens": 20000000,
+  "new_scientific_valid_and_physical_input_tokens": 1028620288,
+  "verification_teacher_tokens": 5459174,
+  "scientific_job_GPU_seconds": 1661.574675619995,
+  "scientific_job_includes_actual2B_decay_verification": true,
+  "prior_verification_GPU_seconds": 95.36972951199277,
+  "total_new_GPU_seconds": 1756.9444051319879,
+  "total_GPU_budget_seconds": 3000,
+  "review": "reports/phase6/textbook_coverage_2b_review.json",
+  "summary": {
+    "prepared_tokens": 2000001312,
+    "stable_teachers": 2000000000,
+    "decay_teachers": 20000000,
+    "BPB": 1.1467573243361886,
+    "rates": {
+      "outputs": 80,
+      "eos": 50,
+      "repetition": 18,
+      "unicode_failure": 0,
+      "role_leak": 0,
+      "empty": 0
+    },
+    "grammar2": 53,
+    "relevance2": 54,
+    "coherent": 14,
+    "appropriate": 26,
+    "Japanese": {
+      "semantics": 0.5208333333333334,
+      "jblimp": 0.7794561933534743,
+      "jcqa": 0.28596961572832885
+    },
+    "generation_sha256": "29a28fce7dbf2ad39f401f0a3df9d21b93b81da56b94caac45ecd8a76ad43cf2",
+    "notes_sha256": "91238d6101303038edbff94268fe731fdcd10e873a75c72f72a0b61fb66d0169",
+    "Base_adopted": false,
+    "independent_human_blind": false
+  },
+  "quality_comparison": {
+    "checks": {
+      "coherence_gain_at_least8": false,
+      "paired_CI_lower_above0": false,
+      "EOS_nonworsening": true,
+      "repetition_nonworsening": true,
+      "no_empty_role_unicode": true,
+      "BPB_gate": true,
+      "appropriate_completion_not_punctuation": true
+    },
+    "passed": false,
+    "difference_count": 0,
+    "CI95": [
+      -0.1,
+      0.1
+    ]
+  },
+  "absolute_dev_screen": {
+    "grammar_at_least56": false,
+    "coherence_at_least27": false,
+    "appropriate_at_least27": false,
+    "EOS_at_least37": true,
+    "repetition_at_most18": true,
+    "no_empty_role_unicode": true
+  },
+  "original_Web": {
+    "EOS_at_least8_more": true,
+    "repetition_no_worse": true,
+    "no_empty_role_unicode": true,
+    "BPB_degradation_at_most1percent": false,
+    "no_punctuation_only_stops": true
+  },
+  "eligible_for_final_Base_validation": false,
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "protected_test_used": false,
+  "actual_independent_training_seed_confirmations": 0,
+  "actual_final_full_dev_evaluations": 0,
+  "actual_Chat_GPU_teacher_tokens": 0,
+  "actual_human_reviews": 0,
+  "requested_five_steps_complete": false,
+  "old_numerical7_preserved": true,
+  "quality_criteria_unchanged": true,
+  "archive": {
+    "text_files": 104,
+    "checkpoint_tensors_included": false,
+    "path": "reports/phase6/textbook-coverage-2b-20261006_evidence.tar.gz",
+    "compressed_bytes": 5880129,
+    "sha256": "3f490852ae9c35083dba6bde3d0c720bd39934b6bc9fe91ad0c73117394757c6",
+    "uncompressed_bytes": 23757435
+  },
+  "UI": {
+    "pid": 509193,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "12840481",
+    "url": "http://127.0.0.1:7860",
+    "status": "original10B_restored",
+    "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+    "training_tokens": 10000007168
+  },
+  "next_action": "Proposed only: freeze and implement train-only packed-context vs standalone BOS diagnostic for actual1B+20M and2B+20M checkpoints, optimizer0/GPU180s ceiling; then one evidence-driven matched learning comparison. Base quality remains unmet; no automatic5B/10B, protected test or Chat launch.",
+  "proposed_next_diagnostic": {
+    "status": "proposed_not_implemented_or_launched",
+    "question": "Does packed training context explain standalone continuation failure on this broad2B material and these actual learned checkpoints?",
+    "GPU_budget_seconds": 180,
+    "optimizer_updates": 0,
+    "scientific_teacher_tokens": 0,
+    "checkpoints": [
+      "large-1000000000/decay/checkpoint-00031391.pt",
+      "textbook-coverage-2b-20261006/decay/checkpoint-00062166.pt"
+    ],
+    "material": "Existing accepted75/20/5 prepared2,000,001,312 tokens; cached train index reused; no full-corpus rescan",
+    "cases": "Freeze a bounded train-only batch and document-prefix selection before measurement; target24 cases if available within first4 batches of32, report actual source counts without resampling to improve results",
+    "contexts": [
+      "Actual preceding packed context plus identical BOS/body prefix",
+      "Standalone identical BOS/body prefix"
+    ],
+    "measurements": [
+      "Same gold suffix and EOS NLL/rank",
+      "Raw greedy continuation up to64 tokens, EOS/repetition/Unicode",
+      "Actual GPU time; unchanged weights and RNG; all raw contexts and target IDs"
+    ],
+    "completion_condition": "Every frozen case, both contexts, both checkpoints measured with common targets and finite values; optimizer0/weights unchanged; evidence and local commit; original UI restored if suspended",
+    "limits": "Train-only local diagnostic, not a representative corpus quality estimate, independent human review or a causal proof. Prior compact packing comparisons are retained, not rerun.",
+    "followup": "Only if supported, freeze one matched packed vs boundary-aware training comparison with equal teacher budget and unchanged quality gates; otherwise choose one conditional-meaning/material hypothesis from raw failures. Do not repeat old compact isolation blindly."
+  }
+}
