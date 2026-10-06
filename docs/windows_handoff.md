@@ -1,3 +1,17 @@
+Base限定・入力混合の実CUDA検証を終了、同gold100M比較を永続起動（2026-10-07 JST）。Base未完成・未採用。
+
+前goal turnはcontext-mixing trainerの実装/CPU9checks/固定比較案・5d07579保存のprogress。今回は不足していたprobe/science/review/closeoutと2永続PS launcherを実装し、旧Muon harnessは変更せず評価と会計の契約を再利用。新state/worst-window fixtureとCPU runner8checks/2.55秒（予算7200秒固定、同教師でもdigest/full sampler違い拒否、未commit optimizer/mixing/source会計拒否、元TRAIN worst1024/512/EOS保持と再実行拒否）に成功。AST9sources/両CLI import/2PS構文/CPU inspect成功。凍結されたprototype/旧trainer/model/既存品質helperは変更していない。
+
+[実CUDA検証終了](../reports/phase6/base_context_mixing_probe_completion.json): actual709297/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start21275597はcomplete・実process不在。probe config SHA7983ec64ea2ee060ee129a4bffa87e181bbb83e6ab4c927b09e91a25ccd8b2ca。GPU10.469572秒、48検証更新/298,097元教師（worst capacityの1更新/24,576位置をこの合計に含み、追加で二重加算しない）。native10,001,152params/tied/親weights/一度だけのparameter partitionの4初期checks、専用mixing RNGを含む全model/Adam/scheduler/global RNG/full sampler/counters/mixing/digest/historyの連続4対2+save/resume+2・元CEの同source/教師/EOS/input/bodybytes/digest/full sampler一致など19checksに合格。worst batch48/context1024/stride512の元TRAIN教材窓で、元gold24,576/追加予測forward49,152入力、選択2,428・実変更1,269、CE2.566937/gradient norm3.054288有限の完了更新を確認。5%は予測を選択する確率で、正しい予測では入力が変わらない。peak11,078,919,680bytes、resident allocator90%。全32timing中央値40,992.21元教師/秒。probe重みは科学へ流用しない。
+
+science capは事前式ceil(100M/speed*1.3+900)=4,072秒（約67.9分）、probe込み4,082.469572秒で固定総cap7,200秒内。学習だけの目安は約40.7分、保存/評価を含む上限と区別する。WSL空き82GB。21textのgzip162,129bytes/SHA f230cb93fc0a5c0a78e36822e29c6fcf262fa100bf0795de5f884dbcc4ad6ab0をWindowsへ保存・一度照合、full checkpointsはWSL保持。
+
+[本学習の実起動](../reports/phase6/base_context_mixing_science_start.json)・[runner準備記録](../reports/phase6/base_context_mixing_runner_preparation_completion.json): reports/phase6/base-context-mixing-comparison-20261007、actual709696/同boot/start21284143、Windows worker34004、開始2026-10-06T23:33:58Z。科学config SHA e1b2b64d9b57ccd1dc1ba341eb5a389c424842a7ce735583365da9ed2518b782、同accepted2B TRAIN/元gold100M/Web75M・教材20M・物語5M/batch48/seed42/fresh AdamW LR1e-5・WD0.1 constant/同native推論を維持。追加教師/新distinct教材/params0、prediction forwardとmixed-inputの会計は別保存。actual PIDと教師増加・有限loss・checkpoint-00000250.ptを実確認、runner準備記録時の元教師4,513,754で本学習が稼働。250更新ごとに全state、20更新ごとにheartbeat、各完了更新metricsを保存。live closeoutを一度実呼出しし、実processが終了していないため意図通りValueErrorで拒否、completion/archive/manifestを作らないことを確認。これは科学停止/失敗ではない。
+
+UIは科学中停止し、永続launcherが終端で元10Bへ復帰する。restart: scripts/run_base_context_mixing.ps1 -Worker。先にactual PID/boot/start不在・有効completed checkpoint・同凍結sourceを確認し、同累積4,072秒内でのみ再開。重複起動なし。次は本学習100M終端→同256文書/common-byte BPB・日本語192/331/1119・固定全80→新全80個別raw-bound採点とcached CE80再利用→review_base_context_mixing.py→complete_base_context_mixing.py→Windows evidence SHA確認/local commit。今は科学が実稼働しており、品質改善/採用をまだ主張しない。
+
+確率/pass/decoder/LR/source/親/batch/教師/上限の救済変更・同診断の再実行・全corpus再scan/Tokenizer再学習なし。likelihood不整合/元goldと混合履歴の矛盾/byte片UTF8・単一seed/反復nonblind DEV・追加computeの限界を保持。全matched/strong/absolute/歴史Web品質条件を保ち、資格ある候補だけ独立学習seed/full DEV/protected final TEST/adoptionへ進む。実Baseの全評価・採用完了時にユーザーへ知らせて停止し、Chat/Dialogue/SFT/量子化を開始しない。全五目標/Phase0–3/旧数値7失敗/全過去の負結果を保持、Python3.12.7はWSL uv、verified local commitのみ、自動pushなし。今回のturnは実装・実CUDA gate・科学実起動のprogressでBase完了ではない。以下は過去の履歴。
+
 Base限定・モデル予測を入力へ混ぜる新比較のCPU処理を実装・検証（2026-10-07 JST）。Base未完成・未採用。
 
 前goal turnはMuon100Mの実終了・全80採否・UI復帰・423fba4保存のprogress。今回はrequired3docs/current worktreeと既存root/FP32・sequence UL/選好/全般化の証拠を確認。旧数値7失敗は保持し、FP32でも反復する既測定診断を再実行しない。Muonやnext-two等の失敗条件を救済しない。

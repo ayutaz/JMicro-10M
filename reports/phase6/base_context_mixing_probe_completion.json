@@ -1,0 +1,84 @@
+{
+  "created_at": "2026-10-06T23:34:26.688920Z",
+  "status": "ContextMixing_native_CUDA_verification_closed_science_started",
+  "actual_identity": {
+    "pid": 709297,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "21275597"
+  },
+  "actual_process_absent": true,
+  "result_sha256": "df289d3b7e19948212a894025263d7699a1e11a44e2f50f4d54956268fbc5d68",
+  "initial_checks": {
+    "native_parent_weights": true,
+    "tied_native_vocab": true,
+    "native_parameters": true,
+    "all_parameters_once": true
+  },
+  "resume_source_checks": {
+    "kind": true,
+    "spec": true,
+    "binding": true,
+    "lineage": true,
+    "model_config": true,
+    "model": true,
+    "optimizer": true,
+    "scheduler": true,
+    "RNG": true,
+    "sampler": true,
+    "counters": true,
+    "context_mixing": true,
+    "context_mixing_RNG": true,
+    "finite_native_model_and_mixing_state": true,
+    "history_except_timing": true,
+    "same_original_stream": true,
+    "full_sampler_matches_AdamW": true,
+    "real_input_changes": true,
+    "prediction_forward_not_additional_supervision": true
+  },
+  "GPU_seconds": 10.469572045985842,
+  "verification_updates": 48,
+  "verification_original_teacher_positions": 298097,
+  "capacity_forward_backward_original_positions": 24576,
+  "selected_matched_batch": 48,
+  "median_original_teachers_per_second": 40992.2117596508,
+  "worst_peak_VRAM_bytes": 11078919680,
+  "checkpoint_refs": [
+    {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-context-mixing-probe-20261007/continuous.pt",
+      "bytes": 124372657,
+      "sha256": "35ae137286549ba2a5301849ef3283a73c5a9dcdb1a7a65accdc76e2bf6a7f0b"
+    },
+    {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-context-mixing-probe-20261007/resumed.pt",
+      "bytes": 124370623,
+      "sha256": "67a2491128abff62a760e9ade9976b60b7e814121381308e487c51810c5750e5"
+    }
+  ],
+  "total_GPU_cap_seconds": 7200,
+  "scientific_GPU_cap_seconds": 4072,
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "probe_weights_used_for_science": false,
+  "scientific_config_sha256": "e1b2b64d9b57ccd1dc1ba341eb5a389c424842a7ce735583365da9ed2518b782",
+  "science_start_sha256": "1109d6c5ee6234518b81ab4cee04b345d67146894b3f1feee77076f500b4cc3f",
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "quality_criteria_unchanged": true,
+  "protected_test_scored": false,
+  "limitations": "Verification updates and worst-shape forward/backward are not scientific teacher budget or model quality. Original gold teachers match CE, but inputs mix5percent predictions and prediction forwards add compute. Different compute; single fixed history-mixing transition; fixed repeated DEV.",
+  "CPU_closeout_seconds": 0.10992721101501957
+}
