@@ -1,3 +1,5 @@
+追加準備／実学習継続（2026-10-07 JST）: actual701073/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start20668823を再確認。21:56:27Zに18,191,049元教師/3,220更新/loss3.343921有限、checkpoint-00003000.ptを保持。前goal turnはdiagnostic完了・科学実起動・39ad757 commitのprogress。complete_base_next_two_token.pyを追加し、実終了・凍結review/raw notes・元UI実process/HTTP復帰に基づく終端記録と可搬archiveを準備、uv pinned CPU AST構文成功。live jobにはまだ実行していない。次は本学習と全日本語/80生成の実終了を待ち、全80個別採点→review_base_next_two_token.py→complete_base_next_two_token.py→Windowsへbundle SHA確認→local commit。未合格条件の救済延長・Chat/量子化なし、Base未完成・未採用。
+
 Base限定・Attention診断終了／next-two補助学習100Mを実WSL CUDAで開始（2026-10-07 JST）。
 
 [Attention診断の完了記録](../reports/phase6/base_attention_saturation_completion.json): 固定TRAIN24文書を使い元10B・既存CE100M・fresh calibrationを読み取り専用で観測。CPU4checks/1.39秒、実CUDA3.526430秒、診断7,596位置、科学更新・新品質評価0。事前の広範な飽和markerに該当するlayerは両学習済みendpointの各sourceで0/13。集中queryは1.71–2.56%、主にBOSであり、Attentionが生成失敗の原因だと示す結果ではない。このmarkerによるQK正規化等の変更を開始しない。全native出力・重み・RNG・hook復元を確認し実process終了、24text/4,363,514byteのgzip証拠667,323byteをWindowsへ保存してSHA照合。旧構造比較の予算不合格・負の結果は維持する。
