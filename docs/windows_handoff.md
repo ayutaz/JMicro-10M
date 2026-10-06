@@ -1,3 +1,9 @@
+Base専用gated層共有: launch（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+科学actual651138/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start17619163の実稼働、stagegated-shared-Base-training/観測教師3269803/100Mを確認。科学GPU上限1752.741499秒。250更新ごと全state原子的CP、中断時は実PID不在を確認して scripts/run_gated_shared_comparison.ps1 -Worker で再開。元UIは終端finallyで復帰。学習終端/全日本語/80内容/採否は未完了。
+
+全旧失敗/数値7/Phase0–3/既存相対・絶対・歴史Web1%品質基準保持。gateLR/初期値/count/source/CP/decoder救済sweepなし。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用gated層共有: preparation（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
 
 own実CUDA/全state再開/32timingのGPU47.258501秒を再利用し、専用科学runner・同native評価factory・全80採点/採否経路を実装して凍結。同mixed親6d/継承native Adam・LR.00001/新13gateのみfresh Adam・LR.0001/WD0、同full CE100Mのcached native対照は再GPUしない。新CPU1test/0.88秒・PS構文成功。初回CPUはdict対strの不一致でAttributeErrorとなったため、その失敗XMLを保存して新照合関数の型/欠損guardを修正、旧core/source不変。科学GPU予測1007.293266秒、ownprobe込み1054.551767/1800、科学未開始。次は一候補100M実学習→同日本語・dev256・native80/内容→旧相対・絶対・歴史Web基準の採否。
