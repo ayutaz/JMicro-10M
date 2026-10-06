@@ -1,0 +1,96 @@
+{
+  "status": "Base_preference_science_prepared",
+  "created_at": "2026-10-06T14:56:52.067588Z",
+  "config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_preference_comparison.json",
+    "sha256": "80570dfa9bcdb28303075793de5e5b1c40939d7ee917f40a81b31e9f61abfbbb"
+  },
+  "own_probe_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_preference_probe.json",
+    "sha256": "6a39e69c00ffc8ad615f2b3aeab2f09f7fb28cccf6706ba5874ebdc5cdd937e0"
+  },
+  "own_probe_result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-preference-comparison-20261006/probe/result.json",
+    "sha256": "49a1f0bc1bb4ecab447a00400c06afaa2569a1f401a06f59cccc4a42442ea7d3"
+  },
+  "actual_probe_job": {
+    "status": "complete",
+    "pid": 660704,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "18141511",
+    "config_sha256": "6a39e69c00ffc8ad615f2b3aeab2f09f7fb28cccf6706ba5874ebdc5cdd937e0",
+    "started_at": "2026-10-06T14:50:12.510156Z",
+    "GPU_elapsed_seconds": 36.104522940004244,
+    "restart_command": "scripts/probe_base_preference.ps1 -Worker; terminal one-shot requires documented repair",
+    "stage": "chosen_CE_DPO-restart",
+    "heartbeat_at": "2026-10-06T14:50:46.290097Z",
+    "completed_updates": 32,
+    "completed_at": "2026-10-06T14:50:49.234549Z"
+  },
+  "probe_GPU_seconds": 36.104522940004244,
+  "verification_updates": 152,
+  "verification_teacher_tokens": 1694058,
+  "selected_pair_batch": 56,
+  "measured_timing": {
+    "common": {
+      "step_seconds": 0.13807362399529666,
+      "teachers_per_update": 32698.375,
+      "teachers_per_second": 236818.40205131314,
+      "warmup_seconds": 1.073399668064667,
+      "save_seconds": 0.16575832400121726
+    },
+    "pair": {
+      "chosen_CE": {
+        "step_seconds": 0.10567368600459304,
+        "teachers_per_update": 4565.0,
+        "teachers_per_second": 43199.023073744065,
+        "warmup_seconds": 0.15122421400155872,
+        "save_seconds": 0.16815711601520889
+      },
+      "chosen_CE_DPO": {
+        "step_seconds": 0.10522683600720484,
+        "teachers_per_update": 4565.0,
+        "teachers_per_second": 43382.46946517936,
+        "warmup_seconds": 0.18579686095472425,
+        "save_seconds": 0.18355330999474972
+      }
+    },
+    "updates": {
+      "common": 184,
+      "chosen_CE": 446,
+      "chosen_CE_DPO": 446
+    },
+    "training_save_warmup_seconds": 122.2642483014497,
+    "reference_cache_seconds": 0.35120013999403454
+  },
+  "estimated_total_GPU_seconds": 795.504605913881,
+  "new_scientific_positive_teacher_tokens": 0,
+  "diagnostic_GPU_seconds_separate": 69.95700160900014,
+  "original_UI": {
+    "identity": {
+      "pid": 660897,
+      "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+      "start_ticks": "18145575"
+    },
+    "actual_alive_verified": true,
+    "HTTP": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    }
+  },
+  "Base_complete": false,
+  "Base_adopted": false,
+  "protected_test_used": false,
+  "Chat_started": false,
+  "quantization_started": false
+}

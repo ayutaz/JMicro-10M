@@ -1,3 +1,9 @@
+Base専用CE対CE+DPO: GPU継承・再開合格、本比較準備完了（2026-10-06 JST）。
+
+ownCUDA actual660704完了/不在、GPU36.104523秒/180、native W/Adam/scheduler/全RNG/Webcursor/tied10M初期保存と共通Web・両損失4対2+2全state/history一致。152検証更新/1694058教師は科学と別、検証重み破棄。8対56の実速度から重複なし56を選択、両条件CEinput/auxiliary順序一致、全reference readonly。科学予測759.400083秒/probe込み795.504606/1800。実共通6Mを一度→同chosen2MをCE0対CE+DPO.1(beta.1)の一要因、参照は実共通6M endpointから新計算。専用runner/同全日本語dev256・各80/bridge-retention512/採否/個別raw-bound notesを実装し凍結、CPU3tests/2.84秒で累積費用、native common cursor/Adam会計改変拒否、両末尾quota/negative会計と同順序を確認。新科学10M・各arm8M予定、固定56/4565positionsの約438反復は教材増量ではない。新科学0の準備証拠・旧69.957秒diagnostic別記。次は永続実比較→全160内容→元相対/絶対/歴史BPB1%で採否。合格のみ独立学習seed/full dev/protected test/adoptionへ。未合格はこの固定両recipe終了、source/beta/coefficient/epoch/LR/decoder/CP救済sweepなし。
+
+Base未完成・完成時通知して停止。Chat/Dialogue/SFT/量子化なし。既存全失敗/旧数値7/Phase0–3/品質基準を維持。WSL uv/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用・原文CE対CE+DPOの継承trainerとown GPU probe実装（2026-10-06 JST）。
 
 原d18/native10M/Adam2group/scheduler/RNG/LR1e-5/Webcursorを継ぐ共通Web6Mと、固定56の同chosen教師2Mをquotaで学習する両条件を実装。prompt/BOS/PADを除くCEと原全chosen/rejectedの参照比DPOを分け、最後の部分CE例も完全なDPO系列を採点するが別会計・EOS補作なし。負例も対照で同じ形状で評価し、係数0対.1だけが目的差。完了更新の全state/cursor/digest/CE・aux/padding・bytes/Adam/RNGを保存/再開する。新CPU3tests/2.28秒で継承と共通quota、両係数の連続4対2+2全state/historyとepoch境界、部分末尾CE7/aux chosen9・negative12の会計と参照改変拒否に合格。旧coreと損失実装は不変。
