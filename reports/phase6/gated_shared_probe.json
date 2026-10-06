@@ -1,0 +1,2399 @@
+{
+  "status": "gated_shared_probe",
+  "created_at": "2026-10-06T13:15:38.791533Z",
+  "config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/gated_shared_probe.json",
+    "sha256": "0f79d13271289b82087f6bc28629bc643311b5b0ec3f59b298d095af47902e2b"
+  },
+  "proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/gated_shared_proposal.json",
+    "sha256": "e5564618ba5333140a5dc3a18b77c90bf9e3f2b1a0b1b8e291683114a493d0cd"
+  },
+  "CPU_preparation_seconds": 0.11882039500051178,
+  "GPU_seconds": 47.25850116199581,
+  "scientific_teacher_tokens": 0,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "unique_parameters": 10001165,
+  "unique_blocks": 13,
+  "logical_invocations": 26,
+  "quality_criteria_unchanged": true,
+  "original_UI": {
+    "identity": {
+      "pid": 650550,
+      "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+      "start_ticks": "17571007"
+    },
+    "actual_alive_verified": true,
+    "HTTP": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    }
+  },
+  "actual_job": {
+    "status": "complete",
+    "pid": 650199,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "17565761",
+    "config_sha256": "0f79d13271289b82087f6bc28629bc643311b5b0ec3f59b298d095af47902e2b",
+    "started_at": "2026-10-06T13:14:15.148147Z",
+    "GPU_elapsed_seconds": 47.25850116199581,
+    "restart_command": "scripts/probe_gated_shared_comparison.ps1 -Worker; completed retained, terminal failure requires documented repair",
+    "stage": "probe-complete-not-science",
+    "heartbeat_at": "2026-10-06T13:15:02.849928Z",
+    "completed_updates": 32,
+    "ended_at": "2026-10-06T13:15:03.154130Z"
+  },
+  "result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/gated-shared-comparison-20261006/probe/result.json",
+    "sha256": "cafb945a892698b78d457e385af26d549f2f97445d634ee1f4cd5d953bf9a374"
+  },
+  "actual_result": {
+    "architecture": {
+      "checks": {
+        "torch.float32_32": {
+          "max_absolute_error": 0.0,
+          "absolute_tolerance": 2e-06,
+          "relative_tolerance": 2e-06,
+          "passed": true
+        },
+        "torch.float32_1024": {
+          "max_absolute_error": 0.0,
+          "absolute_tolerance": 2e-06,
+          "relative_tolerance": 2e-06,
+          "passed": true
+        },
+        "torch.bfloat16_32": {
+          "max_absolute_error": 0.0,
+          "absolute_tolerance": 0.0,
+          "relative_tolerance": 0.0,
+          "passed": true
+        },
+        "torch.bfloat16_1024": {
+          "max_absolute_error": 0.0,
+          "absolute_tolerance": 0.0,
+          "relative_tolerance": 0.0,
+          "passed": true
+        },
+        "signed_gate_cache1024": {
+          "max_absolute_error": 1.52587890625e-05,
+          "absolute_tolerance": 2e-05,
+          "relative_tolerance": 0.0002,
+          "passed": true
+        }
+      },
+      "weights_unchanged": true,
+      "RNG_unchanged": true,
+      "optimizer_updates": 0,
+      "diagnostic_forward_calls": 11,
+      "diagnostic_forward_context_positions": 6272,
+      "logical_layers": 26
+    },
+    "initial_fullstate_preservation": {
+      "native_weights": true,
+      "native_Adam_moments": true,
+      "native_groups": true,
+      "fresh_gate_moments": true,
+      "native_scheduler": true,
+      "parent_RNG": true,
+      "zero_initial_gates": true,
+      "native_and_gate_LRs": true,
+      "unique_parameters": true,
+      "actual_Web_cursor": true
+    },
+    "resume_gate": {
+      "passed": true,
+      "checks": {
+        "model": true,
+        "optimizer": true,
+        "scheduler": true,
+        "rng": true,
+        "sampler": true,
+        "lineage": true,
+        "tokens": true,
+        "supervised_tokens": true,
+        "body_bytes": true,
+        "token_digest": true,
+        "focus_token_digest": true,
+        "focus_teacher_tokens": true,
+        "weighted_teacher_mass": true,
+        "update": true,
+        "spec": true,
+        "model_config": true,
+        "pilot_binding": true,
+        "study_binding": true,
+        "history_loss": true,
+        "history_gradient_norm": true,
+        "history_lr": true,
+        "history_token_digest": true,
+        "history_source_teachers": true,
+        "history_source_eos": true,
+        "history_source_input_tokens": true,
+        "history_source_body_bytes": true,
+        "history_source_focus_teachers": true,
+        "history_focus_token_digest": true,
+        "history_focus_teacher_tokens": true,
+        "history_weighted_teacher_mass": true,
+        "finite": true,
+        "no_reheat": true,
+        "history_CE_loss": true,
+        "history_new_gate_LR": true
+      },
+      "histories": [
+        [
+          {
+            "update": 323504,
+            "loss": 2.5371084213256836,
+            "gradient_norm": 0.5149505734443665,
+            "lr": 1e-05,
+            "tokens_seen": 10600579072,
+            "supervised_tokens": 10577819669,
+            "body_bytes_seen": 41210137224,
+            "token_digest": "907b65d11f078af2f87c0c1ddab8575847dc9af3e834ba839d63e61778d90fe8",
+            "focus_token_digest": "e501b780f5d9fdd80981d60179b39e830b129dfab5eeed2d4e89d575924da29a",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 32708,
+            "outcome_weight": 1,
+            "seconds": 25.57361748800031,
+            "data_wait_seconds": 0.10038245300529525,
+            "tokens_per_second": 1281.3204864495783,
+            "source_teachers": {
+              "web": 32708,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_eos": {
+              "web": 60,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_input_tokens": {
+              "web": 32768,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_body_bytes": {
+              "web": 128458,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "valid_input_tokens": 32768,
+            "physical_input_tokens": 32768,
+            "additional_teacher_tokens": 32708,
+            "CE_loss": 2.5371084213256836,
+            "parameter_penalty": 0.0,
+            "parameter_coefficient": 0.0,
+            "parameter_penalty_teacher_tokens": 0,
+            "new_gate_LR": 0.0001
+          },
+          {
+            "update": 323505,
+            "loss": 2.615610361099243,
+            "gradient_norm": 0.5303401947021484,
+            "lr": 1e-05,
+            "tokens_seen": 10600611840,
+            "supervised_tokens": 10577852370,
+            "body_bytes_seen": 41210264592,
+            "token_digest": "eb87a42a151df1f9d40d15590bc0deb5d55b304c8b35058272f2fe8356157fa0",
+            "focus_token_digest": "1e5502559f2363cff9931bc0e546f709deb217ddbc0ef0a9bea391e1044fa829",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 65409,
+            "outcome_weight": 1,
+            "seconds": 0.3798887070151977,
+            "data_wait_seconds": 0.12225707102334127,
+            "tokens_per_second": 86256.84152987757,
+            "source_teachers": {
+              "web": 65409,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_eos": {
+              "web": 127,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_input_tokens": {
+              "web": 65536,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_body_bytes": {
+              "web": 255826,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "valid_input_tokens": 65536,
+            "physical_input_tokens": 65536,
+            "additional_teacher_tokens": 65409,
+            "CE_loss": 2.615610361099243,
+            "parameter_penalty": 0.0,
+            "parameter_coefficient": 0.0,
+            "parameter_penalty_teacher_tokens": 0,
+            "new_gate_LR": 0.0001
+          },
+          {
+            "update": 323506,
+            "loss": 2.5912671089172363,
+            "gradient_norm": 0.5464319586753845,
+            "lr": 1e-05,
+            "tokens_seen": 10600644608,
+            "supervised_tokens": 10577885066,
+            "body_bytes_seen": 41210392329,
+            "token_digest": "16134c6170c8b88cca2a070d44d96eff768e939c5515e9a637a4fb079b80fe7e",
+            "focus_token_digest": "66936fe175e0f191a1b99d5c8ce552af92f63f3f835a8d1dbbf57025d6af3fd2",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 98105,
+            "outcome_weight": 1,
+            "seconds": 0.24852847500005737,
+            "data_wait_seconds": 0.13362634400255047,
+            "tokens_per_second": 131848.07093027243,
+            "source_teachers": {
+              "web": 98105,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_eos": {
+              "web": 199,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_input_tokens": {
+              "web": 98304,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_body_bytes": {
+              "web": 383563,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "valid_input_tokens": 98304,
+            "physical_input_tokens": 98304,
+            "additional_teacher_tokens": 98105,
+            "CE_loss": 2.5912671089172363,
+            "parameter_penalty": 0.0,
+            "parameter_coefficient": 0.0,
+            "parameter_penalty_teacher_tokens": 0,
+            "new_gate_LR": 0.0001
+          },
+          {
+            "update": 323507,
+            "loss": 2.5800955295562744,
+            "gradient_norm": 0.5336295366287231,
+            "lr": 1e-05,
+            "tokens_seen": 10600677376,
+            "supervised_tokens": 10577917769,
+            "body_bytes_seen": 41210521853,
+            "token_digest": "99620f9fa396601c95d9edfc42f28c044522e019a48d75077140ef11fdfe814a",
+            "focus_token_digest": "a54817cbaf381c861f00d5d4394bfbddac8cfa2790eb0593e86c3fa11b338ae1",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 130808,
+            "outcome_weight": 1,
+            "seconds": 0.1950435659964569,
+            "data_wait_seconds": 0.11067261098651215,
+            "tokens_per_second": 168003.49107950198,
+            "source_teachers": {
+              "web": 130808,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_eos": {
+              "web": 264,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_input_tokens": {
+              "web": 131072,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_body_bytes": {
+              "web": 513087,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "valid_input_tokens": 131072,
+            "physical_input_tokens": 131072,
+            "additional_teacher_tokens": 130808,
+            "CE_loss": 2.5800955295562744,
+            "parameter_penalty": 0.0,
+            "parameter_coefficient": 0.0,
+            "parameter_penalty_teacher_tokens": 0,
+            "new_gate_LR": 0.0001
+          }
+        ],
+        [
+          {
+            "update": 323504,
+            "loss": 2.5371084213256836,
+            "gradient_norm": 0.5149505734443665,
+            "lr": 1e-05,
+            "tokens_seen": 10600579072,
+            "supervised_tokens": 10577819669,
+            "body_bytes_seen": 41210137224,
+            "token_digest": "907b65d11f078af2f87c0c1ddab8575847dc9af3e834ba839d63e61778d90fe8",
+            "focus_token_digest": "e501b780f5d9fdd80981d60179b39e830b129dfab5eeed2d4e89d575924da29a",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 32708,
+            "outcome_weight": 1,
+            "seconds": 2.214994095993461,
+            "data_wait_seconds": 0.0013238870014902204,
+            "tokens_per_second": 14793.718890389646,
+            "source_teachers": {
+              "web": 32708,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_eos": {
+              "web": 60,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_input_tokens": {
+              "web": 32768,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_body_bytes": {
+              "web": 128458,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "valid_input_tokens": 32768,
+            "physical_input_tokens": 32768,
+            "additional_teacher_tokens": 32708,
+            "CE_loss": 2.5371084213256836,
+            "parameter_penalty": 0.0,
+            "parameter_coefficient": 0.0,
+            "parameter_penalty_teacher_tokens": 0,
+            "new_gate_LR": 0.0001
+          },
+          {
+            "update": 323505,
+            "loss": 2.615610361099243,
+            "gradient_norm": 0.5303401947021484,
+            "lr": 1e-05,
+            "tokens_seen": 10600611840,
+            "supervised_tokens": 10577852370,
+            "body_bytes_seen": 41210264592,
+            "token_digest": "eb87a42a151df1f9d40d15590bc0deb5d55b304c8b35058272f2fe8356157fa0",
+            "focus_token_digest": "1e5502559f2363cff9931bc0e546f709deb217ddbc0ef0a9bea391e1044fa829",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 65409,
+            "outcome_weight": 1,
+            "seconds": 0.22937215698766522,
+            "data_wait_seconds": 0.0012752339825965464,
+            "tokens_per_second": 142859.536354982,
+            "source_teachers": {
+              "web": 65409,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_eos": {
+              "web": 127,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_input_tokens": {
+              "web": 65536,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_body_bytes": {
+              "web": 255826,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "valid_input_tokens": 65536,
+            "physical_input_tokens": 65536,
+            "additional_teacher_tokens": 65409,
+            "CE_loss": 2.615610361099243,
+            "parameter_penalty": 0.0,
+            "parameter_coefficient": 0.0,
+            "parameter_penalty_teacher_tokens": 0,
+            "new_gate_LR": 0.0001
+          },
+          {
+            "update": 323506,
+            "loss": 2.5912671089172363,
+            "gradient_norm": 0.5464319586753845,
+            "lr": 1e-05,
+            "tokens_seen": 10600644608,
+            "supervised_tokens": 10577885066,
+            "body_bytes_seen": 41210392329,
+            "token_digest": "16134c6170c8b88cca2a070d44d96eff768e939c5515e9a637a4fb079b80fe7e",
+            "focus_token_digest": "66936fe175e0f191a1b99d5c8ce552af92f63f3f835a8d1dbbf57025d6af3fd2",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 98105,
+            "outcome_weight": 1,
+            "seconds": 2.1891031629929785,
+            "data_wait_seconds": 0.0018189559923484921,
+            "tokens_per_second": 14968.686973709837,
+            "source_teachers": {
+              "web": 98105,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_eos": {
+              "web": 199,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_input_tokens": {
+              "web": 98304,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_body_bytes": {
+              "web": 383563,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "valid_input_tokens": 98304,
+            "physical_input_tokens": 98304,
+            "additional_teacher_tokens": 98105,
+            "CE_loss": 2.5912671089172363,
+            "parameter_penalty": 0.0,
+            "parameter_coefficient": 0.0,
+            "parameter_penalty_teacher_tokens": 0,
+            "new_gate_LR": 0.0001
+          },
+          {
+            "update": 323507,
+            "loss": 2.5800955295562744,
+            "gradient_norm": 0.5336295366287231,
+            "lr": 1e-05,
+            "tokens_seen": 10600677376,
+            "supervised_tokens": 10577917769,
+            "body_bytes_seen": 41210521853,
+            "token_digest": "99620f9fa396601c95d9edfc42f28c044522e019a48d75077140ef11fdfe814a",
+            "focus_token_digest": "a54817cbaf381c861f00d5d4394bfbddac8cfa2790eb0593e86c3fa11b338ae1",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 130808,
+            "outcome_weight": 1,
+            "seconds": 0.22657766900374554,
+            "data_wait_seconds": 0.001313285989454016,
+            "tokens_per_second": 144621.4895937442,
+            "source_teachers": {
+              "web": 130808,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_eos": {
+              "web": 264,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_input_tokens": {
+              "web": 131072,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_body_bytes": {
+              "web": 513087,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "story": 0,
+              "ordinary_textbook": 0,
+              "conditional_textbook": 0
+            },
+            "valid_input_tokens": 131072,
+            "physical_input_tokens": 131072,
+            "additional_teacher_tokens": 130808,
+            "CE_loss": 2.5800955295562744,
+            "parameter_penalty": 0.0,
+            "parameter_coefficient": 0.0,
+            "parameter_penalty_teacher_tokens": 0,
+            "new_gate_LR": 0.0001
+          }
+        ]
+      ],
+      "config_sha256": "0f79d13271289b82087f6bc28629bc643311b5b0ec3f59b298d095af47902e2b",
+      "GPU_optimizer_updates": 8,
+      "verification_teacher_tokens": 261616
+    },
+    "timing": {
+      "histories": [
+        {
+          "update": 323504,
+          "loss": 2.5371084213256836,
+          "gradient_norm": 0.5149505734443665,
+          "lr": 1e-05,
+          "tokens_seen": 10600579072,
+          "supervised_tokens": 10577819669,
+          "body_bytes_seen": 41210137224,
+          "token_digest": "907b65d11f078af2f87c0c1ddab8575847dc9af3e834ba839d63e61778d90fe8",
+          "focus_token_digest": "e501b780f5d9fdd80981d60179b39e830b129dfab5eeed2d4e89d575924da29a",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 32708,
+          "outcome_weight": 1,
+          "seconds": 2.3339066290063784,
+          "data_wait_seconds": 0.0014111549826338887,
+          "tokens_per_second": 14039.978974630372,
+          "source_teachers": {
+            "web": 32708,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 60,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 32768,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 128458,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 32768,
+          "physical_input_tokens": 32768,
+          "additional_teacher_tokens": 32708,
+          "CE_loss": 2.5371084213256836,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323505,
+          "loss": 2.615610361099243,
+          "gradient_norm": 0.5303401947021484,
+          "lr": 1e-05,
+          "tokens_seen": 10600611840,
+          "supervised_tokens": 10577852370,
+          "body_bytes_seen": 41210264592,
+          "token_digest": "eb87a42a151df1f9d40d15590bc0deb5d55b304c8b35058272f2fe8356157fa0",
+          "focus_token_digest": "1e5502559f2363cff9931bc0e546f709deb217ddbc0ef0a9bea391e1044fa829",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 65409,
+          "outcome_weight": 1,
+          "seconds": 0.23093820599024184,
+          "data_wait_seconds": 0.001341272989520803,
+          "tokens_per_second": 141890.77056130156,
+          "source_teachers": {
+            "web": 65409,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 127,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 65536,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 255826,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 65536,
+          "physical_input_tokens": 65536,
+          "additional_teacher_tokens": 65409,
+          "CE_loss": 2.615610361099243,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323506,
+          "loss": 2.5912671089172363,
+          "gradient_norm": 0.5464319586753845,
+          "lr": 1e-05,
+          "tokens_seen": 10600644608,
+          "supervised_tokens": 10577885066,
+          "body_bytes_seen": 41210392329,
+          "token_digest": "16134c6170c8b88cca2a070d44d96eff768e939c5515e9a637a4fb079b80fe7e",
+          "focus_token_digest": "66936fe175e0f191a1b99d5c8ce552af92f63f3f835a8d1dbbf57025d6af3fd2",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 98105,
+          "outcome_weight": 1,
+          "seconds": 0.11542196598020382,
+          "data_wait_seconds": 0.0013040249759797007,
+          "tokens_per_second": 283897.4342684484,
+          "source_teachers": {
+            "web": 98105,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 199,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 98304,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 383563,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 98304,
+          "physical_input_tokens": 98304,
+          "additional_teacher_tokens": 98105,
+          "CE_loss": 2.5912671089172363,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323507,
+          "loss": 2.5800955295562744,
+          "gradient_norm": 0.5336295366287231,
+          "lr": 1e-05,
+          "tokens_seen": 10600677376,
+          "supervised_tokens": 10577917769,
+          "body_bytes_seen": 41210521853,
+          "token_digest": "99620f9fa396601c95d9edfc42f28c044522e019a48d75077140ef11fdfe814a",
+          "focus_token_digest": "a54817cbaf381c861f00d5d4394bfbddac8cfa2790eb0593e86c3fa11b338ae1",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 130808,
+          "outcome_weight": 1,
+          "seconds": 0.08433234298718162,
+          "data_wait_seconds": 0.0012944729824084789,
+          "tokens_per_second": 388557.922610791,
+          "source_teachers": {
+            "web": 130808,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 264,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 131072,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 513087,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 131072,
+          "physical_input_tokens": 131072,
+          "additional_teacher_tokens": 130808,
+          "CE_loss": 2.5800955295562744,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323508,
+          "loss": 2.5671396255493164,
+          "gradient_norm": 0.5274467468261719,
+          "lr": 1e-05,
+          "tokens_seen": 10600710144,
+          "supervised_tokens": 10577950476,
+          "body_bytes_seen": 41210653261,
+          "token_digest": "12cbfa1c3521ea950dccdd5415bc285421c4db34953ffd73311278bf17d24596",
+          "focus_token_digest": "df4e2334cf9157fc377fe411787435798b6e1140ca3e44bb5f9661e5d325bd50",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 163515,
+          "outcome_weight": 1,
+          "seconds": 0.2066186190058943,
+          "data_wait_seconds": 0.12262676600948907,
+          "tokens_per_second": 158591.70948705846,
+          "source_teachers": {
+            "web": 163515,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 325,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 163840,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 644495,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 163840,
+          "physical_input_tokens": 163840,
+          "additional_teacher_tokens": 163515,
+          "CE_loss": 2.5671396255493164,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323509,
+          "loss": 2.5206546783447266,
+          "gradient_norm": 0.5164269208908081,
+          "lr": 1e-05,
+          "tokens_seen": 10600742912,
+          "supervised_tokens": 10577983179,
+          "body_bytes_seen": 41210781500,
+          "token_digest": "2f767e8e480a56b9b3c1d73c36d3d5a9e2124801b96913f471991d65b63d7074",
+          "focus_token_digest": "e45ddce161c2c02df300abd7adb847042bb9802c135c71643fa0881f84f2ab18",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 196218,
+          "outcome_weight": 1,
+          "seconds": 0.20406139898113906,
+          "data_wait_seconds": 0.12027396500343457,
+          "tokens_per_second": 160579.12061569604,
+          "source_teachers": {
+            "web": 196218,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 389,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 196608,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 772734,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 196608,
+          "physical_input_tokens": 196608,
+          "additional_teacher_tokens": 196218,
+          "CE_loss": 2.5206546783447266,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323510,
+          "loss": 2.571371555328369,
+          "gradient_norm": 0.5254167318344116,
+          "lr": 1e-05,
+          "tokens_seen": 10600775680,
+          "supervised_tokens": 10578015875,
+          "body_bytes_seen": 41210909690,
+          "token_digest": "43c1188ec4ce41fb4fb6d2fec32e96cef38f272f058aa70db7a7ef62a36b864e",
+          "focus_token_digest": "e1971dde66ff3c67c51e99771df55b1444344dfdc95b57559d3eff5a3bd917d1",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 228914,
+          "outcome_weight": 1,
+          "seconds": 0.20109996502287686,
+          "data_wait_seconds": 0.11680129301385023,
+          "tokens_per_second": 162943.83739088348,
+          "source_teachers": {
+            "web": 228914,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 461,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 229376,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 900924,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 229376,
+          "physical_input_tokens": 229376,
+          "additional_teacher_tokens": 228914,
+          "CE_loss": 2.571371555328369,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323511,
+          "loss": 2.5990190505981445,
+          "gradient_norm": 0.539478063583374,
+          "lr": 1e-05,
+          "tokens_seen": 10600808448,
+          "supervised_tokens": 10578048575,
+          "body_bytes_seen": 41211032429,
+          "token_digest": "f5261d0b5c47a860110a9ef316c549d682b7464186c3ee74bb93b12b15b0b683",
+          "focus_token_digest": "7a4ece18dbaadf40f9c59158a8512c70d761fd4d2f8bc0d25edd9ae6930a9543",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 261614,
+          "outcome_weight": 1,
+          "seconds": 0.1934260190173518,
+          "data_wait_seconds": 0.10969566999119706,
+          "tokens_per_second": 169408.4392909956,
+          "source_teachers": {
+            "web": 261614,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 528,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 262144,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 1023663,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 262144,
+          "physical_input_tokens": 262144,
+          "additional_teacher_tokens": 261614,
+          "CE_loss": 2.5990190505981445,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323512,
+          "loss": 2.6502814292907715,
+          "gradient_norm": 0.5162627696990967,
+          "lr": 1e-05,
+          "tokens_seen": 10600841216,
+          "supervised_tokens": 10578081269,
+          "body_bytes_seen": 41211160634,
+          "token_digest": "cbef250842d3a9a9aa048cd36425f1397ae4d876fbb81806bca821d8fd27f640",
+          "focus_token_digest": "a4ad63ca7d8fe5b4fc030097febdc407aab19831e7197ad01c641c654a701aa8",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 294308,
+          "outcome_weight": 1,
+          "seconds": 0.1968947259883862,
+          "data_wait_seconds": 0.11215718899620697,
+          "tokens_per_second": 166423.9599893235,
+          "source_teachers": {
+            "web": 294308,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 602,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 294912,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 1151868,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 294912,
+          "physical_input_tokens": 294912,
+          "additional_teacher_tokens": 294308,
+          "CE_loss": 2.6502814292907715,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323513,
+          "loss": 2.563430070877075,
+          "gradient_norm": 0.5281015038490295,
+          "lr": 1e-05,
+          "tokens_seen": 10600873984,
+          "supervised_tokens": 10578113963,
+          "body_bytes_seen": 41211286644,
+          "token_digest": "7bd87a4c278735dbab71219aad765b510eb8d50d0a276bbce936fe4362045e18",
+          "focus_token_digest": "acb34d6198f0e07a0f4d6a8e92ebac98183ecc96e37fcc1d41bc802917272328",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 327002,
+          "outcome_weight": 1,
+          "seconds": 0.17852233001030982,
+          "data_wait_seconds": 0.0944483460043557,
+          "tokens_per_second": 183551.26777758065,
+          "source_teachers": {
+            "web": 327002,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 676,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 327680,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 1277878,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 327680,
+          "physical_input_tokens": 327680,
+          "additional_teacher_tokens": 327002,
+          "CE_loss": 2.563430070877075,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323514,
+          "loss": 2.5680534839630127,
+          "gradient_norm": 0.5074892044067383,
+          "lr": 1e-05,
+          "tokens_seen": 10600906752,
+          "supervised_tokens": 10578146665,
+          "body_bytes_seen": 41211410642,
+          "token_digest": "01fd80a7490f8ca528f21018d1919b4d8c92b9dbd9c13fc41d7f00dcd9f87ce7",
+          "focus_token_digest": "db3adf5c29e77023e828a1cbd4cfee2fd4d45ea962b063f1058e7d15c290c81e",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 359704,
+          "outcome_weight": 1,
+          "seconds": 0.1756108610134106,
+          "data_wait_seconds": 0.0919094480050262,
+          "tokens_per_second": 186594.38152573977,
+          "source_teachers": {
+            "web": 359704,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 741,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 360448,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 1401876,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 360448,
+          "physical_input_tokens": 360448,
+          "additional_teacher_tokens": 359704,
+          "CE_loss": 2.5680534839630127,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323515,
+          "loss": 2.504075765609741,
+          "gradient_norm": 0.5404567718505859,
+          "lr": 1e-05,
+          "tokens_seen": 10600939520,
+          "supervised_tokens": 10578179365,
+          "body_bytes_seen": 41211536791,
+          "token_digest": "835f78eef36f584c1c6e3755bb4360a257bebfc98540ea8702a71fc7a6f364cc",
+          "focus_token_digest": "885b872da49e1e392ee905be2f42c85814787fa6c8eb6eb7f6ca4f27b8e01492",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 392404,
+          "outcome_weight": 1,
+          "seconds": 0.17076036302023567,
+          "data_wait_seconds": 0.08690485599800013,
+          "tokens_per_second": 191894.6494399106,
+          "source_teachers": {
+            "web": 392404,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 809,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 393216,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 1528025,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 393216,
+          "physical_input_tokens": 393216,
+          "additional_teacher_tokens": 392404,
+          "CE_loss": 2.504075765609741,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323516,
+          "loss": 2.5523951053619385,
+          "gradient_norm": 0.5169388651847839,
+          "lr": 1e-05,
+          "tokens_seen": 10600972288,
+          "supervised_tokens": 10578212063,
+          "body_bytes_seen": 41211664594,
+          "token_digest": "4234627388ed2cbb8fe12495596fdec26a297cca841244462ffa8f4c08030cda",
+          "focus_token_digest": "9b9771210650cf51e3a1b24afb9e0dc6c24d4c66d99c9bd34fe606d05341e47d",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 425102,
+          "outcome_weight": 1,
+          "seconds": 0.18411501302034594,
+          "data_wait_seconds": 0.10016005899524316,
+          "tokens_per_second": 177975.70910949513,
+          "source_teachers": {
+            "web": 425102,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 877,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 425984,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 1655828,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 425984,
+          "physical_input_tokens": 425984,
+          "additional_teacher_tokens": 425102,
+          "CE_loss": 2.5523951053619385,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323517,
+          "loss": 2.607381582260132,
+          "gradient_norm": 0.5252070426940918,
+          "lr": 1e-05,
+          "tokens_seen": 10601005056,
+          "supervised_tokens": 10578244765,
+          "body_bytes_seen": 41211793798,
+          "token_digest": "17e6f73cc903acaec6e755bd66b5b1f4a65b1383197cd0f6585b7cc04bd6e51a",
+          "focus_token_digest": "731367599ea7d6fa21ccc49d14bb6f169edba56966d93c18233ec10d3fc9a8c2",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 457804,
+          "outcome_weight": 1,
+          "seconds": 0.17817048999131657,
+          "data_wait_seconds": 0.0941697400121484,
+          "tokens_per_second": 183913.73342239222,
+          "source_teachers": {
+            "web": 457804,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 943,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 458752,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 1785032,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 458752,
+          "physical_input_tokens": 458752,
+          "additional_teacher_tokens": 457804,
+          "CE_loss": 2.607381582260132,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323518,
+          "loss": 2.569902181625366,
+          "gradient_norm": 0.5153487324714661,
+          "lr": 1e-05,
+          "tokens_seen": 10601037824,
+          "supervised_tokens": 10578277458,
+          "body_bytes_seen": 41211920549,
+          "token_digest": "fa2e5983e2e7f232e96ed142a53a1cbbdd4fe0739851baf3faa895f5e0fe880c",
+          "focus_token_digest": "0a17d094cf42dd90bc44a0f996ee2a993c3cc1656c11d078e035f02815e5ca36",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 490497,
+          "outcome_weight": 1,
+          "seconds": 0.17617613798938692,
+          "data_wait_seconds": 0.09204091900028288,
+          "tokens_per_second": 185995.67667883597,
+          "source_teachers": {
+            "web": 490497,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 1018,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 491520,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 1911783,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 491520,
+          "physical_input_tokens": 491520,
+          "additional_teacher_tokens": 490497,
+          "CE_loss": 2.569902181625366,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323519,
+          "loss": 2.520092725753784,
+          "gradient_norm": 0.5224708318710327,
+          "lr": 1e-05,
+          "tokens_seen": 10601070592,
+          "supervised_tokens": 10578310151,
+          "body_bytes_seen": 41212046444,
+          "token_digest": "b5f6b11fb7c294375ba06ee00f425110cdbb6fd9dbe8796637a5e4e99599ab54",
+          "focus_token_digest": "81eec68d113ecfe891b4158b93da3c829429321b8a013882d35a51c65b577a83",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 523190,
+          "outcome_weight": 1,
+          "seconds": 0.17466049001086503,
+          "data_wait_seconds": 0.0899822470091749,
+          "tokens_per_second": 187609.6877889305,
+          "source_teachers": {
+            "web": 523190,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 1093,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 524288,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 2037678,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 524288,
+          "physical_input_tokens": 524288,
+          "additional_teacher_tokens": 523190,
+          "CE_loss": 2.520092725753784,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323520,
+          "loss": 2.663426637649536,
+          "gradient_norm": 0.5252655148506165,
+          "lr": 1e-05,
+          "tokens_seen": 10601103360,
+          "supervised_tokens": 10578342851,
+          "body_bytes_seen": 41212172546,
+          "token_digest": "9b6dc5a643137a70c4e8580d515a46ce5b70b3b72d99f919c03366901bc3e321",
+          "focus_token_digest": "fd72869a718c03c3022ef55374b0e8861a8b65eadc3f6e5275705f0801c1254d",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 555890,
+          "outcome_weight": 1,
+          "seconds": 0.1765749939950183,
+          "data_wait_seconds": 0.09257801799685694,
+          "tokens_per_second": 185575.54078650844,
+          "source_teachers": {
+            "web": 555890,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 1161,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 557056,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 2163780,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 557056,
+          "physical_input_tokens": 557056,
+          "additional_teacher_tokens": 555890,
+          "CE_loss": 2.663426637649536,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323521,
+          "loss": 2.5922012329101562,
+          "gradient_norm": 0.5058173537254333,
+          "lr": 1e-05,
+          "tokens_seen": 10601136128,
+          "supervised_tokens": 10578375550,
+          "body_bytes_seen": 41212300653,
+          "token_digest": "2edf27f9bf8abed63f36db4a07e32e4cdbada5148e87d8087ad0ac23889e4fec",
+          "focus_token_digest": "c33fbc4ab936d30cbe57a6d22425cdd95e9c0d671fa6ff579bd87fd0c54a569b",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 588589,
+          "outcome_weight": 1,
+          "seconds": 0.1898654560209252,
+          "data_wait_seconds": 0.1047813190089073,
+          "tokens_per_second": 172585.3701180304,
+          "source_teachers": {
+            "web": 588589,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 1230,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 589824,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 2291887,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 589824,
+          "physical_input_tokens": 589824,
+          "additional_teacher_tokens": 588589,
+          "CE_loss": 2.5922012329101562,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323522,
+          "loss": 2.5526134967803955,
+          "gradient_norm": 0.5130754113197327,
+          "lr": 1e-05,
+          "tokens_seen": 10601168896,
+          "supervised_tokens": 10578408245,
+          "body_bytes_seen": 41212424266,
+          "token_digest": "5bfa8a5ac27b648a651fe7996ec4a2e005bbb87873d7b23424c982e6fd7b5121",
+          "focus_token_digest": "15f8f46ca88f6fd3c01714223bb96b69953b66d07ac70a64524a727389b0fc38",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 621284,
+          "outcome_weight": 1,
+          "seconds": 0.17658126601600088,
+          "data_wait_seconds": 0.09268462102045305,
+          "tokens_per_second": 185568.94929630152,
+          "source_teachers": {
+            "web": 621284,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 1303,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 622592,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 2415500,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 622592,
+          "physical_input_tokens": 622592,
+          "additional_teacher_tokens": 621284,
+          "CE_loss": 2.5526134967803955,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323523,
+          "loss": 2.487010955810547,
+          "gradient_norm": 0.5189869403839111,
+          "lr": 1e-05,
+          "tokens_seen": 10601201664,
+          "supervised_tokens": 10578440948,
+          "body_bytes_seen": 41212555883,
+          "token_digest": "ba101eb1c13d39242a9251fcc02366109f06976b9a8e3d1eafbd22f03728145e",
+          "focus_token_digest": "5d30e77bdf4f60d13e44cd7d74508469ef997b33455ec8873cc0ff71337e2f06",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 653987,
+          "outcome_weight": 1,
+          "seconds": 0.17371422302676365,
+          "data_wait_seconds": 0.08947012602584437,
+          "tokens_per_second": 188631.64701805406,
+          "source_teachers": {
+            "web": 653987,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 1368,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 655360,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 2547117,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 655360,
+          "physical_input_tokens": 655360,
+          "additional_teacher_tokens": 653987,
+          "CE_loss": 2.487010955810547,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323524,
+          "loss": 2.567643165588379,
+          "gradient_norm": 0.5261396169662476,
+          "lr": 1e-05,
+          "tokens_seen": 10601234432,
+          "supervised_tokens": 10578473646,
+          "body_bytes_seen": 41212684702,
+          "token_digest": "c4e0e278583c6a0590f956d5025f39ae26ec42b0f391cca791e5733b77daca6a",
+          "focus_token_digest": "60d7a12db4451fd203480c032167cf0c2fcd95311a393929070d18cb6a512126",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 686685,
+          "outcome_weight": 1,
+          "seconds": 0.17672094001318328,
+          "data_wait_seconds": 0.09273401700193062,
+          "tokens_per_second": 185422.28214469392,
+          "source_teachers": {
+            "web": 686685,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 1439,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 688128,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 2675936,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 688128,
+          "physical_input_tokens": 688128,
+          "additional_teacher_tokens": 686685,
+          "CE_loss": 2.567643165588379,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323525,
+          "loss": 2.5969879627227783,
+          "gradient_norm": 0.5145901441574097,
+          "lr": 1e-05,
+          "tokens_seen": 10601267200,
+          "supervised_tokens": 10578506348,
+          "body_bytes_seen": 41212812203,
+          "token_digest": "4359c1b368199e6d912cd353b419186dd41d6657434f2e6ba108fcbe740aa551",
+          "focus_token_digest": "c88fef34ac11664cf0bfc528578e3de25fabdf7d2338dbc17d2a2a46908b13ff",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 719387,
+          "outcome_weight": 1,
+          "seconds": 0.17128125598537736,
+          "data_wait_seconds": 0.08682580399909057,
+          "tokens_per_second": 191311.06793610548,
+          "source_teachers": {
+            "web": 719387,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 1504,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 720896,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 2803437,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 720896,
+          "physical_input_tokens": 720896,
+          "additional_teacher_tokens": 719387,
+          "CE_loss": 2.5969879627227783,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323526,
+          "loss": 2.562077760696411,
+          "gradient_norm": 0.5119959115982056,
+          "lr": 1e-05,
+          "tokens_seen": 10601299968,
+          "supervised_tokens": 10578539040,
+          "body_bytes_seen": 41212939212,
+          "token_digest": "baab0884a5dbf64410c6ebb52411563d1f2faa1480b1da86be1cf19b63f8e149",
+          "focus_token_digest": "e4c7c3fdc7b9c48368f2f298463bd862b9aab5d69f2e21de31177f3eced5c8cd",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 752079,
+          "outcome_weight": 1,
+          "seconds": 0.18599497299874201,
+          "data_wait_seconds": 0.10192876801011153,
+          "tokens_per_second": 176176.80452160194,
+          "source_teachers": {
+            "web": 752079,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 1580,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 753664,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 2930446,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 753664,
+          "physical_input_tokens": 753664,
+          "additional_teacher_tokens": 752079,
+          "CE_loss": 2.562077760696411,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323527,
+          "loss": 2.596783399581909,
+          "gradient_norm": 0.5388317704200745,
+          "lr": 1e-05,
+          "tokens_seen": 10601332736,
+          "supervised_tokens": 10578571738,
+          "body_bytes_seen": 41213064522,
+          "token_digest": "463f9b7579b6ebbb046e68fc0b3e7ae29e793221f1fed40b81bf8e7e27e5ea7a",
+          "focus_token_digest": "ee909890025ff29a0cd9bace6b438509e6ac1239675d7e561684ded59d0442b0",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 784777,
+          "outcome_weight": 1,
+          "seconds": 0.17694138901424594,
+          "data_wait_seconds": 0.09277126600500196,
+          "tokens_per_second": 185191.26690794644,
+          "source_teachers": {
+            "web": 784777,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 1649,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 786432,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 3055756,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 786432,
+          "physical_input_tokens": 786432,
+          "additional_teacher_tokens": 784777,
+          "CE_loss": 2.596783399581909,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323528,
+          "loss": 2.62721848487854,
+          "gradient_norm": 0.488814115524292,
+          "lr": 1e-05,
+          "tokens_seen": 10601365504,
+          "supervised_tokens": 10578604436,
+          "body_bytes_seen": 41213193335,
+          "token_digest": "6c250ec535e98b93a0bae9a426c87c05e29c1636d7fb35aad3b95e6a121e30be",
+          "focus_token_digest": "feb974623367c1712f4f1a7b4161b0303d00828cf2e335ecbacfed6a66ed427b",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 817475,
+          "outcome_weight": 1,
+          "seconds": 0.16458374302601442,
+          "data_wait_seconds": 0.07974431201000698,
+          "tokens_per_second": 199096.21325613325,
+          "source_teachers": {
+            "web": 817475,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 1719,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 819200,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 3184569,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 819200,
+          "physical_input_tokens": 819200,
+          "additional_teacher_tokens": 817475,
+          "CE_loss": 2.62721848487854,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323529,
+          "loss": 2.54337215423584,
+          "gradient_norm": 0.5385687947273254,
+          "lr": 1e-05,
+          "tokens_seen": 10601398272,
+          "supervised_tokens": 10578637134,
+          "body_bytes_seen": 41213319402,
+          "token_digest": "3f642aea4c47971824ebc7dec0a9cd9a50fb4c5c056206460f50265143b1f0a3",
+          "focus_token_digest": "817c99830e57ce2af03f4a7faac1fc1977299bbc1b0320f6cc548ee89ee25bab",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 850173,
+          "outcome_weight": 1,
+          "seconds": 0.17687485698843375,
+          "data_wait_seconds": 0.09279860300011933,
+          "tokens_per_second": 185260.92717713278,
+          "source_teachers": {
+            "web": 850173,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 1788,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 851968,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 3310636,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 851968,
+          "physical_input_tokens": 851968,
+          "additional_teacher_tokens": 850173,
+          "CE_loss": 2.54337215423584,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323530,
+          "loss": 2.566382646560669,
+          "gradient_norm": 0.5115278959274292,
+          "lr": 1e-05,
+          "tokens_seen": 10601431040,
+          "supervised_tokens": 10578669827,
+          "body_bytes_seen": 41213447357,
+          "token_digest": "b339ac44b51c1a98b79d152ea2781401690e82c5ce54e8eb111bb43037a675b1",
+          "focus_token_digest": "69777b2d9df7c900b5fe3c87f58708994d8d2ea0295a48279f21e121560448f7",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 882866,
+          "outcome_weight": 1,
+          "seconds": 0.18371378601295874,
+          "data_wait_seconds": 0.09984670500853099,
+          "tokens_per_second": 178364.40427877646,
+          "source_teachers": {
+            "web": 882866,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 1863,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 884736,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 3438591,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 884736,
+          "physical_input_tokens": 884736,
+          "additional_teacher_tokens": 882866,
+          "CE_loss": 2.566382646560669,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323531,
+          "loss": 2.5614945888519287,
+          "gradient_norm": 0.5178105235099792,
+          "lr": 1e-05,
+          "tokens_seen": 10601463808,
+          "supervised_tokens": 10578702520,
+          "body_bytes_seen": 41213574688,
+          "token_digest": "67985ce05c9c4b483f8cec6795b6ec19884bc75e87b00a5fd73811df743d79d2",
+          "focus_token_digest": "da57ad3fc68cc51260420927e1f37a9657646af2a866d562a98e6481da85e212",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 915559,
+          "outcome_weight": 1,
+          "seconds": 0.15921635497943498,
+          "data_wait_seconds": 0.07503163898945786,
+          "tokens_per_second": 205808.00260270023,
+          "source_teachers": {
+            "web": 915559,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 1938,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 917504,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 3565922,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 917504,
+          "physical_input_tokens": 917504,
+          "additional_teacher_tokens": 915559,
+          "CE_loss": 2.5614945888519287,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323532,
+          "loss": 2.5654194355010986,
+          "gradient_norm": 0.5173342227935791,
+          "lr": 1e-05,
+          "tokens_seen": 10601496576,
+          "supervised_tokens": 10578735212,
+          "body_bytes_seen": 41213704939,
+          "token_digest": "4b899c6a5dabe407f73697c54992150ebfd6363e57a791336965af7449c6c080",
+          "focus_token_digest": "d3d1680a1a16e74425fb931ffdff66bce5694cd82c2dff48bc5dfb5955f52ddf",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 948251,
+          "outcome_weight": 1,
+          "seconds": 0.164954548003152,
+          "data_wait_seconds": 0.08069792500464246,
+          "tokens_per_second": 198648.6604744833,
+          "source_teachers": {
+            "web": 948251,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 2014,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 950272,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 3696173,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 950272,
+          "physical_input_tokens": 950272,
+          "additional_teacher_tokens": 948251,
+          "CE_loss": 2.5654194355010986,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323533,
+          "loss": 2.516904592514038,
+          "gradient_norm": 0.5180084705352783,
+          "lr": 1e-05,
+          "tokens_seen": 10601529344,
+          "supervised_tokens": 10578767910,
+          "body_bytes_seen": 41213829487,
+          "token_digest": "e87ac26a105c58e1514781dd3981f30fa156fa47f5ff9db27ef9c25976a58c71",
+          "focus_token_digest": "48eb34ebadc33a9e3a0bbd9e07db1690707ce086b232942391eff4d69ce54751",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 980949,
+          "outcome_weight": 1,
+          "seconds": 0.1701688579923939,
+          "data_wait_seconds": 0.08605117400293238,
+          "tokens_per_second": 192561.67307336954,
+          "source_teachers": {
+            "web": 980949,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 2083,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 983040,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 3820721,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 983040,
+          "physical_input_tokens": 983040,
+          "additional_teacher_tokens": 980949,
+          "CE_loss": 2.516904592514038,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323534,
+          "loss": 2.6586568355560303,
+          "gradient_norm": 0.5514336228370667,
+          "lr": 1e-05,
+          "tokens_seen": 10601562112,
+          "supervised_tokens": 10578800604,
+          "body_bytes_seen": 41213956427,
+          "token_digest": "8f52e7e2367d105019490e251a48c175651d52341fefcf9abc4fe4af98583483",
+          "focus_token_digest": "1acce4683b14abf78fda5877c5438bc412e3863494801b3317e6e53c58385374",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 1013643,
+          "outcome_weight": 1,
+          "seconds": 0.15826311300043017,
+          "data_wait_seconds": 0.07453203099430539,
+          "tokens_per_second": 207047.61443628962,
+          "source_teachers": {
+            "web": 1013643,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 2157,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 1015808,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 3947661,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 1015808,
+          "physical_input_tokens": 1015808,
+          "additional_teacher_tokens": 1013643,
+          "CE_loss": 2.6586568355560303,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        },
+        {
+          "update": 323535,
+          "loss": 2.5541486740112305,
+          "gradient_norm": 0.5289180278778076,
+          "lr": 1e-05,
+          "tokens_seen": 10601594880,
+          "supervised_tokens": 10578833297,
+          "body_bytes_seen": 41214083798,
+          "token_digest": "ec520ce4227229cfbcc37cbe2a5a0a5c25a98ed017d7c494d5d5a23bbffd6872",
+          "focus_token_digest": "c31aa55f8d83b87f4b3dd3d5fba8ad972afdaef0017474983446cb3853e801e6",
+          "focus_teacher_tokens": 0,
+          "weighted_teacher_mass": 1046336,
+          "outcome_weight": 1,
+          "seconds": 0.1588821379991714,
+          "data_wait_seconds": 0.07413587800692767,
+          "tokens_per_second": 206240.93062097952,
+          "source_teachers": {
+            "web": 1046336,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_eos": {
+            "web": 2232,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_input_tokens": {
+            "web": 1048576,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_body_bytes": {
+            "web": 4075032,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "source_focus_teachers": {
+            "web": 0,
+            "story": 0,
+            "ordinary_textbook": 0,
+            "conditional_textbook": 0
+          },
+          "valid_input_tokens": 1048576,
+          "physical_input_tokens": 1048576,
+          "additional_teacher_tokens": 1046336,
+          "CE_loss": 2.5541486740112305,
+          "parameter_penalty": 0.0,
+          "parameter_coefficient": 0.0,
+          "parameter_penalty_teacher_tokens": 0,
+          "new_gate_LR": 0.0001
+        }
+      ],
+      "verification_teacher_tokens": 1046336,
+      "terminal_save_seconds": 0.17000612698029727,
+      "peak_VRAM_bytes": 10452374016,
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/gated-shared-comparison-20261006/probe/timing.pt",
+        "sha256": "9025c9d10289e49d86592f91ccf1cf89da68ee5acdd6552962374f61d56893b5"
+      }
+    },
+    "passed": true,
+    "GPU_seconds": 47.25850116199581,
+    "config_sha256": "0f79d13271289b82087f6bc28629bc643311b5b0ec3f59b298d095af47902e2b",
+    "optimizer_updates": 40,
+    "verification_teacher_tokens": 1307952,
+    "scientific_teacher_tokens": 0,
+    "diagnostic_weights_discarded_for_science": true,
+    "Base_complete": false,
+    "measured_timing": {
+      "steady_step_seconds": 0.1763755659922026,
+      "teachers_per_update": 32698.0,
+      "estimated_updates": 3059,
+      "warmup_seconds": 2.1588006180536468,
+      "save_seconds": 2.3800857777241617,
+      "estimated_training_seconds": 544.0717427659256
+    },
+    "estimated_science_GPU_seconds": 1007.2932655957032,
+    "estimated_total_GPU_seconds": 1054.5517667576992,
+    "within1800_seconds": true
+  },
+  "estimated_science_GPU_seconds": 1007.2932655957032,
+  "estimated_total_GPU_seconds": 1054.5517667576992,
+  "science_cost_within1800": true
+}

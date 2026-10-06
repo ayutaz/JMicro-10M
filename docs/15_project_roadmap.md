@@ -1,3 +1,9 @@
+Base専用gated層共有: probe（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+actual650199は実完了/不在、probeGPU47.258501秒/120。zero-gate native FP32/BF16の32/1024とsigned gate full/cache1024、native重み/RNG不変・logical26KVに合格。初期native W/Adam・scheduler/RNG/Webcursor継承/新gateのみfresh、own CUDA4連続対2+2全state/history・finite/固定nativeLR.00001/newgate.0001、32timing完了。40検証更新/1307952教師/11readonly forward6272contextは科学から除外。ピークVRAM9.735GiB、科学予測1007.293266秒、ownprobe込み1054.551767/1800。これは初期構造と再開/実費用の証明で、日本語品質/容量原因/完成の証明ではない。次は予算内のみ専用科学runnerと全80reviewを実装、同full100M native対照を再GPUせず比較する。
+
+[MobileLLM](https://arxiv.org/abs/2402.14905)の即時block sharingと[ReZero](https://arxiv.org/abs/2003.04887)の0初期gateを参考にした独自の転移仮説。公開論文の正確な再現や日本語10Mでの改善を主張しない。全旧失敗/数値7/Phase0–3/旧品質基準保持、gateLR/初期値/count/source/CP/decoder救済sweepなし。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用gated層共有: preparation（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
 
 KL/full・nonEOS/金body復習/positive anchor/Fisherの不採用を確認し、未実装の層共有を別機構として定義。同13 unique blockに追加の共有呼出を挟み、追加attention/MLP residualの同一scalarを0初期化して元関数を保つ。重み10,001,152→10,001,165（新13gate/1tensor）、logical26、tied/独立26KV/cache/causality/native save/load。CPU4tests/2.07秒でゼロ時の元logits・重みobject/梯度/RNG一致、非ゼロsigned gateのragged/chunk/未来非参照、native Adam継承/新gate group/全state4対2+2を確認。random tiny fixtureで品質の証明ではない。実CPU proposal0.286228秒、probe準備0.118820秒、新GPU/科学0。比較はsame mixed親/継承native Adam・LR.00001/source/full100M CEとcached matched_staged_CE、追加gateのみfresh Adam・LR.0001/WD0固定。計算/KVが増え、stock HF adapterは未対応で完成としない。次はown native FP32/BF16 zero-gate32/1024、signed full/cache1024とCUDA4対2+2/32timing/batch32を120秒内で測る。1.3margin+300秒評価+ownprobeが1800内の場合のみ科学runnerを実装・凍結して100M一候補へ。

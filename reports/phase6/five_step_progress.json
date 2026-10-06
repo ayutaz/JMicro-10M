@@ -511,7 +511,7 @@
   "independent_human_blind": "not performed",
   "phase0to3_preserved": true,
   "no_automatic_push": true,
-  "status": "gated_shared_preparation",
+  "status": "gated_shared_probe",
   "last_updated_at": "2026-10-06T08:36:43.112663Z",
   "current_user_scope": "Base only; notify and stop after actual Base completion; Chat and quantization deferred by user2026-10-06",
   "current_stop_boundary": "reports/phase6/base_only_stop_boundary.json",
@@ -524,7 +524,7 @@
   "condition_positive_active_job": "reports/phase6/condition_positive_active_job.json",
   "condition_positive_scientific_config": "configs/phase6/condition_positive_comparison.json",
   "condition_positive_comparison_completion": "reports/phase6/condition_positive_comparison_completion.json",
-  "next_action": "KL/full・nonEOS/金body復習/positive anchor/Fisherの不採用を確認し、未実装の層共有を別機構として定義。同13 unique blockに追加の共有呼出を挟み、追加attention/MLP residualの同一scalarを0初期化して元関数を保つ。重み10,001,152→10,001,165（新13gate/1tensor）、logical26、tied/独立26KV/cache/causality/native save/load。CPU4tests/2.07秒でゼロ時の元logits・重みobject/梯度/RNG一致、非ゼロsigned gateのragged/chunk/未来非参照、native Adam継承/新gate group/全state4対2+2を確認。random tiny fixtureで品質の証明ではない。実CPU proposal0.286228秒、probe準備0.118820秒、新GPU/科学0。比較はsame mixed親/継承native Adam・LR.00001/source/full100M CEとcached matched_staged_CE、追加gateのみfresh Adam・LR.0001/WD0固定。計算/KVが増え、stock HF adapterは未対応で完成としない。次はown native FP32/BF16 zero-gate32/1024、signed full/cache1024とCUDA4対2+2/32timing/batch32を120秒内で測る。1.3margin+300秒評価+ownprobeが1800内の場合のみ科学runnerを実装・凍結して100M一候補へ。",
+  "next_action": "actual650199は実完了/不在、probeGPU47.258501秒/120。zero-gate native FP32/BF16の32/1024とsigned gate full/cache1024、native重み/RNG不変・logical26KVに合格。初期native W/Adam・scheduler/RNG/Webcursor継承/新gateのみfresh、own CUDA4連続対2+2全state/history・finite/固定nativeLR.00001/newgate.0001、32timing完了。40検証更新/1307952教師/11readonly forward6272contextは科学から除外。ピークVRAM9.735GiB、科学予測1007.293266秒、ownprobe込み1054.551767/1800。これは初期構造と再開/実費用の証明で、日本語品質/容量原因/完成の証明ではない。次は予算内のみ専用科学runnerと全80reviewを実装、同full100M native対照を再GPUせず比較する。",
   "web_KL_launch": "reports/phase6/web_kl_comparison_launch.json",
   "web_KL_completion": "reports/phase6/web_kl_comparison_completion.json",
   "web_KL_followup": "reports/phase6/web_kl_followup_diagnostic_proposal.json",
@@ -583,7 +583,7 @@
     "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/anchored_context_outcome_proposal.json",
     "sha256": "e412bd11e40f60f2f2b14500dfe9b54c24e035630d979d69d9819b6aa66882ed"
   },
-  "updated_at": "2026-10-06T13:13:48.446135Z",
+  "updated_at": "2026-10-06T13:15:38.885201Z",
   "anchored_context_outcome_preparation": {
     "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/anchored_context_outcome_preparation.json",
     "sha256": "171149fccc729ce25f6d4d47b0deec29d4a38a8a4c22071dd0cbcb838cc8d825"
@@ -827,5 +827,9 @@
   "gated_shared_preparation": {
     "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/gated_shared_preparation.json",
     "sha256": "ce72122ecdb8336092016ae4d4e808f9c7b2a141bd50fe5871d6b91a8ad65717"
+  },
+  "gated_shared_probe": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/gated_shared_probe.json",
+    "sha256": "0eafe751a70e18e10d49455d02f0eaddc8cfe3385eac5b63454cb3d9e8771aff"
   }
 }
