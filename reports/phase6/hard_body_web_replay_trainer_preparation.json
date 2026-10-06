@@ -1,0 +1,60 @@
+{
+  "status": "actual_CPU_gold_CE_and_fullstate_fixture_passed_not_GPU_quality",
+  "created_at": "2026-10-06T07:42:54.514023Z",
+  "proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/hard_body_web_replay_comparison_proposal.json",
+    "sha256": "a7fd1e97db4b824cf58fc7ccd1162a8103b1999680b80a9e5f89601ecfc30460"
+  },
+  "auxiliary_policy": {
+    "kind": "frozen-parent-mass-weighted-gold-Web-body-non-EOS-CE-v1",
+    "direction": "gold_to_student",
+    "temperature": 1.0,
+    "coefficient": 1.0,
+    "every_completed_update": 1,
+    "reference_context": 1024,
+    "reference_batch": 8,
+    "masked_targets": "Gold labels>=8; ignore EOS/BOS/role/padding target positions. Exclude EOS3 only from student vocabulary; retain all other vocabulary IDs.",
+    "reference_teacher": "Immutable actual historical10.5B parent supplies detached non-EOS probability mass only, not soft targets.",
+    "replay_policy": "separate fork of actual historical parent Web cursor; train only, overlaps first75M primary Web, never dev/test",
+    "objective": "Mean over valid body positions: (1-parent_P(EOS3))*(-log student_P(gold|non-EOS)). Do not divide by probability mass."
+  },
+  "tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/hard_body_web_replay_prototype_tests.xml",
+    "sha256": "fe40f669e34536dd8bef7fa4078ad706476fbcede41863cc769f34134f5c31b7"
+  },
+  "source_sha256": {
+    "scripts/hard_body_web_replay.py": "c290c2ed6c62f4c04cd0154708d6fca2759bcabb8536eab22501d8dcd0d9d677",
+    "scripts/hard_body_web_replay_trainer.py": "d685fd37e224b4dae417fcd78598f14ce6b3e0f6d367241f440680d1752bfc37",
+    "scripts/hard_body_resident_web_replay_trainer.py": "2f86e0d0ac32f65bd387c3b75a2875b053577f506576b528f047682baa9fbed8",
+    "scripts/prepare_hard_body_web_replay.py": "c6ad182f076a09409503306838573e28265f6d36b64f2b88274dbdd9e5a4f39f",
+    "scripts/record_hard_body_web_replay_preparation.py": "6a452f48539174eed199c3c0ccc539badb9bccc7190fc7d20f04bd5d227ba1b7",
+    "tests/test_hard_body_web_replay.py": "e1bb33d0903ef6e4d3e1f246e147d326612c251c59ea0c925debefddcccf060d",
+    "tests/test_hard_body_web_replay_trainer.py": "f0cee4d5a56d9872f1455d8fcb7d9d31311b450fb9b46ca66bfd61c05c6721ed"
+  },
+  "CPU_fixture": {
+    "continuous4_vs2plus2_all_state_equal": true,
+    "main_input_tokens": 96,
+    "reference_input_tokens": 64,
+    "parent_model_Adam_scheduler_RNG_actualLR_preserved": true,
+    "frozen_teacher_verified": true,
+    "separate_hard_targets_and_probability_mass_saved_resumed": true,
+    "all4_main_and_replay_input_protocols_equal_soft_control": true,
+    "corrupt_hard_target_count_and_soft_checkpoint_rejected": true
+  },
+  "initial_failure": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/hard_body_web_replay_prototype_initial_failure.xml",
+    "sha256": "aa98cb05642c7c7c667e2c19b7d72e781bcc4544564d409571142e7ff1dbd665"
+  },
+  "initial_failure_explanation": "A generic teacher-body-logit permutation changed FP32 reduction rounding by9.5367431640625e-7; no production math changed. Retain original XML. Control teacher non-EOS mass exactly in FP32 with two different saturated body distributions, retain bitwise loss equality and exact-mass checks. Nondegenerate mass/actual-gold/mask/gradient tests also remain. No scientific acceptance changed.",
+  "CPU_test_seconds": 0.853,
+  "actual_GPU_seconds": 0,
+  "actual_scientific_teacher_tokens": 0,
+  "newly_prepared_source_tokens": 0,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "next_action": "Own runner/reviewer/durablePS and hard-target accounting; actualCUDA resume32 timings and save, then freeze only within new900s measured bound. Strong stagedCE quality screen remains mandatory."
+}
