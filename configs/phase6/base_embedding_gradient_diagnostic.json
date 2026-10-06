@@ -1,0 +1,96 @@
+{
+  "created_at": "2026-10-06T20:16:38.461965Z",
+  "payload": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_embedding_gradient_payload.json",
+    "sha256": "4b592ba9e5ec64a664b249b07ade7dd4763db1e3e93a14c2a421a4efa2f23671"
+  },
+  "checkpoints": {
+    "parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+    },
+    "CE100M": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/CE/checkpoint-00017698.pt",
+      "sha256": "f691a7587c03c51293a2e77889307da0efa18d2349c13e4f77439fd339586967"
+    }
+  },
+  "checkpoint_identity": {
+    "parent": {
+      "size": 120181763,
+      "mtime_ns": 1791114231712428007
+    },
+    "CE100M": {
+      "size": 124373565,
+      "mtime_ns": 1791307063680713152
+    }
+  },
+  "previous_completion": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_residual_dropout_comparison_completion.json",
+    "sha256": "2b9bc2aa77b9077b478ee025ea476433347fa539bfc177246a3dfe0a3e515c84"
+  },
+  "CPU_tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_embedding_gradient_tests.xml",
+    "sha256": "869c1029f57ab18b7f721338e542cd641657a16b011326141201ebf6b05ac75c"
+  },
+  "sources": {
+    "scripts/base_embedding_gradient_diagnostic.py": "c5a6ba8e2d811c6e8160ce63b1c65b3baf67089156018459ae193c4bc85ffb73",
+    "scripts/diagnose_base_embedding_gradients.py": "e9213b4b8688c1d9876c014ea28dea25b8a841095c6114bb33d0bbc6bb2db0aa",
+    "scripts/diagnose_base_embedding_gradients.ps1": "27e6a168561c80a76a45bb09946f7fc4721eb50e1f6f343ac8019c7781afea6e",
+    "tests/test_base_embedding_gradient_diagnostic.py": "961dba07e47c9272dea019b4148fc7e8c68c025e9275915cf909ad4a489049d6",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "scripts/natural_context_contrast_memory.py": "85735b203e1a6f845078046379c6463b51cdc61068a463a379d93c79368f62e2",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "src/jmicro/phase5.py": "cceae262745d92b1763c9d1263ba9746b8c6441896e97c001d8a3604ccaf2f98",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca"
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "documents_per_source": 8,
+  "batch": 4,
+  "maximum_rows": 48,
+  "GPU_limit_seconds": 180,
+  "native_parameters": 10001152,
+  "precision": "FP32 math; TF32 disabled",
+  "attribution": "Native full tied gradient equals input-path plus ephemeral output-leaf gradient, same original teacher mask. No optimizer, new model parameters or weight mutation.",
+  "hypothesis": "Substantial antagonism between tied input/output gradient paths might motivate one new train-only gradient experiment. It has not been measured locally; it is not an asserted cause of poor generation.",
+  "research_screen": {
+    "cosine_at_most": -0.1,
+    "cancellation_at_most": 0.9,
+    "minimum_sources": 2,
+    "require_both_checkpoints": true,
+    "Base_quality_gate": false
+  },
+  "completion": "All fixed rows and three source gradient aggregates at both checkpoint endpoints; identical logits/loss, gradient decomposition, unchanged native weights/tied identity/RNG/no accumulated grads. Zero learning/DEV/TEST use. Close this one-shot whether screen passes or fails.",
+  "failure_policy": "If the same severe conflict screen is not passed at both endpoints, do not start input/output projection or untied-architecture training from this hypothesis. Do not reroll sample, soften thresholds or rescue closed recipes.",
+  "references": [
+    {
+      "url": "https://aclanthology.org/E17-2025/",
+      "meaning": "Weight tying/update analysis; paper recommends tying and does not establish that untying helps this10M model."
+    },
+    {
+      "url": "https://arxiv.org/abs/2001.06782",
+      "meaning": "Conflicting gradient projection for multiple task losses; input/output paths of one CE loss are not separate task losses, so applicability is unproven."
+    }
+  ],
+  "preparation_CPU_wall_seconds": 0.21412108198273927,
+  "new_GPU_seconds": 0,
+  "optimizer_updates": 0,
+  "new_scientific_CE_teachers": 0,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true
+}

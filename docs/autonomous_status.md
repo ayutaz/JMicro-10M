@@ -1,3 +1,21 @@
+Base限定・共有埋め込みのreadonly勾配診断完了／次の出力正則化を準備（2026-10-07 JST）。
+
+[実CUDA診断完了](../reports/phase6/base_embedding_gradient_completion.json): actual691868/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start20101380はcomplete・実process不在。accepted2B TRAINのWeb/textbook/story各8distinct family、計24文書の元first/last窓を固定（今回は全24が一窓）。index-byte biased sampling/seed2026100741、原10B対cached CE100Mの両checkpointへ同24窓を使用、合計5,064診断target positions、学習更新/科学教師/DEV/TEST0。CPU3checks/0.88秒、実FP32 math CUDA2.030722秒/180・peak540,574,208byte。入力/出力分離用の一時leafは保存せず、両forwardのnative logits/loss一致と全tied勾配=input+outputの分解、全native重み/tied/RNG不変・蓄積gradなしを確認。
+
+|checkpoint|Webの勾配cosine|教材の勾配cosine|物語の勾配cosine|
+|---|---:|---:|---:|
+|元10B|-0.010855|-0.002039|-0.007949|
+|同CE100M|-0.005295|0.000402|0.012116|
+
+両endpointの2/3source以上でcosine<=-0.1かつcancellation ratio<=0.9という事前研究screenは両方不合格。個々の語彙行に負のdotがあってもglobal勾配の強い相殺とはしない。cancellation ratioは直交でも1未満なので単独の証拠にしない。小さいTRAIN sample・first/last窓・FP32に限る局所結果で、共有が常に無害/10M容量が十分という証明ではない。この固定診断を終了し、同仮説によるgradient projection/untied構造学習、sample/閾値救済を開始しない。[weight tying論文](https://aclanthology.org/E17-2025/)も共有を推奨しており、共有解除の成功根拠に置換しない。22text/824,456byteのraw証拠とlossless gzip256,763byteをWindowsへ保存。元10B UI actual691937/同boot/start20102004を実process/HTTP親SHA410f975d…/busy=falseで復帰確認。
+
+[単一ラベル平滑化案](../reports/phase6/base_label_smoothing_proposal.json)・[CPU準備の実証](../reports/phase6/base_label_smoothing_preparation.json): まだ未確認の出力分布の正則化を一条件で比較する。過度な確信が唯一原因と断定せず、[先行研究](https://arxiv.org/abs/1701.06548)を日本語10Mの改善証明にしない。固定epsilon0.1、native4096全語彙（EOS/予約ID含む）へ0.9*元gold CE+0.1*uniform CE。元10B/同accepted2B TRAIN/元body+EOS・source75M/20M/5M・batch48/seed42/fresh AdamW1e-5 WD.1 constantとexact100M元gold positionsをcached CEへ揃え、対照GPUを再実行しない。native追加param0・推論変更0・新corpus0。教師位置100Mと重み付き元target mass90M/uniform mass10M・uniform soft positions100Mを分けて記録する。パディング/既読overlapは損失外。未検証のnative samplingやEOS調整へ置換しない。
+
+scripts/base_label_smoothing.py と独立base_label_smoothing_trainer.pyを実装。損失/厳密勾配/教師mask/epsilon0のCE一致をCPU3checks/1.38秒、native初期重み/logits/parameters/tied/RNG一致・同source/教師/EOS/input/physical/digest/full sampler・全state/history4対2+save/resume+2一致・旧CE/改変recipe/eval学習拒否をCPU4checks/3.36秒で確認。浮動target massの累積丸めを避け、完了更新の整数教師総数から0.9*Nと0.1*Nを算出する。fixtureは小CPU modelで実native CUDA/品質ではない。旧corpusを再scanせず、closed dropout/UL/gradient仮説は改変・延長しない。
+
+次の具体的アクション: 専用の永続CUDA probe commandを実装する（まだ未実装のcommandを実行しない）。CPU30秒/実CUDA180秒でnative10M・BF16 finite gradient、own全state4対2+2、uniform会計、最大実window/90percent resident安定batch48速度を確認しprobe重みを捨てる。実測100M/median速度*1.3+900秒が3,965秒以内の場合だけ科学config/永続runnerを凍結して新smoothed100Mを開始する。終了後の同256bytes/全日本語/新80個別内容と既存CE80/strong/absolute/historical Web全gateを維持する。失敗時は固定epsilon/full-vocabulary recipe終了、epsilon/語彙support/LR/source/checkpoint/epoch救済なし。
+
+ラベル平滑化の新GPU学習/科学教師は0、科学・probe runner未実装。Base未完成・未採用、全五目標未完了。資格のある候補だけ独立学習seed/full DEV/protected final TEST/adoptionへ進め、実Base完成時に通知して停止。Chat/Dialogue/SFT/量子化なし、WSL pinned uv/local verified commitのみ/pushなし。旧数値7失敗とPhase0–3・元全品質条件を保持。以下は過去の履歴。
 Base限定・Dropout100Mの全評価終了、不採用（2026-10-07 JST）。
 
 [完了記録](../reports/phase6/base_residual_dropout_comparison_completion.json)・[全80採点と比較](../reports/phase6/base_residual_dropout_comparison_review.json): actual689085/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start19897021はcomplete・実process不在。正確100,000,000 CE教師/17,698更新、学習・保存・全評価込みGPU占有1,467.667秒（24.5分）/上限3,965。native10,001,152・追加param0、学習時のみ固定Dropout0.1。全state/Adam/scheduler/CPU・CUDA RNG/source sampler/完了更新historyの最終reviewに成功し、同CE教師/EOS/input/physical/digest/full cursorがcached CE100Mと一致。対照GPU再実行0、auxiliary教師・入力0、旧corpus再scanなし。job最終heartbeatの99,900,395教師は保存前の値で、terminal train-result/full stateの正確100Mを完了根拠とする。

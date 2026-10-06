@@ -1,0 +1,134 @@
+{
+  "status": "single_output_label_smoothing_proposal_CPU_loss_verified_not_training_started",
+  "created_at": "2026-10-06T20:20:13.059537Z",
+  "kind": "native_original_full_CE_uniform_label_smoothing_0p1_v1",
+  "epsilon": 0.1,
+  "native_parameters": 10001152,
+  "train_only_parameters": 0,
+  "hypothesis": "Original TRAIN fitting can improve without held-out generation transfer. Uniform label smoothing may regularize the native predictive distribution and reduce persistent greedy loops, while preserving enough non-EOS/EOS distinctions. Poor output calibration has not been measured as the causal explanation; improvement is unproven.",
+  "new_mechanism": "Training objective over native4096 logits, not input/output gradient projection, decoder sampling changes, residual dropout, or generated sequence-unlikelihood candidates.",
+  "references": {
+    "dropout_closed": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_residual_dropout_comparison_completion.json",
+      "sha256": "2b9bc2aa77b9077b478ee025ea476433347fa539bfc177246a3dfe0a3e515c84"
+    },
+    "gradient_diagnostic": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_embedding_gradient_completion.json",
+      "sha256": "1fd5cae17e1116c87c52db5f68dd3b85d76e538c9268ae17b872801ec2923cf7"
+    },
+    "TRAIN_DEV_gap": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition_trainfit_diagnostic_review.json",
+      "sha256": "abc2a05db3f159e9984f63c58a74a91cc20dbb75bc2ec15ef24867e82ee4aa29"
+    },
+    "source_DEV_generalization": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_generalization_diagnostic_review.json",
+      "sha256": "7ce4e0eaaf8840787ad23b113178521ac1036e1b1a43463a07d1c414be52d5b1"
+    },
+    "sequence_UL_closed": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/sequence_objective_comparison_review.json",
+      "sha256": "7fef26f2a1671a9b7c9a4df533dcff05b55f525b373bf79b24d182cdef4dd6a7"
+    },
+    "sequence_UL_low_alpha_closed": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/sequence_objective_low_alpha_review.json",
+      "sha256": "7e22e03ae51e402c65cbf8c769596be93c51c356039cd904f05d5515c1285257"
+    }
+  },
+  "primary_sources": [
+    {
+      "title": "Regularizing Neural Networks by Penalizing Confident Output Distributions",
+      "url": "https://arxiv.org/abs/1701.06548",
+      "applicability": "Evaluates output regularization/label smoothing including language modeling. Does not prove Japanese10M success or that full-vocabulary uniform targets improve EOS."
+    },
+    {
+      "title": "When Does Label Smoothing Help?",
+      "url": "https://arxiv.org/abs/1906.02629",
+      "applicability": "Studies calibration/generalization and representation changes; reports adverse distillation effects. No knowledge distillation is proposed here."
+    }
+  ],
+  "local_novelty_check": {
+    "scope": "Existing top-level scripts/*.py and configs/phase6/*.json, excluding new smoothing files",
+    "needles": [
+      "label_smoothing",
+      "label smoothing",
+      "confidence_penalty",
+      "confidence penalty",
+      "entropy_regular"
+    ],
+    "matches": [],
+    "global_literature_novelty_claim": false
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "source_goals": {
+    "web": 75000000,
+    "textbook": 20000000,
+    "story": 5000000
+  },
+  "batch": 48,
+  "seed": 42,
+  "optimizer": "Matched cached ordinary CE fresh AdamW lr1e-5 weight_decay0.1 constant scheduler",
+  "cached_control": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/CE/train-result.json",
+    "sha256": "dc3eae3f5b34bc7c09165ad34cb0f3dac1da9c6ff88c451fc2f9590980383ae2"
+  },
+  "control_reexecution_GPU_seconds": 0,
+  "proposed_original_gold_positions": 100000000,
+  "objective": {
+    "formula": "0.9 * mean original gold CE + 0.1 * mean uniform full4096 CE, same valid teacher mask",
+    "original_gold_weight": 0.9,
+    "uniform_weight": 0.1,
+    "full_vocabulary_includes_EOS_BOS_PAD_role": true,
+    "padding_and_overlap_positions_excluded": true,
+    "original_EOS_positions_kept": true,
+    "weighted_original_gold_mass": 90000000,
+    "uniform_soft_target_positions": 100000000,
+    "uniform_target_mass": 10000000,
+    "new_text_or_fact_targets": false
+  },
+  "source_policy": "Reuse exact accepted2B TRAIN/body/EOS and same document1024/stride512 sampler/seed/quota as cached CE100M. Require matching final raw gold IDs/digest, teacher positions/source/EOS/input/physical/full cursor. Existing dev/test/fixed suite remain outside learning. No corpus rescan or new unique supply claim.",
+  "inference_policy": "Plain same native10M checkpoint, no new hooks/parameters/temperature/stop/suppression. Same fixed80 native greedy64 and common256 body bytes; same192 Japanese semantics/331 JBLiMP/1119 JCQA.",
+  "CPU_loss_tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_label_smoothing_tests.xml",
+    "sha256": "c22d731fdf3f8c32dc1e68cb97f8fb9952b39c666738057504134e4f46d424be"
+  },
+  "prototype_source": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/base_label_smoothing.py",
+    "sha256": "f9679815618cb5460bf3cd2a16925ded798dc4d28462e74211a098c7def121c5"
+  },
+  "CPU_test_source": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/tests/test_base_label_smoothing.py",
+    "sha256": "7dc18c1bb9b71674c6d5ad2c2924d5b05551dd147a9141783e34681c0758fdbe"
+  },
+  "CPU_protocol_limit_seconds": 30,
+  "GPU_probe_limit_seconds": 180,
+  "science_absolute_ceiling_seconds": 3965,
+  "before_science": "Implement unique full-state trainer and durable probe/science commands. Require finite native CUDA/BF16 forward/backward, full continuous4 versus save/resume2+2 state/history equality, exact new original/uniform counters, native inference/logit initialization identity, measured source stable48 timing and longest actual window allocation under90percent VRAM. Discard probe weights. Freeze science only after measured forecast fits cap.",
+  "budget_policy": "After actual stable48 timing, compute ceil(100M/median_gold_positions_per_second*1.3+900); require<=3965seconds for this fixed science, including save/evaluation. Do not claim a science budget or runtime measured before the probe.",
+  "completion": "One exact100M original gold-position training endpoint with unchanged native shape plus full optimizer/scheduler/RNG/sampler/counters and terminal actual process. Reuse old CE80 notes, read all new80 individually, compare unchanged strong/matched/absolute/historical Web gates plus common-byte BPB/Japanese scores. Weighted target mass and uniform positions are separate from hard-position counts and unique corpus amount.",
+  "failed_condition_policy": "Close this fixed epsilon0.1/all4096 mechanism if full quality gates fail; no epsilon/vocabulary-support/source/LR/checkpoint/epoch rescue or automatic extension.",
+  "final_adoption": "Only a qualified fixed candidate proceeds to independent learned seed/full DEV/protected final TEST/adoption. Actual Base completion triggers notification/stop; no Chat or quantization.",
+  "limitations": "One learned seed, repeatedly used nonblind DEV, unchanged raw gold positions but different effective target distribution/gold coefficient. Uniform targets include reserved classes and may harm BPB/EOS; original native suppression and all retention/failure gates stay unchanged. CPU loss fixtures do not prove native GPU training or model quality.",
+  "trainer_and_job_commands_implemented": false,
+  "scientific_training_started": false,
+  "new_scientific_CE_teacher_tokens": 0,
+  "new_GPU_seconds": 0,
+  "new_prepared_original_tokens": 0,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true
+}
