@@ -1,3 +1,9 @@
+Base専用CE対CE+DPO: 実比較・全160評価完了（2026-10-07 JST）。
+
+共通Web6M一度＋同positive2M/armのCE対CE+DPO(beta.1/係数0対.1)と全160個別raw-bound内容を完了。CE→DPOでBPB1.222117852→1.223634669、文法29→30/関連15→16/一貫性4→6/適切8→12/EOS57→57/反復3→3（各80）。同CEinput/auxiliary全history一致、native10M・Adam/scheduler継承/cursor/quota/固定参照を確認。実新positive10M/各arm8M、総新GPU303.635796/1800、actual661405完了/不在/元UI復帰。最終Base検証eligible={'chosen_CE': False, 'chosen_CE_DPO': False}。固定56/4565positions約438反復は教材増量ではない。小TRAIN/長さ・作風/固定旧negative/非blind繰り返しdev/旧数値7の限界を保持。合格recipeのみ独立学習seed/full dev/protected test/adoptionへ。未合格はこの固定両recipe終了、source/beta/coefficient/epoch/LR/decoder/CP救済sweepなし。
+
+Base未完成・完成時通知して停止。Chat/Dialogue/SFT/量子化なし。元全品質基準/全失敗/Phase0–3維持、WSL uv/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用CE対CE+DPO: 実比較開始（2026-10-06 JST）。
 
 科学actual661405/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18181798実稼働、stagechosen_CE-training、GPU累積30.463秒。共通6M一度と両同positive2M、250更新/中断時全state原子的保存。restartは実PID不在を先に確認して scripts/run_base_preference_comparison.ps1 -Worker。元UIは終端finallyで復帰。次は同日本語/dev256/各80/bridge-retention512→全160個別内容・旧品質条件→採否。Base未完成、完成時通知停止。Chat/Dialogue/SFT/量子化なし、WSL uv/local commitのみ/pushなし。
