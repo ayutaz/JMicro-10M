@@ -1,0 +1,125 @@
+{
+  "created_at": "2026-10-06T21:44:03.767297Z",
+  "status": "fixed_next_two_auxiliary_proposal_CPU_verified_not_GPU_learning",
+  "previous_attention_completion": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_attention_saturation_completion.json",
+    "sha256": "78a8c02ec4a8a5740b7ee4eb049d5a859ef68d93374932819dd91217534c41ed"
+  },
+  "CPU_tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_next_two_token_trainer_tests.xml",
+    "sha256": "a180e37751e6dd275488e5b6194eb3f6dc466d6bec62d202c72b5bd5c71ae01b"
+  },
+  "source_references": {
+    "scripts/base_next_two_token_trainer.py": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/base_next_two_token_trainer.py",
+      "sha256": "6a22b3644317b5c2ef3cdb543f25c13c3c9f007e0b208675abbfa97c9a9ca582"
+    },
+    "scripts/prepare_base_next_two_token_proposal.py": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/prepare_base_next_two_token_proposal.py",
+      "sha256": "4bc6f1c8fdc82885b99b26327916b3c8bc1ddba4d418253990f44505c7765487"
+    },
+    "tests/test_base_next_two_token_trainer.py": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/tests/test_base_next_two_token_trainer.py",
+      "sha256": "34d8c6ce54ff0c862ff742c990ed739ada4ffdb7a62304b0d86d49634f9fbe6b"
+    },
+    "src/jmicro/model.py": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/src/jmicro/model.py",
+      "sha256": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83"
+    },
+    "scripts/natural_context_contrast_corpus.py": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/natural_context_contrast_corpus.py",
+      "sha256": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12"
+    },
+    "scripts/natural_context_contrast_trainer.py": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/natural_context_contrast_trainer.py",
+      "sha256": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a"
+    }
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "parent_size": 120181763,
+  "parent_mtime_ns": 1791114231712428007,
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+  "goals": {
+    "web": 75000000,
+    "textbook": 20000000,
+    "story": 5000000
+  },
+  "payload": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/natural-context-contrast-capacity-20261007/maximum-original-window.json",
+    "sha256": "518b7158e824a6504e71404864b57d7072d592cd6f200869844e96670c1c5fee"
+  },
+  "original_target_positions": 100000000,
+  "control": {
+    "run": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/CE",
+    "checkpoint_sha256": "f691a7587c03c51293a2e77889307da0efa18d2349c13e4f77439fd339586967",
+    "notes": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural_context_contrast_CE_notes.json",
+      "sha256": "5a36aa6d4914260d1975974ae0fbee6c1e0024d900ea8103da970fdbc4ee9369"
+    },
+    "reused_without_GPU_or_regrading": true
+  },
+  "research_question": "Can gold supervision of the next-two token from the current original context encourage transferable sequential features while preserving the unchanged mature native next-token Base?",
+  "hypothesis": "The learned model may fit local next-token likelihood without developing enough reusable context features. Future-gold supervision is a distinct objective from failed InfoNCE/ranking/UL/dropout/uniform smoothing; not a claim that this is the unique cause.",
+  "mechanism": {
+    "next_token_CE_weight": 1.0,
+    "next_two_CE_weight": 0.1,
+    "head": "One fresh train-only native contextual Block plus final RMSNorm on the original final hidden sequence; shared native tied LM output matrix",
+    "auxiliary_seed": 19042,
+    "mask": "Both current and following original target unmasked in same original1024/512 window; last target, overlap, padding, after-EOS and clipped goal targets excluded",
+    "teacher_policy": "Only accepted original TRAIN gold; no generated targets, fabricated labels, dev/test, Chat roles or repeated Tokenizer training"
+  },
+  "parameters": {
+    "native": 10001152,
+    "train_only": 688896,
+    "total_training": 10690048,
+    "deployed_native_unchanged": true,
+    "inference_hooks_or_auxiliary_heads": 0
+  },
+  "initialization": "Same actual mature10B parent native tensors and inference/RNG as CE, fresh AdamW1e-5 WD.1 constant. Auxiliary CPU-only local seed/init preserves native CPU/CUDA RNG; include head parameters in one global clip/Adam.",
+  "accounting": "Original100M/source75M20M5M/whole-body+EOS/windows/masks/bytes/input/physical/digest/full sampler/updates/LR equal cached CE. Next-two valid positions and EOS/body bytes/source counts, coefficient0.1 target mass and auxiliary physical hidden positions are additional, separately reported; future labels reuse original gold and are not independent new data. Total label/compute budgets differ from control; not evidence of superiority per equal total supervised positions.",
+  "batch": 48,
+  "seed": 42,
+  "CPU_preparation_cap_seconds": 30,
+  "GPU_probe_cap_seconds": 180,
+  "maximum_scientific_GPU_seconds": 3965,
+  "science_budget_rule": "Only after own CUDA/BF16 finite full shape, all native+aux model/Adam/scheduler/RNG/sampler/counters/history4 continuous versus2 saved/resumed2 and actual stable batch48: ceil(100M/measured_median_original_teacher_speed*1.3+900)<=3965. Freeze science cap from actual measurements; no cap increase or new control GPU.",
+  "probe_timing": "Fixed3 warmup and32 timed original full-source updates, all included; exact first4 original stream and initialization/inference parity against original CE. Worst original1024/512 shape with real Adam state and90percent resident. No additional favourable timing subset or repeat.",
+  "evaluation": "Same fixed DEV common256/472055bytes, BOS2/plain native greedy64 all80, semantics192/JBLiMP331/JCQA1119; every new80 individually read and raw-bound. Cached control80/strong/history unchanged.",
+  "research_and_adoption": "Unchanged relative coherence+8 and positive paired CI, EOS/rep nonworsening,1percent BPB/no errors versus cached CE; also unchanged strong/absolute/historical Web. Only eligible quality candidate proceeds to independent learned seed/full DEV/protected TEST/adoption; researcher marker or native code is not Base completion.",
+  "failure_policy": "One next-two contextual head/coefficient0.1. On failed protocol/budget/transfer, close this fixed condition. No horizon/coefficient/head sharing/architecture/LR/source/parent/epoch/teacher rescue or automatic extension.",
+  "completion": "Persisted exited native GPU100M, exact all original and auxiliary state/counters, own real CUDA resume, same fixed metrics and all80 content, unchanged gate review, evidence archive/UI restoration/local commit. Stop and notify only actual qualified Base; no Chat/quantization.",
+  "literature": {
+    "url": "https://arxiv.org/html/2404.19737v1",
+    "evidence": "Primary paper reports improved induction in some small children-story settings; also worse small300M-scale code models and disappearing benefits with books mixture.",
+    "limitations": "Their sizes include nonembedding parameter labels, training may use up to90epochs and a test-metric epoch oracle, and parameter-matched trunk/head allocation differs. Not10M total Japanese evidence, no protected-test tuning/epoch oracle or exact replication here."
+  },
+  "local_novelty_scope": {
+    "top_level_files_examined": 820,
+    "exact_marker_matches": []
+  },
+  "implementation_status": "Core train-only head/trainer and five CPU checks implemented. Dedicated CUDA probe, scientific runner/evaluator/reviewer not yet implemented; do not invoke absent commands.",
+  "actual_GPU_learning_seconds": 0,
+  "scientific_teacher_positions": 0,
+  "new_model_quality_evaluations": 0,
+  "preparation_CPU_seconds": 0.8898089140129741,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "next_action": "Implement own persisted next-two CUDA probe with real native inference/RNG, full auxiliary state resume, original control stream parity and all32 timings; measure before science runner/config freeze."
+}

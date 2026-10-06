@@ -1,0 +1,114 @@
+{
+  "status": "native_next_two_probe_complete_science_budget_ready",
+  "created_at": "2026-10-06T21:46:03.358434Z",
+  "actual_identity": {
+    "pid": 700486,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "20631600"
+  },
+  "actual_process_absent_verified": true,
+  "config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_next_two_token_probe.json",
+    "sha256": "7e0278f88c1976e9fae36b8f8c4a6f4c4a259e3f74f1eb6d6c9ee6536aae27c0"
+  },
+  "result_reference": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-next-two-token-probe-20261007/result.json",
+    "sha256": "3af1627aafaa0379c66b61e4729c5add9ee59a079386b7687b871436975ec574"
+  },
+  "initial_checks": {
+    "native_logits": true,
+    "native_weights": true,
+    "native_RNG": true,
+    "native_parameters": true,
+    "train_only_parameters": true,
+    "native_tied": true,
+    "auxiliary_not_native_module": true
+  },
+  "all_resume_and_source_checks": {
+    "kind": true,
+    "spec": true,
+    "binding": true,
+    "lineage": true,
+    "model_config": true,
+    "model": true,
+    "optimizer": true,
+    "scheduler": true,
+    "RNG": true,
+    "sampler": true,
+    "counters": true,
+    "auxiliary_model": true,
+    "finite_native_optimizer": true,
+    "finite_auxiliary_model": true,
+    "all_history_except_timing": true,
+    "auxiliary_accounting": true,
+    "original_control_stream": true,
+    "full_original_control_sampler": true
+  },
+  "capacity": {
+    "passed": true,
+    "context": 1024,
+    "original_targets": 24576,
+    "next_two_targets": 24528,
+    "peak_VRAM_bytes": 11987593728,
+    "combined_loss": 2.95133113861084,
+    "gradient_norm": 3.189606189727783,
+    "optimizer_updates": 0
+  },
+  "matched_batch": 48,
+  "median_original_teachers_per_second": 44940.797203392896,
+  "all_timing_updates": 32,
+  "GPU_occupancy_seconds": 10.010668233997421,
+  "GPU_limit_seconds": 180,
+  "science_cap_seconds": 3793,
+  "maximum_scientific_GPU_seconds": 3965,
+  "science_budget_eligible": true,
+  "fixed_next_two_protocol_closed": false,
+  "verification_updates": 48,
+  "verification_original_teacher_positions": 279240,
+  "verification_next_two_positions": 253920,
+  "scientific_teacher_positions": 0,
+  "new_model_quality_evaluations": 0,
+  "probe_weights_used_for_science": false,
+  "UI_restored": {
+    "identity": {
+      "pid": 700640,
+      "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+      "start_ticks": "20633026"
+    },
+    "actual_alive": true,
+    "model": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    }
+  },
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "interpretation": "Actual native and train-only head forward/backward, all-state save/resume and original stream evidence only. Short measured median is a budget forecast, not science completion or Japanese generation improvement. Include additional future positions/parameters/compute separately.",
+  "next_action": "If budget passes, implement/freeze persistent same-parent next-two100M runner/evaluator/reviewer and full80 content. Otherwise close fixed objective/probe without horizon/coefficient/teacher/cap rescue.",
+  "archive": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-next-two-token-probe-evidence-20261007",
+    "files": 24,
+    "bytes": 1182383,
+    "manifest_sha256": "d053ad0e2032f0a380785ca81479e01826999f2c9467533794158825e18ba9b6",
+    "archived_completion_is_pre_bundle_record": true,
+    "compressed_bundle": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_next_two_token_probe_evidence.tar.gz",
+      "bytes": 343096,
+      "sha256": "81a165077b3866cd7eae6b52cc5a33e4459607289b902405213acf2fa54f5eb5"
+    }
+  }
+}

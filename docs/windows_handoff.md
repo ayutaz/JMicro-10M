@@ -1,3 +1,16 @@
+Base限定・Attention診断終了／next-two補助学習100Mを実WSL CUDAで開始（2026-10-07 JST）。
+
+[Attention診断の完了記録](../reports/phase6/base_attention_saturation_completion.json): 固定TRAIN24文書を使い元10B・既存CE100M・fresh calibrationを読み取り専用で観測。CPU4checks/1.39秒、実CUDA3.526430秒、診断7,596位置、科学更新・新品質評価0。事前の広範な飽和markerに該当するlayerは両学習済みendpointの各sourceで0/13。集中queryは1.71–2.56%、主にBOSであり、Attentionが生成失敗の原因だと示す結果ではない。このmarkerによるQK正規化等の変更を開始しない。全native出力・重み・RNG・hook復元を確認し実process終了、24text/4,363,514byteのgzip証拠667,323byteをWindowsへ保存してSHA照合。旧構造比較の予算不合格・負の結果は維持する。
+
+[next-twoの固定案](../reports/phase6/base_next_two_token_proposal.json)・[実CUDA probe完了](../reports/phase6/base_next_two_token_probe_completion.json): native推論10,001,152paramsを保持し、学習専用688,896paramsのcausal contextual headで2トークン先の同じTRAIN goldを予測する。総学習params10,690,048、L=CE_next1+0.1*CE_next2。元teacher100M（Web75M/教材20M/物語5M）と追加next-two教師を別計数し、新教材・同総教師の効率比較とはしない。CPU core5checks/3.37秒、runner5checks/1.35秒、reviewer22checks/2.82秒。実CUDA probe10.010668秒、48検証更新、元279,240/追加253,920教師（科学学習と区別）、保存再開等18checksと初期native不変7checksに合格。batch48、worst peak11,987,593,728bytes、全32timingの元教師/秒中央値44,940.8。元100M学習予測2,225.15秒、保存・評価を含む凍結GPU上限3,793秒（当初3,965以内）。24text/1,182,383byteのgzip証拠343,096byteをWindowsへ保存・SHA照合済み。probe重みは本学習へ流用しない。
+
+[実本学習の起動記録](../reports/phase6/base_next_two_token_science_start.json): run reports/phase6/base-next-two-token-comparison-20261007、actual PID701073/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start20668823、Windows worker32056、開始2026-10-06T21:51:25Z。config SHA dcd0247be516eb73e07e9b71aca27493f1d914b88270139651408ef3fae59563。21:54:43Zに実process稼働、元11,856,189教師/2,100完了更新、loss3.225421有限、checkpoint-00002000.ptを確認。RTX4090/WSL、GPU allocator90%、WSL空き97GB。250更新ごとに全native・aux・Adam・scheduler・RNG・sampler・教師会計を保存、20更新ごとにheartbeat、全完了更新metricsを保持。science中UI停止、終端launcherが元10Bへ復帰する。restartは scripts/run_base_next_two_token.ps1 -Worker。先に実PID/boot/start不在と有効checkpointを確認し、同凍結source・同累積GPU予算内でのみ再開。重複起動しない。
+
+次の具体的アクション: 元100M終端→同byte BPB/日本語選択式/固定80生成→新80全内容の個別raw-bound採点と既存CE80の再利用→事前のrelative・strong・absolute・historical Web基準で判定する。next-two位置のない更新ではaux Adamが進まないことを全metricsから別に検証する。固定horizon2/係数0.1/headが不合格ならこの条件を閉じ、horizon/係数/LR/source/epoch/教師量/上限の救済変更をしない。基準を満たす候補だけ独立学習seed/full DEV/protected final TEST/adoptionへ進む。
+
+Base未完成・未採用。品質基準を維持し、実Base完成時にユーザーへ知らせて停止する。Chat/Dialogue/SFT/量子化は開始しない。Python3.12.7はWSL uv経由、local verified commitのみ、自動pushなし。Phase0–3と過去の負の結果を保存。以下は過去の履歴。
+
+
 Base限定・共有K/V診断と構造比較の実GPU準備終了／300M本学習は予算未達で未開始（2026-10-07 JST）。
 
 [共有K/V診断の完了記録](../reports/phase6/base_kv_head_gradient_completion.json)・[最新の失敗経路統合](../reports/phase6/base_post_smoothing_root_synthesis.json): 元10Bと既存CE100Mへ、前回固定のTRAIN24文書（Web/教材/物語各8family）の同じ窓を使用。5CPU checks/0.90秒、実FP32 CUDA2.693570秒/180、5,064診断位置、optimizer/科学教師/新品質評価0。全native logits/loss/共有勾配の分解と重み・tied・RNG・forward復元を確認し、actual696961/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start20436942は終了・実process不在。両endpointの全3sourceで事前cosine<=-.1/cancellation<=.9の研究markerを満たす。一方、各sourceの全26共有groupで通常の合算更新が片方のhead経路に逆向きになる件数は0。局所的相殺でありGQAが生成失敗の原因という証明ではなく、同一損失のhead-pathへPCGradを適用しない。33text/392,639byte gzipの証拠をWindowsへ保存・bundle SHA確認。
