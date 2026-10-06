@@ -1,3 +1,12 @@
+Base限定・train-only projectionの実GPU試験完了／100M比較学習開始（2026-10-07 JST）。
+
+[試験完了](../reports/phase6/natural_context_contrast_projection_probe_completion.json): CPU7checks/4.12秒＋runner2checks/0.79秒、実CUDA11.138349秒/180。native初期重み・公開生成経路logits・CPU/CUDA RNGを維持し、別保存headを含む4対2+save/resume+2の全14state/history checks一致。全source検証33更新/145,531 CE教師は科学学習と分け、固定TRAIN64のaux backwardはoptimizer0。推論10,001,152param＋学習専用98,304param（256→256/ReLU→128、biasなし、seed2026100751）、headはnative評価で破棄する。初期CPU fixture誤り2件とGPU前のRNG/mask preflight修正を元raw/config/sourceに保存し、実GPU probeは一度だけ。31text/1,069,184byte archive、品質改善の証明ではない。
+
+[実100M学習起動](../reports/phase6/natural_context_contrast_projection_comparison_start.json): actual685602/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start19518840、Windowsworker35540を実ps確認。native reports/phase6/natural-context-contrast-projection-comparison-20261007、config SHA ff61ab14485ef239dc5c59b2ef2750dd2ce0e74f80c753c3cd33034e6283d1db。確認時169更新/956,300 CE教師・loss2.753488有限。元10B親／accepted2B TRAIN／75M Web・20M教材・5M物語／batch48／fresh AdamW1e-5 WD0.1／seed42を固定し、既存CE/direct各100MのGPUを再実行しない。終端で両対照の全CE digest・source教師/EOS・入力/bytes・full sampler/cursor一致を要求。新head/aux入力/pairs/physical/時間は別会計。
+
+同source実測batch48が最速34,022 CE教師tokens/秒、最大context1024stress17.944GiB。allocator90percent（23,181,026,918byte）のresident制限内、64stressはOOMを保存して打切り、nominal容量を最大活用の証明にしない。学習予測2,939秒（約49分）は短い試験からの推定、科学累積GPU上限5,009秒は評価/保存込みの余裕。検証教師を実100M成果と混同しない。250更新ごとのnative/head/Adam/scheduler/RNG/sampler/counters checkpoint、20更新ごとheartbeat、実PID付きlogを永続保存。科学中は元UI停止、worker finallyで元10B UI復帰。
+
+次は同jobの正確100M終端→native DEV256/日本語192・331・1119/greedy80→新80全raw-bound内容（旧160notes再利用）→元strong/matched/absolute/historical Web採否。科学code/configを変更せず、重複GPUjob・head幅/係数/LR/seed/source/epoch救済なし。合格candidateのみ独立学習seed/full DEV/protected final TEST/adoption。Base未完成、完成時通知停止、Chat/Dialogue/SFT/量子化なし、local commit/pushなし。以下は過去の履歴。
 Base限定・同64原文suffixの条件付き尤度転移を実測完了（2026-10-07 JST）。
 
 [終端・結果・UI復帰](../reports/phase6/natural_context_contrast_likelihood_transfer_completion.json)・[全9sectionの実レビュー](../reports/phase6/natural_context_contrast_likelihood_transfer_review.json)。元10B/CE100M/contrast100Mの同固定DEV64を、元前文/固定cyclic別前文/BOSのみで比較。各sectionの同suffix16,509token/63,511byteを一度ずつ評価、EOSはtarget外だがsoftmax語彙からは除かない。context1024/target stride512、元byte/IDs・prefix/suffix境界を保持、窓先頭BOSや末尾EOSの補作・target欠損なし。actual683973/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start19402153はcomplete・実ps不在、GPU2.122014秒/60。新教師/optimizer0、149k弱の評価targetを科学学習量へ足さない。

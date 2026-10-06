@@ -1,3 +1,12 @@
+Base限定・projection CUDA probe完了／科学100M実行中（2026-10-07 JST）。
+
+[完了記録](../reports/phase6/natural_context_contrast_projection_probe_completion.json): actual684949終了・ps不在、GPU11.138秒/180、native初期/logits/RNG・別head・全state14checks合格。CPU7＋2checks成功、33検証更新/145,531教師は科学と別、probe重みは捨てる。31text/1,069,184byte portable archive。probe runner scripts/probe_natural_context_contrast_projection.ps1 を再実行しない。終了後の元10B UI actual685033/start19502441とHTTP元SHA410f975d…/10,000,007,168/busy=falseを確認してから科学へ移行。
+
+[科学開始記録](../reports/phase6/natural_context_contrast_projection_comparison_start.json): actual685602/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start19518840、Windowsworker35540、実ps生存確認。native run /home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-projection-comparison-20261007、job.json・projection/metrics-PID-start.jsonl・checkpoint-xxxxxxxx.pt・train-result.json・evaluation/projection/evaluation/{body,generation,semantics,jblimp,jcqa,result}.json。config SHA ff61ab14485ef239dc5c59b2ef2750dd2ce0e74f80c753c3cd33034e6283d1db、元10B＋同source/batch48の追加100M、累積GPU5,009秒。確認時169更新/956,300教師/loss有限。native10Mと別head98,304を全stateへ保存、native評価はheadを読まない。旧CE/direct対照のGPU再実行なし。
+
+科学中のsource/config変更・新GPU・盲目的再開をしない。実PID/boot/startとlatest completed-update CPを調べ、中断時だけ同予算内で scripts/run_natural_context_contrast_projection.ps1 -Worker により保存native/head/Adam/RNG/sampler/countersから再開する。Windows launcher reports/phase6/natural-context-contrast-projection-comparison-launcher-20261007/{launcher,stdout,stderr,result}、worker finallyで元10B UI復帰。完了jobを再起動しない。全評価・全80内容と既存全Base条件を確認する新採否処理は後続で実装、推測commandを実行しない。
+
+次は同100M終端→新全80raw-bound内容／旧160notes再利用／元全gate→資格がある候補のみ独立学習seed/full DEV/protected final TEST/adoption。Base未完成、完成したら通知停止、Chat/Dialogue/SFT/量子化なし。WSL uv Python3.12.7/frozen extras hub,data,ml,export、local verified commitのみ/pushなし、旧失敗とPhase0–3保存。以下は過去の履歴。
 Base限定・同DEV64条件付き尤度の一回診断完了（2026-10-07 JST）。
 
 [終端と可搬記録](../reports/phase6/natural_context_contrast_likelihood_transfer_completion.json)。actual683973/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start19402153はcomplete・実ps不在、GPU2.122014秒/60、新教師/更新0。元10B/CE/contrast×元前文/cyclic別前文/BOSのみの9section、同suffix16,509token/63,511byteを完全に評価。CE→contrastの元前文BPB0.995055→1.000546で予測改善なし、前の全80/品質不合格を保持。CPU3tests/0.81秒、準備0.028179秒、実CPU reviewer成功。終了済み `scripts/run_natural_context_contrast_likelihood_transfer.ps1` を再起動しない。

@@ -1,0 +1,82 @@
+{
+  "created_at": "2026-10-06T18:36:44.386220Z",
+  "sources": {
+    "scripts/natural_context_contrast_projection.py": "02eaf7c1fcc88a5c0924fdcff74a869a255fa954e8b99d51b8f518f7f9c4c1cb",
+    "scripts/probe_natural_context_contrast_projection.py": "7a6c69191e5e719b85ef01bd1d119f97838575105b9fa5418c941016d3170e75",
+    "scripts/probe_natural_context_contrast_projection.ps1": "8c99cbccb7028badc438306d5b92697e57e47d8eea0ae963283dac4920de7d30",
+    "tests/test_natural_context_contrast_projection.py": "96519a93edea2fdb49db23e4ebc3be6b593356d1fc42f5366c8c4cae65c05877",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "scripts/natural_context_contrast_memory.py": "85735b203e1a6f845078046379c6463b51cdc61068a463a379d93c79368f62e2",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "src/jmicro/phase5.py": "cceae262745d92b1763c9d1263ba9746b8c6441896e97c001d8a3604ccaf2f98",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca"
+  },
+  "proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural_context_contrast_projection_proposal.json",
+    "sha256": "8568100442361fcf10999d47c426a99106c5f7e0d2a6d5dd2516696dd095db24"
+  },
+  "CPU_tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural_context_contrast_projection_tests.xml",
+    "sha256": "b8826c608660a0a9bc8dd08e3b99c4029657c4af12a84b3e89dc61c933f6cf27"
+  },
+  "prior_completed_comparison": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural_context_contrast_comparison_completion.json",
+    "sha256": "a07acf8bb9ebfbe120af9ea903aae65477b535c5992bad4176d246a71c2c608f"
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "parent_size": 120181763,
+  "parent_mtime_ns": 1791114231712428007,
+  "payload": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/natural-context-contrast-capacity-20261007/maximum-original-window.json",
+    "sha256": "518b7158e824a6504e71404864b57d7072d592cd6f200869844e96670c1c5fee"
+  },
+  "sample": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/natural-context-contrast-20261007/sample64.json",
+    "sha256": "c83d521a979fb5970649bf3249113637dcbfac5b10850ca0b3a7f407af825c35"
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+  "goals": {
+    "web": 75000000,
+    "textbook": 20000000,
+    "story": 5000000
+  },
+  "seed": 42,
+  "GPU_limit_seconds": 180,
+  "batch_candidates": [
+    16,
+    32,
+    48,
+    64
+  ],
+  "warmup_updates": 3,
+  "timed_updates": 5,
+  "matched_scientific_batch": 48,
+  "resident_allocator_fraction": 0.9,
+  "head_seed": 2026100751,
+  "native_parameters": 10001152,
+  "train_only_parameters": 98304,
+  "capacity_policy": "Actual maximum-context auxiliary/head and CE backward with initialized optimizer under resident90percent allocator; optimizer0 in stress. Stop increasing batch after first OOM.",
+  "batch_policy": "Measure fastest resident batch separately. A cached-control comparison requires identical batch48/source/digest; no silent batch change or rerun of completed controls.",
+  "prototype_policy": "Use all original fixed TRAIN64 once solely for finite shared/head backward. Full-source four versus two-save-resume-two checks all state/history. All probe weights discarded.",
+  "scientific_teacher_tokens": 0,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false
+}

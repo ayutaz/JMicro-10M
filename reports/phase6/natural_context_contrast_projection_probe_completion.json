@@ -1,0 +1,104 @@
+{
+  "status": "actual_projection_probe_passed_scientific_command_ready",
+  "created_at": "2026-10-06T18:39:24.122441Z",
+  "actual_identity": {
+    "pid": 684949,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "19500923"
+  },
+  "actual_process_absent": true,
+  "CPU_protocol_tests": 7,
+  "CPU_run_tests": 2,
+  "CPU_protocol_seconds": 4.12,
+  "CPU_run_seconds": 0.79,
+  "GPU_seconds": 11.138348664011573,
+  "GPU_limit_seconds": 180,
+  "native_parameters": 10001152,
+  "train_only_parameters": 98304,
+  "training_parameters": 10099456,
+  "initial_checks": {
+    "native_weights": true,
+    "original_parent_weights": true,
+    "native_RNG": true,
+    "native_parameters": true,
+    "head_parameters": true,
+    "native_tied": true,
+    "separate_head_state": true,
+    "native_logits": true
+  },
+  "resume_checks": {
+    "kind": true,
+    "spec": true,
+    "binding": true,
+    "lineage": true,
+    "model_config": true,
+    "model": true,
+    "optimizer": true,
+    "scheduler": true,
+    "RNG": true,
+    "sampler": true,
+    "counters": true,
+    "projector": true,
+    "finite": true,
+    "all_history_except_timing": true
+  },
+  "verification_updates": 33,
+  "verification_CE_teacher_tokens": 145531,
+  "fixed_TRAIN64_auxiliary_backward_optimizer_updates": 0,
+  "scientific_teacher_tokens": 0,
+  "probe_weights_discarded": true,
+  "matched_batch": 48,
+  "fastest_measured_batch": 48,
+  "matched_throughput": 34022.11458117962,
+  "maximum_context_peak_bytes": 19265087488,
+  "allocator_policy": {
+    "torch_version": "2.14.1+cu130",
+    "device": "NVIDIA GeForce RTX 4090",
+    "visible_device_bytes": 25756696576,
+    "process_fraction": 0.8999999999844701,
+    "allocator_allowance_bytes": 23181026918,
+    "expected_worst_peak_bytes": 0
+  },
+  "archive": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-projection-evidence-20261007",
+    "manifest_sha256": "c82eb2f686431e13def12b1d1f5017b4ecd84719c231761fa4552e1fac0f8019",
+    "files": 31,
+    "bytes": 1069184
+  },
+  "UI_restored": {
+    "identity": {
+      "pid": 685033,
+      "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+      "start_ticks": "19502441"
+    },
+    "actual_alive": true,
+    "model": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    }
+  },
+  "preflight_repairs": "Initial CPU assertions incorrectly referenced the embedding parent and required auxiliary gradients on pair-ineligible windows; corrected fixtures, original labels unchanged. Before GPU, isolated head seeding to CPU default_generator so CUDA RNG is preserved; native initial public path uses math attention for its explicit mask, training uses flash causal. Both superseded preparation configurations/source and the original fixture failure are retained. Actual CUDA probe ran once.",
+  "scientific_configuration": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/natural_context_contrast_projection_comparison.json",
+    "sha256": "ff61ab14485ef239dc5c59b2ef2750dd2ce0e74f80c753c3cd33034e6283d1db",
+    "forecast_seconds": 2939.264688013192,
+    "GPU_limit_seconds": 5009
+  },
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "limitations": "Short source timing is a forecast, not measured whole100M duration. Allocator resident guard does not prove maximum utilization. Initialization/finite/resume evidence is not generation quality. No additional unique data or scientific teachers were created by the probe.",
+  "next_action": "Start the implemented durable projected100M comparison command after inspecting actual processes. Reuse completed CE/direct controls; then all80 native content and unchanged Base gates. Complete qualified Base and notify/stop before Chat or quantization."
+}

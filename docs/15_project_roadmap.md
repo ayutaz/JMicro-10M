@@ -1,3 +1,8 @@
+現在のBase限定milestone（2026-10-07 JST）。
+
+[train-only projection試験](../reports/phase6/natural_context_contrast_projection_probe_completion.json)は実CUDA11.138秒/全state14checks合格。推論10Mと追加98,304の学習headを分け、初期native重み/logits/RNGを維持。全source batch48でresident容量と再開を確認したため、[同100M比較](../reports/phase6/natural_context_contrast_projection_comparison_start.json)を永続実行開始。元10B/2B教材・元各75/20/5M教師・同batch48/fresh Adam/seedを保持し、既存CE/direct100Mは再学習・再評価しない。新headは評価で破棄、同CE digest/会計/full samplerと追加計算を別に報告する。
+
+次は終端100M/同固定DEVと新生成80全内容→既存strong/matched/absolute/historical Web gate。識別loss・コード・再開だけでBase完成にしない。資格がある候補だけ独立学習seed/full DEV/protected final TEST/adoptionへ進み、Base完成時通知停止。Chat/Dialogue/SFT/量子化なし、元品質条件/旧失敗/Phase0–3を保持。以下は過去の履歴。
 Base限定・同64の次token尤度転移診断完了（2026-10-07 JST）。
 
 [全3モデル×3prefix view](../reports/phase6/natural_context_contrast_likelihood_transfer_review.json): 同suffix16,509token/63,511byte、元前文BPB元10B0.981316/CE0.995055/contrast1.000546。contrast−CE+0.005491/文書byte-weighted CI[0.003823,0.007581]で、このsampleでは次token予測が改善しない。全モデルで元前文は有用、前文benefit変化のCIは0を含む。GPU2.122014秒/60・新教師/更新0、actual683973終了・ps不在/元UI復帰。前の識別改善をBase採用としない、suffix-only BPBをfull DEV guardへ代入しない。

@@ -1,0 +1,61 @@
+{
+  "status": "actual_durable_projection_science_started",
+  "verified_at": "2026-10-06T18:40:13.772606Z",
+  "actual_identity": {
+    "pid": 685602,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "19518840"
+  },
+  "actual_alive": true,
+  "Windows_worker_pid": 35540,
+  "config_sha256": "ff61ab14485ef239dc5c59b2ef2750dd2ce0e74f80c753c3cd33034e6283d1db",
+  "job": {
+    "status": "running",
+    "pid": 685602,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "19518840",
+    "started_at": "2026-10-06T18:39:45.759191Z",
+    "config_sha256": "ff61ab14485ef239dc5c59b2ef2750dd2ce0e74f80c753c3cd33034e6283d1db",
+    "GPU_occupancy_seconds": 25.334230191016104,
+    "Base_complete": false,
+    "Chat_started": false,
+    "quantization_started": false,
+    "restart_command": "scripts/run_natural_context_contrast_projection.ps1 -Worker; inspect actual PID/boot/start first; resume only valid completed-update checkpoints within same frozen budget",
+    "resident_memory_policy": {
+      "torch_version": "2.14.1+cu130",
+      "device": "NVIDIA GeForce RTX 4090",
+      "visible_device_bytes": 25756696576,
+      "process_fraction": 0.8999999999844701,
+      "allocator_allowance_bytes": 23181026918,
+      "expected_worst_peak_bytes": 19265087488
+    },
+    "stage": "projection-training",
+    "heartbeat_at": "2026-10-06T18:40:12.328961Z",
+    "scientific_CE_teacher_tokens": 906290,
+    "local_update": 160,
+    "loss": 2.8322615146636965
+  },
+  "last_completed_update": {
+    "update": 169,
+    "supervised_tokens": 956300,
+    "CE_loss": 2.6594126224517822,
+    "contrast_loss": 0.9407499432563782,
+    "combined_loss": 2.75348761677742,
+    "auxiliary_gradient_norm": 0.6211603283882141,
+    "train_only_head_gradient_norm": 0.4301033616065979,
+    "source_teachers": {
+      "web": 717105,
+      "textbook": 191385,
+      "story": 47810
+    }
+  },
+  "checkpoint_paths": [],
+  "scientific_token_goal": 100000000,
+  "native_parameters": 10001152,
+  "train_only_parameters": 98304,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "next_action": "Continue same frozen100M native Base comparison; no duplicate GPU worker or code/config changes. After terminal evaluation, read all80 new outputs, reuse160 existing notes, review same Base criteria. Only a qualified candidate may proceed to independent learned seed/full DEV/protected final TEST/adoption. Notify and stop at completed Base."
+}

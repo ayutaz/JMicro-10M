@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="6" time="4.170" timestamp="2026-10-07T03:34:25.511960+09:00" hostname="DESKTOP-42CUV0C"><testcase classname="tests.test_natural_context_contrast_projection" name="test_actual_head_parameter_count_and_independent_RNG" time="0.025" /><testcase classname="tests.test_natural_context_contrast_projection" name="test_native_initial_logits_state_and_RNG_equal_direct_control" time="1.052"><failure message="AttributeError: 'JMicroModel' object has no attribute 'embed_tokens'">tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-134/test_native_initial_logits_sta0')
+
+    def test_native_initial_logits_state_and_RNG_equal_direct_control(tmp_path):
+        p, build = builders(tmp_path)
+        direct = build(False)
+        rng = torch.get_rng_state().clone()
+        ids = torch.tensor([[2,65,66,67]])
+        expected = direct.model(ids).logits.detach()
+        projected = build()
+        assert torch.equal(rng, torch.get_rng_state())
+        assert equal_state(p['model'], host(projected.model.state_dict()))
+        assert torch.equal(expected, projected.model(ids).logits.detach())
+        assert not set(projected.projector.state_dict()).intersection(projected.model.state_dict())
+&gt;       assert projected.model.lm_head.weight is projected.model.embed_tokens.weight
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_natural_context_contrast_projection.py:53: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = JMicroModel(
+  (model): Decoder(
+    (embed_tokens): Embedding(128, 32)
+    (layers): ModuleList(
+      (0-1): 2 x Blo...: RMSNorm()
+      )
+    )
+    (norm): RMSNorm()
+  )
+  (lm_head): Linear(in_features=32, out_features=128, bias=False)
+)
+name = 'embed_tokens'
+
+    def __getattr__(self, name: str) -&gt; Union[Tensor, "Module"]:
+        if "_parameters" in self.__dict__:
+            _parameters = self.__dict__["_parameters"]
+            if name in _parameters:
+                return _parameters[name]
+        if "_buffers" in self.__dict__:
+            _buffers = self.__dict__["_buffers"]
+            if name in _buffers:
+                return _buffers[name]
+        if "_modules" in self.__dict__:
+            modules = self.__dict__["_modules"]
+            if name in modules:
+                return modules[name]
+&gt;       raise AttributeError(
+            f"'{type(self).__name__}' object has no attribute '{name}'"
+        )
+E       AttributeError: 'JMicroModel' object has no attribute 'embed_tokens'
+
+.venv/lib/python3.12/site-packages/torch/nn/modules/module.py:1972: AttributeError</failure></testcase><testcase classname="tests.test_natural_context_contrast_projection" name="test_joint_training_and_original_stream_accounting_match_direct" time="0.829"><failure message="assert (0.0 &gt; 0)">tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-134/test_joint_training_and_origin0')
+
+    def test_joint_training_and_original_stream_accounting_match_direct(tmp_path):
+        _, build = builders(tmp_path)
+        projected, direct = build(), build(False)
+        before = host(projected.projector.state_dict())
+        for _ in range(4):
+            a, b = projected.step(), direct.step()
+            for key in ('token_digest','auxiliary_digest','source_teachers','source_EOS',
+                        'supervised_tokens','CE_input_tokens','auxiliary_input_tokens',
+                        'auxiliary_pairs','physical_input_tokens','original_body_bytes','draw_trace'):
+                assert equal_state(a[key],b[key]), key
+&gt;           assert a['auxiliary_gradient_norm'] &gt; 0 and a['train_only_head_gradient_norm'] &gt; 0
+E           assert (0.0 &gt; 0)
+
+tests/test_natural_context_contrast_projection.py:66: AssertionError</failure></testcase><testcase classname="tests.test_natural_context_contrast_projection" name="test_exact_four_versus_two_save_resume_two_all_state_and_history" time="1.249" /><testcase classname="tests.test_natural_context_contrast_projection" name="test_native_evaluation_cannot_see_changed_discarded_head" time="0.210" /><testcase classname="tests.test_natural_context_contrast_projection" name="test_reject_changed_checkpoint_geometry_and_non_native_science" time="0.007" /></testsuite></testsuites>
