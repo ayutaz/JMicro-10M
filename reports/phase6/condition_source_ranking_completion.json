@@ -1,0 +1,103 @@
+{
+  "status": "actual3072_requests_fixed128_original_source_ranking_complete_Base_unmet",
+  "observed_at": "2026-10-06T02:27:32.4701179Z",
+  "job": {
+    "status": "complete",
+    "pid": 529838,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "13651414",
+    "config_sha256": "ddca20908c914d05dde9392b6221e49db07cc6b794f1be17f54e66a7846800ad",
+    "started_at": "2026-10-06T02:21:51.685559Z",
+    "GPU_elapsed_seconds": 6.92455568301375,
+    "GPU_budget_seconds": 60,
+    "optimizer_updates": 0,
+    "scientific_teacher_tokens": 0,
+    "protected_test_used": false,
+    "restart_command": "scripts/run_condition_source_ranking.ps1 -Worker",
+    "heartbeat_at": "2026-10-06T02:21:59.633586Z",
+    "stage": "complete",
+    "completed_requests": 3072,
+    "total_requests": 3072,
+    "completed_at": "2026-10-06T02:21:59.633573Z"
+  },
+  "actual_process_absent": true,
+  "checks": {
+    "parent2B": {
+      "weights_unchanged": true,
+      "RNG_restored": true,
+      "no_gradients": true,
+      "eval_mode": true,
+      "first_request_batched_vs_single_max_NLL_difference": 0.03680562973022461
+    },
+    "control512": {
+      "weights_unchanged": true,
+      "RNG_restored": true,
+      "no_gradients": true,
+      "eval_mode": true,
+      "first_request_batched_vs_single_max_NLL_difference": 0.06184494495391846
+    },
+    "large2048": {
+      "weights_unchanged": true,
+      "RNG_restored": true,
+      "no_gradients": true,
+      "eval_mode": true,
+      "first_request_batched_vs_single_max_NLL_difference": 0.049349069595336914
+    }
+  },
+  "actual_GPU_seconds": 6.907170138001675,
+  "actual_GPU_occupation_seconds": 6.92455568301375,
+  "GPU_budget_seconds": 60,
+  "optimizer_updates": 0,
+  "scientific_teacher_tokens": 0,
+  "new_original_tokens": 0,
+  "protected_test_used": false,
+  "review": "reports/phase6/condition_source_ranking_review.json",
+  "fit_analysis": "reports/phase6/condition_source_ranking_fit_analysis.json",
+  "proposal": "reports/phase6/condition_source_learning_100m_proposal.json",
+  "portable_text_files": 212,
+  "portable_text_bytes": 7074515,
+  "portable_archive_sha256": "5a965dca7b143cfd4a22580bd3440212b381920dad8ca778dc96cfad20149dab",
+  "portable_all_raw_hashes_verified": true,
+  "UI_server": {
+    "status": "running",
+    "pid": 529910,
+    "started_at": "2026-10-06T02:22:02.88377Z",
+    "url": "http://127.0.0.1:7860",
+    "additional_training_tokens": 0,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "13652555",
+    "model": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024
+    },
+    "ready_at": "2026-10-06T02:22:03.229311Z"
+  },
+  "UI_process_identity_confirmed": true,
+  "UI_HTTP": {
+    "name": "JMicro-10M",
+    "kind": "Base / 文章の続き",
+    "parameters": 10001152,
+    "training_tokens": 10000007168,
+    "update": 305176,
+    "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+    "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+    "device": "NVIDIA GeForce RTX 4090",
+    "precision": "BF16 / math attention",
+    "context": 1024,
+    "busy": false
+  },
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "next_action": "Base only: implement one matched512-vs2048 conditional-source CE100M teachers per arm from the same2B+20M parent, original75/5/10/10 quotas and weight1/LR/shape. No new source conversion, use compact cache. Require real fullstate resume and timing freeze within proposed1200 GPU seconds. Measure source128 matching/fit and unchanged dev256/Japanese/all160 content; prior25M is a historical learning reference, not the new100M control. Then eligible Base independentseed/full dev/protectedtest/adoption -> notify and stop; no Chat/quantization."
+}

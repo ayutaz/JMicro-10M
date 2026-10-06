@@ -1,0 +1,85 @@
+{
+  "status": "defined100M_matched_followup_not_implemented_not_frozen_not_started",
+  "created_at": "2026-10-06T02:27:32.4701179Z",
+  "kind": "nested_condition_source_quantity_at_100M",
+  "question": "Does increasing matched learning25M->100M let the expanded2048 conditional source fit original conditional outcomes and improve heldout coherent Base continuations, compared with512 at the same100M total?",
+  "ranking_evidence": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition_source_ranking_review.json",
+    "sha256": "19b4f669f081f5e40063afd2281783a8778ecbb57c0e604c3fb8b8ec076c9c44"
+  },
+  "fit_evidence": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition_source_ranking_fit_analysis.json",
+    "sha256": "1f0283bd5f2378f0bf7d404590bc99da43708db882804b7634da80439e9496e0"
+  },
+  "previous25M_review": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition_diversity_comparison_review.json",
+    "sha256": "dc068ee587688a8d110fc8db59a18a5d0a78d9439f70a43476b1be712ddcf3a7"
+  },
+  "rationale": "At25M the conditional stream has2.5M teachers. Full CE target denominators72,397/292,291 give34.532/8.553 mean exposures. On the same old64 source outcomes complete-prefix NLL control512=.504619 vslarge2048=1.504358; primary both-source matches51 vs4. New64 matching3 vs3 but new outcome NLL2.233557->1.578169. Supports limited conditional fitting at this budget, not proof of the sole cause of heldout failure or guaranteed improvement with more learning.",
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook-coverage-2b-20261006/decay/checkpoint-00062166.pt",
+    "sha256": "965a06dc1537ed917de98c565d78ae76f19d99ad075f019067a4324a6cbd2249"
+  },
+  "data": {
+    "ordinary_pool": {
+      "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large",
+      "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133"
+    },
+    "small512": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/source-condition-positive-20261006",
+      "manifest_sha256": "7ef3df21ec52541d32f4b6e17321cb35271a25ded13af913dab6c1aab5e866fc"
+    },
+    "large2048": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-diversity-positive-20261006",
+      "manifest_sha256": "cf0ac3efa0722d54aa1f6107770ca41b7843a0297d5e53b68f3cde6480901280"
+    },
+    "compact_index": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large/.compact-index-8cde6396d433644b/ready.json",
+      "sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606"
+    }
+  },
+  "arms": [
+    "small512",
+    "large2048"
+  ],
+  "teachers_each": 100000000,
+  "new_scientific_teacher_tokens": 200000000,
+  "source_teacher_tokens_each": {
+    "ordinary_textbook": 10000000,
+    "web": 75000000,
+    "conditional_textbook": 10000000,
+    "story": 5000000
+  },
+  "outcome_weight": 1,
+  "peak_lr": 0.0002,
+  "optimizer_policy": "Both inherit identical original2B+20M parent Adam/scheduler/RNG; no reheat, same seed42 and shape. Fresh explicit source fork/cursor lineage for each arm; fullstate resume checked before science.",
+  "shapes": {
+    "context": 1024,
+    "batch": 32,
+    "accumulation": 1,
+    "backend": "flash",
+    "compile_mode": "reduce-overhead",
+    "dtype": "bf16"
+  },
+  "loss": "Unchanged original full body+EOS CE; no incompatible negatives, UL or contrastive objective",
+  "sampling": "Same original3 teacher sequences in both100M arms, conditional nested512/2048 shuffle differs. Record actual teachers/input/EOS/bodybytes, completedupdates, RNG/sampler/history/digests.",
+  "expected_conditional_target_exposures": {
+    "small512": 138.1272704670083,
+    "large2048": 34.21248002846478
+  },
+  "learning_reference": "Reuse old actual25M points and raw-bound notes for separate descriptive learning-budget comparisons. They are not new100M matched controls or guaranteed exact prefixes of a100M trajectory: the old25M terminal quota mask differs. Do not claim the100M study is a continuation unless a separately validated preserved-cursor extension is implemented.",
+  "GPU_ceiling_seconds": 1200,
+  "prior_actual_25M_training_seconds": 39.85271529221791,
+  "illustrative_training_estimate_2arms": 318.82172233774327,
+  "illustrative_with_30percent_margin_plus_2evaluations300seconds": 1014.4682390390662,
+  "budget_condition": "Illustrative estimate is not a frozen measured budget. New real resume/timing/warmup/checkpoint/source128 scoring plus2 full fixed evaluations must fit1200 including verification before science; completed updates/cases persist, no duplicate job or unbounded retry.",
+  "evaluation": "Same original256dev472055bytes/80greedy per arm and192/331/1119 Japanese cases; individually read all160 outputs with raw notes and same rubric, reuse only exact prior id/prefix/text/stop grades. All fixed source128 pairs/2 contexts retained and scored per100M weight, weak12 flagged. No protectedtest or evaluation text in learning.",
+  "quality_gates": "Keep original relative coherence+8/paired lower>0/EOS and rep nonworsening/BPB, absolute grammar56/coherence27/appropriate27/EOS37/rep<=18/errors0, originalWeb1% guard. Train fit or source-matching alone cannot adopt Base.",
+  "completion_condition": "Both actual100M completed, actual resume/fullstate and quotas finite, all160 content plus all original byte/Japanese/source-ranking evidence, original gates decision, bounded actualGPU/process termination, portable archive and restored originalUI, local commit.",
+  "stop_after_failure": "No automatic200M/500M extension or weight/ratio sweep. If source fit improves but dev coherence does not, record transfer/quality failure and select one evidence-based train-material/operator hypothesis; preserve failed studies and all quality gates.",
+  "new_original_corpus_tokens": 0,
+  "protected_test_used": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false
+}
