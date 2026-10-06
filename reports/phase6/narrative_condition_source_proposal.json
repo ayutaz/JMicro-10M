@@ -1,0 +1,148 @@
+{
+  "status": "one_TRAIN_grounded_narrative_representation_source_comparison_proposed",
+  "created_at": "2026-10-06T09:12:32.964358Z",
+  "trigger": {
+    "diagnostic": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/decision_span_diagnostic_result.json",
+      "sha256": "99c58c9092258903723da30c7c52b9a32e169fa52e6c0b36c930d0ff019f117c"
+    },
+    "previous_pilot": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/anchored_context_outcome_comparison_completion.json",
+      "sha256": "c3256b77a030760a88e48e1da0105094073d105d167928bd2cf0e0d27137c509"
+    }
+  },
+  "rejected_teacher_and_public_source_evidence": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/public_prose_feasibility_completion.json",
+    "sha256": "bbfc51bf78480bd6690aed8c23f1a76275ba76339e2ccabc57c97915af811d40"
+  },
+  "hypothesis": "Direct native learning of short complete progressing narratives, with the same TRAIN facts but more surface realizations, can generalize better than repeatedly restating finite question/record/outcome forms. Existing local probe gains are not broad Base quality.",
+  "evidence_limits": "The diagnostic rejects hidden late-token preference as the dominant anchor bridge failure:0/256 full-sum-correct/decision-wrong. Exact greedy-body improvement27->68/128 coexists with broad coherence2->5/80 and repetition21->28/80. Narrow source/transfer is a motivated hypothesis, not a unique causal proof or a capacity-limit claim.",
+  "source": {
+    "manifest": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/manifest.json",
+      "sha256": "154f13da4a817aaa21586fba2cd335faea7c79358be410e73166f5d0052bf936"
+    },
+    "train_source": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/train-source.json",
+      "sha256": "89fa2aea6fddece74246e447859ec8a90155a76c166912fe1985cff962fd1f48"
+    },
+    "accepted_review": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/content-review.json",
+      "sha256": "a929eeda49d4ed13198090c597a903149910a654f425ecd464ade8479622b825"
+    },
+    "families": 1024,
+    "documents": 2048,
+    "serialized_tokens": 89446,
+    "body_tokens": 85350,
+    "body_plus_EOS_teachers": 87398,
+    "train_entity_bank_size": 16,
+    "semantic_categories": [
+      "negation",
+      "quantity",
+      "time",
+      "comparison",
+      "entity_reference",
+      "causality"
+    ]
+  },
+  "new_source": {
+    "kind": "locally_authored_TRAIN_grounded_short_narratives_v1",
+    "source": "local_programmatic_Japanese_not_public_corpus_or_public_teacher",
+    "data_directory": "/home/aihub_ubuntu/jmicro-data/phase6/narrative-condition-source-20261006",
+    "selected_fact_families_unchanged": 1024,
+    "opposed_branches": 2,
+    "surface_realizations_per_branch": 8,
+    "prospective_documents": 16384,
+    "semantic_state_families_not_increased": true,
+    "new_original_corpus_tokens": 0,
+    "new_surface_tokens_pending": true,
+    "design": "Eight explicitly authored natural complete2-3sentence realizations per category; retain every accepted TRAIN family/state/branch and progress to an action or observable outcome, without record/question/verdict restatement. Plain Base body+EOS, no role tokens or Chat wrappers.",
+    "grounding": [
+      "Negation: declared initial state plus performed/nonperformed TRAIN action; author a consistent remaining object/state or ensuing action.",
+      "Quantity/time/comparison: compute existing TRAIN numbers/operation/longer person exactly; present a coherent scene and ensuing action instead of answer fragments.",
+      "Entity reference: preserve the actual TRAIN receiver/sender/original-owner/alias role and active person through the next action.",
+      "Causality: retain the existing declared switch/button/position/lever mechanism and its state, with consistent lit/unlit consequence."
+    ],
+    "split_policy": "Consume accepted train-source.json only. No evaluation prefixes, probe candidate text, held-out names/actions/items, protected test or public rejected samples may be used to write/generate training text.",
+    "limitations": "Local finite compositional prose with authored fictional details, not independently sampled natural Japanese or8x semantic evidence. Surface amount/style/length/EOS frequency change together; do not call this an isolated data-quantity or style causal effect."
+  },
+  "CPU_preparation": {
+    "ceiling_seconds": 60,
+    "seed": 2026100691,
+    "full_input_limit_tokens": 1024,
+    "whole_documents": true,
+    "tokenizer": "artifacts/phase2/4096/tokenizer.model",
+    "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+    "fixed_content_documents": 64,
+    "content_sampling": "Predeclared stratified64: cover48 category/surface cells with one fixed train draw each, then16 additional fixed unique train draws. Both branches represented overall. No reroll/source filtering after viewing.",
+    "content_gate": "All64 individually read and raw SHA bound; weak<=10/64, unresolved grammar/grounding errors0, all training documents complete and EOS terminated. Failed64 rejects the entire source; do not patch grammar/renderer after freezing its actual pilot or accept only favorable cases.",
+    "coverage_checks": "Every1024 accepted TRAIN family and2branches x8realizations; preserve original semantic state/source provenance, native exact bytes/BOS/body/EOS, no truncation, reserved-role/pad IDs0, exact full-text uniqueness, length/EOS/actual surface-body token disclosure."
+  },
+  "proposed_comparison": {
+    "parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+      "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+    },
+    "strong_control": {
+      "run": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006",
+      "arm": "source_order",
+      "config": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/source_order_condition_comparison_v2.json",
+        "sha256": "03b4ad47fa42b9a669c4588e736648e6339c93b9eb0cf3d08aac22a46cf90a88"
+      },
+      "result": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/compare-result.json",
+        "sha256": "cbca7936ebf395b1d5ccd45022ee4cb85de704a636c8bdae48ff2c24a8adc303"
+      },
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323503.pt",
+        "sha256": "fb43f2618c0679ca6c6f7a0c5b9faf1b336be8985271c8513f2e4bbfde3cd7ae"
+      }
+    },
+    "primary_CE_quotas": {
+      "web": 75000000,
+      "story": 5000000,
+      "ordinary_textbook": 10000000,
+      "conditional_textbook": 10000000
+    },
+    "main_teachers": 100000000,
+    "source_order": [
+      "web",
+      "story",
+      "ordinary_textbook",
+      "conditional_textbook"
+    ],
+    "shape": {
+      "context": 1024,
+      "batch": 32,
+      "accumulation": 1,
+      "backend": "flash",
+      "compile_mode": "reduce-overhead",
+      "dtype": "bf16"
+    },
+    "actual_LR": 1e-05,
+    "full_parent_model_Adam_scheduler_RNG_preserved": true,
+    "ordinary_body_plus_EOS_CE_weight1": true,
+    "change": "Replace only conditional-text source with accepted new prose; use the completed same-parent stagedCE as quality control. No auxiliary rank/KL/anchor.",
+    "unchanged_other_three_source_sequences_counters_cursors": true,
+    "conditional_input_and_EOS_frequency_changes_disclosed": true,
+    "measured_budget_pending": true,
+    "new_GPU_ceiling_seconds_including_all_probes": 900,
+    "CUDA_gate": "Own actual continuous4vs2+2 full-state/new-source sampler/counters and32 steady combined update timings; preserve all failed probe costs. Same150second reserve/30%margin/50second slack before100M freeze.",
+    "quality_criteria_unchanged": true,
+    "quality_gate": "Strong stagedCE23+8 with pairedCI lower>0/EOS>=76/repetition<=2; original absolute grammar>=56/coherence>=27/appropriate>=27/EOS>=37/repetition<=18/noempty-role-Unicode; historical Web BPB<=.9812859519097707 and existing stop guards.",
+    "evaluation": "Same256 full common bytes/Japanese192-331-1119/all80 individually read raw-bound greedy/bridge128/retention128; existing scorers/decoder/suite splits unchanged."
+  },
+  "preserved_related_GPU_seconds": 2289.596018486074,
+  "completion_condition": "One accepted finite64 source preparation followed, only if actual CUDA/budget gates pass, by one terminal100M comparison and full review. No renderer/filter/teacher/prompt/LR/source/shape sweep, checkpoint scan, automatic extension, cap enlargement or relaxed quality gates.",
+  "next_action": "Implement owned narrative renderer/full TRAIN preparation/native view and meaningful grounding/codec checks; freeze its input/renderer/sampling before actual preparation; read all fixed64 before student GPU.",
+  "actual_new_source_documents": 0,
+  "student_scientific_teacher_tokens": 0,
+  "GPU_training_started": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "after_qualified_pilot": "Independent learned seed/full dev/protected test/adoption, then notify and stop at Base."
+}
