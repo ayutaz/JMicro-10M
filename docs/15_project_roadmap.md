@@ -1,3 +1,9 @@
+Base専用固定20境界constraint: launch（2026-10-06 JST）。Base未完成・実完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+science実起動actual646766/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start17296120、実stageblock-constrained-Base-training・受入1400/3068更新・教師45777941を確認。科学上限2295.760321秒＋ownprobe33.678573＋旧診断70.561106=2400。各受入境界で重み/Adam/scheduler/RNG/sampler/全会計CP保存、未確定区切りは一切保存/完了量へ加算しない。終端・全日本語/80内容・採否は未完了。restartは実PID不在確認後 scripts/run_block_Web_constraint.ps1 -Mode Train -Worker。
+
+旧毎更新予算超過は不採用のまま、cadence20は別研究として固定。元math保持packet/bound/margin/projector/LR/元staged入力・教師mask/decoderと旧相対・絶対・歴史Webの全品質基準を維持。追加Web gradient/拒否試行を別会計し総教師量matchedと称さない。Phase0–3/数値7/全旧失敗保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用固定20境界constraint: probe（2026-10-06 JST）。Base未完成・実完成時通知停止、Chat/Dialogue/SFT/量子化なし。
 
 ownCUDA固定20更新×連続2区切り対1+1の全state/history/LR/有限値/境界NLLに合格、4区切り80更新timing完了。検証160更新/5231748CE教師は科学から除外、GPU33.678573秒/120。元math有限projector controlは不変source/同memoryの旧実証を再利用と明示し、新診断GPUへ足さない。最悪科学予測910.385827秒、旧3診断/ownprobe込み1014.625506秒/2400。内部tentative点がboundedとの証明ではない。予算内のみscience凍結し、同元親/Adam/actualLR.00001/同staged91,641,755CE＋追加memory gradient別会計/同日本語・全80/旧全gate採否へ。

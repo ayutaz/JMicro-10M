@@ -1,0 +1,71 @@
+{
+  "status": "block_Web_constraint_launch",
+  "created_at": "2026-10-06T12:31:02.384119Z",
+  "config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/block_Web_constraint.json",
+    "sha256": "a7c311379057c58ed0ebed18ded9eb005f676bd7cddcdcbad0c0dd8902f55386"
+  },
+  "CPU_preparation_seconds": 0.11339189999853261,
+  "GPU_seconds": 101.82545424500131,
+  "scientific_source_CE_teacher_tokens": 45777941,
+  "previous_related_GPU_seconds": 70.56110643898137,
+  "total_related_GPU_ceiling_seconds": 2400,
+  "constraint_scope": "Accepted20-update boundaries only; intermediate tentative updates may violate loss ceiling.",
+  "does_not_satisfy_old_per_update_contract": true,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "actual_job": {
+    "status": "setup",
+    "pid": 646766,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "17296120",
+    "config_sha256": "a7c311379057c58ed0ebed18ded9eb005f676bd7cddcdcbad0c0dd8902f55386",
+    "GPU_elapsed_seconds": 101.82545424500131,
+    "started_at": "2026-10-06T12:29:18.729156Z",
+    "restart_command": "scripts/run_block_Web_constraint.ps1 -Mode Train -Worker",
+    "stage": "block-constrained-Base-training",
+    "heartbeat_at": "2026-10-06T12:31:01.224311Z",
+    "completed_updates": 1400,
+    "total_updates": 3068,
+    "actual_teachers": 45777941,
+    "loss": 2.5648303031921387,
+    "boundary_constraint": {
+      "reference_body_NLL": 2.5812628269195557,
+      "ceiling_body_NLL": 2.607075455188751,
+      "proposed_body_NLL": 2.5727208852767944,
+      "projected": false,
+      "backtracked": false,
+      "trials": [
+        {
+          "kind": "Adam",
+          "body_NLL": 2.5727208852767944
+        }
+      ],
+      "accepted": true,
+      "scale": 1.0,
+      "final_body_NLL": 2.5727208852767944,
+      "scope": "accepted_block_boundary_only",
+      "block_start_update": 321815,
+      "block_end_update": 321835,
+      "block_source_updates": 20
+    },
+    "auxiliary": {
+      "forward_only_calls": 70,
+      "gradient_calls": 0,
+      "teacher_observations": 2284660,
+      "gradient_teacher_tokens": 0,
+      "physical_input_tokens": 2293760,
+      "projected_updates": 0,
+      "backtracked_updates": 0,
+      "accepted_updates": 1400,
+      "accepted_blocks": 70
+    }
+  },
+  "actual_live_process": true,
+  "teacher_count_scope": "Observed accepted block updates at heartbeat, not final total.",
+  "verification_GPU_seconds": 33.67857302899938
+}
