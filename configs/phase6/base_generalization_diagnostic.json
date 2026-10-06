@@ -1,0 +1,132 @@
+{
+  "kind": "read_only_Base_train_memorization_vs_within_source_dev_transfer",
+  "phase": "readonly",
+  "parents": {
+    "original_d18": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+      "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+    },
+    "actual_shared_Web6M": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-preference-comparison-20261006/common_Web/training/checkpoint-00320619.pt",
+      "sha256": "aa61cb463f310861bc721d174ce2fef25e56a2b3dcc9b05f055b756d585678c3"
+    },
+    "chosen_CE_terminal": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-preference-comparison-20261006/chosen_CE/training/checkpoint-00321058.pt",
+      "sha256": "86d8a2b55c702a1c6084a7e2d3ef1a554d0f12a9e73b8e44abd358d194b45fb1"
+    },
+    "chosen_CE_DPO_terminal": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-preference-comparison-20261006/chosen_CE_DPO/training/checkpoint-00321058.pt",
+      "sha256": "062a70e3bfbcacc5f531fadb9b08fc7f0f04c05d0042c8ef54aab574b95f8dd8"
+    }
+  },
+  "arms": [
+    "original_d18",
+    "actual_shared_Web6M",
+    "chosen_CE_terminal",
+    "chosen_CE_DPO_terminal"
+  ],
+  "cases": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/base-generalization-diagnostic-20261007/cases.json",
+    "sha256": "d9e53470d5da667ee5441ea68785c1c5486dcbcd30525bafb355b5dda1e2cf7b"
+  },
+  "tokenizer": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/phase2/4096/tokenizer.model",
+    "sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+  },
+  "seed": 20261007,
+  "references": {
+    "plan": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_preference_generalization_diagnostic_plan.json",
+      "sha256": "d69724774cd927a9f89a8a37436abbcbd89970fd6f1cf2ff81330e68db1cbb88"
+    },
+    "previous_config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_preference_comparison.json",
+      "sha256": "80570dfa9bcdb28303075793de5e5b1c40939d7ee917f40a81b31e9f61abfbbb"
+    },
+    "previous_result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-preference-comparison-20261006/compare-result.json",
+      "sha256": "4c5cc9e90e55e31707d65437154b71bbd7d2ea6872c1390df0df1197634cf05f"
+    },
+    "previous_review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_preference_comparison_review.json",
+      "sha256": "6e6106743644ba83a931d23ce696a72a11951dd80901c7997ea3eb070c8c06a5"
+    },
+    "source_ready": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/livedoor-leads-20261006/ready.json",
+      "sha256": "9a14662182da7ad80c87f0ae95467a891ff2b4e8bdb7aeb1a64db4de75001ef4"
+    },
+    "archive": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/livedoor-leads-20261006/ldcc-20140209.tar.gz",
+      "sha256": "b17606ed8c670013a3809100a9e6104701baab62cc019abc262111bd2acf1063"
+    },
+    "heldout_ids": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/livedoor-leads-20261006/heldout_article_ids.json",
+      "sha256": "0fa4a0612708c25eb3901f7c643519386821265b8fd9fd5cb9e86d002a5c663b"
+    },
+    "TRAIN_pairs": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/base-preference-diagnostic-20261006/pairs.json",
+      "sha256": "9123be8b267519b4accf2af1c650b9737365b1e57b992fa8ab41bd0805d8dec2"
+    },
+    "CPU_tests": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_generalization_tests.xml",
+      "sha256": "9308844e82ddf1a58782fada028d05021cd479d00a70726326c499e8bc0d9d14"
+    }
+  },
+  "source_sha256": {
+    "scripts/diagnose_base_generalization.py": "e37727a86b200495e9f8767f813a1f28a9d091bc610687d6e9d32bb742f74fe3",
+    "scripts/diagnose_base_generalization.ps1": "83aadb79b81b96768089d17fc7ca58edfb9a8d08290eec7ebc2392e6510a1732",
+    "scripts/base_generalization_diagnostic.py": "0171a2ebc6c2861935fbd138aa91d59f2512c84779288e3af313c1f691a4c9b3",
+    "scripts/review_base_generalization.py": "77cb8e45697eb2af579a93f3d5688a391cce6e76a6515aa45c141cc72c131a57",
+    "scripts/record_base_generalization_content.py": "237bd995d44f87727e075ebc2b4759fccdaa06cfd4fb71ff2dfbf809ff50703c",
+    "tests/test_base_generalization.py": "34fa866a2a13e1ad05b9d8332c72127841ca21e2c3e2a5ce1291a99e5df0d9aa"
+  },
+  "old_source_sha256": {
+    "scripts/prepare_livedoor_leads.py": "a8730fdc945c46fcf38eb9fd3fc070da483a7da0a3b779d5c8e5c417ec70e63c",
+    "scripts/base_preference_loss.py": "5efea442ad8843d7f99fbfe7101b09b2f8a98d7c7f8cf5f073ff0eff4638f423",
+    "scripts/diagnose_base_preference.py": "a65da997a81252e5a9e98a91639830dc4639e5a878b6740f9da730254ca3780a",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f",
+    "scripts/run_eos_short_pilot.py": "7a381414bdea5b24bbbbf7532f04db743cff948fa47f60e95f65019af2d3ec3d"
+  },
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "counts": {
+    "train_article_headers": 6617,
+    "test_article_headers": 376,
+    "dev_article_headers": 374,
+    "DEV_bodies_decoded": 374,
+    "DEV_structural_rejected": 79,
+    "DEV_token_length_rejected": 11,
+    "DEV_local_exact_duplicate": 6,
+    "eligible_DEV_leads": 278
+  },
+  "TRAIN_count": 56,
+  "DEV_count": 64,
+  "greedy_DEV_count_per_arm": 16,
+  "likelihood_batch": 8,
+  "greedy_max_new_tokens": 64,
+  "spans": {
+    "train": 213,
+    "dev": 236
+  },
+  "DEV_positive_positions": 4934,
+  "TRAIN_positive_positions": 4565,
+  "local_family_overlap": 0,
+  "DEV_exact_text_overlap_with_selected56": 0,
+  "DEV_exact_text_overlap_with_news5050": 2,
+  "precision": "bf16",
+  "backend": "math",
+  "GPU_budget_seconds": 120,
+  "CPU_preparation_seconds": 0.8651230940013193,
+  "optimizer_updates": 0,
+  "scientific_teacher_tokens": 0,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "limitations": "Source-local DEV article families separate from curated56; old Web global overlap uncertified. Existing paragraph rules condition the source population.16 nonblind greedy samples per arm, reused broad Base80 and earlier seven numerical failures retained. Diagnostic, not independent final Base qualification."
+}
