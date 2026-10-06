@@ -1,0 +1,410 @@
+{
+  "status": "fixed_dropout100M_complete_rejected_Base_incomplete",
+  "created_at": "2026-10-06T20:12:17.247770Z",
+  "actual_identity": {
+    "pid": 689085,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "19897021"
+  },
+  "actual_process_absent_verified": true,
+  "config_sha256": "bd36050f4ec23798186e020098de54cbffab16f36554c6c0dbc064192875051a",
+  "checkpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-residual-dropout-comparison-20261007/dropout/checkpoint-00017698.pt",
+    "sha256": "803127cef3b486b113baf7bf5fb4ba6f440cf25fbe33677423ce8d6c068b67ba"
+  },
+  "GPU_occupancy_seconds": 1467.6673003619944,
+  "GPU_budget_seconds": 3965,
+  "new_scientific_CE_teacher_tokens": 100000000,
+  "reused_control_CE_teacher_tokens": 100000000,
+  "reused_control_GPU_seconds": 0,
+  "accounting": {
+    "completed_updates": 17698,
+    "optimizer_updates": 17698,
+    "CE_teacher_tokens": 100000000,
+    "native_parameters": 10001152,
+    "train_only_parameters": 0,
+    "training_parameters": 10001152,
+    "training_only_probability": 0.1,
+    "native_inference_dropout": false,
+    "source_teachers": {
+      "web": 75000000,
+      "textbook": 20000000,
+      "story": 5000000
+    },
+    "source_EOS": {
+      "web": 657450,
+      "textbook": 148625,
+      "story": 38222
+    },
+    "CE_input_tokens": 102655467,
+    "auxiliary_input_tokens": 0,
+    "auxiliary_pairs": 0,
+    "physical_input_tokens": 370838917,
+    "original_body_bytes": 405882136,
+    "source_draws": 2656558,
+    "source_windows": 849479,
+    "additional_unique_supply_claimed": false
+  },
+  "history": {
+    "committed_updates": 17698,
+    "optimizer_updates": 17698,
+    "observed_completed_attempt_updates": 17698,
+    "rolled_back_or_replayed_log_rows": 0,
+    "uncommitted_torn_tails": [],
+    "raw_metrics": {
+      "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-residual-dropout-comparison-20261007/dropout/metrics-689085-19897021.jsonl": "ad1e436e7b8e807320607ffa99cd4420d987ced1bab28395f608825708a30f6d"
+    }
+  },
+  "summaries": {
+    "dropout": {
+      "BPB": 1.023868636287589,
+      "rates": {
+        "outputs": 80,
+        "eos": 13,
+        "repetition": 43,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 55,
+      "relevance2": 21,
+      "coherent": 1,
+      "appropriate": 1,
+      "notes_sha256": "e12d8867a788ab3a1fe60d4b845a9a4e243b2b5519b3332a27ec45eccd2c84a4",
+      "generation_sha256": "41333560d252e0edfc86e4e87373f6249dc081024b1f7d14b6f08c6ff9a3a7aa",
+      "Japanese": {
+        "semantics": 0.6041666666666666,
+        "jblimp": 0.7734138972809668,
+        "jcqa": 0.3529937444146559
+      }
+    },
+    "CE": {
+      "BPB": 0.998487162513845,
+      "rates": {
+        "outputs": 80,
+        "eos": 19,
+        "repetition": 45,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 44,
+      "relevance2": 25,
+      "coherent": 2,
+      "appropriate": 2,
+      "notes_sha256": "5a36aa6d4914260d1975974ae0fbee6c1e0024d900ea8103da970fdbc4ee9369",
+      "generation_sha256": "73a952a4e08ca8cfffa229fdb8c8f497d0373ff0646ca4b4f5cecd90a27e644b",
+      "Japanese": {
+        "semantics": 0.625,
+        "jblimp": 0.7734138972809668,
+        "jcqa": 0.35031277926720283
+      }
+    },
+    "strong_staged": {
+      "BPB": 1.1336128657420816,
+      "rates": {
+        "outputs": 80,
+        "eos": 76,
+        "repetition": 2,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 65,
+      "relevance2": 39,
+      "coherent": 23,
+      "appropriate": 26,
+      "notes_sha256": "6b143e08096a1ee2365a643c008d5c009d2c2ff48dd1d42a9749ac5301766d2d",
+      "generation_sha256": "d5b5a7c6b5d971de9bc46c77f52ac5ea19132cab7b97f034c274974cdbe2620e",
+      "Japanese": {
+        "semantics": 0.5625,
+        "jblimp": 0.7824773413897281,
+        "jcqa": 0.26541554959785524
+      }
+    }
+  },
+  "strong_and_matched_quality": {
+    "CE": {
+      "checks": {
+        "coherence_gain_at_least8": false,
+        "paired_CI_lower_above0": false,
+        "EOS_nonworsening": false,
+        "repetition_nonworsening": true,
+        "no_empty_role_unicode": true,
+        "BPB_gate": false,
+        "appropriate_completion_not_punctuation": true
+      },
+      "passed": false,
+      "difference_count": -1,
+      "CI95": [
+        -0.05,
+        0.025
+      ]
+    },
+    "strong_staged": {
+      "checks": {
+        "coherence_gain_at_least8": false,
+        "paired_CI_lower_above0": false,
+        "EOS_nonworsening": false,
+        "repetition_nonworsening": false,
+        "no_empty_role_unicode": true,
+        "BPB_gate": true,
+        "appropriate_completion_not_punctuation": true
+      },
+      "passed": false,
+      "difference_count": -22,
+      "CI95": [
+        -0.375,
+        -0.175
+      ]
+    }
+  },
+  "absolute_dev_screen": {
+    "grammar_at_least56": false,
+    "coherence_at_least27": false,
+    "appropriate_at_least27": false,
+    "EOS_at_least37": false,
+    "repetition_at_most18": false,
+    "no_empty_role_unicode": true
+  },
+  "historical_Web": {
+    "EOS_at_least8_more": true,
+    "repetition_no_worse": true,
+    "no_empty_role_unicode": true,
+    "BPB_degradation_at_most1percent": false,
+    "no_punctuation_only_stops": true
+  },
+  "paired_common_byte_BPB": {
+    "CE": {
+      "point": 0.025381473773744036,
+      "ci95": [
+        0.023991309983611684,
+        0.026814997117567702
+      ],
+      "documents": 256,
+      "common_bytes": 472055,
+      "control_BPB": 0.998487162513845,
+      "target_BPB": 1.023868636287589,
+      "relative_ratio": 1.0254199299967386,
+      "degradation_ci_lower_above0": true,
+      "seed": 42,
+      "repetitions": 2000,
+      "direction": "dropout minus completed CE; positive means worse",
+      "note": "Paired document resampling, byte-weighted aggregate; not independent seed confirmation or whole-corpus audit"
+    }
+  },
+  "exact_content_semantics": {
+    "dropout": {
+      "cases": 192,
+      "nominal_families": 96,
+      "exact_content_pair_clusters": 96,
+      "exact_alias_groups": [],
+      "original_nominal_accuracy": {
+        "point": 0.6041666666666666,
+        "ci95": [
+          0.546875,
+          0.6614583333333334
+        ],
+        "units": 96,
+        "examples": 192,
+        "unit": "family/prompt",
+        "seed": 42,
+        "repetitions": 2000,
+        "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+      },
+      "content_cluster_accuracy": {
+        "point": 0.6041666666666666,
+        "ci95": [
+          0.546875,
+          0.6614583333333334
+        ],
+        "units": 96,
+        "examples": 192,
+        "unit": "family/prompt",
+        "seed": 42,
+        "repetitions": 2000,
+        "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+      },
+      "both_contexts_hard_correct": {
+        "point": 0.2916666666666667,
+        "ci95": [
+          0.20833333333333334,
+          0.3854166666666667
+        ],
+        "units": 96,
+        "examples": 96,
+        "unit": "family/prompt",
+        "seed": 42,
+        "repetitions": 2000,
+        "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+      },
+      "categories": {
+        "causality": {
+          "point": 0.71875,
+          "ci95": [
+            0.59375,
+            0.84375
+          ],
+          "units": 16,
+          "examples": 32,
+          "unit": "family/prompt",
+          "seed": 42,
+          "repetitions": 2000,
+          "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+        },
+        "comparison": {
+          "point": 0.5,
+          "ci95": [
+            0.5,
+            0.5
+          ],
+          "units": 16,
+          "examples": 32,
+          "unit": "family/prompt",
+          "seed": 42,
+          "repetitions": 2000,
+          "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+        },
+        "coreference": {
+          "point": 0.40625,
+          "ci95": [
+            0.25,
+            0.5625
+          ],
+          "units": 16,
+          "examples": 32,
+          "unit": "family/prompt",
+          "seed": 42,
+          "repetitions": 2000,
+          "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+        },
+        "negation": {
+          "point": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ],
+          "units": 16,
+          "examples": 32,
+          "unit": "family/prompt",
+          "seed": 42,
+          "repetitions": 2000,
+          "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+        },
+        "quantity": {
+          "point": 0.59375,
+          "ci95": [
+            0.5,
+            0.6875
+          ],
+          "units": 16,
+          "examples": 32,
+          "unit": "family/prompt",
+          "seed": 42,
+          "repetitions": 2000,
+          "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+        },
+        "time": {
+          "point": 0.40625,
+          "ci95": [
+            0.3125,
+            0.5
+          ],
+          "units": 16,
+          "examples": 32,
+          "unit": "family/prompt",
+          "seed": 42,
+          "repetitions": 2000,
+          "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+        }
+      },
+      "all_original_example_weights_retained": true
+    },
+    "paired": {
+      "CE": {
+        "candidate_minus_control": {
+          "point": -0.020833333333333332,
+          "ci95": [
+            -0.07291666666666667,
+            0.03125
+          ],
+          "units": 96,
+          "examples": 192,
+          "unit": "family/prompt",
+          "seed": 42,
+          "repetitions": 2000,
+          "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+        },
+        "exact_content_pair_clusters": 96,
+        "cases": 192,
+        "new_acceptance_gate": false
+      }
+    }
+  },
+  "common_CE_checks": {
+    "CE": {
+      "update": true,
+      "token_digest": true,
+      "supervised_tokens": true,
+      "source_teachers": true,
+      "source_EOS": true,
+      "CE_input_tokens": true,
+      "original_body_bytes": true,
+      "auxiliary_input_tokens": true,
+      "auxiliary_pairs": true,
+      "physical_input_tokens": true,
+      "full_sampler": true
+    }
+  },
+  "all_new80_individually_read": true,
+  "reused80_scores_unchanged": true,
+  "independent_human_blind": false,
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "quality_criteria_unchanged": true,
+  "fixed_recipe_closed": true,
+  "automatic_extension_or_rescue": false,
+  "UI_restored": {
+    "identity": {
+      "pid": 690043,
+      "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+      "start_ticks": "20044230"
+    },
+    "actual_alive": true,
+    "model": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    }
+  },
+  "archive": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-residual-dropout-final-evidence-20261007",
+    "manifest_sha256": "f7bd684d66ac22b2dbdb00df0dc75192c96341f3bc96fe704c513bed289fa34d",
+    "files": 43,
+    "bytes": 103603956,
+    "compressed_bundle": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_residual_dropout_final_evidence.tar.gz",
+      "bytes": 49205820,
+      "sha256": "ebf86ea351acc05f082ec3a2f0f62cbe1f5084bd372c8f65c54c4e16b7bcbea7",
+      "lossless": true,
+      "compression_CPU_wall_seconds": 1.4044143990031444
+    }
+  },
+  "review_reference": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_residual_dropout_comparison_review.json",
+    "sha256": "14cefdcd35658501fb85531ce29d9a1b49b728018f96a2287ba83a15a9979579"
+  },
+  "next_action": "Close this fixed dropout probability/sites recipe. Before any new GPU job, use already completed Base mechanisms and TRAIN-to-DEV evidence to define one genuinely untested bounded comparison and its unchanged completion criteria; do not repeat the data scan, completed diagnostics, or rescued sweeps. Qualified Base still requires independent learned seed/full DEV/protected TEST/adoption. Notify and stop only at actual Base completion; no Chat, SFT or quantization."
+}

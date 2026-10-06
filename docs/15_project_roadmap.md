@@ -1,3 +1,19 @@
+Base限定・Dropout100Mの全評価終了、不採用（2026-10-07 JST）。
+
+[完了記録](../reports/phase6/base_residual_dropout_comparison_completion.json)・[全80採点と比較](../reports/phase6/base_residual_dropout_comparison_review.json): actual689085/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start19897021はcomplete・実process不在。正確100,000,000 CE教師/17,698更新、学習・保存・全評価込みGPU占有1,467.667秒（24.5分）/上限3,965。native10,001,152・追加param0、学習時のみ固定Dropout0.1。全state/Adam/scheduler/CPU・CUDA RNG/source sampler/完了更新historyの最終reviewに成功し、同CE教師/EOS/input/physical/digest/full cursorがcached CE100Mと一致。対照GPU再実行0、auxiliary教師・入力0、旧corpus再scanなし。job最終heartbeatの99,900,395教師は保存前の値で、terminal train-result/full stateの正確100Mを完了根拠とする。
+
+|条件|BPB|文法2/80|一貫性2/80|適切完結/80|EOS/80|反復/80|
+|---|---:|---:|---:|---:|---:|---:|
+|既存CE100M|0.998487|44|2|2|19|45|
+|新Dropout100M|1.023869|55|1|1|13|43|
+
+新条件の関連2=21/80、意味60.417%/JBLiMP77.341%/JCQA35.299%、Unicode・role・empty0。CE比の一貫性-1/paired CI[-.05,.025]で独立seedの有意差証明ではない。共通256文書/472,055byteのBPBは+0.025381/CI[0.023991,0.026815]で悪化。同192意味は-2.083pp/CI[-7.292pp,3.125pp]。元strong/absolute/historical Web・matched全gateを満たさず、最終Base検証eligible=false。固定Dropout recipeを終了し確率/sites/LR/source/checkpoint/epoch救済や自動延長を行わない。
+
+新全80はraw SHA付き個別非blind Codex判定。独立人手なし・旧CE80採点は変更しない。base-051の「残りは食べた」は残ったりんごを後で食べる短い読みとして関連/一貫性1・EOS完結1、残数二個の正解や満点とはしない。43text/103,603,956byteのlossless archiveと圧縮49,205,820byte/SHA ebf86ea351acc05f082ec3a2f0f62cbe1f5084bd372c8f65c54c4e16b7bcbea7を保存、Windowsへ全raw評価・notes/review/completionと圧縮証拠を復元。tensor/dataは元WSL pathに保持。
+
+元10B UI actual690043/同boot/start20044230は実process生存・HTTP親SHA410f975d…/10,000,007,168入力training tokens/busy=falseを確認。GPU科学jobは終了済み、UIは http://127.0.0.1:7860 。完了した比較を再起動しない。
+
+次の具体的アクション: 終了済みBase機構とTRAIN→DEV転移の証拠を再利用し、未検証の比較を一つに絞って元採否条件・教師/GPU上限・終了条件を先に明示する。終了済み診断/全corpus照合や救済sweepは繰り返さない。新科学recipeはまだ選定・起動していない。Baseは未完成・未採用。資格のある候補だけ独立学習seed/full DEV/protected final TEST/adoptionへ進め、実際のBase完成時に通知して停止。Chat/Dialogue/SFT/量子化なし。WSL pinned uv/local verified commitのみ/pushなし、Phase0–3と旧数値7失敗・元全条件を保持。以下は過去の履歴。
 Base限定・Dropout100Mを維持／採否処理の準備完了（2026-10-07 JST）。
 
 [採否準備の証拠](../reports/phase6/base_residual_dropout_review_preparation.json): 新 scripts/review_base_residual_dropout.py と凍結policyを追加、CPU18checks/2.43秒に合格。既存CE80/同256byte/同192意味cacheを使う実CPU API・実live最終CLI拒否確認は2.075秒、GPU/新教師/新内容採点0。準備用callerが意味paired結果のtop-level pointを誤参照した初回KeyErrorを別JSONに保存し、candidate_minus_controlへ修正して成功。frozen科学/reviewerや採点は変更していない。
