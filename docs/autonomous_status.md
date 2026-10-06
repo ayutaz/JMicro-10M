@@ -1,3 +1,9 @@
+文書間historyの固定ablationを実装・CPU準備完了（2026-10-06 JST）。Baseのみ継続/実完成時に通知・停止、Chat/Dialogue/SFT/量子化なし。
+
+関連CPU3tests/0.84秒で先頭partial segment/BOSごとの正確なcausal境界、native full-causal path一致（atol/rtol1e-6）、実small modelの他文書変更/未来変更の非干渉・weights/RNG不変、異なる教師数の集計/marker/欠損・count改変拒否を確認。fixtureは学習品質の証明ではない。実準備0.138553秒/上限15、既TRAIN16/全32 cached model point/実masked targetsとsource教師数を再利用、source scan0。configs/phase6/document_context_ablation.jsonを凍結、newGPU/optimizer/学習教師0、未起動、GPU全30秒。元10B UI637630をactual ps/HTTP親410f975d…/busy=falseで確認。
+
+次はscripts/diagnose_document_context_ablation.ps1で永続起動→各model先頭8のnative対owned full-causal BF16/math control一致（atol.02/rtol.002固定、失敗なら終了）→全16同input/教師/絶対RoPE位置のsame-document causalのみ新評価→全32delta/局所marker/readonly/実終端/UI/可搬証拠/commit。終端conditional教師weighted CE増分>=.1natsかつ増分>=.1のbatch>=12/16が支持された場合のみ別の数値条件を両armで揃えたattention-policy学習比較を定義。未支持なら当packing仮説を学習せず終了。全品質基準/旧不採用/Phase0–3/数値7失敗維持、Base採用/独立seed/full dev/protected testは未達、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 TRAIN勾配診断の解釈と一つの文書境界context仮説を定義（2026-10-06 JST）。前診断は6bae3d1へ保存。Baseのみ継続/実完成時に通知・停止、Chat/Dialogue/SFT/量子化なし。
 
 固定TRAIN16で条件文の実教師比1.772%に対し元親の全勾配二乗への寄与中央値20.594%、終端0.344%。本文CE2.159→.197/EOS6.615→.008565で学習例はよく予測されるが、自然な生成80は一貫性11/EOS22/反復35で不採用。教師比だけでloss希釈や学習不足を確定せず、reference-mass再重み付けは起動しない。既文学+Web/Wikipedia/自然story/別public source等の失敗も保持し、無制限のsource/filter探索へ戻らない。

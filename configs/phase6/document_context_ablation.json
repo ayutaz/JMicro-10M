@@ -1,0 +1,83 @@
+{
+  "checkpoints": {
+    "original_fullparent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+      "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+    },
+    "completed_masked_mixed": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+      "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+    }
+  },
+  "proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/document_context_ablation_proposal.json",
+    "sha256": "e4c900ad2714b99bcb6e473a0b38543e864faade308d251421a69c1c68344813"
+  },
+  "references": {
+    "trigger": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source_gradient_attribution_completion.json",
+      "sha256": "fd7c6d9a74bb305c240daf59a76fd468d81c5de922da8e5de073fc999f6dd279"
+    },
+    "source_config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/source_gradient_attribution.json",
+      "sha256": "ae7fac43011af7b28cd2349e2331d1a852546bb205711dc3fb6d06e3aeac034e"
+    },
+    "cached_full_causal": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-gradient-attribution-20261006/result.json",
+      "sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+    },
+    "samples": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-gradient-attribution-20261006/samples.pt",
+      "sha256": "d06b94ba1b78d07aeee70f4fe29b002fc16eaf05c4af2ff4686def02742640c7"
+    },
+    "metadata": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-gradient-attribution-20261006/samples.json",
+      "sha256": "4204dcd5e8a430e2af231097b2ba5f8a392195dbcfe10f0e77a719ee3eb3f37c"
+    },
+    "CPU_tests": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/document_context_ablation_tests.xml",
+      "sha256": "45b918d71f230fbc46d09604b5d1a1c99ab1ddcd57ffc9eb615336fc1ce10076"
+    }
+  },
+  "source_sha256": {
+    "scripts/document_context_ablation.py": "a3f1d44c73a323bc9e2a9472d82ee48e26d80c7bc03b87c754bcc96936c1517f",
+    "scripts/diagnose_document_context_ablation.py": "c15b2e7f5b47bdedc41276fda7105add6904fb50937adb6bba40696ff5bc65fb",
+    "scripts/diagnose_document_context_ablation.ps1": "f323f84f8cda100fca652c06a6246e22d83fca9010a5a5a71b2d5eac02b8fda1",
+    "tests/test_document_context_ablation.py": "8a8b2c1139d28c36566d16835f7c0d42a56bbf62fcb8d8d5950083ea9b16694e",
+    "scripts/source_gradient_attribution.py": "6db56983f0d3d703204c7c9fda8113925d10c92308b837ca5912de66affe4e33"
+  },
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "logical_batch": 32,
+  "microbatch": 8,
+  "context": 1024,
+  "batches": 16,
+  "dtype": "bf16",
+  "backend": "math",
+  "position_policy": "Original absolute positions, no position reset",
+  "control_tolerance": {
+    "atol": 0.02,
+    "rtol": 0.002
+  },
+  "descriptive_marker": {
+    "completed_conditional_CE_increase_at_least_nats": 0.1,
+    "completed_logical_batches_with_increase_at_least_nats": 0.1,
+    "completed_batches_at_least": 12,
+    "learned_endpoint_only_not_parent_selection": true
+  },
+  "CPU_preparation_seconds": 0.1385533559951,
+  "GPU_ceiling_seconds": 30,
+  "optimizer_updates": 0,
+  "new_teacher_tokens": 0,
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "created_at": "2026-10-06T11:22:18.500435Z"
+}
