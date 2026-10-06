@@ -1,3 +1,19 @@
+Base専用・未確認source64件の抽出完了（2026-10-07 JST）。
+
+固定4files/各16、distinct URL family64の原親と原文連続記事bodyを取得。actual665631/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18466229はjob completeかつ実ps不在。原親およびbodyと全range SHAはnative /home/aihub_ubuntu/jmicro-data/phase6/base-hq-acceptance-20261007/ 保存。145候補中、旧URL12/旧本文exact27/new holdout19/文末構造22/日本語不足1を除外、結果後の再抽選なし。46463 native body tokens/171664 original span bytes、取得14544548bytes/28requests/46.318秒<60、CPU0.624秒<30。語句/句読点の補作なし・全連続byte範囲一致。原親と抽出bodyはまだ内容未判定0/64、新training prepared0/科学教師0/GPU0。既存near-family/suite除外は次の供給準備で未達のまま。元UI actual663394/start18278075/HTTP元10B SHA・10000007168tokens/busy=falseを確認、GPU科学jobなし。
+
+次はこの同64の原親と保持bodyを全件個別に読み、事前契約54/64以上の文法・一貫性・記事body完結/非dominant案内の採否をbyte-bound notesへ保存。適性合格時だけ、大きな新教材の供給/protected-family除外を有限予算で測って対照付きBase学習を凍結する。抽出した量を新規学習量やBase完成としない。失敗時の再抽選/selector再調整なし。Base未完成、完成時通知停止。Chat/Dialogue/SFT/量子化なし、WSL uv/local commitのみ/pushなし。以下は過去の履歴。
+Base専用・HQ原文64件の内容確認と本文抽出calibration完了（2026-10-07 JST）。
+
+[全64個別原文理由](../reports/phase6/base_hq_source_content_review.json): 非blind Codex判定で文法2=58/一貫性2=53、自然な本文終わり25、文法・一貫性・非dominant UIと終わりが揃う22。途中切れ7件、予約定型4件、空見出し・サイト運用・引用通知・他記事リスト等を個別分類。参考文献/署名/箇条書き/問い/意図的な反復を自動的に文法不良やEOS誤りとはしない。sourceの医療/法律/宗教/政治等の内容は文法判定で事実保証しない。先頭fileのeligible sampleなのでglobal品質率でも学習成果でもない。このHQ content screenに事前の採用閾値はなく記述的結果として保存、未処理全文を自動採用しない。
+
+[一つの原文記事body抽出](../reports/phase6/base_hq_article_calibration.json)を実CPU0.023963秒/30でcalibration。同64から自然な文末までの連続した原文byte span35/35families、32494tokensを得た。記事内のheadingは保持し、認識した末尾案内等だけを落とす。本文/句読点の補作なし、長すぎる全文は切らず拒否、文を分割してEOS用の断片にしない。CPU3tests/0.03秒でCRLF含む原byte範囲一致、末尾未完文拒否、過長全文拒否と操作案内/疑問の終わりの区別を確認。calibrationで判定を調整するsweepはせずselector SHAを固定。これは未確認の構造candidateで新学習prepared0/教師0/GPU0。
+
+[次の未確認source acceptance契約](../configs/phase6/base_hq_acceptance.json)を本文取得前に凍結。seed2026100731でpinned Japanese564未使用filesから000_00037/000_00289/000_00301/000_00440の4file、各一様random groupから16件の固定shuffle先頭eligible、計64。原親と抽出bodyの旧exact/URL索引、calibration全ID/URL/body、local重複と新URL holdoutを除外。全64の原親と保持bodyを個別に確認し、文法・一貫性2と原記事の完結/非dominant案内が54/64以上という元source pilotの弱<=10相当を新contentを見る前に固定。失敗時は同selector/source再抽選や閾値変更で救済しない。取得60秒/100MiB、CPU30秒、embedding要求なし・旧corpus scanなし・protected test本文を読まない。永続jobはnative /home/aihub_ubuntu/jmicro-data/phase6/base-hq-acceptance-20261007/job.json、終端結果はreports/phase6/base_hq_acceptance_sample.json。完了したone-shotを再起動しない。
+
+次は実未確認64の全raw-bound内容採否。合格した場合だけ、旧protected-family/固定suite除外と新教材の固有供給量を有限予算で測り、新しい対照付きBase教材品質比較の量・教師・GPU予算を先に固定する。旧小news/CE/DPOのepoch/係数/LR/CP/source救済として続けない。元全Base品質基準、合格時の独立学習seed/full dev/protected test/adoptionは維持。
+
+Base未完成、完成時通知して停止。Chat/Dialogue/SFT/量子化なし、WSL uv Python3.12.7/local commitのみ/pushなし、旧失敗・旧数値7・Phase0–3保持。以下は過去の履歴。
 Base専用・高品質日本語sourceの取得検証完了（2026-10-07 JST）。
 
 [取得・固定64件](../reports/phase6/base_hq_source_sample.json)、[footer検証](../reports/phase6/base_hq_footer_inspection.json)、[公開source pin](../reports/phase6/base_hq_source_feasibility.json)。epfml/FineWeb2-HQ Japaneseをrevision c0c06e94fd3a44ae9e802b2b0fc533817601eb5eへ固定、公開非gated・565 Parquetを確認。実206 exact Rangeを用いる選択列readerを実装し、ignored Rangeをbody読み取り前に拒否、byte上限とseek/cache、実Parquet embedding大列を取得しないCPU3tests/0.45秒に合格。約1GBの先頭fileはfooter412484bytes/5.506秒だけで83816行・84 groupsを確認。固定seed2026100723のgroups26/40/48/59からtext/id/url/quality_scoreのみを取得し、既存SQLite exact/URL索引で全旧登録を照会（旧本文・protected test本文は読まない）。131候補中、exact37/URL14/new URL family holdout16を除外し固定64件、reroll/品質・長さ・score選別なし。実4000行decode、取得13793569bytes/18requests/30.978秒（100MiB/60秒以内）、CPU0.456秒/30、embedding列要求なし。元UI actual663394・HTTP元10B SHA410f975d…/10000007168tokens/busy=falseを確認。
