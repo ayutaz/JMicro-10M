@@ -1,0 +1,138 @@
+{
+  "status": "read_only_earliest8M_vs100M_all80_review_complete_candidates_unqualified",
+  "completed_at": "2026-10-06T04:58:50.2570748Z",
+  "run": "reports/phase6/early-exposure-comparison-20261006",
+  "actual_identity": {
+    "status": "complete",
+    "pid": 562158,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "14551757",
+    "config_sha256": "83ee2dfc699d6f2e8e8f7572b0625d7dad8987ebae2f205a2b4e805ecc664dde",
+    "GPU_seconds": 88.78251386198099,
+    "started_at": "2026-10-06T04:51:55.469134Z",
+    "restart_command": "scripts/run_early_exposure_comparison.ps1 -Worker",
+    "optimizer_updates": 0,
+    "scientific_teacher_tokens": 0,
+    "stage": "complete",
+    "heartbeat_at": "2026-10-06T04:53:25.055746Z",
+    "completed_tasks": 618,
+    "total_tasks": 618,
+    "completed_cases": 80,
+    "completed_requests": 512,
+    "total_requests": 512,
+    "completed_batches": 16,
+    "completed_at": "2026-10-06T04:53:25.186513Z"
+  },
+  "actual_scientific_process_absent": true,
+  "GPU_seconds": 88.78251386198099,
+  "new_scientific_teacher_tokens": 0,
+  "optimizer_updates": 0,
+  "summaries": {
+    "final100M": {
+      "BPB": 0.9909362016606469,
+      "rates": {
+        "outputs": 80,
+        "eos": 34,
+        "repetition": 21,
+        "unicode_failure": 1,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 72,
+      "relevance2": 68,
+      "coherent": 12,
+      "appropriate": 26,
+      "generation_sha256": "b8f3c968c5956cd2497cbeff14d27a84ebae7996a0e3bb199927c3e7433c3d37",
+      "notes_sha256": "3992ec51e542cfc38cbb57c68b43540400ae1a7f37b1729c7e5fee5292c12ccc",
+      "Japanese": {
+        "semantics": 0.5989583333333334,
+        "jblimp": 0.7552870090634441,
+        "jcqa": 0.355674709562109
+      },
+      "additional_teacher_tokens": 100000000,
+      "independent_human_blind": false
+    },
+    "early8M": {
+      "BPB": 0.9914920933104584,
+      "rates": {
+        "outputs": 80,
+        "eos": 25,
+        "repetition": 31,
+        "unicode_failure": 1,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 68,
+      "relevance2": 75,
+      "coherent": 6,
+      "appropriate": 13,
+      "generation_sha256": "5ea6a620b78b49fab247c6df0131c582023d32315960510e34f717e0a1df17b6",
+      "notes_sha256": "820a2e4e17266c9b92921f90c00db4b7fce3c0656b3f275452d3f6fd9f8e13c2",
+      "Japanese": {
+        "semantics": 0.6666666666666666,
+        "jblimp": 0.7462235649546828,
+        "jcqa": 0.34673815907059874
+      },
+      "additional_teacher_tokens": 8150782,
+      "independent_human_blind": false
+    }
+  },
+  "quality_comparison": {
+    "checks": {
+      "coherence_gain_at_least8": false,
+      "paired_CI_lower_above0": false,
+      "EOS_nonworsening": false,
+      "repetition_nonworsening": false,
+      "no_empty_role_unicode": false,
+      "BPB_gate": true,
+      "appropriate_completion_not_punctuation": true
+    },
+    "passed": false,
+    "difference_count": -6,
+    "CI95": [
+      -0.1625,
+      0.0125
+    ]
+  },
+  "eligible_for_final_Base_validation": false,
+  "Base_adopted": false,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "old_numerical7_preserved": true,
+  "result_sha256": "cf11fcd265a6096584f4f67ce45eaadda919d3b6a62b49ba24566df009e62297",
+  "review_sha256": "b74a03e9c19d5977f8ad22bd7a41dbe779845970398bf3fc85d464360a92b9b4",
+  "archive": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/early_exposure_comparison_evidence.tar.gz",
+    "sha256": "c219a8322f98fe2409befd3c2a8f046c2317a71bff5bc8c11fb367784305a57c",
+    "bytes": 1746936
+  },
+  "portable_text_files_verified": 215,
+  "actual_UI": {
+    "actual_identity": {
+      "pid": 563107,
+      "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+      "start_ticks": "14561114"
+    },
+    "model": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    },
+    "original_UI_restored": true,
+    "scientific_process_absent": true
+  },
+  "limitations": "One nested trajectory; earliest checkpoint chosen before its quality results. Different teacher amounts, not independent seeds. Repeated fixeddev/nonblind content. Fixed train source fit and shared-generator probes do not prove broad natural-language quality; final independent seed/full dev/test/adoption pending.",
+  "next_action": "Base only: use archived bridge and retention per-case likelihoods to separate lexical vs unseen-structure errors and gold-EOS vs distractor margins, with no new GPU, learning or favorable checkpoint search; define a bounded next comparison from that evidence before any new training. Base remains unqualified; independent learned seed/full dev/protected test/adoption await a quality-passing candidate. Chat and quantization deferred."
+}

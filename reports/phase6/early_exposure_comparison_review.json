@@ -1,0 +1,451 @@
+{
+  "status": "earliest_saved8M_all80_and_nested100M_review_complete",
+  "created_at": "2026-10-06T04:56:02.270362Z",
+  "summaries": {
+    "final100M": {
+      "BPB": 0.9909362016606469,
+      "rates": {
+        "outputs": 80,
+        "eos": 34,
+        "repetition": 21,
+        "unicode_failure": 1,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 72,
+      "relevance2": 68,
+      "coherent": 12,
+      "appropriate": 26,
+      "generation_sha256": "b8f3c968c5956cd2497cbeff14d27a84ebae7996a0e3bb199927c3e7433c3d37",
+      "notes_sha256": "3992ec51e542cfc38cbb57c68b43540400ae1a7f37b1729c7e5fee5292c12ccc",
+      "Japanese": {
+        "semantics": 0.5989583333333334,
+        "jblimp": 0.7552870090634441,
+        "jcqa": 0.355674709562109
+      },
+      "additional_teacher_tokens": 100000000,
+      "independent_human_blind": false
+    },
+    "early8M": {
+      "BPB": 0.9914920933104584,
+      "rates": {
+        "outputs": 80,
+        "eos": 25,
+        "repetition": 31,
+        "unicode_failure": 1,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 68,
+      "relevance2": 75,
+      "coherent": 6,
+      "appropriate": 13,
+      "generation_sha256": "5ea6a620b78b49fab247c6df0131c582023d32315960510e34f717e0a1df17b6",
+      "notes_sha256": "820a2e4e17266c9b92921f90c00db4b7fce3c0656b3f275452d3f6fd9f8e13c2",
+      "Japanese": {
+        "semantics": 0.6666666666666666,
+        "jblimp": 0.7462235649546828,
+        "jcqa": 0.34673815907059874
+      },
+      "additional_teacher_tokens": 8150782,
+      "independent_human_blind": false
+    }
+  },
+  "primary_comparison": "early8M-vs-final100M",
+  "quality_comparison": {
+    "checks": {
+      "coherence_gain_at_least8": false,
+      "paired_CI_lower_above0": false,
+      "EOS_nonworsening": false,
+      "repetition_nonworsening": false,
+      "no_empty_role_unicode": false,
+      "BPB_gate": true,
+      "appropriate_completion_not_punctuation": true
+    },
+    "passed": false,
+    "difference_count": -6,
+    "CI95": [
+      -0.1625,
+      0.0125
+    ]
+  },
+  "absolute_dev_screen": {
+    "grammar_at_least56": true,
+    "coherence_at_least27": false,
+    "appropriate_at_least27": false,
+    "EOS_at_least37": false,
+    "repetition_at_most18": false,
+    "no_empty_role_unicode": false
+  },
+  "original_Web": {
+    "EOS_at_least8_more": true,
+    "repetition_no_worse": true,
+    "no_empty_role_unicode": false,
+    "BPB_degradation_at_most1percent": false,
+    "no_punctuation_only_stops": true
+  },
+  "eligible_for_final_Base_validation": false,
+  "source_fit": {
+    "early8M": {
+      "web": {
+        "full_CE": 2.566463803925616,
+        "body_CE": 2.5663962025196043,
+        "EOS_CE": 2.59752807818668,
+        "teachers": 32697,
+        "EOS_teachers": 71
+      },
+      "story": {
+        "full_CE": 2.0265995073229095,
+        "body_CE": 2.035607745765924,
+        "EOS_CE": 0.7442549388314134,
+        "teachers": 32541,
+        "EOS_teachers": 227
+      },
+      "ordinary_textbook": {
+        "full_CE": 2.264618764456591,
+        "body_CE": 2.279398694178581,
+        "EOS_CE": 0.24202295809479082,
+        "teachers": 32532,
+        "EOS_teachers": 236
+      },
+      "conditional_textbook": {
+        "full_CE": 0.3118406396665816,
+        "body_CE": 0.3192124570599304,
+        "EOS_CE": 0.005787843715889283,
+        "teachers": 32015,
+        "EOS_teachers": 753
+      }
+    },
+    "final100M": {
+      "web": {
+        "full_CE": 2.5670439978967434,
+        "body_CE": 2.5670516676696113,
+        "EOS_CE": 2.563519575226475,
+        "teachers": 32697,
+        "EOS_teachers": 71
+      },
+      "story": {
+        "full_CE": 1.7507918458650042,
+        "body_CE": 1.7592377036702938,
+        "EOS_CE": 0.5485035237499271,
+        "teachers": 32541,
+        "EOS_teachers": 227
+      },
+      "ordinary_textbook": {
+        "full_CE": 2.137227559256756,
+        "body_CE": 2.1519565105895935,
+        "EOS_CE": 0.12160801584437742,
+        "teachers": 32532,
+        "EOS_teachers": 236
+      },
+      "conditional_textbook": {
+        "full_CE": 0.20626963769646708,
+        "body_CE": 0.2112346141777968,
+        "EOS_CE": 0.0001406937929762838,
+        "teachers": 32015,
+        "EOS_teachers": 753
+      }
+    }
+  },
+  "transfer_aggregates": {
+    "final100M": {
+      "sum_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.63671875,
+          "both_correct": 57,
+          "same_unique_candidate": 49,
+          "aligned_context_margin_shift": 98
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.9296875,
+          "both_correct": 55,
+          "same_unique_candidate": 9,
+          "aligned_context_margin_shift": 64
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.34375,
+          "both_correct": 2,
+          "same_unique_candidate": 40,
+          "aligned_context_margin_shift": 34
+        }
+      },
+      "mean_token_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.63671875,
+          "both_correct": 57,
+          "same_unique_candidate": 49,
+          "aligned_context_margin_shift": 98
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.9375,
+          "both_correct": 56,
+          "same_unique_candidate": 8,
+          "aligned_context_margin_shift": 64
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.3359375,
+          "both_correct": 1,
+          "same_unique_candidate": 41,
+          "aligned_context_margin_shift": 34
+        }
+      },
+      "mean_byte_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.65234375,
+          "both_correct": 61,
+          "same_unique_candidate": 45,
+          "aligned_context_margin_shift": 98
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.9453125,
+          "both_correct": 57,
+          "same_unique_candidate": 7,
+          "aligned_context_margin_shift": 64
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.359375,
+          "both_correct": 4,
+          "same_unique_candidate": 38,
+          "aligned_context_margin_shift": 34
+        }
+      }
+    },
+    "early8M": {
+      "sum_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.5390625,
+          "both_correct": 39,
+          "same_unique_candidate": 60,
+          "aligned_context_margin_shift": 91
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.796875,
+          "both_correct": 38,
+          "same_unique_candidate": 26,
+          "aligned_context_margin_shift": 64
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.28125,
+          "both_correct": 1,
+          "same_unique_candidate": 34,
+          "aligned_context_margin_shift": 27
+        }
+      },
+      "mean_token_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.55859375,
+          "both_correct": 42,
+          "same_unique_candidate": 59,
+          "aligned_context_margin_shift": 92
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.8203125,
+          "both_correct": 41,
+          "same_unique_candidate": 23,
+          "aligned_context_margin_shift": 64
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.296875,
+          "both_correct": 1,
+          "same_unique_candidate": 36,
+          "aligned_context_margin_shift": 28
+        }
+      },
+      "mean_byte_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.56640625,
+          "both_correct": 44,
+          "same_unique_candidate": 57,
+          "aligned_context_margin_shift": 95
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.8203125,
+          "both_correct": 41,
+          "same_unique_candidate": 23,
+          "aligned_context_margin_shift": 64
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.3125,
+          "both_correct": 3,
+          "same_unique_candidate": 34,
+          "aligned_context_margin_shift": 31
+        }
+      }
+    }
+  },
+  "retention_aggregates": {
+    "final100M": {
+      "sum_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.69921875,
+          "both_correct": 60,
+          "same_unique_candidate": 59,
+          "aligned_context_margin_shift": 97
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.8046875,
+          "both_correct": 42,
+          "same_unique_candidate": 19,
+          "aligned_context_margin_shift": 56
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.59375,
+          "both_correct": 18,
+          "same_unique_candidate": 40,
+          "aligned_context_margin_shift": 41
+        }
+      },
+      "mean_token_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.72265625,
+          "both_correct": 65,
+          "same_unique_candidate": 55,
+          "aligned_context_margin_shift": 98
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.828125,
+          "both_correct": 44,
+          "same_unique_candidate": 18,
+          "aligned_context_margin_shift": 56
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.6171875,
+          "both_correct": 21,
+          "same_unique_candidate": 37,
+          "aligned_context_margin_shift": 42
+        }
+      },
+      "mean_byte_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.71484375,
+          "both_correct": 62,
+          "same_unique_candidate": 59,
+          "aligned_context_margin_shift": 99
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.8125,
+          "both_correct": 42,
+          "same_unique_candidate": 20,
+          "aligned_context_margin_shift": 56
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.6171875,
+          "both_correct": 20,
+          "same_unique_candidate": 39,
+          "aligned_context_margin_shift": 43
+        }
+      }
+    },
+    "early8M": {
+      "sum_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.6328125,
+          "both_correct": 41,
+          "same_unique_candidate": 80,
+          "aligned_context_margin_shift": 99
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.6640625,
+          "both_correct": 24,
+          "same_unique_candidate": 37,
+          "aligned_context_margin_shift": 53
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.6015625,
+          "both_correct": 17,
+          "same_unique_candidate": 43,
+          "aligned_context_margin_shift": 46
+        }
+      },
+      "mean_token_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.6484375,
+          "both_correct": 44,
+          "same_unique_candidate": 78,
+          "aligned_context_margin_shift": 100
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.671875,
+          "both_correct": 25,
+          "same_unique_candidate": 36,
+          "aligned_context_margin_shift": 53
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.625,
+          "both_correct": 19,
+          "same_unique_candidate": 42,
+          "aligned_context_margin_shift": 47
+        }
+      },
+      "mean_byte_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.65625,
+          "both_correct": 47,
+          "same_unique_candidate": 74,
+          "aligned_context_margin_shift": 99
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.6875,
+          "both_correct": 27,
+          "same_unique_candidate": 34,
+          "aligned_context_margin_shift": 53
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.625,
+          "both_correct": 20,
+          "same_unique_candidate": 40,
+          "aligned_context_margin_shift": 46
+        }
+      }
+    }
+  },
+  "GPU_seconds": 88.78251386198099,
+  "new_scientific_teacher_tokens": 0,
+  "optimizer_updates": 0,
+  "reused_scientific_trajectory_tokens": 100000000,
+  "result_sha256": "cf11fcd265a6096584f4f67ce45eaadda919d3b6a62b49ba24566df009e62297",
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "independent_human_blind": false,
+  "quality_criteria_unchanged": true,
+  "old_numerical7_preserved": true,
+  "limitations": "One nested trajectory; earliest checkpoint chosen before its quality results. Different teacher amounts, not independent seeds. Repeated fixeddev/nonblind content. Fixed train source fit and shared-generator probes do not prove broad natural-language quality; final independent seed/full dev/test/adoption pending."
+}
