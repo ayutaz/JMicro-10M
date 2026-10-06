@@ -1,3 +1,16 @@
+Base限定・学習時Dropoutの実CUDA確認完了／100M比較実行中（2026-10-07 JST）。
+
+[単一仮説](../reports/phase6/base_residual_dropout_proposal.json)を実装。既存512TRAINの適合改善とDEV生成退行、source-local DEVへの転移失敗から、学習時のco-adaptation抑制を一条件で試す。一般的な[Dropout一次論文](https://jmlr.org/papers/v15/srivastava14a.html)からの仮説で、日本語10M改善の証明ではない。確率0.1をtoken embeddingと各attention/MLP残差出力に適用し、attention probabilityは0、追加パラメータ0、native推論10,001,152を保持。元src/jmicro/model.pyを変更せずtrain-only hooksを新trainerに付け、既存torch RNGを全stateへ保存する。native評価ではhooksを付けない。
+
+[実probe完了](../reports/phase6/base_residual_dropout_probe_completion.json): CPU5checks/2.96秒＋runner3checks/1.32秒、実CUDA9.546565秒/180。native初期重み/tied/logits/RNG、学習mask有効/推論mask無効を確認し、4対2+save/resume+2の全13state/history checks一致。44検証更新/220,036教師は科学と別、probe重みは捨てる。actual688679/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start19876351は実終了・ps不在。17text/716,702byte archiveと原文SHA付きconfig/source/testsを保存、元UI688753/start19877709を復帰・実ps確認してから科学へ移行した。
+
+全source batch16/32/48/64を測定、64が測定内最速58,060教師tokens/秒・最大context1024/最大512教師strideでpeak13.713GiB。測定を超える最大stable batchは未確認。科学は既存CE100Mとの同batch/source/cursorを保つ48、実測44,579教師tokens/秒・worst peak10.333GiB、90percent resident制限内。新教材量/独立品質の証明ではない。旧13GBindex再scanやTokenizer再学習なし。
+
+[科学開始記録](../reports/phase6/base_residual_dropout_comparison_start.json): actual689085/同boot/start19897021、Windowsworker26960を実ps/start確認。native run reports/phase6/base-residual-dropout-comparison-20261007、凍結config SHA bd36050f4ec23798186e020098de54cbffab16f36554c6c0dbc064192875051a。600更新/3,394,390教師/loss有限まで実学習を確認。元10B親、accepted2B TRAIN、正確Web75M/textbook20M/story5M教師、batch48/seed42/fresh AdamW1e-5 WD0.1/constant、元本文+元EOSを固定。既存ordinary CE100MのGPU/全80採点を再利用し対照再実行0、auxiliary loss/input0。Dropout100Mのみ新科学、比較終端で教師/EOS/入力/physical/digest/full samplerまで同じことを要求する。
+
+短い実測から学習予測2,243.203秒（37.4分）、科学GPU上限3,965秒（66.1分、保存/評価込み）。実際の完了時刻やBase品質達成期限ではない。250update completed-update checkpointと20update heartbeat/PID付きmetrics、native/Adam/scheduler/RNG/sampler/countersを永続保存。科学中は元UI停止、worker finallyで元10Bへ戻す。中断時のみactual PID/boot/start不在とvalid CP/残予算を確認後、scripts/run_base_residual_dropout.ps1 -Workerで同configから再開し、completed jobを再起動しない。
+
+次は同科学jobを維持して、終了後の新全80個別内容/旧CE80/strong/historical Web/共通byte/日本語・元全gateを確認するreviewerを実装・CPU確認する。凍結scientific source/configや確率/sitesを変更しない。失敗ならこの固定条件を終了し確率/sites/LR/source/epoch sweep・自動延長なし。合格candidateだけ独立学習seed/full DEV/protected final TEST/adoptionへ進める。Base未完成、完成時に通知して停止、Chat/Dialogue/SFT/量子化なし。WSL pinned uv/local verified commitのみ/pushなし、旧数値失敗とPhase0–3保存。以下は過去の履歴。
 Base限定・projection100Mの全評価終了、不採用（2026-10-07 JST）。
 
 [完了記録](../reports/phase6/natural_context_contrast_projection_comparison_completion.json)・[全80採点と比較](../reports/phase6/natural_context_contrast_projection_comparison_review.json): actual685602/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start19518840は実終了・ps不在。新科学100,000,000 CE教師/17,698更新、native10,001,152＋train-only98,304param。GPU占有2,382.820秒（39.7分）/上限5,009。既存CE/direct各100Mの全会計/digest/source quota/EOS/full sampler一致、対照GPU再実行0。全state/historyと全日本語/生成80の実reviewに成功、旧160採点は変更しない。

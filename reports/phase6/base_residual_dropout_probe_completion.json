@@ -1,0 +1,153 @@
+{
+  "status": "actual_training_only_dropout_probe_passed_science_ready",
+  "created_at": "2026-10-06T19:43:46.438141+00:00",
+  "actual_identity": {
+    "pid": 688679,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "19876351"
+  },
+  "actual_process_absent": true,
+  "CPU_protocol_checks": 5,
+  "CPU_protocol_seconds": 2.96,
+  "CPU_run_checks": 3,
+  "CPU_run_seconds": 1.32,
+  "GPU_seconds": 9.546564576012315,
+  "GPU_limit_seconds": 180,
+  "native_parameters": 10001152,
+  "train_only_parameters": 0,
+  "initial_checks": {
+    "native_weights": true,
+    "native_parameters": true,
+    "native_tied": true,
+    "initialization_RNG": true,
+    "training_sites": true,
+    "native_logits": true,
+    "inference_RNG_unchanged": true,
+    "training_masks_active": true
+  },
+  "resume_checks": {
+    "kind": true,
+    "spec": true,
+    "binding": true,
+    "lineage": true,
+    "model_config": true,
+    "model": true,
+    "optimizer": true,
+    "scheduler": true,
+    "RNG": true,
+    "sampler": true,
+    "counters": true,
+    "finite": true,
+    "all_history_except_timing": true
+  },
+  "verification_updates": 44,
+  "verification_CE_teacher_tokens": 220036,
+  "capacity": {
+    "16": {
+      "passed": true,
+      "peak_VRAM_bytes": 3837475840,
+      "context": 1024,
+      "loss": 3.281668186187744,
+      "gradient_norm": 20.508241653442383,
+      "optimizer_updates": 0,
+      "teachers": 8192,
+      "physical_input_tokens": 16384
+    },
+    "32": {
+      "passed": true,
+      "peak_VRAM_bytes": 7465794560,
+      "context": 1024,
+      "loss": 2.949056386947632,
+      "gradient_norm": 5.2433600425720215,
+      "optimizer_updates": 0,
+      "teachers": 16384,
+      "physical_input_tokens": 32768
+    },
+    "48": {
+      "passed": true,
+      "peak_VRAM_bytes": 11095129088,
+      "context": 1024,
+      "loss": 3.3149211406707764,
+      "gradient_norm": 8.63879108428955,
+      "optimizer_updates": 0,
+      "teachers": 24576,
+      "physical_input_tokens": 49152
+    },
+    "64": {
+      "passed": true,
+      "peak_VRAM_bytes": 14724463616,
+      "context": 1024,
+      "loss": 3.2554516792297363,
+      "gradient_norm": 7.758731842041016,
+      "optimizer_updates": 0,
+      "teachers": 32768,
+      "physical_input_tokens": 65536
+    }
+  },
+  "timings": {
+    "16": {
+      "median_CE_targets_per_second": 16206.0068359375,
+      "samples": [
+        15497.996148400767,
+        11631.452093649006,
+        23097.42484752375,
+        22154.06492544513,
+        16206.00718977863
+      ]
+    },
+    "32": {
+      "median_CE_targets_per_second": 23900.125,
+      "samples": [
+        28210.169912812737,
+        23739.40237930112,
+        23900.12461117922,
+        26022.526978348345,
+        20387.039875750263
+      ]
+    },
+    "48": {
+      "median_CE_targets_per_second": 44579.12109375,
+      "samples": [
+        91192.06810471634,
+        75541.42894832653,
+        32353.501048220878,
+        44579.12258045542,
+        38576.80553432277
+      ]
+    },
+    "64": {
+      "median_CE_targets_per_second": 58060.19140625,
+      "samples": [
+        62936.584301387426,
+        99567.88568774423,
+        58060.192246067476,
+        43969.88793905881,
+        41783.34958864278
+      ]
+    }
+  },
+  "measured_fastest_resident_batch": 64,
+  "matched_scientific_batch": 48,
+  "matched_throughput": 44579.12109375,
+  "maximum_stable_batch_not_exhaustively_measured": true,
+  "probe_weights_discarded": true,
+  "scientific_CE_teacher_tokens": 0,
+  "archive": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-residual-dropout-probe-evidence-20261007",
+    "manifest_sha256": "e1644a0018c1c99aea502ea939685af85242384172945b9eec5651698c91f1c9",
+    "files": 17,
+    "bytes": 716702
+  },
+  "UI_restored_before_science": {
+    "pid": 688753,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "19877709",
+    "actual_ps_checked_before_scientific_launch": true,
+    "temporarily_stopped_for_new_science": true
+  },
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "quality_criteria_unchanged": true,
+  "next_action": "Science started separately; implement final ordinary-CE/dropout reviewer while frozen scientific source/config remain unchanged. Keep all80 content unscored until native generation is complete, reuse existing CE80 notes and strong/Web gates. No quality inference from these prototype checks."
+}

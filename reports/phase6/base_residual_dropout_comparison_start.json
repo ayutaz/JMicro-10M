@@ -1,0 +1,45 @@
+{
+  "status": "actual_scientific_dropout_training_alive",
+  "created_at": "2026-10-06T19:43:46.439204+00:00",
+  "actual_identity": {
+    "pid": 689085,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "19897021"
+  },
+  "actual_process_verified": true,
+  "Windows_worker_pid": 26960,
+  "run": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-residual-dropout-comparison-20261007",
+  "config_sha256": "bd36050f4ec23798186e020098de54cbffab16f36554c6c0dbc064192875051a",
+  "scientific_CE_teacher_tokens_at_check": 3394390,
+  "completed_updates_at_check": 600,
+  "finite_loss_at_check": 3.037971258163452,
+  "scientific_teacher_goal": 100000000,
+  "GPU_budget_seconds": 3965,
+  "forecast_training_seconds": 2243.2025923009955,
+  "native_parameters": 10001152,
+  "train_only_parameters": 0,
+  "probability": 0.1,
+  "source_teacher_goals": {
+    "web": 75000000,
+    "textbook": 20000000,
+    "story": 5000000
+  },
+  "matched_batch": 48,
+  "reused_control_CE_teachers": 100000000,
+  "reused_control_GPU_seconds": 0,
+  "UI_temporarily_stopped": true,
+  "UI_restoration": "Windows worker finally restores original10B native UI at job exit",
+  "restart_command": "scripts/run_base_residual_dropout.ps1 -Worker; inspect actual PID/boot/start first; resume only valid completed-update checkpoints within same frozen budget",
+  "artifacts": {
+    "job": "job.json",
+    "metrics": "dropout/metrics-PID-start.jsonl",
+    "checkpoints": "dropout/checkpoint-xxxxxxxx.pt",
+    "terminal": "dropout/train-result.json",
+    "evaluation": "evaluation/dropout/evaluation/{body,generation,semantics,jblimp,jcqa,result}.json"
+  },
+  "quality_criteria_unchanged": true,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "next_action": "Keep same job; prepare final reviewer without touching frozen scientific source/config. At exact100M and actual exit, read all80 new raw outputs individually and compare same byte/inputs/full accounting/cursor against cached ordinary CE and original strong/absolute/historical Web gates. Only qualified candidate goes to independent learned seed/full DEV/protected TEST/adoption; notify and stop at completed Base."
+}

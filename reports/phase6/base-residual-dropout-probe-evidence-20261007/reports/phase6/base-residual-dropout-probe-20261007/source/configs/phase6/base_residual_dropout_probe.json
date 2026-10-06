@@ -1,0 +1,74 @@
+{
+  "created_at": "2026-10-06T19:39:11.029326Z",
+  "proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_residual_dropout_proposal.json",
+    "sha256": "782f8179915c876ffdfee42ef2948115e7a5ceb4e0cd77b5c37ca3388311de35"
+  },
+  "CPU_tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_residual_dropout_tests.xml",
+    "sha256": "77ec9e8ec2ebf784d47a0968410f2b4772aa96e27ce9887de05656ae1870ef79"
+  },
+  "previous_completion": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural_context_contrast_projection_comparison_completion.json",
+    "sha256": "3166f10c64ef3d2851ed634861c519fb09e319a8855881a60cad6f7aa4090985"
+  },
+  "sources": {
+    "scripts/base_residual_dropout.py": "52759deab19d97167bbb386f12ea7ed4eebd0327ba364b266d3196908bad7cbb",
+    "scripts/probe_base_residual_dropout.py": "579cd9d8c40e0315332fcf4bdb4a8b5898aafc1b65ecb1b72460f060eae6d749",
+    "scripts/probe_base_residual_dropout.ps1": "8cf1b8b653611fa545e9c49725650e722f3c4c24769cc8a6b0c4b6042937068b",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "scripts/natural_context_contrast_memory.py": "85735b203e1a6f845078046379c6463b51cdc61068a463a379d93c79368f62e2",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "tests/test_base_residual_dropout.py": "98bdd698e6099cbdc4a76a75500f60a43455eaaba38fbd2e0ea01a251253b048",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca"
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "parent_size": 120181763,
+  "parent_mtime_ns": 1791114231712428007,
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "goals": {
+    "web": 75000000,
+    "textbook": 20000000,
+    "story": 5000000
+  },
+  "payload": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/natural-context-contrast-capacity-20261007/maximum-original-window.json",
+    "sha256": "518b7158e824a6504e71404864b57d7072d592cd6f200869844e96670c1c5fee"
+  },
+  "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+  "probability": 0.1,
+  "native_parameters": 10001152,
+  "train_only_parameters": 0,
+  "GPU_limit_seconds": 180,
+  "seed": 42,
+  "batch_candidates": [
+    16,
+    32,
+    48,
+    64
+  ],
+  "warmup_updates": 3,
+  "timed_updates": 5,
+  "matched_scientific_batch": 48,
+  "resident_allocator_fraction": 0.9,
+  "policy": "Probe original full-source CE; initialize Adam, stress actual longest1024 window, stop capacity growth after first OOM. Four continuous versus two-save-resume-two checks all masks/RNG/state/history. Discard all probe weights. No science before persistent command and measured forecast.",
+  "scientific_teacher_tokens": 0,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false
+}
