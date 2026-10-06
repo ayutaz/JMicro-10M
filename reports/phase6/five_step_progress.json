@@ -512,7 +512,7 @@
   "phase0to3_preserved": true,
   "no_automatic_push": true,
   "status": "fixed_source_semantic_classifier_complete_rejected_Base_pending",
-  "last_updated_at": "2026-10-06T08:36:43.112663Z",
+  "last_updated_at": "2026-10-06T16:22:25.3379278Z",
   "current_user_scope": "Base only; notify and stop after actual Base completion; Chat and quantization deferred by user2026-10-06",
   "current_stop_boundary": "reports/phase6/base_only_stop_boundary.json",
   "conditional_content_review": "reports/phase6/conditional-content-pilot-20261006/content-review.json",
@@ -524,7 +524,7 @@
   "condition_positive_active_job": "reports/phase6/condition_positive_active_job.json",
   "condition_positive_scientific_config": "configs/phase6/condition_positive_comparison.json",
   "condition_positive_comparison_completion": "reports/phase6/condition_positive_comparison_completion.json",
-  "next_action": "Implement and freeze the proposed readonly Japanese semantics dev192 comparison of the pinned public4B and unchanged native10M, GPU180s; verify exact raw bytes/token boundaries, plain model-specific BOS, paired context cases/family CI, all mismatches, no optimizer or protected test. Do not tune failed source classifier/extractor or replace10M with4B. If teacher context signal exists, define genuinely new context-representation/relational knowledge transfer against matched CE; all Base gates/independent seed/full dev/final protected test/adoption remain required.",
+  "next_action": "Implement/freeze native observed original TRAIN prefix/suffix InfoNCE plus unchanged body+EOS CE. One actual GPU180s finite gradients/stable batch/throughput/full-state4-vs2+2 resume probe, discard weights. Freeze measured matched-CE science only if it passes. Teacher semantic transfer gate false after exact-content alias correction; branch closed, no teacher-feature training or prompt/model/threshold rescue. All Base quality/independent seed/full DEV/protected TEST/adoption gates remain; notify and stop before Chat/quantization.",
   "web_KL_launch": "reports/phase6/web_kl_comparison_launch.json",
   "web_KL_completion": "reports/phase6/web_kl_comparison_completion.json",
   "web_KL_followup": "reports/phase6/web_kl_followup_diagnostic_proposal.json",
@@ -957,7 +957,35 @@
   "Base_teacher_semantic_signal_proposal": {
     "path": "reports/phase6/base_teacher_semantic_signal_proposal.json",
     "sha256": "8ca8dc67b8d25553ec61d2fe11abba0c076992abc05644e356c453581d6a10b4",
-    "status": "not_implemented_or_run",
-    "GPU_seconds": 0
-  }
+    "status": "executed_completed_conservative_gate_failed_branch_closed",
+    "GPU_seconds": 7.486655257001985
+  },
+  "Base_teacher_semantic_signal_completion": {
+    "path": "reports/phase6/teacher_semantic_signal_completion.json",
+    "sha256": "270938beee47546142982e1f4c2f47e5801437c7b485b540c9e0c6025fd41bd6",
+    "cases": 192,
+    "effective_content_clusters": 64,
+    "paired_ci95": [
+      0.0,
+      0.22
+    ],
+    "conservative_gate": false,
+    "teacher_transfer_branch_closed": true,
+    "GPU_seconds": 7.486655257001985,
+    "actual_pid": 670149,
+    "actual_process_absent": true
+  },
+  "Base_natural_context_contrast": {
+    "proposal": "reports/phase6/natural_context_contrast_proposal.json",
+    "proposal_sha256": "6066431729db9b1a96cfd0556b1c16a026c258bc0db6220d33d0a46c18541422",
+    "preparation": "reports/phase6/natural_context_contrast_preparation.json",
+    "preparation_sha256": "be70a8a00826d61006b19021eb0f3a033be2afdd5662a259a02a58b7534ee131",
+    "probe_pairs": 64,
+    "CPU_seconds": 0.3058010560052935,
+    "loss_implemented": false,
+    "GPU_probe_started": false,
+    "scientific_training_started": false,
+    "scientific_teacher_tokens": 0
+  },
+  "current_active_scientific_jobs": []
 }

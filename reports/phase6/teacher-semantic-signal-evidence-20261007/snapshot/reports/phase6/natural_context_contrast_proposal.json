@@ -1,0 +1,55 @@
+{
+  "status": "new_mechanism_proposed_probe_inputs_prepared_objective_not_yet_implemented",
+  "scope": "Native 10M Base only; notify and stop at evidence-qualified Base; no Chat/SFT/quantization",
+  "rationale": "Prior fixed tiny CE/DPO memorized TRAIN without DEV transfer. The public teacher classifier and alias-adjusted teacher semantic transfer gates failed. Test a different mechanism using native hidden representations and observed TRAIN prefix/suffix relations instead of external teacher judgments or fixed synthetic reversal likelihood.",
+  "parent_checkpoint": "reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+  "parent_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+  "parameters": 10001152,
+  "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+  "accepted_TRAIN_pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large",
+  "source_manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+  "source_mixture": "Web75/textbook20/story5; existing accepted 2,000,001,312-token TRAIN pool",
+  "preparation_report": "reports/phase6/natural_context_contrast_preparation.json",
+  "fixed_probe_sample_sha256": "c83d521a979fb5970649bf3249113637dcbfac5b10850ca0b3a7f407af825c35",
+  "fixed_probe_pairs": 64,
+  "objective": {
+    "full_unit_CE": "Unchanged original body plus original EOS supervision; token-weighted CE. No prefix/suffix boundary EOS.",
+    "auxiliary": "L2-normalize final valid native hidden state of each original prefix and independently encoded original suffix, each with native BOS and no appended EOS. Symmetric row/column in-batch InfoNCE of their cosine-similarity matrix. Both branches receive gradients; no new head or parameters.",
+    "temperature": 0.1,
+    "loss_coefficient": 0.1,
+    "total_loss": "full_unit_CE + 0.1 * symmetric_InfoNCE",
+    "eligibility": "Observed original sentence/newline split with strict separate UTF8 round trips and native token boundary; no wording rewrites. Fixed64 has distinct original source families and full body64-512 tokens. These length bounds are implementation-probe bounds, not a newly accepted training corpus.",
+    "negative_interpretation": "Other in-batch suffixes are corpus-retrieval distractors, not certified false factual outcomes. Duplicate families/bodies within a contrast batch must be excluded."
+  },
+  "bounded_next_probe": {
+    "GPU_seconds_maximum": 180,
+    "required_before_science": [
+      "Implement native objective and its actual training/checkpoint command before launching",
+      "Persist PID/boot/start, config/source hashes, logs, result/checkpoint paths; inspect existing jobs before start; restore original UI on exit",
+      "Finite BF16 CUDA CE/InfoNCE/combined loss and nonzero auxiliary gradients; report positive/distractor similarity and representation spread without selecting favorable examples",
+      "Measure stable batch and actual CE/auxiliary valid tokens, physical input tokens, peak VRAM and median GPU throughput",
+      "Actual continuous4 versus2+save/resume+2 equality of model, optimizer, scheduler, RNG, sampler and all counters at completed updates",
+      "Discard all implementation-probe weights; failed finite/resume/budget gate does not authorize scientific training"
+    ],
+    "stop_condition": "One fixed implementation protocol and finite candidate batches; exit at completed requirements or first unrepaired genuine failure/180s budget. Do not repeat identical failure or tune temperature/coefficient to rescue outcome."
+  },
+  "conditional_scientific_comparison": {
+    "status": "not_frozen_not_started",
+    "proposed_arms": ["matched full-unit CE", "same CE plus native context/suffix InfoNCE"],
+    "proposed_CE_target_tokens_per_arm": 100000000,
+    "must_freeze_before_launch": "Actual record windowing/sampler/source eligibility and common byte exposures, measured batch/optimizer/LR/scheduler/seed, all CE and extra auxiliary exposures, save/resume evidence, finite GPU budget derived from probe, and fixed evaluation/completion conditions. No scientific job until this exists.",
+    "accounting": "Same CE target is not equal total compute: report auxiliary forward tokens, pair count, valid/physical inputs, optimizer updates and GPU seconds separately; preserve original source identity and accepted mixture.",
+    "acceptance": "All existing relative/absolute/Base EOS/repetition/Unicode/role/historical Web BPB criteria remain unchanged. Full80 raw content and fixed Japanese DEV comparisons; independent learning seed/full DEV/protected final TEST/adoption still required before Base completion.",
+    "on_failure": "Close this fixed mechanism comparison without source/temperature/coefficient/LR/checkpoint/epoch rescue or automatic training extension."
+  },
+  "primary_research": [
+    "https://arxiv.org/abs/1807.03748",
+    "https://arxiv.org/abs/1803.02893"
+  ],
+  "limitations": "Contrastive context representation papers motivate an experiment; they do not prove Japanese native10M generative improvement. Probe64 is reused accepted TRAIN, not fresh supply or 64 newly reviewed content samples. This is not teacher transfer, corpus semantic labeling, logically false negative verification or Base adoption.",
+  "new_scientific_training_tokens": 0,
+  "optimizer_updates": 0,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false
+}

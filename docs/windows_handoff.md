@@ -1,3 +1,12 @@
+現在の引継ぎ・Base限定（2026-10-07 JST）。
+
+教師semantic DEV192はactual670149終了、GPU7.486655秒。全99不一致を読み、同内容別IDを64clusterへ補正した差CI[0,.22]が元lower>0条件未達のため、[教師転移branchを終了](../reports/phase6/teacher_semantic_signal_completion.json)。nominal gate=trueは原結果として保存し、採否は補正conservative=false。終了済みsemantic runnerを再起動しない。公開4Bでnative10Mを置換せず教師feature/蒸留を開始しない。
+
+次は[原文前後contrastive計画](../reports/phase6/natural_context_contrast_proposal.json)のnative loss/実training commandの実装。既存accepted large2B TRAINのprobe64がnative /home/aihub_ubuntu/jmicro-data/phase6/natural-context-contrast-20261007/sample64.json にあり、CPU0.305801秒で原byte/IDs確認済み。可搬版はhash/offset/lengthのみ。旧compact-index検証を再利用し大きな旧index/streamの再scanは不要。temperature/係数各0.1、GPU180秒の有限勾配・測定安定batch/速度・連続4対2+2全state保存再開を実装後に凍結して測り、合格時だけ実測予算付き本CE対照を準備。まだloss未実装・training起動command未完成・科学教師0。存在しないtraining commandを実行しない。
+
+元UI actual670252/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18606324、HTTP元10B SHA410f975d…/10000007168tokens/parameters10001152/busy=falseを確認。GPU科学jobなし。各job前にps/保存identityを照会し、UI停止はGPU試験時のみ、finallyで元UIを戻す。Pythonは /home/aihub_ubuntu/.local/bin/uv run --frozen --extra hub --extra data --extra ml --extra export をWSL native repoで使用。新dependencyなし、system Python/pipなし。
+
+Base未完成。元全品質基準/独立学習seed/full DEV/protected TEST/adoptionを満たしたら通知・停止し、Chat/Dialogue/SFT/量子化には入らない。元失敗/旧数値7/Phase0–3保持、local identity yousan、検証済みlocal commitのみ、pushなし。以下は過去の履歴。
 Base専用・公開モデルによるsource意味判定の有限比較完了、不採用（2026-10-07 JST）。
 
 [全64予測/採点比較](../reports/phase6/base_source_semantic_judge_review.json)と[実結果](../reports/phase6/base_source_semantic_judge_result.json)。既に全hash検証済みの公開Apache2 Qwen3-4B-Instruct-2507 revision cdbee75f17c01a7cc42f958dc650907174af0554をnativeから再利用、重み再取得0byte。以前の自然文生成recipeは不採用のまま、今回は原文記事の分類という別機構。一モデル/一prompt・greedy/BF16/SDPA・全原文保持、元gold/入力hashとsourceを予測前に凍結。元64をsource file別32development/32holdoutに固定し、holdout accepted>=8・precision>=90%/recall>=50%/format error0、GPU180秒/peak22GBを要求。判定集計の関連2CPUtests/0.02秒、PS構文・model stat/pin preflight成功後、actual669341/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18548324で実GPU54.228秒/peak11,565,212,672bytes、全64完了・ps不在。

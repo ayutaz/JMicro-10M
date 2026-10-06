@@ -1,3 +1,16 @@
+Base専用・教師の文脈信号の比較完了、重複補正後は転移条件未達（2026-10-07 JST）。
+
+[実結果](../reports/phase6/teacher_semantic_signal_result.json)・[補正レビュー](../reports/phase6/teacher_semantic_signal_review.json)・[完了証拠](../reports/phase6/teacher_semantic_signal_completion.json)。公開固定4Bと元native10Mで同じJapanese semantics DEV192をplain-BOS conditional likelihoodにより比較。全原UTF8/候補/codec境界・192件の有限値を確認し、教師140/192=72.917%、native119/192=61.979%。全99不一致の内容を個別に読んだ。否定50%対100%・参照56.25%対68.75%で教師が劣り、時刻/因果は教師が上。異なる学習データ・Tokenizer・post-trainingの比較で、容量や日本語Base一般の証明ではない。
+
+名目96familyの中に全内容が同一の別IDがあり、実質64の内容対clusterへ補正した。全192の重み・元スコア・元nominal gate=trueは保存。補正後の教師−native差10.9375ポイント、95%CI[0,22ポイント]で、元の厳密条件lower>0を満たさない。conservative gate=falseが採否の基準。構築template間には残る相関があり、自然な日本語全体の母集団CIとはしない。この教師転移branchを閉じ、教師feature/蒸留学習を開始しない。prompt/model/thresholdの救済はしない。元source classifier/HQ selector/小CE-DPOの不採用も維持。
+
+actual670149/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18605115はcomplete・ps不在、実GPU7.486655秒/180。関連CPU4tests/0.82秒（causal continuation mask/厳密byteとalias grouping）、科学教師0/optimizer0/新重み取得0/保護TEST48本文JSON decode0。31fileの小可搬archiveに原inference code/config/全出力・理由・補正・input bindingを保存。補正でGPU再実行なし。
+
+次の別機構を[自然な前後関係の計画](../reports/phase6/natural_context_contrast_proposal.json)へ保存。native10Mの原文prefix/suffix hidden表現をin-batch InfoNCEで対応させ、元body+EOS CEとの対照を測る。外部teacher/新parameters/生成教材/評価例学習なし。係数0.1/temperature0.1はGPU開始前に固定。既存accepted Web75/textbook20/story5のlarge2B TRAINからdistinct family64の実装probe入力をCPU0.305801秒で準備（[準備証拠](../reports/phase6/natural_context_contrast_preparation.json)、body8296tokens）。旧検証済みcompact indexを使い13GB照合/4GB本文再scanなし。prefix/suffixは原文sentence/LF境界でbyte/IDs一致、分割点EOS追加なし。他suffixは観測対応のdistractorで、論理的に偽との保証はない。これは旧accepted TRAINのprobeで、新供給/新64内容採否/科学学習ではない。
+
+次の具体的作業はlossと実training/save-resume commandを実装・凍結し、有限BF16勾配・最大安定batch/throughput/VRAM・CUDA連続4対2+保存再開+2の全stateをGPU180秒で測定すること。probe重みは捨てる。合格時だけ同親/同CE量の二条件と実測GPU上限を凍結して本比較へ進む。案は各100M CE教師、extra auxiliary token/forward/GPUは別計数、同CE量を同computeと呼ばない。まだloss未実装/GPUprobe0/科学比較未凍結・未開始。CPC/QuickThoughtは着想で、日本語10Mの生成改善を保証しない。
+
+元10B UI actual670252/start18606324は実psとHTTP SHA410f975d…/10000007168tokens/parameters10001152/busy=falseを確認。科学GPUjobなし。Base未完成、既存relative/absolute・EOS/反復・歴史Web BPB基準、合格後の独立学習seed/full DEV/protected final TEST/adoptionを維持。品質合格したBase完成時にユーザーへ通知して停止し、Chat/Dialogue/SFT/量子化へ進まない。Python3.12.7はWSL uv、local commitのみ/pushなし、旧失敗・旧数値7・Phase0–3保持。以下は過去の履歴であり、過去の次工程Chat等は現在の開始許可ではない。
 Base専用・公開モデルによるsource意味判定の有限比較完了、不採用（2026-10-07 JST）。
 
 [全64予測/採点比較](../reports/phase6/base_source_semantic_judge_review.json)と[実結果](../reports/phase6/base_source_semantic_judge_result.json)。既に全hash検証済みの公開Apache2 Qwen3-4B-Instruct-2507 revision cdbee75f17c01a7cc42f958dc650907174af0554をnativeから再利用、重み再取得0byte。以前の自然文生成recipeは不採用のまま、今回は原文記事の分類という別機構。一モデル/一prompt・greedy/BF16/SDPA・全原文保持、元gold/入力hashとsourceを予測前に凍結。元64をsource file別32development/32holdoutに固定し、holdout accepted>=8・precision>=90%/recall>=50%/format error0、GPU180秒/peak22GBを要求。判定集計の関連2CPUtests/0.02秒、PS構文・model stat/pin preflight成功後、actual669341/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18548324で実GPU54.228秒/peak11,565,212,672bytes、全64完了・ps不在。

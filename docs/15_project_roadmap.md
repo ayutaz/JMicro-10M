@@ -1,3 +1,10 @@
+現在のBase限定milestone（2026-10-07 JST）。
+
+[教師semantic診断完了](../reports/phase6/teacher_semantic_signal_completion.json): DEV192の平均72.917%対61.979%は教師が上だが、同内容別IDを64clusterへ補正した差CI[0,.22]は元lower>0条件未達。転移branch終了、教師feature/蒸留を開始しない。元出力/採点/nominal96family結果・全99不一致を保存し、内容aliasを独立例数にしない。保護TEST本文未使用。
+
+[次のnative contrastive計画](../reports/phase6/natural_context_contrast_proposal.json): 既存accepted2B TRAINだけを使い、10Mの観測原文prefix/suffix hidden表現の対応をInfoNCEで学ぶ別機構を、同body+EOS CEと比較する。新head/teacher/生成教材/分割点EOSなし。固定係数/temperature各0.1、実装probe64はCPU0.306秒で準備済み。loss/実training commandを先に実装し、GPU180秒内で有限勾配・測定batch/速度・CUDA全state保存再開に合格した場合だけ本比較条件/予算を凍結。各100M CE案で追加auxiliary露出とGPUを別会計、科学jobは未開始。論文の着想をモデル改善証拠としない。失敗時の同条件救済/自動延長なし。
+
+完了milestoneは元の全Base品質基準、独立学習seed/full DEV/protected final TEST/adoptionを満たすこと。未達のままChat等へ移らない。Base完成時に通知して停止し、Chat/Dialogue/SFT/量子化は別の再開指示まで開始しない。以下は過去の履歴・後続段階の設計資料。
 Base専用・公開モデルによるsource意味判定の有限比較完了、不採用（2026-10-07 JST）。
 
 [全64予測/採点比較](../reports/phase6/base_source_semantic_judge_review.json)と[実結果](../reports/phase6/base_source_semantic_judge_result.json)。既に全hash検証済みの公開Apache2 Qwen3-4B-Instruct-2507 revision cdbee75f17c01a7cc42f958dc650907174af0554をnativeから再利用、重み再取得0byte。以前の自然文生成recipeは不採用のまま、今回は原文記事の分類という別機構。一モデル/一prompt・greedy/BF16/SDPA・全原文保持、元gold/入力hashとsourceを予測前に凍結。元64をsource file別32development/32holdoutに固定し、holdout accepted>=8・precision>=90%/recall>=50%/format error0、GPU180秒/peak22GBを要求。判定集計の関連2CPUtests/0.02秒、PS構文・model stat/pin preflight成功後、actual669341/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18548324で実GPU54.228秒/peak11,565,212,672bytes、全64完了・ps不在。
