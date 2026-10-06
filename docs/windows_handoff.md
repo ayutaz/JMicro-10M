@@ -1,3 +1,25 @@
+Base限定・共有K/V診断と構造比較の実GPU準備終了／300M本学習は予算未達で未開始（2026-10-07 JST）。
+
+[共有K/V診断の完了記録](../reports/phase6/base_kv_head_gradient_completion.json)・[最新の失敗経路統合](../reports/phase6/base_post_smoothing_root_synthesis.json): 元10Bと既存CE100Mへ、前回固定のTRAIN24文書（Web/教材/物語各8family）の同じ窓を使用。5CPU checks/0.90秒、実FP32 CUDA2.693570秒/180、5,064診断位置、optimizer/科学教師/新品質評価0。全native logits/loss/共有勾配の分解と重み・tied・RNG・forward復元を確認し、actual696961/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start20436942は終了・実process不在。両endpointの全3sourceで事前cosine<=-.1/cancellation<=.9の研究markerを満たす。一方、各sourceの全26共有groupで通常の合算更新が片方のhead経路に逆向きになる件数は0。局所的相殺でありGQAが生成失敗の原因という証明ではなく、同一損失のhead-pathへPCGradを適用しない。33text/392,639byte gzipの証拠をWindowsへ保存・bundle SHA確認。
+
+[固定構造配分案](../reports/phase6/base_kv_allocation_proposal.json): GQA4Q/2KV/FFN640は実10,001,152、MHA4Q/4KV/FFN560は10,054,400（+53,248/+0.5324%）。他の13layer/hidden256/Tokenizer4096/NoNorm/native推論は同じ。これはattention対FFNの配分比較であり、KVだけの因果比較や完全同数paramsではない。両fresh seed42/fresh AdamW、同accepted2B TRAIN、各300M元gold（Web225M/教材60M/物語15M）、5M warmup+295M cosine、同DEV全80/日本語評価、全研究・strong/absolute/historical Web基準を維持する案。旧成熟CE100Mをfresh対照として流用しない。
+
+CEOnlyOriginalSampler/FreshKVAllocationTrainerを別実装。不要な文ペア抽出を省くがoriginal body SHA/BOS・EOS/1024context512教師stride/既読mask/全source cursorを保つ。CPU9checks/3.26秒で元gold/bytes/長文overlap・fresh初期化・両構造full state/history4対2+save/resume+2・target位置LR・改変拒否を確認。実TRAIN first32窓の元samplerとのgold/bytes/EOS/draws一致をCPU0.172572秒で確認、全corpus再scanなし。新sampler種別/auxiliary metadataは別と明記し旧InfoNCE full-stateと同一だとはしない。
+
+[最初の実CUDA probe](../reports/phase6/base_kv_allocation_probe_completion.json): actual697431/同boot/start20511441はcomplete・実process不在、CUDA24.499315秒。両native BF16 finite/全state保存再開/同original stream成功、90% residentで共通stable48/64/80/96、112は両OOM後に増量停止。共通最速80、worst1024/512 peakはGQA17,793,596,416/MHA17,137,370,112bytes。科学各300Mの予測GPU（保存・評価margin含む）はGQA6,983/MHA5,138、probe込み12,145.499秒で固定9,000秒超過。このflat protocolは予算不合格で終了し、科学GPU/教師/新品質評価0。24text可搬archive保存、capの引上げや教師量の隠れた削減をしない。
+
+[長さgroup高速化の実GPU比較](../reports/phase6/base_kv_allocation_bucketed_completion.json): 元のlogical batch/教師分母を保持し、近い長さのforward/backwardを分けて最後に一回のglobal clip/Adam/target LR更新をする別trainerを実装。CPU4checks/3.40秒で不均一groupのnative CE/全勾配一致と両構造のown full state再開に合格。BF16の蓄積順が変わるため旧CUDA更新とbit-identicalとはしない。実GPUのloss絶対差はGQA1.18e-6/MHA1.09e-5、全勾配relative L2は両約0.00296（固定許容内）。original教師/source/EOS/bodybytes/digest/全sampler・LRはflat/grouped/両構造で一致、PAD physicalだけ異なる。全32timed steps/各routeを保持し有利な部分選定なし。
+
+|native構造|flatの教師/秒中央値|length groupの教師/秒中央値|実測比|
+|---|---:|---:|---:|
+|GQA|53,777|65,778|1.223|
+|MHA|86,101|68,383|0.794|
+
+同32stepsの各308,066教師に対しphysical inputsは1,314,080→435,022へ低下するが、MHAは小forwardの回数増で遅くなった可能性がある（profilingによる因果証明ではない）。actual698609/同boot/start20529714は終了・実process不在、CUDA31.330358秒。両prototype合計55.829673秒で当初180秒以内。grouped各300M予測はGQA6,830/MHA6,604＋全prototypeで13,489.830秒、同9,000秒上限外。この単一効率化案も終了し、別bucket/追加timing/batch/LR/source/epoch/teacher/cap救済や科学学習を開始しない。28text/3,456,783byte・gzip962,478byteのraw証拠をWindowsへ保存・bundle SHA確認。短いsource timingは全300M実時間の保証やモデル品質の証明ではない。MHAは未学習なので生成品質不合格という結論にしない。
+
+元10B UI actual698737/同boot/start20533254は実processとHTTP親SHA410f975d…/training_tokens10,000,007,168/busy=falseで復帰確認。科学GPUjobなし。次の具体的アクション: 保存済みの今回の予算・局所K/V診断・旧depth/width/実8K学習・元raw生成の固定証拠を使い、約10Mの容量/日本語表現で残る未検証原因を整理する。次の科学recipeは未選定・新科学commandを未実装のまま実行しない。新規比較は一条件の教師/GPU上限・完了条件を先に定義する。今回のMHA300M/同効率化の枠を再開・拡大しない。
+
+Base未完成・未採用。独立学習seed/full DEV/protected TEST/adoptionは品質資格のある候補だけに行う。実Base完成時にユーザーへ知らせて停止し、Chat/Dialogue/SFT/量子化に進まない。Phase0–3/旧数値7失敗/元全品質基準を保持。WSL pinned uv/Python3.12.7・local verified commitのみ、自動pushなし。以下は過去の履歴。
 Base限定・ラベル平滑化100Mの全評価終了、不採用（2026-10-07 JST）。
 
 [完了記録](../reports/phase6/base_label_smoothing_comparison_completion.json)・[全80採点と比較](../reports/phase6/base_label_smoothing_comparison_review.json): actual693649/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start20212215はcomplete・実process不在。正確100,000,000元gold教師/17,698更新、GPU占有1,432.763981秒（23.9分）/凍結3,583秒。native10,001,152・追加param/推論変更0、固定epsilon0.1/full4096、重み付きgold mass90M/uniform mass10M・uniform soft positions100M。全native/Adam/scheduler/CPU・CUDA RNG/full sampler/全17,698完了履歴と0.9/0.1の会計をreview済み。同元gold/source/EOS/input/physical/digest/full samplerがcached CE100Mと一致、対照GPU再実行0・新corpus0。jobの99,900,395教師/17,680更新は最後のtraining heartbeatであり、terminal train-result/full stateの正確100Mを完了根拠とする。checkpoint SHA5d6ae5726c63b69edb7d7f7b74c232fe1b3d2093f5297787df1ce6ed42a7869b。

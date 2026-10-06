@@ -1,0 +1,177 @@
+{
+  "status": "grouped_native_speed_prototype_complete_budget_not_ready",
+  "created_at": "2026-10-06T21:29:03.545751Z",
+  "actual_identity": {
+    "pid": 698609,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "20529714"
+  },
+  "actual_process_absent_verified": true,
+  "config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_kv_allocation_bucketed_probe.json",
+    "sha256": "13ca0969d4dcd065e1fa375df270b30c005881d946aa1e4228deeddcc39a729c"
+  },
+  "result_reference": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-kv-allocation-bucketed-probe-20261007/result.json",
+    "sha256": "fec9e8dbb2ce7cf6cde1f224e5e6e114290b96cdd68fe9b23571feab5a1f05da"
+  },
+  "fixed_batch": 80,
+  "actual_paired_speed": {
+    "GQA": {
+      "flat_median_original_teachers_per_second": 53777.26789456038,
+      "grouped_median_original_teachers_per_second": 65778.03933244816,
+      "measured_ratio": 1.22315695660511,
+      "flat_physical_inputs": 1314080,
+      "grouped_physical_inputs": 435022,
+      "timed_original_teacher_positions": 308066,
+      "all_timing_steps_per_route": 32,
+      "grouped_data_wait_median_seconds": 0.005691619007848203
+    },
+    "MHA": {
+      "flat_median_original_teachers_per_second": 86100.55117972211,
+      "grouped_median_original_teachers_per_second": 68382.84114781811,
+      "measured_ratio": 0.7942207130019305,
+      "flat_physical_inputs": 1314080,
+      "grouped_physical_inputs": 435022,
+      "timed_original_teacher_positions": 308066,
+      "all_timing_steps_per_route": 32,
+      "grouped_data_wait_median_seconds": 0.005700765483197756
+    }
+  },
+  "native_numerical": {
+    "GQA": {
+      "loss_absolute_error": 1.1771917343139648e-06,
+      "whole_gradient_relative_L2": 0.0029601511519208386,
+      "original_logical_teachers": 9178,
+      "length_groups": 4,
+      "grouped_physical_inputs": 12734,
+      "flat_physical_inputs": 32160,
+      "passed": true
+    },
+    "MHA": {
+      "loss_absolute_error": 1.0911375284194946e-05,
+      "whole_gradient_relative_L2": 0.0029589004804915857,
+      "original_logical_teachers": 9178,
+      "length_groups": 4,
+      "grouped_physical_inputs": 12734,
+      "flat_physical_inputs": 32160,
+      "passed": true
+    }
+  },
+  "native_full_context_capacity": {
+    "GQA": {
+      "passed": true,
+      "peak_VRAM_bytes": 17791501312,
+      "context": 1024,
+      "teachers": 40960,
+      "physical_input_tokens": 81920,
+      "loss": 8.290778160095215,
+      "gradient_norm": 7.374273777008057,
+      "optimizer_updates": 0
+    },
+    "MHA": {
+      "passed": true,
+      "peak_VRAM_bytes": 17137935360,
+      "context": 1024,
+      "teachers": 40960,
+      "physical_input_tokens": 81920,
+      "loss": 8.295169830322266,
+      "gradient_norm": 5.448677062988281,
+      "optimizer_updates": 0
+    }
+  },
+  "all_resume_checks": {
+    "GQA": {
+      "kind": true,
+      "spec": true,
+      "binding": true,
+      "lineage": true,
+      "model_config": true,
+      "model": true,
+      "optimizer": true,
+      "scheduler": true,
+      "RNG": true,
+      "sampler": true,
+      "counters": true,
+      "finite": true,
+      "all_history_except_timing": true
+    },
+    "MHA": {
+      "kind": true,
+      "spec": true,
+      "binding": true,
+      "lineage": true,
+      "model_config": true,
+      "model": true,
+      "optimizer": true,
+      "scheduler": true,
+      "RNG": true,
+      "sampler": true,
+      "counters": true,
+      "finite": true,
+      "all_history_except_timing": true
+    }
+  },
+  "all_original_logical_streams_identical": true,
+  "full_original_source_sampler_identical": true,
+  "physical_padding_work_differs": true,
+  "bit_identical_old_CUDA_update_claimed": false,
+  "GPU_occupancy_seconds": 31.330358052975498,
+  "total_actual_prototype_GPU_seconds": 55.82967330899555,
+  "fixed_total_prototype_GPU_ceiling": 180,
+  "forecast_all_new_GPU_seconds": 13489.829673308996,
+  "fixed_all_new_GPU_ceiling": 9000,
+  "science_caps_seconds": {
+    "GQA": 6830,
+    "MHA": 6604
+  },
+  "science_budget_eligible": false,
+  "no_hidden_teacher_reduction_or_cap_increase": true,
+  "verification_updates": 156,
+  "verification_teacher_positions": 1497876,
+  "scientific_teacher_positions": 0,
+  "new_model_quality_evaluations": 0,
+  "probe_weights_used_for_science": false,
+  "interpretation": "Measured objective-preserving PAD efficiency on fixed32-step streams; floating accumulation differs within frozen native numerical tolerance. First-source short timing is a budget forecast, not full300M measurement or learned model quality. Flat-budget failure remains preserved.",
+  "UI_restored": {
+    "identity": {
+      "pid": 698737,
+      "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+      "start_ticks": "20533254"
+    },
+    "actual_alive": true,
+    "model": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    }
+  },
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "next_action": "If actual grouped source/resume/numerical/cap pass and forecast<=9000, implement/freeze same fresh paired300M science and all160 evaluation. Otherwise close this one operational prototype without cap/teacher/recipe rescue.",
+  "archive": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-kv-allocation-bucketed-evidence-20261007",
+    "files": 28,
+    "bytes": 3456783,
+    "manifest_sha256": "b59b77db5e81d051479ecb9ac31b6bed7d59857f6dc53ae53b7bff4eaf34befb",
+    "archived_completion_is_pre_bundle_record": true,
+    "compressed_bundle": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_kv_allocation_bucketed_evidence.tar.gz",
+      "bytes": 962478,
+      "sha256": "827ed7b99aa30e84987c2259a10371599663cbf5036ed574c9093732f27be378"
+    }
+  }
+}

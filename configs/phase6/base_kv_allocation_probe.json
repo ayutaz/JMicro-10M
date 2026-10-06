@@ -1,0 +1,443 @@
+{
+  "created_at": "2026-10-06T21:25:04.265867Z",
+  "proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_kv_allocation_proposal.json",
+    "sha256": "50a1a07e82ffe17b6046374b2cb9e00f5a0a03cfdd72b5d5b76cbb08b6149f2f"
+  },
+  "CPU_tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_kv_allocation_trainer_tests.xml",
+    "sha256": "87f5b605af98f1f26447daff3329b16bdddd35e5967fa584573b698abdd41f17"
+  },
+  "previous_completion": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_kv_head_gradient_completion.json",
+    "sha256": "0a05d6626c7faf168ddafe7db712d8347e7c7c103649c88a1093c67f8868e125"
+  },
+  "sources": {
+    "scripts/base_kv_allocation_trainer.py": "49cbf6a2e6163e16577e385860345e542c3282a9f8e752c164b53a66ac43e7e1",
+    "scripts/probe_base_kv_allocation.py": "b803c8238cca10b76baed061ceb944bf090f320b762562da40944b9dc529b5e3",
+    "scripts/probe_base_kv_allocation.ps1": "d9ac0429fa6c58757d4d6d053b398d55d564402dc030ab48efb37945eb63d8b6",
+    "tests/test_base_kv_allocation_trainer.py": "ce4eacd9b883a1728d77c4cddab1ed6bcd0ab345bb8bf9f400b8118f7a6be1a9",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "scripts/natural_context_contrast_memory.py": "85735b203e1a6f845078046379c6463b51cdc61068a463a379d93c79368f62e2",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca"
+  },
+  "variants": {
+    "GQA": {
+      "schema_version": 1,
+      "architecture": "decoder_only_transformer",
+      "hidden_size": 256,
+      "num_attention_heads": 4,
+      "num_key_value_heads": 2,
+      "head_dim": 64,
+      "activation": "swiglu",
+      "norm": "rmsnorm",
+      "rms_norm_eps": 1e-06,
+      "qk_norm_type": "none",
+      "qk_norm_before_rope": true,
+      "attention_scale": 0.125,
+      "rope_theta": 10000,
+      "rope_layout": "half_split",
+      "rotary_dim": 64,
+      "max_position_embeddings": 1024,
+      "tie_word_embeddings": true,
+      "attention_bias": false,
+      "mlp_bias": false,
+      "dropout": 0.0,
+      "initializer_std": 0.02,
+      "norm_initial_gain": 1.0,
+      "status": "phase5_ablation",
+      "name": "JMicro-10M-T4K-NoQKNorm",
+      "vocab_size": 4096,
+      "num_hidden_layers": 13,
+      "intermediate_size": 640,
+      "expected_parameter_count": 10001152
+    },
+    "MHA": {
+      "schema_version": 1,
+      "architecture": "decoder_only_transformer",
+      "hidden_size": 256,
+      "num_attention_heads": 4,
+      "num_key_value_heads": 4,
+      "head_dim": 64,
+      "activation": "swiglu",
+      "norm": "rmsnorm",
+      "rms_norm_eps": 1e-06,
+      "qk_norm_type": "none",
+      "qk_norm_before_rope": true,
+      "attention_scale": 0.125,
+      "rope_theta": 10000,
+      "rope_layout": "half_split",
+      "rotary_dim": 64,
+      "max_position_embeddings": 1024,
+      "tie_word_embeddings": true,
+      "attention_bias": false,
+      "mlp_bias": false,
+      "dropout": 0.0,
+      "initializer_std": 0.02,
+      "norm_initial_gain": 1.0,
+      "status": "CPU_parameter_count_only",
+      "name": "JMicro-10M-MHA4-FFN560-proposal",
+      "vocab_size": 4096,
+      "num_hidden_layers": 13,
+      "intermediate_size": 560,
+      "expected_parameter_count": 10054400
+    }
+  },
+  "goals": {
+    "web": 225000000,
+    "textbook": 60000000,
+    "story": 15000000
+  },
+  "seed": 42,
+  "optimizer": {
+    "kind": "AdamW",
+    "peak_lr": 0.002,
+    "weight_decay": 0.1,
+    "gradient_clip": 1.0,
+    "seed": 42,
+    "schedule": "Warmup by5M original gold positions; cosine over remaining295M to1e-5. LR follows committed target count, not guessed updates."
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+  "payload": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/natural-context-contrast-capacity-20261007/maximum-original-window.json",
+    "sha256": "518b7158e824a6504e71404864b57d7072d592cd6f200869844e96670c1c5fee"
+  },
+  "probe": {
+    "total_GPU_cap_seconds": 180,
+    "candidate_batches": [
+      48,
+      64,
+      80,
+      96,
+      112
+    ],
+    "warmup_steps": 3,
+    "timed_steps": 5,
+    "worst_input_context": 1024,
+    "worst_teacher_stride": 512,
+    "resident_fraction": 0.9,
+    "required": "Both native CUDA/BF16 finite forward/backward and own full continuous4 versus2+save/resume+2. Measure teacher and physical throughput separately. Stop larger candidates after first OOM; choose fastest measured common stable batch by combined predicted cost; discard probe weights."
+  },
+  "all_new_GPU_ceiling": 9000,
+  "actual_original_source_parity": {
+    "passed": true,
+    "rows": 32,
+    "trace": [
+      {
+        "source": "web",
+        "family": "web:baee9dcca19db0575b88c066c5290669a5597b89114d6c587449ab1e557752af",
+        "body_sha256": "f8294243aeb0d5aabc21551a8d00454ddd4cb2426693f148199ace3ed290c8bc",
+        "index_position": 2746317625,
+        "teachers": 318,
+        "body_bytes": 1313,
+        "EOS": 1
+      },
+      {
+        "source": "textbook",
+        "family": "textbook:3ca003cbd64cdc8b5630c193ccc331904ff05a926822f8b9a5a3fe60b69e1660",
+        "body_sha256": "7a0dec6b346ae029644e904ef9f8f61dcb09ef26b72ce508680040b55fa8661c",
+        "index_position": 11496337376,
+        "teachers": 110,
+        "body_bytes": 551,
+        "EOS": 1
+      },
+      {
+        "source": "story",
+        "family": "story:4f5184abd9ac0ecc1c547e229ca56bb94d2f18da27c1874ff6f711894f82d314",
+        "body_sha256": "c336b8d3db42ed1510a40cd9a54b8e5e48d9f3a987a5ff07f8fb8300e03dffdc",
+        "index_position": 12421817181,
+        "teachers": 86,
+        "body_bytes": 375,
+        "EOS": 1
+      },
+      {
+        "source": "web",
+        "family": "web:7c9a6bc2f193c515b712b93fc09cefd1471dbd2a03e716e984a2ed2a06a59bb4",
+        "body_sha256": "9d939e3c237698ad2e99962b84bafbd7cd8a46fdc75a7d6789e3aa64cef8cb20",
+        "index_position": 8963334773,
+        "teachers": 68,
+        "body_bytes": 250,
+        "EOS": 1
+      },
+      {
+        "source": "web",
+        "family": "web:c2f7feb2d4ae82125d1f4114891bb89a7e8eec44916d72fe4bf5a25e35adae99",
+        "body_sha256": "64d7f9b41693606fdb3657cfd40d313671710a80ee9e9c3de7dcb4fc7a80c465",
+        "index_position": 1812141073,
+        "teachers": 84,
+        "body_bytes": 298,
+        "EOS": 1
+      },
+      {
+        "source": "textbook",
+        "family": "textbook:5e9d46071ce4490699ea0e4a1373004d82e00b857e99cf80573c9528f45270dc",
+        "body_sha256": "6b44a206bb3a2b9be5e9cebc247c5ccc4c815bdb5efbbff5056ab559a15dcc76",
+        "index_position": 10760419864,
+        "teachers": 120,
+        "body_bytes": 563,
+        "EOS": 1
+      },
+      {
+        "source": "web",
+        "family": "web:fc70e54d8c153f9e22ba210c7a147ed920c62f1d13ca661256c0b02434eebef1",
+        "body_sha256": "287fd7a8648bfe92f786493d26125b7da4ebbf3ac3ae0a0c8e55bc58258ac3a2",
+        "index_position": 8703906165,
+        "teachers": 108,
+        "body_bytes": 423,
+        "EOS": 1
+      },
+      {
+        "source": "web",
+        "family": "web:f126d960fcf23ee62eb72222bcb443a27fa979af4aa19acf74f8b6b6d8679bca",
+        "body_sha256": "d52e52a30c83f5acdd9eeeab1cecf163193d4bd6487de52007a856d20945fa5b",
+        "index_position": 9443935885,
+        "teachers": 85,
+        "body_bytes": 306,
+        "EOS": 1
+      },
+      {
+        "source": "web",
+        "family": "web:09202fe6cd94a8a8cb03ac98ed5a3319ec7dde358cbf40f7d0f5753298212125",
+        "body_sha256": "653e9b6c2b5f80f579d95d037f66bb60f4902b2f2a4627ed2efb4b8d866bf96f",
+        "index_position": 6635473604,
+        "teachers": 66,
+        "body_bytes": 271,
+        "EOS": 1
+      },
+      {
+        "source": "web",
+        "family": "web:6d9a2629309ca6b36e900e828f6a81a235f08a1fd0faa6aa4dd4daf41af93019",
+        "body_sha256": "0a809a7d54dfe72347f2e9212372541fd119074d48323926ab7b3f4ad0c7ac27",
+        "index_position": 5241752953,
+        "teachers": 98,
+        "body_bytes": 446,
+        "EOS": 1
+      },
+      {
+        "source": "web",
+        "family": "web:0a897593fe234ab821c0e9e9de8058a523d126e4abb41fbbad7110c7e6851e4e",
+        "body_sha256": "ddef08fc2561dd86ae137bd64d8b3d40257bc47f277cbe89992116d9caa26749",
+        "index_position": 6825844322,
+        "teachers": 85,
+        "body_bytes": 262,
+        "EOS": 1
+      },
+      {
+        "source": "textbook",
+        "family": "textbook:862dfc87192ab05d6fa909e08921f4946c3ccc006215b94b6310892e1da0bf3b",
+        "body_sha256": "69ba5ad3a222acc27dcda3dd014e68efde4d7d3272f1ffe14d2e21f4e036b5b1",
+        "index_position": 12152201074,
+        "teachers": 103,
+        "body_bytes": 578,
+        "EOS": 1
+      },
+      {
+        "source": "web",
+        "family": "web:9d88f908dc013b60162517fb0614378a1b7afca186a414fb1656fdfe4920d0a9",
+        "body_sha256": "d48b07597f5559942556bbc3347214c600e075150303d7c2d07a19b9b85ad774",
+        "index_position": 7995970336,
+        "teachers": 77,
+        "body_bytes": 271,
+        "EOS": 1
+      },
+      {
+        "source": "web",
+        "family": "web:300efd0440c23cd8dc50837e43b9099a282310c9001ecfd8f45e7d8a927975fe",
+        "body_sha256": "857ff16f5dd69eb4113e0ec4831dfc0e3063d9ced9ab48f65c5e509535a9207f",
+        "index_position": 2479708787,
+        "teachers": 192,
+        "body_bytes": 776,
+        "EOS": 1
+      },
+      {
+        "source": "web",
+        "family": "web:1d52c01c0ac55481d0c11360ad28a21702e8b978b5bc5e78a592af9394e3862d",
+        "body_sha256": "bba69106bb6ae3491c68cd38ac1a68096a7c9606beeb41f5a92dd525b76cacfc",
+        "index_position": 3026113054,
+        "teachers": 80,
+        "body_bytes": 343,
+        "EOS": 1
+      },
+      {
+        "source": "textbook",
+        "family": "textbook:517d2d0e88ab8f7e9aab973a31d1b54f99bb8625a6a5d5a5d5c5ce24be2b9378",
+        "body_sha256": "20a906c003688d4ba171a1c6a4805fc9632b7570ad8ac7f587472f54057a0eac",
+        "index_position": 11206132902,
+        "teachers": 110,
+        "body_bytes": 477,
+        "EOS": 1
+      },
+      {
+        "source": "web",
+        "family": "web:21d303fd6491f8f05adef7032d3456accbb81d908cf88a329e465269ad5774c1",
+        "body_sha256": "cff2336cf3ffc0ccc506519b1b942a3800d3a6ead954e83bd4340c03379c4eff",
+        "index_position": 9324969872,
+        "teachers": 66,
+        "body_bytes": 310,
+        "EOS": 1
+      },
+      {
+        "source": "story",
+        "family": "story:b82f803561cd42eec34d1f7acb2087b7c50d38dd2ed2c8d26f72ad4a6c741fef",
+        "body_sha256": "99fdb9e8c5de562f20036c5d6590dd56e336d8b73ae2ea0e708c9d0d45b9c1c9",
+        "index_position": 12639701107,
+        "teachers": 54,
+        "body_bytes": 189,
+        "EOS": 1
+      },
+      {
+        "source": "web",
+        "family": "web:0e2200fcb7aa1d2c6f52cafed8cc9b7480e164c9517a7791b800289d363d9e9a",
+        "body_sha256": "396179cfe601ca3b78b53bf05bc5fb6c2f442537cf873af78e4eaded0b2326ea",
+        "index_position": 1351531309,
+        "teachers": 164,
+        "body_bytes": 640,
+        "EOS": 1
+      },
+      {
+        "source": "web",
+        "family": "web:940cea5add9dec926c64e8e8dd26fc5199aad9be77217e0491f1ef27871d4000",
+        "body_sha256": "9c3d78c264d22076dd3c6a99d3e963e8ed015c2fe2ab25bcadb409875d551b84",
+        "index_position": 7110054999,
+        "teachers": 83,
+        "body_bytes": 406,
+        "EOS": 1
+      },
+      {
+        "source": "web",
+        "family": "web:87b3c69d51030ed5ef85658b4e5b949d6eac6c4316c03168607faf83c59ae43b",
+        "body_sha256": "6b3b933713e8a75176d6dfb51c55be7c5cdff231c8f2f24de39e6daaa9d0dd33",
+        "index_position": 1970753822,
+        "teachers": 65,
+        "body_bytes": 232,
+        "EOS": 1
+      },
+      {
+        "source": "web",
+        "family": "web:4441e5418c64cdf42cd5046824569595d3f33ebe9944a4869491a07779adc5bf",
+        "body_sha256": "32b35f9f66f9876e6f6d646093758d5d01c7173d8ca5ec82474e0d171dfee87b",
+        "index_position": 1137652189,
+        "teachers": 104,
+        "body_bytes": 349,
+        "EOS": 1
+      },
+      {
+        "source": "textbook",
+        "family": "textbook:f920bd4976b4c7fa7e97392850fe517690957c83a806d9472046af2da81dc2b1",
+        "body_sha256": "e48e69e74192f417014d052424fcff5eaf9d3e8c9ac312056432bfba684e8a7c",
+        "index_position": 11000992615,
+        "teachers": 154,
+        "body_bytes": 608,
+        "EOS": 1
+      },
+      {
+        "source": "web",
+        "family": "web:32ff3a43ffb111db5870b04e7dc772456be2c04846376c535fe6153af0d7217b",
+        "body_sha256": "75fbe733c18c0fd3fc27553573d11dd39402db243bc1b87a8e3bb3b7a83e83c8",
+        "index_position": 9718401709,
+        "teachers": 74,
+        "body_bytes": 291,
+        "EOS": 1
+      },
+      {
+        "source": "web",
+        "family": "web:0a18cf724571e52adbbf13932354068cb8e4f4d5a2cda722e6412591bcce2456",
+        "body_sha256": "ad976151561bac2e0280c28676c99c938a9ccb57379428f3540583fab821b013",
+        "index_position": 6805745387,
+        "teachers": 82,
+        "body_bytes": 331,
+        "EOS": 1
+      },
+      {
+        "source": "web",
+        "family": "web:4721f1acf36707390a8ca7b3344289ece3e685702f9766e7be90ffde42518d76",
+        "body_sha256": "c3ba269328c5fb6d90e7fac2ea7559df094e030bf5f25ba4a1945628f1547544",
+        "index_position": 6010380071,
+        "teachers": 87,
+        "body_bytes": 333,
+        "EOS": 1
+      },
+      {
+        "source": "web",
+        "family": "web:98ce80f91b5100ba9b5d3c2a1fe5b8dc536c15fb94eb61abe92c86c2dbb51a67",
+        "body_sha256": "77bcd60600654f6c1882abe1dac03245e0c68389d0243f87641cfafd8757dcb5",
+        "index_position": 4284391864,
+        "teachers": 78,
+        "body_bytes": 286,
+        "EOS": 1
+      },
+      {
+        "source": "web",
+        "family": "web:f8f23a38f59ab7f6b26578e8f1ee56ef1f10acbdee8f09a33314d7cf3fa54b82",
+        "body_sha256": "ced9d241c0c54bf977993c24cb8cbba9df2485916e8123f19ef3ece6d152686d",
+        "index_position": 6483366506,
+        "teachers": 172,
+        "body_bytes": 859,
+        "EOS": 1
+      },
+      {
+        "source": "story",
+        "family": "story:d0282b49747ceb4bb2c22605aa7ba07372cdd9551404cfe78618a44b10b29c39",
+        "body_sha256": "979201aa3d5e335acff18daabf36ad4904dd59957e7b3ebd8a2fe670763a087d",
+        "index_position": 12760684489,
+        "teachers": 65,
+        "body_bytes": 276,
+        "EOS": 1
+      },
+      {
+        "source": "web",
+        "family": "web:cab530c7839020f97470968c11d96d31e21cfe76e61741247432c696d264bf67",
+        "body_sha256": "dec08a877a44cb8b393abcece4971e6d446966d6a79cc05ca50fb92cd0578666",
+        "index_position": 8639245438,
+        "teachers": 111,
+        "body_bytes": 390,
+        "EOS": 1
+      },
+      {
+        "source": "textbook",
+        "family": "textbook:8d3b20a1825c3f6653de53d98b4ed4efe89e5c0bf7e5a820be089b5b1fdd02fa",
+        "body_sha256": "aa5e35cb09630abf1f922e4f2e2d5de71cebacd9a989aa870b542735a6b8a68b",
+        "index_position": 12351694360,
+        "teachers": 154,
+        "body_bytes": 652,
+        "EOS": 1
+      },
+      {
+        "source": "web",
+        "family": "web:0706ff96d55ce3acaa9f2443caab1ff84a9b4fce8d5277560ce39ad2eabcd6a5",
+        "body_sha256": "70f67b46479be32e9b01083c73b1e58fe6fd87f6422f0b8981a5ddff16f476a4",
+        "index_position": 9357238983,
+        "teachers": 77,
+        "body_bytes": 269,
+        "EOS": 1
+      }
+    ],
+    "source_teachers": {
+      "web": 2424,
+      "textbook": 751,
+      "story": 205
+    },
+    "scope": "Fixed first32 original rows; exact gold/windows/bytes/EOS/draws, auxiliary metadata deliberately different",
+    "CPU_seconds": 0.17257167998468503,
+    "scientific_teachers": 0
+  },
+  "scientific_teachers": 0,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false
+}

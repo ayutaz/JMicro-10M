@@ -1,0 +1,148 @@
+{
+  "created_at": "2026-10-06T21:12:37.523940Z",
+  "status": "cached_negative_routes_and_smoothing_reconciled_no_new_scoring",
+  "references": {
+    "base_failure_route_synthesis.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_failure_route_synthesis.json",
+      "sha256": "2384411b47272b53b9e4eda981a69ff67e335069ca125a43e551c892515826b2"
+    },
+    "base_intervention_gap_synthesis.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_intervention_gap_synthesis.json",
+      "sha256": "3a46b720673d73550dd25164ddaaaaa4829167415c1138a2cfc5db717cd9a709"
+    },
+    "base_capacity_reference_synthesis.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_capacity_reference_synthesis.json",
+      "sha256": "ba603b7bd2d90b54300eee86815f6ed7fa10cf1c250e38420b1998ac5c52fe14"
+    },
+    "base_label_smoothing_comparison_review.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_label_smoothing_comparison_review.json",
+      "sha256": "9f51096eec852a5a38b3dc2a4782023ecb4236825e921a603a56769dc510c7b2"
+    },
+    "natural_context_contrast_comparison_review.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural_context_contrast_comparison_review.json",
+      "sha256": "d034f4f5c20d67c6d94e5052f569670fce2fd5e166fd0d625b16c1def003c674"
+    },
+    "base_residual_dropout_comparison_review.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_residual_dropout_comparison_review.json",
+      "sha256": "14cefdcd35658501fb85531ce29d9a1b49b728018f96a2287ba83a15a9979579"
+    }
+  },
+  "latest_summaries": {
+    "smoothing": {
+      "BPB": 1.0457113994878056,
+      "rates": {
+        "outputs": 80,
+        "eos": 27,
+        "repetition": 42,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 58,
+      "relevance2": 32,
+      "coherent": 2,
+      "appropriate": 1,
+      "notes_sha256": "d9f13ec5f234e683963dae35228b0f788eb8cae2e6e57121e78cbba16318a0eb",
+      "generation_sha256": "64feb600cff1e588e2b55c7639536b6fa7f2ca75f47c0f96d1cacbc7be01fc4f",
+      "Japanese": {
+        "semantics": 0.5989583333333334,
+        "jblimp": 0.7915407854984894,
+        "jcqa": 0.32082216264521896
+      }
+    },
+    "CE": {
+      "BPB": 0.998487162513845,
+      "rates": {
+        "outputs": 80,
+        "eos": 19,
+        "repetition": 45,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 44,
+      "relevance2": 25,
+      "coherent": 2,
+      "appropriate": 2,
+      "notes_sha256": "5a36aa6d4914260d1975974ae0fbee6c1e0024d900ea8103da970fdbc4ee9369",
+      "generation_sha256": "73a952a4e08ca8cfffa229fdb8c8f497d0373ff0646ca4b4f5cecd90a27e644b",
+      "Japanese": {
+        "semantics": 0.625,
+        "jblimp": 0.7734138972809668,
+        "jcqa": 0.35031277926720283
+      }
+    },
+    "strong_staged": {
+      "BPB": 1.1336128657420816,
+      "rates": {
+        "outputs": 80,
+        "eos": 76,
+        "repetition": 2,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 65,
+      "relevance2": 39,
+      "coherent": 23,
+      "appropriate": 26,
+      "notes_sha256": "6b143e08096a1ee2365a643c008d5c009d2c2ff48dd1d42a9749ac5301766d2d",
+      "generation_sha256": "d5b5a7c6b5d971de9bc46c77f52ac5ea19132cab7b97f034c274974cdbe2620e",
+      "Japanese": {
+        "semantics": 0.5625,
+        "jblimp": 0.7824773413897281,
+        "jcqa": 0.26541554959785524
+      }
+    }
+  },
+  "latest_gates": {
+    "CE": {
+      "checks": {
+        "coherence_gain_at_least8": false,
+        "paired_CI_lower_above0": false,
+        "EOS_nonworsening": true,
+        "repetition_nonworsening": true,
+        "no_empty_role_unicode": true,
+        "BPB_gate": false,
+        "appropriate_completion_not_punctuation": true
+      },
+      "passed": false,
+      "difference_count": 0,
+      "CI95": [
+        -0.0375,
+        0.0375
+      ]
+    },
+    "strong_staged": {
+      "checks": {
+        "coherence_gain_at_least8": false,
+        "paired_CI_lower_above0": false,
+        "EOS_nonworsening": false,
+        "repetition_nonworsening": false,
+        "no_empty_role_unicode": true,
+        "BPB_gate": true,
+        "appropriate_completion_not_punctuation": true
+      },
+      "passed": false,
+      "difference_count": -21,
+      "CI95": [
+        -0.3625,
+        -0.1625
+      ]
+    }
+  },
+  "latest_final_validation_eligible": false,
+  "next_hypothesis": "Broad opposition between the two query-head contributions to each shared K/V projection. Existing architecture sweep retained two queries per KV, and loss regularizers did not solve coherence.",
+  "prior8K_already_trained": true,
+  "no_8K_or_depth_width_sweep_repeated": true,
+  "local_novelty_files_checked": 803,
+  "local_novelty_matches": [],
+  "novelty_scope": "Top-level scripts/*.py and configs/phase6/*.json, fixed textual markers; not an external or global claim.",
+  "actual_GPU_seconds": 0,
+  "new_scientific_teacher_tokens": 0,
+  "new_content_judgments": 0,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false
+}

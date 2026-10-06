@@ -1,0 +1,97 @@
+{
+  "created_at": "2026-10-06T21:12:37.524136Z",
+  "payload": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_embedding_gradient_payload.json",
+    "sha256": "4b592ba9e5ec64a664b249b07ade7dd4763db1e3e93a14c2a421a4efa2f23671"
+  },
+  "checkpoints": {
+    "parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+    },
+    "CE100M": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/CE/checkpoint-00017698.pt",
+      "sha256": "f691a7587c03c51293a2e77889307da0efa18d2349c13e4f77439fd339586967"
+    }
+  },
+  "checkpoint_identity": {
+    "parent": {
+      "size": 120181763,
+      "mtime_ns": 1791114231712428007
+    },
+    "CE100M": {
+      "size": 124373565,
+      "mtime_ns": 1791307063680713152
+    }
+  },
+  "previous_completion": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_label_smoothing_comparison_completion.json",
+    "sha256": "9a5904a9db1398667e24aec1f578c0aa6587c3ee107dd789638f33ff4aeee6c5"
+  },
+  "CPU_tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_kv_head_gradient_tests.xml",
+    "sha256": "f7e8e82e6ca1a1ef2d496f047da2fc72e36d4af3601a8ff65a77d2e43391f966"
+  },
+  "evidence_synthesis": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_post_smoothing_root_synthesis.json",
+    "sha256": "791e25367bcd50e9d9967d058c485a071be22fdcf8ee2c9dce8a7bc721645014"
+  },
+  "sources": {
+    "scripts/base_kv_head_gradient_diagnostic.py": "a63fbedc26e3fa7226fc21b2a84b120b852a6bb4e059b96bf9ec6786d242eb37",
+    "scripts/diagnose_base_kv_head_gradients.py": "ac226a2c49a4c272e50d28b1149e17423447460d11c5aad0750eb70138ae758f",
+    "scripts/diagnose_base_kv_head_gradients.ps1": "df45f30e868f77ea7dae322c08af5621fda37636708bc870346bd51f15513393",
+    "tests/test_base_kv_head_gradient_diagnostic.py": "9ebe973f976754c721d2d192c89953bf54907e7c1565954374a76d3ce9ab3448",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "scripts/natural_context_contrast_memory.py": "85735b203e1a6f845078046379c6463b51cdc61068a463a379d93c79368f62e2",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "src/jmicro/phase5.py": "cceae262745d92b1763c9d1263ba9746b8c6441896e97c001d8a3604ccaf2f98",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca"
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "documents_per_source": 8,
+  "batch": 4,
+  "maximum_rows": 48,
+  "GPU_limit_seconds": 180,
+  "native_parameters": 10001152,
+  "precision": "FP32 math; TF32 disabled",
+  "attribution": "Two zero additive pre-RoPE K/V offsets expose gradients per query head. Sum per-head d(projected_K/V) outer normalized input equals original shared K/V weight gradient. Original model/config/parameters remain unchanged.",
+  "hypothesis": "Substantial broad gradient cancellation within GQA groups may warrant one fixed attention-capacity comparison; this is not an asserted cause or proof of MHA improvement.",
+  "research_screen": {
+    "cosine_at_most": -0.1,
+    "cancellation_at_most": 0.9,
+    "minimum_sources": 2,
+    "require_both_checkpoints": true,
+    "aggregation": "Target-weighted source mean across all13 layers/two KV groups; local group statistics reported without selecting favourable groups.",
+    "Base_quality_gate": false
+  },
+  "completion": "Both fixed original10B and cached CE100M endpoints, same24 TRAIN families/first-last windows, all26 shared K/V groups. Exact native logits/loss, all full K/V gradient sums, unchanged weights/RNG/no accumulated grads/forward restoration. No updates or DEV/TEST.",
+  "failure_policy": "If broad screen fails at either endpoint, close this marker and do not launch MHA/gradient surgery on its basis. No threshold/group/layer/sample rescue. Failure does not prove GQA representation capacity adequate.",
+  "references": [
+    {
+      "url": "https://aclanthology.org/2023.emnlp-main.298/",
+      "meaning": "Primary paper reports GQA quality close to MHA with efficient decoding at different model scales; does not establish harm or a cure for JMicro10M."
+    }
+  ],
+  "preparation_CPU_wall_seconds": 0.2502321809879504,
+  "new_GPU_seconds": 0,
+  "optimizer_updates": 0,
+  "new_scientific_CE_teachers": 0,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true
+}
