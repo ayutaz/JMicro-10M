@@ -1,0 +1,45 @@
+{
+  "status": "defined_read_only_TRAIN_diagnostic_not_implemented_not_launched",
+  "created_at": "2026-10-06T11:08:30.301911Z",
+  "trigger": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/review.json",
+    "sha256": "93d031d41c2af61457cd8ee7271b7b9fc757a484f8bb747a45d8fc56e5a37597"
+  },
+  "question": "Under the frozen token-mean CE, how much does each TRAIN source and the conditional outcome/EOS contribute to the parameter gradient, and how do source gradients align?",
+  "motivation": "Four completed cells show an order-dependent Web/generation tradeoff. Masked mixed retained WebBPB but failed completion. Conditional targets have1641755/91641755 actual teacher mass, not10percent. Count alone does not measure the gradient or prove dilution causes the quality failure.",
+  "fixed_checkpoints": {
+    "original_fullparent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+      "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+    },
+    "completed_masked_mixed": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+      "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+    }
+  },
+  "fixed_inputs": "First16 consecutive original mixed TRAIN batches from the frozen original parent Web cursor/seed42, context1024/batch32. Use the same windows/reference targets/conditional outcome+EOS mask as the completed fourth cell. No dev/test input or quality-based batch/CP selection.",
+  "groups": [
+    "web",
+    "story",
+    "ordinary_textbook",
+    "conditional_outcome_body",
+    "conditional_EOS"
+  ],
+  "calculation": "Use the unchanged BF16/math forward in eval mode with no optimizer. Compute each group CE-sum gradient divided by the same actual nonignored teacher count. Report teacher/input counts, source CE, actual token fractions, full unique-parameter gradient norm, pairwise dot/cosine, contribution to total squared norm. Unique tied parameters count once. Report both conditional groups and their sum. Cross-check summed groups against an independently computed original token-mean CE gradient within a preregistered numeric tolerance. Zero support has zero gradient and null cosine, never an invented label/division by zero. Gradient diagnostics are not scientific training exposure.",
+  "read_only_requirements": "No optimizer construction/step, no parameter or saved optimizer/scheduler/sampler/counter writes. Use torch.autograd.grad so parameter .grad remains absent. Isolate and restore RNG. Verify model bitwise unchanged/no gradients/eval/finite/full expected input hashes. Persist PID/boot/start/log/result and inspect existing GPU processes before start; restore original UI after completion.",
+  "CPU_preparation_ceiling_seconds": 30,
+  "total_new_GPU_ceiling_seconds": 90,
+  "teacher_tokens_learned": 0,
+  "optimizer_updates": 0,
+  "tests_required": "Analytical tied-parameter group decomposition, uneven masks/teacher denominator, opposing gradients, absent-source zero support, finite rejection and immutable model/RNG checks.",
+  "completion": "All16 matched TRAIN batches at both fixed checkpoints, decomposition checks/source counts/gradient summaries/actual terminal/UI/portable evidence and commit. No dev model reruns, sampling/content review, new learning seed, final test or adoption in this diagnostic.",
+  "failure": "End the single diagnostic on source/checkpoint/accounting/numeric/budget failure; no batch reselection, loss coefficient, source ratio, mask/EOS weight, LR, decoder or checkpoint sweep.",
+  "interpretation": "A local gradient observation of fixed TRAIN batches/one learned seed cannot demonstrate general quality, prove a cause or justify an automatic loss reweighting. Any later training intervention needs a separate explicit mechanism, fixed comparison, cost ceiling and unchanged quality criteria; this failed fourth cell stays rejected.",
+  "next_action": "Implement and verify the bounded read-only TRAIN gradient attribution before any further Base training.",
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false
+}

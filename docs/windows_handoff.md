@@ -1,3 +1,11 @@
+混在順序×outcome/EOS教師の第4条件と全評価を完了、不採用（2026-10-06 JST）。Baseは未完了。完成・採用時に通知して停止し、Chat/Dialogue/SFT/量子化は開始しない。
+
+actual635420/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16750671は実終了・不在。科学3068更新/実教師91641755/reference100M/physical100532224、source別窓・元教師・mask教師・digest/cursorは既3条件と一致。検証48更新/1433919教師は科学と別。scienceGPU261.299751+probe17.989334=新全279.289085秒/上限900。全256body/common472055byte・日本語192/331/1119・greedy80・bridge/retention128を完了し、全80rawに個別理由を保存（同raw8例は旧採点継承、非blind Codex/独立人手なし）。
+
+新mask/mixedはBPB0.973096652、文法31/関連64/一貫性11/適切12/EOS22/反復35/Unicode-role-empty0（各80）。意味61.458%/JBLiMP77.039%/JCQA35.389%。歴史Web保持guardは通るが、strong23比一貫性-12/paired CI[-.2625,-.025]、mask/staged35比-24/CI[-.425,-.175]で内容・EOS・反復基準未達。4条件ではmixedがWeb保持、stagedが完結に優れる局所tradeoffを観測。mask効果の一貫性交互作用-5/CI[-.2,.0875]は0を含む。全旧採点/失敗/品質基準を保持し、独立seed/full dev/protected test/採用は未実施。今回比較は終了、weight/ratio/mask/source/CP/LR/decoder sweepで救済しない。
+
+terminalのactive_job/全raw/review/会計/費用をinterleaved_outcome_completion/portable/archiveへ保存。元10B UI635754/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16777332をactual ps/HTTP親410f975d…/busy=falseで確認。関連series累積3207.952093秒（全project費用ではない）。次はsource_gradient_attribution_proposal.jsonのread-only TRAIN勾配診断のみ。固定元親と今回終端/先頭16同TRAIN batches、5source-target groupの実token-mean CE勾配寄与/内積を測る。CPU準備30秒/新GPU全90秒/optimizer・学習教師0、実装/解析CPUtest/不変性・RNG/数値分解一致/永続PIDを先に用意する。未実装・未起動。局所勾配で原因や増量の有効性を断定せず、新学習介入は別の比較・予算を要する。Phase0–3/旧数値7失敗保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 混在順序×固定outcome/EOS教師の実GPU比較を永続起動（2026-10-06 JST）。own source会計/CUDA gate/実測設定は6970309へ保存したprogress。Baseのみ完成時に通知して停止、Chat/Dialogue/SFT/量子化なし。
 
 actual635420/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16750671をalive/ps確認、configSHA4f91703748a2f3f83b40ef0e291266537cc494dac0b65359c3b8eec1d86c22e9、run reports/phase6/interleaved-outcome-order-20261006。観測stagegeneration80、直近教師91426867/新実hard教師91641755（reference100Mと区別）、直近loss2.5054211616516113有限。status setupの初期ラベルだけで停止を推定せずPID/heartbeat/教師/完了checkpointを根拠とする。既3条件/両CPU source hashesはそのまま、Web実cursor・全model/Adam/scheduler/RNG/実LR.00001継承。GPU新全上限900/own probe17.989334秒、元UIは実job中停止・durable finallyで復帰。実GPU gate48更新/教師は科学へ加えない。
