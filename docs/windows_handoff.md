@@ -1,3 +1,11 @@
+混在順序×固定outcome/EOS教師の実GPU比較を永続起動（2026-10-06 JST）。own source会計/CUDA gate/実測設定は6970309へ保存したprogress。Baseのみ完成時に通知して停止、Chat/Dialogue/SFT/量子化なし。
+
+actual635420/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16750671をalive/ps確認、configSHA4f91703748a2f3f83b40ef0e291266537cc494dac0b65359c3b8eec1d86c22e9、run reports/phase6/interleaved-outcome-order-20261006。観測stagegeneration80、直近教師91426867/新実hard教師91641755（reference100Mと区別）、直近loss2.5054211616516113有限。status setupの初期ラベルだけで停止を推定せずPID/heartbeat/教師/完了checkpointを根拠とする。既3条件/両CPU source hashesはそのまま、Web実cursor・全model/Adam/scheduler/RNG/実LR.00001継承。GPU新全上限900/own probe17.989334秒、元UIは実job中停止・durable finallyで復帰。実GPU gate48更新/教師は科学へ加えない。
+
+reviewer/four-cell analysisを追加、CPU2tests/1.70秒で実CPU masked stateのreference教師誤計数・source target SHA改変・欠損更新と不均一byteのpaired四条件交互作用を確認。fixtureは実モデル品質/独立seedの証明ではない。関連source/counter digestと全80raw採点を要求し、既strong/絶対/歴史WebBPB基準を変更しない。全評価/80内容/四条件採否は未完了。再開はactual不在確認後scripts/run_interleaved_outcome_order.ps1 -Mode Train -Worker、観測timeoutだけで重複起動しない。
+
+次は同jobの全256commonbytes/日本語192-331-1119/greedy80/bridge-ret128完了→全80個別raw notes/既3条件の旧採点そのまま四条件比較→採否/元UI/可搬証拠/commit。qualified recipe後だけ独立学習seed/full dev/protected test/adoption、Base未完了。ratio/mask/source/CP/LR/decoder sweepで今回を救済しない。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 混在順序×固定outcome/EOS教師のownCUDA準備完了・science設定凍結（2026-10-06 JST）。前shared-prefix診断は3024a2a。Baseのみ完成時に通知して停止、Chat/Dialogue/SFT/量子化なし。
 
 actual634770/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16735578はcomplete・不在。元10.5B fullparent d18e3e…のmodel/Adam/scheduler/RNG/actual Web cursor/親sampler lineage/実LR.00001を初期一致確認。mixed8対4+4で全4source/実conditional maskを含む全state/history/finite/source digest/会計の一致に成功。own32steady step0.050137秒、検証48更新/1433919教師/1572864inputを科学と別に記録。probeGPU17.989334秒/上限120。
