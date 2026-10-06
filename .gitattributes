@@ -101,3 +101,14 @@ tests/test_source_order*.py text eol=lf
 reports/phase6/source_order_*.json -text whitespace=cr-at-eol
 reports/phase6/public-prose-registry-20261006/** -text whitespace=cr-at-eol
 reports/phase6/public-prose-registry-20261006/*-README.md -text whitespace=-blank-at-eol,-blank-at-eof
+
+# Source-order CUDA snapshots and configs are SHA-bound native evidence.
+configs/phase6/source_order_*.json -text
+reports/phase6/source-order-condition-comparison-20261006/** -text whitespace=cr-at-eol
+reports/phase6/source-order-condition-comparison-v2-20261006/** -text whitespace=cr-at-eol
+reports/phase6/source_order_*.xml -text
+reports/phase6/source_order_*.tsv -text
+reports/phase6/source_order_*.tar.gz -text
+# These two immutable upstream snapshots retain their original trailing blank line.
+reports/phase6/source-order-condition-comparison-v2-20261006/source/scripts/review_historical_parent_condition_comparison_v3.py -text whitespace=-blank-at-eof
+reports/phase6/source-order-condition-comparison-v2-20261006/source/scripts/review_original_web_retention_comparison.py -text whitespace=-blank-at-eof

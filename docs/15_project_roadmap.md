@@ -1,3 +1,16 @@
+同100M教師の学習順序比較を全評価まで完了・不採用（2026-10-06 JST）: Baseのみを品質・独立学習seed/full dev/protected test/採用まで継続し、実完了時に通知して停止する。Chat/Dialogue/SFT/量子化は開始しない。Baseは未完了・未採用。前準備/起動は6ac4ad3へlocal commit。
+
+actual581514/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start15094429はcomplete・実process不在。科学100,000,000教師/100,532,224input/3068更新、CPupdate323503 SHAfb43f2618c0679ca6c6f7a0c5b9faf1b336be8985271c8513f2e4bbfde3cd7ae。train163.394035秒、scienceGPU224.477945＋実CUDA検証20.297709＝全244.775654秒<900。検証40更新/1,307,967教師はscienceと別会計。v1推定922.223216秒の拒否を保持し、v2は同評価の過去全非学習GPU88.466379/92.796498秒から150秒枠＋30%＋50秒を使い、全予算817.223216秒を事前凍結した。実上限/品質条件/教師/形状/親/実LR/順序は緩めていない。
+
+同historical10.5B fullstate/実LR.00001/Adam/scheduler/RNG/同Web75M・story5M・ordinary10M・conditional10Mで、混合→Web→story→ordinary→conditionalの順だけを変更。cached control100MはGPU再評価せず保存結果/全notesを再利用。全4source終端cursorと教師/EOS/input/bytes/focus counterが一致、親Web cursorから73421blocks継続を実stateで確認。教材増量や独立学習seedの比較ではない。
+
+対照→順序変更: BPB .974820→1.133613（16.2895%悪化）、文法2=69→65/関連2=51→39/一貫性2=4→23/適切18→26/EOS30→76/自動反復31→2、Unicode・role・empty両方0（各80）。意味60.938→56.250%、JBLiMP76.133→78.248%、JCQA34.584→26.542%。一貫性差+19/paired95%CI[.1375,.3375]は固定devのnonblind結果で、独立seed/一般自然文/唯一原因を証明しない。EOS/反復には改善がある一方、relative BPB guard・歴史Web1% BPB guard・絶対一貫性27/適切27に未達で不採用。停止率だけをBase完成としない。
+
+同byte256/472055bytes・全日本語192/331/1119・全80greedy64・bridge128/retention128を完了。全80を個別読解、同id/prefix/raw/stop2件だけ過去notesを再利用し78新観察、独立人間評価なし。最後のrelation教材のライト/人名/在庫の型への脱線が目立つ。source recency/forgettingは仮説であり確定原因とはしない。local bridge両極正答62→59/128、未見構造20→8/64、未見語彙42→51/64、旧retention45→36/128。自然文の改善と局所probeは区別する。
+
+completion source_order_condition_comparison_completion.json/review source_order_condition_comparison_v2_review.jsonと全raw-bound notesを保存。可搬331text/12,599,429bytes、gzip2,687,752/SHAbd14762b47fc51c0b22872f516d7239a9ae273dbd6b0f3fd3b402039952424a1、全Windows raw/archive SHA一致。checkpoint tensors/13GB index/原文arraysは重複しない。元10B UI582426/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start15117517の実identityとHTTP親SHA410f975d…/10,000,007,168/busy=falseを確認、科学GPU job0。
+
+次の具体作業はsource_order_followup_diagnostic_proposal.jsonのCPU30秒/GPU0の既存paired256 body/goldEOS NLL整理。全byte BPB再現・変化の件数/固定文長quartiles・既存日本語/全80notesの差を記録し、停止の改善と本文予測の退行を区別する。新採点/tensor・data再parse/保存点探索なし。仮説に根拠がある新規な有限比較を最大1つだけ定義し、根拠がなければ新実験なしを記録する。別順序/比率/LR/weight/source sweep・自動長期延長・有利なCP選定・基準緩和なし。独立seed/full dev/protected testは品質pilot合格後。旧数値7失敗/Phase0–3を維持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
 同100M教師・教材順序比較の実CUDA検証を終え、本学習を開始（2026-10-06 JST）: Baseのみを品質・独立学習seed/full dev/protected test/採用まで継続し、完了時に通知して停止する。Chat/Dialogue/SFT/量子化には進まない。Baseは未完了・未採用。
 
 own v1の実CUDA4対2+2で全32state/history/finite checksが一致、親model/Adam/scheduler/RNG/実Web cursor/実LR.00001を維持。32timingを含む40検証更新/1,307,967教師、GPU20.297709秒、科学教師0。actual580440はcomplete・実process不在。固定300秒の評価枠を含む見積922.223216秒は900秒超過のため本学習前に拒否、v1 source/config/resultとsource_order_budget_rejection_v1.jsonを保持。

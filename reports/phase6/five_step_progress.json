@@ -103,7 +103,7 @@
       "archive_manifest": "reports/phase6/amount_learning_evidence_manifest.json"
     },
     {
-      "status": "Base_only_same_teacher_source_order100M_running",
+      "status": "Base_only_source_order100M_complete_rejected",
       "id": 5,
       "deliverables": [
         "improvedBase stable1B/2B/5B/10B and unchangedquality",
@@ -307,7 +307,7 @@
         "limits": "Train-only local diagnostic, not a representative corpus quality estimate, independent human review or a causal proof. Prior compact packing comparisons are retained, not rerun.",
         "followup": "Only if supported, freeze one matched packed vs boundary-aware training comparison with equal teacher budget and unchanged quality gates; otherwise choose one conditional-meaning/material hypothesis from raw failures. Do not repeat old compact isolation blindly."
       },
-      "current_next_action": "Finish active source-order100M, all fixed evaluations/all80 content, exact all-four source terminal states, unchanged quality gates; then archive, restore UI, commit. Base remains unadopted; no Chat/quantization.",
+      "current_next_action": "CPU30s/GPU0 paired256 body/goldEOS diagnostic defined in source_order_followup_diagnostic_proposal.json; reuse current/control actual results and existing all80 notes, no rescoring/tensor/data reparse. Distinguish recency/forgetting hypothesis from observed tradeoff; only then define a novel bounded Base comparison if evidence supports it. No automatic extension/order/LR/source sweep or Chat/quantization.",
       "coverage_2B_review": "reports/phase6/textbook_coverage_2b_review.json",
       "coverage_2B_summary": {
         "prepared_tokens": 2000001312,
@@ -367,7 +367,7 @@
       "condition_source_learning_config": "configs/phase6/condition_source_learning_100m.json",
       "condition_source_learning_completion": "reports/phase6/condition_source_learning_completion.json",
       "condition_source_transfer_proposal": "reports/phase6/condition_source_transfer_proposal.json",
-      "next_action": "Finish active source-order100M, all fixed evaluations/all80 content, exact all-four source terminal states, unchanged quality gates; then archive, restore UI, commit. Base remains unadopted; no Chat/quantization.",
+      "next_action": "CPU30s/GPU0 paired256 body/goldEOS diagnostic defined in source_order_followup_diagnostic_proposal.json; reuse current/control actual results and existing all80 notes, no rescoring/tensor/data reparse. Distinguish recency/forgetting hypothesis from observed tradeoff; only then define a novel bounded Base comparison if evidence supports it. No automatic extension/order/LR/source sweep or Chat/quantization.",
       "condition_source_transfer_preparation_completion": "reports/phase6/condition_source_transfer_preparation_completion.json",
       "condition_transfer_active_job": "reports/phase6/condition_transfer_active_job.json",
       "condition_transfer_completion": "reports/phase6/condition_transfer_comparison_completion.json",
@@ -421,34 +421,94 @@
       "source_order_budget_evidence": "reports/phase6/source_order_budget_evidence.json",
       "source_order_v1_budget_rejection": "reports/phase6/source_order_budget_rejection_v1.json",
       "active_source_order_job": {
-        "status": "setup",
+        "status": "complete",
         "pid": 581514,
         "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
         "start_ticks": "15094429",
         "config_sha256": "03b4ad47fa42b9a669c4588e736648e6339c93b9eb0cf3d08aac22a46cf90a88",
         "started_at": "2026-10-06T06:22:22.922309Z",
-        "GPU_elapsed_seconds": 74.94133286102442,
+        "GPU_elapsed_seconds": 224.47794540700852,
         "Base_adopted": false,
         "protected_test_used": false,
         "restart_command": "scripts/run_source_order_condition_comparison_v2.ps1 -Mode Train -Worker",
-        "stage": "training",
-        "heartbeat_at": "2026-10-06T06:23:38.994052Z",
-        "teachers": 39238306,
+        "stage": "complete",
+        "heartbeat_at": "2026-10-06T06:26:08.385602Z",
+        "teachers": 99767422,
         "teacher_budget": 100000000,
         "source_teachers": {
-          "web": 39238306,
-          "story": 0,
-          "ordinary_textbook": 0,
-          "conditional_textbook": 0
+          "web": 75000000,
+          "story": 5000000,
+          "ordinary_textbook": 10000000,
+          "conditional_textbook": 9767422
         },
-        "loss": 2.5742263793945312
-      }
+        "loss": 0.29509732127189636,
+        "completed_tasks": 618,
+        "total_tasks": 618,
+        "completed_cases": 80,
+        "completed_requests": 512,
+        "total_requests": 512,
+        "completed_at": "2026-10-06T06:26:08.530681Z"
+      },
+      "source_order_review": "reports/phase6/source_order_condition_comparison_v2_review.json",
+      "source_order_completion": "reports/phase6/source_order_condition_comparison_completion.json",
+      "source_order_diagnostic_proposal": "reports/phase6/source_order_followup_diagnostic_proposal.json",
+      "source_order_summaries": {
+        "control": {
+          "BPB": 0.9748195810331843,
+          "rates": {
+            "outputs": 80,
+            "eos": 30,
+            "repetition": 31,
+            "unicode_failure": 0,
+            "role_leak": 0,
+            "empty": 0
+          },
+          "grammar2": 69,
+          "relevance2": 51,
+          "coherent": 4,
+          "appropriate": 18,
+          "generation_sha256": "e2d90df454bcca81febb63c7d7148ad4f9bc0ae78e5120058ab9c34a3205baba",
+          "notes_sha256": "12ff1008589c4f7de7439e99dd4e8d53aea429b2c164c898b4866b3a10431934",
+          "Japanese": {
+            "semantics": 0.609375,
+            "jblimp": 0.7613293051359517,
+            "jcqa": 0.34584450402144773
+          },
+          "additional_teacher_tokens": 100000000,
+          "independent_human_blind": false
+        },
+        "source_order": {
+          "BPB": 1.1336128657420816,
+          "rates": {
+            "outputs": 80,
+            "eos": 76,
+            "repetition": 2,
+            "unicode_failure": 0,
+            "role_leak": 0,
+            "empty": 0
+          },
+          "grammar2": 65,
+          "relevance2": 39,
+          "coherent": 23,
+          "appropriate": 26,
+          "generation_sha256": "d5b5a7c6b5d971de9bc46c77f52ac5ea19132cab7b97f034c274974cdbe2620e",
+          "notes_sha256": "6b143e08096a1ee2365a643c008d5c009d2c2ff48dd1d42a9749ac5301766d2d",
+          "Japanese": {
+            "semantics": 0.5625,
+            "jblimp": 0.7824773413897281,
+            "jcqa": 0.26541554959785524
+          },
+          "additional_teacher_tokens": 100000000,
+          "independent_human_blind": false
+        }
+      },
+      "source_order_quality_passed": false
     }
   ],
   "independent_human_blind": "not performed",
   "phase0to3_preserved": true,
   "no_automatic_push": true,
-  "status": "Base_only_same_teacher_source_order100M_running",
+  "status": "Base_only_source_order100M_complete_rejected",
   "last_updated_at": "2026-10-06T06:14:25.9218152Z",
   "current_user_scope": "Base only; notify and stop after actual Base completion; Chat and quantization deferred by user2026-10-06",
   "current_stop_boundary": "reports/phase6/base_only_stop_boundary.json",
@@ -461,5 +521,5 @@
   "condition_positive_active_job": "reports/phase6/condition_positive_active_job.json",
   "condition_positive_scientific_config": "configs/phase6/condition_positive_comparison.json",
   "condition_positive_comparison_completion": "reports/phase6/condition_positive_comparison_completion.json",
-  "next_action": "Finish active source-order100M, all fixed evaluations/all80 content, exact all-four source terminal states, unchanged quality gates; then archive, restore UI, commit. Base remains unadopted; no Chat/quantization."
+  "next_action": "CPU30s/GPU0 paired256 body/goldEOS diagnostic defined in source_order_followup_diagnostic_proposal.json; reuse current/control actual results and existing all80 notes, no rescoring/tensor/data reparse. Distinguish recency/forgetting hypothesis from observed tradeoff; only then define a novel bounded Base comparison if evidence supports it. No automatic extension/order/LR/source sweep or Chat/quantization."
 }
