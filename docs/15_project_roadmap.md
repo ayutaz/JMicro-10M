@@ -1,3 +1,11 @@
+固定parameter L2対照の本比較を永続起動（2026-10-06 JST）。実両CUDA gate/32timingと凍結設定はd1b44f0へ保存したprogress。Baseのみ継続・完成時に通知/停止、Chat/Dialogue/SFT/量子化なし。
+
+actual629059/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16481322を実確認、configSHA7fb897e9905eceaecc754a4d323f2e8d90c68e47e592872c8f20cf980721e249、run reports/phase6/parameter-displacement-anchor-v3-20261006。stage matched_staged_CE-training、追加教師78457227/当arm100M、loss1.9584909677505493有限で継続。初期status setupラベルで終了/停止を推定せずPID/heartbeat/teacher更新を用いる。両科学200M＋検証2615904教師は別、probe成功/失敗GPU33.680480秒を保ち全上限1800。元UIは科学実行中停止、durable finallyで元10Bへ復帰。
+
+review_parameter_displacement_anchor.pyを準備、実CPU terminal ledger/anchor/body+EOS CE+L2/連続更新/教師0の誤会計を拒否する1test/1.63秒成功。これは品質判定ではなく、本流/評価/全160内容/採否は未完了。親state/core/anchor/source/係数は凍結後不変、checkpoint/optimizer/RNG/samplerは完了更新で保存。再開はactual不在確認後scripts/run_parameter_displacement_anchor_v3.ps1 -Mode Train -Worker。観測timeoutやラベルだけで再起動しない。
+
+次は同実jobの両100M/共通256bytes・日本語192-331-1119・全80各・bridge/retention各128→160個別raw notes/両対照と旧全基準の採否→UI/可搬証拠/commit。fixed lambda/anchor/source/decoder sweepなし、pilot合格後だけ独立学習seed/full dev/protected test/adoption。Base未完了・未採用、全旧失敗とPhase0–3/数値7失敗を保持。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 parameter変位の固定L2比較を実装・両arm実CUDA gate/速度測定を完了（2026-10-06 JST）。前TRAIN診断はd516c78へ保存したprogress。Baseのみ継続、品質・独立学習seed/full dev/protected test/採用で完成時に通知・停止。Chat/Dialogue/SFT/量子化なし。
 
 same mixed fullstate SHA6d901bd…/update323503から両新arm同追加staged100Mを実装、candidateだけlambda=.04161064039180984のunique parameter L2。両armmodel/Adam/scheduler/RNG/actualWebcursor/親sampler/anchor/actualLR.00001の初期一致を実確認。短source/local quotasのみ同seed42でresetし親cursorはlineageへ保持。tieは一回、L2教師0。CPU初回fixtureのscheduler base_lrsとoptimizer initial_lr不一致2failedを保存し修正、4tests/1.64秒で解析勾配・anchor不変・両CPU4vs2+2全state/phase/counters・費用計算が成功。
