@@ -1,3 +1,17 @@
+親Web保持KLの100M比較を全評価まで完了・不採用（2026-10-06 JST）。前準備/実CUDA一致/高速化/起動は3c6a5ccへlocal commit。最新ユーザー境界はBaseのみを品質/独立学習seed/full dev/protected test/採用まで継続し、実完了時に通知して停止すること。Baseは未完了・未採用。Chat/Dialogue/SFT/量子化なし。
+
+owned WSL586602/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start15318244はcomplete・実ps不在。普通CE100,000,000教師/maininput100,532,224/3068更新を学習。追加参照はinput25,133,056/soft body positions25,026,383、無視特殊位置106,673、combined student input125,665,280で別会計。終端CPupdate323503 SHA646683b704f9c8fb25dbfdeebef0d7eb29776e45d11c15aea272d30efcfc9afc。全4primary source終端cursor・教師/EOS/input/byte/focus countsは凍結staged CE対照と一致、Web73421blocks、追加参照cursor24544blocksを確認。新教材量0、追加Web露出もあるので純objective単独/同総supervision比較ではない。
+
+学習255.144406秒、science GPU333.195595＋全検証68.280325＝全401.475919秒<900。初回CUDA失敗8.727056/v2成功30.861475/v3成功28.691794の全費用を含み、v2の1020.878777秒推定拒否も保持。既知検証2,615,934 CE teachers/referenceinput655,360/soft positions652,678は科学学習へ足さない。初回失敗の実行済optimizer更新数は不明のまま保持。RAMに同train Webの150.5MBを載せて1更新.182958→.080785秒（2.264747倍）、実32更新のloss/gradient/IDs/reference/4source countersは旧v2と完全一致。形状/予算/品質基準/教師/親/実LRは緩和なし。
+
+対照staged CE→親Web KL追加: BPB1.133612866→.982266745（13.3508%改善）、文法2=65→58/関連2=39→47/一貫性2=23→9/適切26→25/EOS76→40/自動反復2→22、Unicode/role/empty両方0（各80）。意味56.250→57.292%、JBLiMP78.248→74.320%、JCQA26.542→34.004%。一貫性差-14/paired95%CI[-.2875,-.0625]は固定devのnonblind判断。relative coherence+8/EOS非悪化/反復非悪化、absolute coherence27/適切27/反復18、歴史Web1% BPB guard(.981285952)に未達で不採用。本文だけ/停止だけの改善をBase完成とは扱わない。
+
+同256全文472055bytes/122343bodytokens、全日本語192/331/1119、全80greedy64、bridge128/retention128を完了。全80を個別に読み77新観察/同id-prefix-raw-stop3件のみ過去note再利用、独立人間blindではない。既存paired CPU計算では本文NLL256/256で改善（悪化0）、gold EOS NLL223/256で悪化（改善33）。gold EOSは正しい末尾のteacher forcingであり生成適切停止の保証ではない。local bridge両条件正答59→54/128、構造8→11/64、語彙51→43/64、旧retention36→32/128。局所probeを自然文品質の代わりにしない。
+
+web_kl_comparison_completion.json/web_kl_comparison_v3_review.json、全raw-bound80notes/observationsを保存。可搬546text/16,007,899bytes、gzip2,999,646/SHAA019F5DA9D9ECF9B032A90F7E8F6BDD89CA153CE26F30A42CF72E5640E6D6748をWindowsへコピーして全SHA一致。モデルtensors/150MB cache/原文arraysはnativeのみ。元10B UI588904/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start15352115の実identityとHTTP親410f975d…/10,000,007,168/busy=falseを確認、科学GPU job0。
+
+次はweb_kl_followup_diagnostic_proposal.jsonの有限CPU180秒/GPU0診断。既存residentの親train cursor順first16blocksだけで、親/対照stagedCE/終端KLの同body位置をread-only FP32評価し、全vocabulary KLをEOS確率質量のBernoulli項と非EOS条件付き分布項へ分解する。qEOS-pEOSの勾配符号と規模・分解恒等式/finite/SHA/countを記録し、本文保持と停止退行が結びつく機序を限定的に調べる。小train窓/CPU精度は唯一原因・CUDA学習・一般生成改善を証明しない。新学習なし、全dataset再parse/生成再採点/別samples/係数/温度/order/LR/source sweepなし。完了条件は固定3models/16windowsを1pass内180秒、平均KL分解差1e-9内とfinite/counter/hashの記録。根拠があれば次の有限objective-component比較を最大1条件だけ別計画し、なければKL調整を続けない。自動長期延長/有利なCP探索なし。品質pilot合格前の独立seed/full dev/protected testなし。旧Phase0–3/数値7失敗保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 親Web保持KLの実CUDA検証を完了し、読み込み高速化後の100M比較を開始（2026-10-06 JST）。最新指示に従いBaseだけを学習・評価・改善し、品質/独立学習seed/full dev/protected test/採用の実完了時に通知して停止する。Base未完了・未採用。Chat/Dialogue/SFT/量子化なし。
 
 同100M ordinary CEのstaged条件にfrozen親Web本文KLを加える1条件。参照は元train Webとの重複で新教材量0、main CE100Mとreferenceinput25,133,056を別計数する。係数1/温度1/実LR.00001/4source順序・教師・fullstate保持。旧staged CE100M評価は再利用し、追加supervisionも変わるため純objective単独/同総学習量の比較とはしない。

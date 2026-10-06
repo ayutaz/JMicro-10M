@@ -1,0 +1,166 @@
+{
+  "status": "parent_Web_KL_terminal_pilot_reviewed",
+  "created_at": "2026-10-06T07:07:08.735606Z",
+  "config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/web_kl_comparison_v3.json",
+    "sha256": "60fcb3e6236f66bcdea397c09cc0f927212a1e3e3dbe94e23c6ff2a7837db0a9"
+  },
+  "result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web-kl-comparison-v3-20261006/compare-result.json",
+    "sha256": "5f0d6cb280e34259b88e41b0628f3d6e9bc5c84e012060a4663c4ba4bcedcb99"
+  },
+  "review": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web-kl-comparison-v3-20261006/review.json",
+    "sha256": "9ce6206323c2b1d481c936616ba60626332ca3955e7e18101ea9cfe056a3ee84"
+  },
+  "launch": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web_kl_comparison_launch.json",
+    "sha256": "bba4395ac40b362af707b014fab742b29f373b6fec2ebcdd39a52a041c515a42"
+  },
+  "job": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web-kl-comparison-v3-20261006/job.json",
+    "sha256": "984fe078a15dc81a28071de5d2dec88a2a44ed2efb9af4cdea96ea56130cee46"
+  },
+  "actual_identity": {
+    "pid": 586602,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "15318244"
+  },
+  "checkpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web-kl-comparison-v3-20261006/web_kl/training/checkpoint-00323503.pt",
+    "sha256": "646683b704f9c8fb25dbfdeebef0d7eb29776e45d11c15aea272d30efcfc9afc"
+  },
+  "ordinary_CE_teacher_tokens": 100000000,
+  "main_input_tokens": 100532224,
+  "reference_input_tokens": 25133056,
+  "reference_soft_target_body_positions": 25026383,
+  "combined_student_input_tokens": 125665280,
+  "known_verification_teacher_tokens": 2615934,
+  "known_verification_reference_input_tokens": 655360,
+  "known_verification_reference_soft_positions": 652678,
+  "failed_first_executed_update_count": "unknown; missing terminal checkpoint is not proof of zero updates",
+  "science_GPU_seconds": 333.1955945980153,
+  "all_verification_GPU_seconds": 68.28032470002654,
+  "all_GPU_seconds": 401.47591929804184,
+  "total_GPU_ceiling_seconds": 900,
+  "summaries": {
+    "control": {
+      "BPB": 1.1336128657420816,
+      "rates": {
+        "outputs": 80,
+        "eos": 76,
+        "repetition": 2,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 65,
+      "relevance2": 39,
+      "coherent": 23,
+      "appropriate": 26,
+      "generation_sha256": "d5b5a7c6b5d971de9bc46c77f52ac5ea19132cab7b97f034c274974cdbe2620e",
+      "notes_sha256": "6b143e08096a1ee2365a643c008d5c009d2c2ff48dd1d42a9749ac5301766d2d",
+      "Japanese": {
+        "semantics": 0.5625,
+        "jblimp": 0.7824773413897281,
+        "jcqa": 0.26541554959785524
+      },
+      "additional_teacher_tokens": 100000000,
+      "independent_human_blind": false
+    },
+    "web_kl": {
+      "BPB": 0.982266745272942,
+      "rates": {
+        "outputs": 80,
+        "eos": 40,
+        "repetition": 22,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 58,
+      "relevance2": 47,
+      "coherent": 9,
+      "appropriate": 25,
+      "generation_sha256": "31cb235a6dea28ff2f06350b24a0cfba9fc4c09b8fa2ecaed213386441588b9a",
+      "notes_sha256": "66129a961bc6e66e641b4560db6dfcafeba078ad4497e018152cc6f73354ebd7",
+      "Japanese": {
+        "semantics": 0.5729166666666666,
+        "jblimp": 0.743202416918429,
+        "jcqa": 0.340035746201966
+      },
+      "additional_teacher_tokens": 100000000,
+      "independent_human_blind": false
+    }
+  },
+  "quality_comparison": {
+    "checks": {
+      "coherence_gain_at_least8": false,
+      "paired_CI_lower_above0": false,
+      "EOS_nonworsening": false,
+      "repetition_nonworsening": false,
+      "no_empty_role_unicode": true,
+      "BPB_gate": true,
+      "appropriate_completion_not_punctuation": true
+    },
+    "passed": false,
+    "difference_count": -14,
+    "CI95": [
+      -0.2875,
+      -0.0625
+    ]
+  },
+  "absolute_dev_screen": {
+    "grammar_at_least56": true,
+    "coherence_at_least27": false,
+    "appropriate_at_least27": false,
+    "EOS_at_least37": true,
+    "repetition_at_most18": false,
+    "no_empty_role_unicode": true
+  },
+  "original_Web": {
+    "EOS_at_least8_more": true,
+    "repetition_no_worse": true,
+    "no_empty_role_unicode": true,
+    "BPB_degradation_at_most1percent": false,
+    "no_punctuation_only_stops": true
+  },
+  "retained_source_checks": {
+    "all_four_source_cursors_and_accounting_equal": true,
+    "original_Web_cursor_retained": true,
+    "Web_blocks_consumed": 73421
+  },
+  "reference_accounting": {
+    "frozen_parent_teacher_digest_verified": true,
+    "reference_cursor_blocks": 24544,
+    "reference_input_tokens": 25133056,
+    "reference_soft_target_body_positions": 25026383,
+    "ignored_special_positions": 106673,
+    "main_ordinary_CE_teacher_tokens": 100000000,
+    "combined_student_physical_input_tokens": 125665280,
+    "newly_prepared_source_tokens": 0,
+    "replay_overlaps_primary_Web": true,
+    "labels": "Main CE teachers and auxiliary distribution targets are separate; not equal total supervision with cached control."
+  },
+  "paired_likelihood_diagnostic": {
+    "body_NLL_worse": 0,
+    "body_NLL_better": 256,
+    "gold_EOS_NLL_better": 33,
+    "gold_EOS_NLL_worse": 223,
+    "body_bytes": 472055,
+    "body_tokens": 122343,
+    "GPU_seconds": 0,
+    "note": "Existing paired raw likelihoods only; true-end gold EOS is not proof of appropriate generated stopping."
+  },
+  "eligible_for_final_Base_validation": false,
+  "all80_individually_read": true,
+  "independent_human_blind": false,
+  "quality_criteria_unchanged": true,
+  "newly_prepared_source_tokens": 0,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "next_action": "Record the failed fixed parent-KL hypothesis and paired body/EOS evidence. Do not adopt, sweep coefficient/temperature/order/source/LR, extend training automatically or scan favorable checkpoints. Plan the next evidence-based bounded Base action separately."
+}

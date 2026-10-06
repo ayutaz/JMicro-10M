@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/run_web_kl_comparison.py", line 416, in <module>
+    else: run(args.probe)
+          ^^^^^^^^^^^^^^^
+  File "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/run_web_kl_comparison.py", line 335, in run
+    gate=resume_gate(build,output/'resume-gate',sha256(path),check)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/run_web_kl_comparison.py", line 77, in resume_gate
+    check(); rows.append(trainer.step())
+                         ^^^^^^^^^^^^^^
+  File "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/web_kl_condition_trainer.py", line 83, in step
+    kl.backward();del target,prediction
+    ^^^^^^^^^^^^^
+  File "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/.venv/lib/python3.12/site-packages/torch/_tensor.py", line 623, in backward
+    torch.autograd.backward(
+  File "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/.venv/lib/python3.12/site-packages/torch/autograd/__init__.py", line 395, in backward
+    _engine_run_backward(
+  File "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/.venv/lib/python3.12/site-packages/torch/autograd/graph.py", line 1072, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Error: accessing gradient tensor output of CUDAGraphs that has been overwritten by a subsequent run. Stack trace: File "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/src/jmicro/model.py", line 154, in forward
+    x = self.model.embed_tokens(input_ids)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Gradient addition node due to multiple use of tensor around:. This can happen with torch.compile(mode='reduce-overhead') and gradient accumulation when a .grad tensor is allocated during CUDAGraph capture. If you need gradient accumulation, allocate stable .grad buffers outside CUDAGraph capture before the compiled backward runs, for example by running an eager warmup iteration or by preallocating zeroed .grad tensors. If you do not need gradient accumulation, set .grad to None before each backward.

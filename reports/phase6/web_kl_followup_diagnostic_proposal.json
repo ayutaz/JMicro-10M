@@ -1,0 +1,53 @@
+{
+  "status": "bounded_CPU_EOS_component_diagnostic_proposed_not_executed",
+  "created_at": "2026-10-06T07:08:48.8298810Z",
+  "purpose": "Separate the EOS-vocabulary mass term from conditional non-EOS KL on the same already cached train-Web positions, to examine the failed fixed parent-KL retention hypothesis without further training.",
+  "completion": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web_kl_comparison_completion.json",
+    "sha256": "dccf2d4af86b828c7141611ea4ab75084d972a36fef62961800251278cad927c"
+  },
+  "review": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web_kl_comparison_v3_review.json",
+    "sha256": "9ce6206323c2b1d481c936616ba60626332ca3955e7e18101ea9cfe056a3ee84"
+  },
+  "resident_preparation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web_kl_resident_window_preparation.json",
+    "sha256": "9e0983d8035d7b4a5e9d80063fd0481e61030d1f06e1e28f97ff17ed125995dc"
+  },
+  "models": {
+    "staged_CE_parent_KL": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web-kl-comparison-v3-20261006/web_kl/training/checkpoint-00323503.pt",
+      "sha256": "646683b704f9c8fb25dbfdeebef0d7eb29776e45d11c15aea272d30efcfc9afc"
+    },
+    "parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+      "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+    },
+    "staged_CE": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323503.pt",
+      "sha256": "fb43f2618c0679ca6c6f7a0c5b9faf1b336be8985271c8513f2e4bbfde3cd7ae"
+    }
+  },
+  "selection": "First16 existing resident block windows in actual historical parent train-Web cursor order; same1024 input/shiftedlabels for all3 models, labels>=8 only; no corpus reparse, no dev/test selection or generation rescoring.",
+  "CPU_budget_seconds": 180,
+  "GPU_budget_seconds": 0,
+  "new_scientific_teacher_tokens": 0,
+  "newly_prepared_source_tokens": 0,
+  "precision": "read-only CPU FP32 model math; float64 probability decomposition. Diagnostic only, not training CUDA/BF16 or quality evidence.",
+  "measurements": [
+    "Per body position parent/student EOS probabilities",
+    "EOS logit KL derivative q_EOS-p_EOS",
+    "KL(parent||student) = Bernoulli(EOS mass) KL + (1-p_EOS)*conditional non-EOS KL",
+    "Per model mean and distribution counts; total fullKL and both decomposed components",
+    "Ignored special-position counts and source/cache/model SHA identity"
+  ],
+  "completion_condition": "One pass over fixed16 windows/all3 frozen models within180 CPU seconds; all probabilities/metrics finite, full/decomposed mean KL identity within1e-9, record all counts/precision/timing/source hashes. No repeated identical retries or alternate samples.",
+  "interpretation_limit": "Small overlapping train-replay window, FP32 diagnostic and shared weights; an EOS-gradient sign does not prove unique cause of free generation failure or generalization. No teacher/coefficient/temperature/order/LR/source sweep is authorized by this diagnostic.",
+  "next_decision": "If evidence supports a separable unwanted EOS-mass constraint, define at most one new bounded objective-component comparison with the unchanged quality gates and its own measured completion condition. Otherwise record this route unsupported; do not automatically continue KL tuning.",
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true
+}
