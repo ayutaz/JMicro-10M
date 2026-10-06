@@ -1,3 +1,13 @@
+conditional prefix maskの同入力suffix学習/全評価/80個別読解を完了。生成は改善、Web保持で不採用（2026-10-06 JST）。ownCUDA準備は5ac0fb0へ保存したprogress。Baseのみ実完成時に通知して停止、Chat/Dialogue/SFT/量子化なし。
+
+actual632307/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16632215はcomplete・不在。CP323185→323503の科学318更新/同input10420224、reference教師10159637に対し実masked hard教師1801392、削除prefix8358245。他3source/全source順序/元target digest/全終端samplerが元対照と一致。既先行learning/old100M controlは新教師に加えず同教師比較とはしない。実LR.00001/model/Adam/scheduler/RNGを継承、conditionalのみ既outcome+EOS教師、penalty/KL/rank/newsourceなし。probe48更新/653485教師別、実scienceGPU50.638847+probe17.082727=新全67.721573秒/上限600。CPUreview1test/1.77秒でreference教師をactualへ混同/欠損更新/改変reference digestを拒否。
+
+同256 full body122343token/common472055byte・日本語192/331/1119・greedy80・bridge-ret各128を完了。BPB1.086812357、文法72/関連53/一貫性35/適切54/EOS79/反復1/Unicode-role-empty0（各80）。意味61.458%/JBLiMP75.831%/JCQA29.133%。元strongは一貫性23/適切26/EOS76/反復2/BPB1.133613。paired一貫性+12/CI[.025,.275]、全strong相対gateは通る。歴史WebBPB<=.981285952は未達で採用なし。maskは教師数/EOS率も変えるので量のみや単独原因の証明ではない。全80 rawSHA/具体理由、同raw6例は旧スコア継承。幻想/新人物/暗黙設備/自然な別行動/gold不一致は自動失敗にせず、数値誤りと構文は別。非blind Codex・独立人手なし。
+
+全raw/会計/80notes/review/probe/旧CPU失敗/code/testsをconditional_prefix_mask_completion/portable.json/archiveへ保存、tensorはnative。元10B UI632547/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16637761をactual ps/HTTP親410f975d…/10000007168/busy=falseで確認。旧Phase0–3/数値7失敗・全不採用と関連費用を保持、当series累積2926.569497秒（全project費用ではない）。今回mask比較は終了、mask位置/weight/source/checkpoint/ratio/decoder sweepで救済しない。Base採用/独立学習seed/full dev/protected testはまだ未達。
+
+次はshared_prefix_web_loss_proposal.jsonの固定CP323185一つだけのread-only Web body診断。元Web75M/story5M/ordinary prefix後・conditional教師0のCPは未Web評価で、既cached historical/strong/maskedの全256同ID/bytesと比較し劣化が既prefix側にあるかを局所化する。普通文教師159637もsuffixに残るためconditionalだけの因果としない。CPU準備10秒/GPU全30秒/教師・optimizer0、owned runner/tests/有限値/weights不変/no gradients/RNG隔離を先に用意。checkpoint選別/adoption/基準緩和や旧GPU再評価なし。未実装/未起動、証拠に基づく別Base介入だけを定義する。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 条件prefix maskのown実CUDA保存再開/速度測定を完了、同入力suffix設定を凍結（2026-10-06 JST）。Baseのみを完成まで継続し通知して停止、Chat/Dialogue/SFT/量子化なし。
 
 actual631701/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16623816はcomplete・不在。元CP323185のmodel/Adam/scheduler/RNG/全stream・source会計/cursor/実LR.00001が初期一致、実CUDA8対4+4でordinary→conditional切替と実mask更新を含む全state/history/有限値が一致。own32timing中央値0.051915秒、検証48更新/653485教師/1572864inputを科学と別記。probe実GPU17.082727秒/上限120。CPU3tests/1.65秒・実準備2.868702秒/元残318全input/reference target digest一致、初回fixture padding1failed XMLも保持。新source/full index scanなし。

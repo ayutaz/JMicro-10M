@@ -1,0 +1,59 @@
+{
+  "status": "defined_not_implemented_not_launched",
+  "created_at": "2026-10-06T10:43:48.134969Z",
+  "trigger": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/conditional-prefix-mask-20261006/review.json",
+    "sha256": "f6abb4d5ebc9f78a36c7b6e34e9f478fb2f527593f5740018cc05651eabcd574"
+  },
+  "question": "Did historical Web-body loss already deteriorate in the shared75M Web/5M story/ordinary prefix, before any conditional teacher?",
+  "reason": "Prefix masking passes all relative generation guards but still exceeds historical WebBPB. A sole conditional-prefix explanation is therefore insufficient. The already selected shared CP has not had a Web dev score.",
+  "sole_new_checkpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323185.pt",
+    "sha256": "ad4747898bc6492e1165edee6b870b09c8be9be944e03a9e4450fde406cb3f34"
+  },
+  "selection_policy": "Reuse CP323185 selected only from original source counters before the first conditional update323190. No checkpoint/endpoint/quality selection or new training.",
+  "cached_comparators": {
+    "original_historical_Web": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/evaluation/result/web/evaluation/result.json",
+      "sha256": "5e0f346d1c657b2f8f1a35d9e8079ce896abab3451e34dc697792394a0df6796"
+    },
+    "strong_staged": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/compare-result.json",
+      "sha256": "cbca7936ebf395b1d5ccd45022ee4cb85de704a636c8bdae48ff2c24a8adc303"
+    },
+    "masked_suffix": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/conditional-prefix-mask-20261006/compare-result.json",
+      "sha256": "f27236c59a63cdd95470c894b4774e98b65c8a39dbc6e259be85548227110811"
+    }
+  },
+  "common_evaluation": "Same original256 dev documents/full body122343 tokens/472055 bytes, same nativeBF16/math body likelihood. Compare cached per-document body NLL and paired byte-weighted BPB. BOS/EOS are excluded from body BPB. Keep counts/IDs/common denominators and historical guard fixed.",
+  "interpretation": "Shared checkpoint still has159637 ordinary teachers left before conditional. The final-minus-shared difference contains that ordinary remainder and conditional learning, not a pure conditional effect. One common dev split/one learned seed cannot prove sole causality.",
+  "implementation_prerequisite": "Implement owned read-only runner/binding/tests/process evidence before CUDA. Verify finite unchanged weights/no gradients/eval mode/RNG restoration.",
+  "CPU_preparation_ceiling_seconds": 10,
+  "total_new_GPU_ceiling_seconds": 30,
+  "optimizer_updates": 0,
+  "new_teacher_tokens": 0,
+  "new_source": 0,
+  "completion": "One finite sharedCP Web score, full common256 paired before/after decomposition, actual terminal process/UI/raw SHA/decision/commit. Use only for localization, not model/checkpoint adoption or relaxed Base quality.",
+  "failure": "End the one fixed assay on mismatch or exhausted budget; no checkpoint list, coefficient/source/decoder rescue or repeated old GPU scores.",
+  "next_action": "Implement the one fixed shared-prefix Web-body loss assay; define a distinct Base intervention only from its actual evidence.",
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "shared_update": 323185,
+  "remaining_ordinary_reference_teachers": 159637,
+  "conditional_teachers_at_shared": 0,
+  "actual_prefix_reference_teachers": {
+    "web": 75000000,
+    "story": 5000000,
+    "ordinary_textbook": 9840363,
+    "conditional_textbook": 0
+  },
+  "original_reference_input_ledger": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/conditional_prefix_mask_reference_input.json",
+    "sha256": "863f7cc8a0d25de94b6d4a280beced4f8dad931f5e28ed59a1aabf5975f0b668"
+  }
+}

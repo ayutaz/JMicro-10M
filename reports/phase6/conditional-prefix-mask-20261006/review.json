@@ -1,0 +1,131 @@
+{
+  "status": "rejected_single_prefix_mask_comparison",
+  "created_at": "2026-10-06T10:41:36.629559Z",
+  "result_sha256": "f27236c59a63cdd95470c894b4774e98b65c8a39dbc6e259be85548227110811",
+  "summaries": {
+    "strong_staged": {
+      "BPB": 1.1336128657420816,
+      "rates": {
+        "outputs": 80,
+        "eos": 76,
+        "repetition": 2,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 65,
+      "relevance2": 39,
+      "coherent": 23,
+      "appropriate": 26,
+      "notes_sha256": "6b143e08096a1ee2365a643c008d5c009d2c2ff48dd1d42a9749ac5301766d2d",
+      "generation_sha256": "d5b5a7c6b5d971de9bc46c77f52ac5ea19132cab7b97f034c274974cdbe2620e",
+      "Japanese": {
+        "semantics": 0.5625,
+        "jblimp": 0.7824773413897281,
+        "jcqa": 0.26541554959785524
+      }
+    },
+    "outcome_EOS_only": {
+      "BPB": 1.0868123573684936,
+      "rates": {
+        "outputs": 80,
+        "eos": 79,
+        "repetition": 1,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 72,
+      "relevance2": 53,
+      "coherent": 35,
+      "appropriate": 54,
+      "notes_sha256": "8f98d68db71f07c6aa3e82592e2e2aab5d81f90024e221bcdfbfc4562cef1613",
+      "generation_sha256": "dd966fb8ca316e9f51ee1395b8902fccb4845f43fb940aa09a35c7ee7fd08c5a",
+      "Japanese": {
+        "semantics": 0.6145833333333334,
+        "jblimp": 0.7583081570996979,
+        "jcqa": 0.291331546023235
+      }
+    }
+  },
+  "accounting": {
+    "completed_updates": 318,
+    "new_actual_hard_teachers": 1801392,
+    "physical_input_tokens": 10420224,
+    "reference_input_teachers": 10159637,
+    "actual_source_accounting": {
+      "teachers": {
+        "web": 0,
+        "story": 0,
+        "ordinary_textbook": 159637,
+        "conditional_textbook": 1641755
+      },
+      "eos": {
+        "web": 0,
+        "story": 0,
+        "ordinary_textbook": 1202,
+        "conditional_textbook": 234328
+      },
+      "body_bytes": {
+        "web": 0,
+        "story": 0,
+        "ordinary_textbook": 680306,
+        "conditional_textbook": 6014813
+      },
+      "focus": {
+        "web": 0,
+        "story": 0,
+        "ordinary_textbook": 0,
+        "conditional_textbook": 1407427
+      },
+      "removed_prefix": {
+        "web": 0,
+        "story": 0,
+        "ordinary_textbook": 0,
+        "conditional_textbook": 8358245
+      }
+    },
+    "all_original_reference_input_and_cursor_checks": true,
+    "matched_teacher_budget": false
+  },
+  "relative_to_original_strong_staged": {
+    "checks": {
+      "coherence_gain_at_least8": true,
+      "paired_CI_lower_above0": true,
+      "EOS_nonworsening": true,
+      "repetition_nonworsening": true,
+      "no_empty_role_unicode": true,
+      "BPB_gate": true,
+      "appropriate_completion_not_punctuation": true
+    },
+    "passed": true,
+    "difference_count": 12,
+    "CI95": [
+      0.025,
+      0.275
+    ]
+  },
+  "absolute_and_historical_guards": {
+    "EOS_at_least8_more": true,
+    "repetition_no_worse": true,
+    "no_empty_role_unicode": true,
+    "BPB_degradation_at_most1percent": false,
+    "no_punctuation_only_stops": true
+  },
+  "eligible_for_final_Base_validation": false,
+  "all80_individually_read": true,
+  "independent_human_blind": false,
+  "actual_science_GPU_seconds": 50.63884665700607,
+  "own_probe_GPU_seconds": 17.082726756983902,
+  "control_whole100M_and_shared_prefix_are_reused_not_new_learning": true,
+  "matched_input_suffix": true,
+  "matched_teacher_budget": false,
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "limitations": "Masking changes hard teacher count and EOS target fraction, and the hypothesis follows observed failures. One suffix/nonblind80 does not isolate amount, prove the sole root cause, certify human judgement or a model capacity ceiling.",
+  "next_action": "Only qualified pilot permits independent learned recipe seed/full dev/protected test/adoption; failure terminates this single mask/source/checkpoint/decoder comparison without salvage sweep."
+}
