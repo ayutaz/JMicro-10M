@@ -1,13 +1,13 @@
 {
-  "status": "actual_scientific_process_verified_live",
-  "verified_at": "2026-10-06T00:49:49.1465169Z",
+  "status": "complete_process_exited_both_candidates_rejected",
+  "verified_at": "2026-10-06T00:59:18.2793998Z",
   "actual_identity": {
     "pid": 518044,
     "start_ticks": "13077625",
     "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe"
   },
-  "recorded_stage": "generation80",
-  "initial_job_status_label": "setup",
+  "recorded_stage": "complete",
+  "initial_job_status_label": "complete",
   "native_run": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story-weight-comparison-20261006",
   "scientific_config": "configs/phase6/story_weight_comparison.json",
   "config_sha256": "e5ee42c4bc923632faa5b49eceb76f32e92c9d632bb7d2d292a88117f3938f04",
@@ -62,6 +62,51 @@
       },
       "training_seconds": 151.744421539217,
       "completed_at": "2026-10-06T00:48:50.371874Z"
+    },
+    "story20": {
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story-weight-comparison-20261006/story20/training/checkpoint-00065243.pt",
+      "checkpoint_sha256": "ce267d5dbb0df445896d7d9605e60313a2685e483d715bf23ef8223ff7412e4a",
+      "binding": {
+        "config_sha256": "e5ee42c4bc923632faa5b49eceb76f32e92c9d632bb7d2d292a88117f3938f04",
+        "arm": "story20",
+        "parent": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook-coverage-2b-20261006/decay/checkpoint-00062166.pt",
+          "sha256": "965a06dc1537ed917de98c565d78ae76f19d99ad075f019067a4324a6cbd2249"
+        },
+        "short_manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+        "teacher_goals": {
+          "web": 60000000,
+          "textbook": 20000000,
+          "story": 20000000
+        },
+        "optimizer_policy": "inherit",
+        "peak_lr": 0.0002,
+        "loss": "CE body+EOS",
+        "study_kind": "same_material_story_teacher_weight",
+        "sampler_policy": "Explicit experimental fork into per-genre document shuffles, same initial seed/order in both arms. Preserve original sampler as parent lineage; do not claim the new mixture keeps its old mixed block cursor. Save new samplers at completed updates."
+      },
+      "update": 65243,
+      "tokens": 2137882624,
+      "supervised_tokens": 2120000000,
+      "additional_supervised_tokens": 100000000,
+      "additional_input_tokens": 100827136,
+      "source_teachers": {
+        "web": 60000000,
+        "story": 20000000,
+        "textbook": 20000000
+      },
+      "source_eos": {
+        "web": 525373,
+        "story": 153191,
+        "textbook": 148210
+      },
+      "source_input_tokens": {
+        "web": 60525568,
+        "story": 20153344,
+        "textbook": 20148224
+      },
+      "training_seconds": 151.20842607061786,
+      "completed_at": "2026-10-06T00:52:33.588755Z"
     }
   },
   "checkpoint_tensors_retained_in_WSL": true,
@@ -71,5 +116,6 @@
   "Chat_adopted": false,
   "protected_test_used": false,
   "requested_five_steps_complete": false,
-  "next_action": "Finish same live two-arm100M CE study; review all160 fixed outputs and unchanged Japanese/BPB/absolute/relative/original-Web criteria; archive and restore originalUI. Only evidence-qualified Base proceeds to independentseed/full dev/protectedtest, then actualChat/retention/humans and export/UI."
+  "next_action": "Read all fixed96 normalized train documents in conditional-content-pilot-20261006; record condition/outcome links and completeness for every document, distinguish absent from broken conditions. Use source evidence and cached96-family dev analysis to select one bounded matched-teacher conditional-learning hypothesis, never train on evaluation prompts. Preserve Base seed/full/test -> actualDialogue/SFT/retention/sampling/humans -> HF/GGUF/Q8/Q4/UI end goal; no ratio sweep or automatic5B/10B.",
+  "completion": "reports/phase6/story_weight_comparison_completion.json"
 }

@@ -846,3 +846,34 @@ gold suffixがEOS込み64以内なのは9/24件。ここだけの自由生成EOS
 actual518044/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start13077625を実ps確認。controlの100M教師終端checkpoint65244（SHA353cb231d07dfb9e42328ee0e3ad82ead4d1ad875a25559987e6bf2dd44e03f5）はinput100,859,904、共通親から追加100Mで同日本語/生成評価へ進行。科学両条件完了/全160内容採点/品質採否は未完了。jobの初期setup文字列だけで停止を判定しない。[実ジョブ引継ぎ](../reports/phase6/story_weight_active_job.json)とnative reports/phase6/story-weight-comparison-20261006の実PID・チェックポイント・stageを参照し、再開はactual process不在を確認後にscripts/run_story_weight_comparison.ps1 -Mode Train -Worker。
 
 今の比較を完了し、全160を個別に確認して元の品質条件の採否を出す。合格時は独立学習seedとfull dev/保護test接続をこの新source recipeに対応させてから最終Base検証へ進む。準備済みコマンドだけで採用とせず、Base→実Chat比較/retention/複数sampling/人間→export/量子化/実UIの全目標を保持する。不合格時は採用せず原因に対応する次の一要因を選び、根拠のない比率総当たりや長期延長をしない。PythonはWSL uv、local commitのみ、元UIは科学終端で復帰する。
+### 物語教師比率の実結果・条件への反応と次のtrain内容調査（2026-10-06 JST）
+
+同じ2B教材と同じ2B+20M親で各100M教師を実学習し、両条件の共通byte256文書/日本語192・331・1119/固定80各・全160の個別内容評価を完了した。control終端65244/SHA353cb231d07dfb9e42328ee0e3ad82ead4d1ad875a25559987e6bf2dd44e03f5、story20終端65243/SHAce267d5dbb0df445896d7d9605e60313a2685e483d715bf23ef8223ff7412e4a。科学教師200M/input201,687,040、検証2,599,809教師は別、GPU453.735＋22.202＝475.936秒<1800。actual518044終了/ps不在と元10B UI519042/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start13123487・ps/HTTP元SHA・10,000,007,168tokens/busy=falseを確認した。
+
+| 同追加100Mの条件 | BPB↓ | 文法2/80 | 関連2/80 | 一貫性2/80 | 適切完結/80 | EOS/80 | 反復/80 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| control Web75/教材20/物語5 | 1.129921 | 67 | 49 | 11 | 27 | 45 | 16 |
+| story20 Web60/教材20/物語20 | 1.135269 | 64 | 47 | 15 | 24 | 38 | 21 |
+
+一貫性は+4、paired95%CI[-.0375,.1375]で事前+8/下限正の条件を満たさない。EOS・反復は悪化し相対比較不合格、両条件とも絶対一貫性27未達と元Web BPB1% guard不合格でBase未採用。story20は適切27/反復18以下も失敗。Unicode/role/empty0。非blind Codex判定で独立人間ではない。局所構文と事実/数の正答を分け、同じprefix/text/stopの既採点は再利用してrubricを揃えた。内容の短い自然な別継続や幻想表現をgold不一致だけで誤答にしない。
+
+[採否](../reports/phase6/story_weight_comparison_review.json)、[全160理由と可搬manifest](../reports/phase6/story_weight_comparison_evidence_manifest.json)、[実終了/UI確認](../reports/phase6/story_weight_comparison_completion.json)を保存。90text/12,673,202bytes、gzip3,297,073bytes/SHA3ce500e5f09d421c821f0336dfea5a8070873f995a1ac6033dda8b457bae99a3。可搬90textとarchive SHAを確認し、optimizer等のfull checkpointsはWSL保持。比較終了は全五目標の完了ではなく、独立seed/full dev/保護test/実Chat/人間/量子化は未達。
+
+保存済みの意味dev192を[条件反転family分析](../reports/phase6/story_weight_condition_pair_analysis.json)へ再集計した。追加GPU/教師0、CPU4tests/0.78秒。各categoryは16family×2条件、候補は共通でgoldだけ逆転する。単純な正答率50%を、条件を保持できた証拠にしない。
+
+| category | control両条件正答/16 | story20両条件正答/16 | control同じ候補を選択/16 | story20同じ候補を選択/16 |
+|---|---:|---:|---:|---:|
+| 否定 | 0 | 0 | 16 | 16 |
+| 数量 | 1 | 3 | 14 | 13 |
+| 時刻 | 1 | 2 | 15 | 14 |
+| 比較 | 0 | 0 | 15 | 15 |
+| 照応 | 0 | 0 | 16 | 15 |
+| 因果 | 12 | 10 | 4 | 6 |
+
+否定は親2Bも同じ候補16/16、両条件正答0。一方、肯定/否定でmarginが正しい方向へ動くのは三重みとも16/16、中央値parent4.355/control4.630/story20 4.320nats。条件に反応しても順位は反転しない結果で、注意機構が完全に不動、Tokenizerが根本的に壊れている、10M容量限界という証明にはならない。得意な因果だけで総合点が上がることと、条件保持の弱さを分ける。margin診断を生成品質へ代入せず、採用閾値やprimary scoringを変えない。
+
+次に[train本文96件の固定inspection](../reports/phase6/conditional-content-pilot-20261006/result.json)を準備した。Web/物語/教材各32、64〜512 body tokens、seed2026100643、最大50000 document draws/CPU30秒を先にコードで固定。実CPU0.451秒・関連2tests/0.88秒、checksum付きcompact index再利用、13GB再scan/全量変換なし。これは既存正規化train本文からの未確認sampleで新prepared0/学習0/GPU0。完全な元source bytesや独立source family/全corpus代表性/品質の証明ではなく、将来の学習poolにもまだ採用しない。
+
+次の具体的な作業は全96本文を個別に読み、各文書の文法的完結、明示的な否定/数量/時間/比較/主体/因果条件、その条件と結末の接続を記録すること。条件を含まない正常な文書を弱いと自動判定しない。内容の失敗と条件例の供給不足を分け、必要な教材の形と一つの同教師比較を根拠から選ぶ。dev192の文言/固有名/テンプレートを学習へ転用せず、保護testは開かない。次の本学習は内容採否・対照/teacher予算・GPU実測上限・元品質条件を先に凍結する。比率総当たり、根拠なしの5B/10B、基準緩和はしない。
+
+品質Baseを得た後の独立学習seed/full dev/保護test→実Dialogue mid-training/SFT対direct/retention/複数sampling/人間blind→HF/GGUF/Q8/Q4/実WebUIまでの全五目標を保持する。旧数値7失敗を消さず、PythonはWSL uv/local commitのみ、push/公開なし。
