@@ -1,0 +1,286 @@
+{
+  "research_kind": "historical_parent_staged_CE_frozen_Web_KL_100M",
+  "phase": "probe",
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+    "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+  },
+  "original_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/textbook_quantity_comparison.json",
+    "sha256": "f1baece77f9e85d6086f1ac5d1e624a59d19910a90af2202a104fb125c379d98"
+  },
+  "pool": {
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large",
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133"
+  },
+  "accepted_compact_index": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large/.compact-index-8cde6396d433644b/ready.json",
+    "sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606"
+  },
+  "positive_data": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006",
+    "manifest_sha256": "154f13da4a817aaa21586fba2cd335faea7c79358be410e73166f5d0052bf936"
+  },
+  "original_web": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2/export-001/shards",
+    "manifest_sha256": "2edfd35bf077cd1aa583713c01341c0db52f39adc5701f30ede0aacae840b2de"
+  },
+  "arms": {
+    "web_kl": {
+      "web": 75000000,
+      "story": 5000000,
+      "ordinary_textbook": 10000000,
+      "conditional_textbook": 10000000
+    }
+  },
+  "outcome_weights": {
+    "web_kl": 1
+  },
+  "teachers_per_new_arm": 100000000,
+  "total_comparison_teachers": 200000000,
+  "peak_lr": 1e-05,
+  "optimizer_policy": "inherit",
+  "shapes": {
+    "context": 1024,
+    "batch": 32,
+    "accumulation": 1,
+    "backend": "flash",
+    "compile_mode": "reduce-overhead",
+    "dtype": "bf16"
+  },
+  "GPU_budget_seconds": 120,
+  "total_new_GPU_ceiling_seconds": 900,
+  "failed_probe_GPU_seconds": 0,
+  "loss": "ordinary original body+EOS CE, outcome weight1",
+  "sampler_policy": "Same historical fullstate/actualLR.00001/main staged100M streams as cached control, plus separately counted frozen-parent Web body KL replay. Main and reference cursors separate; no reheat/reset/new corpus.",
+  "reused_control_checkpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323503.pt",
+    "sha256": "fb43f2618c0679ca6c6f7a0c5b9faf1b336be8985271c8513f2e4bbfde3cd7ae"
+  },
+  "references": {
+    "proposal": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web_kl_comparison_proposal.json",
+      "sha256": "4439ab10b917efd9df85644792f1434f4447dd96fe7ab2f2b088e758b5807821"
+    },
+    "diagnostic": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_parent_baseline_audit.json",
+      "sha256": "fcd258ab59263edaccbb4b19cd42e21aea97c2eb32f059a1bb3324f4bebabcbe"
+    },
+    "control_config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/source_order_condition_comparison_v2.json",
+      "sha256": "03b4ad47fa42b9a669c4588e736648e6339c93b9eb0cf3d08aac22a46cf90a88"
+    },
+    "control_result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/compare-result.json",
+      "sha256": "cbca7936ebf395b1d5ccd45022ee4cb85de704a636c8bdae48ff2c24a8adc303"
+    },
+    "control_review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/review.json",
+      "sha256": "d4efc7530850a2a1fe15695c227c4bc6adabb9a7007fbd81091bf20f4900306d"
+    },
+    "control_notes": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source_order_condition_notes.json",
+      "sha256": "6b143e08096a1ee2365a643c008d5c009d2c2ff48dd1d42a9749ac5301766d2d"
+    },
+    "control_generation": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/evaluation/source_order/evaluation/generation.json",
+      "sha256": "d5b5a7c6b5d971de9bc46c77f52ac5ea19132cab7b97f034c274974cdbe2620e"
+    },
+    "original_manifest": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2/export-001/shards/manifest.json",
+      "sha256": "2edfd35bf077cd1aa583713c01341c0db52f39adc5701f30ede0aacae840b2de"
+    },
+    "original_recipe": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_10b.json",
+      "sha256": "b0949a59bc8254d5f1f68f410ee8928be445ceff8a4e9ee0a7c800892af4e396"
+    },
+    "manifest": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/manifest.json",
+      "sha256": "154f13da4a817aaa21586fba2cd335faea7c79358be410e73166f5d0052bf936"
+    },
+    "arrays": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/train.npz",
+      "sha256": "3fd3b4c4235bd2f645d195033727fa86d1a8909a3519f0deef85e306614fc699"
+    },
+    "content_review": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/content-review.json",
+      "sha256": "a929eeda49d4ed13198090c597a903149910a654f425ecd464ade8479622b825"
+    },
+    "content_notes": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/content-notes.json",
+      "sha256": "8fc03ade52cb710ef1da5558124c708d2975e00e7638dc03d82f2da0aef3f599"
+    },
+    "source_cases": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/transfer-probes.json",
+      "sha256": "4e9c11d18395b03aeeb8a9ac7caec86f8ef6f59ca598ca00bf14bac447f85823"
+    },
+    "retention_cases": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/retention-probes.json",
+      "sha256": "daf92018a167c24db83a4d3bd029d45973bd7f34f3fd452f52419ccc0b651d83"
+    },
+    "source_text": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/train-source.json",
+      "sha256": "89fa2aea6fddece74246e447859ec8a90155a76c166912fe1985cff962fd1f48"
+    },
+    "resident_performance": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web_kl_resident_repair_proposal.json",
+      "sha256": "315cb55f117a0a710aec1394b706e0d878cd5d0f9483dab3bf4d454c595c19e6"
+    },
+    "resident_preparation": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web_kl_resident_window_preparation.json",
+      "sha256": "9e0983d8035d7b4a5e9d80063fd0481e61030d1f06e1e28f97ff17ed125995dc"
+    },
+    "failed_probe": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web_kl_initial_CUDA_failure.json",
+      "sha256": "414e752522ac9f12c80bf803b2e83b7668d3d750312cb173c7639f313ae292b5"
+    },
+    "KL_repair": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web_kl_v2_repair.json",
+      "sha256": "2bb4225f12d57f0cb3b8065f4243b81d52d40d5fcf0a1c23042da0d6b7e636fa"
+    },
+    "KL_preparation": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web_kl_trainer_preparation.json",
+      "sha256": "675d63ca3881db6ae96d8ca2f546af3a95019460894ffb1bb4cf43f0b8c89dcb"
+    },
+    "nontraining_timing": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source_order_budget_evidence.json",
+      "sha256": "457d6777699b04fef1e362857ecfec4e58d4c242ad4fa4edc62331cb04d91dc8"
+    }
+  },
+  "source_sha256": {
+    "scripts/run_web_kl_comparison_v3.py": "d690932b9be10b06375ecdb1c5b75371ee9af47a753f020dfab98266e8c70ce0",
+    "scripts/run_web_kl_comparison_v3.ps1": "227ec7fcf531cb95feaaba5859d82a25b7f7a769ac66262ebfd836a4b9b6d2a1",
+    "scripts/review_web_kl_comparison_v3.py": "a4ede6d9c79a32ed6815989bf09c6edaaca2165db0e332e51004f74509dd668e",
+    "scripts/prepare_web_kl_content_review_v3.py": "04976dde8d3ef3adf4ab9de1c193a24ff2bd6448c55bc02aef4e68f7387919f9",
+    "scripts/resident_web_kl_trainer.py": "da171d2bfdc39ba8416fb9b329566f6d2c77c526492af536fb6557516b64cf62",
+    "scripts/resident_web_window.py": "9b2c003cbd028e366dfed7dfebeffe2a7839300dc9e78f53ea5d7d64ba847926",
+    "tests/test_resident_web_window.py": "3c2a119bc34fdcf74fdd90df11db2a6acdc25158114a04f350e7e24280bc0102",
+    "tests/test_web_kl_comparison_v3.py": "0a0b84be598fa558a9eee5b96febd0ae9f881d10189805f8c305e5595440a7f9",
+    "scripts/run_web_kl_comparison_v2.py": "ce89222aa548d4a4ac55dc8bb001c2e9614376e3b20af774fa47f3f14927a103",
+    "scripts/run_web_kl_comparison_v2.ps1": "15e4fd657992ad3e73e2f5e594f9b309384064d6f699d34ddda1074996fe700b",
+    "scripts/run_web_kl_comparison.py": "13010d724597e747bf055cbbea30c8475a2c58632036204c58220cef60749c00",
+    "scripts/run_web_kl_comparison.ps1": "29e81137fde72a34c779f36a0014785ffc1df0518913fd45c3d207302a283032",
+    "scripts/web_kl_condition_trainer_v2.py": "5ba736a115d206227d58cd9f330ce1f83243ae259a93f6caf06c8fedd1355052",
+    "scripts/review_web_kl_comparison_v2.py": "6069ac0b6670e0360e0ce04fb5b7d1e7b728c10c054d1ef970add0fc4f87aaf5",
+    "scripts/prepare_web_kl_content_review_v2.py": "5fe14e4d163f53d516d17006ca97bc600a396e11b6467838da8dd39654b3c27b",
+    "tests/test_web_kl_condition_trainer_v2.py": "9c0e140b573ca2d8869507992b5957bf476951a1dfc60ffeca7b45468295d1c8",
+    "tests/test_web_kl_comparison_v2.py": "5464b5d09458aaef9daa30a91de97c8f66feb6c672501b90e401c9d0ac7d0751",
+    "scripts/review_web_kl_comparison.py": "37d5107edb7b7cd03807db6f0678ce65db8129779844b363ac70f2d6743fd341",
+    "scripts/prepare_web_kl_content_review.py": "ce6166c6b74b695b808fc8bfebc2b808d0b8f3eae2902f3b1e0d93dbb0e9d2f0",
+    "scripts/web_kl_condition_trainer.py": "8e7e69dc34af502b41ef20f2af817acfe415691135e6808438256ca8638361c0",
+    "scripts/web_kl_preservation.py": "ebc642f4d37339b749420edc74038a15c69e9ce7ceb30c745c36db26e1a19e15",
+    "scripts/web_kl_comparison_accounting.py": "4d757d08e41436f5de1a74380684abd03d8a4c2596066e54d7a04fb9cfc8c58e",
+    "tests/test_web_kl_condition_trainer.py": "079582542dfcb2362fc1ff2e20147167f56c751dc761f0e1854239e65160656f",
+    "tests/test_web_kl_preservation.py": "b39e6455488abb0b57cd7244a8e331d8aca1c731475c72e43be02dc99704c426",
+    "tests/test_web_kl_comparison.py": "4591532fab436e589bba7b0ebc43e8d26795d017d6fc1817d3dd912db3d85e5d",
+    "scripts/run_source_order_condition_comparison_v2.py": "aa8e7e9ee0f9b16af2feaa389bccc15d5f72fee606e8d7284c9b25ec29ef30fa",
+    "scripts/run_source_order_condition_comparison_v2.ps1": "af5a6648f4ac79d121bb08fe87af335b2b15b57f11d103b5c9de559a741e194f",
+    "scripts/review_source_order_condition_comparison_v2.py": "3ebd2651484f931efbecf681d1948a87a3ed042b8c5427d1217b751a1f56ffa7",
+    "scripts/source_order_budget_evidence.py": "a4dcbf2c65f3e96d437ff151cb6d7381b8d4d3100ff56666db4cb699dc499e4c",
+    "tests/test_source_order_budget_v2.py": "1d797ef6d41a0f4da77b88cf4076ec3ec6267246d9a562d564cb8e9987d58117",
+    "scripts/run_source_order_condition_comparison.py": "c7fc7d436c42cf46324d4e8079d630a7e34fa6558eb7b49d6e2e447d3220a633",
+    "scripts/run_source_order_condition_comparison.ps1": "af282344742df6504301622abca216431243ab8bf627309f1924eded4873c909",
+    "scripts/review_source_order_condition_comparison.py": "8b8c19961a2e766a074b41df3f4bc47076986c73f17cdc5587d1c05317619b4a",
+    "scripts/source_order_condition_trainer.py": "f73b247bcb907ca56af889504b6405ca0ddce0301083a588fc7eed8d8b1e3246",
+    "tests/test_source_order_condition.py": "358621d322be46b1e2520da76c09490384f33ca7c49d3cac3ff15523613f87f7",
+    "tests/test_source_order_comparison.py": "a53ecfb4811256bc5d40de9227de4b42b56467efc56f2f63bb780dfec8388563",
+    "scripts/run_historical_parent_condition_comparison_v3.py": "070d089ca6a0d735f2e8ca48c470ba37207e8c55c01495fc9e24602e51b90959",
+    "scripts/run_historical_parent_condition_comparison_v3.ps1": "a54df672afe6ec87e3ef9ea9c0d3b5d1e94301cdac3bf7170496e7486820d124",
+    "scripts/review_historical_parent_condition_comparison_v3.py": "6caa6851bf5093bd730faf2c7cfa5b06367bf6c3179b318d442535ff5833657d",
+    "scripts/historical_parent_condition_trainer.py": "6301b82fe328c4da3766dbf2fc251a6d00b04c26d6089e67a5d868b9d3cdfa88",
+    "scripts/audit_base_parent_baselines.py": "7e37676983af4f51ec99062df9858b28e103e4e1f88fdc2c00ab7edbb709407f",
+    "tests/test_historical_parent_condition.py": "18f3bf7443c80fdd1b0c9a474f1c4caf855ef67c11f6115bab1f49d0bef442c9",
+    "tests/test_historical_parent_comparison_v3.py": "b5a7f57ae0335855929fba132b77199fc30413e01ec6b5d578ac9d1cf9ce27b8",
+    "tests/test_base_parent_baselines.py": "8f481bc8aed9ad30089ef08aae49bd966a209833fe8d3ca2548249ff763f8f0f",
+    "scripts/run_original_web_retention_comparison.py": "87ec1716b3e9c0024702d72c89dd1d5895a400e73446d9593b889cbe3738cab3",
+    "scripts/run_original_web_retention_comparison.ps1": "d89c48469e01badd447933d00fefd088ef19dbc0896f9b7306d133081b2e2758",
+    "scripts/review_original_web_retention_comparison.py": "98484d957058331d8ef84c0a0a9b4efa8f5f66f5b71ab89a525818c6fc15cf86",
+    "scripts/original_web_retention_trainer.py": "b0fd75d3d93b554917e6fbb870ba17be54907b198e40399778db918b64c68f58",
+    "scripts/diagnose_mature_base_distribution.py": "d9b16d33286bb7ebccd7b131e28bca8fea0f3ab83a6b0bfcacd046a1924b0c2d",
+    "scripts/run_mature_base_condition_comparison.py": "841ea23d93b99e4154a733b956949e03372663f1e2dcf61908bbc41fa346e927",
+    "scripts/run_mature_base_condition_comparison.ps1": "615c81d7da6ae4e884979c48e0f15d8bb2341fe1d9fa180c196a72c2dc7f7f77",
+    "scripts/review_mature_base_condition_comparison.py": "ae47c727858cfc19a113be82727dae45981f38c4a420976e85237fea7b8c665c",
+    "scripts/mature_condition_trainer.py": "2498cd79c4fbd19b06f80281baedfa0ac23bb0098354b2ebe5e97be6a0b8ac89",
+    "scripts/run_condition_relation_comparison.py": "f9b4fbcded28974549f38b04d3efaaa55da46bbfdc4ae352ebc23513b4b956b1",
+    "scripts/run_condition_relation_comparison.ps1": "91beaf91bf6025f92bcd11aaec6d97c8236c1e49a2f8cb11bf98bd6f2b83dd76",
+    "scripts/review_condition_relation_comparison.py": "4d834085892a5ea9612e1afef00dcb26b4936b0cf3f2d6ca5f2ea8ab4043a49d",
+    "scripts/condition_relation_language.py": "fbf7b6160fc84adc09e62337bea5f94f1c934cec71aaf61906e882e48f083495",
+    "scripts/prepare_condition_relation_language.py": "bf38f4944addebe1663000bde5c91468a19fd923618b0b3a8b1a93ed1fa2ea08",
+    "scripts/prepare_condition_relation_inputs.py": "b70f9643f013b4cd56dbbb6247bd5c5e26e7c3c9aeb5f0b0dc0faf264a4b3f04",
+    "scripts/run_condition_transfer_comparison.py": "936be835e07f1cc9c1d6ff64ced8a336ffe19c0bcffc6c68fbac5a67216aad07",
+    "scripts/run_condition_transfer_comparison.ps1": "cae88a35d51e15f6a3d9a19530dba8da69fd3110045a91181c1fbec9215aedf8",
+    "scripts/review_condition_transfer_comparison.py": "f7028c26943014e0a3f38ad2eba1842c30815e2ad8e1c542a12b62ceb78a727d",
+    "scripts/condition_transfer_curriculum.py": "9ac3ea8ef0bd500eb663a4f955430045aa840edd43161e60889c6374b9989fee",
+    "scripts/prepare_condition_transfer_curriculum.py": "7ac19550499225607427cba4ff46451aa79c46f501d0705f1b7ceffd9ef27372",
+    "scripts/prepare_condition_transfer_inputs.py": "17eda356748c19038e13b7442d6a70ae7a250cffce48258c57b04bd68a9f4f23",
+    "scripts/run_condition_source_learning.py": "4702a59a0827f03edc25bb2a1cb3c44d66ba79d22e8ab0b619ae84da92e6c69d",
+    "scripts/run_condition_source_learning.ps1": "e7cb7b8a02a7c76608caeab5a0544a7510d1c89aef3454224c301bce339fc682",
+    "scripts/review_condition_source_learning.py": "8067e605f656a6492c7575accc2d75778ebd09082df140202e22683fc67c5bb8",
+    "scripts/run_condition_diversity_comparison.py": "c76ff03994ac64723712d5c98c9e8357c1ffb8fd044abfab7f388ce2b0d46b46",
+    "scripts/run_condition_diversity_comparison.ps1": "a28458ebad2596921cb412e2db31b83f4955c339cee4ff0a0c4e235bb65411ce",
+    "scripts/review_condition_diversity_comparison.py": "557422c5e521c913e0d319c88189e99899385804a8ca9c2acfdf4dce13a110a3",
+    "scripts/run_condition_positive_comparison.py": "8ab13739f65495123dcdb9450b3bcbf1d9e35e743c6f28c505fb2b421730bb9a",
+    "scripts/run_condition_positive_comparison.ps1": "2a6865471e5855ec9ed4f2bc6b8ebac28a2e206a887d2859c48b18629de067ab",
+    "scripts/story_weight_trainer.py": "47d7da7aa511d168ba319dea754deb0bf5688fca5edadf3891e8d4bf5d8c5435",
+    "scripts/run_story_weight_comparison.py": "3598ce68a406aeb98eacc07dc700c04c261cf8e7a093ca805cac431853ba95eb",
+    "scripts/condition_positive_trainer.py": "c2c107b408e38958c36dd43d56d3a78fe623a7b7f12daf4e0d3e39787aea7f33",
+    "scripts/condition_positive_loss.py": "85ef2ba6f3815eacbbe4f7178bca235f2240662b55581fbbf0f925d38879b349",
+    "scripts/review_condition_positive_comparison.py": "43bc26ba6754ebaa7dca4818f9c74312e58315170191e00f1f111c30a2dccf24",
+    "scripts/prepare_condition_positive_teachers.py": "7ab8cd6680e0ab909a5340a9450ba98cc0647be0adc706e8b6cc852cf04ab57c",
+    "scripts/cached_three_source_index.py": "c66a38606d2602c7b2193d41ebcefca7220491d1bb50c5f729dbab01f277bb85",
+    "scripts/textbook_quantity_trainer.py": "c11b8c3650e193118f20cac29122d917228b0b95322c642d061a04c8813cbab8",
+    "scripts/run_complete_text_comparison.py": "9d91d1d6124e62e4f40f7a99762f948186602e95cc362be10bfe03297874d8f7",
+    "scripts/run_complete_text_comparison.ps1": "7fb1a82d9450daf7f6955d56093be61cf31c25dd479e23715372b1d8db345e5b",
+    "src/jmicro/coherent_units.py": "7b0e8cef7726b652f7b88187749090ded2b05042ac4c5fe076c30b5f5e637459",
+    "scripts/prepare_coherent_text.py": "d91f65d6c469690cbb2c01971bddfad73a4b0ae61211a277fa3d522e17901149",
+    "scripts/inspect_complete_text_data.py": "bf18510673c0c4352df911df850e3f598f921977cc34d580aa3fc87e8e8df626",
+    "scripts/prepare_story_text.py": "ecbd5d1a320d59a318b282026b36e4b7ad9284d897169f0c57e77f6dae5c90fa",
+    "src/jmicro/eos_pilot.py": "84b23a04455475b598056b8973a1cf89346aa3faf766e9162fef2ff7e17dbb08",
+    "src/jmicro/low_lr_pilot.py": "dcb6a1374c64c2852086b57a50433720b1e6b60263d5581eb742c3a1864ff64e",
+    "scripts/run_eos_short_pilot.py": "7a381414bdea5b24bbbbf7532f04db743cff948fa47f60e95f65019af2d3ec3d",
+    "scripts/run_eos_complete_100m.py": "62232fd440efbe32d65f25a3fffe8ec9fd7d7a96c74db329ddc3cc3443871a9d",
+    "scripts/evaluate_japanese_base.py": "9cabf705a67181b6a45eb20c1a62b69335140f2465b24ac2066f05e51ee48d02",
+    "src/jmicro/japanese_evaluation.py": "8693e2a54e63c1b085b617b207cc5db618ae80af1eb7cb54133ba8b254da6801",
+    "src/jmicro/readiness.py": "69a92251f4a697b551b9c3cfef9e2b992e776e2047c0331f7c43ba2331d172ea",
+    "src/jmicro/evaluation_memory.py": "ba22fb7ca7ddb6633a308c2b1a32a59147ecb38e568d9f838ab032300147c6b4",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "scripts/run_condition_source_ranking.py": "9635b6625d2c378a2dc478a089366e053bbe18a07554e93b857d6040220b4aa9",
+    "scripts/run_condition_source_ranking.ps1": "3939a4a44c819890f352b05aab7023b7ca8e95dcfa90e9c0c33f3f6b798005f5",
+    "scripts/review_condition_source_ranking.py": "890dafca6a06266a616f56a034bdbf3ed0ec87f9648e359b8c0fa8abf0880a86",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f"
+  },
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "quality_criteria_unchanged": true,
+  "old_numerical7_preserved": true,
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "requested_five_steps_complete": false,
+  "scientific_teacher_tokens": 0,
+  "created_at": "2026-10-06T06:58:37.104073Z",
+  "source_order": [
+    "web",
+    "story",
+    "ordinary_textbook",
+    "conditional_textbook"
+  ],
+  "KL_policy": {
+    "kind": "frozen-parent-Web-body-KL-v1",
+    "direction": "parent_to_student",
+    "temperature": 1.0,
+    "coefficient": 1.0,
+    "every_completed_update": 1,
+    "reference_context": 1024,
+    "reference_batch": 8,
+    "masked_targets": "labels>=8; ignore EOS/BOS/role/padding positions, retain full vocabulary including EOS in probability normalization",
+    "reference_teacher": "immutable actual historical10.5B parent, no optimizer/gradients",
+    "replay_policy": "separate fork of actual historical parent Web cursor; train only, overlaps first75M primary Web, never dev/test"
+  },
+  "prior_probe_GPU_seconds": 39.5885307630233
+}

@@ -121,3 +121,14 @@ reports/phase6/web_kl_*.xml -text
 reports/phase6/web_kl_*.tar.gz -text
 # Preserve the original pytest failure traceback, including its emitted spaces.
 reports/phase6/web_kl_preservation_initial_test_failure.xml -text whitespace=-blank-at-eol,-blank-at-eof
+
+# Actual CUDA attempts and resident-loader evidence retain their bound bytes.
+scripts/resident_web_window.py text eol=lf
+tests/test_resident_web_window.py text eol=lf
+configs/phase6/web_kl_*.json -text
+reports/phase6/web-kl-comparison-20261006/** -text whitespace=cr-at-eol
+reports/phase6/web-kl-comparison-v2-20261006/** -text whitespace=cr-at-eol
+reports/phase6/web-kl-comparison-v3-20261006/** -text whitespace=cr-at-eol
+reports/phase6/web_kl_resident_window_initial_test_failure.xml -text whitespace=-blank-at-eol,-blank-at-eof
+reports/phase6/web-kl-comparison*/**/review_historical_parent_condition_comparison_v3.py -text whitespace=-blank-at-eof
+reports/phase6/web-kl-comparison*/**/review_original_web_retention_comparison.py -text whitespace=-blank-at-eof

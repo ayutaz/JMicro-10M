@@ -1,3 +1,17 @@
+親Web保持KLの実CUDA検証を完了し、読み込み高速化後の100M比較を開始（2026-10-06 JST）。最新指示に従いBaseだけを学習・評価・改善し、品質/独立学習seed/full dev/protected test/採用の実完了時に通知して停止する。Base未完了・未採用。Chat/Dialogue/SFT/量子化なし。
+
+同100M ordinary CEのstaged条件にfrozen親Web本文KLを加える1条件。参照は元train Webとの重複で新教材量0、main CE100Mとreferenceinput25,133,056を別計数する。係数1/温度1/実LR.00001/4source順序・教師・fullstate保持。旧staged CE100M評価は再利用し、追加supervisionも変わるため純objective単独/同総学習量の比較とはしない。
+
+初回実CUDAはgrad-buffer/CUDAGraphの上書きで8.727056秒失敗。own v2でstable grad buffersを確保し、実CUDA連続4対2+2の全40checks/40検証更新に成功（30.861475秒、1,307,967 CE teachers/referenceinput327,680/soft positions326,339）。その1更新0.182958秒から全予算1020.878777秒と推定され900秒上限に未達、本学習は開始せず拒否。両attempt・source/config/log・失敗費用を保持。初回の実行済optimizer更新数は終端CP不在のため不明、0と扱わない。
+
+空きRAM約60GBに対し、この比較で使う実親cursorから73421 Web blocksだけを150,513,050bytesへ連続化（CPU処理6.565475秒/GPU0）。元BlockSamplerを保ちuint16 context+1の同train IDsをRAMから供給、通常/参照cursorを別々に維持。CPU cache test1件1.62秒、v2 trainer/accounting3件2.88秒、v3 scope/accounting2件1.10秒成功。初回toy fixture不備XMLも保持。元31GB全体hash/13GB index再parseなし。
+
+v3実CUDA全40resume checks・10initial preservation checks成功、32更新すべてで凍結v2とloss/CE/KL/gradient/LR/token/reference digest/counterが完全一致。1更新0.080785秒、v2比2.264747倍。v3検証28.691794秒、検証GPU累積68.280325秒。両成功probeの既知検証計2,615,934 CE teachers/referenceinput655,360/soft positions652,678を本学習から分離する。科学学習の余裕付き推定574.276327秒＋全検証＝642.556652秒<元900秒。150秒非学習枠/30%余裕/50秒を維持し、品質/予算/教師を緩和しない。
+
+configs/phase6/web_kl_comparison_v3.json SHA60fcb3e6236f66bcdea397c09cc0f927212a1e3e3dbe94e23c6ff2a7837db0a9を凍結。durable Windows worker26376、actual WSL586602/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start15318244で本学習中。reports/phase6/web-kl-comparison-v3-20261006/job.jsonにheartbeat/費用/再開命令を保存。再開はscripts/run_web_kl_comparison_v3.ps1 -Mode Train -Worker（実process不在確認後）。UIは実GPU中停止しwrapper finallyで元10Bへ戻す。web_kl_comparison_launch.jsonに実speed・全budget・identityの根拠。
+
+次はこのowned jobの100M CE＋別参照学習を終え、同256byte/全日本語/全80/bridge/retention・全80個別読解・4primary stream終端一致/KL別会計を評価。relative coherence23から+8/CI/BPB/EOS76非悪化/反復2非悪化、absolute、歴史Web1% BPB guardを維持。品質pilot合格時だけ独立学習seed/full dev/protected testへ進む。失敗時の係数/温度/order/source/LR sweep・自動長期延長・有利なcheckpoint探索なし。WSL uv3.12.7、旧Phase0–3/数値7失敗を保持、local commitのみ/pushなし。以下は過去の履歴。
+
 学習順序の本文/EOS退行を実CPUで分離し、親予測を保持する学習器を準備（2026-10-06 JST）: 前turn4b369bcは同100Mの全評価・全80読解・不採用まで完了したprogress。Baseだけを品質/独立学習seed/full dev/protected test/採用まで継続し完了通知して停止する。Chat/Dialogue/SFT/量子化なし。Baseは未完了・未採用。
 
 固定proposalの既存paired256をCPU処理本体0.018418秒/GPU0で整理（uv起動/importはこの値に含めない、実コマンドも30秒内）。全472055bytes/122343bodytokensを再現し、本文NLLは256/256で悪化（改善0）、goldEOS NLLは216/256で改善/40で悪化。BPB .974820→1.133613、goldEOS平均NLL2.287282→1.581696、EOSの文別確率算術平均.218735→.469190。文長で決めた64文ずつの4quartilesも全64本文が悪化し、短文だけ/少数外れ値の現象ではない。goldEOSは正しい文末でのteacher forcingであり、生成途中の適切停止の保証ではない。全80既存notesと日本語差を再利用し新採点/tensor・data再parseなし。source recency/forgettingは仮説で、唯一原因や容量上限は断定しない。source_order_followup_diagnostic.jsonに全paired table/数値を保存、関連CPU1test/1.36秒成功。

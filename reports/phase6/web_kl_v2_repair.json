@@ -1,0 +1,22 @@
+{
+  "status": "stable_external_grad_buffers_prepared_actualCUDA_not_rerun",
+  "created_at": "2026-10-06T06:46:37.464930Z",
+  "failure": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web_kl_initial_CUDA_failure.json",
+    "sha256": "414e752522ac9f12c80bf803b2e83b7668d3d750312cb173c7639f313ae292b5"
+  },
+  "failed_probe_GPU_seconds": 8.727055846014991,
+  "total_GPU_ceiling_seconds": 900,
+  "repair": "Preallocate zeros_like(parameter) student grad storage before compiled runs; zero_grad(set_to_none=False). Accumulate both existing losses into the same external buffers, then unchanged clip/Adam/scheduler.",
+  "science_conditions_unchanged": true,
+  "source_sha256": {
+    "scripts/web_kl_condition_trainer_v2.py": "5ba736a115d206227d58cd9f330ce1f83243ae259a93f6caf06c8fedd1355052",
+    "tests/test_web_kl_condition_trainer_v2.py": "9c0e140b573ca2d8869507992b5957bf476951a1dfc60ffeca7b45468295d1c8",
+    "scripts/prepare_web_kl_v2_repair.py": "65fbba00d56ca60c2f3e33d94bf115a6773cd7010f1518b29a530fe142207ba8"
+  },
+  "old_sources_preserved": true,
+  "scientific_teacher_tokens": 0,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false
+}

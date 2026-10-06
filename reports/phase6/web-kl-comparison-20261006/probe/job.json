@@ -1,0 +1,15 @@
+{
+  "status": "failed",
+  "pid": 584795,
+  "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+  "start_ticks": "15226806",
+  "config_sha256": "04f1440d5e314af56bbd6825ebc9a9832227b658d5524d76befe0982234c92a5",
+  "started_at": "2026-10-06T06:44:26.172453Z",
+  "GPU_elapsed_seconds": 8.727055846014991,
+  "Base_adopted": false,
+  "protected_test_used": false,
+  "restart_command": "scripts/run_web_kl_comparison.ps1 -Mode Probe -Worker",
+  "stage": "gpu",
+  "heartbeat_at": "2026-10-06T06:44:26.875830Z",
+  "error": "RuntimeError('Error: accessing gradient tensor output of CUDAGraphs that has been overwritten by a subsequent run. Stack trace: File \"/home/aihub_ubuntu/src/japanese-tiny-llm-10m/src/jmicro/model.py\", line 154, in forward\\n    x = self.model.embed_tokens(input_ids)\\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\nGradient addition node due to multiple use of tensor around:. This can happen with torch.compile(mode=\\'reduce-overhead\\') and gradient accumulation when a .grad tensor is allocated during CUDAGraph capture. If you need gradient accumulation, allocate stable .grad buffers outside CUDAGraph capture before the compiled backward runs, for example by running an eager warmup iteration or by preallocating zeroed .grad tensors. If you do not need gradient accumulation, set .grad to None before each backward.')"
+}

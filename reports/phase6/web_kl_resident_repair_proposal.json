@@ -1,0 +1,46 @@
+{
+  "status": "loader_only_revision_prepared_CUDA_not_remeasured",
+  "created_at": "2026-10-06T06:56:17.046562Z",
+  "initial_CUDA_failure": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web_kl_initial_CUDA_failure.json",
+    "sha256": "414e752522ac9f12c80bf803b2e83b7668d3d750312cb173c7639f313ae292b5"
+  },
+  "prior_successful_probe": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web-kl-comparison-v2-20261006/probe/result.json",
+    "sha256": "20faa844c3eb3482491025c4044986996187b2890414099896556172210a1e29"
+  },
+  "prior_probe_job": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web-kl-comparison-v2-20261006/probe/job.json",
+    "sha256": "5790b2f5ab264c721055d231f964b00ffc1f8bd7ddd2132cfd1815dfad69e79e"
+  },
+  "prior_budget_rejection": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web_kl_v2_budget_rejection.json",
+    "sha256": "4a20ab1e7564b7b778c2c6715260ad1a1ff46ccc0232a8f89b6c9029e507e100"
+  },
+  "resident_preparation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web_kl_resident_window_preparation.json",
+    "sha256": "9e0983d8035d7b4a5e9d80063fd0481e61030d1f06e1e28f97ff17ed125995dc"
+  },
+  "prior_probe_GPU_seconds": 39.5885307630233,
+  "prior_GPU_components": {
+    "failed_first": 8.727055846014991,
+    "passed_v2": 30.86147491700831
+  },
+  "known_prior_verification_teacher_tokens": 1307967,
+  "known_prior_verification_reference_input_tokens": 327680,
+  "unknown_failed_optimizer_updates_preserved": true,
+  "total_GPU_ceiling_seconds": 900,
+  "measured_v2_median_step_seconds": 0.18295786051021423,
+  "measured_v2_median_data_wait_seconds": 0.0981950169953052,
+  "repair": "Only replace BlockSampler source slices with the same parent-selected uint16 context+1 windows held in RAM; keep BlockSampler shifts/BOS mask/seed/cursor, main/reference losses and compiled stable gradients unchanged.",
+  "required": "New actualCUDA full resume and32 timing; compare all32 per-update loss/gradient/token/reference counters with frozen v2 except wall times. Freeze only if all priorGPU + newprobe + fullscience estimate <=900. No margin/budget/teacher/quality relaxation.",
+  "source_sha256": {
+    "scripts/resident_web_kl_trainer.py": "da171d2bfdc39ba8416fb9b329566f6d2c77c526492af536fb6557516b64cf62",
+    "scripts/prepare_web_kl_v3_resident_repair.py": "9578ec5d6aa29a067c5744c455187e3f611e2adf6cdcd084984b72ffd2ded791"
+  },
+  "newly_prepared_source_tokens": 0,
+  "scientific_teacher_tokens": 0,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false
+}

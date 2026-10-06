@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="2.126" timestamp="2026-10-06T15:53:17.694374+09:00" hostname="DESKTOP-42CUV0C"><testcase classname="tests.test_resident_web_window" name="test_all_original_targets_cursors_and_epoch_crossing_survive_resident_reads" time="1.174"><failure message="KeyError: 'splits'">tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-95/test_all_original_targets_curs0')
+
+    def test_all_original_targets_cursors_and_epoch_crossing_survive_resident_reads(tmp_path):
+        view,parent,_,_=setup(tmp_path);cursor=copy.deepcopy(parent['sampler'])
+        # Cover an epoch boundary: repeated blocks still have the same original IDs.
+        count=cursor['blocks']+3
+&gt;       record=build(view,cursor,count,tmp_path/'cache',workers=2)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_resident_web_window.py:16: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/resident_web_window.py:34: in build
+    expected=binding(view,cursor,count);folder=Path(folder);ready=folder/'ready.json'
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+view = namespace(directory=PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-95/test_all_original_targets_curs0/data'), split='tr..., 3, 3,
+       3, 3]), sources=array([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2,
+       2, 2])))
+cursor = {'seed': 42, 'epoch': 0, 'position': 3, 'context': 8, ...}, count = 17
+
+    def binding(view,cursor,count):
+        if view.split!='train' or count&lt;=0:raise ValueError('Positive train-only block window required')
+        return dict(kind='resident-exact-selected-Web-window-v1',source_directory=str(view.directory),
+            source_manifest_sha256=sha256(view.directory/'manifest.json'),source_tokens=len(view.tokens),
+&gt;           source_stream_sha256=view.manifest['splits']['train']['stream_sha256'],initial_cursor=copy.deepcopy(cursor),
+                                 ^^^^^^^^^^^^^^^^^^^^^^^
+            context=cursor['context'],block_windows=count,newly_prepared_source_tokens=0,
+            dtype='&lt;u2',preserves_labels='Original BlockSampler still shifts targets and masks BOS; cache stores unchanged context+1 raw IDs')
+E       KeyError: 'splits'
+
+scripts/resident_web_window.py:28: KeyError</failure></testcase></testsuite></testsuites>
