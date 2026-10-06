@@ -1,3 +1,9 @@
+Base専用news CUDA probe: failure_v1（2026-10-06 JST）。
+
+own news probe actual656937実終端/不在、GPU1.419417秒、理由RuntimeError('Expected all tensors to be on the same device, but got other is on cpu, different from other tensors on cuda:0 (when checking argument in method wrapper_CUDA__equal)')。原config/source/job/失敗を保存し元UI復帰。
+
+Base未完成・完成時通知停止、Chat/量子化なし。元品質条件/全旧失敗保持、source/LR/epoch/decoder/CP救済sweepなし。WSL uv/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用日本語news trainer/own probe実装（2026-10-06 JST）。
 
 原native10M/継承Adam・scheduler・LR1e-5と共通prefix322685のWebcursor/RNGを保持し、残Web1428122→news25Mを正確な教師quotaで学習する専用処理を実装。親prefix73571878教師は再GPUせず別会計、BOS mask/partial末尾教師/全masked余剰physical Web/bytes/EOSを保存。news contiguous1024 shuffled blocksの最終478tokensは未サンプルと明記、全5050の全語学習を断定しない。CPU2tests/1.55秒でnative W/Adam/scheduler/RNG継承とWeb→news境界の4連続対2+2全state/history、正確quota/bytes/EOS/末尾physicalを確認。初回tiny旧fixtureに本番Webmanifest fieldがなく1failを保存、本番CPにあることを確認しfixtureへ実CPU source metadataだけを補完した。
