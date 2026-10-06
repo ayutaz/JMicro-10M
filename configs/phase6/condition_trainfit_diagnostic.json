@@ -1,0 +1,82 @@
+{
+  "kind": "original_condition_train_target_fit",
+  "documents": 512,
+  "batch": 32,
+  "dtype": "bf16",
+  "backend": "math",
+  "context": "same_original_standalone_BOS_body_EOS",
+  "GPU_budget_seconds": 60,
+  "optimizer_updates": 0,
+  "scientific_teacher_tokens": 0,
+  "new_original_tokens": 0,
+  "protected_test_used": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "quality_criteria_unchanged": true,
+  "old_numerical7_preserved": true,
+  "checkpoints": {
+    "parent2B": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook-coverage-2b-20261006/decay/checkpoint-00062166.pt",
+      "sha256": "965a06dc1537ed917de98c565d78ae76f19d99ad075f019067a4324a6cbd2249"
+    },
+    "control": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-positive-comparison-20261006/control/training/checkpoint-00062936.pt",
+      "sha256": "5f0805346dac73616e429c9cde54f9a81eaaf219ef79e11797a84c37525b8a60"
+    },
+    "positive4": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-positive-comparison-20261006/positive4/training/checkpoint-00062936.pt",
+      "sha256": "101ab7f4c2e165d8def1aa580b826c691986add92da910ce1f92fe98a24b6db6"
+    }
+  },
+  "positive_data": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/source-condition-positive-20261006",
+    "manifest_sha256": "7ef3df21ec52541d32f4b6e17321cb35271a25ded13af913dab6c1aab5e866fc"
+  },
+  "manifest": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/source-condition-positive-20261006/manifest.json",
+    "sha256": "7ef3df21ec52541d32f4b6e17321cb35271a25ded13af913dab6c1aab5e866fc"
+  },
+  "arrays": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/source-condition-positive-20261006/train.npz",
+    "sha256": "cb24308d90691adf81b772c86b2bd0b318dd91b44481c28bc8ec7ad0ef889be4"
+  },
+  "references": {
+    "proposal": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition_positive_trainfit_diagnostic_proposal.json",
+      "sha256": "4581f0d7ef7211f4df7a825d3a43a1fa49ed07d575699542906b4d72f79cbc6c"
+    },
+    "study_config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/condition_positive_comparison.json",
+      "sha256": "5af7b204dd45f1f7a19821572889e2fa7ccf70577c268518b412a381ddb64ec9"
+    },
+    "result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-positive-comparison-20261006/compare-result.json",
+      "sha256": "f94e88e51747a9fc5a99cb773062af8fd5cb30930a1da29e58ed3c10c4e8dff8"
+    },
+    "review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-positive-comparison-20261006/review.json",
+      "sha256": "c9062ff59ff032a18abc05163f85b3e53d8d2b0a79ef5fd028630c2a565d14ea"
+    }
+  },
+  "source_sha256": {
+    "scripts/run_condition_trainfit_diagnostic.py": "fb25768c8688362686ac6bd6d538668ccb36e6293d996a82b1b4a72457b6f27c",
+    "scripts/run_condition_trainfit_diagnostic.ps1": "80a3551d36f7c61a71fea2b4bb8808b7eb02d004588e5b8710572c6bd880b5f1",
+    "scripts/condition_positive_trainer.py": "c2c107b408e38958c36dd43d56d3a78fe623a7b7f12daf4e0d3e39787aea7f33",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f",
+    "scripts/run_eos_short_pilot.py": "7a381414bdea5b24bbbbf7532f04db743cff948fa47f60e95f65019af2d3ec3d"
+  },
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "target_counts": {
+    "focus_body": 18956,
+    "other_body": 52929,
+    "EOS": 512
+  },
+  "limitations": "Train-only teacher forcing can distinguish failure to fit from fit without transfer on these examples, not prove generalization, attention failure or capacity. The saved dev paired analysis remains secondary; no evaluation text enters learning.",
+  "created_at": "2026-10-06T01:50:29.204558Z"
+}

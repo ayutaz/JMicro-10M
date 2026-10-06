@@ -1,0 +1,167 @@
+{
+  "status": "all512_original_targets_3_checkpoints_measured",
+  "config_sha256": "1bbad30fbee91786c5e1c992930097b42c835663da8ea4235233291ff4a098af",
+  "checks": {
+    "parent2B": {
+      "weights_unchanged": true,
+      "RNG_restored": true,
+      "no_gradients": true,
+      "eval_mode": true,
+      "first_document_batched_vs_single_max_NLL_difference": 0.0
+    },
+    "control": {
+      "weights_unchanged": true,
+      "RNG_restored": true,
+      "no_gradients": true,
+      "eval_mode": true,
+      "first_document_batched_vs_single_max_NLL_difference": 0.0
+    },
+    "positive4": {
+      "weights_unchanged": true,
+      "RNG_restored": true,
+      "no_gradients": true,
+      "eval_mode": true,
+      "first_document_batched_vs_single_max_NLL_difference": 0.0
+    }
+  },
+  "summary": {
+    "absolute": {
+      "parent2B": {
+        "focus_body": {
+          "tokens": 18956,
+          "nll_sum": 38308.656169084345,
+          "mean_nll": 2.0209250986011997
+        },
+        "other_body": {
+          "tokens": 52929,
+          "nll_sum": 112861.09513833707,
+          "mean_nll": 2.132311117503393
+        },
+        "EOS": {
+          "tokens": 512,
+          "nll_sum": 19.632498978811782,
+          "mean_nll": 0.03834472456799176
+        }
+      },
+      "control": {
+        "focus_body": {
+          "tokens": 18956,
+          "nll_sum": 10291.589236868997,
+          "mean_nll": 0.5429198795562881
+        },
+        "other_body": {
+          "tokens": 52929,
+          "nll_sum": 47014.97718621402,
+          "mean_nll": 0.8882649811297024
+        },
+        "EOS": {
+          "tokens": 512,
+          "nll_sum": 3.520820114765229,
+          "mean_nll": 0.006876601786650838
+        }
+      },
+      "positive4": {
+        "focus_body": {
+          "tokens": 18956,
+          "nll_sum": 1527.8687944701169,
+          "mean_nll": 0.0806008015652098
+        },
+        "other_body": {
+          "tokens": 52929,
+          "nll_sum": 43378.79789323751,
+          "mean_nll": 0.8195657936714752
+        },
+        "EOS": {
+          "tokens": 512,
+          "nll_sum": 3.269683505182911,
+          "mean_nll": 0.006386100596060373
+        }
+      }
+    },
+    "paired_deltas": {
+      "parent2B->control": {
+        "focus_body": {
+          "documents": 504,
+          "improved_documents": 504,
+          "mean_document_delta": -1.4715183502675948,
+          "median_document_delta": -1.460397604878323,
+          "token_weighted_delta": -1.4780052190449116
+        },
+        "other_body": {
+          "documents": 512,
+          "improved_documents": 512,
+          "mean_document_delta": -1.230554497241752,
+          "median_document_delta": -1.2364465576391395,
+          "token_weighted_delta": -1.2440461363736905
+        },
+        "EOS": {
+          "documents": 512,
+          "improved_documents": 421,
+          "mean_document_delta": -0.031468122781340924,
+          "median_document_delta": -0.00150430275243707,
+          "token_weighted_delta": -0.031468122781340924
+        }
+      },
+      "parent2B->positive4": {
+        "focus_body": {
+          "documents": 504,
+          "improved_documents": 504,
+          "mean_document_delta": -1.9077975160828031,
+          "median_document_delta": -1.9093948516633787,
+          "token_weighted_delta": -1.94032429703599
+        },
+        "other_body": {
+          "documents": 512,
+          "improved_documents": 512,
+          "mean_document_delta": -1.2982318055338697,
+          "median_document_delta": -1.3102021759793552,
+          "token_weighted_delta": -1.3127453238319178
+        },
+        "EOS": {
+          "documents": 512,
+          "improved_documents": 402,
+          "mean_document_delta": -0.03195862397193139,
+          "median_document_delta": -0.0012537539550976362,
+          "token_weighted_delta": -0.03195862397193139
+        }
+      },
+      "control->positive4": {
+        "focus_body": {
+          "documents": 504,
+          "improved_documents": 504,
+          "mean_document_delta": -0.4362791658152084,
+          "median_document_delta": -0.42214949819569686,
+          "token_weighted_delta": -0.4623190779910783
+        },
+        "other_body": {
+          "documents": 512,
+          "improved_documents": 497,
+          "mean_document_delta": -0.06767730829211746,
+          "median_document_delta": -0.06472813026829882,
+          "token_weighted_delta": -0.06869918745822723
+        },
+        "EOS": {
+          "documents": 512,
+          "improved_documents": 211,
+          "mean_document_delta": -0.0004905011905904644,
+          "median_document_delta": 5.738238542107865e-05,
+          "token_weighted_delta": -0.0004905011905904644
+        }
+      }
+    }
+  },
+  "GPU_seconds": 4.703986317006638,
+  "evaluated_documents": 1536,
+  "optimizer_updates": 0,
+  "scientific_teacher_tokens": 0,
+  "new_original_tokens": 0,
+  "protected_test_used": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "requested_five_steps_complete": false,
+  "quality_criteria_unchanged": true,
+  "old_numerical7_preserved": true,
+  "limitations": "Train-only teacher forcing can distinguish failure to fit from fit without transfer on these examples, not prove generalization, attention failure or capacity. The saved dev paired analysis remains secondary; no evaluation text enters learning.",
+  "completed_at": "2026-10-06T01:50:43.609216Z"
+}

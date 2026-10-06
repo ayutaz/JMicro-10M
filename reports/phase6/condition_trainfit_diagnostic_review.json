@@ -1,0 +1,206 @@
+{
+  "status": "actual512_by3_trainfit_diagnostic_review_complete",
+  "created_at": "2026-10-06T01:53:22.940742Z",
+  "config_sha256": "1bbad30fbee91786c5e1c992930097b42c835663da8ea4235233291ff4a098af",
+  "result_sha256": "b079bf4a07a085008881a784571f4a1551a59751c5545cf6b9cfcadd9820151a",
+  "study_review_sha256": "c9062ff59ff032a18abc05163f85b3e53d8d2b0a79ef5fd028630c2a565d14ea",
+  "summary": {
+    "absolute": {
+      "parent2B": {
+        "focus_body": {
+          "tokens": 18956,
+          "nll_sum": 38308.656169084345,
+          "mean_nll": 2.0209250986011997
+        },
+        "other_body": {
+          "tokens": 52929,
+          "nll_sum": 112861.09513833707,
+          "mean_nll": 2.132311117503393
+        },
+        "EOS": {
+          "tokens": 512,
+          "nll_sum": 19.632498978811782,
+          "mean_nll": 0.03834472456799176
+        }
+      },
+      "control": {
+        "focus_body": {
+          "tokens": 18956,
+          "nll_sum": 10291.589236868997,
+          "mean_nll": 0.5429198795562881
+        },
+        "other_body": {
+          "tokens": 52929,
+          "nll_sum": 47014.97718621402,
+          "mean_nll": 0.8882649811297024
+        },
+        "EOS": {
+          "tokens": 512,
+          "nll_sum": 3.520820114765229,
+          "mean_nll": 0.006876601786650838
+        }
+      },
+      "positive4": {
+        "focus_body": {
+          "tokens": 18956,
+          "nll_sum": 1527.8687944701169,
+          "mean_nll": 0.0806008015652098
+        },
+        "other_body": {
+          "tokens": 52929,
+          "nll_sum": 43378.79789323751,
+          "mean_nll": 0.8195657936714752
+        },
+        "EOS": {
+          "tokens": 512,
+          "nll_sum": 3.269683505182911,
+          "mean_nll": 0.006386100596060373
+        }
+      }
+    },
+    "paired_deltas": {
+      "parent2B->control": {
+        "focus_body": {
+          "documents": 504,
+          "improved_documents": 504,
+          "mean_document_delta": -1.4715183502675948,
+          "median_document_delta": -1.460397604878323,
+          "token_weighted_delta": -1.4780052190449116
+        },
+        "other_body": {
+          "documents": 512,
+          "improved_documents": 512,
+          "mean_document_delta": -1.230554497241752,
+          "median_document_delta": -1.2364465576391395,
+          "token_weighted_delta": -1.2440461363736905
+        },
+        "EOS": {
+          "documents": 512,
+          "improved_documents": 421,
+          "mean_document_delta": -0.031468122781340924,
+          "median_document_delta": -0.00150430275243707,
+          "token_weighted_delta": -0.031468122781340924
+        }
+      },
+      "parent2B->positive4": {
+        "focus_body": {
+          "documents": 504,
+          "improved_documents": 504,
+          "mean_document_delta": -1.9077975160828031,
+          "median_document_delta": -1.9093948516633787,
+          "token_weighted_delta": -1.94032429703599
+        },
+        "other_body": {
+          "documents": 512,
+          "improved_documents": 512,
+          "mean_document_delta": -1.2982318055338697,
+          "median_document_delta": -1.3102021759793552,
+          "token_weighted_delta": -1.3127453238319178
+        },
+        "EOS": {
+          "documents": 512,
+          "improved_documents": 402,
+          "mean_document_delta": -0.03195862397193139,
+          "median_document_delta": -0.0012537539550976362,
+          "token_weighted_delta": -0.03195862397193139
+        }
+      },
+      "control->positive4": {
+        "focus_body": {
+          "documents": 504,
+          "improved_documents": 504,
+          "mean_document_delta": -0.4362791658152084,
+          "median_document_delta": -0.42214949819569686,
+          "token_weighted_delta": -0.4623190779910783
+        },
+        "other_body": {
+          "documents": 512,
+          "improved_documents": 497,
+          "mean_document_delta": -0.06767730829211746,
+          "median_document_delta": -0.06472813026829882,
+          "token_weighted_delta": -0.06869918745822723
+        },
+        "EOS": {
+          "documents": 512,
+          "improved_documents": 211,
+          "mean_document_delta": -0.0004905011905904644,
+          "median_document_delta": 5.738238542107865e-05,
+          "token_weighted_delta": -0.0004905011905904644
+        }
+      }
+    }
+  },
+  "checks": {
+    "parent2B": {
+      "weights_unchanged": true,
+      "RNG_restored": true,
+      "no_gradients": true,
+      "eval_mode": true,
+      "first_document_batched_vs_single_max_NLL_difference": 0.0
+    },
+    "control": {
+      "weights_unchanged": true,
+      "RNG_restored": true,
+      "no_gradients": true,
+      "eval_mode": true,
+      "first_document_batched_vs_single_max_NLL_difference": 0.0
+    },
+    "positive4": {
+      "weights_unchanged": true,
+      "RNG_restored": true,
+      "no_gradients": true,
+      "eval_mode": true,
+      "first_document_batched_vs_single_max_NLL_difference": 0.0
+    }
+  },
+  "actual_GPU_seconds": 4.703986317006638,
+  "GPU_occupation_seconds": 4.704371909989277,
+  "target_documents": 512,
+  "measured_checkpoint_documents": 1536,
+  "optimizer_updates": 0,
+  "scientific_teacher_tokens": 0,
+  "new_original_tokens": 0,
+  "protected_test_used": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "requested_five_steps_complete": false,
+  "actual_conditional_teacher_tokens": {
+    "control": 2500000,
+    "positive4": 2500000
+  },
+  "conditional_teacher_exposures": {
+    "control": 34.53181761675207,
+    "positive4": 34.53181761675207
+  },
+  "heldout_content": {
+    "control": {
+      "coherent": 15,
+      "appropriate": 27,
+      "grammar2": 54,
+      "rates": {
+        "outputs": 80,
+        "eos": 44,
+        "repetition": 26,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      }
+    },
+    "positive4": {
+      "coherent": 9,
+      "appropriate": 24,
+      "grammar2": 61,
+      "rates": {
+        "outputs": 80,
+        "eos": 47,
+        "repetition": 22,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      }
+    }
+  },
+  "interpretation": "Original positive targets fit substantially better after weight4 than ordinary CE on every504 focus-enabled document, while fixed-dev generation coherence drops15->9. This supports fitting without demonstrated transfer on these data/one seed. It does not prove the sole cause, capacity limit, independent generalization or incompatible counterfactual labels.",
+  "next_action": "Keep weight1 and exact25M conditional/source quotas; prepare nested512->2048 original-source variety with unchanged V3 selector, fixed64 new-content gate, then measured matched comparison vs existing512 control. No automatic weight sweep/long extension/Chat."
+}
