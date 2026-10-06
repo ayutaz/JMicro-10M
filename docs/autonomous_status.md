@@ -1,3 +1,15 @@
+正解続きの生成確率を高める単一100M比較を実CUDA検証後に開始（2026-10-06 JST）。前のrelative-only100M/全評価不採用を44b092cへ保存。Baseだけを品質・独立学習seed/full dev/protected test/採用まで続け、実完成時に通知して停止。Base未完了・未採用、Chat/Dialogue/SFT/量子化なし。
+
+owned anchored_context_outcome loss/trainer/resident/runner/accountant/reviewer/durablePSを実装。元10.5B fullparent/Adam/scheduler/RNG/実LR.00001、main100M CEと4source順序、conditional WebKL8x1024、TRAIN pair8x256/全cursor/inputを維持。同paired logitsの正解bodyにだけ非EOS CE係数1を加え、ranking係数/温度1を保持。foil/prefix/pad/EOS3は新hard教師外、追加forward/新教材量0。正解73725位置が新hard教師、main込み100073725とrelational labels/parent probability mass/combined physical131948544を別計数する。
+
+CPU4tests/1.678秒は実tiny学習済重みで全state4対2+2/3samplers/new ledger/singleAdamstep、loss masks/directEOS勾配0/低gold確率でも相対ranking改善する例とcausal/padding経路を確認。scope/実TRAIN会計改変拒否2testsも合格、PS構文成功。新builderの初回newline-fragment拒否とCPU prepareのproposal key誤読を新unfrozen sourceで修正後に凍結、実GPU失敗0、旧frozen files/基準/予算変更なし。
+
+probe actual616014はcomplete・実identity不在。実CUDA4対2+2全58state/history/有限値checksと初期parent10checks成功。40検証更新/mainCE1307967/positivehard933/rank160labels81920paddedを科学へ加算しない。全32主/Web/pair入力・mask digest・親massが終了済rankingと一致、probeGPU31.258545秒。更新median0.140814317秒、3068更新train推定437.202909秒。同150秒非学習枠/30%/50秒余裕を保持しscience813.363782+probe=844.622327<900秒でscience凍結。旧関連1734.837644秒を消さず別記。
+
+Windows durable worker33620、actual616427/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start15962167をlive確認。主CE追加7847591教師/loss2.934326230548322有限で100M学習中。RUN reports/phase6/anchored-context-outcome-comparison-20261006、configs/phase6/anchored_context_outcome_comparison.json/launch.jsonにPID/log/checkpoint/source snapshotsを保存。actual不在・valid completed-update checkpointのときだけscripts/run_anchored_context_outcome_comparison.ps1 -Mode Train -Workerで再開、二重GPUなし。GPU中の元10B UIは停止しwrapper finallyで元CPへ復帰する。probe/sourceの可搬292text/3292371rawbytesとarchiveを保存、active科学log/model tensor/dataはportable外、launch metadataはarchive後の別記録。
+
+次は同job終端→256全文472055bytes/122343bodytokens、日本語192-331-1119、全80greedy64と全80個別raw-bound内容、bridge/retention各128、絶対gold/foil NLLとmargin、全3068入力/新hard台帳の採否。mechanism対照は前ranking、品質対照は強い元stagedCE23+8/CI lower>0/EOS>=76/反復<=2と既存absolute/歴史WebBPB<=.981285952のまま。設定sweep/量だけの延長/有利CP探索/自動予算拡張なし。pilot品質合格時だけ独立学習seed/full dev/protected test/adoption。旧Phase0–3/数値7失敗/全品質条件/過去費用保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 train文脈比較100Mと全評価を完了・不採用（2026-10-06 JST）。実CUDA53checks/永続起動はdf3e2a3へ保存。Baseだけを品質・独立学習seed/full dev/protected test/採用まで継続、実完成時に通知して停止。Base未完了・未採用。Chat/Dialogue/SFT/量子化なし。
 
 actual610335/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start15803746はcomplete・実ps不在。main100,000,000CE教師/maininput100,532,224/3068更新、CP323503 SHAc95d649b8d3a0c8ede55c2edec80ef8ed4a24bae8ce0ca9e8fe3ccf7434a832c。同reference25,133,056input/25,026,383body positions/parent非EOS mass24,981,892.629882812。rank6136family presentations/12272relational labels/1,022,980valid/6,283,264padded/gold73,725・foil73,725位置/gold315,047・foil315,047bytes、combined131,948,544physical/126,688,260validを別計数。rankはCE教師0/soft targets0、新corpus0。全3068主/参照input-mask-digest-sourceとmassがconditionalKLと一致、全rank入力/順序/digest/会計を再現監査、全4終端source cursors一致。

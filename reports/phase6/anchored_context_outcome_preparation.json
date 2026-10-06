@@ -1,0 +1,50 @@
+{
+  "status": "positive_anchor_CPU_loss_masks_causal_model_full_resume_passed_CUDA_pending",
+  "created_at": "2026-10-06T08:45:26.264434Z",
+  "proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/anchored_context_outcome_proposal.json",
+    "sha256": "e412bd11e40f60f2f2b14500dfe9b54c24e035630d979d69d9819b6aa66882ed"
+  },
+  "CPU_tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/anchored_context_outcome_cpu_tests.xml",
+    "sha256": "149bb8515af537e684f226bf65c4b79124cb862bd6b9ac77b0fd479ab385e27b"
+  },
+  "CPU_passed_tests": 4,
+  "CPU_test_seconds": 1.678,
+  "source_sha256": {
+    "scripts/anchored_context_outcome.py": "9529f29307bd52579113cd8753cd9493ada82795cc225094e17fec13a2511f86",
+    "scripts/anchored_context_outcome_trainer.py": "a9744640447571a8c484cbcd87e240caa2bc1ebcae73d5eb341d56af1cc7017b",
+    "scripts/anchored_context_outcome_resident_trainer.py": "549694b84dc78c3008c989f46a8f7aa6bd562e5ed7b4962cdaff5cdf34819950",
+    "scripts/prepare_anchored_context_outcome_trainer.py": "6caf8dd3242d284552e270fbb1c6c366196cb5b6c27af1f39735452e87a88570",
+    "tests/test_anchored_context_outcome.py": "696248ebab43a216c30d952216f545d276e1802fe5555a3965827ffd4954d951",
+    "tests/test_anchored_context_outcome_trainer.py": "8cc5d04a0b5308b82503fdd0abc61c4c3fe7acfeaa82205870f1d052ebb6635a"
+  },
+  "actual_checks": [
+    "Positive correct-row token-weighted loss and identical old ranking term; foil/prefix/pad/directEOS hard gradient excluded.",
+    "Concrete lower-gold-probability/improved-ranking example detected by added anchor.",
+    "Real tiny learned CPU model4vs2+2 matches entire saved state and all nonduration history; all3 samplers, newhard ledger and singleAdamstep preserved; corrupted teacher state rejected.",
+    "Actual JMicro CPU valid logits match padded/standalone rows; future changed tokens cannot alter earlier logits."
+  ],
+  "operational_failures": [
+    {
+      "stage": "new_owned_runner_generation_before_GPU",
+      "error": "Unique-fragment guard refused incorrect newline-count before writing outputs.",
+      "repair": "Adjusted new unfrozen builder to actual three-newline source boundary; prior frozen files unchanged.",
+      "GPU_seconds": 0
+    }
+  ],
+  "fixed_train_inputs": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/context-outcome-ranking-20261006/manifest.json",
+    "sha256": "0b394e1d8ba9fc836001620a9c6b6035aebbe246a1aa3d52b87c15eb1a1edb58"
+  },
+  "new_original_corpus_tokens": 0,
+  "GPU_training_seconds": 0,
+  "scientific_teacher_tokens": 0,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "next_action": "Own actual CUDA4vs2+2/new ledger and32 combined timings; freeze only if all probe costs plus unchanged reserves fit900 GPU seconds."
+}
