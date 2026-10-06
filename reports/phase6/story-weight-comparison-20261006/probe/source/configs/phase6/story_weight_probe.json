@@ -1,0 +1,107 @@
+{
+  "research_kind": "same_material_story_teacher_weight",
+  "phase": "probe",
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook-coverage-2b-20261006/decay/checkpoint-00062166.pt",
+    "sha256": "965a06dc1537ed917de98c565d78ae76f19d99ad075f019067a4324a6cbd2249"
+  },
+  "preparation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story_weight_comparison_preparation.json",
+    "sha256": "cb49c7bd0acfbc2d3847d7af0364cea92dc860acfdb0e19c1fc8490f49b0ccf8"
+  },
+  "original_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/textbook_quantity_comparison.json",
+    "sha256": "f1baece77f9e85d6086f1ac5d1e624a59d19910a90af2202a104fb125c379d98"
+  },
+  "parent_quality_review": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook_coverage_2b_review.json",
+    "sha256": "535faa83e973e86f0a5dd356d596c504be2b53e5aa8c89f2be0431c872c53859"
+  },
+  "parent_evaluation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook-coverage-2b-20261006/compare-result.json",
+    "sha256": "3a5b6ade1f69557ffba2fd83b6e32646fe8c9a02d8dd4b38f353935c64548028"
+  },
+  "pool": {
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large",
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133"
+  },
+  "prepared_tokens": 2000001312,
+  "accepted_compact_index": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large/.compact-index-8cde6396d433644b/ready.json",
+    "sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606"
+  },
+  "arms": {
+    "control": {
+      "web": 75000000,
+      "textbook": 20000000,
+      "story": 5000000
+    },
+    "story20": {
+      "web": 60000000,
+      "textbook": 20000000,
+      "story": 20000000
+    }
+  },
+  "teachers_per_arm": 100000000,
+  "peak_lr": 0.0002,
+  "optimizer_policy": "inherit",
+  "loss": "CE body+EOS",
+  "sampler_policy": "Explicit experimental fork into per-genre document shuffles, same initial seed/order in both arms. Preserve original sampler as parent lineage; do not claim the new mixture keeps its old mixed block cursor. Save new samplers at completed updates.",
+  "shapes": {
+    "context": 1024,
+    "batch": 32,
+    "accumulation": 1,
+    "backend": "flash",
+    "compile_mode": "reduce-overhead",
+    "dtype": "bf16"
+  },
+  "GPU_budget_seconds": 120,
+  "total_new_GPU_ceiling_seconds": 1800,
+  "probe_updates": {
+    "resume_per_arm": 8,
+    "continuous_timing_per_arm": 32,
+    "timing_warmup_updates": 8
+  },
+  "source_sha256": {
+    "scripts/run_story_weight_comparison.py": "3598ce68a406aeb98eacc07dc700c04c261cf8e7a093ca805cac431853ba95eb",
+    "scripts/run_story_weight_comparison.ps1": "976b3d2a0ff9f3773e26a1ae9113f61648c700761ee3cd9a6ad890206a8902c2",
+    "scripts/story_weight_trainer.py": "47d7da7aa511d168ba319dea754deb0bf5688fca5edadf3891e8d4bf5d8c5435",
+    "scripts/cached_three_source_index.py": "c66a38606d2602c7b2193d41ebcefca7220491d1bb50c5f729dbab01f277bb85",
+    "scripts/textbook_quantity_trainer.py": "c11b8c3650e193118f20cac29122d917228b0b95322c642d061a04c8813cbab8",
+    "scripts/run_complete_text_comparison.py": "9d91d1d6124e62e4f40f7a99762f948186602e95cc362be10bfe03297874d8f7",
+    "scripts/run_complete_text_comparison.ps1": "7fb1a82d9450daf7f6955d56093be61cf31c25dd479e23715372b1d8db345e5b",
+    "src/jmicro/coherent_units.py": "7b0e8cef7726b652f7b88187749090ded2b05042ac4c5fe076c30b5f5e637459",
+    "scripts/prepare_coherent_text.py": "d91f65d6c469690cbb2c01971bddfad73a4b0ae61211a277fa3d522e17901149",
+    "scripts/inspect_complete_text_data.py": "bf18510673c0c4352df911df850e3f598f921977cc34d580aa3fc87e8e8df626",
+    "scripts/prepare_story_text.py": "ecbd5d1a320d59a318b282026b36e4b7ad9284d897169f0c57e77f6dae5c90fa",
+    "src/jmicro/eos_pilot.py": "84b23a04455475b598056b8973a1cf89346aa3faf766e9162fef2ff7e17dbb08",
+    "src/jmicro/low_lr_pilot.py": "dcb6a1374c64c2852086b57a50433720b1e6b60263d5581eb742c3a1864ff64e",
+    "scripts/run_eos_short_pilot.py": "7a381414bdea5b24bbbbf7532f04db743cff948fa47f60e95f65019af2d3ec3d",
+    "scripts/run_eos_complete_100m.py": "62232fd440efbe32d65f25a3fffe8ec9fd7d7a96c74db329ddc3cc3443871a9d",
+    "scripts/evaluate_japanese_base.py": "9cabf705a67181b6a45eb20c1a62b69335140f2465b24ac2066f05e51ee48d02",
+    "src/jmicro/japanese_evaluation.py": "8693e2a54e63c1b085b617b207cc5db618ae80af1eb7cb54133ba8b254da6801",
+    "src/jmicro/readiness.py": "69a92251f4a697b551b9c3cfef9e2b992e776e2047c0331f7c43ba2331d172ea",
+    "src/jmicro/evaluation_memory.py": "ba22fb7ca7ddb6633a308c2b1a32a59147ecb38e568d9f838ab032300147c6b4",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056"
+  },
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "evaluation_binding": {
+    "dev_manifest_sha256": "75c7420a1434cf8a97797218b163c694a13ed838f389f09327dcc86f7164c12c",
+    "suite_sha256": "93cd3a19f3e62c8d30d1660b431a9525823f58b9ceb1bf90c6ecbac2c19292eb",
+    "config_sha256": "661dc8d4db7de836ddb99ac3ed5bbf3e10636c24d00e5fb0869773ace4fa03a8"
+  },
+  "quality_criteria_unchanged": true,
+  "historical_quality_extension_refusal_preserved": true,
+  "old_numerical7_preserved": true,
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "protected_test_used": false,
+  "requested_five_steps_complete": false,
+  "scientific_teacher_tokens": 0,
+  "created_at": "2026-10-06T00:44:33.651431Z"
+}
