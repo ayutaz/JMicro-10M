@@ -1,0 +1,86 @@
+{
+  "kind": "authored_Japanese_news_vs_synthetic_native_Base100M_v1",
+  "created_at": "2026-10-06T14:10:58.122724Z",
+  "preparation_CPU_seconds": 0.39983114699134603,
+  "source_preparation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/livedoor_leads_preparation.json",
+    "sha256": "b667ef62e440f941153cbad45251ee2613e6942a4da056442a16357d5283b467"
+  },
+  "source_ready": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/livedoor-leads-20261006/ready.json",
+    "sha256": "9a14662182da7ad80c87f0ae95467a891ff2b4e8bdb7aeb1a64db4de75001ef4"
+  },
+  "source_content_review": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/livedoor-leads-20261006/content-review.json",
+    "sha256": "0f4c15ea87f70e213152893a06350b1afcf4f04a2e38a44ac83d31e6e4a617d6"
+  },
+  "original_parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+    "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+  },
+  "cached_control_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/source_order_condition_comparison_v2.json",
+    "sha256": "03b4ad47fa42b9a669c4588e736648e6339c93b9eb0cf3d08aac22a46cf90a88"
+  },
+  "cached_control_result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/compare-result.json",
+    "sha256": "cbca7936ebf395b1d5ccd45022ee4cb85de704a636c8bdae48ff2c24a8adc303"
+  },
+  "cached_control_history": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/metrics.jsonl",
+    "sha256": "272fed6b31537defe88e6294bf1225db20afdc614a29feefbf4b66b1d22f642e"
+  },
+  "shared_prefix": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00322685.pt",
+    "sha256": "1398ad1364d60e88382bca26e711e45b8b981275dc56d77fdae295674df297c7"
+  },
+  "shared_prefix_update": 322685,
+  "reused_prefix_teacher_tokens": 73571878,
+  "new_teacher_goals": {
+    "web": 1428122,
+    "authored_news": 25000000
+  },
+  "new_scientific_teacher_tokens": 26428122,
+  "candidate_total_teacher_tokens_from_original_parent": 100000000,
+  "reused_prefix_input_tokens": 73728000,
+  "reused_prefix_Web_cursor": {
+    "seed": 42,
+    "epoch": 0,
+    "position": 10325920,
+    "context": 1024,
+    "blocks": 11939276
+  },
+  "prefix_selection": "Largest completed cached checkpoint with all short-source teacher counts zero, determined from source ledger only. No checkpoint quality evaluation or selection.",
+  "native_parameters": 10001152,
+  "optimizer_policy": "inherit actual cached common-prefix native Adam/scheduler/RNG; unchanged LR1e-5, seed42 news stream. No reheat or fresh optimizer.",
+  "data": {
+    "original_web": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2/export-001/shards",
+      "manifest_sha256": "2edfd35bf077cd1aa583713c01341c0db52f39adc5701f30ede0aacae840b2de"
+    },
+    "news_pool": "/home/aihub_ubuntu/jmicro-data/phase6/livedoor-leads-20261006/shards",
+    "news_manifest_sha256": "600d8e04e0ea266aef6d7180b6e95639f7260e910dc6a55b7a6ae7eeb7c38bfa"
+  },
+  "source_order": [
+    "web",
+    "authored_news"
+  ],
+  "body_and_EOS_weights": 1.0,
+  "news_prepared_body_tokens": 523883,
+  "news_prepared_stream_tokens": 533983,
+  "news_epochs_of_teacher_exposure": 47.264965506028176,
+  "interventions": "Replace post-Web25M story/ordinary/conditional targets with original authored-news paragraphs. Corpus, EOS density and diversity change together; not quantity-only or exact matched-input/physical/update count comparison.",
+  "quality_selection": "Unchanged strong staged coherence>=31 and positive paired CI, EOS>=76/repetition<=2; absolute grammar56/coherence27/appropriate27/EOS37/repetition<=18/errors0; original Web BPB<=.9812859519097707; all source/finite/accounting/evaluation proof. Only eligible recipe proceeds to independent learned seed/full dev/protected test/adoption.",
+  "evaluation": "Same dev256 common bytes/Japanese192-331-1119/native80 max64 greedy/suppressed and bridge/retention512each, all80 raw-bound individual content review. Cached control not rerun.",
+  "own_CUDA_probe_ceiling_seconds": 120,
+  "total_new_GPU_ceiling_seconds": 1800,
+  "scientific_GPU_frozen": false,
+  "new_GPU_seconds": 0,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "protected_test_used": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "completion_condition": "Implement exact two-source/inherited-state trainer and evaluator/review, test actual save/resume and source budgets; own CUDA4vs2+2/32timing and estimate1.3margin+300eval+probe within1800 before science freeze. Single recipe; no source/selector/epoch/LR/decoder/checkpoint rescue.",
+  "limitations": "Single nonblind fixed64 sample is a readiness screen, not all5050 paragraph audit or Base quality evidence. Advertisements, dated facts and introductory rather than full-article closure remain. Old Web overlap/global audit incomplete."
+}

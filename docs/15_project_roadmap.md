@@ -1,3 +1,9 @@
+Base専用・日本語ニュースsource準備完了（2026-10-06 JST）。
+
+前turn出力変換100M/全80は2dfea0aで不採用。今回同3068/100M全paired TRAIN historyをCPU.098275秒で分析し、末尾32のCEは4sourceともnativeより高い。事後/fresh readout Adam差/混在境界別会計で、原因や容量不足の証明にしない。新[配布者livedoorニュースコーパス](https://www.rondhuit.com/download.html#ldcc)をdownload2.484144秒・CPU1.349822秒で準備。元7367記事→TRAIN5050原first paragraphs/本文523883・BOS/EOS込533983tokens、EOS/教師.009548。article-ID family90/5/5のdev374/test376本文をdecode/tokenizeせず、local exact127重複を除外。旧Webcross重複/独立audit未完、新規distinctを断定しない。固定64全個別nonblind採点・弱8<=10でsource受入。医学宣伝/こちら参照/語欠落などの弱い例を記録し、後から除去/rerollせず原5050を保持。これはsource readinessで全5050監査・モデル品質・独立人手の証明ではない。原archive/LICENSE/全文章/64raw/binaryはnative保存、portableはhash/provenance/notes/codeのみ。CPU0.399831秒で旧native stagedの最大Web-only保存CP322685を品質参照なしに選び、実weights/Adam2group・LR1e-5/RNG/Webcursor/親d18/全会計と10M tiedを確認。共通Web73571878教師を再GPUせず、残Web1428122+news25M=26428122新教師・全100Mにする一案。news25Mは約47.265反復で、本文523883を教材量として別記。source/EOS/多様性・物理input/update数が変わる比較で、量のみ/同targetとは称さない。native core/Tokenizer/decoder/旧cached対照を変更しない。次は専用2source trainer/会計/実保存再開を実装、ownCUDA120秒/32timing後、1.3margin+300評価+probe全1800秒予測内のみ科学凍結。newGPU/科学0、元UI確認、Base未完成・完成時通知停止、Chat/量子化なし。
+
+元相対・絶対・歴史Web1%品質基準/全旧失敗/数値7/Phase0–3維持。source/selector/epoch/LR/decoder/CP救済sweepなし。WSL uv/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用・著者による日本語ニュース段落pilot準備（2026-10-06 JST）。
 
 前turnの出力変換100M/全80は2dfea0aで不採用、Base未完成。今回CPU0.098275秒で実3068全更新/同100M input・target・source・digestのpaired lossを分析、混在3境界lossは単一sourceへ配賦しない。末尾32更新CEは新readout対nativeでWeb2.585706/2.577496、story1.994395/1.929531、ordinary2.196530/2.149302、conditional.288487/.259440。TRAINのみ・事後・fresh Adam差あり、品質悪化の原因/他の容量不足の証明にしない。関連CPU1test/1.28秒。
