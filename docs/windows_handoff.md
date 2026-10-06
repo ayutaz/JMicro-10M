@@ -1,3 +1,12 @@
+Base限定・projection100M継続／最終reviewer準備済み（2026-10-07 JST）。
+
+actual685602/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start19518840を実ps確認、同科学native runの4,000更新/22,624,125教師/loss有限、projection/checkpoint-00004000.ptを保存。frozen config/source/5,009秒は不変、重複GPUjobや盲目的再開をしない。GPU科学中の元UI停止/finally元10B復帰を保持。
+
+[採否準備](../reports/phase6/natural_context_contrast_projection_review_preparation.json): CPU17checks/2.46秒、実CPU cache interface/live拒否確認成功。新 scripts/review_natural_context_contrast_projection.py は旧160notes/strong/両matched/absolute/historical Webを再利用、headのeligible更新だけのAdam step、全state/historyと同CE sampler/digestを確認する。CIは同256bytes/同v2_1/192exact inputsに限定。新GPU/教師/内容採点0、科学code/config不変。
+
+全新80のevaluation完了後、native cwd /home/aihub_ubuntu/src/japanese-tiny-llm-10m にて /home/aihub_ubuntu/.local/bin/uv run --frozen --extra hub --extra data --extra ml --extra export scripts/review_natural_context_contrast_projection.py --template で未採点notesを作る。全80を個別に読むまで空欄を埋めない。六列TSV reports/phase6/natural_context_contrast_projection_observations.tsv 完成後、同uv prefix＋同script --record reports/phase6/natural_context_contrast_projection_observations.tsv で取り込む。実master completeかつPID/boot/startのps不在後のみ、同uv prefix＋同scriptを引数なしで実行して review.json と master comparison_review.json を保存。live時に実CLI拒否確認、完成artifactを先に作らない。既存scored notes/最終review上書き拒否、旧controlsのGPU再実行なし。
+
+次は新80全内容/元全gate→資格がある候補のみ独立学習seed/full DEV/protected final TEST/adoption。Base未完成、完成時通知停止、Chat/Dialogue/SFT/量子化なし、local verified commit/pushなし、旧失敗・Phase0–3維持。以下は過去の履歴。
 Base限定・projection CUDA probe完了／科学100M実行中（2026-10-07 JST）。
 
 [完了記録](../reports/phase6/natural_context_contrast_projection_probe_completion.json): actual684949終了・ps不在、GPU11.138秒/180、native初期/logits/RNG・別head・全state14checks合格。CPU7＋2checks成功、33検証更新/145,531教師は科学と別、probe重みは捨てる。31text/1,069,184byte portable archive。probe runner scripts/probe_natural_context_contrast_projection.ps1 を再実行しない。終了後の元10B UI actual685033/start19502441とHTTP元SHA410f975d…/10,000,007,168/busy=falseを確認してから科学へ移行。

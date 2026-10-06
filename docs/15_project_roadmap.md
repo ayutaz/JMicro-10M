@@ -1,5 +1,10 @@
 現在のBase限定milestone（2026-10-07 JST）。
 
+[projected100M終了後の採否処理](../reports/phase6/natural_context_contrast_projection_review_preparation.json)を実装・CPU17checksに合格。新80全内容と旧160を同raw-boundで使い、同CE/cursor・別head/全optimizer/RNG・全committed logを確認して元strong/両matched/absolute/historical Web条件を維持する。共通byte BPB/同192 exact-input意味CIは補足、完成/採用へ置換しない。
+
+実scientific685602は同100Mへ継続、確認時22,624,125教師/4,000更新と保存CP/loss有限。次は終端・新80全内容・元全gate、資格がある候補のみ独立学習seed/full DEV/protected final TEST/adoption、完成Base通知停止。Chat/Dialogue/SFT/量子化なし、元基準/旧失敗保持、以下は過去の履歴。
+現在のBase限定milestone（2026-10-07 JST）。
+
 [train-only projection試験](../reports/phase6/natural_context_contrast_projection_probe_completion.json)は実CUDA11.138秒/全state14checks合格。推論10Mと追加98,304の学習headを分け、初期native重み/logits/RNGを維持。全source batch48でresident容量と再開を確認したため、[同100M比較](../reports/phase6/natural_context_contrast_projection_comparison_start.json)を永続実行開始。元10B/2B教材・元各75/20/5M教師・同batch48/fresh Adam/seedを保持し、既存CE/direct100Mは再学習・再評価しない。新headは評価で破棄、同CE digest/会計/full samplerと追加計算を別に報告する。
 
 次は終端100M/同固定DEVと新生成80全内容→既存strong/matched/absolute/historical Web gate。識別loss・コード・再開だけでBase完成にしない。資格がある候補だけ独立学習seed/full DEV/protected final TEST/adoptionへ進み、Base完成時通知停止。Chat/Dialogue/SFT/量子化なし、元品質条件/旧失敗/Phase0–3を保持。以下は過去の履歴。

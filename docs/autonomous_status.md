@@ -1,3 +1,12 @@
+Base限定・同100M継続／終端採否command準備完了（2026-10-07 JST）。
+
+[新reviewerの実CPU準備](../reports/phase6/natural_context_contrast_projection_review_preparation.json): scripts/review_natural_context_contrast_projection.py と凍結policyを追加。CPU17checks/2.46秒、実既存cacheを使うAPI確認1.12秒、actual live時の最終review拒否と最終artifact不在を確認。native/head/全Adam/RNG/sampler・正確教師・各source/EOS・共通digest/cursor・全completed historyを要求する。headのAdam stepはeligible pairのある更新だけなので、全CE更新数へ誤って揃えない。中断後の巻戻りは後attemptのcommitted更新で復元し、切れた末尾rawは保存・記録、欠損completed更新や改行付き壊れた行は拒否。fixture/random CPUはGPU/品質証明にしない。
+
+同固定native80新内容＋旧CE/direct160notesをraw SHA付きで再利用し、strong/両matched・absolute・historical Web gateを元のまま計算。全256共通byteのpaired BPBと、同v2_1の全192入力/context/choice/gold一致・exact-content clusterのpaired意味CIを補足する。CIを新採用gateにせず、旧v2やsuffix-only診断をfull DEVへ混同しない。新GPU/教師/80採点0、科学source/configは変更しない。新reviewerはBase採用を自動化せず、合格candidateも独立学習seed/full DEV/protected final TEST/adoptionを待つ。
+
+actual685602/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start19518840は実ps生存確認。同追加100Mの4,000更新/22,624,125教師/loss2.600125有限、checkpoint-00004000.ptを保存。既存5,009秒・batch48/同親/source/LR/seed/headと元UI finally復帰を保持、重複GPUjobなし。
+
+次は同job終端と固定新80完了後に同WSL uvから reviewer --template、全80を個別に読み六列TSVへ記録、reviewer --record reports/phase6/natural_context_contrast_projection_observations.tsv で取り込み、実master終了/ps不在後に同reviewer引数なしで元全gateを採否する。Base未完成、完成時通知停止、Chat/Dialogue/SFT/量子化なし、local commit/pushなし。以下は過去の履歴。
 Base限定・train-only projectionの実GPU試験完了／100M比較学習開始（2026-10-07 JST）。
 
 [試験完了](../reports/phase6/natural_context_contrast_projection_probe_completion.json): CPU7checks/4.12秒＋runner2checks/0.79秒、実CUDA11.138349秒/180。native初期重み・公開生成経路logits・CPU/CUDA RNGを維持し、別保存headを含む4対2+save/resume+2の全14state/history checks一致。全source検証33更新/145,531 CE教師は科学学習と分け、固定TRAIN64のaux backwardはoptimizer0。推論10,001,152param＋学習専用98,304param（256→256/ReLU→128、biasなし、seed2026100751）、headはnative評価で破棄する。初期CPU fixture誤り2件とGPU前のRNG/mask preflight修正を元raw/config/sourceに保存し、実GPU probeは一度だけ。31text/1,069,184byte archive、品質改善の証明ではない。

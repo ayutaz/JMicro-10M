@@ -1,0 +1,80 @@
+{
+  "status": "projection_final_review_command_ready_actual_live_guard_verified",
+  "created_at": "2026-10-06T18:48:09.990375Z",
+  "CPU_tests": 17,
+  "CPU_test_seconds": 2.46,
+  "actual_CPU_preparation_seconds": 1.1210064470069483,
+  "policy_sha256": "27c40413c5c62a5d130b0c340825e0a73213953d0d6cfa09c591daa4284a89cb",
+  "scientific_config_sha256": "ff61ab14485ef239dc5c59b2ef2750dd2ce0e74f80c753c3cd33034e6283d1db",
+  "helper_sha256": "fb9f18140840caefb0cf78fbf95c2260ab89efd89cb39e3b6fc97b82361307c1",
+  "CPU_tests_ref": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural_context_contrast_projection_review_tests.xml",
+    "sha256": "14d17e675b42108f3cd4fc53ab4f60d58e9dcd08a5e54a829e8af60dbb69d27c"
+  },
+  "actual_identity": {
+    "pid": 685602,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "19518840"
+  },
+  "actual_alive": true,
+  "actual_live_final_review_rejected": true,
+  "final_review_artifact_absent": true,
+  "existing_control_component_BPB": {
+    "point": 0.004402855775280585,
+    "ci95": [
+      0.003887302097569064,
+      0.004951475591421137
+    ],
+    "documents": 256,
+    "common_bytes": 472055,
+    "control_BPB": 0.998487162513845,
+    "target_BPB": 1.0028900182891256,
+    "relative_ratio": 1.004409526672527,
+    "degradation_ci_lower_above0": true,
+    "seed": 42,
+    "repetitions": 2000,
+    "direction": "completed direct contrast minus completed CE; positive means worse",
+    "note": "Paired document resampling, byte-weighted aggregate; not independent seed confirmation or whole-corpus audit"
+  },
+  "existing_control_component_semantics": {
+    "candidate_minus_control": {
+      "point": 0.010416666666666666,
+      "ci95": [
+        -0.020833333333333332,
+        0.041666666666666664
+      ],
+      "units": 96,
+      "examples": 192,
+      "unit": "family/prompt",
+      "seed": 42,
+      "repetitions": 2000,
+      "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+    },
+    "exact_content_pair_clusters": 96,
+    "cases": 192,
+    "new_acceptance_gate": false
+  },
+  "semantic_DEV_selection": {
+    "dev_bytes_sha256": "bc676ad2b955a238b60cc3a2cfccbe4b5e7b793640212980f72716ed3a6a14a2",
+    "dev_cases": 192,
+    "families": 96,
+    "other_records_opaque": 48,
+    "other_records_JSON_decoded": false
+  },
+  "new_scientific_results_scored": false,
+  "new_individual_content_scores": 0,
+  "new_GPU_seconds": 0,
+  "new_teacher_tokens": 0,
+  "quality_criteria_unchanged": true,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "commands": {
+    "template": "uv run --frozen --extra hub --extra data --extra ml --extra export scripts/review_natural_context_contrast_projection.py --template",
+    "record": "uv run --frozen --extra hub --extra data --extra ml --extra export scripts/review_natural_context_contrast_projection.py --record reports/phase6/natural_context_contrast_projection_observations.tsv",
+    "final": "uv run --frozen --extra hub --extra data --extra ml --extra export scripts/review_natural_context_contrast_projection.py"
+  },
+  "limitations": "Tests include random-weight CPU/native shape and fabricated protocol metadata; no CUDA learning or model quality claim. Cached-control component checks validate the new review interfaces only, not the current projected outcome. Final review requires exited complete master job, full native/head/Adam/RNG/sampler/history and individually read new80 notes; reuse existing160 without GPU rerun. Semantic CIs retain exact-input clusters and do not become new acceptance gates.",
+  "next_action": "Continue the same frozen scientific process. Once its80 native outputs complete, write individual observations and record them with the implemented command. Run final review only after actual exit; qualify solely with unchanged strong/matched/absolute/historical Web gates, then independent learned seed/full DEV/protected final TEST/adoption. Notify/stop at complete Base."
+}
