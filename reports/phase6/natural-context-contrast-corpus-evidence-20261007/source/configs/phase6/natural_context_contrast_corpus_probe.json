@@ -1,0 +1,78 @@
+{
+  "created_at": "2026-10-06T16:43:46.395463Z",
+  "source_preparation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural_context_contrast_corpus_preparation.json",
+    "sha256": "089cf141e7cd51b2b53a66a61647248ca0cda64bbac137029b93d761e8627f47"
+  },
+  "capacity_preparation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural_context_contrast_capacity_preparation.json",
+    "sha256": "eed7bf24012b2ce75f4de8ccd87e278a343aa1533e8dd6c6e20c56b616df363a"
+  },
+  "payload": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/natural-context-contrast-capacity-20261007/maximum-original-window.json",
+    "sha256": "518b7158e824a6504e71404864b57d7072d592cd6f200869844e96670c1c5fee"
+  },
+  "previous_actual_gate": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural_context_contrast_probe_completion.json",
+    "sha256": "f799a6b6d5dd660abf88aff319a0dcd242f0ac484e08177a6009d90e4cbe82c0"
+  },
+  "CPU_tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural_context_contrast_corpus_tests.xml",
+    "sha256": "55e935f38008400ae2000b1aef8426329dd08b504789ff2a18a2dd20db690674"
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "parent_size": 120181763,
+  "parent_mtime_ns": 1791114231712428007,
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+  "sources": {
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "scripts/probe_natural_context_contrast_corpus.py": "ded0db41d1a836fe72213545b2d3475f30d674df70e90b8e877bf684de1ea603",
+    "scripts/probe_natural_context_contrast_corpus.ps1": "1c9d6c44a06944f7022599034e3b3c595b62c06a677a553913cff50a347b3f9a",
+    "tests/test_natural_context_contrast_corpus.py": "25faf4393c32ca6d0901663dd67124c3c630e2b5835d20f9e94b1db49cb9fbc6",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "src/jmicro/phase5.py": "cceae262745d92b1763c9d1263ba9746b8c6441896e97c001d8a3604ccaf2f98",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca"
+  },
+  "batch_candidates": [
+    16,
+    32,
+    48,
+    64,
+    96,
+    128
+  ],
+  "warmup_updates": 3,
+  "timed_updates": 5,
+  "GPU_limit_seconds": 180,
+  "goals": {
+    "web": 75000000,
+    "textbook": 20000000,
+    "story": 5000000
+  },
+  "seed": 42,
+  "capacity_policy": "Before actual timings, stress full CE and two-branch hidden activation shapes at actual maximum original source context. Repeated original contexts are physical backward tests, not contrastive negatives/optimizer updates. Stop increasing batch after first OOM.",
+  "batch_policy": "Highest minimum median real-source CE targets/sec across two arms among stable worst-shape batches; no quality-based selection",
+  "temperature": 0.1,
+  "coefficient": 0.1,
+  "scientific_teacher_tokens": 0,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false
+}

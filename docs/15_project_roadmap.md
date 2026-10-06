@@ -1,3 +1,12 @@
+現在のBase限定milestone（2026-10-07 JST）。
+
+[全2B TRAIN供給/実CUDA完了・科学起動](../reports/phase6/natural_context_contrast_corpus_completion.json)。CPU6tests、両arm CUDA4対2+2全state/history26checksに合格。旧TRAINのdocument-local1024/stride512でbody+元EOSを一度ずつ教え、非eligible pairでもCEを保つ。元family/body negative除外・PAD/overlap head省略。旧巨大index/stream再scanなし、最大元body1024を小compact arraysで確認。source pilotの追加採用や新供給ではない。
+
+最速同batch48、CE95472.5/contrast49069.2教師tokens/秒、最大context stress17.8658GiB。nominal128の47.4GiB allocationはresident24GiBを超えるので最大活用とはしない。process allocator90percentへ限定する実API検査済み、driver/OS設定は不変。
+
+[科学config](../configs/phase6/natural_context_contrast_comparison.json)でactual676378/boot53f39671…/start18891158を起動。各100M CE教師/元10B親/同fresh Adam LR1e-5/同seed/source/EEOS/batch48、extra auxiliaryとGPU別会計。累積GPU5229秒、forecast学習3085.36秒。checkpoint250updates、heartbeat20、同config/残予算内のvalid completed-update再開のみ。次は両100M/同CE stream会計/固定dev256・日本語・全160内容と元Base採否。合格時のみ独立学習seed/full dev/protected final test/adoption。
+
+Base未完成。完成時に通知停止し、Chat/Dialogue/SFT/量子化は開始しない。元全条件/旧失敗/Phase0–3保持、WSL uv/local commitのみ/pushなし。以下は過去の履歴・後続段階設計。
 現在のBase限定milestone更新（2026-10-07 JST）。
 
 [実native contrastive probe完了](../reports/phase6/natural_context_contrast_probe_completion.json)。loss/元全文CE・診断保存再開commandを実装、CPU5testsと両arm実CUDA4対2+2の全state/history26checksに合格。actual673463終了、GPU12.507994秒、検証64updates/367840 CE教師、科学0。fixed64 TRAINの最大測定batch64でCE98844.6/contrast52853.9教師tokens/秒、peak約7.1GiB、有限非zero auxiliary勾配。品質/4090全容量/本教材の速度の証明とはしない。

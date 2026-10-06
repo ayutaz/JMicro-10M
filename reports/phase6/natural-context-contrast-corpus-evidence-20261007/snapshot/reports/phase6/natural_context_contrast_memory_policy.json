@@ -1,0 +1,40 @@
+{
+  "status": "actual_native_process_allocator_guard_verified",
+  "created_at": "2026-10-06T16:50:57.886071Z",
+  "probe_result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-corpus-probe-20261007/result.json",
+    "sha256": "5265e9d9b415e8a3468ac3bd31320bf062c8c9f3ebfae0ba3ac0ef4b39ad80ed"
+  },
+  "selected_measured_batch": 48,
+  "maximum_resident_eligible_measured_batch": 48,
+  "policy": {
+    "torch_version": "2.14.1+cu130",
+    "device": "NVIDIA GeForce RTX 4090",
+    "visible_device_bytes": 25756696576,
+    "process_fraction": 0.8999999999844701,
+    "allocator_allowance_bytes": 23181026918,
+    "expected_worst_peak_bytes": 19183282688
+  },
+  "nominal_maximum_finite_batch": 128,
+  "nominal_capacity_peaks": {
+    "16": 6477425152,
+    "32": 12863384064,
+    "48": 19183282688,
+    "64": 25534113792,
+    "96": 38238660608,
+    "128": 50943207424
+  },
+  "scientific_teacher_tokens": 0,
+  "optimizer_updates": 0,
+  "model_forward_backward_updates": 0,
+  "OS_or_driver_settings_changed": false,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "inference": "Nominal stress96/128 allocated35.6/47.4GiB despite about24GiB CUDA device capacity. This is consistent with Windows driver shared-memory fallback; it does not prove the specific driver setting. Finite CUDA allocation alone is not resident-VRAM evidence. Original outputs/selection remain unchanged; add stricter allocator guard for science.",
+  "primary_sources": [
+    "https://nvidia.custhelp.com/app/answers/detail/a_id/5490",
+    "https://docs.pytorch.org/docs/stable/generated/torch.cuda.memory.set_per_process_memory_fraction.html"
+  ],
+  "limitations": "The caching allocator guard is process-local and does not cap all non-PyTorch/driver allocations or prove maximum normal-job VRAM utilization. Leave10percent device allowance for those allocations. Actual source median throughput, worst-shape stress and all-state resume are separate evidence; model quality is still unproven."
+}

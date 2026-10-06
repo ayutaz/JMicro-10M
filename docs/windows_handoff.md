@@ -1,3 +1,12 @@
+現在の引継ぎ・Base専用科学比較実行中（2026-10-07 JST）。
+
+actual676378/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18891158をps確認、Windowsworker35712。native run /home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007、job.json・各CE/contrastのmetrics-PID-start.jsonl/checkpoint-xxxxxxxx.pt/train-result/evaluation。config SHA70b87bf762f3225fd83f40d3bde301c13e5a4b4243372e541af1a1e38e88bc29、同元10B親410f975d…/accepted2B TRAIN/各100M CE教師、scientific各source75M Web/20M教材/5M物語。CE進行中、loss有限、CP保存を確認。元UIは科学中停止、終端で元10Bへfinally復帰。科学CODE/configは凍結中で変更せず、並行GPUjob/再起動をしない。
+
+直前source probe actual675077終了、GPU86.688909秒、CPU6tests/両CUDA全state26checks合格、検証112updates/CE833974教師は科学と分ける。元最大body1024を旧compact配列だけで確認、13GB JSON/4GB stream再scanなし。科学は最速batch48を採用、通常CE95472.5/contrast49069.2教師tokens/秒、worst-shape17.8658GiB。nominal96/128は35.6/47.4GiB allocationでresident GPU容量の証明にならない。実process allocator90percentを科学workerだけへ設定、OS/driver不変。元PAD/overlapのhead計算を省き、auxiliary非eligibleでもCE文書を残す。
+
+累積GPU上限5229秒、当初forecast学習3085.36秒＋評価等（長期実分布/IOで変動）。250完了更新ごと全state atomic CP、20ごとheartbeat。停止/消失後のみPID/boot/startと最新valid CP・同config/残予算を確認し、再開コマンド `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run_natural_context_contrast.ps1 -Worker` を使う。終了one-shot probeを再試行しない。WSL native uv run --frozen --extra hub --extra data --extra ml --extra export/pinned3.12.7を継続、system Python/pipなし。
+
+次は両100M終端/固定dev・全日本語/各80生成、全160個別raw-bound内容の採否。元全Base品質gate、合格後の独立学習seed/full DEV/protected TEST/adoptionまで必要。Base未完成、完成時通知・停止、Chat/Dialogue/SFT/量子化なし。元失敗/旧数値7/Phase0–3保持、verified local commitのみ/pushなし。以下は過去の履歴。
 現在の引継ぎ・Base限定（2026-10-07 JST）。
 
 [原文前後native実CUDA probe完了](../reports/phase6/natural_context_contrast_probe_completion.json)、actual673463/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18727311は実ps不在。GPU12.507994秒/180、両arm全保存再開26checks・CPU5tests合格、検証64updates/367840 CE教師は科学0と分ける。凍結config d8983f6…、終了one-shot scripts/probe_natural_context_contrast.ps1 を再起動しない。診断CPはnative reports/phase6/natural-context-contrast-probe-20261007/ の各arm/resume-gate、本科学では元10B親から開始しprobe CPを初期化に使わない。語彙head省略/右padding causal helperも原valid出力と一致。

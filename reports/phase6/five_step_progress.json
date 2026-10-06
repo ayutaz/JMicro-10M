@@ -511,8 +511,8 @@
   "independent_human_blind": "not performed",
   "phase0to3_preserved": true,
   "no_automatic_push": true,
-  "status": "fixed_source_semantic_classifier_complete_rejected_Base_pending",
-  "last_updated_at": "2026-10-06T16:31:05.3812870Z",
+  "status": "Base_native_context_contrast_science_running_quality_pending",
+  "last_updated_at": "2026-10-06T17:06:22.3947217Z",
   "current_user_scope": "Base only; notify and stop after actual Base completion; Chat and quantization deferred by user2026-10-06",
   "current_stop_boundary": "reports/phase6/base_only_stop_boundary.json",
   "conditional_content_review": "reports/phase6/conditional-content-pilot-20261006/content-review.json",
@@ -524,7 +524,7 @@
   "condition_positive_active_job": "reports/phase6/condition_positive_active_job.json",
   "condition_positive_scientific_config": "configs/phase6/condition_positive_comparison.json",
   "condition_positive_comparison_completion": "reports/phase6/condition_positive_comparison_completion.json",
-  "next_action": "Implement the full accepted large2B original TRAIN corpus sampler, source/family/CE/EOS and extra auxiliary accounting, and actual long-job command. Measure larger-batch/long-unit scientific-source capacity and actual same-source full-state resume once with bounded GPU time, then freeze measured two100M CE scientific comparison only if passed. Fixed64 probe passed but is not scientific training or4090 maximum capacity. Teacher-transfer branch remains closed; all Base gates/independent seed/full DEV/protected TEST/adoption unchanged. Notify and stop at Base before Chat/quantization.",
+  "next_action": "Monitor actual676378 through both exact100M CE teacher arms, their common CE/source/EOS/byte digest checks and fixed dev256/Japanese192,331,1119/all160 generation outputs. Read every raw output and score unchanged Base gates/paired uncertainty; only fully passing candidate gets independent learning seed/full DEV/protected test/adoption. Base still incomplete; notify and stop before Chat/quantization. Never start duplicate live job or alter frozen science.",
   "web_KL_launch": "reports/phase6/web_kl_comparison_launch.json",
   "web_KL_completion": "reports/phase6/web_kl_comparison_completion.json",
   "web_KL_followup": "reports/phase6/web_kl_followup_diagnostic_proposal.json",
@@ -984,11 +984,13 @@
     "CPU_seconds": 0.3058010560052935,
     "loss_implemented": true,
     "GPU_probe_started": true,
-    "scientific_training_started": false,
-    "scientific_teacher_tokens": 0,
+    "scientific_training_started": true,
+    "scientific_teacher_tokens": 57129245,
     "GPU_probe_completed": true
   },
-  "current_active_scientific_jobs": [],
+  "current_active_scientific_jobs": [
+    "reports/phase6/natural-context-contrast-comparison-20261007/job.json"
+  ],
   "Base_natural_context_contrast_probe_completion": {
     "path": "reports/phase6/natural_context_contrast_probe_completion.json",
     "sha256": "f799a6b6d5dd660abf88aff319a0dcd242f0ac484e08177a6009d90e4cbe82c0",
@@ -1002,5 +1004,33 @@
     "actual_GPU_maximum_claimed": false,
     "scientific_teacher_tokens": 0,
     "long_job_sampler_or_command_complete": false
+  },
+  "Base_natural_context_contrast_corpus_completion": {
+    "path": "reports/phase6/natural_context_contrast_corpus_completion.json",
+    "sha256": "e01f5438eb81fd33784e8419b1a9b1f8d09df233441f61267a6bb834ca7b0693",
+    "CPU_tests": 6,
+    "actual_CUDA_checks": 26,
+    "probe_GPU_seconds": 86.68890912199276,
+    "verification_updates": 112,
+    "verification_CE_teachers": 833974,
+    "resident_batch": 48,
+    "long_command_implemented": true
+  },
+  "Base_natural_context_contrast_scientific_job": {
+    "actual_identity": {
+      "pid": 676378,
+      "start_ticks": "18891158",
+      "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe"
+    },
+    "actual_process_last_verified_live": true,
+    "config": "configs/phase6/natural_context_contrast_comparison.json",
+    "config_sha256": "70b87bf762f3225fd83f40d3bde301c13e5a4b4243372e541af1a1e38e88bc29",
+    "run": "reports/phase6/natural-context-contrast-comparison-20261007",
+    "stage": "CE-training",
+    "CE_teacher_tokens_at_snapshot": 57129245,
+    "latest_checkpoint_at_snapshot": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/CE/checkpoint-00010000.pt",
+    "GPU_budget_seconds": 5229,
+    "Base_complete": false,
+    "snapshot_at": "2026-10-06T17:08:36.224102Z"
   }
 }
