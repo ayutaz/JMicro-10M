@@ -1,0 +1,576 @@
+{
+  "status": "actual_generated_curriculum100M_and_all80_original_gates_complete_Base_quality_unmet",
+  "created_at": "2026-10-06T03:19:05.3159685Z",
+  "job": {
+    "status": "complete",
+    "pid": 538399,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "13931364",
+    "config_sha256": "ca4422521d43a59a287de954a5f9bef58edc66f60a1df32313d6abdf7154015b",
+    "started_at": "2026-10-06T03:08:31.49855Z",
+    "GPU_elapsed_seconds": 236.22689373401226,
+    "Base_adopted": false,
+    "protected_test_used": false,
+    "restart_command": "scripts/run_condition_transfer_comparison.ps1 -Mode Train -Worker",
+    "stage": "complete",
+    "heartbeat_at": "2026-10-06T03:12:28.222939Z",
+    "teachers": 99914563,
+    "teacher_budget": 100000000,
+    "source_teachers": {
+      "web": 74934975,
+      "story": 4995784,
+      "ordinary_textbook": 9991796,
+      "conditional_textbook": 9992008
+    },
+    "loss": 2.334336042404175,
+    "completed_tasks": 618,
+    "total_tasks": 618,
+    "completed_cases": 80,
+    "completed_requests": 512,
+    "total_requests": 512,
+    "completed_at": "2026-10-06T03:12:28.367239Z"
+  },
+  "actual_process_absent": true,
+  "config": {
+    "sha256": "ca4422521d43a59a287de954a5f9bef58edc66f60a1df32313d6abdf7154015b",
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/condition_transfer_comparison.json"
+  },
+  "result": {
+    "sha256": "09924bf223ada61c45f45ea6ee95db876d5ff4fb81bcbe58c3705c56d7050cd8",
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-transfer-comparison-20261006/compare-result.json"
+  },
+  "review": {
+    "sha256": "8b5e0d6373ada72b315d81051f93b9afabe9257bd00676592b879d98533daa92",
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition_transfer_comparison_review.json"
+  },
+  "condition_pair_analysis": {
+    "sha256": "95d3bb0dbb2dca22f77936f5e36b9f399f96e42acdf09ab7c1fef8ba688500a1",
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition_transfer_condition_pair_analysis.json"
+  },
+  "manifest": {
+    "sha256": "89fb2c37f11434b2fc29c2623d540739c2bb4b67ffe37f81a3443d4a50cd5672",
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition_transfer_comparison_evidence_manifest.json"
+  },
+  "checkpoints": {
+    "control": {
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-source-learning-100m-20261006/large2048/training/checkpoint-00065244.pt",
+      "checkpoint_sha256": "4ef0dedc2269ae585cd05d39c84fb6afc6676210d231d6ac26bafe622f4de1a3",
+      "binding": {
+        "config_sha256": "c3f3b9d077a5a0c8f61ec16ff614488d5a6146e658141f771349d9e5e90d860e",
+        "arm": "large2048",
+        "parent": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook-coverage-2b-20261006/decay/checkpoint-00062166.pt",
+          "sha256": "965a06dc1537ed917de98c565d78ae76f19d99ad075f019067a4324a6cbd2249"
+        },
+        "short_manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+        "teacher_goals": {
+          "web": 75000000,
+          "story": 5000000,
+          "ordinary_textbook": 10000000,
+          "conditional_textbook": 10000000
+        },
+        "optimizer_policy": "inherit",
+        "peak_lr": 0.0002,
+        "loss": "ordinary original body+EOS CE, outcome weight1",
+        "study_kind": "nested_condition_source_quantity_at_100M",
+        "sampler_policy": "Fresh explicit four-stream seed42 fork from common2B+20M parent; original3 supervised sequences equal, nested512/2048 conditional IDs/interleaving differ. Prior25M terminal quotas are historical, not new100M control.",
+        "outcome_weight": 1,
+        "positive_manifest_sha256": "cf0ac3efa0722d54aa1f6107770ca41b7843a0297d5e53b68f3cde6480901280"
+      },
+      "update": 65244,
+      "tokens": 2137915392,
+      "supervised_tokens": 2120000000,
+      "additional_supervised_tokens": 100000000,
+      "additional_input_tokens": 100859904,
+      "source_teachers": {
+        "web": 75000000,
+        "story": 5000000,
+        "ordinary_textbook": 10000000,
+        "conditional_textbook": 10000000
+      },
+      "source_eos": {
+        "web": 656229,
+        "story": 38240,
+        "ordinary_textbook": 74183,
+        "conditional_textbook": 70061
+      },
+      "source_input_tokens": {
+        "web": 75674624,
+        "story": 5039104,
+        "ordinary_textbook": 10075136,
+        "conditional_textbook": 10071040
+      },
+      "source_focus_teachers": {
+        "web": 0,
+        "story": 0,
+        "ordinary_textbook": 0,
+        "conditional_textbook": 2620780
+      },
+      "focus_teacher_tokens": 2620780,
+      "focus_token_digest": "8e2af3a7a69ecc6ea03b6f189587339877c5cf6d20031ae69100d24ffe4a7d85",
+      "weighted_teacher_mass": 100000000,
+      "outcome_weight": 1,
+      "training_seconds": 151.12010613348684,
+      "completed_at": "2026-10-06T02:43:40.425716Z"
+    },
+    "curriculum": {
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-transfer-comparison-20261006/curriculum/training/checkpoint-00065249.pt",
+      "checkpoint_sha256": "be7121f6a0b1e60bbf6e7b254ce4b7b4debb1b658cb572874eb791b526a57a2e",
+      "binding": {
+        "config_sha256": "ca4422521d43a59a287de954a5f9bef58edc66f60a1df32313d6abdf7154015b",
+        "arm": "curriculum",
+        "parent": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook-coverage-2b-20261006/decay/checkpoint-00062166.pt",
+          "sha256": "965a06dc1537ed917de98c565d78ae76f19d99ad075f019067a4324a6cbd2249"
+        },
+        "short_manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+        "teacher_goals": {
+          "web": 75000000,
+          "story": 5000000,
+          "ordinary_textbook": 10000000,
+          "conditional_textbook": 10000000
+        },
+        "optimizer_policy": "inherit",
+        "peak_lr": 0.0002,
+        "loss": "ordinary original body+EOS CE, outcome weight1",
+        "study_kind": "self_contained_conditional_curriculum_replacement_100M",
+        "sampler_policy": "Fresh explicit source fork from same2B+20M parent; original3 supervised target sequences equal; locally generated conditional bodies replace natural2048. Same seed42; conditional length/EOS/lexical distribution and row interleaving differ.",
+        "outcome_weight": 1,
+        "positive_manifest_sha256": "b5b9c44830b6910a9e247bd44f72a54224038dc1712b92b6d3465c80b58bd311"
+      },
+      "update": 65249,
+      "tokens": 2138079232,
+      "supervised_tokens": 2120000000,
+      "additional_supervised_tokens": 100000000,
+      "additional_input_tokens": 101023744,
+      "source_teachers": {
+        "web": 75000000,
+        "story": 5000000,
+        "ordinary_textbook": 10000000,
+        "conditional_textbook": 10000000
+      },
+      "source_eos": {
+        "web": 656229,
+        "story": 38240,
+        "ordinary_textbook": 74183,
+        "conditional_textbook": 243066
+      },
+      "source_input_tokens": {
+        "web": 75666432,
+        "story": 5039104,
+        "ordinary_textbook": 10075136,
+        "conditional_textbook": 10243072
+      },
+      "source_focus_teachers": {
+        "web": 0,
+        "story": 0,
+        "ordinary_textbook": 0,
+        "conditional_textbook": 1460032
+      },
+      "focus_teacher_tokens": 1460032,
+      "focus_token_digest": "a65727863872e01b99a904bfcc6c768c32273eb868b70017a4340a4153f66d48",
+      "weighted_teacher_mass": 100000000,
+      "outcome_weight": 1,
+      "training_seconds": 152.96801666589454,
+      "completed_at": "2026-10-06T03:11:09.066152Z"
+    }
+  },
+  "new_scientific_teacher_tokens": 100000000,
+  "reused_control_teacher_tokens": 100000000,
+  "additional_input_tokens": 101023744,
+  "actual_training_seconds": 152.96801666589454,
+  "verification_updates": 40,
+  "verification_teacher_tokens": 1297661,
+  "scientific_GPU_seconds": 236.22689373401226,
+  "verification_GPU_seconds": 13.408861087023979,
+  "total_GPU_seconds": 249.63575482103624,
+  "GPU_limit_seconds": 900,
+  "completed_checkpoint_is_authoritative": "Job teachers99914563 is a periodic heartbeat; completed checkpoint has exactly100000000 additional teachers and3083 updates.",
+  "summaries": {
+    "control": {
+      "BPB": 1.136865685906886,
+      "rates": {
+        "outputs": 80,
+        "eos": 42,
+        "repetition": 20,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 62,
+      "relevance2": 74,
+      "coherent": 12,
+      "appropriate": 30,
+      "Japanese": {
+        "semantics": 0.5052083333333334,
+        "jblimp": 0.7854984894259819,
+        "jcqa": 0.29803395889186773
+      },
+      "new_teacher_tokens": 100000000,
+      "source_teacher_tokens": {
+        "web": 75000000,
+        "story": 5000000,
+        "ordinary_textbook": 10000000,
+        "conditional_textbook": 10000000
+      },
+      "outcome_weight": 1,
+      "conditional_source_documents": 2048,
+      "mean_conditional_target_exposures": 34.21248002846478,
+      "generation_sha256": "5f02dd36439eca9b8013ac2fc1ae9220be1358f0f9be11f53c1e6be853c1ac99",
+      "notes_sha256": "c20773f49a310b5eceda42b08d14a4a5c64e102b0e7d36aa3cec478dfff310e0",
+      "Base_adopted": false,
+      "independent_human_blind": false
+    },
+    "curriculum": {
+      "BPB": 1.1302498889302441,
+      "rates": {
+        "outputs": 80,
+        "eos": 45,
+        "repetition": 17,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 60,
+      "relevance2": 68,
+      "coherent": 14,
+      "appropriate": 27,
+      "Japanese": {
+        "semantics": 0.53125,
+        "jblimp": 0.7885196374622356,
+        "jcqa": 0.2868632707774799
+      },
+      "new_teacher_tokens": 100000000,
+      "source_teacher_tokens": {
+        "web": 75000000,
+        "story": 5000000,
+        "ordinary_textbook": 10000000,
+        "conditional_textbook": 10000000
+      },
+      "outcome_weight": 1,
+      "conditional_source_documents": 2048,
+      "mean_conditional_target_exposures": 118.67886685417928,
+      "generated_serialized_tokens": 86309,
+      "generation_sha256": "f4a01f16fda39a368f5160c2ac938d168b7df4cea5f46fc5f11eb49627555913",
+      "notes_sha256": "b071bbb838501ccf03cba2c26098b8e776a3e585762d74bcb1115b4f0b9638d6",
+      "Base_adopted": false,
+      "independent_human_blind": false
+    }
+  },
+  "quality_comparison": {
+    "checks": {
+      "coherence_gain_at_least8": false,
+      "paired_CI_lower_above0": false,
+      "EOS_nonworsening": true,
+      "repetition_nonworsening": true,
+      "no_empty_role_unicode": true,
+      "BPB_gate": true,
+      "appropriate_completion_not_punctuation": true
+    },
+    "passed": false,
+    "difference_count": 2,
+    "CI95": [
+      -0.05,
+      0.1
+    ]
+  },
+  "absolute_dev_screen": {
+    "grammar_at_least56": true,
+    "coherence_at_least27": false,
+    "appropriate_at_least27": true,
+    "EOS_at_least37": true,
+    "repetition_at_most18": true,
+    "no_empty_role_unicode": true
+  },
+  "original_Web": {
+    "EOS_at_least8_more": true,
+    "repetition_no_worse": true,
+    "no_empty_role_unicode": true,
+    "BPB_degradation_at_most1percent": false,
+    "no_punctuation_only_stops": true
+  },
+  "transfer_aggregates": {
+    "parent2B": {
+      "sum_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.5078125,
+          "both_correct": 5,
+          "same_unique_candidate": 120,
+          "aligned_context_margin_shift": 82
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.515625,
+          "both_correct": 4,
+          "same_unique_candidate": 58,
+          "aligned_context_margin_shift": 39
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.5,
+          "both_correct": 1,
+          "same_unique_candidate": 62,
+          "aligned_context_margin_shift": 43
+        }
+      },
+      "mean_token_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.51171875,
+          "both_correct": 6,
+          "same_unique_candidate": 119,
+          "aligned_context_margin_shift": 82
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.515625,
+          "both_correct": 4,
+          "same_unique_candidate": 58,
+          "aligned_context_margin_shift": 39
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.5078125,
+          "both_correct": 2,
+          "same_unique_candidate": 61,
+          "aligned_context_margin_shift": 43
+        }
+      },
+      "mean_byte_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.53515625,
+          "both_correct": 13,
+          "same_unique_candidate": 111,
+          "aligned_context_margin_shift": 82
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.5625,
+          "both_correct": 11,
+          "same_unique_candidate": 50,
+          "aligned_context_margin_shift": 39
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.5078125,
+          "both_correct": 2,
+          "same_unique_candidate": 61,
+          "aligned_context_margin_shift": 43
+        }
+      }
+    },
+    "natural100M": {
+      "sum_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.51171875,
+          "both_correct": 7,
+          "same_unique_candidate": 117,
+          "aligned_context_margin_shift": 85
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.515625,
+          "both_correct": 4,
+          "same_unique_candidate": 58,
+          "aligned_context_margin_shift": 38
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.5078125,
+          "both_correct": 3,
+          "same_unique_candidate": 59,
+          "aligned_context_margin_shift": 47
+        }
+      },
+      "mean_token_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.51171875,
+          "both_correct": 6,
+          "same_unique_candidate": 119,
+          "aligned_context_margin_shift": 84
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.5234375,
+          "both_correct": 4,
+          "same_unique_candidate": 59,
+          "aligned_context_margin_shift": 38
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.5,
+          "both_correct": 2,
+          "same_unique_candidate": 60,
+          "aligned_context_margin_shift": 46
+        }
+      },
+      "mean_byte_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.546875,
+          "both_correct": 14,
+          "same_unique_candidate": 112,
+          "aligned_context_margin_shift": 83
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.578125,
+          "both_correct": 11,
+          "same_unique_candidate": 52,
+          "aligned_context_margin_shift": 38
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.515625,
+          "both_correct": 3,
+          "same_unique_candidate": 60,
+          "aligned_context_margin_shift": 45
+        }
+      }
+    },
+    "curriculum100M": {
+      "sum_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.7109375,
+          "both_correct": 63,
+          "same_unique_candidate": 56,
+          "aligned_context_margin_shift": 106
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.8203125,
+          "both_correct": 43,
+          "same_unique_candidate": 19,
+          "aligned_context_margin_shift": 58
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.6015625,
+          "both_correct": 20,
+          "same_unique_candidate": 37,
+          "aligned_context_margin_shift": 48
+        }
+      },
+      "mean_token_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.71484375,
+          "both_correct": 66,
+          "same_unique_candidate": 51,
+          "aligned_context_margin_shift": 106
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.828125,
+          "both_correct": 44,
+          "same_unique_candidate": 18,
+          "aligned_context_margin_shift": 58
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.6015625,
+          "both_correct": 22,
+          "same_unique_candidate": 33,
+          "aligned_context_margin_shift": 48
+        }
+      },
+      "mean_byte_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.71484375,
+          "both_correct": 64,
+          "same_unique_candidate": 55,
+          "aligned_context_margin_shift": 106
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.828125,
+          "both_correct": 44,
+          "same_unique_candidate": 18,
+          "aligned_context_margin_shift": 58
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.6015625,
+          "both_correct": 20,
+          "same_unique_candidate": 37,
+          "aligned_context_margin_shift": 48
+        }
+      }
+    }
+  },
+  "all80_individually_read": true,
+  "exact_prior_grades_reused": 11,
+  "independent_human_blind": false,
+  "archive": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-transfer-comparison-20261006_evidence.tar.gz",
+    "sha256": "fb38c31a81c18ab83d4a66a44ccb8f55beb7fd2964ecb2b53f8dbce31656ea77",
+    "bytes": 2929870
+  },
+  "portable_entry_SHA_verified": 219,
+  "archive_SHA_verified": true,
+  "checkpoint_tensors_copied_to_Windows": false,
+  "restored_original_UI": {
+    "verified_at": "2026-10-06T03:19:05.3159685Z",
+    "actual_ps_boot_start_verified": true,
+    "server": {
+      "status": "running",
+      "pid": 538886,
+      "started_at": "2026-10-06T03:12:32.282871Z",
+      "url": "http://127.0.0.1:7860",
+      "additional_training_tokens": 0,
+      "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+      "start_ticks": "13955495",
+      "model": {
+        "name": "JMicro-10M",
+        "kind": "Base / 文章の続き",
+        "parameters": 10001152,
+        "training_tokens": 10000007168,
+        "update": 305176,
+        "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+        "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+        "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+        "device": "NVIDIA GeForce RTX 4090",
+        "precision": "BF16 / math attention",
+        "context": 1024
+      },
+      "ready_at": "2026-10-06T03:12:32.595814Z"
+    },
+    "HTTP": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    }
+  },
+  "related_CPU_checks": "4 meaningful tests passed2.74seconds; PS syntax passed; actualCUDA32 checks and first4 timing trajectory passed",
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "independent_learning_seed_used": false,
+  "final_full_dev_complete": false,
+  "requested_five_steps_complete": false,
+  "old_numerical7_preserved": true,
+  "quality_criteria_unchanged": true,
+  "next_proposal": {
+    "sha256": "ebf4a03f7a239833f9e5d5020ff9c9a6f23acafa0039f2ebac44f52c0a1f709b",
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition_relation_language_proposal.json"
+  },
+  "next_action": "Base only: implement a bounded language-bridge preparation that changes negation/comparison forms within the accepted2048 curriculum; keep the other four categories and ordinary streams unchanged. Read the fixed64 source pilot, reject unresolved grammar, freeze same100M comparison to the completed curriculum control after actual CUDA fullstate/timing within900seconds. Original80/commonbyte/Japanese and quality/Web gates remain primary; generator scores never certify Base. No automatic long extension, Chat or quantization.",
+  "limitations": "One learned seed, nonblind judgments, repeatedly inspected fixeddev; generator probe scores are not independent natural-language quality. Shorter local material changes length/EOS/lexical distribution together; not one isolated causal operator effect."
+}
