@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="5" time="0.845" timestamp="2026-10-07T01:27:24.530510+09:00" hostname="DESKTOP-42CUV0C"><testcase classname="tests.test_natural_context_contrast_trainer" name="test_right_padding_matches_masked_native_valid_logits_without_aux_head" time="0.003"><failure message="ValueError: Unsupported architecture contract">def test_right_padding_matches_masked_native_valid_logits_without_aux_head():
+&gt;       model, _, _ = fixture()
+                      ^^^^^^^^^
+
+tests/test_natural_context_contrast_trainer.py:37: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_natural_context_contrast_trainer.py:24: in fixture
+    model = JMicroModel(config)
+            ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = JMicroModel()
+config = {'schema_version': 1, 'architecture': 'decoder_only_transformer', 'hidden_size': 32, 'num_attention_heads': 4, ...}
+
+    def __init__(self, config: dict):
+        super().__init__()
+        self.config = dict(config)
+        if not (config["tie_word_embeddings"] and config["rope_layout"] == "half_split" and
+                config["qk_norm_type"] in ("rms_head_shared", "none") and config["qk_norm_before_rope"] and
+                config["rotary_dim"] == config["head_dim"] and config["activation"] == "swiglu" and
+                not config["attention_bias"] and not config["mlp_bias"] and config["dropout"] == 0):
+&gt;           raise ValueError("Unsupported architecture contract")
+E           ValueError: Unsupported architecture contract
+
+src/jmicro/model.py:129: ValueError</failure></testcase><testcase classname="tests.test_natural_context_contrast_trainer" name="test_InfoNCE_observed_pairing_and_two_sided_gradient" time="0.051" /><testcase classname="tests.test_natural_context_contrast_trainer" name="test_full_state_resume_and_full_body_EOS_accounting[False]" time="0.003"><failure message="ValueError: Unsupported architecture contract">tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-130/test_full_state_resume_and_ful0')
+contrast = False
+
+    @pytest.mark.parametrize('contrast', [False, True])
+    def test_full_state_resume_and_full_body_EOS_accounting(tmp_path, contrast):
+&gt;       _, parent, rows = fixture()
+                          ^^^^^^^^^
+
+tests/test_natural_context_contrast_trainer.py:64: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_natural_context_contrast_trainer.py:24: in fixture
+    model = JMicroModel(config)
+            ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = JMicroModel()
+config = {'schema_version': 1, 'architecture': 'decoder_only_transformer', 'hidden_size': 32, 'num_attention_heads': 4, ...}
+
+    def __init__(self, config: dict):
+        super().__init__()
+        self.config = dict(config)
+        if not (config["tie_word_embeddings"] and config["rope_layout"] == "half_split" and
+                config["qk_norm_type"] in ("rms_head_shared", "none") and config["qk_norm_before_rope"] and
+                config["rotary_dim"] == config["head_dim"] and config["activation"] == "swiglu" and
+                not config["attention_bias"] and not config["mlp_bias"] and config["dropout"] == 0):
+&gt;           raise ValueError("Unsupported architecture contract")
+E           ValueError: Unsupported architecture contract
+
+src/jmicro/model.py:129: ValueError</failure></testcase><testcase classname="tests.test_natural_context_contrast_trainer" name="test_full_state_resume_and_full_body_EOS_accounting[True]" time="0.001"><failure message="ValueError: Unsupported architecture contract">tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-130/test_full_state_resume_and_ful1')
+contrast = True
+
+    @pytest.mark.parametrize('contrast', [False, True])
+    def test_full_state_resume_and_full_body_EOS_accounting(tmp_path, contrast):
+&gt;       _, parent, rows = fixture()
+                          ^^^^^^^^^
+
+tests/test_natural_context_contrast_trainer.py:64: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_natural_context_contrast_trainer.py:24: in fixture
+    model = JMicroModel(config)
+            ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = JMicroModel()
+config = {'schema_version': 1, 'architecture': 'decoder_only_transformer', 'hidden_size': 32, 'num_attention_heads': 4, ...}
+
+    def __init__(self, config: dict):
+        super().__init__()
+        self.config = dict(config)
+        if not (config["tie_word_embeddings"] and config["rope_layout"] == "half_split" and
+                config["qk_norm_type"] in ("rms_head_shared", "none") and config["qk_norm_before_rope"] and
+                config["rotary_dim"] == config["head_dim"] and config["activation"] == "swiglu" and
+                not config["attention_bias"] and not config["mlp_bias"] and config["dropout"] == 0):
+&gt;           raise ValueError("Unsupported architecture contract")
+E           ValueError: Unsupported architecture contract
+
+src/jmicro/model.py:129: ValueError</failure></testcase><testcase classname="tests.test_natural_context_contrast_trainer" name="test_duplicate_family_cannot_be_a_retrieval_negative" time="0.001"><failure message="ValueError: Unsupported architecture contract">def test_duplicate_family_cannot_be_a_retrieval_negative():
+&gt;       _, _, rows = fixture()
+                     ^^^^^^^^^
+
+tests/test_natural_context_contrast_trainer.py:88: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_natural_context_contrast_trainer.py:24: in fixture
+    model = JMicroModel(config)
+            ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = JMicroModel()
+config = {'schema_version': 1, 'architecture': 'decoder_only_transformer', 'hidden_size': 32, 'num_attention_heads': 4, ...}
+
+    def __init__(self, config: dict):
+        super().__init__()
+        self.config = dict(config)
+        if not (config["tie_word_embeddings"] and config["rope_layout"] == "half_split" and
+                config["qk_norm_type"] in ("rms_head_shared", "none") and config["qk_norm_before_rope"] and
+                config["rotary_dim"] == config["head_dim"] and config["activation"] == "swiglu" and
+                not config["attention_bias"] and not config["mlp_bias"] and config["dropout"] == 0):
+&gt;           raise ValueError("Unsupported architecture contract")
+E           ValueError: Unsupported architecture contract
+
+src/jmicro/model.py:129: ValueError</failure></testcase></testsuite></testsuites>

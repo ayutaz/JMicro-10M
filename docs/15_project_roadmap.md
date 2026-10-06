@@ -1,3 +1,10 @@
+現在のBase限定milestone更新（2026-10-07 JST）。
+
+[実native contrastive probe完了](../reports/phase6/natural_context_contrast_probe_completion.json)。loss/元全文CE・診断保存再開commandを実装、CPU5testsと両arm実CUDA4対2+2の全state/history26checksに合格。actual673463終了、GPU12.507994秒、検証64updates/367840 CE教師、科学0。fixed64 TRAINの最大測定batch64でCE98844.6/contrast52853.9教師tokens/秒、peak約7.1GiB、有限非zero auxiliary勾配。品質/4090全容量/本教材の速度の証明とはしない。
+
+次はaccepted全2B TRAINの元unit/familyを保つsamplerとgenre/EOS/CE/extra auxiliary会計を実装し、本sourceの長文/より大きなbatch・保存再開を測定してから、同親fresh等しいAdam/LR・各100M CE対照の実GPU予算を凍結。固定64反復を本教材にしない、追加処理の約1.87倍時間負担も別会計。科学sampler/長期command/予算は未完成で、本比較未開始。既存教師転移/分類branchの失敗は維持。
+
+全Base品質・独立学習seed/full DEV/protected final TEST/adoptionが完了条件。完了時に通知・停止し、Chat/Dialogue/SFT/量子化は開始しない。以下は過去の履歴・後続段階設計。
 現在のBase限定milestone（2026-10-07 JST）。
 
 [教師semantic診断完了](../reports/phase6/teacher_semantic_signal_completion.json): DEV192の平均72.917%対61.979%は教師が上だが、同内容別IDを64clusterへ補正した差CI[0,.22]は元lower>0条件未達。転移branch終了、教師feature/蒸留を開始しない。元出力/採点/nominal96family結果・全99不一致を保存し、内容aliasを独立例数にしない。保護TEST本文未使用。

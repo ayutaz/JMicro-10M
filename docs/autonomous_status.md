@@ -1,3 +1,14 @@
+Base専用・native原文前後contrastiveの実装と実CUDA試験完了（2026-10-07 JST）。
+
+[完了証拠](../reports/phase6/natural_context_contrast_probe_completion.json)・[全実測/保存再開](../reports/phase6/natural_context_contrast_probe_result.json)・[凍結config](../configs/phase6/natural_context_contrast_probe.json)。native10Mの元body+EOS CEと、元prefix/suffixの最終valid hiddenをL2正規化して対応させる対称InfoNCEを実装。temperature/係数各0.1を保持、語彙headをauxiliaryでは呼ばず、新head/parameters/teacher/生成原文/分割点EOSなし。右paddingは元文後だけに置き、causal attentionのvalid出力が旧mask付きnativeと一致するCPU検査に合格。auxiliary backwardを先に済ませactivationを解放してからCE backwardを足し、合算勾配を一度clip/Adam更新する。
+
+CPU5tests/1.90秒（paddingとhead省略・二側勾配・両arm全state再開/元body+EOS会計・同family negative拒否）に合格。初回の小fixture設定にhead_dim8/rotary_dim64の不一致があり、rotary_dim/対応scaleを整えて凍結前に修正、native実装/採用条件を変えず失敗XMLも保存。実config SHA d8983f6d8f0acb97653e1186507e36951d9c4ee475814187bf8894011fb8ddc0、actual673463/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18727311は終了・ps不在。GPU占有12.507994秒/180、実検証64optimizer更新/CE367840教師/auxiliary185328入力/physical1850816を別計数、科学教師0。両armの実CUDA連続4対2+保存再開+2でmodel/Adam/scheduler/RNG/sampler/lineage/全counter/spec/source/全非time history等26checksが完全一致、有限値成功。probe重みはnativeの診断保存に残すが本科学の初期重みには使わない。
+
+同fixed64 TRAINのbatch16/32/64を両arm各warmup3+測定5で実測。共通選択64、従来CE median98844.6 CE targets/秒・peak7.1148GiB、CE+contrast52853.9/秒・peak7.1261GiB。auxiliary gradient最小0.77727、正規化表現variance最小0.0017119で有限/非zero/非collapse。追加処理はこのpacketで約1.87倍の時間、生成改善の証明ではない。pair64という上限であり4090の最大batch/VRAM活用を達成したとはしない。fixed64のpadded physical数と本教材の分布も異なり、100M学習時間を保証しない。29小artifact/874889byteを可搬archiveへ保存、モデルtensor/元記事本文はnativeだけ。
+
+次の具体的作業は既存accepted large2B TRAIN全体の元unit/family/sourceを保持した永続samplerと同CE/追加auxiliary会計を実装すること。固定64を大量反復して本比較に使わない。旧compact indexと元manifest/stat証拠を再利用し13GB index/4GB streamの再scanなし。非eligibleな前後pairで元CE文書を除外しない設計、同family/body negativeを防ぎ、元EOS/byte/genre教師の会計を保つ。実科学sourceで長い文書とより大きなbatchの速度/VRAM・同source保存再開を有限予算で一度測った後だけ、同親fresh等しいAdam/LR・各100M CE案・追加auxiliary露出/forward/GPU・固定DEV/全80内容・実GPU上限を凍結し本二条件を起動する。科学sampler/長期training command/予算はまだ未実装・未凍結、本比較0。教師転移branchは補正gate=falseで閉じたまま。
+
+元10B UI actual673547/start18728955/同boot、実psとHTTP SHA410f975d…/10000007168tokens/parameters10001152/busy=false確認、科学GPUjobなし。Base未完成、元全relative/absolute/EOS/反復/Unicode/role/歴史Web BPB基準と、合格後の独立学習seed/full DEV/protected final TEST/adoptionを維持。完了時通知して停止、Chat/Dialogue/SFT/量子化に進まない。保護dev/test学習なし、WSL uv Python3.12.7/local commitのみ/pushなし、旧失敗・旧数値7・Phase0–3保持。以下は過去の履歴。
 Base専用・教師の文脈信号の比較完了、重複補正後は転移条件未達（2026-10-07 JST）。
 
 [実結果](../reports/phase6/teacher_semantic_signal_result.json)・[補正レビュー](../reports/phase6/teacher_semantic_signal_review.json)・[完了証拠](../reports/phase6/teacher_semantic_signal_completion.json)。公開固定4Bと元native10Mで同じJapanese semantics DEV192をplain-BOS conditional likelihoodにより比較。全原UTF8/候補/codec境界・192件の有限値を確認し、教師140/192=72.917%、native119/192=61.979%。全99不一致の内容を個別に読んだ。否定50%対100%・参照56.25%対68.75%で教師が劣り、時刻/因果は教師が上。異なる学習データ・Tokenizer・post-trainingの比較で、容量や日本語Base一般の証明ではない。

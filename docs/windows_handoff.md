@@ -1,5 +1,14 @@
 現在の引継ぎ・Base限定（2026-10-07 JST）。
 
+[原文前後native実CUDA probe完了](../reports/phase6/natural_context_contrast_probe_completion.json)、actual673463/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18727311は実ps不在。GPU12.507994秒/180、両arm全保存再開26checks・CPU5tests合格、検証64updates/367840 CE教師は科学0と分ける。凍結config d8983f6…、終了one-shot scripts/probe_natural_context_contrast.ps1 を再起動しない。診断CPはnative reports/phase6/natural-context-contrast-probe-20261007/ の各arm/resume-gate、本科学では元10B親から開始しprobe CPを初期化に使わない。語彙head省略/右padding causal helperも原valid出力と一致。
+
+次はaccepted large2B TRAIN全体の元unit/source/familyを保つsampler、元body+EOS CEとeligible前後表現の会計/長期training commandを実装。非eligible unitの元CEを落とさず、same family/body negativeを防ぐ。旧検証済みcompact index/manifest/statを使い13GB/4GB再scanなし。固定probe64は本学習に反復使用しない。64測定CE98844.6/contrast52853.9教師tokens/秒・peak7.1GiBは本source/4090最大容量の証明ではない。長い原文とより大きな科学batchの有限測定・実source全state再開に合格後だけ本各100M CE案のsource/親/fresh等しいAdam/LR/予算/固定評価を凍結、未実装commandを実行しない。
+
+元UI actual673547/同boot/start18728955、HTTP元10B SHA410f975d…/10000007168tokens/parameters10001152/busy=false確認、GPU科学jobなし。native disk143GB空き、追加disk拡張は不要。各job前にactual ps/identityを確認し、GPU時だけUIを止めfinally元UI復帰。WSL native pinned uv3.12.7/frozen extras hub,data,ml,exportを継続、dependency変更0。
+
+Base未完成。元全品質基準/独立学習seed/full DEV/protected TEST/adoptionを満たしたら通知・停止、Chat/Dialogue/SFT/量子化なし。local verified commitのみ/pushなし、元失敗/旧数値7/Phase0–3保持。以下は過去の履歴。
+現在の引継ぎ・Base限定（2026-10-07 JST）。
+
 教師semantic DEV192はactual670149終了、GPU7.486655秒。全99不一致を読み、同内容別IDを64clusterへ補正した差CI[0,.22]が元lower>0条件未達のため、[教師転移branchを終了](../reports/phase6/teacher_semantic_signal_completion.json)。nominal gate=trueは原結果として保存し、採否は補正conservative=false。終了済みsemantic runnerを再起動しない。公開4Bでnative10Mを置換せず教師feature/蒸留を開始しない。
 
 次は[原文前後contrastive計画](../reports/phase6/natural_context_contrast_proposal.json)のnative loss/実training commandの実装。既存accepted large2B TRAINのprobe64がnative /home/aihub_ubuntu/jmicro-data/phase6/natural-context-contrast-20261007/sample64.json にあり、CPU0.305801秒で原byte/IDs確認済み。可搬版はhash/offset/lengthのみ。旧compact-index検証を再利用し大きな旧index/streamの再scanは不要。temperature/係数各0.1、GPU180秒の有限勾配・測定安定batch/速度・連続4対2+2全state保存再開を実装後に凍結して測り、合格時だけ実測予算付き本CE対照を準備。まだloss未実装・training起動command未完成・科学教師0。存在しないtraining commandを実行しない。
