@@ -1,0 +1,135 @@
+{
+  "status": "one_pinned_original_translation_TRAIN_source_comparison_proposed_not_prepared",
+  "created_at": "2026-10-06T09:36:26.401345Z",
+  "trigger": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural_story_ancestry_result.json",
+    "sha256": "89e7633549c8804dc50f064a1456b8af9cd8ac525d632551748ac888717704da"
+  },
+  "rejected_mixed_story_review": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-story-source-20261006/content-review.json",
+    "sha256": "81230a9d0d9619063a8dc62b05c3a75f4fefc8c065e9aa634805dffc51d0f716"
+  },
+  "evidence": "All4 unresolved expressions in this fixed64 lie in51 retained SimpleStories rows;13 translation rows have3 weak but0 unresolved grammar. Small correlated nonblind observation motivates source-origin comparison, not proof of source-wide superiority.",
+  "source": {
+    "repository": "shibatch/TinyStories-JA",
+    "revision": "155b4e5842076c90e07a4934d5b68410fe21f65f",
+    "license": "cdla-sharing-1.0",
+    "native_pool": "/home/aihub_ubuntu/jmicro-data/phase6/dataset-expansion-20261005/shards",
+    "manifest": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/dataset-expansion-20261005/shards/manifest.json",
+      "sha256": "a33ad89783d7b9c2f65eadc96ceca06d19c1e397b0dc95852b148d408cec7b12"
+    },
+    "retained_original_pool": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/simple-stories-ja-budget-20261005/shards/manifest.json",
+      "sha256": "213e11ddad72763ca5d1cb08b7a2c2a98a65989fe03dc194465d9ec4beec0921"
+    },
+    "frozen_copy_then_append_builder": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/prepare_dataset_expansion.py",
+      "sha256": "693b253b718a2b7f2f7c083cb432e4995b8ee93c6b70bb8ede810a5538eb671c"
+    },
+    "native_translation_serialized_interval": [
+      59963449,
+      200000192
+    ],
+    "serialized_tokens": 140036743,
+    "prospective_translation_documents": 499066,
+    "all_existing_selected_TRAIN_translation_records": true,
+    "source_rows_or_text_not_modified": true,
+    "new_corpus_tokens": 0,
+    "original_raw_file_download_or_scan": false,
+    "giant_JSONL_index_rescan": false,
+    "origin_policy": "Use the recorded contiguous addition from shibatch/TinyStories-JA only; do not filter by observed content, length, grammar or favorable examples. The failed mixed source remains rejected."
+  },
+  "preparation": {
+    "CPU_ceiling_seconds": 60,
+    "seed": 2026100693,
+    "full_input_limit_tokens": 1024,
+    "fixed_content_documents": 64,
+    "method": "Owned mmap view of the fixed appended interval; derive BOS/body/EOS offsets once from existing native IDs, reuse original builder/split integrity. Use bounded sorted-index seeks for selected metadata; no huge JSONL parse or raw corpus encoding.",
+    "content_sampling": "Uniform64 fixed draws among translation TRAIN records not previously inspected as content calibration; freeze exclusions from every linked source-content packet before drawing. No reroll/filter/repair after pilot.",
+    "inspected_calibration_sources": [
+      {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-story-source-20261006/content-pilot.json",
+        "sha256": "7b7972b263e89616b21a739fdb6c56f71ee9597d62a4b7ea293045255f826e71"
+      },
+      {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase6/dataset-expansion-20261005/shards/samples.json",
+        "sha256": "48a04f9ac0945cd5dca808eb28775a696bfb46e08697ddade2005f0ed88f5099"
+      },
+      {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook_mixture_content_review.json",
+        "sha256": "82a3c5503e492c3baa57a9760d57c7548718ef5fd6089b9cc6186235935ee194"
+      }
+    ],
+    "content_gate": "All64 individually read/rawSHA bound; weak<=10, unresolved grammatical-expression/object/time-grounding0. Preserve fantasies and plausible alternative stories; no external fact certification.",
+    "failure": "Reject this source contrast if readiness fails; do not attempt another translation filter/length/template/source variant to salvage it."
+  },
+  "proposed_comparison": {
+    "parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+      "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+    },
+    "strong_control": {
+      "run": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006",
+      "arm": "source_order",
+      "config": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/source_order_condition_comparison_v2.json",
+        "sha256": "03b4ad47fa42b9a669c4588e736648e6339c93b9eb0cf3d08aac22a46cf90a88"
+      },
+      "result": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/compare-result.json",
+        "sha256": "cbca7936ebf395b1d5ccd45022ee4cb85de704a636c8bdae48ff2c24a8adc303"
+      },
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323503.pt",
+        "sha256": "fb43f2618c0679ca6c6f7a0c5b9faf1b336be8985271c8513f2e4bbfde3cd7ae"
+      }
+    },
+    "main_teacher_tokens": 100000000,
+    "staged_slot_quotas": {
+      "web": 75000000,
+      "story": 5000000,
+      "ordinary_textbook": 10000000,
+      "conditional_textbook": 10000000
+    },
+    "source_order": [
+      "web",
+      "story",
+      "ordinary_textbook",
+      "conditional_textbook"
+    ],
+    "final_slot": "Replace conditional10M with all existing selected source-TRAIN TinyStories-JA translations, excluding retained SimpleStories origin",
+    "final_story_shuffle": "Separate seed42 stream with same fixed PositiveStream seed tuple[seed,epoch,3,100], not restart/continuation of first story5M stream",
+    "actual_LR": 1e-05,
+    "optimizer_policy": "inherit full parent model/Adam/scheduler/RNG",
+    "shapes": {
+      "context": 1024,
+      "batch": 32,
+      "accumulation": 1,
+      "backend": "flash",
+      "compile_mode": "reduce-overhead",
+      "dtype": "bf16"
+    },
+    "loss": "ordinary body+EOS CE weight1; no rank/KL/anchor auxiliary",
+    "input_comparability": "Verify byte-exact first90M source sequences/cursors/counters against staged control. Final conditional body/EOS/length change; terminal all-masked Web padding may change and must be accounted separately, not claimed identical.",
+    "new_GPU_ceiling_seconds_including_probes": 900,
+    "nontraining_reserve_seconds": 150,
+    "margin": 1.3,
+    "slack_seconds": 50,
+    "CUDA_gate": "Own continuous4 vs2+2 full state that actually exercises replacement stream, plus32 measured updates spanning changed source. Probe and failed costs preserved; science configuration frozen only if estimate fits900.",
+    "evaluation": "Same256 commonbyte full bodies/Japanese192-331-1119/all80 individually read/bridge128 and retention128. Same scorer, splits, decoder and strong relative/absolute/historical Web guards.",
+    "quality_gate": "Strong stagedCE23+8 with pairedCI lower>0/EOS>=76/repetition<=2; original absolute grammar>=56/coherence>=27/appropriate>=27/EOS>=37/repetition<=18/noempty-role-Unicode; historical Web BPB<=.9812859519097707 and existing stop guards.",
+    "quality_criteria_unchanged": true
+  },
+  "distinction": "Final conditional10M uses only this separately pinned original translation source, rather than failed generated narratives or mixed retained/translation source. Same historical10.5B full parent/LR.00001 and strong same-parent stagedCE control; prior story mixtures have different parents/schedules/material/quotas.",
+  "limitations": "Translation of originally synthetic English stories, not original human Japanese or new independent semantic evidence. Source content/diversity/length/EOS density change together. Existing global near/site/author audit remains incomplete. Earlier root diagnostic72 already found translation semantic weaknesses; the13 grammar0 here do not erase those failures.",
+  "scientific_teacher_tokens": 0,
+  "GPU_seconds": 0,
+  "quality_criteria_unchanged": true,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "next_action": "Implement own native translation-only view/fixed64 preparation and meaningful provenance/boundary/codec checks; freeze input/exclusion/selection before actual preparation. Only accepted source can advance to own actualCUDA4vs2+2/32 changed-source timings and900s measured100M comparison."
+}

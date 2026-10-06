@@ -1,0 +1,246 @@
+{
+  "status": "one_existing_TRAIN_whole_story_source_replacement_proposed",
+  "created_at": "2026-10-06T09:26:40.220533Z",
+  "trigger": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/narrative_condition_source_completion.json",
+    "sha256": "c8867ea87161a3a8f7d9f0fcf754ded93367cf2844f84d7ef04a5e981d46beab"
+  },
+  "rationale": "The local expanded renderer failed content readiness, so do not patch/retry it. Use independently authored original whole source-train stories already present, without fact/name/template generation. This tests source representation/diversity as a bundle, not data amount alone.",
+  "pool": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large",
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133"
+  },
+  "tokenizer": {
+    "path": "artifacts/phase2/4096/tokenizer.model",
+    "sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+  },
+  "references": {
+    "accepted_pool_ready": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook_mixture_ready.json",
+      "sha256": "5906d375a3bfd50acbf1599fab07c12053008e4251a5b65a4003bac6d601fd2e"
+    },
+    "accepted_pool_review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook_mixture_content_review.json",
+      "sha256": "82a3c5503e492c3baa57a9760d57c7548718ef5fd6089b9cc6186235935ee194"
+    },
+    "compact_cache": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large/.compact-index-8cde6396d433644b/ready.json",
+      "sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606"
+    },
+    "strong_control_config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/source_order_condition_comparison_v2.json",
+      "sha256": "03b4ad47fa42b9a669c4588e736648e6339c93b9eb0cf3d08aac22a46cf90a88"
+    },
+    "strong_control_result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/compare-result.json",
+      "sha256": "cbca7936ebf395b1d5ccd45022ee4cb85de704a636c8bdae48ff2c24a8adc303"
+    }
+  },
+  "existing_accepted_source_story_tokens": 100000968,
+  "prior_control_protocols": {
+    "natural_learning": {
+      "config": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/natural_learning.json",
+        "sha256": "5bb615dfb2ce80affb874cc36c3568d1726ca2c4bddeb121961f93ccd6821b94"
+      },
+      "parent": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+        "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+        "update": 305176,
+        "tokens_seen": 10000007168
+      },
+      "arms": null,
+      "peak_lr": 0.0001,
+      "source_order": null,
+      "distinction": "Different parent/LR/material/mixture or conditional source still retained; not this same-parent staged conditional->whole-story contrast."
+    },
+    "story_weight_comparison": {
+      "config": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/story_weight_comparison.json",
+        "sha256": "e5ee42c4bc923632faa5b49eceb76f32e92c9d632bb7d2d292a88117f3938f04"
+      },
+      "parent": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook-coverage-2b-20261006/decay/checkpoint-00062166.pt",
+        "sha256": "965a06dc1537ed917de98c565d78ae76f19d99ad075f019067a4324a6cbd2249"
+      },
+      "arms": {
+        "control": {
+          "web": 75000000,
+          "textbook": 20000000,
+          "story": 5000000
+        },
+        "story20": {
+          "web": 60000000,
+          "textbook": 20000000,
+          "story": 20000000
+        }
+      },
+      "peak_lr": 0.0002,
+      "source_order": null,
+      "distinction": "Different parent/LR/material/mixture or conditional source still retained; not this same-parent staged conditional->whole-story contrast."
+    },
+    "textbook_quantity_comparison": {
+      "config": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/textbook_quantity_comparison.json",
+        "sha256": "f1baece77f9e85d6086f1ac5d1e624a59d19910a90af2202a104fb125c379d98"
+      },
+      "parent": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/curriculum-strategy-20261005-v3/initial-fresh.pt",
+        "sha256": "70d86a832f607faf4325992b5ec76d080a167b164efc78a6dc0b88133507ea85",
+        "update": 0,
+        "tokens_seen": 0
+      },
+      "arms": {
+        "large": {
+          "teachers": 1000000000,
+          "boundaries": [
+            1000000000
+          ],
+          "evaluate": [
+            1000000000
+          ]
+        },
+        "small": {
+          "teachers": 1000000000,
+          "boundaries": [
+            1000000000
+          ],
+          "evaluate": [
+            1000000000
+          ]
+        }
+      },
+      "peak_lr": 0.002,
+      "source_order": null,
+      "distinction": "Different parent/LR/material/mixture or conditional source still retained; not this same-parent staged conditional->whole-story contrast."
+    },
+    "historical_parent_condition_comparison_v3": {
+      "config": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/historical_parent_condition_comparison_v3.json",
+        "sha256": "8201c995e37421869d43361fe9b381e0bd90ee16bfd8b54fca90f93b093dc99d"
+      },
+      "parent": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+        "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+      },
+      "arms": {
+        "historical_parent": {
+          "web": 75000000,
+          "story": 5000000,
+          "ordinary_textbook": 10000000,
+          "conditional_textbook": 10000000
+        }
+      },
+      "peak_lr": 1e-05,
+      "source_order": null,
+      "distinction": "Different parent/LR/material/mixture or conditional source still retained; not this same-parent staged conditional->whole-story contrast."
+    },
+    "source_order_condition_comparison_v2": {
+      "config": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/source_order_condition_comparison_v2.json",
+        "sha256": "03b4ad47fa42b9a669c4588e736648e6339c93b9eb0cf3d08aac22a46cf90a88"
+      },
+      "parent": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+        "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+      },
+      "arms": {
+        "source_order": {
+          "web": 75000000,
+          "story": 5000000,
+          "ordinary_textbook": 10000000,
+          "conditional_textbook": 10000000
+        }
+      },
+      "peak_lr": 1e-05,
+      "source_order": [
+        "web",
+        "story",
+        "ordinary_textbook",
+        "conditional_textbook"
+      ],
+      "distinction": "Different parent/LR/material/mixture or conditional source still retained; not this same-parent staged conditional->whole-story contrast."
+    }
+  },
+  "preparation": {
+    "CPU_ceiling_seconds": 60,
+    "seed": 2026100692,
+    "source": "All story-tagged existing TRAIN document indices only",
+    "sampling": "Uniform64 whole original stories without replacement using predeclared seed; no content/length selection, reroll, patch or post-pilot filtering",
+    "content_gate": "All64 individually read/rawSHA bound; weak<=10, unresolved grammar and temporal/object grounding issues0. Different plausible fictional stories accepted; no external factual truth certification.",
+    "copy_or_truncate_original_text": false,
+    "giant_index_or_source_rescan": false,
+    "use_existing_content_bound_compact_cache": true
+  },
+  "proposed_comparison": {
+    "parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+      "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+    },
+    "strong_control": {
+      "run": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006",
+      "arm": "source_order",
+      "config": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/source_order_condition_comparison_v2.json",
+        "sha256": "03b4ad47fa42b9a669c4588e736648e6339c93b9eb0cf3d08aac22a46cf90a88"
+      },
+      "result": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/compare-result.json",
+        "sha256": "cbca7936ebf395b1d5ccd45022ee4cb85de704a636c8bdae48ff2c24a8adc303"
+      },
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323503.pt",
+        "sha256": "fb43f2618c0679ca6c6f7a0c5b9faf1b336be8985271c8513f2e4bbfde3cd7ae"
+      }
+    },
+    "main_teacher_tokens": 100000000,
+    "staged_slot_quotas": {
+      "web": 75000000,
+      "story": 5000000,
+      "ordinary_textbook": 10000000,
+      "conditional_textbook": 10000000
+    },
+    "source_order": [
+      "web",
+      "story",
+      "ordinary_textbook",
+      "conditional_textbook"
+    ],
+    "final_slot": "Replace only conditional10M with whole source-train stories; other slots Web75M/story5M/ordinary10M",
+    "final_story_shuffle": "Separate seed42 stream with same fixed PositiveStream seed tuple[seed,epoch,3,100], not restart/continuation of first story5M stream",
+    "actual_LR": 1e-05,
+    "optimizer_policy": "inherit full parent model/Adam/scheduler/RNG",
+    "shapes": {
+      "context": 1024,
+      "batch": 32,
+      "accumulation": 1,
+      "backend": "flash",
+      "compile_mode": "reduce-overhead",
+      "dtype": "bf16"
+    },
+    "loss": "ordinary body+EOS CE weight1; no rank/KL/anchor auxiliary",
+    "input_comparability": "Verify byte-exact first90M source sequences/cursors/counters against staged control. Final conditional body/EOS/length change; terminal all-masked Web padding may change and must be accounted separately, not claimed identical.",
+    "new_GPU_ceiling_seconds_including_probes": 900,
+    "nontraining_reserve_seconds": 150,
+    "margin": 1.3,
+    "slack_seconds": 50,
+    "CUDA_gate": "Own continuous4 vs2+2 full state that actually exercises replacement stream, plus32 measured updates spanning changed source. Probe and failed costs preserved; science configuration frozen only if estimate fits900.",
+    "evaluation": "Same256 commonbyte full bodies/Japanese192-331-1119/all80 individually read/bridge128 and retention128. Same scorer, splits, decoder and strong relative/absolute/historical Web guards.",
+    "quality_gate": "Strong stagedCE23+8 with pairedCI lower>0/EOS>=76/repetition<=2; original absolute grammar>=56/coherence>=27/appropriate>=27/EOS>=37/repetition<=18/noempty-role-Unicode; historical Web BPB<=.9812859519097707 and existing stop guards.",
+    "quality_criteria_unchanged": true
+  },
+  "limitations": "Same existing100M story corpus; no new corpus/family or natural-human-source claim. Replacing artificial conditional material changes semantic content, source diversity, EOS density and length together; not isolated quantity effect. Shared fixeddev/nonblind one seed cannot prove final generalization.",
+  "completion_condition": "One finite source preparation; reject source if prerequisite fails. Only accepted source plus actual measured CUDA/budget qualifies one terminal100M comparison and full content review; no sweep/CPscan/automatic extension.",
+  "source_sha256": {
+    "scripts/prepare_natural_story_source.py": "ae4eca7dc9cf757da946cfed4e7893b93c6413f306613ee5c39fc9aaa8406007"
+  },
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "scientific_teacher_tokens": 0,
+  "actual_GPU_seconds": 0,
+  "preserved_related_GPU_seconds": 2289.596018486074,
+  "next_action": "Prepare frozen native whole-story source indices/fixed64; all64 raw-bound review before implementing own trainer and actual CUDA gate."
+}

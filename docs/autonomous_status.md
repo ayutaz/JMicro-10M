@@ -1,3 +1,15 @@
+既存物語100Mの固定64を全確認・不採用、全64の元sourceを小部分読みで確定（2026-10-06 JST）。前回の16384生成文/source失敗はfd48644に保存したprogress。Baseだけを品質・独立学習seed/full dev/protected test/採用まで継続し、実完成時に通知して停止。Base未完了・未採用、Chat/Dialogue/SFT/量子化なし。
+
+natural_story_source_reuse_proposal.jsonで別親/LR/素材の旧自然25M・storyweight100M・fresh教材量比較と、現在same10.5B staged条件源を比較し、最後のconditional10Mだけを既原文物語に置換する対照を定義。GPU起動前にTRAINの761448whole docs/serialized100000968/body98478072/本文+EOS99239520を確認、長さ34–511で切断0。旧2B poolのaccepted manifest/217MB compact cacheを再利用し13GBindex/5.37GBraw再走査・再取得なし。new corpus0/元原文変更0で、新量の用意やモデル改善としない。
+
+CPU準備v1は固定64を保存した後、記録関数名refとループ変数の衝突TypeErrorで失敗。old metadata Windows-only2filesを正確SHA付きでWSLへ復元した初回定義失敗も隠さない。frozen v1/job/pilotを変えずowned metadata-repair-v2を用い、元draw64 IDs/text/token SHA完全一致で記録だけ完成。失敗+repair CPU0.364282秒/上限60、GPU0。actual64は全件読解/rawSHA/rationaleを保存、weak10で件数は通るが未解消表現4（ひとつの風/一番の素敵/むすんでいるように見えた太郎/ぎくりとした音）がゼロ条件を満たさず全mixed-story source不採用。grammar旗は自然な表現の未解消で、全て詩的読解が不可能という形式的証明ではない。幻想/暗い結末/新しい人物を自動失敗にせず、human/external truth認証なし。100M/GPU probe未実行。
+
+source metadata探索をowned byte-seekで実装し、UTF8/最初・中間・末尾/欠損key/読出し上限のCPU2tests/.04秒成功。元13GB mixture JSONLと上流536MB JSONLから全64を2段のoffset二分探索で照合、実CPU0.181063+0.164494秒（各上限10）、読出し1658555+1222486=2881041bytesのみ。全64本文SHA/bodytokens/TRAIN/source-family/元file-rowが一致。retained SimpleStories51件はweak7/表現4、translation13件はweak3/表現0。これは固定64の相関・非blind観察で元corpus全品質や因果を証明しない。旧root診断72の翻訳の意味失敗も消さない。
+
+次はtranslated_story_source_proposal.jsonの別pinned source-origin比較。既shibatch/TinyStories-JA revision155b4e…のTRAIN追加区間59963449–200000192（serialized140036743、候補499066docs）だけのwhole native viewを用意する案。失敗mixed sourceの良い例だけを選別するのでなく、記録済copy-old-then-append builderで別公開sourceを全件再利用。原文/content/長さで再filterせずcalibration除外/seed2026100693/固定64/CPU60秒を生成前に凍結。新原文/GPU0、source原文・BOS/body/EOSからcompact offsetsを一度だけ導出し、536MBJSONLは64だけ部分読み。候補自身のweak<=10・grammar-grounding0に失敗ならこのorigin比較も終了、filter/length/source sweepで救済しない。
+
+accepted sourceだけをsame fullparent/Adam/scheduler/RNG/実LR.00001、Web75M→story5M→ordinary10M→translation10M/ordinary CE1で強いstagedCE100Mに比較。first90M入力/cursors/counters一致を確認し、末尾source/EOS長さとall-masked Web padding差を正直に別会計。own changed-source実CUDA4vs2+2/32steady timings、150秒reserve/30%/50秒余裕・全probe込み900秒前に科学設定を凍結しない。全既存relative/absolute/歴史WebBPB guard・256full/Japanese192-331-1119/80個別/bridge-ret128維持。旧関連GPU2289.596018秒/Phase0–3/数値7失敗保持、科学GPUjob0、元10B UI618479/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16015140とHTTP親410f975d…/10000007168/busy=false確認。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 TRAIN由来の短文教材16384件を実準備・固定64全読解し不採用（2026-10-06 JST）。前診断・単一source案はdbdd9c5へ保存したprogress。Baseだけを品質・独立学習seed/full dev/protected test/採用まで継続し、実完成時に通知して停止。Base未完了・未採用、Chat/Dialogue/SFT/量子化なし。
 
 narrative_condition_source_freeze.jsonでproposal/accepted TRAIN input/owned renderer/prep/reviewer/test/seedをactual source生成前に凍結。既accepted1024facts/両branch/各8surfaceの全16384文、同48category×surfaceの固定48＋追加16の64を一度だけ準備。実CPU1.353232秒/上限60、body1056722、serialized1089490、本文+EOS1073106、EOS16384。native4096 exact bytes/BOS/EOS/wholebody入力1024内、重複全体文0/切捨て0/role-pad本文0。新独立semantic families/原文corpus0で、表現数増加を意味の独立例数・新公開自然文に置換しない。元24source formsは場面/関係/機構に残り、同surface内でも元formの違いがある。
