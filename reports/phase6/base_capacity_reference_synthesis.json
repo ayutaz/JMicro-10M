@@ -1,0 +1,695 @@
+{
+  "status": "bounded_parameter_reference_and_cached_evidence_synthesis_complete",
+  "created_at": "2026-10-07T04:33:15.114384+09:00",
+  "CPU_seconds": 6.392987811006606,
+  "CPU_wall_limit_seconds": 30,
+  "GPU_seconds": 0,
+  "new_CE_teacher_tokens": 0,
+  "optimizer_updates": 0,
+  "public_config": {
+    "repo": "roneneldan/TinyStories-8M",
+    "revision": "8612e3b15c66ffa94eaa6ee0de5c96edd2d630af",
+    "url": "https://huggingface.co/roneneldan/TinyStories-8M/resolve/8612e3b15c66ffa94eaa6ee0de5c96edd2d630af/config.json",
+    "local_path": "reports/phase6/TinyStories-8M-reference-config.json",
+    "sha256": "5ff16b03beb4466bde520469a815a2d439e16896655d1151c3b44686b387a42d",
+    "config": {
+      "_name_or_path": "//amlta41566503acb2986203fbd2fc58f9ff6/projects/CODE_YUANZHI/amlt-results/7318563093.69241-46ef7114-0cc8-4d54-8d19-c1863a28eb04/trainer_textbook/checkpoint-25750/",
+      "activation_function": "gelu_new",
+      "architectures": [
+        "GPTNeoForCausalLM"
+      ],
+      "attention_dropout": 0,
+      "attention_layers": [
+        "global",
+        "local",
+        "global",
+        "local",
+        "global",
+        "local",
+        "global",
+        "local"
+      ],
+      "attention_types": [
+        [
+          [
+            "global",
+            "local"
+          ],
+          4
+        ]
+      ],
+      "bos_token_id": 50256,
+      "embed_dropout": 0,
+      "eos_token_id": 50256,
+      "gradient_checkpointing": false,
+      "hidden_size": 256,
+      "initializer_range": 0.02,
+      "intermediate_size": null,
+      "layer_norm_epsilon": 1E-05,
+      "max_position_embeddings": 2048,
+      "model_type": "gpt_neo",
+      "num_heads": 16,
+      "num_layers": 8,
+      "resid_dropout": 0,
+      "summary_activation": null,
+      "summary_first_dropout": 0.1,
+      "summary_proj_to_labels": true,
+      "summary_type": "cls_index",
+      "summary_use_proj": true,
+      "torch_dtype": "float32",
+      "transformers_version": "4.28.1",
+      "use_cache": true,
+      "vocab_size": 50257,
+      "window_size": 256
+    }
+  },
+  "published_counts": {
+    "published": {
+      "total_parameters": 19702528,
+      "token_embedding_parameters": 12865792,
+      "position_embedding_parameters": 524288,
+      "non_embedding_parameters": 6312448,
+      "tied_input_output": true,
+      "physical_vocab_size": 50257,
+      "instantiation": "CPU meta device; no weights downloaded or trained"
+    },
+    "paper_top10K_vocabulary_counterfactual": {
+      "total_parameters": 9396736,
+      "token_embedding_parameters": 2560000,
+      "position_embedding_parameters": 524288,
+      "non_embedding_parameters": 6312448,
+      "tied_input_output": true,
+      "physical_vocab_size": 10000,
+      "instantiation": "CPU meta device; no weights downloaded or trained"
+    }
+  },
+  "JMicro": {
+    "total_parameters": 10001152,
+    "token_embedding_parameters": 1048576,
+    "position_embedding_parameters": 0,
+    "non_embedding_parameters": 8952576,
+    "native_config": {
+      "schema_version": 1,
+      "architecture": "decoder_only_transformer",
+      "hidden_size": 256,
+      "num_attention_heads": 4,
+      "num_key_value_heads": 2,
+      "head_dim": 64,
+      "activation": "swiglu",
+      "norm": "rmsnorm",
+      "rms_norm_eps": 1E-06,
+      "qk_norm_type": "none",
+      "qk_norm_before_rope": true,
+      "attention_scale": 0.125,
+      "rope_theta": 10000,
+      "rope_layout": "half_split",
+      "rotary_dim": 64,
+      "max_position_embeddings": 1024,
+      "tie_word_embeddings": true,
+      "attention_bias": false,
+      "mlp_bias": false,
+      "dropout": 0.0,
+      "initializer_std": 0.02,
+      "norm_initial_gain": 1.0,
+      "status": "phase5_ablation",
+      "name": "JMicro-10M-T4K-NoQKNorm",
+      "vocab_size": 4096,
+      "num_hidden_layers": 13,
+      "intermediate_size": 640,
+      "expected_parameter_count": 10001152
+    },
+    "source": "Existing audited actual checkpoint inventory; not legacy rms_head_shared t4k template"
+  },
+  "parameter_count_method": "Actual installed GPTNeoForCausalLM meta model named_parameters, deduplicating tied tensors. Counterfactual uses exactly the public architecture with 10K physical vocabulary; not a reconstruction of unpublished paper checkpoints.",
+  "paper": {
+    "url": "https://arxiv.org/html/2305.07759v2",
+    "reported_training": "GPT-Neo tokenizer restricted to top10K common tokens; context512/window256; simple English stories, not broad Japanese Web.",
+    "interpretation": "The paper below10M claim and its public model name cannot be substituted for measured public-config total parameters. Published config has vocabulary50257 and max_position_embeddings2048; 10K calculation remains an explicitly labeled counterfactual."
+  },
+  "cached_evidence": {
+    "architecture": {
+      "current": {
+        "BPB": 2.1037092890318485,
+        "rates": {
+          "outputs": 80,
+          "eos": 54,
+          "repetition": 4,
+          "unicode_failure": 1,
+          "role_leak": 0,
+          "empty": 0
+        },
+        "grammar2": 16,
+        "relevance2": 0,
+        "coherent": 0,
+        "appropriate": 0,
+        "scientific_teachers": 300000000
+      },
+      "fewer_layers_more_FFN": {
+        "parameters": 10011392,
+        "BPB": 2.166974904561069,
+        "rates": {
+          "outputs": 80,
+          "eos": 59,
+          "repetition": 7,
+          "unicode_failure": 0,
+          "role_leak": 0,
+          "empty": 0
+        },
+        "coherent": 0,
+        "appropriate": 2,
+        "grammar2": 18,
+        "relevance2": 8,
+        "scientific_teachers": 300000000
+      },
+      "wider_fewer_layers": {
+        "parameters": 9982848,
+        "BPB": 2.2215441668867637,
+        "rates": {
+          "outputs": 80,
+          "eos": 52,
+          "repetition": 6,
+          "unicode_failure": 2,
+          "role_leak": 0,
+          "empty": 0
+        },
+        "coherent": 0,
+        "appropriate": 0,
+        "grammar2": 22,
+        "relevance2": 4,
+        "scientific_teachers": 300000000
+      }
+    },
+    "amount_learning": {
+      "large-100000000": {
+        "prepared_tokens": 500000785,
+        "stable_teachers": 100000000,
+        "decay_teachers": 20000000,
+        "BPB": 1.2317801684014853,
+        "rates": {
+          "outputs": 80,
+          "eos": 31,
+          "repetition": 20,
+          "unicode_failure": 0,
+          "role_leak": 0,
+          "empty": 0
+        },
+        "Japanese": {
+          "semantics": 0.46875,
+          "jblimp": 0.7824773413897281,
+          "jcqa": 0.30205540661304736
+        },
+        "grammar2": 32,
+        "relevance2": 16,
+        "coherent": 9,
+        "appropriate": 13,
+        "stable_exposure": {
+          "additional_input_tokens": 100499456,
+          "physical_input_tokens": 100499456,
+          "genre_teachers": {
+            "web": 80072899,
+            "story": 19927101
+          },
+          "genre_eos": {
+            "web": 341553,
+            "story": 153391
+          },
+          "sampler": {
+            "kind": "teacher-learning-curve-v1",
+            "mode": "shuffle",
+            "goals": {
+              "web": 0,
+              "short": 2000000000
+            },
+            "position": 3067,
+            "web": {
+              "seed": 42,
+              "epoch": 0,
+              "position": 0,
+              "context": 1024,
+              "blocks": 11939276
+            },
+            "short": {
+              "seed": 42,
+              "epoch": 0,
+              "position": 98144,
+              "context": 1024,
+              "blocks": 488282,
+              "mode": "lazy-shuffle-whole-documents-v1"
+            },
+            "source_tokens": {
+              "web": 0,
+              "short": 100499456
+            },
+            "source_physical_tokens": {
+              "web": 0,
+              "short": 100499456
+            },
+            "source_teachers": {
+              "web": 0,
+              "short": 100000000
+            },
+            "source_eos": {
+              "web": 0,
+              "short": 494944
+            },
+            "boundaries": [
+              100000000,
+              500000000,
+              1000000000,
+              2000000000
+            ],
+            "genre_teachers": {
+              "web": 80072899,
+              "story": 19927101
+            },
+            "genre_eos": {
+              "web": 341553,
+              "story": 153391
+            }
+          },
+          "training_step_seconds": 149.84240358773968
+        },
+        "branch_step_seconds": 31.27268365502823,
+        "peak_allocated_bytes": 6149073408
+      },
+      "large-500000000": {
+        "prepared_tokens": 500000785,
+        "stable_teachers": 500000000,
+        "decay_teachers": 20000000,
+        "BPB": 1.1674766352036285,
+        "rates": {
+          "outputs": 80,
+          "eos": 26,
+          "repetition": 30,
+          "unicode_failure": 0,
+          "role_leak": 0,
+          "empty": 0
+        },
+        "Japanese": {
+          "semantics": 0.4479166666666667,
+          "jblimp": 0.7552870090634441,
+          "jcqa": 0.34763181411974975
+        },
+        "grammar2": 30,
+        "relevance2": 18,
+        "coherent": 9,
+        "appropriate": 14,
+        "stable_exposure": {
+          "additional_input_tokens": 502497280,
+          "physical_input_tokens": 502497280,
+          "genre_teachers": {
+            "web": 400275722,
+            "story": 99724278
+          },
+          "genre_eos": {
+            "web": 1706217,
+            "story": 765375
+          },
+          "sampler": {
+            "kind": "teacher-learning-curve-v1",
+            "mode": "shuffle",
+            "goals": {
+              "web": 0,
+              "short": 2000000000
+            },
+            "position": 15335,
+            "web": {
+              "seed": 42,
+              "epoch": 0,
+              "position": 0,
+              "context": 1024,
+              "blocks": 11939276
+            },
+            "short": {
+              "seed": 42,
+              "epoch": 1,
+              "position": 2438,
+              "context": 1024,
+              "blocks": 488282,
+              "mode": "lazy-shuffle-whole-documents-v1"
+            },
+            "source_tokens": {
+              "web": 0,
+              "short": 502497280
+            },
+            "source_physical_tokens": {
+              "web": 0,
+              "short": 502497280
+            },
+            "source_teachers": {
+              "web": 0,
+              "short": 500000000
+            },
+            "source_eos": {
+              "web": 0,
+              "short": 2471592
+            },
+            "boundaries": [
+              100000000,
+              500000000,
+              1000000000,
+              2000000000
+            ],
+            "genre_teachers": {
+              "web": 400275722,
+              "story": 99724278
+            },
+            "genre_eos": {
+              "web": 1706217,
+              "story": 765375
+            }
+          },
+          "training_step_seconds": 747.2675421598688
+        },
+        "branch_step_seconds": 31.235672848983086,
+        "peak_allocated_bytes": 6149073408
+      },
+      "large-1000000000": {
+        "prepared_tokens": 500000785,
+        "stable_teachers": 1000000000,
+        "decay_teachers": 20000000,
+        "BPB": 1.152110186840399,
+        "rates": {
+          "outputs": 80,
+          "eos": 37,
+          "repetition": 20,
+          "unicode_failure": 0,
+          "role_leak": 0,
+          "empty": 0
+        },
+        "Japanese": {
+          "semantics": 0.4895833333333333,
+          "jblimp": 0.7945619335347432,
+          "jcqa": 0.3583556747095621
+        },
+        "grammar2": 36,
+        "relevance2": 26,
+        "coherent": 14,
+        "appropriate": 22,
+        "stable_exposure": {
+          "additional_input_tokens": 1004994560,
+          "physical_input_tokens": 1004994560,
+          "genre_teachers": {
+            "web": 800540240,
+            "story": 199459760
+          },
+          "genre_eos": {
+            "web": 3412372,
+            "story": 1530741
+          },
+          "sampler": {
+            "kind": "teacher-learning-curve-v1",
+            "mode": "shuffle",
+            "goals": {
+              "web": 0,
+              "short": 2000000000
+            },
+            "position": 30670,
+            "web": {
+              "seed": 42,
+              "epoch": 0,
+              "position": 0,
+              "context": 1024,
+              "blocks": 11939276
+            },
+            "short": {
+              "seed": 42,
+              "epoch": 2,
+              "position": 4876,
+              "context": 1024,
+              "blocks": 488282,
+              "mode": "lazy-shuffle-whole-documents-v1"
+            },
+            "source_tokens": {
+              "web": 0,
+              "short": 1004994560
+            },
+            "source_physical_tokens": {
+              "web": 0,
+              "short": 1004994560
+            },
+            "source_teachers": {
+              "web": 0,
+              "short": 1000000000
+            },
+            "source_eos": {
+              "web": 0,
+              "short": 4943113
+            },
+            "boundaries": [
+              100000000,
+              500000000,
+              1000000000,
+              2000000000
+            ],
+            "genre_teachers": {
+              "web": 800540240,
+              "story": 199459760
+            },
+            "genre_eos": {
+              "web": 3412372,
+              "story": 1530741
+            }
+          },
+          "training_step_seconds": 1493.398161706922
+        },
+        "branch_step_seconds": 31.190525577199878,
+        "peak_allocated_bytes": 6149073408
+      },
+      "large-2000000000": {
+        "prepared_tokens": 500000785,
+        "stable_teachers": 2000000000,
+        "decay_teachers": 20000000,
+        "BPB": 1.1385898259344385,
+        "rates": {
+          "outputs": 80,
+          "eos": 40,
+          "repetition": 21,
+          "unicode_failure": 0,
+          "role_leak": 0,
+          "empty": 0
+        },
+        "Japanese": {
+          "semantics": 0.484375,
+          "jblimp": 0.7250755287009063,
+          "jcqa": 0.34048257372654156
+        },
+        "grammar2": 43,
+        "relevance2": 32,
+        "coherent": 21,
+        "appropriate": 27,
+        "stable_exposure": {
+          "additional_input_tokens": 2009956352,
+          "physical_input_tokens": 2009956352,
+          "genre_teachers": {
+            "web": 1601099555,
+            "story": 398900445
+          },
+          "genre_eos": {
+            "web": 6824396,
+            "story": 3061263
+          },
+          "sampler": {
+            "kind": "teacher-learning-curve-v1",
+            "mode": "shuffle",
+            "goals": {
+              "web": 0,
+              "short": 2000000000
+            },
+            "position": 61339,
+            "web": {
+              "seed": 42,
+              "epoch": 0,
+              "position": 0,
+              "context": 1024,
+              "blocks": 11939276
+            },
+            "short": {
+              "seed": 42,
+              "epoch": 4,
+              "position": 9720,
+              "context": 1024,
+              "blocks": 488282,
+              "mode": "lazy-shuffle-whole-documents-v1"
+            },
+            "source_tokens": {
+              "web": 0,
+              "short": 2009956352
+            },
+            "source_physical_tokens": {
+              "web": 0,
+              "short": 2009956352
+            },
+            "source_teachers": {
+              "web": 0,
+              "short": 2000000000
+            },
+            "source_eos": {
+              "web": 0,
+              "short": 9885659
+            },
+            "boundaries": [
+              100000000,
+              500000000,
+              1000000000,
+              2000000000
+            ],
+            "genre_teachers": {
+              "web": 1601099555,
+              "story": 398900445
+            },
+            "genre_eos": {
+              "web": 6824396,
+              "story": 3061263
+            }
+          },
+          "training_step_seconds": 2985.552511660542
+        },
+        "branch_step_seconds": 31.16602130087267,
+        "peak_allocated_bytes": 6149073408
+      },
+      "small-1000000000": {
+        "prepared_tokens": 100000157,
+        "stable_teachers": 1000000000,
+        "decay_teachers": 20000000,
+        "BPB": 1.1594794747119588,
+        "rates": {
+          "outputs": 80,
+          "eos": 34,
+          "repetition": 21,
+          "unicode_failure": 0,
+          "role_leak": 0,
+          "empty": 0
+        },
+        "Japanese": {
+          "semantics": 0.484375,
+          "jblimp": 0.770392749244713,
+          "jcqa": 0.3512064343163539
+        },
+        "grammar2": 32,
+        "relevance2": 33,
+        "coherent": 9,
+        "appropriate": 26,
+        "stable_exposure": {
+          "additional_input_tokens": 1004994560,
+          "physical_input_tokens": 1004994560,
+          "genre_teachers": {
+            "web": 800533113,
+            "story": 199466887
+          },
+          "genre_eos": {
+            "web": 3412374,
+            "story": 1531010
+          },
+          "sampler": {
+            "kind": "teacher-learning-curve-v1",
+            "mode": "shuffle",
+            "goals": {
+              "web": 0,
+              "short": 1000000000
+            },
+            "position": 30670,
+            "web": {
+              "seed": 42,
+              "epoch": 0,
+              "position": 0,
+              "context": 1024,
+              "blocks": 11939276
+            },
+            "short": {
+              "seed": 42,
+              "epoch": 10,
+              "position": 4880,
+              "context": 1024,
+              "blocks": 97656,
+              "mode": "lazy-shuffle-whole-documents-v1"
+            },
+            "source_tokens": {
+              "web": 0,
+              "short": 1004994560
+            },
+            "source_physical_tokens": {
+              "web": 0,
+              "short": 1004994560
+            },
+            "source_teachers": {
+              "web": 0,
+              "short": 1000000000
+            },
+            "source_eos": {
+              "web": 0,
+              "short": 4943384
+            },
+            "boundaries": [
+              100000000,
+              500000000,
+              1000000000
+            ],
+            "genre_teachers": {
+              "web": 800533113,
+              "story": 199466887
+            },
+            "genre_eos": {
+              "web": 3412374,
+              "story": 1531010
+            }
+          },
+          "training_step_seconds": 1490.3816702104814
+        },
+        "branch_step_seconds": 31.103675052785547,
+        "peak_allocated_bytes": 6149073408
+      }
+    },
+    "projection_summary": {
+      "BPB": 1.0007222231116217,
+      "rates": {
+        "outputs": 80,
+        "eos": 21,
+        "repetition": 47,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 57,
+      "relevance2": 25,
+      "coherent": 4,
+      "appropriate": 3,
+      "notes_sha256": "f218806173197649f51546729c7cbc91a5757328d3c7ea534d4220adcf9472b1",
+      "generation_sha256": "86ace36a486a8582d26d1b2943d3f9a262ea83c2b2b9029beb8b939c02180d24",
+      "Japanese": {
+        "semantics": 0.625,
+        "jblimp": 0.7764350453172205,
+        "jcqa": 0.3449508489722967
+      }
+    },
+    "trainfit": {
+      "reference": "reports/phase6/condition_trainfit_diagnostic_review.json",
+      "focus_body_mean_nll": {
+        "positive4": 0.0806008015652098,
+        "parent2B": 2.0209250986011997,
+        "control": 0.5429198795562881
+      },
+      "interpretation": "Previously completed512 TRAIN example fit improved on all504 focus-enabled documents; fixed-dev generation coherence fell15 to9. Fitting these TRAIN targets is possible without demonstrated transfer; does not establish full capacity sufficiency or sole cause."
+    },
+    "generalization": {
+      "reference": "reports/phase6/base_generalization_diagnostic_review.json",
+      "interpreted_scope": "Existing held-out source-local DEV64 / greedy16 per model; four earlier actual endpoints. Strong train fit and weak transfer are already measured, not new GPU evidence. Closed mechanism not rescued.",
+      "limitations": "Repeated nonblind source-local DEV; broad Web overlap uncertified. Already completed diagnostic must not be rerun."
+    }
+  },
+  "conclusions": [
+    "The public TinyStories-8M token embedding alone exceeds the complete JMicro-10M parameter budget. Its name is not a matched total-parameter control.",
+    "This does not refute the paper claim; paper describes a restricted tokenizer and different architecture/context and data.",
+    "Completed local depth/width/FFN comparison jointly changed allocations on a small material/budget. Its negative result does not prove all10M architectures incapable. Do not repeat that sweep.",
+    "More data/teachers has improved some BPB and choice metrics while free generation and stop behavior sometimes worsened. An increase alone is not a qualified Base recipe.",
+    "Closed contrast/projection mechanisms do not satisfy the unchanged generation and Web-retention criteria. Do not extend or rescue them."
+  ],
+  "next_action": "Use existing trainfit/generalization and source-review raw evidence to identify a not-yet-tested mechanism of generation transfer. Before GPU, write one explicit matched comparison and completion condition grounded in the observed TRAIN/DEV gap; retain10M total parameters and unchanged quality/retention gates. No new GPU recipe selected yet, no projection/architecture sweep or repeated readonly diagnostic.",
+  "new_scientific_recipe_selected": false,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "counterfactual_config_warning": "Published BOS/EOS50256 are outside a counterfactual physical10K vocabulary. Transformers warned during meta construction. The counterfactual is parameter arithmetic only; never a valid runnable tokenizer/model or generation evidence."
+}

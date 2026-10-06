@@ -1,0 +1,31 @@
+{
+  "status": "bounded_readonly_reference_synthesis_before_new_GPU",
+  "created_at": "2026-10-06T19:33:08.5671893Z",
+  "question": "Does the published TinyStories-8M configuration actually represent the same total parameter budget as JMicro-10M, and what do already completed local architecture/data/learning experiments permit us to conclude?",
+  "CPU_wall_limit_seconds": 30,
+  "GPU_limit_seconds": 0,
+  "optimizer_updates": 0,
+  "teacher_tokens": 0,
+  "maximum_downloads": "Public repository metadata and config JSON only; no weights, corpus or authentication",
+  "references": [
+    "https://arxiv.org/html/2305.07759v2",
+    "https://huggingface.co/roneneldan/TinyStories-8M/blob/main/config.json",
+    "reports/phase6/architecture_comparison_review.json",
+    "reports/phase6/amount_learning_review.json",
+    "reports/phase6/base_parent_budget_inventory.json",
+    "reports/phase6/natural_context_contrast_projection_comparison_review.json"
+  ],
+  "comparison": "Compare distinct total/train-only/embedding/Transformer parameter accounting from real audited JMicro configuration and CPU meta initialization of official GPT-Neo configuration. Compare current local matched findings without rescoring or GPU repetition.",
+  "completion_condition": "Save pinned public config/revision and measured CPU parameter counts; summarize existing causal limits; either select one genuinely untested hypothesis with defined comparison, or explicitly leave new GPU launch unselected. No quality gate changes or conclusion of impossibility.",
+  "excluded": [
+    "New GPU training",
+    "TinyStories weight download",
+    "Architecture sweep",
+    "Repeat projection/direct/CE endpoints",
+    "Repeat full corpus scans",
+    "Protected TEST",
+    "Chat",
+    "SFT",
+    "Quantization"
+  ]
+}

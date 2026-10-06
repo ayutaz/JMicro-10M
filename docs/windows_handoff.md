@@ -1,3 +1,20 @@
+Base限定・projection100Mの全評価終了、不採用（2026-10-07 JST）。
+
+[完了記録](../reports/phase6/natural_context_contrast_projection_comparison_completion.json)・[全80採点と比較](../reports/phase6/natural_context_contrast_projection_comparison_review.json): actual685602/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start19518840は実終了・ps不在。新科学100,000,000 CE教師/17,698更新、native10,001,152＋train-only98,304param。GPU占有2,382.820秒（39.7分）/上限5,009。既存CE/direct各100Mの全会計/digest/source quota/EOS/full sampler一致、対照GPU再実行0。全state/historyと全日本語/生成80の実reviewに成功、旧160採点は変更しない。
+
+|条件|BPB|文法2/80|一貫性2/80|適切完結/80|EOS/80|反復/80|
+|---|---:|---:|---:|---:|---:|---:|
+|既存CE100M|0.998487|44|2|2|19|45|
+|既存direct contrast100M|1.002890|48|0|3|6|53|
+|新projection100M|1.000722|57|4|3|21|47|
+
+新条件の意味62.500%/JBLiMP77.644%/JCQA34.495%、Unicode/role/empty0。文法は改善するが、一貫性/適切完結/停止/反復とhistorical Web BPB guard等は不合格。CE比の一貫性+2/paired CI[-.025,.075]、direct比+4/CI[.0125,.1]で元+8条件未達。strong比-19/CI[-.3375,-.1375]。共通byte BPBはCE比+0.002235/CI[0.001920,0.002551]で悪化、同192意味はCE比0/CI[-.020833,.020833]。補助headでBase品質問題が解消したとは言えない。この固定recipeを終了しhead/LR/係数/source/epoch/checkpoint救済・自動延長は行わない。
+
+全80は非blind Codex個別判定、独立人手なし。41text/106,225,836byteの原文archiveとlossless gzip52,105,787byteを保存し、tensor/dataは元WSL path。Windowsに全評価/notes/review/completionと圧縮証拠を復元。元10B UI actual686877/同boot/start19757580は実psとHTTP親SHA410f975d…/10,000,007,168/busy=false確認済み。科学GPUjobなし、元10B UIを維持する。
+
+[限定CPU調査](../reports/phase6/base_capacity_reference_synthesis.json): 公開TinyStories-8Mの固定revision8612e3b15c66ffa94eaa6ee0de5c96edd2d630afのconfigのみ取得し、CPU metaで6.393秒、GPU/学習/weight取得0。公開config全19,702,528param（token埋込12,865,792）に対し現nativeは全10,001,152で、名称だけで同容量とは扱えない。[論文](https://arxiv.org/html/2305.07759v2)はtop10K語彙と短い単純な英語物語を記述し、公開full50,257語彙/2048位置との違いを保持する。同公開構造をphysical10Kにした9,396,736は明示counterfactualで論文重みの再現ではなく、旧BOS/EOS範囲warningも保存して推論しない。旧depth/width/FFN比較・量/学習比較、512TRAIN fittingとsource-local DEV転移診断の既存証拠を再利用。10M容量限界、全設定不可能、Tokenizer不良を断定しない。
+
+次は既存trainfit/generalization/source rawに基づき、未検証の生成への転移機構を一つ選んで、同10M/対照/教師/完了条件と実測GPU予算を明示する。新科学recipeはまだ選定・起動していない。終了済み診断、全corpus照合や構造/比率総当たりは繰り返さない。Base未完成・未採用、元全品質条件/独立学習seed/full DEV/protected TEST/adoptionは未達のまま保持。Base完成時にユーザーへ通知して停止し、Chat/Dialogue/SFT/量子化へ進まない。WSL pinned uv/local verified commitのみ、自動pushなし。以下は過去の履歴。
 Base限定・projection100M継続／最終reviewer準備済み（2026-10-07 JST）。
 
 actual685602/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start19518840を実ps確認、同科学native runの4,000更新/22,624,125教師/loss有限、projection/checkpoint-00004000.ptを保存。frozen config/source/5,009秒は不変、重複GPUjobや盲目的再開をしない。GPU科学中の元UI停止/finally元10B復帰を保持。
