@@ -1,3 +1,8 @@
+Base専用科学比較の継続と終了後レビュー準備（2026-10-07 JST）。
+
+actual676378/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18891158を実ps確認、同各100M/5229秒の凍結科学jobを継続。新scripts/review_natural_context_contrast.pyとconfigs/phase6/natural_context_contrast_review.jsonをnativeへ保存、CPU8tests/0.96秒、稼働中の最終レビューを実CLIで拒否しreview出力なし。凍結科学CODE/config変更・重複GPUjobなし。
+
+評価完了後にWSL native uv run --frozen --extra hub --extra data --extra ml --extra export scripts/review_natural_context_contrast.py --template CE（またはcontrast）で未採点notesを作る。各80を全部読むまでは空欄を埋めたり採否を出さない。両armと実process終了後、同uvから同scriptを引数なしで実行して全160/終端state/会計/既存strong・absolute・Web基準を採否へ記録。GPU再推論/旧大容量source再scanなし。合格candidateだけ独立学習seed/full DEV/protected TEST/adoptionへ。Base未完成、完成時通知停止、Chat/SFT/量子化なし、uv Python3.12.7/local verified commit/pushなし。以下は過去の履歴。
 現在の引継ぎ・Base専用科学比較実行中（2026-10-07 JST）。
 
 actual676378/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18891158をps確認、Windowsworker35712。native run /home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007、job.json・各CE/contrastのmetrics-PID-start.jsonl/checkpoint-xxxxxxxx.pt/train-result/evaluation。config SHA70b87bf762f3225fd83f40d3bde301c13e5a4b4243372e541af1a1e38e88bc29、同元10B親410f975d…/accepted2B TRAIN/各100M CE教師、scientific各source75M Web/20M教材/5M物語。CE進行中、loss有限、CP保存を確認。元UIは科学中停止、終端で元10Bへfinally復帰。科学CODE/configは凍結中で変更せず、並行GPUjob/再起動をしない。

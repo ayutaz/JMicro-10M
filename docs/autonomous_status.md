@@ -1,3 +1,10 @@
+Base限定・本比較継続と終了後レビュー処理の準備完了（2026-10-07 JST）。
+
+[レビュー準備証拠](../reports/phase6/natural_context_contrast_review_preparation.json)・[判定policy](../configs/phase6/natural_context_contrast_review.json)。scripts/review_natural_context_contrast.pyを追加し、実終了/PID・boot・start不在・同config/累積予算・各100M教師・両arm同CE digest/counter/cursor、終端checkpointのAdam/scheduler/RNG/sampler/元parent/原unit会計、実CUDA保存再開gate、固定日本語と全160 raw-bound notesを再利用して採否を集計する。旧13GB記事index/4GB streamの再scan・GPU再推論なし。既存helperを使い、strong source_order一貫性23/EOS76/反復2に対する+8/paired CI lower>0・非悪化、文法56/一貫性27/適切27/EOS37/反復18等の絶対条件、歴史Web BPB1% guardを維持。contrastはmatched CE対照のgateも必要で、弱い対照との差だけをBase資格にしない。
+
+関連CPU8tests/0.96秒（JSON保存でRNG tupleがlistになるケース、quota/Adam更新/RNG欠損/非有限/recipe差/CE auxiliary/偽終端・live・identity・予算を拒否）に合格。元strong内容とhash付き既存referenceをnative CPUで確認し、科学結果を読む前にpolicyを保存。稼働中のactual676378を対象に実CLIが最終レビューを拒否しreview.json未作成を確認。これは診断・処理準備で、新教師/GPU/生成内容採点0、品質改善/採用証拠ではない。
+
+同科学actual676378/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18891158を実psで確認し、CE教師増加・有限loss・250更新CP継続。科学source/configは凍結したまま、UIは科学中停止/終端復帰、重複job/Chat/Dialogue/SFT/量子化なし。次は両100Mと同固定評価を終え、各80を個別に読んでnotes保存→実終了後レビュー。合格した固定candidateだけ独立学習seed/full DEV/protected final TEST/adoption。Base未完成、完成時通知して停止、既存失敗とPhase0–3保持、WSL uv/local commitのみ/pushなし。以下は過去の履歴。
 Base専用・全2B TRAINの供給/実CUDA確認を完了、本各100M比較を実行中（2026-10-07 JST）。
 
 [実装/CPU/実CUDA/起動証拠](../reports/phase6/natural_context_contrast_corpus_completion.json)・[凍結科学config](../configs/phase6/natural_context_contrast_comparison.json)。accepted Web75/textbook20/story5の元2B TRAIN indexだけをrandom-accessし、元unit/family/byte/IDを保持。genre教師quotaを正確に分け、1,024を超える入力は文書内context1024/target stride512の窓にし、元body+EOSを各drawで一度ずつ教師化、断片BOS/EOSを新設しない。auxiliaryが非eligibleな文書もCEへ残し、同family/bodyのnegativeを除外。語彙headは教師となるvalid hiddenだけに適用しPAD/重なりの計算を省略。固定64を本学習へ反復利用しない。genre内samplingはindex record byteで重み付きで、文書一様とはしない。再drawを新固有供給と数えない。

@@ -1,3 +1,8 @@
+Base限定・比較学習継続、採否の準備完了（2026-10-07 JST）。
+
+[終了後レビュー処理/実CPU確認](../reports/phase6/natural_context_contrast_review_preparation.json): 同各100M科学actual676378を継続、科学code/config不変。新reviewerは既存strong一貫性23/EOS76/反復2に対する相対条件と絶対Base/historical Webを維持し、contrastにはmatched CE改善も要求。全160個別raw-bound内容、実終端full-state/同CE digest/cursor/各教師quota/両CUDA再開/全日本語を確認する準備。CPU8checks/0.96秒とactual live最終レビュー拒否確認、GPU/新教師/内容採点0。
+
+次は各100M終端→全日本語/生成160内容採否→資格のある固定candidateだけ独立学習seed/full DEV/protected final TEST/adoption。終端や対照との差だけでBase完成とはしない。Base完成時通知して停止、Chat/Dialogue/SFT/量子化なし。以下は過去の履歴。
 現在のBase限定milestone（2026-10-07 JST）。
 
 [全2B TRAIN供給/実CUDA完了・科学起動](../reports/phase6/natural_context_contrast_corpus_completion.json)。CPU6tests、両arm CUDA4対2+2全state/history26checksに合格。旧TRAINのdocument-local1024/stride512でbody+元EOSを一度ずつ教え、非eligible pairでもCEを保つ。元family/body negative除外・PAD/overlap head省略。旧巨大index/stream再scanなし、最大元body1024を小compact arraysで確認。source pilotの追加採用や新供給ではない。
