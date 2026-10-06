@@ -1,3 +1,11 @@
+追加準備・Muon学習継続（2026-10-07 JST）。
+
+前goal turnはnative Muonの実CUDA検証・元100M科学起動・7aab865保存のprogress。actual705306/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start21012791は実process稼働を再確認。22:53:31Zに14,120,225元教師/2,500更新/loss2.660657有限、checkpoint-00002500.ptを保持。失敗や停止の証拠はなく、同凍結config・4,331科学GPU秒/総4,800秒内で継続、重複起動なし。
+
+[complete_base_muon.py](../scripts/complete_base_muon.py)を追加。実process終了・科学終端・凍結policyとraw-bound全80採点・元UIの実process/HTTP親SHA復帰を確認して、text証拠だけをtmp→atomic archiveへ保存する準備。資格ありでも独立学習seed/full DEV/protected final TEST/adoption待ちとしBase_complete=Falseを保持し、失敗済み条件を救済しない。uv pinned CPU AST成功、現在live PIDへの実呼出しは意図通りValueErrorで拒否しcompletion/archiveを作らないことを確認。実終端への保存はこれからで、コード追加はBase完成の証拠ではない。学習・既存reviewer/source/configの変更0、新教材/GPU診断0。
+
+次は同本学習終端と自動評価→新全80個別採点/cached CE80再利用→review_base_muon.py→complete_base_muon.py→Windows bundle SHA確認/local commit。学習中は元UI停止、launcherが終端で元10Bへ復帰する。Base未完成・未採用、全五目標/全歴史gate/旧数値7失敗を保持。実Baseの評価・採用完了時に知らせて停止し、Chat/Dialogue/SFT/量子化なし。Python3.12.7はWSL uv、local commitのみ、自動pushなし。以下は過去の履歴。
+
 Base限定・更新方法の比較を実WSL CUDAで開始（2026-10-07 JST）。Baseは未完成・未採用。
 
 前goal turnは公開日本語Base一参照の回復・実評価・全80個別採点・db61143保存のprogress。今回は既存sequence UL/低係数・TRAIN64選好・source-local generalizationの実診断/全内容/負結果を再確認し、自己生成反復の同じlossを再実行しない。公開参照の失敗は容量限界やnative故障の証明ではない。未実施だった更新方法を一要因として、[固定Muon案](../reports/phase6/base_muon_proposal.json)を定義。native10,001,152params/元成熟10B親/同accepted2B TRAIN/同元gold100M（Web75M・教材20M・物語5M）/batch48/seed42を保持し、hidden2D matrixだけ公式torch.optim.Muonへ変更。tied4096 vocabularyとnormはfresh AdamW、同nominal constant LR1e-5/WD0.1。momentum.95/Nesterov/NS5/match_rms_adamwを一条件として固定。[Muon一次論文](https://arxiv.org/html/2502.16982v1)の0.2*sqrt(max(shape))更新scaleと[PyTorch公式実装](https://docs.pytorch.org/docs/2.14/generated/torch.optim.Muon.html)を使用。更新幅の厳密一致や日本語改善の保証ではない。追加params/新distinct教材0、cached CE100Mを再GPUしない。
