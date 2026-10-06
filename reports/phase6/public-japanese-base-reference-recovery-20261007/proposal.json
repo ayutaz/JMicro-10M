@@ -1,0 +1,80 @@
+{
+  "created_at": "2026-10-06T22:34:48.446179Z",
+  "repository": "rinna/japanese-gpt2-xsmall",
+  "revision": "8e91527b3276e0565154935e84a08bf0137ed99f",
+  "license": "MIT",
+  "primary_source": "https://huggingface.co/rinna/japanese-gpt2-xsmall",
+  "references": {
+    "document_context_ablation_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/document_context_ablation_completion.json",
+      "sha256": "152c3c69efdb44aa9a868554c915aa08f8b9743eb54d4cf0235ac5c14e2689f9"
+    },
+    "broad_context_diagnostic_review.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/broad_context_diagnostic_review.json",
+      "sha256": "6714db347e7a049b09b69984090e0c4ad936babc1860f8228cca7278ba53542c"
+    },
+    "teacher_semantic_signal_review.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/teacher_semantic_signal_review.json",
+      "sha256": "6e9f2be405ed295467504b73a80f90514a43f722bc3f9423e0d4084330eedbb6"
+    },
+    "base_next_two_token_comparison_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_next_two_token_comparison_completion.json",
+      "sha256": "88f53f937394d1bec453ba658dac25310d8d888ec7959443ba3e7b0692e2e411"
+    }
+  },
+  "question": "How does a separately trained small Japanese Base perform on the fixed native80 continuation suite?",
+  "scope": "Reference generation only; not a parameter-matched causal comparison, teacher-transfer rescue or adopted10M model.",
+  "files": [
+    {
+      "name": "README.md",
+      "bytes": 2465,
+      "lfs_sha256": null
+    },
+    {
+      "name": "config.json",
+      "bytes": 845,
+      "lfs_sha256": null
+    },
+    {
+      "name": "tokenizer_config.json",
+      "bytes": 282,
+      "lfs_sha256": null
+    },
+    {
+      "name": "special_tokens_map.json",
+      "bytes": 153,
+      "lfs_sha256": null
+    },
+    {
+      "name": "spiece.model",
+      "bytes": 805634,
+      "lfs_sha256": "b5cbdfa8aa7c54c8c5af85b78c309c54a5f2749a20468bf6f60eee007fe6fec1"
+    },
+    {
+      "name": "model.safetensors",
+      "bytes": 155892312,
+      "lfs_sha256": "06662948dfa3227e3a42200787f28e86657d0f1e37a4ba1439452419581a4229"
+    }
+  ],
+  "download_bytes": 156701691,
+  "recovery_wall_limit_seconds": 180,
+  "planned_GPU_limit_seconds": 180,
+  "generation_cases": 80,
+  "split": "dev",
+  "decoding": "greedy",
+  "max_new_tokens": 64,
+  "content": "Read every generated continuation; same grammar/relevance/coherence/completion rubric; reuse native control notes.",
+  "completion": "Pinned recovered public weights/config/codec; full80 actual CUDA generation, raw IDs/text/flags/lengths, all80 individual content review, exited process, original UI restoration and local commit.",
+  "failure": "Stop readiness/codec/finite/budget failure. No model/prompt/token-budget/decoder rescue or repeated reference selection.",
+  "limitations": "Different total parameters, architecture, tokenizer, training data and budget. Same64 foreign tokens do not imply equal bytes or GPU budget. Record tokenizer normalization and UNK coverage. Public pretraining benchmark contamination unknown. No native quality gate is relaxed.",
+  "student_parameters": 10001152,
+  "tokenizer_training": false,
+  "student_optimizer_updates": 0,
+  "new_student_training_tokens": 0,
+  "protected_test_scored": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "quality_criteria_unchanged": true
+}

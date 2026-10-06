@@ -1,3 +1,15 @@
+Base限定・公開日本語Baseの固定80件参照を終了（2026-10-07 JST）。Baseは未完成・未採用。
+
+[全80内容と終了記録](../reports/phase6/public_japanese_base_reference_review.json)・[個別観察](../reports/phase6/public_japanese_base_reference_observations.tsv): rinna/japanese-gpt2-xsmallの公開MIT重みをrevision8e91527b3276e0565154935e84a08bf0137ed99fへ固定し、公式config/slow SentencePiece/do_lower_case=Trueを使用。回復CPU8.779888秒/156,701,691bytes、重みSHAとサイズ・mtimeを保存して再全量照合しない。実測37,398,016paramsでnative10,001,152と規模・構造・語彙・教材・学習量が異なる。旧checkpointの6個のmasked_bias bufferだけが現Transformersのload reportでUNEXPECTEDとなる。CPU finite forward/codec確認を通過し、原文DEV80/BOS1/plain/FP32 eager/greedy64 foreign tokens・GPU上限180秒を結果前に固定。未知語0、9prefixで公式codecの表記正規化差を記録。
+
+actual703948/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start20945474は実CUDA15.512964秒で全80生成を完了・実process不在。新student教師/optimizer更新0、protected TESTなし。全80 raw IDs/text/停止/長さを公式foreign codecで再構築し、全件を個別に読んで既存rubricで採点。文法2=16/関連2=27/一貫性2=2/適切完結5/EOS9/反復44、Unicode/role/empty0（各80）。cached native CE100Mは文法44/関連25/一貫性2/適切2/EOS19/反復45、GPU再実行・内容再採点0。foreign生成本文20,935bytes/中央値93文字、native18,341bytes/中央値77文字で、同64tokensは同byte長ではない。非blind Codex診断で独立人間ではなく、外国語彙のBPBや日本語選択式は未測定。参照条件もabsolute生成条件を満たさず、モデル・prompt・decoder・上限で救済しない。この結果から10M容量限界・native実装故障・追加学習の無効を断定しない。
+
+旧文書境界/packed-history診断はendpoint marker=false、旧Qwen教師のpaired accuracy CI下限0でtransfer gate=falseだった実証拠を再確認。packing学習やteacher feature転移の分岐を再開しない。next-twoの失敗・構造比較予算不合格・全歴史Web/strong/absolute条件・旧数値7失敗を保持。今回の参照モデルは10Mとして採用せず、Base未完成/未採用、独立学習seed/full DEV/protected final TEST/adoption未実施。
+
+可搬15textのgzip42,114bytes/SHAd6e1d026745d673a73e64a84ab39a5d07ba17676580aeba68035909e27658565をWindowsへ保存・照合。reviewer初回のnative IDキーの誤参照をgenerated_idsへ修正し、CPU再実行で全80/長さ/UI実確認とarchive成功、GPU再実行なし。元10B UI actual704069/同boot/start20947486を実processとHTTP親SHA410f975d…/training_tokens10,000,007,168/busy=falseで復帰。科学GPUjobなし。Python3.12.7はWSL uv、local verified commitのみ、自動pushなし。
+
+次の具体的アクション: 既存TRAIN rollout・sequence-objective診断を棚卸しし、今回の参照結果を加えて短いprefixから自己生成履歴・反復へ至る経路の未測定差を特定する。既測定の診断・失敗済み補助loss/teacher/source/構造条件を繰り返さず、次の比較は単一仮説・固定対照・実GPU見積りと完了条件を決めてから実装する。全corpus再scan・Tokenizer再学習・自動20B/50B延長なし。実Baseの全評価合格・採用が完了したらユーザーへ知らせて停止し、Chat/Dialogue/SFT/量子化に入らない。今回のturnは一参照の回復・実評価・全80採点・証拠保存のprogressで、全五目標の完了ではない。以下は過去の履歴。
+
 Base限定・next-two補助学習100Mの全評価終了、不採用（2026-10-07 JST）。
 
 [実終了と可搬証拠](../reports/phase6/base_next_two_token_comparison_completion.json)・[全80採点と比較](../reports/phase6/base_next_two_token_comparison_review.json): actual701073/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start20668823はcomplete・実process不在。元gold教師100,000,000/17,698更新をterminal stateで確認。最終training heartbeat99,900,395/17,680は途中の値で、完了量ではない。追加next-two教師99,150,521、総label位置199,150,521、追加係数mass9,915,052.1を元教師と別計数。native推論10,001,152paramsは不変、学習専用688,896params、同TRAINの再利用で新教材量0。GPU1,571.634540秒（26.2分）/凍結3,793秒、checkpoint SHA4d76e678f57d61fc6c6f1617b322dd04f6846ca69a7568cb70cec706c0a0b024。全native・aux・Adam・scheduler・RNG・sampler・17,698完了履歴と全会計をreview。aux Adamも今回は全17,698更新で進行。元教師/source/EOS/input/physical/bodybytes/digest/full samplerはcached CEと一致、対照GPU再実行・再採点0。
