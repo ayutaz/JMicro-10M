@@ -1,0 +1,1690 @@
+{
+  "status": "actual_parent_budget_and_checkpoint_interface_readonly_inventory",
+  "created_at": "2026-10-06T03:38:26.232128Z",
+  "pid": 545351,
+  "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+  "start_ticks": "14110859",
+  "records": {
+    "textbook2B": {
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook-coverage-2b-20261006/decay/checkpoint-00062166.pt",
+        "sha256": "965a06dc1537ed917de98c565d78ae76f19d99ad075f019067a4324a6cbd2249"
+      },
+      "state_keys": [
+        "body_bytes",
+        "implementation_sha256",
+        "lineage",
+        "model",
+        "model_config",
+        "optimizer",
+        "pilot_binding",
+        "pilot_implementation_sha256",
+        "rng",
+        "sampler",
+        "scheduler",
+        "shard_manifest_sha256",
+        "spec",
+        "supervised_tokens",
+        "token_digest",
+        "tokens",
+        "update",
+        "version"
+      ],
+      "update": 62166,
+      "input_tokens": 2037055488,
+      "supervised_tokens": 2020000000,
+      "model_config": {
+        "schema_version": 1,
+        "architecture": "decoder_only_transformer",
+        "hidden_size": 256,
+        "num_attention_heads": 4,
+        "num_key_value_heads": 2,
+        "head_dim": 64,
+        "activation": "swiglu",
+        "norm": "rmsnorm",
+        "rms_norm_eps": 1e-06,
+        "qk_norm_type": "none",
+        "qk_norm_before_rope": true,
+        "attention_scale": 0.125,
+        "rope_theta": 10000,
+        "rope_layout": "half_split",
+        "rotary_dim": 64,
+        "max_position_embeddings": 1024,
+        "tie_word_embeddings": true,
+        "attention_bias": false,
+        "mlp_bias": false,
+        "dropout": 0.0,
+        "initializer_std": 0.02,
+        "norm_initial_gain": 1.0,
+        "status": "phase5_ablation",
+        "name": "JMicro-10M-T4K-NoQKNorm",
+        "vocab_size": 4096,
+        "num_hidden_layers": 13,
+        "intermediate_size": 640,
+        "expected_parameter_count": 10001152
+      },
+      "optimizer_param_group_LRs": [
+        0.0002,
+        0.0002
+      ],
+      "scheduler": {
+        "base_lrs": [
+          0.002,
+          0.002
+        ],
+        "last_epoch": 62166,
+        "_step_count": 62167,
+        "_is_initial": false,
+        "_get_lr_called_within_step": false,
+        "_last_lr": [
+          0.0002,
+          0.0002
+        ],
+        "lr_lambdas": [
+          null,
+          null
+        ]
+      },
+      "spec": {
+        "seed": 42,
+        "context": 1024,
+        "batch": 32,
+        "accumulation": 1,
+        "lr": 0.002,
+        "weight_decay": 0.1,
+        "warmup": 200,
+        "schedule_updates": 161550,
+        "dtype": "bf16",
+        "compile": true,
+        "backend": "flash",
+        "training_fast_path": true,
+        "deterministic": true,
+        "compile_mode": "reduce-overhead",
+        "scheduler": "wsd",
+        "pilot_schedule": {
+          "parent_update": 61550,
+          "stable_updates": 1,
+          "decay_updates": 1
+        },
+        "teacher_schedule": {
+          "goals": {
+            "web": 0,
+            "short": 20000000
+          },
+          "stable_fraction": 0.9,
+          "minimum_lr_ratio": 0.1
+        },
+        "curve_schedule": {
+          "mode": "decay",
+          "teachers": 20000000,
+          "boundaries": [
+            20000000
+          ],
+          "minimum_lr_ratio": 0.1,
+          "no_reheat": true
+        },
+        "genre_tag_mapping": {
+          "web": 0,
+          "story": 1,
+          "textbook": 2
+        }
+      },
+      "RNG_present": true,
+      "sampler_keys": [
+        "boundaries",
+        "genre_eos",
+        "genre_tag_mapping",
+        "genre_teachers",
+        "goals",
+        "kind",
+        "mode",
+        "position",
+        "short",
+        "source_eos",
+        "source_physical_tokens",
+        "source_teachers",
+        "source_tokens",
+        "web"
+      ],
+      "model_tensor_count": 120,
+      "optimizer_state_entries": 119
+    },
+    "originalWeb10B": {
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+        "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+      },
+      "state_keys": [
+        "body_bytes",
+        "branch_tokens",
+        "branch_updates",
+        "implementation_sha256",
+        "lineage",
+        "model",
+        "model_config",
+        "optimizer",
+        "rng",
+        "sampler",
+        "scheduler",
+        "shard_manifest_sha256",
+        "spec",
+        "supervised_tokens",
+        "token_digest",
+        "tokens",
+        "update",
+        "version"
+      ],
+      "update": 305176,
+      "input_tokens": 10000007168,
+      "supervised_tokens": 9978838479,
+      "model_config": {
+        "schema_version": 1,
+        "architecture": "decoder_only_transformer",
+        "hidden_size": 256,
+        "num_attention_heads": 4,
+        "num_key_value_heads": 2,
+        "head_dim": 64,
+        "activation": "swiglu",
+        "norm": "rmsnorm",
+        "rms_norm_eps": 1e-06,
+        "qk_norm_type": "none",
+        "qk_norm_before_rope": true,
+        "attention_scale": 0.125,
+        "rope_theta": 10000,
+        "rope_layout": "half_split",
+        "rotary_dim": 64,
+        "max_position_embeddings": 1024,
+        "tie_word_embeddings": true,
+        "attention_bias": false,
+        "mlp_bias": false,
+        "dropout": 0.0,
+        "initializer_std": 0.02,
+        "norm_initial_gain": 1.0,
+        "status": "phase5_ablation",
+        "name": "JMicro-10M-T4K-NoQKNorm",
+        "vocab_size": 4096,
+        "num_hidden_layers": 13,
+        "intermediate_size": 640,
+        "expected_parameter_count": 10001152
+      },
+      "optimizer_param_group_LRs": [
+        0.0002,
+        0.0002
+      ],
+      "scheduler": {
+        "base_lrs": [
+          0.002,
+          0.002
+        ],
+        "last_epoch": 305176,
+        "_step_count": 305177,
+        "_is_initial": false,
+        "_get_lr_called_within_step": false,
+        "_last_lr": [
+          0.0002,
+          0.0002
+        ],
+        "lr_lambdas": [
+          null,
+          null
+        ]
+      },
+      "spec": {
+        "seed": 42,
+        "context": 1024,
+        "batch": 32,
+        "accumulation": 1,
+        "lr": 0.002,
+        "weight_decay": 0.1,
+        "warmup": 200,
+        "schedule_updates": 305176,
+        "dtype": "bf16",
+        "compile": true,
+        "backend": "flash",
+        "training_fast_path": true,
+        "deterministic": true,
+        "compile_mode": "reduce-overhead",
+        "scheduler": "wsd_decay",
+        "branch_at": 289917,
+        "decay_updates": 15259,
+        "minimum_lr_ratio": 0.1
+      },
+      "RNG_present": true,
+      "sampler_keys": [
+        "blocks",
+        "context",
+        "epoch",
+        "position",
+        "seed"
+      ],
+      "model_tensor_count": 120,
+      "optimizer_state_entries": 119
+    },
+    "historicalWeb": {
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+        "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+      },
+      "state_keys": [
+        "body_bytes",
+        "implementation_sha256",
+        "lineage",
+        "model",
+        "model_config",
+        "optimizer",
+        "pilot_binding",
+        "pilot_implementation_sha256",
+        "rng",
+        "sampler",
+        "scheduler",
+        "shard_manifest_sha256",
+        "spec",
+        "supervised_tokens",
+        "token_digest",
+        "tokens",
+        "update",
+        "version"
+      ],
+      "update": 320435,
+      "input_tokens": 10500014080,
+      "supervised_tokens": 10477786961,
+      "model_config": {
+        "schema_version": 1,
+        "architecture": "decoder_only_transformer",
+        "hidden_size": 256,
+        "num_attention_heads": 4,
+        "num_key_value_heads": 2,
+        "head_dim": 64,
+        "activation": "swiglu",
+        "norm": "rmsnorm",
+        "rms_norm_eps": 1e-06,
+        "qk_norm_type": "none",
+        "qk_norm_before_rope": true,
+        "attention_scale": 0.125,
+        "rope_theta": 10000,
+        "rope_layout": "half_split",
+        "rotary_dim": 64,
+        "max_position_embeddings": 1024,
+        "tie_word_embeddings": true,
+        "attention_bias": false,
+        "mlp_bias": false,
+        "dropout": 0.0,
+        "initializer_std": 0.02,
+        "norm_initial_gain": 1.0,
+        "status": "phase5_ablation",
+        "name": "JMicro-10M-T4K-NoQKNorm",
+        "vocab_size": 4096,
+        "num_hidden_layers": 13,
+        "intermediate_size": 640,
+        "expected_parameter_count": 10001152
+      },
+      "optimizer_param_group_LRs": [
+        1e-05,
+        1e-05
+      ],
+      "scheduler": {
+        "base_lrs": [
+          0.0001,
+          0.0001
+        ],
+        "last_epoch": 320435,
+        "_step_count": 320436,
+        "_is_initial": false,
+        "_get_lr_called_within_step": false,
+        "_last_lr": [
+          1e-05,
+          1e-05
+        ],
+        "lr_lambdas": [
+          null,
+          null
+        ]
+      },
+      "spec": {
+        "seed": 42,
+        "context": 1024,
+        "batch": 32,
+        "accumulation": 1,
+        "lr": 0.0001,
+        "weight_decay": 0.1,
+        "warmup": 200,
+        "schedule_updates": 320435,
+        "dtype": "bf16",
+        "compile": true,
+        "backend": "flash",
+        "training_fast_path": true,
+        "deterministic": true,
+        "compile_mode": "reduce-overhead",
+        "scheduler": "wsd",
+        "pilot_schedule": {
+          "parent_update": 305176,
+          "stable_updates": 14500,
+          "decay_updates": 759
+        }
+      },
+      "RNG_present": true,
+      "sampler_keys": [
+        "kind",
+        "position",
+        "routes",
+        "short",
+        "source_eos",
+        "source_tokens",
+        "web"
+      ],
+      "model_tensor_count": 120,
+      "optimizer_state_entries": 119
+    }
+  },
+  "reference_evaluation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/evaluation/result/web/evaluation/result.json",
+    "sha256": "5e0f346d1c657b2f8f1a35d9e8079ce896abab3451e34dc697792394a0df6796"
+  },
+  "original_Web_BPB": 0.9715702494156145,
+  "original_Web_rates": {
+    "outputs": 80,
+    "eos": 0,
+    "repetition": 62,
+    "unicode_failure": 0,
+    "role_leak": 0,
+    "empty": 0
+  },
+  "original_Web_256_targets": [
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30006",
+      "body_tokens": 282,
+      "body_bytes": 907
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30072",
+      "body_tokens": 517,
+      "body_bytes": 1920
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30077",
+      "body_tokens": 596,
+      "body_bytes": 2345
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30093",
+      "body_tokens": 691,
+      "body_bytes": 2379
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30125",
+      "body_tokens": 608,
+      "body_bytes": 2346
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30129",
+      "body_tokens": 465,
+      "body_bytes": 1752
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30136",
+      "body_tokens": 295,
+      "body_bytes": 997
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30147",
+      "body_tokens": 571,
+      "body_bytes": 2137
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30167",
+      "body_tokens": 179,
+      "body_bytes": 637
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30174",
+      "body_tokens": 808,
+      "body_bytes": 2969
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30207",
+      "body_tokens": 724,
+      "body_bytes": 3129
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30219",
+      "body_tokens": 689,
+      "body_bytes": 2725
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30220",
+      "body_tokens": 517,
+      "body_bytes": 2017
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30233",
+      "body_tokens": 409,
+      "body_bytes": 1283
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30256",
+      "body_tokens": 529,
+      "body_bytes": 1955
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30268",
+      "body_tokens": 770,
+      "body_bytes": 3432
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30271",
+      "body_tokens": 342,
+      "body_bytes": 1266
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30350",
+      "body_tokens": 220,
+      "body_bytes": 868
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30352",
+      "body_tokens": 689,
+      "body_bytes": 2621
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30361",
+      "body_tokens": 377,
+      "body_bytes": 1305
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30384",
+      "body_tokens": 352,
+      "body_bytes": 1581
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30387",
+      "body_tokens": 313,
+      "body_bytes": 1241
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30411",
+      "body_tokens": 391,
+      "body_bytes": 1615
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30436",
+      "body_tokens": 284,
+      "body_bytes": 1111
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30441",
+      "body_tokens": 359,
+      "body_bytes": 1540
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30444",
+      "body_tokens": 439,
+      "body_bytes": 1582
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30461",
+      "body_tokens": 460,
+      "body_bytes": 1776
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30464",
+      "body_tokens": 304,
+      "body_bytes": 1071
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30473",
+      "body_tokens": 258,
+      "body_bytes": 954
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30571",
+      "body_tokens": 540,
+      "body_bytes": 1943
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30590",
+      "body_tokens": 931,
+      "body_bytes": 2380
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30613",
+      "body_tokens": 574,
+      "body_bytes": 2418
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30617",
+      "body_tokens": 484,
+      "body_bytes": 1930
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30632",
+      "body_tokens": 348,
+      "body_bytes": 1478
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30633",
+      "body_tokens": 622,
+      "body_bytes": 2201
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30657",
+      "body_tokens": 624,
+      "body_bytes": 2388
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30663",
+      "body_tokens": 498,
+      "body_bytes": 2106
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30760",
+      "body_tokens": 575,
+      "body_bytes": 2369
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30774",
+      "body_tokens": 240,
+      "body_bytes": 1002
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30809",
+      "body_tokens": 332,
+      "body_bytes": 1413
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30824",
+      "body_tokens": 320,
+      "body_bytes": 1460
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30827",
+      "body_tokens": 719,
+      "body_bytes": 2907
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30832",
+      "body_tokens": 565,
+      "body_bytes": 2319
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30850",
+      "body_tokens": 465,
+      "body_bytes": 1931
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30910",
+      "body_tokens": 854,
+      "body_bytes": 3822
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30913",
+      "body_tokens": 464,
+      "body_bytes": 1444
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30926",
+      "body_tokens": 639,
+      "body_bytes": 2587
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30936",
+      "body_tokens": 791,
+      "body_bytes": 2712
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30966",
+      "body_tokens": 784,
+      "body_bytes": 3042
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30982",
+      "body_tokens": 559,
+      "body_bytes": 2395
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30987",
+      "body_tokens": 727,
+      "body_bytes": 2920
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31014",
+      "body_tokens": 646,
+      "body_bytes": 2474
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31046",
+      "body_tokens": 462,
+      "body_bytes": 1833
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31068",
+      "body_tokens": 762,
+      "body_bytes": 2922
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31100",
+      "body_tokens": 316,
+      "body_bytes": 927
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31109",
+      "body_tokens": 679,
+      "body_bytes": 2644
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31161",
+      "body_tokens": 757,
+      "body_bytes": 2998
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31181",
+      "body_tokens": 692,
+      "body_bytes": 2797
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31240",
+      "body_tokens": 599,
+      "body_bytes": 2246
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31260",
+      "body_tokens": 415,
+      "body_bytes": 1621
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31318",
+      "body_tokens": 564,
+      "body_bytes": 1965
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31325",
+      "body_tokens": 386,
+      "body_bytes": 1299
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31328",
+      "body_tokens": 380,
+      "body_bytes": 1320
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31360",
+      "body_tokens": 240,
+      "body_bytes": 879
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31376",
+      "body_tokens": 314,
+      "body_bytes": 1191
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31382",
+      "body_tokens": 424,
+      "body_bytes": 1453
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31385",
+      "body_tokens": 441,
+      "body_bytes": 2051
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31388",
+      "body_tokens": 701,
+      "body_bytes": 2649
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31405",
+      "body_tokens": 549,
+      "body_bytes": 2457
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31409",
+      "body_tokens": 731,
+      "body_bytes": 2716
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31413",
+      "body_tokens": 343,
+      "body_bytes": 1326
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31473",
+      "body_tokens": 337,
+      "body_bytes": 1074
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31496",
+      "body_tokens": 777,
+      "body_bytes": 3065
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31510",
+      "body_tokens": 454,
+      "body_bytes": 1642
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31639",
+      "body_tokens": 532,
+      "body_bytes": 2149
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31641",
+      "body_tokens": 637,
+      "body_bytes": 2220
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31687",
+      "body_tokens": 322,
+      "body_bytes": 1200
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31716",
+      "body_tokens": 121,
+      "body_bytes": 431
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31727",
+      "body_tokens": 320,
+      "body_bytes": 1240
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31737",
+      "body_tokens": 524,
+      "body_bytes": 2168
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31749",
+      "body_tokens": 496,
+      "body_bytes": 1881
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31784",
+      "body_tokens": 348,
+      "body_bytes": 1422
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31804",
+      "body_tokens": 793,
+      "body_bytes": 2894
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31807",
+      "body_tokens": 490,
+      "body_bytes": 1648
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31823",
+      "body_tokens": 481,
+      "body_bytes": 2048
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31834",
+      "body_tokens": 595,
+      "body_bytes": 1862
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31835",
+      "body_tokens": 496,
+      "body_bytes": 1998
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31841",
+      "body_tokens": 391,
+      "body_bytes": 1409
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31847",
+      "body_tokens": 648,
+      "body_bytes": 2679
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31859",
+      "body_tokens": 582,
+      "body_bytes": 2204
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31860",
+      "body_tokens": 814,
+      "body_bytes": 2693
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31889",
+      "body_tokens": 488,
+      "body_bytes": 1771
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31890",
+      "body_tokens": 614,
+      "body_bytes": 2627
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31894",
+      "body_tokens": 699,
+      "body_bytes": 2742
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31895",
+      "body_tokens": 444,
+      "body_bytes": 1686
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31906",
+      "body_tokens": 338,
+      "body_bytes": 1105
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32001",
+      "body_tokens": 547,
+      "body_bytes": 2396
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32002",
+      "body_tokens": 249,
+      "body_bytes": 918
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32063",
+      "body_tokens": 578,
+      "body_bytes": 2374
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32091",
+      "body_tokens": 202,
+      "body_bytes": 939
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32127",
+      "body_tokens": 476,
+      "body_bytes": 2029
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32249",
+      "body_tokens": 104,
+      "body_bytes": 330
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32257",
+      "body_tokens": 452,
+      "body_bytes": 1511
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32263",
+      "body_tokens": 458,
+      "body_bytes": 1549
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32275",
+      "body_tokens": 433,
+      "body_bytes": 1481
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32277",
+      "body_tokens": 621,
+      "body_bytes": 2807
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32307",
+      "body_tokens": 469,
+      "body_bytes": 1977
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32309",
+      "body_tokens": 490,
+      "body_bytes": 1535
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32315",
+      "body_tokens": 475,
+      "body_bytes": 1832
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32351",
+      "body_tokens": 650,
+      "body_bytes": 2442
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32358",
+      "body_tokens": 445,
+      "body_bytes": 1607
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32393",
+      "body_tokens": 527,
+      "body_bytes": 2004
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32397",
+      "body_tokens": 552,
+      "body_bytes": 2132
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32398",
+      "body_tokens": 575,
+      "body_bytes": 2500
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32399",
+      "body_tokens": 284,
+      "body_bytes": 1197
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32421",
+      "body_tokens": 261,
+      "body_bytes": 1107
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32444",
+      "body_tokens": 845,
+      "body_bytes": 3540
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32480",
+      "body_tokens": 312,
+      "body_bytes": 1223
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32494",
+      "body_tokens": 271,
+      "body_bytes": 1009
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32510",
+      "body_tokens": 233,
+      "body_bytes": 859
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32518",
+      "body_tokens": 264,
+      "body_bytes": 1064
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32528",
+      "body_tokens": 858,
+      "body_bytes": 3083
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32529",
+      "body_tokens": 516,
+      "body_bytes": 1924
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32545",
+      "body_tokens": 269,
+      "body_bytes": 1079
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32621",
+      "body_tokens": 483,
+      "body_bytes": 1460
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32658",
+      "body_tokens": 311,
+      "body_bytes": 1064
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32689",
+      "body_tokens": 711,
+      "body_bytes": 2895
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32699",
+      "body_tokens": 641,
+      "body_bytes": 2485
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32716",
+      "body_tokens": 567,
+      "body_bytes": 2155
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32719",
+      "body_tokens": 448,
+      "body_bytes": 2049
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32729",
+      "body_tokens": 544,
+      "body_bytes": 2192
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32754",
+      "body_tokens": 366,
+      "body_bytes": 1642
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32766",
+      "body_tokens": 304,
+      "body_bytes": 1134
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32794",
+      "body_tokens": 258,
+      "body_bytes": 878
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32795",
+      "body_tokens": 569,
+      "body_bytes": 1996
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32829",
+      "body_tokens": 758,
+      "body_bytes": 3205
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32838",
+      "body_tokens": 232,
+      "body_bytes": 1068
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32861",
+      "body_tokens": 512,
+      "body_bytes": 1799
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32873",
+      "body_tokens": 729,
+      "body_bytes": 2816
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32876",
+      "body_tokens": 667,
+      "body_bytes": 2649
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32881",
+      "body_tokens": 791,
+      "body_bytes": 2851
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32888",
+      "body_tokens": 222,
+      "body_bytes": 538
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32893",
+      "body_tokens": 531,
+      "body_bytes": 1861
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32920",
+      "body_tokens": 501,
+      "body_bytes": 1568
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32928",
+      "body_tokens": 236,
+      "body_bytes": 839
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32952",
+      "body_tokens": 624,
+      "body_bytes": 2610
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32959",
+      "body_tokens": 302,
+      "body_bytes": 1026
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32988",
+      "body_tokens": 507,
+      "body_bytes": 1987
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33011",
+      "body_tokens": 590,
+      "body_bytes": 2031
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33040",
+      "body_tokens": 362,
+      "body_bytes": 1567
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33051",
+      "body_tokens": 362,
+      "body_bytes": 1587
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33068",
+      "body_tokens": 755,
+      "body_bytes": 3133
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33106",
+      "body_tokens": 795,
+      "body_bytes": 3360
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33142",
+      "body_tokens": 417,
+      "body_bytes": 1371
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33174",
+      "body_tokens": 199,
+      "body_bytes": 759
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33193",
+      "body_tokens": 725,
+      "body_bytes": 2989
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33218",
+      "body_tokens": 132,
+      "body_bytes": 455
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33249",
+      "body_tokens": 522,
+      "body_bytes": 1638
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33265",
+      "body_tokens": 310,
+      "body_bytes": 1135
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33284",
+      "body_tokens": 395,
+      "body_bytes": 1945
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33285",
+      "body_tokens": 663,
+      "body_bytes": 3190
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33292",
+      "body_tokens": 424,
+      "body_bytes": 1939
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33300",
+      "body_tokens": 190,
+      "body_bytes": 751
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33316",
+      "body_tokens": 843,
+      "body_bytes": 3119
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33333",
+      "body_tokens": 325,
+      "body_bytes": 1328
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33343",
+      "body_tokens": 330,
+      "body_bytes": 1595
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33409",
+      "body_tokens": 572,
+      "body_bytes": 2034
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33410",
+      "body_tokens": 602,
+      "body_bytes": 2468
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33411",
+      "body_tokens": 746,
+      "body_bytes": 2664
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33424",
+      "body_tokens": 765,
+      "body_bytes": 2421
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33429",
+      "body_tokens": 519,
+      "body_bytes": 1808
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33457",
+      "body_tokens": 335,
+      "body_bytes": 1136
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33467",
+      "body_tokens": 313,
+      "body_bytes": 1324
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33472",
+      "body_tokens": 672,
+      "body_bytes": 3032
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33475",
+      "body_tokens": 447,
+      "body_bytes": 1670
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33493",
+      "body_tokens": 703,
+      "body_bytes": 2173
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33538",
+      "body_tokens": 443,
+      "body_bytes": 1730
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33569",
+      "body_tokens": 741,
+      "body_bytes": 3014
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33591",
+      "body_tokens": 780,
+      "body_bytes": 2966
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33592",
+      "body_tokens": 347,
+      "body_bytes": 1198
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33604",
+      "body_tokens": 578,
+      "body_bytes": 1876
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33647",
+      "body_tokens": 138,
+      "body_bytes": 583
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33711",
+      "body_tokens": 426,
+      "body_bytes": 1425
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33716",
+      "body_tokens": 460,
+      "body_bytes": 1482
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33731",
+      "body_tokens": 297,
+      "body_bytes": 1196
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33734",
+      "body_tokens": 461,
+      "body_bytes": 1717
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33736",
+      "body_tokens": 479,
+      "body_bytes": 1806
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33750",
+      "body_tokens": 417,
+      "body_bytes": 1657
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33777",
+      "body_tokens": 408,
+      "body_bytes": 1452
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33796",
+      "body_tokens": 496,
+      "body_bytes": 1712
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33811",
+      "body_tokens": 551,
+      "body_bytes": 2369
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33816",
+      "body_tokens": 411,
+      "body_bytes": 1946
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33827",
+      "body_tokens": 160,
+      "body_bytes": 446
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33831",
+      "body_tokens": 276,
+      "body_bytes": 996
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33841",
+      "body_tokens": 548,
+      "body_bytes": 2351
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33856",
+      "body_tokens": 680,
+      "body_bytes": 2485
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33903",
+      "body_tokens": 238,
+      "body_bytes": 999
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33910",
+      "body_tokens": 574,
+      "body_bytes": 2286
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33911",
+      "body_tokens": 303,
+      "body_bytes": 1114
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33924",
+      "body_tokens": 175,
+      "body_bytes": 625
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33938",
+      "body_tokens": 271,
+      "body_bytes": 822
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33950",
+      "body_tokens": 754,
+      "body_bytes": 3058
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33958",
+      "body_tokens": 209,
+      "body_bytes": 720
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33959",
+      "body_tokens": 446,
+      "body_bytes": 1632
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33966",
+      "body_tokens": 476,
+      "body_bytes": 2277
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33982",
+      "body_tokens": 841,
+      "body_bytes": 2827
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33983",
+      "body_tokens": 775,
+      "body_bytes": 3538
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33990",
+      "body_tokens": 423,
+      "body_bytes": 1822
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34062",
+      "body_tokens": 293,
+      "body_bytes": 993
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34084",
+      "body_tokens": 474,
+      "body_bytes": 1911
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34108",
+      "body_tokens": 362,
+      "body_bytes": 1373
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34130",
+      "body_tokens": 637,
+      "body_bytes": 2702
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34134",
+      "body_tokens": 635,
+      "body_bytes": 1968
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34139",
+      "body_tokens": 264,
+      "body_bytes": 1026
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34148",
+      "body_tokens": 278,
+      "body_bytes": 1140
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34174",
+      "body_tokens": 194,
+      "body_bytes": 876
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34180",
+      "body_tokens": 493,
+      "body_bytes": 1841
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34233",
+      "body_tokens": 343,
+      "body_bytes": 1627
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34269",
+      "body_tokens": 430,
+      "body_bytes": 1636
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34287",
+      "body_tokens": 412,
+      "body_bytes": 1618
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34301",
+      "body_tokens": 173,
+      "body_bytes": 795
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34329",
+      "body_tokens": 366,
+      "body_bytes": 1600
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34349",
+      "body_tokens": 219,
+      "body_bytes": 926
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34354",
+      "body_tokens": 397,
+      "body_bytes": 1548
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34357",
+      "body_tokens": 636,
+      "body_bytes": 2462
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34374",
+      "body_tokens": 567,
+      "body_bytes": 2223
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34386",
+      "body_tokens": 763,
+      "body_bytes": 3014
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34396",
+      "body_tokens": 476,
+      "body_bytes": 2032
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34424",
+      "body_tokens": 509,
+      "body_bytes": 1886
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34433",
+      "body_tokens": 552,
+      "body_bytes": 1837
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34452",
+      "body_tokens": 646,
+      "body_bytes": 2558
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34463",
+      "body_tokens": 424,
+      "body_bytes": 1914
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34464",
+      "body_tokens": 486,
+      "body_bytes": 1956
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34467",
+      "body_tokens": 272,
+      "body_bytes": 972
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34502",
+      "body_tokens": 476,
+      "body_bytes": 1697
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34508",
+      "body_tokens": 307,
+      "body_bytes": 1017
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34547",
+      "body_tokens": 166,
+      "body_bytes": 684
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34553",
+      "body_tokens": 348,
+      "body_bytes": 1394
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34615",
+      "body_tokens": 699,
+      "body_bytes": 2718
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34636",
+      "body_tokens": 591,
+      "body_bytes": 2079
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34645",
+      "body_tokens": 168,
+      "body_bytes": 747
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34656",
+      "body_tokens": 407,
+      "body_bytes": 1780
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34659",
+      "body_tokens": 288,
+      "body_bytes": 900
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34707",
+      "body_tokens": 527,
+      "body_bytes": 1904
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34711",
+      "body_tokens": 299,
+      "body_bytes": 932
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34740",
+      "body_tokens": 396,
+      "body_bytes": 1350
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34754",
+      "body_tokens": 87,
+      "body_bytes": 336
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34763",
+      "body_tokens": 757,
+      "body_bytes": 3357
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34818",
+      "body_tokens": 511,
+      "body_bytes": 2126
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34837",
+      "body_tokens": 255,
+      "body_bytes": 1137
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34840",
+      "body_tokens": 518,
+      "body_bytes": 2253
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34849",
+      "body_tokens": 308,
+      "body_bytes": 1176
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34868",
+      "body_tokens": 496,
+      "body_bytes": 2313
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34891",
+      "body_tokens": 263,
+      "body_bytes": 982
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34895",
+      "body_tokens": 586,
+      "body_bytes": 2633
+    },
+    {
+      "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34985",
+      "body_tokens": 529,
+      "body_bytes": 1888
+    }
+  ],
+  "model_shapes_equal": true,
+  "original10B_shape_equal": true,
+  "CPU_seconds": 0.2921081979875453,
+  "actual_GPU_seconds": 0,
+  "scientific_teacher_tokens": 0,
+  "protected_test_used": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "script_sha256": "56e3943dbbd14e47e9b4c893328cfe740fa209e11e8b5d25d5f0a5071ef72b9d",
+  "historical_training_result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/result.json",
+    "sha256": "0b8c52cf64e1d3441419a924af55dfc2a45b7677666a2c88e57e55b31a1757d9"
+  },
+  "initial_schema_assumption_repaired": "Initial read expected checkpoint in evaluation; actual evaluator stores only SHA. Resolve path from authoritative training result and require matching SHA. No fallback checkpoint or new GPU.",
+  "limitations": "Read-only metadata/hash evidence, not re-evaluation or matched learning-budget quality. Different historical parents also differ in data/source/order/learning amount. HistoricalWeb quality guard is not an equal-budget2B or100M causal control."
+}

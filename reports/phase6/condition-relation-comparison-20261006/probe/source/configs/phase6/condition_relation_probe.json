@@ -1,0 +1,176 @@
+{
+  "research_kind": "conditional_relation_language_bridge_100M",
+  "phase": "probe",
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook-coverage-2b-20261006/decay/checkpoint-00062166.pt",
+    "sha256": "965a06dc1537ed917de98c565d78ae76f19d99ad075f019067a4324a6cbd2249"
+  },
+  "original_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/textbook_quantity_comparison.json",
+    "sha256": "f1baece77f9e85d6086f1ac5d1e624a59d19910a90af2202a104fb125c379d98"
+  },
+  "pool": {
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large",
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133"
+  },
+  "accepted_compact_index": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large/.compact-index-8cde6396d433644b/ready.json",
+    "sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606"
+  },
+  "positive_data": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006",
+    "manifest_sha256": "154f13da4a817aaa21586fba2cd335faea7c79358be410e73166f5d0052bf936"
+  },
+  "arms": {
+    "relation": {
+      "web": 75000000,
+      "story": 5000000,
+      "ordinary_textbook": 10000000,
+      "conditional_textbook": 10000000
+    }
+  },
+  "outcome_weights": {
+    "relation": 1
+  },
+  "teachers_per_new_arm": 100000000,
+  "total_comparison_teachers": 200000000,
+  "peak_lr": 0.0002,
+  "optimizer_policy": "inherit",
+  "shapes": {
+    "context": 1024,
+    "batch": 32,
+    "accumulation": 1,
+    "backend": "flash",
+    "compile_mode": "reduce-overhead",
+    "dtype": "bf16"
+  },
+  "GPU_budget_seconds": 120,
+  "total_new_GPU_ceiling_seconds": 900,
+  "loss": "ordinary original body+EOS CE, outcome weight1",
+  "sampler_policy": "Fresh seed42 source fork from same2B+20M Adam/RNG parent; original3 teachers equal. Only negation/comparison language changes within same2048/facts/labels; other4 full texts fixed. Length/EOS/lexical and interleaving differences reported.",
+  "reused_control_checkpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-transfer-comparison-20261006/curriculum/training/checkpoint-00065249.pt",
+    "sha256": "be7121f6a0b1e60bbf6e7b254ce4b7b4debb1b658cb572874eb791b526a57a2e"
+  },
+  "references": {
+    "proposal": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition_relation_language_proposal.json",
+      "sha256": "ebf4a03f7a239833f9e5d5020ff9c9a6f23acafa0039f2ebac44f52c0a1f709b"
+    },
+    "control_config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/condition_transfer_comparison.json",
+      "sha256": "ca4422521d43a59a287de954a5f9bef58edc66f60a1df32313d6abdf7154015b"
+    },
+    "control_result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-transfer-comparison-20261006/compare-result.json",
+      "sha256": "09924bf223ada61c45f45ea6ee95db876d5ff4fb81bcbe58c3705c56d7050cd8"
+    },
+    "control_review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-transfer-comparison-20261006/review.json",
+      "sha256": "8b5e0d6373ada72b315d81051f93b9afabe9257bd00676592b879d98533daa92"
+    },
+    "control_notes": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition_transfer_curriculum_notes.json",
+      "sha256": "b071bbb838501ccf03cba2c26098b8e776a3e585762d74bcb1115b4f0b9638d6"
+    },
+    "control_generation": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-transfer-comparison-20261006/evaluation/curriculum/evaluation/generation.json",
+      "sha256": "f4a01f16fda39a368f5160c2ac938d168b7df4cea5f46fc5f11eb49627555913"
+    },
+    "ordinary_stream_audit": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-relation-language-20261006/ordinary-stream-audit.json",
+      "sha256": "ed88dfc596707ec75c287c62f16d5acd2bfd681a385308a27c506dcba738248c"
+    },
+    "manifest": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/manifest.json",
+      "sha256": "154f13da4a817aaa21586fba2cd335faea7c79358be410e73166f5d0052bf936"
+    },
+    "arrays": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/train.npz",
+      "sha256": "3fd3b4c4235bd2f645d195033727fa86d1a8909a3519f0deef85e306614fc699"
+    },
+    "content_review": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/content-review.json",
+      "sha256": "a929eeda49d4ed13198090c597a903149910a654f425ecd464ade8479622b825"
+    },
+    "content_notes": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/content-notes.json",
+      "sha256": "8fc03ade52cb710ef1da5558124c708d2975e00e7638dc03d82f2da0aef3f599"
+    },
+    "source_cases": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/transfer-probes.json",
+      "sha256": "4e9c11d18395b03aeeb8a9ac7caec86f8ef6f59ca598ca00bf14bac447f85823"
+    },
+    "retention_cases": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/retention-probes.json",
+      "sha256": "daf92018a167c24db83a4d3bd029d45973bd7f34f3fd452f52419ccc0b651d83"
+    },
+    "source_text": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/train-source.json",
+      "sha256": "89fa2aea6fddece74246e447859ec8a90155a76c166912fe1985cff962fd1f48"
+    }
+  },
+  "source_sha256": {
+    "scripts/run_condition_relation_comparison.py": "f9b4fbcded28974549f38b04d3efaaa55da46bbfdc4ae352ebc23513b4b956b1",
+    "scripts/run_condition_relation_comparison.ps1": "91beaf91bf6025f92bcd11aaec6d97c8236c1e49a2f8cb11bf98bd6f2b83dd76",
+    "scripts/review_condition_relation_comparison.py": "4d834085892a5ea9612e1afef00dcb26b4936b0cf3f2d6ca5f2ea8ab4043a49d",
+    "scripts/condition_relation_language.py": "fbf7b6160fc84adc09e62337bea5f94f1c934cec71aaf61906e882e48f083495",
+    "scripts/prepare_condition_relation_language.py": "bf38f4944addebe1663000bde5c91468a19fd923618b0b3a8b1a93ed1fa2ea08",
+    "scripts/prepare_condition_relation_inputs.py": "b70f9643f013b4cd56dbbb6247bd5c5e26e7c3c9aeb5f0b0dc0faf264a4b3f04",
+    "scripts/run_condition_transfer_comparison.py": "936be835e07f1cc9c1d6ff64ced8a336ffe19c0bcffc6c68fbac5a67216aad07",
+    "scripts/run_condition_transfer_comparison.ps1": "cae88a35d51e15f6a3d9a19530dba8da69fd3110045a91181c1fbec9215aedf8",
+    "scripts/review_condition_transfer_comparison.py": "f7028c26943014e0a3f38ad2eba1842c30815e2ad8e1c542a12b62ceb78a727d",
+    "scripts/condition_transfer_curriculum.py": "9ac3ea8ef0bd500eb663a4f955430045aa840edd43161e60889c6374b9989fee",
+    "scripts/prepare_condition_transfer_curriculum.py": "7ac19550499225607427cba4ff46451aa79c46f501d0705f1b7ceffd9ef27372",
+    "scripts/prepare_condition_transfer_inputs.py": "17eda356748c19038e13b7442d6a70ae7a250cffce48258c57b04bd68a9f4f23",
+    "scripts/run_condition_source_learning.py": "4702a59a0827f03edc25bb2a1cb3c44d66ba79d22e8ab0b619ae84da92e6c69d",
+    "scripts/run_condition_source_learning.ps1": "e7cb7b8a02a7c76608caeab5a0544a7510d1c89aef3454224c301bce339fc682",
+    "scripts/review_condition_source_learning.py": "8067e605f656a6492c7575accc2d75778ebd09082df140202e22683fc67c5bb8",
+    "scripts/run_condition_diversity_comparison.py": "c76ff03994ac64723712d5c98c9e8357c1ffb8fd044abfab7f388ce2b0d46b46",
+    "scripts/run_condition_diversity_comparison.ps1": "a28458ebad2596921cb412e2db31b83f4955c339cee4ff0a0c4e235bb65411ce",
+    "scripts/review_condition_diversity_comparison.py": "557422c5e521c913e0d319c88189e99899385804a8ca9c2acfdf4dce13a110a3",
+    "scripts/run_condition_positive_comparison.py": "8ab13739f65495123dcdb9450b3bcbf1d9e35e743c6f28c505fb2b421730bb9a",
+    "scripts/run_condition_positive_comparison.ps1": "2a6865471e5855ec9ed4f2bc6b8ebac28a2e206a887d2859c48b18629de067ab",
+    "scripts/story_weight_trainer.py": "47d7da7aa511d168ba319dea754deb0bf5688fca5edadf3891e8d4bf5d8c5435",
+    "scripts/run_story_weight_comparison.py": "3598ce68a406aeb98eacc07dc700c04c261cf8e7a093ca805cac431853ba95eb",
+    "scripts/condition_positive_trainer.py": "c2c107b408e38958c36dd43d56d3a78fe623a7b7f12daf4e0d3e39787aea7f33",
+    "scripts/condition_positive_loss.py": "85ef2ba6f3815eacbbe4f7178bca235f2240662b55581fbbf0f925d38879b349",
+    "scripts/review_condition_positive_comparison.py": "43bc26ba6754ebaa7dca4818f9c74312e58315170191e00f1f111c30a2dccf24",
+    "scripts/prepare_condition_positive_teachers.py": "7ab8cd6680e0ab909a5340a9450ba98cc0647be0adc706e8b6cc852cf04ab57c",
+    "scripts/cached_three_source_index.py": "c66a38606d2602c7b2193d41ebcefca7220491d1bb50c5f729dbab01f277bb85",
+    "scripts/textbook_quantity_trainer.py": "c11b8c3650e193118f20cac29122d917228b0b95322c642d061a04c8813cbab8",
+    "scripts/run_complete_text_comparison.py": "9d91d1d6124e62e4f40f7a99762f948186602e95cc362be10bfe03297874d8f7",
+    "scripts/run_complete_text_comparison.ps1": "7fb1a82d9450daf7f6955d56093be61cf31c25dd479e23715372b1d8db345e5b",
+    "src/jmicro/coherent_units.py": "7b0e8cef7726b652f7b88187749090ded2b05042ac4c5fe076c30b5f5e637459",
+    "scripts/prepare_coherent_text.py": "d91f65d6c469690cbb2c01971bddfad73a4b0ae61211a277fa3d522e17901149",
+    "scripts/inspect_complete_text_data.py": "bf18510673c0c4352df911df850e3f598f921977cc34d580aa3fc87e8e8df626",
+    "scripts/prepare_story_text.py": "ecbd5d1a320d59a318b282026b36e4b7ad9284d897169f0c57e77f6dae5c90fa",
+    "src/jmicro/eos_pilot.py": "84b23a04455475b598056b8973a1cf89346aa3faf766e9162fef2ff7e17dbb08",
+    "src/jmicro/low_lr_pilot.py": "dcb6a1374c64c2852086b57a50433720b1e6b60263d5581eb742c3a1864ff64e",
+    "scripts/run_eos_short_pilot.py": "7a381414bdea5b24bbbbf7532f04db743cff948fa47f60e95f65019af2d3ec3d",
+    "scripts/run_eos_complete_100m.py": "62232fd440efbe32d65f25a3fffe8ec9fd7d7a96c74db329ddc3cc3443871a9d",
+    "scripts/evaluate_japanese_base.py": "9cabf705a67181b6a45eb20c1a62b69335140f2465b24ac2066f05e51ee48d02",
+    "src/jmicro/japanese_evaluation.py": "8693e2a54e63c1b085b617b207cc5db618ae80af1eb7cb54133ba8b254da6801",
+    "src/jmicro/readiness.py": "69a92251f4a697b551b9c3cfef9e2b992e776e2047c0331f7c43ba2331d172ea",
+    "src/jmicro/evaluation_memory.py": "ba22fb7ca7ddb6633a308c2b1a32a59147ecb38e568d9f838ab032300147c6b4",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "scripts/run_condition_source_ranking.py": "9635b6625d2c378a2dc478a089366e053bbe18a07554e93b857d6040220b4aa9",
+    "scripts/run_condition_source_ranking.ps1": "3939a4a44c819890f352b05aab7023b7ca8e95dcfa90e9c0c33f3f6b798005f5",
+    "scripts/review_condition_source_ranking.py": "890dafca6a06266a616f56a034bdbf3ed0ec87f9648e359b8c0fa8abf0880a86",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f"
+  },
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "quality_criteria_unchanged": true,
+  "old_numerical7_preserved": true,
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "protected_test_used": false,
+  "requested_five_steps_complete": false,
+  "scientific_teacher_tokens": 0,
+  "created_at": "2026-10-06T03:26:23.386610Z"
+}
