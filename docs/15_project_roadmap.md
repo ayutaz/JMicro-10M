@@ -1,3 +1,9 @@
+Base専用ニュース比較: launch（2026-10-06 JST）。
+
+科学actual658203/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18010439の実稼働、stageauthored_news-dev256/観測新教師25976793/26428122を確認。科学GPU上限1770.245130秒。共通Web73571878教師は再GPUしない。250更新ごと全state原子的CP、中断時は実PID不在を確認して scripts/run_livedoor_base.ps1 -Worker で再開。元UIは終端finallyで復帰。学習終端/全日本語/80内容/採否は未完了。
+
+Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。元相対・絶対・歴史Web1%品質基準/全旧失敗/数値7/Phase0–3維持。WSL uv/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用・ニュース比較の本学習準備完了（2026-10-06 JST）。
 
 原native10,001,152/tied・継承Adam/scheduler/LR1e-5/共通prefixの条件を維持する科学runner・評価・全80内容/採否経路を実装。CPU3tests/2.51秒で失敗probeを含む累積予算、再利用prefixからの同Web継続、実CPU終端の教師/bytes/Adam/scheduler/cursor会計と改変拒否に合格。PS構文成功。config凍結、予測は検証・旧失敗込み479.012075秒/1800。本学習は残Web1,428,122→news25M、共通Web73,571,878と旧対照は再GPUせず別記。prepared news本文523,883tokens、約47.265反復を新教材量と混同しない。次は一条件の永続実学習→同dev256/日本語/全80個別採点/bridge・retention→元品質条件の判定。Base未完成・完了時通知停止、Chat/量子化なし。全旧失敗と基準維持、source/epoch/LR/decoder/CP救済sweepなし、WSL uv/local commitのみ/pushなし。
