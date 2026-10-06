@@ -1,3 +1,9 @@
+Base専用・ニュース比較の本学習準備完了（2026-10-06 JST）。
+
+原native10,001,152/tied・継承Adam/scheduler/LR1e-5/共通prefixの条件を維持する科学runner・評価・全80内容/採否経路を実装。CPU3tests/2.51秒で失敗probeを含む累積予算、再利用prefixからの同Web継続、実CPU終端の教師/bytes/Adam/scheduler/cursor会計と改変拒否に合格。PS構文成功。config凍結、予測は検証・旧失敗込み479.012075秒/1800。本学習は残Web1,428,122→news25M、共通Web73,571,878と旧対照は再GPUせず別記。prepared news本文523,883tokens、約47.265反復を新教材量と混同しない。次は一条件の永続実学習→同dev256/日本語/全80個別採点/bridge・retention→元品質条件の判定。Base未完成・完了時通知停止、Chat/量子化なし。全旧失敗と基準維持、source/epoch/LR/decoder/CP救済sweepなし、WSL uv/local commitのみ/pushなし。
+
+以下は過去の履歴。
+
 Base専用news CUDA probe: passed（2026-10-06 JST）。
 
 actual657464実完了/不在、GPU28.335452秒/120。実native W/Adam/scheduler/CUDA含む全RNG/Webcursor/tied10M初期一致、本goals Webと明示Web=1 news境界stressの両4連続対2+2全state/history/LR/有限値一致・各32timingに合格。80検証更新/2603282教師は科学と別、stress重み破棄。科学予測449.257206秒・ownprobe/旧失敗込み479.012075/1800。次は費用内のみ残26428122教師の専用科学runner/同全日本語・dev256・全80reviewを実装して凍結、共通73571878教師/旧対照を再GPUしない。これは再開/実装/費用の証明でモデル品質/完成ではない。
