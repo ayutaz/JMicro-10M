@@ -1,3 +1,9 @@
+Base同source一般化diagnostic: complete（2026-10-07 JST）。
+
+実4CP・TRAIN56/DEV64の同mask共通bytes/全64個別DEV生成をGPU61.120621秒/120で完了、actual663168不在・元UI復帰。共通→CE→DPO: TRAIN completion CE2.957661→0.006942→0.007069、DEV body BPB1.161984→1.485290→1.484922、DEV一貫性0→2→1/16、事前flag={'chosen_CE_terminal': {'memorization_signal': True, 'domain_specialization_signal': False}, 'chosen_CE_DPO_terminal': {'memorization_signal': True, 'domain_specialization_signal': False}}。全4weights/parentSHA/RNG不変・eval・gradなし、学習更新/科学教師0、TEST0。小sample/非blind/oldWeboverlap未保証/旧数値7を保持、単独原因や10M容量不足の証明にしない。このreadonly診断を終了。旧固定CE/DPOrecipe不採用と全基準を維持し、実TRAIN/DEV転移証拠から新しい機構の比較を定義する。source/coefficient/epoch/LR/CP救済なし。
+
+Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。元全品質基準/失敗/Phase0–3保持、WSL uv/local commitのみ/pushなし。以下は過去の履歴。
+
 Base同source一般化diagnostic: launch（2026-10-07 JST）。
 
 実diagnostic actual663168/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18271519稼働、stageoriginal_d18-DEV16-greedy/GPU11.653秒。各尤度batchと生成caseを永続保存、上限120秒、更新0。元UIはfinally復帰。重複起動なし・終端oneshotは同一再試行せず保存。次は全64個別内容・readonly/原SHA/flagを確認して診断終了。
