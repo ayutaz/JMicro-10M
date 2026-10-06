@@ -1,0 +1,31 @@
+{
+  "status": "proposal_only_no_new_data_or_GPU",
+  "kind": "read_only_Base_train_memorization_vs_within_source_dev_transfer",
+  "created_date_JST": "2026-10-07",
+  "problem": "Both fixed56/4565-position recipes fit TRAIN but fail all Base adoption screens. Distinguish within-source memorization from source-domain specialization before proposing further training.",
+  "failed_recipe_review": "reports/phase6/base_preference_comparison_review.json",
+  "checkpoints": ["original_d18", "actual_shared_Web6M", "chosen_CE_terminal", "chosen_CE_DPO_terminal"],
+  "checkpoint_policy": "Use the already completed four fixed endpoints and their saved SHA256; no new learning, checkpoint search, source/coefficient/beta/LR/epoch/decoder rescue.",
+  "data": {
+    "train": "The same accepted56 role-free continuation pairs, original prompt masks and full chosen body+EOS, score only.",
+    "dev": "Freeze64 original first-paragraph continuations from the existing livedoor article-family DEV partition, seed20261007, before model scoring. Reuse the existing deterministic split and paragraph rule; retain all sampled examples without quality filtering or reroll.",
+    "greedy": "First16 of those64 DEV records for each of four checkpoints, original BOS/plain prefix, fixed greedy64/EOS3, same original suppressed IDs.",
+    "protected_test": "Do not decode or score project or livedoor TEST.",
+    "provenance": "Reuse pinned original archive and tokenizer hashes. Article-family separation from the local TRAIN is required; global original-Web overlap is not certified. No corpus-wide dedup or re-tokenizer work. Raw source remains native."
+  },
+  "comparison": "Same completion teacher masks and common body bytes for all four checkpoints; report TRAIN56 vs DEV64 CE/BPB, length/EOS coverage, and all64 greedy outputs with individual grammar/relevance/coherence/completion notes. Compare source-local output behavior with existing fixed broad Base80, without re-evaluating the latter.",
+  "diagnostic_flags": {
+    "memorization_signal": "TRAIN completion CE at least50percent lower than shared parent, while DEV completion BPB does not improve over shared parent. This is a diagnostic flag, not a universal capacity or generalization proof.",
+    "domain_specialization_signal": "DEV common-byte BPB improves by at least1percent and source-local coherent outputs gain at least4/16 over shared parent, while the existing broad Base80 stays at4/80 or6/80. Small nonblind generation sample limits inference.",
+    "otherwise": "Report inconclusive or mixed result. Do not fabricate a decisive root cause or select checkpoints from diagnostic results."
+  },
+  "budgets": {"CPU_preparation_seconds": 30, "GPU_seconds": 120, "optimizer_updates": 0, "new_scientific_teacher_tokens": 0},
+  "completion_condition": "Freeze data/config/source/checkpoint bindings before scoring; complete all four TRAIN56/DEV64 likelihood routes and64 individually read DEV generations, verify read-only weights/RNG/no gradients, persist terminal job and portable evidence, then end this diagnostic. Exhausted budget or failure is preserved without identical retry.",
+  "next_action": "Implement and prepare this bounded read-only source-local generalization diagnostic. Only its evidence and retained prior experiments may justify a genuinely new training mechanism; no further GPU learning is currently prepared by this plan.",
+  "quality_criteria_unchanged": true,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false
+}

@@ -1,3 +1,5 @@
+次の具体的アクション（2026-10-07 JST）：固定CE対DPOの両条件は不採用。reports/phase6/base_preference_generalization_diagnostic_plan.json に、同TRAIN56と既存記事family DEV64の同本文byte尤度・先頭16各4CPの全64生成を比較する読み取り専用診断案を保存。実原親/共通6M/両終端のみ、学習更新0・CPU準備30秒/GPU120秒。小教材への記憶と同source内の一般化/領域偏りを切り分け、全個別内容・readonly状態を記録したらこの診断を終了する。新データ/設定/source未凍結・GPU未開始、TESTを使わず、旧基準/失敗/数値7を維持、係数/epoch/source/CP救済なし。Base未完成、完成時通知して停止。Chat/Dialogue/SFT/量子化なし。
+
 Base専用CE対CE+DPO: 実比較・全160評価完了（2026-10-07 JST）。
 
 共通Web6M一度＋同positive2M/armのCE対CE+DPO(beta.1/係数0対.1)と全160個別raw-bound内容を完了。CE→DPOでBPB1.222117852→1.223634669、文法29→30/関連15→16/一貫性4→6/適切8→12/EOS57→57/反復3→3（各80）。同CEinput/auxiliary全history一致、native10M・Adam/scheduler継承/cursor/quota/固定参照を確認。実新positive10M/各arm8M、総新GPU303.635796/1800、actual661405完了/不在/元UI復帰。最終Base検証eligible={'chosen_CE': False, 'chosen_CE_DPO': False}。固定56/4565positions約438反復は教材増量ではない。小TRAIN/長さ・作風/固定旧negative/非blind繰り返しdev/旧数値7の限界を保持。合格recipeのみ独立学習seed/full dev/protected test/adoptionへ。未合格はこの固定両recipe終了、source/beta/coefficient/epoch/LR/decoder/CP救済sweepなし。
