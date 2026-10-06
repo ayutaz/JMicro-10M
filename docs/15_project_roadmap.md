@@ -1,3 +1,11 @@
+保存済み最初8.15M対100Mのread-only比較を実装・起動（2026-10-06 JST）: 前turnfa37d9bはUTF8/paired256/source勾配の実診断を完了したprogress。最新ユーザー境界のBaseのみを継続し、Chat/Dialogue/SFT/量子化なし。early_exposure_comparison_proposal.jsonで結果を見る前に選んだ最初の250保存update305426/8,150,782教師/8,192,000input/CP f6ba0fd4…を実preflightで確認。元100M軌跡内の早い時点と終端を比較し、新学習・optimizer update0、教材増量も行わない。追加量の重複を独立した新100Mへ数えない。
+
+run/review_early_exposure_comparison.pyと永続PS launcherを実装。元10B親/実CP lineage・actualLR.0002/元Web cursor/同source・250historyとの一致、元byte256/472055bytes・日本語192/331/1119・80greedy/max64、同128bridge/旧128retentionを維持する。100M結果・notesは正確cacheとして再利用しGPU再評価しない。固定4source×4batch×8×1024のtrain input/教師SHAを勾配診断と一致させ、full/body/EOS CEのみread-onlyで測る。学習/後段/保存点変更の拒否と不均一body/EOS分母を含むCPU2tests/1.09秒・PS構文/actual preflight成功。旧凍結trainer/evaluator/採否条件を変更しない。
+
+Windowsworker35628/actual562158/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start14551757の実psとjobを確認しWSL uv3.12.7で評価開始。science config SHA83ee2dfc699d6f2e8e8f7572b0625d7dad8987ebae2f205a2b4e805ecc664dde、新GPU累積450秒上限、stage generation80へ進行。run reports/phase6/early-exposure-comparison-20261006、restart scripts/run_early_exposure_comparison.ps1 -Worker。実live/complete jobの重複起動を拒否し、section/個別case結果を再開可能に保存する。科学中元10B UI停止、wrapper finallyで復帰。準備133text/2128479bytes、gzip654957/SHA8c508d77fe32b0036a69d9ed26849dd8ee998ac98f60d9a0d9a3d471248a46bb、全Windows entry/archive raw SHA一致。
+
+次は同jobの全評価/損失終端→新80を全件個別に読んで同id/prefix/text/stopの既存peer評点だけ再利用→元relative/absolute/歴史Web1%採否→可搬証拠/local commit。最初の保存点の品質は未判定、Base未完了・最終seed/full/test未実施。失敗なら採用せず、残checkpointの都合のよい走査/自動学習延長/勾配補正/品質条件緩和をしない。旧数値7失敗/全品質条件保持、local commitのみ・pushなし。以下は過去の履歴。
+
 末尾・paired dev・source勾配診断を実完了（2026-10-06 JST）: 最新境界はBaseだけの学習/評価/採用を完了して通知・停止、Chat/Dialogue/SFT/量子化なし。前turn73cf116は元Web保持100M・全80を完了して不採用まで進めたprogress。本turnもBase未完了を保持し、既存評価だけのCPU診断を0.053秒で完了（新GPU/学習0）。元Web保持のbase-070の末尾は「楓」のUTF8 e6a5がtoken上限64で切れたもの、内部不正byte0、他2重みも80/80 valid。既存text_display/WebUIはこのcap-tailを非表示にしraw failureを保持する処理が既にあり、新Tokenizer/文字変換・過去Unicode採点の消去は不要。同256文/472055bytesのうち234文でBPB改善、全4文長quartileでも改善、pooled差-.03536746。gold EOS NLLは全quartileでselected-Webより悪化、親より改善。BPB保持と自由生成を混同しない。
 
 既存Japanese96反転familyの両正答（各16）はselected-Web→original-Web保持で否定16→16/比較1→0/照応0→0/数量0→6/時刻2→0/因果11→1。条件理解の弱さは末尾表示問題ではない。root結果はbase_retention_endpoint_diagnostic.json、固定raw IDs/bytesと全256paired NLL/bytes・全96familyを保存、保護testなし。
