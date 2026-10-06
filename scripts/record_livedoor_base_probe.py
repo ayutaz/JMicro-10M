@@ -34,7 +34,7 @@ def main(phase):
             'これは再開/実装/費用の証明でモデル品質/完成ではない。')
     atomic_json(destination,report)
     files=[destination,study.CONFIG,study.PROPOSAL,Path(__file__),*[ROOT/s for s in study.SOURCES],ROOT/'reports/phase6/livedoor_base_trainer_tests.xml',
-        ROOT/'reports/phase6/livedoor_base_trainer_tests_initial_failure.xml']
+        ROOT/'reports/phase6/livedoor_base_trainer_tests_initial_failure.xml',Path(c['references']['CPU_tests']['path'])]
     files += [q for q in sorted((study.RUN/'probe').rglob('*')) if q.is_file() and q.suffix in ('.json','.jsonl','.py','.ps1','.xml')]
     files=list(dict.fromkeys(files));archive=destination.with_name(destination.stem+'_evidence.tar.gz')
     with tarfile.open(archive,'w:gz') as output:

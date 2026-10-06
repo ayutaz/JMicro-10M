@@ -1,0 +1,3433 @@
+{
+  "status": "livedoor_base_probe_passed",
+  "created_at": "2026-10-06T14:23:11.671567Z",
+  "config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/livedoor_base_probe_v2.json",
+    "sha256": "6f92576ecf3ca33998e8d10be7f2abd4b7b06fe26acb3d77c21409b028b56b2b"
+  },
+  "actual_job": {
+    "status": "complete",
+    "pid": 657464,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "17969311",
+    "config_sha256": "6f92576ecf3ca33998e8d10be7f2abd4b7b06fe26acb3d77c21409b028b56b2b",
+    "started_at": "2026-10-06T14:21:30.560242Z",
+    "GPU_elapsed_seconds": 28.335452045983402,
+    "restart_command": "scripts/probe_livedoor_base.ps1 -Worker; terminal probe requires documented repair",
+    "stage": "news_boundary_stress-32timing",
+    "heartbeat_at": "2026-10-06T14:21:59.276983Z",
+    "completed_updates": 32,
+    "ended_at": "2026-10-06T14:21:59.701445Z"
+  },
+  "GPU_seconds": 28.335452045983402,
+  "previous_failed_GPU_seconds": 1.419417480006814,
+  "scientific_teacher_tokens": 0,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "original_UI": {
+    "identity": {
+      "pid": 657664,
+      "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+      "start_ticks": "17972626"
+    },
+    "actual_alive_verified": true,
+    "HTTP": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    }
+  },
+  "result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/livedoor-base-comparison-v2-20261006/probe/result.json",
+    "sha256": "afcac92c83cbbeb951df0fb058bf7fbb3ff12e8ba5b5102b0302e1a29e25df7c"
+  },
+  "actual_result": {
+    "initial_preservation": {
+      "model": true,
+      "optimizer": true,
+      "scheduler": true,
+      "RNG": true,
+      "Web_cursor": true,
+      "native_tied10M": true
+    },
+    "gates": {
+      "original_Web": {
+        "passed": true,
+        "checks": {
+          "model": true,
+          "optimizer": true,
+          "scheduler": true,
+          "rng": true,
+          "sampler": true,
+          "lineage": true,
+          "tokens": true,
+          "supervised_tokens": true,
+          "body_bytes": true,
+          "token_digest": true,
+          "focus_token_digest": true,
+          "focus_teacher_tokens": true,
+          "weighted_teacher_mass": true,
+          "update": true,
+          "spec": true,
+          "model_config": true,
+          "pilot_binding": true,
+          "study_binding": true,
+          "history_update": true,
+          "history_loss": true,
+          "history_gradient_norm": true,
+          "history_lr": true,
+          "history_tokens_seen": true,
+          "history_supervised_tokens": true,
+          "history_body_bytes_seen": true,
+          "history_token_digest": true,
+          "history_focus_token_digest": true,
+          "history_focus_teacher_tokens": true,
+          "history_weighted_teacher_mass": true,
+          "history_outcome_weight": true,
+          "history_source_teachers": true,
+          "history_source_eos": true,
+          "history_source_input_tokens": true,
+          "history_source_body_bytes": true,
+          "history_source_focus_teachers": true,
+          "history_valid_input_tokens": true,
+          "history_physical_input_tokens": true,
+          "history_additional_teacher_tokens": true,
+          "finite": true,
+          "fixed_inherited_LR": true
+        },
+        "histories": [
+          [
+            {
+              "update": 322686,
+              "loss": 2.6139869689941406,
+              "gradient_norm": 0.5256531834602356,
+              "lr": 1e-05,
+              "tokens_seen": 10573774848,
+              "supervised_tokens": 10551391542,
+              "body_bytes_seen": 41103515745,
+              "token_digest": "30f159b374f9a7bf61eac893106376f6ab44d1eda1318154daee6018388c83d6",
+              "focus_token_digest": "ce4ee963cc2f7be34222dbb73cbe9c1c7d1aa2835e0cfa336d10ca3c5fe9863d",
+              "focus_teacher_tokens": 0,
+              "weighted_teacher_mass": 32703,
+              "outcome_weight": 1,
+              "seconds": 2.5460423470067326,
+              "data_wait_seconds": 0.11602218198822811,
+              "tokens_per_second": 12870.1708510559,
+              "source_teachers": {
+                "web": 32703,
+                "authored_news": 0
+              },
+              "source_eos": {
+                "web": 65,
+                "authored_news": 0
+              },
+              "source_input_tokens": {
+                "web": 32768,
+                "authored_news": 0
+              },
+              "source_body_bytes": {
+                "web": 127979,
+                "authored_news": 0
+              },
+              "source_focus_teachers": {
+                "web": 0,
+                "authored_news": 0
+              },
+              "valid_input_tokens": 32768,
+              "physical_input_tokens": 32768,
+              "additional_teacher_tokens": 32703
+            },
+            {
+              "update": 322687,
+              "loss": 2.588653564453125,
+              "gradient_norm": 0.5047227740287781,
+              "lr": 1e-05,
+              "tokens_seen": 10573807616,
+              "supervised_tokens": 10551424242,
+              "body_bytes_seen": 41103641282,
+              "token_digest": "f24f02f605cfd1debfdb18214b0b8c2f18c63e4818fb997c0f0c1e6067b46daf",
+              "focus_token_digest": "11424cd1eb5c72bff37c295234bf6ae8f15a479cc4db67abcc480a892295faf5",
+              "focus_teacher_tokens": 0,
+              "weighted_teacher_mass": 65403,
+              "outcome_weight": 1,
+              "seconds": 0.29225331800989807,
+              "data_wait_seconds": 0.11810772202443331,
+              "tokens_per_second": 112121.90925028338,
+              "source_teachers": {
+                "web": 65403,
+                "authored_news": 0
+              },
+              "source_eos": {
+                "web": 133,
+                "authored_news": 0
+              },
+              "source_input_tokens": {
+                "web": 65536,
+                "authored_news": 0
+              },
+              "source_body_bytes": {
+                "web": 253516,
+                "authored_news": 0
+              },
+              "source_focus_teachers": {
+                "web": 0,
+                "authored_news": 0
+              },
+              "valid_input_tokens": 65536,
+              "physical_input_tokens": 65536,
+              "additional_teacher_tokens": 65403
+            },
+            {
+              "update": 322688,
+              "loss": 2.5857632160186768,
+              "gradient_norm": 0.49824097752571106,
+              "lr": 1e-05,
+              "tokens_seen": 10573840384,
+              "supervised_tokens": 10551456943,
+              "body_bytes_seen": 41103770933,
+              "token_digest": "2762da238ffe0c8caf7ccd1579c75e0dec2d8eb5f8ed0431bef31f875730d3b5",
+              "focus_token_digest": "418abf34492a99beca81c4cdb016b1a93aa1e13a20644bf7205a12554e71cebd",
+              "focus_teacher_tokens": 0,
+              "weighted_teacher_mass": 98104,
+              "outcome_weight": 1,
+              "seconds": 0.19238720499561168,
+              "data_wait_seconds": 0.11477355399983935,
+              "tokens_per_second": 170323.17716111854,
+              "source_teachers": {
+                "web": 98104,
+                "authored_news": 0
+              },
+              "source_eos": {
+                "web": 200,
+                "authored_news": 0
+              },
+              "source_input_tokens": {
+                "web": 98304,
+                "authored_news": 0
+              },
+              "source_body_bytes": {
+                "web": 383167,
+                "authored_news": 0
+              },
+              "source_focus_teachers": {
+                "web": 0,
+                "authored_news": 0
+              },
+              "valid_input_tokens": 98304,
+              "physical_input_tokens": 98304,
+              "additional_teacher_tokens": 98104
+            },
+            {
+              "update": 322689,
+              "loss": 2.627068042755127,
+              "gradient_norm": 0.5201655030250549,
+              "lr": 1e-05,
+              "tokens_seen": 10573873152,
+              "supervised_tokens": 10551489635,
+              "body_bytes_seen": 41103899284,
+              "token_digest": "062a0a4bae83e07861c73a51267cc6c8f0a90af32b4065cd6cd3c1bbfaa46f67",
+              "focus_token_digest": "fdc99c5fd5c4cd3c919cd356050a9758c5dcf2dd0864f0863a7b637398a1c800",
+              "focus_teacher_tokens": 0,
+              "weighted_teacher_mass": 130796,
+              "outcome_weight": 1,
+              "seconds": 0.1688949870003853,
+              "data_wait_seconds": 0.12102159101050347,
+              "tokens_per_second": 194014.04731997906,
+              "source_teachers": {
+                "web": 130796,
+                "authored_news": 0
+              },
+              "source_eos": {
+                "web": 276,
+                "authored_news": 0
+              },
+              "source_input_tokens": {
+                "web": 131072,
+                "authored_news": 0
+              },
+              "source_body_bytes": {
+                "web": 511518,
+                "authored_news": 0
+              },
+              "source_focus_teachers": {
+                "web": 0,
+                "authored_news": 0
+              },
+              "valid_input_tokens": 131072,
+              "physical_input_tokens": 131072,
+              "additional_teacher_tokens": 130796
+            }
+          ],
+          [
+            {
+              "update": 322686,
+              "loss": 2.6139869689941406,
+              "gradient_norm": 0.5256531834602356,
+              "lr": 1e-05,
+              "tokens_seen": 10573774848,
+              "supervised_tokens": 10551391542,
+              "body_bytes_seen": 41103515745,
+              "token_digest": "30f159b374f9a7bf61eac893106376f6ab44d1eda1318154daee6018388c83d6",
+              "focus_token_digest": "ce4ee963cc2f7be34222dbb73cbe9c1c7d1aa2835e0cfa336d10ca3c5fe9863d",
+              "focus_teacher_tokens": 0,
+              "weighted_teacher_mass": 32703,
+              "outcome_weight": 1,
+              "seconds": 1.1818285089975689,
+              "data_wait_seconds": 0.0014359350025188178,
+              "tokens_per_second": 27726.526945769765,
+              "source_teachers": {
+                "web": 32703,
+                "authored_news": 0
+              },
+              "source_eos": {
+                "web": 65,
+                "authored_news": 0
+              },
+              "source_input_tokens": {
+                "web": 32768,
+                "authored_news": 0
+              },
+              "source_body_bytes": {
+                "web": 127979,
+                "authored_news": 0
+              },
+              "source_focus_teachers": {
+                "web": 0,
+                "authored_news": 0
+              },
+              "valid_input_tokens": 32768,
+              "physical_input_tokens": 32768,
+              "additional_teacher_tokens": 32703
+            },
+            {
+              "update": 322687,
+              "loss": 2.588653564453125,
+              "gradient_norm": 0.5047227740287781,
+              "lr": 1e-05,
+              "tokens_seen": 10573807616,
+              "supervised_tokens": 10551424242,
+              "body_bytes_seen": 41103641282,
+              "token_digest": "f24f02f605cfd1debfdb18214b0b8c2f18c63e4818fb997c0f0c1e6067b46daf",
+              "focus_token_digest": "11424cd1eb5c72bff37c295234bf6ae8f15a479cc4db67abcc480a892295faf5",
+              "focus_teacher_tokens": 0,
+              "weighted_teacher_mass": 65403,
+              "outcome_weight": 1,
+              "seconds": 0.14033812898560427,
+              "data_wait_seconds": 0.001218377990880981,
+              "tokens_per_second": 233493.20841637632,
+              "source_teachers": {
+                "web": 65403,
+                "authored_news": 0
+              },
+              "source_eos": {
+                "web": 133,
+                "authored_news": 0
+              },
+              "source_input_tokens": {
+                "web": 65536,
+                "authored_news": 0
+              },
+              "source_body_bytes": {
+                "web": 253516,
+                "authored_news": 0
+              },
+              "source_focus_teachers": {
+                "web": 0,
+                "authored_news": 0
+              },
+              "valid_input_tokens": 65536,
+              "physical_input_tokens": 65536,
+              "additional_teacher_tokens": 65403
+            },
+            {
+              "update": 322688,
+              "loss": 2.5857632160186768,
+              "gradient_norm": 0.49824097752571106,
+              "lr": 1e-05,
+              "tokens_seen": 10573840384,
+              "supervised_tokens": 10551456943,
+              "body_bytes_seen": 41103770933,
+              "token_digest": "2762da238ffe0c8caf7ccd1579c75e0dec2d8eb5f8ed0431bef31f875730d3b5",
+              "focus_token_digest": "418abf34492a99beca81c4cdb016b1a93aa1e13a20644bf7205a12554e71cebd",
+              "focus_teacher_tokens": 0,
+              "weighted_teacher_mass": 98104,
+              "outcome_weight": 1,
+              "seconds": 1.2224382680142298,
+              "data_wait_seconds": 0.0015395290101878345,
+              "tokens_per_second": 26805.443560949258,
+              "source_teachers": {
+                "web": 98104,
+                "authored_news": 0
+              },
+              "source_eos": {
+                "web": 200,
+                "authored_news": 0
+              },
+              "source_input_tokens": {
+                "web": 98304,
+                "authored_news": 0
+              },
+              "source_body_bytes": {
+                "web": 383167,
+                "authored_news": 0
+              },
+              "source_focus_teachers": {
+                "web": 0,
+                "authored_news": 0
+              },
+              "valid_input_tokens": 98304,
+              "physical_input_tokens": 98304,
+              "additional_teacher_tokens": 98104
+            },
+            {
+              "update": 322689,
+              "loss": 2.627068042755127,
+              "gradient_norm": 0.5201655030250549,
+              "lr": 1e-05,
+              "tokens_seen": 10573873152,
+              "supervised_tokens": 10551489635,
+              "body_bytes_seen": 41103899284,
+              "token_digest": "062a0a4bae83e07861c73a51267cc6c8f0a90af32b4065cd6cd3c1bbfaa46f67",
+              "focus_token_digest": "fdc99c5fd5c4cd3c919cd356050a9758c5dcf2dd0864f0863a7b637398a1c800",
+              "focus_teacher_tokens": 0,
+              "weighted_teacher_mass": 130796,
+              "outcome_weight": 1,
+              "seconds": 0.1425227590079885,
+              "data_wait_seconds": 0.001211939990753308,
+              "tokens_per_second": 229914.15706570298,
+              "source_teachers": {
+                "web": 130796,
+                "authored_news": 0
+              },
+              "source_eos": {
+                "web": 276,
+                "authored_news": 0
+              },
+              "source_input_tokens": {
+                "web": 131072,
+                "authored_news": 0
+              },
+              "source_body_bytes": {
+                "web": 511518,
+                "authored_news": 0
+              },
+              "source_focus_teachers": {
+                "web": 0,
+                "authored_news": 0
+              },
+              "valid_input_tokens": 131072,
+              "physical_input_tokens": 131072,
+              "additional_teacher_tokens": 130796
+            }
+          ]
+        ],
+        "verification_teacher_tokens": 261592,
+        "GPU_optimizer_updates": 8
+      },
+      "news_boundary_stress": {
+        "passed": true,
+        "checks": {
+          "model": true,
+          "optimizer": true,
+          "scheduler": true,
+          "rng": true,
+          "sampler": true,
+          "lineage": true,
+          "tokens": true,
+          "supervised_tokens": true,
+          "body_bytes": true,
+          "token_digest": true,
+          "focus_token_digest": true,
+          "focus_teacher_tokens": true,
+          "weighted_teacher_mass": true,
+          "update": true,
+          "spec": true,
+          "model_config": true,
+          "pilot_binding": true,
+          "study_binding": true,
+          "history_update": true,
+          "history_loss": true,
+          "history_gradient_norm": true,
+          "history_lr": true,
+          "history_tokens_seen": true,
+          "history_supervised_tokens": true,
+          "history_body_bytes_seen": true,
+          "history_token_digest": true,
+          "history_focus_token_digest": true,
+          "history_focus_teacher_tokens": true,
+          "history_weighted_teacher_mass": true,
+          "history_outcome_weight": true,
+          "history_source_teachers": true,
+          "history_source_eos": true,
+          "history_source_input_tokens": true,
+          "history_source_body_bytes": true,
+          "history_source_focus_teachers": true,
+          "history_valid_input_tokens": true,
+          "history_physical_input_tokens": true,
+          "history_additional_teacher_tokens": true,
+          "finite": true,
+          "fixed_inherited_LR": true
+        },
+        "histories": [
+          [
+            {
+              "update": 322686,
+              "loss": 3.1059751510620117,
+              "gradient_norm": 2.8023416996002197,
+              "lr": 1e-05,
+              "tokens_seen": 10573774848,
+              "supervised_tokens": 10551390316,
+              "body_bytes_seen": 41103505931,
+              "token_digest": "92132cfef9ca368942d643559f45c25d0b2ebf2f0bd0ca4bdb3a759290224a34",
+              "focus_token_digest": "ce4ee963cc2f7be34222dbb73cbe9c1c7d1aa2835e0cfa336d10ca3c5fe9863d",
+              "focus_teacher_tokens": 0,
+              "weighted_teacher_mass": 31477,
+              "outcome_weight": 1,
+              "seconds": 1.2775489630002994,
+              "data_wait_seconds": 0.002848375996109098,
+              "tokens_per_second": 25649.11478855963,
+              "source_teachers": {
+                "web": 1,
+                "authored_news": 31476
+              },
+              "source_eos": {
+                "web": 0,
+                "authored_news": 268
+              },
+              "source_input_tokens": {
+                "web": 1024,
+                "authored_news": 31744
+              },
+              "source_body_bytes": {
+                "web": 6,
+                "authored_news": 118159
+              },
+              "source_focus_teachers": {
+                "web": 0,
+                "authored_news": 0
+              },
+              "valid_input_tokens": 32768,
+              "physical_input_tokens": 32768,
+              "additional_teacher_tokens": 31477
+            },
+            {
+              "update": 322687,
+              "loss": 3.1423251628875732,
+              "gradient_norm": 2.86855149269104,
+              "lr": 1e-05,
+              "tokens_seen": 10573807616,
+              "supervised_tokens": 10551422776,
+              "body_bytes_seen": 41103623699,
+              "token_digest": "76b645a996fea20f2151b6ae9704cfc491fcc9ffbd8295615a165519e9ae936f",
+              "focus_token_digest": "11424cd1eb5c72bff37c295234bf6ae8f15a479cc4db67abcc480a892295faf5",
+              "focus_teacher_tokens": 0,
+              "weighted_teacher_mass": 63937,
+              "outcome_weight": 1,
+              "seconds": 0.14342518098419532,
+              "data_wait_seconds": 0.0012141219922341406,
+              "tokens_per_second": 228467.55203753835,
+              "source_teachers": {
+                "web": 1,
+                "authored_news": 63936
+              },
+              "source_eos": {
+                "web": 0,
+                "authored_news": 576
+              },
+              "source_input_tokens": {
+                "web": 1024,
+                "authored_news": 64512
+              },
+              "source_body_bytes": {
+                "web": 6,
+                "authored_news": 235927
+              },
+              "source_focus_teachers": {
+                "web": 0,
+                "authored_news": 0
+              },
+              "valid_input_tokens": 65536,
+              "physical_input_tokens": 65536,
+              "additional_teacher_tokens": 63937
+            },
+            {
+              "update": 322688,
+              "loss": 3.1366405487060547,
+              "gradient_norm": 2.2410929203033447,
+              "lr": 1e-05,
+              "tokens_seen": 10573840384,
+              "supervised_tokens": 10551455243,
+              "body_bytes_seen": 41103745888,
+              "token_digest": "a266cdf894230f45482e49e94608a4e0024ff62690507c66bb2c5896358c0ab9",
+              "focus_token_digest": "418abf34492a99beca81c4cdb016b1a93aa1e13a20644bf7205a12554e71cebd",
+              "focus_teacher_tokens": 0,
+              "weighted_teacher_mass": 96404,
+              "outcome_weight": 1,
+              "seconds": 0.08023259401670657,
+              "data_wait_seconds": 0.0012313610059209168,
+              "tokens_per_second": 408412.5709954838,
+              "source_teachers": {
+                "web": 1,
+                "authored_news": 96403
+              },
+              "source_eos": {
+                "web": 0,
+                "authored_news": 878
+              },
+              "source_input_tokens": {
+                "web": 1024,
+                "authored_news": 97280
+              },
+              "source_body_bytes": {
+                "web": 6,
+                "authored_news": 358116
+              },
+              "source_focus_teachers": {
+                "web": 0,
+                "authored_news": 0
+              },
+              "valid_input_tokens": 98304,
+              "physical_input_tokens": 98304,
+              "additional_teacher_tokens": 96404
+            },
+            {
+              "update": 322689,
+              "loss": 3.073826789855957,
+              "gradient_norm": 2.210611343383789,
+              "lr": 1e-05,
+              "tokens_seen": 10573873152,
+              "supervised_tokens": 10551487688,
+              "body_bytes_seen": 41103865500,
+              "token_digest": "49f85bfa9def6e5a80322022fb4de8f67b40cb0347e90163c102d5f1c99d8b33",
+              "focus_token_digest": "fdc99c5fd5c4cd3c919cd356050a9758c5dcf2dd0864f0863a7b637398a1c800",
+              "focus_teacher_tokens": 0,
+              "weighted_teacher_mass": 128849,
+              "outcome_weight": 1,
+              "seconds": 0.04828916699625552,
+              "data_wait_seconds": 0.0011091789929196239,
+              "tokens_per_second": 678578.6965954688,
+              "source_teachers": {
+                "web": 1,
+                "authored_news": 128848
+              },
+              "source_eos": {
+                "web": 0,
+                "authored_news": 1201
+              },
+              "source_input_tokens": {
+                "web": 1024,
+                "authored_news": 130048
+              },
+              "source_body_bytes": {
+                "web": 6,
+                "authored_news": 477728
+              },
+              "source_focus_teachers": {
+                "web": 0,
+                "authored_news": 0
+              },
+              "valid_input_tokens": 131072,
+              "physical_input_tokens": 131072,
+              "additional_teacher_tokens": 128849
+            }
+          ],
+          [
+            {
+              "update": 322686,
+              "loss": 3.1059751510620117,
+              "gradient_norm": 2.8023416996002197,
+              "lr": 1e-05,
+              "tokens_seen": 10573774848,
+              "supervised_tokens": 10551390316,
+              "body_bytes_seen": 41103505931,
+              "token_digest": "92132cfef9ca368942d643559f45c25d0b2ebf2f0bd0ca4bdb3a759290224a34",
+              "focus_token_digest": "ce4ee963cc2f7be34222dbb73cbe9c1c7d1aa2835e0cfa336d10ca3c5fe9863d",
+              "focus_teacher_tokens": 0,
+              "weighted_teacher_mass": 31477,
+              "outcome_weight": 1,
+              "seconds": 1.232665920018917,
+              "data_wait_seconds": 0.0014492589980363846,
+              "tokens_per_second": 26583.03394929352,
+              "source_teachers": {
+                "web": 1,
+                "authored_news": 31476
+              },
+              "source_eos": {
+                "web": 0,
+                "authored_news": 268
+              },
+              "source_input_tokens": {
+                "web": 1024,
+                "authored_news": 31744
+              },
+              "source_body_bytes": {
+                "web": 6,
+                "authored_news": 118159
+              },
+              "source_focus_teachers": {
+                "web": 0,
+                "authored_news": 0
+              },
+              "valid_input_tokens": 32768,
+              "physical_input_tokens": 32768,
+              "additional_teacher_tokens": 31477
+            },
+            {
+              "update": 322687,
+              "loss": 3.1423251628875732,
+              "gradient_norm": 2.86855149269104,
+              "lr": 1e-05,
+              "tokens_seen": 10573807616,
+              "supervised_tokens": 10551422776,
+              "body_bytes_seen": 41103623699,
+              "token_digest": "76b645a996fea20f2151b6ae9704cfc491fcc9ffbd8295615a165519e9ae936f",
+              "focus_token_digest": "11424cd1eb5c72bff37c295234bf6ae8f15a479cc4db67abcc480a892295faf5",
+              "focus_teacher_tokens": 0,
+              "weighted_teacher_mass": 63937,
+              "outcome_weight": 1,
+              "seconds": 0.14547965800738893,
+              "data_wait_seconds": 0.0014632460079155862,
+              "tokens_per_second": 225241.1123920549,
+              "source_teachers": {
+                "web": 1,
+                "authored_news": 63936
+              },
+              "source_eos": {
+                "web": 0,
+                "authored_news": 576
+              },
+              "source_input_tokens": {
+                "web": 1024,
+                "authored_news": 64512
+              },
+              "source_body_bytes": {
+                "web": 6,
+                "authored_news": 235927
+              },
+              "source_focus_teachers": {
+                "web": 0,
+                "authored_news": 0
+              },
+              "valid_input_tokens": 65536,
+              "physical_input_tokens": 65536,
+              "additional_teacher_tokens": 63937
+            },
+            {
+              "update": 322688,
+              "loss": 3.1366405487060547,
+              "gradient_norm": 2.2410929203033447,
+              "lr": 1e-05,
+              "tokens_seen": 10573840384,
+              "supervised_tokens": 10551455243,
+              "body_bytes_seen": 41103745888,
+              "token_digest": "a266cdf894230f45482e49e94608a4e0024ff62690507c66bb2c5896358c0ab9",
+              "focus_token_digest": "418abf34492a99beca81c4cdb016b1a93aa1e13a20644bf7205a12554e71cebd",
+              "focus_teacher_tokens": 0,
+              "weighted_teacher_mass": 96404,
+              "outcome_weight": 1,
+              "seconds": 1.2496524979942478,
+              "data_wait_seconds": 0.0015304949774872512,
+              "tokens_per_second": 26221.68967180413,
+              "source_teachers": {
+                "web": 1,
+                "authored_news": 96403
+              },
+              "source_eos": {
+                "web": 0,
+                "authored_news": 878
+              },
+              "source_input_tokens": {
+                "web": 1024,
+                "authored_news": 97280
+              },
+              "source_body_bytes": {
+                "web": 6,
+                "authored_news": 358116
+              },
+              "source_focus_teachers": {
+                "web": 0,
+                "authored_news": 0
+              },
+              "valid_input_tokens": 98304,
+              "physical_input_tokens": 98304,
+              "additional_teacher_tokens": 96404
+            },
+            {
+              "update": 322689,
+              "loss": 3.073826789855957,
+              "gradient_norm": 2.210611343383789,
+              "lr": 1e-05,
+              "tokens_seen": 10573873152,
+              "supervised_tokens": 10551487688,
+              "body_bytes_seen": 41103865500,
+              "token_digest": "49f85bfa9def6e5a80322022fb4de8f67b40cb0347e90163c102d5f1c99d8b33",
+              "focus_token_digest": "fdc99c5fd5c4cd3c919cd356050a9758c5dcf2dd0864f0863a7b637398a1c800",
+              "focus_teacher_tokens": 0,
+              "weighted_teacher_mass": 128849,
+              "outcome_weight": 1,
+              "seconds": 0.1435591019981075,
+              "data_wait_seconds": 0.001268329011509195,
+              "tokens_per_second": 228254.42304892634,
+              "source_teachers": {
+                "web": 1,
+                "authored_news": 128848
+              },
+              "source_eos": {
+                "web": 0,
+                "authored_news": 1201
+              },
+              "source_input_tokens": {
+                "web": 1024,
+                "authored_news": 130048
+              },
+              "source_body_bytes": {
+                "web": 6,
+                "authored_news": 477728
+              },
+              "source_focus_teachers": {
+                "web": 0,
+                "authored_news": 0
+              },
+              "valid_input_tokens": 131072,
+              "physical_input_tokens": 131072,
+              "additional_teacher_tokens": 128849
+            }
+          ]
+        ],
+        "verification_teacher_tokens": 257698,
+        "GPU_optimizer_updates": 8
+      }
+    },
+    "timings": {
+      "original_Web": {
+        "histories": [
+          {
+            "update": 322686,
+            "loss": 2.6139869689941406,
+            "gradient_norm": 0.5256531834602356,
+            "lr": 1e-05,
+            "tokens_seen": 10573774848,
+            "supervised_tokens": 10551391542,
+            "body_bytes_seen": 41103515745,
+            "token_digest": "30f159b374f9a7bf61eac893106376f6ab44d1eda1318154daee6018388c83d6",
+            "focus_token_digest": "ce4ee963cc2f7be34222dbb73cbe9c1c7d1aa2835e0cfa336d10ca3c5fe9863d",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 32703,
+            "outcome_weight": 1,
+            "seconds": 1.2885382940003183,
+            "data_wait_seconds": 0.0014493119961116463,
+            "tokens_per_second": 25430.365672928852,
+            "source_teachers": {
+              "web": 32703,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 65,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 32768,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 127979,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 32768,
+            "physical_input_tokens": 32768,
+            "additional_teacher_tokens": 32703
+          },
+          {
+            "update": 322687,
+            "loss": 2.588653564453125,
+            "gradient_norm": 0.5047227740287781,
+            "lr": 1e-05,
+            "tokens_seen": 10573807616,
+            "supervised_tokens": 10551424242,
+            "body_bytes_seen": 41103641282,
+            "token_digest": "f24f02f605cfd1debfdb18214b0b8c2f18c63e4818fb997c0f0c1e6067b46daf",
+            "focus_token_digest": "11424cd1eb5c72bff37c295234bf6ae8f15a479cc4db67abcc480a892295faf5",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 65403,
+            "outcome_weight": 1,
+            "seconds": 0.14293622900731862,
+            "data_wait_seconds": 0.001206526008900255,
+            "tokens_per_second": 229249.08700594175,
+            "source_teachers": {
+              "web": 65403,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 133,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 65536,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 253516,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 65536,
+            "physical_input_tokens": 65536,
+            "additional_teacher_tokens": 65403
+          },
+          {
+            "update": 322688,
+            "loss": 2.5857632160186768,
+            "gradient_norm": 0.49824097752571106,
+            "lr": 1e-05,
+            "tokens_seen": 10573840384,
+            "supervised_tokens": 10551456943,
+            "body_bytes_seen": 41103770933,
+            "token_digest": "2762da238ffe0c8caf7ccd1579c75e0dec2d8eb5f8ed0431bef31f875730d3b5",
+            "focus_token_digest": "418abf34492a99beca81c4cdb016b1a93aa1e13a20644bf7205a12554e71cebd",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 98104,
+            "outcome_weight": 1,
+            "seconds": 0.08015342699945904,
+            "data_wait_seconds": 0.0011920329998247325,
+            "tokens_per_second": 408815.9574290086,
+            "source_teachers": {
+              "web": 98104,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 200,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 98304,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 383167,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 98304,
+            "physical_input_tokens": 98304,
+            "additional_teacher_tokens": 98104
+          },
+          {
+            "update": 322689,
+            "loss": 2.627068042755127,
+            "gradient_norm": 0.5201655030250549,
+            "lr": 1e-05,
+            "tokens_seen": 10573873152,
+            "supervised_tokens": 10551489635,
+            "body_bytes_seen": 41103899284,
+            "token_digest": "062a0a4bae83e07861c73a51267cc6c8f0a90af32b4065cd6cd3c1bbfaa46f67",
+            "focus_token_digest": "fdc99c5fd5c4cd3c919cd356050a9758c5dcf2dd0864f0863a7b637398a1c800",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 130796,
+            "outcome_weight": 1,
+            "seconds": 0.04842466599075124,
+            "data_wait_seconds": 0.00120656201033853,
+            "tokens_per_second": 676679.9384069775,
+            "source_teachers": {
+              "web": 130796,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 276,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 131072,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 511518,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 131072,
+            "physical_input_tokens": 131072,
+            "additional_teacher_tokens": 130796
+          },
+          {
+            "update": 322690,
+            "loss": 2.5403075218200684,
+            "gradient_norm": 0.5067619681358337,
+            "lr": 1e-05,
+            "tokens_seen": 10573905920,
+            "supervised_tokens": 10551522329,
+            "body_bytes_seen": 41104028035,
+            "token_digest": "b7433bc46e26db0678d2fe81204a9fb7fa39f4bd2a8aa3edafd77bd922c317c6",
+            "focus_token_digest": "394496504d699aadeaed4c95fd71d4a4fc782aa9cb269c88cb39dbb8ac089d98",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 163490,
+            "outcome_weight": 1,
+            "seconds": 0.16686147599830292,
+            "data_wait_seconds": 0.11874790498404764,
+            "tokens_per_second": 196378.46185858545,
+            "source_teachers": {
+              "web": 163490,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 349,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 163840,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 640269,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 163840,
+            "physical_input_tokens": 163840,
+            "additional_teacher_tokens": 163490
+          },
+          {
+            "update": 322691,
+            "loss": 2.574018955230713,
+            "gradient_norm": 0.5151429176330566,
+            "lr": 1e-05,
+            "tokens_seen": 10573938688,
+            "supervised_tokens": 10551555035,
+            "body_bytes_seen": 41104154533,
+            "token_digest": "958c4a5147f69b79a3f33f1b866496686822cd7d01926613a4633295bd1ff2f0",
+            "focus_token_digest": "a772c2297f6e62fffbc2e4b4f7a6dbbe40ec267522851c4d6c4f42bc4c378b55",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 196196,
+            "outcome_weight": 1,
+            "seconds": 0.151628471998265,
+            "data_wait_seconds": 0.10402003300259821,
+            "tokens_per_second": 216107.17016507918,
+            "source_teachers": {
+              "web": 196196,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 411,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 196608,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 766767,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 196608,
+            "physical_input_tokens": 196608,
+            "additional_teacher_tokens": 196196
+          },
+          {
+            "update": 322692,
+            "loss": 2.576333999633789,
+            "gradient_norm": 0.5060902237892151,
+            "lr": 1e-05,
+            "tokens_seen": 10573971456,
+            "supervised_tokens": 10551587727,
+            "body_bytes_seen": 41104282918,
+            "token_digest": "f7cea7a55fe1cce83a0dc98f76716b357751478900bf8e270888bb5b507826aa",
+            "focus_token_digest": "6c81bc3a5df04754c54460d8a37200c19b0e342fba177bbf69aafd60ca7465fc",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 228888,
+            "outcome_weight": 1,
+            "seconds": 0.15856380597688258,
+            "data_wait_seconds": 0.11027708399342373,
+            "tokens_per_second": 206654.97903586732,
+            "source_teachers": {
+              "web": 228888,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 487,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 229376,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 895152,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 229376,
+            "physical_input_tokens": 229376,
+            "additional_teacher_tokens": 228888
+          },
+          {
+            "update": 322693,
+            "loss": 2.600205898284912,
+            "gradient_norm": 0.5221519470214844,
+            "lr": 1e-05,
+            "tokens_seen": 10574004224,
+            "supervised_tokens": 10551620427,
+            "body_bytes_seen": 41104409625,
+            "token_digest": "6346a731d59f6bbd3790531a74bffbb4ba5f88ac7137fed14069642fbd6b6356",
+            "focus_token_digest": "bd8e2fe9f72e014aa66a27b26656aaa45cbd0b82398c668bc19716133483e3a4",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 261588,
+            "outcome_weight": 1,
+            "seconds": 0.1387012219929602,
+            "data_wait_seconds": 0.0907800910063088,
+            "tokens_per_second": 236248.81979528014,
+            "source_teachers": {
+              "web": 261588,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 555,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 262144,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 1021859,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 262144,
+            "physical_input_tokens": 262144,
+            "additional_teacher_tokens": 261588
+          },
+          {
+            "update": 322694,
+            "loss": 2.5698816776275635,
+            "gradient_norm": 0.510818600654602,
+            "lr": 1e-05,
+            "tokens_seen": 10574036992,
+            "supervised_tokens": 10551653128,
+            "body_bytes_seen": 41104537296,
+            "token_digest": "d058fbe9dbbabf83146de9a383ee5520cc769be90b5304ffefa0f52e5cbd03cb",
+            "focus_token_digest": "27a80c1e0d2e5c61a9390b5c05036479758c266b0b2a047f5b802f8cc6d4e09f",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 294289,
+            "outcome_weight": 1,
+            "seconds": 0.1534715839952696,
+            "data_wait_seconds": 0.10501522498088889,
+            "tokens_per_second": 213511.83813291453,
+            "source_teachers": {
+              "web": 294289,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 622,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 294912,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 1149530,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 294912,
+            "physical_input_tokens": 294912,
+            "additional_teacher_tokens": 294289
+          },
+          {
+            "update": 322695,
+            "loss": 2.5735278129577637,
+            "gradient_norm": 0.4927869141101837,
+            "lr": 1e-05,
+            "tokens_seen": 10574069760,
+            "supervised_tokens": 10551685824,
+            "body_bytes_seen": 41104665441,
+            "token_digest": "1e7dfeed7201109e93677acdad6b5ca3c476b5a05f20ded1f0c59386e8661ad7",
+            "focus_token_digest": "e6028f197d4c981c9c512c807f1425d2e6fd453b9e705d72ca539cbaa47b29f4",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 326985,
+            "outcome_weight": 1,
+            "seconds": 0.145492326002568,
+            "data_wait_seconds": 0.09769967800821178,
+            "tokens_per_second": 225221.5006819097,
+            "source_teachers": {
+              "web": 326985,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 694,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 327680,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 1277675,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 327680,
+            "physical_input_tokens": 327680,
+            "additional_teacher_tokens": 326985
+          },
+          {
+            "update": 322696,
+            "loss": 2.4931833744049072,
+            "gradient_norm": 0.5808648467063904,
+            "lr": 1e-05,
+            "tokens_seen": 10574102528,
+            "supervised_tokens": 10551718518,
+            "body_bytes_seen": 41104791672,
+            "token_digest": "5b28d364bce7383746bbbf422678e9959bbc7e4b908af7644817619e9c35df22",
+            "focus_token_digest": "8cd2e17fe76d87364374a3738d87dac840438882a88ca07c522c5ae065713db9",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 359679,
+            "outcome_weight": 1,
+            "seconds": 0.15271573801874183,
+            "data_wait_seconds": 0.104773938015569,
+            "tokens_per_second": 214568.58621852446,
+            "source_teachers": {
+              "web": 359679,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 768,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 360448,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 1403906,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 360448,
+            "physical_input_tokens": 360448,
+            "additional_teacher_tokens": 359679
+          },
+          {
+            "update": 322697,
+            "loss": 2.542553663253784,
+            "gradient_norm": 0.5073238015174866,
+            "lr": 1e-05,
+            "tokens_seen": 10574135296,
+            "supervised_tokens": 10551751216,
+            "body_bytes_seen": 41104918467,
+            "token_digest": "beb4cc880aa068a45a82f904059d4a3cead078d153a62d466fed82b5e44c0fc2",
+            "focus_token_digest": "251c30e96153f94d8d4dd63e3618223b852cf536fb263cea68c046c9f33fc099",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 392377,
+            "outcome_weight": 1,
+            "seconds": 0.13673443801235408,
+            "data_wait_seconds": 0.08869647199753672,
+            "tokens_per_second": 239647.0156043599,
+            "source_teachers": {
+              "web": 392377,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 838,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 393216,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 1530701,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 393216,
+            "physical_input_tokens": 393216,
+            "additional_teacher_tokens": 392377
+          },
+          {
+            "update": 322698,
+            "loss": 2.558502674102783,
+            "gradient_norm": 0.5153638124465942,
+            "lr": 1e-05,
+            "tokens_seen": 10574168064,
+            "supervised_tokens": 10551783921,
+            "body_bytes_seen": 41105044289,
+            "token_digest": "d28eeedc0828902c52ecc999185331ec959bb5bd349c5de7ff6ffb557b1fe63e",
+            "focus_token_digest": "b0e1816e287f1ff6e309bcf9a34da1d3b37cde397103f3edd7ceae4c2e93384f",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 425082,
+            "outcome_weight": 1,
+            "seconds": 0.13929862499935552,
+            "data_wait_seconds": 0.09167782199801877,
+            "tokens_per_second": 235235.63136500167,
+            "source_teachers": {
+              "web": 425082,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 901,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 425984,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 1656523,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 425984,
+            "physical_input_tokens": 425984,
+            "additional_teacher_tokens": 425082
+          },
+          {
+            "update": 322699,
+            "loss": 2.6030843257904053,
+            "gradient_norm": 0.5595636963844299,
+            "lr": 1e-05,
+            "tokens_seen": 10574200832,
+            "supervised_tokens": 10551816617,
+            "body_bytes_seen": 41105174281,
+            "token_digest": "93afa69bb6b8672c6e1ecd21fbfb3c67e7aab39c04ad072038dc6bdd289ef045",
+            "focus_token_digest": "306240e5de6417999d05df5e88061fc1866ebd1e5dc8ea6f0214b843ab46e6d8",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 457778,
+            "outcome_weight": 1,
+            "seconds": 0.14021747699007392,
+            "data_wait_seconds": 0.09247775300173089,
+            "tokens_per_second": 233694.12075728382,
+            "source_teachers": {
+              "web": 457778,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 973,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 458752,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 1786515,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 458752,
+            "physical_input_tokens": 458752,
+            "additional_teacher_tokens": 457778
+          },
+          {
+            "update": 322700,
+            "loss": 2.5941357612609863,
+            "gradient_norm": 0.4998118579387665,
+            "lr": 1e-05,
+            "tokens_seen": 10574233600,
+            "supervised_tokens": 10551849312,
+            "body_bytes_seen": 41105298456,
+            "token_digest": "81ff40cfc3eb5c01af20515e2f5ec5aa5f13620e049c89d7d6cd382b8dc649c7",
+            "focus_token_digest": "d25e93f2c62a6ea0c0046dd270121b03deeaecc81d9abdcc6db76ae576e7d690",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 490473,
+            "outcome_weight": 1,
+            "seconds": 0.1398636400117539,
+            "data_wait_seconds": 0.0921780780190602,
+            "tokens_per_second": 234285.33675547296,
+            "source_teachers": {
+              "web": 490473,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 1046,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 491520,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 1910690,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 491520,
+            "physical_input_tokens": 491520,
+            "additional_teacher_tokens": 490473
+          },
+          {
+            "update": 322701,
+            "loss": 2.627851724624634,
+            "gradient_norm": 0.5132027864456177,
+            "lr": 1e-05,
+            "tokens_seen": 10574266368,
+            "supervised_tokens": 10551882007,
+            "body_bytes_seen": 41105423687,
+            "token_digest": "4eed7a65155aaf4f8be56e7493030a793339e06f030f1513e44e5bd39b7f14a2",
+            "focus_token_digest": "b77ff54e51a0fe6dbeee354a1ad3dc37cfb58b505f4fd15bd58477fa0a92f0a8",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 523168,
+            "outcome_weight": 1,
+            "seconds": 0.12449209700571373,
+            "data_wait_seconds": 0.07702978100860491,
+            "tokens_per_second": 263213.4953795185,
+            "source_teachers": {
+              "web": 523168,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 1120,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 524288,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 2035921,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 524288,
+            "physical_input_tokens": 524288,
+            "additional_teacher_tokens": 523168
+          },
+          {
+            "update": 322702,
+            "loss": 2.6179144382476807,
+            "gradient_norm": 0.5059074759483337,
+            "lr": 1e-05,
+            "tokens_seen": 10574299136,
+            "supervised_tokens": 10551914701,
+            "body_bytes_seen": 41105549048,
+            "token_digest": "b68d69556cd9fecc18df749d9c64737401960cfedb8f30a7f51bf730a878d0fe",
+            "focus_token_digest": "8db1f792a40f902d19cd02d1449cb65b051031f98f7f2d6833de3e5bfe782883",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 555862,
+            "outcome_weight": 1,
+            "seconds": 0.14746368999476545,
+            "data_wait_seconds": 0.09984446698217653,
+            "tokens_per_second": 222210.63368998276,
+            "source_teachers": {
+              "web": 555862,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 1194,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 557056,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 2161282,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 557056,
+            "physical_input_tokens": 557056,
+            "additional_teacher_tokens": 555862
+          },
+          {
+            "update": 322703,
+            "loss": 2.6247663497924805,
+            "gradient_norm": 0.5083089470863342,
+            "lr": 1e-05,
+            "tokens_seen": 10574331904,
+            "supervised_tokens": 10551947401,
+            "body_bytes_seen": 41105677454,
+            "token_digest": "06fea4f5dd5957e2fbeaf98b6a85f230db125b85cb35f5c500e4d15b93f28394",
+            "focus_token_digest": "d327312ec4555a370f28d395c9ed98207e89fa909c27877aef8ed0da36b8196c",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 588562,
+            "outcome_weight": 1,
+            "seconds": 0.13841474399669096,
+            "data_wait_seconds": 0.09090896998532116,
+            "tokens_per_second": 236737.78568548575,
+            "source_teachers": {
+              "web": 588562,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 1262,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 589824,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 2289688,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 589824,
+            "physical_input_tokens": 589824,
+            "additional_teacher_tokens": 588562
+          },
+          {
+            "update": 322704,
+            "loss": 2.6405279636383057,
+            "gradient_norm": 0.5345525741577148,
+            "lr": 1e-05,
+            "tokens_seen": 10574364672,
+            "supervised_tokens": 10551980099,
+            "body_bytes_seen": 41105804821,
+            "token_digest": "81d853cdccf6b5f4b040a20b97c4870d4aa01539932b06a928f9f58c01866ff1",
+            "focus_token_digest": "eaaeb81d7ac468b3144e693d421e5c021d423b9e927077cc9ad8af6c02e50ada",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 621260,
+            "outcome_weight": 1,
+            "seconds": 0.12281868100399151,
+            "data_wait_seconds": 0.07534176402259618,
+            "tokens_per_second": 266799.8038420154,
+            "source_teachers": {
+              "web": 621260,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 1332,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 622592,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 2417055,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 622592,
+            "physical_input_tokens": 622592,
+            "additional_teacher_tokens": 621260
+          },
+          {
+            "update": 322705,
+            "loss": 2.5959973335266113,
+            "gradient_norm": 0.4940318465232849,
+            "lr": 1e-05,
+            "tokens_seen": 10574397440,
+            "supervised_tokens": 10552012788,
+            "body_bytes_seen": 41105930997,
+            "token_digest": "3ba9c695c809574da80020f8f1cbbb387c545685697b6d6d005873c64c909373",
+            "focus_token_digest": "c37d43691c854dc7a2f375f8ecfb51fbe05f4aacf4955f8ed67f6f00432beb43",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 653949,
+            "outcome_weight": 1,
+            "seconds": 0.13454949599690735,
+            "data_wait_seconds": 0.0870242649980355,
+            "tokens_per_second": 243538.63057765135,
+            "source_teachers": {
+              "web": 653949,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 1411,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 655360,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 2543231,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 655360,
+            "physical_input_tokens": 655360,
+            "additional_teacher_tokens": 653949
+          },
+          {
+            "update": 322706,
+            "loss": 2.6292591094970703,
+            "gradient_norm": 0.5003305077552795,
+            "lr": 1e-05,
+            "tokens_seen": 10574430208,
+            "supervised_tokens": 10552045486,
+            "body_bytes_seen": 41106059548,
+            "token_digest": "faaa20399d293e341113214d5e1ae562d014f8ebe30dcb3b3fad5e8acb791e16",
+            "focus_token_digest": "72d7aee51709849a1fc332e9542918efaa2a0452be67aa12ecf277619a44b8af",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 686647,
+            "outcome_weight": 1,
+            "seconds": 0.1395593060005922,
+            "data_wait_seconds": 0.09189259097911417,
+            "tokens_per_second": 234796.2378077529,
+            "source_teachers": {
+              "web": 686647,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 1481,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 688128,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 2671782,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 688128,
+            "physical_input_tokens": 688128,
+            "additional_teacher_tokens": 686647
+          },
+          {
+            "update": 322707,
+            "loss": 2.551379919052124,
+            "gradient_norm": 0.530258297920227,
+            "lr": 1e-05,
+            "tokens_seen": 10574462976,
+            "supervised_tokens": 10552078180,
+            "body_bytes_seen": 41106187834,
+            "token_digest": "6971eeaa1f09f464eec8b6e934d715bd9e972442fef3f1aa997dc32b45aa80bc",
+            "focus_token_digest": "c24e5581ded26c502ca28aa962affdd703bf4b8bed600bdc92250165bbfe7a3c",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 719341,
+            "outcome_weight": 1,
+            "seconds": 0.1320020349812694,
+            "data_wait_seconds": 0.08428525397903286,
+            "tokens_per_second": 248238.5972659411,
+            "source_teachers": {
+              "web": 719341,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 1554,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 720896,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 2800068,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 720896,
+            "physical_input_tokens": 720896,
+            "additional_teacher_tokens": 719341
+          },
+          {
+            "update": 322708,
+            "loss": 2.596116065979004,
+            "gradient_norm": 0.4946129024028778,
+            "lr": 1e-05,
+            "tokens_seen": 10574495744,
+            "supervised_tokens": 10552110883,
+            "body_bytes_seen": 41106317975,
+            "token_digest": "1a9d170bbefbf2d4f9ccec6d47aeae21a43cd4cf3347d9da017f844a1983ca72",
+            "focus_token_digest": "7101e81200fc7acb4a64985f2678cbf2c2d21cd338b13c9deff4ca65fb89baf7",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 752044,
+            "outcome_weight": 1,
+            "seconds": 0.14614718599477783,
+            "data_wait_seconds": 0.09818902501137927,
+            "tokens_per_second": 224212.32250869938,
+            "source_teachers": {
+              "web": 752044,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 1619,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 753664,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 2930209,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 753664,
+            "physical_input_tokens": 753664,
+            "additional_teacher_tokens": 752044
+          },
+          {
+            "update": 322709,
+            "loss": 2.6013946533203125,
+            "gradient_norm": 0.49932241439819336,
+            "lr": 1e-05,
+            "tokens_seen": 10574528512,
+            "supervised_tokens": 10552143586,
+            "body_bytes_seen": 41106444047,
+            "token_digest": "21e070db73621933e115070f5aafcccff14ee528f3ac7490cc4cbe4f4f9e61e1",
+            "focus_token_digest": "c0417f8d8057d16c01d1f7524e3bcc9aa20ac08de7de2826685a3647f75548f9",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 784747,
+            "outcome_weight": 1,
+            "seconds": 0.13973442401038483,
+            "data_wait_seconds": 0.09157062202575617,
+            "tokens_per_second": 234501.98640790716,
+            "source_teachers": {
+              "web": 784747,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 1684,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 786432,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 3056281,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 786432,
+            "physical_input_tokens": 786432,
+            "additional_teacher_tokens": 784747
+          },
+          {
+            "update": 322710,
+            "loss": 2.6036486625671387,
+            "gradient_norm": 0.5417782664299011,
+            "lr": 1e-05,
+            "tokens_seen": 10574561280,
+            "supervised_tokens": 10552176292,
+            "body_bytes_seen": 41106569783,
+            "token_digest": "5c8cf495c9a1a5aca7661f2bc5dab8940dc68229660b2934e73816248e0397c7",
+            "focus_token_digest": "01adea112b05d34ad81e1cde8002d7ba61bf3efd817fbde1966d095a0b195953",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 817453,
+            "outcome_weight": 1,
+            "seconds": 0.11544204299570993,
+            "data_wait_seconds": 0.0680417719995603,
+            "tokens_per_second": 283848.0604611071,
+            "source_teachers": {
+              "web": 817453,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 1747,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 819200,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 3182017,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 819200,
+            "physical_input_tokens": 819200,
+            "additional_teacher_tokens": 817453
+          },
+          {
+            "update": 322711,
+            "loss": 2.5992510318756104,
+            "gradient_norm": 0.5025603175163269,
+            "lr": 1e-05,
+            "tokens_seen": 10574594048,
+            "supervised_tokens": 10552208991,
+            "body_bytes_seen": 41106697842,
+            "token_digest": "bc9d2ccf1f75063adbd05417b4a52163b47db7cd57ca55b07601bb5c9dea8ef2",
+            "focus_token_digest": "c6a7b039edf61693d08eaa6bf47ec888ae16aea4dbba40a9b7b935fc1de131fa",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 850152,
+            "outcome_weight": 1,
+            "seconds": 0.11906729202019051,
+            "data_wait_seconds": 0.07126611500279978,
+            "tokens_per_second": 275205.7214372815,
+            "source_teachers": {
+              "web": 850152,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 1816,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 851968,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 3310076,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 851968,
+            "physical_input_tokens": 851968,
+            "additional_teacher_tokens": 850152
+          },
+          {
+            "update": 322712,
+            "loss": 2.641932725906372,
+            "gradient_norm": 0.515730619430542,
+            "lr": 1e-05,
+            "tokens_seen": 10574626816,
+            "supervised_tokens": 10552241690,
+            "body_bytes_seen": 41106824987,
+            "token_digest": "961e97a8f6ef9c9fa85cfba094f8c7dedc61450ca7ace045104bda8af6ad92bb",
+            "focus_token_digest": "526779d0ec543bbc0457239075ca6a66715302bae51a5b8058aff1191b1bfb06",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 882851,
+            "outcome_weight": 1,
+            "seconds": 0.13411252101650462,
+            "data_wait_seconds": 0.08627939599682577,
+            "tokens_per_second": 244332.14551210616,
+            "source_teachers": {
+              "web": 882851,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 1885,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 884736,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 3437221,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 884736,
+            "physical_input_tokens": 884736,
+            "additional_teacher_tokens": 882851
+          },
+          {
+            "update": 322713,
+            "loss": 2.5666086673736572,
+            "gradient_norm": 0.49635380506515503,
+            "lr": 1e-05,
+            "tokens_seen": 10574659584,
+            "supervised_tokens": 10552274388,
+            "body_bytes_seen": 41106952726,
+            "token_digest": "0996b0b4953b982b707bab24965d5a5c6faaca839ad01166c431164c6f6914c9",
+            "focus_token_digest": "fe0e2fdb46d2544474f4306284c8fae171c3c16e8889a8d18c329b6721dd4b16",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 915549,
+            "outcome_weight": 1,
+            "seconds": 0.1294841300114058,
+            "data_wait_seconds": 0.081893210997805,
+            "tokens_per_second": 253065.76178187694,
+            "source_teachers": {
+              "web": 915549,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 1955,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 917504,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 3564960,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 917504,
+            "physical_input_tokens": 917504,
+            "additional_teacher_tokens": 915549
+          },
+          {
+            "update": 322714,
+            "loss": 2.6028733253479004,
+            "gradient_norm": 0.5340588688850403,
+            "lr": 1e-05,
+            "tokens_seen": 10574692352,
+            "supervised_tokens": 10552307087,
+            "body_bytes_seen": 41107080731,
+            "token_digest": "7ebb977ae75164ea315711f8077e45e6042ad04664d987243c52136981448542",
+            "focus_token_digest": "0e498dc1768336da0fc28cdb3b2bebcaf87a6d0d1a9a7a51cf369f5abd97d7e9",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 948248,
+            "outcome_weight": 1,
+            "seconds": 0.1354143230128102,
+            "data_wait_seconds": 0.087549162999494,
+            "tokens_per_second": 241983.2649231658,
+            "source_teachers": {
+              "web": 948248,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 2024,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 950272,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 3692965,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 950272,
+            "physical_input_tokens": 950272,
+            "additional_teacher_tokens": 948248
+          },
+          {
+            "update": 322715,
+            "loss": 2.5944464206695557,
+            "gradient_norm": 0.5244473814964294,
+            "lr": 1e-05,
+            "tokens_seen": 10574725120,
+            "supervised_tokens": 10552339778,
+            "body_bytes_seen": 41107206555,
+            "token_digest": "9573fca2dc674824d3adf2ce51572b0e0d51bc3619d0c4656c293494a54cc017",
+            "focus_token_digest": "1ae77d840aa2f2ca5c71fc311fe54b211346cb6021676c51701469f19e9f4258",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 980939,
+            "outcome_weight": 1,
+            "seconds": 0.1358308540075086,
+            "data_wait_seconds": 0.0878932409978006,
+            "tokens_per_second": 241241.21312075836,
+            "source_teachers": {
+              "web": 980939,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 2101,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 983040,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 3818789,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 983040,
+            "physical_input_tokens": 983040,
+            "additional_teacher_tokens": 980939
+          },
+          {
+            "update": 322716,
+            "loss": 2.5810232162475586,
+            "gradient_norm": 0.5078508257865906,
+            "lr": 1e-05,
+            "tokens_seen": 10574757888,
+            "supervised_tokens": 10552372476,
+            "body_bytes_seen": 41107334641,
+            "token_digest": "46c7fd06d599d2bb0b53a2c88a637e180b50c38bbe559122d42f7163efe62d7c",
+            "focus_token_digest": "9ad9eb00e861c60cc36ffcca0c8d0a8438342103e74926e72711519998d93956",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 1013637,
+            "outcome_weight": 1,
+            "seconds": 0.12532995801302604,
+            "data_wait_seconds": 0.0772410640201997,
+            "tokens_per_second": 261453.84965815028,
+            "source_teachers": {
+              "web": 1013637,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 2171,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 1015808,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 3946875,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 1015808,
+            "physical_input_tokens": 1015808,
+            "additional_teacher_tokens": 1013637
+          },
+          {
+            "update": 322717,
+            "loss": 2.6323468685150146,
+            "gradient_norm": 0.5112051963806152,
+            "lr": 1e-05,
+            "tokens_seen": 10574790656,
+            "supervised_tokens": 10552405175,
+            "body_bytes_seen": 41107461671,
+            "token_digest": "df8c6524bf4f278bb02be93b6b79307ed649199f5fe75076a4dedbc7bb77ab71",
+            "focus_token_digest": "966cdabfd2f4ac92a37050e3597fb33485c4a51b28a7fb22657480962ca03c2e",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 1046336,
+            "outcome_weight": 1,
+            "seconds": 0.12828522402560338,
+            "data_wait_seconds": 0.08054292702581733,
+            "tokens_per_second": 255430.82025923816,
+            "source_teachers": {
+              "web": 1046336,
+              "authored_news": 0
+            },
+            "source_eos": {
+              "web": 2240,
+              "authored_news": 0
+            },
+            "source_input_tokens": {
+              "web": 1048576,
+              "authored_news": 0
+            },
+            "source_body_bytes": {
+              "web": 4073905,
+              "authored_news": 0
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 1048576,
+            "physical_input_tokens": 1048576,
+            "additional_teacher_tokens": 1046336
+          }
+        ],
+        "verification_teacher_tokens": 1046336,
+        "terminal_save_seconds": 0.16470115300035104,
+        "peak_VRAM_bytes": 6149106176,
+        "checkpoint": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/livedoor-base-comparison-v2-20261006/probe/original_Web/timing.pt",
+          "sha256": "0d97866235203182359f581b6d01c2704c2f0713c258bcb1d4271409811fdb1a"
+        }
+      },
+      "news_boundary_stress": {
+        "histories": [
+          {
+            "update": 322686,
+            "loss": 3.1059751510620117,
+            "gradient_norm": 2.8023416996002197,
+            "lr": 1e-05,
+            "tokens_seen": 10573774848,
+            "supervised_tokens": 10551390316,
+            "body_bytes_seen": 41103505931,
+            "token_digest": "92132cfef9ca368942d643559f45c25d0b2ebf2f0bd0ca4bdb3a759290224a34",
+            "focus_token_digest": "ce4ee963cc2f7be34222dbb73cbe9c1c7d1aa2835e0cfa336d10ca3c5fe9863d",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 31477,
+            "outcome_weight": 1,
+            "seconds": 1.2948942470247857,
+            "data_wait_seconds": 0.0014150630158837885,
+            "tokens_per_second": 25305.541417987923,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 31476
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 268
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 31744
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 118159
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 32768,
+            "physical_input_tokens": 32768,
+            "additional_teacher_tokens": 31477
+          },
+          {
+            "update": 322687,
+            "loss": 3.1423251628875732,
+            "gradient_norm": 2.86855149269104,
+            "lr": 1e-05,
+            "tokens_seen": 10573807616,
+            "supervised_tokens": 10551422776,
+            "body_bytes_seen": 41103623699,
+            "token_digest": "76b645a996fea20f2151b6ae9704cfc491fcc9ffbd8295615a165519e9ae936f",
+            "focus_token_digest": "11424cd1eb5c72bff37c295234bf6ae8f15a479cc4db67abcc480a892295faf5",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 63937,
+            "outcome_weight": 1,
+            "seconds": 0.18861013001878746,
+            "data_wait_seconds": 0.001177206024294719,
+            "tokens_per_second": 173734.0406728736,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 63936
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 576
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 64512
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 235927
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 65536,
+            "physical_input_tokens": 65536,
+            "additional_teacher_tokens": 63937
+          },
+          {
+            "update": 322688,
+            "loss": 3.1366405487060547,
+            "gradient_norm": 2.2410929203033447,
+            "lr": 1e-05,
+            "tokens_seen": 10573840384,
+            "supervised_tokens": 10551455243,
+            "body_bytes_seen": 41103745888,
+            "token_digest": "a266cdf894230f45482e49e94608a4e0024ff62690507c66bb2c5896358c0ab9",
+            "focus_token_digest": "418abf34492a99beca81c4cdb016b1a93aa1e13a20644bf7205a12554e71cebd",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 96404,
+            "outcome_weight": 1,
+            "seconds": 0.11507175298174843,
+            "data_wait_seconds": 0.001204287982545793,
+            "tokens_per_second": 284761.4566643244,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 96403
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 878
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 97280
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 358116
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 98304,
+            "physical_input_tokens": 98304,
+            "additional_teacher_tokens": 96404
+          },
+          {
+            "update": 322689,
+            "loss": 3.073826789855957,
+            "gradient_norm": 2.210611343383789,
+            "lr": 1e-05,
+            "tokens_seen": 10573873152,
+            "supervised_tokens": 10551487688,
+            "body_bytes_seen": 41103865500,
+            "token_digest": "49f85bfa9def6e5a80322022fb4de8f67b40cb0347e90163c102d5f1c99d8b33",
+            "focus_token_digest": "fdc99c5fd5c4cd3c919cd356050a9758c5dcf2dd0864f0863a7b637398a1c800",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 128849,
+            "outcome_weight": 1,
+            "seconds": 0.0678046630055178,
+            "data_wait_seconds": 0.00114326601033099,
+            "tokens_per_second": 483270.5974415567,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 128848
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 1201
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 130048
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 477728
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 131072,
+            "physical_input_tokens": 131072,
+            "additional_teacher_tokens": 128849
+          },
+          {
+            "update": 322690,
+            "loss": 3.121612787246704,
+            "gradient_norm": 2.1903035640716553,
+            "lr": 1e-05,
+            "tokens_seen": 10573905920,
+            "supervised_tokens": 10551520154,
+            "body_bytes_seen": 41103985961,
+            "token_digest": "a0ca8abd384ae7030cf687507e9d87e9782cd31ecaeb57611b63190e8f96f7ba",
+            "focus_token_digest": "394496504d699aadeaed4c95fd71d4a4fc782aa9cb269c88cb39dbb8ac089d98",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 161315,
+            "outcome_weight": 1,
+            "seconds": 0.04774582901154645,
+            "data_wait_seconds": 0.00109958800021559,
+            "tokens_per_second": 686300.7864430558,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 161314
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 1503
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 162816
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 598189
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 163840,
+            "physical_input_tokens": 163840,
+            "additional_teacher_tokens": 161315
+          },
+          {
+            "update": 322691,
+            "loss": 3.0897302627563477,
+            "gradient_norm": 2.0622377395629883,
+            "lr": 1e-05,
+            "tokens_seen": 10573938688,
+            "supervised_tokens": 10551552623,
+            "body_bytes_seen": 41104105103,
+            "token_digest": "4f8be6f6625224c8c94161f221c462b9e39b275dad5ce2d89436c0ac732ed599",
+            "focus_token_digest": "a772c2297f6e62fffbc2e4b4f7a6dbbe40ec267522851c4d6c4f42bc4c378b55",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 193784,
+            "outcome_weight": 1,
+            "seconds": 0.04779550698003732,
+            "data_wait_seconds": 0.001092969992896542,
+            "tokens_per_second": 685587.4551908439,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 193783
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 1802
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 195584
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 717331
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 196608,
+            "physical_input_tokens": 196608,
+            "additional_teacher_tokens": 193784
+          },
+          {
+            "update": 322692,
+            "loss": 3.0860772132873535,
+            "gradient_norm": 1.8042287826538086,
+            "lr": 1e-05,
+            "tokens_seen": 10573971456,
+            "supervised_tokens": 10551585065,
+            "body_bytes_seen": 41104224307,
+            "token_digest": "63491e8666aeec38a9ac7a680f040db8fd55ea5934ca34d665d23858c37ae955",
+            "focus_token_digest": "6c81bc3a5df04754c54460d8a37200c19b0e342fba177bbf69aafd60ca7465fc",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 226226,
+            "outcome_weight": 1,
+            "seconds": 0.04793268398498185,
+            "data_wait_seconds": 0.0010000999900512397,
+            "tokens_per_second": 683625.3945276001,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 226225
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 2128
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 228352
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 836535
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 229376,
+            "physical_input_tokens": 229376,
+            "additional_teacher_tokens": 226226
+          },
+          {
+            "update": 322693,
+            "loss": 3.0671908855438232,
+            "gradient_norm": 1.7711937427520752,
+            "lr": 1e-05,
+            "tokens_seen": 10574004224,
+            "supervised_tokens": 10551617524,
+            "body_bytes_seen": 41104342336,
+            "token_digest": "c310ee209edbf258cb13fa2e89ae0f933a50afc8504df352084c31566b791288",
+            "focus_token_digest": "bd8e2fe9f72e014aa66a27b26656aaa45cbd0b82398c668bc19716133483e3a4",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 258685,
+            "outcome_weight": 1,
+            "seconds": 0.04798709601163864,
+            "data_wait_seconds": 0.0010096030018758029,
+            "tokens_per_second": 682850.2394071221,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 258684
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 2437
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 261120
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 954564
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 262144,
+            "physical_input_tokens": 262144,
+            "additional_teacher_tokens": 258685
+          },
+          {
+            "update": 322694,
+            "loss": 3.022529363632202,
+            "gradient_norm": 1.8023247718811035,
+            "lr": 1e-05,
+            "tokens_seen": 10574036992,
+            "supervised_tokens": 10551649979,
+            "body_bytes_seen": 41104462297,
+            "token_digest": "2582b021bed0b5a7fb08e79475c179ecfc191e792150c24bf8d51a61852ebce8",
+            "focus_token_digest": "27a80c1e0d2e5c61a9390b5c05036479758c266b0b2a047f5b802f8cc6d4e09f",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 291140,
+            "outcome_weight": 1,
+            "seconds": 0.04819454200332984,
+            "data_wait_seconds": 0.0012274420005269349,
+            "tokens_per_second": 679911.0156028873,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 291139
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 2750
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 293888
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 1074525
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 294912,
+            "physical_input_tokens": 294912,
+            "additional_teacher_tokens": 291140
+          },
+          {
+            "update": 322695,
+            "loss": 3.075981855392456,
+            "gradient_norm": 1.5672945976257324,
+            "lr": 1e-05,
+            "tokens_seen": 10574069760,
+            "supervised_tokens": 10551682442,
+            "body_bytes_seen": 41104581880,
+            "token_digest": "9a40605fb43667b527329ab83f6d26bffd1fd381b198de7935c60e32ad25f3f2",
+            "focus_token_digest": "e6028f197d4c981c9c512c807f1425d2e6fd453b9e705d72ca539cbaa47b29f4",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 323603,
+            "outcome_weight": 1,
+            "seconds": 0.04768527200212702,
+            "data_wait_seconds": 0.0009869399946182966,
+            "tokens_per_second": 687172.3411484025,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 323602
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 3055
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 326656
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 1194108
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 327680,
+            "physical_input_tokens": 327680,
+            "additional_teacher_tokens": 323603
+          },
+          {
+            "update": 322696,
+            "loss": 3.1069705486297607,
+            "gradient_norm": 1.6399961709976196,
+            "lr": 1e-05,
+            "tokens_seen": 10574102528,
+            "supervised_tokens": 10551714886,
+            "body_bytes_seen": 41104701876,
+            "token_digest": "b636e66c2732fda50ed91a60531e37195770b7ff6144061d3a4ebb3b6a399274",
+            "focus_token_digest": "8cd2e17fe76d87364374a3738d87dac840438882a88ca07c522c5ae065713db9",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 356047,
+            "outcome_weight": 1,
+            "seconds": 0.047477012005401775,
+            "data_wait_seconds": 0.001039438007865101,
+            "tokens_per_second": 690186.652779913,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 356046
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 3379
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 359424
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 1314104
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 360448,
+            "physical_input_tokens": 360448,
+            "additional_teacher_tokens": 356047
+          },
+          {
+            "update": 322697,
+            "loss": 3.0622289180755615,
+            "gradient_norm": 1.4304016828536987,
+            "lr": 1e-05,
+            "tokens_seen": 10574135296,
+            "supervised_tokens": 10551747354,
+            "body_bytes_seen": 41104822999,
+            "token_digest": "ed1c1fe52a84369c07f130f821f575edf8b4221fcfa44170439333c018a7c904",
+            "focus_token_digest": "251c30e96153f94d8d4dd63e3618223b852cf536fb263cea68c046c9f33fc099",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 388515,
+            "outcome_weight": 1,
+            "seconds": 0.047706914017908275,
+            "data_wait_seconds": 0.001005344995064661,
+            "tokens_per_second": 686860.6086677397,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 388514
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 3678
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 392192
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 1435227
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 393216,
+            "physical_input_tokens": 393216,
+            "additional_teacher_tokens": 388515
+          },
+          {
+            "update": 322698,
+            "loss": 3.0864689350128174,
+            "gradient_norm": 1.4946106672286987,
+            "lr": 1e-05,
+            "tokens_seen": 10574168064,
+            "supervised_tokens": 10551779786,
+            "body_bytes_seen": 41104943806,
+            "token_digest": "5a3c07e5fa1903ace7b2edce8236bd6b9d7e9db290e10ebbed09c101080c9c67",
+            "focus_token_digest": "b0e1816e287f1ff6e309bcf9a34da1d3b37cde397103f3edd7ceae4c2e93384f",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 420947,
+            "outcome_weight": 1,
+            "seconds": 0.04765799400047399,
+            "data_wait_seconds": 0.0010363759938627481,
+            "tokens_per_second": 687565.6579182518,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 420946
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 4015
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 424960
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 1556034
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 425984,
+            "physical_input_tokens": 425984,
+            "additional_teacher_tokens": 420947
+          },
+          {
+            "update": 322699,
+            "loss": 3.001375675201416,
+            "gradient_norm": 1.4306838512420654,
+            "lr": 1e-05,
+            "tokens_seen": 10574200832,
+            "supervised_tokens": 10551812225,
+            "body_bytes_seen": 41105063140,
+            "token_digest": "f40532a730edb781c2e833febe30b6b7151384823f8e38cc67a6dcb6627ccd0c",
+            "focus_token_digest": "306240e5de6417999d05df5e88061fc1866ebd1e5dc8ea6f0214b843ab46e6d8",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 453386,
+            "outcome_weight": 1,
+            "seconds": 0.04778916301438585,
+            "data_wait_seconds": 0.0010334420076105744,
+            "tokens_per_second": 685678.4662693492,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 453385
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 4344
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 457728
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 1675368
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 458752,
+            "physical_input_tokens": 458752,
+            "additional_teacher_tokens": 453386
+          },
+          {
+            "update": 322700,
+            "loss": 2.99299955368042,
+            "gradient_norm": 1.383541226387024,
+            "lr": 1e-05,
+            "tokens_seen": 10574233600,
+            "supervised_tokens": 10551844693,
+            "body_bytes_seen": 41105182842,
+            "token_digest": "15d23051b1cf8ffeab19c8855983f4571785cf9c58e2ec691502b8d5dd0767c2",
+            "focus_token_digest": "d25e93f2c62a6ea0c0046dd270121b03deeaecc81d9abdcc6db76ae576e7d690",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 485854,
+            "outcome_weight": 1,
+            "seconds": 0.04771886899834499,
+            "data_wait_seconds": 0.0010168970038648695,
+            "tokens_per_second": 686688.5298797941,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 485853
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 4644
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 490496
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 1795070
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 491520,
+            "physical_input_tokens": 491520,
+            "additional_teacher_tokens": 485854
+          },
+          {
+            "update": 322701,
+            "loss": 3.087167739868164,
+            "gradient_norm": 1.4583529233932495,
+            "lr": 1e-05,
+            "tokens_seen": 10574266368,
+            "supervised_tokens": 10551877155,
+            "body_bytes_seen": 41105299144,
+            "token_digest": "6a2e7f6f3d89b7170dd5bc1c920f9b697e7fbe1a0d0c54eb164766d946fd1bbd",
+            "focus_token_digest": "b77ff54e51a0fe6dbeee354a1ad3dc37cfb58b505f4fd15bd58477fa0a92f0a8",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 518316,
+            "outcome_weight": 1,
+            "seconds": 0.04771774701657705,
+            "data_wait_seconds": 0.0010080549982376397,
+            "tokens_per_second": 686704.6759063554,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 518315
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 4949
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 523264
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 1911372
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 524288,
+            "physical_input_tokens": 524288,
+            "additional_teacher_tokens": 518316
+          },
+          {
+            "update": 322702,
+            "loss": 3.0205047130584717,
+            "gradient_norm": 1.3006675243377686,
+            "lr": 1e-05,
+            "tokens_seen": 10574299136,
+            "supervised_tokens": 10551909612,
+            "body_bytes_seen": 41105420268,
+            "token_digest": "c4ace5bdff1be8d38481ac5df007119b49aa1e030ed62470c27de46685950fd6",
+            "focus_token_digest": "8db1f792a40f902d19cd02d1449cb65b051031f98f7f2d6833de3e5bfe782883",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 550773,
+            "outcome_weight": 1,
+            "seconds": 0.04800820699892938,
+            "data_wait_seconds": 0.0011923080019187182,
+            "tokens_per_second": 682549.9648576909,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 550772
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 5260
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 556032
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 2032496
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 557056,
+            "physical_input_tokens": 557056,
+            "additional_teacher_tokens": 550773
+          },
+          {
+            "update": 322703,
+            "loss": 2.9825222492218018,
+            "gradient_norm": 1.3463313579559326,
+            "lr": 1e-05,
+            "tokens_seen": 10574331904,
+            "supervised_tokens": 10551942064,
+            "body_bytes_seen": 41105537153,
+            "token_digest": "8446b18226e7780e13ca048dc12fbe5ce5659821838081d058fbf61e7f8a8f1c",
+            "focus_token_digest": "d327312ec4555a370f28d395c9ed98207e89fa909c27877aef8ed0da36b8196c",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 583225,
+            "outcome_weight": 1,
+            "seconds": 0.04776182700879872,
+            "data_wait_seconds": 0.0010209739848505706,
+            "tokens_per_second": 686070.907504511,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 583224
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 5576
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 588800
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 2149381
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 589824,
+            "physical_input_tokens": 589824,
+            "additional_teacher_tokens": 583225
+          },
+          {
+            "update": 322704,
+            "loss": 3.0166873931884766,
+            "gradient_norm": 1.3093196153640747,
+            "lr": 1e-05,
+            "tokens_seen": 10574364672,
+            "supervised_tokens": 10551974523,
+            "body_bytes_seen": 41105656341,
+            "token_digest": "de5c646168cd3debbf3bddd788f201311d4fc5be6005ef1fe24fc486d5328060",
+            "focus_token_digest": "eaaeb81d7ac468b3144e693d421e5c021d423b9e927077cc9ad8af6c02e50ada",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 615684,
+            "outcome_weight": 1,
+            "seconds": 0.04773275999468751,
+            "data_wait_seconds": 0.0010212220076937228,
+            "tokens_per_second": 686488.6925383523,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 615683
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 5886
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 621568
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 2268569
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 622592,
+            "physical_input_tokens": 622592,
+            "additional_teacher_tokens": 615684
+          },
+          {
+            "update": 322705,
+            "loss": 3.0201048851013184,
+            "gradient_norm": 1.153612494468689,
+            "lr": 1e-05,
+            "tokens_seen": 10574397440,
+            "supervised_tokens": 10552006977,
+            "body_bytes_seen": 41105776955,
+            "token_digest": "affc846d716bf7b0110958063fcfcd8d34e1bd9f07e0d9075a8509e522775bfb",
+            "focus_token_digest": "c37d43691c854dc7a2f375f8ecfb51fbe05f4aacf4955f8ed67f6f00432beb43",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 648138,
+            "outcome_weight": 1,
+            "seconds": 0.047777250001672655,
+            "data_wait_seconds": 0.001088755001546815,
+            "tokens_per_second": 685849.4366848826,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 648137
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 6200
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 654336
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 2389183
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 655360,
+            "physical_input_tokens": 655360,
+            "additional_teacher_tokens": 648138
+          },
+          {
+            "update": 322706,
+            "loss": 3.051823377609253,
+            "gradient_norm": 1.3211901187896729,
+            "lr": 1e-05,
+            "tokens_seen": 10574430208,
+            "supervised_tokens": 10552039430,
+            "body_bytes_seen": 41105896154,
+            "token_digest": "c07f4098e62a0332ac890502c301ccd54a367753dc3fdb53e4a6993bf2fab5c3",
+            "focus_token_digest": "72d7aee51709849a1fc332e9542918efaa2a0452be67aa12ecf277619a44b8af",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 680591,
+            "outcome_weight": 1,
+            "seconds": 0.047660408017691225,
+            "data_wait_seconds": 0.0010023509967140853,
+            "tokens_per_second": 687530.8324644795,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 680590
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 6516
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 687104
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 2508382
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 688128,
+            "physical_input_tokens": 688128,
+            "additional_teacher_tokens": 680591
+          },
+          {
+            "update": 322707,
+            "loss": 2.997967481613159,
+            "gradient_norm": 1.1914968490600586,
+            "lr": 1e-05,
+            "tokens_seen": 10574462976,
+            "supervised_tokens": 10552071906,
+            "body_bytes_seen": 41106017466,
+            "token_digest": "47e6e5ceb3d5c7c76babe25b4399ee021ce8f16edd29553841025c0252141a11",
+            "focus_token_digest": "c24e5581ded26c502ca28aa962affdd703bf4b8bed600bdc92250165bbfe7a3c",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 713067,
+            "outcome_weight": 1,
+            "seconds": 0.047735102009028196,
+            "data_wait_seconds": 0.001000415999442339,
+            "tokens_per_second": 686455.011530143,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 713066
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 6808
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 719872
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 2629694
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 720896,
+            "physical_input_tokens": 720896,
+            "additional_teacher_tokens": 713067
+          },
+          {
+            "update": 322708,
+            "loss": 2.9739346504211426,
+            "gradient_norm": 1.1100506782531738,
+            "lr": 1e-05,
+            "tokens_seen": 10574495744,
+            "supervised_tokens": 10552104352,
+            "body_bytes_seen": 41106138897,
+            "token_digest": "4ebbccee06e6100eea1b4faa0d309ec7be5c621a4a1c297cf8873e10df3c26a2",
+            "focus_token_digest": "7101e81200fc7acb4a64985f2678cbf2c2d21cd338b13c9deff4ca65fb89baf7",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 745513,
+            "outcome_weight": 1,
+            "seconds": 0.047842097003012896,
+            "data_wait_seconds": 0.0010650100011844188,
+            "tokens_per_second": 684919.8102235445,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 745512
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 7130
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 752640
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 2751125
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 753664,
+            "physical_input_tokens": 753664,
+            "additional_teacher_tokens": 745513
+          },
+          {
+            "update": 322709,
+            "loss": 2.983150005340576,
+            "gradient_norm": 1.20765221118927,
+            "lr": 1e-05,
+            "tokens_seen": 10574528512,
+            "supervised_tokens": 10552136827,
+            "body_bytes_seen": 41106260540,
+            "token_digest": "51d9aada653a016e14691a12c1a78a5ba4dd5c973a0d9237ad572957876ec332",
+            "focus_token_digest": "c0417f8d8057d16c01d1f7524e3bcc9aa20ac08de7de2826685a3647f75548f9",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 777988,
+            "outcome_weight": 1,
+            "seconds": 0.04795234999619424,
+            "data_wait_seconds": 0.0010393179836682975,
+            "tokens_per_second": 683345.0290257025,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 777987
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 7423
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 785408
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 2872768
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 786432,
+            "physical_input_tokens": 786432,
+            "additional_teacher_tokens": 777988
+          },
+          {
+            "update": 322710,
+            "loss": 2.887303590774536,
+            "gradient_norm": 0.9952340722084045,
+            "lr": 1e-05,
+            "tokens_seen": 10574561280,
+            "supervised_tokens": 10552169289,
+            "body_bytes_seen": 41106382144,
+            "token_digest": "d877c25471febbc6551871d244579211879cca08945ae257cb261234705931c6",
+            "focus_token_digest": "01adea112b05d34ad81e1cde8002d7ba61bf3efd817fbde1966d095a0b195953",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 810450,
+            "outcome_weight": 1,
+            "seconds": 0.04772285799845122,
+            "data_wait_seconds": 0.0010785329795908183,
+            "tokens_per_second": 686631.1317956573,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 810449
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 7729
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 818176
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 2994372
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 819200,
+            "physical_input_tokens": 819200,
+            "additional_teacher_tokens": 810450
+          },
+          {
+            "update": 322711,
+            "loss": 3.027373790740967,
+            "gradient_norm": 1.1133713722229004,
+            "lr": 1e-05,
+            "tokens_seen": 10574594048,
+            "supervised_tokens": 10552201732,
+            "body_bytes_seen": 41106502603,
+            "token_digest": "4e45c422c19fb9da9524acc37f1970a8b2ee9b6191febaa4d70afcc4d7a2ee8d",
+            "focus_token_digest": "c6a7b039edf61693d08eaa6bf47ec888ae16aea4dbba40a9b7b935fc1de131fa",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 842893,
+            "outcome_weight": 1,
+            "seconds": 0.04769133499939926,
+            "data_wait_seconds": 0.001060586015228182,
+            "tokens_per_second": 687084.9809595969,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 842892
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 8054
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 850944
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 3114831
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 851968,
+            "physical_input_tokens": 851968,
+            "additional_teacher_tokens": 842893
+          },
+          {
+            "update": 322712,
+            "loss": 2.9627320766448975,
+            "gradient_norm": 1.0570034980773926,
+            "lr": 1e-05,
+            "tokens_seen": 10574626816,
+            "supervised_tokens": 10552234215,
+            "body_bytes_seen": 41106621776,
+            "token_digest": "f749b09abf3ec2ec902b90bc452e01762509077925cfb85dfc316652051b6864",
+            "focus_token_digest": "526779d0ec543bbc0457239075ca6a66715302bae51a5b8058aff1191b1bfb06",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 875376,
+            "outcome_weight": 1,
+            "seconds": 0.04762834298890084,
+            "data_wait_seconds": 0.001096552994567901,
+            "tokens_per_second": 687993.7017258012,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 875375
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 8339
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 883712
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 3234004
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 884736,
+            "physical_input_tokens": 884736,
+            "additional_teacher_tokens": 875376
+          },
+          {
+            "update": 322713,
+            "loss": 2.9581968784332275,
+            "gradient_norm": 1.1202468872070312,
+            "lr": 1e-05,
+            "tokens_seen": 10574659584,
+            "supervised_tokens": 10552266680,
+            "body_bytes_seen": 41106739030,
+            "token_digest": "018f0375697332029beb684ffd3b568fab2452e08a063d5700ec454e9818c67e",
+            "focus_token_digest": "fe0e2fdb46d2544474f4306284c8fae171c3c16e8889a8d18c329b6721dd4b16",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 907841,
+            "outcome_weight": 1,
+            "seconds": 0.04786654899362475,
+            "data_wait_seconds": 0.001028635975671932,
+            "tokens_per_second": 684569.9280381443,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 907840
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 8642
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 916480
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 3351258
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 917504,
+            "physical_input_tokens": 917504,
+            "additional_teacher_tokens": 907841
+          },
+          {
+            "update": 322714,
+            "loss": 2.974517822265625,
+            "gradient_norm": 1.0122472047805786,
+            "lr": 1e-05,
+            "tokens_seen": 10574692352,
+            "supervised_tokens": 10552299138,
+            "body_bytes_seen": 41106859717,
+            "token_digest": "1d9eac2c022c6bc3bd5faf4d39c0026ef8011c2527b7c970d98c85186fe9cc29",
+            "focus_token_digest": "0e498dc1768336da0fc28cdb3b2bebcaf87a6d0d1a9a7a51cf369f5abd97d7e9",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 940299,
+            "outcome_weight": 1,
+            "seconds": 0.04768073800369166,
+            "data_wait_seconds": 0.0010486480023246258,
+            "tokens_per_second": 687237.684900409,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 940298
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 8951
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 949248
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 3471945
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 950272,
+            "physical_input_tokens": 950272,
+            "additional_teacher_tokens": 940299
+          },
+          {
+            "update": 322715,
+            "loss": 2.9164135456085205,
+            "gradient_norm": 1.052941918373108,
+            "lr": 1e-05,
+            "tokens_seen": 10574725120,
+            "supervised_tokens": 10552331590,
+            "body_bytes_seen": 41106978912,
+            "token_digest": "fddc4a3bcdf7ee89a3865b623f8ce238eb817092dc275cdbc023684bfac85660",
+            "focus_token_digest": "1ae77d840aa2f2ca5c71fc311fe54b211346cb6021676c51701469f19e9f4258",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 972751,
+            "outcome_weight": 1,
+            "seconds": 0.04784433398162946,
+            "data_wait_seconds": 0.0010446719825267792,
+            "tokens_per_second": 684887.786557584,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 972750
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 9267
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 982016
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 3591140
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 983040,
+            "physical_input_tokens": 983040,
+            "additional_teacher_tokens": 972751
+          },
+          {
+            "update": 322716,
+            "loss": 2.9525015354156494,
+            "gradient_norm": 1.1052387952804565,
+            "lr": 1e-05,
+            "tokens_seen": 10574757888,
+            "supervised_tokens": 10552364039,
+            "body_bytes_seen": 41107098206,
+            "token_digest": "d1e3828187942ec492d74e2a99449c5808e2ff8bfd08e88c81e6302c41c14f3c",
+            "focus_token_digest": "9ad9eb00e861c60cc36ffcca0c8d0a8438342103e74926e72711519998d93956",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 1005200,
+            "outcome_weight": 1,
+            "seconds": 0.04767333500785753,
+            "data_wait_seconds": 0.001044068019837141,
+            "tokens_per_second": 687344.4032098692,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 1005199
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 9586
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 1014784
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 3710434
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 1015808,
+            "physical_input_tokens": 1015808,
+            "additional_teacher_tokens": 1005200
+          },
+          {
+            "update": 322717,
+            "loss": 3.015855073928833,
+            "gradient_norm": 1.0130095481872559,
+            "lr": 1e-05,
+            "tokens_seen": 10574790656,
+            "supervised_tokens": 10552396495,
+            "body_bytes_seen": 41107216207,
+            "token_digest": "4aa8728c23b1eb051986b6054a8cc038abde20536f6e25bff88f744a7c44123f",
+            "focus_token_digest": "966cdabfd2f4ac92a37050e3597fb33485c4a51b28a7fb22657480962ca03c2e",
+            "focus_teacher_tokens": 0,
+            "weighted_teacher_mass": 1037656,
+            "outcome_weight": 1,
+            "seconds": 0.047422066010767594,
+            "data_wait_seconds": 0.0010255819943267852,
+            "tokens_per_second": 690986.3436266092,
+            "source_teachers": {
+              "web": 1,
+              "authored_news": 1037655
+            },
+            "source_eos": {
+              "web": 0,
+              "authored_news": 9897
+            },
+            "source_input_tokens": {
+              "web": 1024,
+              "authored_news": 1047552
+            },
+            "source_body_bytes": {
+              "web": 6,
+              "authored_news": 3828435
+            },
+            "source_focus_teachers": {
+              "web": 0,
+              "authored_news": 0
+            },
+            "valid_input_tokens": 1048576,
+            "physical_input_tokens": 1048576,
+            "additional_teacher_tokens": 1037656
+          }
+        ],
+        "verification_teacher_tokens": 1037656,
+        "terminal_save_seconds": 0.18173838697839528,
+        "peak_VRAM_bytes": 6149106176,
+        "checkpoint": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/livedoor-base-comparison-v2-20261006/probe/news_boundary_stress/timing.pt",
+          "sha256": "c47b241cee3e26b799ceee4faa4a967edf16b1eec485ebed27edb4d9b713e875"
+        }
+      }
+    },
+    "passed": true,
+    "GPU_seconds": 28.335452045983402,
+    "verification_teacher_tokens": 2603282,
+    "verification_updates": 80,
+    "scientific_teacher_tokens": 0,
+    "stress_weights_discarded_for_science": true,
+    "measured_timing": {
+      "source_timings": {
+        "original_Web": {
+          "steady_step_seconds": 0.13628264600993134,
+          "teachers_per_update": 32697.833333333332,
+          "warmup_seconds": 1.0855464238848072,
+          "save_seconds": 0.16470115300035104
+        },
+        "news_boundary_stress": {
+          "steady_step_seconds": 0.0477208634983981,
+          "teachers_per_update": 32457.125,
+          "warmup_seconds": 1.4760750010318588,
+          "save_seconds": 0.18173838697839528
+        }
+      },
+      "estimated_updates": 817,
+      "steady_step_seconds": 0.13628264600993134,
+      "warmup_seconds": 2.561621424916666,
+      "save_seconds": 0.9086919348919764,
+      "estimated_training_seconds": 114.81323514992255
+    },
+    "estimated_science_GPU_seconds": 449.2572056948993,
+    "previous_failed_GPU_seconds": 1.419417480006814,
+    "estimated_total_GPU_seconds": 479.0120752208895,
+    "within1800": true,
+    "config_sha256": "6f92576ecf3ca33998e8d10be7f2abd4b7b06fe26acb3d77c21409b028b56b2b",
+    "Base_complete": false
+  },
+  "estimated_total_GPU_seconds": 479.0120752208895,
+  "science_cost_within1800": true
+}
