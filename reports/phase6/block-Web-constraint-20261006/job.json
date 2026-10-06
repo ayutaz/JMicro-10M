@@ -1,0 +1,71 @@
+{
+  "status": "complete",
+  "pid": 646766,
+  "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+  "start_ticks": "17296120",
+  "config_sha256": "a7c311379057c58ed0ebed18ded9eb005f676bd7cddcdcbad0c0dd8902f55386",
+  "GPU_elapsed_seconds": 193.6470071610238,
+  "started_at": "2026-10-06T12:29:18.729156Z",
+  "restart_command": "scripts/run_block_Web_constraint.ps1 -Mode Train -Worker",
+  "stage": "block-constrained-Base-training",
+  "heartbeat_at": "2026-10-06T12:32:30.403426Z",
+  "completed_updates": 2600,
+  "total_updates": 3068,
+  "actual_teachers": 84961352,
+  "loss": 2.2298552989959717,
+  "boundary_constraint": {
+    "reference_body_NLL": 2.5812628269195557,
+    "ceiling_body_NLL": 2.607075455188751,
+    "proposed_body_NLL": 2.6213528513908386,
+    "projected": true,
+    "backtracked": true,
+    "trials": [
+      {
+        "kind": "Adam",
+        "body_NLL": 2.6213528513908386
+      },
+      {
+        "kind": "projected",
+        "scale": 1.0,
+        "body_NLL": 2.608680009841919
+      },
+      {
+        "kind": "backtracked",
+        "scale": 0.5,
+        "body_NLL": 2.6075751781463623
+      },
+      {
+        "kind": "backtracked",
+        "scale": 0.25,
+        "body_NLL": 2.607205092906952
+      },
+      {
+        "kind": "backtracked",
+        "scale": 0.125,
+        "body_NLL": 2.6070653200149536
+      }
+    ],
+    "accepted": true,
+    "gradient_body_NLL": 2.6213528513908386,
+    "gradient_norm_squared": 2.0568219230583087,
+    "projection_coefficient": 0.006954033633154332,
+    "scale": 0.125,
+    "final_body_NLL": 2.6070653200149536,
+    "scope": "accepted_block_boundary_only",
+    "block_start_update": 323015,
+    "block_end_update": 323035,
+    "block_source_updates": 20
+  },
+  "auxiliary": {
+    "forward_only_calls": 162,
+    "gradient_calls": 13,
+    "teacher_observations": 5711650,
+    "gradient_teacher_tokens": 424294,
+    "physical_input_tokens": 5734400,
+    "projected_updates": 13,
+    "backtracked_updates": 13,
+    "accepted_updates": 2600,
+    "accepted_blocks": 130
+  },
+  "completed_at": "2026-10-06T12:32:33.046333Z"
+}

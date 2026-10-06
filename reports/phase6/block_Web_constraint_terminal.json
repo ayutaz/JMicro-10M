@@ -1,0 +1,203 @@
+{
+  "status": "block_Web_constraint_terminal",
+  "created_at": "2026-10-06T12:33:28.555928Z",
+  "config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/block_Web_constraint.json",
+    "sha256": "a7c311379057c58ed0ebed18ded9eb005f676bd7cddcdcbad0c0dd8902f55386"
+  },
+  "CPU_preparation_seconds": 0.11339189999853261,
+  "GPU_seconds": 193.6470071610238,
+  "scientific_source_CE_teacher_tokens": 84961352,
+  "previous_related_GPU_seconds": 70.56110643898137,
+  "total_related_GPU_ceiling_seconds": 2400,
+  "constraint_scope": "Accepted20-update boundaries only; intermediate tentative updates may violate loss ceiling.",
+  "does_not_satisfy_old_per_update_contract": true,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "actual_job": {
+    "status": "complete",
+    "pid": 646766,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "17296120",
+    "config_sha256": "a7c311379057c58ed0ebed18ded9eb005f676bd7cddcdcbad0c0dd8902f55386",
+    "GPU_elapsed_seconds": 193.6470071610238,
+    "started_at": "2026-10-06T12:29:18.729156Z",
+    "restart_command": "scripts/run_block_Web_constraint.ps1 -Mode Train -Worker",
+    "stage": "block-constrained-Base-training",
+    "heartbeat_at": "2026-10-06T12:32:30.403426Z",
+    "completed_updates": 2600,
+    "total_updates": 3068,
+    "actual_teachers": 84961352,
+    "loss": 2.2298552989959717,
+    "boundary_constraint": {
+      "reference_body_NLL": 2.5812628269195557,
+      "ceiling_body_NLL": 2.607075455188751,
+      "proposed_body_NLL": 2.6213528513908386,
+      "projected": true,
+      "backtracked": true,
+      "trials": [
+        {
+          "kind": "Adam",
+          "body_NLL": 2.6213528513908386
+        },
+        {
+          "kind": "projected",
+          "scale": 1.0,
+          "body_NLL": 2.608680009841919
+        },
+        {
+          "kind": "backtracked",
+          "scale": 0.5,
+          "body_NLL": 2.6075751781463623
+        },
+        {
+          "kind": "backtracked",
+          "scale": 0.25,
+          "body_NLL": 2.607205092906952
+        },
+        {
+          "kind": "backtracked",
+          "scale": 0.125,
+          "body_NLL": 2.6070653200149536
+        }
+      ],
+      "accepted": true,
+      "gradient_body_NLL": 2.6213528513908386,
+      "gradient_norm_squared": 2.0568219230583087,
+      "projection_coefficient": 0.006954033633154332,
+      "scale": 0.125,
+      "final_body_NLL": 2.6070653200149536,
+      "scope": "accepted_block_boundary_only",
+      "block_start_update": 323015,
+      "block_end_update": 323035,
+      "block_source_updates": 20
+    },
+    "auxiliary": {
+      "forward_only_calls": 162,
+      "gradient_calls": 13,
+      "teacher_observations": 5711650,
+      "gradient_teacher_tokens": 424294,
+      "physical_input_tokens": 5734400,
+      "projected_updates": 13,
+      "backtracked_updates": 13,
+      "accepted_updates": 2600,
+      "accepted_blocks": 130
+    },
+    "completed_at": "2026-10-06T12:32:33.046333Z"
+  },
+  "actual_live_process": false,
+  "actual_result": {
+    "finite_rejection": {
+      "last_rejection": {
+        "error": "ConstraintRejected('Finite TRAIN Web constraint rejected the entire source update')",
+        "decision": {
+          "reference_body_NLL": 2.5812628269195557,
+          "ceiling_body_NLL": 2.607075455188751,
+          "proposed_body_NLL": 2.621283769607544,
+          "projected": true,
+          "backtracked": false,
+          "trials": [
+            {
+              "kind": "Adam",
+              "body_NLL": 2.621283769607544
+            },
+            {
+              "kind": "projected",
+              "scale": 1.0,
+              "body_NLL": 2.608679234981537
+            },
+            {
+              "kind": "backtracked",
+              "scale": 0.5,
+              "body_NLL": 2.6076464653015137
+            },
+            {
+              "kind": "backtracked",
+              "scale": 0.25,
+              "body_NLL": 2.6072999238967896
+            },
+            {
+              "kind": "backtracked",
+              "scale": 0.125,
+              "body_NLL": 2.607168734073639
+            }
+          ],
+          "accepted": false,
+          "gradient_body_NLL": 2.621283769607544,
+          "gradient_norm_squared": 2.0499785066566316,
+          "projection_coefficient": 0.006943549408367611,
+          "error": "All four corrected finite proposals violate fixed memory bound"
+        },
+        "attempted_source_gradient_teacher_tokens": 650524,
+        "attempted_source_updates": 20,
+        "auxiliary_completed_calls": {
+          "forward_only_calls": 5,
+          "gradient_calls": 1,
+          "teacher_observations": 195828,
+          "gradient_teacher_tokens": 32638,
+          "physical_input_tokens": 196608
+        },
+        "restored_last_completed_update": 323035,
+        "rollback_scope": "entire_tentative_block"
+      },
+      "last_valid_checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/block-Web-constraint-20261006/block_Web_constraint/training/checkpoint-00323035.pt",
+        "sha256": "1db5c4a6505b706aa9497424d6d0309efd00587345c86d03b5a2e48e66bc6744"
+      },
+      "accepted_source_updates": 2600,
+      "accepted_source_CE_teacher_tokens": 84961352,
+      "accepted_auxiliary": {
+        "forward_only_calls": 162,
+        "gradient_calls": 13,
+        "teacher_observations": 5711650,
+        "gradient_teacher_tokens": 424294,
+        "physical_input_tokens": 5734400,
+        "projected_updates": 13,
+        "backtracked_updates": 13,
+        "accepted_updates": 2600,
+        "accepted_blocks": 130
+      },
+      "whole_block_restored": true
+    },
+    "status": "block_rejection_branch_complete",
+    "config_sha256": "a7c311379057c58ed0ebed18ded9eb005f676bd7cddcdcbad0c0dd8902f55386",
+    "GPU_seconds": 193.6470071610238,
+    "Base_complete": false,
+    "Base_adopted": false,
+    "Chat_started": false,
+    "quantization_started": false,
+    "protected_test_used": false,
+    "quality_criteria_unchanged": true,
+    "constraint_scope": "Accepted20-update boundaries only; intermediate tentative updates may violate loss ceiling."
+  },
+  "result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/block-Web-constraint-20261006/compare-result.json",
+    "sha256": "9002fe5fea414833a0805bbbca27dcbe546f02a66ed222bab76402a4865fc6d8"
+  },
+  "original_UI": {
+    "identity": {
+      "pid": 647027,
+      "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+      "start_ticks": "17315965"
+    },
+    "actual_alive_verified": true,
+    "HTTP": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    }
+  }
+}

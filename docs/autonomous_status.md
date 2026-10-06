@@ -1,3 +1,15 @@
+固定20境界Baseの失敗原因を既存rawからCPU分析（2026-10-06 JST）。Base未完成・実完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+受入2600更新/84961352CE教師＋memory gradient424294、拒否20更新/650524source梯度＋memory gradient32638別会計。全science梯度exposures86068808、ownprobe5231748教師は別。最終安全NLL2.607065320、上限2.607075455。単一gradientの線形予測2.607049643に対して実修正後2.608679235、正の非線形残差0.001629592/内側marginの63.13倍。最後0.125の実NLL2.607168734も上限を0.000093279超えるため規定通り全区切りrollback。単一修正/固定試行が不十分という局所TRAIN診断で、全学習解不存在やモデル容量/教材不足の証明ではない。条件教材の学習到達=False、全91,641,755/日本語・全80/品質評価は未達。分析CPU0.311259秒/20、新GPU/学習0。science193.647秒＋ownprobe33.679＋旧診断70.561=関連297.887秒/2400。
+
+raw proposalへ残った旧毎更新algorithm/prerequisite文言は元provenanceのまま保持し、事前に凍結したkind/block_updates/transaction/probe/budgetおよび実trainer/CPU/CUDAをactive20境界契約と明示。品質selectionは旧と完全一致、後から基準を変えて採用していない。次は固定分岐を終了し、この非線形残差と条件段階未到達の根拠から別のBase改善機構を研究・定義。cadence/projector/backtrack/source/CP救済sweepなし。元10B UI保持・WSL uv3.12.7/local commitのみ/pushなし、全旧失敗/数値7/Phase0–3保持。以下は過去の履歴。
+
+Base専用固定20境界constraint: terminal（2026-10-06 JST）。Base未完成・実完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+固定20区切りの有限受入不能で分岐終了、actual646766はcomplete・実不在。受入2600更新/84961352CE教師、拒否した全区切りは重み/Adam/scheduler/RNG/samplerを直前境界へrollbackしnativeCP保持。拒否source梯度/追加memorygradient・forwardは別会計。科学GPU193.647007秒、全3068/91,641,755や品質達成とはしない。元UI復帰、cadence/packet/bound/projector/LR等救済sweepなし。次はこの実失敗を根拠に別のBase改善を定義する。
+
+旧毎更新予算超過は不採用のまま、cadence20は別研究として固定。元math保持packet/bound/margin/projector/LR/元staged入力・教師mask/decoderと旧相対・絶対・歴史Webの全品質基準を維持。追加Web gradient/拒否試行を別会計し総教師量matchedと称さない。Phase0–3/数値7/全旧失敗保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用固定20境界constraint: launch（2026-10-06 JST）。Base未完成・実完成時通知停止、Chat/Dialogue/SFT/量子化なし。
 
 science実起動actual646766/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start17296120、実stageblock-constrained-Base-training・受入1400/3068更新・教師45777941を確認。科学上限2295.760321秒＋ownprobe33.678573＋旧診断70.561106=2400。各受入境界で重み/Adam/scheduler/RNG/sampler/全会計CP保存、未確定区切りは一切保存/完了量へ加算しない。終端・全日本語/80内容・採否は未完了。restartは実PID不在確認後 scripts/run_block_Web_constraint.ps1 -Mode Train -Worker。

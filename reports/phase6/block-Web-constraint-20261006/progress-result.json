@@ -1,0 +1,74 @@
+{
+  "finite_rejection": {
+    "last_rejection": {
+      "error": "ConstraintRejected('Finite TRAIN Web constraint rejected the entire source update')",
+      "decision": {
+        "reference_body_NLL": 2.5812628269195557,
+        "ceiling_body_NLL": 2.607075455188751,
+        "proposed_body_NLL": 2.621283769607544,
+        "projected": true,
+        "backtracked": false,
+        "trials": [
+          {
+            "kind": "Adam",
+            "body_NLL": 2.621283769607544
+          },
+          {
+            "kind": "projected",
+            "scale": 1.0,
+            "body_NLL": 2.608679234981537
+          },
+          {
+            "kind": "backtracked",
+            "scale": 0.5,
+            "body_NLL": 2.6076464653015137
+          },
+          {
+            "kind": "backtracked",
+            "scale": 0.25,
+            "body_NLL": 2.6072999238967896
+          },
+          {
+            "kind": "backtracked",
+            "scale": 0.125,
+            "body_NLL": 2.607168734073639
+          }
+        ],
+        "accepted": false,
+        "gradient_body_NLL": 2.621283769607544,
+        "gradient_norm_squared": 2.0499785066566316,
+        "projection_coefficient": 0.006943549408367611,
+        "error": "All four corrected finite proposals violate fixed memory bound"
+      },
+      "attempted_source_gradient_teacher_tokens": 650524,
+      "attempted_source_updates": 20,
+      "auxiliary_completed_calls": {
+        "forward_only_calls": 5,
+        "gradient_calls": 1,
+        "teacher_observations": 195828,
+        "gradient_teacher_tokens": 32638,
+        "physical_input_tokens": 196608
+      },
+      "restored_last_completed_update": 323035,
+      "rollback_scope": "entire_tentative_block"
+    },
+    "last_valid_checkpoint": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/block-Web-constraint-20261006/block_Web_constraint/training/checkpoint-00323035.pt",
+      "sha256": "1db5c4a6505b706aa9497424d6d0309efd00587345c86d03b5a2e48e66bc6744"
+    },
+    "accepted_source_updates": 2600,
+    "accepted_source_CE_teacher_tokens": 84961352,
+    "accepted_auxiliary": {
+      "forward_only_calls": 162,
+      "gradient_calls": 13,
+      "teacher_observations": 5711650,
+      "gradient_teacher_tokens": 424294,
+      "physical_input_tokens": 5734400,
+      "projected_updates": 13,
+      "backtracked_updates": 13,
+      "accepted_updates": 2600,
+      "accepted_blocks": 130
+    },
+    "whole_block_restored": true
+  }
+}
