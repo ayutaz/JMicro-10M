@@ -1,3 +1,11 @@
+次のBase専用有限比較を定義: 実測Web TRAIN body NLLの制約（2026-10-06 JST）。未実装・未起動、newGPU/学習0、Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+rank4対full fresh Adamは全160/採否/終端/UI/224file可搬SHAをcb3c114へ保存し、両不採用。一貫性3対10、EOS13対23、反復64対37、BPB.972906対.973113。当比較598.744819GPU秒。rank4/LR/CP等の救済総当たりは行わない。前の有限変位診断ではWeb CE増分の94.6–98.9%が一次近似の外にあり、soft L2もWeb保持に失敗、stagedはprefix90M時点でBPB1.013622>.981286。次は関数の実損失を制約し、能力を落とす一律低ランク制限と区別する。[GEM一次資料](https://arxiv.org/abs/1706.08840)の記憶損失の不等式制約を参考にしたowned nonlinear extensionで、論文再現/成功保証ではない。
+
+元10.5B親/model/Adam/RNG/scheduler/floor/actualLR.00001から、同Web75/story5/ordinary10/conditional10M referenceをstagedで始める。既conditional outcome+EOS mask/他source不変、完了時91,641,755 CE教師/100M reference/3068更新。旧masked-stage whole recipeのcoh35/EOS79/rep1/BPB1.086812を再利用。既固定TRAIN16から最初32 Web窓（元staged75Mにも含まれる）のbody-only FP32/math CEをoriginal基準の1.01以内に保つ。Adam提案後の有限値が超えた場合のみ、一回のWeb gradientによるNLL超過修正→実NLL確認→同一更新の0.5/.25/.125 backtrack。全不成立なら重み/Adam/RNG/samplerを直前完了状態へ戻して研究分岐終了、未受入教師を完了量へ足さない。追加Web gradient教師・forward観測・拒否試行・GPUを別会計し、旧対照と総教師量やGPUが同じとは称さない。固定TRAIN保持はheld-out Web保持や自然品質の証拠ではない。
+
+先にCPUの厳密constraint/rollback/fullstate testsと永続runnerを実装。CPU60/ownCUDA8対4+4・32timing/projection数値control120秒、実測最悪3068*(source step+5 memoryforward+1 memorygradient)/保存×1.3+評価200秒とprobeが全2400秒内の場合だけscienceを凍結。完了candidateは同dev256/common bytes/Japanese/固定80を全内容判定、または明示数値/受入不能/予算の失敗分岐。強い旧相対/絶対/歴史Webの全gate不変、memory/bound/margin/LR等の救済sweepなし。独立学習seed/full dev/protected test/採用は未達。Phase0–3/数値7/旧全失敗保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 固定rank4対full fresh-AdamのBase比較を実完了（2026-10-06 JST）。Base未完了、実完成時に通知して停止、Chat/Dialogue/SFT/量子化なし。
 
 actual641226/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16983459はcomplete・実不在。両3068更新/同91,641,755実教師、全科学183,283,510/physical201,064,448、100M reference各と区別。元10.5B親/同Webcursor/元mixed入力・条件outcome+EOS mask/source窓・教師/末尾cursor/hashを全3068で照合、両fresh Adam/actualLR.00001/scheduler clockとfloorを維持。実CUDA8対4+4と32timingの96更新/2867838検証教師は別会計。科学GPU539.816385+probe58.928433=当比較598.744819秒/1800。GPU予測1144.75秒は実績に置換した。元LoRA W0全不変、rank4学習232,960/一時10,234,112→native merge10,001,152、両実FP32/math native merge control成功。full controlは全10M学習可、raw merge helperの共通frozen flagはfull armに適用せず独立endpoint auditを正本とする。旧数値7失敗/旧全不採用は維持。
