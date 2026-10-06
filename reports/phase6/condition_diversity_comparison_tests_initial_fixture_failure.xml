@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="4" time="2.116" timestamp="2026-10-06T11:04:51.542390+09:00" hostname="DESKTOP-42CUV0C"><testcase classname="tests.test_condition_diversity_comparison" name="test_changed_conditional_source_retains_exact_three_ordinary_supervised_sequences" time="1.181"><failure message="IndexError: index 94 is out of bounds for axis 0 with size 64">tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-76/test_changed_conditional_sourc0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x723706a62c30&gt;
+
+    def test_changed_conditional_source_retains_exact_three_ordinary_supervised_sequences(tmp_path,monkeypatch):
+        pool,_,_=fixture(tmp_path); small=positive_fixture(tmp_path); large=expanded_fixture(tmp_path/'large',small)
+        monkeypatch.setattr(study,'GOALS',dict(web=217,story=109,ordinary_textbook=113,conditional_textbook=111))
+&gt;       a=study.ordinary_stream_digest(pool,small); b=study.ordinary_stream_digest(pool,large)
+                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_condition_diversity_comparison.py:27: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/run_condition_diversity_comparison.py:96: in ordinary_stream_digest
+    check(); sampler.batch(32)
+             ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;condition_positive_trainer.ConditionQuotaSampler object at 0x7236e5903b60&gt;
+size = 32
+
+    def batch(self, size):
+        if self.source_teachers == self.goals:
+            raise ValueError('Teacher quotas exhausted')
+        xs, ys, masks = [], [], []
+        body_bytes = 0
+        for _ in range(size):
+            active = [g for g in SOURCES if self.source_teachers[g] &lt; self.goals[g]]
+            genre = min(active, key=lambda g: self.source_teachers[g] / self.goals[g]) if active else 'web'
+            if genre == 'conditional_textbook':
+                x, y, focused = self.streams[genre].block(self.context)
+            else:
+                x, y = self.streams[genre].block(self.context)
+                focused = np.zeros(self.context, dtype=bool)
+            remaining = self.goals[genre] - self.source_teachers[genre]
+            labeled = np.flatnonzero(y != -100)
+            y[labeled[remaining:]] = -100
+            focused &amp;= y &gt;= 8
+&gt;           byte_count = int(self.view.byte_lengths[y[y &gt;= 8]].sum())
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           IndexError: index 94 is out of bounds for axis 0 with size 64
+
+scripts/condition_positive_trainer.py:135: IndexError</failure></testcase><testcase classname="tests.test_condition_diversity_comparison" name="test_actual_CPU_expanded_trainer_continuous_resume_and_wrong_source_rejected" time="0.019"><failure message="IndexError: index 94 is out of bounds for axis 0 with size 64">tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-76/test_actual_CPU_expanded_train0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x723706a63110&gt;
+
+    def test_actual_CPU_expanded_trainer_continuous_resume_and_wrong_source_rejected(tmp_path,monkeypatch):
+        pool,parent,binding=fixture(tmp_path); small=positive_fixture(tmp_path); large=expanded_fixture(tmp_path/'large',small)
+        monkeypatch.setattr(study,'GOALS',dict(web=200,story=100,ordinary_textbook=100,conditional_textbook=100))
+        build=lambda data=large: study.trainer_for(parent,pool,data,binding,'cpu',8,3)
+&gt;       a=build(); left=[a.step() for _ in range(4)]; a.save(tmp_path/'a/checkpoint.pt')
+                         ^^^^^^^^
+
+tests/test_condition_diversity_comparison.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/condition_positive_trainer.py:190: in step
+    x, y, byte_count, focused = self.sampler.batch(self.spec['batch'])
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;condition_positive_trainer.ConditionQuotaSampler object at 0x7236e5011a00&gt;
+size = 3
+
+    def batch(self, size):
+        if self.source_teachers == self.goals:
+            raise ValueError('Teacher quotas exhausted')
+        xs, ys, masks = [], [], []
+        body_bytes = 0
+        for _ in range(size):
+            active = [g for g in SOURCES if self.source_teachers[g] &lt; self.goals[g]]
+            genre = min(active, key=lambda g: self.source_teachers[g] / self.goals[g]) if active else 'web'
+            if genre == 'conditional_textbook':
+                x, y, focused = self.streams[genre].block(self.context)
+            else:
+                x, y = self.streams[genre].block(self.context)
+                focused = np.zeros(self.context, dtype=bool)
+            remaining = self.goals[genre] - self.source_teachers[genre]
+            labeled = np.flatnonzero(y != -100)
+            y[labeled[remaining:]] = -100
+            focused &amp;= y &gt;= 8
+&gt;           byte_count = int(self.view.byte_lengths[y[y &gt;= 8]].sum())
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           IndexError: index 94 is out of bounds for axis 0 with size 64
+
+scripts/condition_positive_trainer.py:135: IndexError</failure></testcase><testcase classname="tests.test_condition_diversity_comparison" name="test_measured_budget_includes_warmup_saving_and_only_one_new_evaluation" time="0.001" /><testcase classname="tests.test_condition_diversity_comparison" name="test_same_teachers_weight1_and_Base_only_scope" time="0.000" /></testsuite></testsuites>

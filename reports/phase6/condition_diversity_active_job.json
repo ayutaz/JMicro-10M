@@ -1,0 +1,110 @@
+{
+  "observed_at": "2026-10-06T02:14:48.5476198Z",
+  "user_scope": "Base only; notify and stop after actual qualified Base completion; Chat/quantization deferred",
+  "windows_worker": 26404,
+  "native_run": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-diversity-comparison-20261006",
+  "job": {
+    "status": "complete",
+    "pid": 527392,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "13556768",
+    "config_sha256": "87b4ed4070fb92d5c97ffbb9563d20ad3d649414d81c11426cabe0540a7f80d0",
+    "started_at": "2026-10-06T02:06:05.497697Z",
+    "GPU_elapsed_seconds": 113.42645317898132,
+    "Base_adopted": false,
+    "protected_test_used": false,
+    "restart_command": "scripts/run_condition_diversity_comparison.ps1 -Mode Train -Worker",
+    "stage": "complete",
+    "heartbeat_at": "2026-10-06T02:07:50.982963Z",
+    "teachers": 24696536,
+    "teacher_budget": 25000000,
+    "source_teachers": {
+      "web": 18521779,
+      "story": 1234792,
+      "ordinary_textbook": 2469974,
+      "conditional_textbook": 2469991
+    },
+    "loss": 2.6440489292144775,
+    "completed_tasks": 618,
+    "total_tasks": 618,
+    "completed_cases": 80,
+    "completed_at": "2026-10-06T02:07:59.558417Z"
+  },
+  "scientific_config": "configs/phase6/condition_diversity_comparison.json",
+  "probe_config": "configs/phase6/condition_diversity_probe.json",
+  "actual_probe_GPU_seconds": 11.799473121995106,
+  "verification_teacher_tokens": 1299890,
+  "actual_probe_all32_checks_passed": true,
+  "new_scientific_teacher_budget": 25000000,
+  "reused_control_teacher_tokens": 25000000,
+  "total_comparison_teacher_tokens": 50000000,
+  "restart_command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/run_condition_diversity_comparison.ps1 -Mode Train -Worker",
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "protected_test_used": false,
+  "note": "Terminal complete and actual process absent; historical heartbeat is not final teacher accounting. Never restart a completed job. New25M and reused25M distinct, original3 stream teachers identical. Final Base quality unmet; original10B UI restored and verified.",
+  "actual_science_process_absent": true,
+  "completed_scientific_teacher_tokens": 25000000,
+  "authoritative_final_checkpoint": {
+    "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-diversity-comparison-20261006/large2048/training/checkpoint-00062936.pt",
+    "checkpoint_sha256": "712150e66851c4e85cbcc6d342af6c0352b95cb6b1558549d77294ebda50fb93",
+    "binding": {
+      "config_sha256": "87b4ed4070fb92d5c97ffbb9563d20ad3d649414d81c11426cabe0540a7f80d0",
+      "arm": "large2048",
+      "parent": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook-coverage-2b-20261006/decay/checkpoint-00062166.pt",
+        "sha256": "965a06dc1537ed917de98c565d78ae76f19d99ad075f019067a4324a6cbd2249"
+      },
+      "short_manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+      "teacher_goals": {
+        "web": 18750000,
+        "story": 1250000,
+        "ordinary_textbook": 2500000,
+        "conditional_textbook": 2500000
+      },
+      "optimizer_policy": "inherit",
+      "peak_lr": 0.0002,
+      "loss": "ordinary original body+EOS CE, outcome weight1",
+      "study_kind": "nested_condition_source_quantity",
+      "sampler_policy": "Same ordinary3 supervised target sequences; nested2048 conditional shuffle replaces512; same seed42, quotas, original full body+EOS CE. Batch interleaving/conditional IDs intentionally differ.",
+      "outcome_weight": 1,
+      "positive_manifest_sha256": "cf0ac3efa0722d54aa1f6107770ca41b7843a0297d5e53b68f3cde6480901280"
+    },
+    "update": 62936,
+    "tokens": 2062286848,
+    "supervised_tokens": 2045000000,
+    "additional_supervised_tokens": 25000000,
+    "additional_input_tokens": 25231360,
+    "source_teachers": {
+      "web": 18750000,
+      "story": 1250000,
+      "ordinary_textbook": 2500000,
+      "conditional_textbook": 2500000
+    },
+    "source_eos": {
+      "web": 164131,
+      "story": 9486,
+      "ordinary_textbook": 18576,
+      "conditional_textbook": 17514
+    },
+    "source_input_tokens": {
+      "web": 18934784,
+      "story": 1259520,
+      "ordinary_textbook": 2519040,
+      "conditional_textbook": 2518016
+    },
+    "source_focus_teachers": {
+      "web": 0,
+      "story": 0,
+      "ordinary_textbook": 0,
+      "conditional_textbook": 654871
+    },
+    "focus_teacher_tokens": 654871,
+    "focus_token_digest": "45d496b8d5bb369188109cec511fa64f1340374be30badaf9bce3ad77036f014",
+    "weighted_teacher_mass": 25000000,
+    "outcome_weight": 1,
+    "training_seconds": 39.85271529221791,
+    "completed_at": "2026-10-06T02:06:47.967298Z"
+  },
+  "completion": "reports/phase6/condition_diversity_comparison_completion.json"
+}

@@ -36,6 +36,15 @@ reports/phase6/condition_trainfit_*.json -text whitespace=cr-at-eol
 reports/phase6/condition-diversity-source-20261006/** -text whitespace=cr-at-eol
 reports/phase6/condition-diversity-positive-20261006/** -text whitespace=cr-at-eol
 reports/phase6/condition_diversity_*.json -text whitespace=cr-at-eol
+reports/phase6/condition-diversity-comparison-20261006/** -text whitespace=cr-at-eol
+configs/phase6/condition_diversity_probe.json text eol=lf
+configs/phase6/condition_diversity_comparison.json text eol=lf
 configs/phase6/condition_trainfit_diagnostic.json text eol=lf
 configs/phase6/condition_positive_comparison.json text eol=lf
 configs/phase6/condition_positive_probe.json text eol=lf
+
+scripts/*condition_diversity* text eol=lf
+tests/test_condition_diversity_comparison.py text eol=lf
+
+# Preserve pytest's original failure transcript, including emitted spaces.
+reports/phase6/condition_diversity_comparison_tests_initial_fixture_failure.xml -text whitespace=-blank-at-eol,-blank-at-eof
