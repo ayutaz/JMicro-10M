@@ -1,3 +1,17 @@
+Base限定・ラベル平滑化100Mの全評価終了、不採用（2026-10-07 JST）。
+
+[完了記録](../reports/phase6/base_label_smoothing_comparison_completion.json)・[全80採点と比較](../reports/phase6/base_label_smoothing_comparison_review.json): actual693649/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start20212215はcomplete・実process不在。正確100,000,000元gold教師/17,698更新、GPU占有1,432.763981秒（23.9分）/凍結3,583秒。native10,001,152・追加param/推論変更0、固定epsilon0.1/full4096、重み付きgold mass90M/uniform mass10M・uniform soft positions100M。全native/Adam/scheduler/CPU・CUDA RNG/full sampler/全17,698完了履歴と0.9/0.1の会計をreview済み。同元gold/source/EOS/input/physical/digest/full samplerがcached CE100Mと一致、対照GPU再実行0・新corpus0。jobの99,900,395教師/17,680更新は最後のtraining heartbeatであり、terminal train-result/full stateの正確100Mを完了根拠とする。checkpoint SHA5d6ae5726c63b69edb7d7f7b74c232fe1b3d2093f5297787df1ce6ed42a7869b。
+
+|条件|共通byte BPB|文法2/80|一貫性2/80|適切完結/80|EOS/80|反復/80|
+|---|---:|---:|---:|---:|---:|---:|
+|既存CE100M|0.998487|44|2|2|19|45|
+|ラベル平滑化100M|1.045711|58|2|1|27|42|
+
+EOS+8と文法+14、反復-3という点の改善はあるが、一貫性差0/paired CI[-.0375,.0375]、適切完結2→1で生成品質の根本改善には至らない。共通256文書/472,055byteのBPBは+0.047224/CI[0.045345,0.049156]（4.73%悪化）。新意味59.896%/JBLiMP79.154%/JCQA32.082%、意味のCE差-2.604pp/CI[-5.221pp,0]。旧strong/absolute/historical Web・matched全gate未達、最終Base検証eligible=false。固定epsilon/full-vocabulary条件を終了し、epsilon/語彙support/LR/source/checkpoint/epoch救済や自動延長をしない。
+
+新全80はraw SHA付きCodex個別非blind判定で、独立人手なし・旧CE80採点は変更しない。base-057は二＋一を三つと正しく一文で補うため内容一貫性2だが、大量改行の反復・上限停止により完結0。base-086は既存CEの同文と同じ2/2/2/完結1を維持。自動反復falseでも手動で観察した循環を理由に記録する。48text/109,419,403bytesのraw証拠とlossless gzip46,887,710bytes（SHA9ca6c083b67d132013657d460abd55a3d072f93a5ac6834dab3329e1e1139fb6）をWindowsへ可搬保存、tensor/dataは元WSL pathに保持。元10B UI actual695344/同boot/start20355937を実processとHTTP親SHA410f975d…/training_tokens10,000,007,168/busy=falseで復帰確認。科学GPUjobなし。
+
+次の具体的アクション: 既存のBase失敗経路の合成記録へ今回の結果を統合し、学習済みのKL保存/Dropout/contrast/parameter-anchor/ラベル平滑化を繰り返さず、未検証の根本原因比較を一つに絞る。先に実source/既存negative/一次根拠/教師・GPU上限と完了条件を定義する。新科学recipeは未選定・新GPU未起動。Base未完成・未採用。資格のある候補だけ独立学習seed/full DEV/protected final TEST/adoptionへ進め、実Base完成時に通知して停止。Chat/Dialogue/SFT/量子化なし、WSL pinned uv/local verified commitのみ/pushなし。Phase0–3・旧数値7失敗・元品質条件を保持。以下は過去の履歴。
 Base限定・ラベル平滑化100M比較を実WSL CUDAで開始（2026-10-07 JST）。
 
 [検証完了](../reports/phase6/base_label_smoothing_prototype_completion.json)・[実起動記録](../reports/phase6/base_label_smoothing_science_start.json)。actual693649/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start20212215、Windowsworker32536を実processで確認。凍結config SHA0332d41532e2b861559bf7c28395e1dca91263154bebf8ef72630b51cb63d16d、run reports/phase6/base-label-smoothing-comparison-20261007。最新確認は6661649元gold教師/1180更新/combined loss3.63441228866577有限、保存checkpointは/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-label-smoothing-comparison-20261007/smoothing/checkpoint-00001000.pt。同accepted2B TRAIN/原10B親/元1024context・512teacher stride/同batch48・seed42/同source75M・20M・5M/同fresh AdamW1e-5 WD.1を保持。元gold100M positions、重み付きgold mass90M/uniform mass10M・soft positions100Mを別会計。対照CE100Mは既存結果/全80notesを再利用、GPU再実行0。
