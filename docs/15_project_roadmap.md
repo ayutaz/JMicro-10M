@@ -1,3 +1,9 @@
+Base専用gated出力変換: completion（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+同親/同full100Mの出力変換対cached native比較と全80個別raw-bound採点を完了。BPB1.035666704→1.032951419、文法65→46/関連52→39/一貫性32→7/適切37→9/EOS69→46/反復6→24（各80）。事前strong-staged相対gate=False、絶対全gate=False、歴史Web全gate=False、最終Base検証eligible=False。科学100M/3068updates/100532224input、総新GPU178.915812/900、actual654827実不在/元UI復帰。nonblind Codex/一学習seed/反復devを独立人手や確実な一般化の証明としない。合格recipeのみ独立学習seed/full dev/protected test/採用へ。未合格の場合は固定readout分岐を終了し、同幅/LR/source/decoder等の救済sweepは行わない。stock HF adapter未対応を完成としない。
+
+全旧失敗/数値7/Phase0–3/既存相対・絶対・歴史Web1%品質基準保持。幅/activation/placement/LR/初期値/source/CP/decoder救済sweepなし。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用gated出力変換: launch（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
 
 科学actual654827/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start17811675の実稼働、stagereadout-adapter-Base-training/観測教師4577776/100Mを確認。科学GPU上限876.205509秒。250更新ごと全state原子的CP、中断時は実PID不在を確認して scripts/run_readout_adapter_comparison.ps1 -Worker で再開。元UIは終端finallyで復帰。学習終端/全日本語/80内容/採否は未完了。

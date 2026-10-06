@@ -1,0 +1,116 @@
+"""Actual frozen-native/fresh-readout accounting and unchanged Japanese gates."""
+import math
+from pathlib import Path
+import sys
+sys.path[:0]=[str(Path(__file__).resolve().parents[1]/'src'),str(Path(__file__).resolve().parent)]
+import torch
+from jmicro.experiment import ROOT,read_json,sha256,now
+from jmicro.training import atomic_json
+from phase6_performance import alive,finite_state
+from run_eos_short_pilot import equal_state
+from review_matched_story_study import quality_gates
+from run_eos_complete_100m import adoption_checks
+from readout_adapter_model import ReadoutAdapterModel,POLICY
+from readout_adapter_trainer import READOUT_LR
+import review_parameter_displacement_anchor as verified
+import readout_accounting
+import run_readout_adapter_comparison as study
+
+
+def main():
+    torch.set_num_threads(2);c=study.inspect();job=read_json(study.RUN/'job.json');r=read_json(study.RUN/'compare-result.json')
+    if (job['status']!='complete' or alive(job) or r['GPU_seconds']!=job['GPU_elapsed_seconds']
+            or r['config_sha256']!=sha256(study.CONFIG) or r['scientific_teacher_tokens']!=100000000
+            or not r['all_scientific_input_streams_match'] or r['evaluation_model_class']!='ReadoutAdapterModel'
+            or set(r['checkpoints'])!={study.ARM} or r['GPU_seconds']+c['verification_GPU_seconds']>900):
+        raise ValueError('Actual bounded readout100M candidate required')
+    parent=torch.load(c['parent']['path'],map_location='cpu',weights_only=False);base=read_json(Path(c['original_config']['path']))
+    record=r['checkpoints'][study.ARM];study.check_reference(dict(path=record['checkpoint'],sha256=record['checkpoint_sha256']))
+    state=torch.load(record['checkpoint'],map_location='cpu',weights_only=False)
+    with torch.random.fork_rng(devices=[]):model=ReadoutAdapterModel(state['model_config'])
+    model.load_state_dict(state['model'],strict=True)
+    if (not finite_state(state) or sum(p.numel() for p in model.parameters())!=10099456
+            or len(list(model.named_parameters()))!=121 or len(model.model.layers)!=13
+            or sum(p.numel() for p in model.parameters() if p.requires_grad)!=98304
+            or model.lm_head.weight is not model.model.embed_tokens.weight or model.config['readout_adapter']!=POLICY
+            or not study.probe.native_unchanged(model,parent) or not record['native_weights_unchanged']
+            or state['spec']['readout_model_sha256']!=c['old_source_sha256']['scripts/readout_adapter_model.py']
+            or state['spec']['readout_trainer_sha256']!=c['old_source_sha256']['scripts/readout_adapter_trainer.py']
+            or state['spec']['native_unique_parameters']!=10001152 or state['spec']['new_readout_parameters']!=98304
+            or state['spec']['readout_adapter']!=POLICY
+            or state['lineage']['parent_native_model_config']!=parent['model_config']
+            or state['lineage']['native_optimizer_policy']!='not_used_native_weights_frozen'
+            or state['lineage']['optimizer_policy']!='fresh_readout_only'
+            or state['lineage']['scheduler_policy']!='fresh_constant_readout_LR'):
+        raise ValueError('Actual reconstructed frozen119/readout2/source contract differs')
+    groups=state['optimizer']['param_groups']
+    options=parent['optimizer']['param_groups'][1]
+    if (len(groups)!=1 or groups[0]['lr']!=READOUT_LR or groups[0]['weight_decay']!=0
+            or len(groups[0]['params'])!=2 or groups[0]['betas']!=options['betas'] or groups[0]['eps']!=options['eps']
+            or set(state['optimizer']['state'])!=set(groups[0]['params'])):
+        raise ValueError('Actual only2 fresh readout Adam policy differs')
+    for key,shape in zip(groups[0]['params'],((192,256),(256,192)),strict=True):
+        moment=state['optimizer']['state'][key]
+        if moment['exp_avg'].shape!=shape or moment['exp_avg_sq'].shape!=shape or int(moment['step'])!=state['sampler']['position']:
+            raise ValueError('Fresh readout Adam must consume completed source updates only')
+    history=[__import__('json').loads(s) for s in (study.RUN/study.ARM/'training/metrics.jsonl').read_text().splitlines()]
+    if any(v['readout_LR']!=READOUT_LR or v['native_optimizer_updates'] for v in history):
+        raise ValueError('Entire actual fresh/frozen history required')
+    audit=readout_accounting.accounting(parent,state,record,history,c,study.ARM)
+    cached=read_json(study.native.RUN/'compare-result.json');old=cached['checkpoints']['matched_staged_CE']
+    study.matched_sources(record,old)
+    study.check_reference(dict(path=old['checkpoint'],sha256=old['checkpoint_sha256']))
+    old_state=torch.load(old['checkpoint'],map_location='cpu',weights_only=False)
+    for key in ('sampler','token_digest','focus_token_digest','tokens','supervised_tokens','body_bytes','focus_teacher_tokens','weighted_teacher_mass','update'):
+        if not equal_state(state[key],old_state[key]):raise ValueError('Matched actual source/teachers differs: '+key)
+    if old_state['lineage']['parent']!=c['parent']:raise ValueError('Cached native same-parent control required')
+    summaries={};scores={};candidate=r['evaluations'][study.ARM];control=cached['evaluations']['matched_staged_CE']
+    summaries[study.ARM],scores[study.ARM]=verified.content(study.ARM,candidate,record,base,
+        study.RUN/f'evaluation/{study.ARM}/evaluation/generation.json',study.RUN/'content-notes.json')
+    summaries['native_CE'],scores['native_CE']=verified.content('native_CE',control,old,base,
+        study.native.RUN/'evaluation/matched_staged_CE/evaluation/generation.json',study.native.RUN/'matched_staged_CE-content-notes.json')
+    previous=read_json(ROOT/'reports/phase6/source-order-condition-comparison-v2-20261006/compare-result.json')
+    strong=previous['evaluations']['source_order'];strong_record=previous['checkpoints']['source_order']
+    if dict(path=strong_record['checkpoint'],sha256=strong_record['checkpoint_sha256'])!=c['strong_control']:
+        raise ValueError('Fixed strong staged selection control differs')
+    summaries['strong_staged'],scores['strong_staged']=verified.content('strong_staged',strong,strong_record,base,
+        ROOT/'reports/phase6/source-order-condition-comparison-v2-20261006/evaluation/source_order/evaluation/generation.json',
+        ROOT/'reports/phase6/source_order_condition_notes.json')
+    if (summaries['strong_staged']['coherent']!=23 or summaries['strong_staged']['rates']['eos']!=76
+            or summaries['strong_staged']['rates']['repetition']!=2):raise ValueError('Frozen selection baseline changed')
+    comparisons={}
+    for name,ev in (('native_CE',control),('strong_staged',strong)):
+        if ([(v['id'],v['prefix']) for v in ev['generation']['outputs']]!=[(v['id'],v['prefix']) for v in candidate['generation']['outputs']]
+                or [(v['doc_id'],v['body_tokens'],v['body_bytes']) for v in ev['body']['rows']]!=[(v['doc_id'],v['body_tokens'],v['body_bytes']) for v in candidate['body']['rows']]):
+            raise ValueError('Complete common-byte/common-prefix examples required')
+        comparisons[name]=quality_gates(ev,candidate,scores[name],scores[study.ARM],'content')
+    for key in ('transfer','retention'):
+        t=r[key][study.ARM]
+        if t['evaluated_requests']!=512 or not all(t['checks'].values()) or t['checkpoint_sha256']!=record['checkpoint_sha256']:
+            raise ValueError('Complete actual read-only transfer score required')
+    summary=summaries[study.ARM];rates=summary['rates']
+    absolute=dict(grammar_at_least56=summary['grammar2']>=56,coherence_at_least27=summary['coherent']>=27,
+        appropriate_at_least27=summary['appropriate']>=27,EOS_at_least37=rates['eos']>=37,repetition_at_most18=rates['repetition']<=18,
+        no_empty_role_unicode=all(rates[k]==0 for k in ('empty','role_leak','unicode_failure')))
+    study.check_reference(base['reference']['web_screen'])
+    original=adoption_checks(read_json(Path(base['reference']['web_screen']['path'])),candidate)
+    eligible=comparisons['strong_staged']['passed'] and all(absolute.values()) and all(original.values())
+    report=dict(status='readout_adapter100M_all80_content_and_actual_architecture_reviewed',created_at=now(),
+        config_sha256=sha256(study.CONFIG),result_sha256=sha256(study.RUN/'compare-result.json'),
+        selection=read_json(study.PROPOSAL)['selection'],summaries=summaries,quality_comparisons=comparisons,
+        absolute_dev_screen=absolute,original_Web=original,eligible_for_final_Base_validation=eligible,
+        accounting=audit,native_weights_unchanged=True,unique_parameters=10099456,unique_blocks=13,logical_invocations=13,
+        native_optimizer_policy='frozen_not_used',readout_optimizer_policy='fresh98304_only',scientific_teacher_tokens=100000000,
+        reused_control_teacher_tokens=100000000,verification_teacher_tokens=c['verification_teacher_tokens'],
+        new_total_GPU_seconds=r['GPU_seconds']+c['verification_GPU_seconds'],all80_individually_read=True,
+        independent_human_blind=False,Base_complete=False,Base_adopted=False,protected_test_used=False,
+        Chat_started=False,quantization_started=False,quality_criteria_unchanged=True,
+        limitations='98,304 new nonlinear readout weights/fresh Adam vs full native Adam; native weights frozen, same parent/input/target100M and evaluators. One learned seed/nonblind repeated dev. Stock HF export pending.',
+        next_action='Only a qualified recipe permits independent learned seed/full dev/protected test/adoption; otherwise end the fixed readout recipe without LR/depth/source/decoder/checkpoint rescue.')
+    destination=study.RUN/'review.json'
+    if destination.exists():raise ValueError('Preserve original sharing review')
+    atomic_json(destination,report);atomic_json(ROOT/'reports/phase6/readout_adapter_comparison_review.json',report)
+    print(dict(summaries=summaries,eligible=eligible))
+
+
+if __name__=='__main__':main()

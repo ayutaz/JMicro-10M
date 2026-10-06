@@ -1,0 +1,167 @@
+{
+  "status": "readout_adapter100M_all80_content_and_actual_architecture_reviewed",
+  "created_at": "2026-10-06T13:59:21.863300Z",
+  "config_sha256": "18cc823aeacbd431695bec1a1d445b2599db842c52b375407ebae7380ddcde81",
+  "result_sha256": "16607971206bb3e01d29c0c310aaee76555fb698f1b55ebd0bed83cd9b67ec39",
+  "selection": "Original strong full-staged coherence23+8 with pairedCI lower>0, EOS>=76/repetition<=2; absolute grammar56/coh27/appropriate27/EOS37/repetition<=18/errors0; original held-out WebBPB<=.9812859519097707. Only a qualified recipe permits independent learned seed/full dev/protected test/adoption.",
+  "summaries": {
+    "readout_adapter": {
+      "BPB": 1.0329514186604467,
+      "rates": {
+        "outputs": 80,
+        "eos": 46,
+        "repetition": 24,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 46,
+      "relevance2": 39,
+      "coherent": 7,
+      "appropriate": 9,
+      "notes_sha256": "e73739eb226de958f00099aecf53536e90147af4684972be7bd1f5fcc8f68148",
+      "generation_sha256": "814ad662ee19bc43ad681fb4941e3d5bd244a8d8838264aa16233ccc0311fea7",
+      "Japanese": {
+        "semantics": 0.5729166666666666,
+        "jblimp": 0.7492447129909365,
+        "jcqa": 0.35031277926720283
+      }
+    },
+    "native_CE": {
+      "BPB": 1.0356667036495277,
+      "rates": {
+        "outputs": 80,
+        "eos": 69,
+        "repetition": 6,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 65,
+      "relevance2": 52,
+      "coherent": 32,
+      "appropriate": 37,
+      "notes_sha256": "366209389693d5b382ab5a4f4001e0dd6c52fd10c33f9304672a195607b51e69",
+      "generation_sha256": "c46048934bbc1b710ba198ec6a7eb868e21c5a9beb7a731601f29414ce8d8cc6",
+      "Japanese": {
+        "semantics": 0.5416666666666666,
+        "jblimp": 0.7613293051359517,
+        "jcqa": 0.2975871313672922
+      }
+    },
+    "strong_staged": {
+      "BPB": 1.1336128657420816,
+      "rates": {
+        "outputs": 80,
+        "eos": 76,
+        "repetition": 2,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 65,
+      "relevance2": 39,
+      "coherent": 23,
+      "appropriate": 26,
+      "notes_sha256": "6b143e08096a1ee2365a643c008d5c009d2c2ff48dd1d42a9749ac5301766d2d",
+      "generation_sha256": "d5b5a7c6b5d971de9bc46c77f52ac5ea19132cab7b97f034c274974cdbe2620e",
+      "Japanese": {
+        "semantics": 0.5625,
+        "jblimp": 0.7824773413897281,
+        "jcqa": 0.26541554959785524
+      }
+    }
+  },
+  "quality_comparisons": {
+    "native_CE": {
+      "checks": {
+        "coherence_gain_at_least8": false,
+        "paired_CI_lower_above0": false,
+        "EOS_nonworsening": false,
+        "repetition_nonworsening": false,
+        "no_empty_role_unicode": true,
+        "BPB_gate": true,
+        "appropriate_completion_not_punctuation": true
+      },
+      "passed": false,
+      "difference_count": -25,
+      "CI95": [
+        -0.425,
+        -0.2
+      ]
+    },
+    "strong_staged": {
+      "checks": {
+        "coherence_gain_at_least8": false,
+        "paired_CI_lower_above0": false,
+        "EOS_nonworsening": false,
+        "repetition_nonworsening": false,
+        "no_empty_role_unicode": true,
+        "BPB_gate": true,
+        "appropriate_completion_not_punctuation": true
+      },
+      "passed": false,
+      "difference_count": -16,
+      "CI95": [
+        -0.3,
+        -0.0875
+      ]
+    }
+  },
+  "absolute_dev_screen": {
+    "grammar_at_least56": false,
+    "coherence_at_least27": false,
+    "appropriate_at_least27": false,
+    "EOS_at_least37": true,
+    "repetition_at_most18": false,
+    "no_empty_role_unicode": true
+  },
+  "original_Web": {
+    "EOS_at_least8_more": true,
+    "repetition_no_worse": true,
+    "no_empty_role_unicode": true,
+    "BPB_degradation_at_most1percent": false,
+    "no_punctuation_only_stops": true
+  },
+  "eligible_for_final_Base_validation": false,
+  "accounting": {
+    "completed_updates": 3068,
+    "teachers": 100000000,
+    "physical_input_positions": 100532224,
+    "parameter_penalty_teacher_tokens": 0,
+    "final_parameter_penalty": 0.0,
+    "actual_Web_blocks_consumed": 73421,
+    "source_teachers": {
+      "web": 75000000,
+      "story": 5000000,
+      "ordinary_textbook": 10000000,
+      "conditional_textbook": 10000000
+    },
+    "source_EOS": {
+      "web": 159447,
+      "story": 38240,
+      "ordinary_textbook": 74183,
+      "conditional_textbook": 234328
+    }
+  },
+  "native_weights_unchanged": true,
+  "unique_parameters": 10099456,
+  "unique_blocks": 13,
+  "logical_invocations": 13,
+  "native_optimizer_policy": "frozen_not_used",
+  "readout_optimizer_policy": "fresh98304_only",
+  "scientific_teacher_tokens": 100000000,
+  "reused_control_teacher_tokens": 100000000,
+  "verification_teacher_tokens": 1307952,
+  "new_total_GPU_seconds": 178.9158119779895,
+  "all80_individually_read": true,
+  "independent_human_blind": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "protected_test_used": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "quality_criteria_unchanged": true,
+  "limitations": "98,304 new nonlinear readout weights/fresh Adam vs full native Adam; native weights frozen, same parent/input/target100M and evaluators. One learned seed/nonblind repeated dev. Stock HF export pending.",
+  "next_action": "Only a qualified recipe permits independent learned seed/full dev/protected test/adoption; otherwise end the fixed readout recipe without LR/depth/source/decoder/checkpoint rescue."
+}
