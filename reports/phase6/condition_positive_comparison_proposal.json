@@ -1,0 +1,74 @@
+{
+  "status": "defined_Base_comparison_commands_and_actual_CUDA_probe_pending",
+  "created_at": "2026-10-06T01:28:37.4246087Z",
+  "user_scope": "Base only; notify and stop after completed evidence-qualified Base; no Chat/quantization",
+  "question": "Does emphasizing original condition-dependent positive outcomes improve held-out conditional discrimination and coherent Japanese continuation relative to ordinary CE on identical inputs?",
+  "reason": "Saved dev margin shifts respond to negation without reversing candidate rankings. Story ratio increase did not pass generation gates. Accepted explicit-opposition train pilot supplies original positive outcomes without invented false alternatives.",
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook-coverage-2b-20261006/decay/checkpoint-00062166.pt",
+    "sha256": "965a06dc1537ed917de98c565d78ae76f19d99ad075f019067a4324a6cbd2249",
+    "optimizer": "inherit Adam/RNG; declared source-sampler fork with lineage",
+    "lr": 0.0002
+  },
+  "positive_data": {
+    "preparation": "reports/phase6/source_condition_positive_preparation.json",
+    "sha256": "3d944e642e874549b5671ae2df5615dbc45fbf1305b38a9b6b1772a13299c264",
+    "data_path": "/home/aihub_ubuntu/jmicro-data/phase6/source-condition-positive-20261006",
+    "manifest_sha256": "7ef3df21ec52541d32f4b6e17321cb35271a25ded13af913dab6c1aab5e866fc",
+    "reused_original_body_tokens": 71885,
+    "copied_serialized_tokens": 72909,
+    "focus_target_tokens": 18956,
+    "documents": 512,
+    "focus_enabled_documents": 504,
+    "weak_pilot_documents": 8,
+    "pilot_size": 64,
+    "unchanged_weak_ceiling": 10,
+    "no_hard_negative_labels": true,
+    "newly_prepared_original_tokens": 0
+  },
+  "arms": {
+    "ordinary_CE": {
+      "outcome_weight": 1
+    },
+    "positive_outcome_weighted_CE": {
+      "outcome_weight": 4
+    }
+  },
+  "teachers_per_arm": 25000000,
+  "teacher_quota_each_arm": {
+    "web": 18750000,
+    "story": 1250000,
+    "ordinary_textbook": 2500000,
+    "conditional_textbook": 2500000
+  },
+  "matching": "Same actual parent/model/tokenizer/Adam/RNG/LR/source sampler seed42/inputs/labels/body+EOS quotas in both arms; only normalized positive-outcome CE weights differ. EOS unboosted. Weighted teacher mass is a loss denominator, not newly learned token count. Report realized physical inputs and GPU time separately.",
+  "shape": {
+    "batch": 32,
+    "context": 1024,
+    "accumulation": 1,
+    "backend": "flash",
+    "precision": "BF16",
+    "compile_mode": "reduce-overhead"
+  },
+  "prerequisites": [
+    "Implement four-stream sampler/fullstate trainer/persistent runner/evaluation reviewer before launching",
+    "CPU continuous versus resumed updates preserve optimizer/scheduler/RNG/sampler/token digest/source counters and weighted counters",
+    "Actual CUDA4 continuous versus2+2 for both arms; finite loss/backward and same full-state evidence",
+    "Actual continuous timing; only then freeze scientific source hashes and a measured feasible GPU budget",
+    "Inspect live jobs before launch; persist PID/boot/start/logs/checkpoints and restore original UI at terminal exit"
+  ],
+  "combined_GPU_ceiling_seconds": 1800,
+  "CUDA_probe_ceiling_seconds": 120,
+  "scientific_GPU_budget": "1800 minus actual probe seconds; refuse infeasible measured estimate",
+  "evaluation": "Existing common-byte dev256, fixed generation80 per arm and Japanese dev192/JBLiMP331/JCQA1119. Personally read all160 new continuations. Reuse immutable suite definitions; no protected test or dev prompts used as training material.",
+  "completion_condition": "Both25M teacher arms actually finish or a precise finite budget/failure is recorded; evaluate both under unchanged generation/relative improvement/Web BPB criteria. Report paired conditional-family ranking shifts as secondary evidence, never as a substitute for fluent generation. Reject failed candidates; no automatic weight/ratio sweep or long extension.",
+  "final_Base_requirements": "Existing quality screen and required independent learning seed/full dev/protected test/adoption; completion of this bounded study alone is not Base completion.",
+  "source_family_and_factual_certification": "not performed; local body SHA uniqueness and64 nonblind observations only",
+  "CPU_loss_component_tests": "reports/phase6/condition_positive_loss_tests.xml",
+  "actual_GPU_seconds": 0,
+  "scientific_teacher_tokens": 0,
+  "Base_adopted": false,
+  "protected_test_used": false,
+  "Chat_authorized_now": false,
+  "quantization_authorized_now": false
+}
