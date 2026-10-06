@@ -1,3 +1,13 @@
+parameter変位の固定L2比較を実装・両arm実CUDA gate/速度測定を完了（2026-10-06 JST）。前TRAIN診断はd516c78へ保存したprogress。Baseのみ継続、品質・独立学習seed/full dev/protected test/採用で完成時に通知・停止。Chat/Dialogue/SFT/量子化なし。
+
+same mixed fullstate SHA6d901bd…/update323503から両新arm同追加staged100Mを実装、candidateだけlambda=.04161064039180984のunique parameter L2。両armmodel/Adam/scheduler/RNG/actualWebcursor/親sampler/anchor/actualLR.00001の初期一致を実確認。短source/local quotasのみ同seed42でresetし親cursorはlineageへ保持。tieは一回、L2教師0。CPU初回fixtureのscheduler base_lrsとoptimizer initial_lr不一致2failedを保存し修正、4tests/1.64秒で解析勾配・anchor不変・両CPU4vs2+2全state/phase/counters・費用計算が成功。
+
+v1preflightはnormalized core hashをrawSHAと比較してGPU前に拒否。v2はCUDAanchor対CPU親の検証でGPU1.878139秒・optimizer0で停止、actual628139不在。旧source/config/rawを変えずv3owned修正版に分離。v3probe actual628394/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16468641はcomplete・不在。実両CUDA4vs2+2のmodel/Adam/scheduler/RNG/sampler/lineage/全会計/digest/loss/CE/L2/有限値一致、各32steady timingsを確認。検証80更新/2615904教師は科学へ加えず、成功GPU31.802341＋失敗=33.680480秒/上限120に保持。
+
+本比較の設定configs/phase6/parameter_displacement_anchor_v3.jsonを実測から凍結。対照step0.145319秒/candidate0.054650秒、2armtrain予測に1.3×・save・評価reserve150・余裕50を含み1004.601240秒、probe込み1800秒以内。run reports/phase6/parameter-displacement-anchor-v3-20261006、永続起動scripts/run_parameter_displacement_anchor_v3.ps1 -Mode Train、再開はactual不在確認後-Worker。新科学教師/optimizer0、本学習まだ未開始。全raw/gates/timings/failures/source/testsはparameter_displacement_anchor_preparation/portable.json/archiveへ保存、旧失敗/Phase0–3/数値7失敗を保持。
+
+次は実両100M→同256共通byte/日本語192-331-1119/greedy80各/bridge-ret128→全160個別raw notes/採否/UI復帰/commit。newmatched対照とoldstrong staged23+8/CI正/EOS76/反復2・絶対/歴史BPB全guardを維持。coefficient/anchor/source/decoder sweepなし。pilot合格後だけ独立学習seed/full dev/protected test/採用へ進む。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 有限な重み変化のTRAIN診断を実完了（2026-10-06 JST）。前回midpoint不採用はb4e71dcに保存。Base未完了・未採用、完成時に通知して停止、Chat/Dialogue/SFT/量子化なし。
 
 既保存TRAIN Web32 blocksの元x/ySHAを再利用し、mixed/midpoint/staged同3重みのFP32 mathを測定。CPU3tests/.82秒、実準備0.332303秒/上限30、GPU2.118768秒/上限120。actual627394/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16421220はcomplete・不在。全12点/raw metadataと統計を確認、全119unique paramsの有限勾配、全モデル重み不変/.gradなし/RNG復元。input32768/body32626/EOS71各model、科学教師/optimizer0。巨大corpus再scan/再encode/新選別なし。
