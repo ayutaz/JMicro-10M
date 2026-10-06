@@ -1,3 +1,15 @@
+EOS質量を切り離す比較の実CUDA検証を終え、100M学習を開始（2026-10-06 JST）。前goal turn e94d866は実CPU9.29秒の分解診断と新成分のCPU実装/全state再開まで完了したprogress。Baseだけを品質・独立学習seed/full dev/protected test/採用まで継続し、実完了時に通知して停止する。Base未完了・未採用、Chat/Dialogue/SFT/量子化なし。
+
+own runner/reviewer/durablePS/会計を実装。新追加のparent非EOS probability-massをhistory/checkpoint/KL state/再開gate/最終reviewで扱う。終了済fullKLは機序対照として再評価せず、元staged CE23/EOS76/反復2の強い品質screenを別に維持。own scope/accounting CPU2tests/1.00秒で品質対照の差し替えとmass隠蔽を拒否、PS構文成功。builder初回は既存sourceの同一行にある変数初期化を行頭と誤認して生成前に拒否、生成fragmentだけ修正。GPU/科学学習前の処理で旧source不変、品質/検査を緩和しない。
+
+新probe actual593289/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start15436720は終了・実ps不在。実CUDA連続4対2+2の全41 state/history/finite/no-reheat checksと初期親model/Adam/scheduler/RNG/cursor/teacher/LR保持10checksが合格。新probability massも完全再開一致。40検証更新/1,307,967 CE教師/referenceinput327,680/soft body326,339/retained parent非EOS mass325,778.16796875を科学学習へ足さない。GPU29.086883秒。全32 timingのmain/ref input digest・教師/EOS/input/byte/focus countsが旧fullKL probeと完全一致。損失/勾配は新目的のため旧と一致を要求しない。
+
+1更新実測.090427864秒、3068更新の学習推定282.595547秒。旧非学習GPU証拠150秒枠＋30%＋50秒を保ち、science余裕付き612.374211＋新検証29.086883＝641.461094秒<新900秒で凍結。旧関連研究401.475919秒は既存別費用として保持・報告し、旧失敗capや余裕を変更しない。configs/phase6/eos_decoupled_web_kl_comparison.json SHA1d31739438ffcd2e2ef93c725e16b0ed23d0fec6417ece5f2268766e88881017。
+
+durable Windows worker30372、actual WSL593649/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start15443335で通常CE100M＋別参照25,133,056inputの学習中。reports/phase6/eos-decoupled-web-kl-comparison-20261006/job.jsonに累積費用/heartbeat/PID/再開命令を保存。再開はscripts/run_eos_decoupled_web_kl_comparison.ps1 -Mode Train -Worker（実process不在確認後）。科学GPU中UIを停止、wrapper finallyで元10Bを戻す。eos_decoupled_web_kl_comparison_launch.jsonに実gate/shape/費用/identity/mass根拠。新教材量0、親10.5B fullstate/実LR.00001/4sources quota/順序/同主・参照窓/temperature1/coefficient1を維持し、EOS-mass項だけを外す。確率質量は位置数・CE教師・新教材量と別。
+
+次はowned job終端→同256byte/全日本語192/331/1119/全80greedy64/bridge128/retention128・全80個別読解と新mass/全3068主・参照入力・counter一致を確認して採否。機序差fullKL対新条件と品質screen元staged CE対新条件を区別し、元relative coherence+8/CI/EOS/反復/BPB、absolute、歴史Web1%を維持。劣ったfullKL基準へ差し替えない。合格時だけ独立学習seed/full dev/protected test。失敗時の係数/温度/order/LR/source/batch sweep・自動長期延長/有利なCP探索なし。旧Phase0–3/数値7失敗を保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 EOS確率質量の実CPU診断を完了し、成分を切り離す1条件を準備（2026-10-06 JST）。前goal turnは実100M/full評価/全80読解/不採用までecd1594へ保存したprogress。Baseだけを品質/独立学習seed/full dev/protected test/採用まで継続し、実完了時に通知して停止する。Base未完了・未採用、Chat/Dialogue/SFT/量子化なし。
 
 凍結web_kl_followup_diagnostic_proposal.jsonの同train cursor順first16 resident windowsで親/対照staged CE/終端full KLをCPU FP32でread-only評価し、float64確率でKLを分解した。実9.290633秒（180秒内）、16,384input/16,320body/64ignored、GPU0/optimizer0/科学学習0。全モデル/同input-target digest/元manifest/cache SHA/親cursor順を保持し、語彙のEOS3も確率正規化に含まれる損失をBernoulli EOS確率質量項＋(1-parentEOS)×非EOS条件付き分布項へ正確に分けた。平均分解誤差5.55e-17/3.47e-18、全finite。web_kl_EOS_component_diagnostic.jsonとjob/result保存。数学identity・body mask・EOS gradientと成分分離のCPU2tests/1.34秒成功。
