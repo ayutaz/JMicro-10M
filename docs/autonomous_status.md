@@ -1,3 +1,9 @@
+Base専用有限Web実損失制約: preparation（2026-10-06 JST）。Base未完成・実完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+CPU4testsで有限制約・拒否時rollback・全state連続対再開を確認。CPU準備1.431405秒、固定TRAIN32 Web窓/32638body教師・32768input・130336bytesを既cacheから再利用。新GPU/本学習0。次はownCUDA8対4+4・32timing・有限投影数値controlと最悪ケース速度を120秒内で測り、検証を含む2400秒内の場合だけ本学習へ進む。
+
+固定TRAIN保持はheld-out/自然品質の証明ではない。元LR.00001/Adam/全source/条件outcome+EOS maskと旧相対・絶対・歴史Webの全品質基準を保持。合格recipeのみ独立学習seed/full dev/protected test/採用へ接続。Phase0–3/旧数値7/全失敗保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 次のBase専用有限比較を定義: 実測Web TRAIN body NLLの制約（2026-10-06 JST）。未実装・未起動、newGPU/学習0、Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
 
 rank4対full fresh Adamは全160/採否/終端/UI/224file可搬SHAをcb3c114へ保存し、両不採用。一貫性3対10、EOS13対23、反復64対37、BPB.972906対.973113。当比較598.744819GPU秒。rank4/LR/CP等の救済総当たりは行わない。前の有限変位診断ではWeb CE増分の94.6–98.9%が一次近似の外にあり、soft L2もWeb保持に失敗、stagedはprefix90M時点でBPB1.013622>.981286。次は関数の実損失を制約し、能力を落とす一律低ランク制限と区別する。[GEM一次資料](https://arxiv.org/abs/1706.08840)の記憶損失の不等式制約を参考にしたowned nonlinear extensionで、論文再現/成功保証ではない。
