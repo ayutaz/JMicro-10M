@@ -1,0 +1,91 @@
+{
+  "kind": "fixed_context_conditional_MC_Fisher_parameter_anchor_v1",
+  "created_at": "2026-10-06T12:49:48.614526Z",
+  "parent_and_anchor": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/historical-parent-condition-comparison-v3-20261006/historical_parent/training/checkpoint-00323503.pt",
+    "sha256": "6d901bd290cc5b7ab0b52a3a2309232d1e08c7fba32ecb8ec1e5656fe1a2f5a0"
+  },
+  "hypothesis": "Replace the completed uniform L2 field by TRAIN conditional model-sampled diagonal Fisher importance; protect sensitive coordinates and allow less sensitive coordinates to adapt.",
+  "comparison": "One Fisher candidate versus cached completed uniform parameter_anchor; no old GPU rerun. Parent, inherited Adam/scheduler/RNG, source sampler, full CE quotas, LR, lambda, clipping, decoder and fixed evaluators unchanged.",
+  "distinction": "Soft anisotropic quadratic anchor, not a finite actual-loss bound, exact Hessian, empirical GT Fisher, natural-gradient optimizer or proof of preserved quality.",
+  "lambda_fixed": 0.04161064039180984,
+  "source_teacher_goals": {
+    "web": 75000000,
+    "story": 5000000,
+    "ordinary_textbook": 10000000,
+    "conditional_textbook": 10000000
+  },
+  "source_CE_teacher_tokens": 100000000,
+  "full_conditional_setup_and_body_and_EOS": true,
+  "outcome_weight": 1,
+  "field_settings": {
+    "seed": 2026100647,
+    "replicates": 2,
+    "rows": 32,
+    "context": 1024,
+    "dtype": "fp32",
+    "backend": "math",
+    "TF32": false,
+    "autocast": false,
+    "support": "actual_target_ID_ge_8",
+    "sampled_vocabulary": "full_native_4096",
+    "score_scaling": "each_row_sum_NLL/sqrt(total_fixed_body_tokens)",
+    "accumulation": "sum_row_squared_gradients/replicates_float64",
+    "normalization": "global_unique_coordinate_mean_one",
+    "field_floor": null
+  },
+  "field_GPU_ceiling_seconds": 120,
+  "own_CUDA_trainer_probe_ceiling_seconds": 120,
+  "total_new_GPU_ceiling_seconds": 1800,
+  "field_cost": "64 score gradients/65276 model-sampled labels/65536 physical context tokens; no optimizer updates or ordinary source CE. Field, own trainer probe, science and evaluation all count inside1800s.",
+  "before_science": "Own inherited-state CUDA4 versus2+2 including all optimizer/scheduler/RNG/sampler/counters and field/anchor binding, finite CE/gradient,32 timing updates plus saves; measured1.3margin+200evaluation fits remaining total1800s. Scientific config and training unavailable until these pass.",
+  "completion": "One full100M candidate, same dev256/Japanese192-331-1119/native greedy80/all80 raw-bound content; unchanged relative, absolute and historical Web1% gates. Qualified recipe only proceeds to independent learning seed/full dev/protected test/adoption.",
+  "selection": "Original strong full-staged coherence23+8 with pairedCI lower>0, EOS>=76/repetition<=2; absolute grammar56/coh27/appropriate27/EOS37/repetition<=18/errors0; original held-out WebBPB<=.9812859519097707. Only a qualified recipe permits independent learned seed/full dev/protected test/adoption.",
+  "no_rescue": "No field/sample count/seed/normalization/module/floor/lambda/LR/source/target mask/order/checkpoint/decoder sweep. Preserve terminal failures; no uniform fallback.",
+  "field_context_provenance": "Reuse frozen original source-gradient TRAIN packet32, no dev/test or new selection. Estimate at6d mixed parent, not d18 original parent; old field losses are not this parent baseline.",
+  "primary_sources": [
+    {
+      "title": "Elastic weight consolidation, equation3",
+      "url": "https://arxiv.org/html/1612.00796v2"
+    },
+    {
+      "title": "Limitations of empirical Fisher approximation",
+      "url": "https://arxiv.org/abs/1905.12558"
+    }
+  ],
+  "references": {
+    "uniform_config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/parameter_displacement_anchor_v3.json",
+      "sha256": "7fb897e9905eceaecc754a4d323f2e8d90c68e47e592872c8f20cf980721e249"
+    },
+    "uniform_result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/parameter-displacement-anchor-v3-20261006/compare-result.json",
+      "sha256": "4f71f1842a6cd85b3f34696a8052ee38f9c1aba9c94c5c67580fd85aa46a54d9"
+    },
+    "uniform_review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/parameter-displacement-anchor-v3-20261006/review.json",
+      "sha256": "d1360f469c2410dadf288e6a987996fa4a65137d1b610c034f11e4a79ee02c2b"
+    },
+    "uniform_completion": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/parameter_displacement_anchor_completion.json",
+      "sha256": "cde3ccf0c0cf75db7a7854a8f66f102fb0dffe9c055fc73eb6af3a0b4fbb9002"
+    },
+    "block_failure": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/block_Web_constraint_failure_analysis.json",
+      "sha256": "d540682d8e1a8d826e9550c536884abdd3c0c6e93654289d0819206b7ec476c3"
+    },
+    "CPU_tests": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/fisher_parameter_anchor_tests.xml",
+      "sha256": "c06c70206f682dd7f32df0254cf35949831afb6cd75876cfff97061bf3f7aad8"
+    }
+  },
+  "quality_criteria_unchanged": true,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "field_GPU_seconds_so_far": 0,
+  "source_CE_teacher_tokens_so_far": 0,
+  "scientific_launched": false
+}

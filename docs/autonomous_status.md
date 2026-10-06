@@ -1,3 +1,9 @@
+Base専用Fisher parameter field: preparation（2026-10-06 JST）。Base未完成・完成時通知して停止、Chat/Dialogue/SFT/量子化なし。
+
+一律L2の完了済み不採用対照に対し、同mixed親/継承Adam・LR.00001/同full100M CE・source・mask・lambda.04161064039180984を保ち、model-sampled conditional diagonal Fisherのglobal unique-coordinate mean1で重み別抑制を行う別案。同TRAIN32窓/2反復/seed2026100647、行sum NLLをsqrt(全body32638)で割り、行score gradient二乗を和/2するtoken-weighted推定。GT empirical Fisher/全joint Fisher/Hessian/有限NLL保持の証明ではない。関連CPU4tests/1.97秒（独立ラベルの全列挙期待値、tied/一律一致/非有限拒否、private RNG不変、native全state4対2+2と改変拒否）、準備0.280308秒。新GPU/本学習0。次はfield64 gradient/65276model-sampled label（通常source CE0）を120GPU秒内で計算、own CUDA trainer gate/timing後、field+probe+本科学+評価1800秒予測内のみ100M一候補へ。旧対照再GPU/再全量scanなし。
+
+全旧不採用/数値7/Phase0–3/相対・絶対・歴史Web1%品質基準を維持。field/seed/回数/normalization/module/lambda/CP救済sweepなし。合格recipeのみ独立学習seed/full dev/protected test/採用へ。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 固定20境界Baseの失敗原因を既存rawからCPU分析（2026-10-06 JST）。Base未完成・実完成時通知停止、Chat/Dialogue/SFT/量子化なし。
 
 受入2600更新/84961352CE教師＋memory gradient424294、拒否20更新/650524source梯度＋memory gradient32638別会計。全science梯度exposures86068808、ownprobe5231748教師は別。最終安全NLL2.607065320、上限2.607075455。単一gradientの線形予測2.607049643に対して実修正後2.608679235、正の非線形残差0.001629592/内側marginの63.13倍。最後0.125の実NLL2.607168734も上限を0.000093279超えるため規定通り全区切りrollback。単一修正/固定試行が不十分という局所TRAIN診断で、全学習解不存在やモデル容量/教材不足の証明ではない。条件教材の学習到達=False、全91,641,755/日本語・全80/品質評価は未達。分析CPU0.311259秒/20、新GPU/学習0。science193.647秒＋ownprobe33.679＋旧診断70.561=関連297.887秒/2400。
