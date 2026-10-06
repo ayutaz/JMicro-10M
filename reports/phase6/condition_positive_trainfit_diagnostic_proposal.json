@@ -1,0 +1,29 @@
+{
+  "status": "planned_not_implemented_not_launched",
+  "question": "Did extra weight improve the original training outcomes while heldout consistency failed, or did it fail even to improve those outcomes?",
+  "comparison": [
+    "parent2B",
+    "control",
+    "positive4"
+  ],
+  "source_manifest_sha256": "7ef3df21ec52541d32f4b6e17321cb35271a25ded13af913dab6c1aab5e866fc",
+  "documents": 512,
+  "input": "Existing original BOS/body/EOS IDs and prepared outcome mask; same standalone context for all3 checkpoints; known8 weak focus-disabled",
+  "measurements": [
+    "Unweighted positive-body NLL per target and per document",
+    "Other body and EOS NLL separately",
+    "Paired per-document delta and complete target counts",
+    "Finite values; actual wall/GPU time; weights/RNG unchanged"
+  ],
+  "GPU_budget_seconds": 60,
+  "optimizer_updates": 0,
+  "scientific_teacher_tokens": 0,
+  "new_original_tokens": 0,
+  "protected_test_used": false,
+  "completion_condition": "All fixed512 documents and3 checkpoint hashes measured on identical targets; positive/other/EOS count parity; finite loss; unchanged weight/RNG checks; actual budget and portable evidence. Interrupted partial run is incomplete.",
+  "limitations": "Train-only teacher forcing can distinguish failure to fit from fit without transfer on these examples, not prove generalization, attention failure or capacity. The saved dev paired analysis remains secondary; no evaluation text enters learning.",
+  "automatic_long_extension": false,
+  "Chat_authorized": false,
+  "quantization_authorized": false,
+  "created_at": "2026-10-06T01:47:23.3423650Z"
+}
