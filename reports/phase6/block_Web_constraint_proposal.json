@@ -1,0 +1,182 @@
+{
+  "kind": "finite_Web_body_NLL_at_20_update_transaction_boundaries_v1",
+  "created_at": "2026-10-06T12:24:47.134320Z",
+  "references": {
+    "trigger": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/low_rank_base_v2_completion.json",
+      "sha256": "be0f34b5cef57216180654ff2fb511bb2096a8ebfc808f822bf89852661a6119"
+    },
+    "finite_nonlinarity": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/finite_parameter_displacement_completion.json",
+      "sha256": "05c13ec9d854b524e73b198130a45c6b4401d16daec89dea93b16a18b33303d6"
+    },
+    "shared_prefix_forgetting": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/shared_prefix_web_loss_completion.json",
+      "sha256": "a4943b817005078235f00a784af1783122fbe7b43f8adfde5055ca1a98288758"
+    },
+    "soft_parameter_anchor_failure": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/parameter_displacement_anchor_completion.json",
+      "sha256": "cde3ccf0c0cf75db7a7854a8f66f102fb0dffe9c055fc73eb6af3a0b4fbb9002"
+    },
+    "original_masked_staged_control": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/conditional-prefix-mask-20261006/compare-result.json",
+      "sha256": "f27236c59a63cdd95470c894b4774e98b65c8a39dbc6e259be85548227110811"
+    },
+    "original_masked_staged_review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/conditional-prefix-mask-20261006/review.json",
+      "sha256": "f6abb4d5ebc9f78a36c7b6e34e9f478fb2f527593f5740018cc05651eabcd574"
+    },
+    "original_masked_staged_notes": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/conditional-prefix-mask-20261006/content-notes.json",
+      "sha256": "8f98d68db71f07c6aa3e82592e2e2aab5d81f90024e221bcdfbfc4562cef1613"
+    },
+    "accepted_input_ledger": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved_outcome_reference_input.json",
+      "sha256": "fe12f14780541213f584ad45d7facb3c2e87251270bc61f1961bbdeb1984eb68"
+    },
+    "cached_TRAIN_packet": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-gradient-attribution-20261006/samples.pt",
+      "sha256": "d06b94ba1b78d07aeee70f4fe29b002fc16eaf05c4af2ff4686def02742640c7"
+    },
+    "cached_TRAIN_metadata": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-gradient-attribution-20261006/samples.json",
+      "sha256": "4204dcd5e8a430e2af231097b2ba5f8a392195dbcfe10f0e77a719ee3eb3f37c"
+    },
+    "cached_TRAIN_config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/source_gradient_attribution.json",
+      "sha256": "ae7fac43011af7b28cd2349e2331d1a852546bb205711dc3fb6d06e3aeac034e"
+    },
+    "per_update_budget_failure": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/finite_Web_constraint_budget_rejected.json",
+      "sha256": "f6995ae3c8cf449a0d39fa4f611bb8f0fc9db2b4c4852dc883b63cba728db11e"
+    },
+    "compiled_budget_failure": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/compiled_Web_oracle_terminal.json",
+      "sha256": "220de6bd61d0c59a27d57b6304619db161b93c40a76b3b975cf01abeef9c71df"
+    }
+  },
+  "primary_source": "https://arxiv.org/abs/1706.08840",
+  "attribution": "GEM formulates memory losses as inequality constraints and locally approximates them with gradient constraints. Our direct finite-loss oracle/Newton correction is a separate owned extension, not a claimed GEM reproduction or proven generalization guarantee.",
+  "measured_trigger": {
+    "rank4_vs_full_coherence": [
+      3,
+      10
+    ],
+    "rank4_vs_full_EOS": [
+      13,
+      23
+    ],
+    "rank4_vs_full_repetition": [
+      64,
+      37
+    ],
+    "nonlinear_displacement_fraction": [
+      0.9458055121206235,
+      0.9891869268641028
+    ],
+    "shared_prefix_Web_BPB": 1.0136221079473724,
+    "original_guard_Web_BPB": 0.9715702494156145,
+    "masked_staged_Web_BPB": 1.0868123573684936,
+    "masked_staged_coherence": 35,
+    "masked_staged_EOS": 79,
+    "masked_staged_repetition": 1
+  },
+  "hypothesis": "Constrain the same native FP32/math memory loss at fixed 20-update accepted boundaries; use full source learning between boundaries and amortize loss measurement. This may retain the function without the per-update computation budget failure. Held-out quality remains unproven.",
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+    "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+  },
+  "native_parameters": 10001152,
+  "learning_order": "Original full Web75M, story5M, ordinary10M, conditional10M reference staging",
+  "source_masks_inputs_quotas_unchanged": true,
+  "target_rule": "Existing conditional outcome body+EOS only, other3 sources unchanged",
+  "CE_teacher_tokens": 91641755,
+  "reference_teacher_tokens": 100000000,
+  "physical_input_tokens": 100532224,
+  "updates": 3068,
+  "optimizer_policy": "Inherited original Adam and scheduler floor/actualLR.00001; accepted projection changes boundary weights, keeps the proposed Adam state; no optimizer reset.",
+  "comparison": "Reuse the completed whole masked-staged recipe as historical uncontrolled functional-constraint reference. New complete candidate starts at original10.5B parent, not its already-forgetting90M prefix.",
+  "memory_selection": "First32 Web rows in existing frozen16 TRAIN batches, in stored batch/row order. They are exact initial Web-stream windows already present in original staged75M control. No resampling, filtering, dev/test use or whole-source scan.",
+  "memory": {
+    "rows": 32,
+    "context": 1024,
+    "microbatch": 8,
+    "dtype": "fp32",
+    "backend": "math",
+    "loss": "Original body IDs>=8 only; exclude EOS/BOS/structural/ignored targets",
+    "reference": "Original10.5B parent on exactly same bytes/teachers",
+    "ceiling_multiplier": 1.01,
+    "projection_interior_margin_relative": 1e-05
+  },
+  "algorithm": [
+    "Snapshot unique native weights, optimizer, RNG and sampler before one completed-update proposal; tied embedding/output counted once.",
+    "Compute unchanged masked source CE and clipped AdamW proposal at actualLR0.00001.",
+    "Measure actual FP32/math body NLL on fixed TRAIN memory. Accept immediately if <= original reference*1.01.",
+    "If violated, compute ONE memory body gradient at the proposed weights. Correct along minus-gradient by (actualNLL-ceiling+reference*1e-5)/squared_gradient_norm. This additional supervised gradient is separately counted.",
+    "Measure actual corrected finite NLL; if still violated, test only prescribed0.5/0.25/0.125 of this SINGLE-update corrected displacement from the last safe weights. No endpoint/checkpoint averaging or quality-selected LR sweep.",
+    "Accept first finite feasible proposal, preserving original Adam/scheduler semantics and source/auxiliary accounting. If none is feasible or gradient nonfinite/zero: restore ALL last-completed states and terminate rejected branch; do not count an unaccepted source update or advance its sampler."
+  ],
+  "teacher_accounting": "91,641,755 ordinary source-CE teachers if completed; separately count memory projection-gradient targets, finite-loss target observations, rejected-proposal source/auxiliary exposure and all physical input. Total gradient teachers may exceed CE budget. Never claim matched total supervision or equal GPU budget to cached control.",
+  "CPU_preparation_ceiling_seconds": 60,
+  "probe_GPU_ceiling_seconds": 120,
+  "total_new_GPU_ceiling_seconds": 2400,
+  "required_before_science": [
+    "Implement trainer/fullstate persistence and native evaluator connections",
+    "CPU tests for exact finite bound/projection/backtrack, unique tied weights and rejected all-state/cursor/RNG rollback, continuous/resumed actual model states",
+    "Own actualCUDA8vs4+4 fullstate/finite/no-reheat and32timings; discarded probe weights/teachers separately counted",
+    "Own actual FP32 oracle/projection gradient control on a preselected stored violating state; no generation/adoption of that diagnostic corrected state",
+    "Freeze science only if measured worst-case3068*(source_step+5_oracle_forwards+1_memory_gradient)+saving,1.3margin+200eval reserve plus probe fit2400s"
+  ],
+  "completion": "Actual accepted3068 source updates with whole91,641,755 CE teachers plus separately measured auxiliary teachers, or explicit finite rejection/rollback/budget branch. Only completed candidate gets unchanged dev256/Japanese192/331/1119/greedy80 and all80 raw-bound individual review. Terminal actual PID, original UI restoration, portable evidence and local commit.",
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "selection": "Original strong full-staged coherence23+8 with pairedCI lower>0, EOS>=76/repetition<=2; absolute grammar56/coh27/appropriate27/EOS37/repetition<=18/errors0; original held-out WebBPB<=.9812859519097707. Only a qualified recipe permits independent learned seed/full dev/protected test/adoption.",
+  "failure_policy": "End this sole functional constraint recipe; no memory/ceiling/margin/projector/LR/source/mask/order/CP/decoder salvage sweep or automatic training extension.",
+  "limitations": [
+    "Small fixed TRAIN memory can overfit and cannot guarantee held-out retention",
+    "Projected gradient adds repeated TRAIN feedback/supervision; report its cost and do not attribute solely to clipping",
+    "The completed one-seed nonblind Base failures do not prove a universal10M/LoRA capacity limit",
+    "First-order memory prediction alone is not the finite acceptance oracle",
+    "No natural quality or final adoption evidence exists for this new recipe"
+  ],
+  "GPU_seconds_so_far": 0,
+  "new_CE_teacher_tokens_so_far": 0,
+  "new_memory_projection_teacher_tokens_so_far": 0,
+  "implemented": false,
+  "launched": false,
+  "original_UI": {
+    "identity": {
+      "pid": 642223,
+      "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+      "start_ticks": "17037931"
+    },
+    "actual_alive_verified": true,
+    "HTTP": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    }
+  },
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "block_updates": 20,
+  "previous_related_GPU_seconds": 70.56110643898137,
+  "scope_difference": "Does not satisfy the old per-update constraint contract. Intermediate tentative source updates may exceed the memory ceiling. Only accepted block boundaries are bounded/saved; old per-update budget rejection stays rejected.",
+  "transaction": "Snapshot full weights/Adam/scheduler/RNG/sampler/counters at each accepted boundary, propose up to20 original staged updates, apply unchanged single finite projector/backtracks from block start; accept all rows only if boundary native MATH loss<=original*1.01. Reject/interrupt restores the entire tentative block; tentative exposures separate.",
+  "accounting": "Whole accepted CE91641755/reference100M/source ledger3068 unchanged if completed. Additional memory gradients, finite observations and rejected block source exposures separate; no equal-total-supervision claim.",
+  "persistence": "Every accepted block saved atomically; metrics contain only accepted rows and identify boundary-only constraint. On interruption resume the last accepted block, not an internal tentative update.",
+  "probe": "CPU fullstate/whole-block rollback/final short block; actual CUDA2blocks continuous versus1+1, four20-update timing blocks, strict inherited state/LR/finite/boundary loss; cached unchanged projector control reused as such.",
+  "measured_budget": "3068*measured source update +154*(5 native MATH memory forwards+1 full memory gradient+snapshot/save), warmup,1.3margin+200evaluation; all previous related diagnostics and own probe included within2400 seconds.",
+  "no_rescue": "No block cadence, memory, ceiling, margin, projector/backtrack, LR, source, mask, order, checkpoint or decoder sweep. Failure terminal, all original quality gates unchanged."
+}
