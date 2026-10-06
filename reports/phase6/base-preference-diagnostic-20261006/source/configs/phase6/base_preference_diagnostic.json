@@ -1,0 +1,71 @@
+{
+  "kind": "role_free_Base_fixed_reference_pair_gradient_diagnostic_v1",
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+    "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+  },
+  "cases": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/base-preference-diagnostic-20261006/cases.json",
+    "sha256": "7db316ec958574d20c549117dc6887fe27db3ebf1d48dfe38b255100778d7954"
+  },
+  "references": {
+    "proposal": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/livedoor_base_comparison_proposal.json",
+      "sha256": "62f8b784f517bab42133cdb4f1f0b0aabd489b881441f6105eff93b3314e42af"
+    },
+    "source_ready": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/livedoor-leads-20261006/ready.json",
+      "sha256": "9a14662182da7ad80c87f0ae95467a891ff2b4e8bdb7aeb1a64db4de75001ef4"
+    },
+    "source_review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/livedoor-leads-20261006/content-review.json",
+      "sha256": "0f4c15ea87f70e213152893a06350b1afcf4f04a2e38a44ac83d31e6e4a617d6"
+    },
+    "sample": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/livedoor-leads-20261006/sample64.json",
+      "sha256": "15bb8043577705292c4a20ccb0400b6847179794d0d9c1e0c6c4913def9fa82a"
+    },
+    "CPU_tests": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_preference_loss_tests.xml",
+      "sha256": "fc8aab172ec530ca74eb501ce42c8a97deb19ffe061f43a67f6a4ec9a43db74b"
+    }
+  },
+  "tokenizer": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/phase2/4096/tokenizer.model",
+    "sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+  },
+  "source_sha256": {
+    "scripts/diagnose_base_preference.py": "a65da997a81252e5a9e98a91639830dc4639e5a878b6740f9da730254ca3780a",
+    "scripts/diagnose_base_preference.ps1": "aa88d3fa12ade32d180d436e22ed74465f40716c350a21da6c66ea93f80c7899",
+    "scripts/base_preference_loss.py": "5efea442ad8843d7f99fbfe7101b09b2f8a98d7c7f8cf5f073ff0eff4638f423",
+    "tests/test_base_preference_loss.py": "ee6063949335852b3ecfe3b66b15acbce902b20fe2f9f0ae8ccf92fcdccd4775"
+  },
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "case_count": 64,
+  "prefix_rule": "Original body first quarter, minimum8 tokens; advance only to valid UTF8 token boundary; original remaining whole paragraph plus EOS.",
+  "rejected_rule": "Original d18 native parent on-policy greedy64, EOS3 and original blocked IDs; never hand-edit or reroll.",
+  "beta": 0.1,
+  "gradient_batch": 8,
+  "model_parameters": 10001152,
+  "precision": "bf16",
+  "backend": "math",
+  "GPU_budget_seconds": 180,
+  "CPU_preparation_seconds": 0.01871570898219943,
+  "scientific_teacher_tokens": 0,
+  "optimizer_updates": 0,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "papers": [
+    "https://arxiv.org/abs/2305.18290",
+    "https://huggingface.co/docs/trl/dpo_trainer"
+  ],
+  "completion": "All64 original train pairs and raw generation/reference scores; fixed-reference DPO versus chosen-CE gradient geometry and read-only proof. Individually review generated pairs before any learning. No source/beta/LR/decoder/parent reroll.",
+  "limitations": "Source accepted at64-sample level includes8 weak originals; chosen suffix is not automatically a better continuation. Unequal sequence lengths and source genre matter. TRAIN-only/one model/nonblind/one beta; no general quality or KL-preservation guarantee. Old numerical7 failures preserved."
+}

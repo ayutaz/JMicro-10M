@@ -1,3 +1,9 @@
+Base専用・文章全体の比較損失の実診断完了（2026-10-06 JST）。
+
+元d18/native10Mの固定TRAIN64を実GPU69.957002秒/180で生成・score・gradient診断、actual659437完了/不在、元UI復帰。全64EOS0/重度4gram位置8以上64/UTF8良64、正解残文CE2.955113、初期DPOloss ln2。全64勾配DPO/CE norm8.693232/cosine0.558403、重み/parentSHA/RNG不変・終了gradなしの5checksに合格、optimizer更新/科学教師0。全64原文と生成を個別nonblind比較し56に原文の文法/一貫性優位を確認、元source受入時から弱だった8は勝者とせず保持。固定56のpositive completion+EOSは4565positionsのみ。次案は同d18継承状態・LR1e-5から共通Web6M一度→chosenCE対chosenCE+DPO(beta.1/係数0対.1)各positive2M、共通を含め各8M/新実学習10M、negative/prompt/physical/反復を別会計。新loss一要因、原分岐のsource/epoch/LR/decoder/CP救済なし。まだ科学未実装/未凍結/未開始。次は56新reference cache/専用trainer/CPU会計とresume→ownCUDA各4対2+2/32timing→実測30%margin+600評価+probe全1800内のみ科学凍結。全日本語/両80/bridge-retentionと元全品質条件で採否、合格のみ独立学習seed/full dev/protected testへ。小TRAIN集合/元原文8弱/非blind/旧数値7失敗/長さ・作風差を保持しDPOや学習増量の成功を保証しない。
+
+Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。WSL uv/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用・文章全体の比較損失の診断（2026-10-06 JST）。
 
 前turnのnews full100M/全80はa2d7809で不採用を保存。今回既存root診断・構成/packing/sequence objectiveの証拠を参照し、同DPO型の原文続き対自身の実生成という新しい損失機構をTRAINだけで診断する。学習後のnews枝を親にせず元d18/native10Mを固定、旧source/epoch/LR/decoder/CP救済なし。元受入ニュースの固定TRAIN64全部、body first quarter/min8・UTF8境界のみ進めた原tokenprefix、原全残文+EOS対greedy64。元sourceには8弱例がありchosenが自動的に勝者とはしない。prompt/BOS/PADを教師から除きcompletion+EOSを一shiftだけscore、固定reference比のsequence-sum DPO(beta.1)とchosen-CEの勾配を比べる。CPU2tests/1.36秒でmask/shift/EOS勾配・参照比/初期ln2/勾配方向に合格、PS構文成功。未実行prelaunchのgeometry fieldをmarginからloss方向微分へ正しく改名し元config/sourceを保存、損失/条件変更0。科学教師/optimizer更新0、Chat/SFTではなく役割なしBase文章のreadonly診断。
