@@ -1,3 +1,9 @@
+Base専用oracle高速化: preparation（2026-10-06 JST）。Base未完成・実完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+固定TRAIN32 Web窓・同FP32/autocastなし/TF32なし/micro8/全body教師と分母を保ち、Attention backendのみMATH対EFFICIENT_ATTENTIONを比較するreadonly60GPU秒診断。元10.5B親と固定旧masked-staged終端の2点。事前NLL絶対2e-6、各gradient絶対2e-6+相対2e-5/global L2相対2e-5、candidate反復bitwise/weights・RNG・grad不変を要し、4forward+4gradient実timingを両方式/両点で測る。CPU準備0.229171秒、新GPU/optimizer0。実装最適化は旧40分予算超過を受けた一案で、packet/dtype/制約/品質救済sweepなし。次はこのownGPU診断を実行、失敗なら同backendの無制限再試行なし。
+
+[PyTorch一次資料](https://pytorch.org/blog/accelerating-large-language-models/)がFP32のmemory efficient Attentionを説明するが、当10M/4090の速度や精度はこの実測で判定。旧math科学上限拒否/数値7/全不採用/Phase0–3と旧全品質基準を保持。合格recipeのみ独立学習seed/full dev/protected test/採用。元10B UI復帰、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用有限Web実損失制約: budget_rejected（2026-10-06 JST）。Base未完成・実完成時通知停止、Chat/Dialogue/SFT/量子化なし。
 
 実CUDA probeは成功・actual643402終端/実不在、検証GPU34.460526秒。本科学最悪予測5509.804174秒＋検証=5544.264699秒>2400、実--freezeが拒否し科学configなし/本学習0。有限投影controlの実NLL2.881102→2.604513は上限2.607075を満たすが学習品質の証明ではない。追加FP32/math保持oracleの最悪5forward+1gradient費用が支配的。上限/packet/制約/品質を変えて救済せず、元10B UI復帰・Base未完成。次は同固定TRAIN/制約を維持する単一のoracle計算高速化案について、数値誤差と実GPU速度を事前条件付きで検証する計画を定義。本科学/Chat/量子化は起動しない。
