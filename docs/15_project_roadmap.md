@@ -1,3 +1,15 @@
+train文脈比較100Mの実CUDA検証完了・科学学習を永続開始（2026-10-06 JST）。前goal turnは有限CPU診断/全raw/3損失prototypeの実CPU再開をd4587a5へ保存したprogress。Baseだけを品質・独立学習seed/full dev/protected test/採用まで継続し、実完成時に通知して停止。Base未完了・未採用、Chat/Dialogue/SFT/量子化なし。
+
+owned runner/reviewer/accountant/durablePSを実装、既存凍結source/prototype/dataは不変。関連scope/実TRAIN入力台帳改変拒否のCPU2tests/1.01秒とPS構文成功（実XMLはcontext_outcome_ranking_comparison_tests.xml）。新コード生成のblank-line置換は初回に拒否されtest未copyの最初のpytestは0件で終了、own unfrozen同期を修正後2tests成功、実GPU失敗0・基準/予算変更なし。rank係数/温度1・2family/8x256/eager BF16 math、main32x1024/ref8x1024 compiled flashの同100M＋conditional WebKLを保つ。
+
+probe actual609903/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start15795098はcomplete・実ps不在。実CUDA連続4対2+2の全53state/history/有限値/LRと初期親10checks合格、rank sampler/state/counters/digestも一致。40検証更新/CE1,307,967/reference input327,680/body326,339/mass325778.16796875、rank80family presentations/160choice labels/13376valid/81920padded/gold933・foil933位置/gold4022・foil4022bytes、GPU31.407991秒を科学学習へ加えず重みを破棄。全32 main/ref入力が終了済controlと一致。
+
+combined更新中央値0.140283270秒、3068更新のtrain推定435.487230秒（約7.3分）。従来150秒非学習枠＋30%＋50秒余裕を保持してscience見積811.133399＋probe31.407991=新全842.541390秒<900で科学configを凍結。旧関連全1173.595391秒を別保存し消さない。
+
+durable Windows worker34292、actual WSL610335/同boot/start15803746をlive identity確認、main追加19,619,060CE教師/loss2.5711560393683612有限で科学100M学習中。configs/phase6/context_outcome_ranking_comparison.jsonとreports/phase6/context_outcome_ranking_launch.json、RUN context-outcome-ranking-comparison-20261006へjob/log/checkpoints/source snapshotsを保存。元10B UIはGPU中停止しwrapper finallyで復帰。actual不在・valid checkpointのときだけscripts/run_context_outcome_ranking_comparison.ps1 -Mode Train -Workerで再開、二重GPUなし。main100M/reference25,133,056inputに加わるrank6,283,264padded/12,272choice labelsは別会計、combined131,948,544input、valid/gold/foil/bytesは全3068実値を監査。新corpus0・同supervision量とは言わない。
+
+次はこのowned job終端→同256全文472055bytes/122343tokens、日本語192-331-1119、全80greedy64と全80個別内容、bridge/retention各128family、全3068主/参照input-digest-mask-sourceとrank入力・全露出台帳の採否。conditionalKLは機序対照、採用は強い元staged CE23+8/CI lower>0/EOS>=76/反復<=2と既存absolute/歴史Web BPB<=.981285952を維持、弱いcontrolへ置換しない。pilot合格後だけ独立学習seed/full dev/protected test。設定sweep/有利CP探索/予算追加/自動延長なし。旧Phase0–3/数値7失敗/過去費用保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 文脈と候補priorの有限CPU診断を完了・train文脈比較損失を準備（2026-10-06 JST）。Baseだけを品質・独立学習seed/full dev/protected test/採用まで継続し、実完成時に通知して停止する。Baseは未完了・未採用。Chat/Dialogue/SFT/量子化は開始しない。
 
 context_prior_diagnostic_completion.jsonに実4checkpoint/2suite/全256familyのoriginal4096と同じtargetを保つBOS-only4096、計8192requestsをCPU FP32/math/eval/no-gradで保存。実16.773451秒/上限180、GPU0、全4modelの重み/RNG/grad/eval/device/CUDA未初期化checks合格、actual603932は終了・ps不在。元GPU BF16とCPU FP32を混ぜて引かず、採用値をCPU補正で置換しない。conditionalKL→gold replayのbridgeは両極正答53→40/128、喪失13/獲得0。算術切り分けで文脈側変化だけで喪失10、priorだけ0、どちら単独でも2、両方必要1。retention32→22、喪失13/獲得3、文脈だけ11/priorだけ1/どちらでも1。単純prior offsetだけが主因という仮説は支持せず、文脈分離の弱まりを支持する局所診断。BOS-onlyの位置/文法差、shared generator/形重複、算術交換が実現可能なモデル変更/因果証明ではない限界を保持する。全family/category/3normalizers/raw scoreを保存。
