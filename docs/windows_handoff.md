@@ -1,3 +1,13 @@
+公開候補4件の有限調査と、同教師の学習順序比較のCPU準備を完了（2026-10-06 JST）: Baseだけを品質・独立学習seed/full dev/protected test/採用まで継続し、完了時に通知・停止する。Chat/Dialogue/SFT/量子化なし。前turnの両教材不採用をf7e9bd9へ保存したprogress後、4 actual jobsの終端と元10B UI578328の実ps稼働を再確認。本turn GPU0/学生学習0、Base未完了/未採用。
+
+公開metadata/card4件を匿名・pinned revisionで実5.391722秒取得、bulk raw0。kai271/TinyStories-JapaneseはMIT/GPT4o-mini・概算3000話/train2.44MBで10M sourceの見込み不足。aixsatoshi/cosmopedia-japanese-20kは27byte cardにlicense/翻訳teacher/family splitなし、上流の許諾だけを翻訳版の許諾としない。OpenJAはCC-BY4.0 compilation/国会会議録3.24Mrecords・約679M Qwen tokensという著者主張であり、学生tokensや日常物語の供給量ではない。izumi-labのWikipediaは別snapshotでも既試行と同じsource class、byte一致/全重複は未確認。今回の候補から新規sourceを選ばず、全日本語コーパスに適材が存在しないとは断定しない。public_prose_registry_metadata.json/review.jsonとpinned cards/APIを保存。追加のsource/filter探索へ無制限に進めない。
+
+元curriculum_strategyはfresh100Mでも1M短文/4M物語/5M Webの混合poolで一貫性6/80だった。純物語学習と誤記せず、新たな比率sweepを始めない。次の有限仮説はデータと教師量を変えず学習順序だけを変えること。歴史10.5B Web fullstate/d18e3e…/実LR.00001・親Adam/scheduler永久0.1floor/RNG/Webcursorを維持し、同100M教師/Web75M/story5M/ordinary10M/conditional10MをWeb→story→ordinary→conditionalの順へ変える。対照は同じ親/実LR/材料/教師の完了historical mixed100Mを保存評価ごと再利用。これはsource recency/order仮説で、読取専用gradient marker falseを干渉の確定診断へ言い換えない。
+
+source_order_condition_trainer.pyの新sampler/trainerを追加。既存凍結sourceは不変。CPU3tests/2.21秒で、混合対照と全4streamの実x/y/focus block SHA、全5counter群・終端cursor・physical batch数が一致し、source間順序だけ変わることを確認。phaseをまたぐ保存再開でexact targets/cursors復元、order/旧kind変更を拒否。終端全mask Web paddingも維持。これは小CPUfixtureでGPU fullstate/科学学習/品質の証明ではない。実CUDA再開と計測は未開始。
+
+source_order_condition_comparison_proposal.jsonを実CPU0.025207秒で定義、登録phase6 top-level source_order configs0（限定scan、未登録研究を含む網羅証明ではない）。新100M/保存control100M、全新GPU900秒上限を固定。次はown runner/reviewer/永続PSを実装・必要CPU/CLI/PSチェック→既存process確認→実CUDA4対2+2全state/history/finite32条件＋32timing→実測全budget<=900秒の場合だけ本science config凍結・同100Mを起動する。元の256byte/Japanese192・331・1119/全80greedy64/bridge128/retention128、relative/absolute/歴史Web1% gateを維持。完了checkpointの全4source終端cursor/counterもcached controlと一致が必須。全80を読んで採否・可搬保存/UI復帰/local commitまで進める。失敗時に別順序/比率/LR/weight/shape sweep・自動延長・有利な保存点選定・条件緩和なし。現在の実GPU学習job0、UI稼働。WSL uv3.12.7、旧数値7失敗/Phase0–3維持、local commitのみ/pushなし。以下は過去の履歴。
+
 Base用公開教材の2候補を実確認し両方不採用（2026-10-06 JST）: 最新境界は品質・独立学習seed/full dev/protected test/採用を満たすBaseの実完了まで継続し、完了時に知らせて停止。Chat/Dialogue/SFT/量子化/最終deploymentは始めない。本turnの学生学習0・新checkpoint0、Base未完了/未採用。
 
 固定13完了reportの整理を実CPU0.016503秒/GPU0で完了（base_failure_route_synthesis.json）。24 summary appearancesは独立24実験とはせず、既知raw10種類とhash未記録10行を区別。量・学習量・親/actualLR・shape・train fit/局所transferの改善だけで自由生成の基準達成とはならない。容量の限界や唯一原因は断定しない。

@@ -1,0 +1,41 @@
+{
+  "status": "four_pinned_candidates_reviewed_none_selected_for_this_source_pilot",
+  "created_at": "2026-10-06T06:13:47.404208Z",
+  "metadata": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/public_prose_registry_metadata.json",
+    "sha256": "021e1a9b77aa4cfc7149177dc46941ca59ae2922f46514587259136b38ac4561"
+  },
+  "decisions": [
+    {
+      "repository": "kai271/TinyStories-Japanese",
+      "decision": "not_selected_source_volume_not_supported",
+      "reason": "Card reports roughly3000 stories; separate public train file is only2,443,366bytes. No plausible10M student source supply under unchanged whole-document body cap1022; no official validation used and no raw story downloaded.",
+      "upstream_teacher": "GPT-4o-mini per card"
+    },
+    {
+      "repository": "aixsatoshi/cosmopedia-japanese-20k",
+      "decision": "not_selected_missing_translation_license_provenance",
+      "reason": "Pinned27byte README only declares languages, no license, translator model, family/split or curation. Japanese translations appear alongside English; upstream Cosmopedia licensing does not establish this translated derivative license. No credentials required and no bulk recovery.",
+      "upstream_teacher": "Not stated in this derivative card"
+    },
+    {
+      "repository": "zait-ai/OpenJA",
+      "decision": "not_selected_domain_does_not_match_short_narrative_hypothesis",
+      "reason": "Card explicitly describes narrow parliamentary speech from Kokkai,3,244,877records and679,496,535 Qwen3.5-9B tokens. Those are not student tokens or accepted standalone everyday narratives. CC-BY4.0 compilation, no synthetic teacher; no raw parquet downloaded.",
+      "upstream_teacher": null
+    },
+    {
+      "repository": "izumi-lab/wikipedia-ja-20230720",
+      "decision": "not_selected_same_Wikipedia_provenance_as_prior_trials",
+      "reason": "Different2023 snapshot of the same Japanese Wikipedia source class already tried as wikimedia/wikipedia. Not proven byte-duplicate, but no materially new simple prose/source hypothesis; no alternate snapshot/filter sweep.",
+      "upstream_teacher": null
+    }
+  ],
+  "selected_repository": null,
+  "scope": "Bounded four-candidate audit, not proof no other Japanese corpus exists. Cards/size are indirect supply evidence, no sampled quality judgment or tokenizer counts.",
+  "GPU_seconds": 0,
+  "student_scientific_teacher_tokens": 0,
+  "Chat_started": false,
+  "quantization_started": false,
+  "Base_complete": false
+}
