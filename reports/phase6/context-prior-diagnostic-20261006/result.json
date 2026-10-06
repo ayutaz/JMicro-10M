@@ -1,0 +1,3347 @@
+{
+  "status": "actual_CPU4_model_all256_family_context_prior_diagnostic_complete",
+  "created_at": "2026-10-06T08:02:55.082367Z",
+  "config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/context_prior_diagnostic.json",
+    "sha256": "1a36c0d58a7e31c2dfe76a5c737d37c03c80060bbb885099ccfc05d63966f088"
+  },
+  "proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context_prior_diagnostic_proposal.json",
+    "sha256": "6dbdc2d8e080076aceddcce228dfbf313668c467a783a502dd918837f9b3365d"
+  },
+  "source_sha256": {
+    "scripts/diagnose_context_prior.py": "97de59c7365bff726d7148c918eb5460d38a2f2f1229676d36b2c7e4f379bf24",
+    "scripts/context_prior_analysis.py": "2ffea649c90ca148fdf391704ad4c4eb8e247cf70ff2fdc3dfb73bc608db1c04",
+    "scripts/diagnose_context_prior.ps1": "0713f0f8cac60e519b9f1b7a6a441578503850e88f669c6bf8e62646ad433f00",
+    "tests/test_context_prior_analysis.py": "c7e8f06ff97aa140aca29a715c4ddc0ea14ebd000904ed14a57a4d83ebe3098f",
+    "src/jmicro/japanese_evaluation.py": "8693e2a54e63c1b085b617b207cc5db618ae80af1eb7cb54133ba8b254da6801",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "src/jmicro/evaluation.py": "918e5b647904cd8050171f2ea9eda3f4574ebf6fba81cf216df769e97b041360",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "src/jmicro/experiment.py": "c867b0c30dcbc98eeccc81efc6787ffea514cb10d1c6df7315167ff557df14e6",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f",
+    "scripts/run_eos_short_pilot.py": "7a381414bdea5b24bbbbf7532f04db743cff948fa47f60e95f65019af2d3ec3d",
+    ".python-version": "b4fe4c47e81df7f36d3b5d1d14ac3a1800a680c17c5e6d3fbe8f6b25b8db75ab",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca"
+  },
+  "checkpoints": {
+    "conditional_KL": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-decoupled-web-kl-comparison-20261006/eos_decoupled_web_kl/training/checkpoint-00323503.pt",
+      "sha256": "a27547b6223c3708d6dbf8c9f211631b44fb9518771ed7c08a89ae40506e1213"
+    },
+    "staged_CE": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323503.pt",
+      "sha256": "fb43f2618c0679ca6c6f7a0c5b9faf1b336be8985271c8513f2e4bbfde3cd7ae"
+    },
+    "gold_body_replay": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/hard-body-web-replay-comparison-20261006/hard_body_web_replay/training/checkpoint-00323503.pt",
+      "sha256": "c03d1d4a0071af756bc39591e0e457daac411e72c847437f8a1d6ba674e99235"
+    },
+    "historical_parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+      "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+    }
+  },
+  "aggregates": {
+    "historical_parent": {
+      "bridge": {
+        "sum_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 21,
+            "diagnostic_context_only_both_correct": 11,
+            "original_accuracy": 0.55078125,
+            "same_unique_candidate": 99,
+            "aligned_context_separation": 104,
+            "median_signed_context_separation": 0.2810497283935547,
+            "mean_signed_context_separation": 0.9366532173503401,
+            "mean_prior_magnitude": 3.5574632744537666
+          },
+          "by_category": {
+            "comparison": {
+              "families": 64,
+              "original_both_correct": 13,
+              "diagnostic_context_only_both_correct": 4,
+              "original_accuracy": 0.5390625,
+              "same_unique_candidate": 43,
+              "aligned_context_separation": 43,
+              "median_signed_context_separation": 0.8418916342779994,
+              "mean_signed_context_separation": 0.6387212548115713,
+              "mean_prior_magnitude": 1.9923451629001647
+            },
+            "negation": {
+              "families": 64,
+              "original_both_correct": 8,
+              "diagnostic_context_only_both_correct": 7,
+              "original_accuracy": 0.5625,
+              "same_unique_candidate": 56,
+              "aligned_context_separation": 61,
+              "median_signed_context_separation": 0.2345552071928978,
+              "mean_signed_context_separation": 1.234585179889109,
+              "mean_prior_magnitude": 5.122581386007369
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 13,
+              "diagnostic_context_only_both_correct": 5,
+              "original_accuracy": 0.5390625,
+              "same_unique_candidate": 43,
+              "aligned_context_separation": 46,
+              "median_signed_context_separation": 0.23796824179589748,
+              "mean_signed_context_separation": 1.0223187129477083,
+              "mean_prior_magnitude": 3.914967612363398
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 8,
+              "diagnostic_context_only_both_correct": 6,
+              "original_accuracy": 0.5625,
+              "same_unique_candidate": 56,
+              "aligned_context_separation": 58,
+              "median_signed_context_separation": 0.30843040347099304,
+              "mean_signed_context_separation": 0.850987721752972,
+              "mean_prior_magnitude": 3.199958936544135
+            }
+          }
+        },
+        "mean_token_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 24,
+            "diagnostic_context_only_both_correct": 20,
+            "original_accuracy": 0.578125,
+            "same_unique_candidate": 100,
+            "aligned_context_separation": 104,
+            "median_signed_context_separation": 0.02279149591598667,
+            "mean_signed_context_separation": 0.10692498905829528,
+            "mean_prior_magnitude": 0.41014446699689067
+          },
+          "by_category": {
+            "comparison": {
+              "families": 64,
+              "original_both_correct": 11,
+              "diagnostic_context_only_both_correct": 5,
+              "original_accuracy": 0.5546875,
+              "same_unique_candidate": 49,
+              "aligned_context_separation": 42,
+              "median_signed_context_separation": 0.1627178307157009,
+              "mean_signed_context_separation": 0.12378143524832315,
+              "mean_prior_magnitude": 0.6734324222896247
+            },
+            "negation": {
+              "families": 64,
+              "original_both_correct": 13,
+              "diagnostic_context_only_both_correct": 15,
+              "original_accuracy": 0.6015625,
+              "same_unique_candidate": 51,
+              "aligned_context_separation": 62,
+              "median_signed_context_separation": 0.01954436043534069,
+              "mean_signed_context_separation": 0.09006854286826743,
+              "mean_prior_magnitude": 0.14685651170415653
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 17,
+              "diagnostic_context_only_both_correct": 16,
+              "original_accuracy": 0.6015625,
+              "same_unique_candidate": 43,
+              "aligned_context_separation": 47,
+              "median_signed_context_separation": 0.020837126965395636,
+              "mean_signed_context_separation": 0.051775472607967984,
+              "mean_prior_magnitude": 0.3541355311644646
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 7,
+              "diagnostic_context_only_both_correct": 4,
+              "original_accuracy": 0.5546875,
+              "same_unique_candidate": 57,
+              "aligned_context_separation": 57,
+              "median_signed_context_separation": 0.0246414961058804,
+              "mean_signed_context_separation": 0.1620745055086226,
+              "mean_prior_magnitude": 0.46615340282931667
+            }
+          }
+        },
+        "mean_byte_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 22,
+            "diagnostic_context_only_both_correct": 10,
+            "original_accuracy": 0.5703125,
+            "same_unique_candidate": 102,
+            "aligned_context_separation": 105,
+            "median_signed_context_separation": 0.006748879131510038,
+            "mean_signed_context_separation": 0.027403866616617506,
+            "mean_prior_magnitude": 0.10403359647052404
+          },
+          "by_category": {
+            "comparison": {
+              "families": 64,
+              "original_both_correct": 12,
+              "diagnostic_context_only_both_correct": 5,
+              "original_accuracy": 0.5625,
+              "same_unique_candidate": 48,
+              "aligned_context_separation": 43,
+              "median_signed_context_separation": 0.04009007782276183,
+              "mean_signed_context_separation": 0.029024726383319096,
+              "mean_prior_magnitude": 0.10325918327056105
+            },
+            "negation": {
+              "families": 64,
+              "original_both_correct": 10,
+              "diagnostic_context_only_both_correct": 5,
+              "original_accuracy": 0.578125,
+              "same_unique_candidate": 54,
+              "aligned_context_separation": 62,
+              "median_signed_context_separation": 0.004786096972962603,
+              "mean_signed_context_separation": 0.025783006849915913,
+              "mean_prior_magnitude": 0.10480800967048703
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 14,
+              "diagnostic_context_only_both_correct": 7,
+              "original_accuracy": 0.578125,
+              "same_unique_candidate": 46,
+              "aligned_context_separation": 47,
+              "median_signed_context_separation": 0.0055301127631620095,
+              "mean_signed_context_separation": 0.016941771531060613,
+              "mean_prior_magnitude": 0.10801789522173691
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 8,
+              "diagnostic_context_only_both_correct": 3,
+              "original_accuracy": 0.5625,
+              "same_unique_candidate": 56,
+              "aligned_context_separation": 58,
+              "median_signed_context_separation": 0.007300138809451198,
+              "mean_signed_context_separation": 0.0378659617021744,
+              "mean_prior_magnitude": 0.10004929771931118
+            }
+          }
+        }
+      },
+      "retention": {
+        "sum_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 21,
+            "diagnostic_context_only_both_correct": 5,
+            "original_accuracy": 0.5703125,
+            "same_unique_candidate": 104,
+            "aligned_context_separation": 76,
+            "median_signed_context_separation": 0.038559174980036914,
+            "mean_signed_context_separation": 0.7996388104565995,
+            "mean_prior_magnitude": 2.045901313133072
+          },
+          "by_category": {
+            "causality": {
+              "families": 20,
+              "original_both_correct": 0,
+              "diagnostic_context_only_both_correct": 0,
+              "original_accuracy": 0.5,
+              "same_unique_candidate": 20,
+              "aligned_context_separation": 13,
+              "median_signed_context_separation": 0.02437502145767212,
+              "mean_signed_context_separation": 0.021827860921621322,
+              "mean_prior_magnitude": 0.6845389604568481
+            },
+            "comparison": {
+              "families": 22,
+              "original_both_correct": 0,
+              "diagnostic_context_only_both_correct": 0,
+              "original_accuracy": 0.5,
+              "same_unique_candidate": 22,
+              "aligned_context_separation": 12,
+              "median_signed_context_separation": 0.015989933628588915,
+              "mean_signed_context_separation": -0.010254119575785642,
+              "mean_prior_magnitude": 1.710443733090704
+            },
+            "entity_reference": {
+              "families": 20,
+              "original_both_correct": 4,
+              "diagnostic_context_only_both_correct": 3,
+              "original_accuracy": 0.525,
+              "same_unique_candidate": 13,
+              "aligned_context_separation": 9,
+              "median_signed_context_separation": -0.09813462314195931,
+              "mean_signed_context_separation": 0.7705087890848518,
+              "mean_prior_magnitude": 1.6241624478250742
+            },
+            "negation": {
+              "families": 22,
+              "original_both_correct": 16,
+              "diagnostic_context_only_both_correct": 1,
+              "original_accuracy": 0.8636363636363636,
+              "same_unique_candidate": 6,
+              "aligned_context_separation": 16,
+              "median_signed_context_separation": 4.588159397244453,
+              "mean_signed_context_separation": 3.8516446504403246,
+              "mean_prior_magnitude": 6.5694090751084415
+            },
+            "quantity": {
+              "families": 22,
+              "original_both_correct": 1,
+              "diagnostic_context_only_both_correct": 1,
+              "original_accuracy": 0.5227272727272727,
+              "same_unique_candidate": 21,
+              "aligned_context_separation": 10,
+              "median_signed_context_separation": -0.00863603875041008,
+              "mean_signed_context_separation": 0.04114249687303196,
+              "mean_prior_magnitude": 0.894020451740785
+            },
+            "time": {
+              "families": 22,
+              "original_both_correct": 0,
+              "diagnostic_context_only_both_correct": 0,
+              "original_accuracy": 0.5,
+              "same_unique_candidate": 22,
+              "aligned_context_separation": 16,
+              "median_signed_context_separation": 0.05759650096297264,
+              "mean_signed_context_separation": 0.049604914913123306,
+              "mean_prior_magnitude": 0.6307330998507413
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 15,
+              "diagnostic_context_only_both_correct": 4,
+              "original_accuracy": 0.609375,
+              "same_unique_candidate": 48,
+              "aligned_context_separation": 40,
+              "median_signed_context_separation": 0.04232141567626968,
+              "mean_signed_context_separation": 1.2423081946708407,
+              "mean_prior_magnitude": 2.0135912518016994
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 6,
+              "diagnostic_context_only_both_correct": 1,
+              "original_accuracy": 0.53125,
+              "same_unique_candidate": 56,
+              "aligned_context_separation": 36,
+              "median_signed_context_separation": 0.019380927085876465,
+              "mean_signed_context_separation": 0.35696942624235817,
+              "mean_prior_magnitude": 2.078211374464445
+            }
+          }
+        },
+        "mean_token_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 19,
+            "diagnostic_context_only_both_correct": 9,
+            "original_accuracy": 0.5703125,
+            "same_unique_candidate": 108,
+            "aligned_context_separation": 76,
+            "median_signed_context_separation": 0.004945550113916397,
+            "mean_signed_context_separation": 0.08031154761220993,
+            "mean_prior_magnitude": 0.34450624834463955
+          },
+          "by_category": {
+            "causality": {
+              "families": 20,
+              "original_both_correct": 0,
+              "diagnostic_context_only_both_correct": 0,
+              "original_accuracy": 0.5,
+              "same_unique_candidate": 20,
+              "aligned_context_separation": 13,
+              "median_signed_context_separation": 0.0040625035762786865,
+              "mean_signed_context_separation": 0.0036379768202701836,
+              "mean_prior_magnitude": 0.11408982674280832
+            },
+            "comparison": {
+              "families": 22,
+              "original_both_correct": 0,
+              "diagnostic_context_only_both_correct": 0,
+              "original_accuracy": 0.5,
+              "same_unique_candidate": 22,
+              "aligned_context_separation": 13,
+              "median_signed_context_separation": 0.003197986725717916,
+              "mean_signed_context_separation": -0.0020429601448333752,
+              "mean_prior_magnitude": 0.38227993046695546
+            },
+            "entity_reference": {
+              "families": 20,
+              "original_both_correct": 3,
+              "diagnostic_context_only_both_correct": 6,
+              "original_accuracy": 0.55,
+              "same_unique_candidate": 16,
+              "aligned_context_separation": 9,
+              "median_signed_context_separation": -0.019626924628391773,
+              "mean_signed_context_separation": 0.1677206867032996,
+              "mean_prior_magnitude": 0.6496877182771762
+            },
+            "negation": {
+              "families": 22,
+              "original_both_correct": 16,
+              "diagnostic_context_only_both_correct": 3,
+              "original_accuracy": 0.8636363636363636,
+              "same_unique_candidate": 6,
+              "aligned_context_separation": 16,
+              "median_signed_context_separation": 0.33971647242734027,
+              "mean_signed_context_separation": 0.29497487792613286,
+              "mean_prior_magnitude": 0.2378135056087655
+            },
+            "quantity": {
+              "families": 22,
+              "original_both_correct": 0,
+              "diagnostic_context_only_both_correct": 0,
+              "original_accuracy": 0.5,
+              "same_unique_candidate": 22,
+              "aligned_context_separation": 9,
+              "median_signed_context_separation": -0.0021142441779378185,
+              "mean_signed_context_separation": 0.0061534363945776405,
+              "mean_prior_magnitude": 0.5322800565849651
+            },
+            "time": {
+              "families": 22,
+              "original_both_correct": 0,
+              "diagnostic_context_only_both_correct": 0,
+              "original_accuracy": 0.5,
+              "same_unique_candidate": 22,
+              "aligned_context_separation": 16,
+              "median_signed_context_separation": 0.01439912524074316,
+              "mean_signed_context_separation": 0.012401228728280827,
+              "mean_prior_magnitude": 0.15768327496268533
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 14,
+              "diagnostic_context_only_both_correct": 7,
+              "original_accuracy": 0.609375,
+              "same_unique_candidate": 50,
+              "aligned_context_separation": 40,
+              "median_signed_context_separation": 0.007559556420892566,
+              "mean_signed_context_separation": 0.12951534522782404,
+              "mean_prior_magnitude": 0.2724401437003631
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 5,
+              "diagnostic_context_only_both_correct": 2,
+              "original_accuracy": 0.53125,
+              "same_unique_candidate": 58,
+              "aligned_context_separation": 36,
+              "median_signed_context_separation": 0.0035043255425990516,
+              "mean_signed_context_separation": 0.031107749996595824,
+              "mean_prior_magnitude": 0.41657235298891593
+            }
+          }
+        },
+        "mean_byte_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 7,
+            "diagnostic_context_only_both_correct": 20,
+            "original_accuracy": 0.51953125,
+            "same_unique_candidate": 119,
+            "aligned_context_separation": 75,
+            "median_signed_context_separation": 0.0011736076212290614,
+            "mean_signed_context_separation": 0.021005369031344943,
+            "mean_prior_magnitude": 0.06633316663850904
+          },
+          "by_category": {
+            "causality": {
+              "families": 20,
+              "original_both_correct": 0,
+              "diagnostic_context_only_both_correct": 0,
+              "original_accuracy": 0.5,
+              "same_unique_candidate": 20,
+              "aligned_context_separation": 12,
+              "median_signed_context_separation": 0.0007136446960044618,
+              "mean_signed_context_separation": 0.0004103336912213068,
+              "mean_prior_magnitude": 0.059481984557527456
+            },
+            "comparison": {
+              "families": 22,
+              "original_both_correct": 0,
+              "diagnostic_context_only_both_correct": 0,
+              "original_accuracy": 0.5,
+              "same_unique_candidate": 22,
+              "aligned_context_separation": 12,
+              "median_signed_context_separation": 0.000761425410885197,
+              "mean_signed_context_separation": -0.00048704319085906607,
+              "mean_prior_magnitude": 0.08683750466651903
+            },
+            "entity_reference": {
+              "families": 20,
+              "original_both_correct": 3,
+              "diagnostic_context_only_both_correct": 5,
+              "original_accuracy": 0.525,
+              "same_unique_candidate": 15,
+              "aligned_context_separation": 9,
+              "median_signed_context_separation": -0.004673077292474237,
+              "mean_signed_context_separation": 0.038292094120489714,
+              "mean_prior_magnitude": 0.08665461967743576
+            },
+            "negation": {
+              "families": 22,
+              "original_both_correct": 3,
+              "diagnostic_context_only_both_correct": 14,
+              "original_accuracy": 0.5681818181818182,
+              "same_unique_candidate": 19,
+              "aligned_context_separation": 16,
+              "median_signed_context_separation": 0.09441403215327132,
+              "mean_signed_context_separation": 0.08271104808680259,
+              "mean_prior_magnitude": 0.07754277584324534
+            },
+            "quantity": {
+              "families": 22,
+              "original_both_correct": 1,
+              "diagnostic_context_only_both_correct": 1,
+              "original_accuracy": 0.5227272727272727,
+              "same_unique_candidate": 21,
+              "aligned_context_separation": 10,
+              "median_signed_context_separation": -0.0005080022794358707,
+              "mean_signed_context_separation": 0.0024275981626886763,
+              "mean_prior_magnitude": 0.05205187338957176
+            },
+            "time": {
+              "families": 22,
+              "original_both_correct": 0,
+              "diagnostic_context_only_both_correct": 0,
+              "original_accuracy": 0.5,
+              "same_unique_candidate": 22,
+              "aligned_context_separation": 16,
+              "median_signed_context_separation": 0.0027208686757245193,
+              "mean_signed_context_separation": 0.00237742784036474,
+              "mean_prior_magnitude": 0.036654811783840786
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 6,
+              "diagnostic_context_only_both_correct": 16,
+              "original_accuracy": 0.546875,
+              "same_unique_candidate": 58,
+              "aligned_context_separation": 40,
+              "median_signed_context_separation": 0.0013510547578335086,
+              "mean_signed_context_separation": 0.03392615888615655,
+              "mean_prior_magnitude": 0.06475054184974849
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 1,
+              "diagnostic_context_only_both_correct": 4,
+              "original_accuracy": 0.4921875,
+              "same_unique_candidate": 61,
+              "aligned_context_separation": 35,
+              "median_signed_context_separation": 0.0008395168974641154,
+              "mean_signed_context_separation": 0.008084579176533338,
+              "mean_prior_magnitude": 0.06791579142726958
+            }
+          }
+        }
+      }
+    },
+    "staged_CE": {
+      "bridge": {
+        "sum_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 60,
+            "diagnostic_context_only_both_correct": 39,
+            "original_accuracy": 0.66015625,
+            "same_unique_candidate": 49,
+            "aligned_context_separation": 85,
+            "median_signed_context_separation": 2.96843015961349,
+            "mean_signed_context_separation": 3.5415022428746283,
+            "mean_prior_magnitude": 2.8418606410209577
+          },
+          "by_category": {
+            "comparison": {
+              "families": 64,
+              "original_both_correct": 28,
+              "diagnostic_context_only_both_correct": 14,
+              "original_accuracy": 0.578125,
+              "same_unique_candidate": 18,
+              "aligned_context_separation": 37,
+              "median_signed_context_separation": 1.8583614765047969,
+              "mean_signed_context_separation": 3.8266269595677613,
+              "mean_prior_magnitude": 2.817143115737963
+            },
+            "negation": {
+              "families": 64,
+              "original_both_correct": 32,
+              "diagnostic_context_only_both_correct": 25,
+              "original_accuracy": 0.7421875,
+              "same_unique_candidate": 31,
+              "aligned_context_separation": 48,
+              "median_signed_context_separation": 3.0089566798415035,
+              "mean_signed_context_separation": 3.2563775261814953,
+              "mean_prior_magnitude": 2.8665781663039525
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 52,
+              "diagnostic_context_only_both_correct": 35,
+              "original_accuracy": 0.90625,
+              "same_unique_candidate": 12,
+              "aligned_context_separation": 64,
+              "median_signed_context_separation": 7.200338794456911,
+              "mean_signed_context_separation": 7.9832081910797115,
+              "mean_prior_magnitude": 3.5587079504330177
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 8,
+              "diagnostic_context_only_both_correct": 4,
+              "original_accuracy": 0.4140625,
+              "same_unique_candidate": 37,
+              "aligned_context_separation": 21,
+              "median_signed_context_separation": -0.5997355161234736,
+              "mean_signed_context_separation": -0.9002037053304548,
+              "mean_prior_magnitude": 2.1250133316088977
+            }
+          }
+        },
+        "mean_token_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 60,
+            "diagnostic_context_only_both_correct": 47,
+            "original_accuracy": 0.66015625,
+            "same_unique_candidate": 49,
+            "aligned_context_separation": 85,
+            "median_signed_context_separation": 0.24483965084861364,
+            "mean_signed_context_separation": 0.5087060917005763,
+            "mean_prior_magnitude": 0.502320382513919
+          },
+          "by_category": {
+            "comparison": {
+              "families": 64,
+              "original_both_correct": 28,
+              "diagnostic_context_only_both_correct": 13,
+              "original_accuracy": 0.5859375,
+              "same_unique_candidate": 19,
+              "aligned_context_separation": 37,
+              "median_signed_context_separation": 0.4441329680568742,
+              "mean_signed_context_separation": 0.7722197766532531,
+              "mean_prior_magnitude": 0.8717403532367825
+            },
+            "negation": {
+              "families": 64,
+              "original_both_correct": 32,
+              "diagnostic_context_only_both_correct": 34,
+              "original_accuracy": 0.734375,
+              "same_unique_candidate": 30,
+              "aligned_context_separation": 48,
+              "median_signed_context_separation": 0.24243967931458127,
+              "mean_signed_context_separation": 0.24519240674789963,
+              "mean_prior_magnitude": 0.1329004117910555
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 52,
+              "diagnostic_context_only_both_correct": 40,
+              "original_accuracy": 0.90625,
+              "same_unique_candidate": 12,
+              "aligned_context_separation": 64,
+              "median_signed_context_separation": 0.6040904072233988,
+              "mean_signed_context_separation": 1.2874730580511238,
+              "mean_prior_magnitude": 0.5904513167586288
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 8,
+              "diagnostic_context_only_both_correct": 7,
+              "original_accuracy": 0.4140625,
+              "same_unique_candidate": 37,
+              "aligned_context_separation": 21,
+              "median_signed_context_separation": -0.051428221492890516,
+              "mean_signed_context_separation": -0.2700608746499709,
+              "mean_prior_magnitude": 0.4141894482692091
+            }
+          }
+        },
+        "mean_byte_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 62,
+            "diagnostic_context_only_both_correct": 25,
+            "original_accuracy": 0.6640625,
+            "same_unique_candidate": 46,
+            "aligned_context_separation": 85,
+            "median_signed_context_separation": 0.06478568224905838,
+            "mean_signed_context_separation": 0.1276514655354548,
+            "mean_prior_magnitude": 0.11300182715822563
+          },
+          "by_category": {
+            "comparison": {
+              "families": 64,
+              "original_both_correct": 28,
+              "diagnostic_context_only_both_correct": 13,
+              "original_accuracy": 0.578125,
+              "same_unique_candidate": 18,
+              "aligned_context_separation": 37,
+              "median_signed_context_separation": 0.08849340364308558,
+              "mean_signed_context_separation": 0.18542092994883816,
+              "mean_prior_magnitude": 0.1563762736365774
+            },
+            "negation": {
+              "families": 64,
+              "original_both_correct": 34,
+              "diagnostic_context_only_both_correct": 12,
+              "original_accuracy": 0.75,
+              "same_unique_candidate": 28,
+              "aligned_context_separation": 48,
+              "median_signed_context_separation": 0.0626385995095962,
+              "mean_signed_context_separation": 0.06988200112207148,
+              "mean_prior_magnitude": 0.06962738067987384
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 51,
+              "diagnostic_context_only_both_correct": 13,
+              "original_accuracy": 0.8984375,
+              "same_unique_candidate": 13,
+              "aligned_context_separation": 64,
+              "median_signed_context_separation": 0.17577746837159441,
+              "mean_signed_context_separation": 0.31467782586471404,
+              "mean_prior_magnitude": 0.17587346304203855
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 11,
+              "diagnostic_context_only_both_correct": 12,
+              "original_accuracy": 0.4296875,
+              "same_unique_candidate": 33,
+              "aligned_context_separation": 21,
+              "median_signed_context_separation": -0.014432779148582101,
+              "mean_signed_context_separation": -0.05937489479380442,
+              "mean_prior_magnitude": 0.05013019127441269
+            }
+          }
+        }
+      },
+      "retention": {
+        "sum_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 36,
+            "diagnostic_context_only_both_correct": 30,
+            "original_accuracy": 0.62890625,
+            "same_unique_candidate": 89,
+            "aligned_context_separation": 102,
+            "median_signed_context_separation": 0.8702040699427016,
+            "mean_signed_context_separation": 2.602904048069206,
+            "mean_prior_magnitude": 2.7889766284192774
+          },
+          "by_category": {
+            "causality": {
+              "families": 20,
+              "original_both_correct": 10,
+              "diagnostic_context_only_both_correct": 10,
+              "original_accuracy": 0.75,
+              "same_unique_candidate": 10,
+              "aligned_context_separation": 20,
+              "median_signed_context_separation": 2.8640420971787535,
+              "mean_signed_context_separation": 3.602968230879924,
+              "mean_prior_magnitude": 1.498310157447122
+            },
+            "comparison": {
+              "families": 22,
+              "original_both_correct": 0,
+              "diagnostic_context_only_both_correct": 0,
+              "original_accuracy": 0.5,
+              "same_unique_candidate": 22,
+              "aligned_context_separation": 11,
+              "median_signed_context_separation": 0.013032166345510632,
+              "mean_signed_context_separation": 0.18916247823224033,
+              "mean_prior_magnitude": 2.0086782447787384
+            },
+            "entity_reference": {
+              "families": 20,
+              "original_both_correct": 11,
+              "diagnostic_context_only_both_correct": 7,
+              "original_accuracy": 0.7,
+              "same_unique_candidate": 6,
+              "aligned_context_separation": 14,
+              "median_signed_context_separation": 5.451555362662475,
+              "mean_signed_context_separation": 6.770751361455768,
+              "mean_prior_magnitude": 2.587256789742969
+            },
+            "negation": {
+              "families": 22,
+              "original_both_correct": 6,
+              "diagnostic_context_only_both_correct": 2,
+              "original_accuracy": 0.6363636363636364,
+              "same_unique_candidate": 16,
+              "aligned_context_separation": 22,
+              "median_signed_context_separation": 4.564677089219913,
+              "mean_signed_context_separation": 4.235518465384799,
+              "mean_prior_magnitude": 8.411882977636362
+            },
+            "quantity": {
+              "families": 22,
+              "original_both_correct": 1,
+              "diagnostic_context_only_both_correct": 2,
+              "original_accuracy": 0.5227272727272727,
+              "same_unique_candidate": 21,
+              "aligned_context_separation": 15,
+              "median_signed_context_separation": 0.06097272346960381,
+              "mean_signed_context_separation": 0.06353798047745261,
+              "mean_prior_magnitude": 1.1135708872355858
+            },
+            "time": {
+              "families": 22,
+              "original_both_correct": 8,
+              "diagnostic_context_only_both_correct": 9,
+              "original_accuracy": 0.6818181818181818,
+              "same_unique_candidate": 14,
+              "aligned_context_separation": 20,
+              "median_signed_context_separation": 1.2275925731519237,
+              "mean_signed_context_separation": 1.2252959080029873,
+              "mean_prior_magnitude": 0.9784892309795726
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 25,
+              "diagnostic_context_only_both_correct": 25,
+              "original_accuracy": 0.6953125,
+              "same_unique_candidate": 39,
+              "aligned_context_separation": 56,
+              "median_signed_context_separation": 2.0292638634418836,
+              "mean_signed_context_separation": 4.216896660155953,
+              "mean_prior_magnitude": 3.045906938827102
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 11,
+              "diagnostic_context_only_both_correct": 5,
+              "original_accuracy": 0.5625,
+              "same_unique_candidate": 50,
+              "aligned_context_separation": 46,
+              "median_signed_context_separation": 0.4778483732807217,
+              "mean_signed_context_separation": 0.9889114359824589,
+              "mean_prior_magnitude": 2.532046318011453
+            }
+          }
+        },
+        "mean_token_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 42,
+            "diagnostic_context_only_both_correct": 35,
+            "original_accuracy": 0.65234375,
+            "same_unique_candidate": 83,
+            "aligned_context_separation": 101,
+            "median_signed_context_separation": 0.1983438607276185,
+            "mean_signed_context_separation": 0.43289046930890845,
+            "mean_prior_magnitude": 0.4577427197990725
+          },
+          "by_category": {
+            "causality": {
+              "families": 20,
+              "original_both_correct": 10,
+              "diagnostic_context_only_both_correct": 10,
+              "original_accuracy": 0.75,
+              "same_unique_candidate": 10,
+              "aligned_context_separation": 20,
+              "median_signed_context_separation": 0.47734034952979226,
+              "mean_signed_context_separation": 0.6004947051466539,
+              "mean_prior_magnitude": 0.24971835957452038
+            },
+            "comparison": {
+              "families": 22,
+              "original_both_correct": 0,
+              "diagnostic_context_only_both_correct": 0,
+              "original_accuracy": 0.5,
+              "same_unique_candidate": 22,
+              "aligned_context_separation": 11,
+              "median_signed_context_separation": 0.0026064332691021486,
+              "mean_signed_context_separation": 0.037886350005084564,
+              "mean_prior_magnitude": 0.4556464434363243
+            },
+            "entity_reference": {
+              "families": 20,
+              "original_both_correct": 12,
+              "diagnostic_context_only_both_correct": 7,
+              "original_accuracy": 0.725,
+              "same_unique_candidate": 5,
+              "aligned_context_separation": 13,
+              "median_signed_context_separation": 1.090311072532495,
+              "mean_signed_context_separation": 1.413694068921565,
+              "mean_prior_magnitude": 0.8870457800140139
+            },
+            "negation": {
+              "families": 22,
+              "original_both_correct": 11,
+              "diagnostic_context_only_both_correct": 7,
+              "original_accuracy": 0.75,
+              "same_unique_candidate": 11,
+              "aligned_context_separation": 22,
+              "median_signed_context_separation": 0.34653759735755607,
+              "mean_signed_context_separation": 0.3263196704514118,
+              "mean_prior_magnitude": 0.49594460021819986
+            },
+            "quantity": {
+              "families": 22,
+              "original_both_correct": 1,
+              "diagnostic_context_only_both_correct": 2,
+              "original_accuracy": 0.5227272727272727,
+              "same_unique_candidate": 21,
+              "aligned_context_separation": 15,
+              "median_signed_context_separation": 0.013358113678987094,
+              "mean_signed_context_separation": 0.017024756641661618,
+              "mean_prior_magnitude": 0.43359507326015523
+            },
+            "time": {
+              "families": 22,
+              "original_both_correct": 8,
+              "diagnostic_context_only_both_correct": 9,
+              "original_accuracy": 0.6818181818181818,
+              "same_unique_candidate": 14,
+              "aligned_context_separation": 20,
+              "median_signed_context_separation": 0.30689814328798093,
+              "mean_signed_context_separation": 0.3063239770007468,
+              "mean_prior_magnitude": 0.24462230774489316
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 30,
+              "diagnostic_context_only_both_correct": 30,
+              "original_accuracy": 0.734375,
+              "same_unique_candidate": 34,
+              "aligned_context_separation": 55,
+              "median_signed_context_separation": 0.4122307303774272,
+              "mean_signed_context_separation": 0.7103595638584874,
+              "mean_prior_magnitude": 0.4920455647039196
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 12,
+              "diagnostic_context_only_both_correct": 5,
+              "original_accuracy": 0.5703125,
+              "same_unique_candidate": 49,
+              "aligned_context_separation": 46,
+              "median_signed_context_separation": 0.07698736534366613,
+              "mean_signed_context_separation": 0.15542137475932954,
+              "mean_prior_magnitude": 0.42343987489422547
+            }
+          }
+        },
+        "mean_byte_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 43,
+            "diagnostic_context_only_both_correct": 37,
+            "original_accuracy": 0.65625,
+            "same_unique_candidate": 82,
+            "aligned_context_separation": 102,
+            "median_signed_context_separation": 0.04434634766137032,
+            "mean_signed_context_separation": 0.09887817750550612,
+            "mean_prior_magnitude": 0.08679322138785477
+          },
+          "by_category": {
+            "causality": {
+              "families": 20,
+              "original_both_correct": 10,
+              "diagnostic_context_only_both_correct": 10,
+              "original_accuracy": 0.75,
+              "same_unique_candidate": 10,
+              "aligned_context_separation": 20,
+              "median_signed_context_separation": 0.09359215677126706,
+              "mean_signed_context_separation": 0.11621953400134578,
+              "mean_prior_magnitude": 0.0768760110780766
+            },
+            "comparison": {
+              "families": 22,
+              "original_both_correct": 0,
+              "diagnostic_context_only_both_correct": 0,
+              "original_accuracy": 0.5,
+              "same_unique_candidate": 22,
+              "aligned_context_separation": 11,
+              "median_signed_context_separation": 0.0006205793497862239,
+              "mean_signed_context_separation": 0.009016285369572802,
+              "mean_prior_magnitude": 0.10420861395463464
+            },
+            "entity_reference": {
+              "families": 20,
+              "original_both_correct": 12,
+              "diagnostic_context_only_both_correct": 7,
+              "original_accuracy": 0.725,
+              "same_unique_candidate": 5,
+              "aligned_context_separation": 14,
+              "median_signed_context_separation": 0.2595978744124988,
+              "mean_signed_context_separation": 0.3324634344410567,
+              "mean_prior_magnitude": 0.1516209678404728
+            },
+            "negation": {
+              "families": 22,
+              "original_both_correct": 13,
+              "diagnostic_context_only_both_correct": 10,
+              "original_accuracy": 0.7954545454545454,
+              "same_unique_candidate": 9,
+              "aligned_context_separation": 22,
+              "median_signed_context_separation": 0.10116392979095201,
+              "mean_signed_context_separation": 0.09285700985315988,
+              "mean_prior_magnitude": 0.0701380466052066
+            },
+            "quantity": {
+              "families": 22,
+              "original_both_correct": 1,
+              "diagnostic_context_only_both_correct": 1,
+              "original_accuracy": 0.5227272727272727,
+              "same_unique_candidate": 21,
+              "aligned_context_separation": 15,
+              "median_signed_context_separation": 0.0035866307923296675,
+              "mean_signed_context_separation": 0.0038304209470383798,
+              "mean_prior_magnitude": 0.06344938619444546
+            },
+            "time": {
+              "families": 22,
+              "original_both_correct": 7,
+              "diagnostic_context_only_both_correct": 9,
+              "original_accuracy": 0.6590909090909091,
+              "same_unique_candidate": 15,
+              "aligned_context_separation": 20,
+              "median_signed_context_separation": 0.061379628657596184,
+              "mean_signed_context_separation": 0.06169389073280774,
+              "mean_prior_magnitude": 0.05945816957636882
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 32,
+              "diagnostic_context_only_both_correct": 33,
+              "original_accuracy": 0.75,
+              "same_unique_candidate": 32,
+              "aligned_context_separation": 56,
+              "median_signed_context_separation": 0.09600156914523161,
+              "mean_signed_context_separation": 0.16164378646418637,
+              "mean_prior_magnitude": 0.09744875079117296
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 11,
+              "diagnostic_context_only_both_correct": 4,
+              "original_accuracy": 0.5625,
+              "same_unique_candidate": 50,
+              "aligned_context_separation": 46,
+              "median_signed_context_separation": 0.01735627259556416,
+              "mean_signed_context_separation": 0.03611256854682586,
+              "mean_prior_magnitude": 0.07613769198453656
+            }
+          }
+        }
+      }
+    },
+    "conditional_KL": {
+      "bridge": {
+        "sum_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 53,
+            "diagnostic_context_only_both_correct": 49,
+            "original_accuracy": 0.69140625,
+            "same_unique_candidate": 71,
+            "aligned_context_separation": 98,
+            "median_signed_context_separation": 1.8113068640232086,
+            "mean_signed_context_separation": 3.087138561569077,
+            "mean_prior_magnitude": 2.201113452019854
+          },
+          "by_category": {
+            "comparison": {
+              "families": 64,
+              "original_both_correct": 33,
+              "diagnostic_context_only_both_correct": 23,
+              "original_accuracy": 0.7265625,
+              "same_unique_candidate": 27,
+              "aligned_context_separation": 47,
+              "median_signed_context_separation": 2.759433757455554,
+              "mean_signed_context_separation": 3.929818473986188,
+              "mean_prior_magnitude": 1.8433550854497298
+            },
+            "negation": {
+              "families": 64,
+              "original_both_correct": 20,
+              "diagnostic_context_only_both_correct": 26,
+              "original_accuracy": 0.65625,
+              "same_unique_candidate": 44,
+              "aligned_context_separation": 51,
+              "median_signed_context_separation": 1.3385121184401214,
+              "mean_signed_context_separation": 2.244458649151966,
+              "mean_prior_magnitude": 2.558871818589978
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 42,
+              "diagnostic_context_only_both_correct": 33,
+              "original_accuracy": 0.828125,
+              "same_unique_candidate": 22,
+              "aligned_context_separation": 63,
+              "median_signed_context_separation": 5.593629198483541,
+              "mean_signed_context_separation": 5.686736483687355,
+              "mean_prior_magnitude": 2.8379964918713085
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 11,
+              "diagnostic_context_only_both_correct": 16,
+              "original_accuracy": 0.5546875,
+              "same_unique_candidate": 49,
+              "aligned_context_separation": 35,
+              "median_signed_context_separation": 0.30734170880168676,
+              "mean_signed_context_separation": 0.48754063945079906,
+              "mean_prior_magnitude": 1.5642304121683992
+            }
+          }
+        },
+        "mean_token_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 53,
+            "diagnostic_context_only_both_correct": 46,
+            "original_accuracy": 0.6875,
+            "same_unique_candidate": 70,
+            "aligned_context_separation": 98,
+            "median_signed_context_separation": 0.13853846864187203,
+            "mean_signed_context_separation": 0.48511971012432875,
+            "mean_prior_magnitude": 0.37388936071676027
+          },
+          "by_category": {
+            "comparison": {
+              "families": 64,
+              "original_both_correct": 33,
+              "diagnostic_context_only_both_correct": 20,
+              "original_accuracy": 0.71875,
+              "same_unique_candidate": 26,
+              "aligned_context_separation": 47,
+              "median_signed_context_separation": 0.5976746783591806,
+              "mean_signed_context_separation": 0.8037115873688663,
+              "mean_prior_magnitude": 0.6323977332642244
+            },
+            "negation": {
+              "families": 64,
+              "original_both_correct": 20,
+              "diagnostic_context_only_both_correct": 26,
+              "original_accuracy": 0.65625,
+              "same_unique_candidate": 44,
+              "aligned_context_separation": 51,
+              "median_signed_context_separation": 0.10869316974033913,
+              "mean_signed_context_separation": 0.16652783287979125,
+              "mean_prior_magnitude": 0.1153809881692961
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 42,
+              "diagnostic_context_only_both_correct": 34,
+              "original_accuracy": 0.828125,
+              "same_unique_candidate": 22,
+              "aligned_context_separation": 63,
+              "median_signed_context_separation": 0.46156350226747467,
+              "mean_signed_context_separation": 0.9097452151707259,
+              "mean_prior_magnitude": 0.4174796130446833
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 11,
+              "diagnostic_context_only_both_correct": 12,
+              "original_accuracy": 0.546875,
+              "same_unique_candidate": 48,
+              "aligned_context_separation": 35,
+              "median_signed_context_separation": 0.023431722039116976,
+              "mean_signed_context_separation": 0.060494205077931545,
+              "mean_prior_magnitude": 0.33029910838883725
+            }
+          }
+        },
+        "mean_byte_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 56,
+            "diagnostic_context_only_both_correct": 23,
+            "original_accuracy": 0.69921875,
+            "same_unique_candidate": 67,
+            "aligned_context_separation": 97,
+            "median_signed_context_separation": 0.03838595389300911,
+            "mean_signed_context_separation": 0.11858580456042393,
+            "mean_prior_magnitude": 0.09111523307779475
+          },
+          "by_category": {
+            "comparison": {
+              "families": 64,
+              "original_both_correct": 33,
+              "diagnostic_context_only_both_correct": 22,
+              "original_accuracy": 0.7265625,
+              "same_unique_candidate": 27,
+              "aligned_context_separation": 47,
+              "median_signed_context_separation": 0.13140160749788352,
+              "mean_signed_context_separation": 0.1899919253719598,
+              "mean_prior_magnitude": 0.09886415253109476
+            },
+            "negation": {
+              "families": 64,
+              "original_both_correct": 23,
+              "diagnostic_context_only_both_correct": 1,
+              "original_accuracy": 0.671875,
+              "same_unique_candidate": 40,
+              "aligned_context_separation": 50,
+              "median_signed_context_separation": 0.030247285261164228,
+              "mean_signed_context_separation": 0.04717968374888805,
+              "mean_prior_magnitude": 0.08336631362449475
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 45,
+              "diagnostic_context_only_both_correct": 16,
+              "original_accuracy": 0.8515625,
+              "same_unique_candidate": 19,
+              "aligned_context_separation": 63,
+              "median_signed_context_separation": 0.12026067475468483,
+              "mean_signed_context_separation": 0.2220680373138936,
+              "mean_prior_magnitude": 0.13762124042482946
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 11,
+              "diagnostic_context_only_both_correct": 7,
+              "original_accuracy": 0.546875,
+              "same_unique_candidate": 48,
+              "aligned_context_separation": 34,
+              "median_signed_context_separation": 0.004586551132282089,
+              "mean_signed_context_separation": 0.01510357180695426,
+              "mean_prior_magnitude": 0.044609225730760045
+            }
+          }
+        }
+      },
+      "retention": {
+        "sum_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 32,
+            "diagnostic_context_only_both_correct": 22,
+            "original_accuracy": 0.60546875,
+            "same_unique_candidate": 91,
+            "aligned_context_separation": 103,
+            "median_signed_context_separation": 0.5655364627018571,
+            "mean_signed_context_separation": 2.003238023310928,
+            "mean_prior_magnitude": 2.21038214427972
+          },
+          "by_category": {
+            "causality": {
+              "families": 20,
+              "original_both_correct": 6,
+              "diagnostic_context_only_both_correct": 6,
+              "original_accuracy": 0.65,
+              "same_unique_candidate": 14,
+              "aligned_context_separation": 20,
+              "median_signed_context_separation": 1.2557038390659727,
+              "mean_signed_context_separation": 1.3672772397956579,
+              "mean_prior_magnitude": 0.3534902557730675
+            },
+            "comparison": {
+              "families": 22,
+              "original_both_correct": 0,
+              "diagnostic_context_only_both_correct": 0,
+              "original_accuracy": 0.4772727272727273,
+              "same_unique_candidate": 21,
+              "aligned_context_separation": 12,
+              "median_signed_context_separation": 0.056211366347270086,
+              "mean_signed_context_separation": 0.09357659820340235,
+              "mean_prior_magnitude": 0.7962493550307541
+            },
+            "entity_reference": {
+              "families": 20,
+              "original_both_correct": 10,
+              "diagnostic_context_only_both_correct": 11,
+              "original_accuracy": 0.65,
+              "same_unique_candidate": 6,
+              "aligned_context_separation": 14,
+              "median_signed_context_separation": 4.8275415578100365,
+              "mean_signed_context_separation": 5.214261994935077,
+              "mean_prior_magnitude": 1.3409074720344507
+            },
+            "negation": {
+              "families": 22,
+              "original_both_correct": 12,
+              "diagnostic_context_only_both_correct": 2,
+              "original_accuracy": 0.7727272727272727,
+              "same_unique_candidate": 10,
+              "aligned_context_separation": 22,
+              "median_signed_context_separation": 5.456189267337322,
+              "mean_signed_context_separation": 4.740016263036523,
+              "mean_prior_magnitude": 7.886315186761997
+            },
+            "quantity": {
+              "families": 22,
+              "original_both_correct": 0,
+              "diagnostic_context_only_both_correct": 0,
+              "original_accuracy": 0.5,
+              "same_unique_candidate": 22,
+              "aligned_context_separation": 15,
+              "median_signed_context_separation": 0.05419030535267666,
+              "mean_signed_context_separation": 0.11697737228612161,
+              "mean_prior_magnitude": 1.252529078586535
+            },
+            "time": {
+              "families": 22,
+              "original_both_correct": 4,
+              "diagnostic_context_only_both_correct": 3,
+              "original_accuracy": 0.5909090909090909,
+              "same_unique_candidate": 18,
+              "aligned_context_separation": 20,
+              "median_signed_context_separation": 0.7077292009489611,
+              "mean_signed_context_separation": 0.721415325073229,
+              "mean_prior_magnitude": 1.3849500119686127
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 26,
+              "diagnostic_context_only_both_correct": 18,
+              "original_accuracy": 0.6875,
+              "same_unique_candidate": 36,
+              "aligned_context_separation": 53,
+              "median_signed_context_separation": 0.8036203430965543,
+              "mean_signed_context_separation": 3.1739291022231555,
+              "mean_prior_magnitude": 2.2286603760439903
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 6,
+              "diagnostic_context_only_both_correct": 4,
+              "original_accuracy": 0.5234375,
+              "same_unique_candidate": 55,
+              "aligned_context_separation": 50,
+              "median_signed_context_separation": 0.4701745503116399,
+              "mean_signed_context_separation": 0.8325469443987004,
+              "mean_prior_magnitude": 2.1921039125154493
+            }
+          }
+        },
+        "mean_token_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 36,
+            "diagnostic_context_only_both_correct": 25,
+            "original_accuracy": 0.625,
+            "same_unique_candidate": 88,
+            "aligned_context_separation": 102,
+            "median_signed_context_separation": 0.10872151256189677,
+            "mean_signed_context_separation": 0.3089700867010483,
+            "mean_prior_magnitude": 0.3618726108196302
+          },
+          "by_category": {
+            "causality": {
+              "families": 20,
+              "original_both_correct": 6,
+              "diagnostic_context_only_both_correct": 6,
+              "original_accuracy": 0.65,
+              "same_unique_candidate": 14,
+              "aligned_context_separation": 20,
+              "median_signed_context_separation": 0.20928397317766212,
+              "mean_signed_context_separation": 0.22787953996594298,
+              "mean_prior_magnitude": 0.058915042628844505
+            },
+            "comparison": {
+              "families": 22,
+              "original_both_correct": 0,
+              "diagnostic_context_only_both_correct": 0,
+              "original_accuracy": 0.4772727272727273,
+              "same_unique_candidate": 21,
+              "aligned_context_separation": 12,
+              "median_signed_context_separation": 0.01124227326945404,
+              "mean_signed_context_separation": 0.01871790718260771,
+              "mean_prior_magnitude": 0.21050235930703257
+            },
+            "entity_reference": {
+              "families": 20,
+              "original_both_correct": 10,
+              "diagnostic_context_only_both_correct": 8,
+              "original_accuracy": 0.675,
+              "same_unique_candidate": 7,
+              "aligned_context_separation": 14,
+              "median_signed_context_separation": 0.951666143425973,
+              "mean_signed_context_separation": 1.1058906815609952,
+              "mean_prior_magnitude": 0.5858999508270064
+            },
+            "negation": {
+              "families": 22,
+              "original_both_correct": 16,
+              "diagnostic_context_only_both_correct": 8,
+              "original_accuracy": 0.8636363636363636,
+              "same_unique_candidate": 6,
+              "aligned_context_separation": 22,
+              "median_signed_context_separation": 0.4006529404529525,
+              "mean_signed_context_separation": 0.3601671896737931,
+              "mean_prior_magnitude": 0.4497885163561714
+            },
+            "quantity": {
+              "families": 22,
+              "original_both_correct": 0,
+              "diagnostic_context_only_both_correct": 0,
+              "original_accuracy": 0.5,
+              "same_unique_candidate": 22,
+              "aligned_context_separation": 14,
+              "median_signed_context_separation": 0.011289200221654028,
+              "mean_signed_context_separation": 0.02588682947508376,
+              "mean_prior_magnitude": 0.5127168175171721
+            },
+            "time": {
+              "families": 22,
+              "original_both_correct": 4,
+              "diagnostic_context_only_both_correct": 3,
+              "original_accuracy": 0.5909090909090909,
+              "same_unique_candidate": 18,
+              "aligned_context_separation": 20,
+              "median_signed_context_separation": 0.17693230023724027,
+              "mean_signed_context_separation": 0.18035383126830726,
+              "mean_prior_magnitude": 0.34623750299215317
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 27,
+              "diagnostic_context_only_both_correct": 22,
+              "original_accuracy": 0.6953125,
+              "same_unique_candidate": 35,
+              "aligned_context_separation": 53,
+              "median_signed_context_separation": 0.1516013645683415,
+              "mean_signed_context_separation": 0.5007779140952148,
+              "mean_prior_magnitude": 0.3523935714335684
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 9,
+              "diagnostic_context_only_both_correct": 3,
+              "original_accuracy": 0.5546875,
+              "same_unique_candidate": 53,
+              "aligned_context_separation": 49,
+              "median_signed_context_separation": 0.07807764990138821,
+              "mean_signed_context_separation": 0.1171622593068819,
+              "mean_prior_magnitude": 0.3713516502056919
+            }
+          }
+        },
+        "mean_byte_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 35,
+            "diagnostic_context_only_both_correct": 28,
+            "original_accuracy": 0.6171875,
+            "same_unique_candidate": 88,
+            "aligned_context_separation": 103,
+            "median_signed_context_separation": 0.02327727210288162,
+            "mean_signed_context_separation": 0.07250322604847269,
+            "mean_prior_magnitude": 0.06685563483740208
+          },
+          "by_category": {
+            "causality": {
+              "families": 20,
+              "original_both_correct": 7,
+              "diagnostic_context_only_both_correct": 3,
+              "original_accuracy": 0.675,
+              "same_unique_candidate": 13,
+              "aligned_context_separation": 20,
+              "median_signed_context_separation": 0.041532928071683274,
+              "mean_signed_context_separation": 0.04423899760520947,
+              "mean_prior_magnitude": 0.05335652209592584
+            },
+            "comparison": {
+              "families": 22,
+              "original_both_correct": 0,
+              "diagnostic_context_only_both_correct": 0,
+              "original_accuracy": 0.4772727272727273,
+              "same_unique_candidate": 21,
+              "aligned_context_separation": 12,
+              "median_signed_context_separation": 0.0026767317308223834,
+              "mean_signed_context_separation": 0.004456439206817133,
+              "mean_prior_magnitude": 0.04605195155715998
+            },
+            "entity_reference": {
+              "families": 20,
+              "original_both_correct": 10,
+              "diagnostic_context_only_both_correct": 10,
+              "original_accuracy": 0.65,
+              "same_unique_candidate": 6,
+              "aligned_context_separation": 14,
+              "median_signed_context_separation": 0.2276857617788852,
+              "mean_signed_context_separation": 0.25736620261590043,
+              "mean_prior_magnitude": 0.08188913127662435
+            },
+            "negation": {
+              "families": 22,
+              "original_both_correct": 14,
+              "diagnostic_context_only_both_correct": 11,
+              "original_accuracy": 0.8181818181818182,
+              "same_unique_candidate": 8,
+              "aligned_context_separation": 22,
+              "median_signed_context_separation": 0.11519203763937408,
+              "mean_signed_context_separation": 0.09982689966562007,
+              "mean_prior_magnitude": 0.05965328801467772
+            },
+            "quantity": {
+              "families": 22,
+              "original_both_correct": 0,
+              "diagnostic_context_only_both_correct": 0,
+              "original_accuracy": 0.5,
+              "same_unique_candidate": 22,
+              "aligned_context_separation": 15,
+              "median_signed_context_separation": 0.0031876650207456614,
+              "mean_signed_context_separation": 0.006920073127754885,
+              "mean_prior_magnitude": 0.07654638108822273
+            },
+            "time": {
+              "families": 22,
+              "original_both_correct": 4,
+              "diagnostic_context_only_both_correct": 4,
+              "original_accuracy": 0.5909090909090909,
+              "same_unique_candidate": 18,
+              "aligned_context_separation": 20,
+              "median_signed_context_separation": 0.03528014436505097,
+              "mean_signed_context_separation": 0.03644699389900362,
+              "mean_prior_magnitude": 0.08377602441886964
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 28,
+              "diagnostic_context_only_both_correct": 23,
+              "original_accuracy": 0.703125,
+              "same_unique_candidate": 34,
+              "aligned_context_separation": 53,
+              "median_signed_context_separation": 0.035894257212135953,
+              "mean_signed_context_separation": 0.11807240557941792,
+              "mean_prior_magnitude": 0.07192920307452529
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 7,
+              "diagnostic_context_only_both_correct": 5,
+              "original_accuracy": 0.53125,
+              "same_unique_candidate": 54,
+              "aligned_context_separation": 50,
+              "median_signed_context_separation": 0.018573360709363967,
+              "mean_signed_context_separation": 0.02693404651752744,
+              "mean_prior_magnitude": 0.06178206660027886
+            }
+          }
+        }
+      }
+    },
+    "gold_body_replay": {
+      "bridge": {
+        "sum_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 40,
+            "diagnostic_context_only_both_correct": 28,
+            "original_accuracy": 0.62109375,
+            "same_unique_candidate": 79,
+            "aligned_context_separation": 97,
+            "median_signed_context_separation": 0.4695156700909138,
+            "mean_signed_context_separation": 1.7602156115484604,
+            "mean_prior_magnitude": 1.85834985184556
+          },
+          "by_category": {
+            "comparison": {
+              "families": 64,
+              "original_both_correct": 27,
+              "diagnostic_context_only_both_correct": 18,
+              "original_accuracy": 0.640625,
+              "same_unique_candidate": 28,
+              "aligned_context_separation": 44,
+              "median_signed_context_separation": 1.6536596714286134,
+              "mean_signed_context_separation": 2.3440887069289147,
+              "mean_prior_magnitude": 1.8257621282609762
+            },
+            "negation": {
+              "families": 64,
+              "original_both_correct": 13,
+              "diagnostic_context_only_both_correct": 10,
+              "original_accuracy": 0.6015625,
+              "same_unique_candidate": 51,
+              "aligned_context_separation": 53,
+              "median_signed_context_separation": 0.4542897620704025,
+              "mean_signed_context_separation": 1.1763425161680061,
+              "mean_prior_magnitude": 1.8909375754301436
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 33,
+              "diagnostic_context_only_both_correct": 18,
+              "original_accuracy": 0.7578125,
+              "same_unique_candidate": 31,
+              "aligned_context_separation": 62,
+              "median_signed_context_separation": 2.6117934277281165,
+              "mean_signed_context_separation": 3.5667497790709604,
+              "mean_prior_magnitude": 2.54006963071879
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 7,
+              "diagnostic_context_only_both_correct": 10,
+              "original_accuracy": 0.484375,
+              "same_unique_candidate": 48,
+              "aligned_context_separation": 35,
+              "median_signed_context_separation": 0.09217385994270444,
+              "mean_signed_context_separation": -0.046318555974039555,
+              "mean_prior_magnitude": 1.1766300729723298
+            }
+          }
+        },
+        "mean_token_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 44,
+            "diagnostic_context_only_both_correct": 27,
+            "original_accuracy": 0.62890625,
+            "same_unique_candidate": 73,
+            "aligned_context_separation": 96,
+            "median_signed_context_separation": 0.03898715851216139,
+            "mean_signed_context_separation": 0.2784996257383164,
+            "mean_prior_magnitude": 0.3599815232801336
+          },
+          "by_category": {
+            "comparison": {
+              "families": 64,
+              "original_both_correct": 28,
+              "diagnostic_context_only_both_correct": 15,
+              "original_accuracy": 0.6328125,
+              "same_unique_candidate": 25,
+              "aligned_context_separation": 43,
+              "median_signed_context_separation": 0.3500137531314976,
+              "mean_signed_context_separation": 0.4703890545541071,
+              "mean_prior_magnitude": 0.6315933821882938
+            },
+            "negation": {
+              "families": 64,
+              "original_both_correct": 16,
+              "diagnostic_context_only_both_correct": 12,
+              "original_accuracy": 0.625,
+              "same_unique_candidate": 48,
+              "aligned_context_separation": 53,
+              "median_signed_context_separation": 0.03390657790928428,
+              "mean_signed_context_separation": 0.08661019692252565,
+              "mean_prior_magnitude": 0.08836966437197345
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 36,
+              "diagnostic_context_only_both_correct": 20,
+              "original_accuracy": 0.78125,
+              "same_unique_candidate": 28,
+              "aligned_context_separation": 62,
+              "median_signed_context_separation": 0.2569179862005263,
+              "mean_signed_context_separation": 0.5898539487127429,
+              "mean_prior_magnitude": 0.4118090644540684
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 8,
+              "diagnostic_context_only_both_correct": 7,
+              "original_accuracy": 0.4765625,
+              "same_unique_candidate": 45,
+              "aligned_context_separation": 34,
+              "median_signed_context_separation": 0.0029318677998768916,
+              "mean_signed_context_separation": -0.032854697236110036,
+              "mean_prior_magnitude": 0.30815398210619876
+            }
+          }
+        },
+        "mean_byte_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 47,
+            "diagnostic_context_only_both_correct": 22,
+            "original_accuracy": 0.6328125,
+            "same_unique_candidate": 68,
+            "aligned_context_separation": 92,
+            "median_signed_context_separation": 0.010640257032795516,
+            "mean_signed_context_separation": 0.0691322888790946,
+            "mean_prior_magnitude": 0.09390948149644479
+          },
+          "by_category": {
+            "comparison": {
+              "families": 64,
+              "original_both_correct": 27,
+              "diagnostic_context_only_both_correct": 17,
+              "original_accuracy": 0.640625,
+              "same_unique_candidate": 28,
+              "aligned_context_separation": 44,
+              "median_signed_context_separation": 0.07874569863945778,
+              "mean_signed_context_separation": 0.11293047790786298,
+              "mean_prior_magnitude": 0.09686174130795747
+            },
+            "negation": {
+              "families": 64,
+              "original_both_correct": 20,
+              "diagnostic_context_only_both_correct": 5,
+              "original_accuracy": 0.625,
+              "same_unique_candidate": 40,
+              "aligned_context_separation": 48,
+              "median_signed_context_separation": 0.00933595241819269,
+              "mean_signed_context_separation": 0.025334099850326225,
+              "mean_prior_magnitude": 0.09095722168493212
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 40,
+              "diagnostic_context_only_both_correct": 16,
+              "original_accuracy": 0.8125,
+              "same_unique_candidate": 24,
+              "aligned_context_separation": 62,
+              "median_signed_context_separation": 0.07188306162192509,
+              "mean_signed_context_separation": 0.14431297426972647,
+              "mean_prior_magnitude": 0.13884252383322673
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 7,
+              "diagnostic_context_only_both_correct": 6,
+              "original_accuracy": 0.453125,
+              "same_unique_candidate": 44,
+              "aligned_context_separation": 30,
+              "median_signed_context_separation": -0.0006678774638474924,
+              "mean_signed_context_separation": -0.006048396511537268,
+              "mean_prior_magnitude": 0.04897643915966284
+            }
+          }
+        }
+      },
+      "retention": {
+        "sum_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 22,
+            "diagnostic_context_only_both_correct": 14,
+            "original_accuracy": 0.5703125,
+            "same_unique_candidate": 102,
+            "aligned_context_separation": 99,
+            "median_signed_context_separation": 0.1750388266518712,
+            "mean_signed_context_separation": 1.4487235218759906,
+            "mean_prior_magnitude": 2.153407189569407
+          },
+          "by_category": {
+            "causality": {
+              "families": 20,
+              "original_both_correct": 1,
+              "diagnostic_context_only_both_correct": 0,
+              "original_accuracy": 0.5,
+              "same_unique_candidate": 18,
+              "aligned_context_separation": 17,
+              "median_signed_context_separation": 0.15596976492088288,
+              "mean_signed_context_separation": 0.16706954332767054,
+              "mean_prior_magnitude": 0.4773511945968494
+            },
+            "comparison": {
+              "families": 22,
+              "original_both_correct": 0,
+              "diagnostic_context_only_both_correct": 1,
+              "original_accuracy": 0.5,
+              "same_unique_candidate": 22,
+              "aligned_context_separation": 13,
+              "median_signed_context_separation": 0.026369655854068696,
+              "mean_signed_context_separation": 0.07815510162816447,
+              "mean_prior_magnitude": 0.8778178443581882
+            },
+            "entity_reference": {
+              "families": 20,
+              "original_both_correct": 8,
+              "diagnostic_context_only_both_correct": 8,
+              "original_accuracy": 0.625,
+              "same_unique_candidate": 9,
+              "aligned_context_separation": 14,
+              "median_signed_context_separation": 2.568124076598906,
+              "mean_signed_context_separation": 4.003579379076109,
+              "mean_prior_magnitude": 1.3271226819837465
+            },
+            "negation": {
+              "families": 22,
+              "original_both_correct": 10,
+              "diagnostic_context_only_both_correct": 1,
+              "original_accuracy": 0.7272727272727273,
+              "same_unique_candidate": 12,
+              "aligned_context_separation": 22,
+              "median_signed_context_separation": 5.676714867353439,
+              "mean_signed_context_separation": 4.307794163691472,
+              "mean_prior_magnitude": 7.994438214735552
+            },
+            "quantity": {
+              "families": 22,
+              "original_both_correct": 1,
+              "diagnostic_context_only_both_correct": 1,
+              "original_accuracy": 0.5227272727272727,
+              "same_unique_candidate": 21,
+              "aligned_context_separation": 14,
+              "median_signed_context_separation": 0.12052038544788957,
+              "mean_signed_context_separation": 0.12498514414553276,
+              "mean_prior_magnitude": 1.1040413010526786
+            },
+            "time": {
+              "families": 22,
+              "original_both_correct": 2,
+              "diagnostic_context_only_both_correct": 3,
+              "original_accuracy": 0.5454545454545454,
+              "same_unique_candidate": 20,
+              "aligned_context_separation": 19,
+              "median_signed_context_separation": 0.10746155586093664,
+              "mean_signed_context_separation": 0.12650342471897602,
+              "mean_prior_magnitude": 0.9121864004568621
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 17,
+              "diagnostic_context_only_both_correct": 10,
+              "original_accuracy": 0.625,
+              "same_unique_candidate": 46,
+              "aligned_context_separation": 49,
+              "median_signed_context_separation": 0.17848882800899446,
+              "mean_signed_context_separation": 2.434875189775994,
+              "mean_prior_magnitude": 2.1431597172013426
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 5,
+              "diagnostic_context_only_both_correct": 4,
+              "original_accuracy": 0.515625,
+              "same_unique_candidate": 56,
+              "aligned_context_separation": 50,
+              "median_signed_context_separation": 0.16254841082263738,
+              "mean_signed_context_separation": 0.4625718539759873,
+              "mean_prior_magnitude": 2.1636546619374712
+            }
+          }
+        },
+        "mean_token_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 24,
+            "diagnostic_context_only_both_correct": 14,
+            "original_accuracy": 0.58203125,
+            "same_unique_candidate": 101,
+            "aligned_context_separation": 99,
+            "median_signed_context_separation": 0.030545817210804793,
+            "mean_signed_context_separation": 0.205736480733978,
+            "mean_prior_magnitude": 0.33921965095999945
+          },
+          "by_category": {
+            "causality": {
+              "families": 20,
+              "original_both_correct": 1,
+              "diagnostic_context_only_both_correct": 0,
+              "original_accuracy": 0.5,
+              "same_unique_candidate": 18,
+              "aligned_context_separation": 17,
+              "median_signed_context_separation": 0.025994960820147184,
+              "mean_signed_context_separation": 0.027844923887945097,
+              "mean_prior_magnitude": 0.0795585324328083
+            },
+            "comparison": {
+              "families": 22,
+              "original_both_correct": 0,
+              "diagnostic_context_only_both_correct": 1,
+              "original_accuracy": 0.5,
+              "same_unique_candidate": 22,
+              "aligned_context_separation": 13,
+              "median_signed_context_separation": 0.0052739311708137615,
+              "mean_signed_context_separation": 0.015705945085474828,
+              "mean_prior_magnitude": 0.2274882023773072
+            },
+            "entity_reference": {
+              "families": 20,
+              "original_both_correct": 8,
+              "diagnostic_context_only_both_correct": 3,
+              "original_accuracy": 0.65,
+              "same_unique_candidate": 10,
+              "aligned_context_separation": 14,
+              "median_signed_context_separation": 0.5841054135496961,
+              "mean_signed_context_separation": 0.8477076668034715,
+              "mean_prior_magnitude": 0.5916819476693248
+            },
+            "negation": {
+              "families": 22,
+              "original_both_correct": 12,
+              "diagnostic_context_only_both_correct": 6,
+              "original_accuracy": 0.7727272727272727,
+              "same_unique_candidate": 10,
+              "aligned_context_separation": 22,
+              "median_signed_context_separation": 0.4012339745667181,
+              "mean_signed_context_separation": 0.3264056305842266,
+              "mean_prior_magnitude": 0.4581081186603009
+            },
+            "quantity": {
+              "families": 22,
+              "original_both_correct": 1,
+              "diagnostic_context_only_both_correct": 1,
+              "original_accuracy": 0.5227272727272727,
+              "same_unique_candidate": 21,
+              "aligned_context_separation": 14,
+              "median_signed_context_separation": 0.029680945503059775,
+              "mean_signed_context_separation": 0.027317919065138665,
+              "mean_prior_magnitude": 0.4497800661589612
+            },
+            "time": {
+              "families": 22,
+              "original_both_correct": 2,
+              "diagnostic_context_only_both_correct": 3,
+              "original_accuracy": 0.5454545454545454,
+              "same_unique_candidate": 20,
+              "aligned_context_separation": 19,
+              "median_signed_context_separation": 0.02686538896523416,
+              "mean_signed_context_separation": 0.031625856179744005,
+              "mean_prior_magnitude": 0.22804660011421551
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 19,
+              "diagnostic_context_only_both_correct": 12,
+              "original_accuracy": 0.640625,
+              "same_unique_candidate": 44,
+              "aligned_context_separation": 49,
+              "median_signed_context_separation": 0.044244090025313154,
+              "mean_signed_context_separation": 0.3685627375063085,
+              "mean_prior_magnitude": 0.3272525392954143
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 5,
+              "diagnostic_context_only_both_correct": 2,
+              "original_accuracy": 0.5234375,
+              "same_unique_candidate": 57,
+              "aligned_context_separation": 50,
+              "median_signed_context_separation": 0.025994960820147184,
+              "mean_signed_context_separation": 0.04291022396164743,
+              "mean_prior_magnitude": 0.35118676262458454
+            }
+          }
+        },
+        "mean_byte_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "original_both_correct": 28,
+            "diagnostic_context_only_both_correct": 23,
+            "original_accuracy": 0.59375,
+            "same_unique_candidate": 96,
+            "aligned_context_separation": 99,
+            "median_signed_context_separation": 0.007832895394380757,
+            "mean_signed_context_separation": 0.05032834102174323,
+            "mean_prior_magnitude": 0.0581209009216747
+          },
+          "by_category": {
+            "causality": {
+              "families": 20,
+              "original_both_correct": 1,
+              "diagnostic_context_only_both_correct": 0,
+              "original_accuracy": 0.5,
+              "same_unique_candidate": 18,
+              "aligned_context_separation": 17,
+              "median_signed_context_separation": 0.004855498724447731,
+              "mean_signed_context_separation": 0.005366063546636282,
+              "mean_prior_magnitude": 0.032783843622768705
+            },
+            "comparison": {
+              "families": 22,
+              "original_both_correct": 0,
+              "diagnostic_context_only_both_correct": 1,
+              "original_accuracy": 0.5,
+              "same_unique_candidate": 22,
+              "aligned_context_separation": 13,
+              "median_signed_context_separation": 0.0012556978978128103,
+              "mean_signed_context_separation": 0.0037335643251256057,
+              "mean_prior_magnitude": 0.05004285504970251
+            },
+            "entity_reference": {
+              "families": 20,
+              "original_both_correct": 8,
+              "diagnostic_context_only_both_correct": 6,
+              "original_accuracy": 0.625,
+              "same_unique_candidate": 9,
+              "aligned_context_separation": 14,
+              "median_signed_context_separation": 0.122291622695186,
+              "mean_signed_context_separation": 0.1982986872237465,
+              "mean_prior_magnitude": 0.08124741627428206
+            },
+            "negation": {
+              "families": 22,
+              "original_both_correct": 16,
+              "diagnostic_context_only_both_correct": 12,
+              "original_accuracy": 0.8636363636363636,
+              "same_unique_candidate": 6,
+              "aligned_context_separation": 22,
+              "median_signed_context_separation": 0.1144597515155037,
+              "mean_signed_context_separation": 0.09011360841140276,
+              "mean_prior_magnitude": 0.055357176000054215
+            },
+            "quantity": {
+              "families": 22,
+              "original_both_correct": 1,
+              "diagnostic_context_only_both_correct": 1,
+              "original_accuracy": 0.5227272727272727,
+              "same_unique_candidate": 21,
+              "aligned_context_separation": 14,
+              "median_signed_context_separation": 0.00732855443365063,
+              "mean_signed_context_separation": 0.007373805484091065,
+              "mean_prior_magnitude": 0.06788869847090329
+            },
+            "time": {
+              "families": 22,
+              "original_both_correct": 2,
+              "diagnostic_context_only_both_correct": 3,
+              "original_accuracy": 0.5454545454545454,
+              "same_unique_candidate": 20,
+              "aligned_context_separation": 19,
+              "median_signed_context_separation": 0.005596126863536874,
+              "mean_signed_context_separation": 0.006448687023720503,
+              "mean_prior_magnitude": 0.061204457753583005
+            }
+          },
+          "by_split": {
+            "lexical_holdout": {
+              "families": 64,
+              "original_both_correct": 19,
+              "diagnostic_context_only_both_correct": 18,
+              "original_accuracy": 0.640625,
+              "same_unique_candidate": 44,
+              "aligned_context_separation": 49,
+              "median_signed_context_separation": 0.010296401567757116,
+              "mean_signed_context_separation": 0.0893135738068799,
+              "mean_prior_magnitude": 0.06093282483297824
+            },
+            "structural_holdout": {
+              "families": 64,
+              "original_both_correct": 9,
+              "diagnostic_context_only_both_correct": 5,
+              "original_accuracy": 0.546875,
+              "same_unique_candidate": 52,
+              "aligned_context_separation": 50,
+              "median_signed_context_separation": 0.005650722631757893,
+              "mean_signed_context_separation": 0.011343108236606564,
+              "mean_prior_magnitude": 0.055308977010371164
+            }
+          }
+        }
+      }
+    }
+  },
+  "comparisons": {
+    "historical_parent": {
+      "bridge": {
+        "sum_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "lost_both_correct": 9,
+            "gained_both_correct": 28,
+            "arithmetic_prior_change_only_loses": 0,
+            "arithmetic_context_change_only_loses": 2,
+            "arithmetic_either_change_loses": 7,
+            "arithmetic_combination_needed": 0,
+            "mean_signed_context_separation_change": 0.8235623941981203,
+            "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+          },
+          "by_category": {
+            "comparison": {
+              "families": 64,
+              "lost_both_correct": 9,
+              "gained_both_correct": 23,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 2,
+              "arithmetic_either_change_loses": 7,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 1.7053674521173434,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "negation": {
+              "families": 64,
+              "lost_both_correct": 0,
+              "gained_both_correct": 5,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.05824266372110287,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            }
+          }
+        },
+        "mean_token_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "lost_both_correct": 8,
+            "gained_both_correct": 28,
+            "arithmetic_prior_change_only_loses": 0,
+            "arithmetic_context_change_only_loses": 3,
+            "arithmetic_either_change_loses": 5,
+            "arithmetic_combination_needed": 0,
+            "mean_signed_context_separation_change": 0.17157463668002113,
+            "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+          },
+          "by_category": {
+            "comparison": {
+              "families": 64,
+              "lost_both_correct": 7,
+              "gained_both_correct": 24,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 2,
+              "arithmetic_either_change_loses": 5,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.346607619305784,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "negation": {
+              "families": 64,
+              "lost_both_correct": 1,
+              "gained_both_correct": 4,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 1,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.0034583459457417725,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            }
+          }
+        },
+        "mean_byte_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "lost_both_correct": 8,
+            "gained_both_correct": 33,
+            "arithmetic_prior_change_only_loses": 0,
+            "arithmetic_context_change_only_loses": 2,
+            "arithmetic_either_change_loses": 6,
+            "arithmetic_combination_needed": 0,
+            "mean_signed_context_separation_change": 0.0417284222624771,
+            "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+          },
+          "by_category": {
+            "comparison": {
+              "families": 64,
+              "lost_both_correct": 8,
+              "gained_both_correct": 23,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 2,
+              "arithmetic_either_change_loses": 6,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.08390575152454388,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "negation": {
+              "families": 64,
+              "lost_both_correct": 0,
+              "gained_both_correct": 10,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.0004489069995896907,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            }
+          }
+        }
+      },
+      "retention": {
+        "sum_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "lost_both_correct": 8,
+            "gained_both_correct": 9,
+            "arithmetic_prior_change_only_loses": 1,
+            "arithmetic_context_change_only_loses": 3,
+            "arithmetic_either_change_loses": 3,
+            "arithmetic_combination_needed": 1,
+            "mean_signed_context_separation_change": 0.6490847114193912,
+            "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+          },
+          "by_category": {
+            "causality": {
+              "families": 20,
+              "lost_both_correct": 0,
+              "gained_both_correct": 1,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.14524168240604923,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "comparison": {
+              "families": 22,
+              "lost_both_correct": 0,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.0884092212039501,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "entity_reference": {
+              "families": 20,
+              "lost_both_correct": 1,
+              "gained_both_correct": 5,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 1,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 3.2330705899912573,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "negation": {
+              "families": 22,
+              "lost_both_correct": 6,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 1,
+              "arithmetic_context_change_only_loses": 2,
+              "arithmetic_either_change_loses": 2,
+              "arithmetic_combination_needed": 1,
+              "mean_signed_context_separation_change": 0.45614951325114816,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "quantity": {
+              "families": 22,
+              "lost_both_correct": 1,
+              "gained_both_correct": 1,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 1,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.0838426472725008,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "time": {
+              "families": 22,
+              "lost_both_correct": 0,
+              "gained_both_correct": 2,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.07689850980585272,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            }
+          }
+        },
+        "mean_token_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "lost_both_correct": 5,
+            "gained_both_correct": 10,
+            "arithmetic_prior_change_only_loses": 2,
+            "arithmetic_context_change_only_loses": 1,
+            "arithmetic_either_change_loses": 1,
+            "arithmetic_combination_needed": 1,
+            "mean_signed_context_separation_change": 0.12542493312176806,
+            "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+          },
+          "by_category": {
+            "causality": {
+              "families": 20,
+              "lost_both_correct": 0,
+              "gained_both_correct": 1,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.024206947067674914,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "comparison": {
+              "families": 22,
+              "lost_both_correct": 0,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.017748905230308202,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "entity_reference": {
+              "families": 20,
+              "lost_both_correct": 1,
+              "gained_both_correct": 6,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 1,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.6799869801001719,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "negation": {
+              "families": 22,
+              "lost_both_correct": 4,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 2,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 1,
+              "arithmetic_combination_needed": 1,
+              "mean_signed_context_separation_change": 0.031430752658093725,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "quantity": {
+              "families": 22,
+              "lost_both_correct": 0,
+              "gained_both_correct": 1,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.021164482670561025,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "time": {
+              "families": 22,
+              "lost_both_correct": 0,
+              "gained_both_correct": 2,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.01922462745146318,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            }
+          }
+        },
+        "mean_byte_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "lost_both_correct": 2,
+            "gained_both_correct": 23,
+            "arithmetic_prior_change_only_loses": 0,
+            "arithmetic_context_change_only_loses": 1,
+            "arithmetic_either_change_loses": 1,
+            "arithmetic_combination_needed": 0,
+            "mean_signed_context_separation_change": 0.02932297199039829,
+            "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+          },
+          "by_category": {
+            "causality": {
+              "families": 20,
+              "lost_both_correct": 0,
+              "gained_both_correct": 1,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.004955729855414976,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "comparison": {
+              "families": 22,
+              "lost_both_correct": 0,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.004220607515984672,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "entity_reference": {
+              "families": 20,
+              "lost_both_correct": 1,
+              "gained_both_correct": 6,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 1,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.16000659310325677,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "negation": {
+              "families": 22,
+              "lost_both_correct": 0,
+              "gained_both_correct": 13,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.0074025603246001765,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "quantity": {
+              "families": 22,
+              "lost_both_correct": 1,
+              "gained_both_correct": 1,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 1,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.004946207321402388,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "time": {
+              "families": 22,
+              "lost_both_correct": 0,
+              "gained_both_correct": 2,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.004071259183355763,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            }
+          }
+        }
+      }
+    },
+    "staged_CE": {
+      "bridge": {
+        "sum_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "lost_both_correct": 27,
+            "gained_both_correct": 7,
+            "arithmetic_prior_change_only_loses": 2,
+            "arithmetic_context_change_only_loses": 17,
+            "arithmetic_either_change_loses": 7,
+            "arithmetic_combination_needed": 1,
+            "mean_signed_context_separation_change": -1.781286631326168,
+            "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+          },
+          "by_category": {
+            "comparison": {
+              "families": 64,
+              "lost_both_correct": 8,
+              "gained_both_correct": 7,
+              "arithmetic_prior_change_only_loses": 2,
+              "arithmetic_context_change_only_loses": 2,
+              "arithmetic_either_change_loses": 4,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -1.4825382526388466,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "negation": {
+              "families": 64,
+              "lost_both_correct": 19,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 15,
+              "arithmetic_either_change_loses": 3,
+              "arithmetic_combination_needed": 1,
+              "mean_signed_context_separation_change": -2.0800350100134892,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            }
+          }
+        },
+        "mean_token_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "lost_both_correct": 26,
+            "gained_both_correct": 10,
+            "arithmetic_prior_change_only_loses": 2,
+            "arithmetic_context_change_only_loses": 14,
+            "arithmetic_either_change_loses": 7,
+            "arithmetic_combination_needed": 3,
+            "mean_signed_context_separation_change": -0.23020646596225997,
+            "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+          },
+          "by_category": {
+            "comparison": {
+              "families": 64,
+              "lost_both_correct": 8,
+              "gained_both_correct": 8,
+              "arithmetic_prior_change_only_loses": 2,
+              "arithmetic_context_change_only_loses": 2,
+              "arithmetic_either_change_loses": 4,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.30183072209914596,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "negation": {
+              "families": 64,
+              "lost_both_correct": 18,
+              "gained_both_correct": 2,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 12,
+              "arithmetic_either_change_loses": 3,
+              "arithmetic_combination_needed": 3,
+              "mean_signed_context_separation_change": -0.15858220982537397,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            }
+          }
+        },
+        "mean_byte_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "lost_both_correct": 22,
+            "gained_both_correct": 7,
+            "arithmetic_prior_change_only_loses": 2,
+            "arithmetic_context_change_only_loses": 10,
+            "arithmetic_either_change_loses": 9,
+            "arithmetic_combination_needed": 1,
+            "mean_signed_context_separation_change": -0.058519176656360215,
+            "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+          },
+          "by_category": {
+            "comparison": {
+              "families": 64,
+              "lost_both_correct": 8,
+              "gained_both_correct": 7,
+              "arithmetic_prior_change_only_loses": 2,
+              "arithmetic_context_change_only_loses": 2,
+              "arithmetic_either_change_loses": 4,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.07249045204097518,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "negation": {
+              "families": 64,
+              "lost_both_correct": 14,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 8,
+              "arithmetic_either_change_loses": 5,
+              "arithmetic_combination_needed": 1,
+              "mean_signed_context_separation_change": -0.04454790127174525,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            }
+          }
+        }
+      },
+      "retention": {
+        "sum_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "lost_both_correct": 23,
+            "gained_both_correct": 9,
+            "arithmetic_prior_change_only_loses": 0,
+            "arithmetic_context_change_only_loses": 14,
+            "arithmetic_either_change_loses": 6,
+            "arithmetic_combination_needed": 3,
+            "mean_signed_context_separation_change": -1.1541805261932154,
+            "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+          },
+          "by_category": {
+            "causality": {
+              "families": 20,
+              "lost_both_correct": 9,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 9,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -3.4358986875522533,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "comparison": {
+              "families": 22,
+              "lost_both_correct": 0,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.11100737660407586,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "entity_reference": {
+              "families": 20,
+              "lost_both_correct": 4,
+              "gained_both_correct": 1,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 1,
+              "arithmetic_either_change_loses": 1,
+              "arithmetic_combination_needed": 2,
+              "mean_signed_context_separation_change": -2.7671719823796592,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "negation": {
+              "families": 22,
+              "lost_both_correct": 1,
+              "gained_both_correct": 5,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 1,
+              "mean_signed_context_separation_change": 0.07227569830667396,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "quantity": {
+              "families": 22,
+              "lost_both_correct": 1,
+              "gained_both_correct": 1,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 1,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.061447163668080146,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "time": {
+              "families": 22,
+              "lost_both_correct": 8,
+              "gained_both_correct": 2,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 4,
+              "arithmetic_either_change_loses": 4,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -1.0987924832840112,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            }
+          }
+        },
+        "mean_token_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "lost_both_correct": 24,
+            "gained_both_correct": 6,
+            "arithmetic_prior_change_only_loses": 0,
+            "arithmetic_context_change_only_loses": 15,
+            "arithmetic_either_change_loses": 6,
+            "arithmetic_combination_needed": 3,
+            "mean_signed_context_separation_change": -0.22715398857493047,
+            "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+          },
+          "by_category": {
+            "causality": {
+              "families": 20,
+              "lost_both_correct": 9,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 9,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.5726497812587088,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "comparison": {
+              "families": 22,
+              "lost_both_correct": 0,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.022180404919609733,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "entity_reference": {
+              "families": 20,
+              "lost_both_correct": 4,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 1,
+              "arithmetic_either_change_loses": 1,
+              "arithmetic_combination_needed": 2,
+              "mean_signed_context_separation_change": -0.5659864021180934,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "negation": {
+              "families": 22,
+              "lost_both_correct": 2,
+              "gained_both_correct": 3,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 1,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 1,
+              "mean_signed_context_separation_change": 8.596013281478046e-05,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "quantity": {
+              "families": 22,
+              "lost_both_correct": 1,
+              "gained_both_correct": 1,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 1,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.010293162423477048,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "time": {
+              "families": 22,
+              "lost_both_correct": 8,
+              "gained_both_correct": 2,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 4,
+              "arithmetic_either_change_loses": 4,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.2746981208210028,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            }
+          }
+        },
+        "mean_byte_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "lost_both_correct": 21,
+            "gained_both_correct": 6,
+            "arithmetic_prior_change_only_loses": 0,
+            "arithmetic_context_change_only_loses": 13,
+            "arithmetic_either_change_loses": 6,
+            "arithmetic_combination_needed": 2,
+            "mean_signed_context_separation_change": -0.04854983648376288,
+            "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+          },
+          "by_category": {
+            "causality": {
+              "families": 20,
+              "lost_both_correct": 9,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 9,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.1108534704547095,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "comparison": {
+              "families": 22,
+              "lost_both_correct": 0,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.0052827210444471966,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "entity_reference": {
+              "families": 20,
+              "lost_both_correct": 4,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 1,
+              "arithmetic_either_change_loses": 1,
+              "arithmetic_combination_needed": 2,
+              "mean_signed_context_separation_change": -0.1341647472173102,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "negation": {
+              "families": 22,
+              "lost_both_correct": 0,
+              "gained_both_correct": 3,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.0027434014417571134,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "quantity": {
+              "families": 22,
+              "lost_both_correct": 1,
+              "gained_both_correct": 1,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 1,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.003543384537052685,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "time": {
+              "families": 22,
+              "lost_both_correct": 7,
+              "gained_both_correct": 2,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 3,
+              "arithmetic_either_change_loses": 4,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.05524520370908723,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            }
+          }
+        }
+      }
+    },
+    "conditional_KL": {
+      "bridge": {
+        "sum_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "lost_both_correct": 13,
+            "gained_both_correct": 0,
+            "arithmetic_prior_change_only_loses": 0,
+            "arithmetic_context_change_only_loses": 10,
+            "arithmetic_either_change_loses": 2,
+            "arithmetic_combination_needed": 1,
+            "mean_signed_context_separation_change": -1.3269229500206166,
+            "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+          },
+          "by_category": {
+            "comparison": {
+              "families": 64,
+              "lost_both_correct": 6,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 4,
+              "arithmetic_either_change_loses": 1,
+              "arithmetic_combination_needed": 1,
+              "mean_signed_context_separation_change": -1.5857297670572734,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "negation": {
+              "families": 64,
+              "lost_both_correct": 7,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 6,
+              "arithmetic_either_change_loses": 1,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -1.0681161329839597,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            }
+          }
+        },
+        "mean_token_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "lost_both_correct": 9,
+            "gained_both_correct": 0,
+            "arithmetic_prior_change_only_loses": 0,
+            "arithmetic_context_change_only_loses": 7,
+            "arithmetic_either_change_loses": 2,
+            "arithmetic_combination_needed": 0,
+            "mean_signed_context_separation_change": -0.20662008438601234,
+            "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+          },
+          "by_category": {
+            "comparison": {
+              "families": 64,
+              "lost_both_correct": 5,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 4,
+              "arithmetic_either_change_loses": 1,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.3333225328147591,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "negation": {
+              "families": 64,
+              "lost_both_correct": 4,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 3,
+              "arithmetic_either_change_loses": 1,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.0799176359572656,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            }
+          }
+        },
+        "mean_byte_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "lost_both_correct": 12,
+            "gained_both_correct": 3,
+            "arithmetic_prior_change_only_loses": 0,
+            "arithmetic_context_change_only_loses": 7,
+            "arithmetic_either_change_loses": 4,
+            "arithmetic_combination_needed": 1,
+            "mean_signed_context_separation_change": -0.04945351568132933,
+            "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+          },
+          "by_category": {
+            "comparison": {
+              "families": 64,
+              "lost_both_correct": 6,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 4,
+              "arithmetic_either_change_loses": 1,
+              "arithmetic_combination_needed": 1,
+              "mean_signed_context_separation_change": -0.07706144746409684,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "negation": {
+              "families": 64,
+              "lost_both_correct": 6,
+              "gained_both_correct": 3,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 3,
+              "arithmetic_either_change_loses": 3,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.021845583898561824,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            }
+          }
+        }
+      },
+      "retention": {
+        "sum_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "lost_both_correct": 13,
+            "gained_both_correct": 3,
+            "arithmetic_prior_change_only_loses": 1,
+            "arithmetic_context_change_only_loses": 11,
+            "arithmetic_either_change_loses": 1,
+            "arithmetic_combination_needed": 0,
+            "mean_signed_context_separation_change": -0.5545145014349373,
+            "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+          },
+          "by_category": {
+            "causality": {
+              "families": 20,
+              "lost_both_correct": 5,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 4,
+              "arithmetic_either_change_loses": 1,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -1.2002076964679873,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "comparison": {
+              "families": 22,
+              "lost_both_correct": 0,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.015421496575237887,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "entity_reference": {
+              "families": 20,
+              "lost_both_correct": 2,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 2,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -1.2106826158589683,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "negation": {
+              "families": 22,
+              "lost_both_correct": 2,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 1,
+              "arithmetic_context_change_only_loses": 1,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.4322220993450504,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "quantity": {
+              "families": 22,
+              "lost_both_correct": 0,
+              "gained_both_correct": 1,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.00800777185941115,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "time": {
+              "families": 22,
+              "lost_both_correct": 4,
+              "gained_both_correct": 2,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 4,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.594911900354253,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            }
+          }
+        },
+        "mean_token_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "lost_both_correct": 15,
+            "gained_both_correct": 3,
+            "arithmetic_prior_change_only_loses": 1,
+            "arithmetic_context_change_only_loses": 13,
+            "arithmetic_either_change_loses": 1,
+            "arithmetic_combination_needed": 0,
+            "mean_signed_context_separation_change": -0.10323360596707033,
+            "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+          },
+          "by_category": {
+            "causality": {
+              "families": 20,
+              "lost_both_correct": 5,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 4,
+              "arithmetic_either_change_loses": 1,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.20003461607799788,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "comparison": {
+              "families": 22,
+              "lost_both_correct": 0,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.003011962097132882,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "entity_reference": {
+              "families": 20,
+              "lost_both_correct": 2,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 2,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.25818301475752375,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "negation": {
+              "families": 22,
+              "lost_both_correct": 4,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 1,
+              "arithmetic_context_change_only_loses": 3,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.033761559089566476,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "quantity": {
+              "families": 22,
+              "lost_both_correct": 0,
+              "gained_both_correct": 1,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.0014310895900549055,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "time": {
+              "families": 22,
+              "lost_both_correct": 4,
+              "gained_both_correct": 2,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 4,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.14872797508856325,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            }
+          }
+        },
+        "mean_byte_log_likelihood": {
+          "all128": {
+            "families": 128,
+            "lost_both_correct": 12,
+            "gained_both_correct": 5,
+            "arithmetic_prior_change_only_loses": 0,
+            "arithmetic_context_change_only_loses": 10,
+            "arithmetic_either_change_loses": 2,
+            "arithmetic_combination_needed": 0,
+            "mean_signed_context_separation_change": -0.02217488502672945,
+            "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+          },
+          "by_category": {
+            "causality": {
+              "families": 20,
+              "lost_both_correct": 6,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 4,
+              "arithmetic_either_change_loses": 2,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.03887293405857318,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "comparison": {
+              "families": 22,
+              "lost_both_correct": 0,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.0007228748816915281,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "entity_reference": {
+              "families": 20,
+              "lost_both_correct": 2,
+              "gained_both_correct": 0,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 2,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.059067515392153935,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "negation": {
+              "families": 22,
+              "lost_both_correct": 0,
+              "gained_both_correct": 2,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.009713291254217314,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "quantity": {
+              "families": 22,
+              "lost_both_correct": 0,
+              "gained_both_correct": 1,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 0,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": 0.0004537323563361799,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            },
+            "time": {
+              "families": 22,
+              "lost_both_correct": 4,
+              "gained_both_correct": 2,
+              "arithmetic_prior_change_only_loses": 0,
+              "arithmetic_context_change_only_loses": 4,
+              "arithmetic_either_change_loses": 0,
+              "arithmetic_combination_needed": 0,
+              "mean_signed_context_separation_change": -0.029998306875283116,
+              "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+            }
+          }
+        }
+      }
+    }
+  },
+  "family_rows": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context-prior-diagnostic-20261006/family-rows.json",
+    "sha256": "68d5145ad2dc338cf3218d1b12cd090b633a32178bfcfeee5a0ed5f010d1446e"
+  },
+  "all_readonly_checks": {
+    "historical_parent": {
+      "weights_unchanged": true,
+      "RNG_unchanged": true,
+      "no_gradients": true,
+      "eval_mode": true,
+      "CPU_FP32": true,
+      "CUDA_not_initialized": true
+    },
+    "staged_CE": {
+      "weights_unchanged": true,
+      "RNG_unchanged": true,
+      "no_gradients": true,
+      "eval_mode": true,
+      "CPU_FP32": true,
+      "CUDA_not_initialized": true
+    },
+    "conditional_KL": {
+      "weights_unchanged": true,
+      "RNG_unchanged": true,
+      "no_gradients": true,
+      "eval_mode": true,
+      "CPU_FP32": true,
+      "CUDA_not_initialized": true
+    },
+    "gold_body_replay": {
+      "weights_unchanged": true,
+      "RNG_unchanged": true,
+      "no_gradients": true,
+      "eval_mode": true,
+      "CPU_FP32": true,
+      "CUDA_not_initialized": true
+    }
+  },
+  "ledgers": {
+    "historical_parent": {
+      "bridge": {
+        "original": {
+          "requests": 512,
+          "valid_input_tokens": 25066,
+          "physical_input_positions": 30368,
+          "scored_target_tokens": 4532,
+          "scored_target_bytes": 16962
+        },
+        "BOS-only": {
+          "requests": 512,
+          "valid_input_tokens": 4532,
+          "physical_input_positions": 7024,
+          "scored_target_tokens": 4532,
+          "scored_target_bytes": 16962
+        }
+      },
+      "retention": {
+        "original": {
+          "requests": 512,
+          "valid_input_tokens": 22240,
+          "physical_input_positions": 32384,
+          "scored_target_tokens": 3170,
+          "scored_target_bytes": 13220
+        },
+        "BOS-only": {
+          "requests": 512,
+          "valid_input_tokens": 3170,
+          "physical_input_positions": 5648,
+          "scored_target_tokens": 3170,
+          "scored_target_bytes": 13220
+        }
+      }
+    },
+    "staged_CE": {
+      "bridge": {
+        "original": {
+          "requests": 512,
+          "valid_input_tokens": 25066,
+          "physical_input_positions": 30368,
+          "scored_target_tokens": 4532,
+          "scored_target_bytes": 16962
+        },
+        "BOS-only": {
+          "requests": 512,
+          "valid_input_tokens": 4532,
+          "physical_input_positions": 7024,
+          "scored_target_tokens": 4532,
+          "scored_target_bytes": 16962
+        }
+      },
+      "retention": {
+        "original": {
+          "requests": 512,
+          "valid_input_tokens": 22240,
+          "physical_input_positions": 32384,
+          "scored_target_tokens": 3170,
+          "scored_target_bytes": 13220
+        },
+        "BOS-only": {
+          "requests": 512,
+          "valid_input_tokens": 3170,
+          "physical_input_positions": 5648,
+          "scored_target_tokens": 3170,
+          "scored_target_bytes": 13220
+        }
+      }
+    },
+    "conditional_KL": {
+      "bridge": {
+        "original": {
+          "requests": 512,
+          "valid_input_tokens": 25066,
+          "physical_input_positions": 30368,
+          "scored_target_tokens": 4532,
+          "scored_target_bytes": 16962
+        },
+        "BOS-only": {
+          "requests": 512,
+          "valid_input_tokens": 4532,
+          "physical_input_positions": 7024,
+          "scored_target_tokens": 4532,
+          "scored_target_bytes": 16962
+        }
+      },
+      "retention": {
+        "original": {
+          "requests": 512,
+          "valid_input_tokens": 22240,
+          "physical_input_positions": 32384,
+          "scored_target_tokens": 3170,
+          "scored_target_bytes": 13220
+        },
+        "BOS-only": {
+          "requests": 512,
+          "valid_input_tokens": 3170,
+          "physical_input_positions": 5648,
+          "scored_target_tokens": 3170,
+          "scored_target_bytes": 13220
+        }
+      }
+    },
+    "gold_body_replay": {
+      "bridge": {
+        "original": {
+          "requests": 512,
+          "valid_input_tokens": 25066,
+          "physical_input_positions": 30368,
+          "scored_target_tokens": 4532,
+          "scored_target_bytes": 16962
+        },
+        "BOS-only": {
+          "requests": 512,
+          "valid_input_tokens": 4532,
+          "physical_input_positions": 7024,
+          "scored_target_tokens": 4532,
+          "scored_target_bytes": 16962
+        }
+      },
+      "retention": {
+        "original": {
+          "requests": 512,
+          "valid_input_tokens": 22240,
+          "physical_input_positions": 32384,
+          "scored_target_tokens": 3170,
+          "scored_target_bytes": 13220
+        },
+        "BOS-only": {
+          "requests": 512,
+          "valid_input_tokens": 3170,
+          "physical_input_positions": 5648,
+          "scored_target_tokens": 3170,
+          "scored_target_bytes": 13220
+        }
+      }
+    }
+  },
+  "total_scored_requests": 8192,
+  "original_requests": 4096,
+  "neutral_requests": 4096,
+  "CPU_elapsed_seconds": 16.76980035699671,
+  "CPU_ceiling_seconds": 180,
+  "CPU_threads": 8,
+  "precision": "Both original and BOS-only recomputed CPU FP32/math; cached GPU BF16 never subtracted.",
+  "GPU_seconds": 0,
+  "optimizer_updates": 0,
+  "scientific_teacher_tokens": 0,
+  "newly_prepared_source_tokens": 0,
+  "prior_related_GPU_seconds": 1173.5953914780694,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "limitations": [
+    "BOS-only is a neutral diagnostic reference, not a natural continuation context; position and grammar differ",
+    "Existing local probes share generator rules and some training forms; this is not independent language quality",
+    "PMI/context contribution may explain likelihood bias but cannot change greedy generation outcomes, grading, adoption metric, or quality acceptance",
+    "No decoder or prompt settings sweep, favorable checkpoint selection, dataset quantity expansion or more GPU training until this bounded question is resolved"
+  ],
+  "arithmetic_limit": "Cross-model component swaps are arithmetic diagnostics, not realizable independent model changes or causal training proof."
+}

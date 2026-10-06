@@ -1,0 +1,161 @@
+{
+  "status": "one_train_context_ranking_100M_comparison_proposed_CPU_prepared_not_GPU_frozen",
+  "created_at": "2026-10-06T08:15:43.905252+00:00",
+  "trigger": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context_prior_diagnostic_completion.json",
+    "sha256": "37667dc1fe9bd746c4e3579b89c84a210726cd0f4f6968eb3b4db556404f0f37"
+  },
+  "preparation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context_outcome_ranking_preparation.json",
+    "sha256": "9c1cadcc3a3cf4bbd5c147e2302bbe562122e406c8c1a58ccc8617757b2ef957"
+  },
+  "question": "Does directly supervising reversal of correct continuation across two TRAIN contexts restore contextual discrimination and generation coherence while conditional parent Web KL retains language quality?",
+  "diagnostic_limit": "BOS-only arithmetic decomposition supports weaker contextual separation rather than prior-only offset; it is not a causal parameter attribution or proof of zero context use.",
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+    "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+  },
+  "mechanism_control_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/eos_decoupled_web_kl_comparison.json",
+    "sha256": "1d31739438ffcd2e2ef93c725e16b0ed23d0fec6417ece5f2268766e88881017"
+  },
+  "mechanism_control_completion": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos_decoupled_web_kl_comparison_completion.json",
+    "sha256": "9494a369a18677ad3dd311a97ec21501961a3cab3fcb24eed0334a848384a9f1"
+  },
+  "mandatory_stronger_quality_control_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/source_order_condition_comparison_v2.json",
+    "sha256": "03b4ad47fa42b9a669c4588e736648e6339c93b9eb0cf3d08aac22a46cf90a88"
+  },
+  "pool": {
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large",
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133"
+  },
+  "original_web": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2/export-001/shards",
+    "manifest_sha256": "2edfd35bf077cd1aa583713c01341c0db52f39adc5701f30ede0aacae840b2de"
+  },
+  "positive_data": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006",
+    "manifest_sha256": "154f13da4a817aaa21586fba2cd335faea7c79358be410e73166f5d0052bf936"
+  },
+  "ranking_inputs": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/context-outcome-ranking-20261006/manifest.json",
+    "sha256": "0b394e1d8ba9fc836001620a9c6b6035aebbe246a1aa3d52b87c15eb1a1edb58"
+  },
+  "resident_input_preparation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web_kl_resident_window_preparation.json",
+    "sha256": "9e0983d8035d7b4a5e9d80063fd0481e61030d1f06e1e28f97ff17ed125995dc"
+  },
+  "fixed_primary": {
+    "ordinary_CE_teachers": 100000000,
+    "input_positions": 100532224,
+    "updates": 3068,
+    "quotas": {
+      "web": 75000000,
+      "story": 5000000,
+      "ordinary_textbook": 10000000,
+      "conditional_textbook": 10000000
+    },
+    "order": [
+      "web",
+      "story",
+      "ordinary_textbook",
+      "conditional_textbook"
+    ],
+    "parent_state": "Same historical10.5B fullstate; inherit model/Adam/scheduler/RNG, actualLR.00001; no reset/reheat.",
+    "shape": {
+      "batch": 32,
+      "context": 1024,
+      "dtype": "bf16",
+      "backend": "flash",
+      "compile_mode": "reduce-overhead",
+      "accumulation": 1
+    }
+  },
+  "fixed_Web_reference": {
+    "batch": 8,
+    "context": 1024,
+    "input_positions": 25133056,
+    "conditional_non_EOS_parent_KL_coefficient": 1,
+    "original_control_body_positions": 25026383,
+    "retained_probability_mass_is_not_integer_teacher_count": true,
+    "main_and_Web_reference_positions": 125665280,
+    "immutable_parent": true,
+    "separate_cursor": true
+  },
+  "one_new_auxiliary": {
+    "kind": "train_opposite_context_non_EOS_outcome_ranking_v1",
+    "families_per_update": 2,
+    "candidate_rows_per_family": 4,
+    "context": 256,
+    "coefficient": 1,
+    "temperature": 1,
+    "score": "mean complete-body conditional nonEOS token log-likelihood",
+    "loss": "mean softplus(foil_score-gold_score) across both opposite contexts",
+    "labels": "Existing accepted TRAIN family labels; correct outcome under the opposite context is the foil.",
+    "sampler": "Independent local seed42 deterministic shuffle of all1024 families; cyclic order, full state/digest saved.",
+    "implementation": "Main CE and Web reference keep compiled flash; padded short ranking batch eager BF16 math attention. All3 gradients combine before one clip/Adam/scheduler update.",
+    "ordinary_CE_teacher_tokens": 0,
+    "soft_distribution_target_positions": 0,
+    "proposed_family_presentations": 6136,
+    "proposed_relational_choice_labels": 12272,
+    "proposed_padded_input_positions": 6283264,
+    "proposed_combined_student_padded_positions": 131948544,
+    "measured_counts_pending": [
+      "valid_input_tokens",
+      "gold_body_scored_positions",
+      "foil_body_scored_positions",
+      "gold_body_scored_bytes",
+      "foil_body_scored_bytes"
+    ],
+    "disclosure": "Extra context/foil exposures and relational supervision differ from control. Equal mainCE and reference windows do not imply equal total input/supervision or GPU cost.",
+    "EOS_limit": "EOS3 excluded from this auxiliary normalization/targets; direct auxiliary EOS-logit gradient zero, shared parameters and ordinaryCE may still change EOS."
+  },
+  "data_limits": [
+    "No new corpus; reuse all1024 accepted TRAIN families, both contexts and their existing two outcomes.",
+    "No dev/bridge/retention/protected-test inputs or labels for learning; no family selection by evaluation.",
+    "Local generated families share rules and some forms with evaluation probes; probe gains alone do not prove independent language quality."
+  ],
+  "actual_CUDA_gate_pending": true,
+  "proposed_new_GPU_ceiling_seconds": 900,
+  "budget_gate": "Measure actual CUDA full resume4vs2+2 and32 combined timings, preserve every failed/exhausted cost; forecast3068updates plus150seconds nontraining reserve,30%margin and50seconds slack plus probes must fit900seconds before scientificfreeze. Do not expand cap after rejection.",
+  "evaluation": [
+    "Same full256 dev472055bytes/122343bodytokens, fixed Japanese192/331/1119",
+    "Same80 greedy max64 completions and all80 individual raw-bound content grading",
+    "Same bridge128 and retention128 families, exact candidate sum/token/byte likelihood reported separately",
+    "All3068 primary/reference input/mask/digest/counter checks against cached conditionalKL; new ranking exposure ledgers separate"
+  ],
+  "quality_gate": {
+    "relative_to_staged_CE": {
+      "coherence_minimum": 31,
+      "coherence_gain_minimum": 8,
+      "paired_CI_lower_strictly_positive": true,
+      "EOS_minimum": 76,
+      "repetition_maximum": 2,
+      "BPB_maximum": 1.1449489943995024
+    },
+    "absolute": {
+      "grammar_minimum": 56,
+      "coherence_minimum": 27,
+      "appropriate_completion_minimum": 27,
+      "EOS_minimum": 37,
+      "repetition_maximum": 18,
+      "empty_role_Unicode_errors_maximum": 0
+    },
+    "historical_Web_BPB_maximum": 0.9812859519097707,
+    "same_quality_criteria_unchanged": true,
+    "no_easing_to_failed_mechanism_control": true
+  },
+  "completion_condition": "One terminal100M arm, full bounded evaluation/all80 notes/input-ledger audit/adoption review. No coefficient/temperature/margin/source/order/LR/batch sweep, favorable checkpoint search or automatic extension. A rejected arm is useful evidence, not Base completion.",
+  "adoption_after_pilot": "Only an actually qualified quality pilot advances to independent learned seed, full dev and protected-test evidence; notify user and stop after actual adopted Base.",
+  "deferred": [
+    "Chat",
+    "Dialogue",
+    "SFT",
+    "quantization",
+    "final deployment"
+  ],
+  "Base_complete": false,
+  "protected_test_used": false
+}

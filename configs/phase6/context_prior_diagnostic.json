@@ -1,0 +1,117 @@
+{
+  "created_at": "2026-10-06T08:02:28.069079Z",
+  "models": [
+    "historical_parent",
+    "staged_CE",
+    "conditional_KL",
+    "gold_body_replay"
+  ],
+  "conditions": [
+    "original",
+    "BOS-only"
+  ],
+  "suites": {
+    "bridge": "source_cases",
+    "retention": "retention_cases"
+  },
+  "checkpoints": {
+    "conditional_KL": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-decoupled-web-kl-comparison-20261006/eos_decoupled_web_kl/training/checkpoint-00323503.pt",
+      "sha256": "a27547b6223c3708d6dbf8c9f211631b44fb9518771ed7c08a89ae40506e1213"
+    },
+    "staged_CE": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323503.pt",
+      "sha256": "fb43f2618c0679ca6c6f7a0c5b9faf1b336be8985271c8513f2e4bbfde3cd7ae"
+    },
+    "gold_body_replay": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/hard-body-web-replay-comparison-20261006/hard_body_web_replay/training/checkpoint-00323503.pt",
+      "sha256": "c03d1d4a0071af756bc39591e0e457daac411e72c847437f8a1d6ba674e99235"
+    },
+    "historical_parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+      "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+    }
+  },
+  "references": {
+    "source_cases": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/transfer-probes.json",
+      "sha256": "4e9c11d18395b03aeeb8a9ac7caec86f8ef6f59ca598ca00bf14bac447f85823"
+    },
+    "review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/hard_body_web_replay_comparison_review.json",
+      "sha256": "cb16c30b77a42729eb62fca1686b52b53a081333591d0149775218ee2d2c139d"
+    },
+    "retention_cases": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/retention-probes.json",
+      "sha256": "daf92018a167c24db83a4d3bd029d45973bd7f34f3fd452f52419ccc0b651d83"
+    },
+    "scientific_config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/hard_body_web_replay_comparison.json",
+      "sha256": "69f48a2e7c2e6de551cc164d3c12b1a2c42df64679d0c35e97ce0f696b79f872"
+    },
+    "result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/hard-body-web-replay-comparison-20261006/compare-result.json",
+      "sha256": "1a02f99177e8d9fe23e382d74651d1cc5cb20ac210498be857caf7e24a842e9e"
+    },
+    "proposal": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context_prior_diagnostic_proposal.json",
+      "sha256": "6dbdc2d8e080076aceddcce228dfbf313668c467a783a502dd918837f9b3365d"
+    },
+    "CPU_tests": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context_prior_analysis_tests.xml",
+      "sha256": "7a6d82317413f433ff0ed841520a329b6a538fe9c27d99240fc8bebf592cb883"
+    },
+    "completion": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/hard_body_web_replay_comparison_completion.json",
+      "sha256": "b6d93193c07f1f1c82df3efd50a7997ff1190aeed3efeb8b992b1af39d266338"
+    }
+  },
+  "source_sha256": {
+    "scripts/diagnose_context_prior.py": "97de59c7365bff726d7148c918eb5460d38a2f2f1229676d36b2c7e4f379bf24",
+    "scripts/context_prior_analysis.py": "2ffea649c90ca148fdf391704ad4c4eb8e247cf70ff2fdc3dfb73bc608db1c04",
+    "scripts/diagnose_context_prior.ps1": "0713f0f8cac60e519b9f1b7a6a441578503850e88f669c6bf8e62646ad433f00",
+    "tests/test_context_prior_analysis.py": "c7e8f06ff97aa140aca29a715c4ddc0ea14ebd000904ed14a57a4d83ebe3098f",
+    "src/jmicro/japanese_evaluation.py": "8693e2a54e63c1b085b617b207cc5db618ae80af1eb7cb54133ba8b254da6801",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "src/jmicro/evaluation.py": "918e5b647904cd8050171f2ea9eda3f4574ebf6fba81cf216df769e97b041360",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "src/jmicro/experiment.py": "c867b0c30dcbc98eeccc81efc6787ffea514cb10d1c6df7315167ff557df14e6",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f",
+    "scripts/run_eos_short_pilot.py": "7a381414bdea5b24bbbbf7532f04db743cff948fa47f60e95f65019af2d3ec3d",
+    ".python-version": "b4fe4c47e81df7f36d3b5d1d14ac3a1800a680c17c5e6d3fbe8f6b25b8db75ab",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca"
+  },
+  "CPU_ceiling_seconds": 180,
+  "CPU_threads": 8,
+  "batch": 16,
+  "device": "cpu",
+  "dtype": "fp32",
+  "backend": "math",
+  "families_per_suite": 128,
+  "requests_per_suite": 512,
+  "original_requests": 4096,
+  "total_scored_requests": 8192,
+  "metrics": [
+    "sum_log_likelihood",
+    "mean_token_log_likelihood",
+    "mean_byte_log_likelihood"
+  ],
+  "GPU_seconds": 0,
+  "optimizer_updates": 0,
+  "scientific_teacher_tokens": 0,
+  "newly_prepared_source_tokens": 0,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "interpretation_limits": [
+    "BOS-only is a neutral diagnostic reference, not a natural continuation context; position and grammar differ",
+    "Existing local probes share generator rules and some training forms; this is not independent language quality",
+    "PMI/context contribution may explain likelihood bias but cannot change greedy generation outcomes, grading, adoption metric, or quality acceptance",
+    "No decoder or prompt settings sweep, favorable checkpoint selection, dataset quantity expansion or more GPU training until this bounded question is resolved"
+  ],
+  "prior_related_GPU_seconds": 1173.5953914780694
+}

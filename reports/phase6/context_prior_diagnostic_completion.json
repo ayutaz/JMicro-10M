@@ -1,0 +1,110 @@
+{
+  "status": "actual_context_prior_diagnostic_complete_prior_only_explanation_not_supported",
+  "created_at": "2026-10-06T08:06:11.686670Z",
+  "result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context-prior-diagnostic-20261006/result.json",
+    "sha256": "fa8f5b7f88b83c05785f9aa79314ad77b901d161cdd4a78def4bb9138bc73e20"
+  },
+  "config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/context_prior_diagnostic.json",
+    "sha256": "1a36c0d58a7e31c2dfe76a5c737d37c03c80060bbb885099ccfc05d63966f088"
+  },
+  "job": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context-prior-diagnostic-20261006/job.json",
+    "sha256": "c2023f584b39553fe56c54f3211e2a686c98b949e79f5b1464d124076bbdaea7"
+  },
+  "categories": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context_prior_categories.tsv",
+    "sha256": "bb026ac09e121fafc242fae2c1ab4a828b10e5b31b94fa7f4b494856382255c0"
+  },
+  "lost_families": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context_prior_lost_families.json",
+    "sha256": "10d6705003fa7e09926e58939a354cf2347f252b5f945387c910cd6bc620b25d"
+  },
+  "actual_identity": {
+    "pid": 603932,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "15696166"
+  },
+  "CPU_elapsed_seconds": 16.773451183980796,
+  "CPU_ceiling_seconds": 180,
+  "GPU_seconds": 0,
+  "original_requests": 4096,
+  "neutral_requests": 4096,
+  "total_scored_requests": 8192,
+  "all4_readonly_checks": {
+    "historical_parent": {
+      "weights_unchanged": true,
+      "RNG_unchanged": true,
+      "no_gradients": true,
+      "eval_mode": true,
+      "CPU_FP32": true,
+      "CUDA_not_initialized": true
+    },
+    "staged_CE": {
+      "weights_unchanged": true,
+      "RNG_unchanged": true,
+      "no_gradients": true,
+      "eval_mode": true,
+      "CPU_FP32": true,
+      "CUDA_not_initialized": true
+    },
+    "conditional_KL": {
+      "weights_unchanged": true,
+      "RNG_unchanged": true,
+      "no_gradients": true,
+      "eval_mode": true,
+      "CPU_FP32": true,
+      "CUDA_not_initialized": true
+    },
+    "gold_body_replay": {
+      "weights_unchanged": true,
+      "RNG_unchanged": true,
+      "no_gradients": true,
+      "eval_mode": true,
+      "CPU_FP32": true,
+      "CUDA_not_initialized": true
+    }
+  },
+  "conditional_to_gold_bridge": {
+    "families": 128,
+    "lost_both_correct": 13,
+    "gained_both_correct": 0,
+    "arithmetic_prior_change_only_loses": 0,
+    "arithmetic_context_change_only_loses": 10,
+    "arithmetic_either_change_loses": 2,
+    "arithmetic_combination_needed": 1,
+    "mean_signed_context_separation_change": -1.3269229500206166,
+    "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+  },
+  "conditional_to_gold_retention": {
+    "families": 128,
+    "lost_both_correct": 13,
+    "gained_both_correct": 3,
+    "arithmetic_prior_change_only_loses": 1,
+    "arithmetic_context_change_only_loses": 11,
+    "arithmetic_either_change_loses": 1,
+    "arithmetic_combination_needed": 0,
+    "mean_signed_context_separation_change": -0.5545145014349373,
+    "limitations": "Arithmetic component swaps are not realizable independently changed models or a causal training intervention."
+  },
+  "interpretation": "Under identical CPU FP32 scoring, bridge loses13/gains0 families and10of13 losses are reproduced by the context-contribution change alone. No bridge loss is prior-change-only. Retention loses13/gains3,11of13 context-change-only and1prior-change-only. Common continuation-prior offset alone is not the main explanation in this local decomposition. Context separation weakens; do not claim zero context use or causal parameter attribution.",
+  "precision_limit": "CPU FP32 bridge53to40/retention32to22 differ slightly from GPU BF16 bridge54to40/retention33to20. Within-diagnostic subtraction uses only CPU FP32; adoption evidence retains actual GPU outcomes.",
+  "next_action": "Define one context-sensitive outcome-ranking auxiliary comparison using existing TRAIN family pairs, with100M mainCE and existing conditional parentKL replay held fixed. All dev/probe/test material stays outside learning. No prior-adjusted decoder, metric replacement, hard-replay variants or automatic volume extension.",
+  "limitations": [
+    "BOS-only is a neutral diagnostic reference, not a natural continuation context; position and grammar differ",
+    "Existing local probes share generator rules and some training forms; this is not independent language quality",
+    "PMI/context contribution may explain likelihood bias but cannot change greedy generation outcomes, grading, adoption metric, or quality acceptance",
+    "No decoder or prompt settings sweep, favorable checkpoint selection, dataset quantity expansion or more GPU training until this bounded question is resolved"
+  ],
+  "arithmetic_limit": "Cross-model component swaps are arithmetic diagnostics, not realizable independent model changes or causal training proof.",
+  "newly_prepared_source_tokens": 0,
+  "optimizer_updates": 0,
+  "scientific_teacher_tokens": 0,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true
+}
