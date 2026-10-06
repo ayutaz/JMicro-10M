@@ -1,0 +1,2069 @@
+{
+  "binding": "{\"binding\": {\"KL_policy\": {\"coefficient\": 1.0, \"direction\": \"parent_to_student\", \"every_completed_update\": 1, \"kind\": \"frozen-parent-Web-body-conditional-non-EOS-KL-v1\", \"masked_targets\": \"labels>=8; ignore EOS/BOS/role/padding target positions. Remove EOS3 from student conditional vocabulary; preserve parent non-EOS mass weight and all remaining vocabulary IDs.\", \"objective_component\": \"Full parent-to-student KL minus Bernoulli EOS-mass KL; exact weighted conditional non-EOS component only.\", \"reference_batch\": 8, \"reference_context\": 1024, \"reference_teacher\": \"immutable actual historical10.5B parent, no optimizer/gradients\", \"replay_policy\": \"separate fork of actual historical parent Web cursor; train only, overlaps first75M primary Web, never dev/test\", \"temperature\": 1.0}, \"arm\": \"context_outcome_ranking\", \"config_sha256\": \"8de26074f0701ec1894fc239430179eaaa3e8096f5828359083da12377ef01b4\", \"loss\": \"ordinary original body+EOS CE, outcome weight1\", \"optimizer_policy\": \"inherit\", \"original_web\": {\"manifest_sha256\": \"2edfd35bf077cd1aa583713c01341c0db52f39adc5701f30ede0aacae840b2de\", \"path\": \"/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2/export-001/shards\"}, \"outcome_weight\": 1, \"parent\": {\"path\": \"/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt\", \"sha256\": \"d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4\"}, \"peak_lr\": 1e-05, \"positive_manifest_sha256\": \"154f13da4a817aaa21586fba2cd335faea7c79358be410e73166f5d0052bf936\", \"ranking_inputs\": {\"path\": \"/home/aihub_ubuntu/jmicro-data/phase6/context-outcome-ranking-20261006/manifest.json\", \"sha256\": \"0b394e1d8ba9fc836001620a9c6b6035aebbe246a1aa3d52b87c15eb1a1edb58\"}, \"ranking_policy\": {\"candidate_rows_per_family\": 4, \"coefficient\": 1.0, \"context\": 256, \"families_per_update\": 2, \"input_source\": \"Only already accepted1024 TRAIN families/2048 positive records; other opposite-state outcome is the foil. No dev/probe/test labels.\", \"kind\": \"train_opposite_context_non_EOS_outcome_ranking_v1\", \"objective\": \"Mean softplus(foil_score-gold_score) over both context poles of all selected families.\", \"row_order\": \"For each family: branch0-candidate0,branch0-candidate1,branch1-candidate0,branch1-candidate1; gold candidate equals branch.\", \"sampler\": \"Independent local seed42 permutation over all train families, cyclic epochs with seed+epoch; no filtering or global RNG consumption.\", \"scores\": \"Mean token log probability of complete candidate body, excluding EOS3 from vocabulary normalization; prefix and padding labels ignored.\", \"supervision\": \"Relational choice labels and positive/foil scored positions are separate from ordinary CE teachers and parent-KL soft target positions.\", \"temperature\": 1.0}, \"reference_teacher\": {\"path\": \"/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt\", \"sha256\": \"d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4\"}, \"sampler_policy\": \"Same inherited100M CE and conditional parent Web KL windows; separate TRAIN opposite-context ranking cursor/labels/exposures, no reheat/reset/new corpus.\", \"short_manifest_sha256\": \"8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133\", \"study_kind\": \"historical_parent_staged_CE_conditional_Web_KL_train_outcome_ranking_100M\", \"teacher_goals\": {\"conditional_textbook\": 10000000, \"ordinary_textbook\": 10000000, \"story\": 5000000, \"web\": 75000000}}, \"checkpoint_sha256\": \"c95d649b8d3a0c8ede55c2edec80ef8ed4a24bae8ce0ca9e8fe3ccf7434a832c\"}",
+  "body": {
+    "split": "dev",
+    "documents": 256,
+    "limit_documents": 256,
+    "context": 1024,
+    "stride": 512,
+    "batch": 16,
+    "body_nll": 323411.1250305176,
+    "eos_nll": 517.7313129939139,
+    "body_bytes": 472055,
+    "body_tokens": 122343,
+    "bpb": 0.9884094570544709,
+    "seconds": 1.2839610580122098,
+    "rows": [
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30006",
+        "body_tokens": 282,
+        "body_bytes": 907,
+        "body_nll": 706.2069091796875,
+        "eos_nll": 1.4399174451828003,
+        "scored_body_tokens": 282
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30072",
+        "body_tokens": 517,
+        "body_bytes": 1920,
+        "body_nll": 1299.6574726104736,
+        "eos_nll": 2.745628833770752,
+        "scored_body_tokens": 517
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30077",
+        "body_tokens": 596,
+        "body_bytes": 2345,
+        "body_nll": 1440.5610046386719,
+        "eos_nll": 0.3509763181209564,
+        "scored_body_tokens": 596
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30093",
+        "body_tokens": 691,
+        "body_bytes": 2379,
+        "body_nll": 1992.7667236328125,
+        "eos_nll": 2.0880072116851807,
+        "scored_body_tokens": 691
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30125",
+        "body_tokens": 608,
+        "body_bytes": 2346,
+        "body_nll": 1800.723876953125,
+        "eos_nll": 0.32814595103263855,
+        "scored_body_tokens": 608
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30129",
+        "body_tokens": 465,
+        "body_bytes": 1752,
+        "body_nll": 1347.403076171875,
+        "eos_nll": 6.532777786254883,
+        "scored_body_tokens": 465
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30136",
+        "body_tokens": 295,
+        "body_bytes": 997,
+        "body_nll": 822.963134765625,
+        "eos_nll": 6.347653865814209,
+        "scored_body_tokens": 295
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30147",
+        "body_tokens": 571,
+        "body_bytes": 2137,
+        "body_nll": 1714.5711975097656,
+        "eos_nll": 0.6742837429046631,
+        "scored_body_tokens": 571
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30167",
+        "body_tokens": 179,
+        "body_bytes": 637,
+        "body_nll": 613.6778564453125,
+        "eos_nll": 6.280165672302246,
+        "scored_body_tokens": 179
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30174",
+        "body_tokens": 808,
+        "body_bytes": 2969,
+        "body_nll": 1566.91796875,
+        "eos_nll": 0.32732024788856506,
+        "scored_body_tokens": 808
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30207",
+        "body_tokens": 724,
+        "body_bytes": 3129,
+        "body_nll": 1748.257080078125,
+        "eos_nll": 0.14326581358909607,
+        "scored_body_tokens": 724
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30219",
+        "body_tokens": 689,
+        "body_bytes": 2725,
+        "body_nll": 1818.6256103515625,
+        "eos_nll": 1.8062132596969604,
+        "scored_body_tokens": 689
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30220",
+        "body_tokens": 517,
+        "body_bytes": 2017,
+        "body_nll": 1560.0746936798096,
+        "eos_nll": 1.4243123531341553,
+        "scored_body_tokens": 517
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30233",
+        "body_tokens": 409,
+        "body_bytes": 1283,
+        "body_nll": 1096.334716796875,
+        "eos_nll": 3.124387502670288,
+        "scored_body_tokens": 409
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30256",
+        "body_tokens": 529,
+        "body_bytes": 1955,
+        "body_nll": 1243.8190574645996,
+        "eos_nll": 0.533910870552063,
+        "scored_body_tokens": 529
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30268",
+        "body_tokens": 770,
+        "body_bytes": 3432,
+        "body_nll": 2057.1578979492188,
+        "eos_nll": 0.7017455101013184,
+        "scored_body_tokens": 770
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30271",
+        "body_tokens": 342,
+        "body_bytes": 1266,
+        "body_nll": 1089.936767578125,
+        "eos_nll": 0.6440225839614868,
+        "scored_body_tokens": 342
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30350",
+        "body_tokens": 220,
+        "body_bytes": 868,
+        "body_nll": 662.7425537109375,
+        "eos_nll": 1.9186302423477173,
+        "scored_body_tokens": 220
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30352",
+        "body_tokens": 689,
+        "body_bytes": 2621,
+        "body_nll": 1928.0004272460938,
+        "eos_nll": 0.9078916907310486,
+        "scored_body_tokens": 689
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30361",
+        "body_tokens": 377,
+        "body_bytes": 1305,
+        "body_nll": 1178.730224609375,
+        "eos_nll": 2.460341453552246,
+        "scored_body_tokens": 377
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30384",
+        "body_tokens": 352,
+        "body_bytes": 1581,
+        "body_nll": 937.046630859375,
+        "eos_nll": 3.8207478523254395,
+        "scored_body_tokens": 352
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30387",
+        "body_tokens": 313,
+        "body_bytes": 1241,
+        "body_nll": 856.649658203125,
+        "eos_nll": 1.62066650390625,
+        "scored_body_tokens": 313
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30411",
+        "body_tokens": 391,
+        "body_bytes": 1615,
+        "body_nll": 1163.26904296875,
+        "eos_nll": 0.5616368055343628,
+        "scored_body_tokens": 391
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30436",
+        "body_tokens": 284,
+        "body_bytes": 1111,
+        "body_nll": 904.0973510742188,
+        "eos_nll": 1.378381371498108,
+        "scored_body_tokens": 284
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30441",
+        "body_tokens": 359,
+        "body_bytes": 1540,
+        "body_nll": 882.4544067382812,
+        "eos_nll": 2.238382339477539,
+        "scored_body_tokens": 359
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30444",
+        "body_tokens": 439,
+        "body_bytes": 1582,
+        "body_nll": 1192.34228515625,
+        "eos_nll": 2.8177692890167236,
+        "scored_body_tokens": 439
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30461",
+        "body_tokens": 460,
+        "body_bytes": 1776,
+        "body_nll": 1214.7322998046875,
+        "eos_nll": 0.4591562747955322,
+        "scored_body_tokens": 460
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30464",
+        "body_tokens": 304,
+        "body_bytes": 1071,
+        "body_nll": 751.2037353515625,
+        "eos_nll": 0.7285670638084412,
+        "scored_body_tokens": 304
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30473",
+        "body_tokens": 258,
+        "body_bytes": 954,
+        "body_nll": 751.9579467773438,
+        "eos_nll": 2.1497693061828613,
+        "scored_body_tokens": 258
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30571",
+        "body_tokens": 540,
+        "body_bytes": 1943,
+        "body_nll": 1750.4600296020508,
+        "eos_nll": 0.028035903349518776,
+        "scored_body_tokens": 540
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30590",
+        "body_tokens": 931,
+        "body_bytes": 2380,
+        "body_nll": 1961.1187133789062,
+        "eos_nll": 0.7017084956169128,
+        "scored_body_tokens": 931
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30613",
+        "body_tokens": 574,
+        "body_bytes": 2418,
+        "body_nll": 1706.2170867919922,
+        "eos_nll": 0.6348444819450378,
+        "scored_body_tokens": 574
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30617",
+        "body_tokens": 484,
+        "body_bytes": 1930,
+        "body_nll": 1262.375244140625,
+        "eos_nll": 2.7062153816223145,
+        "scored_body_tokens": 484
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30632",
+        "body_tokens": 348,
+        "body_bytes": 1478,
+        "body_nll": 1252.9786376953125,
+        "eos_nll": 2.7295384407043457,
+        "scored_body_tokens": 348
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30633",
+        "body_tokens": 622,
+        "body_bytes": 2201,
+        "body_nll": 1710.7667846679688,
+        "eos_nll": 1.4839779138565063,
+        "scored_body_tokens": 622
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30657",
+        "body_tokens": 624,
+        "body_bytes": 2388,
+        "body_nll": 1594.0895385742188,
+        "eos_nll": 0.9776155948638916,
+        "scored_body_tokens": 624
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30663",
+        "body_tokens": 498,
+        "body_bytes": 2106,
+        "body_nll": 1350.01171875,
+        "eos_nll": 1.0091445446014404,
+        "scored_body_tokens": 498
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30760",
+        "body_tokens": 575,
+        "body_bytes": 2369,
+        "body_nll": 1092.9919967651367,
+        "eos_nll": 0.7417821884155273,
+        "scored_body_tokens": 575
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30774",
+        "body_tokens": 240,
+        "body_bytes": 1002,
+        "body_nll": 601.752685546875,
+        "eos_nll": 5.1814351081848145,
+        "scored_body_tokens": 240
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30809",
+        "body_tokens": 332,
+        "body_bytes": 1413,
+        "body_nll": 1067.504638671875,
+        "eos_nll": 1.0770102739334106,
+        "scored_body_tokens": 332
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30824",
+        "body_tokens": 320,
+        "body_bytes": 1460,
+        "body_nll": 1012.2593383789062,
+        "eos_nll": 0.3447076678276062,
+        "scored_body_tokens": 320
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30827",
+        "body_tokens": 719,
+        "body_bytes": 2907,
+        "body_nll": 2003.9909057617188,
+        "eos_nll": 1.3161311149597168,
+        "scored_body_tokens": 719
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30832",
+        "body_tokens": 565,
+        "body_bytes": 2319,
+        "body_nll": 1478.4031372070312,
+        "eos_nll": 6.07618522644043,
+        "scored_body_tokens": 565
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30850",
+        "body_tokens": 465,
+        "body_bytes": 1931,
+        "body_nll": 1007.3118896484375,
+        "eos_nll": 1.3776865005493164,
+        "scored_body_tokens": 465
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30910",
+        "body_tokens": 854,
+        "body_bytes": 3822,
+        "body_nll": 2353.7723388671875,
+        "eos_nll": 1.2745656967163086,
+        "scored_body_tokens": 854
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30913",
+        "body_tokens": 464,
+        "body_bytes": 1444,
+        "body_nll": 1508.779541015625,
+        "eos_nll": 1.5822105407714844,
+        "scored_body_tokens": 464
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30926",
+        "body_tokens": 639,
+        "body_bytes": 2587,
+        "body_nll": 1884.4052429199219,
+        "eos_nll": 1.4076473712921143,
+        "scored_body_tokens": 639
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30936",
+        "body_tokens": 791,
+        "body_bytes": 2712,
+        "body_nll": 1755.6315307617188,
+        "eos_nll": 1.157593011856079,
+        "scored_body_tokens": 791
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30966",
+        "body_tokens": 784,
+        "body_bytes": 3042,
+        "body_nll": 2130.549072265625,
+        "eos_nll": 0.9997986555099487,
+        "scored_body_tokens": 784
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30982",
+        "body_tokens": 559,
+        "body_bytes": 2395,
+        "body_nll": 1262.734619140625,
+        "eos_nll": 2.1572675704956055,
+        "scored_body_tokens": 559
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:30987",
+        "body_tokens": 727,
+        "body_bytes": 2920,
+        "body_nll": 2057.3297729492188,
+        "eos_nll": 1.863465428352356,
+        "scored_body_tokens": 727
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31014",
+        "body_tokens": 646,
+        "body_bytes": 2474,
+        "body_nll": 1717.0043640136719,
+        "eos_nll": 2.0679831504821777,
+        "scored_body_tokens": 646
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31046",
+        "body_tokens": 462,
+        "body_bytes": 1833,
+        "body_nll": 1234.59912109375,
+        "eos_nll": 0.4147065281867981,
+        "scored_body_tokens": 462
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31068",
+        "body_tokens": 762,
+        "body_bytes": 2922,
+        "body_nll": 1669.740234375,
+        "eos_nll": 2.1843461990356445,
+        "scored_body_tokens": 762
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31100",
+        "body_tokens": 316,
+        "body_bytes": 927,
+        "body_nll": 656.0743408203125,
+        "eos_nll": 1.1756212711334229,
+        "scored_body_tokens": 316
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31109",
+        "body_tokens": 679,
+        "body_bytes": 2644,
+        "body_nll": 2146.108642578125,
+        "eos_nll": 2.6979167461395264,
+        "scored_body_tokens": 679
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31161",
+        "body_tokens": 757,
+        "body_bytes": 2998,
+        "body_nll": 2010.8741455078125,
+        "eos_nll": 0.6333323121070862,
+        "scored_body_tokens": 757
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31181",
+        "body_tokens": 692,
+        "body_bytes": 2797,
+        "body_nll": 2209.837158203125,
+        "eos_nll": 0.1344950944185257,
+        "scored_body_tokens": 692
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31240",
+        "body_tokens": 599,
+        "body_bytes": 2246,
+        "body_nll": 1872.398178100586,
+        "eos_nll": 3.9870808124542236,
+        "scored_body_tokens": 599
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31260",
+        "body_tokens": 415,
+        "body_bytes": 1621,
+        "body_nll": 1223.6785888671875,
+        "eos_nll": 0.6232507228851318,
+        "scored_body_tokens": 415
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31318",
+        "body_tokens": 564,
+        "body_bytes": 1965,
+        "body_nll": 1338.910545349121,
+        "eos_nll": 3.9076030254364014,
+        "scored_body_tokens": 564
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31325",
+        "body_tokens": 386,
+        "body_bytes": 1299,
+        "body_nll": 721.4534912109375,
+        "eos_nll": 2.019798755645752,
+        "scored_body_tokens": 386
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31328",
+        "body_tokens": 380,
+        "body_bytes": 1320,
+        "body_nll": 1052.7564697265625,
+        "eos_nll": 1.0058913230895996,
+        "scored_body_tokens": 380
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31360",
+        "body_tokens": 240,
+        "body_bytes": 879,
+        "body_nll": 838.7325439453125,
+        "eos_nll": 2.06817626953125,
+        "scored_body_tokens": 240
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31376",
+        "body_tokens": 314,
+        "body_bytes": 1191,
+        "body_nll": 905.8229370117188,
+        "eos_nll": 2.812509775161743,
+        "scored_body_tokens": 314
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31382",
+        "body_tokens": 424,
+        "body_bytes": 1453,
+        "body_nll": 1253.9622802734375,
+        "eos_nll": 4.7317609786987305,
+        "scored_body_tokens": 424
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31385",
+        "body_tokens": 441,
+        "body_bytes": 2051,
+        "body_nll": 629.9741821289062,
+        "eos_nll": 0.9747459292411804,
+        "scored_body_tokens": 441
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31388",
+        "body_tokens": 701,
+        "body_bytes": 2649,
+        "body_nll": 1935.2113037109375,
+        "eos_nll": 2.2760775089263916,
+        "scored_body_tokens": 701
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31405",
+        "body_tokens": 549,
+        "body_bytes": 2457,
+        "body_nll": 1375.3514099121094,
+        "eos_nll": 2.578319549560547,
+        "scored_body_tokens": 549
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31409",
+        "body_tokens": 731,
+        "body_bytes": 2716,
+        "body_nll": 1898.6132202148438,
+        "eos_nll": 0.7347419857978821,
+        "scored_body_tokens": 731
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31413",
+        "body_tokens": 343,
+        "body_bytes": 1326,
+        "body_nll": 666.13720703125,
+        "eos_nll": 2.125603675842285,
+        "scored_body_tokens": 343
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31473",
+        "body_tokens": 337,
+        "body_bytes": 1074,
+        "body_nll": 1007.1661987304688,
+        "eos_nll": 0.3891046941280365,
+        "scored_body_tokens": 337
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31496",
+        "body_tokens": 777,
+        "body_bytes": 3065,
+        "body_nll": 2355.317138671875,
+        "eos_nll": 0.6853141784667969,
+        "scored_body_tokens": 777
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31510",
+        "body_tokens": 454,
+        "body_bytes": 1642,
+        "body_nll": 1146.1207275390625,
+        "eos_nll": 1.203667402267456,
+        "scored_body_tokens": 454
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31639",
+        "body_tokens": 532,
+        "body_bytes": 2149,
+        "body_nll": 1377.5339431762695,
+        "eos_nll": 2.859060764312744,
+        "scored_body_tokens": 532
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31641",
+        "body_tokens": 637,
+        "body_bytes": 2220,
+        "body_nll": 1519.839111328125,
+        "eos_nll": 2.179124116897583,
+        "scored_body_tokens": 637
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31687",
+        "body_tokens": 322,
+        "body_bytes": 1200,
+        "body_nll": 861.07958984375,
+        "eos_nll": 1.0990240573883057,
+        "scored_body_tokens": 322
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31716",
+        "body_tokens": 121,
+        "body_bytes": 431,
+        "body_nll": 333.31365966796875,
+        "eos_nll": 8.296368598937988,
+        "scored_body_tokens": 121
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31727",
+        "body_tokens": 320,
+        "body_bytes": 1240,
+        "body_nll": 789.499755859375,
+        "eos_nll": 1.2145590782165527,
+        "scored_body_tokens": 320
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31737",
+        "body_tokens": 524,
+        "body_bytes": 2168,
+        "body_nll": 1814.3602752685547,
+        "eos_nll": 0.2947867512702942,
+        "scored_body_tokens": 524
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31749",
+        "body_tokens": 496,
+        "body_bytes": 1881,
+        "body_nll": 1370.740234375,
+        "eos_nll": 0.8891389966011047,
+        "scored_body_tokens": 496
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31784",
+        "body_tokens": 348,
+        "body_bytes": 1422,
+        "body_nll": 930.941650390625,
+        "eos_nll": 3.500244140625,
+        "scored_body_tokens": 348
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31804",
+        "body_tokens": 793,
+        "body_bytes": 2894,
+        "body_nll": 2243.0830078125,
+        "eos_nll": 1.7264995574951172,
+        "scored_body_tokens": 793
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31807",
+        "body_tokens": 490,
+        "body_bytes": 1648,
+        "body_nll": 1260.31494140625,
+        "eos_nll": 9.755166053771973,
+        "scored_body_tokens": 490
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31823",
+        "body_tokens": 481,
+        "body_bytes": 2048,
+        "body_nll": 1470.606689453125,
+        "eos_nll": 10.167540550231934,
+        "scored_body_tokens": 481
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31834",
+        "body_tokens": 595,
+        "body_bytes": 1862,
+        "body_nll": 1620.8394775390625,
+        "eos_nll": 1.5118663311004639,
+        "scored_body_tokens": 595
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31835",
+        "body_tokens": 496,
+        "body_bytes": 1998,
+        "body_nll": 1167.79248046875,
+        "eos_nll": 2.265566825866699,
+        "scored_body_tokens": 496
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31841",
+        "body_tokens": 391,
+        "body_bytes": 1409,
+        "body_nll": 1240.305908203125,
+        "eos_nll": 1.239243745803833,
+        "scored_body_tokens": 391
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31847",
+        "body_tokens": 648,
+        "body_bytes": 2679,
+        "body_nll": 1759.0860900878906,
+        "eos_nll": 0.5270557999610901,
+        "scored_body_tokens": 648
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31859",
+        "body_tokens": 582,
+        "body_bytes": 2204,
+        "body_nll": 1562.3127136230469,
+        "eos_nll": 3.37190318107605,
+        "scored_body_tokens": 582
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31860",
+        "body_tokens": 814,
+        "body_bytes": 2693,
+        "body_nll": 1889.62939453125,
+        "eos_nll": 1.3286104202270508,
+        "scored_body_tokens": 814
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31889",
+        "body_tokens": 488,
+        "body_bytes": 1771,
+        "body_nll": 1890.583740234375,
+        "eos_nll": 1.0526105165481567,
+        "scored_body_tokens": 488
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31890",
+        "body_tokens": 614,
+        "body_bytes": 2627,
+        "body_nll": 1738.1077270507812,
+        "eos_nll": 3.1695656776428223,
+        "scored_body_tokens": 614
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31894",
+        "body_tokens": 699,
+        "body_bytes": 2742,
+        "body_nll": 1484.5533142089844,
+        "eos_nll": 1.2162137031555176,
+        "scored_body_tokens": 699
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31895",
+        "body_tokens": 444,
+        "body_bytes": 1686,
+        "body_nll": 1195.2811279296875,
+        "eos_nll": 3.7658002376556396,
+        "scored_body_tokens": 444
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:31906",
+        "body_tokens": 338,
+        "body_bytes": 1105,
+        "body_nll": 799.5014038085938,
+        "eos_nll": 5.043201923370361,
+        "scored_body_tokens": 338
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32001",
+        "body_tokens": 547,
+        "body_bytes": 2396,
+        "body_nll": 1603.6558074951172,
+        "eos_nll": 5.155327796936035,
+        "scored_body_tokens": 547
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32002",
+        "body_tokens": 249,
+        "body_bytes": 918,
+        "body_nll": 485.68182373046875,
+        "eos_nll": 5.0165791511535645,
+        "scored_body_tokens": 249
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32063",
+        "body_tokens": 578,
+        "body_bytes": 2374,
+        "body_nll": 1854.1321716308594,
+        "eos_nll": 0.06776051968336105,
+        "scored_body_tokens": 578
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32091",
+        "body_tokens": 202,
+        "body_bytes": 939,
+        "body_nll": 569.0008544921875,
+        "eos_nll": 0.9253549575805664,
+        "scored_body_tokens": 202
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32127",
+        "body_tokens": 476,
+        "body_bytes": 2029,
+        "body_nll": 1209.924560546875,
+        "eos_nll": 2.746011257171631,
+        "scored_body_tokens": 476
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32249",
+        "body_tokens": 104,
+        "body_bytes": 330,
+        "body_nll": 264.2276611328125,
+        "eos_nll": 3.2939462661743164,
+        "scored_body_tokens": 104
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32257",
+        "body_tokens": 452,
+        "body_bytes": 1511,
+        "body_nll": 1415.10400390625,
+        "eos_nll": 3.2300703525543213,
+        "scored_body_tokens": 452
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32263",
+        "body_tokens": 458,
+        "body_bytes": 1549,
+        "body_nll": 1154.4466552734375,
+        "eos_nll": 0.965087890625,
+        "scored_body_tokens": 458
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32275",
+        "body_tokens": 433,
+        "body_bytes": 1481,
+        "body_nll": 1188.7054443359375,
+        "eos_nll": 0.6795644760131836,
+        "scored_body_tokens": 433
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32277",
+        "body_tokens": 621,
+        "body_bytes": 2807,
+        "body_nll": 1958.7382202148438,
+        "eos_nll": 2.449981212615967,
+        "scored_body_tokens": 621
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32307",
+        "body_tokens": 469,
+        "body_bytes": 1977,
+        "body_nll": 1456.158203125,
+        "eos_nll": 0.04390367493033409,
+        "scored_body_tokens": 469
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32309",
+        "body_tokens": 490,
+        "body_bytes": 1535,
+        "body_nll": 1177.132568359375,
+        "eos_nll": 9.079239845275879,
+        "scored_body_tokens": 490
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32315",
+        "body_tokens": 475,
+        "body_bytes": 1832,
+        "body_nll": 1181.502685546875,
+        "eos_nll": 1.9127717018127441,
+        "scored_body_tokens": 475
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32351",
+        "body_tokens": 650,
+        "body_bytes": 2442,
+        "body_nll": 1554.8678894042969,
+        "eos_nll": 1.8801218271255493,
+        "scored_body_tokens": 650
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32358",
+        "body_tokens": 445,
+        "body_bytes": 1607,
+        "body_nll": 1215.98681640625,
+        "eos_nll": 0.7665996551513672,
+        "scored_body_tokens": 445
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32393",
+        "body_tokens": 527,
+        "body_bytes": 2004,
+        "body_nll": 1248.5812454223633,
+        "eos_nll": 0.3722974956035614,
+        "scored_body_tokens": 527
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32397",
+        "body_tokens": 552,
+        "body_bytes": 2132,
+        "body_nll": 1672.0392227172852,
+        "eos_nll": 1.9671666622161865,
+        "scored_body_tokens": 552
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32398",
+        "body_tokens": 575,
+        "body_bytes": 2500,
+        "body_nll": 1666.5769958496094,
+        "eos_nll": 1.052726149559021,
+        "scored_body_tokens": 575
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32399",
+        "body_tokens": 284,
+        "body_bytes": 1197,
+        "body_nll": 747.075439453125,
+        "eos_nll": 0.1046384647488594,
+        "scored_body_tokens": 284
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32421",
+        "body_tokens": 261,
+        "body_bytes": 1107,
+        "body_nll": 524.5039672851562,
+        "eos_nll": 1.146382212638855,
+        "scored_body_tokens": 261
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32444",
+        "body_tokens": 845,
+        "body_bytes": 3540,
+        "body_nll": 1632.820556640625,
+        "eos_nll": 1.7336052656173706,
+        "scored_body_tokens": 845
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32480",
+        "body_tokens": 312,
+        "body_bytes": 1223,
+        "body_nll": 855.345458984375,
+        "eos_nll": 1.7779614925384521,
+        "scored_body_tokens": 312
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32494",
+        "body_tokens": 271,
+        "body_bytes": 1009,
+        "body_nll": 960.1143188476562,
+        "eos_nll": 1.9614447355270386,
+        "scored_body_tokens": 271
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32510",
+        "body_tokens": 233,
+        "body_bytes": 859,
+        "body_nll": 809.5299072265625,
+        "eos_nll": 9.468137741088867,
+        "scored_body_tokens": 233
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32518",
+        "body_tokens": 264,
+        "body_bytes": 1064,
+        "body_nll": 588.84228515625,
+        "eos_nll": 1.4800889492034912,
+        "scored_body_tokens": 264
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32528",
+        "body_tokens": 858,
+        "body_bytes": 3083,
+        "body_nll": 2085.4765625,
+        "eos_nll": 1.836500644683838,
+        "scored_body_tokens": 858
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32529",
+        "body_tokens": 516,
+        "body_bytes": 1924,
+        "body_nll": 1433.23459815979,
+        "eos_nll": 4.746644973754883,
+        "scored_body_tokens": 516
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32545",
+        "body_tokens": 269,
+        "body_bytes": 1079,
+        "body_nll": 535.40478515625,
+        "eos_nll": 4.983086109161377,
+        "scored_body_tokens": 269
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32621",
+        "body_tokens": 483,
+        "body_bytes": 1460,
+        "body_nll": 1288.30224609375,
+        "eos_nll": 0.06242096424102783,
+        "scored_body_tokens": 483
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32658",
+        "body_tokens": 311,
+        "body_bytes": 1064,
+        "body_nll": 833.415771484375,
+        "eos_nll": 2.3807735443115234,
+        "scored_body_tokens": 311
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32689",
+        "body_tokens": 711,
+        "body_bytes": 2895,
+        "body_nll": 1814.6585693359375,
+        "eos_nll": 2.6077659130096436,
+        "scored_body_tokens": 711
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32699",
+        "body_tokens": 641,
+        "body_bytes": 2485,
+        "body_nll": 1469.9942932128906,
+        "eos_nll": 1.3965092897415161,
+        "scored_body_tokens": 641
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32716",
+        "body_tokens": 567,
+        "body_bytes": 2155,
+        "body_nll": 1611.8043975830078,
+        "eos_nll": 1.9991421699523926,
+        "scored_body_tokens": 567
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32719",
+        "body_tokens": 448,
+        "body_bytes": 2049,
+        "body_nll": 646.362548828125,
+        "eos_nll": 1.0955238342285156,
+        "scored_body_tokens": 448
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32729",
+        "body_tokens": 544,
+        "body_bytes": 2192,
+        "body_nll": 1438.2127647399902,
+        "eos_nll": 0.6643404364585876,
+        "scored_body_tokens": 544
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32754",
+        "body_tokens": 366,
+        "body_bytes": 1642,
+        "body_nll": 1017.0035400390625,
+        "eos_nll": 1.0329705476760864,
+        "scored_body_tokens": 366
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32766",
+        "body_tokens": 304,
+        "body_bytes": 1134,
+        "body_nll": 745.43115234375,
+        "eos_nll": 0.7588658928871155,
+        "scored_body_tokens": 304
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32794",
+        "body_tokens": 258,
+        "body_bytes": 878,
+        "body_nll": 777.5615234375,
+        "eos_nll": 0.9364423155784607,
+        "scored_body_tokens": 258
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32795",
+        "body_tokens": 569,
+        "body_bytes": 1996,
+        "body_nll": 1251.1440124511719,
+        "eos_nll": 2.1128182411193848,
+        "scored_body_tokens": 569
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32829",
+        "body_tokens": 758,
+        "body_bytes": 3205,
+        "body_nll": 1796.4274291992188,
+        "eos_nll": 1.4605612754821777,
+        "scored_body_tokens": 758
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32838",
+        "body_tokens": 232,
+        "body_bytes": 1068,
+        "body_nll": 637.04736328125,
+        "eos_nll": 1.0132800340652466,
+        "scored_body_tokens": 232
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32861",
+        "body_tokens": 512,
+        "body_bytes": 1799,
+        "body_nll": 1259.493896484375,
+        "eos_nll": 1.1990114450454712,
+        "scored_body_tokens": 512
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32873",
+        "body_tokens": 729,
+        "body_bytes": 2816,
+        "body_nll": 1884.6235961914062,
+        "eos_nll": 0.0938781201839447,
+        "scored_body_tokens": 729
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32876",
+        "body_tokens": 667,
+        "body_bytes": 2649,
+        "body_nll": 1697.421142578125,
+        "eos_nll": 2.5443596839904785,
+        "scored_body_tokens": 667
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32881",
+        "body_tokens": 791,
+        "body_bytes": 2851,
+        "body_nll": 2049.5078125,
+        "eos_nll": 1.2970730066299438,
+        "scored_body_tokens": 791
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32888",
+        "body_tokens": 222,
+        "body_bytes": 538,
+        "body_nll": 550.8902587890625,
+        "eos_nll": 5.335936546325684,
+        "scored_body_tokens": 222
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32893",
+        "body_tokens": 531,
+        "body_bytes": 1861,
+        "body_nll": 1386.0663681030273,
+        "eos_nll": 0.2707524597644806,
+        "scored_body_tokens": 531
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32920",
+        "body_tokens": 501,
+        "body_bytes": 1568,
+        "body_nll": 1751.4696044921875,
+        "eos_nll": 2.4057703018188477,
+        "scored_body_tokens": 501
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32928",
+        "body_tokens": 236,
+        "body_bytes": 839,
+        "body_nll": 635.7471923828125,
+        "eos_nll": 1.43893563747406,
+        "scored_body_tokens": 236
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32952",
+        "body_tokens": 624,
+        "body_bytes": 2610,
+        "body_nll": 1555.0244750976562,
+        "eos_nll": 1.5532387495040894,
+        "scored_body_tokens": 624
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32959",
+        "body_tokens": 302,
+        "body_bytes": 1026,
+        "body_nll": 983.2559814453125,
+        "eos_nll": 3.933173418045044,
+        "scored_body_tokens": 302
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:32988",
+        "body_tokens": 507,
+        "body_bytes": 1987,
+        "body_nll": 1387.956787109375,
+        "eos_nll": 3.767331838607788,
+        "scored_body_tokens": 507
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33011",
+        "body_tokens": 590,
+        "body_bytes": 2031,
+        "body_nll": 1505.9516906738281,
+        "eos_nll": 3.758256673812866,
+        "scored_body_tokens": 590
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33040",
+        "body_tokens": 362,
+        "body_bytes": 1567,
+        "body_nll": 932.6332397460938,
+        "eos_nll": 0.7746583223342896,
+        "scored_body_tokens": 362
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33051",
+        "body_tokens": 362,
+        "body_bytes": 1587,
+        "body_nll": 813.028564453125,
+        "eos_nll": 1.2725566625595093,
+        "scored_body_tokens": 362
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33068",
+        "body_tokens": 755,
+        "body_bytes": 3133,
+        "body_nll": 1764.8270874023438,
+        "eos_nll": 0.4481244683265686,
+        "scored_body_tokens": 755
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33106",
+        "body_tokens": 795,
+        "body_bytes": 3360,
+        "body_nll": 1711.3987426757812,
+        "eos_nll": 1.2641303539276123,
+        "scored_body_tokens": 795
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33142",
+        "body_tokens": 417,
+        "body_bytes": 1371,
+        "body_nll": 1169.998779296875,
+        "eos_nll": 3.559054374694824,
+        "scored_body_tokens": 417
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33174",
+        "body_tokens": 199,
+        "body_bytes": 759,
+        "body_nll": 665.8404541015625,
+        "eos_nll": 3.230064630508423,
+        "scored_body_tokens": 199
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33193",
+        "body_tokens": 725,
+        "body_bytes": 2989,
+        "body_nll": 1995.175537109375,
+        "eos_nll": 1.19558846950531,
+        "scored_body_tokens": 725
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33218",
+        "body_tokens": 132,
+        "body_bytes": 455,
+        "body_nll": 451.5815124511719,
+        "eos_nll": 2.7837207317352295,
+        "scored_body_tokens": 132
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33249",
+        "body_tokens": 522,
+        "body_bytes": 1638,
+        "body_nll": 1104.5133838653564,
+        "eos_nll": 0.5383285880088806,
+        "scored_body_tokens": 522
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33265",
+        "body_tokens": 310,
+        "body_bytes": 1135,
+        "body_nll": 884.6898193359375,
+        "eos_nll": 0.4035615921020508,
+        "scored_body_tokens": 310
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33284",
+        "body_tokens": 395,
+        "body_bytes": 1945,
+        "body_nll": 923.6640625,
+        "eos_nll": 3.7269091606140137,
+        "scored_body_tokens": 395
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33285",
+        "body_tokens": 663,
+        "body_bytes": 3190,
+        "body_nll": 1553.0013122558594,
+        "eos_nll": 2.2711105346679688,
+        "scored_body_tokens": 663
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33292",
+        "body_tokens": 424,
+        "body_bytes": 1939,
+        "body_nll": 957.5501708984375,
+        "eos_nll": 0.8375537991523743,
+        "scored_body_tokens": 424
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33300",
+        "body_tokens": 190,
+        "body_bytes": 751,
+        "body_nll": 534.59912109375,
+        "eos_nll": 1.8863980770111084,
+        "scored_body_tokens": 190
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33316",
+        "body_tokens": 843,
+        "body_bytes": 3119,
+        "body_nll": 2067.4359130859375,
+        "eos_nll": 4.298929691314697,
+        "scored_body_tokens": 843
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33333",
+        "body_tokens": 325,
+        "body_bytes": 1328,
+        "body_nll": 984.1226806640625,
+        "eos_nll": 2.503673791885376,
+        "scored_body_tokens": 325
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33343",
+        "body_tokens": 330,
+        "body_bytes": 1595,
+        "body_nll": 745.2057495117188,
+        "eos_nll": 3.0267391204833984,
+        "scored_body_tokens": 330
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33409",
+        "body_tokens": 572,
+        "body_bytes": 2034,
+        "body_nll": 1089.8759460449219,
+        "eos_nll": 0.5075495839118958,
+        "scored_body_tokens": 572
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33410",
+        "body_tokens": 602,
+        "body_bytes": 2468,
+        "body_nll": 1840.8318481445312,
+        "eos_nll": 2.8864333629608154,
+        "scored_body_tokens": 602
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33411",
+        "body_tokens": 746,
+        "body_bytes": 2664,
+        "body_nll": 1985.1036376953125,
+        "eos_nll": 1.4714884757995605,
+        "scored_body_tokens": 746
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33424",
+        "body_tokens": 765,
+        "body_bytes": 2421,
+        "body_nll": 1757.6248474121094,
+        "eos_nll": 2.582364082336426,
+        "scored_body_tokens": 765
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33429",
+        "body_tokens": 519,
+        "body_bytes": 1808,
+        "body_nll": 1405.88991355896,
+        "eos_nll": 1.932921290397644,
+        "scored_body_tokens": 519
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33457",
+        "body_tokens": 335,
+        "body_bytes": 1136,
+        "body_nll": 708.9797973632812,
+        "eos_nll": 2.7840218544006348,
+        "scored_body_tokens": 335
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33467",
+        "body_tokens": 313,
+        "body_bytes": 1324,
+        "body_nll": 607.9685668945312,
+        "eos_nll": 2.222014904022217,
+        "scored_body_tokens": 313
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33472",
+        "body_tokens": 672,
+        "body_bytes": 3032,
+        "body_nll": 1448.6491088867188,
+        "eos_nll": 0.30433428287506104,
+        "scored_body_tokens": 672
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33475",
+        "body_tokens": 447,
+        "body_bytes": 1670,
+        "body_nll": 1514.08154296875,
+        "eos_nll": 0.871811032295227,
+        "scored_body_tokens": 447
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33493",
+        "body_tokens": 703,
+        "body_bytes": 2173,
+        "body_nll": 1568.6137084960938,
+        "eos_nll": 1.6679306030273438,
+        "scored_body_tokens": 703
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33538",
+        "body_tokens": 443,
+        "body_bytes": 1730,
+        "body_nll": 1430.17822265625,
+        "eos_nll": 1.0682669878005981,
+        "scored_body_tokens": 443
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33569",
+        "body_tokens": 741,
+        "body_bytes": 3014,
+        "body_nll": 1769.3709411621094,
+        "eos_nll": 3.3083066940307617,
+        "scored_body_tokens": 741
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33591",
+        "body_tokens": 780,
+        "body_bytes": 2966,
+        "body_nll": 1980.525390625,
+        "eos_nll": 0.9567298889160156,
+        "scored_body_tokens": 780
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33592",
+        "body_tokens": 347,
+        "body_bytes": 1198,
+        "body_nll": 747.086669921875,
+        "eos_nll": 8.004398345947266,
+        "scored_body_tokens": 347
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33604",
+        "body_tokens": 578,
+        "body_bytes": 1876,
+        "body_nll": 1087.750129699707,
+        "eos_nll": 0.7841798067092896,
+        "scored_body_tokens": 578
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33647",
+        "body_tokens": 138,
+        "body_bytes": 583,
+        "body_nll": 329.7872009277344,
+        "eos_nll": 3.6571741104125977,
+        "scored_body_tokens": 138
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33711",
+        "body_tokens": 426,
+        "body_bytes": 1425,
+        "body_nll": 946.515380859375,
+        "eos_nll": 1.7824089527130127,
+        "scored_body_tokens": 426
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33716",
+        "body_tokens": 460,
+        "body_bytes": 1482,
+        "body_nll": 1155.49755859375,
+        "eos_nll": 1.2805986404418945,
+        "scored_body_tokens": 460
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33731",
+        "body_tokens": 297,
+        "body_bytes": 1196,
+        "body_nll": 739.752685546875,
+        "eos_nll": 1.4549371004104614,
+        "scored_body_tokens": 297
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33734",
+        "body_tokens": 461,
+        "body_bytes": 1717,
+        "body_nll": 1075.7984619140625,
+        "eos_nll": 0.7365363836288452,
+        "scored_body_tokens": 461
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33736",
+        "body_tokens": 479,
+        "body_bytes": 1806,
+        "body_nll": 1344.494873046875,
+        "eos_nll": 1.857597827911377,
+        "scored_body_tokens": 479
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33750",
+        "body_tokens": 417,
+        "body_bytes": 1657,
+        "body_nll": 1178.8948974609375,
+        "eos_nll": 2.2143259048461914,
+        "scored_body_tokens": 417
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33777",
+        "body_tokens": 408,
+        "body_bytes": 1452,
+        "body_nll": 1134.0662841796875,
+        "eos_nll": 0.4455134868621826,
+        "scored_body_tokens": 408
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33796",
+        "body_tokens": 496,
+        "body_bytes": 1712,
+        "body_nll": 1446.8853759765625,
+        "eos_nll": 0.711026668548584,
+        "scored_body_tokens": 496
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33811",
+        "body_tokens": 551,
+        "body_bytes": 2369,
+        "body_nll": 1443.080093383789,
+        "eos_nll": 1.8871815204620361,
+        "scored_body_tokens": 551
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33816",
+        "body_tokens": 411,
+        "body_bytes": 1946,
+        "body_nll": 1156.246826171875,
+        "eos_nll": 0.6643833518028259,
+        "scored_body_tokens": 411
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33827",
+        "body_tokens": 160,
+        "body_bytes": 446,
+        "body_nll": 525.4322509765625,
+        "eos_nll": 2.3710567951202393,
+        "scored_body_tokens": 160
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33831",
+        "body_tokens": 276,
+        "body_bytes": 996,
+        "body_nll": 713.1715087890625,
+        "eos_nll": 1.2258996963500977,
+        "scored_body_tokens": 276
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33841",
+        "body_tokens": 548,
+        "body_bytes": 2351,
+        "body_nll": 1666.6575012207031,
+        "eos_nll": 2.9282760620117188,
+        "scored_body_tokens": 548
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33856",
+        "body_tokens": 680,
+        "body_bytes": 2485,
+        "body_nll": 2107.6014404296875,
+        "eos_nll": 1.2606449127197266,
+        "scored_body_tokens": 680
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33903",
+        "body_tokens": 238,
+        "body_bytes": 999,
+        "body_nll": 681.4583740234375,
+        "eos_nll": 3.4419493675231934,
+        "scored_body_tokens": 238
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33910",
+        "body_tokens": 574,
+        "body_bytes": 2286,
+        "body_nll": 1728.0092468261719,
+        "eos_nll": 0.968770444393158,
+        "scored_body_tokens": 574
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33911",
+        "body_tokens": 303,
+        "body_bytes": 1114,
+        "body_nll": 774.6656494140625,
+        "eos_nll": 0.3105718493461609,
+        "scored_body_tokens": 303
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33924",
+        "body_tokens": 175,
+        "body_bytes": 625,
+        "body_nll": 478.64984130859375,
+        "eos_nll": 1.6258965730667114,
+        "scored_body_tokens": 175
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33938",
+        "body_tokens": 271,
+        "body_bytes": 822,
+        "body_nll": 666.871337890625,
+        "eos_nll": 0.7273311018943787,
+        "scored_body_tokens": 271
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33950",
+        "body_tokens": 754,
+        "body_bytes": 3058,
+        "body_nll": 1716.2112426757812,
+        "eos_nll": 0.9061121940612793,
+        "scored_body_tokens": 754
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33958",
+        "body_tokens": 209,
+        "body_bytes": 720,
+        "body_nll": 571.3129272460938,
+        "eos_nll": 2.583469867706299,
+        "scored_body_tokens": 209
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33959",
+        "body_tokens": 446,
+        "body_bytes": 1632,
+        "body_nll": 1202.1187744140625,
+        "eos_nll": 1.545410394668579,
+        "scored_body_tokens": 446
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33966",
+        "body_tokens": 476,
+        "body_bytes": 2277,
+        "body_nll": 1113.052490234375,
+        "eos_nll": 3.585270881652832,
+        "scored_body_tokens": 476
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33982",
+        "body_tokens": 841,
+        "body_bytes": 2827,
+        "body_nll": 2538.175537109375,
+        "eos_nll": 0.3330981135368347,
+        "scored_body_tokens": 841
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33983",
+        "body_tokens": 775,
+        "body_bytes": 3538,
+        "body_nll": 1615.99609375,
+        "eos_nll": 2.714348316192627,
+        "scored_body_tokens": 775
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:33990",
+        "body_tokens": 423,
+        "body_bytes": 1822,
+        "body_nll": 1181.166748046875,
+        "eos_nll": 0.9519448280334473,
+        "scored_body_tokens": 423
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34062",
+        "body_tokens": 293,
+        "body_bytes": 993,
+        "body_nll": 833.479736328125,
+        "eos_nll": 5.145639419555664,
+        "scored_body_tokens": 293
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34084",
+        "body_tokens": 474,
+        "body_bytes": 1911,
+        "body_nll": 1611.6153564453125,
+        "eos_nll": 2.4628453254699707,
+        "scored_body_tokens": 474
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34108",
+        "body_tokens": 362,
+        "body_bytes": 1373,
+        "body_nll": 1296.937744140625,
+        "eos_nll": 0.508921205997467,
+        "scored_body_tokens": 362
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34130",
+        "body_tokens": 637,
+        "body_bytes": 2702,
+        "body_nll": 1564.9362182617188,
+        "eos_nll": 1.2645208835601807,
+        "scored_body_tokens": 637
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34134",
+        "body_tokens": 635,
+        "body_bytes": 1968,
+        "body_nll": 1378.809326171875,
+        "eos_nll": 1.217139720916748,
+        "scored_body_tokens": 635
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34139",
+        "body_tokens": 264,
+        "body_bytes": 1026,
+        "body_nll": 826.7453002929688,
+        "eos_nll": 2.7955188751220703,
+        "scored_body_tokens": 264
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34148",
+        "body_tokens": 278,
+        "body_bytes": 1140,
+        "body_nll": 685.2078247070312,
+        "eos_nll": 2.1061742305755615,
+        "scored_body_tokens": 278
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34174",
+        "body_tokens": 194,
+        "body_bytes": 876,
+        "body_nll": 548.3126220703125,
+        "eos_nll": 5.144529342651367,
+        "scored_body_tokens": 194
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34180",
+        "body_tokens": 493,
+        "body_bytes": 1841,
+        "body_nll": 1273.7796630859375,
+        "eos_nll": 1.9064016342163086,
+        "scored_body_tokens": 493
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34233",
+        "body_tokens": 343,
+        "body_bytes": 1627,
+        "body_nll": 752.0645751953125,
+        "eos_nll": 1.0155959129333496,
+        "scored_body_tokens": 343
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34269",
+        "body_tokens": 430,
+        "body_bytes": 1636,
+        "body_nll": 1483.91015625,
+        "eos_nll": 0.4709741473197937,
+        "scored_body_tokens": 430
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34287",
+        "body_tokens": 412,
+        "body_bytes": 1618,
+        "body_nll": 1168.3935546875,
+        "eos_nll": 1.3253873586654663,
+        "scored_body_tokens": 412
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34301",
+        "body_tokens": 173,
+        "body_bytes": 795,
+        "body_nll": 449.5035400390625,
+        "eos_nll": 10.064024925231934,
+        "scored_body_tokens": 173
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34329",
+        "body_tokens": 366,
+        "body_bytes": 1600,
+        "body_nll": 923.3685302734375,
+        "eos_nll": 0.6297940015792847,
+        "scored_body_tokens": 366
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34349",
+        "body_tokens": 219,
+        "body_bytes": 926,
+        "body_nll": 574.4151611328125,
+        "eos_nll": 3.6836600303649902,
+        "scored_body_tokens": 219
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34354",
+        "body_tokens": 397,
+        "body_bytes": 1548,
+        "body_nll": 1027.051025390625,
+        "eos_nll": 5.448879241943359,
+        "scored_body_tokens": 397
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34357",
+        "body_tokens": 636,
+        "body_bytes": 2462,
+        "body_nll": 1795.393798828125,
+        "eos_nll": 1.3398864269256592,
+        "scored_body_tokens": 636
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34374",
+        "body_tokens": 567,
+        "body_bytes": 2223,
+        "body_nll": 1453.4616775512695,
+        "eos_nll": 0.6566810011863708,
+        "scored_body_tokens": 567
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34386",
+        "body_tokens": 763,
+        "body_bytes": 3014,
+        "body_nll": 2117.92236328125,
+        "eos_nll": 0.028958959504961967,
+        "scored_body_tokens": 763
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34396",
+        "body_tokens": 476,
+        "body_bytes": 2032,
+        "body_nll": 1400.7113037109375,
+        "eos_nll": 1.4891879558563232,
+        "scored_body_tokens": 476
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34424",
+        "body_tokens": 509,
+        "body_bytes": 1886,
+        "body_nll": 1326.6181640625,
+        "eos_nll": 1.4159049987792969,
+        "scored_body_tokens": 509
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34433",
+        "body_tokens": 552,
+        "body_bytes": 1837,
+        "body_nll": 1355.5936965942383,
+        "eos_nll": 1.5458054542541504,
+        "scored_body_tokens": 552
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34452",
+        "body_tokens": 646,
+        "body_bytes": 2558,
+        "body_nll": 1590.0960693359375,
+        "eos_nll": 0.6713095307350159,
+        "scored_body_tokens": 646
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34463",
+        "body_tokens": 424,
+        "body_bytes": 1914,
+        "body_nll": 1136.92724609375,
+        "eos_nll": 1.3746020793914795,
+        "scored_body_tokens": 424
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34464",
+        "body_tokens": 486,
+        "body_bytes": 1956,
+        "body_nll": 1189.8035888671875,
+        "eos_nll": 2.257354736328125,
+        "scored_body_tokens": 486
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34467",
+        "body_tokens": 272,
+        "body_bytes": 972,
+        "body_nll": 666.5400390625,
+        "eos_nll": 2.2207865715026855,
+        "scored_body_tokens": 272
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34502",
+        "body_tokens": 476,
+        "body_bytes": 1697,
+        "body_nll": 1458.3502197265625,
+        "eos_nll": 5.5475969314575195,
+        "scored_body_tokens": 476
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34508",
+        "body_tokens": 307,
+        "body_bytes": 1017,
+        "body_nll": 1094.509765625,
+        "eos_nll": 2.8389077186584473,
+        "scored_body_tokens": 307
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34547",
+        "body_tokens": 166,
+        "body_bytes": 684,
+        "body_nll": 264.3155517578125,
+        "eos_nll": 0.21269583702087402,
+        "scored_body_tokens": 166
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34553",
+        "body_tokens": 348,
+        "body_bytes": 1394,
+        "body_nll": 1129.0711669921875,
+        "eos_nll": 0.3397828936576843,
+        "scored_body_tokens": 348
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34615",
+        "body_tokens": 699,
+        "body_bytes": 2718,
+        "body_nll": 2184.6583251953125,
+        "eos_nll": 0.27767765522003174,
+        "scored_body_tokens": 699
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34636",
+        "body_tokens": 591,
+        "body_bytes": 2079,
+        "body_nll": 1449.0734252929688,
+        "eos_nll": 0.7415129542350769,
+        "scored_body_tokens": 591
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34645",
+        "body_tokens": 168,
+        "body_bytes": 747,
+        "body_nll": 496.72216796875,
+        "eos_nll": 0.05642807483673096,
+        "scored_body_tokens": 168
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34656",
+        "body_tokens": 407,
+        "body_bytes": 1780,
+        "body_nll": 1103.5029296875,
+        "eos_nll": 4.187564849853516,
+        "scored_body_tokens": 407
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34659",
+        "body_tokens": 288,
+        "body_bytes": 900,
+        "body_nll": 869.6048583984375,
+        "eos_nll": 0.1376204937696457,
+        "scored_body_tokens": 288
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34707",
+        "body_tokens": 527,
+        "body_bytes": 1904,
+        "body_nll": 1398.392921447754,
+        "eos_nll": 2.0570011138916016,
+        "scored_body_tokens": 527
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34711",
+        "body_tokens": 299,
+        "body_bytes": 932,
+        "body_nll": 556.6292114257812,
+        "eos_nll": 1.7288801670074463,
+        "scored_body_tokens": 299
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34740",
+        "body_tokens": 396,
+        "body_bytes": 1350,
+        "body_nll": 1236.112060546875,
+        "eos_nll": 1.055619239807129,
+        "scored_body_tokens": 396
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34754",
+        "body_tokens": 87,
+        "body_bytes": 336,
+        "body_nll": 236.74014282226562,
+        "eos_nll": 1.996742844581604,
+        "scored_body_tokens": 87
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34763",
+        "body_tokens": 757,
+        "body_bytes": 3357,
+        "body_nll": 1193.0638427734375,
+        "eos_nll": 0.3311751186847687,
+        "scored_body_tokens": 757
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34818",
+        "body_tokens": 511,
+        "body_bytes": 2126,
+        "body_nll": 1533.3388671875,
+        "eos_nll": 0.5055280923843384,
+        "scored_body_tokens": 511
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34837",
+        "body_tokens": 255,
+        "body_bytes": 1137,
+        "body_nll": 845.6278076171875,
+        "eos_nll": 1.2483644485473633,
+        "scored_body_tokens": 255
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34840",
+        "body_tokens": 518,
+        "body_bytes": 2253,
+        "body_nll": 1536.437593460083,
+        "eos_nll": 0.7065788507461548,
+        "scored_body_tokens": 518
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34849",
+        "body_tokens": 308,
+        "body_bytes": 1176,
+        "body_nll": 926.1347045898438,
+        "eos_nll": 2.603039264678955,
+        "scored_body_tokens": 308
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34868",
+        "body_tokens": 496,
+        "body_bytes": 2313,
+        "body_nll": 1108.58837890625,
+        "eos_nll": 1.7403995990753174,
+        "scored_body_tokens": 496
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34891",
+        "body_tokens": 263,
+        "body_bytes": 982,
+        "body_nll": 824.453125,
+        "eos_nll": 1.6059198379516602,
+        "scored_body_tokens": 263
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34895",
+        "body_tokens": 586,
+        "body_bytes": 2633,
+        "body_nll": 1340.3558959960938,
+        "eos_nll": 0.8612550497055054,
+        "scored_body_tokens": 586
+      },
+      {
+        "doc_id": "fineweb2_edu_ja:train-00000-of-00283.parquet:34985",
+        "body_tokens": 529,
+        "body_bytes": 1888,
+        "body_nll": 1403.424919128418,
+        "eos_nll": 1.96437406539917,
+        "scored_body_tokens": 529
+      }
+    ],
+    "evaluator": "batched-heldout-fp32-ce-v1",
+    "teacher_scope": "body exactly once; BOS/PAD excluded, EOS loss separate"
+  }
+}

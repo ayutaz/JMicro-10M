@@ -1,0 +1,167 @@
+{
+  "status": "one_positive_likelihood_anchor_comparison_proposed_not_implemented_or_GPU_frozen",
+  "created_at": "2026-10-06T08:36:43.103492Z",
+  "trigger": {
+    "completion": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context_outcome_ranking_comparison_completion.json",
+      "sha256": "776e31556a91d30494dfd0e67e45514726af22941d69e05c937be24d6246cd4f"
+    },
+    "absolute_likelihood_analysis": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context_outcome_ranking_absolute_likelihood.json",
+      "sha256": "a72f7db88c0ae5707630a821761712defe4e2ca8aaa15da5cfebbc97c3302149"
+    },
+    "fixed_bridge_both_correct": 86,
+    "conditional_KL_bridge_both_correct": 54,
+    "fixed_retention_both_correct": 80,
+    "conditional_KL_retention_both_correct": 33,
+    "coherence2_to11_vs2": true,
+    "bridge_gold_NLL_per_token": 0.28322682306261077,
+    "rank_bridge_gold_NLL_per_token": 1.9090504258847054,
+    "bridge_gold_likelihood_worse_context_poles": 180,
+    "retention_gold_likelihood_worse_context_poles": 210,
+    "note": "All256 poles in each128-family suite; correlated poles are not independent samples. Absolute gold likelihood decreases in many cases while foil decreases further."
+  },
+  "hypothesis": "Relative outcome ranking has no absolute-gold likelihood floor. Add a positive likelihood term on the same TRAIN correct-outcome rows to test whether discrimination gains can coexist with useful continuation probabilities and broad generation quality.",
+  "causal_limit": "Cached likelihood arithmetic and repeated nonblind dev support this mechanism hypothesis, not a unique causal proof. Shared generator/familiar forms and structural drift remain limits.",
+  "new_action": "One single added gold-body conditional nonEOS CE term; comparison weights all fixed at1, no coefficient/temperature/margin sweep.",
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+    "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+  },
+  "reused_ranking_control": {
+    "config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/context_outcome_ranking_comparison.json",
+      "sha256": "8de26074f0701ec1894fc239430179eaaa3e8096f5828359083da12377ef01b4"
+    },
+    "result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context-outcome-ranking-comparison-20261006/compare-result.json",
+      "sha256": "412abb1fb2422fcb053a7095a1479aebf056f2df98d5b5d3d6aad489bbb82878"
+    },
+    "review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context-outcome-ranking-comparison-20261006/review.json",
+      "sha256": "16698e66626d9229f83cad7a600990d7d8b1692091178266c12c3db5de7f17bc"
+    },
+    "completion": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context_outcome_ranking_comparison_completion.json",
+      "sha256": "776e31556a91d30494dfd0e67e45514726af22941d69e05c937be24d6246cd4f"
+    },
+    "checkpoint": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context-outcome-ranking-comparison-20261006/context_outcome_ranking/training/checkpoint-00323503.pt",
+      "sha256": "c95d649b8d3a0c8ede55c2edec80ef8ed4a24bae8ce0ca9e8fe3ccf7434a832c"
+    }
+  },
+  "stronger_staged_CE_quality_control": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323503.pt",
+    "sha256": "fb43f2618c0679ca6c6f7a0c5b9faf1b336be8985271c8513f2e4bbfde3cd7ae"
+  },
+  "fixed_main": {
+    "ordinary_CE_teachers": 100000000,
+    "quotas": {
+      "web": 75000000,
+      "story": 5000000,
+      "ordinary_textbook": 10000000,
+      "conditional_textbook": 10000000
+    },
+    "source_order": [
+      "web",
+      "story",
+      "ordinary_textbook",
+      "conditional_textbook"
+    ],
+    "shape": {
+      "context": 1024,
+      "batch": 32,
+      "accumulation": 1,
+      "backend": "flash",
+      "compile_mode": "reduce-overhead",
+      "dtype": "bf16"
+    },
+    "full_parent_model_Adam_scheduler_RNG_inherited": true,
+    "actual_LR": 1e-05,
+    "no_reset_or_reheat": true
+  },
+  "fixed_Web_reference": {
+    "policy": {
+      "kind": "frozen-parent-Web-body-conditional-non-EOS-KL-v1",
+      "direction": "parent_to_student",
+      "temperature": 1.0,
+      "coefficient": 1.0,
+      "every_completed_update": 1,
+      "reference_context": 1024,
+      "reference_batch": 8,
+      "masked_targets": "labels>=8; ignore EOS/BOS/role/padding target positions. Remove EOS3 from student conditional vocabulary; preserve parent non-EOS mass weight and all remaining vocabulary IDs.",
+      "reference_teacher": "immutable actual historical10.5B parent, no optimizer/gradients",
+      "replay_policy": "separate fork of actual historical parent Web cursor; train only, overlaps first75M primary Web, never dev/test",
+      "objective_component": "Full parent-to-student KL minus Bernoulli EOS-mass KL; exact weighted conditional non-EOS component only."
+    },
+    "same_parent": true,
+    "same_8x1024_windows": true,
+    "physical_positions": 25133056,
+    "conditional_nonEOS_KL_coefficient": 1
+  },
+  "fixed_pair_inputs": {
+    "manifest": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/context-outcome-ranking-20261006/manifest.json",
+      "sha256": "0b394e1d8ba9fc836001620a9c6b6035aebbe246a1aa3d52b87c15eb1a1edb58"
+    },
+    "policy": {
+      "kind": "train_opposite_context_non_EOS_outcome_ranking_v1",
+      "coefficient": 1.0,
+      "temperature": 1.0,
+      "families_per_update": 2,
+      "candidate_rows_per_family": 4,
+      "context": 256,
+      "row_order": "For each family: branch0-candidate0,branch0-candidate1,branch1-candidate0,branch1-candidate1; gold candidate equals branch.",
+      "scores": "Mean token log probability of complete candidate body, excluding EOS3 from vocabulary normalization; prefix and padding labels ignored.",
+      "objective": "Mean softplus(foil_score-gold_score) over both context poles of all selected families.",
+      "supervision": "Relational choice labels and positive/foil scored positions are separate from ordinary CE teachers and parent-KL soft target positions.",
+      "input_source": "Only already accepted1024 TRAIN families/2048 positive records; other opposite-state outcome is the foil. No dev/probe/test labels.",
+      "sampler": "Independent local seed42 permutation over all train families, cyclic epochs with seed+epoch; no filtering or global RNG consumption."
+    },
+    "same_sampler_seed42": true,
+    "families_per_update": 2,
+    "candidate_rows_per_family": 4,
+    "context": 256,
+    "all_existing_train1024_families": true,
+    "new_original_corpus_tokens": 0,
+    "dev_bridge_retention_protected_test_used_for_learning": false,
+    "extra_input_exposures_relative_to_ranking_control": 0
+  },
+  "positive_anchor": {
+    "source": "Correct candidate rows already present in each frozen TRAIN family batch; no new outcomes/labels/prefixes.",
+    "loss": "Conditional nonEOS gold-body CE, sum over all correct body positions divided by their actual count; prefix/padding ignored.",
+    "coefficient": 1,
+    "ranking_coefficient": 1,
+    "temperature": 1,
+    "direct_EOS_logit_gradient_zero": true,
+    "EOS_id3_excluded_from_normalization_and_aux_labels": true,
+    "implementation": "Reuse existing eager BF16 math paired-batch logits; combine ranking and positive anchor before backward, then one clip/Adam/scheduler update after mainCE and WebKL.",
+    "expected_separately_counted_auxiliary_gold_body_teacher_positions": 73725,
+    "expected_combined_main_and_auxiliary_hard_teacher_positions": 100073725,
+    "supervision_disclosure": "Input order/shape and total physical exposure equal completed ranking control, but adds gold-body hard supervision. Integer teachers, relational labels and frozen-parent probability mass remain separate."
+  },
+  "prospective_run": {
+    "main_updates": 3068,
+    "main_input_positions": 100532224,
+    "ranking_padded_positions": 6283264,
+    "combined_student_padded_positions": 131948544,
+    "same32_main_Web_rank_input_and_mask_digests_required_for_probe": true,
+    "same3068_main_Web_rank_input_and_mask_digests_required_for_science": true,
+    "ranking_sampler_checkpoint_resume_exact": true
+  },
+  "measured_budget_pending": true,
+  "new_total_GPU_ceiling_seconds": 900,
+  "budget_gate": "Owned actual CUDA4vs2+2 including positive-anchor losses/counts and32 combined timings. Preserve failed/refused costs. Forecast3068updates plus same150second nontraining reserve,30%margin and50second slack plus all new probe costs must fit900 before scientific freeze.",
+  "earlier_related_GPU_seconds_preserved": 1734.8376444790629,
+  "quality_criteria_unchanged": true,
+  "mandatory_quality_gate": "Stronger original stagedCE: coherence>=31 and gain>=8/80 with pairedCI lower>0, EOS>=76/repetition<=2/common-byte BPB<=1.1336128657420816*1.01; absolute grammar>=56/coherence>=27/appropriate>=27/EOS>=37/repetition<=18/noempty-role-Unicode; historical-Web BPB<=.9812859519097707 plus existing EOS/repetition/punctuation guards. Never adopt from probe accuracy alone or ease control.",
+  "evaluation": "Same256 full common bytes/Japanese192-331-1119/all80 greedy and individually read raw-bound notes/bridge128/retention128; report absolute gold and foil NLL separately, not only margin accuracy.",
+  "completion_condition": "One terminal100M comparison with full accounting/quality review; no automatic extension/favorable checkpoint search/settings sweep. Pilot quality success alone does not complete Base.",
+  "after_qualified_pilot": "Independent learned seed/full dev/protected test/adoption; notify user and stop after actually qualified Base.",
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "next_action": "Implement owned positive-anchor loss/trainer/accountant/runner; CPU masks/directEOS gradient/full-state3samplers resume; then actual CUDA fullresume/timing and measured-budget freeze only if valid. No new GPU learning until its own gate passes."
+}
