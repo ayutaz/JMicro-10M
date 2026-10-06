@@ -1,3 +1,21 @@
+同一親の重み50%平均を実評価・全80採点し、不採用（2026-10-06 JST）。前turnの翻訳source不採用は1b22447に保存したprogress。Baseのみ継続・完成時に通知して停止、Chat/Dialogue/SFT/量子化なし。
+
+既存7モデル/不採用3sourceの92,256bytes summaryをCPU0.00994秒で整理し、同10.5B親/同100M教師のmixed対staged重みを各50%で平均する未実施一条件を凍結。関連CPU3tests/0.75秒、実prepare0.35952秒で10,001,152param/120model keys。FP32平均とtied embeddingを保持、optimizer/scheduler/RNG/sampler/会計を混ぜずmodel-onlyとして保存し、resume可能な学習stateと称さない。新科学教師/optimizer0、係数やendpoint/layer選別の総当たりなし。WiSE-FT/Model soupsは着想の一次資料で、日本語10Mへの効果の証拠に代入しない。
+
+actual625718/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16346405は全GPU評価終了・不在。実GPU52.114144秒/上限300、native run reports/phase6/weight-average-comparison-20261006。全256 body/same472055bytes・日本語192/331/1119・greedy80・bridge/retention各128を完了。BPB1.011781478、文法66/関連45/一貫性20/適切21/EOS71/反復8/Unicode-role-empty0（各80）。意味52.083%/JBLiMP76.435%/JCQA31.859%、bridge両条件65/128・retention35/128。全80個別読解/rawSHA/理由を保存、同じrawの旧4例はスコアそのまま再利用。幻想・新人物・自然な別行動・暗黙の設備・gold不一致は自動失敗にしない。非blind Codexで独立人手なし。
+
+staged対照23/26/76/2/BPB1.133613からWebBPBは改善するが一貫性20/適切21/EOS71/反復8で強いrelative条件未達。paired一貫性差-3/CI[-.15,.075]、絶対一貫性27/適切27・歴史WebBPB<=.981285952も失敗。不採用を確定し、このmidpointの係数/重み組合せ/layer/decoder変更で救済しない。保存済全256を同ID/bytesで集計すると、midpoint BPBはendpoint平均1.054216223を0.042434746下回り、256/256文書で平均NLLより低い。これは一点の非線形性の観察で、全path凸性や能力改善の因果保証ではない。新forward/GPU0。
+
+全採否/会計/全80/transfer/rawをSHA付きweight_average_comparison_portable.json/archiveに保存。元10B UI625983/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16352051をactual ps/HTTP親410f975d…/10000007168/busy=falseで確認。旧Phase0–3/数値7失敗/全source不採用/既関連GPU2289.596018秒を保持、新比較込み2341.710163秒（全project費用ではなく当該series）。独立学習seed/full dev/protected test/採用は未達。
+
+次はfinite_parameter_displacement_proposal.jsonの一つのread-only診断を実装する。旧source-gradient assayで未測定だったfinite displacementの害と一次勾配予測を、既保存TRAIN Web32 blocks（4×8×1024）の同x/ySHAで測る。mixed/midpoint/staged三既存重み・FP32 math、mixedのbodyCE gradient dot(staged-mixed)、実損失差と非線形残差、EOS別を記録。教師/optimizer0、CPU準備30秒/GPU全上限120秒、基準を先に固定。旧cosine/仮想一Adam更新を反復せず、新Web/source全量scan/評価語句の学習/自動regularizer/merge sweepなし。局所TRAIN32で唯一原因や全品質は証明しない。実source/runner/tests/事前条件の準備とactual CUDA完了をこれから進め、証拠に応じた別のBase比較だけを選ぶ。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
+同一親の2つの完了100Mモデルを50%ずつ平均したBase診断を実行中（2026-10-06 JST）。前turnは翻訳sourceのfixed64不採用を1b22447へ保存したprogress。Base完了時に通知・停止、Chat/Dialogue/SFT/量子化なし。
+
+既存7モデル/不採用3sourceのsummary92,256bytesだけを実CPU0.00994秒で集約、raw再採点/GPU/全量scanなし。段階CEは一貫性23/EOS76/反復2/BPB1.133613、mixed同親100Mは4/30/31/.974820、既KL・replay・rankingはWeb BPBと一般生成の同時条件未達。このtradeoffから未実施の同親重みmidpoint一条件を凍結。係数[.5,.5]・FP32/同tied embedding・nonfloating buffer一致、optimizer/scheduler/RNG/samplerを平均せずmodel-onlyと明記。関連CPU3tests/0.75秒、実prepare0.35952秒で同10,001,152param/120model keys、科学教師・optimizer0。論文WiSE-FT/Model soupsからの適用仮説でこのモデルへの効果保証なし。
+
+actual625718/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16346405、Windowsworker28260をps確認。native run reports/phase6/weight-average-comparison-20261006、configSHAb1be4f9e21c4138884e45cef0c7280f5bce95820d55fea6548d63e9fa22ad114、GPU上限300秒（累積/失敗込み）でdev256全bytes・日本語192/331/1119・greedy80・bridge/retention128を評価。元10B UIは評価中停止・永続worker finallyで復帰。再開はactual PID不在を確認しscripts/run_weight_average_comparison.ps1 -Worker。全80個別raw notes/採否/実終了/UI/可搬証拠/commitはこれから。強いstaged対照23+8/CI正/EOS>=76/反復<=2、全絶対/歴史WebBPB<=.98128595等の元基準を保持、係数/endpoint/layer sweepなし。合格時のみ独立学習recipe seed/full dev/protected test/採用へ進む。旧Phase0–3/数値7失敗・全不採用/関連GPU費用を保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 既存TinyStories-JA翻訳源の固定64を全確認し、今回の置換比較を不採用（2026-10-06 JST）。Baseだけを完成時に通知して停止する境界を維持。Base未完了・未採用、Chat/Dialogue/SFT/量子化は未開始。
 
 凍結proposal/source/seed2026100693/calibration除外から、既存TRAIN追加区間のwhole499066文書を本文変更・再encode・新取得なしで読み出した。serialized140036743/body139038611/本文+EOS139537677、長さ44–512。実CPU0.337270秒/上限60、535MB元indexは1200995bytesのみ部分読み。関連CPU3tests/0.76秒で境界・codec・途中文書とepoch再開・固定除外を確認。固定64は個別rawSHA/rationale付きで全読解し、weak12（上限10）/未解消日本語表現6/所有・主体接続2で内容基準未達。めかしめ、パパとうさぎ、バジーを言い返す、店の絵の具を自分の所有物扱い、父が閉めたドアを姉妹の行動へ置き換える等を記録。幻想・悲劇・省略・未使用の属性は自動失敗にしない。非blind Codex判定で独立人手/外部事実保証なし。

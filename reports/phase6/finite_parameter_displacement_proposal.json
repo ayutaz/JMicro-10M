@@ -1,0 +1,57 @@
+{
+  "status": "defined_not_implemented_finite_parameter_displacement_read_only_assay",
+  "created_at": "2026-10-06T09:58:16.299683Z",
+  "trigger": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/weight-average-comparison-20261006/review.json",
+    "sha256": "7ca5fc8b64b99fd54a4445a4753d318bab969c16991ddb8d1af5b008fff4252a"
+  },
+  "cached_midpoint_curve": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/weight_average_cached_loss_curve.json",
+    "sha256": "c0713993a610f0935d757132bb24824b8e914308a2a046554b9dc790f0351d88"
+  },
+  "earlier_first_order_source_assay": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source_gradient_interference_diagnostic.json",
+    "sha256": "db830901094863e65e658e3abe0d923f8dd49a1571a925a7509c204f6c9f28a7"
+  },
+  "fixed_TRAIN_samples": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-gradient-interference-20261006/samples.json",
+    "sha256": "c84604b80656e2069c2aa5dd4b6a63441ad8ff02a4f34cb6a4178c95723c4f04"
+  },
+  "question": "Does the first-order Web-body gradient at the completed mixed endpoint predict the observed finite Web loss change toward the completed staged endpoint, or does a substantial nonlinear residual remain?",
+  "reason": "Earlier pairwise source-gradient cosines and virtual single AdamW steps did not reach conflict markers, but source order changed WebBPB sharply and the fixed midpoint shows a nonlinear loss tradeoff. The previous assay explicitly left curvature/finite-displacement harm unmeasured. This assay measures that missing quantity, not another source-gradient cosine, weight-merge coefficient or layer-selection sweep.",
+  "checkpoints": {
+    "control": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/historical-parent-condition-comparison-v3-20261006/historical_parent/training/checkpoint-00323503.pt",
+      "sha256": "6d901bd290cc5b7ab0b52a3a2309232d1e08c7fba32ecb8ec1e5656fe1a2f5a0"
+    },
+    "source_order": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323503.pt",
+      "sha256": "fb43f2618c0679ca6c6f7a0c5b9faf1b336be8985271c8513f2e4bbfde3cd7ae"
+    }
+  },
+  "midpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/weight-average-comparison-20261006/midpoint50-model-only.pt",
+    "sha256": "e834491a27fe49ab050089605f9b079563492ac934088c9093c111b23d82a641"
+  },
+  "direction": "d=staged-mixed once, with tied embedding counted once and all original named FP32 parameters aligned",
+  "inputs": "Reuse original Web blocks and x/y SHA from exactly4 saved TRAIN batches8x1024; BOS targets ignored; body-only CE for gradient and actual loss; goldEOS measured separately. No new sample selection, content repair, index scan or dev learning.",
+  "method": "Uncompiled FP32 math attention; evaluate same32 TRAIN sequences at mixed/midpoint/staged. At mixed compute autograd Web-body gradient without assigning .grad, optimizer or parameter updates; save g dot d, actual loss differences, finite-difference curvature2*(L1-2*Lhalf+L0), and nonlinear residual(L1-L0-g dot d). Four batches separately, per-source token accounting and immutable input hashes.",
+  "descriptive_markers": {
+    "Web_harm_nats_per_body_token_at_least": 0.02,
+    "batches_at_least": 3,
+    "nonlinear_residual_fraction_of_positive_actual_change_at_least": 0.5
+  },
+  "interpretation": "Use the markers descriptively to distinguish predicted first-order harm from unmodeled finite displacement. Signed finite differences on one line are not a Hessian or global convexity proof. No gradient surgery or new regularizer is justified automatically; choose a bounded intervention only if this evidence adds a distinct mechanism.",
+  "GPU_ceiling_seconds": 120,
+  "CPU_preparation_ceiling_seconds": 30,
+  "optimizer_updates": 0,
+  "scientific_teacher_tokens": 0,
+  "completion_condition": "All4 same batches/three named existing models/actual FP32 finite gradients and losses, weights unchanged/no .grad/RNG restoration, actual terminal PID/failed costs, raw result/decision, original UI restored and commit. Never substitute this local TRAIN assay for original80 or independent Base validation.",
+  "failure": "Preserve failures. No repeated identical retries, coefficient/endpoint/layer sweep or automatic long training.",
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false
+}

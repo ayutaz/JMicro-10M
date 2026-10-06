@@ -1,0 +1,294 @@
+{
+  "status": "single_equal_weight_midpoint_all_evidence_complete_rejected",
+  "created_at": "2026-10-06T09:58:16.300701Z",
+  "config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/weight_average_comparison.json",
+    "sha256": "b1be4f9e21c4138884e45cef0c7280f5bce95820d55fea6548d63e9fa22ad114"
+  },
+  "preparation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/weight-average-comparison-20261006/preparation.json",
+    "sha256": "5ced24abf9870737aba4a895c6a4ce4a24f1bcfc4342c2f96eee497c14b83c6d"
+  },
+  "result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/weight-average-comparison-20261006/result.json",
+    "sha256": "f460342a33de703864fc1aca8671592eff7a56f99b690038d9e95fbfccf2ff34"
+  },
+  "review": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/weight-average-comparison-20261006/review.json",
+    "sha256": "7ca5fc8b64b99fd54a4445a4753d318bab969c16991ddb8d1af5b008fff4252a"
+  },
+  "notes": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/weight-average-comparison-20261006/content-notes.json",
+    "sha256": "884a00ea4c32f2dda37db6d9c6c9fb67c0bd7c5d94a2ecd691cec4e92c7c9757"
+  },
+  "job": {
+    "status": "complete",
+    "pid": 625718,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "16346405",
+    "config_sha256": "b1be4f9e21c4138884e45cef0c7280f5bce95820d55fea6548d63e9fa22ad114",
+    "started_at": "2026-10-06T09:51:01.534643Z",
+    "GPU_elapsed_seconds": 52.11414413599414,
+    "scientific_teacher_tokens": 0,
+    "optimizer_updates": 0,
+    "protected_test_used": false,
+    "restart_command": "scripts/run_weight_average_comparison.ps1 -Worker",
+    "stage": "retention",
+    "heartbeat_at": "2026-10-06T09:51:54.475590Z",
+    "completed_tasks": 618,
+    "total_tasks": 618,
+    "completed_cases": 80,
+    "completed_requests": 512,
+    "total_requests": 512,
+    "completed_at": "2026-10-06T09:51:54.572096Z"
+  },
+  "cached_curve": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/weight_average_cached_loss_curve.json",
+    "sha256": "c0713993a610f0935d757132bb24824b8e914308a2a046554b9dc790f0351d88"
+  },
+  "next_proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/finite_parameter_displacement_proposal.json",
+    "sha256": "30c0459f8e1dd0c72f510cf44c29d22365127c78c2c083df978cc1f6a00749f8"
+  },
+  "summary": {
+    "BPB": 1.0117814776857321,
+    "rates": {
+      "outputs": 80,
+      "eos": 71,
+      "repetition": 8,
+      "unicode_failure": 0,
+      "role_leak": 0,
+      "empty": 0
+    },
+    "grammar2": 66,
+    "relevance2": 45,
+    "coherent": 20,
+    "appropriate": 21,
+    "Japanese": {
+      "semantics": 0.5208333333333334,
+      "jblimp": 0.7643504531722054,
+      "jcqa": 0.3185880250223414
+    }
+  },
+  "quality_comparison": {
+    "checks": {
+      "coherence_gain_at_least8": false,
+      "paired_CI_lower_above0": false,
+      "EOS_nonworsening": false,
+      "repetition_nonworsening": false,
+      "no_empty_role_unicode": true,
+      "BPB_gate": true,
+      "appropriate_completion_not_punctuation": true
+    },
+    "passed": false,
+    "difference_count": -3,
+    "CI95": [
+      -0.15,
+      0.075
+    ]
+  },
+  "absolute_dev_screen": {
+    "grammar_at_least56": true,
+    "coherence_at_least27": false,
+    "appropriate_at_least27": false,
+    "EOS_at_least37": true,
+    "repetition_at_most18": true,
+    "no_empty_role_unicode": true
+  },
+  "original_Web": {
+    "EOS_at_least8_more": true,
+    "repetition_no_worse": true,
+    "no_empty_role_unicode": true,
+    "BPB_degradation_at_most1percent": false,
+    "no_punctuation_only_stops": true
+  },
+  "transfer": {
+    "bridge": {
+      "sum_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.71484375,
+          "both_correct": 65,
+          "same_unique_candidate": 53,
+          "aligned_context_margin_shift": 101
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.875,
+          "both_correct": 48,
+          "same_unique_candidate": 16,
+          "aligned_context_margin_shift": 63
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.5546875,
+          "both_correct": 17,
+          "same_unique_candidate": 37,
+          "aligned_context_margin_shift": 38
+        }
+      },
+      "mean_token_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.72265625,
+          "both_correct": 68,
+          "same_unique_candidate": 49,
+          "aligned_context_margin_shift": 99
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.8984375,
+          "both_correct": 51,
+          "same_unique_candidate": 13,
+          "aligned_context_margin_shift": 63
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.546875,
+          "both_correct": 17,
+          "same_unique_candidate": 36,
+          "aligned_context_margin_shift": 36
+        }
+      },
+      "mean_byte_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.73046875,
+          "both_correct": 70,
+          "same_unique_candidate": 47,
+          "aligned_context_margin_shift": 98
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.8984375,
+          "both_correct": 51,
+          "same_unique_candidate": 13,
+          "aligned_context_margin_shift": 63
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.5625,
+          "both_correct": 19,
+          "same_unique_candidate": 34,
+          "aligned_context_margin_shift": 35
+        }
+      }
+    },
+    "retention": {
+      "sum_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.61328125,
+          "both_correct": 35,
+          "same_unique_candidate": 87,
+          "aligned_context_margin_shift": 105
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.6875,
+          "both_correct": 26,
+          "same_unique_candidate": 36,
+          "aligned_context_margin_shift": 54
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.5390625,
+          "both_correct": 9,
+          "same_unique_candidate": 51,
+          "aligned_context_margin_shift": 51
+        }
+      },
+      "mean_token_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.63671875,
+          "both_correct": 42,
+          "same_unique_candidate": 79,
+          "aligned_context_margin_shift": 106
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.7265625,
+          "both_correct": 31,
+          "same_unique_candidate": 31,
+          "aligned_context_margin_shift": 55
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.546875,
+          "both_correct": 11,
+          "same_unique_candidate": 48,
+          "aligned_context_margin_shift": 51
+        }
+      },
+      "mean_byte_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.640625,
+          "both_correct": 42,
+          "same_unique_candidate": 80,
+          "aligned_context_margin_shift": 106
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.7265625,
+          "both_correct": 31,
+          "same_unique_candidate": 31,
+          "aligned_context_margin_shift": 55
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.5546875,
+          "both_correct": 11,
+          "same_unique_candidate": 49,
+          "aligned_context_margin_shift": 51
+        }
+      }
+    }
+  },
+  "parameter_count": 10001152,
+  "model_only": true,
+  "resumable_training_state": false,
+  "source_or_decoder_modified": false,
+  "new_scientific_teacher_tokens": 0,
+  "new_optimizer_updates": 0,
+  "actual_GPU_seconds": 52.11414413599414,
+  "GPU_ceiling_seconds": 300,
+  "previous_related_GPU_seconds_preserved": 2289.596018486074,
+  "related_GPU_including_this_research_seconds": 2341.7101626220683,
+  "original_UI": {
+    "name": "JMicro-10M",
+    "kind": "Base / 文章の続き",
+    "parameters": 10001152,
+    "training_tokens": 10000007168,
+    "update": 305176,
+    "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+    "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+    "device": "NVIDIA GeForce RTX 4090",
+    "precision": "BF16 / math attention",
+    "context": 1024,
+    "busy": false
+  },
+  "original_UI_identity": {
+    "pid": 625983,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "16352051"
+  },
+  "all80_individually_read": true,
+  "exact_previous_score_reuse": [
+    "base-019",
+    "base-055",
+    "base-056",
+    "base-087"
+  ],
+  "independent_human_blind": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "interpretation": "The one midpoint reduces Web loss relative to staged CE while retaining much of its stopping behavior, but does not improve all mandatory quality dimensions; it fails coherence/completion/historical BPB and stronger relative guards. It is rejected, with no coefficient/endpoint/layer or decoding sweep. Research papers motivated the comparison but were not evidence of Japanese10M performance.",
+  "next_action": "Implement the defined TRAIN-only finite parameter-displacement assay, with exact existing32 Web blocks and read-only FP32 gradients, before selecting another Base intervention; no new source or merge search."
+}
