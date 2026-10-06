@@ -1,3 +1,9 @@
+Base専用Fisher anchor: completion（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+同親/継承Adam・LR/全source full100MのFisher対cached uniform比較と新全80個別採点・36exact旧raw採点継承を完了。candidate BPB0.984992397（uniform0.990667075）、文法59→63/関連60→66/一貫性25→28/適切29→30/EOS67→65/反復6→7（各80）。絶対screen全合格だが、強いstaged23に対し一貫性28/+5<8、EOS65<76/反復7>2、歴史WebBPB上限.9812859519も超過。最終Base検証eligible=False、不採用を保持。科学100M/100532224input、検証1307952教師・field65276model-sampled label別、総新GPU280.070139秒/1800、actual648919実不在/元UI復帰。日本語意味・構文・常識の微差とnonblind内容採点は独立改善の証明ではない。固定field/lambda等分岐終了、独立seed/full dev/protected test/採用なし。次は既存結果を根拠に残るEOS/反復と保持の別機構を定義、同field等の救済sweep/対照再GPU/全量scanはしない。
+
+全旧失敗/数値7/Phase0–3/既存相対・絶対・歴史Web1%品質基準保持。field/seed/回数/lambda/source/mask/CP/decoder救済sweepなし。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用Fisher anchor: launch（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
 
 科学actual648919/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start17456444の実稼働を確認、stagefisher_anchor-training/観測教師26812706/100M。科学GPU上限1777.215966秒。250更新ごと全state原子的CP、実PID不在後 scripts/run_fisher_parameter_anchor.ps1 -Mode Train -Worker で再開。終端・全日本語/80内容採否は未完了、元UIは終端finallyで復帰。

@@ -16,7 +16,7 @@ import run_fisher_parameter_anchor as study
 
 
 def main(phase):
-    running=phase=='launch';scientific=phase in ('launch','terminal')
+    running=phase=='launch';scientific=phase in ('launch','terminal','completion')
     config=study.CONFIG if scientific else study.PROBE_CONFIG
     c=read_json(config) if running else study.inspect(config)
     folder=study.RUN if scientific else study.RUN/'probe'
@@ -63,6 +63,27 @@ def main(phase):
                 'cached uniform100Mとsource/targets/全sampler/teacher/input/bytes/digestsが一致、総計へfield sampled labelsや検証教師を混ぜない。'
                 '次は新全80の個別raw-bound内容と旧uniform/強いstaged相対・絶対・歴史Web1%gate採否。'
                 '合格のみ独立学習seed/full dev/protected test/採用へ、GPU終端だけでBase完成としない。')
+            if phase=='completion':
+                review=read_json(study.RUN/'review.json')
+                if (review['result_sha256']!=sha256(folder/'compare-result.json') or review['config_sha256']!=sha256(config)
+                        or not review['all80_individually_read'] or review['Base_complete'] or review['Base_adopted']):
+                    raise ValueError('Actual all80 bounded review required')
+                report.update(review=study.reference(study.RUN/'review.json'),actual_review=review,
+                    eligible_for_final_Base_validation=review['eligible_for_final_Base_validation'],
+                    notes=study.reference(study.RUN/'content-notes.json'),
+                    observations=study.reference(ROOT/'reports/phase6/fisher_parameter_anchor_observations.tsv'))
+                a=review['summaries']['fisher_anchor'];b=review['summaries']['uniform_anchor']
+                detail=(f'同親/継承Adam・LR/全source full100MのFisher対cached uniform比較と新全80個別採点・36exact旧raw採点継承を完了。'
+                    f'candidate BPB{a["BPB"]:.9f}（uniform{b["BPB"]:.9f}）、文法{b["grammar2"]}→{a["grammar2"]}/関連{b["relevance2"]}→{a["relevance2"]}/'
+                    f'一貫性{b["coherent"]}→{a["coherent"]}/適切{b["appropriate"]}→{a["appropriate"]}/EOS{b["rates"]["eos"]}→{a["rates"]["eos"]}/'
+                    f'反復{b["rates"]["repetition"]}→{a["rates"]["repetition"]}（各80）。'
+                    f'絶対screen全合格だが、強いstaged23に対し一貫性28/+5<8、EOS65<76/反復7>2、歴史WebBPB上限.9812859519も超過。'
+                    f'最終Base検証eligible={review["eligible_for_final_Base_validation"]}、不採用を保持。'
+                    f'科学100M/100532224input、検証{c["verification_teacher_tokens"]}教師・field65276model-sampled label別、'
+                    f'総新GPU{report["total_new_GPU_seconds"]:.6f}秒/1800、actual{job["pid"]}実不在/元UI復帰。'
+                    '日本語意味・構文・常識の微差とnonblind内容採点は独立改善の証明ではない。'
+                    '固定field/lambda等分岐終了、独立seed/full dev/protected test/採用なし。次は既存結果を根拠に残るEOS/反復と保持の別機構を定義、'
+                    '同field等の救済sweep/対照再GPU/全量scanはしない。')
         else:
             if job['status']!='failed_or_interrupted':raise ValueError('Actual terminal failure required')
             report['partial']=read_json(folder/'progress-result.json') if (folder/'progress-result.json').exists() else {}
@@ -70,6 +91,8 @@ def main(phase):
     if not running:report['original_UI']=original_UI()
     atomic_json(destination,report)
     files=[destination,config,study.PROPOSAL,ROOT/'reports/phase6/fisher_parameter_budget_tests.xml',Path(__file__),*[ROOT/s for s in study.SOURCES]]
+    if phase=='completion':files += [ROOT/'scripts/review_fisher_parameter_anchor.py',ROOT/'scripts/record_fisher_parameter_content.py',
+        ROOT/'reports/phase6/fisher_parameter_anchor_observations.tsv',ROOT/'reports/phase6/fisher_parameter_anchor_review.json']
     if phase not in ('preparation','launch'):
         files += [p for p in sorted(folder.rglob('*')) if p.is_file() and p.suffix in ('.json','.jsonl','.py','.ps1','.xml')
                   and (not scientific or 'field' not in p.relative_to(folder).parts and 'probe' not in p.relative_to(folder).parts)]
@@ -90,4 +113,4 @@ def main(phase):
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('phase',choices=('preparation','probe','launch','terminal','probe_failure'));main(parser.parse_args().phase)
+    parser=argparse.ArgumentParser();parser.add_argument('phase',choices=('preparation','probe','launch','terminal','completion','probe_failure'));main(parser.parse_args().phase)
