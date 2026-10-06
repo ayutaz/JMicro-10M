@@ -1,0 +1,82 @@
+{
+  "checkpoints": {
+    "original_fullparent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+      "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+    },
+    "completed_masked_mixed": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+      "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+    }
+  },
+  "proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source_gradient_attribution_proposal.json",
+    "sha256": "1ff1dfcca1c9182474de12107fe6cca33d24fbb73119ccb733402e3b835f5b80"
+  },
+  "references": {
+    "trigger": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/review.json",
+      "sha256": "93d031d41c2af61457cd8ee7271b7b9fc757a484f8bb747a45d8fc56e5a37597"
+    },
+    "old_config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/interleaved_outcome_order.json",
+      "sha256": "4f91703748a2f3f83b40ef0e291266537cc494dac0b65359c3b8eec1d86c22e9"
+    },
+    "source_ledger": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved_outcome_reference_input.json",
+      "sha256": "fe12f14780541213f584ad45d7facb3c2e87251270bc61f1961bbdeb1984eb68"
+    },
+    "samples": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-gradient-attribution-20261006/samples.pt",
+      "sha256": "d06b94ba1b78d07aeee70f4fe29b002fc16eaf05c4af2ff4686def02742640c7"
+    },
+    "samples_metadata": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-gradient-attribution-20261006/samples.json",
+      "sha256": "4204dcd5e8a430e2af231097b2ba5f8a392195dbcfe10f0e77a719ee3eb3f37c"
+    },
+    "CPU_tests": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source_gradient_attribution_tests.xml",
+      "sha256": "06a1d740a2653e292249533adc93eed37cb5ada79d6cb6503188c192f52a3be8"
+    }
+  },
+  "source_sha256": {
+    "scripts/source_gradient_attribution.py": "6db56983f0d3d703204c7c9fda8113925d10c92308b837ca5912de66affe4e33",
+    "scripts/diagnose_source_gradient_attribution.py": "7e0123db160be5a81e1f6debbe04a0878b31431a1df581f30a29136c1a207386",
+    "scripts/diagnose_source_gradient_attribution.ps1": "0edf3eaf046475bfe985d76b19f14b4af29a6499a366fb6bbe67f44634e2ddd8",
+    "tests/test_source_gradient_attribution.py": "fa5adfb65b9f3c8da43a566ff998d2a84da39f1f8ffebcc674064666ceedb86a"
+  },
+  "original_sources": {
+    "scripts/interleaved_outcome_trainer.py": "560b62d464b027fceef19593d2dc6cb1d60eb18fecc639d77c717b9d201f78a1",
+    "scripts/run_interleaved_outcome_order.py": "5d26782c53c833367bdaa1615a9659efe44139127c043c6e07db68106f3d07bd",
+    "scripts/run_interleaved_outcome_order.ps1": "d3c7079547d25c6bbffb524cb5efb91ec2606e4edcb9bb2c7ee7a388376a2ceb",
+    "tests/test_interleaved_outcome.py": "d43291a8ce81854b1bd5a73122aa7d1312ba583f20e4ae4f64582844999df09e",
+    "scripts/conditional_prefix_mask_trainer.py": "a59df61633c3dce09a14254ac4fcbf4729abece17c714ac8e70353ae9fad1c42",
+    "scripts/source_order_condition_trainer.py": "f73b247bcb907ca56af889504b6405ca0ddce0301083a588fc7eed8d8b1e3246"
+  },
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "logical_batch": 32,
+  "microbatch": 8,
+  "context": 1024,
+  "batches": 16,
+  "dtype": "bf16",
+  "backend": "math",
+  "training_fast_path": true,
+  "numerical_decomposition_relative_L2_tolerance": 0.02,
+  "numerical_protocol": "Same independent sequences; four fixed8-sequence microbatches sum FP32 parameter gradients, each divided by all actual teachers in its logical32 batch. Group sum versus independent original CE must have relative L2 error<=.02 on every model/batch before descriptive interpretation. This preregistered nativeBF16 numerical bound is not a quality criterion. No optimizer/clip/weights/ratio/EOS coefficient changes.",
+  "CPU_preparation_seconds": 3.1626082150032744,
+  "GPU_ceiling_seconds": 90,
+  "optimizer_updates": 0,
+  "new_teacher_tokens": 0,
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "created_at": "2026-10-06T11:12:28.421168Z"
+}

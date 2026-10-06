@@ -1,3 +1,9 @@
+固定TRAIN16・二endpointの勾配寄与診断を実装・CPU準備完了（2026-10-06 JST）。Baseのみ継続し実完成時に通知/停止、Chat/Dialogue/SFT/量子化なし。
+
+関連CPU3tests/0.85秒（tied parameter一回・不均一mask/分母・microbatch加算・逆向き勾配・zero support/null cosine・不変model/RNG・数値不一致/非有限値拒否）とPS構文成功。CPU準備3.162608秒/上限30、元mixedの先頭16同TRAIN input/reference digest/実masked target digest/source routes/会計が実旧historyと一致。217MB cache再利用・全source再scanなし。original10.5B親と前失敗終端を品質選別せず固定、logical32/context1024を8系列ずつ計算し、同logical全実教師分母でFP32 parameter gradientsを加算する。nativeBF16/math・unique tied parameter・元token-mean CE、5target group和と独立元CE勾配の相対L2誤差<=.02を全model/batchに事前固定。数値基準を品質基準と混同しない。新GPU/optimizer/学習教師0、configs/phase6/source_gradient_attribution.json凍結・未起動、全GPU上限90秒。
+
+元10B UI635754をactual ps/HTTP親410f975d…/busy=falseで確認。次はscripts/diagnose_source_gradient_attribution.ps1で永続read-only起動→全32point/不変weights・gradなし/eval/finite/RNG/数値分解一致/実終端/UI/可搬証拠/commit。前第四条件は0c81347へ不採用保存、Base採用/独立学習seed/full dev/protected test未達。勾配は局所観測で品質や原因・重み変更の自動推奨ではない。凍結旧source/Phase0–3/数値7失敗/全品質基準保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 混在順序×outcome/EOS教師の第4条件と全評価を完了、不採用（2026-10-06 JST）。Baseは未完了。完成・採用時に通知して停止し、Chat/Dialogue/SFT/量子化は開始しない。
 
 actual635420/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16750671は実終了・不在。科学3068更新/実教師91641755/reference100M/physical100532224、source別窓・元教師・mask教師・digest/cursorは既3条件と一致。検証48更新/1433919教師は科学と別。scienceGPU261.299751+probe17.989334=新全279.289085秒/上限900。全256body/common472055byte・日本語192/331/1119・greedy80・bridge/retention128を完了し、全80rawに個別理由を保存（同raw8例は旧採点継承、非blind Codex/独立人手なし）。
