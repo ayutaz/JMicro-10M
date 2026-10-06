@@ -511,7 +511,7 @@
   "independent_human_blind": "not performed",
   "phase0to3_preserved": true,
   "no_automatic_push": true,
-  "status": "block_Web_constraint_preparation",
+  "status": "block_Web_constraint_probe",
   "last_updated_at": "2026-10-06T08:36:43.112663Z",
   "current_user_scope": "Base only; notify and stop after actual Base completion; Chat and quantization deferred by user2026-10-06",
   "current_stop_boundary": "reports/phase6/base_only_stop_boundary.json",
@@ -524,7 +524,7 @@
   "condition_positive_active_job": "reports/phase6/condition_positive_active_job.json",
   "condition_positive_scientific_config": "configs/phase6/condition_positive_comparison.json",
   "condition_positive_comparison_completion": "reports/phase6/condition_positive_comparison_completion.json",
-  "next_action": "固定20更新の提案区切りごとに元FP32/math TRAIN body NLL<=original*1.01を確認し、旧と同じ有限projector/0.5・.25・.125の修正または全区切りrollbackを行う別研究。内部の未確定更新は上限を超える可能性があり、旧毎更新契約の成功へ置換しない。CPU4tests/2.16秒でnative全state連続対再開・全区切り拒否/途中中断rollback・末尾短区切り/改変拒否、CPU準備0.113392秒。217MB cache/固定32窓を再利用、全量scanなし。新GPU/本学習0。次はownCUDA連続2区切り対1+1/全state、4区切り80更新timingを120秒内で測り、旧3診断70.561106秒と新probe/最悪154区切り/全科学予測が2400秒内の場合のみ本学習へ。",
+  "next_action": "ownCUDA固定20更新×連続2区切り対1+1の全state/history/LR/有限値/境界NLLに合格、4区切り80更新timing完了。検証160更新/5231748CE教師は科学から除外、GPU33.678573秒/120。元math有限projector controlは不変source/同memoryの旧実証を再利用と明示し、新診断GPUへ足さない。最悪科学予測910.385827秒、旧3診断/ownprobe込み1014.625506秒/2400。内部tentative点がboundedとの証明ではない。予算内のみscience凍結し、同元親/Adam/actualLR.00001/同staged91,641,755CE＋追加memory gradient別会計/同日本語・全80/旧全gate採否へ。",
   "web_KL_launch": "reports/phase6/web_kl_comparison_launch.json",
   "web_KL_completion": "reports/phase6/web_kl_comparison_completion.json",
   "web_KL_followup": "reports/phase6/web_kl_followup_diagnostic_proposal.json",
@@ -583,7 +583,7 @@
     "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/anchored_context_outcome_proposal.json",
     "sha256": "e412bd11e40f60f2f2b14500dfe9b54c24e035630d979d69d9819b6aa66882ed"
   },
-  "updated_at": "2026-10-06T12:27:39.621428Z",
+  "updated_at": "2026-10-06T12:28:55.391003Z",
   "anchored_context_outcome_preparation": {
     "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/anchored_context_outcome_preparation.json",
     "sha256": "171149fccc729ce25f6d4d47b0deec29d4a38a8a4c22071dd0cbcb838cc8d825"
@@ -783,5 +783,9 @@
   "block_Web_constraint_preparation": {
     "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/block_Web_constraint_preparation.json",
     "sha256": "262061c098175342969c001dc50ce420e2d5a860bd21440d1b0ffcc1d75ded88"
+  },
+  "block_Web_constraint_probe": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/block_Web_constraint_probe.json",
+    "sha256": "ef6abd79fa62ab67c1a3b1ab697367cf1cf1ebd350536981c149190ada4c7491"
   }
 }

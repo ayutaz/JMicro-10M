@@ -1,3 +1,9 @@
+Base専用固定20境界constraint: probe（2026-10-06 JST）。Base未完成・実完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+ownCUDA固定20更新×連続2区切り対1+1の全state/history/LR/有限値/境界NLLに合格、4区切り80更新timing完了。検証160更新/5231748CE教師は科学から除外、GPU33.678573秒/120。元math有限projector controlは不変source/同memoryの旧実証を再利用と明示し、新診断GPUへ足さない。最悪科学予測910.385827秒、旧3診断/ownprobe込み1014.625506秒/2400。内部tentative点がboundedとの証明ではない。予算内のみscience凍結し、同元親/Adam/actualLR.00001/同staged91,641,755CE＋追加memory gradient別会計/同日本語・全80/旧全gate採否へ。
+
+旧毎更新予算超過は不採用のまま、cadence20は別研究として固定。元math保持packet/bound/margin/projector/LR/元staged入力・教師mask/decoderと旧相対・絶対・歴史Webの全品質基準を維持。追加Web gradient/拒否試行を別会計し総教師量matchedと称さない。Phase0–3/数値7/全旧失敗保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用固定20境界constraint: preparation（2026-10-06 JST）。Base未完成・実完成時通知停止、Chat/Dialogue/SFT/量子化なし。
 
 固定20更新の提案区切りごとに元FP32/math TRAIN body NLL<=original*1.01を確認し、旧と同じ有限projector/0.5・.25・.125の修正または全区切りrollbackを行う別研究。内部の未確定更新は上限を超える可能性があり、旧毎更新契約の成功へ置換しない。CPU4tests/2.16秒でnative全state連続対再開・全区切り拒否/途中中断rollback・末尾短区切り/改変拒否、CPU準備0.113392秒。217MB cache/固定32窓を再利用、全量scanなし。新GPU/本学習0。次はownCUDA連続2区切り対1+1/全state、4区切り80更新timingを120秒内で測り、旧3診断70.561106秒と新probe/最悪154区切り/全科学予測が2400秒内の場合のみ本学習へ。
