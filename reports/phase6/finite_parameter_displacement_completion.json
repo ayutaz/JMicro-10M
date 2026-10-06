@@ -1,0 +1,88 @@
+{
+  "status": "finite_displacement_all12_points_complete_reviewed",
+  "created_at": "2026-10-06T10:05:29.741398Z",
+  "config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/finite_parameter_displacement.json",
+    "sha256": "e7ac2cf960cbaee017ec843bc6cd2a1ef950d3e05da45e7f6209cfdcd1a42917"
+  },
+  "result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/finite-parameter-displacement-20261006/result.json",
+    "sha256": "d0b9f105b753c44fa3f2ee4346308157652780f1e2e85aa704cde9f63248b1dc"
+  },
+  "actual_job": {
+    "status": "complete",
+    "pid": 627394,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "16421220",
+    "config_sha256": "e7ac2cf960cbaee017ec843bc6cd2a1ef950d3e05da45e7f6209cfdcd1a42917",
+    "started_at": "2026-10-06T10:03:29.677040Z",
+    "GPU_seconds": 2.1187678850255907,
+    "scientific_teacher_tokens": 0,
+    "optimizer_updates": 0,
+    "restart_command": "scripts/diagnose_finite_parameter_displacement.ps1 -Worker",
+    "stage": "staged",
+    "heartbeat_at": "2026-10-06T10:03:32.693389Z",
+    "completed_batches": 4,
+    "total_batches": 4,
+    "completed_at": "2026-10-06T10:03:32.773911Z"
+  },
+  "actual_process_absent": true,
+  "all12_raw_points_checked": true,
+  "summary": {
+    "body_token_weighted_actual_CE_change": 0.46294196295225226,
+    "body_token_weighted_first_order_CE_change": 0.016857954451843276,
+    "body_token_weighted_nonlinear_residual": 0.44608400850040897,
+    "nonlinear_fraction_range": [
+      0.9458055121206235,
+      0.9891869268641028
+    ],
+    "direction_L2_norm": 4.630427890344855,
+    "markers": {
+      "harm_batches": 4,
+      "nonlinear_half_or_more_batches": 4,
+      "first_order_predicts_increase_batches": 4
+    }
+  },
+  "next_proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/parameter_displacement_anchor_proposal.json",
+    "sha256": "701c805407fbcdbd22072ff91846d5cd82a4c644c6da2bda50313d0f4ba1539b"
+  },
+  "CPU_preparation_seconds": 0.33230250197811984,
+  "CPU_review_seconds": 0.2101078589912504,
+  "CPU_review_ceiling_seconds": 10,
+  "actual_GPU_seconds": 2.1187678850255907,
+  "GPU_ceiling_seconds": 120,
+  "scientific_teacher_tokens": 0,
+  "optimizer_updates": 0,
+  "previous_related_GPU_seconds_preserved": 2341.710162622068,
+  "related_GPU_including_this_assay_seconds": 2343.8289305070934,
+  "original_UI": {
+    "name": "JMicro-10M",
+    "kind": "Base / 文章の続き",
+    "parameters": 10001152,
+    "training_tokens": 10000007168,
+    "update": 305176,
+    "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+    "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+    "device": "NVIDIA GeForce RTX 4090",
+    "precision": "BF16 / math attention",
+    "context": 1024,
+    "busy": false
+  },
+  "original_UI_identity": {
+    "pid": 627463,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "16421867"
+  },
+  "RNG_restored": true,
+  "weights_unchanged": true,
+  "interpretation": "Observed finite loss harm is much larger than its local first-order prediction on all4 batches. This is evidence of nonlinear displacement on this fixed TRAIN input/direction, not global curvature or a proof that data amount/model capacity cannot improve. No new model or quality adoption is produced.",
+  "next_action": "Implement the one matched two-arm parameter-anchor comparison and own measured probe. Freeze scientific config only after own save/resume/throughput/cost gates. No automatic training from this proposal.",
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false
+}

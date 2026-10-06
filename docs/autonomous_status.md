@@ -1,3 +1,13 @@
+有限な重み変化のTRAIN診断を実完了（2026-10-06 JST）。前回midpoint不採用はb4e71dcに保存。Base未完了・未採用、完成時に通知して停止、Chat/Dialogue/SFT/量子化なし。
+
+既保存TRAIN Web32 blocksの元x/ySHAを再利用し、mixed/midpoint/staged同3重みのFP32 mathを測定。CPU3tests/.82秒、実準備0.332303秒/上限30、GPU2.118768秒/上限120。actual627394/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16421220はcomplete・不在。全12点/raw metadataと統計を確認、全119unique paramsの有限勾配、全モデル重み不変/.gradなし/RNG復元。input32768/body32626/EOS71各model、科学教師/optimizer0。巨大corpus再scan/再encode/新選別なし。
+
+Web bodyCE増加は4/4で0.438–0.474 nats/token、一次予測0.0050–0.0257、非線形残差比94.6–98.9%。事前harm>=.02/3以上と非線形>=50%/3以上はいずれも4/4。body-token加重実差0.462941963/一次0.016857954/残差0.446084009。局所一次診断が捉えなかった有限変化を観測したが、一方向/4 TRAIN batchesでHessian・全path凸性・唯一原因・モデル容量限界・品質改善は証明しない。全旧quality/source失敗とPhase0–3/数値7失敗を保持。
+
+全点/会計/source/tests/次proposalをfinite_parameter_displacement_completion/portable.jsonとrawSHA付きarchiveへ保存。元10B UI627463/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16421867をactual/HTTP親410f975d…/10000007168/busy=falseで確認。関連GPU累積2343.828931秒（全project費用ではない）。独立学習seed/full dev/protected test/採用は未達。
+
+次はparameter_displacement_anchor_proposal.jsonの一つのmatched2-arm比較を実装・実probeする。完了mixed fullstateを両arm同親とし、同追加staged100M教師×2、candidateだけunique parameter変位のL2 penaltyを加える仮説。lambda=0.0416106403918を今回の加重残差/固定direction normから一度定義、sweepなし。これは一方向からの等方性仮説で効果保証ではない。以前のparent-output KLと異なるparameter制約・mixed anchorを試し、親変更に対して新matched CE対照を必須にする。元strong staged23+8/CI正/EOS76/反復2・絶対/歴史BPB全guardを保持。実CUDA4vs2+2/steady32/実測1.3+reserve150+50/全probe込み1800秒gate前に科学設定を凍結・起動しない。提案未実装/未起動、教師/GPU0。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 同一親の重み50%平均を実評価・全80採点し、不採用（2026-10-06 JST）。前turnの翻訳source不採用は1b22447に保存したprogress。Baseのみ継続・完成時に通知して停止、Chat/Dialogue/SFT/量子化なし。
 
 既存7モデル/不採用3sourceの92,256bytes summaryをCPU0.00994秒で整理し、同10.5B親/同100M教師のmixed対staged重みを各50%で平均する未実施一条件を凍結。関連CPU3tests/0.75秒、実prepare0.35952秒で10,001,152param/120model keys。FP32平均とtied embeddingを保持、optimizer/scheduler/RNG/sampler/会計を混ぜずmodel-onlyとして保存し、resume可能な学習stateと称さない。新科学教師/optimizer0、係数やendpoint/layer選別の総当たりなし。WiSE-FT/Model soupsは着想の一次資料で、日本語10Mへの効果の証拠に代入しない。

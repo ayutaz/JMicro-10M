@@ -1,0 +1,46 @@
+{
+  "status": "defined_not_implemented_not_launched",
+  "created_at": "2026-10-06T10:05:29.741169Z",
+  "trigger": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/finite-parameter-displacement-20261006/result.json",
+    "sha256": "d0b9f105b753c44fa3f2ee4346308157652780f1e2e85aa704cde9f63248b1dc"
+  },
+  "question": "Can one parameter-displacement penalty retain the completed mixed model Web fit while another matched staged100M teaches completion, compared with exactly the same additional staged CE without the penalty?",
+  "reason": "All four fixed TRAIN batches show actual finite Web loss increases; 94.6–98.9 percent is nonlinear residual relative to the mixed endpoint derivative. Earlier source cosines/one-step Adam did not capture this measured quantity. A direct parameter displacement penalty is therefore a distinct testable hypothesis.",
+  "parent_and_anchor": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/historical-parent-condition-comparison-v3-20261006/historical_parent/training/checkpoint-00323503.pt",
+    "sha256": "6d901bd290cc5b7ab0b52a3a2309232d1e08c7fba32ecb8ec1e5656fe1a2f5a0"
+  },
+  "reference_strong_staged": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323503.pt",
+    "sha256": "fb43f2618c0679ca6c6f7a0c5b9faf1b336be8985271c8513f2e4bbfde3cd7ae"
+  },
+  "arms": [
+    "matched_additional_staged_CE",
+    "matched_additional_staged_CE_parameter_anchor"
+  ],
+  "objective": "ordinary body+EOS CE + (lambda/2)*sum_unique_parameters((theta-theta_anchor)^2)",
+  "lambda_fixed": 0.04161064039180984,
+  "lambda_derivation": "2*body_token_weighted_finite_residual/observed_direction_L2_norm_squared",
+  "lambda_units": "nats per CE teacher token per squared raw parameter unit; sum, not mean over parameters",
+  "hypotheses_and_limits": "Isotropic calibration along one observed direction need not generalize to other directions. No claim of Fisher/Hessian estimation, source conflict as the sole cause, or guaranteed quality. Mixed endpoint is a learned unadopted reference, not an adopted Base or teacher instruction model.",
+  "distinction_from_previous_KL": "Direct unique-parameter penalty anchored at the completed mixed endpoint; previous KL constrained parent output probabilities on a Web reference. New matched CE control is mandatory because the starting checkpoint changes. Existing staged quality guards also remain mandatory.",
+  "training": "Both arms restore the identical mixed full model/Adam/scheduler/RNG/sampler/counters. Same next100M ordinary CE teachers each and frozen75M Web→5M story→10M ordinary→10M conditional source order, same actual LR0.00001/shape; restart the local source comparison sampler identically, record its reset separately from inherited full optimizer state. No learned checkpoint averaging.",
+  "accounting": "New main teachers total200M; raw parameter penalty has zero token teachers/reference input. Previously learned100M mixed reference is reused evidence, not new tokens nor a fresh independent seed. All verification updates and every physical/valid/source/EOS/byte counter remain separate.",
+  "prerequisites": "Implement loss/state/runner/accounting and meaningful CPU tests before running. Measure own CUDA BF16 forward/backward and continuous4vsresumed2+2 including penalty/anchor/sampler. Own stable32 timings, evaluation reserve150s, measured train time*1.3+150+50 and probe costs must fit1800s before scientific config freeze. Stop budget failure; no LR/lambda/batch beyond measured range sweep.",
+  "GPU_total_ceiling_seconds": 1800,
+  "probe_GPU_ceiling_seconds": 120,
+  "CPU_preparation_ceiling_seconds": 30,
+  "evaluation": "Same dev256 common bytes/Japanese192-331-1119/native greedy80/bridge128/retention128. Read every generated continuation with raw SHA and individual reasons; do not rescore controls favorably. Compare paired same IDs against both the new matched CE control and original strong staged control.",
+  "strong_quality_guards": "Original staged coherence23+8/paired CI lower>0/EOS>=76/repetition<=2; same absolute grammar>=56/coherence>=27/appropriate>=27/no role-Unicode-empty; historical WebBPB<=0.9812859519097707 and all previous EOS/nonpunctuation guards. No relaxation.",
+  "completion": "Both actual terminal jobs/all counters/entire Japanese and80 reviews/adoption decision/UI restoration/commit. Failure ends this single comparison, no coefficient/anchor/layer/source/decoder salvage. Only a qualified pilot permits independent learned recipe seed/full dev/protected test/adoption.",
+  "scientific_teacher_tokens_so_far": 0,
+  "optimizer_updates_so_far": 0,
+  "GPU_seconds_so_far": 0,
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false
+}
