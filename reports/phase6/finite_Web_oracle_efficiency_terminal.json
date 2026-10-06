@@ -1,0 +1,228 @@
+{
+  "status": "readonly_oracle_efficiency_terminal",
+  "created_at": "2026-10-06T12:15:06.854441Z",
+  "config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/finite_Web_oracle_efficiency.json",
+    "sha256": "e91907f730324045e5e5663682750fc494eedce06cb35abe7a0116a123747c13"
+  },
+  "original_UI": {
+    "identity": {
+      "pid": 644375,
+      "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+      "start_ticks": "17203535"
+    },
+    "actual_alive_verified": true,
+    "HTTP": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    }
+  },
+  "CPU_preparation_seconds": 0.22917144899838604,
+  "GPU_seconds": 9.28021423498285,
+  "optimizer_updates": 0,
+  "new_source_CE_teacher_tokens": 0,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "actual_job": {
+    "status": "complete",
+    "pid": 644301,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "17202160",
+    "config_sha256": "e91907f730324045e5e5663682750fc494eedce06cb35abe7a0116a123747c13",
+    "started_at": "2026-10-06T12:13:39.175035Z",
+    "GPU_elapsed_seconds": 9.28021423498285,
+    "stage": "fixed_masked_staged_complete",
+    "completed_at": "2026-10-06T12:13:49.412157Z"
+  },
+  "actual_process_absent": true,
+  "result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/finite-Web-oracle-efficiency-20261006/result.json",
+    "sha256": "1e377676650f00375ab7d464627792523ac97e4b1042e3f5a614a26ab7f5ae7d"
+  },
+  "actual_result": {
+    "checkpoints": {
+      "original_fullparent": {
+        "reference_body_NLL": 2.5812628269195557,
+        "candidate_body_NLL": 2.5812628269195557,
+        "NLL_absolute_error": 0.0,
+        "gradient_parity": {
+          "maximum_absolute": 8.530914783477783e-07,
+          "global_relative_L2": 6.3803901568322135e-06,
+          "all_elementwise": true,
+          "passed": true
+        },
+        "checks": {
+          "NLL": true,
+          "gradient": true,
+          "candidate_bitwise_repeat": true,
+          "no_parameter_grads": true,
+          "weights_unchanged": true,
+          "RNG_unchanged": true,
+          "training_state_unchanged": true,
+          "unique_tied_parameters": true,
+          "final_weights_unchanged": true,
+          "final_RNG_unchanged": true,
+          "final_no_parameter_grads": true
+        },
+        "reference_checkpoint": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+          "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+        },
+        "parameter_count": 10001152,
+        "timings": {
+          "math": {
+            "forward_only_seconds": [
+              0.12665017799008638,
+              0.12938208901323378,
+              0.12722719000885263,
+              0.12616211900603957
+            ],
+            "gradient_seconds": [
+              0.30325723602436483,
+              0.30523274600273,
+              0.30643148900708184,
+              0.3001381900103297
+            ]
+          },
+          "efficient": {
+            "forward_only_seconds": [
+              0.06325060399831273,
+              0.06352483999216929,
+              0.06352941298973747,
+              0.06331209899508394
+            ],
+            "gradient_seconds": [
+              0.2767075079900678,
+              0.27962842100532725,
+              0.27749541398952715,
+              0.2767780289868824
+            ]
+          }
+        },
+        "reference_counts": {
+          "forward_only_calls": 4,
+          "gradient_calls": 5,
+          "teacher_observations": 293742,
+          "gradient_teacher_tokens": 163190,
+          "physical_input_tokens": 294912
+        },
+        "candidate_counts": {
+          "forward_only_calls": 4,
+          "gradient_calls": 6,
+          "teacher_observations": 326380,
+          "gradient_teacher_tokens": 195828,
+          "physical_input_tokens": 327680
+        },
+        "peak_allocated_bytes": 4826018816,
+        "peak_reserved_bytes": 4980736000
+      },
+      "fixed_masked_staged": {
+        "reference_body_NLL": 2.881101965904236,
+        "candidate_body_NLL": 2.8811018466949463,
+        "NLL_absolute_error": 1.1920928955078125e-07,
+        "gradient_parity": {
+          "maximum_absolute": 2.0563602447509766e-06,
+          "global_relative_L2": 1.4672964010969208e-06,
+          "all_elementwise": true,
+          "passed": true
+        },
+        "checks": {
+          "NLL": true,
+          "gradient": true,
+          "candidate_bitwise_repeat": true,
+          "no_parameter_grads": true,
+          "weights_unchanged": true,
+          "RNG_unchanged": true,
+          "training_state_unchanged": true,
+          "unique_tied_parameters": true,
+          "final_weights_unchanged": true,
+          "final_RNG_unchanged": true,
+          "final_no_parameter_grads": true
+        },
+        "reference_checkpoint": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/conditional-prefix-mask-20261006/outcome_EOS_only/training/checkpoint-00323503.pt",
+          "sha256": "bce6b3820c3430f511d2508186d0d2ee91b0a96c1b6f2304b75c63e5c8699deb"
+        },
+        "parameter_count": 10001152,
+        "timings": {
+          "math": {
+            "forward_only_seconds": [
+              0.12872026200057007,
+              0.12598686999990605,
+              0.1258545439923182,
+              0.12592013602261432
+            ],
+            "gradient_seconds": [
+              0.30286951700691134,
+              0.3001236419950146,
+              0.3008890470082406,
+              0.30126800801372156
+            ]
+          },
+          "efficient": {
+            "forward_only_seconds": [
+              0.0635836289729923,
+              0.06366468602209352,
+              0.08057154400739819,
+              0.07232264499180019
+            ],
+            "gradient_seconds": [
+              0.27699917400605045,
+              0.28518324400647543,
+              0.27969609599676915,
+              0.27709314599633217
+            ]
+          }
+        },
+        "reference_counts": {
+          "forward_only_calls": 4,
+          "gradient_calls": 5,
+          "teacher_observations": 293742,
+          "gradient_teacher_tokens": 163190,
+          "physical_input_tokens": 294912
+        },
+        "candidate_counts": {
+          "forward_only_calls": 4,
+          "gradient_calls": 6,
+          "teacher_observations": 326380,
+          "gradient_teacher_tokens": 195828,
+          "physical_input_tokens": 327680
+        },
+        "peak_allocated_bytes": 4866547712,
+        "peak_reserved_bytes": 5066719232
+      }
+    },
+    "optimizer_updates": 0,
+    "new_source_CE_teacher_tokens": 0,
+    "status": "readonly_oracle_efficiency_complete",
+    "passed": true,
+    "config_sha256": "e91907f730324045e5e5663682750fc494eedce06cb35abe7a0116a123747c13",
+    "GPU_seconds": 9.28021423498285,
+    "maximum_fast_forward_seconds": 0.08057154400739819,
+    "maximum_fast_gradient_seconds": 0.28518324400647543,
+    "illustrative_optimized_science_estimate_seconds": 3887.0250965992686,
+    "estimate_scope": "Single implementation estimate from retained source timing; excludes future exact-math acceptance audits/new transactional CUDA gate. Not a scientific launch authorization.",
+    "Base_complete": false,
+    "Base_adopted": false,
+    "Chat_started": false,
+    "quantization_started": false,
+    "protected_test_used": false
+  },
+  "scientific_config_created": false,
+  "science_launch_authorized_by_result": false,
+  "completion_scope": "Implementation diagnostic, not Base quality/adoption."
+}

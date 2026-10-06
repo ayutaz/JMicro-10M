@@ -1,3 +1,9 @@
+Base専用oracle高速化: terminal（2026-10-06 JST）。Base未完成・実完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+FP32 efficient Attentionのreadonly実GPU診断を完了、actual644301終端/実不在。GPU9.280214秒/60、optimizer/新source学習0。両固定点のNLL/勾配/bitwise反復/weights・RNG・grad不変に合格: {"original_fullparent": {"NLL_absolute_error": 0.0, "gradient_global_relative_L2": 6.3803901568322135e-06}, "fixed_masked_staged": {"NLL_absolute_error": 1.1920928955078125e-07, "gradient_global_relative_L2": 1.4672964010969208e-06}}。max forward0.080572/gradient0.285183秒。source timing再利用の計画上科学予測3887.025097秒は元mathの厳密受入監査・新全stateCUDA gate費用を含まず、40分超過が続くため科学config/起動なし。将来全重みparity/held-out品質の証明ではない。次は同FP32/micro8/効率Attentionへtorch.compile fullgraph/defaultを一つだけ適用するreadonly比較を実装し、同2点/NLL2e-6・勾配element/L2/bitwise/RNG/weights不変と4forward+4gradientを120GPU秒以内で測る。初回コンパイル時間も計数、未達ならbackend/dtype/packet等救済なし。owntransactional CUDA gate・元math厳密受入監査と全累積GPU2400秒予測を満たすまで本科学は始めない。
+
+[PyTorch一次資料](https://pytorch.org/blog/accelerating-large-language-models/)がFP32のmemory efficient Attentionを説明するが、当10M/4090の速度や精度はこの実測で判定。旧math科学上限拒否/数値7/全不採用/Phase0–3と旧全品質基準を保持。合格recipeのみ独立学習seed/full dev/protected test/採用。元10B UI復帰、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用oracle高速化: preparation（2026-10-06 JST）。Base未完成・実完成時通知停止、Chat/Dialogue/SFT/量子化なし。
 
 固定TRAIN32 Web窓・同FP32/autocastなし/TF32なし/micro8/全body教師と分母を保ち、Attention backendのみMATH対EFFICIENT_ATTENTIONを比較するreadonly60GPU秒診断。元10.5B親と固定旧masked-staged終端の2点。事前NLL絶対2e-6、各gradient絶対2e-6+相対2e-5/global L2相対2e-5、candidate反復bitwise/weights・RNG・grad不変を要し、4forward+4gradient実timingを両方式/両点で測る。CPU準備0.229171秒、新GPU/optimizer0。実装最適化は旧40分予算超過を受けた一案で、packet/dtype/制約/品質救済sweepなし。次はこのownGPU診断を実行、失敗なら同backendの無制限再試行なし。

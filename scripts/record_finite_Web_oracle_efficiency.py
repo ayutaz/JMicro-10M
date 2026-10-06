@@ -32,7 +32,9 @@ def main(phase):
             if r['GPU_seconds']!=job['GPU_elapsed_seconds'] or not r['passed']:raise ValueError('Completed actual result required')
             report.update(result=old.reference(study.RUN/'result.json'),actual_result=r)
             points={key:dict(NLL_absolute_error=p['NLL_absolute_error'],gradient_global_relative_L2=p['gradient_parity']['global_relative_L2']) for key,p in r['checkpoints'].items()}
-            detail=f"FP32 efficient Attentionのreadonly実GPU診断を完了、actual{job['pid']}終端/実不在。GPU{r['GPU_seconds']:.6f}秒/60、optimizer/新source学習0。両固定点のNLL/勾配/bitwise反復/weights・RNG・grad不変に合格: {json.dumps(points)}。max forward{r['maximum_fast_forward_seconds']:.6f}/gradient{r['maximum_fast_gradient_seconds']:.6f}秒。source timing再利用の計画上科学予測{r['illustrative_optimized_science_estimate_seconds']:.6f}秒は元mathの厳密受入監査・新全stateCUDA gate費用を含まず、科学起動許可/将来全重みparity/held-out品質ではない。次はこの実速度を使い、元math実損失の受入確認を維持する最適化trainer/owned CUDA gateの有限計画を定義する。"
+            detail=f"FP32 efficient Attentionのreadonly実GPU診断を完了、actual{job['pid']}終端/実不在。GPU{r['GPU_seconds']:.6f}秒/60、optimizer/新source学習0。両固定点のNLL/勾配/bitwise反復/weights・RNG・grad不変に合格: {json.dumps(points)}。max forward{r['maximum_fast_forward_seconds']:.6f}/gradient{r['maximum_fast_gradient_seconds']:.6f}秒。source timing再利用の計画上科学予測{r['illustrative_optimized_science_estimate_seconds']:.6f}秒は元mathの厳密受入監査・新全stateCUDA gate費用を含まず、40分超過が続くため科学config/起動なし。将来全重みparity/held-out品質の証明ではない。次は同FP32/micro8/効率Attentionへtorch.compile fullgraph/defaultを一つだけ適用するreadonly比較を実装し、同2点/NLL2e-6・勾配element/L2/bitwise/RNG/weights不変と4forward+4gradientを120GPU秒以内で測る。初回コンパイル時間も計数、未達ならbackend/dtype/packet等救済なし。owntransactional CUDA gate・元math厳密受入監査と全累積GPU2400秒予測を満たすまで本科学は始めない。"
+            report['scientific_config_created']=False
+            report['science_launch_authorized_by_result']=False
         else:
             partial=read_json(study.RUN/'progress-result.json') if (study.RUN/'progress-result.json').exists() else {}
             report.update(partial_result=partial,diagnostic_failed=True)
