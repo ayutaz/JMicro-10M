@@ -1,3 +1,21 @@
+混在順序×固定outcome/EOS教師のownCUDA準備完了・science設定凍結（2026-10-06 JST）。前shared-prefix診断は3024a2a。Baseのみ完成時に通知して停止、Chat/Dialogue/SFT/量子化なし。
+
+actual634770/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16735578はcomplete・不在。元10.5B fullparent d18e3e…のmodel/Adam/scheduler/RNG/actual Web cursor/親sampler lineage/実LR.00001を初期一致確認。mixed8対4+4で全4source/実conditional maskを含む全state/history/finite/source digest/会計の一致に成功。own32steady step0.050137秒、検証48更新/1433919教師/1572864inputを科学と別に記録。probeGPU17.989334秒/上限120。
+
+CPU3tests/1.59秒・実CPU準備28.609346秒/上限60、元mixed3068全reference global digestと両順序source別input/元教師/同mask教師/focus/EOS/全cursors/hashが一致。217MB compact cache再利用、full source index scan/dedupなし。新whole recipeは実hard教師91641755/reference100M/physical100532224/3068更新、源内の系列は同じでglobal順序を変える一条件。旧3条件の学習/評価を再利用し新教師に加えない。CPU歴史global countersはsynthetic protocol fixtureで10.5B実CPU学習と称さない。
+
+configs/phase6/interleaved_outcome_order.json SHA4f91703748a2f3f83b40ef0e291266537cc494dac0b65359c3b8eec1d86c22e9を実測から凍結。train見積157.899330秒に1.3×/save/評価reserve150/余裕50を含みscience405.269129秒、probe込み900秒以内。新科学教師/optimizer0、未開始。raw gates/timings/source会計/元teacher予算差/tests/codeはinterleaved_outcome_preparation/portable.json/archiveへ保存。旧Phase0–3/数値7失敗/全不採用/品質条件を保持。
+
+次はscripts/run_interleaved_outcome_order.ps1 -Mode Trainで永続起動→実91641755教師→共通256bytes/Japanese192-331-1119/80個別/bridge-ret128→既3条件と四条件review/元strong23+8/CI正/EOS76/反復2・absolute/歴史WebBPB全guard→元UI/可搬証拠/commit。既mask-staged35/EOS79/反復1の差も明記して旧採点を変更しない。失敗は一条件で終了しratio/mask/weight/source/CP/LR/decoder sweepで救済しない。qualified recipe後だけ独立学習seed/full dev/protected test/adoption、Base未完了。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
+混在順序×固定outcome/EOS教師の未測定条件を実装・CPU準備完了（2026-10-06 JST）。前shared-prefix診断は3024a2a。Baseのみ完成時に通知して停止、Chat/Dialogue/SFT/量子化なし。
+
+元10.5B fullstate/実LR.00001を継ぎ、元mixed reference教師進度のmin比率で選ぶsamplerを保持、conditionalだけ既outcome+EOSを教師にする実装。source比率75/5/10/10・本文・source相対順序・mask位置不変。CPU3tests/1.59秒で元mixed reference digest/両順序source別input/reference target/masked target/focusSHA・EOS・全cursors一致、実CPU重み/Adam/scheduler/RNG初期保持・4対2+2全state/history・予算を確認。歴史global counterはsynthetic protocol fixtureで10.5B実CPU学習の証拠とはしない。PS構文成功。
+
+実CPU準備28.609346秒/上限60。3068更新の元mixed全input/reference targets/global digestを旧metricsと確認し、既staged全窓とのsource別input/教師/EOS/focus/終端cursor/hashが一致。217MB compact cache再利用・full source index scan/dedupなし。元reference100Mに対し実hard教師91641755、conditional1641755/他90000000、同source masked教師量のwhole recipe比較でglobal順序は異なる。configs/phase6/interleaved_outcome_order_probe.jsonを凍結。科学/実GPUはまだ0、元UI634033を直前ps確認。
+
+次はscripts/run_interleaved_outcome_order.ps1 -Mode Probeでown実CUDA mixed8対4+4/全source実mask保存再開・有限値・32steady timing→実測1.3×+save+評価reserve150+50/all probe失敗込み900秒に収まる場合のみscience凍結→実91.641755M新教師/共通256bytes・全日本語192-331-1119・80個別/bridge-ret128/4条件比較→採否/元UI/可搬証拠/commit。旧3条件再学習/旧GPU再評価なし、元strong/absolute/歴史WebBPB全guardと旧mask35/EOS79/反復1の差を保持。失敗は一条件で終了しratio/mask/source/CP/LR/decoder sweepで救済しない。Base採用/独立学習seed/full dev/protected testは未達、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 固定shared-prefix Web loss診断を実完了、学習順序×教師対象の未測定一条件を定義（2026-10-06 JST）。前mask全学習/80不採用は4a9d124。Baseのみ品質・独立学習seed/full dev/protected test/採用まで継続し実完成時に通知/停止、Chat/Dialogue/SFT/量子化なし。
 
 actual633971/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16678125はcomplete・不在。固定CP323185一つだけに全256 full body122343/common472055byteのnativeBF16/mathを新評価、教師・optimizer0、GPU2.093511秒/上限30。weights不変/no gradients/eval/finite/RNG復元の全5checks成功。関連CPU3tests/0.10秒、実準備0.159927秒/上限10、既3model評価再利用・旧GPU再実行0。
