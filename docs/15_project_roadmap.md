@@ -1,3 +1,7 @@
+Base専用readout probe実データschema修復（2026-10-06 JST）。
+
+v2 actual653385は固定memoryのキーinputs誤読でKeyError、GPU0.232884027秒・学習0、元source/config/job/ログを保存し元UI復帰。実packetのx/y int64[32,1024]へ合わせ、GPU前に同実packetを読む事前検証を追加。GPU可視性と実packet schema/不正形式拒否のCPU2tests/2.89秒合格。v3は同科学recipe、旧二失敗0.332715188秒を900秒総上限へ算入。次は同own CUDA identity/cache/fullstate再開/32timingへ。Base未完成・完成時通知停止、Chat/量子化なし。
+
 Base専用frozen nonlinear readout: probe_failure_v2（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
 
 出力変換probe actual653385実終端/不在、GPU0.232884秒、理由KeyError('inputs')。原source/partial/失敗を保持し、基準や幅等を変えて救済せず実原因に対する限定修復または別機構を定義する。

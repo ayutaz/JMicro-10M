@@ -28,9 +28,10 @@ from probe_gated_shared_comparison import compare,estimate_training
 import run_parameter_displacement_anchor_v3 as native
 
 PROPOSAL=ROOT/'reports/phase6/readout_adapter_proposal.json'
-RUN=ROOT/'reports/phase6/readout-adapter-comparison-v2-20261006'
-CONFIG=ROOT/'configs/phase6/readout_adapter_probe_v2.json'
+RUN=ROOT/'reports/phase6/readout-adapter-comparison-v3-20261006'
+CONFIG=ROOT/'configs/phase6/readout_adapter_probe_v3.json'
 FAILED_RUN=ROOT/'reports/phase6/readout-adapter-comparison-20261006/probe'
+SCHEMA_FAILED_RUN=ROOT/'reports/phase6/readout-adapter-comparison-v2-20261006/probe'
 SOURCES=('scripts/readout_adapter_model.py','scripts/readout_adapter_trainer.py','scripts/define_readout_adapter_comparison.py',
     'scripts/probe_readout_adapter.py','scripts/probe_readout_adapter.ps1','tests/test_readout_adapter.py',
     'tests/test_readout_probe_import.py')
@@ -50,15 +51,20 @@ def prepare():
     failure=read_json(FAILED_RUN/'job.json')
     if alive(failure) or failure['status']!='failed_or_interrupted' or failure['error']!="RuntimeError('No CUDA GPUs are available')":
         raise ValueError('Preserved actual import-side-effect failure required')
+    schema_failure=read_json(SCHEMA_FAILED_RUN/'job.json')
+    if alive(schema_failure) or schema_failure['status']!='failed_or_interrupted' or schema_failure['error']!="KeyError('inputs')":
+        raise ValueError('Preserved actual memory-schema failure required')
     refs=dict(p['references'],proposal=reference(PROPOSAL),memory=reference(ROOT/'reports/phase6/finite-Web-constraint-20261006/memory.pt'),
-        original_failure=reference(FAILED_RUN/'job.json'),import_regression_tests=reference(ROOT/'reports/phase6/readout_probe_import_tests.xml'))
+        original_failure=reference(FAILED_RUN/'job.json'),schema_failure=reference(SCHEMA_FAILED_RUN/'job.json'),
+        import_regression_tests=reference(ROOT/'reports/phase6/readout_probe_import_v3_tests.xml'))
+    memory_inputs(torch.load(refs['memory']['path'],map_location='cpu',weights_only=False))
     c=dict(kind=KIND,phase='architecture_probe',policy=POLICY,parent=old['parent'],readout_LR=READOUT_LR,
         source=old,references=refs,implementation=implementation_hashes(),source_sha256={s:sha256(ROOT/s) for s in SOURCES},
         old_source_sha256={**old['old_source_sha256'],**old['source_sha256'],
             'scripts/probe_gated_shared_comparison.py':sha256(ROOT/'scripts/probe_gated_shared_comparison.py')},
         unique_parameters=10099456,new_parameters=98304,logical_layers=13,GPU_budget_seconds=120,total_new_GPU_ceiling_seconds=900,
-        previous_failed_GPU_seconds=failure['GPU_elapsed_seconds'],
-        repair='Replace CPU preparation-module import with its unchanged proposal path; no recipe change. Preserve original config/source/failure.',
+        previous_failed_GPU_seconds=failure['GPU_elapsed_seconds']+schema_failure['GPU_elapsed_seconds'],
+        repair='CPU preparation import removed; use actual saved x/y memory schema, validate before GPU. No recipe change; preserve both original failures.',
         numerical_tolerances=dict(identity_FP32_absolute=2e-6,identity_FP32_relative=2e-6,identity_BF16_absolute=0.,identity_BF16_relative=0.,
             nonzero_cache_FP32_absolute=2e-5,nonzero_cache_FP32_relative=2e-4),
         CPU_preparation_seconds=time.monotonic()-start,Base_complete=False,Base_adopted=False,Chat_started=False,quantization_started=False,protected_test_used=False)
@@ -71,7 +77,7 @@ def inspect():
     if (c['kind']!=KIND or c['phase']!='architecture_probe' or c['policy']!=POLICY or c['readout_LR']!=READOUT_LR
             or c['unique_parameters']!=10099456 or c['new_parameters']!=98304 or c['logical_layers']!=13
             or c['GPU_budget_seconds']!=120 or c['total_new_GPU_ceiling_seconds']!=900 or c['implementation']!=implementation_hashes()
-            or c['previous_failed_GPU_seconds']!=read_json(FAILED_RUN/'job.json')['GPU_elapsed_seconds']
+            or c['previous_failed_GPU_seconds']!=sum(read_json(q/'job.json')['GPU_elapsed_seconds'] for q in (FAILED_RUN,SCHEMA_FAILED_RUN))
             or any(c[k] for k in ('Base_complete','Base_adopted','Chat_started','quantization_started','protected_test_used'))):
         raise ValueError('Frozen readout probe scope differs')
     for name,digest in {**c['old_source_sha256'],**c['source_sha256']}.items():
@@ -86,9 +92,16 @@ def native_unchanged(model,parent):
         for k,p in model.named_parameters() if k not in ('lm_head.down','lm_head.up'))
 
 
+def memory_inputs(memory):
+    if (not isinstance(memory,dict) or set(memory)!={'x','y'}
+            or any(not isinstance(memory[k],torch.Tensor) or memory[k].shape!=(32,1024) or memory[k].dtype!=torch.int64 for k in ('x','y'))):
+        raise ValueError('Accepted fixed TRAIN packet must have original x/y int64 [32,1024] schema')
+    return memory['x'][:1]
+
+
 def architecture(parent,memory,c,check):
     original=JMicroModel(parent['model_config']).to('cuda').eval();original.load_state_dict(parent['model'])
-    before=rng_state();model=ReadoutAdapterModel.from_native(original);x=memory['inputs'][:1].to('cuda');checks={};tol=c['numerical_tolerances']
+    before=rng_state();model=ReadoutAdapterModel.from_native(original);x=memory_inputs(memory).to('cuda');checks={};tol=c['numerical_tolerances']
     for dtype in (torch.float32,torch.bfloat16):
         for n in (32,1024):
             check();label='FP32' if dtype==torch.float32 else 'BF16'
@@ -153,6 +166,7 @@ def run():
             target=folder/'source'/relative;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(ROOT/relative,target)
         parent=torch.load(c['parent']['path'],map_location='cpu',weights_only=False);old=c['source']
         memory=torch.load(c['references']['memory']['path'],map_location='cpu',weights_only=False)
+        memory_inputs(memory)
         pool=TrainView(old['pool']['pool'],old['pool']['manifest_sha256']);pool.index=CachedThreeSourceIndex(pool)
         if not pool.index.cache_reused:raise ValueError('Accepted217MB index cache must be reused')
         original=TrainView(old['original_web']['path'],old['original_web']['manifest_sha256'])
