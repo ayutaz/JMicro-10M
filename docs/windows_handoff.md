@@ -1,3 +1,8 @@
+Base科学ジョブ継続・意味評価版の補足（2026-10-07 JST）。
+
+actual676378/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18891158は実ps生存確認、contrast-trainingで同100Mへ進行。今回のsemantics cacheはv2_1/SHA53e28d…/96distinct pairs、旧teacher v2/SHA07ce079…/64content pairsと異なる。旧teacher/native pointを今回との差の対照にしない。元scientific code/config/acceptance/旧rawは不変。
+
+contrastの全semantics cacheが完了したら、WSL native pinned uv run --frozen --extra hub --extra data --extra ml --extra export scripts/review_natural_context_semantic_clusters.py --arm contrastでcached補足を保存。同科学actual process終了後のみ同scriptを引数なしで実行してCE対contrastのpaired content-cluster CIを保存（再推論/学習0）。これは日本語の補足で、全160内容とreview_natural_context_contrast.pyによる元全gateを省略しない。Base未完成、完成時通知停止、Chat/Dialogue/SFT/量子化なし、local verified commit/pushなし。以下は過去の履歴。
 Base限定・CEの100M/評価/全80内容完了、contrast学習継続（2026-10-07 JST）。
 
 actual676378/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18891158を実ps確認、stage contrast-training。CE checkpoint-00017698.pt（SHAf691a758…）と全評価・個別notesは完了、BPB0.998487/EOS19/反復45/一貫性2/適切2で元Base基準不合格。可搬reports/phase6/natural-context-contrast-CE-evidence-20261007/13text/2664967byteとmaster natural_context_contrast_CE_completion.jsonを保存。全科学は未終端なので新GPUjob/再開/最終reviewer実行をしない。code/config不変、既存5229秒以内でcontrastを続ける。

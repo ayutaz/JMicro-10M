@@ -1,3 +1,8 @@
+Base専用・同job継続と意味評価のsuite版確認（2026-10-07 JST）。
+
+[固定DEV/元cacheの内容一致証拠](../reports/phase6/natural_context_contrast_semantic_review_preparation.json): 今回のv2_1はDEV192/96distinct content pair、旧teacher v2は64content pairで、同IDでもcontext88/choices40が異なる。旧と新の点数差を学習効果へ混同しない。元CE62.500%/CI[57.8125%,67.7083%]保持、補足はGPU/教師0、関連3CPUchecks成功。新版の完全重複なしをBase品質達成にしない。
+
+同contrast100M/元全160採否へ継続。日本語のpaired CIは同じ新版・同入力に対して出し、元Base採否基準は変えない。合格candidateだけ独立seed/full DEV/protected final TEST/adoption、Base完成時通知停止、Chat/SFT/量子化なし。以下は過去の履歴。
 Base限定・同100M CE対照の評価/内容完了、contrast継続（2026-10-07 JST）。
 
 [従来CEの実終端・全80内容](../reports/phase6/natural_context_contrast_CE_completion.json): 正確100M教師/17698更新、BPB0.998487、意味62.500%/JBLiMP77.341%/JCQA35.031%、文法44/関連25/一貫性2/適切完結2/EOS19/反復45（各80）、Unicode・role・empty0。元絶対Base基準と歴史Web1% BPB guard未達でCE採用なし。全80非blind Codex notesとraw評価を保存、独立人間/最終Base品質証明とはしない。

@@ -1,3 +1,10 @@
+Base比較継続・日本語意味評価の版とconfidence unitを実確認（2026-10-07 JST）。
+
+[実suite/cache確認と補足](../reports/phase6/natural_context_contrast_semantic_review_preparation.json)。今回の凍結日本語評価はv2_1/SHA53e28d…、DEV192/96familyはexact contentも96組で、別IDの完全重複はない。CEの保存済みcontext/choices/label/category/全192IDがこの元DEVと一致し、元point62.500%/family CI[57.8125%,67.7083%]を保持。旧公開teacher診断はv2/SHA07ce079…で192ID/96familyだが実content64組。両版のcase IDは同じでもcontext88/choices40が異なり、旧teacher/nativeの点数と今回の点数差を学習改善とみなさない。旧alias補正/教師転移branch終了・全raw証拠は維持する。
+
+新supplementは最初に旧64組を今回へ誤って期待して拒否した。実source/cacheと旧teacherをCPUで比較して原因を特定し、固定suite SHA・元全192入力の一致を要求する形へ修正。元data/科学code/config/品質基準は変更していない。3CPUtests/0.97秒（aliasはclusterのみ束ね元case重みを保持、pairedの文脈/choice/gold変更や未終端/cache binding/TEST混入を拒否）、CE cached補足成功。大容量source再scan/再推論/GPU/教師0。DEVだけをJSON decodeし、元point/nominal CIも残す。新版で補正が不要という確認を品質合格にしない。constructed templateの相関と反復DEVの限界は残る。
+
+同scientific actual676378を実ps確認、contrast-training/CP保存・有限loss/教師増加を継続。次は同contrast100M/固定評価/全80個別内容、同supplementと実終了後のpaired CI→全160/同CE会計/元strong・absolute・historical Web gates。資格のある固定candidateだけ独立学習seed/full DEV/protected final TEST/adoption。Base未完成、完成時通知停止、Chat/Dialogue/SFT/量子化なし、WSL uv/local commit/pushなし、元失敗/Phase0–3保持。以下は過去の履歴。
 Base限定・従来CE100M/全日本語/全80内容を完了、contrast本学習継続（2026-10-07 JST）。
 
 [CE終端と全80個別レビュー証拠](../reports/phase6/natural_context_contrast_CE_completion.json)。従来CEは17,698更新/科学教師100,000,000を正確に終了、Web75M/textbook20M/story5M、元EOS657450/148625/38222、終端checkpoint f691a7587c03c51293a2e77889307da0efa18d2349c13e4f77439fd339586967。固定DEV256/472055byte/122343tokenのBPB0.998487、意味62.500%/JBLiMP77.341%/JCQA35.031%、EOS19/80・反復45/80・Unicode/role/empty0。全80を個別に読みraw SHA付きnotes/元TSV理由へ保存、文法2=44/関連2=25/一貫性2=2/適切完結2。非blind Codex診断で独立人間ではない。局所文法が読めても同語・接続節の循環、数や時間/否定条件の喪失、説明のない視点転換が強い。自然な完結はbase-001と086であり、抽象的な短さだけを失敗にせず、数・固有名詞の誤りを自動的な文法0にもしていない。
