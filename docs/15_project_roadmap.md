@@ -1,3 +1,9 @@
+Base同source一般化diagnostic: launch（2026-10-07 JST）。
+
+実diagnostic actual663168/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18271519稼働、stageoriginal_d18-DEV16-greedy/GPU11.653秒。各尤度batchと生成caseを永続保存、上限120秒、更新0。元UIはfinally復帰。重複起動なし・終端oneshotは同一再試行せず保存。次は全64個別内容・readonly/原SHA/flagを確認して診断終了。
+
+Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。元全品質基準/失敗/Phase0–3保持、WSL uv/local commitのみ/pushなし。以下は過去の履歴。
+
 Base同source一般化diagnostic: prepared（2026-10-07 JST）。
 
 既存archiveからDEV374のみ本文をdecode、TRAIN6617/TEST376はheaderだけ。元同paragraph/token長/localDEV同文重複除去でeligible278→固定seed20261007の64、選別結果でrerollなし。CPU0.865123秒/30、TRAIN56対DEV64/先頭16各4モデルの同CE-mask/本文byte BPB/greedy64。local article-family overlap0、DEV同文overlap curated56=0/旧news5050=2、oldWebglobal overlap未保証。CPU3tests/1.39秒でDEV固定draw・TRAIN/TEST不正byte未decode、quarter prefix UTF8境界だけ進行、単一shift/promptPAD除外・EOS CEとbody BPB分母を確認。四つの固定原親/共通6M/CE/DPO終端・設定/source/checkpointを凍結、GPU上限120秒/追加学習0。次は永続readonly→全64個別内容→小教材記憶と同source転移の事前定義flag、診断だけでBase完成としない。
