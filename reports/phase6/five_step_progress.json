@@ -511,7 +511,7 @@
   "independent_human_blind": "not performed",
   "phase0to3_preserved": true,
   "no_automatic_push": true,
-  "status": "fixed_rank4_Base_preparation",
+  "status": "fixed_rank4_Base_probe",
   "last_updated_at": "2026-10-06T08:36:43.112663Z",
   "current_user_scope": "Base only; notify and stop after actual Base completion; Chat and quantization deferred by user2026-10-06",
   "current_stop_boundary": "reports/phase6/base_only_stop_boundary.json",
@@ -524,7 +524,7 @@
   "condition_positive_active_job": "reports/phase6/condition_positive_active_job.json",
   "condition_positive_scientific_config": "configs/phase6/condition_positive_comparison.json",
   "condition_positive_comparison_completion": "reports/phase6/condition_positive_comparison_completion.json",
-  "next_action": "CPU4tests/1.65秒でzero-B初期native出力一致、私有初期化RNG、実勾配/frozen W0、数学的merge/native tied keys/params、両fresh-Adam連続4対2+2全state一致・改変拒否を確認。最初のwrapper階層とfixture key参照の3失敗は修正し、成功結果を保存した。実CPU準備0.122730秒/上限30。完了済み3068 input/target/source ledgerと217MB compact cacheを再利用し、全corpus照合/再変換なし。newGPU/学習0。次はownCUDA両armの連続8対4+4/全state・有限値/32timing/nativeFP32mergeを240秒以内に実測し、検証＋両学習/評価予測が1800秒以内の場合のみ本比較を凍結する。",
+  "next_action": "両armの実CUDA/BF16/Flash/compile連続8対4+4 fullstate/history/有限値/no-reheatと初期native/RNG/freshAdam/cursor/count全checks成功。各32timing後の実FP32/math merged native control（atol.0002/rtol.00002・固定4×1024 TRAIN）成功、元数値7失敗は維持。検証96更新/2867838教師は本科学から除外、実GPU58.928433秒/240。実測両3068更新/保存と評価余裕を含む予測1144.749499秒、合計予測1203.677932/1800。実終端/ps不在と元10B UIを確認。本科学/品質はまだ未実施。次は実測予算でconfig凍結→同actual91,641,755各の本比較/全日本語/全160→旧全gate採否。",
   "web_KL_launch": "reports/phase6/web_kl_comparison_launch.json",
   "web_KL_completion": "reports/phase6/web_kl_comparison_completion.json",
   "web_KL_followup": "reports/phase6/web_kl_followup_diagnostic_proposal.json",
@@ -583,7 +583,7 @@
     "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/anchored_context_outcome_proposal.json",
     "sha256": "e412bd11e40f60f2f2b14500dfe9b54c24e035630d979d69d9819b6aa66882ed"
   },
-  "updated_at": "2026-10-06T11:34:34.817552Z",
+  "updated_at": "2026-10-06T11:36:40.805457Z",
   "anchored_context_outcome_preparation": {
     "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/anchored_context_outcome_preparation.json",
     "sha256": "171149fccc729ce25f6d4d47b0deec29d4a38a8a4c22071dd0cbcb838cc8d825"
@@ -731,5 +731,9 @@
   "low_rank_base_preparation": {
     "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/low_rank_base_v2_preparation.json",
     "sha256": "94902f3a266bfa2450031387d961364f45cf9f3b959760ffd13cd9c9f86fdafd"
+  },
+  "low_rank_base_probe": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/low_rank_base_v2_probe.json",
+    "sha256": "3b45bc5243a28a7fdca0e2eb8b297e1d64d80ee6d9e06646c676b4e9d8bf23f7"
   }
 }

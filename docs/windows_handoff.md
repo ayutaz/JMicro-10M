@@ -1,3 +1,11 @@
+固定rank4 LoRAのBase比較: probe（2026-10-06 JST）。Baseのみ継続・実完成時に通知して停止、Chat/Dialogue/SFT/量子化なし。
+
+文書間packing依存markerは不支持、sequence unlikelihoodは既2比較不採用で再実行しない。今回は元W0を固定してrank4/scale1/dropout0の全attention/MLP7projection×13層だけを学習し、full更新と比較する。一方だけAdamをリセットする交絡を避け、両方fresh AdamW/同hyperparams/元scheduler clockとpermanent floor/actualLR.00001を使う。旧親Adamはprovenanceとして保持し継承したと偽らない。元native10,001,152、rank4の学習232,960/一時10,234,112、統合後10,001,152でnative評価する。凍結backboneでもactive adapterのWeb性能維持は保証されず、soft L2/KL/平均重みと同じ仮説へ代入しない。[一次論文](https://arxiv.org/abs/2106.09685)は当10Mの成功証拠ではない。
+
+両armの実CUDA/BF16/Flash/compile連続8対4+4 fullstate/history/有限値/no-reheatと初期native/RNG/freshAdam/cursor/count全checks成功。各32timing後の実FP32/math merged native control（atol.0002/rtol.00002・固定4×1024 TRAIN）成功、元数値7失敗は維持。検証96更新/2867838教師は本科学から除外、実GPU58.928433秒/240。実測両3068更新/保存と評価余裕を含む予測1144.749499秒、合計予測1203.677932/1800。実終端/ps不在と元10B UIを確認。本科学/品質はまだ未実施。次は実測予算でconfig凍結→同actual91,641,755各の本比較/全日本語/全160→旧全gate採否。
+
+同元10.5B親/元Webcursor/seed42/入力/条件outcome+EOSmask/75-5-10-10 reference quota/decoderを維持、両actual91,641,755教師、100M referenceと区別する。旧inherited-Adam mixed/full staged/masked stagedは歴史参照として保存し新matched controlと称さない。strong23+8 coherence/pairedCI>0・EOS>=76/反復<=2、絶対grammar56/coh27/適切27/EOS37/反復<=18/errors0、歴史WebBPB<=.9812859519097707の旧全gateを維持。不合格でrank/module/scale/LR/source/mask/CP/decoder sweepなし。合格recipeだけ独立学習seed/full dev/protected test/採用へ進む。Base/最終採用未達、Phase0–3/旧数値7/全失敗保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 固定rank4 LoRAのBase比較: preparation（2026-10-06 JST）。Baseのみ継続・実完成時に通知して停止、Chat/Dialogue/SFT/量子化なし。
 
 文書間packing依存markerは不支持、sequence unlikelihoodは既2比較不採用で再実行しない。今回は元W0を固定してrank4/scale1/dropout0の全attention/MLP7projection×13層だけを学習し、full更新と比較する。一方だけAdamをリセットする交絡を避け、両方fresh AdamW/同hyperparams/元scheduler clockとpermanent floor/actualLR.00001を使う。旧親Adamはprovenanceとして保持し継承したと偽らない。元native10,001,152、rank4の学習232,960/一時10,234,112、統合後10,001,152でnative評価する。凍結backboneでもactive adapterのWeb性能維持は保証されず、soft L2/KL/平均重みと同じ仮説へ代入しない。[一次論文](https://arxiv.org/abs/2106.09685)は当10Mの成功証拠ではない。
