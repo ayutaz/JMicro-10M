@@ -1,0 +1,70 @@
+{
+  "kind": "matched_fresh_Adam_rank4_frozen_backbone_Base_v1",
+  "created_at": "2026-10-06T11:33:17.669934Z",
+  "trigger": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/document_context_ablation_completion.json",
+    "sha256": "152c3c69efdb44aa9a868554c915aa08f8b9743eb54d4cf0235ac5c14e2689f9"
+  },
+  "hypothesis": "Restrict the learned update subspace rather than adding an L2 penalty or altering data/loss/order. Frozen W0 does not guarantee preserved active-model Web quality.",
+  "primary_sources": [
+    "https://arxiv.org/abs/2106.09685",
+    "https://github.com/microsoft/LoRA/blob/main/README.md"
+  ],
+  "distinct_from_failed_branches": [
+    "full-model L2 displacement anchor",
+    "full-model weight averaging",
+    "Web logit KL",
+    "packing isolation",
+    "sequence unlikelihood"
+  ],
+  "fixed_rank": 4,
+  "scale": 1,
+  "dropout": 0,
+  "target_modules": [
+    "q_proj",
+    "k_proj",
+    "v_proj",
+    "o_proj",
+    "gate_proj",
+    "up_proj",
+    "down_proj"
+  ],
+  "same_initial_native_weights": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+    "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+  },
+  "native_parameters": 10001152,
+  "rank4_trainable_parameters": 232960,
+  "temporary_rank4_training_parameters": 10234112,
+  "merged_inference_parameters": 10001152,
+  "arms": [
+    "full_fresh_Adam",
+    "rank4_frozen_backbone"
+  ],
+  "optimizer_policy": "Fresh AdamW in BOTH arms; same parent hyperparameters, permanent scheduler floor/clock and actual LR0.00001. Original moments retained as provenance, never claimed active.",
+  "input_target_budget": "Each3068 updates/100532224 input/91641755 actual masked teachers; same original100M reference quota ledger. Not100M actual teachers.",
+  "control_policy": "Actually train fresh-Adam full control. Cached inherited-Adam mixed and strong staged cells remain separately labeled historical references.",
+  "source_data_masks_order_decoder_unchanged": true,
+  "quality_criteria_unchanged": true,
+  "CPU_preparation_ceiling_seconds": 30,
+  "probe_GPU_ceiling_seconds": 240,
+  "total_new_GPU_ceiling_seconds": 1800,
+  "GPU_seconds_so_far": 0,
+  "new_teacher_tokens_so_far": 0,
+  "merge_control": {
+    "dtype": "fp32",
+    "backend": "math",
+    "rows": 4,
+    "context": 1024,
+    "atol": 0.0002,
+    "rtol": 2e-05
+  },
+  "numerical_policy": "Evaluate native merged FP32 weights through the unchanged native BF16/math pipeline. BF16 separate-GEMM rounding is not claimed bitwise equivalent. Prior numerical7 failure preserved.",
+  "completion": "Both actual endpoints and all160 raw-bound content reviews; unchanged strong/absolute/historical-Web gates, exact terminal identity and UI restoration. Only a qualified recipe may enter independent learned seed/full-dev/protected-test/adoption.",
+  "failure_policy": "End fixed rank4 comparison; no rank/module/scale/LR/source/mask/decoder/checkpoint salvage sweep.",
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false
+}
