@@ -1,0 +1,103 @@
+{
+  "status": "one_cached_same_input_decision_span_and_exact_greedy_body_diagnostic_proposed",
+  "created_at": "2026-10-06T09:03:11.535913Z",
+  "trigger": {
+    "completion": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/anchored_context_outcome_comparison_completion.json",
+      "sha256": "c3256b77a030760a88e48e1da0105094073d105d167928bd2cf0e0d27137c509"
+    },
+    "absolute_likelihood": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/anchored_context_outcome_absolute_likelihood.json",
+      "sha256": "1beb2fc3b9bc19ca5a302f0f4f1d2ed8f59baf424c204e8070ab32227bd2509b"
+    }
+  },
+  "models": {
+    "strong_staged_CE": {
+      "run": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006",
+      "arm": "source_order",
+      "config": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/source_order_condition_comparison_v2.json",
+        "sha256": "03b4ad47fa42b9a669c4588e736648e6339c93b9eb0cf3d08aac22a46cf90a88"
+      },
+      "result": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/compare-result.json",
+        "sha256": "cbca7936ebf395b1d5ccd45022ee4cb85de704a636c8bdae48ff2c24a8adc303"
+      },
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323503.pt",
+        "sha256": "fb43f2618c0679ca6c6f7a0c5b9faf1b336be8985271c8513f2e4bbfde3cd7ae"
+      }
+    },
+    "relative_ranking": {
+      "run": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context-outcome-ranking-comparison-20261006",
+      "arm": "context_outcome_ranking",
+      "config": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/context_outcome_ranking_comparison.json",
+        "sha256": "8de26074f0701ec1894fc239430179eaaa3e8096f5828359083da12377ef01b4"
+      },
+      "result": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context-outcome-ranking-comparison-20261006/compare-result.json",
+        "sha256": "412abb1fb2422fcb053a7095a1479aebf056f2df98d5b5d3d6aad489bbb82878"
+      },
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context-outcome-ranking-comparison-20261006/context_outcome_ranking/training/checkpoint-00323503.pt",
+        "sha256": "c95d649b8d3a0c8ede55c2edec80ef8ed4a24bae8ce0ca9e8fe3ccf7434a832c"
+      }
+    },
+    "positive_anchor": {
+      "run": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/anchored-context-outcome-comparison-20261006",
+      "arm": "anchored_context_outcome",
+      "config": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/anchored_context_outcome_comparison.json",
+        "sha256": "10a398a2533ba51b9522e37f7ed764fdb0d4050fea680d5cba1be8ec40f91d24"
+      },
+      "result": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/anchored-context-outcome-comparison-20261006/compare-result.json",
+        "sha256": "5a0f5b651736355e9976fbe24f129801dcfd4e3578b84a9322b309954f444481"
+      },
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/anchored-context-outcome-comparison-20261006/anchored_context_outcome/training/checkpoint-00323503.pt",
+        "sha256": "7eeeaa51690a89f95d1504ae02aa5f28938cdeebca7514212aa0584324bba662"
+      }
+    }
+  },
+  "source_cases": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/transfer-probes.json",
+    "sha256": "4e9c11d18395b03aeeb8a9ac7caec86f8ef6f59ca598ca00bf14bac447f85823"
+  },
+  "retention_cases": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/retention-probes.json",
+    "sha256": "daf92018a167c24db83a4d3bd029d45973bd7f34f3fd452f52419ccc0b651d83"
+  },
+  "scorer_implementation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/src/jmicro/japanese_evaluation.py",
+    "sha256": "8693e2a54e63c1b085b617b207cc5db618ae80af1eb7cb54133ba8b254da6801"
+  },
+  "question": "Does whole-candidate preference depend on later teacher-forced tokens while the first different choice token is incorrectly preferred, especially on unseen forms?",
+  "rationale": "Positive anchor improves bridge body gold NLL1.90905->.69749 but structural first-gold NLL3.17460->5.16281; broad greedy80 coherence remains5 and loops28. Need the same-input decision and already saved all-token argmax conjunction before choosing the next learning objective.",
+  "fixed_scope": "All3 completed models, both existing128-family suites, all256 context poles per suite, all3072 cached request records. No family/category/model selection.",
+  "CPU_ceiling_seconds": 10,
+  "GPU_seconds": 0,
+  "forward_requests": 0,
+  "optimizer_updates": 0,
+  "new_original_corpus_tokens": 0,
+  "procedure": [
+    "Validate bound config/checkpoint/cases/source SHAs and actually terminal processes. Reuse same CUDA BF16/math raw token_nll and is_greedy; no CPU FP32 inference or subtraction.",
+    "For each opposed-candidate context, locate the first differing target ID. Prove complete prefix and every prior target ID are identical before comparing its two token NLLs. Report identical/prefix-only unscorable cases explicitly; never add EOS/pad targets.",
+    "Report full sum/tokenmean candidate preference, same-input distinguishing-token preference, gold decision NLL, subsequent gold-token NLL and disagreements. Also count cached is_greedy conjunctions for the entire gold body and both context poles.",
+    "Aggregate all/lexical/structural/category counts with unchanged denominators, keep ties and all per-family rows. Shared-generator correlated contexts do not become independent samples.",
+    "Use result to define one distinct bounded Base learning comparison; preserve existing quality criteria and do not start GPU variants automatically."
+  ],
+  "limits": [
+    "This is a cached teacher-forced decomposition, not independent natural-language quality or unique causal proof.",
+    "is_greedy means all target positions are argmax under their preceding target IDs. Its conjunction supports an exact greedy body path; EOS after that body and broader open generation remain unproved.",
+    "If differentiating-token preference fails while complete-body ranking passes, later candidate-conditioned scores can conceal initiation errors; this does not license score/decoder/acceptance changes.",
+    "No repetition of checkpoint-wide zero-context scoring, source sweeps, first-token departure search or new corpus conversion."
+  ],
+  "completion_condition": "One terminal bound finite CPU report with every model/suite/family accounted, or exact failure/cap record; no cap expansion.",
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "quality_criteria_unchanged": true
+}

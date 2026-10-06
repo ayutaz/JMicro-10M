@@ -1,3 +1,19 @@
+正解確率を加えた単一100M比較と全評価を完了・不採用（2026-10-06 JST）。実CUDA58checksと永続開始を45cd1faへ保存。Baseだけを品質・独立学習seed/full dev/protected test/採用まで継続し、実完成時に通知して停止。Base未完了・未採用、Chat/Dialogue/SFT/量子化なし。
+
+actual616427/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start15962167はcomplete・実identity不在。main100000000CE教師/maininput100532224/3068更新、CP323503 SHA7eeeaa51690a89f95d1504ae02aa5f28938cdeebca7514212aa0584324bba662。同Webreference25133056input/25026383body/親nonEOS mass24981892.629882812。同rank6136family presentations/12272relational labels/1022980valid/6283264padded/gold73725・foil73725位置/gold315047・foil315047bytes。positive CEに正解73725 hard教師を別計数しmain込み100073725、combined physical131948544/valid126688260。新corpus/追加input relative to ranking0。全3068main/Web/pair入力・mask digest・親massと全cursor一致、全rank/newhard台帳を再現監査。
+
+train440.826677秒、science GPU523.499829+probe31.258545=新全554.758374秒<900。旧関連1734.837644秒を消さず累積2289.596018秒。40検証更新/main1307967/positivehard933/rank160choice labels81920paddedは科学学習へ加算しない。
+
+ranking→anchor: BPB.988409457→0.989858640悪化、文法2=37→34/関連2=41→70/一貫性2=2→5/適切22→16/EOS41→40/自動反復21→28、Unicode-role-empty0（各80）。一貫性差+3/paired95%CI[-.0125,.0875]で有意改善の証明なし。強いstagedCE23に対し-18/CI[-.325,-.125]、relative/absolute/歴史Web1% BPB guard未達、不採用。意味59.375→67.1875%/JBLiMP75.227→76.435%/JCQA33.959→34.942%の改善を文章品質/完成Baseへ置換しない。
+
+bridge両極正答86→79/128（語彙63→63/64・構造23→16/64）、retention80→80/128。同256全文472055bytes/122343bodytokens、日本語192-331-1119、全80greedy64を完了。全80を個別に読み78新観察/同id-prefix-raw-stop2件だけ旧notesを再利用し、raw SHA/rationale/TSVとreview/completionを保存。非blind Codex、独立人間なし。新しい人物/幻想/自然な別継続をgold不一致だけで落とさず、数値の誤りは文法とは別に判定した。
+
+全256familyの既存BF16 raw2048requestsだけを実CPU0.876809秒/上限10、GPU0/新forward0で集計。bridge全gold平均tokenNLL1.909050→.697495・222/256 poles改善、foil4.096298→2.661693。一方、構造gold全body3.061216→1.374313でもfirst-gold3.174599→5.162815悪化。語彙first-gold.306681→.055691改善を隠さず、全体first1.740640→2.609253。retention全gold2.238642→1.257412・215/256改善でも全first3.495138→4.053743、構造first3.858534→5.374053悪化。teacher-forced後続の改善と開始位置/自然文の保持を分ける。唯一因果/全vocab top1成功の証明ではない。
+
+可搬401text/20154183rawbytes、gzip3786879/SHAa064e30ab681583f2022773fd8a5dc5895903cdd5dd9f7eddc2831dad6a51f56を保存。モデルtensor/dataarraysはnativeのみ、workspace metadata/次proposalはarchive後の別記録。元10B UI618479/同boot/start16015140のlive identityとHTTP元CP410f975d…/10000007168/busy=falseを確認、failed candidateをUIへ置換しない。GPU科学job0。
+
+この単一anchor比較は終了し、係数/温度/normalizer/order/LR/source/batch sweep、cap拡張、自動延長/有利CP探索を行わない。次はdecision_span_diagnostic_proposal.jsonの単一cached CPU診断（上限10秒/GPU0/newforward0）を実装・実行。強いstagedCE/relative ranking/anchorの3実終了model、同bridge128/retention128、全3072保存済scoresを用い、候補が初めて異なる位置まで入力が同一であることを確認してその位置の正解対foil確率と全body選好を比べる。prefix包含等の測れないcaseは除外を隠さず別記、EOS/padを勝手に補わない。保存済is_greedy全target argmaxの連言も集計し、完全gold body経路とEOS後の停止/自然文品質を区別する。全family/両context/3modelを記録し、後続teacher forcingに隠れた開始選択の誤りが実際に支持されるかから次の一つの有限Base学習条件を定義する。CPU FP32再推論/旧zero-context再診断/巨大source再scanなし。pilot品質合格時だけ独立学習seed/full dev/protected testへ進む。旧Phase0–3/数値7失敗/全品質条件/過去費用保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 正解続きの生成確率を高める単一100M比較を実CUDA検証後に開始（2026-10-06 JST）。前のrelative-only100M/全評価不採用を44b092cへ保存。Baseだけを品質・独立学習seed/full dev/protected test/採用まで続け、実完成時に通知して停止。Base未完了・未採用、Chat/Dialogue/SFT/量子化なし。
 
 owned anchored_context_outcome loss/trainer/resident/runner/accountant/reviewer/durablePSを実装。元10.5B fullparent/Adam/scheduler/RNG/実LR.00001、main100M CEと4source順序、conditional WebKL8x1024、TRAIN pair8x256/全cursor/inputを維持。同paired logitsの正解bodyにだけ非EOS CE係数1を加え、ranking係数/温度1を保持。foil/prefix/pad/EOS3は新hard教師外、追加forward/新教材量0。正解73725位置が新hard教師、main込み100073725とrelational labels/parent probability mass/combined physical131948544を別計数する。
