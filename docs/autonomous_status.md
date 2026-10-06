@@ -1,3 +1,9 @@
+Base専用frozen nonlinear readout: preparation（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+前の層共有100Mは全gate未達・不採用のまま。元d18 greedy80の固定64token pathをCPU0.059142秒で再利用し、終了判定だけの非EOS順序不変/CE二値勾配一致をCPU2tests/0.90秒で確認。人手の第一可用prefix62件・文法54/一貫性36、文法56のfeasibility marker未達。nonblind・事後・非全停止位置の診断で、全EOS法やモデル容量の不可能性を主張しない。次は同mixed親6dに一つのpostnorm256→192→256/biasなしSiLU/zero-up readoutを追加。元119/10,001,152重みは全凍結、新2tensor/98,304のみfresh Adam・LR.0001/WD0、合計10,099,456。native tied/13KVを保ち、本文の語選択とEOSを変えられるがWeb保持は保証しない。旧rank4全層linear融合とは異なる非線形final readoutを一条件として定義。CPU3tests/2.06秒で初期native出力/重みobject/独立RNG/新梯度のみ、nonzero ragged/cache/未来非参照/labels/native saveとfresh2Adam4対2+2全state/historyに合格。CPU proposal0.277456秒・probe準備0.109018秒、新GPU/科学0。次はown native FP32/BF16 identity32/1024・nonzero cache1024・CUDA全state再開/32timingを120秒内で測る。1.3margin+300秒評価+ownprobeが900内の場合だけ専用科学runner/全80採否を実装・凍結し同full100Mへ。
+
+[Houlsby adapter](https://proceedings.mlr.press/v97/houlsby19a.html)と[feature distortion/linear probing](https://arxiv.org/abs/2202.10054)を参考にした独自の転移仮説。per-layer BERT分類adapter/主にvisionの報告を日本語10Mでの改善保証としない。全旧失敗/数値7/Phase0–3/元相対・絶対・歴史Web1%基準保持。幅/activation/placement/init/LR/source/mask/parent/decoder/CP救済sweepなし、native HF export未対応を完成としない。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用gated層共有: completion（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
 
 同親/同full100Mの層共有対cached native比較と全80個別raw-bound採点を完了。BPB1.035666704→1.035926040、文法65→68/関連52→53/一貫性32→30/適切37→36/EOS69→73/反復6→7（各80）。事前strong-staged相対gate=False、絶対全gate=True、歴史Web全gate=False、最終Base検証eligible=False。科学100M/3068updates/100532224input、総新GPU438.496675/1800、actual651138実不在/元UI復帰。nonblind Codex/一学習seed/反復devを独立人手や確実な一般化の証明としない。合格recipeのみ独立学習seed/full dev/protected test/採用へ。未合格の場合は固定gate分岐を終了し、同gate/source/decoder等の救済sweepは行わない。stock HF adapter未対応を完成としない。

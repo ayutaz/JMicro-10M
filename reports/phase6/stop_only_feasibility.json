@@ -1,0 +1,1511 @@
+{
+  "status": "completed_cached_original80_first_usable_stop_prefix_screen",
+  "created_at": "2026-10-06T13:40:23.052918Z",
+  "actual_CPU_process": {
+    "pid": 652367,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "17722566"
+  },
+  "references": {
+    "generation": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/evaluation/result/web/evaluation/generation.json",
+      "sha256": "252a43e66e7420d5d747f5353a4eb191880e352a7f4fdd90cbbbae3a7b455d9c"
+    },
+    "evaluation": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/evaluation/result/web/evaluation/result.json",
+      "sha256": "5e0f346d1c657b2f8f1a35d9e8079ce896abab3451e34dc697792394a0df6796"
+    },
+    "observations": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/stop_only_feasibility_observations.tsv",
+      "sha256": "60b45d5b756d6507b95dba6c8bfb7fb83386d31b9ae068c93fed4541fa273098"
+    },
+    "tokenizer": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/phase2/4096/tokenizer.model",
+      "sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+    },
+    "source": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/stop_only_feasibility.py",
+      "sha256": "2449499a40dfb54a4f31b65971a99f2135ed3b9e953d174daa145cef1009f71a"
+    },
+    "tests": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/stop_only_feasibility_tests.xml",
+      "sha256": "0a098f8f8a0b48eff7886c84147eac06c7185ab1aa2db5c20c12c5088c1fc5ec"
+    }
+  },
+  "parent_checkpoint_sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4",
+  "summary": {
+    "outputs": 80,
+    "original_native_EOS": 0,
+    "original_repetition": 62,
+    "manually_chosen_nonempty": 62,
+    "token_boundary_available": 62,
+    "grammar2": 54,
+    "relevance2": 51,
+    "coherence2": 36,
+    "hypothetical_complete_prefix": 47,
+    "unknown_after_original_EOS": []
+  },
+  "rows": [
+    {
+      "id": "base-001",
+      "prefix": "朝、カーテンを開けると、",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "4b6b9aca134f27e1f368a6446532a3cfc5698c49457ea2ecb1126f1d9b037f70",
+      "chosen_text": "\n「おいしい!」",
+      "grammar": 1,
+      "relevance": 0,
+      "coherence": 0,
+      "rationale": "開窓に続く感嘆の引用だけでは対象や動作がつながらない。味への反応を本文で補うことはできない。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "\n「おいしい!」",
+        "body_tokens": 7,
+        "raw_hex": "0ae3808ce3818ae38184e38197e3818421e3808d",
+        "sha256": "5ed9b159f9c3fffdabd817d0d6a1e33534f1475390e9ad5df8a5758627151f16"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-002",
+      "prefix": "仕事を終えて家に帰ると、",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "d69d8b310dec6a3e0b44322af8e8d3140cef8ac274f548b9e49304dff981f714",
+      "chosen_text": "その日の朝のこと。",
+      "grammar": 1,
+      "relevance": 1,
+      "coherence": 0,
+      "rationale": "帰宅に続く朝のことという名詞断片で、出来事や時間関係の結びがない。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "その日の朝のこと。",
+        "body_tokens": 7,
+        "raw_hex": "e3819de381aee697a5e381aee69c9de381aee38193e381a8e38082",
+        "sha256": "10fd2a14038eae02f1026a11075eaf2277dae25864ea5ee5dff0740c0c778456"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-004",
+      "prefix": "休日の朝は少し遅く起きて、",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "b582bb0fdc1fda16d2cd0dc3ae879edcd67f356e9e28724777cde644add6701c",
+      "chosen_text": "",
+      "grammar": 0,
+      "relevance": 2,
+      "coherence": 0,
+      "rationale": "食べてという接続節だけを重ね、本文内に完成した述語がない。",
+      "actual_token_boundary_available": false,
+      "actual_selected_prefix": null,
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-005",
+      "prefix": "洗濯物を干し終わったので、",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "25bad2fd5f01dcf68882da3cd0e83c21f1c016ae6675b99d899b769ecd47318a",
+      "chosen_text": "洗濯物を洗濯機に入れ",
+      "grammar": 2,
+      "relevance": 1,
+      "coherence": 0,
+      "rationale": "入れを命令形として短く閉じる読みを許すが、干し終えた洗濯物を再度洗濯機へ戻す理由はない。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "洗濯物を洗濯機に入れ",
+        "body_tokens": 9,
+        "raw_hex": "e6b497e6bfafe789a9e38292e6b497e6bfafe6a99fe381abe585a5e3828c",
+        "sha256": "1a20c71bac8b0c7db93d8c3d914ba13b071ebdd8715a382ece62b09c7b1df023"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-006",
+      "prefix": "駅の改札を出ると、",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "88ac2a858acba2078872a459fbbeb0d2080607e0d1c4ee8b14c99123417beaa7",
+      "chosen_text": "駅の前の駅舎の中に、駅の名前が書かれているのが見つかる。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "駅前の駅舎で駅名を見つける最初の文は自然に閉じる。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "駅の前の駅舎の中に、駅の名前が書かれているのが見つかる。",
+        "body_tokens": 23,
+        "raw_hex": "e9a785e381aee5898de381aee9a785e8888ee381aee4b8ade381abe38081e9a785e381aee5908de5898de3818ce69bb8e3818be3828ce381a6e38184e3828be381aee3818ce8a68be381a4e3818be3828be38082",
+        "sha256": "43a8d0082e0bba48693b44c486282c04a4d4b35f2f0a127dbfe2cf40cfc8e958"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-007",
+      "prefix": "夕飯の支度をしていると、",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "b20e08a5e550f55142a75c89bafe732fc7946e2618051c5442011fae2e432d84",
+      "chosen_text": "お腹が空いてしまい、お腹が空いてしまったという経験はありませんか?",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "夕食準備中の空腹という話題で読者への問いとして閉じる。同じ出来事の言い換えはある。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "お腹が空いてしまい、お腹が空いてしまったという経験はありませんか?",
+        "body_tokens": 21,
+        "raw_hex": "e3818ae885b9e3818ce7a9bae38184e381a6e38197e381bee38184e38081e3818ae885b9e3818ce7a9bae38184e381a6e38197e381bee381a3e3819fe381a8e38184e38186e7b58ce9a893e381afe38182e3828ae381bee3819be38293e3818b3f",
+        "sha256": "6279919ad7f8c2733dc866eaeeba28da13862375db66f7109fa65eb46cbc2534"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-009",
+      "prefix": "庭の草を抜いていると、",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "9277da52f900edfdfd742f24077ff20096b5128c16f49b3e96948d80be273c42",
+      "chosen_text": "",
+      "grammar": 0,
+      "relevance": 2,
+      "coherence": 0,
+      "rationale": "草が生えてきてという接続節を反復し、終止形がない。",
+      "actual_token_boundary_available": false,
+      "actual_selected_prefix": null,
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-010",
+      "prefix": "昼休みに窓の外を見ると、",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "984aef6b9d3ae362339534f9927bb85ed1031982e7d55ba982e850097d0aac12",
+      "chosen_text": "\n「おいしい!」",
+      "grammar": 1,
+      "relevance": 0,
+      "coherence": 0,
+      "rationale": "窓外を見た反応が味の引用だけで、場面との関係を形成しない。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "\n「おいしい!」",
+        "body_tokens": 7,
+        "raw_hex": "0ae3808ce3818ae38184e38197e3818421e3808d",
+        "sha256": "5ed9b159f9c3fffdabd817d0d6a1e33534f1475390e9ad5df8a5758627151f16"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-011",
+      "prefix": "昨日は疲れていたので、早めに",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "98c733f12ffb24cfc77f5ec217a8d1a976c5451e45a22365e598cb62722efad6",
+      "chosen_text": "帰宅",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "昨日は疲れたので早めに帰宅という体言止めを許す。本文の短い動作として読める。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "帰宅",
+        "body_tokens": 2,
+        "raw_hex": "e5b8b0e5ae85",
+        "sha256": "1705e496b8770b29889d3939c7af940b09449dc6a1c3e89aa65963c3e2cf353c"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-012",
+      "prefix": "雨が降っているのに、彼は傘を",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "ecc9a5817cf599d01aef295d95ebcd24c70e5b80fda3f9be812b00b4ba635bcd",
+      "chosen_text": "持っていない。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "雨なのに傘を持たないという自然な対比で閉じる。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "持っていない。",
+        "body_tokens": 4,
+        "raw_hex": "e68c81e381a3e381a6e38184e381aae38184e38082",
+        "sha256": "cdccd7ed45cc76e5989465ff1bb6e07c3c3d6ef105de219ccd2ad70dfc613642"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-014",
+      "prefix": "電車が遅れたため、待ち合わせに",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "2d8f45b38312d30e404f22f467fdb3f9e45d6fb8f4ca956153ecdb7029356191",
+      "chosen_text": "行くことができませんでした。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "電車遅延で待ち合わせへ行けなかったという因果は整合する。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "行くことができませんでした。",
+        "body_tokens": 6,
+        "raw_hex": "e8a18ce3818fe38193e381a8e3818ce381a7e3818de381bee3819be38293e381a7e38197e3819fe38082",
+        "sha256": "8cd1014e9a24a97c3b260f8971de848513b88858c9db5baf560331abbe364460"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-015",
+      "prefix": "コーヒーではなく、お茶を",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "cb5e86c52475d204411313552554857af1de7d417cc929121860d44792b048c7",
+      "chosen_text": "飲むのが一番です。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "お茶を飲むことを勧める最初の文で閉じる。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "飲むのが一番です。",
+        "body_tokens": 7,
+        "raw_hex": "e9a3b2e38280e381aee3818ce4b880e795aae381a7e38199e38082",
+        "sha256": "aeb84162ff37057ac4a8aa9fdc5cf75d7043e9e2bf41e62752b64077c53a7402"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-016",
+      "prefix": "料理が冷めないうちに、みんなで",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "3594dc9d79db15cb4309c5c3e8e5b2c3794f723ce70809ca7b3f118186802ea7",
+      "chosen_text": "おいしくいただきましょう。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "冷めないうちにみんなで食べる自然な呼びかけが完成する。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "おいしくいただきましょう。",
+        "body_tokens": 8,
+        "raw_hex": "e3818ae38184e38197e3818fe38184e3819fe381a0e3818de381bee38197e38287e38186e38082",
+        "sha256": "133be486aecbeaf75a61aab7f0952af5f6e5e093f6bc12a5cb81566024502df9"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-017",
+      "prefix": "靴を脱いでから、部屋に",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "01d2269ccd23bf9a0d0f610b4d397670f9f1d742fcd178433ee50c51e5e08292",
+      "chosen_text": "",
+      "grammar": 0,
+      "relevance": 2,
+      "coherence": 0,
+      "rationale": "戻ってからと脱いでからを重ね、完成した動作の述語がない。",
+      "actual_token_boundary_available": false,
+      "actual_selected_prefix": null,
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-019",
+      "prefix": "走り続けたので、息が",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "4bc09076924122614b5d797d9d378ca776d64f168b6ae26d8b18b0cb48658c39",
+      "chosen_text": "上がる。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "走り続けて息が上がるという自然な状態で閉じる。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "上がる。",
+        "body_tokens": 4,
+        "raw_hex": "e4b88ae3818ce3828be38082",
+        "sha256": "9e9c8f54350da77e63427af97939692239051bf01010274d12661876aaa7aa26"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-020",
+      "prefix": "写真を見ながら、子どもの頃を",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "b074591f12410804fb65fb2c6468e6381c93a30482848aea923e9aed084747ea",
+      "chosen_text": "思い出してみてください。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "写真を見ながら昔を思い出す自然な呼びかけとして完成する。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "思い出してみてください。",
+        "body_tokens": 6,
+        "raw_hex": "e6809de38184e587bae38197e381a6e381bfe381a6e3818fe381a0e38195e38184e38082",
+        "sha256": "50943695dfd6af5cb26846e01c81396792186a5ab973408709ee7927ba83990b"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-021",
+      "prefix": "公園のベンチに、小さな手袋が置いてあった。私は",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "3d0825eef2e385cf984b3508dfa03c7c4843e63c9beb008afc7aba0033961bae",
+      "chosen_text": "",
+      "grammar": 0,
+      "relevance": 2,
+      "coherence": 0,
+      "rationale": "手袋を持ってという接続節だけを重ねている。",
+      "actual_token_boundary_available": false,
+      "actual_selected_prefix": null,
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-022",
+      "prefix": "古い箱を開けると、学生時代の写真が出てきた。そこには",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "c1a4f49e44fb7a9fef0cac12f511941858a44df83768399c4b1a83f7f0fb042a",
+      "chosen_text": "、学生時代の写真がたくさん載っていた。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "箱から見つかった写真の内容を短く示し、矛盾なく閉じる。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "、学生時代の写真がたくさん載っていた。",
+        "body_tokens": 10,
+        "raw_hex": "e38081e5ada6e7949fe69982e4bba3e381aee58699e79c9fe3818ce3819fe3818fe38195e38293e8bc89e381a3e381a6e38184e3819fe38082",
+        "sha256": "f62b71f54349006209850c60c98191c2682ee004ba3b4f3567015ad581225086"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-024",
+      "prefix": "友人から届いた葉書には、海の絵が描かれていた。裏を見ると",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "c319bb76a62560694b3ac58ad6cb3a4fc42f6277706934cc6462c2bc647c1dd0",
+      "chosen_text": "、海の絵が描かれている。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "葉書の裏にも海の絵があるという自然な別配置を許す。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "、海の絵が描かれている。",
+        "body_tokens": 9,
+        "raw_hex": "e38081e6b5b7e381aee7b5b5e3818ce68f8fe3818be3828ce381a6e38184e3828be38082",
+        "sha256": "a904c2715f9d2e381fb59d2666e2cdb95befd10c7e404c6cda6e56fb041a0f2b"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-025",
+      "prefix": "図書館の帰りに、細い道を見つけた。進んでみると",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "1277fa32f3f36fac6eb3eebc2f7b0e28061332ac3615ab3656a3f26e08cdbf37",
+      "chosen_text": "",
+      "grammar": 0,
+      "relevance": 2,
+      "coherence": 0,
+      "rationale": "小さなという修飾語だけを重ね、道の先にある対象がない。",
+      "actual_token_boundary_available": false,
+      "actual_selected_prefix": null,
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-026",
+      "prefix": "父が昔使っていた時計を直した。針が動き出すと",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "732cc6389df9534a52d241f079e6a538a0267d08e039186725c3a7886ac46b50",
+      "chosen_text": "、その時計が動く。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "針の動きと時計の稼働の短い説明として読める。説明の重複自体を矛盾とはしない。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "、その時計が動く。",
+        "body_tokens": 8,
+        "raw_hex": "e38081e3819de381aee69982e8a888e3818ce58b95e3818fe38082",
+        "sha256": "8828f5e00907bcd242dfd08398ce0068627f69e5f37f1abbb47fa2125ccfa9ec"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-027",
+      "prefix": "姉と山を登っている途中で、霧が出てきた。私たちは",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "58890d4dff7d58a385b9586ed61106269e6576e8a645d23fbce5f124f3a0b6a9",
+      "chosen_text": "、霧の中にいる",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "私たちが霧の中にいるという状態で閉じることは可能。後続のとを必ず生成する必要はない。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "、霧の中にいる",
+        "body_tokens": 6,
+        "raw_hex": "e38081e99ca7e381aee4b8ade381abe38184e3828b",
+        "sha256": "8f515b87690a9531274a9b315d99623f69eef02f6d9200ec68c36e7fd945ce38"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-029",
+      "prefix": "夜、窓をたたく音がした。そっと開けると",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "5b175eab53e1386c971318f80f0b03342ab2e4d90b1b2fde8ae41c79a13c3f46",
+      "chosen_text": "、窓の中に、お花が咲き始めた。",
+      "grammar": 2,
+      "relevance": 1,
+      "coherence": 2,
+      "rationale": "窓辺や窓の中の花という省略された配置は可能だが、音の説明は省略される。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "、窓の中に、お花が咲き始めた。",
+        "body_tokens": 14,
+        "raw_hex": "e38081e7aa93e381aee4b8ade381abe38081e3818ae88ab1e3818ce592b2e3818de5a78be38281e3819fe38082",
+        "sha256": "b55b0e92faf221b32707567763e40469dbef0c4cf34ce64bed2f5cb5e679deb5"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-030",
+      "prefix": "落とした財布を届けてくれた人は、近所の店員だった。私は",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "bb0c8f6602eadafa9caba7e59ea1e808ff2b9be6a4b5b8c741f3569db5a7dae9",
+      "chosen_text": "",
+      "grammar": 0,
+      "relevance": 2,
+      "coherence": 0,
+      "rationale": "私はに続く店員の人柄がよくという節を重ね、話者の動作や完成した述語がない。",
+      "actual_token_boundary_available": false,
+      "actual_selected_prefix": null,
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-031",
+      "prefix": "「おはよう」「",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "a13f2fd9b1c4c605a753a5326b4b8121b6cab20ff87e9f531dac3eedb553f358",
+      "chosen_text": "おはよう」",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "同じ挨拶を返す短い会話として閉じる。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "おはよう」",
+        "body_tokens": 4,
+        "raw_hex": "e3818ae381afe38288e38186e3808d",
+        "sha256": "a9467e7ab0cf9caa479da1894c499f8afd4320df9acab5a274abfe3e66e9064d"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-032",
+      "prefix": "「今日のお昼、何にする？」「",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "5b1e043d573ad0fc3082297f932432bb41e2d20ff57cef93bf8aa40868beb723",
+      "chosen_text": "今日のお昼、何にするべきか」",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 1,
+      "rationale": "昼食の問いを言い換えて返す文としては閉じるが、会話の進展は弱い。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "今日のお昼、何にするべきか」",
+        "body_tokens": 11,
+        "raw_hex": "e4bb8ae697a5e381aee3818ae698bce38081e4bd95e381abe38199e3828be381b9e3818de3818be3808d",
+        "sha256": "59c071573df7022c164723055661fa5592a4c4cc151b1c3f02751f0b83e32591"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-034",
+      "prefix": "「助けてくれてありがとう」「",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "6162fb320e6c0a70dc267c38cbedc17a834a5da2754b73b6f073bff48d21b673",
+      "chosen_text": "助けてくれてありがとう」",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "相手へも感謝を返す会話として読める。唯一の定型返答を強制しない。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "助けてくれてありがとう」",
+        "body_tokens": 10,
+        "raw_hex": "e58aa9e38191e381a6e3818fe3828ce381a6e38182e3828ae3818ce381a8e38186e3808d",
+        "sha256": "57fa862b8211ed04a1a7eb89e0b05e2af68d2e150025410b410d43ba703f9a07"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-035",
+      "prefix": "「久しぶりだね」「",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "f6d5746de7817ee628b34303060444800ddd54a2834a9120b4b8a4d6cde2c19f",
+      "chosen_text": "",
+      "grammar": 0,
+      "relevance": 1,
+      "coherence": 0,
+      "rationale": "お前はとお前のことをの断片を反復し、再会への返答を完成しない。",
+      "actual_token_boundary_available": false,
+      "actual_selected_prefix": null,
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-036",
+      "prefix": "「外、寒かった？」「",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "f9cbc0c02e1986938844ddd4943bc09c26ad3f5c75d31b0ad6dc2c773f9dc666",
+      "chosen_text": "寒かった」",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "外の寒さについて直接答える短い返答である。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "寒かった」",
+        "body_tokens": 3,
+        "raw_hex": "e5af92e3818be381a3e3819fe3808d",
+        "sha256": "4901872f84514f236d7c661218547a11781532d5fc0a41453e6e18b0616601c4"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-037",
+      "prefix": "「もう宿題は終わった？」「",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "dd19fa377334339964b69818ebc372301e6ea75890518a1765b18957ba15e998",
+      "chosen_text": "もう宿題は終わった」",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "宿題を終えたという直接の返答として閉じる。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "もう宿題は終わった」",
+        "body_tokens": 8,
+        "raw_hex": "e38282e38186e5aebfe9a18ce381afe7b582e3828fe381a3e3819fe3808d",
+        "sha256": "a5eb8471f93de6fed255eb34f281ba59f495f06788f21b9bba6721a6b98cbd2c"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-039",
+      "prefix": "「明日、何時に集合する？」「",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "fbbf170691d0e59f0c6a25b4496e6e7154d3e9ac641e4e09a497989ada6b48b5",
+      "chosen_text": "明日、何時集合する」",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 1,
+      "rationale": "集合時刻の問いを返す文としては閉じるが、応答の進展は弱い。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "明日、何時集合する」",
+        "body_tokens": 9,
+        "raw_hex": "e6988ee697a5e38081e4bd95e69982e99b86e59088e38199e3828be3808d",
+        "sha256": "46ea0878a83920d3be00720227212951ee87e7ac1d85835f705c5c4e1e39ac77"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-040",
+      "prefix": "「お茶をもう一杯どうぞ」「",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "c5f962f284584f2680ef1cfd88ce20eef8083bd82cf08578329a69d15ab8b7e5",
+      "chosen_text": "お茶を飲むと、お腹がすいた」",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 1,
+      "rationale": "お茶についての返答だが、申し出への応答と空腹という結果の接続は弱い。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "お茶を飲むと、お腹がすいた」",
+        "body_tokens": 13,
+        "raw_hex": "e3818ae88cb6e38292e9a3b2e38280e381a8e38081e3818ae885b9e3818ce38199e38184e3819fe3808d",
+        "sha256": "b0259a1c3928108384e291e6ac9fe934a4ea7e614f483808891327d4fa629a4d"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-041",
+      "prefix": "このマグカップは、手のひらに収まる大きさで、",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "e992605928b00ed3089f59138c72e2dd3b58e55e392714c7e08ee2abc4fc03e4",
+      "chosen_text": "手のひらに持ち運びができるので、手のひらに持ち運びができるのです。",
+      "grammar": 1,
+      "relevance": 2,
+      "coherence": 1,
+      "rationale": "手のひらに持ち運びができるという助詞関係が不自然で同義反復もある。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "手のひらに持ち運びができるので、手のひらに持ち運びができるのです。",
+        "body_tokens": 25,
+        "raw_hex": "e6898be381aee381b2e38289e381abe68c81e381a1e9818be381b3e3818ce381a7e3818de3828be381aee381a7e38081e6898be381aee381b2e38289e381abe68c81e381a1e9818be381b3e3818ce381a7e3818de3828be381aee381a7e38199e38082",
+        "sha256": "edba08b60eea49348be103e162a21b4767f1323cd9ee0888eb943e6fc0082945"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-042",
+      "prefix": "秋の夕方の空は、薄いオレンジ色に染まり、",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "7276b79eb85a24449fdabc040612b265c5796bb98ea8878091772c8c997bea69",
+      "chosen_text": "青い空に輝く。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "色づいた空が青い空に輝くという詩的な描写を許す。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "青い空に輝く。",
+        "body_tokens": 7,
+        "raw_hex": "e99d92e38184e7a9bae381abe8bc9de3818fe38082",
+        "sha256": "5f9d6df1b65a76dfd7550de99dca2dd8f8671db48c02b6e7df30f9ed2be489be"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-044",
+      "prefix": "水を入れた花瓶を、窓辺に",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "72b56e60c39a1eb6e0990de0ff61a78320bcc3f805df92c927c4d5381a6e4680",
+      "chosen_text": "置いておくと、花が咲き始めます。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "水と窓辺で花が咲くという短い説明として閉じる。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "置いておくと、花が咲き始めます。",
+        "body_tokens": 13,
+        "raw_hex": "e7bdaee38184e381a6e3818ae3818fe381a8e38081e88ab1e3818ce592b2e3818de5a78be38281e381bee38199e38082",
+        "sha256": "ed4c331654c7ac5cc217b349eb9a61bc6527916fed4e911cbc91a110386e688b"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-045",
+      "prefix": "雨上がりの道路には、街灯の",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "7a2ef46495ec73acd20aa70a68d97d3ad039cc9447e3a461c23ed8d9eb0d96bb",
+      "chosen_text": "",
+      "grammar": 0,
+      "relevance": 2,
+      "coherence": 0,
+      "rationale": "灯りを放ちという連用節から雨の日にはへ反復し、終止形を形成しない。",
+      "actual_token_boundary_available": false,
+      "actual_selected_prefix": null,
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-046",
+      "prefix": "新しい靴は少し硬いが、歩くと",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "6f9ae31e655c456c78facf00e5a434dbf3a548307d7017bcbd6b32f6fc2ad79b",
+      "chosen_text": "足が痛い。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "硬い靴で歩くと足が痛いという自然な状態で閉じる。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "足が痛い。",
+        "body_tokens": 5,
+        "raw_hex": "e8b6b3e3818ce7979be38184e38082",
+        "sha256": "3036e2b4b83bf427a8bf0929128526a0cae2f685984cbc29b768f2bd6b38a8b6"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-047",
+      "prefix": "部屋の棚には、本と小さな",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "002721b0e03b9242da86c32ace60dec9c7284e5ccd6e7fccfcde5c460fd33b3e",
+      "chosen_text": "絵が描かれている。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "棚に本と小さな絵の描画があるという配置を許す。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "絵が描かれている。",
+        "body_tokens": 6,
+        "raw_hex": "e7b5b5e3818ce68f8fe3818be3828ce381a6e38184e3828be38082",
+        "sha256": "9e90661ed746287f3a7095acb71aa7d55127bfcc44c7ebd050f37884537c52f4"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-049",
+      "prefix": "冬の朝、車の窓には",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "3012af46fbdc23b7d727fd42efe31099b94f1d94017d3e3984bc594e810e5dc5",
+      "chosen_text": "",
+      "grammar": 0,
+      "relevance": 2,
+      "coherence": 0,
+      "rationale": "雪が降りという連用節だけを反復する。",
+      "actual_token_boundary_available": false,
+      "actual_selected_prefix": null,
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-050",
+      "prefix": "この毛布は柔らかく、触ると",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "6e00b3e38cc8593e5d26443bc5e6a624467e4e90e2754b49d5a4a964032f8fc9",
+      "chosen_text": "痛い",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 1,
+      "rationale": "毛布を触ると痛いという文形は完成するが、柔らかさとの関係や痛みの理由は弱い。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "痛い",
+        "body_tokens": 2,
+        "raw_hex": "e7979be38184",
+        "sha256": "3460ae1de30fe20f16a44a94947f9b0e447ee1375bff53c9443c414cfc7f28f8"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-051",
+      "prefix": "りんごを3個買った。1個食べたので、残りは",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "7b5970dd3fb6cda7981373a46b97329dd5daac5544bcd3364f4098ec9b75258b",
+      "chosen_text": "1個",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 0,
+      "rationale": "残り一個という名詞述語は可能だが、三個から一個を食べた数量に反する。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "1個",
+        "body_tokens": 2,
+        "raw_hex": "31e5808b",
+        "sha256": "356877c4007613021e041e18b710940ad7eb7a513175bcf8d2d57076d9daf540"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-052",
+      "prefix": "集合時刻は午前9時です。8時50分に着けば、",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "edc245f3c1ba31bc5bfd0ffb51c643e85f1492bee7f562d34fe4a667f2404946",
+      "chosen_text": "",
+      "grammar": 0,
+      "relevance": 2,
+      "coherence": 0,
+      "rationale": "午後五時までに着けばという条件節だけを反復し、結果節を作らない。",
+      "actual_token_boundary_available": false,
+      "actual_selected_prefix": null,
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-054",
+      "prefix": "2024年に引っ越して、翌年の2025年には",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "f6932b5c469b3bc951fd9a3532f6d7d0aa4aa397f996ab78012ccba06a08ff06",
+      "chosen_text": "、\n「新たな家を建てる」\nという目標を立てました。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "翌年に新たな建築の目標を立てるという自然な別行動として完成する。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "、\n「新たな家を建てる」\nという目標を立てました。",
+        "body_tokens": 19,
+        "raw_hex": "e380810ae3808ce696b0e3819fe381aae5aeb6e38292e5bbbae381a6e3828be3808d0ae381a8e38184e38186e79baee6a899e38292e7ab8be381a6e381bee38197e3819fe38082",
+        "sha256": "ed0f938789b9fbaa2f0385b1f651353badbc480b1600c9b88e8112ccf0cdf08d"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-055",
+      "prefix": "千円札を出して、700円の商品を買った。お釣りは",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "0ef41d0e2f540cedf8f6ef8b50b7d0fe5016ad11bd1bbf1f1a4571df8e3bafac",
+      "chosen_text": "、1000円の商品を買った。",
+      "grammar": 1,
+      "relevance": 1,
+      "coherence": 0,
+      "rationale": "お釣りはに対して商品の購入動作を置き、主題と述語の関係も成立しない。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "、1000円の商品を買った。",
+        "body_tokens": 10,
+        "raw_hex": "e3808131303030e58686e381aee59586e59381e38292e8b2b7e381a3e3819fe38082",
+        "sha256": "97b64e7ea0b2446fd341bd22c2ec8fd854ace0c870df85a79bbe88920f83368b"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-056",
+      "prefix": "温度計を見ると20度だった。昨日の15度より",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "15fbec7ef2699690ad3197da5d53a37d2232cbcf55ab319beceebff3ef3853b3",
+      "chosen_text": "は、温度が低い",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 0,
+      "rationale": "二十度を十五度より低いとする関係の誤りがある。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "は、温度が低い",
+        "body_tokens": 7,
+        "raw_hex": "e381afe38081e6b8a9e5baa6e3818ce4bd8ee38184",
+        "sha256": "08c6e9013fcc7d0ec456ba6bcc0c6e00208371d4bacc3228a489b6a36f383653"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-057",
+      "prefix": "箱には赤い玉が2個、青い玉が1個入っている。全部で",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "0d280533d5a5e095388f84fa63f95709b990f6acbf3b913437b07c838ba5100c",
+      "chosen_text": "2個。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 0,
+      "rationale": "二個と一個の合計を二個とする数量の誤りがある。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "2個。",
+        "body_tokens": 3,
+        "raw_hex": "32e5808be38082",
+        "sha256": "40b751f452068e12e1b4cefc4fdf77959750d0f62041076115725b905a059582"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-059",
+      "prefix": "午後3時から1時間休憩すると、終わるのは",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "a7a9309b04e2e6c71fec0f467d29dc6d9e3c1c12074502903ebdbb3bb2082c60",
+      "chosen_text": "午後2時からです。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 0,
+      "rationale": "午後三時から一時間休憩した終了を午後二時からとする時刻関係の誤りがある。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "午後2時からです。",
+        "body_tokens": 7,
+        "raw_hex": "e58d88e5be8c32e69982e3818be38289e381a7e38199e38082",
+        "sha256": "a3c74b11ac07fa18ef5c807413c29060125d22ee5cadd09b6005bd26b1b3257e"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-060",
+      "prefix": "5ページ読んで、さらに2ページ読んだ。読んだのは",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "1896f301cef91625bfe43bdd9e1ca1d5cb04708f8794be3ef5fc6eab79567ccc",
+      "chosen_text": "、\n「おもしろい」",
+      "grammar": 2,
+      "relevance": 1,
+      "coherence": 2,
+      "rationale": "おもしろいを読んだ本の題名とする体言止めを許す。ページ合計だけを唯一の正解とはしない。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "、\n「おもしろい」",
+        "body_tokens": 9,
+        "raw_hex": "e380810ae3808ce3818ae38282e38197e3828de38184e3808d",
+        "sha256": "775e3b443f0b2c2172995fa78c85b2530a4818f9213c9f28927482e0e7859e29"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-061",
+      "prefix": "山田さんは、京都駅で友人を待っていた。すると",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "ee5e1742b0996aaf328c6c5d91d2bf1adf4e435f055f1d299d57cf45f50f95c1",
+      "chosen_text": "",
+      "grammar": 0,
+      "relevance": 2,
+      "coherence": 0,
+      "rationale": "友人への引用が述語や閉じ括弧を形成せず同じ呼びかけを反復する。",
+      "actual_token_boundary_available": false,
+      "actual_selected_prefix": null,
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-062",
+      "prefix": "佐藤さんが持ってきたお菓子を、みんなで",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "010981668c7740f6ddde50d2aea003af361c25a2910241d261267efabeab26ab",
+      "chosen_text": "作ってみました。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 1,
+      "rationale": "持参されたお菓子をさらに作る別行動は可能だが、準備の背景や接続は薄い。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "作ってみました。",
+        "body_tokens": 5,
+        "raw_hex": "e4bd9ce381a3e381a6e381bfe381bee38197e3819fe38082",
+        "sha256": "60b9c282533c541c6334901739e8602dcc1cf38e1088e1de935c5696342d4eec"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-064",
+      "prefix": "高橋さんの犬、ポチは散歩の時間になると",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "a86d53086da7fb172dd986dfe1fc3c7d5a2420f66c44fa27cc692e52f9410be8",
+      "chosen_text": "、犬のお尻の下にポチがいるのを発見しました。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 1,
+      "rationale": "犬が同名のポチを見つける主体関係が不明瞭で、散歩への接続も弱い。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "、犬のお尻の下にポチがいるのを発見しました。",
+        "body_tokens": 17,
+        "raw_hex": "e38081e78aace381aee3818ae5b0bbe381aee4b88be381abe3839de38381e3818ce38184e3828be381aee38292e799bae8a68be38197e381bee38197e3819fe38082",
+        "sha256": "eb78688d9828b5edd012fde44efe668a5927593ef8eefab1f5dcba40ae5ea96e"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-065",
+      "prefix": "「青空文庫」という名前を、ノートに",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "ee22d5d1a836d409221633a617fabb78ab61ad14facfe9463cfe16484de9cc55",
+      "chosen_text": "書いてある",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "名前をノートに書いてあるという状態で短く閉じることは可能。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "書いてある",
+        "body_tokens": 3,
+        "raw_hex": "e69bb8e38184e381a6e38182e3828b",
+        "sha256": "e06805c0900fe8205ea139b62ba3a9d8114ebdccd642d540c1a58d975a7f14b2"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-066",
+      "prefix": "駅の名前は「桜町」だった。私は看板を見て",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "c874931d1bbf7c8eb62d1a7e806e085355b724e62133b448928d47e4e7a5a1f8",
+      "chosen_text": "、駅の名前を聞いた。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "看板を見た後で名前を人に確認する自然な別行動を許す。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "、駅の名前を聞いた。",
+        "body_tokens": 8,
+        "raw_hex": "e38081e9a785e381aee5908de5898de38292e8819ee38184e3819fe38082",
+        "sha256": "44f56d44a79ce4ec6ec9829181820c6f7d647238473277bf54d75bb87eae1fda"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-067",
+      "prefix": "渡辺さんからの伝言には、「先に行きます」と",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "5e7e62b2169b3cf021933f638f66af6a18870a1d94e6dc3e9d6c86ad1ad6400c",
+      "chosen_text": "言っていました。",
+      "grammar": 1,
+      "relevance": 2,
+      "coherence": 1,
+      "rationale": "伝言にはという場所の主題に言っていましたを接続し、書かれた伝言との表現が不自然である。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "言っていました。",
+        "body_tokens": 4,
+        "raw_hex": "e8a880e381a3e381a6e38184e381bee38197e3819fe38082",
+        "sha256": "bbbc422ecccccac74a02baad568279742feff976c812bac579b64afb79237783"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-069",
+      "prefix": "北海道の冬は寒いと聞いていたので、",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "3e2c0f6b2615da5d551dc2e15f0e462ebc84b4ce58dde0fbddf1bfd98a42fad6",
+      "chosen_text": "寒いと聞いたので、冬の寒さを感じていました。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "寒さを聞いて感じるという状態は重複を含むが、短い文として矛盾なく閉じる。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "寒いと聞いたので、冬の寒さを感じていました。",
+        "body_tokens": 16,
+        "raw_hex": "e5af92e38184e381a8e8819ee38184e3819fe381aee381a7e38081e586ace381aee5af92e38195e38292e6849fe38198e381a6e38184e381bee38197e3819fe38082",
+        "sha256": "246037217bf4d5dd1cd4cd7b2bb1e519caa302642008daa62575e3f2a2b29b88"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-070",
+      "prefix": "会議室「楓」に入ると、すでに",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "7d41dcac4b92da24af12b00e1b1060d859a88f2433c2a482dfbfc666dabf3100",
+      "chosen_text": "会議室の中に入っている",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 1,
+      "rationale": "室内に入った後ですでに中にいるという状態文は成立するが、自己反復で場面の進展は弱い。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "会議室の中に入っている",
+        "body_tokens": 8,
+        "raw_hex": "e4bc9ae8adb0e5aea4e381aee4b8ade381abe585a5e381a3e381a6e38184e3828b",
+        "sha256": "722cd4970e7c9accad06e08e8906cb67d1d7ecc39a3d3f89b43cf2af4f05c7b0"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-071",
+      "prefix": "「ありがとう」と言うと、彼女は",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "f9e7a6d6bc73a9e700967fd769e4a88eb2cb9b3d466f59d3948f5a01cbe7a914",
+      "chosen_text": "「ありがとう」と言ってくれます。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "感謝に感謝を返す短い会話として自然に閉じる。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "「ありがとう」と言ってくれます。",
+        "body_tokens": 12,
+        "raw_hex": "e3808ce38182e3828ae3818ce381a8e38186e3808de381a8e8a880e381a3e381a6e3818fe3828ce381bee38199e38082",
+        "sha256": "973724a960e8778f0929be5710c97ee2c6a4db3fbc7126a713d8fdae370e38ee"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-072",
+      "prefix": "あれ……鍵をどこに置いたかな。私は",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "3b4400f4aaa37b9a78ea38058284ed94600af98c94d6ff7e2ef00d38c9f739bd",
+      "chosen_text": "、この鍵をどこに置いたかは、よくわからない。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "鍵の所在が分からないという話者の状態で矛盾なく閉じる。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "、この鍵をどこに置いたかは、よくわからない。",
+        "body_tokens": 16,
+        "raw_hex": "e38081e38193e381aee98db5e38292e381a9e38193e381abe7bdaee38184e3819fe3818be381afe38081e38288e3818fe3828fe3818be38289e381aae38184e38082",
+        "sha256": "1f25fad5d004530a4e6b55e4ccab6d424a85a737b9dfde30226882a741649b14"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-074",
+      "prefix": "メモには「牛乳、卵、パン」と書いた。これで",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "589f8adf0e96ef778be08c62099174654e6a30c0c9efdf67b78ced01ea5bf130",
+      "chosen_text": "牛乳は「牛乳」と書く。",
+      "grammar": 2,
+      "relevance": 1,
+      "coherence": 1,
+      "rationale": "牛乳の表記だけを繰り返すためメモからの進展は弱い。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "牛乳は「牛乳」と書く。",
+        "body_tokens": 11,
+        "raw_hex": "e7899be4b9b3e381afe3808ce7899be4b9b3e3808de381a8e69bb8e3818fe38082",
+        "sha256": "90927f78871edab55db6d230cc7158db6f3a1bf301edf8151569b86d65a30361"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-075",
+      "prefix": "春が来た――そう感じたのは、",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "d3253cbdac3a695a95c9044f96a4d4449164cae3f71b7db144ca0d0668ab29af",
+      "chosen_text": "\n「おいしい」と感じるから。",
+      "grammar": 2,
+      "relevance": 1,
+      "coherence": 1,
+      "rationale": "おいしいという感覚を春の理由とする文形は閉じるが、季節の食べ物など対象が省略される。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "\n「おいしい」と感じるから。",
+        "body_tokens": 11,
+        "raw_hex": "0ae3808ce3818ae38184e38197e38184e3808de381a8e6849fe38198e3828be3818be38289e38082",
+        "sha256": "a206d55742e341f9a31d20f0b50aac932b505044f49c9ef2c48ca64a05e04aba"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-076",
+      "prefix": "本当かな？と思ったので、もう一度",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "a2cabd148fdd06152e672e609d207c48bea8fd786139143bdd31231c043f872c",
+      "chosen_text": "",
+      "grammar": 0,
+      "relevance": 1,
+      "coherence": 0,
+      "rationale": "もう一度に続く引用が同じ未完の問いを反復し、動作や引用の閉じ方がない。",
+      "actual_token_boundary_available": false,
+      "actual_selected_prefix": null,
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-077",
+      "prefix": "嬉しい！思わず声を上げて、",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "fad43aa1b4b162863d5601e615bd86c0c1262d5b58087b3e3c1098234a1641d0",
+      "chosen_text": "\n「ああ",
+      "grammar": 1,
+      "relevance": 1,
+      "coherence": 1,
+      "rationale": "感嘆の断片は喜びに関連するが、閉じ括弧も後続の動作もない。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "\n「ああ",
+        "body_tokens": 4,
+        "raw_hex": "0ae3808ce38182e38182",
+        "sha256": "b98f364d9df7ff79eff0288b81e0b1f83392a228531dcffb8fab194a7a6d293b"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-079",
+      "prefix": "窓の外には、小さな鳥がいた（昨日も見かけた鳥だ）。私は",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "7b23f83031c29cc76db8e87c6881d6adb38dd5757bc0994212ea251486b267ed",
+      "chosen_text": "、小さな鳥がいた",
+      "grammar": 1,
+      "relevance": 2,
+      "coherence": 1,
+      "rationale": "私はという主題と鳥がいたという主語の接続が不自然で、元の描写の反復にとどまる。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "、小さな鳥がいた",
+        "body_tokens": 7,
+        "raw_hex": "e38081e5b08fe38195e381aae9b3a5e3818ce38184e3819f",
+        "sha256": "c5bf25a63333d9a565ebbeaa7b46de8f597de7b6ea80427e13ddeebed56bb148"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-080",
+      "prefix": "「またね！」と手を振ると、",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "079f40ea6dbcebdbb5fb1c02d6f32fb5ea8d9d88f868f1b15aee377a9c463bee",
+      "chosen_text": "\n「ああ、これがいいねぇ」",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "手を振った反応として相手の短い引用を返す読みを許す。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "\n「ああ、これがいいねぇ」",
+        "body_tokens": 11,
+        "raw_hex": "0ae3808ce38182e38182e38081e38193e3828ce3818ce38184e38184e381ade38187e3808d",
+        "sha256": "c7be32a29c104ff4f5ea5b4e1ea70a91dc28da98572f266d0c232ed71f610ece"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-081",
+      "prefix": "母は花が好きだ。今日は母の誕生日なので、私は",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "8cf56d9921e4e301e5c7de5f7bfa353c2dddf77602686c209ee99627707e4963",
+      "chosen_text": "花が好きだ。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "母と自分の花への好みを述べる自然な短い文として閉じる。贈答行動だけを必須にしない。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "花が好きだ。",
+        "body_tokens": 5,
+        "raw_hex": "e88ab1e3818ce5a5bde3818de381a0e38082",
+        "sha256": "a8ea0d2f6945ba1e509d2bf5fe39f97084181451e545d4f373435ba9c28537c4"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-082",
+      "prefix": "自転車の鍵が見つからない。歩いて行くには遠いので、",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "e78e05ddee6efde1f9b73fd109651801c007fe3534d36b8f6e1fa581e61878b0",
+      "chosen_text": "歩くのは危険です。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 1,
+      "rationale": "徒歩への懸念を示す文としては成立するが、距離と危険との接続は薄い。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "歩くのは危険です。",
+        "body_tokens": 8,
+        "raw_hex": "e6ada9e3818fe381aee381afe58db1e999bae381a7e38199e38082",
+        "sha256": "4d162b49bfadbfb927ac4c9f3a78be91725b9343d546c5a49ec026374e2285be"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-084",
+      "prefix": "この犬は音を怖がる。花火が始まったので、私は",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "a983d6a4f2d12f3e63c3eb37a95aa21fe418062dccda3b89182d4ca79ea1f396",
+      "chosen_text": "花火を止めた。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "犬の恐怖に対応して自分たちの花火を止める自然な別背景を認める。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "花火を止めた。",
+        "body_tokens": 7,
+        "raw_hex": "e88ab1e781abe38292e6ada2e38281e3819fe38082",
+        "sha256": "391309d001b948384620c13c30d340f0d4d2fcd3f180eaf0b5a79966cc3622bf"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-085",
+      "prefix": "姉は甘いものを食べない。お土産には、お菓子より",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "809ba85ab4add7f0a4c5ec64bf80dd1fec1736120626b72bb0c6de3c6fa21010",
+      "chosen_text": "、お菓子の方がいい。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 0,
+      "rationale": "甘いものを食べない姉への土産で、お菓子よりお菓子がよいという自己比較になる。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "、お菓子の方がいい。",
+        "body_tokens": 8,
+        "raw_hex": "e38081e3818ae88f93e5ad90e381aee696b9e3818ce38184e38184e38082",
+        "sha256": "dcde29fad6be30c14d5f0082936c8d05f4bc20761f89ef400103ffcf9ef64b7c"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-086",
+      "prefix": "昨夜は眠れなかった。今日は無理をせず、",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "536c982cacd697a52d51d1201a31d16ab26e4aa86ae0b4e1a25fe8019dfb1e56",
+      "chosen_text": "朝から元気に過ごした。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "無理をせず元気に過ごすという状態は両立するため短い文として許す。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "朝から元気に過ごした。",
+        "body_tokens": 9,
+        "raw_hex": "e69c9de3818be38289e58583e6b097e381abe9818ee38194e38197e3819fe38082",
+        "sha256": "c730f744a5a40cbf420553b5bfe4a72cd4d571dc4a7f5f650d0c2785061a8f05"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-087",
+      "prefix": "図書館では静かにする約束だ。電話が鳴ったので、",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "6804e8867c118aea2dbf4e19168d015d4d3fc8fe31cd8fd62c0a601ebe4adc28",
+      "chosen_text": "そのままにしておいた。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 1,
+      "rationale": "電話へ応答しない行動は可能だが、音や静かにする約束への対応は弱い。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "そのままにしておいた。",
+        "body_tokens": 7,
+        "raw_hex": "e3819de381aee381bee381bee381abe38197e381a6e3818ae38184e3819fe38082",
+        "sha256": "36bce68a421d0549e74f0d0446c2e5ee57ec3ecf3878f4dfdbbc12c4b97f95d5"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-089",
+      "prefix": "使っていたペンのインクが切れた。引き出しから",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "d9a4b00630127d6c3b6a8fd161683a655ef097800e212fc1713b62e987f17d72",
+      "chosen_text": "",
+      "grammar": 0,
+      "relevance": 2,
+      "coherence": 0,
+      "rationale": "取り出してという接続節だけを反復し、取り出した後の完成した述語がない。",
+      "actual_token_boundary_available": false,
+      "actual_selected_prefix": null,
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-090",
+      "prefix": "窓を開けると雨が吹き込んだ。私は急いで",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "c90876b5035b8385b4f79927dc98707db962d953abeb118362a5f87bb0a4009b",
+      "chosen_text": "",
+      "grammar": 0,
+      "relevance": 2,
+      "coherence": 0,
+      "rationale": "窓を開けてという節を反復し、雨に対応する完成した動作を作らない。",
+      "actual_token_boundary_available": false,
+      "actual_selected_prefix": null,
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-091",
+      "prefix": "氷を暖かい部屋に置いておくと、少しずつ",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "940fd1d14e58f83bbf154c722f2ba1de5e13a171336f420cd99a5f32f84b59f0",
+      "chosen_text": "暖かい部屋に戻ってくる",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 0,
+      "rationale": "暖かい部屋に置いた氷が同じ部屋へ戻ってくるという状態の関係が説明されない。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "暖かい部屋に戻ってくる",
+        "body_tokens": 8,
+        "raw_hex": "e69a96e3818be38184e983a8e5b18be381abe688bbe381a3e381a6e3818fe3828b",
+        "sha256": "6896a87da96ff8371d932438dbb69533756ce1b69682840360a0b76a36b77ccd"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-092",
+      "prefix": "夜になって部屋が暗くなったので、電気を",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "85104ca3d7fd25281014d01afdd75311493aa432b829475d22412ca43cbe6737",
+      "chosen_text": "つけてみました。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "部屋が暗いため電気をつける自然な動作で閉じる。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "つけてみました。",
+        "body_tokens": 5,
+        "raw_hex": "e381a4e38191e381a6e381bfe381bee38197e3819fe38082",
+        "sha256": "1c40a905febe912c0f645586a080376151b418b63a1521d87b5951d9d3d1295b"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-094",
+      "prefix": "熱い鍋を持つときは、やけどをしないように",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "0a851f197e081b7da5e67735693aec0368700f79490a568267b23f198697aa26",
+      "chosen_text": "注意しましょう。",
+      "grammar": 2,
+      "relevance": 2,
+      "coherence": 2,
+      "rationale": "熱い鍋でのやけどに注意を促す短い文として完成する。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "注意しましょう。",
+        "body_tokens": 3,
+        "raw_hex": "e6b3a8e6848fe38197e381bee38197e38287e38186e38082",
+        "sha256": "9faf6f5cfd66ed6505756a0e4bab73a7947612080621174f2ea273236eb7ed68"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-095",
+      "prefix": "喉が渇いたので、コップに水を",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "0f4c64b1765d0a869c931f820ab9480069c0185ded04299647068c41e984ae60",
+      "chosen_text": "",
+      "grammar": 0,
+      "relevance": 2,
+      "coherence": 0,
+      "rationale": "水を入れてという接続節だけを反復している。",
+      "actual_token_boundary_available": false,
+      "actual_selected_prefix": null,
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-096",
+      "prefix": "信号が赤になったので、横断歩道の手前で",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "1ba509570e1dc90716be4f3a5ea48da333e0b85e4e09e6efa1cf8502b9a7599a",
+      "chosen_text": "、\n「おおきな」と書いてあるのを発見。",
+      "grammar": 2,
+      "relevance": 1,
+      "coherence": 2,
+      "rationale": "横断歩道前の表記を見つける体言止めの描写を許す。信号への対応は省略される。",
+      "actual_token_boundary_available": true,
+      "actual_selected_prefix": {
+        "text": "、\n「おおきな」と書いてあるのを発見。",
+        "body_tokens": 16,
+        "raw_hex": "e380810ae3808ce3818ae3818ae3818de381aae3808de381a8e69bb8e38184e381a6e38182e3828be381aee38292e799bae8a68be38082",
+        "sha256": "07b2b070a85a2e4fbcb753da273f3f019b373d1bbff825b349d32d2f5cd19dd0"
+      },
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-097",
+      "prefix": "紙が風で飛びそうなので、上に",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "ab7bfc036e901a501b775de83b41a6cc596c5881e1cd5141b5f3486b9b5b2e4b",
+      "chosen_text": "",
+      "grammar": 0,
+      "relevance": 1,
+      "coherence": 0,
+      "rationale": "書いてあるようにと面白いと思ったらという未完の節だけを反復する。",
+      "actual_token_boundary_available": false,
+      "actual_selected_prefix": null,
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-099",
+      "prefix": "濡れた靴下を脱いで、乾いた",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "cac1b826966e2f353e7acb09d1c5dcf862dae0b9bf3cfd6c74c3974ab1accc08",
+      "chosen_text": "",
+      "grammar": 0,
+      "relevance": 2,
+      "coherence": 0,
+      "rationale": "乾いた靴下を脱いでという接続節だけを反復している。",
+      "actual_token_boundary_available": false,
+      "actual_selected_prefix": null,
+      "unknown_beyond_original_EOS": false
+    },
+    {
+      "id": "base-100",
+      "prefix": "外に出る前に、玄関で靴を",
+      "original_stop": "max_new_tokens",
+      "original_row_sha256": "71605ce96b790bb20e1aceb456789aefda74e417519382c6ba8531b28a09bf46",
+      "chosen_text": "",
+      "grammar": 0,
+      "relevance": 2,
+      "coherence": 0,
+      "rationale": "靴を脱いでという接続節だけを反復し、外に出る動作も閉じない。",
+      "actual_token_boundary_available": false,
+      "actual_selected_prefix": null,
+      "unknown_beyond_original_EOS": false
+    }
+  ],
+  "predeclared_feasibility_marker": {
+    "grammar_at_least56": false,
+    "coherence_at_least31": true
+  },
+  "marker_passed": false,
+  "CPU_seconds": 0.05914181499974802,
+  "CPU_ceiling_seconds": 60,
+  "GPU_seconds": 0,
+  "forward_requests": 0,
+  "new_scientific_teacher_tokens": 0,
+  "optimizer_updates": 0,
+  "new_original_corpus_tokens": 0,
+  "mechanism": "Hypothetical zero-initialized linear residual on native EOS3 logit, all native weights frozen. At any same history, non-EOS logits/order and conditional non-EOS probabilities stay unchanged; greedy body follows the original non-EOS path until stopping. Full CE head gradient equals binary EOS-vs-nonEOS CE gradient.",
+  "sources": [
+    "https://aclanthology.org/2020.blackboxnlp-1.26/",
+    "https://arxiv.org/abs/1903.00802"
+  ],
+  "limitations": [
+    "Manual first usable prefix choices are nonblind posthoc diagnostics, not learned termination, independent human evaluation, exhaustive stopping oracle or mathematical bound on grammar/meaning.",
+    "A changed EOS head can extend past an original EOS; such unseen text remains unknown. This original fixed80 has no EOS, so its entire fixed64 greedy non-EOS path is already cached.",
+    "Only actual token/UTF8 boundaries <=63 qualify. No token insertion, punctuation repair, altered prompts or free-running model evaluation is performed.",
+    "The cited EOS work studies length extrapolation or encoder-decoder translation, not this Japanese10M head. This is a local transfer hypothesis.",
+    "Failure ends this fixed stop-only feasibility route; it does not prove all termination methods, Japanese10M capacity or larger/diverse source routes impossible."
+  ],
+  "next_action": "If the marker fails, do not implement/train this frozen-body EOS-head-only route. Define a distinct intervention that can change body-token selection while explicitly retaining Web quality; no EOS threshold/bias/decoder or checkpoint-selection sweep. If supported, define train-only head training and an actual CUDA/budget/unchanged quality comparison before any learning.",
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true
+}

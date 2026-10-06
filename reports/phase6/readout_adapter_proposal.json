@@ -1,0 +1,115 @@
+{
+  "kind": "frozen_decoder_nonlinear_readout_Base_full100M_v1",
+  "created_at": "2026-10-06T13:45:17.083393Z",
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/historical-parent-condition-comparison-v3-20261006/historical_parent/training/checkpoint-00323503.pt",
+    "sha256": "6d901bd290cc5b7ab0b52a3a2309232d1e08c7fba32ecb8ec1e5656fe1a2f5a0"
+  },
+  "policy": {
+    "kind": "frozen_native_postnorm_silu_residual_readout_v1",
+    "bottleneck_ratio": [
+      3,
+      4
+    ],
+    "native_weights_frozen": true,
+    "up_initialization": "exact_zero",
+    "down_initialization": "private_normal_std_0.02",
+    "initialization_seed": 2026100651,
+    "bias": false,
+    "dropout": 0.0,
+    "placement": "after_final_RMSNorm_before_tied_vocabulary_matrix"
+  },
+  "hypothesis": "Preserve pretrained decoder features/KV and tied native vocabulary matrix, but learn one nonlinear final readout that can change non-EOS choices and stopping. Native parameters stay exact; final probabilities and Web quality are not guaranteed preserved.",
+  "comparison": "Same mixed parent6d, full staged100M source/targets/order/seed, fixed Japanese/dev256/native greedy80 versus completed cached matched_staged_CE. Training policy is the intervention: only a new nonlinear readout with fresh Adam, versus full native inherited Adam. Not an optimizer-only or architecture-only causal comparison.",
+  "novelty": "Old rank4 changes every attention/MLP projection and merges linear weight deltas, with different masked targets/fresh-full control. This keeps all native decoder/embedding/norm/output weights frozen and adds one nonlinear postnorm readout. It is a new representational mechanism, not a rank/module rescue of the ended rank4 recipe or a decoder bias.",
+  "bottleneck_width": 192,
+  "bottleneck_rule": "Largest multiple of64 for a bias-free256-m-256 residual inside the documented10.1M total budget: m192 adds98304; m256 would exceed budget. One fixed width, not a sweep.",
+  "native_unique_parameters": 10001152,
+  "new_parameters": 98304,
+  "unique_parameters": 10099456,
+  "new_parameter_tensors": 2,
+  "trainable_names": [
+    "lm_head.down",
+    "lm_head.up"
+  ],
+  "readout_LR": 0.0001,
+  "readout_weight_decay": 0.0,
+  "optimizer_policy": "Fresh constant-LR AdamW only for readout; same parent betas/eps. Original Adam moments/scheduler recorded as lineage but not used, original matrices receive zero optimizer updates.",
+  "ordinary_source_CE_teacher_tokens": 100000000,
+  "teacher_goals": {
+    "web": 75000000,
+    "story": 5000000,
+    "ordinary_textbook": 10000000,
+    "conditional_textbook": 10000000
+  },
+  "full_conditional_setup_body_EOS": true,
+  "outcome_weight": 1,
+  "parameter_penalty": 0,
+  "KL": 0,
+  "new_original_corpus_tokens": 0,
+  "own_CUDA_probe_ceiling_seconds": 120,
+  "total_new_GPU_ceiling_seconds": 900,
+  "before_science": "Own exact identity native FP32/BF16 MATH at32/1024, nonzero readout full/cache1024, frozen native119 coordinates/private RNG/tie/13KV. Own CUDA continuous4 versus2+2 allstate/history and32finite BF16/Flash timing+save atbatch32. Only if1.3training margin+300evaluation+ownprobe fits900s: implement/freeze scientific runner and100M candidate.",
+  "evaluation": "Explicit ReadoutAdapterModel; same fixed dev256/common bytes/Japanese192-331-1119/greedy80 max64 EOS3/suppression; bridge and retention512each. All80 raw-bound individual notes and original strong-staged/absolute/historical Web gates.",
+  "selection": "Original strong full-staged coherence23+8 with pairedCI lower>0, EOS>=76/repetition<=2; absolute grammar56/coh27/appropriate27/EOS37/repetition<=18/errors0; original held-out WebBPB<=.9812859519097707. Only a qualified recipe permits independent learned seed/full dev/protected test/adoption.",
+  "no_rescue": "No width/activation/placement/initialization/LR/weight-decay/source/mask/parent/decoder/checkpoint sweep. Cost/numeric/quality failure ends this fixed route; no automatic long extension.",
+  "references": {
+    "gated_shared_comparison": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/gated_shared_comparison_completion.json",
+      "sha256": "9ef8553215231de40e7d9c541aa7d2c50507fae28c50cbb514bf288274d21647"
+    },
+    "fisher_parameter_anchor": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/fisher_parameter_anchor_completion.json",
+      "sha256": "fb3b01afe428f18d37df70b66d7e834995457ed22cfca2d5299bdc4d024a8480"
+    },
+    "stop_only_screen": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/stop_only_feasibility.json",
+      "sha256": "1665063a20418533ac53328dfafd4b834f74e025648dbfe7b644df4c95ff3bac"
+    },
+    "CPU_tests": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readout_adapter_tests.xml",
+      "sha256": "77e0aaec3f2b88af18ded01671b6b4a97e4cb03e173c17ad4538c864e28bd9e5"
+    },
+    "native_config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/parameter_displacement_anchor_v3.json",
+      "sha256": "7fb897e9905eceaecc754a4d323f2e8d90c68e47e592872c8f20cf980721e249"
+    },
+    "native_result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/parameter-displacement-anchor-v3-20261006/compare-result.json",
+      "sha256": "4f71f1842a6cd85b3f34696a8052ee38f9c1aba9c94c5c67580fd85aa46a54d9"
+    },
+    "native_review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/parameter-displacement-anchor-v3-20261006/review.json",
+      "sha256": "d1360f469c2410dadf288e6a987996fa4a65137d1b610c034f11e4a79ee02c2b"
+    },
+    "architecture_rules": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/docs/03_architecture.md",
+      "sha256": "3eb422b71d7b2dbcb47a821749ae3111776f4ecfc90a6115696594202984fd40"
+    },
+    "old_rank4_review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/low_rank_base_v2_review.json",
+      "sha256": "863ec1ecc2baf411299e8b542b7fc4480f740ae178a0fbc2210cc80bc3827c01"
+    }
+  },
+  "preparation_CPU_seconds": 0.27745612000580877,
+  "primary_sources": [
+    {
+      "title": "Houlsby et al. frozen pretrained network/bottleneck adapters",
+      "url": "https://proceedings.mlr.press/v97/houlsby19a.html"
+    },
+    {
+      "title": "Kumar et al. feature distortion and linear probing",
+      "url": "https://arxiv.org/abs/2202.10054"
+    }
+  ],
+  "inference": "Our single final nonlinear readout is not the exact per-layer BERT adapter protocol. Feature-distortion findings largely concern vision distribution shifts; neither cited work proves this Japanese10M recipe will improve Base.",
+  "limitations": "Adds98304 learned weights (+0.983%); original matrices remain frozen but output distributions can drift. One learned seed/repeated dev/nonblind content. Native nonlinear config/save/cache supported; stock HF export requires a dedicated adapter, not completed. stop-only manual screen is non-exhaustive and is not a mathematical quality upper bound.",
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "scientific_teacher_tokens_so_far": 0,
+  "new_GPU_seconds_so_far": 0
+}
