@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="2" time="1.988" timestamp="2026-10-06T23:15:16.870873+09:00" hostname="DESKTOP-42CUV0C"><testcase classname="tests.test_livedoor_base_trainer" name="test_actual_inherited_fullstate_and_resume_through_Web_news_boundary" time="1.096"><failure message="KeyError: 'original_web_manifest_sha256'">tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-123/test_actual_inherited_fullstat0')
+
+    def test_actual_inherited_fullstate_and_resume_through_Web_news_boundary(tmp_path):
+        pool,parent,binding=prefix_fixture(tmp_path);goals=dict(web=11,authored_news=120)
+        def build():return NewsBaseTrainer(parent,pool,pool,goals,binding,'cpu',8,3)
+&gt;       trainer=build()
+                ^^^^^^^
+
+tests/test_livedoor_base_trainer.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_livedoor_base_trainer.py:23: in build
+    def build():return NewsBaseTrainer(parent,pool,pool,goals,binding,'cpu',8,3)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;livedoor_base_trainer.NewsBaseTrainer object at 0x7b3fa43acc80&gt;
+parent = {'version': 2, 'spec': {'seed': 42, 'context': 8, 'batch': 3, 'accumulation': 1, ...}, 'model_config': {'schema_versio....0008,  ..., -0.0260,  0.0033,  0.0047],
+        [-0.0321, -0.0059, -0.0116,  ...,  0.0060,  0.0132, -0.0026]])}), ...}
+web = namespace(directory=PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-123/test_actual_inherited_fullstat0/data'), split='t...6, 2, 0, 1]), ('story', 42, 0): array([0, 6, 3, 2, 5, 4, 1, 7]), ('textbook', 42, 0): array([2, 5, 6, 0, 1, 4, 3, 7])})
+news = namespace(directory=PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-123/test_actual_inherited_fullstat0/data'), split='t...6, 2, 0, 1]), ('story', 42, 0): array([0, 6, 3, 2, 5, 4, 1, 7]), ('textbook', 42, 0): array([2, 5, 6, 0, 1, 4, 3, 7])})
+goals = {'web': 11, 'authored_news': 120}
+binding = {'parent': {'path': '/tmp/pytest-of-aihub_ubuntu/pytest-123/test_actual_inherited_fullstat0/parent/checkpoint.pt', 'sh...59023b6d739d5097eb42bea73a71b3b81db0f29f80bd99c4b09dd342ffe67a57'}, 'config_sha256': 'CPU-fixture-only', 'arm': 'test'}
+device = 'cpu', context = 8, batch = 3
+
+    def __init__(self,parent,web,news,goals,binding,device='cuda',context=1024,batch=32):
+        if parent['implementation_sha256']!=implementation_hashes():raise ValueError('Shared native implementation differs')
+&gt;       if parent['spec']['original_web_manifest_sha256']!=sha256(web.directory/'manifest.json'):raise ValueError('Actual original Web source differs')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'original_web_manifest_sha256'
+
+scripts/livedoor_base_trainer.py:79: KeyError</failure></testcase><testcase classname="tests.test_livedoor_base_trainer" name="test_exact_tail_teacher_bytes_EOS_and_masked_physical_padding" time="0.025" /></testsuite></testsuites>
