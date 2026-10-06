@@ -1,0 +1,59 @@
+{
+  "status": "matching_completed_runs_timing_only",
+  "records": [
+    {
+      "arm": "historical_parent",
+      "GPU_seconds": 249.0781939389999,
+      "training_step_seconds": 160.61181519835372,
+      "nontraining_GPU_occupancy_seconds": 88.46637874064618,
+      "references": [
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/historical_parent_condition_comparison_v3.json",
+          "sha256": "8201c995e37421869d43361fe9b381e0bd90ee16bfd8b54fca90f93b093dc99d"
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/historical-parent-condition-comparison-v3-20261006/compare-result.json",
+          "sha256": "b45b55ac4e332d97ccfe717b85b7972db60478ba3fa027d7bb94acf5363251b2"
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/historical-parent-condition-comparison-v3-20261006/job.json",
+          "sha256": "47eff862fa60275993687a99876d7f3f2756aef710942dd2da3473ded6b343f1"
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/historical-parent-condition-comparison-v3-20261006/historical_parent/training/metrics.jsonl",
+          "sha256": "92c5d366cf8bf7ddf47fab624f06e5cff96a8a11d296c3a6245fe8b85214c173"
+        }
+      ]
+    },
+    {
+      "arm": "original_web",
+      "GPU_seconds": 251.83709449900198,
+      "training_step_seconds": 159.0405966801045,
+      "nontraining_GPU_occupancy_seconds": 92.79649781889748,
+      "references": [
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/original_web_retention_comparison.json",
+          "sha256": "5d7d10c7d5ed14a14da372cade700eb429601bd4413967a669400d3507209de3"
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/original-web-retention-comparison-20261006/compare-result.json",
+          "sha256": "e085206d029ae7ddffdcfc6f6d3e22b18bb39a503ab7bc85973d36a45affc200"
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/original-web-retention-comparison-20261006/job.json",
+          "sha256": "7944073ceda86ea94252e41faf88ae2906b9136f6f2bfa5a8219153df4f1d140"
+        },
+        {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/original-web-retention-comparison-20261006/original_web/training/metrics.jsonl",
+          "sha256": "df67f1c4a8f56865fc1594d13402cca891aad93d2cfa8534230eec9279b0f8d3"
+        }
+      ]
+    }
+  ],
+  "maximum_observed_nontraining_seconds": 92.79649781889748,
+  "nontraining_reserve_seconds": 150.0,
+  "reserve_policy": "max(150 seconds, 1.5 times maximum observed whole nontraining GPU occupancy); then 30 percent margin on training plus reserve, plus50 seconds",
+  "GPU_ceiling_seconds": 900,
+  "quality_criteria_unchanged": true,
+  "limits": "Nontraining occupancy includes evaluation, constructor/loading, checkpoint saves and cleanup; not a direct evaluation timer or guaranteed upper bound. Different generated lengths can change cost. Actual cumulative900-second cap remains enforced."
+}

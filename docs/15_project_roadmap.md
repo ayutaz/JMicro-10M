@@ -1,3 +1,12 @@
+同100M教師・教材順序比較の実CUDA検証を終え、本学習を開始（2026-10-06 JST）: Baseのみを品質・独立学習seed/full dev/protected test/採用まで継続し、完了時に通知して停止する。Chat/Dialogue/SFT/量子化には進まない。Baseは未完了・未採用。
+
+own v1の実CUDA4対2+2で全32state/history/finite checksが一致、親model/Adam/scheduler/RNG/実Web cursor/実LR.00001を維持。32timingを含む40検証更新/1,307,967教師、GPU20.297709秒、科学教師0。actual580440はcomplete・実process不在。固定300秒の評価枠を含む見積922.223216秒は900秒超過のため本学習前に拒否、v1 source/config/resultとsource_order_budget_rejection_v1.jsonを保持。
+
+own v2は予算推定だけを修正し、v1 CUDA証拠を再利用する。完了historical/original routeの同256byte/80greedy/日本語192・331・1119/bridge512/retention512を実metricsと照合し、学習以外の全GPU占有88.466379/92.796498秒を確認。純評価timerとはしない。max(150秒,実測最大×1.5)の枠＋学習との合計に30%＋50秒の余裕、検証20.297709秒を全て算入した見積817.223216秒。実累積上限900秒・全品質条件・教師量・形状・親/実LR・source orderは不変。CPU3tests/0.90秒、v1/2のscience関数AST一致、PS構文成功。別順序/比率/LR/weight/shape sweepなし。
+
+科学config configs/phase6/source_order_condition_comparison_v2.json SHA03b4ad47fa42b9a669c4588e736648e6339c93b9eb0cf3d08aac22a46cf90a88。新100M教師/Web75M→story5M→ordinary10M→conditional10M、same historical10.5B fullstate・cached mixed100Mを再評価せず対照に再利用。Windowsworker32208/actual581514/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start15094429をps確認、training1,307,936教師/loss2.633086有限で稼働。run reports/phase6/source-order-condition-comparison-v2-20261006、再開 scripts/run_source_order_condition_comparison_v2.ps1 -Mode Train -Worker。元10B UIはGPU中停止しwrapper finallyで復帰。
+
+次は同job100M終端・同byte/全日本語/全80/bridge/retention→全80個別読解→cached controlと全4source cursor/counter一致・会計確認→relative/absolute/歴史Web1%採否→可搬保存/UI復帰/local commit。品質失敗から自動延長・別順序/有利なCP探索・基準緩和へ進まない。独立seed/full dev/protected testは品質pilot合格後。旧数値7失敗/Phase0–3を維持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
 公開候補4件の有限調査と、同教師の学習順序比較のCPU準備を完了（2026-10-06 JST）: Baseだけを品質・独立学習seed/full dev/protected test/採用まで継続し、完了時に通知・停止する。Chat/Dialogue/SFT/量子化なし。前turnの両教材不採用をf7e9bd9へ保存したprogress後、4 actual jobsの終端と元10B UI578328の実ps稼働を再確認。本turn GPU0/学生学習0、Base未完了/未採用。
 
 公開metadata/card4件を匿名・pinned revisionで実5.391722秒取得、bulk raw0。kai271/TinyStories-JapaneseはMIT/GPT4o-mini・概算3000話/train2.44MBで10M sourceの見込み不足。aixsatoshi/cosmopedia-japanese-20kは27byte cardにlicense/翻訳teacher/family splitなし、上流の許諾だけを翻訳版の許諾としない。OpenJAはCC-BY4.0 compilation/国会会議録3.24Mrecords・約679M Qwen tokensという著者主張であり、学生tokensや日常物語の供給量ではない。izumi-labのWikipediaは別snapshotでも既試行と同じsource class、byte一致/全重複は未確認。今回の候補から新規sourceを選ばず、全日本語コーパスに適材が存在しないとは断定しない。public_prose_registry_metadata.json/review.jsonとpinned cards/APIを保存。追加のsource/filter探索へ無制限に進めない。
