@@ -1,3 +1,9 @@
+Base専用compiled oracle: terminal（2026-10-06 JST）。Base未完成・実完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+readonly compiled FP32診断が実完了、actual645132終端/実不在。GPU26.820366秒/120、optimizer/新source学習0。両固定点で元math NLL/勾配・bitwise反復/weights・RNG/grad不変合格。max forward0.050037/gradient0.242527秒。元math受入監査一回/各更新と初回compile余裕を含む科学予測3550.722645秒、旧2診断/ownprobe込み3621.283751秒/2400。これは計画で、owntransactional CUDA gateや将来全重みparity/品質/完成の証明ではない。厳密受入監査を保つ計画でも40分予算を超えるため、本科学を凍結/起動しない。compile/mode/dtype等の救済sweepなし、次はこの実費用を根拠に別のBase改善機構を定義する。
+
+[PyTorch公式compile仕様](https://docs.pytorch.org/docs/2.14/generated/torch.compile.html)を参照し、当固定FP32計算の数値/時間は実測で判定。元10B UI復帰、全旧失敗/数値7/Phase0–3/相対・絶対・歴史Web品質基準保持、WSL uv3.12.7/local commitのみ/pushなし。合格recipeのみ独立学習seed/full dev/protected test/採用へ接続。以下は過去の履歴。
+
 Base専用compiled oracle: preparation（2026-10-06 JST）。Base未完成・実完成時通知停止、Chat/Dialogue/SFT/量子化なし。
 
 同FP32/micro8/固定TRAIN32/効率Attentionへtorch.compile(fullgraph=True, mode=default, dynamic=False)を一つだけ適用。元親/固定旧masked-stagedの2点で同math NLL2e-6/gradient element絶対2e-6+相対2e-5・global L2相対2e-5/bitwise反復/weights・RNG・grad不変を確認し、4forward+4gradient実timingを測る。初回compileも含む120GPU秒、CPU準備0.216440秒、新GPU/optimizer0。旧2診断43.740740GPU秒も次の2400秒予算へ計数。dtype/backend/mode/packet/CP救済なし。次は実GPU比較を起動、元math厳密受入監査込みの予測と新全stateCUDA gateなしでは本科学を起動しない。
