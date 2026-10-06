@@ -15,7 +15,7 @@ import run_low_rank_base_comparison as study
 
 
 def main(phase):
-    destination=ROOT/f'reports/phase6/low_rank_base_{phase}.json'
+    destination=ROOT/f'reports/phase6/low_rank_base_v2_{phase}.json'
     if destination.exists():raise ValueError('Preserve original low-rank milestone')
     config=study.CONFIG if phase=='launch' else study.PROBE_CONFIG
     c=study.inspect(config) if phase!='launch' else read_json(config)

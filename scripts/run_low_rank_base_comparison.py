@@ -31,10 +31,10 @@ from run_eos_short_pilot import equal_state
 import run_interleaved_outcome_order as old
 import run_complete_text_comparison as evaluation
 
-RUN=ROOT/'reports/phase6/low-rank-base-comparison-20261006'
-PROPOSAL=ROOT/'reports/phase6/low_rank_base_proposal.json'
-PROBE_CONFIG=ROOT/'configs/phase6/low_rank_base_probe.json'
-CONFIG=ROOT/'configs/phase6/low_rank_base_comparison.json'
+RUN=ROOT/'reports/phase6/low-rank-base-comparison-v2-20261006'
+PROPOSAL=ROOT/'reports/phase6/low_rank_base_v2_proposal.json'
+PROBE_CONFIG=ROOT/'configs/phase6/low_rank_base_v2_probe.json'
+CONFIG=ROOT/'configs/phase6/low_rank_base_v2_comparison.json'
 ARMS=('full_fresh_Adam','rank4_frozen_backbone')
 CEILING=1800
 PROBE_CEILING=240
@@ -193,7 +193,7 @@ def run(probe=False):
             if target.exists() and target.read_bytes()!=(ROOT/relative).read_bytes():raise ValueError('Frozen snapshot differs')
             if not target.exists():shutil.copyfile(ROOT/relative,target)
         parent=torch.load(c['parent']['path'],map_location='cpu',weights_only=False);pool,original,positive=old.data(c)
-        base=read_json(c['original_config']['path']);ledger=read_json(c['references']['reference_input_ledger']['path'])
+        base=read_json(Path(c['original_config']['path']));ledger=read_json(Path(c['references']['reference_input_ledger']['path']))
         with gpu_lock('cuda'):
             started[0]=time.monotonic();heartbeat('GPU');progress=output/'progress-result.json'
             result=read_json(progress) if progress.exists() else dict(arms={})

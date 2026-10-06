@@ -2,6 +2,14 @@
 
 文書間packing依存markerは不支持、sequence unlikelihoodは既2比較不採用で再実行しない。今回は元W0を固定してrank4/scale1/dropout0の全attention/MLP7projection×13層だけを学習し、full更新と比較する。一方だけAdamをリセットする交絡を避け、両方fresh AdamW/同hyperparams/元scheduler clockとpermanent floor/actualLR.00001を使う。旧親Adamはprovenanceとして保持し継承したと偽らない。元native10,001,152、rank4の学習232,960/一時10,234,112、統合後10,001,152でnative評価する。凍結backboneでもactive adapterのWeb性能維持は保証されず、soft L2/KL/平均重みと同じ仮説へ代入しない。[一次論文](https://arxiv.org/abs/2106.09685)は当10Mの成功証拠ではない。
 
+CPU4tests/1.65秒でzero-B初期native出力一致、私有初期化RNG、実勾配/frozen W0、数学的merge/native tied keys/params、両fresh-Adam連続4対2+2全state一致・改変拒否を確認。最初のwrapper階層とfixture key参照の3失敗は修正し、成功結果を保存した。実CPU準備0.122730秒/上限30。完了済み3068 input/target/source ledgerと217MB compact cacheを再利用し、全corpus照合/再変換なし。newGPU/学習0。次はownCUDA両armの連続8対4+4/全state・有限値/32timing/nativeFP32mergeを240秒以内に実測し、検証＋両学習/評価予測が1800秒以内の場合のみ本比較を凍結する。
+
+同元10.5B親/元Webcursor/seed42/入力/条件outcome+EOSmask/75-5-10-10 reference quota/decoderを維持、両actual91,641,755教師、100M referenceと区別する。旧inherited-Adam mixed/full staged/masked stagedは歴史参照として保存し新matched controlと称さない。strong23+8 coherence/pairedCI>0・EOS>=76/反復<=2、絶対grammar56/coh27/適切27/EOS37/反復<=18/errors0、歴史WebBPB<=.9812859519097707の旧全gateを維持。不合格でrank/module/scale/LR/source/mask/CP/decoder sweepなし。合格recipeだけ独立学習seed/full dev/protected test/採用へ進む。Base/最終採用未達、Phase0–3/旧数値7/全失敗保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
+固定rank4 LoRAのBase比較: preparation（2026-10-06 JST）。Baseのみ継続・実完成時に通知して停止、Chat/Dialogue/SFT/量子化なし。
+
+文書間packing依存markerは不支持、sequence unlikelihoodは既2比較不採用で再実行しない。今回は元W0を固定してrank4/scale1/dropout0の全attention/MLP7projection×13層だけを学習し、full更新と比較する。一方だけAdamをリセットする交絡を避け、両方fresh AdamW/同hyperparams/元scheduler clockとpermanent floor/actualLR.00001を使う。旧親Adamはprovenanceとして保持し継承したと偽らない。元native10,001,152、rank4の学習232,960/一時10,234,112、統合後10,001,152でnative評価する。凍結backboneでもactive adapterのWeb性能維持は保証されず、soft L2/KL/平均重みと同じ仮説へ代入しない。[一次論文](https://arxiv.org/abs/2106.09685)は当10Mの成功証拠ではない。
+
 CPU4tests/1.65秒でzero-B初期native出力一致、私有初期化RNG、実勾配/frozen W0、数学的merge/native tied keys/params、両fresh-Adam連続4対2+2全state一致・改変拒否を確認。最初のwrapper階層とfixture key参照の3失敗は修正し、成功結果を保存した。実CPU準備0.232737秒/上限30。完了済み3068 input/target/source ledgerと217MB compact cacheを再利用し、全corpus照合/再変換なし。newGPU/学習0。次はownCUDA両armの連続8対4+4/全state・有限値/32timing/nativeFP32mergeを240秒以内に実測し、検証＋両学習/評価予測が1800秒以内の場合のみ本比較を凍結する。
 
 同元10.5B親/元Webcursor/seed42/入力/条件outcome+EOSmask/75-5-10-10 reference quota/decoderを維持、両actual91,641,755教師、100M referenceと区別する。旧inherited-Adam mixed/full staged/masked stagedは歴史参照として保存し新matched controlと称さない。strong23+8 coherence/pairedCI>0・EOS>=76/反復<=2、絶対grammar56/coh27/適切27/EOS37/反復<=18/errors0、歴史WebBPB<=.9812859519097707の旧全gateを維持。不合格でrank/module/scale/LR/source/mask/CP/decoder sweepなし。合格recipeだけ独立学習seed/full dev/protected test/採用へ進む。Base/最終採用未達、Phase0–3/旧数値7/全失敗保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。

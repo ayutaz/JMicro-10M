@@ -1,7 +1,7 @@
 param([ValidateSet('Probe','Train')][string]$Mode='Probe',[switch]$Worker)
 $ErrorActionPreference='Stop'
 $workspace=Split-Path -Parent $PSScriptRoot
-$runDir=Join-Path $workspace ('reports\phase6\low-rank-base-comparison-'+$Mode.ToLower()+'-launcher-20261006')
+$runDir=Join-Path $workspace ('reports\phase6\low-rank-base-comparison-v2-'+$Mode.ToLower()+'-launcher-20261006')
 New-Item -ItemType Directory -Force -Path $runDir | Out-Null
 if(-not $Worker){
     if(Test-Path -LiteralPath (Join-Path $runDir 'launcher.json')){throw 'Inspect actual process before resuming with -Worker.'}
@@ -15,7 +15,7 @@ try{
     $preflight=if($Mode -eq 'Probe'){'--preflight-probe'}else{'--inspect'}
     & wsl.exe -d Ubuntu --cd /home/aihub_ubuntu/src/japanese-tiny-llm-10m -- /home/aihub_ubuntu/.local/bin/uv run --frozen --extra hub --extra data --extra ml --extra export scripts/run_low_rank_base_comparison.py $preflight
     if($LASTEXITCODE -ne 0){throw 'Low rank Base preflight rejected before UI/GPU changes.'}
-    $jobPath='\\wsl.localhost\Ubuntu\home\aihub_ubuntu\src\japanese-tiny-llm-10m\reports\phase6\low-rank-base-comparison-20261006'
+    $jobPath='\\wsl.localhost\Ubuntu\home\aihub_ubuntu\src\japanese-tiny-llm-10m\reports\phase6\low-rank-base-comparison-v2-20261006'
     if($Mode -eq 'Probe'){$jobPath=Join-Path $jobPath 'probe'}
     $jobPath=Join-Path $jobPath 'job.json'
     if((Test-Path -LiteralPath $jobPath) -and ((Get-Content -Raw -LiteralPath $jobPath|ConvertFrom-Json).status -eq 'complete')){
