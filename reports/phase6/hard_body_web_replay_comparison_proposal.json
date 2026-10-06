@@ -1,0 +1,152 @@
+{
+  "status": "one_hard_target_replay_comparison_proposed_not_implemented_or_executed",
+  "created_at": "2026-10-06T07:35:34.2693481Z",
+  "rationale": "FullKL and EOS-decoupledKL retain natural-body BPB but fail free-generation coherence; removing only EOS-mass constraints gives small40to44 EOS/9to11 coherence gain and52of80 outputs unchanged. Close further EOS/KL-component tuning. Test actual gold train-Web body targets in the same replay windows in place of the frozen soft distribution, while retaining the existing non-EOS vocabulary and parent non-EOS mass weight. This is a new supervision-type hypothesis, not proof that the teacher distribution alone causes poor generation.",
+  "previous_completed_component_study": {
+    "sha256": "9494a369a18677ad3dd311a97ec21501961a3cab3fcb24eed0334a848384a9f1",
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos_decoupled_web_kl_comparison_completion.json"
+  },
+  "previous_related_KL_studies_GPU_seconds": 795.3523048920615,
+  "source_implementation_config_search": {
+    "matches": 0,
+    "limit": "Limited lexical local implementation/config search, not proof about all external or unregistered research.",
+    "command": "rg -l -i 'hard[- _]?(target|body).*replay|replay.*hard[- _]?(target|body)|hard[- _]?Web.*CE' scripts configs/phase6 --glob '*.py' --glob '*.json'"
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+    "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+  },
+  "frozen_reference_teacher": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+    "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+  },
+  "main_teacher_quotas": {
+    "web": 75000000,
+    "story": 5000000,
+    "ordinary_textbook": 10000000,
+    "conditional_textbook": 10000000
+  },
+  "main_ordinary_CE_teacher_tokens": 100000000,
+  "source_order": [
+    "web",
+    "story",
+    "ordinary_textbook",
+    "conditional_textbook"
+  ],
+  "main_shapes": {
+    "context": 1024,
+    "batch": 32,
+    "accumulation": 1,
+    "backend": "flash",
+    "compile_mode": "reduce-overhead",
+    "dtype": "bf16"
+  },
+  "inherited_actual_LR": 1E-05,
+  "primary_supervision_control": {
+    "history": {
+      "sha256": "7bfbcebe664ce5ec0902f16abd4cc462c58fe75dd58507f132853ddcafa5cd98",
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-decoupled-web-kl-comparison-20261006/eos_decoupled_web_kl/training/metrics.jsonl"
+    },
+    "checkpoint": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-decoupled-web-kl-comparison-20261006/eos_decoupled_web_kl/training/checkpoint-00323503.pt",
+      "sha256": "a27547b6223c3708d6dbf8c9f211631b44fb9518771ed7c08a89ae40506e1213"
+    },
+    "config": {
+      "sha256": "1d31739438ffcd2e2ef93c725e16b0ed23d0fec6417ece5f2268766e88881017",
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/eos_decoupled_web_kl_comparison.json"
+    },
+    "review": {
+      "sha256": "1f072e9340549db0733bb89f0cfeeac8b80ac4fbea9f9b3bb7e932f45e081af0",
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos_decoupled_web_kl_comparison_review.json"
+    },
+    "notes": {
+      "sha256": "5be5a2e6914ff8ad35c089462b657298a91daec7deca6080acba86de13c55ba2",
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos_decoupled_web_kl_notes.json"
+    },
+    "result": {
+      "sha256": "099d4cc30e32ebca2c9182802ad06d965b9bae127f0d7bcb2f554a8496464d5d",
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-decoupled-web-kl-comparison-20261006/compare-result.json"
+    },
+    "generation": {
+      "sha256": "c3805846c57796df38fe32c4ea4f4e7a834cc2ef62f4128348a5df5d00984db6",
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos-decoupled-web-kl-comparison-20261006/evaluation/eos_decoupled_web_kl/evaluation/generation.json"
+    }
+  },
+  "mandatory_quality_control": {
+    "config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/source_order_condition_comparison_v2.json",
+      "sha256": "03b4ad47fa42b9a669c4588e736648e6339c93b9eb0cf3d08aac22a46cf90a88"
+    },
+    "result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/compare-result.json",
+      "sha256": "cbca7936ebf395b1d5ccd45022ee4cb85de704a636c8bdae48ff2c24a8adc303"
+    },
+    "review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/review.json",
+      "sha256": "d4efc7530850a2a1fe15695c227c4bc6adabb9a7007fbd81091bf20f4900306d"
+    },
+    "notes": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source_order_condition_notes.json",
+      "sha256": "6b143e08096a1ee2365a643c008d5c009d2c2ff48dd1d42a9749ac5301766d2d"
+    },
+    "generation": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/evaluation/source_order/evaluation/generation.json",
+      "sha256": "d5b5a7c6b5d971de9bc46c77f52ac5ea19132cab7b97f034c274974cdbe2620e"
+    },
+    "checkpoint": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323503.pt",
+      "sha256": "fb43f2618c0679ca6c6f7a0c5b9faf1b336be8985271c8513f2e4bbfde3cd7ae"
+    }
+  },
+  "mandatory_quality_screen": "Keep original staged CE coherence23+8/CI lower>0/EOS>=76/repetition<=2/BPB1percent, all absolute guards and historicalWeb BPB<=.9812859519097707. Do not switch to the weaker11/44/20 primary supervision control for adoption.",
+  "auxiliary_policy": {
+    "coefficient": 1.0,
+    "temperature": 1.0,
+    "reference_context": 1024,
+    "every_completed_update": 1,
+    "student_vocabulary": "4095 vocabulary logits excluding EOS3; gold labels>=8 mapped to their remaining-vocabulary index.",
+    "direct_EOS_logit_gradient": "Zero for auxiliary objective by vocabulary exclusion; CE main and shared weights may still change EOS.",
+    "reference_batch": 8,
+    "target": "Actual shifted gold train-Web label; valid labels>=8; same mask and cached train positions as completed conditionalKL.",
+    "kind": "parent-mass-weighted-gold-body-non-EOS-CE",
+    "loss": "Mean over valid body positions of (1-frozen_parent_P(EOS3))*[-log student_P(gold_label | non-EOS)]",
+    "parent_role": "Frozen eval/no-grad supplies only non-EOS mass weights; no parent soft distribution used as targets."
+  },
+  "expected_auxiliary_input_tokens": 25133056,
+  "expected_auxiliary_hard_body_target_positions": 25026383,
+  "expected_combined_student_input_tokens": 125665280,
+  "expected_total_hard_teacher_positions": 125026383,
+  "reference_probability_mass": "Measure and retain parent non-EOS probability mass separately; do not equate weighted mass with integer hard positions.",
+  "accounting_limit": "Same physical replay exposures/body positions as completed conditionalKL, but hard targets replace soft distribution targets and supply additional gold-word supervision. Not equal hard-supervision count or information to the soft-target comparator.",
+  "replay_overlaps_primary_Web": true,
+  "newly_prepared_source_tokens": 0,
+  "resident_preparation": {
+    "sha256": "9e0983d8035d7b4a5e9d80063fd0481e61030d1f06e1e28f97ff17ed125995dc",
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web_kl_resident_window_preparation.json"
+  },
+  "total_new_GPU_ceiling_seconds": 900,
+  "reused_control_GPU_seconds": 0,
+  "settings_sweep_allowed": false,
+  "alternate_order_allowed": false,
+  "automatic_long_extension_allowed": false,
+  "required_before_science": [
+    "Own helper/trainer/runner/reviewer/durablePS and hard-position/probability-mass ledgers implemented",
+    "Meaningful CPU gold CE/mask/EOS-gradient/teacher-detach tests and fullstate continuous4 versus2plus2 including both sampler positions and all counters",
+    "Inspect actual processes; actual CUDA/BF16 finite save/resume and32 combined timings/save cost; discard all probe weights",
+    "Freeze only if all new verification plus science and all fixed evaluations fit900 seconds with the same150-second reserve/30percent/50-second margin; preserve any failure cost"
+  ],
+  "terminal_evidence": [
+    "Exactly100M main CE plus separately measured auxiliary gold-word targets, not new corpus volume",
+    "All3068 main and replay input digests/counters/cursors equal completed conditionalKL except objective losses/gradients/time by design",
+    "Same256byte/Japanese1923311119/greedy80/bridge128/retention128; all80 individually read and raw-bound notes",
+    "Report supervision-type comparison separately from mandatory stronger stagedCE quality screen and original absolute/historicalWeb guards",
+    "Actual complete process absent, native tensors retained, original10B UI restored, portable reports and local commit"
+  ],
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "next_action": "Implement and CPU-verify the one hard-gold-body replay objective and complete resume ledger; only then prepare actualCUDA probe and measured-budget scientific comparison. No further EOS/KL coefficient/temperature/normalizer variants, source-weight/order/LR/batch sweeps or automatic extension."
+}

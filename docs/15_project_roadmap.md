@@ -1,3 +1,19 @@
+EOS質量を切り離す100M比較を全評価まで完了・不採用（2026-10-06 JST）。実CUDA/永続起動はda4e7e4へ保存。Baseだけを品質・独立学習seed/full dev/protected test/採用まで継続し、実完了時に通知して停止する。Baseは未完了・未採用。Chat/Dialogue/SFT/量子化なし。
+
+owned WSL593649/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start15443335はcomplete・実ps不在。通常CE100,000,000教師/maininput100,532,224/3068更新、CPupdate323503 SHAa27547b6223c3708d6dbf8c9f211631b44fb9518771ed7c08a89ae40506e1213。追加soft referenceinput25,133,056/body positions25,026,383、parent非EOS probability mass24,981,892.629882812/EOS省略mass44,490.3701171875を別保存。combined student input125,665,280、新教材量0。全4primary終端cursor/教師/EOS/input/bytes/focus countsと全3068主・参照input/digest/counterが終了済full KLと一致、Web73421blocks/参照24544blocks。目的損失が変わることとdata窓一致を区別する。
+
+train287.574895秒、science GPU364.789503＋実CUDA検証29.086883＝新研究全393.876386秒<900。旧関連full KL全401.475919秒を消さず、2つのKL研究累積795.352305秒を別記。新検証40更新/1,307,967 CE教師/referenceinput327,680/body326,339/retained mass325,778.16796875は科学学習と別。旧失敗/拒否/CPU初回丸め差のXMLを保持し、予算・余裕・品質基準を緩和しない。
+
+full KL→EOS成分除去: BPB.982266745→.983031489（一部悪化）、文法2=58→58/関連2=47→49/一貫性2=9→11/適切25→28/EOS40→44/自動反復22→20、Unicode/role/empty両方0（各80）。意味57.292%/JBLiMP74.320%は同値、JCQA34.004→33.959%。一貫性差+2/paired95%CI[0,.0625]で明確な全般改善の証明ではない。機序差と別の強い元staged CE23/EOS76/反復2に対しては一貫性差-12/CI[-.2625,-.0375]、relative coherence+8/EOS非悪化/反復非悪化、absolute coherence27/反復18、歴史Web1% BPB guard(.981285952)に未達。不採用。適切28だけでBase完成とはしない。
+
+同256全文472055bytes/122343bodytokens・全日本語192/331/1119・全80greedy64・bridge128/retention128完了。全80を個別に読み28新観察/同id-prefix-raw-stop52件だけ旧notes再利用、独立人間blindなし。既存paired CPU集計でfull KL比のgold EOS NLLは256/256改善だが、本文NLLは226悪化/30改善。元staged比は本文256改善/gold EOS203悪化53改善。正しい末尾のteacher-forcing改善を実生成の一貫性改善と同一視しない。local bridge両極正答54→54/128（構造11→12/64、語彙43→42/64）、旧retention32→33/128。強いquality baselineとmechanism comparatorを差し替えない。
+
+eos_decoupled_web_kl_comparison_completion.json/review/all80 raw-bound notes/observationsを保存。可搬341text/15,197,592bytes、gzip2,667,048/SHA6da9d2551c7ffff5b2a2a29d36d93e5a4e12f4fab1ac985f40dc56f8498b01ca、全Windows raw/archive SHA一致。モデルtensors/150MBcache/原文arraysはnativeのみ。元10B UI595028/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start15480373の実identityとHTTP親410f975d…/10,000,007,168/busy=falseを確認、科学GPU job0。
+
+EOS質量だけを調整する路線はこの2つの有限比較で区切り、係数/温度/normalizerの別variantや自動長期延長へ進まない。次はhard_body_web_replay_comparison_proposal.jsonで定義した新しい1条件だけ。元train Webの同じ参照窓で親soft distributionの保持から実gold wordのCEへ教師の種類を変える。学生の非EOS語彙4095と親(1-pEOS)重み・body mask・親fullstate/実LR.00001/main100M/4source quota/order・参照8×1024/追加露出を保持し、対象の語を直接学習する仮説。追加hard target positionsは同窓なら25,026,383、mainと合計125,026,383 hard positionsとなりsoft-target対照との教師情報量は同一でない。probability massと位置数・新教材量を混同しない、新教材量0。既存data量の不足やteacherコピーだけが唯一原因と断定しない。限定local implementation/configのhard-body-replay検索は一致0で、未登録研究/外部研究の網羅証明ではない。
+
+次の具体作業はown gold-body helper/trainerのmask/teacher-detach/直接EOS勾配/実gold targetと新hard位置・weight-mass counters/全state再開のCPU検証。own runner/reviewer/durablePSへ接続し、実process確認→実CUDA4対2+2/32 combined timing/saveの余裕付き測定が新900秒内の場合だけ本学習を凍結・永続起動する。目的対照は終了済conditionalKL（11/44/20）を再利用するが、採用screenは元staged CE23+8/CI/EOS>=76/反復<=2、absolute、歴史Web1%を維持する。全256byte/日本語/80/bridge/retention・全80読解と全3068入力一致で採否。係数/温度/order/LR/source-weight/batch sweep・有利なCP探索・自動延長なし。品質pilot合格時だけ独立学習seed/full dev/protected test。旧Phase0–3/数値7失敗保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 EOS質量を切り離す比較の実CUDA検証を終え、100M学習を開始（2026-10-06 JST）。前goal turn e94d866は実CPU9.29秒の分解診断と新成分のCPU実装/全state再開まで完了したprogress。Baseだけを品質・独立学習seed/full dev/protected test/採用まで継続し、実完了時に通知して停止する。Base未完了・未採用、Chat/Dialogue/SFT/量子化なし。
 
 own runner/reviewer/durablePS/会計を実装。新追加のparent非EOS probability-massをhistory/checkpoint/KL state/再開gate/最終reviewで扱う。終了済fullKLは機序対照として再評価せず、元staged CE23/EOS76/反復2の強い品質screenを別に維持。own scope/accounting CPU2tests/1.00秒で品質対照の差し替えとmass隠蔽を拒否、PS構文成功。builder初回は既存sourceの同一行にある変数初期化を行頭と誤認して生成前に拒否、生成fragmentだけ修正。GPU/科学学習前の処理で旧source不変、品質/検査を緩和しない。
