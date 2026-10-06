@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="4" time="0.952" timestamp="2026-10-06T11:57:48.453760+09:00" hostname="DESKTOP-42CUV0C"><testcase classname="tests.test_condition_transfer_curriculum" name="test_all_six_opposed_local_states_have_expected_literal_outcomes_and_constraints" time="0.000"><failure message="AssertionError: assert '3個を加えた' in 'あかねはりんごを10個持っていた。そのあと3個を受け取った。現在の所持数は、'">def test_all_six_opposed_local_states_have_expected_literal_outcomes_and_constraints():
+        expected=dict(negation=['あかねは今朝、パンを食べた。','あかねは今朝、パンを食べていない。'],
+            quantity=['13個である。','7個である。'],time=['10時になった。','14時になった。'],
+            comparison=['あかねである。','ひなたである。'],entity_reference=['あかねである。','ひなたである。'],
+            causality=['ライトは点灯している。','ライトは消えている。'])
+        for cat in CATEGORIES:
+            for form in range(6):
+                pair=[render(fixed(cat),form,b) for b in (0,1)]
+                assert all(v['choices']==expected[cat] for v in pair)
+                assert pair[0]['label']==0 and pair[1]['label']==1
+                assert pair[0]['prefix']!=pair[1]['prefix']
+                if cat=='quantity':
+&gt;                   assert '3個を加えた' in pair[0]['prefix']
+E                   AssertionError: assert '3個を加えた' in 'あかねはりんごを10個持っていた。そのあと3個を受け取った。現在の所持数は、'
+
+tests/test_condition_transfer_curriculum.py:35: AssertionError</failure></testcase><testcase classname="tests.test_condition_transfer_curriculum" name="test_fixed2048_source128_is_reproducible_diverse_and_rejects_split_leaks" time="0.059" /><testcase classname="tests.test_condition_transfer_curriculum" name="test_actual_native_codec_common_probe_targets_and_focus_byte_spans" time="0.055" /><testcase classname="tests.test_condition_transfer_curriculum" name="test_generated_provenance_view_requires_acceptance_and_actual_stream_cursor_resumes" time="0.011" /></testsuite></testsuites>
