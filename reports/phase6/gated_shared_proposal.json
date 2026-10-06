@@ -1,0 +1,108 @@
+{
+  "kind": "function_preserving_initial_gated_immediate_shared_Base_100M_v1",
+  "created_at": "2026-10-06T13:10:32.333114Z",
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/historical-parent-condition-comparison-v3-20261006/historical_parent/training/checkpoint-00323503.pt",
+    "sha256": "6d901bd290cc5b7ab0b52a3a2309232d1e08c7fba32ecb8ec1e5656fe1a2f5a0"
+  },
+  "policy": {
+    "kind": "immediate_shared_second_invocation_zero_residual_gate_v1",
+    "invocations_per_unique_block": 2,
+    "initial_gate": 0.0,
+    "gate_sharing": "one_scalar_per_unique_block_shared_by_second_attention_and_MLP",
+    "cache": "separate_per_logical_invocation",
+    "gates_trainable": true
+  },
+  "hypothesis": "Same unique blocks can reuse computation to improve conditional Japanese continuity without increasing the learned matrix parameter budget. Zero gates preserve the initial native function; gains are empirical, not assumed capacity proof.",
+  "comparison": "One gated-sharing full100M candidate versus cached matched_staged_CE100M. Same native starting weights/Adam moments/scheduler/RNG, source quotas/order, input/target protocol and fixed evaluators; additional13 zero gates have fresh Adam group and fixed LR. More computation and cache are separately reported.",
+  "native_lr": 1e-05,
+  "new_gate_lr": 0.0001,
+  "new_gate_weight_decay": 0,
+  "optimizer_policy": "Exact native2 groups/moments inherited; append only13 zero gate coordinates as one fresh group, native LR1e-5 and new gate LR1e-4, fixed permanent floor factors. No native reset/reheat.",
+  "unique_parameters": 10001165,
+  "native_unique_parameters": 10001152,
+  "new_gate_parameters": 13,
+  "unique_blocks": 13,
+  "logical_block_invocations": 26,
+  "new_unique_parameter_tensors": 1,
+  "teacher_goals": {
+    "web": 75000000,
+    "story": 5000000,
+    "ordinary_textbook": 10000000,
+    "conditional_textbook": 10000000
+  },
+  "ordinary_source_CE_teacher_tokens": 100000000,
+  "full_conditional_setup_body_EOS": true,
+  "outcome_weight": 1,
+  "parameter_penalty": 0,
+  "KL": 0,
+  "preparation_CPU_seconds": 0.2862275840016082,
+  "own_CUDA_probe_ceiling_seconds": 120,
+  "total_new_GPU_ceiling_seconds": 1800,
+  "before_science": "Own CUDA zero-gate parent FP32/MATH and BF16/MATH native logits at32/1024, nonzero signed-gate full/cache1024; native optimizer/RNG preservation;4 continuous versus2+2 allstate/history;32timing+save and actual finite CUDA/BF16/Flash batch32. Science only when1.3margin+300evaluation and own probe fit1800s.",
+  "evaluation": "Same fixed dev256/common bytes/Japanese192-331-1119/BOS-native greedy80 max64 EOS3/no decoder change; explicitly construct GatedSharedModel from config and strict120unique state, logical26 caches; all80 individually raw-bound content and old unchanged gates.",
+  "selection": "Original strong full-staged coherence23+8 with pairedCI lower>0, EOS>=76/repetition<=2; absolute grammar56/coh27/appropriate27/EOS37/repetition<=18/errors0; original held-out WebBPB<=.9812859519097707. Only a qualified recipe permits independent learned seed/full dev/protected test/adoption.",
+  "no_rescue": "No gate LR/init/count/sign constraint/reuse order/depth/parent/source/mask/native LR/batch/precision/decoder/checkpoint sweep. Failed finite/quality/cost branch ends. No automatic100M extension.",
+  "limitations": "This is architecture research to improve the unfinished Base; neither an exact replication of published models nor proof that10M capacity caused prior failures. Extra13 scalars (+0.00013%) remain in documented9.5M-10.1M range. Compute and KV memory roughly double. Native config/checkpoint supported; stock HF/Llama export needs a dedicated adapter and is not claimed complete.",
+  "primary_sources": [
+    {
+      "title": "MobileLLM immediate block-wise sharing",
+      "url": "https://arxiv.org/abs/2402.14905"
+    },
+    {
+      "title": "ReZero zero-initialized residual gates",
+      "url": "https://arxiv.org/abs/2003.04887"
+    }
+  ],
+  "inference": "Combining sharing with zero gates on only the new residual invocations is our function-preserving transfer hypothesis; published sub-billion/enwiki8 findings do not establish Japanese10M quality.",
+  "references": {
+    "web_kl_comparison": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web_kl_comparison_completion.json",
+      "sha256": "dccf2d4af86b828c7141611ea4ab75084d972a36fef62961800251278cad927c"
+    },
+    "eos_decoupled_web_kl_comparison": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/eos_decoupled_web_kl_comparison_completion.json",
+      "sha256": "9494a369a18677ad3dd311a97ec21501961a3cab3fcb24eed0334a848384a9f1"
+    },
+    "hard_body_web_replay_comparison": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/hard_body_web_replay_comparison_completion.json",
+      "sha256": "b6d93193c07f1f1c82df3efd50a7997ff1190aeed3efeb8b992b1af39d266338"
+    },
+    "anchored_context_outcome_comparison": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/anchored_context_outcome_comparison_completion.json",
+      "sha256": "c3256b77a030760a88e48e1da0105094073d105d167928bd2cf0e0d27137c509"
+    },
+    "fisher_parameter_anchor": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/fisher_parameter_anchor_completion.json",
+      "sha256": "fb3b01afe428f18d37df70b66d7e834995457ed22cfca2d5299bdc4d024a8480"
+    },
+    "native_config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/parameter_displacement_anchor_v3.json",
+      "sha256": "7fb897e9905eceaecc754a4d323f2e8d90c68e47e592872c8f20cf980721e249"
+    },
+    "native_result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/parameter-displacement-anchor-v3-20261006/compare-result.json",
+      "sha256": "4f71f1842a6cd85b3f34696a8052ee38f9c1aba9c94c5c67580fd85aa46a54d9"
+    },
+    "native_review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/parameter-displacement-anchor-v3-20261006/review.json",
+      "sha256": "d1360f469c2410dadf288e6a987996fa4a65137d1b610c034f11e4a79ee02c2b"
+    },
+    "CPU_tests": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/gated_shared_tests.xml",
+      "sha256": "4812fe0c1b891425cf6bef94fc16533d6c28deaf86970a80436453d00011e39b"
+    },
+    "architecture_rules": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/docs/03_architecture.md",
+      "sha256": "3eb422b71d7b2dbcb47a821749ae3111776f4ecfc90a6115696594202984fd40"
+    }
+  },
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "scientific_teacher_tokens_so_far": 0,
+  "new_GPU_seconds_so_far": 0
+}

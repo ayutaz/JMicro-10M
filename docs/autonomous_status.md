@@ -1,3 +1,9 @@
+Base専用gated層共有: preparation（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+KL/full・nonEOS/金body復習/positive anchor/Fisherの不採用を確認し、未実装の層共有を別機構として定義。同13 unique blockに追加の共有呼出を挟み、追加attention/MLP residualの同一scalarを0初期化して元関数を保つ。重み10,001,152→10,001,165（新13gate/1tensor）、logical26、tied/独立26KV/cache/causality/native save/load。CPU4tests/2.07秒でゼロ時の元logits・重みobject/梯度/RNG一致、非ゼロsigned gateのragged/chunk/未来非参照、native Adam継承/新gate group/全state4対2+2を確認。random tiny fixtureで品質の証明ではない。実CPU proposal0.286228秒、probe準備0.118820秒、新GPU/科学0。比較はsame mixed親/継承native Adam・LR.00001/source/full100M CEとcached matched_staged_CE、追加gateのみfresh Adam・LR.0001/WD0固定。計算/KVが増え、stock HF adapterは未対応で完成としない。次はown native FP32/BF16 zero-gate32/1024、signed full/cache1024とCUDA4対2+2/32timing/batch32を120秒内で測る。1.3margin+300秒評価+ownprobeが1800内の場合のみ科学runnerを実装・凍結して100M一候補へ。
+
+[MobileLLM](https://arxiv.org/abs/2402.14905)の即時block sharingと[ReZero](https://arxiv.org/abs/2003.04887)の0初期gateを参考にした独自の転移仮説。公開論文の正確な再現や日本語10Mでの改善を主張しない。全旧失敗/数値7/Phase0–3/旧品質基準保持、gateLR/初期値/count/source/CP/decoder救済sweepなし。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用Fisher anchor: completion（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
 
 同親/継承Adam・LR/全source full100MのFisher対cached uniform比較と新全80個別採点・36exact旧raw採点継承を完了。candidate BPB0.984992397（uniform0.990667075）、文法59→63/関連60→66/一貫性25→28/適切29→30/EOS67→65/反復6→7（各80）。絶対screen全合格だが、強いstaged23に対し一貫性28/+5<8、EOS65<76/反復7>2、歴史WebBPB上限.9812859519も超過。最終Base検証eligible=False、不採用を保持。科学100M/100532224input、検証1307952教師・field65276model-sampled label別、総新GPU280.070139秒/1800、actual648919実不在/元UI復帰。日本語意味・構文・常識の微差とnonblind内容採点は独立改善の証明ではない。固定field/lambda等分岐終了、独立seed/full dev/protected test/採用なし。次は既存結果を根拠に残るEOS/反復と保持の別機構を定義、同field等の救済sweep/対照再GPU/全量scanはしない。
