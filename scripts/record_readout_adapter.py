@@ -18,7 +18,9 @@ import probe_readout_adapter as study
 def main(phase):
     c=study.inspect();p=read_json(study.PROPOSAL);destination=ROOT/f'reports/phase6/readout_adapter_{phase}.json'
     if destination.exists():raise ValueError('Preserve original readout milestone')
+    previous=c.get('previous_failed_GPU_seconds',0.)
     report=dict(status='readout_adapter_'+phase,created_at=now(),config=study.reference(study.CONFIG),proposal=study.reference(study.PROPOSAL),
+        previous_failed_GPU_seconds=previous,repair=c.get('repair'),
         CPU_preparation_seconds=c['CPU_preparation_seconds'],GPU_seconds=0,scientific_teacher_tokens=0,
         Base_complete=False,Base_adopted=False,Chat_started=False,quantization_started=False,protected_test_used=False,
         unique_parameters=10099456,trainable_parameters=98304,quality_criteria_unchanged=True,original_UI=original_UI())
@@ -40,10 +42,11 @@ def main(phase):
                     or r['config_sha256']!=sha256(study.CONFIG) or any(not v['passed'] for v in r['architecture']['checks'].values())):
                 raise ValueError('Own actual numeric/frozen/fresh readout/restart evidence required')
             report.update(result=study.reference(study.RUN/'probe/result.json'),actual_result=r,estimated_science_GPU_seconds=estimate,
-                estimated_total_GPU_seconds=estimate+r['GPU_seconds'],science_cost_within900=estimate+r['GPU_seconds']<=900)
+                estimated_total_GPU_seconds=estimate+r['GPU_seconds']+previous,science_cost_within900=estimate+r['GPU_seconds']+previous<=900)
             detail=(f'actual{job["pid"]}実完了/不在、ownCUDA probe{r["GPU_seconds"]:.6f}秒/120。初期FP32/BF16 native32/1024・nonzero full/cache1024とnative119重み凍結/RNG/13KV、'
                 f'fresh readout-only Adam/fixedLR.0001・連続4対2+2全state/history/finiteと32timingに合格。40検証更新/{r["verification_teacher_tokens"]}教師/11readonly forward6272contextは科学へ混ぜない。'
-                f'ピークVRAM{r["timing"]["peak_VRAM_bytes"]/1024**3:.3f}GiB、科学予測{estimate:.6f}秒・ownprobe込み{estimate+r["GPU_seconds"]:.6f}/900。'
+                f'ピークVRAM{r["timing"]["peak_VRAM_bytes"]/1024**3:.3f}GiB、科学予測{estimate:.6f}秒・ownprobe/旧失敗込み{estimate+r["GPU_seconds"]+previous:.6f}/900。'
+                '旧probeはCPU準備moduleのimport副作用でCUDAを隠したため失敗。元source/config/失敗を保存しproposal定数path参照だけへ限定修復、GPU可視性import回帰testを追加し科学recipe不変。'
                 'これは実装/再開/費用の証明で、日本語品質やBase完成の証明ではない。次は予算内のみ専用科学runner/明示readout評価/全80reviewを実装し、cached native full100M対照を再GPUせず固定条件で比較する。')
         else:detail=f'出力変換probe actual{job["pid"]}実終端/不在、GPU{job["GPU_elapsed_seconds"]:.6f}秒、理由{job.get("error")}。原source/partial/失敗を保持し、基準や幅等を変えて救済せず実原因に対する限定修復または別機構を定義する。'
     atomic_json(destination,report)

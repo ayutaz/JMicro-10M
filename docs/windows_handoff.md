@@ -1,3 +1,7 @@
+Base専用readout probe限定修復（2026-10-06 JST）。
+
+初回actual652808は準備用module importによるCUDA_VISIBLE_DEVICES=''の副作用でGPU初期化失敗、0.099831161 GPU秒、学習0。元source/config/job/失敗archiveと元UI復帰を保存。GPU自体はRTX4090/driver616.92・uv torch CUDA available=Trueを確認。probeの準備module importを固定proposal path参照に置換するだけの修復、新config/run v2で旧証拠を上書きしない。GPU可視性をNone/0の両方で保持するsubprocess回帰test1件/2.07秒合格。新条件/source/LR/init/decoderの変更なし、旧失敗時間も900秒上限に算入。次は同120秒own CUDA probe、合格・費用内のみfull100M比較へ。Base未完成・完成時通知停止、Chat/量子化なし。
+
 Base専用frozen nonlinear readout: probe_failure（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
 
 出力変換probe actual652808実終端/不在、GPU0.099831秒、理由RuntimeError('No CUDA GPUs are available')。原source/partial/失敗を保持し、基準や幅等を変えて救済せず実原因に対する限定修復または別機構を定義する。
