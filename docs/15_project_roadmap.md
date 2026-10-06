@@ -1,3 +1,9 @@
+Base専用CE対CE+DPO: 実比較開始（2026-10-06 JST）。
+
+科学actual661405/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18181798実稼働、stagechosen_CE-training、GPU累積30.463秒。共通6M一度と両同positive2M、250更新/中断時全state原子的保存。restartは実PID不在を先に確認して scripts/run_base_preference_comparison.ps1 -Worker。元UIは終端finallyで復帰。次は同日本語/dev256/各80/bridge-retention512→全160個別内容・旧品質条件→採否。Base未完成、完成時通知停止。Chat/Dialogue/SFT/量子化なし、WSL uv/local commitのみ/pushなし。
+
+以下は過去の履歴。
+
 Base専用CE対CE+DPO: GPU継承・再開合格、本比較準備完了（2026-10-06 JST）。
 
 ownCUDA actual660704完了/不在、GPU36.104523秒/180、native W/Adam/scheduler/全RNG/Webcursor/tied10M初期保存と共通Web・両損失4対2+2全state/history一致。152検証更新/1694058教師は科学と別、検証重み破棄。8対56の実速度から重複なし56を選択、両条件CEinput/auxiliary順序一致、全reference readonly。科学予測759.400083秒/probe込み795.504606/1800。実共通6Mを一度→同chosen2MをCE0対CE+DPO.1(beta.1)の一要因、参照は実共通6M endpointから新計算。専用runner/同全日本語dev256・各80/bridge-retention512/採否/個別raw-bound notesを実装し凍結、CPU3tests/2.84秒で累積費用、native common cursor/Adam会計改変拒否、両末尾quota/negative会計と同順序を確認。新科学10M・各arm8M予定、固定56/4565positionsの約438反復は教材増量ではない。新科学0の準備証拠・旧69.957秒diagnostic別記。次は永続実比較→全160内容→元相対/絶対/歴史BPB1%で採否。合格のみ独立学習seed/full dev/protected test/adoptionへ。未合格はこの固定両recipe終了、source/beta/coefficient/epoch/LR/decoder/CP救済sweepなし。
