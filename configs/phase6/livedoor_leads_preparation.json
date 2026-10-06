@@ -1,0 +1,60 @@
+{
+  "kind": "authored_Japanese_news_first_complete_paragraph_pilot_v1",
+  "created_at": "2026-10-06T14:06:27.151872Z",
+  "URL": "https://www.rondhuit.com/download/ldcc-20140209.tar.gz",
+  "primary_source": "https://www.rondhuit.com/download.html#ldcc",
+  "collection": "2012-09 / ldcc-20140209",
+  "license": "Publisher states CC BY-ND; original per-category LICENSE files retained with archive, no publication in this work.",
+  "seed": 2026100652,
+  "source_sha256": {
+    "scripts/prepare_livedoor_leads.py": "a8730fdc945c46fcf38eb9fd3fc070da483a7da0a3b779d5c8e5c417ec70e63c",
+    "tests/test_livedoor_leads.py": "ff584a21f652116e432fd499e525996187668086491c8c9ea81183eccf9c673f"
+  },
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "references": {
+    "reports/phase6/readout_source_stage_analysis.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readout_source_stage_analysis.json",
+      "sha256": "eb4298c0ac2358e5e25c00cab77813bad5524be4aed6ba55af94caf0bdab113e"
+    },
+    "reports/phase6/readout_source_stages_tests.xml": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readout_source_stages_tests.xml",
+      "sha256": "ca0fb74a7b0f363602544b1f84188cdfe24052c9938d78201b42df64ac452f2c"
+    },
+    "reports/phase6/readout_adapter_comparison_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readout_adapter_comparison_completion.json",
+      "sha256": "59ad7cc3eca2b0d7493d7ff7e700a2faea59ceb098fc78c6f3393834d0bf2d31"
+    },
+    "reports/phase6/livedoor_leads_tests.xml": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/livedoor_leads_tests.xml",
+      "sha256": "7f6f16a5f92b3c323e771e035b7da1a266d924a74f752fc8334f779c98dcfeed"
+    }
+  },
+  "tokenizer": "artifacts/phase2/4096/tokenizer.model",
+  "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+  "download_wall_seconds": 60,
+  "maximum_archive_bytes": 20000000,
+  "CPU_preparation_ceiling_seconds": 120,
+  "minimum_body_tokens": 24,
+  "maximum_body_tokens": 256,
+  "sample_documents": 64,
+  "maximum_weak_documents": 10,
+  "family_split": "article ID SHA256 modulo1000: train<900/dev<950/test remainder",
+  "selector": "Only original first nonempty paragraph after URL/date/title; no later-paragraph fallback or added punctuation. Balanced quotes and full terminal punctuation, Japanese fraction>=.35,40..1200chars,24..256original tokens.",
+  "proposed_comparison": "Only if fixed64 content accepted and supply measured: native10M same original d18 parent/inherited Adam/LR1e-5; Web75M+news25M versus cached original full100M mixture. Corpus/EOS/diversity intervention, not quantity-only or same-target causal claim.",
+  "proposed_scientific_teacher_tokens": 100000000,
+  "proposed_new_GPU_ceiling_seconds": 1800,
+  "scientific_GPU_frozen": false,
+  "science_started": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "completion_condition": "Record actual raw SHA/provenance, TRAIN-only paragraphs/local exact hashes and heldout article IDs untouched, exact token/byte supply, fixed64 review. Weak>10 ends source branch; no post-review selector/reroll/filter rescue. Only accepted source permits own CUDA/resume/timing and measured-budget science freeze.",
+  "limitations": "Natural dated news paragraphs are not verified facts or everyday fiction. Repeated epochs are learning, not more distinct data. Possible overlap with old Web and benchmark ancestry remains incompletely audited; no claim of corpus-independent novelty."
+}

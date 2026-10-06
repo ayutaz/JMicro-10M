@@ -1,3 +1,9 @@
+Base専用・著者による日本語ニュース段落pilot準備（2026-10-06 JST）。
+
+前turnの出力変換100M/全80は2dfea0aで不採用、Base未完成。今回CPU0.098275秒で実3068全更新/同100M input・target・source・digestのpaired lossを分析、混在3境界lossは単一sourceへ配賦しない。末尾32更新CEは新readout対nativeでWeb2.585706/2.577496、story1.994395/1.929531、ordinary2.196530/2.149302、conditional.288487/.259440。TRAINのみ・事後・fresh Adam差あり、品質悪化の原因/他の容量不足の証明にしない。関連CPU1test/1.28秒。
+
+次は[配布者のlivedoorニュースコーパス](https://www.rondhuit.com/download.html#ldcc)の新source pilot。2012年収集の日本語記事、URL/date/titleを除く原first paragraphだけ、補作文/後段fallbackなし、24..256tokens、article-ID family90/5/5でheldout本文を読まない。元archive/category LICENSEをnative保存、公開なし。download60秒/20MB、CPU120秒、Tokenizer不変・新GPU0。固定seed2026100652/64TRAIN内容弱<=10を学習前に判定、未達なら分岐終了しselector/reroll救済なし。CPU1test/.73秒で後段置換・補完・引用途中・見出し拒否/familyを確認してconfig凍結。量は実測まで未確定、epoch反復をdistinct教材量に足さず、旧Webとの重複/独立全audit未完を保持。受入後のみ同d18 native親/継承Adam・LR1e-5/Web75M+news25Mの100M対cached旧full100Mを実GPU再開/速度/全費用1800秒予測後に科学凍結する案。source/EOS/多様性の変更で量のみの効果と称さない。元品質基準・全旧失敗維持。Base完成時通知停止、Chat/量子化なし、WSL uv/local commitのみ/pushなし。
+
 Base専用gated出力変換: completion（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
 
 同親/同full100Mの出力変換対cached native比較と全80個別raw-bound採点を完了。BPB1.035666704→1.032951419、文法65→46/関連52→39/一貫性32→7/適切37→9/EOS69→46/反復6→24（各80）。事前strong-staged相対gate=False、絶対全gate=False、歴史Web全gate=False、最終Base検証eligible=False。科学100M/3068updates/100532224input、総新GPU178.915812/900、actual654827実不在/元UI復帰。nonblind Codex/一学習seed/反復devを独立人手や確実な一般化の証明としない。合格recipeのみ独立学習seed/full dev/protected test/採用へ。未合格の場合は固定readout分岐を終了し、同幅/LR/source/decoder等の救済sweepは行わない。stock HF adapter未対応を完成としない。
