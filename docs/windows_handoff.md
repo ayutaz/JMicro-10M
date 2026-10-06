@@ -1,3 +1,19 @@
+固定rank4 LoRAのBase比較: running（2026-10-06 JST）。Baseのみ継続・実完成時に通知して停止、Chat/Dialogue/SFT/量子化なし。
+
+文書間packing依存markerは不支持、sequence unlikelihoodは既2比較不採用で再実行しない。今回は元W0を固定してrank4/scale1/dropout0の全attention/MLP7projection×13層だけを学習し、full更新と比較する。一方だけAdamをリセットする交絡を避け、両方fresh AdamW/同hyperparams/元scheduler clockとpermanent floor/actualLR.00001を使う。旧親Adamはprovenanceとして保持し継承したと偽らない。元native10,001,152、rank4の学習232,960/一時10,234,112、統合後10,001,152でnative評価する。凍結backboneでもactive adapterのWeb性能維持は保証されず、soft L2/KL/平均重みと同じ仮説へ代入しない。[一次論文](https://arxiv.org/abs/2106.09685)は当10Mの成功証拠ではない。
+
+実測で両科学configを凍結。actual641226/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16983459をps確認、永続job/log/完了更新のmerged native＋unmerged adapter/Adam/scheduler/RNG/sampler/教師・input/source会計を保存。本科学上限1741.071567秒、検証58.928433秒と合計1800。元UIは科学中停止しfinallyで元final10Bへ復帰。両actual91,641,755教師/各100,532,224input、全160内容/日本語/256common-byteと全旧gateの採否は未完了。restartは実PID不在確認後 scripts/run_low_rank_base_comparison.ps1 -Mode Train -Worker。
+
+同元10.5B親/元Webcursor/seed42/入力/条件outcome+EOSmask/75-5-10-10 reference quota/decoderを維持、両actual91,641,755教師、100M referenceと区別する。旧inherited-Adam mixed/full staged/masked stagedは歴史参照として保存し新matched controlと称さない。strong23+8 coherence/pairedCI>0・EOS>=76/反復<=2、絶対grammar56/coh27/適切27/EOS37/反復<=18/errors0、歴史WebBPB<=.9812859519097707の旧全gateを維持。不合格でrank/module/scale/LR/source/mask/CP/decoder sweepなし。合格recipeだけ独立学習seed/full dev/protected test/採用へ進む。Base/最終採用未達、Phase0–3/旧数値7/全失敗保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
+固定rank4 LoRAのBase比較: launch（2026-10-06 JST）。Baseのみ継続・実完成時に通知して停止、Chat/Dialogue/SFT/量子化なし。
+
+文書間packing依存markerは不支持、sequence unlikelihoodは既2比較不採用で再実行しない。今回は元W0を固定してrank4/scale1/dropout0の全attention/MLP7projection×13層だけを学習し、full更新と比較する。一方だけAdamをリセットする交絡を避け、両方fresh AdamW/同hyperparams/元scheduler clockとpermanent floor/actualLR.00001を使う。旧親Adamはprovenanceとして保持し継承したと偽らない。元native10,001,152、rank4の学習232,960/一時10,234,112、統合後10,001,152でnative評価する。凍結backboneでもactive adapterのWeb性能維持は保証されず、soft L2/KL/平均重みと同じ仮説へ代入しない。[一次論文](https://arxiv.org/abs/2106.09685)は当10Mの成功証拠ではない。
+
+実測で両科学configを凍結。actual641226/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16983459をps確認、永続job/log/完了更新のmerged native＋unmerged adapter/Adam/scheduler/RNG/sampler/教師・input/source会計を保存。本科学上限1741.071567秒、検証58.928433秒と合計1800。元UIは科学中停止しfinallyで元final10Bへ復帰。両actual91,641,755教師/各100,532,224input、全160内容/日本語/256common-byteと全旧gateの採否は未完了。restartは実PID不在確認後 scripts/run_low_rank_base_comparison.ps1 -Mode Train -Worker。
+
+同元10.5B親/元Webcursor/seed42/入力/条件outcome+EOSmask/75-5-10-10 reference quota/decoderを維持、両actual91,641,755教師、100M referenceと区別する。旧inherited-Adam mixed/full staged/masked stagedは歴史参照として保存し新matched controlと称さない。strong23+8 coherence/pairedCI>0・EOS>=76/反復<=2、絶対grammar56/coh27/適切27/EOS37/反復<=18/errors0、歴史WebBPB<=.9812859519097707の旧全gateを維持。不合格でrank/module/scale/LR/source/mask/CP/decoder sweepなし。合格recipeだけ独立学習seed/full dev/protected test/採用へ進む。Base/最終採用未達、Phase0–3/旧数値7/全失敗保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 固定rank4 LoRAのBase比較: probe（2026-10-06 JST）。Baseのみ継続・実完成時に通知して停止、Chat/Dialogue/SFT/量子化なし。
 
 文書間packing依存markerは不支持、sequence unlikelihoodは既2比較不採用で再実行しない。今回は元W0を固定してrank4/scale1/dropout0の全attention/MLP7projection×13層だけを学習し、full更新と比較する。一方だけAdamをリセットする交絡を避け、両方fresh AdamW/同hyperparams/元scheduler clockとpermanent floor/actualLR.00001を使う。旧親Adamはprovenanceとして保持し継承したと偽らない。元native10,001,152、rank4の学習232,960/一時10,234,112、統合後10,001,152でnative評価する。凍結backboneでもactive adapterのWeb性能維持は保証されず、soft L2/KL/平均重みと同じ仮説へ代入しない。[一次論文](https://arxiv.org/abs/2106.09685)は当10Mの成功証拠ではない。

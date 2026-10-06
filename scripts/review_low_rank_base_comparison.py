@@ -87,6 +87,7 @@ def main():
         strong_historical_control_reused_unchanged=strong_summary,eligible_recipes=eligible,
         all160_individually_read=True,independent_human_blind=False,
         actual_science_GPU_seconds=r['GPU_seconds'],own_probe_GPU_seconds=c['verification_GPU_seconds'],
+        raw_probe_field_clarification='merge.frozen_backbone_unchanged is only applicable to the rank4 arm; original merge helper set it true in both arms. Full fresh-Adam backbone is trainable. Actual endpoint audits above independently verify each policy.',
         quality_criteria_unchanged=True,protected_test_used=False,Base_complete=False,Base_adopted=False,Chat_started=False,quantization_started=False,
         next_action='Only qualified recipe enters independent learned seed/full dev/protected test/adoption. Failure ends this fixed comparison without rank/module/scale/LR/source/mask/decoder/checkpoint salvage sweep.')
     destination=study.RUN/'review.json'

@@ -17,8 +17,9 @@ import run_low_rank_base_comparison as study
 def main(phase):
     destination=ROOT/f'reports/phase6/low_rank_base_v2_{phase}.json'
     if destination.exists():raise ValueError('Preserve original low-rank milestone')
-    config=study.CONFIG if phase=='launch' else study.PROBE_CONFIG
-    c=study.inspect(config) if phase!='launch' else read_json(config)
+    running=phase in ('launch','running')
+    config=study.CONFIG if running else study.PROBE_CONFIG
+    c=study.inspect(config) if not running else read_json(config)
     report=dict(status='fixed_rank4_Base_'+phase,created_at=now(),config=study.reference(config),
         actual_scientific_teacher_tokens_per_arm=91641755,nominal_reference_teachers_per_arm=100000000,
         new_scientific_teacher_tokens=0,GPU_seconds=0,GPU_ceiling_seconds=1800,probe_ceiling_seconds=240,
@@ -33,11 +34,17 @@ def main(phase):
         timings,estimate=study.estimate_training(r)
         report.update(measured_timings=timings,estimated_science_GPU_seconds_with_margin=estimate)
         detail=f'''両armの実CUDA/BF16/Flash/compile連続8対4+4 fullstate/history/有限値/no-reheatと初期native/RNG/freshAdam/cursor/count全checks成功。各32timing後の実FP32/math merged native control（atol.0002/rtol.00002・固定4×1024 TRAIN）成功、元数値7失敗は維持。検証96更新/{r['verification_teacher_tokens']}教師は本科学から除外、実GPU{r['GPU_seconds']:.6f}秒/240。実測両3068更新/保存と評価余裕を含む予測{estimate:.6f}秒、合計予測{estimate+r['GPU_seconds']:.6f}/1800。実終端/ps不在と元10B UIを確認。本科学/品質はまだ未実施。次は実測予算でconfig凍結→同actual91,641,755各の本比較/全日本語/全160→旧全gate採否。'''
-    elif phase=='launch':
+    elif running:
         job=read_json(study.RUN/'job.json')
         if not alive(job) or job['config_sha256']!=sha256(config):raise ValueError('Actual bound science process required')
-        report.update(actual_job=job,actual_live_process=True,verification_GPU_seconds=c['verification_GPU_seconds'],
+        report.update(actual_job=job,actual_live_process=True,GPU_seconds=job['GPU_elapsed_seconds'],
+            new_scientific_teacher_tokens=job.get('actual_teachers',0),
+            teacher_count_scope='Current arm completed updates observed at heartbeat, not final total across both arms.',
+            verification_GPU_seconds=c['verification_GPU_seconds'],
             remaining_science_GPU_ceiling_seconds=c['GPU_budget_seconds'],estimated_GPU_seconds_with_margin=c['estimated_GPU_seconds_with_margin'])
+        if phase=='running':
+            report['supersedes_reporting_defaults_of_launch']=study.reference(ROOT/'reports/phase6/low_rank_base_v2_launch.json')
+            report['reporting_correction']='Original launch top-level GPU_seconds/new_scientific_teacher_tokens defaulted to0 despite actual_job containing positive live progress. Raw original record/archive retained; use this observed heartbeat, not those defaults.'
         detail=f'''実測で両科学configを凍結。actual{job['pid']}/boot{job['boot_id']}/start{job['start_ticks']}をps確認、永続job/log/完了更新のmerged native＋unmerged adapter/Adam/scheduler/RNG/sampler/教師・input/source会計を保存。本科学上限{c['GPU_budget_seconds']:.6f}秒、検証{c['verification_GPU_seconds']:.6f}秒と合計1800。元UIは科学中停止しfinallyで元final10Bへ復帰。両actual91,641,755教師/各100,532,224input、全160内容/日本語/256common-byteと全旧gateの採否は未完了。restartは実PID不在確認後 scripts/run_low_rank_base_comparison.ps1 -Mode Train -Worker。'''
     else:report['original_UI']=original_UI()
     prefix=f'''固定rank4 LoRAのBase比較: {phase}（2026-10-06 JST）。Baseのみ継続・実完成時に通知して停止、Chat/Dialogue/SFT/量子化なし。
@@ -52,7 +59,7 @@ def main(phase):
     atomic_json(destination,report)
     files=[destination,config,study.PROPOSAL,ROOT/'reports/phase6/low_rank_base_tests.xml',Path(__file__),*[ROOT/s for s in study.SOURCES]]
     if phase=='probe':files.extend(p for p in sorted((study.RUN/'probe').rglob('*')) if p.is_file() and p.suffix in ('.json','.jsonl','.py','.ps1'))
-    if phase=='launch':files.append(study.RUN/'job.json')
+    if running:files.append(study.RUN/'job.json')
     files=list(dict.fromkeys(files));archive=destination.with_name(destination.stem+'_evidence.tar.gz')
     with tarfile.open(archive,'w:gz') as output:
         for p in files:output.add(p,arcname=p.relative_to(ROOT).as_posix(),recursive=False)
@@ -67,4 +74,4 @@ def main(phase):
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('phase',choices=('preparation','probe','launch'));main(parser.parse_args().phase)
+    parser=argparse.ArgumentParser();parser.add_argument('phase',choices=('preparation','probe','launch','running'));main(parser.parse_args().phase)
