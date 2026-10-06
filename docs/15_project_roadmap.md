@@ -1,3 +1,11 @@
+Base限定・固定各100M比較終了、不採用（2026-10-07 JST）。
+
+[終端と全160採否](../reports/phase6/natural_context_contrast_comparison_completion.json): 同CE accounting/cursor・各100M教師、GPU3762.998秒/5229、actual676378終了・ps不在。CE→contrastで一貫性2→0/EOS19→6/反復45→53（各80）、BPB0.998487→1.002890。意味差1.042ポイント/CI[-2.083,4.167]ポイントは改善の確証でない。全strong/matched/absolute/historical Web条件不合格、両固定recipeを終了し救済sweep・自動延長なし。
+
+[次の一回のDEV転移診断案](../reports/phase6/natural_context_contrast_dev_transfer_proposal.json): TRAINの補助識別loss低下が未学習DEVの原文前後識別へ移ったかを元10B/CE/contrast同64で測る。CPU30秒/GPU60秒、更新・新教師0、commandは実装前で起動しない。元BOS/cache/shiftのtrained診断は[既存証拠を再利用](../reports/phase6/base_decode_cached_evidence_review.json)し、数値失敗を保存して重複GPU検査を避ける。次の学習機構を決めるための限定診断で、Base採用gateを増減しない。
+
+Base未完成。資格のある候補だけ独立学習seed/full DEV/protected final TEST/adoptionへ進め、完成時に通知して停止。Chat/Dialogue/SFT/量子化なし、local commit/pushなし、既存失敗とPhase0–3を保持。以下は過去の履歴。
+
 Base専用・同job継続と意味評価のsuite版確認（2026-10-07 JST）。
 
 [固定DEV/元cacheの内容一致証拠](../reports/phase6/natural_context_contrast_semantic_review_preparation.json): 今回のv2_1はDEV192/96distinct content pair、旧teacher v2は64content pairで、同IDでもcontext88/choices40が異なる。旧と新の点数差を学習効果へ混同しない。元CE62.500%/CI[57.8125%,67.7083%]保持、補足はGPU/教師0、関連3CPUchecks成功。新版の完全重複なしをBase品質達成にしない。

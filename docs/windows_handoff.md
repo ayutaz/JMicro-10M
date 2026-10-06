@@ -1,3 +1,13 @@
+Base限定・各100M科学比較終了と元UI復帰（2026-10-07 JST）。
+
+actual676378/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18891158はcomplete・実ps不在。元runnerを再起動しない。両17,698更新/正確100M教師・同CE digest/cursor、GPU3762.998秒/5229。全160理由/日本語/終端stateから両recipe不採用。[最終記録](../reports/phase6/natural_context_contrast_comparison_completion.json)・[採否](../reports/phase6/natural_context_contrast_comparison_review.json)。contrast EOS6/反復53/一貫性0はCE19/45/2より悪く、Base未完成。
+
+元10B UI actual681764/start19267921、HTTP親SHA410f975d…/10000007168tokens/busy=falseと実ps確認。科学GPUjobなし、WSL native tensor/metrics/sourceは元pathに保持。可搬final17text/3303099byte archiveと既存CE archiveを保存。全160取込・最終reviewerの実CPU処理成功、GPU再評価/大容量source照合なし。旧root診断4JSONはWindowsのみだったためnativeへ補完し、CRLFだけのsource差を確認して既存cache/shift証拠を再利用した。元BF16数値失敗は保存。
+
+次は[readonly DEV転移診断案](../reports/phase6/natural_context_contrast_dev_transfer_proposal.json)のCPU準備と永続command実装。同固定DEV原文64で元10B/CE/contrastの前後表現識別をCPU30秒/GPU60秒内で比較、学習0。未実装runnerを推測して実行しない。新GPU前に実processを照会しUIを必要な期間だけ止めfinally元UIを戻す。旧固定recipeの係数/LR/source/epoch救済なし。
+
+Base完成条件を満たしたら通知して停止、Chat/Dialogue/SFT/量子化なし。Python3.12.7はWSL pinned uv run --frozen/extras hub,data,ml,export、local verified commitのみ/pushなし。以下は過去の履歴。
+
 Base科学ジョブ継続・意味評価版の補足（2026-10-07 JST）。
 
 actual676378/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18891158は実ps生存確認、contrast-trainingで同100Mへ進行。今回のsemantics cacheはv2_1/SHA53e28d…/96distinct pairs、旧teacher v2/SHA07ce079…/64content pairsと異なる。旧teacher/native pointを今回との差の対照にしない。元scientific code/config/acceptance/旧rawは不変。

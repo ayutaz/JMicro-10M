@@ -1,3 +1,17 @@
+Base限定・各100M CE対contrast比較と全160内容を完了、不採用（2026-10-07 JST）。
+
+[終端・採否・UI復帰の記録](../reports/phase6/natural_context_contrast_comparison_completion.json)・[元全gateの実レビュー](../reports/phase6/natural_context_contrast_comparison_review.json)。actual676378/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18891158は完了・実ps不在。各17,698更新/正確100M教師、Web75M/textbook20M/story5M、両armの元CE digest/counter/sampler一致。科学計200M教師、GPU占有3762.998秒（62.72分）/上限5229秒。auxiliary input/pairs/physicalとprobe112検証更新は科学教師へ加算しない。終端CPはCE f691a758…/contrast b3c88153…、テンソルと本教材は元WSLに保持。
+
+CE→contrast: BPB0.998487→1.002890、意味62.500%→63.542%/JBLiMP77.341%→77.946%/JCQA35.031%→35.031%。全80内容は文法44→48/関連25→26/一貫性2→0/適切完結2→3/EOS19→6/反復45→53、Unicode・role・emptyは両方0。全件の個別理由・raw byte/IDs/hashを保存した非blind Codex診断で、独立人間0。新版DEV192/96content pairの意味差CI[-.020833,.041667]は0を含み、改善を確証しない。matched CE/既存strong/absolute/historical Web BPB<=0.9812859519097707の全条件を満たさず、両固定recipeを終了する。係数/LR/source/epoch/CP救済や自動延長なし。
+
+[保存済みTRAIN端点](../reports/phase6/natural_context_contrast_training_endpoints.json)は先頭20/末尾20（最終partial更新を除外）のみ約512KiBを読む。contrast loss平均1.6211→0.3759、positive−distractor cosine0.3060→0.6587、variance非ゼロだが、異なるTRAIN batchの記述でありDEV一般化・全feature非collapseの証明ではない。[既存生成処理診断の再利用](../reports/phase6/base_decode_cached_evidence_review.json)では、CRLFだけを正規化した現model sourceが既存実学習済み診断と完全一致。64/1024のFP32 full/causal/cache/loss、単一shift・BOS/PAD mask・EOS教師32を再確認。既存BF16/padding数値失敗を保持し、全数値合格とはしない。元10BはFP32でも反復/EOS失敗があるため、一般的なBOS欠落やcache maskだけを原因と断定して同GPU診断を繰り返さない。最初のCPU読込はWindowsのみ保存されていた旧JSONのnative欠損で失敗し、既存4小JSONを補完して成功（CPU0.010777秒、新GPU/教師0）。
+
+可搬最終archiveは17text/3,303,099byte、manifest SHA87bf5929…、CE rawは既存13text archiveを参照。元10B UI actual681764/start19267921、HTTP親SHA410f975d…/10,000,007,168tokens/busy=falseと実psを確認。GPU科学jobなし。
+
+次の具体的アクション: [一回のreadonly DEV転移診断案](../reports/phase6/natural_context_contrast_dev_transfer_proposal.json)のCPU準備と実commandを実装する。同DEV256の固定順から元byte/IDを保つ64前後pair、元10B/CE/contrastの同last-valid representationを比較し、TRAINの識別改善が未学習文章にも移るかを分離する。CPU30秒/GPU60秒・optimizer/新教師0、少数不足やbinding不一致は代替sourceへ逃げず記録。これは結果後の診断案でまだ未実装・未起動、文章生成の品質gateを置き換えない。旧巨大corpus再scan/再ダウンロード不要。資格のある未来の固定candidateだけ独立学習seed/full DEV/protected final TEST/adoptionへ。
+
+Base未完成。完成条件を満たしたら通知して停止、Chat/Dialogue/SFT/量子化なし。元全品質条件/旧失敗/数値7/Phase0–3を保持、WSL uv Python3.12.7/local verified commitのみ/pushなし。以下は過去の履歴。
+
 Base比較継続・日本語意味評価の版とconfidence unitを実確認（2026-10-07 JST）。
 
 [実suite/cache確認と補足](../reports/phase6/natural_context_contrast_semantic_review_preparation.json)。今回の凍結日本語評価はv2_1/SHA53e28d…、DEV192/96familyはexact contentも96組で、別IDの完全重複はない。CEの保存済みcontext/choices/label/category/全192IDがこの元DEVと一致し、元point62.500%/family CI[57.8125%,67.7083%]を保持。旧公開teacher診断はv2/SHA07ce079…で192ID/96familyだが実content64組。両版のcase IDは同じでもcontext88/choices40が異なり、旧teacher/nativeの点数と今回の点数差を学習改善とみなさない。旧alias補正/教師転移branch終了・全raw証拠は維持する。

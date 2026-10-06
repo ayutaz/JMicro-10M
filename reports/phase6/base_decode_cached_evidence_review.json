@@ -1,0 +1,351 @@
+{
+  "status": "cached_trained_decode_evidence_reviewed",
+  "created_at": "2026-10-06T18:06:01.866714Z",
+  "references_sha256": {
+    "reports/phase6/root_cause_numeric.json": "c29ac5b3226fa720acc38530b46ae128b8c5d17c06643b34b18167b38840b4d7",
+    "reports/phase6/root_cause_summary.json": "3a6d99e31360d310ba702ddfc95828ca27ecd11b2645b237c157a1366385d9b3",
+    "reports/phase6/root_cause_completion.json": "6d8d017706e853b948d9b34c28a0685b22cad5d3c2180ee231463b25f07f882a",
+    "reports/phase6/root_cause_codec.json": "19e171d82c924a1c5627a3a786e4c7559ef2ab3d88b42c20a7a83620cdeba870",
+    "scripts/run_eos_short_pilot.py": "7a381414bdea5b24bbbbf7532f04db743cff948fa47f60e95f65019af2d3ec3d",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83"
+  },
+  "current_model_raw_sha256": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+  "current_model_normalized_LF_sha256": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+  "original_numeric_model_sha256": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+  "source_match": "Exact source after CRLF-to-LF only; different original raw hashes are retained.",
+  "checkpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "FP32_full_causal_cache_and_loss": {
+    "64_fp32_full_causal_logits": {
+      "passed": true,
+      "finite": true,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "outside_tolerance": 0,
+      "elements": 262144,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "64_fp32_loss": {
+      "passed": true,
+      "finite": true,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "outside_tolerance": 0,
+      "elements": 1,
+      "tolerance": {
+        "atol": 1e-06,
+        "rtol": 1e-05
+      }
+    },
+    "64_fp32_cache": {
+      "passed": true,
+      "finite": true,
+      "max_abs": 6.67572021484375e-06,
+      "mean_abs": 1.0267503967043012e-06,
+      "outside_tolerance": 0,
+      "elements": 32768,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "1024_fp32_full_causal_logits": {
+      "passed": true,
+      "finite": true,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "outside_tolerance": 0,
+      "elements": 4194304,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "1024_fp32_loss": {
+      "passed": true,
+      "finite": true,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "outside_tolerance": 0,
+      "elements": 1,
+      "tolerance": {
+        "atol": 1e-06,
+        "rtol": 1e-05
+      }
+    },
+    "1024_fp32_cache": {
+      "passed": true,
+      "finite": true,
+      "max_abs": 1.71661376953125e-05,
+      "mean_abs": 1.667725086917926e-06,
+      "outside_tolerance": 0,
+      "elements": 32768,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    }
+  },
+  "cached_label_checks": {
+    "exact_shift": true,
+    "bos_targets_masked": true,
+    "pad_targets_masked": true,
+    "eos_targets": 32,
+    "supervised_targets": 2074
+  },
+  "original_teacher_and_free_groups": {
+    "web": {
+      "n": 8,
+      "teacher_eos_arithmetic_mean": 0.1452356082663755,
+      "teacher_eos_median_rank": 2.0,
+      "teacher_eos_top1": 1,
+      "teacher_top1_mean": 0.423789482313616,
+      "fp32_teacher_eos_top1": 1,
+      "bf16_full_cache_eos_rank_changes": 0,
+      "generation": {
+        "greedy": {
+          "n": 8,
+          "eos": 0,
+          "repeated_4gram": 8,
+          "exact_gold": 0,
+          "interpretation": "4gram marker is not old severity metric or semantic failure; exact gold is memorization, not sole natural generation gate"
+        },
+        "sampling-42": {
+          "n": 8,
+          "eos": 0,
+          "repeated_4gram": 5,
+          "exact_gold": 0,
+          "interpretation": "4gram marker is not old severity metric or semantic failure; exact gold is memorization, not sole natural generation gate"
+        },
+        "sampling-43": {
+          "n": 8,
+          "eos": 0,
+          "repeated_4gram": 5,
+          "exact_gold": 0,
+          "interpretation": "4gram marker is not old severity metric or semantic failure; exact gold is memorization, not sole natural generation gate"
+        },
+        "sampling-44": {
+          "n": 8,
+          "eos": 1,
+          "repeated_4gram": 4,
+          "exact_gold": 0,
+          "interpretation": "4gram marker is not old severity metric or semantic failure; exact gold is memorization, not sole natural generation gate"
+        }
+      },
+      "fp32_greedy": {
+        "n": 8,
+        "eos": 0,
+        "repeated_4gram": 8,
+        "exact_gold": 0,
+        "interpretation": "4gram marker is not old severity metric or semantic failure; exact gold is memorization, not sole natural generation gate"
+      },
+      "gold_longer_than64": 7
+    },
+    "story200m": {
+      "n": 8,
+      "teacher_eos_arithmetic_mean": 0.04269940895028412,
+      "teacher_eos_median_rank": 2.0,
+      "teacher_eos_top1": 0,
+      "teacher_top1_mean": 0.4127546257793797,
+      "fp32_teacher_eos_top1": 0,
+      "bf16_full_cache_eos_rank_changes": 0,
+      "generation": {
+        "greedy": {
+          "n": 8,
+          "eos": 0,
+          "repeated_4gram": 8,
+          "exact_gold": 0,
+          "interpretation": "4gram marker is not old severity metric or semantic failure; exact gold is memorization, not sole natural generation gate"
+        },
+        "sampling-42": {
+          "n": 8,
+          "eos": 0,
+          "repeated_4gram": 7,
+          "exact_gold": 0,
+          "interpretation": "4gram marker is not old severity metric or semantic failure; exact gold is memorization, not sole natural generation gate"
+        },
+        "sampling-43": {
+          "n": 8,
+          "eos": 0,
+          "repeated_4gram": 7,
+          "exact_gold": 0,
+          "interpretation": "4gram marker is not old severity metric or semantic failure; exact gold is memorization, not sole natural generation gate"
+        },
+        "sampling-44": {
+          "n": 8,
+          "eos": 2,
+          "repeated_4gram": 7,
+          "exact_gold": 0,
+          "interpretation": "4gram marker is not old severity metric or semantic failure; exact gold is memorization, not sole natural generation gate"
+        }
+      },
+      "fp32_greedy": {
+        "n": 8,
+        "eos": 0,
+        "repeated_4gram": 8,
+        "exact_gold": 0,
+        "interpretation": "4gram marker is not old severity metric or semantic failure; exact gold is memorization, not sole natural generation gate"
+      },
+      "gold_longer_than64": 0
+    },
+    "compact": {
+      "n": 16,
+      "teacher_eos_arithmetic_mean": 0.00490213098237291,
+      "teacher_eos_median_rank": 34.0,
+      "teacher_eos_top1": 0,
+      "teacher_top1_mean": 0.28212256493506493,
+      "fp32_teacher_eos_top1": 0,
+      "bf16_full_cache_eos_rank_changes": 4,
+      "generation": {
+        "greedy": {
+          "n": 16,
+          "eos": 0,
+          "repeated_4gram": 16,
+          "exact_gold": 0,
+          "interpretation": "4gram marker is not old severity metric or semantic failure; exact gold is memorization, not sole natural generation gate"
+        },
+        "sampling-42": {
+          "n": 16,
+          "eos": 0,
+          "repeated_4gram": 14,
+          "exact_gold": 0,
+          "interpretation": "4gram marker is not old severity metric or semantic failure; exact gold is memorization, not sole natural generation gate"
+        },
+        "sampling-43": {
+          "n": 16,
+          "eos": 1,
+          "repeated_4gram": 9,
+          "exact_gold": 0,
+          "interpretation": "4gram marker is not old severity metric or semantic failure; exact gold is memorization, not sole natural generation gate"
+        },
+        "sampling-44": {
+          "n": 16,
+          "eos": 0,
+          "repeated_4gram": 15,
+          "exact_gold": 0,
+          "interpretation": "4gram marker is not old severity metric or semantic failure; exact gold is memorization, not sole natural generation gate"
+        }
+      },
+      "fp32_greedy": {
+        "n": 16,
+        "eos": 0,
+        "repeated_4gram": 16,
+        "exact_gold": 0,
+        "interpretation": "4gram marker is not old severity metric or semantic failure; exact gold is memorization, not sole natural generation gate"
+      },
+      "gold_longer_than64": 0
+    }
+  },
+  "tokenizer_4096_cached_lossless_samples": 32,
+  "original_numeric_failures_preserved": {
+    "all32_bf16_math_vs_fp32": {
+      "passed": false,
+      "finite": true,
+      "max_abs": 0.35198307037353516,
+      "mean_abs": 0.015557014383375645,
+      "outside_tolerance": 36584,
+      "elements": 8495104,
+      "tolerance": {
+        "atol": 0.05,
+        "rtol": 0.02
+      }
+    },
+    "all32_padding": {
+      "passed": false,
+      "finite": true,
+      "max_abs": 2.956390380859375e-05,
+      "mean_abs": 1.6373654716517194e-06,
+      "outside_tolerance": 1,
+      "elements": 8495104,
+      "tolerance": {
+        "atol": 1e-05,
+        "rtol": 0.0001
+      }
+    },
+    "64_bf16_vs_fp32": {
+      "passed": false,
+      "finite": true,
+      "max_abs": 0.2564353942871094,
+      "mean_abs": 0.014915302395820618,
+      "outside_tolerance": 274,
+      "elements": 262144,
+      "tolerance": {
+        "atol": 0.05,
+        "rtol": 0.02
+      }
+    },
+    "64_bf16_flash_vs_math": {
+      "passed": false,
+      "finite": true,
+      "max_abs": 0.125,
+      "mean_abs": 0.013879144564270973,
+      "outside_tolerance": 355,
+      "elements": 262144,
+      "tolerance": {
+        "atol": 0.05,
+        "rtol": 0.02
+      }
+    },
+    "1024_bf16_vs_fp32": {
+      "passed": false,
+      "finite": true,
+      "max_abs": 0.35196590423583984,
+      "mean_abs": 0.015793826431035995,
+      "outside_tolerance": 4599,
+      "elements": 4194304,
+      "tolerance": {
+        "atol": 0.05,
+        "rtol": 0.02
+      }
+    },
+    "1024_bf16_flash_vs_math": {
+      "passed": false,
+      "finite": true,
+      "max_abs": 0.1875,
+      "mean_abs": 0.012907428666949272,
+      "outside_tolerance": 1712,
+      "elements": 4194304,
+      "tolerance": {
+        "atol": 0.05,
+        "rtol": 0.02
+      }
+    },
+    "1024_compiled_flash_logits": {
+      "passed": false,
+      "finite": true,
+      "max_abs": 0.28125,
+      "mean_abs": 0.015573541633784771,
+      "outside_tolerance": 7091,
+      "elements": 4194304,
+      "tolerance": {
+        "atol": 0.05,
+        "rtol": 0.02
+      }
+    }
+  },
+  "all_original_numeric_checks_passed": false,
+  "inspected_current_generation": "greedy80 uses plain BOS2 and natural EOS3; EOS is unsuppressed. Cache uses absolute-position allowed mask with causal=False. NaturalContextTrainer causal=True is only for full right-padded sequences and valid supervised targets.",
+  "conclusion": "Existing original10B learned evidence and unchanged source do not support a blanket missing-BOS, square-cache-causal-mask or double-shift explanation. FP32 original free generation also repeated and failed EOS. Retain all BF16/padding numeric failures; this does not certify every numerical path or terminal checkpoint.",
+  "initial_attempt": {
+    "status": "failed_before_output",
+    "reason": "Portable historical diagnostic files were Windows-only; native root_cause_numeric.json was absent. Copied the four existing small portable JSON files without recomputation or overwrite."
+  },
+  "new_GPU_seconds": 0,
+  "optimizer_updates": 0,
+  "new_scientific_teacher_tokens": 0,
+  "new_model_scoring": false,
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "next_action": "Do not repeat this cached audit or reopen failed contrast recipes. A next genuinely different learning mechanism requires novelty against rejected branches, a bounded matched comparison and unchanged Base quality/retention gates.",
+  "limitations": "Limited existing original-parent inputs; no new CE/contrast tensor scoring or inference. EOS-rank agreement is not full argmax equality. This retrospective audit changes no original scientific output or gate.",
+  "CPU_seconds": 0.010777193994726986
+}
