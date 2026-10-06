@@ -1,0 +1,82 @@
+{
+  "created_at": "2026-10-06T22:45:17.561770Z",
+  "question": "Does replacing only hidden-matrix AdamW updates with official RMS-scaled Muon improve the native same-parent100M continuation quality?",
+  "references": {
+    "sequence_objective_comparison_review.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/sequence_objective_comparison_review.json",
+      "sha256": "7fef26f2a1671a9b7c9a4df533dcff05b55f525b373bf79b24d182cdef4dd6a7",
+      "status": "matched_CE_sequence_UL_learning_and_all160_content_evidence_complete"
+    },
+    "sequence_objective_low_alpha_review.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/sequence_objective_low_alpha_review.json",
+      "sha256": "7e22e03ae51e402c65cbf8c769596be93c51c356039cd904f05d5515c1285257",
+      "status": "matched_reused_CE_and_actual_low_alpha25M_all80_complete"
+    },
+    "sequence_objective_diagnostic_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/sequence_objective_diagnostic_completion.json",
+      "sha256": "4f11a2a2ca974db485ae988bad39b64f05c3fb8de85f976f85e1b4cafe40f4b7",
+      "status": "actual_train_only_diagnosis_complete_next_comparison_planned"
+    },
+    "base_preference_comparison_review.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_preference_comparison_review.json",
+      "sha256": "6e6106743644ba83a931d23ce696a72a11951dd80901c7997ea3eb070c8c06a5",
+      "status": "Base_preference_all160_native_state_and_content_reviewed"
+    },
+    "base_generalization_diagnostic_review.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_generalization_diagnostic_review.json",
+      "sha256": "7ce4e0eaaf8840787ad23b113178521ac1036e1b1a43463a07d1c414be52d5b1",
+      "status": "source_local_generalization_all64_content_reviewed"
+    },
+    "public_japanese_base_reference_review.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/public_japanese_base_reference_review.json",
+      "sha256": "d19507e28901fe097688db040b1d6730c71eb587a737fd4e2afb5929ecc8fbcc",
+      "status": "public_Japanese_Base_reference_all80_read_and_closed"
+    }
+  },
+  "prior_turn": "progress: pinned foreign reference recovered, evaluated, all80 read and committed db61143; no live scientific GPU job.",
+  "rationale": "On-policy repetition penalties, small-corpus preference and source-local generalization already have actual negative results. Do not rerun them. Existing native optimizer comparisons do not include Muon in the inspected registry.",
+  "primary_sources": [
+    "https://arxiv.org/html/2502.16982v1",
+    "https://docs.pytorch.org/docs/2.14/generated/torch.optim.Muon.html"
+  ],
+  "recipe": "Official torch.optim.Muon hidden2D only, momentum0.95/Nesterov/NS5/adjust_lr_fn=match_rms_adamw; tied vocab and norm AdamW. Nominal constant lr1e-5/WD0.1 as cached CE. Different update directions and effective scaling are intended; not bitwise equal optimizer histories.",
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "goals": {
+    "web": 75000000,
+    "textbook": 20000000,
+    "story": 5000000
+  },
+  "batch": 48,
+  "seed": 42,
+  "native_parameters": 10001152,
+  "extra_parameters": 0,
+  "original_teachers": 100000000,
+  "new_unique_dataset_tokens": 0,
+  "control_reused_GPU_seconds": 0,
+  "total_GPU_cap_seconds": 4800,
+  "probe_GPU_cap_seconds": 180,
+  "CPU_checks": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_muon_trainer_tests.xml",
+    "sha256": "7df587c4b54fc5b45e49a9e8f87e5ac98ffdbacce77173aa7f2fb5c5f7b26664"
+  },
+  "acceptance": "Same cached CE stream/full sampler and native inference; actual hybrid CUDA save/resume finite states before science. Same256/common-byte BPB, all Japanese choice suites and all80 raw-bound content. All matched/strong/absolute/historical Web gates unchanged; independent trainedseed/full DEV/protected final TEST/adoption only for qualified candidate.",
+  "failure": "Close failed finite/state/budget or final quality condition. No momentum/NS/scaling/LR/source/parent/teacher/batch/cap rescue or automatic extension.",
+  "limitations": "One mature-parent optimizer transition at a fixed conservative LR, single seed and repeated nonblind DEV. Muon papers concern other model scales and recipes; no guaranteed Japanese10M gain. RMS heuristic is not exactly equal step magnitude.",
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false
+}
