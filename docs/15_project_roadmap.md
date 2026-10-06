@@ -1,3 +1,7 @@
+Base専用news GPU照合の限定修復（2026-10-06 JST）。
+
+初回actual656937はnative GPU tensorと保存CPU tensorのtorch.equal直接比較で初期照合時に失敗。GPU1.419417秒、forward/optimizer0、原config/source/job/失敗archiveを保存し元UI復帰。新v2は同じtensor値/dtypeをCPUへ揃える再帰device正規化だけ、学習recipe/幅/LR/source/epochs不変。新CPU3tests/2.76秒で全state境界再開/quotaとnested state正規化の値・型保持に合格。実親CPU準備1.320159秒。旧失敗も総1800秒へ算入、ownCUDA120秒・本Web/news stressの両4対2+2/各32timingの厳密基準は維持。次はこの同条件probe。Base未完成・完成時通知停止、Chat/量子化なし。WSL uv/local commitのみ/pushなし。
+
 Base専用news CUDA probe: failure_v1（2026-10-06 JST）。
 
 own news probe actual656937実終端/不在、GPU1.419417秒、理由RuntimeError('Expected all tensors to be on the same device, but got other is on cpu, different from other tensors on cuda:0 (when checking argument in method wrapper_CUDA__equal)')。原config/source/job/失敗を保存し元UI復帰。

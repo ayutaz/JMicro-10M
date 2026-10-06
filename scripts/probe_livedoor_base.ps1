@@ -1,7 +1,7 @@
 param([switch]$Worker)
 $ErrorActionPreference='Stop'
 $workspace=Split-Path -Parent $PSScriptRoot
-$runDir=Join-Path $workspace 'reports\phase6\livedoor-base-probe-launcher-20261006'
+$runDir=Join-Path $workspace 'reports\phase6\livedoor-base-probe-launcher-v2-20261006'
 New-Item -ItemType Directory -Force -Path $runDir | Out-Null
 if(-not $Worker){
     if(Test-Path -LiteralPath (Join-Path $runDir 'launcher.json')){throw 'Inspect actual process before using -Worker.'}
@@ -14,7 +14,7 @@ $result=@{status='starting';mode='Probe';started_at=[DateTime]::UtcNow.ToString(
 try{
     & wsl.exe -d Ubuntu --cd /home/aihub_ubuntu/src/japanese-tiny-llm-10m -- /home/aihub_ubuntu/.local/bin/uv run --frozen --extra hub --extra data --extra ml --extra export scripts/probe_livedoor_base.py --inspect
     if($LASTEXITCODE -ne 0){throw 'News preflight rejected before UI/GPU changes.'}
-    $jobPath='\\wsl.localhost\Ubuntu\home\aihub_ubuntu\src\japanese-tiny-llm-10m\reports\phase6\livedoor-base-comparison-20261006\probe\job.json'
+    $jobPath='\\wsl.localhost\Ubuntu\home\aihub_ubuntu\src\japanese-tiny-llm-10m\reports\phase6\livedoor-base-comparison-v2-20261006\probe\job.json'
     if(Test-Path -LiteralPath $jobPath){
         if((Get-Content -Raw -LiteralPath $jobPath|ConvertFrom-Json).status -eq 'complete'){$result.status='already_complete';return}
         throw 'Preserve actual one-shot failure; documented repair only.'

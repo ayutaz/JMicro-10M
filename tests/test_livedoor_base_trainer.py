@@ -52,3 +52,13 @@ def test_exact_tail_teacher_bytes_EOS_and_masked_physical_padding(tmp_path):
     with pytest.raises(ValueError):sampler.batch(3)
     bad=copy.deepcopy(sampler.state_dict());bad['goals']['web']=2
     with pytest.raises(ValueError):sampler.load_state_dict(bad)
+
+
+def test_device_normalization_preserves_nested_state_values_and_types():
+    from probe_livedoor_base import host_state
+    state={'model':torch.tensor([1.,2.],dtype=torch.float64),'optimizer':[{'step':torch.tensor(8,dtype=torch.int64)}],
+        'rng':(torch.tensor([3],dtype=torch.uint8),42),'scheduler':{'LR':.00001}}
+    normalized=host_state(state)
+    assert equal_state(state,normalized)
+    assert normalized['model'].dtype==torch.float64 and normalized['optimizer'][0]['step'].dtype==torch.int64
+    assert isinstance(normalized['rng'],tuple) and isinstance(normalized['optimizer'],list)

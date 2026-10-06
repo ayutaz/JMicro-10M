@@ -22,8 +22,9 @@ from livedoor_base_trainer import NewsBaseTrainer,KIND,LR
 from phase6_performance import identity,alive,finite_state
 from run_eos_short_pilot import equal_state
 
-RUN=ROOT/'reports/phase6/livedoor-base-comparison-20261006'
-CONFIG=ROOT/'configs/phase6/livedoor_base_probe.json'
+RUN=ROOT/'reports/phase6/livedoor-base-comparison-v2-20261006'
+CONFIG=ROOT/'configs/phase6/livedoor_base_probe_v2.json'
+FAILED_RUN=ROOT/'reports/phase6/livedoor-base-comparison-20261006/probe'
 PROPOSAL=ROOT/'reports/phase6/livedoor_base_comparison_proposal.json'
 SOURCES=('scripts/livedoor_base_trainer.py','scripts/probe_livedoor_base.py','scripts/probe_livedoor_base.ps1','tests/test_livedoor_base_trainer.py')
 TRACKED=('model','optimizer','scheduler','rng','sampler','lineage','tokens','supervised_tokens','body_bytes','token_digest','focus_token_digest',
@@ -37,6 +38,14 @@ def check_reference(ref):
     if sha256(Path(ref['path']))!=ref['sha256']:raise ValueError('Original news reference differs: '+ref['path'])
 
 
+def host_state(value):
+    if isinstance(value,torch.Tensor):return value.detach().cpu()
+    if isinstance(value,dict):return {k:host_state(v) for k,v in value.items()}
+    if isinstance(value,list):return [host_state(v) for v in value]
+    if isinstance(value,tuple):return tuple(host_state(v) for v in value)
+    return value
+
+
 def prepare():
     if CONFIG.exists():inspect();return
     start=time.monotonic();p=read_json(PROPOSAL)
@@ -44,9 +53,11 @@ def prepare():
             or p['new_teacher_goals']!={'web':1428122,'authored_news':25000000} or p['scientific_GPU_frozen'] or p['new_GPU_seconds']):
         raise ValueError('Actual accepted news/common-prefix definition required')
     refs={k:p[k] for k in ('source_preparation','source_ready','source_content_review','original_parent','cached_control_config','cached_control_result','cached_control_history','shared_prefix')}
-    refs.update(proposal=reference(PROPOSAL),CPU_tests=reference(ROOT/'reports/phase6/livedoor_base_trainer_tests.xml'))
+    failure=read_json(FAILED_RUN/'job.json')
+    if alive(failure) or failure['status']!='failed_or_interrupted' or 'same device' not in failure['error']:raise ValueError('Original actual device comparison failure required')
+    refs.update(proposal=reference(PROPOSAL),CPU_tests=reference(ROOT/'reports/phase6/livedoor_base_trainer_v2_tests.xml'),original_failure=reference(FAILED_RUN/'job.json'))
     suites=list(ET.parse(refs['CPU_tests']['path']).getroot().iter('testsuite'))
-    if sum(int(s.attrib['tests']) for s in suites)!=2 or any(int(s.attrib[k]) for s in suites for k in ('failures','errors','skipped')):raise ValueError('Two actual inherited-state/source-budget CPU tests required')
+    if sum(int(s.attrib['tests']) for s in suites)!=3 or any(int(s.attrib[k]) for s in suites for k in ('failures','errors','skipped')):raise ValueError('Three actual inherited/source-budget/lossless-device-state CPU tests required')
     old=read_json(Path(p['cached_control_config']['path']))
     old_sources={**old.get('old_source_sha256',{}),**old['source_sha256']}
     old_sources.update({s:sha256(ROOT/s) for s in ('scripts/original_web_retention_trainer.py','scripts/condition_positive_trainer.py','scripts/condition_positive_loss.py','scripts/phase6_performance.py','scripts/run_eos_short_pilot.py')})
@@ -62,6 +73,7 @@ def prepare():
         data=p['data'],goals=p['new_teacher_goals'],stress_goals=dict(web=1,authored_news=25000000),context=1024,batch=32,LR=LR,
         source_sha256={s:sha256(ROOT/s) for s in SOURCES},old_source_sha256=old_sources,implementation=implementation_hashes(),
         GPU_budget_seconds=120,total_new_GPU_ceiling_seconds=1800,verification_updates=80,
+        previous_failed_GPU_seconds=failure['GPU_elapsed_seconds'],repair='Compare native GPU and saved CPU state after lossless device normalization; unchanged exact values/recipe. Original failure/config/source retained.',
         actual_CPU_model_Adam_scheduler_host_RNG_passed=True,CUDA_RNG_preservation_unverified_until_own_GPU_gate=True,
         news_unsampled_tail_tokens=len(news.tokens)-(((len(news.tokens)-1)//1024)*1024+1),
         CPU_preparation_seconds=time.monotonic()-start,Base_complete=False,Base_adopted=False,Chat_started=False,quantization_started=False,protected_test_used=False)
@@ -146,7 +158,7 @@ def run():
         def build(route,goals):return NewsBaseTrainer(parent,web,news,goals,binding(c,route,goals))
         with gpu_lock('cuda'):
             started=time.monotonic();job['status']='running';heartbeat('initial_actual_inherited_state');initial=build('original_Web',c['goals'])
-            preservation=dict(model=equal_state(initial.model.state_dict(),parent['model']),optimizer=equal_state(initial.optimizer.state_dict(),parent['optimizer']),
+            preservation=dict(model=equal_state(host_state(initial.model.state_dict()),parent['model']),optimizer=equal_state(host_state(initial.optimizer.state_dict()),parent['optimizer']),
                 scheduler=equal_state(initial.scheduler.state_dict(),parent['scheduler']),RNG=equal_state(rng_state(),parent['rng']),
                 Web_cursor=equal_state(initial.sampler.streams['web'].sampler.state_dict(),parent['sampler']['streams']['web']['sampler']),
                 native_tied10M=sum(p.numel() for p in initial.model.parameters())==10001152 and initial.model.lm_head.weight is initial.model.model.embed_tokens.weight)
@@ -171,7 +183,8 @@ def run():
             check();elapsed=time.monotonic()-started;measured,forecast=estimate_training(result)
             result.update(passed=True,GPU_seconds=elapsed,verification_teacher_tokens=teachers,verification_updates=80,scientific_teacher_tokens=0,
                 stress_weights_discarded_for_science=True,measured_timing=measured,estimated_science_GPU_seconds=forecast,
-                estimated_total_GPU_seconds=forecast+elapsed,within1800=forecast+elapsed<=1800,config_sha256=sha256(CONFIG),Base_complete=False)
+                previous_failed_GPU_seconds=c['previous_failed_GPU_seconds'],estimated_total_GPU_seconds=forecast+elapsed+c['previous_failed_GPU_seconds'],
+                within1800=forecast+elapsed+c['previous_failed_GPU_seconds']<=1800,config_sha256=sha256(CONFIG),Base_complete=False)
             atomic_json(folder/'result.json',result);job.update(status='complete',GPU_elapsed_seconds=elapsed,ended_at=now());atomic_json(jp,job)
             print(json.dumps(dict(status='both_source_CUDA_resume_and_timing_complete',GPU_seconds=elapsed,estimated_total_GPU_seconds=forecast+elapsed)))
     except BaseException as exc:
