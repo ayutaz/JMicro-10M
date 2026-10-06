@@ -838,3 +838,11 @@ gold suffixがEOS込み64以内なのは9/24件。ここだけの自由生成EOS
 次の具体的な作業は、同教師quotaのsource sampler/trainer/永続runner/reviewerを実装し、CPUでquota/EOS/文書境界と連続対再開を確認する。その後、両条件の実CUDA連続4対2+2/fullstate/有限値/実速度を上限120秒で確認。全GPU上限1800秒に検証・各100M・同日本語/生成評価を含めて収まる実測予測が得られた場合だけscientific configを凍結して本学習する。旧品質改善を前提とする自動延長コマンドは拒否条件を保持し、新研究契約に合格したと混同しない。
 
 終了条件は両actual100M教師、同dev256/common-byte BPB・日本語192/331/1119・固定dev80各/全160 raw-bound内容・全原relative/absolute/original-Web採否、実終了PID、可搬証拠/UI復帰/local commit。既存2B+20M評価は親能力保持の参照として再利用し、新100Mのmatched controlへ置き換えない。合格候補だけを独立学習seed/full dev/保護test→実Dialogue/SFT/retention/複数sampling/人間→HF/GGUF/Q8/Q4/実UIへ接続する。不合格なら採用せず、根拠なしの比率総当たり/自動5B・10B延長を行わない。全五目標/旧数値7失敗/全品質基準を維持する。
+
+### 物語教師比率比較の実装・実CUDA検証・本学習開始（2026-10-06 JST）
+
+前節の未実装事項を実装した。source別文書shuffleと教師quota、完了更新ごとのfull-state保存/再開、永続jobと評価・全160内容review/archiveを用意。CPU4tests/2.147秒、両条件の実CUDA連続4対2+2は26checksずつ一致した。各32連続timingを含む検証80更新/2,599,809教師は科学から除外、実GPU22.202秒。科学config SHA e5ee42c4bc923632faa5b49eceb76f32e92c9d632bb7d2d292a88117f3938f04、同CE/terminal LR0.0002/親AdamとRNG/同material/各100M、batch32 context1024を凍結。実測training予測control163.984秒/story20 152.996秒、評価余裕込み1012.074秒、科学上限1777.798秒（検証を含め1800秒）。予測は完了や品質の証明ではない。
+
+actual518044/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start13077625を実ps確認。controlの100M教師終端checkpoint65244（SHA353cb231d07dfb9e42328ee0e3ad82ead4d1ad875a25559987e6bf2dd44e03f5）はinput100,859,904、共通親から追加100Mで同日本語/生成評価へ進行。科学両条件完了/全160内容採点/品質採否は未完了。jobの初期setup文字列だけで停止を判定しない。[実ジョブ引継ぎ](../reports/phase6/story_weight_active_job.json)とnative reports/phase6/story-weight-comparison-20261006の実PID・チェックポイント・stageを参照し、再開はactual process不在を確認後にscripts/run_story_weight_comparison.ps1 -Mode Train -Worker。
+
+今の比較を完了し、全160を個別に確認して元の品質条件の採否を出す。合格時は独立学習seedとfull dev/保護test接続をこの新source recipeに対応させてから最終Base検証へ進む。準備済みコマンドだけで採用とせず、Base→実Chat比較/retention/複数sampling/人間→export/量子化/実UIの全目標を保持する。不合格時は採用せず原因に対応する次の一要因を選び、根拠のない比率総当たりや長期延長をしない。PythonはWSL uv、local commitのみ、元UIは科学終端で復帰する。
