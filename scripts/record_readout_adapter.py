@@ -72,4 +72,4 @@ def main(phase):
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('phase',choices=('preparation','probe','probe_failure'));main(p.parse_args().phase)
+    p=argparse.ArgumentParser();p.add_argument('phase',choices=('preparation','probe','probe_failure','probe_failure_v2'));main(p.parse_args().phase)

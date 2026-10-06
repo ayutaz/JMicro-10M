@@ -1,3 +1,9 @@
+Base専用frozen nonlinear readout: probe_failure_v2（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+出力変換probe actual653385実終端/不在、GPU0.232884秒、理由KeyError('inputs')。原source/partial/失敗を保持し、基準や幅等を変えて救済せず実原因に対する限定修復または別機構を定義する。
+
+[Houlsby adapter](https://proceedings.mlr.press/v97/houlsby19a.html)と[feature distortion/linear probing](https://arxiv.org/abs/2202.10054)を参考にした独自の転移仮説。per-layer BERT分類adapter/主にvisionの報告を日本語10Mでの改善保証としない。全旧失敗/数値7/Phase0–3/元相対・絶対・歴史Web1%基準保持。幅/activation/placement/init/LR/source/mask/parent/decoder/CP救済sweepなし、native HF export未対応を完成としない。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用readout probe限定修復（2026-10-06 JST）。
 
 初回actual652808は準備用module importによるCUDA_VISIBLE_DEVICES=''の副作用でGPU初期化失敗、0.099831161 GPU秒、学習0。元source/config/job/失敗archiveと元UI復帰を保存。GPU自体はRTX4090/driver616.92・uv torch CUDA available=Trueを確認。probeの準備module importを固定proposal path参照に置換するだけの修復、新config/run v2で旧証拠を上書きしない。GPU可視性をNone/0の両方で保持するsubprocess回帰test1件/2.07秒合格。新条件/source/LR/init/decoderの変更なし、旧失敗時間も900秒上限に算入。次は同120秒own CUDA probe、合格・費用内のみfull100M比較へ。Base未完成・完成時通知停止、Chat/量子化なし。
