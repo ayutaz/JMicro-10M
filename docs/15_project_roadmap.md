@@ -1,3 +1,9 @@
+Base専用Fisher anchor: probe（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+ownCUDA4連続対2+2の全state/history/有限値/LR/親Adam・scheduler・RNG/Webcursor・anchor/fieldに合格、32timing完了。実40検証更新/1307952教師は科学と別、ownprobe19.161004秒/120。1.3margin・200秒非学習余裕付き科学予測805.390661秒、field+probe込み828.174695/1800。次は予算内のみ同full100M一候補/同日本語・dev256・native80/旧全gate採否へ。GPUgateは品質の証明ではない。
+
+全旧失敗/数値7/Phase0–3/既存相対・絶対・歴史Web1%品質基準保持。field/seed/回数/lambda/source/mask/CP/decoder救済sweepなし。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用Fisher anchor: preparation（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
 
 同mixed親6d/継承Adam・RNG/scheduler・LR.00001/同full CE100M/Web75M-story5M-ordinary10M-conditional10M/lambda.04161064039180984、差分は固定mean1 Fisher fieldのみ。既存一律L2対照100M/全80/日本語/devを再利用、再GPUなし。field実3.623030秒/64MC score gradient・65276sampled labelはsource CEと別。新CPU予算1test/1.47秒・PS構文合格、CPU準備0.264034秒、本学習0。次はownCUDA4対2+2全state/history/固定field・anchor/継承状態と32timingを120秒内で測定。field+probe+本科学+評価を実測margin付き1800秒内の場合のみ科学凍結、同eval/旧全gateを保持。
