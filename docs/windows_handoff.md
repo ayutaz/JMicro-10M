@@ -1,3 +1,14 @@
+Base限定・Dropout100Mを維持／採否処理の準備完了（2026-10-07 JST）。
+
+[採否準備の証拠](../reports/phase6/base_residual_dropout_review_preparation.json): 新 scripts/review_base_residual_dropout.py と凍結policyを追加、CPU18checks/2.43秒に合格。既存CE80/同256byte/同192意味cacheを使う実CPU API・実live最終CLI拒否確認は2.075秒、GPU/新教師/新内容採点0。準備用callerが意味paired結果のtop-level pointを誤参照した初回KeyErrorを別JSONに保存し、candidate_minus_controlへ修正して成功。frozen科学/reviewerや採点は変更していない。
+
+最終reviewはnative10M/全Adam/scheduler/CPU・CUDA RNG/source sampler/完了更新全historyと正確100Mを要求し、追加headやauxiliary入力・目的、確率/sites/推論Dropoutの改変を拒否する。全CE入力/physical/教師/EOS/digest/full cursorをcached CEへ揃える。中断後は後attemptのcommitted pathを使い、切れた未完末尾rawを保持、欠損完了更新や改行付き壊れた行を拒否。既存CE80採点は変更せず、元strong/absolute/historical Web gateを維持。byte-weighted BPB/同192 exact-input cluster意味CIは補足で採用条件を緩和しない。
+
+actual689085/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start19897021を実ps確認。8060更新/45604736教師/loss2.88087725639343有限、latest completed CP /home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-residual-dropout-comparison-20261007/dropout/checkpoint-00008000.pt。同job/確率0.1/batch48/3965秒/source/configは固定、重複GPUjobや対照再評価なし。
+
+新native80と全日本語が完了してから、native cwdでWSL pinned uv run --frozen --extra hub --extra data --extra ml --extra export scripts/review_base_residual_dropout.py --template を実行し未採点notesを作る。全80を個別に読み六列TSV reports/phase6/base_residual_dropout_observations.tsv を記録後、同uv prefix＋同script --record reports/phase6/base_residual_dropout_observations.tsv で取り込む。実master completeかつPID/boot/startが実ps不在になってからだけ、同uv prefix＋同script引数なしでfinal reviewを保存する。live拒否と最終artifact不在を実確認、scored notes/reviewの上書きを拒否する。
+
+Base未完成・未採用、資格のある候補だけ独立学習seed/full DEV/protected final TEST/adoption。Base完成時に通知して停止し、Chat/Dialogue/SFT/量子化なし。新prepared/GPU品質/独立人間評価として準備やfixtureを扱わない。WSL uv/local verified commitのみ/pushなし、旧数値失敗・Phase0–3と元全条件を保持。以下は過去の履歴。
 Base限定・学習時Dropoutの実CUDA確認完了／100M比較実行中（2026-10-07 JST）。
 
 [単一仮説](../reports/phase6/base_residual_dropout_proposal.json)を実装。既存512TRAINの適合改善とDEV生成退行、source-local DEVへの転移失敗から、学習時のco-adaptation抑制を一条件で試す。一般的な[Dropout一次論文](https://jmlr.org/papers/v15/srivastava14a.html)からの仮説で、日本語10M改善の証明ではない。確率0.1をtoken embeddingと各attention/MLP残差出力に適用し、attention probabilityは0、追加パラメータ0、native推論10,001,152を保持。元src/jmicro/model.pyを変更せずtrain-only hooksを新trainerに付け、既存torch RNGを全stateへ保存する。native評価ではhooksを付けない。
