@@ -1,0 +1,468 @@
+{
+  "status": "document_history_ablation_complete_local_marker_unsupported",
+  "created_at": "2026-10-06T11:23:49.682500Z",
+  "config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/document_context_ablation.json",
+    "sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a"
+  },
+  "checkpoints": {
+    "original_fullparent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+      "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+    },
+    "completed_masked_mixed": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+      "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+    }
+  },
+  "CPU_preparation_seconds": 0.1385533559951,
+  "GPU_seconds": 6.2112932490126695,
+  "GPU_ceiling_seconds": 30,
+  "logical_batch": 32,
+  "microbatch": 8,
+  "context": 1024,
+  "batches_per_model": 16,
+  "cached_reference": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-gradient-attribution-20261006/result.json",
+    "sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+  },
+  "original_UI": {
+    "identity": {
+      "pid": 638600,
+      "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+      "start_ticks": "16901736"
+    },
+    "actual_alive_verified": true,
+    "HTTP": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    }
+  },
+  "new_teacher_tokens": 0,
+  "optimizer_updates": 0,
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "next_action": "End this packing hypothesis; no packing training variant. Determine a distinct Base mechanism from retained evidence.",
+  "actual_terminal_job": {
+    "status": "complete",
+    "pid": 638526,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "16900679",
+    "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+    "GPU_seconds": 6.2112932490126695,
+    "started_at": "2026-10-06T11:23:24.387274Z",
+    "restart_command": "scripts/diagnose_document_context_ablation.ps1 -Worker",
+    "optimizer_updates": 0,
+    "new_teacher_tokens": 0,
+    "stage": "completed_masked_mixed-isolated-history",
+    "heartbeat_at": "2026-10-06T11:23:31.167284Z",
+    "batch": 15,
+    "completed_batches": 15,
+    "total_batches": 16,
+    "completed_at": "2026-10-06T11:23:31.427372Z"
+  },
+  "actual_process_absent": true,
+  "result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/document-context-ablation-20261006/result.json",
+    "sha256": "f09872449217645c9bc7dff34324a00f55e6927e3e68d8c173b02ed55eaef7b1"
+  },
+  "summaries": {
+    "original_fullparent": {
+      "groups": {
+        "web": {
+          "teachers": 390352,
+          "isolated_teacher_weighted_CE": 2.574289454413901,
+          "cached_full_teacher_weighted_CE": 2.5678080346792767,
+          "teacher_weighted_CE_change": 0.0064814197346241345,
+          "supported_batches": 16,
+          "positive_batches": 16,
+          "batches_increase_at_least_point1": 0,
+          "minimum_CE_change": 0.0049254621936549725,
+          "median_CE_change": 0.006380175465663607,
+          "maximum_CE_change": 0.008502313741130862
+        },
+        "story": {
+          "teachers": 26425,
+          "isolated_teacher_weighted_CE": 2.686865132745979,
+          "cached_full_teacher_weighted_CE": 2.671443316875591,
+          "teacher_weighted_CE_change": 0.01542181587038789,
+          "supported_batches": 16,
+          "positive_batches": 16,
+          "batches_increase_at_least_point1": 0,
+          "minimum_CE_change": 0.008614744659035,
+          "median_CE_change": 0.014427894333343572,
+          "maximum_CE_change": 0.02617799659118969
+        },
+        "ordinary_textbook": {
+          "teachers": 52861,
+          "isolated_teacher_weighted_CE": 2.4536381520860724,
+          "cached_full_teacher_weighted_CE": 2.449688866533515,
+          "teacher_weighted_CE_change": 0.003949285552557651,
+          "supported_batches": 16,
+          "positive_batches": 15,
+          "batches_increase_at_least_point1": 0,
+          "minimum_CE_change": -0.003991043270805683,
+          "median_CE_change": 0.004286688688628804,
+          "maximum_CE_change": 0.009504669179444036
+        },
+        "conditional_outcome_body": {
+          "teachers": 7258,
+          "isolated_teacher_weighted_CE": 2.2818295459636944,
+          "cached_full_teacher_weighted_CE": 2.159246840467792,
+          "teacher_weighted_CE_change": 0.12258270549590215,
+          "supported_batches": 16,
+          "positive_batches": 16,
+          "batches_increase_at_least_point1": 13,
+          "minimum_CE_change": 0.0750233603165289,
+          "median_CE_change": 0.1192961873882239,
+          "maximum_CE_change": 0.17585085292550984
+        },
+        "conditional_EOS": {
+          "teachers": 1215,
+          "isolated_teacher_weighted_CE": 4.1753979718243635,
+          "cached_full_teacher_weighted_CE": 6.615145723319348,
+          "teacher_weighted_CE_change": -2.4397477514949846,
+          "supported_batches": 16,
+          "positive_batches": 0,
+          "batches_increase_at_least_point1": 0,
+          "minimum_CE_change": -2.5350683057630388,
+          "median_CE_change": -2.4411620644175867,
+          "maximum_CE_change": -2.3104166143080764
+        },
+        "conditional_total": {
+          "teachers": 8473,
+          "isolated_teacher_weighted_CE": 2.553360956021609,
+          "cached_full_teacher_weighted_CE": 2.798207910061164,
+          "teacher_weighted_CE_change": -0.24484695403955486,
+          "supported_batches": 16,
+          "positive_batches": 0,
+          "batches_increase_at_least_point1": 0,
+          "minimum_CE_change": -0.27555912816247297,
+          "median_CE_change": -0.24579462489689097,
+          "maximum_CE_change": -0.21217391623119086
+        },
+        "all": {
+          "teachers": 478111,
+          "isolated_teacher_weighted_CE": 2.5668011026309383,
+          "cached_full_teacher_weighted_CE": 2.5645595068871847,
+          "teacher_weighted_CE_change": 0.002241595743753232,
+          "supported_batches": 16,
+          "positive_batches": 16,
+          "batches_increase_at_least_point1": 0,
+          "minimum_CE_change": 0.00015170922293394895,
+          "median_CE_change": 0.0021221265259094846,
+          "maximum_CE_change": 0.004135251802149131
+        }
+      },
+      "descriptive_conditional_history_dependence_marker": false,
+      "marker_definition": "Conditional teacher-weighted CE increase>=.1nats and logical batches with increase>=.1nats>=12/16; local TRAIN description, not quality."
+    },
+    "completed_masked_mixed": {
+      "groups": {
+        "web": {
+          "teachers": 390352,
+          "isolated_teacher_weighted_CE": 2.5735666667720736,
+          "cached_full_teacher_weighted_CE": 2.5674472875603302,
+          "teacher_weighted_CE_change": 0.006119379211743503,
+          "supported_batches": 16,
+          "positive_batches": 16,
+          "batches_increase_at_least_point1": 0,
+          "minimum_CE_change": 0.004362135801085021,
+          "median_CE_change": 0.0059880158698624175,
+          "maximum_CE_change": 0.008716071182821139
+        },
+        "story": {
+          "teachers": 26425,
+          "isolated_teacher_weighted_CE": 2.091600694033822,
+          "cached_full_teacher_weighted_CE": 2.0299729343439568,
+          "teacher_weighted_CE_change": 0.06162775968986518,
+          "supported_batches": 16,
+          "positive_batches": 16,
+          "batches_increase_at_least_point1": 0,
+          "minimum_CE_change": 0.015406923359451152,
+          "median_CE_change": 0.061834047301555506,
+          "maximum_CE_change": 0.09520279337364279
+        },
+        "ordinary_textbook": {
+          "teachers": 52861,
+          "isolated_teacher_weighted_CE": 2.2587652262168114,
+          "cached_full_teacher_weighted_CE": 2.2048023242856263,
+          "teacher_weighted_CE_change": 0.05396290193118509,
+          "supported_batches": 16,
+          "positive_batches": 16,
+          "batches_increase_at_least_point1": 0,
+          "minimum_CE_change": 0.02810067372915981,
+          "median_CE_change": 0.05616571903927481,
+          "maximum_CE_change": 0.0666056809207829
+        },
+        "conditional_outcome_body": {
+          "teachers": 7258,
+          "isolated_teacher_weighted_CE": 0.2752947829649382,
+          "cached_full_teacher_weighted_CE": 0.19719137216474963,
+          "teacher_weighted_CE_change": 0.07810341080018855,
+          "supported_batches": 16,
+          "positive_batches": 16,
+          "batches_increase_at_least_point1": 0,
+          "minimum_CE_change": 0.05410193114002726,
+          "median_CE_change": 0.0810563475587437,
+          "maximum_CE_change": 0.09741558929513838
+        },
+        "conditional_EOS": {
+          "teachers": 1215,
+          "isolated_teacher_weighted_CE": 0.030822170075075126,
+          "cached_full_teacher_weighted_CE": 0.008565040381908907,
+          "teacher_weighted_CE_change": 0.02225712969316622,
+          "supported_batches": 16,
+          "positive_batches": 16,
+          "batches_increase_at_least_point1": 0,
+          "minimum_CE_change": 0.018228417997689622,
+          "median_CE_change": 0.021473775563403456,
+          "maximum_CE_change": 0.028195749011452068
+        },
+        "conditional_total": {
+          "teachers": 8473,
+          "isolated_teacher_weighted_CE": 0.24023822393493896,
+          "cached_full_teacher_weighted_CE": 0.17014298397684083,
+          "teacher_weighted_CE_change": 0.07009523995809813,
+          "supported_batches": 16,
+          "positive_batches": 16,
+          "batches_increase_at_least_point1": 0,
+          "minimum_CE_change": 0.04992692486216971,
+          "median_CE_change": 0.07254832744108443,
+          "maximum_CE_change": 0.08593639362551989
+        },
+        "all": {
+          "teachers": 478111,
+          "isolated_teacher_weighted_CE": 2.470772625900897,
+          "cached_full_teacher_weighted_CE": 2.4551618673301543,
+          "teacher_weighted_CE_change": 0.015610758570743045,
+          "supported_batches": 16,
+          "positive_batches": 16,
+          "batches_increase_at_least_point1": 0,
+          "minimum_CE_change": 0.011039408908509518,
+          "median_CE_change": 0.015515412450601174,
+          "maximum_CE_change": 0.019183836757615147
+        }
+      },
+      "descriptive_conditional_history_dependence_marker": false,
+      "marker_definition": "Conditional teacher-weighted CE increase>=.1nats and logical batches with increase>=.1nats>=12/16; local TRAIN description, not quality."
+    }
+  },
+  "native_controls": {
+    "original_fullparent": {
+      "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+        "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+      },
+      "allclose": true,
+      "tolerance": {
+        "atol": 0.02,
+        "rtol": 0.002
+      },
+      "maximum_absolute_logit_difference": 0.0,
+      "RMS_logit_difference": 0.0,
+      "native_groups": {
+        "web": {
+          "teachers": 5109,
+          "nll_sum": 12663.0615234375,
+          "CE_mean": 2.478579276460658
+        },
+        "story": {
+          "teachers": 1018,
+          "nll_sum": 2574.322509765625,
+          "CE_mean": 2.5288040370978635
+        },
+        "ordinary_textbook": {
+          "teachers": 1015,
+          "nll_sum": 2471.268798828125,
+          "CE_mean": 2.4347475850523397
+        },
+        "conditional_outcome_body": {
+          "teachers": 163,
+          "nll_sum": 325.32696533203125,
+          "CE_mean": 1.995870952957247
+        },
+        "conditional_EOS": {
+          "teachers": 22,
+          "nll_sum": 147.45240783691406,
+          "CE_mean": 6.702382174405185
+        },
+        "conditional_total": {
+          "teachers": 185,
+          "nll_sum": 472.7793731689453,
+          "CE_mean": 2.555564179291596
+        },
+        "all": {
+          "teachers": 7327,
+          "nll_sum": 18181.432205200195,
+          "CE_mean": 2.481429262344779
+        }
+      },
+      "custom_full_causal_groups": {
+        "web": {
+          "teachers": 5109,
+          "nll_sum": 12663.0615234375,
+          "CE_mean": 2.478579276460658
+        },
+        "story": {
+          "teachers": 1018,
+          "nll_sum": 2574.322509765625,
+          "CE_mean": 2.5288040370978635
+        },
+        "ordinary_textbook": {
+          "teachers": 1015,
+          "nll_sum": 2471.268798828125,
+          "CE_mean": 2.4347475850523397
+        },
+        "conditional_outcome_body": {
+          "teachers": 163,
+          "nll_sum": 325.32696533203125,
+          "CE_mean": 1.995870952957247
+        },
+        "conditional_EOS": {
+          "teachers": 22,
+          "nll_sum": 147.45240783691406,
+          "CE_mean": 6.702382174405185
+        },
+        "conditional_total": {
+          "teachers": 185,
+          "nll_sum": 472.7793731689453,
+          "CE_mean": 2.555564179291596
+        },
+        "all": {
+          "teachers": 7327,
+          "nll_sum": 18181.432205200195,
+          "CE_mean": 2.481429262344779
+        }
+      },
+      "total_CE_difference": 0.0,
+      "fixed_first8_input_sha256": "1bd4f0df1de28e6d379cbe7ba99024f4157e91ea1167346d230fd1fe515756e4"
+    },
+    "completed_masked_mixed": {
+      "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+        "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+      },
+      "allclose": true,
+      "tolerance": {
+        "atol": 0.02,
+        "rtol": 0.002
+      },
+      "maximum_absolute_logit_difference": 0.0,
+      "RMS_logit_difference": 0.0,
+      "native_groups": {
+        "web": {
+          "teachers": 5109,
+          "nll_sum": 12645.08203125,
+          "CE_mean": 2.4750600961538463
+        },
+        "story": {
+          "teachers": 1018,
+          "nll_sum": 2038.6728515625,
+          "CE_mean": 2.002625590925835
+        },
+        "ordinary_textbook": {
+          "teachers": 1015,
+          "nll_sum": 2193.88330078125,
+          "CE_mean": 2.1614613800800493
+        },
+        "conditional_outcome_body": {
+          "teachers": 163,
+          "nll_sum": 15.198970794677734,
+          "CE_mean": 0.0932452195992499
+        },
+        "conditional_EOS": {
+          "teachers": 22,
+          "nll_sum": 0.06305382400751114,
+          "CE_mean": 0.0028660829094323244
+        },
+        "conditional_total": {
+          "teachers": 185,
+          "nll_sum": 15.262024618685246,
+          "CE_mean": 0.0824974303712716
+        },
+        "all": {
+          "teachers": 7327,
+          "nll_sum": 16892.900208212435,
+          "CE_mean": 2.305568473892785
+        }
+      },
+      "custom_full_causal_groups": {
+        "web": {
+          "teachers": 5109,
+          "nll_sum": 12645.08203125,
+          "CE_mean": 2.4750600961538463
+        },
+        "story": {
+          "teachers": 1018,
+          "nll_sum": 2038.6728515625,
+          "CE_mean": 2.002625590925835
+        },
+        "ordinary_textbook": {
+          "teachers": 1015,
+          "nll_sum": 2193.88330078125,
+          "CE_mean": 2.1614613800800493
+        },
+        "conditional_outcome_body": {
+          "teachers": 163,
+          "nll_sum": 15.198970794677734,
+          "CE_mean": 0.0932452195992499
+        },
+        "conditional_EOS": {
+          "teachers": 22,
+          "nll_sum": 0.06305382400751114,
+          "CE_mean": 0.0028660829094323244
+        },
+        "conditional_total": {
+          "teachers": 185,
+          "nll_sum": 15.262024618685246,
+          "CE_mean": 0.0824974303712716
+        },
+        "all": {
+          "teachers": 7327,
+          "nll_sum": 16892.900208212435,
+          "CE_mean": 2.305568473892785
+        }
+      },
+      "total_CE_difference": 0.0,
+      "fixed_first8_input_sha256": "1bd4f0df1de28e6d379cbe7ba99024f4157e91ea1167346d230fd1fe515756e4"
+    }
+  },
+  "read_only_checks": {
+    "original_fullparent": {
+      "weights_unchanged": true,
+      "no_gradients": true,
+      "eval_mode": true,
+      "finite_weights": true,
+      "RNG_unchanged_during_forwards": true
+    },
+    "completed_masked_mixed": {
+      "weights_unchanged": true,
+      "no_gradients": true,
+      "eval_mode": true,
+      "finite_weights": true,
+      "RNG_unchanged_during_forwards": true
+    }
+  },
+  "RNG_restored": true,
+  "completed_endpoint_history_dependence_marker": false,
+  "previous_related_GPU_seconds_preserved": 3243.953129253088,
+  "related_GPU_seconds": 3250.1644225021005,
+  "limitations": "Local16 correlated TRAIN batches/two fixed checkpoints; nativeBF16/math; changing only attention availability with unchanged absolute RoPE positions. Cached full-history CE retained; only first8 native control per endpoint rerun. Context reliance does not establish natural generation improvement or model-capacity limit."
+}

@@ -1,0 +1,4703 @@
+{
+  "status": "fixed_document_context_ablation_complete",
+  "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+  "models": {
+    "original_fullparent": {
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+        "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+      },
+      "control": {
+        "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+        "checkpoint": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+          "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+        },
+        "allclose": true,
+        "tolerance": {
+          "atol": 0.02,
+          "rtol": 0.002
+        },
+        "maximum_absolute_logit_difference": 0.0,
+        "RMS_logit_difference": 0.0,
+        "native_groups": {
+          "web": {
+            "teachers": 5109,
+            "nll_sum": 12663.0615234375,
+            "CE_mean": 2.478579276460658
+          },
+          "story": {
+            "teachers": 1018,
+            "nll_sum": 2574.322509765625,
+            "CE_mean": 2.5288040370978635
+          },
+          "ordinary_textbook": {
+            "teachers": 1015,
+            "nll_sum": 2471.268798828125,
+            "CE_mean": 2.4347475850523397
+          },
+          "conditional_outcome_body": {
+            "teachers": 163,
+            "nll_sum": 325.32696533203125,
+            "CE_mean": 1.995870952957247
+          },
+          "conditional_EOS": {
+            "teachers": 22,
+            "nll_sum": 147.45240783691406,
+            "CE_mean": 6.702382174405185
+          },
+          "conditional_total": {
+            "teachers": 185,
+            "nll_sum": 472.7793731689453,
+            "CE_mean": 2.555564179291596
+          },
+          "all": {
+            "teachers": 7327,
+            "nll_sum": 18181.432205200195,
+            "CE_mean": 2.481429262344779
+          }
+        },
+        "custom_full_causal_groups": {
+          "web": {
+            "teachers": 5109,
+            "nll_sum": 12663.0615234375,
+            "CE_mean": 2.478579276460658
+          },
+          "story": {
+            "teachers": 1018,
+            "nll_sum": 2574.322509765625,
+            "CE_mean": 2.5288040370978635
+          },
+          "ordinary_textbook": {
+            "teachers": 1015,
+            "nll_sum": 2471.268798828125,
+            "CE_mean": 2.4347475850523397
+          },
+          "conditional_outcome_body": {
+            "teachers": 163,
+            "nll_sum": 325.32696533203125,
+            "CE_mean": 1.995870952957247
+          },
+          "conditional_EOS": {
+            "teachers": 22,
+            "nll_sum": 147.45240783691406,
+            "CE_mean": 6.702382174405185
+          },
+          "conditional_total": {
+            "teachers": 185,
+            "nll_sum": 472.7793731689453,
+            "CE_mean": 2.555564179291596
+          },
+          "all": {
+            "teachers": 7327,
+            "nll_sum": 18181.432205200195,
+            "CE_mean": 2.481429262344779
+          }
+        },
+        "total_CE_difference": 0.0,
+        "fixed_first8_input_sha256": "1bd4f0df1de28e6d379cbe7ba99024f4157e91ea1167346d230fd1fe515756e4"
+      },
+      "records": [
+        {
+          "index": 0,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+            "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+          },
+          "input": {
+            "index": 0,
+            "update": 320436,
+            "input_sha256": "c08f7b2ccfe4c4badd96c5ffb6ca75df4be97ed20da2f24ba99b4adcec469433",
+            "target_sha256": "8714e034b710844f67abef5bf30f2fa1d17bfea3c489ec27b3e9a037772f8627",
+            "actual_source_routes": [
+              "web",
+              "story",
+              "ordinary_textbook",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook"
+            ],
+            "reference_token_digest": "b9b1d603d51ffd5d7512a1c9b9e0035c4a23663a54ed005893aa7dcf5d4b794d",
+            "masked_token_digest": "f362acbb1a424905aede35ea1171194c0d68fd76160e713e0a22a24bfce886aa",
+            "teachers": 29225,
+            "teachers_by_group": {
+              "web": 23506,
+              "story": 2033,
+              "ordinary_textbook": 3053,
+              "conditional_outcome_body": 542,
+              "conditional_EOS": 91
+            },
+            "body_bytes": 118116
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 23506,
+              "nll_sum": 60869.443359375,
+              "CE_mean": 2.5895279230568793
+            },
+            "story": {
+              "teachers": 2033,
+              "nll_sum": 5496.639404296875,
+              "CE_mean": 2.7037085117053
+            },
+            "ordinary_textbook": {
+              "teachers": 3053,
+              "nll_sum": 7490.304931640625,
+              "CE_mean": 2.453424478100434
+            },
+            "conditional_outcome_body": {
+              "teachers": 542,
+              "nll_sum": 1219.5279846191406,
+              "CE_mean": 2.2500516321386357
+            },
+            "conditional_EOS": {
+              "teachers": 91,
+              "nll_sum": 371.5332260131836,
+              "CE_mean": 4.082782703441578
+            },
+            "conditional_total": {
+              "teachers": 633,
+              "nll_sum": 1591.0612106323242,
+              "CE_mean": 2.513524819324367
+            },
+            "all": {
+              "teachers": 29225,
+              "nll_sum": 75447.44890594482,
+              "CE_mean": 2.581606463847556
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 23506,
+              "nll_sum": 60718.3486328125,
+              "CE_mean": 2.58310000139592
+            },
+            "story": {
+              "teachers": 2033,
+              "nll_sum": 5456.571044921875,
+              "CE_mean": 2.683999530212432
+            },
+            "ordinary_textbook": {
+              "teachers": 3053,
+              "nll_sum": 7483.784423828126,
+              "CE_mean": 2.451288707444522
+            },
+            "conditional_outcome_body": {
+              "teachers": 542,
+              "nll_sum": 1156.3165588378906,
+              "CE_mean": 2.1334253853097613
+            },
+            "conditional_EOS": {
+              "teachers": 91,
+              "nll_sum": 593.1003570556641,
+              "CE_mean": 6.517586341271033
+            },
+            "conditional_total": {
+              "teachers": 633,
+              "nll_sum": 1749.4169158935547,
+              "CE_mean": 2.76369181025838
+            },
+            "all": {
+              "teachers": 29225,
+              "nll_sum": 75408.12101745605,
+              "CE_mean": 2.5802607704860927
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 1,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+            "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+          },
+          "input": {
+            "index": 1,
+            "update": 320437,
+            "input_sha256": "a1991293e1709ae043ad72c06b154bbe0a260190aa328999c6023fac1da525af",
+            "target_sha256": "5e9a8488a78e35687cbf0cd8f44b1641578e39b08c4c7ffe2babd25242dfa11f",
+            "actual_source_routes": [
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "story",
+              "ordinary_textbook",
+              "web"
+            ],
+            "reference_token_digest": "d7731dcb8612237b8b4f0b03130d392765afc7b425384d3be2c73392a7a5df80",
+            "masked_token_digest": "b58cea2c97d4ad2881e9e0dfb53bdafaf0bae990ea0e6b6a68d8a80489f82e99",
+            "teachers": 30097,
+            "teachers_by_group": {
+              "web": 23500,
+              "story": 2034,
+              "ordinary_textbook": 4065,
+              "conditional_outcome_body": 425,
+              "conditional_EOS": 73
+            },
+            "body_bytes": 117984
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 23500,
+              "nll_sum": 60907.0166015625,
+              "CE_mean": 2.591787940492021
+            },
+            "story": {
+              "teachers": 2034,
+              "nll_sum": 5526.11669921875,
+              "CE_mean": 2.7168715335392086
+            },
+            "ordinary_textbook": {
+              "teachers": 4065,
+              "nll_sum": 10160.20654296875,
+              "CE_mean": 2.499435803928352
+            },
+            "conditional_outcome_body": {
+              "teachers": 425,
+              "nll_sum": 983.8409423828125,
+              "CE_mean": 2.314919864430147
+            },
+            "conditional_EOS": {
+              "teachers": 73,
+              "nll_sum": 311.43289947509766,
+              "CE_mean": 4.266204102398598
+            },
+            "conditional_total": {
+              "teachers": 498,
+              "nll_sum": 1295.2738418579102,
+              "CE_mean": 2.6009514896745185
+            },
+            "all": {
+              "teachers": 30097,
+              "nll_sum": 77888.61368560791,
+              "CE_mean": 2.5879195164171813
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 23500,
+              "nll_sum": 60765.384765625,
+              "CE_mean": 2.585761053856383
+            },
+            "story": {
+              "teachers": 2034,
+              "nll_sum": 5499.075439453125,
+              "CE_mean": 2.703576912218842
+            },
+            "ordinary_textbook": {
+              "teachers": 4065,
+              "nll_sum": 10145.115478515625,
+              "CE_mean": 2.495723364948493
+            },
+            "conditional_outcome_body": {
+              "teachers": 425,
+              "nll_sum": 926.1493225097657,
+              "CE_mean": 2.1791748764935663
+            },
+            "conditional_EOS": {
+              "teachers": 73,
+              "nll_sum": 484.73126220703125,
+              "CE_mean": 6.640154276808647
+            },
+            "conditional_total": {
+              "teachers": 498,
+              "nll_sum": 1410.8805847167969,
+              "CE_mean": 2.833093543608026
+            },
+            "all": {
+              "teachers": 30097,
+              "nll_sum": 77820.45626831055,
+              "CE_mean": 2.5856549246871965
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 2,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+            "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+          },
+          "input": {
+            "index": 2,
+            "update": 320438,
+            "input_sha256": "6db112f8385e0d4dbc0d2976795be91980ebbf5efb95f125e187425eb89201a9",
+            "target_sha256": "ea322c87a0931c87870b5eaf8d950e0b0f8dbaf7e41f77f2e7d6812af8d1de9c",
+            "actual_source_routes": [
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web"
+            ],
+            "reference_token_digest": "f8a566084ad12a42e71d046e79d3f521ea01fa00cba155679b01f44bcaadf202",
+            "masked_token_digest": "1f67f76fdca2a6108287ea0b246d7ceae7f00f8c89429d3f09b0783d3037da61",
+            "teachers": 30137,
+            "teachers_by_group": {
+              "web": 25547,
+              "story": 1015,
+              "ordinary_textbook": 3059,
+              "conditional_outcome_body": 446,
+              "conditional_EOS": 70
+            },
+            "body_bytes": 117500
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 25547,
+              "nll_sum": 64386.1044921875,
+              "CE_mean": 2.520300015351607
+            },
+            "story": {
+              "teachers": 1015,
+              "nll_sum": 2801.244140625,
+              "CE_mean": 2.7598464439655173
+            },
+            "ordinary_textbook": {
+              "teachers": 3059,
+              "nll_sum": 7323.07080078125,
+              "CE_mean": 2.3939427266365643
+            },
+            "conditional_outcome_body": {
+              "teachers": 446,
+              "nll_sum": 923.2588806152344,
+              "CE_mean": 2.0700871762673416
+            },
+            "conditional_EOS": {
+              "teachers": 70,
+              "nll_sum": 292.39466857910156,
+              "CE_mean": 4.1770666939871655
+            },
+            "conditional_total": {
+              "teachers": 516,
+              "nll_sum": 1215.653549194336,
+              "CE_mean": 2.355917730996775
+            },
+            "all": {
+              "teachers": 30137,
+              "nll_sum": 75726.07298278809,
+              "CE_mean": 2.5127276431890397
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 25547,
+              "nll_sum": 64231.9267578125,
+              "CE_mean": 2.514264953137844
+            },
+            "story": {
+              "teachers": 1015,
+              "nll_sum": 2789.852783203125,
+              "CE_mean": 2.748623431727217
+            },
+            "ordinary_textbook": {
+              "teachers": 3059,
+              "nll_sum": 7304.093017578125,
+              "CE_mean": 2.3877388092769287
+            },
+            "conditional_outcome_body": {
+              "teachers": 446,
+              "nll_sum": 889.7984619140625,
+              "CE_mean": 1.9950638159508127
+            },
+            "conditional_EOS": {
+              "teachers": 70,
+              "nll_sum": 465.77806091308594,
+              "CE_mean": 6.6539722987583705
+            },
+            "conditional_total": {
+              "teachers": 516,
+              "nll_sum": 1355.5765228271484,
+              "CE_mean": 2.6270862845487373
+            },
+            "all": {
+              "teachers": 30137,
+              "nll_sum": 75681.4490814209,
+              "CE_mean": 2.5112469416803562
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 3,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+            "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+          },
+          "input": {
+            "index": 3,
+            "update": 320439,
+            "input_sha256": "9ecc1bcf82d19b1cfc0fbf82cddf19a6dd69f209e1d4d4da4c0467ba49cfee7e",
+            "target_sha256": "2edce4e0a6dac7daed5c270c551d315989f6fe53a081653125f962cbe911bc28",
+            "actual_source_routes": [
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web"
+            ],
+            "reference_token_digest": "17d84034595dfaac471c85d5cd4138ffd0fe8c50005c43797dd4f31f070a429d",
+            "masked_token_digest": "d48890c930086379b555cdadc474ab265078eb1f4158cf51a4e4947129bf1892",
+            "teachers": 30095,
+            "teachers_by_group": {
+              "web": 24524,
+              "story": 2035,
+              "ordinary_textbook": 3052,
+              "conditional_outcome_body": 417,
+              "conditional_EOS": 67
+            },
+            "body_bytes": 118762
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 24524,
+              "nll_sum": 64042.5068359375,
+              "CE_mean": 2.611421743432454
+            },
+            "story": {
+              "teachers": 2035,
+              "nll_sum": 5181.440673828125,
+              "CE_mean": 2.546162493281634
+            },
+            "ordinary_textbook": {
+              "teachers": 3052,
+              "nll_sum": 7408.0107421875,
+              "CE_mean": 2.4272643323025886
+            },
+            "conditional_outcome_body": {
+              "teachers": 417,
+              "nll_sum": 898.6766357421875,
+              "CE_mean": 2.1550998459045263
+            },
+            "conditional_EOS": {
+              "teachers": 67,
+              "nll_sum": 280.56945037841797,
+              "CE_mean": 4.187603736991313
+            },
+            "conditional_total": {
+              "teachers": 484,
+              "nll_sum": 1179.2460861206055,
+              "CE_mean": 2.4364588556210856
+            },
+            "all": {
+              "teachers": 30095,
+              "nll_sum": 77811.20433807373,
+              "CE_mean": 2.585519333380087
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 24524,
+              "nll_sum": 63833.99609375001,
+              "CE_mean": 2.602919429691323
+            },
+            "story": {
+              "teachers": 2035,
+              "nll_sum": 5157.4267578125,
+              "CE_mean": 2.5343620431511056
+            },
+            "ordinary_textbook": {
+              "teachers": 3052,
+              "nll_sum": 7420.191406249999,
+              "CE_mean": 2.4312553755733943
+            },
+            "conditional_outcome_body": {
+              "teachers": 417,
+              "nll_sum": 852.6647033691406,
+              "CE_mean": 2.0447594805015363
+            },
+            "conditional_EOS": {
+              "teachers": 67,
+              "nll_sum": 441.26734924316406,
+              "CE_mean": 6.58607983945021
+            },
+            "conditional_total": {
+              "teachers": 484,
+              "nll_sum": 1293.9320526123047,
+              "CE_mean": 2.6734133318436046
+            },
+            "all": {
+              "teachers": 30095,
+              "nll_sum": 77705.5463104248,
+              "CE_mean": 2.5820085167112414
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 4,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+            "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+          },
+          "input": {
+            "index": 4,
+            "update": 320440,
+            "input_sha256": "eacefd0637b1d3082f3a48e51e03cdb2fb59524658dd8115631ddd306e7b970b",
+            "target_sha256": "88058d357612c4e3c0a268dbd432049aaf917ec76cbee1af17cee594b3e5c3cf",
+            "actual_source_routes": [
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web"
+            ],
+            "reference_token_digest": "9b2b600c87688c475b60424cd434c54a12a86eee79e2f8a6f6bd3dc0dbfe26de",
+            "masked_token_digest": "3501daf8f94a3baa8264e1db2ef603425d60a5ec76ecb3174aacff34ae24f654",
+            "teachers": 29248,
+            "teachers_by_group": {
+              "web": 24525,
+              "story": 1019,
+              "ordinary_textbook": 3048,
+              "conditional_outcome_body": 566,
+              "conditional_EOS": 90
+            },
+            "body_bytes": 118580
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 24525,
+              "nll_sum": 62783.5986328125,
+              "CE_mean": 2.5599836343654436
+            },
+            "story": {
+              "teachers": 1019,
+              "nll_sum": 2617.994873046875,
+              "CE_mean": 2.5691804445994846
+            },
+            "ordinary_textbook": {
+              "teachers": 3048,
+              "nll_sum": 7355.16552734375,
+              "CE_mean": 2.4131120496534613
+            },
+            "conditional_outcome_body": {
+              "teachers": 566,
+              "nll_sum": 1303.039794921875,
+              "CE_mean": 2.3021904503920054
+            },
+            "conditional_EOS": {
+              "teachers": 90,
+              "nll_sum": 373.52381896972656,
+              "CE_mean": 4.150264655219184
+            },
+            "conditional_total": {
+              "teachers": 656,
+              "nll_sum": 1676.5636138916016,
+              "CE_mean": 2.5557372162981733
+            },
+            "all": {
+              "teachers": 29248,
+              "nll_sum": 74433.32264709473,
+              "CE_mean": 2.544902989848698
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 24525,
+              "nll_sum": 62634.73144531251,
+              "CE_mean": 2.5539136165265037
+            },
+            "story": {
+              "teachers": 1019,
+              "nll_sum": 2608.082763671875,
+              "CE_mean": 2.5594531537506136
+            },
+            "ordinary_textbook": {
+              "teachers": 3048,
+              "nll_sum": 7336.098144531249,
+              "CE_mean": 2.4068563466309874
+            },
+            "conditional_outcome_body": {
+              "teachers": 566,
+              "nll_sum": 1245.1741638183594,
+              "CE_mean": 2.1999543530359706
+            },
+            "conditional_EOS": {
+              "teachers": 90,
+              "nll_sum": 583.8082427978516,
+              "CE_mean": 6.486758253309461
+            },
+            "conditional_total": {
+              "teachers": 656,
+              "nll_sum": 1828.982406616211,
+              "CE_mean": 2.7880829369149556
+            },
+            "all": {
+              "teachers": 29248,
+              "nll_sum": 74407.89476013184,
+              "CE_mean": 2.5440336009344855
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 5,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+            "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+          },
+          "input": {
+            "index": 5,
+            "update": 320441,
+            "input_sha256": "9136d911ada3f206ee1e8fa648b6894c600e3c471ebd6d4569c2200fccaea568",
+            "target_sha256": "cc018ddf964c2b152f285064aee628e6aa97c644fec6893f14d705cf333d0bd4",
+            "actual_source_routes": [
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "ordinary_textbook"
+            ],
+            "reference_token_digest": "0e0178dddbd265701e06f3596ec11ac9cf36c1be6be6ccb27daf99831a51fd9e",
+            "masked_token_digest": "cc38225d5b359de1e397b13d2edc4325a004ad6f293c28a57bf49629323dcc6a",
+            "teachers": 30146,
+            "teachers_by_group": {
+              "web": 23510,
+              "story": 2033,
+              "ordinary_textbook": 4066,
+              "conditional_outcome_body": 466,
+              "conditional_EOS": 71
+            },
+            "body_bytes": 117947
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 23510,
+              "nll_sum": 60807.380859375,
+              "CE_mean": 2.586447505715653
+            },
+            "story": {
+              "teachers": 2033,
+              "nll_sum": 5613.505859375,
+              "CE_mean": 2.761193241207575
+            },
+            "ordinary_textbook": {
+              "teachers": 4066,
+              "nll_sum": 10015.125732421875,
+              "CE_mean": 2.4631396292232846
+            },
+            "conditional_outcome_body": {
+              "teachers": 466,
+              "nll_sum": 976.700439453125,
+              "CE_mean": 2.095923689813573
+            },
+            "conditional_EOS": {
+              "teachers": 71,
+              "nll_sum": 306.5881576538086,
+              "CE_mean": 4.3181430655466
+            },
+            "conditional_total": {
+              "teachers": 537,
+              "nll_sum": 1283.2885971069336,
+              "CE_mean": 2.38973667990118
+            },
+            "all": {
+              "teachers": 30146,
+              "nll_sum": 77719.30104827881,
+              "CE_mean": 2.578096631336788
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 23510,
+              "nll_sum": 60683.271484375,
+              "CE_mean": 2.5811685021001702
+            },
+            "story": {
+              "teachers": 2033,
+              "nll_sum": 5566.3681640625,
+              "CE_mean": 2.7380069670745204
+            },
+            "ordinary_textbook": {
+              "teachers": 4066,
+              "nll_sum": 10001.40625,
+              "CE_mean": 2.4597654328578455
+            },
+            "conditional_outcome_body": {
+              "teachers": 466,
+              "nll_sum": 936.8114318847656,
+              "CE_mean": 2.0103249611261065
+            },
+            "conditional_EOS": {
+              "teachers": 71,
+              "nll_sum": 483.1943054199219,
+              "CE_mean": 6.805553597463688
+            },
+            "conditional_total": {
+              "teachers": 537,
+              "nll_sum": 1420.0057373046875,
+              "CE_mean": 2.6443309819454144
+            },
+            "all": {
+              "teachers": 30146,
+              "nll_sum": 77671.05163574219,
+              "CE_mean": 2.5764961068049557
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 6,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+            "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+          },
+          "input": {
+            "index": 6,
+            "update": 320442,
+            "input_sha256": "8c899d431be74ea9722712a99607f609ee1ff598490ca6e6a960b269bfaba51a",
+            "target_sha256": "45040e27e04e3a8948e8898e8cb59d4aa9ddc6317dea6f30f8fc19650a4231d3",
+            "actual_source_routes": [
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web"
+            ],
+            "reference_token_digest": "033a4b01e220afd787ad3463b8759643953c3d89574b558763bd95cdaf177e4a",
+            "masked_token_digest": "4ee262a38c8fd9d8e385ee029fe8d2c5f4e8d2d5095363cb205bbba6e32d3338",
+            "teachers": 30090,
+            "teachers_by_group": {
+              "web": 24523,
+              "story": 2033,
+              "ordinary_textbook": 3048,
+              "conditional_outcome_body": 418,
+              "conditional_EOS": 68
+            },
+            "body_bytes": 119579
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 24523,
+              "nll_sum": 62972.384765625,
+              "CE_mean": 2.5678907460598213
+            },
+            "story": {
+              "teachers": 2033,
+              "nll_sum": 5092.96337890625,
+              "CE_mean": 2.505146767784678
+            },
+            "ordinary_textbook": {
+              "teachers": 3048,
+              "nll_sum": 7322.18212890625,
+              "CE_mean": 2.402290724706775
+            },
+            "conditional_outcome_body": {
+              "teachers": 418,
+              "nll_sum": 922.5311279296875,
+              "CE_mean": 2.207012267774372
+            },
+            "conditional_EOS": {
+              "teachers": 68,
+              "nll_sum": 287.6917190551758,
+              "CE_mean": 4.23076057434082
+            },
+            "conditional_total": {
+              "teachers": 486,
+              "nll_sum": 1210.2228469848633,
+              "CE_mean": 2.4901704670470437
+            },
+            "all": {
+              "teachers": 30090,
+              "nll_sum": 76597.75312042236,
+              "CE_mean": 2.5456215726295235
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 24523,
+              "nll_sum": 62851.59765624999,
+              "CE_mean": 2.5629652838661663
+            },
+            "story": {
+              "teachers": 2033,
+              "nll_sum": 5063.61474609375,
+              "CE_mean": 2.4907106473653466
+            },
+            "ordinary_textbook": {
+              "teachers": 3048,
+              "nll_sum": 7293.272216796875,
+              "CE_mean": 2.3928058454057988
+            },
+            "conditional_outcome_body": {
+              "teachers": 418,
+              "nll_sum": 880.3695678710939,
+              "CE_mean": 2.1061472915576407
+            },
+            "conditional_EOS": {
+              "teachers": 68,
+              "nll_sum": 444.800048828125,
+              "CE_mean": 6.541177188648897
+            },
+            "conditional_total": {
+              "teachers": 486,
+              "nll_sum": 1325.1696166992188,
+              "CE_mean": 2.7266864541136187
+            },
+            "all": {
+              "teachers": 30090,
+              "nll_sum": 76533.65423583984,
+              "CE_mean": 2.5434913338597487
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 7,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+            "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+          },
+          "input": {
+            "index": 7,
+            "update": 320443,
+            "input_sha256": "a78f87a01e06f4ca73674e972449e2c1b73d5ee9968bb100410edbf70f4719da",
+            "target_sha256": "ab8909c98e2cc970b2076d43ff2e7e46057fe9c4662f431559b3e12a433dba51",
+            "actual_source_routes": [
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web"
+            ],
+            "reference_token_digest": "c5674bd816a81e053249e8a0c889e487ef3c6d912e4d019dd92293fdde6df3ad",
+            "masked_token_digest": "079cfc65d26f7fd57d7f61d306ce40d164fa87eb2a4559d0ffe364e1d9e04de8",
+            "teachers": 30157,
+            "teachers_by_group": {
+              "web": 25552,
+              "story": 1021,
+              "ordinary_textbook": 3048,
+              "conditional_outcome_body": 462,
+              "conditional_EOS": 74
+            },
+            "body_bytes": 119741
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 25552,
+              "nll_sum": 65507.44921875,
+              "CE_mean": 2.5636916569642296
+            },
+            "story": {
+              "teachers": 1021,
+              "nll_sum": 2786.224365234375,
+              "CE_mean": 2.7289171060082027
+            },
+            "ordinary_textbook": {
+              "teachers": 3048,
+              "nll_sum": 7772.989013671875,
+              "CE_mean": 2.5501932459553394
+            },
+            "conditional_outcome_body": {
+              "teachers": 462,
+              "nll_sum": 1052.1815185546875,
+              "CE_mean": 2.2774491743607954
+            },
+            "conditional_EOS": {
+              "teachers": 74,
+              "nll_sum": 312.7010726928711,
+              "CE_mean": 4.225690171525285
+            },
+            "conditional_total": {
+              "teachers": 536,
+              "nll_sum": 1364.8825912475586,
+              "CE_mean": 2.546422744864848
+            },
+            "all": {
+              "teachers": 30157,
+              "nll_sum": 77431.54518890381,
+              "CE_mean": 2.567614324664383
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 25552,
+              "nll_sum": 65308.07128906249,
+              "CE_mean": 2.5558888262782755
+            },
+            "story": {
+              "teachers": 1021,
+              "nll_sum": 2777.4287109375,
+              "CE_mean": 2.7203023613491677
+            },
+            "ordinary_textbook": {
+              "teachers": 3048,
+              "nll_sum": 7767.614990234375,
+              "CE_mean": 2.548430114906291
+            },
+            "conditional_outcome_body": {
+              "teachers": 462,
+              "nll_sum": 999.7638549804688,
+              "CE_mean": 2.1639910280962527
+            },
+            "conditional_EOS": {
+              "teachers": 74,
+              "nll_sum": 500.29612731933594,
+              "CE_mean": 6.760758477288324
+            },
+            "conditional_total": {
+              "teachers": 536,
+              "nll_sum": 1500.0599822998047,
+              "CE_mean": 2.798619369962322
+            },
+            "all": {
+              "teachers": 30157,
+              "nll_sum": 77353.17497253418,
+              "CE_mean": 2.565015584193858
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 8,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+            "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+          },
+          "input": {
+            "index": 8,
+            "update": 320444,
+            "input_sha256": "7fbb2f384a60a58dd8ec62c3967bd55d1a5fe3c774f50729c7b04ac68070fa08",
+            "target_sha256": "50f0e33a6448ca92f81eff811d12b2c9ffecbc16858ee00aff506967fa4cfd1a",
+            "actual_source_routes": [
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "story",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "story",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web"
+            ],
+            "reference_token_digest": "47a4b7590d8d285cb5e4aef56935829c813c3d7ff09533fdd6343dff06ad0b81",
+            "masked_token_digest": "ff58edb0009d55ecfcdf759d22cc2c37e9b6774bbf0232932ae37234ccd40b7b",
+            "teachers": 29216,
+            "teachers_by_group": {
+              "web": 23498,
+              "story": 2028,
+              "ordinary_textbook": 3049,
+              "conditional_outcome_body": 546,
+              "conditional_EOS": 95
+            },
+            "body_bytes": 113138
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 23498,
+              "nll_sum": 59168.677734375,
+              "CE_mean": 2.5180303742605754
+            },
+            "story": {
+              "teachers": 2028,
+              "nll_sum": 5543.679931640625,
+              "CE_mean": 2.733569986016087
+            },
+            "ordinary_textbook": {
+              "teachers": 3049,
+              "nll_sum": 7427.03369140625,
+              "CE_mean": 2.435891666581256
+            },
+            "conditional_outcome_body": {
+              "teachers": 546,
+              "nll_sum": 1250.8534851074219,
+              "CE_mean": 2.290940448914692
+            },
+            "conditional_EOS": {
+              "teachers": 95,
+              "nll_sum": 401.1448745727539,
+              "CE_mean": 4.22257762708162
+            },
+            "conditional_total": {
+              "teachers": 641,
+              "nll_sum": 1651.9983596801758,
+              "CE_mean": 2.577220529922271
+            },
+            "all": {
+              "teachers": 29216,
+              "nll_sum": 73791.38971710205,
+              "CE_mean": 2.5257184322666366
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 23498,
+              "nll_sum": 59005.3095703125,
+              "CE_mean": 2.5110779457959187
+            },
+            "story": {
+              "teachers": 2028,
+              "nll_sum": 5514.091552734375,
+              "CE_mean": 2.7189800555889425
+            },
+            "ordinary_textbook": {
+              "teachers": 3049,
+              "nll_sum": 7398.053955078125,
+              "CE_mean": 2.426386997401812
+            },
+            "conditional_outcome_body": {
+              "teachers": 546,
+              "nll_sum": 1184.2599792480469,
+              "CE_mean": 2.1689743209671186
+            },
+            "conditional_EOS": {
+              "teachers": 95,
+              "nll_sum": 632.2794036865234,
+              "CE_mean": 6.6555726703844575
+            },
+            "conditional_total": {
+              "teachers": 641,
+              "nll_sum": 1816.5393829345703,
+              "CE_mean": 2.8339147939696883
+            },
+            "all": {
+              "teachers": 29216,
+              "nll_sum": 73733.99446105957,
+              "CE_mean": 2.5237539177525865
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 9,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+            "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+          },
+          "input": {
+            "index": 9,
+            "update": 320445,
+            "input_sha256": "fb4a3db43bbdeb4e85a8db17cd4d63d8911f77a335a99393fac94aba63aa0535",
+            "target_sha256": "de0202a8d341204d499d3ae2ac5c659ee48f91b8e7302f93aea5a34a325b9ccd",
+            "actual_source_routes": [
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web"
+            ],
+            "reference_token_digest": "ca797738dad4aee06c568011b7c4d33befd9bfad96f331135d96c8a448ec02c6",
+            "masked_token_digest": "d5217f9dbf7d62355071ae584b678982add3fbb1a8c69869bc8790df676d642f",
+            "teachers": 30051,
+            "teachers_by_group": {
+              "web": 25545,
+              "story": 1013,
+              "ordinary_textbook": 3048,
+              "conditional_outcome_body": 374,
+              "conditional_EOS": 71
+            },
+            "body_bytes": 116831
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 25545,
+              "nll_sum": 65269.361328125,
+              "CE_mean": 2.555073843340184
+            },
+            "story": {
+              "teachers": 1013,
+              "nll_sum": 2810.735107421875,
+              "CE_mean": 2.774664469320706
+            },
+            "ordinary_textbook": {
+              "teachers": 3048,
+              "nll_sum": 7856.64501953125,
+              "CE_mean": 2.5776394421034285
+            },
+            "conditional_outcome_body": {
+              "teachers": 374,
+              "nll_sum": 926.6246032714844,
+              "CE_mean": 2.4776058911002257
+            },
+            "conditional_EOS": {
+              "teachers": 71,
+              "nll_sum": 293.91453552246094,
+              "CE_mean": 4.1396413453867735
+            },
+            "conditional_total": {
+              "teachers": 445,
+              "nll_sum": 1220.5391387939453,
+              "CE_mean": 2.7427845815594276
+            },
+            "all": {
+              "teachers": 30051,
+              "nll_sum": 77157.28059387207,
+              "CE_mean": 2.567544527432434
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 25545,
+              "nll_sum": 65099.72851562501,
+              "CE_mean": 2.548433294798395
+            },
+            "story": {
+              "teachers": 1013,
+              "nll_sum": 2784.216796875,
+              "CE_mean": 2.748486472729516
+            },
+            "ordinary_textbook": {
+              "teachers": 3048,
+              "nll_sum": 7836.8828125,
+              "CE_mean": 2.571155778379265
+            },
+            "conditional_outcome_body": {
+              "teachers": 374,
+              "nll_sum": 860.8563842773438,
+              "CE_mean": 2.301755038174716
+            },
+            "conditional_EOS": {
+              "teachers": 71,
+              "nll_sum": 468.3672332763672,
+              "CE_mean": 6.5967215954417915
+            },
+            "conditional_total": {
+              "teachers": 445,
+              "nll_sum": 1329.223617553711,
+              "CE_mean": 2.987019365289238
+            },
+            "all": {
+              "teachers": 30051,
+              "nll_sum": 77050.05174255371,
+              "CE_mean": 2.5639762983778813
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 10,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+            "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+          },
+          "input": {
+            "index": 10,
+            "update": 320446,
+            "input_sha256": "2b0be64fc22d0c30d36559f210d622d985107804d5a92b2c6210f0e6efa067d4",
+            "target_sha256": "5e0f37c9530e76753aa0bb25b387ec1fb56fa33008c2453923ed31eecfe98a62",
+            "actual_source_routes": [
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook"
+            ],
+            "reference_token_digest": "86dd4373b924ff67c22ab788363793db17099f19882f6a934693da9bc46790dd",
+            "masked_token_digest": "4431b596f76f0e7d99b49a1c20c6be5edeff09ef8c154daedfd201ae3e664f6c",
+            "teachers": 30109,
+            "teachers_by_group": {
+              "web": 23505,
+              "story": 2033,
+              "ordinary_textbook": 4064,
+              "conditional_outcome_body": 433,
+              "conditional_EOS": 74
+            },
+            "body_bytes": 117579
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 23505,
+              "nll_sum": 60810.498046875,
+              "CE_mean": 2.5871303146936824
+            },
+            "story": {
+              "teachers": 2033,
+              "nll_sum": 5635.94091796875,
+              "CE_mean": 2.7722286856708065
+            },
+            "ordinary_textbook": {
+              "teachers": 4064,
+              "nll_sum": 9734.90771484375,
+              "CE_mean": 2.395400520384781
+            },
+            "conditional_outcome_body": {
+              "teachers": 433,
+              "nll_sum": 1068.8645935058594,
+              "CE_mean": 2.4685094538241557
+            },
+            "conditional_EOS": {
+              "teachers": 74,
+              "nll_sum": 309.9857864379883,
+              "CE_mean": 4.1889971140268685
+            },
+            "conditional_total": {
+              "teachers": 507,
+              "nll_sum": 1378.8503799438477,
+              "CE_mean": 2.719625995944473
+            },
+            "all": {
+              "teachers": 30109,
+              "nll_sum": 77560.19705963135,
+              "CE_mean": 2.5759805061487047
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 23505,
+              "nll_sum": 60661.654296875,
+              "CE_mean": 2.5807978854233142
+            },
+            "story": {
+              "teachers": 2033,
+              "nll_sum": 5606.625732421875,
+              "CE_mean": 2.7578090174234506
+            },
+            "ordinary_textbook": {
+              "teachers": 4064,
+              "nll_sum": 9724.007080078125,
+              "CE_mean": 2.392718277578279
+            },
+            "conditional_outcome_body": {
+              "teachers": 433,
+              "nll_sum": 1009.489990234375,
+              "CE_mean": 2.331385658739896
+            },
+            "conditional_EOS": {
+              "teachers": 74,
+              "nll_sum": 494.76910400390625,
+              "CE_mean": 6.68606897302576
+            },
+            "conditional_total": {
+              "teachers": 507,
+              "nll_sum": 1504.2590942382812,
+              "CE_mean": 2.9669804620084443
+            },
+            "all": {
+              "teachers": 30109,
+              "nll_sum": 77496.54620361328,
+              "CE_mean": 2.5738664918666605
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 11,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+            "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+          },
+          "input": {
+            "index": 11,
+            "update": 320447,
+            "input_sha256": "3841f1c956e44390920b39077732b79d28eb221843d795b074a52a9e1afb50b9",
+            "target_sha256": "c030b1b3608a1da14a4968a261f514333eaea24ed6d470cb4ee210997708a5bb",
+            "actual_source_routes": [
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web"
+            ],
+            "reference_token_digest": "b719c1d55c79af783a628171c16a4f62eca058bc4ee1aea31aaf8fe562dba54e",
+            "masked_token_digest": "6812b2e51cbfbf1d299ad5e011c603612bc88474bb2a3eb22a1c69630cb94dc2",
+            "teachers": 30081,
+            "teachers_by_group": {
+              "web": 24524,
+              "story": 2036,
+              "ordinary_textbook": 3050,
+              "conditional_outcome_body": 403,
+              "conditional_EOS": 68
+            },
+            "body_bytes": 117804
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 24524,
+              "nll_sum": 63683.8427734375,
+              "CE_mean": 2.596796720495739
+            },
+            "story": {
+              "teachers": 2036,
+              "nll_sum": 5701.135009765625,
+              "CE_mean": 2.8001645431068884
+            },
+            "ordinary_textbook": {
+              "teachers": 3050,
+              "nll_sum": 7694.71435546875,
+              "CE_mean": 2.522857165727459
+            },
+            "conditional_outcome_body": {
+              "teachers": 403,
+              "nll_sum": 937.8262786865234,
+              "CE_mean": 2.3271123540608523
+            },
+            "conditional_EOS": {
+              "teachers": 68,
+              "nll_sum": 277.1122360229492,
+              "CE_mean": 4.075179941513959
+            },
+            "conditional_total": {
+              "teachers": 471,
+              "nll_sum": 1214.9385147094727,
+              "CE_mean": 2.5794872923767995
+            },
+            "all": {
+              "teachers": 30081,
+              "nll_sum": 78294.63065338135,
+              "CE_mean": 2.6027934793850385
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 24524,
+              "nll_sum": 63521.359375,
+              "CE_mean": 2.5901712353205024
+            },
+            "story": {
+              "teachers": 2036,
+              "nll_sum": 5654.926025390625,
+              "CE_mean": 2.7774685782861614
+            },
+            "ordinary_textbook": {
+              "teachers": 3050,
+              "nll_sum": 7678.708740234374,
+              "CE_mean": 2.5176094230276638
+            },
+            "conditional_outcome_body": {
+              "teachers": 403,
+              "nll_sum": 875.1269378662109,
+              "CE_mean": 2.1715308631915904
+            },
+            "conditional_EOS": {
+              "teachers": 68,
+              "nll_sum": 440.1170654296875,
+              "CE_mean": 6.472309785730698
+            },
+            "conditional_total": {
+              "teachers": 471,
+              "nll_sum": 1315.2440032958984,
+              "CE_mean": 2.7924501131547736
+            },
+            "all": {
+              "teachers": 30081,
+              "nll_sum": 78170.2381439209,
+              "CE_mean": 2.5986582275828893
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 12,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+            "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+          },
+          "input": {
+            "index": 12,
+            "update": 320448,
+            "input_sha256": "6d3577f39b30a94381c41081d73e6c0c02b04642a4c54d02219addf116288bdd",
+            "target_sha256": "78a18856a2402f039a2193342b3d45fb217afcff5d08e6dda95493e2908f62c0",
+            "actual_source_routes": [
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web"
+            ],
+            "reference_token_digest": "89514be684433853f9230b1dc8ffed7db5cc91857b393862a0e8b6194fe64f04",
+            "masked_token_digest": "ebc667d3a48ef9ac42787e5809ab9b80bff9b14848ebea8f1f82d68224f3794f",
+            "teachers": 29218,
+            "teachers_by_group": {
+              "web": 24527,
+              "story": 1018,
+              "ordinary_textbook": 3049,
+              "conditional_outcome_body": 530,
+              "conditional_EOS": 94
+            },
+            "body_bytes": 114750
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 24527,
+              "nll_sum": 65476.52734375,
+              "CE_mean": 2.669569345772006
+            },
+            "story": {
+              "teachers": 1018,
+              "nll_sum": 2772.64501953125,
+              "CE_mean": 2.7236198620149805
+            },
+            "ordinary_textbook": {
+              "teachers": 3049,
+              "nll_sum": 7291.86962890625,
+              "CE_mean": 2.3915610458859464
+            },
+            "conditional_outcome_body": {
+              "teachers": 530,
+              "nll_sum": 1272.7071228027344,
+              "CE_mean": 2.4013341939674233
+            },
+            "conditional_EOS": {
+              "teachers": 94,
+              "nll_sum": 388.7393264770508,
+              "CE_mean": 4.135524749755859
+            },
+            "conditional_total": {
+              "teachers": 624,
+              "nll_sum": 1661.4464492797852,
+              "CE_mean": 2.662574437948374
+            },
+            "all": {
+              "teachers": 29218,
+              "nll_sum": 77202.48844146729,
+              "CE_mean": 2.642292026882993
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 24527,
+              "nll_sum": 65332.6708984375,
+              "CE_mean": 2.6637041178471685
+            },
+            "story": {
+              "teachers": 1018,
+              "nll_sum": 2755.8232421875,
+              "CE_mean": 2.707095522777505
+            },
+            "ordinary_textbook": {
+              "teachers": 3049,
+              "nll_sum": 7289.21875,
+              "CE_mean": 2.3906916202033455
+            },
+            "conditional_outcome_body": {
+              "teachers": 530,
+              "nll_sum": 1194.7584228515625,
+              "CE_mean": 2.2542611751916275
+            },
+            "conditional_EOS": {
+              "teachers": 94,
+              "nll_sum": 625.5844879150391,
+              "CE_mean": 6.655154126755734
+            },
+            "conditional_total": {
+              "teachers": 624,
+              "nll_sum": 1820.3429107666016,
+              "CE_mean": 2.917216203151605
+            },
+            "all": {
+              "teachers": 29218,
+              "nll_sum": 77198.0558013916,
+              "CE_mean": 2.642140317660059
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 13,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+            "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+          },
+          "input": {
+            "index": 13,
+            "update": 320449,
+            "input_sha256": "8d0fbf11f5320ce892d1d153652ca04a640ca8656d333dd3b8cf3689c46c9da5",
+            "target_sha256": "a7218f8bec21a2c7a786681bad3bd2db7e0bab07461655baebb09d09f6c97b0d",
+            "actual_source_routes": [
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "story",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web"
+            ],
+            "reference_token_digest": "bafa83fd10434309d3b4cb37b107bd91caeb82ca7c409aa55cbff0fc8d2e42d7",
+            "masked_token_digest": "a3a8dde0b7640f4af1286fb50f11ae7c9d6e7b8debd192b574378797017a3a43",
+            "teachers": 30121,
+            "teachers_by_group": {
+              "web": 24522,
+              "story": 2030,
+              "ordinary_textbook": 3047,
+              "conditional_outcome_body": 446,
+              "conditional_EOS": 76
+            },
+            "body_bytes": 119192
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 24522,
+              "nll_sum": 62335.888671875,
+              "CE_mean": 2.542039339037395
+            },
+            "story": {
+              "teachers": 2030,
+              "nll_sum": 5408.5712890625,
+              "CE_mean": 2.6643208320504925
+            },
+            "ordinary_textbook": {
+              "teachers": 3047,
+              "nll_sum": 7465.233154296875,
+              "CE_mean": 2.4500272905470544
+            },
+            "conditional_outcome_body": {
+              "teachers": 446,
+              "nll_sum": 1051.2134399414062,
+              "CE_mean": 2.3569808070435116
+            },
+            "conditional_EOS": {
+              "teachers": 76,
+              "nll_sum": 317.8074645996094,
+              "CE_mean": 4.1816771657843335
+            },
+            "conditional_total": {
+              "teachers": 522,
+              "nll_sum": 1369.0209045410156,
+              "CE_mean": 2.622645410998114
+            },
+            "all": {
+              "teachers": 30121,
+              "nll_sum": 76578.71401977539,
+              "CE_mean": 2.5423695766998238
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 24522,
+              "nll_sum": 62195.25292968749,
+              "CE_mean": 2.5363042545341936
+            },
+            "story": {
+              "teachers": 2030,
+              "nll_sum": 5388.726806640625,
+              "CE_mean": 2.6545452249461206
+            },
+            "ordinary_textbook": {
+              "teachers": 3047,
+              "nll_sum": 7450.421875000001,
+              "CE_mean": 2.4451663521496556
+            },
+            "conditional_outcome_body": {
+              "teachers": 446,
+              "nll_sum": 988.3858642578125,
+              "CE_mean": 2.216111803268638
+            },
+            "conditional_EOS": {
+              "teachers": 76,
+              "nll_sum": 507.73651123046875,
+              "CE_mean": 6.680743568821957
+            },
+            "conditional_total": {
+              "teachers": 522,
+              "nll_sum": 1496.1223754882812,
+              "CE_mean": 2.8661348189430673
+            },
+            "all": {
+              "teachers": 30121,
+              "nll_sum": 76530.5239868164,
+              "CE_mean": 2.5407696951235486
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 14,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+            "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+          },
+          "input": {
+            "index": 14,
+            "update": 320450,
+            "input_sha256": "51d1e4e8c1b51976b03275e4dcac48bb2f6a403f9cec83ed20492f33544a97c3",
+            "target_sha256": "57df7b7b0d8454f625f1d2675c3a9935587f614e8d00fffa3ed471967805c3af",
+            "actual_source_routes": [
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web"
+            ],
+            "reference_token_digest": "dc7353b5dd8461912c8cf47fdb2ce71ab7e356514d08b7158ceab7299ebfffd3",
+            "masked_token_digest": "211f09467752625c85171233ee53695c8649abd4ba2d692b222fc25036b8ef0e",
+            "teachers": 30093,
+            "teachers_by_group": {
+              "web": 25543,
+              "story": 1015,
+              "ordinary_textbook": 3048,
+              "conditional_outcome_body": 418,
+              "conditional_EOS": 69
+            },
+            "body_bytes": 117837
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 25543,
+              "nll_sum": 65418.1591796875,
+              "CE_mean": 2.56109929059576
+            },
+            "story": {
+              "teachers": 1015,
+              "nll_sum": 2627.11083984375,
+              "CE_mean": 2.5882865417179803
+            },
+            "ordinary_textbook": {
+              "teachers": 3048,
+              "nll_sum": 7249.726318359375,
+              "CE_mean": 2.378519133320005
+            },
+            "conditional_outcome_body": {
+              "teachers": 418,
+              "nll_sum": 944.2216186523438,
+              "CE_mean": 2.2589033939051286
+            },
+            "conditional_EOS": {
+              "teachers": 69,
+              "nll_sum": 288.3431167602539,
+              "CE_mean": 4.178885750148607
+            },
+            "conditional_total": {
+              "teachers": 487,
+              "nll_sum": 1232.5647354125977,
+              "CE_mean": 2.530933748280488
+            },
+            "all": {
+              "teachers": 30093,
+              "nll_sum": 76527.56107330322,
+              "CE_mean": 2.543035293035032
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 25543,
+              "nll_sum": 65246.94042968749,
+              "CE_mean": 2.55439613317494
+            },
+            "story": {
+              "teachers": 1015,
+              "nll_sum": 2612.03271484375,
+              "CE_mean": 2.5734312461514777
+            },
+            "ordinary_textbook": {
+              "teachers": 3048,
+              "nll_sum": 7231.383056640625,
+              "CE_mean": 2.3725010028348508
+            },
+            "conditional_outcome_body": {
+              "teachers": 418,
+              "nll_sum": 878.6714019775391,
+              "CE_mean": 2.10208469372617
+            },
+            "conditional_EOS": {
+              "teachers": 69,
+              "nll_sum": 457.22203063964844,
+              "CE_mean": 6.626406241154325
+            },
+            "conditional_total": {
+              "teachers": 487,
+              "nll_sum": 1335.8934326171875,
+              "CE_mean": 2.7431076645116788
+            },
+            "all": {
+              "teachers": 30093,
+              "nll_sum": 76426.24963378906,
+              "CE_mean": 2.53966868154684
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 15,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+            "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+          },
+          "input": {
+            "index": 15,
+            "update": 320451,
+            "input_sha256": "44cf3ec6e97346ff221948e7d8bb8dec19fbf5a2ef5e5a96804777c38b2528cb",
+            "target_sha256": "761851543bfe131a311def433c67132769a7a9e488a197a76267b8ace70c7628",
+            "actual_source_routes": [
+              "story",
+              "ordinary_textbook",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web"
+            ],
+            "reference_token_digest": "8df15572536212e7143ef5ed7c26a0c70244e20de9546a3d0f74ffd26ec573a3",
+            "masked_token_digest": "83950ca52e867264576e3f491e376baaa850aab75a4159dd6871d0da3a643770",
+            "teachers": 30027,
+            "teachers_by_group": {
+              "web": 23501,
+              "story": 2029,
+              "ordinary_textbook": 4067,
+              "conditional_outcome_body": 366,
+              "conditional_EOS": 64
+            },
+            "body_bytes": 119949
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 23501,
+              "nll_sum": 60440.197265625,
+              "CE_mean": 2.571813849011744
+            },
+            "story": {
+              "teachers": 2029,
+              "nll_sum": 5384.463623046875,
+              "CE_mean": 2.6537524016988048
+            },
+            "ordinary_textbook": {
+              "teachers": 4067,
+              "nll_sum": 10134.5810546875,
+              "CE_mean": 2.491905840837841
+            },
+            "conditional_outcome_body": {
+              "teachers": 366,
+              "nll_sum": 829.4503784179688,
+              "CE_mean": 2.2662578645299694
+            },
+            "conditional_EOS": {
+              "teachers": 64,
+              "nll_sum": 259.62618255615234,
+              "CE_mean": 4.05665910243988
+            },
+            "conditional_total": {
+              "teachers": 430,
+              "nll_sum": 1089.076560974121,
+              "CE_mean": 2.5327361883119095
+            },
+            "all": {
+              "teachers": 30027,
+              "nll_sum": 77048.3185043335,
+              "CE_mean": 2.5659679123566623
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 23501,
+              "nll_sum": 60258.7578125,
+              "CE_mean": 2.5640933497510745
+            },
+            "story": {
+              "teachers": 2029,
+              "nll_sum": 5358.0263671875,
+              "CE_mean": 2.6407227043802366
+            },
+            "ordinary_textbook": {
+              "teachers": 4067,
+              "nll_sum": 10132.7509765625,
+              "CE_mean": 2.491455858510573
+            },
+            "conditional_outcome_body": {
+              "teachers": 366,
+              "nll_sum": 793.2165222167969,
+              "CE_mean": 2.1672582574229424
+            },
+            "conditional_EOS": {
+              "teachers": 64,
+              "nll_sum": 414.3504638671875,
+              "CE_mean": 6.474225997924805
+            },
+            "conditional_total": {
+              "teachers": 430,
+              "nll_sum": 1207.5669860839844,
+              "CE_mean": 2.8082953164743825
+            },
+            "all": {
+              "teachers": 30027,
+              "nll_sum": 76957.10214233398,
+              "CE_mean": 2.5629301009869114
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        }
+      ],
+      "read_only_checks": {
+        "weights_unchanged": true,
+        "no_gradients": true,
+        "eval_mode": true,
+        "finite_weights": true,
+        "RNG_unchanged_during_forwards": true
+      },
+      "summary": {
+        "groups": {
+          "web": {
+            "teachers": 390352,
+            "isolated_teacher_weighted_CE": 2.574289454413901,
+            "cached_full_teacher_weighted_CE": 2.5678080346792767,
+            "teacher_weighted_CE_change": 0.0064814197346241345,
+            "supported_batches": 16,
+            "positive_batches": 16,
+            "batches_increase_at_least_point1": 0,
+            "minimum_CE_change": 0.0049254621936549725,
+            "median_CE_change": 0.006380175465663607,
+            "maximum_CE_change": 0.008502313741130862
+          },
+          "story": {
+            "teachers": 26425,
+            "isolated_teacher_weighted_CE": 2.686865132745979,
+            "cached_full_teacher_weighted_CE": 2.671443316875591,
+            "teacher_weighted_CE_change": 0.01542181587038789,
+            "supported_batches": 16,
+            "positive_batches": 16,
+            "batches_increase_at_least_point1": 0,
+            "minimum_CE_change": 0.008614744659035,
+            "median_CE_change": 0.014427894333343572,
+            "maximum_CE_change": 0.02617799659118969
+          },
+          "ordinary_textbook": {
+            "teachers": 52861,
+            "isolated_teacher_weighted_CE": 2.4536381520860724,
+            "cached_full_teacher_weighted_CE": 2.449688866533515,
+            "teacher_weighted_CE_change": 0.003949285552557651,
+            "supported_batches": 16,
+            "positive_batches": 15,
+            "batches_increase_at_least_point1": 0,
+            "minimum_CE_change": -0.003991043270805683,
+            "median_CE_change": 0.004286688688628804,
+            "maximum_CE_change": 0.009504669179444036
+          },
+          "conditional_outcome_body": {
+            "teachers": 7258,
+            "isolated_teacher_weighted_CE": 2.2818295459636944,
+            "cached_full_teacher_weighted_CE": 2.159246840467792,
+            "teacher_weighted_CE_change": 0.12258270549590215,
+            "supported_batches": 16,
+            "positive_batches": 16,
+            "batches_increase_at_least_point1": 13,
+            "minimum_CE_change": 0.0750233603165289,
+            "median_CE_change": 0.1192961873882239,
+            "maximum_CE_change": 0.17585085292550984
+          },
+          "conditional_EOS": {
+            "teachers": 1215,
+            "isolated_teacher_weighted_CE": 4.1753979718243635,
+            "cached_full_teacher_weighted_CE": 6.615145723319348,
+            "teacher_weighted_CE_change": -2.4397477514949846,
+            "supported_batches": 16,
+            "positive_batches": 0,
+            "batches_increase_at_least_point1": 0,
+            "minimum_CE_change": -2.5350683057630388,
+            "median_CE_change": -2.4411620644175867,
+            "maximum_CE_change": -2.3104166143080764
+          },
+          "conditional_total": {
+            "teachers": 8473,
+            "isolated_teacher_weighted_CE": 2.553360956021609,
+            "cached_full_teacher_weighted_CE": 2.798207910061164,
+            "teacher_weighted_CE_change": -0.24484695403955486,
+            "supported_batches": 16,
+            "positive_batches": 0,
+            "batches_increase_at_least_point1": 0,
+            "minimum_CE_change": -0.27555912816247297,
+            "median_CE_change": -0.24579462489689097,
+            "maximum_CE_change": -0.21217391623119086
+          },
+          "all": {
+            "teachers": 478111,
+            "isolated_teacher_weighted_CE": 2.5668011026309383,
+            "cached_full_teacher_weighted_CE": 2.5645595068871847,
+            "teacher_weighted_CE_change": 0.002241595743753232,
+            "supported_batches": 16,
+            "positive_batches": 16,
+            "batches_increase_at_least_point1": 0,
+            "minimum_CE_change": 0.00015170922293394895,
+            "median_CE_change": 0.0021221265259094846,
+            "maximum_CE_change": 0.004135251802149131
+          }
+        },
+        "descriptive_conditional_history_dependence_marker": false,
+        "marker_definition": "Conditional teacher-weighted CE increase>=.1nats and logical batches with increase>=.1nats>=12/16; local TRAIN description, not quality."
+      }
+    },
+    "completed_masked_mixed": {
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+        "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+      },
+      "control": {
+        "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+        "checkpoint": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+          "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+        },
+        "allclose": true,
+        "tolerance": {
+          "atol": 0.02,
+          "rtol": 0.002
+        },
+        "maximum_absolute_logit_difference": 0.0,
+        "RMS_logit_difference": 0.0,
+        "native_groups": {
+          "web": {
+            "teachers": 5109,
+            "nll_sum": 12645.08203125,
+            "CE_mean": 2.4750600961538463
+          },
+          "story": {
+            "teachers": 1018,
+            "nll_sum": 2038.6728515625,
+            "CE_mean": 2.002625590925835
+          },
+          "ordinary_textbook": {
+            "teachers": 1015,
+            "nll_sum": 2193.88330078125,
+            "CE_mean": 2.1614613800800493
+          },
+          "conditional_outcome_body": {
+            "teachers": 163,
+            "nll_sum": 15.198970794677734,
+            "CE_mean": 0.0932452195992499
+          },
+          "conditional_EOS": {
+            "teachers": 22,
+            "nll_sum": 0.06305382400751114,
+            "CE_mean": 0.0028660829094323244
+          },
+          "conditional_total": {
+            "teachers": 185,
+            "nll_sum": 15.262024618685246,
+            "CE_mean": 0.0824974303712716
+          },
+          "all": {
+            "teachers": 7327,
+            "nll_sum": 16892.900208212435,
+            "CE_mean": 2.305568473892785
+          }
+        },
+        "custom_full_causal_groups": {
+          "web": {
+            "teachers": 5109,
+            "nll_sum": 12645.08203125,
+            "CE_mean": 2.4750600961538463
+          },
+          "story": {
+            "teachers": 1018,
+            "nll_sum": 2038.6728515625,
+            "CE_mean": 2.002625590925835
+          },
+          "ordinary_textbook": {
+            "teachers": 1015,
+            "nll_sum": 2193.88330078125,
+            "CE_mean": 2.1614613800800493
+          },
+          "conditional_outcome_body": {
+            "teachers": 163,
+            "nll_sum": 15.198970794677734,
+            "CE_mean": 0.0932452195992499
+          },
+          "conditional_EOS": {
+            "teachers": 22,
+            "nll_sum": 0.06305382400751114,
+            "CE_mean": 0.0028660829094323244
+          },
+          "conditional_total": {
+            "teachers": 185,
+            "nll_sum": 15.262024618685246,
+            "CE_mean": 0.0824974303712716
+          },
+          "all": {
+            "teachers": 7327,
+            "nll_sum": 16892.900208212435,
+            "CE_mean": 2.305568473892785
+          }
+        },
+        "total_CE_difference": 0.0,
+        "fixed_first8_input_sha256": "1bd4f0df1de28e6d379cbe7ba99024f4157e91ea1167346d230fd1fe515756e4"
+      },
+      "records": [
+        {
+          "index": 0,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+            "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+          },
+          "input": {
+            "index": 0,
+            "update": 320436,
+            "input_sha256": "c08f7b2ccfe4c4badd96c5ffb6ca75df4be97ed20da2f24ba99b4adcec469433",
+            "target_sha256": "8714e034b710844f67abef5bf30f2fa1d17bfea3c489ec27b3e9a037772f8627",
+            "actual_source_routes": [
+              "web",
+              "story",
+              "ordinary_textbook",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook"
+            ],
+            "reference_token_digest": "b9b1d603d51ffd5d7512a1c9b9e0035c4a23663a54ed005893aa7dcf5d4b794d",
+            "masked_token_digest": "f362acbb1a424905aede35ea1171194c0d68fd76160e713e0a22a24bfce886aa",
+            "teachers": 29225,
+            "teachers_by_group": {
+              "web": 23506,
+              "story": 2033,
+              "ordinary_textbook": 3053,
+              "conditional_outcome_body": 542,
+              "conditional_EOS": 91
+            },
+            "body_bytes": 118116
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 23506,
+              "nll_sum": 60825.6337890625,
+              "CE_mean": 2.5876641618762233
+            },
+            "story": {
+              "teachers": 2033,
+              "nll_sum": 4347.7099609375,
+              "CE_mean": 2.1385685985919825
+            },
+            "ordinary_textbook": {
+              "teachers": 3053,
+              "nll_sum": 6858.645751953125,
+              "CE_mean": 2.246526613807116
+            },
+            "conditional_outcome_body": {
+              "teachers": 542,
+              "nll_sum": 147.16996002197266,
+              "CE_mean": 0.27153129155345507
+            },
+            "conditional_EOS": {
+              "teachers": 91,
+              "nll_sum": 2.5324829816818237,
+              "CE_mean": 0.027829483315184877
+            },
+            "conditional_total": {
+              "teachers": 633,
+              "nll_sum": 149.70244300365448,
+              "CE_mean": 0.23649675040071796
+            },
+            "all": {
+              "teachers": 29225,
+              "nll_sum": 72181.69194495678,
+              "CE_mean": 2.4698611443954417
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 23506,
+              "nll_sum": 60675.24414062499,
+              "CE_mean": 2.581266235881264
+            },
+            "story": {
+              "teachers": 2033,
+              "nll_sum": 4223.086669921875,
+              "CE_mean": 2.077268406257686
+            },
+            "ordinary_textbook": {
+              "teachers": 3053,
+              "nll_sum": 6726.2978515625,
+              "CE_mean": 2.2031764990378315
+            },
+            "conditional_outcome_body": {
+              "teachers": 542,
+              "nll_sum": 100.42026901245117,
+              "CE_mean": 0.18527724910046342
+            },
+            "conditional_EOS": {
+              "teachers": 91,
+              "nll_sum": 0.7731908224523067,
+              "CE_mean": 0.008496602444530843
+            },
+            "conditional_total": {
+              "teachers": 633,
+              "nll_sum": 101.19345983490348,
+              "CE_mean": 0.15986328567915242
+            },
+            "all": {
+              "teachers": 29225,
+              "nll_sum": 71725.82212194428,
+              "CE_mean": 2.4542625191426612
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 1,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+            "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+          },
+          "input": {
+            "index": 1,
+            "update": 320437,
+            "input_sha256": "a1991293e1709ae043ad72c06b154bbe0a260190aa328999c6023fac1da525af",
+            "target_sha256": "5e9a8488a78e35687cbf0cd8f44b1641578e39b08c4c7ffe2babd25242dfa11f",
+            "actual_source_routes": [
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "story",
+              "ordinary_textbook",
+              "web"
+            ],
+            "reference_token_digest": "d7731dcb8612237b8b4f0b03130d392765afc7b425384d3be2c73392a7a5df80",
+            "masked_token_digest": "b58cea2c97d4ad2881e9e0dfb53bdafaf0bae990ea0e6b6a68d8a80489f82e99",
+            "teachers": 30097,
+            "teachers_by_group": {
+              "web": 23500,
+              "story": 2034,
+              "ordinary_textbook": 4065,
+              "conditional_outcome_body": 425,
+              "conditional_EOS": 73
+            },
+            "body_bytes": 117984
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 23500,
+              "nll_sum": 60883.6044921875,
+              "CE_mean": 2.590791680518617
+            },
+            "story": {
+              "teachers": 2034,
+              "nll_sum": 4184.7548828125,
+              "CE_mean": 2.0574016139687807
+            },
+            "ordinary_textbook": {
+              "teachers": 4065,
+              "nll_sum": 9337.70849609375,
+              "CE_mean": 2.297099261031673
+            },
+            "conditional_outcome_body": {
+              "teachers": 425,
+              "nll_sum": 115.3689079284668,
+              "CE_mean": 0.27145625394933365
+            },
+            "conditional_EOS": {
+              "teachers": 73,
+              "nll_sum": 2.140952229499817,
+              "CE_mean": 0.029328112732874206
+            },
+            "conditional_total": {
+              "teachers": 498,
+              "nll_sum": 117.50986015796661,
+              "CE_mean": 0.2359635746143908
+            },
+            "all": {
+              "teachers": 30097,
+              "nll_sum": 74523.57773125172,
+              "CE_mean": 2.4761131584959206
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 23500,
+              "nll_sum": 60751.42773437499,
+              "CE_mean": 2.5851671376329786
+            },
+            "story": {
+              "teachers": 2034,
+              "nll_sum": 4068.1315917968745,
+              "CE_mean": 2.0000646960653268
+            },
+            "ordinary_textbook": {
+              "teachers": 4065,
+              "nll_sum": 9117.936279296875,
+              "CE_mean": 2.2430347550545817
+            },
+            "conditional_outcome_body": {
+              "teachers": 425,
+              "nll_sum": 77.00703620910645,
+              "CE_mean": 0.1811930263743681
+            },
+            "conditional_EOS": {
+              "teachers": 73,
+              "nll_sum": 0.08266255166381598,
+              "CE_mean": 0.0011323637214221366
+            },
+            "conditional_total": {
+              "teachers": 498,
+              "nll_sum": 77.08969876077026,
+              "CE_mean": 0.15479859188909692
+            },
+            "all": {
+              "teachers": 30097,
+              "nll_sum": 74014.5853042295,
+              "CE_mean": 2.4592014255317642
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 2,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+            "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+          },
+          "input": {
+            "index": 2,
+            "update": 320438,
+            "input_sha256": "6db112f8385e0d4dbc0d2976795be91980ebbf5efb95f125e187425eb89201a9",
+            "target_sha256": "ea322c87a0931c87870b5eaf8d950e0b0f8dbaf7e41f77f2e7d6812af8d1de9c",
+            "actual_source_routes": [
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web"
+            ],
+            "reference_token_digest": "f8a566084ad12a42e71d046e79d3f521ea01fa00cba155679b01f44bcaadf202",
+            "masked_token_digest": "1f67f76fdca2a6108287ea0b246d7ceae7f00f8c89429d3f09b0783d3037da61",
+            "teachers": 30137,
+            "teachers_by_group": {
+              "web": 25547,
+              "story": 1015,
+              "ordinary_textbook": 3059,
+              "conditional_outcome_body": 446,
+              "conditional_EOS": 70
+            },
+            "body_bytes": 117500
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 25547,
+              "nll_sum": 64396.0625,
+              "CE_mean": 2.520689807022351
+            },
+            "story": {
+              "teachers": 1015,
+              "nll_sum": 2108.636474609375,
+              "CE_mean": 2.077474359221059
+            },
+            "ordinary_textbook": {
+              "teachers": 3059,
+              "nll_sum": 6780.001708984375,
+              "CE_mean": 2.216411150370832
+            },
+            "conditional_outcome_body": {
+              "teachers": 446,
+              "nll_sum": 87.14684677124023,
+              "CE_mean": 0.19539651742430547
+            },
+            "conditional_EOS": {
+              "teachers": 70,
+              "nll_sum": 1.7432892620563507,
+              "CE_mean": 0.024904132315090723
+            },
+            "conditional_total": {
+              "teachers": 516,
+              "nll_sum": 88.89013603329659,
+              "CE_mean": 0.17226770549088485
+            },
+            "all": {
+              "teachers": 30137,
+              "nll_sum": 73373.59081962705,
+              "CE_mean": 2.434668043256696
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 25547,
+              "nll_sum": 64251.94140625,
+              "CE_mean": 2.5150483973167104
+            },
+            "story": {
+              "teachers": 1015,
+              "nll_sum": 2031.7851562500002,
+              "CE_mean": 2.001758774630542
+            },
+            "ordinary_textbook": {
+              "teachers": 3059,
+              "nll_sum": 6694.041748046876,
+              "CE_mean": 2.1883104766416723
+            },
+            "conditional_outcome_body": {
+              "teachers": 446,
+              "nll_sum": 63.017385482788086,
+              "CE_mean": 0.1412945862842782
+            },
+            "conditional_EOS": {
+              "teachers": 70,
+              "nll_sum": 0.11045732162892818,
+              "CE_mean": 0.001577961737556117
+            },
+            "conditional_total": {
+              "teachers": 516,
+              "nll_sum": 63.127842804417014,
+              "CE_mean": 0.12234078062871515
+            },
+            "all": {
+              "teachers": 30137,
+              "nll_sum": 73040.89615335129,
+              "CE_mean": 2.4236286343481863
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 3,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+            "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+          },
+          "input": {
+            "index": 3,
+            "update": 320439,
+            "input_sha256": "9ecc1bcf82d19b1cfc0fbf82cddf19a6dd69f209e1d4d4da4c0467ba49cfee7e",
+            "target_sha256": "2edce4e0a6dac7daed5c270c551d315989f6fe53a081653125f962cbe911bc28",
+            "actual_source_routes": [
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web"
+            ],
+            "reference_token_digest": "17d84034595dfaac471c85d5cd4138ffd0fe8c50005c43797dd4f31f070a429d",
+            "masked_token_digest": "d48890c930086379b555cdadc474ab265078eb1f4158cf51a4e4947129bf1892",
+            "teachers": 30095,
+            "teachers_by_group": {
+              "web": 24524,
+              "story": 2035,
+              "ordinary_textbook": 3052,
+              "conditional_outcome_body": 417,
+              "conditional_EOS": 67
+            },
+            "body_bytes": 118762
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 24524,
+              "nll_sum": 64076.6298828125,
+              "CE_mean": 2.6128131578377305
+            },
+            "story": {
+              "teachers": 2035,
+              "nll_sum": 4123.633544921875,
+              "CE_mean": 2.02635555033016
+            },
+            "ordinary_textbook": {
+              "teachers": 3052,
+              "nll_sum": 6838.27734375,
+              "CE_mean": 2.2405889068643514
+            },
+            "conditional_outcome_body": {
+              "teachers": 417,
+              "nll_sum": 94.2297477722168,
+              "CE_mean": 0.22597061815879327
+            },
+            "conditional_EOS": {
+              "teachers": 67,
+              "nll_sum": 1.830254316329956,
+              "CE_mean": 0.027317228601939643
+            },
+            "conditional_total": {
+              "teachers": 484,
+              "nll_sum": 96.06000208854675,
+              "CE_mean": 0.19847107869534453
+            },
+            "all": {
+              "teachers": 30095,
+              "nll_sum": 75134.60077357292,
+              "CE_mean": 2.4965808530843305
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 24524,
+              "nll_sum": 63862.876953125,
+              "CE_mean": 2.6040970866549094
+            },
+            "story": {
+              "teachers": 2035,
+              "nll_sum": 4024.73974609375,
+              "CE_mean": 1.9777590889895578
+            },
+            "ordinary_textbook": {
+              "teachers": 3052,
+              "nll_sum": 6700.226806640624,
+              "CE_mean": 2.1953560965401784
+            },
+            "conditional_outcome_body": {
+              "teachers": 417,
+              "nll_sum": 68.59311103820801,
+              "CE_mean": 0.1644918729933046
+            },
+            "conditional_EOS": {
+              "teachers": 67,
+              "nll_sum": 0.3607717305421829,
+              "CE_mean": 0.0053846526946594465
+            },
+            "conditional_total": {
+              "teachers": 484,
+              "nll_sum": 68.95388276875019,
+              "CE_mean": 0.1424666999354343
+            },
+            "all": {
+              "teachers": 30095,
+              "nll_sum": 74656.79738862813,
+              "CE_mean": 2.4807043491818614
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 4,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+            "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+          },
+          "input": {
+            "index": 4,
+            "update": 320440,
+            "input_sha256": "eacefd0637b1d3082f3a48e51e03cdb2fb59524658dd8115631ddd306e7b970b",
+            "target_sha256": "88058d357612c4e3c0a268dbd432049aaf917ec76cbee1af17cee594b3e5c3cf",
+            "actual_source_routes": [
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web"
+            ],
+            "reference_token_digest": "9b2b600c87688c475b60424cd434c54a12a86eee79e2f8a6f6bd3dc0dbfe26de",
+            "masked_token_digest": "3501daf8f94a3baa8264e1db2ef603425d60a5ec76ecb3174aacff34ae24f654",
+            "teachers": 29248,
+            "teachers_by_group": {
+              "web": 24525,
+              "story": 1019,
+              "ordinary_textbook": 3048,
+              "conditional_outcome_body": 566,
+              "conditional_EOS": 90
+            },
+            "body_bytes": 118580
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 24525,
+              "nll_sum": 62817.8720703125,
+              "CE_mean": 2.5613811241717634
+            },
+            "story": {
+              "teachers": 1019,
+              "nll_sum": 2102.691650390625,
+              "CE_mean": 2.0634854272724485
+            },
+            "ordinary_textbook": {
+              "teachers": 3048,
+              "nll_sum": 6797.589111328125,
+              "CE_mean": 2.2301801546352116
+            },
+            "conditional_outcome_body": {
+              "teachers": 566,
+              "nll_sum": 164.88220596313477,
+              "CE_mean": 0.2913113179560685
+            },
+            "conditional_EOS": {
+              "teachers": 90,
+              "nll_sum": 1.937227725982666,
+              "CE_mean": 0.02152475251091851
+            },
+            "conditional_total": {
+              "teachers": 656,
+              "nll_sum": 166.81943368911743,
+              "CE_mean": 0.25429791720902045
+            },
+            "all": {
+              "teachers": 29248,
+              "nll_sum": 71884.97226572037,
+              "CE_mean": 2.457773942345472
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 24525,
+              "nll_sum": 62672.52734375001,
+              "CE_mean": 2.5554547336901123
+            },
+            "story": {
+              "teachers": 1019,
+              "nll_sum": 2066.15283203125,
+              "CE_mean": 2.0276279018952406
+            },
+            "ordinary_textbook": {
+              "teachers": 3048,
+              "nll_sum": 6615.381591796874,
+              "CE_mean": 2.1704007847102607
+            },
+            "conditional_outcome_body": {
+              "teachers": 566,
+              "nll_sum": 118.05057907104492,
+              "CE_mean": 0.20856992768735852
+            },
+            "conditional_EOS": {
+              "teachers": 90,
+              "nll_sum": 0.23383159190416336,
+              "CE_mean": 0.0025981287989351484
+            },
+            "conditional_total": {
+              "teachers": 656,
+              "nll_sum": 118.28441066294909,
+              "CE_mean": 0.1803116016203492
+            },
+            "all": {
+              "teachers": 29248,
+              "nll_sum": 71472.34617824107,
+              "CE_mean": 2.443666102921262
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 5,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+            "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+          },
+          "input": {
+            "index": 5,
+            "update": 320441,
+            "input_sha256": "9136d911ada3f206ee1e8fa648b6894c600e3c471ebd6d4569c2200fccaea568",
+            "target_sha256": "cc018ddf964c2b152f285064aee628e6aa97c644fec6893f14d705cf333d0bd4",
+            "actual_source_routes": [
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "ordinary_textbook"
+            ],
+            "reference_token_digest": "0e0178dddbd265701e06f3596ec11ac9cf36c1be6be6ccb27daf99831a51fd9e",
+            "masked_token_digest": "cc38225d5b359de1e397b13d2edc4325a004ad6f293c28a57bf49629323dcc6a",
+            "teachers": 30146,
+            "teachers_by_group": {
+              "web": 23510,
+              "story": 2033,
+              "ordinary_textbook": 4066,
+              "conditional_outcome_body": 466,
+              "conditional_EOS": 71
+            },
+            "body_bytes": 117947
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 23510,
+              "nll_sum": 60729.94921875,
+              "CE_mean": 2.5831539438005104
+            },
+            "story": {
+              "teachers": 2033,
+              "nll_sum": 4379.062744140625,
+              "CE_mean": 2.1539905283524963
+            },
+            "ordinary_textbook": {
+              "teachers": 4066,
+              "nll_sum": 9282.698486328125,
+              "CE_mean": 2.2830050384476452
+            },
+            "conditional_outcome_body": {
+              "teachers": 466,
+              "nll_sum": 107.81800079345703,
+              "CE_mean": 0.23136910041514383
+            },
+            "conditional_EOS": {
+              "teachers": 71,
+              "nll_sum": 4.157582581043243,
+              "CE_mean": 0.05855750114145413
+            },
+            "conditional_total": {
+              "teachers": 537,
+              "nll_sum": 111.97558337450027,
+              "CE_mean": 0.20852063943109922
+            },
+            "all": {
+              "teachers": 30146,
+              "nll_sum": 74503.68603259325,
+              "CE_mean": 2.471428581987436
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 23510,
+              "nll_sum": 60606.3935546875,
+              "CE_mean": 2.5778984923303914
+            },
+            "story": {
+              "teachers": 2033,
+              "nll_sum": 4251.00927734375,
+              "CE_mean": 2.091003087724422
+            },
+            "ordinary_textbook": {
+              "teachers": 4066,
+              "nll_sum": 9055.8525390625,
+              "CE_mean": 2.227214102081284
+            },
+            "conditional_outcome_body": {
+              "teachers": 466,
+              "nll_sum": 75.59523010253906,
+              "CE_mean": 0.16222152382519112
+            },
+            "conditional_EOS": {
+              "teachers": 71,
+              "nll_sum": 2.819058895111084,
+              "CE_mean": 0.03970505486071949
+            },
+            "conditional_total": {
+              "teachers": 537,
+              "nll_sum": 78.41428899765015,
+              "CE_mean": 0.14602288453938575
+            },
+            "all": {
+              "teachers": 30146,
+              "nll_sum": 73991.6696600914,
+              "CE_mean": 2.4544440277347377
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 6,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+            "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+          },
+          "input": {
+            "index": 6,
+            "update": 320442,
+            "input_sha256": "8c899d431be74ea9722712a99607f609ee1ff598490ca6e6a960b269bfaba51a",
+            "target_sha256": "45040e27e04e3a8948e8898e8cb59d4aa9ddc6317dea6f30f8fc19650a4231d3",
+            "actual_source_routes": [
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web"
+            ],
+            "reference_token_digest": "033a4b01e220afd787ad3463b8759643953c3d89574b558763bd95cdaf177e4a",
+            "masked_token_digest": "4ee262a38c8fd9d8e385ee029fe8d2c5f4e8d2d5095363cb205bbba6e32d3338",
+            "teachers": 30090,
+            "teachers_by_group": {
+              "web": 24523,
+              "story": 2033,
+              "ordinary_textbook": 3048,
+              "conditional_outcome_body": 418,
+              "conditional_EOS": 68
+            },
+            "body_bytes": 119579
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 24523,
+              "nll_sum": 62939.322265625,
+              "CE_mean": 2.5665425219436857
+            },
+            "story": {
+              "teachers": 2033,
+              "nll_sum": 4021.908203125,
+              "CE_mean": 1.9783119543162813
+            },
+            "ordinary_textbook": {
+              "teachers": 3048,
+              "nll_sum": 6789.818603515625,
+              "CE_mean": 2.2276307754316353
+            },
+            "conditional_outcome_body": {
+              "teachers": 418,
+              "nll_sum": 123.01618957519531,
+              "CE_mean": 0.2942971042468787
+            },
+            "conditional_EOS": {
+              "teachers": 68,
+              "nll_sum": 4.575644373893738,
+              "CE_mean": 0.0672888878513785
+            },
+            "conditional_total": {
+              "teachers": 486,
+              "nll_sum": 127.59183394908905,
+              "CE_mean": 0.26253463775532726
+            },
+            "all": {
+              "teachers": 30090,
+              "nll_sum": 73878.64090621471,
+              "CE_mean": 2.4552555967502396
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 24523,
+              "nll_sum": 62832.349609375,
+              "CE_mean": 2.5621803861426007
+            },
+            "story": {
+              "teachers": 2033,
+              "nll_sum": 3888.007080078125,
+              "CE_mean": 1.9124481456360674
+            },
+            "ordinary_textbook": {
+              "teachers": 3048,
+              "nll_sum": 6612.080078125,
+              "CE_mean": 2.169317610933399
+            },
+            "conditional_outcome_body": {
+              "teachers": 418,
+              "nll_sum": 96.60941886901855,
+              "CE_mean": 0.23112301164836974
+            },
+            "conditional_EOS": {
+              "teachers": 68,
+              "nll_sum": 2.786318901926279,
+              "CE_mean": 0.040975277969504106
+            },
+            "conditional_total": {
+              "teachers": 486,
+              "nll_sum": 99.39573777094483,
+              "CE_mean": 0.20451797895256138
+            },
+            "all": {
+              "teachers": 30090,
+              "nll_sum": 73431.83250534907,
+              "CE_mean": 2.4404065305865426
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 7,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+            "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+          },
+          "input": {
+            "index": 7,
+            "update": 320443,
+            "input_sha256": "a78f87a01e06f4ca73674e972449e2c1b73d5ee9968bb100410edbf70f4719da",
+            "target_sha256": "ab8909c98e2cc970b2076d43ff2e7e46057fe9c4662f431559b3e12a433dba51",
+            "actual_source_routes": [
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web"
+            ],
+            "reference_token_digest": "c5674bd816a81e053249e8a0c889e487ef3c6d912e4d019dd92293fdde6df3ad",
+            "masked_token_digest": "079cfc65d26f7fd57d7f61d306ce40d164fa87eb2a4559d0ffe364e1d9e04de8",
+            "teachers": 30157,
+            "teachers_by_group": {
+              "web": 25552,
+              "story": 1021,
+              "ordinary_textbook": 3048,
+              "conditional_outcome_body": 462,
+              "conditional_EOS": 74
+            },
+            "body_bytes": 119741
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 25552,
+              "nll_sum": 65504.5810546875,
+              "CE_mean": 2.563579408840306
+            },
+            "story": {
+              "teachers": 1021,
+              "nll_sum": 2204.0078125,
+              "CE_mean": 2.158675624387855
+            },
+            "ordinary_textbook": {
+              "teachers": 3048,
+              "nll_sum": 7085.474609375,
+              "CE_mean": 2.3246307773540025
+            },
+            "conditional_outcome_body": {
+              "teachers": 462,
+              "nll_sum": 130.50106811523438,
+              "CE_mean": 0.28246984440526923
+            },
+            "conditional_EOS": {
+              "teachers": 74,
+              "nll_sum": 1.7072259187698364,
+              "CE_mean": 0.02307062052391671
+            },
+            "conditional_total": {
+              "teachers": 536,
+              "nll_sum": 132.2082940340042,
+              "CE_mean": 0.24665726498881382
+            },
+            "all": {
+              "teachers": 30157,
+              "nll_sum": 74926.2717705965,
+              "CE_mean": 2.4845399665283847
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 25552,
+              "nll_sum": 65324.31250000001,
+              "CE_mean": 2.5565244403569194
+            },
+            "story": {
+              "teachers": 1021,
+              "nll_sum": 2188.27734375,
+              "CE_mean": 2.1432687010284037
+            },
+            "ordinary_textbook": {
+              "teachers": 3048,
+              "nll_sum": 6902.561035156249,
+              "CE_mean": 2.2646197621903705
+            },
+            "conditional_outcome_body": {
+              "teachers": 462,
+              "nll_sum": 98.68864250183105,
+              "CE_mean": 0.21361178030699363
+            },
+            "conditional_EOS": {
+              "teachers": 74,
+              "nll_sum": 0.2225736752152443,
+              "CE_mean": 0.0030077523677735714
+            },
+            "conditional_total": {
+              "teachers": 536,
+              "nll_sum": 98.9112161770463,
+              "CE_mean": 0.1845358510765789
+            },
+            "all": {
+              "teachers": 30157,
+              "nll_sum": 74514.0620950833,
+              "CE_mean": 2.470871177341357
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 8,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+            "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+          },
+          "input": {
+            "index": 8,
+            "update": 320444,
+            "input_sha256": "7fbb2f384a60a58dd8ec62c3967bd55d1a5fe3c774f50729c7b04ac68070fa08",
+            "target_sha256": "50f0e33a6448ca92f81eff811d12b2c9ffecbc16858ee00aff506967fa4cfd1a",
+            "actual_source_routes": [
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "story",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "story",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web"
+            ],
+            "reference_token_digest": "47a4b7590d8d285cb5e4aef56935829c813c3d7ff09533fdd6343dff06ad0b81",
+            "masked_token_digest": "ff58edb0009d55ecfcdf759d22cc2c37e9b6774bbf0232932ae37234ccd40b7b",
+            "teachers": 29216,
+            "teachers_by_group": {
+              "web": 23498,
+              "story": 2028,
+              "ordinary_textbook": 3049,
+              "conditional_outcome_body": 546,
+              "conditional_EOS": 95
+            },
+            "body_bytes": 113138
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 23498,
+              "nll_sum": 59166.708984375,
+              "CE_mean": 2.517946590534301
+            },
+            "story": {
+              "teachers": 2028,
+              "nll_sum": 4273.666015625,
+              "CE_mean": 2.1073303824580867
+            },
+            "ordinary_textbook": {
+              "teachers": 3049,
+              "nll_sum": 6823.701904296875,
+              "CE_mean": 2.238013087667063
+            },
+            "conditional_outcome_body": {
+              "teachers": 546,
+              "nll_sum": 141.14264297485352,
+              "CE_mean": 0.25850300911145335
+            },
+            "conditional_EOS": {
+              "teachers": 95,
+              "nll_sum": 2.2459896206855774,
+              "CE_mean": 0.023641996007216604
+            },
+            "conditional_total": {
+              "teachers": 641,
+              "nll_sum": 143.3886325955391,
+              "CE_mean": 0.2236952146576273
+            },
+            "all": {
+              "teachers": 29216,
+              "nll_sum": 70407.46553689241,
+              "CE_mean": 2.4098940832726043
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 23498,
+              "nll_sum": 59013.337890625,
+              "CE_mean": 2.5114196055249383
+            },
+            "story": {
+              "teachers": 2028,
+              "nll_sum": 4089.0954589843745,
+              "CE_mean": 2.016319259854228
+            },
+            "ordinary_textbook": {
+              "teachers": 3049,
+              "nll_sum": 6640.31396484375,
+              "CE_mean": 2.1778661741042145
+            },
+            "conditional_outcome_body": {
+              "teachers": 546,
+              "nll_sum": 104.09987258911133,
+              "CE_mean": 0.1906591073060647
+            },
+            "conditional_EOS": {
+              "teachers": 95,
+              "nll_sum": 0.14337513968348503,
+              "CE_mean": 0.0015092119966682634
+            },
+            "conditional_total": {
+              "teachers": 641,
+              "nll_sum": 104.24324772879481,
+              "CE_mean": 0.16262597149577973
+            },
+            "all": {
+              "teachers": 29216,
+              "nll_sum": 69846.99056218192,
+              "CE_mean": 2.390710246514989
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 9,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+            "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+          },
+          "input": {
+            "index": 9,
+            "update": 320445,
+            "input_sha256": "fb4a3db43bbdeb4e85a8db17cd4d63d8911f77a335a99393fac94aba63aa0535",
+            "target_sha256": "de0202a8d341204d499d3ae2ac5c659ee48f91b8e7302f93aea5a34a325b9ccd",
+            "actual_source_routes": [
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web"
+            ],
+            "reference_token_digest": "ca797738dad4aee06c568011b7c4d33befd9bfad96f331135d96c8a448ec02c6",
+            "masked_token_digest": "d5217f9dbf7d62355071ae584b678982add3fbb1a8c69869bc8790df676d642f",
+            "teachers": 30051,
+            "teachers_by_group": {
+              "web": 25545,
+              "story": 1013,
+              "ordinary_textbook": 3048,
+              "conditional_outcome_body": 374,
+              "conditional_EOS": 71
+            },
+            "body_bytes": 116831
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 25545,
+              "nll_sum": 65271.421875,
+              "CE_mean": 2.555154506752789
+            },
+            "story": {
+              "teachers": 1013,
+              "nll_sum": 2110.39892578125,
+              "CE_mean": 2.083315820119694
+            },
+            "ordinary_textbook": {
+              "teachers": 3048,
+              "nll_sum": 7310.978515625,
+              "CE_mean": 2.3986149985646326
+            },
+            "conditional_outcome_body": {
+              "teachers": 374,
+              "nll_sum": 124.13349914550781,
+              "CE_mean": 0.3319077517259567
+            },
+            "conditional_EOS": {
+              "teachers": 71,
+              "nll_sum": 1.87542724609375,
+              "CE_mean": 0.02641446825484155
+            },
+            "conditional_total": {
+              "teachers": 445,
+              "nll_sum": 126.00892639160156,
+              "CE_mean": 0.28316612672270014
+            },
+            "all": {
+              "teachers": 30051,
+              "nll_sum": 74818.80824279785,
+              "CE_mean": 2.4897277376059983
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 25545,
+              "nll_sum": 65116.8837890625,
+              "CE_mean": 2.5491048654947153
+            },
+            "story": {
+              "teachers": 1013,
+              "nll_sum": 2013.95849609375,
+              "CE_mean": 1.9881130267460514
+            },
+            "ordinary_textbook": {
+              "teachers": 3048,
+              "nll_sum": 7135.52587890625,
+              "CE_mean": 2.3410517975414207
+            },
+            "conditional_outcome_body": {
+              "teachers": 374,
+              "nll_sum": 88.52282524108887,
+              "CE_mean": 0.2366920460991681
+            },
+            "conditional_EOS": {
+              "teachers": 71,
+              "nll_sum": 0.16422185953706503,
+              "CE_mean": 0.002312983937141761
+            },
+            "conditional_total": {
+              "teachers": 445,
+              "nll_sum": 88.68704710062593,
+              "CE_mean": 0.19929673505758635
+            },
+            "all": {
+              "teachers": 30051,
+              "nll_sum": 74355.05521116313,
+              "CE_mean": 2.4742955379575764
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 10,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+            "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+          },
+          "input": {
+            "index": 10,
+            "update": 320446,
+            "input_sha256": "2b0be64fc22d0c30d36559f210d622d985107804d5a92b2c6210f0e6efa067d4",
+            "target_sha256": "5e0f37c9530e76753aa0bb25b387ec1fb56fa33008c2453923ed31eecfe98a62",
+            "actual_source_routes": [
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook"
+            ],
+            "reference_token_digest": "86dd4373b924ff67c22ab788363793db17099f19882f6a934693da9bc46790dd",
+            "masked_token_digest": "4431b596f76f0e7d99b49a1c20c6be5edeff09ef8c154daedfd201ae3e664f6c",
+            "teachers": 30109,
+            "teachers_by_group": {
+              "web": 23505,
+              "story": 2033,
+              "ordinary_textbook": 4064,
+              "conditional_outcome_body": 433,
+              "conditional_EOS": 74
+            },
+            "body_bytes": 117579
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 23505,
+              "nll_sum": 60783.947265625,
+              "CE_mean": 2.5860007345511593
+            },
+            "story": {
+              "teachers": 2033,
+              "nll_sum": 4438.1064453125,
+              "CE_mean": 2.1830331752643874
+            },
+            "ordinary_textbook": {
+              "teachers": 4064,
+              "nll_sum": 8850.345947265625,
+              "CE_mean": 2.177742605134258
+            },
+            "conditional_outcome_body": {
+              "teachers": 433,
+              "nll_sum": 165.81461715698242,
+              "CE_mean": 0.38294368858425504
+            },
+            "conditional_EOS": {
+              "teachers": 74,
+              "nll_sum": 2.26689475774765,
+              "CE_mean": 0.030633712942535814
+            },
+            "conditional_total": {
+              "teachers": 507,
+              "nll_sum": 168.08151191473007,
+              "CE_mean": 0.3315217197529193
+            },
+            "all": {
+              "teachers": 30109,
+              "nll_sum": 74240.48117011786,
+              "CE_mean": 2.465723908801948
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 23505,
+              "nll_sum": 60649.4169921875,
+              "CE_mean": 2.580277259825037
+            },
+            "story": {
+              "teachers": 2033,
+              "nll_sum": 4311.3125,
+              "CE_mean": 2.120665272995573
+            },
+            "ordinary_textbook": {
+              "teachers": 4064,
+              "nll_sum": 8603.59912109375,
+              "CE_mean": 2.1170273427888167
+            },
+            "conditional_outcome_body": {
+              "teachers": 433,
+              "nll_sum": 123.63366699218751,
+              "CE_mean": 0.28552809928911665
+            },
+            "conditional_EOS": {
+              "teachers": 74,
+              "nll_sum": 0.8780933544039726,
+              "CE_mean": 0.011866126410864495
+            },
+            "conditional_total": {
+              "teachers": 507,
+              "nll_sum": 124.51176034659149,
+              "CE_mean": 0.2455853261273994
+            },
+            "all": {
+              "teachers": 30109,
+              "nll_sum": 73688.84037362784,
+              "CE_mean": 2.4474024502184677
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 11,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+            "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+          },
+          "input": {
+            "index": 11,
+            "update": 320447,
+            "input_sha256": "3841f1c956e44390920b39077732b79d28eb221843d795b074a52a9e1afb50b9",
+            "target_sha256": "c030b1b3608a1da14a4968a261f514333eaea24ed6d470cb4ee210997708a5bb",
+            "actual_source_routes": [
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web"
+            ],
+            "reference_token_digest": "b719c1d55c79af783a628171c16a4f62eca058bc4ee1aea31aaf8fe562dba54e",
+            "masked_token_digest": "6812b2e51cbfbf1d299ad5e011c603612bc88474bb2a3eb22a1c69630cb94dc2",
+            "teachers": 30081,
+            "teachers_by_group": {
+              "web": 24524,
+              "story": 2036,
+              "ordinary_textbook": 3050,
+              "conditional_outcome_body": 403,
+              "conditional_EOS": 68
+            },
+            "body_bytes": 117804
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 24524,
+              "nll_sum": 63649.173828125,
+              "CE_mean": 2.5953830463270675
+            },
+            "story": {
+              "teachers": 2036,
+              "nll_sum": 4266.933837890625,
+              "CE_mean": 2.095743535309737
+            },
+            "ordinary_textbook": {
+              "teachers": 3050,
+              "nll_sum": 7119.1220703125,
+              "CE_mean": 2.3341383837090164
+            },
+            "conditional_outcome_body": {
+              "teachers": 403,
+              "nll_sum": 127.21432113647461,
+              "CE_mean": 0.3156682906612273
+            },
+            "conditional_EOS": {
+              "teachers": 68,
+              "nll_sum": 1.6492945551872253,
+              "CE_mean": 0.024254331693929786
+            },
+            "conditional_total": {
+              "teachers": 471,
+              "nll_sum": 128.86361569166183,
+              "CE_mean": 0.27359578703112913
+            },
+            "all": {
+              "teachers": 30081,
+              "nll_sum": 75164.09335201979,
+              "CE_mean": 2.4987232256912932
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 24524,
+              "nll_sum": 63491.94335937501,
+              "CE_mean": 2.5889717566210653
+            },
+            "story": {
+              "teachers": 2036,
+              "nll_sum": 4173.08154296875,
+              "CE_mean": 2.0496471232655944
+            },
+            "ordinary_textbook": {
+              "teachers": 3050,
+              "nll_sum": 6963.1181640625,
+              "CE_mean": 2.282989561987705
+            },
+            "conditional_outcome_body": {
+              "teachers": 403,
+              "nll_sum": 95.15036964416504,
+              "CE_mean": 0.23610513559346163
+            },
+            "conditional_EOS": {
+              "teachers": 68,
+              "nll_sum": 0.22027624025940895,
+              "CE_mean": 0.003239356474403073
+            },
+            "conditional_total": {
+              "teachers": 471,
+              "nll_sum": 95.37064588442445,
+              "CE_mean": 0.20248544773763152
+            },
+            "all": {
+              "teachers": 30081,
+              "nll_sum": 74723.51371229067,
+              "CE_mean": 2.4840767830953316
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 12,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+            "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+          },
+          "input": {
+            "index": 12,
+            "update": 320448,
+            "input_sha256": "6d3577f39b30a94381c41081d73e6c0c02b04642a4c54d02219addf116288bdd",
+            "target_sha256": "78a18856a2402f039a2193342b3d45fb217afcff5d08e6dda95493e2908f62c0",
+            "actual_source_routes": [
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web"
+            ],
+            "reference_token_digest": "89514be684433853f9230b1dc8ffed7db5cc91857b393862a0e8b6194fe64f04",
+            "masked_token_digest": "ebc667d3a48ef9ac42787e5809ab9b80bff9b14848ebea8f1f82d68224f3794f",
+            "teachers": 29218,
+            "teachers_by_group": {
+              "web": 24527,
+              "story": 1018,
+              "ordinary_textbook": 3049,
+              "conditional_outcome_body": 530,
+              "conditional_EOS": 94
+            },
+            "body_bytes": 114750
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 24527,
+              "nll_sum": 65445.6298828125,
+              "CE_mean": 2.668309613194133
+            },
+            "story": {
+              "teachers": 1018,
+              "nll_sum": 2215.5126953125,
+              "CE_mean": 2.176338600503438
+            },
+            "ordinary_textbook": {
+              "teachers": 3049,
+              "nll_sum": 6751.1904296875,
+              "CE_mean": 2.2142310363028863
+            },
+            "conditional_outcome_body": {
+              "teachers": 530,
+              "nll_sum": 150.91783905029297,
+              "CE_mean": 0.2847506397175339
+            },
+            "conditional_EOS": {
+              "teachers": 94,
+              "nll_sum": 3.3417115211486816,
+              "CE_mean": 0.035550122565411506
+            },
+            "conditional_total": {
+              "teachers": 624,
+              "nll_sum": 154.25955057144165,
+              "CE_mean": 0.2472108182234642
+            },
+            "all": {
+              "teachers": 29218,
+              "nll_sum": 74566.59255838394,
+              "CE_mean": 2.5520772317880738
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 24527,
+              "nll_sum": 65313.6240234375,
+              "CE_mean": 2.662927550187039
+            },
+            "story": {
+              "teachers": 1018,
+              "nll_sum": 2157.876953125,
+              "CE_mean": 2.119721957883104
+            },
+            "ordinary_textbook": {
+              "teachers": 3049,
+              "nll_sum": 6587.598144531251,
+              "CE_mean": 2.160576629888898
+            },
+            "conditional_outcome_body": {
+              "teachers": 530,
+              "nll_sum": 105.91487693786621,
+              "CE_mean": 0.19983939044880417
+            },
+            "conditional_EOS": {
+              "teachers": 94,
+              "nll_sum": 0.697220079600811,
+              "CE_mean": 0.00741723488937033
+            },
+            "conditional_total": {
+              "teachers": 624,
+              "nll_sum": 106.61209701746702,
+              "CE_mean": 0.1708527195792741
+            },
+            "all": {
+              "teachers": 29218,
+              "nll_sum": 74165.71121811122,
+              "CE_mean": 2.538356876518284
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 13,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+            "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+          },
+          "input": {
+            "index": 13,
+            "update": 320449,
+            "input_sha256": "8d0fbf11f5320ce892d1d153652ca04a640ca8656d333dd3b8cf3689c46c9da5",
+            "target_sha256": "a7218f8bec21a2c7a786681bad3bd2db7e0bab07461655baebb09d09f6c97b0d",
+            "actual_source_routes": [
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "story",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web"
+            ],
+            "reference_token_digest": "bafa83fd10434309d3b4cb37b107bd91caeb82ca7c409aa55cbff0fc8d2e42d7",
+            "masked_token_digest": "a3a8dde0b7640f4af1286fb50f11ae7c9d6e7b8debd192b574378797017a3a43",
+            "teachers": 30121,
+            "teachers_by_group": {
+              "web": 24522,
+              "story": 2030,
+              "ordinary_textbook": 3047,
+              "conditional_outcome_body": 446,
+              "conditional_EOS": 76
+            },
+            "body_bytes": 119192
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 24522,
+              "nll_sum": 62281.794921875,
+              "CE_mean": 2.5398334117068346
+            },
+            "story": {
+              "teachers": 2030,
+              "nll_sum": 4278.312255859375,
+              "CE_mean": 2.107542983181958
+            },
+            "ordinary_textbook": {
+              "teachers": 3047,
+              "nll_sum": 6836.734375,
+              "CE_mean": 2.2437592303905483
+            },
+            "conditional_outcome_body": {
+              "teachers": 446,
+              "nll_sum": 143.71177673339844,
+              "CE_mean": 0.32222371464887545
+            },
+            "conditional_EOS": {
+              "teachers": 76,
+              "nll_sum": 1.9658074975013733,
+              "CE_mean": 0.02586588812501807
+            },
+            "conditional_total": {
+              "teachers": 522,
+              "nll_sum": 145.6775842308998,
+              "CE_mean": 0.2790758318599613
+            },
+            "all": {
+              "teachers": 30121,
+              "nll_sum": 73542.51913696527,
+              "CE_mean": 2.441569640349433
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 24522,
+              "nll_sum": 62151.20800781249,
+              "CE_mean": 2.5345081154804867
+            },
+            "story": {
+              "teachers": 2030,
+              "nll_sum": 4173.190185546875,
+              "CE_mean": 2.055758712092057
+            },
+            "ordinary_textbook": {
+              "teachers": 3047,
+              "nll_sum": 6633.786865234375,
+              "CE_mean": 2.1771535494697654
+            },
+            "conditional_outcome_body": {
+              "teachers": 446,
+              "nll_sum": 100.29761123657227,
+              "CE_mean": 0.22488253640487055
+            },
+            "conditional_EOS": {
+              "teachers": 76,
+              "nll_sum": 0.5804477296769619,
+              "CE_mean": 0.007637470127328446
+            },
+            "conditional_total": {
+              "teachers": 522,
+              "nll_sum": 100.87805896624923,
+              "CE_mean": 0.19325298652538167
+            },
+            "all": {
+              "teachers": 30121,
+              "nll_sum": 73059.06311756,
+              "CE_mean": 2.4255191765731547
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 14,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+            "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+          },
+          "input": {
+            "index": 14,
+            "update": 320450,
+            "input_sha256": "51d1e4e8c1b51976b03275e4dcac48bb2f6a403f9cec83ed20492f33544a97c3",
+            "target_sha256": "57df7b7b0d8454f625f1d2675c3a9935587f614e8d00fffa3ed471967805c3af",
+            "actual_source_routes": [
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web"
+            ],
+            "reference_token_digest": "dc7353b5dd8461912c8cf47fdb2ce71ab7e356514d08b7158ceab7299ebfffd3",
+            "masked_token_digest": "211f09467752625c85171233ee53695c8649abd4ba2d692b222fc25036b8ef0e",
+            "teachers": 30093,
+            "teachers_by_group": {
+              "web": 25543,
+              "story": 1015,
+              "ordinary_textbook": 3048,
+              "conditional_outcome_body": 418,
+              "conditional_EOS": 69
+            },
+            "body_bytes": 117837
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 25543,
+              "nll_sum": 65407.482421875,
+              "CE_mean": 2.560681299059429
+            },
+            "story": {
+              "teachers": 1015,
+              "nll_sum": 2054.32763671875,
+              "CE_mean": 2.0239681149938424
+            },
+            "ordinary_textbook": {
+              "teachers": 3048,
+              "nll_sum": 6651.370849609375,
+              "CE_mean": 2.182208283992577
+            },
+            "conditional_outcome_body": {
+              "teachers": 418,
+              "nll_sum": 93.15703392028809,
+              "CE_mean": 0.2228637175126509
+            },
+            "conditional_EOS": {
+              "teachers": 69,
+              "nll_sum": 1.9196958541870117,
+              "CE_mean": 0.027821679046188576
+            },
+            "conditional_total": {
+              "teachers": 487,
+              "nll_sum": 95.0767297744751,
+              "CE_mean": 0.19522942458824455
+            },
+            "all": {
+              "teachers": 30093,
+              "nll_sum": 74208.2576379776,
+              "CE_mean": 2.465964099224989
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 25543,
+              "nll_sum": 65244.7998046875,
+              "CE_mean": 2.5543123284143405
+            },
+            "story": {
+              "teachers": 1015,
+              "nll_sum": 1989.1588134765625,
+              "CE_mean": 1.959762377809421
+            },
+            "ordinary_textbook": {
+              "teachers": 3048,
+              "nll_sum": 6479.035400390625,
+              "CE_mean": 2.125667782280389
+            },
+            "conditional_outcome_body": {
+              "teachers": 418,
+              "nll_sum": 58.651326179504395,
+              "CE_mean": 0.14031417746292918
+            },
+            "conditional_EOS": {
+              "teachers": 69,
+              "nll_sum": 0.08677800931036472,
+              "CE_mean": 0.0012576523088458655
+            },
+            "conditional_total": {
+              "teachers": 487,
+              "nll_sum": 58.73810418881476,
+              "CE_mean": 0.1206121235909954
+            },
+            "all": {
+              "teachers": 30093,
+              "nll_sum": 73771.7321227435,
+              "CE_mean": 2.4514582169522314
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        },
+        {
+          "index": 15,
+          "config_sha256": "c8ad5c4b0500176bf4a5838d8fdd5c95ea2ee33b88676081cc04f33042ce3c7a",
+          "checkpoint": {
+            "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/interleaved-outcome-order-20261006/interleaved_outcome_EOS/training/checkpoint-00323503.pt",
+            "sha256": "32e1bf47d5aaee27364aa108831e5bb1ea8dae3e4f5bbd80267fef86a99ad192"
+          },
+          "input": {
+            "index": 15,
+            "update": 320451,
+            "input_sha256": "44cf3ec6e97346ff221948e7d8bb8dec19fbf5a2ef5e5a96804777c38b2528cb",
+            "target_sha256": "761851543bfe131a311def433c67132769a7a9e488a197a76267b8ace70c7628",
+            "actual_source_routes": [
+              "story",
+              "ordinary_textbook",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "story",
+              "ordinary_textbook",
+              "web",
+              "conditional_textbook",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "web",
+              "ordinary_textbook",
+              "web"
+            ],
+            "reference_token_digest": "8df15572536212e7143ef5ed7c26a0c70244e20de9546a3d0f74ffd26ec573a3",
+            "masked_token_digest": "83950ca52e867264576e3f491e376baaa850aab75a4159dd6871d0da3a643770",
+            "teachers": 30027,
+            "teachers_by_group": {
+              "web": 23501,
+              "story": 2029,
+              "ordinary_textbook": 4067,
+              "conditional_outcome_body": 366,
+              "conditional_EOS": 64
+            },
+            "body_bytes": 119949
+          },
+          "isolated_groups": {
+            "web": {
+              "teachers": 23501,
+              "nll_sum": 60417.0810546875,
+              "CE_mean": 2.5708302223176673
+            },
+            "story": {
+              "teachers": 2029,
+              "nll_sum": 4160.88525390625,
+              "CE_mean": 2.0507073700868657
+            },
+            "ordinary_textbook": {
+              "teachers": 4067,
+              "nll_sum": 9286.930419921875,
+              "CE_mean": 2.2834842438952236
+            },
+            "conditional_outcome_body": {
+              "teachers": 366,
+              "nll_sum": 81.86487770080566,
+              "CE_mean": 0.22367452923717396
+            },
+            "conditional_EOS": {
+              "teachers": 64,
+              "nll_sum": 1.5594561994075775,
+              "CE_mean": 0.0243665031157434
+            },
+            "conditional_total": {
+              "teachers": 430,
+              "nll_sum": 83.42433390021324,
+              "CE_mean": 0.1940100788377052
+            },
+            "all": {
+              "teachers": 30027,
+              "nll_sum": 73948.32106241584,
+              "CE_mean": 2.462727580591329
+            }
+          },
+          "cached_full_causal_groups": {
+            "web": {
+              "teachers": 23501,
+              "nll_sum": 60249.896484375,
+              "CE_mean": 2.563716288003702
+            },
+            "story": {
+              "teachers": 2029,
+              "nll_sum": 3993.171142578125,
+              "CE_mean": 1.9680488627787702
+            },
+            "ordinary_textbook": {
+              "teachers": 4067,
+              "nll_sum": 9080.7001953125,
+              "CE_mean": 2.2327760499907794
+            },
+            "conditional_outcome_body": {
+              "teachers": 366,
+              "nll_sum": 56.96275806427002,
+              "CE_mean": 0.15563595099527328
+            },
+            "conditional_EOS": {
+              "teachers": 64,
+              "nll_sum": 0.2472461611032486,
+              "CE_mean": 0.0038632212672382593
+            },
+            "conditional_total": {
+              "teachers": 430,
+              "nll_sum": 57.21000422537327,
+              "CE_mean": 0.13304652145435644
+            },
+            "all": {
+              "teachers": 30027,
+              "nll_sum": 73380.977826491,
+              "CE_mean": 2.443833144386419
+            }
+          },
+          "cached_full_causal_result_sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+        }
+      ],
+      "read_only_checks": {
+        "weights_unchanged": true,
+        "no_gradients": true,
+        "eval_mode": true,
+        "finite_weights": true,
+        "RNG_unchanged_during_forwards": true
+      },
+      "summary": {
+        "groups": {
+          "web": {
+            "teachers": 390352,
+            "isolated_teacher_weighted_CE": 2.5735666667720736,
+            "cached_full_teacher_weighted_CE": 2.5674472875603302,
+            "teacher_weighted_CE_change": 0.006119379211743503,
+            "supported_batches": 16,
+            "positive_batches": 16,
+            "batches_increase_at_least_point1": 0,
+            "minimum_CE_change": 0.004362135801085021,
+            "median_CE_change": 0.0059880158698624175,
+            "maximum_CE_change": 0.008716071182821139
+          },
+          "story": {
+            "teachers": 26425,
+            "isolated_teacher_weighted_CE": 2.091600694033822,
+            "cached_full_teacher_weighted_CE": 2.0299729343439568,
+            "teacher_weighted_CE_change": 0.06162775968986518,
+            "supported_batches": 16,
+            "positive_batches": 16,
+            "batches_increase_at_least_point1": 0,
+            "minimum_CE_change": 0.015406923359451152,
+            "median_CE_change": 0.061834047301555506,
+            "maximum_CE_change": 0.09520279337364279
+          },
+          "ordinary_textbook": {
+            "teachers": 52861,
+            "isolated_teacher_weighted_CE": 2.2587652262168114,
+            "cached_full_teacher_weighted_CE": 2.2048023242856263,
+            "teacher_weighted_CE_change": 0.05396290193118509,
+            "supported_batches": 16,
+            "positive_batches": 16,
+            "batches_increase_at_least_point1": 0,
+            "minimum_CE_change": 0.02810067372915981,
+            "median_CE_change": 0.05616571903927481,
+            "maximum_CE_change": 0.0666056809207829
+          },
+          "conditional_outcome_body": {
+            "teachers": 7258,
+            "isolated_teacher_weighted_CE": 0.2752947829649382,
+            "cached_full_teacher_weighted_CE": 0.19719137216474963,
+            "teacher_weighted_CE_change": 0.07810341080018855,
+            "supported_batches": 16,
+            "positive_batches": 16,
+            "batches_increase_at_least_point1": 0,
+            "minimum_CE_change": 0.05410193114002726,
+            "median_CE_change": 0.0810563475587437,
+            "maximum_CE_change": 0.09741558929513838
+          },
+          "conditional_EOS": {
+            "teachers": 1215,
+            "isolated_teacher_weighted_CE": 0.030822170075075126,
+            "cached_full_teacher_weighted_CE": 0.008565040381908907,
+            "teacher_weighted_CE_change": 0.02225712969316622,
+            "supported_batches": 16,
+            "positive_batches": 16,
+            "batches_increase_at_least_point1": 0,
+            "minimum_CE_change": 0.018228417997689622,
+            "median_CE_change": 0.021473775563403456,
+            "maximum_CE_change": 0.028195749011452068
+          },
+          "conditional_total": {
+            "teachers": 8473,
+            "isolated_teacher_weighted_CE": 0.24023822393493896,
+            "cached_full_teacher_weighted_CE": 0.17014298397684083,
+            "teacher_weighted_CE_change": 0.07009523995809813,
+            "supported_batches": 16,
+            "positive_batches": 16,
+            "batches_increase_at_least_point1": 0,
+            "minimum_CE_change": 0.04992692486216971,
+            "median_CE_change": 0.07254832744108443,
+            "maximum_CE_change": 0.08593639362551989
+          },
+          "all": {
+            "teachers": 478111,
+            "isolated_teacher_weighted_CE": 2.470772625900897,
+            "cached_full_teacher_weighted_CE": 2.4551618673301543,
+            "teacher_weighted_CE_change": 0.015610758570743045,
+            "supported_batches": 16,
+            "positive_batches": 16,
+            "batches_increase_at_least_point1": 0,
+            "minimum_CE_change": 0.011039408908509518,
+            "median_CE_change": 0.015515412450601174,
+            "maximum_CE_change": 0.019183836757615147
+          }
+        },
+        "descriptive_conditional_history_dependence_marker": false,
+        "marker_definition": "Conditional teacher-weighted CE increase>=.1nats and logical batches with increase>=.1nats>=12/16; local TRAIN description, not quality."
+      }
+    }
+  },
+  "GPU_seconds": 6.2112932490126695,
+  "RNG_restored": true,
+  "completed_endpoint_history_dependence_marker": false,
+  "optimizer_updates": 0,
+  "new_teacher_tokens": 0,
+  "distinct_TRAIN_input_tokens": 524288,
+  "logical_TRAIN_batches_per_model": 16,
+  "cached_full_causal_reference": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-gradient-attribution-20261006/result.json",
+    "sha256": "8c7c9d08bd8a4ac87fe2eb1501d49e7f5de6b42f7da3cdfc465ea4e9e527c7a7"
+  },
+  "next_action": "End this packing hypothesis; no packing training variant. Determine a distinct Base mechanism from retained evidence.",
+  "limitations": "Local16 correlated TRAIN batches/two fixed checkpoints; nativeBF16/math; changing only attention availability with unchanged absolute RoPE positions. Cached full-history CE retained; only first8 native control per endpoint rerun. Context reliance does not establish natural generation improvement or model-capacity limit.",
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false
+}
