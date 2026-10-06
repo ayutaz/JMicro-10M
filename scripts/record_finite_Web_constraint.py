@@ -32,12 +32,18 @@ def main(phase):
         job=read_json(jobdir/'job.json');live=alive(job)
         if live!=running:raise ValueError('Actual process does not match milestone')
         report.update(actual_job=job,actual_live_process=live,GPU_seconds=job['GPU_elapsed_seconds'])
-        if phase=='probe':
+        if phase in ('probe','budget_rejected'):
             r=study.probe_evidence();estimate=study.estimate_training(r)
             report.update(result=study.reference(jobdir/'result.json'),actual_probe=r,
                 estimated_science_GPU_seconds_with_margin=estimate,
                 estimated_total_GPU_seconds=estimate+r['GPU_seconds'],within_budget=estimate+r['GPU_seconds']<=2400)
             detail=f"実CUDA全state8対4+4/有限値/LR/元Webcursor/実制約に成功、32timingと固定旧CPの有限投影control完了。検証GPU{r['GPU_seconds']:.6f}秒/120、科学教師0。最悪ケース科学予測{estimate:.6f}秒、検証込み{estimate+r['GPU_seconds']:.6f}秒/2400。予測は品質/完成の証明ではない。上限内だけscience凍結、同staged実91,641,755CE教師＋追加Web gradient別会計/同日本語・全80/旧全gate採否へ進む。"
+            if phase=='budget_rejected':
+                if estimate+r['GPU_seconds']<=2400 or study.CONFIG.exists():raise ValueError('Actual rejected budget/no scientific config required')
+                report.update(scientific_launched=False,science_config_created=False,
+                    decision='Current exact FP32/math implementation exceeds fixed worst-case budget; no training launch.',
+                    fixed_packet_and_quality_criteria_retained=True)
+                detail=f"実CUDA probeは成功・actual{job['pid']}終端/実不在、検証GPU{r['GPU_seconds']:.6f}秒。本科学最悪予測{estimate:.6f}秒＋検証={estimate+r['GPU_seconds']:.6f}秒>2400、実--freezeが拒否し科学configなし/本学習0。有限投影controlの実NLL2.881102→2.604513は上限2.607075を満たすが学習品質の証明ではない。追加FP32/math保持oracleの最悪5forward+1gradient費用が支配的。上限/packet/制約/品質を変えて救済せず、元10B UI復帰・Base未完成。次は同固定TRAIN/制約を維持する単一のoracle計算高速化案について、数値誤差と実GPU速度を事前条件付きで検証する計画を定義。本科学/Chat/量子化は起動しない。"
         elif phase=='probe_failure':
             if job['status']!='failed_or_interrupted':raise ValueError('Actual terminal failure required')
             partial=read_json(jobdir/'progress-result.json') if (jobdir/'progress-result.json').exists() else {}
@@ -83,5 +89,5 @@ def main(phase):
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('phase',choices=('preparation','probe','probe_failure','launch','terminal'))
+    parser=argparse.ArgumentParser();parser.add_argument('phase',choices=('preparation','probe','budget_rejected','probe_failure','launch','terminal'))
     main(parser.parse_args().phase)

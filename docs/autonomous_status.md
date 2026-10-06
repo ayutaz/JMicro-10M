@@ -1,3 +1,15 @@
+Base専用有限Web実損失制約: budget_rejected（2026-10-06 JST）。Base未完成・実完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+実CUDA probeは成功・actual643402終端/実不在、検証GPU34.460526秒。本科学最悪予測5509.804174秒＋検証=5544.264699秒>2400、実--freezeが拒否し科学configなし/本学習0。有限投影controlの実NLL2.881102→2.604513は上限2.607075を満たすが学習品質の証明ではない。追加FP32/math保持oracleの最悪5forward+1gradient費用が支配的。上限/packet/制約/品質を変えて救済せず、元10B UI復帰・Base未完成。次は同固定TRAIN/制約を維持する単一のoracle計算高速化案について、数値誤差と実GPU速度を事前条件付きで検証する計画を定義。本科学/Chat/量子化は起動しない。
+
+固定TRAIN保持はheld-out/自然品質の証明ではない。元LR.00001/Adam/全source/条件outcome+EOS maskと旧相対・絶対・歴史Webの全品質基準を保持。合格recipeのみ独立学習seed/full dev/protected test/採用へ接続。Phase0–3/旧数値7/全失敗保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
+Base専用有限Web実損失制約: probe（2026-10-06 JST）。Base未完成・実完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+実CUDA全state8対4+4/有限値/LR/元Webcursor/実制約に成功、32timingと固定旧CPの有限投影control完了。検証GPU34.460526秒/120、科学教師0。最悪ケース科学予測5509.804174秒、検証込み5544.264699秒/2400。予測は品質/完成の証明ではない。上限内だけscience凍結、同staged実91,641,755CE教師＋追加Web gradient別会計/同日本語・全80/旧全gate採否へ進む。
+
+固定TRAIN保持はheld-out/自然品質の証明ではない。元LR.00001/Adam/全source/条件outcome+EOS maskと旧相対・絶対・歴史Webの全品質基準を保持。合格recipeのみ独立学習seed/full dev/protected test/採用へ接続。Phase0–3/旧数値7/全失敗保持、WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用有限Web実損失制約: preparation（2026-10-06 JST）。Base未完成・実完成時通知停止、Chat/Dialogue/SFT/量子化なし。
 
 CPU4testsで有限制約・拒否時rollback・全state連続対再開を確認。CPU準備1.431405秒、固定TRAIN32 Web窓/32638body教師・32768input・130336bytesを既cacheから再利用。新GPU/本学習0。次はownCUDA8対4+4・32timing・有限投影数値controlと最悪ケース速度を120秒内で測り、検証を含む2400秒内の場合だけ本学習へ進む。
