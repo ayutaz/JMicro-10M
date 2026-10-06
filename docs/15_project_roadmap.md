@@ -1,3 +1,9 @@
+Base専用Fisher anchor: launch（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+科学actual648919/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start17456444の実稼働を確認、stagefisher_anchor-training/観測教師26812706/100M。科学GPU上限1777.215966秒。250更新ごと全state原子的CP、実PID不在後 scripts/run_fisher_parameter_anchor.ps1 -Mode Train -Worker で再開。終端・全日本語/80内容採否は未完了、元UIは終端finallyで復帰。
+
+全旧失敗/数値7/Phase0–3/既存相対・絶対・歴史Web1%品質基準保持。field/seed/回数/lambda/source/mask/CP/decoder救済sweepなし。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用Fisher anchor: probe（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
 
 ownCUDA4連続対2+2の全state/history/有限値/LR/親Adam・scheduler・RNG/Webcursor・anchor/fieldに合格、32timing完了。実40検証更新/1307952教師は科学と別、ownprobe19.161004秒/120。1.3margin・200秒非学習余裕付き科学予測805.390661秒、field+probe込み828.174695/1800。次は予算内のみ同full100M一候補/同日本語・dev256・native80/旧全gate採否へ。GPUgateは品質の証明ではない。
