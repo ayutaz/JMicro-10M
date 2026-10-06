@@ -1,3 +1,8 @@
+Base限定・CEの100M/評価/全80内容完了、contrast学習継続（2026-10-07 JST）。
+
+actual676378/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18891158を実ps確認、stage contrast-training。CE checkpoint-00017698.pt（SHAf691a758…）と全評価・個別notesは完了、BPB0.998487/EOS19/反復45/一貫性2/適切2で元Base基準不合格。可搬reports/phase6/natural-context-contrast-CE-evidence-20261007/13text/2664967byteとmaster natural_context_contrast_CE_completion.jsonを保存。全科学は未終端なので新GPUjob/再開/最終reviewer実行をしない。code/config不変、既存5229秒以内でcontrastを続ける。
+
+contrast評価後、WSL native uv run --frozen --extra hub --extra data --extra ml --extra export scripts/review_natural_context_contrast.py --template contrastで未採点notesを作り、全80を個別に読んでnatural_context_contrast_contrast_observations.tsvへ六列を記入。同uvからscripts/record_natural_context_contrast_content.py contrast reports/phase6/natural_context_contrast_contrast_observations.tsvで取り込む（採点済みの上書き拒否）。実科学process終了後に同uvからscripts/review_natural_context_contrast.pyを引数なしで実行。旧source全scan/GPU再推論なし。合格candidateだけ独立seed/full DEV/protected TEST/adoption、Base完成時通知停止、Chat/Dialogue/SFT/量子化なし、WSL uv3.12.7/local commit/pushなし。以下は過去の履歴。
 Base専用科学比較の継続と終了後レビュー準備（2026-10-07 JST）。
 
 actual676378/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18891158を実ps確認、同各100M/5229秒の凍結科学jobを継続。新scripts/review_natural_context_contrast.pyとconfigs/phase6/natural_context_contrast_review.jsonをnativeへ保存、CPU8tests/0.96秒、稼働中の最終レビューを実CLIで拒否しreview出力なし。凍結科学CODE/config変更・重複GPUjobなし。

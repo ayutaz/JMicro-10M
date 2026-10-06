@@ -1,3 +1,8 @@
+Base限定・同100M CE対照の評価/内容完了、contrast継続（2026-10-07 JST）。
+
+[従来CEの実終端・全80内容](../reports/phase6/natural_context_contrast_CE_completion.json): 正確100M教師/17698更新、BPB0.998487、意味62.500%/JBLiMP77.341%/JCQA35.031%、文法44/関連25/一貫性2/適切完結2/EOS19/反復45（各80）、Unicode・role・empty0。元絶対Base基準と歴史Web1% BPB guard未達でCE採用なし。全80非blind Codex notesとraw評価を保存、独立人間/最終Base品質証明とはしない。
+
+科学actual676378は同源/各100Mのcontrast-trainingを継続、source/config/予算不変。次はcontrast100Mと全日本語/全80内容→実終了後の両arm160採否/同CE digest・会計/元全gate。資格のある固定candidateだけ独立学習seed/full DEV/protected TEST/adoption。Base完成時通知停止、Chat/SFT/量子化なし、以下は過去の履歴。
 Base限定・比較学習継続、採否の準備完了（2026-10-07 JST）。
 
 [終了後レビュー処理/実CPU確認](../reports/phase6/natural_context_contrast_review_preparation.json): 同各100M科学actual676378を継続、科学code/config不変。新reviewerは既存strong一貫性23/EOS76/反復2に対する相対条件と絶対Base/historical Webを維持し、contrastにはmatched CE改善も要求。全160個別raw-bound内容、実終端full-state/同CE digest/cursor/各教師quota/両CUDA再開/全日本語を確認する準備。CPU8checks/0.96秒とactual live最終レビュー拒否確認、GPU/新教師/内容採点0。

@@ -1,3 +1,10 @@
+Base限定・従来CE100M/全日本語/全80内容を完了、contrast本学習継続（2026-10-07 JST）。
+
+[CE終端と全80個別レビュー証拠](../reports/phase6/natural_context_contrast_CE_completion.json)。従来CEは17,698更新/科学教師100,000,000を正確に終了、Web75M/textbook20M/story5M、元EOS657450/148625/38222、終端checkpoint f691a7587c03c51293a2e77889307da0efa18d2349c13e4f77439fd339586967。固定DEV256/472055byte/122343tokenのBPB0.998487、意味62.500%/JBLiMP77.341%/JCQA35.031%、EOS19/80・反復45/80・Unicode/role/empty0。全80を個別に読みraw SHA付きnotes/元TSV理由へ保存、文法2=44/関連2=25/一貫性2=2/適切完結2。非blind Codex診断で独立人間ではない。局所文法が読めても同語・接続節の循環、数や時間/否定条件の喪失、説明のない視点転換が強い。自然な完結はbase-001と086であり、抽象的な短さだけを失敗にせず、数・固有名詞の誤りを自動的な文法0にもしていない。
+
+既存絶対基準とhistorical Web BPB<=0.9812859519097707を未達、CEは最終Base検証へ進まない。両条件の比較採否はまだ未完了。record_natural_context_contrast_content.pyは個別TSVを取り込み、既存validatorで全80 raw byte/IDs/固定prefix/自然EOS/notes hash/全日本語/共通byteを確認、採点を生成しない。未採点templateのみ置換し、既採点notesを上書きしない。実CPU取込成功、追加GPU/教師0。CEのraw評価/notes/TSV/recipe等13text・2,664,967byteを可搬archiveへ保存、checkpoint tensor/本教材/native全metricsは元WSLに保持。旧大容量source再照合・GPU再推論なし。
+
+同科学actual676378/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18891158は実ps生存確認、contrast-trainingへ進行、科学code/config/5229秒上限不変、CE parentとは同元10Bからfresh Adamを使う。直近contrast loss/CE/非ゼロaux勾配・表現variance有限、teacher増加・CP保存を確認。全体は実行中、Base未採用・Chat/Dialogue/SFT/量子化なし。次は同contrast100M/固定日本語/全80内容→実process終了後に全160採否と同CE accounting/既存strong・absolute・Web gates。合格candidateだけ独立学習seed/full DEV/protected final TEST/adoption。Base完成時通知して停止、元失敗/Phase0–3/基準保持、WSL uv/local commitのみ/pushなし。以下は過去の履歴。
 Base限定・本比較継続と終了後レビュー処理の準備完了（2026-10-07 JST）。
 
 [レビュー準備証拠](../reports/phase6/natural_context_contrast_review_preparation.json)・[判定policy](../configs/phase6/natural_context_contrast_review.json)。scripts/review_natural_context_contrast.pyを追加し、実終了/PID・boot・start不在・同config/累積予算・各100M教師・両arm同CE digest/counter/cursor、終端checkpointのAdam/scheduler/RNG/sampler/元parent/原unit会計、実CUDA保存再開gate、固定日本語と全160 raw-bound notesを再利用して採否を集計する。旧13GB記事index/4GB streamの再scan・GPU再推論なし。既存helperを使い、strong source_order一貫性23/EOS76/反復2に対する+8/paired CI lower>0・非悪化、文法56/一貫性27/適切27/EOS37/反復18等の絶対条件、歴史Web BPB1% guardを維持。contrastはmatched CE対照のgateも必要で、弱い対照との差だけをBase資格にしない。
