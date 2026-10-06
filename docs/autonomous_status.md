@@ -1,3 +1,20 @@
+Base限定・Muon100M比較の全評価を終了、不採用（2026-10-07 JST）。Baseは未完成・未採用。
+
+[終了記録](../reports/phase6/base_muon_comparison_completion.json)・[全80レビュー](../reports/phase6/base_muon_comparison_review.json)・[個別観察](../reports/phase6/base_muon_observations.tsv): actual705306/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start21012791はcomplete・実process不在。terminal full stateで元gold100,000,000教師/17,698更新を確認、最終heartbeat99,900,395/17,680は途中値として保持。科学GPU1,900.415525秒（31.7分）/固定cap4,331秒、probe込み1,910.642585秒/事前総cap4,800秒。最終checkpoint SHA fab4bb0db05aee57759265de5ec38acd1e7f8a58b3a9357e967952ed1a5f9dd7。native10,001,152params、追加params/新distinct教材0。全native・Muon/AdamW・scheduler・RNG・sampler・全17,698完了metrics・有限値/会計とcached CE100Mの同一元教師/source/EOS/input/physical/bodybytes/digest/full sampler一致を実レビュー。cached対照のGPU再実行/再採点0。
+
+|条件|共通byte BPB|文法2/80|関連2/80|一貫性2/80|適切完結/80|EOS/80|自動反復/80|
+|---|---:|---:|---:|---:|---:|---:|---:|
+|cached CE100M|0.998487|44|25|2|2|19|45|
+|Muon100M|0.999279|52|26|1|2|24|45|
+
+全80を個別に読み、prefix/text/generated IDs/停止が完全一致した32件は既存CEの理由・採点を再利用、変化した48件へ個別理由を保存。非blind Codexの反復DEV判定で独立人間ではない。木や犬の創作・擬人化はgold不一致だけで減点せず、数値/条件の誤りと文法を分離。自動反復falseでも同語の循環は内容評価へ記録した。EOS増加だけで適切な完結としない。一貫性差-1/80、paired95%CI[-.0375,0]で有意な悪化の確定ではないが改善条件は未達。意味192件59.896%、JBLiMP331件77.341%、JCQA1,119件35.389%、Unicode/role/empty各0。共通256文書/472,055bytes/122,343tokensでBPBを比較。matched CE/strong relative・absolute・historical Webの全品質条件未達、eligible=false。単一成熟親・保守的100M optimizer移行の負結果であり、全Muon/10M容量/追加学習の無効を証明しない。
+
+review_base_muon.py --templateの終端state監査、全80notesのnative codec/raw SHA/固定suite・内容/同byte/日本語レビュー、complete_base_muon.pyの実終了/UI復帰/可搬保存はすべて実成功。41text/103,241,988bytes、gzip45,247,981bytes/SHA dad32c9b7b6b115331de6d2eb4ebd7b468fcdcf8b1cfb553fc2ee115e39dda41をWindowsへ保存・一度照合、full checkpointsはWSL保持。元10B UI actual707311/同boot/start21203291を実processとHTTP親SHA410f975d…/10,000,007,168/busy=falseで確認。新科学GPUjobなし。
+
+この固定momentum.95/Nesterov/NS5/match_rms_adamw/constant LR1e-5条件を閉じ、momentum/NS/scale/LR/source/親/batch/教師/上限による救済をしない。次の具体的アクションは既存比較の品質・会計・TRAIN内容観察を統合し、追加学習前に未検証の一要因を特定して固定対照・実測予算・完了条件を定めること。既測定のpacking/BOS・teacher transfer・sequence UL・next-two・Attention・構造予算の負結果を保持し再実行しない。corpus全量再scan・Tokenizer再学習・自動20B/50B延長なし。
+
+Base未完成、独立学習seed/full DEV/protected final TEST/adoptionは資格のある候補にのみ実行し今回は未実施。実Baseの全評価・採用が完了したらユーザーへ知らせて停止する。Chat/Dialogue/SFT/量子化に進まない。Python3.12.7はWSL uv、verified local commitのみ、自動pushなし。Phase0–3/全五目標/旧数値7失敗/全品質基準を保持。直前の待機turnは実PID・教師/保存増加を確認したverified wait、今回は終端・全80採否・可搬保存のprogress。以下は過去の履歴。
+
 追加準備・Muon学習継続（2026-10-07 JST）。
 
 前goal turnはnative Muonの実CUDA検証・元100M科学起動・7aab865保存のprogress。actual705306/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start21012791は実process稼働を再確認。22:53:31Zに14,120,225元教師/2,500更新/loss2.660657有限、checkpoint-00002500.ptを保持。失敗や停止の証拠はなく、同凍結config・4,331科学GPU秒/総4,800秒内で継続、重複起動なし。
