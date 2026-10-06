@@ -31,7 +31,12 @@ def archive(mode):
                 raise ValueError('Actual terminal raw-bound review required')
             names += ['configs/phase6/original_web_retention_comparison.json',
                 'reports/phase6/original_web_retention_notes.json',
-                'reports/phase6/original_web_retention_comparison_review.json']
+                'reports/phase6/original_web_retention_comparison_review.json',
+                'reports/phase6/original_web_retention_observations.tsv',
+                'scripts/prepare_original_web_retention_review.py',
+                'scripts/prepare_mature_base_content_review.py',
+                'reports/phase6/mature_base_relation_notes.json',
+                'reports/phase6/mature-base-condition-comparison-20261006/evaluation/relation/evaluation/generation.json']
         else:
             study.probe_evidence()
     paths={p for p in folder.rglob('*') if p.is_file() and p.suffix in ('.json','.jsonl','.py','.ps1','.xml','.tsv')}

@@ -1,0 +1,537 @@
+{
+  "status": "original_Web_retention100M_all80_and_reused_selected_Web100M_reviewed",
+  "created_at": "2026-10-06T04:32:20.636476Z",
+  "summaries": {
+    "control": {
+      "BPB": 1.026303661748729,
+      "rates": {
+        "outputs": 80,
+        "eos": 48,
+        "repetition": 20,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 68,
+      "relevance2": 73,
+      "coherent": 9,
+      "appropriate": 27,
+      "generation_sha256": "0331b610be42b8d683884f837e8684c1b833fc727e6ee207f138f6658e459bcb",
+      "notes_sha256": "4265234740cee04d0ca9d7482d090a2b3c8896128f32fe99223f3ce3d3f95c6b",
+      "Japanese": {
+        "semantics": 0.640625,
+        "jblimp": 0.7643504531722054,
+        "jcqa": 0.3521000893655049
+      },
+      "additional_teacher_tokens": 100000000,
+      "independent_human_blind": false
+    },
+    "original_web": {
+      "BPB": 0.9909362016606469,
+      "rates": {
+        "outputs": 80,
+        "eos": 34,
+        "repetition": 21,
+        "unicode_failure": 1,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 72,
+      "relevance2": 68,
+      "coherent": 12,
+      "appropriate": 26,
+      "generation_sha256": "b8f3c968c5956cd2497cbeff14d27a84ebae7996a0e3bb199927c3e7433c3d37",
+      "notes_sha256": "3992ec51e542cfc38cbb57c68b43540400ae1a7f37b1729c7e5fee5292c12ccc",
+      "Japanese": {
+        "semantics": 0.5989583333333334,
+        "jblimp": 0.7552870090634441,
+        "jcqa": 0.355674709562109
+      },
+      "additional_teacher_tokens": 100000000,
+      "independent_human_blind": false
+    }
+  },
+  "primary_comparison": "original_web-vs-selected_web",
+  "quality_comparison": {
+    "checks": {
+      "coherence_gain_at_least8": false,
+      "paired_CI_lower_above0": false,
+      "EOS_nonworsening": false,
+      "repetition_nonworsening": false,
+      "no_empty_role_unicode": false,
+      "BPB_gate": true,
+      "appropriate_completion_not_punctuation": true
+    },
+    "passed": false,
+    "difference_count": 3,
+    "CI95": [
+      -0.0625,
+      0.1375
+    ]
+  },
+  "absolute_dev_screen": {
+    "grammar_at_least56": true,
+    "coherence_at_least27": false,
+    "appropriate_at_least27": false,
+    "EOS_at_least37": false,
+    "repetition_at_most18": false,
+    "no_empty_role_unicode": false
+  },
+  "original_Web": {
+    "EOS_at_least8_more": true,
+    "repetition_no_worse": true,
+    "no_empty_role_unicode": false,
+    "BPB_degradation_at_most1percent": false,
+    "no_punctuation_only_stops": true
+  },
+  "retained_source_checks": {
+    "short_source_cursors_and_accounting_equal": true,
+    "original_Web_cursor_retained": true,
+    "Web_blocks_consumed": 73421
+  },
+  "eligible_for_final_Base_validation": false,
+  "transfer_aggregates": {
+    "parent10B": {
+      "sum_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.5703125,
+          "both_correct": 23,
+          "same_unique_candidate": 100,
+          "aligned_context_margin_shift": 105
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.578125,
+          "both_correct": 15,
+          "same_unique_candidate": 44,
+          "aligned_context_margin_shift": 48
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.5625,
+          "both_correct": 8,
+          "same_unique_candidate": 56,
+          "aligned_context_margin_shift": 57
+        }
+      },
+      "mean_token_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.59765625,
+          "both_correct": 26,
+          "same_unique_candidate": 101,
+          "aligned_context_margin_shift": 105
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.6171875,
+          "both_correct": 16,
+          "same_unique_candidate": 47,
+          "aligned_context_margin_shift": 48
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.578125,
+          "both_correct": 10,
+          "same_unique_candidate": 54,
+          "aligned_context_margin_shift": 57
+        }
+      },
+      "mean_byte_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.59375,
+          "both_correct": 25,
+          "same_unique_candidate": 102,
+          "aligned_context_margin_shift": 107
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.625,
+          "both_correct": 17,
+          "same_unique_candidate": 46,
+          "aligned_context_margin_shift": 49
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.5625,
+          "both_correct": 8,
+          "same_unique_candidate": 56,
+          "aligned_context_margin_shift": 58
+        }
+      }
+    },
+    "selected_web": {
+      "sum_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.7421875,
+          "both_correct": 76,
+          "same_unique_candidate": 38,
+          "aligned_context_margin_shift": 110
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.9453125,
+          "both_correct": 57,
+          "same_unique_candidate": 7,
+          "aligned_context_margin_shift": 64
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.5390625,
+          "both_correct": 19,
+          "same_unique_candidate": 31,
+          "aligned_context_margin_shift": 46
+        }
+      },
+      "mean_token_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.7421875,
+          "both_correct": 76,
+          "same_unique_candidate": 38,
+          "aligned_context_margin_shift": 110
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.953125,
+          "both_correct": 58,
+          "same_unique_candidate": 6,
+          "aligned_context_margin_shift": 64
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.53125,
+          "both_correct": 18,
+          "same_unique_candidate": 32,
+          "aligned_context_margin_shift": 46
+        }
+      },
+      "mean_byte_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.76953125,
+          "both_correct": 83,
+          "same_unique_candidate": 31,
+          "aligned_context_margin_shift": 110
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.953125,
+          "both_correct": 58,
+          "same_unique_candidate": 6,
+          "aligned_context_margin_shift": 64
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.5859375,
+          "both_correct": 25,
+          "same_unique_candidate": 25,
+          "aligned_context_margin_shift": 46
+        }
+      }
+    },
+    "original_web": {
+      "sum_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.63671875,
+          "both_correct": 57,
+          "same_unique_candidate": 49,
+          "aligned_context_margin_shift": 98
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.9296875,
+          "both_correct": 55,
+          "same_unique_candidate": 9,
+          "aligned_context_margin_shift": 64
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.34375,
+          "both_correct": 2,
+          "same_unique_candidate": 40,
+          "aligned_context_margin_shift": 34
+        }
+      },
+      "mean_token_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.63671875,
+          "both_correct": 57,
+          "same_unique_candidate": 49,
+          "aligned_context_margin_shift": 98
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.9375,
+          "both_correct": 56,
+          "same_unique_candidate": 8,
+          "aligned_context_margin_shift": 64
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.3359375,
+          "both_correct": 1,
+          "same_unique_candidate": 41,
+          "aligned_context_margin_shift": 34
+        }
+      },
+      "mean_byte_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.65234375,
+          "both_correct": 61,
+          "same_unique_candidate": 45,
+          "aligned_context_margin_shift": 98
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.9453125,
+          "both_correct": 57,
+          "same_unique_candidate": 7,
+          "aligned_context_margin_shift": 64
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.359375,
+          "both_correct": 4,
+          "same_unique_candidate": 38,
+          "aligned_context_margin_shift": 34
+        }
+      }
+    }
+  },
+  "retention_aggregates": {
+    "parent10B": {
+      "sum_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.55859375,
+          "both_correct": 22,
+          "same_unique_candidate": 99,
+          "aligned_context_margin_shift": 80
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.59375,
+          "both_correct": 15,
+          "same_unique_candidate": 46,
+          "aligned_context_margin_shift": 40
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.5234375,
+          "both_correct": 7,
+          "same_unique_candidate": 53,
+          "aligned_context_margin_shift": 40
+        }
+      },
+      "mean_token_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.55859375,
+          "both_correct": 20,
+          "same_unique_candidate": 103,
+          "aligned_context_margin_shift": 81
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.6015625,
+          "both_correct": 15,
+          "same_unique_candidate": 47,
+          "aligned_context_margin_shift": 39
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.515625,
+          "both_correct": 5,
+          "same_unique_candidate": 56,
+          "aligned_context_margin_shift": 42
+        }
+      },
+      "mean_byte_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.515625,
+          "both_correct": 10,
+          "same_unique_candidate": 112,
+          "aligned_context_margin_shift": 80
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.546875,
+          "both_correct": 8,
+          "same_unique_candidate": 54,
+          "aligned_context_margin_shift": 41
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.484375,
+          "both_correct": 2,
+          "same_unique_candidate": 58,
+          "aligned_context_margin_shift": 39
+        }
+      }
+    },
+    "selected_web": {
+      "sum_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.7265625,
+          "both_correct": 64,
+          "same_unique_candidate": 58,
+          "aligned_context_margin_shift": 104
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.8359375,
+          "both_correct": 46,
+          "same_unique_candidate": 15,
+          "aligned_context_margin_shift": 58
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.6171875,
+          "both_correct": 18,
+          "same_unique_candidate": 43,
+          "aligned_context_margin_shift": 46
+        }
+      },
+      "mean_token_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.73046875,
+          "both_correct": 65,
+          "same_unique_candidate": 57,
+          "aligned_context_margin_shift": 105
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.84375,
+          "both_correct": 47,
+          "same_unique_candidate": 14,
+          "aligned_context_margin_shift": 58
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.6171875,
+          "both_correct": 18,
+          "same_unique_candidate": 43,
+          "aligned_context_margin_shift": 47
+        }
+      },
+      "mean_byte_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.71484375,
+          "both_correct": 61,
+          "same_unique_candidate": 61,
+          "aligned_context_margin_shift": 104
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.796875,
+          "both_correct": 41,
+          "same_unique_candidate": 20,
+          "aligned_context_margin_shift": 58
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.6328125,
+          "both_correct": 20,
+          "same_unique_candidate": 41,
+          "aligned_context_margin_shift": 46
+        }
+      }
+    },
+    "original_web": {
+      "sum_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.69921875,
+          "both_correct": 60,
+          "same_unique_candidate": 59,
+          "aligned_context_margin_shift": 97
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.8046875,
+          "both_correct": 42,
+          "same_unique_candidate": 19,
+          "aligned_context_margin_shift": 56
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.59375,
+          "both_correct": 18,
+          "same_unique_candidate": 40,
+          "aligned_context_margin_shift": 41
+        }
+      },
+      "mean_token_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.72265625,
+          "both_correct": 65,
+          "same_unique_candidate": 55,
+          "aligned_context_margin_shift": 98
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.828125,
+          "both_correct": 44,
+          "same_unique_candidate": 18,
+          "aligned_context_margin_shift": 56
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.6171875,
+          "both_correct": 21,
+          "same_unique_candidate": 37,
+          "aligned_context_margin_shift": 42
+        }
+      },
+      "mean_byte_log_likelihood": {
+        "all128": {
+          "families": 128,
+          "accuracy": 0.71484375,
+          "both_correct": 62,
+          "same_unique_candidate": 59,
+          "aligned_context_margin_shift": 99
+        },
+        "lexical_holdout": {
+          "families": 64,
+          "accuracy": 0.8125,
+          "both_correct": 42,
+          "same_unique_candidate": 20,
+          "aligned_context_margin_shift": 56
+        },
+        "structural_holdout": {
+          "families": 64,
+          "accuracy": 0.6171875,
+          "both_correct": 20,
+          "same_unique_candidate": 39,
+          "aligned_context_margin_shift": 43
+        }
+      }
+    }
+  },
+  "new_scientific_teacher_tokens": 100000000,
+  "reused_control_teacher_tokens": 100000000,
+  "verification_teacher_tokens": 1304156,
+  "GPU_seconds": 251.83709449900198,
+  "verification_GPU_seconds": 16.540388299996266,
+  "result_sha256": "e085206d029ae7ddffdcfc6f6d3e22b18bb39a503ab7bc85973d36a45affc200",
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "independent_human_blind": false,
+  "quality_criteria_unchanged": true,
+  "old_numerical7_preserved": true,
+  "limitations": "One learned seed; nonblind repeated fixeddev. Web material/order/length/EOS distribution and cursor policy change together, not pure EOS causality. Short sources unchanged. Shared-generator bridge is local; old128 retention overlaps training forms. Independent seed/full dev/protected test/adoption pending."
+}
