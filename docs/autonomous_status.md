@@ -1,3 +1,9 @@
+Base専用gated層共有: preparation（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+own実CUDA/全state再開/32timingのGPU47.258501秒を再利用し、専用科学runner・同native評価factory・全80採点/採否経路を実装して凍結。同mixed親6d/継承native Adam・LR.00001/新13gateのみfresh Adam・LR.0001/WD0、同full CE100Mのcached native対照は再GPUしない。新CPU1test/0.88秒・PS構文成功。初回CPUはdict対strの不一致でAttributeErrorとなったため、その失敗XMLを保存して新照合関数の型/欠損guardを修正、旧core/source不変。科学GPU予測1007.293266秒、ownprobe込み1054.551767/1800、科学未開始。次は一候補100M実学習→同日本語・dev256・native80/内容→旧相対・絶対・歴史Web基準の採否。
+
+全旧失敗/数値7/Phase0–3/既存相対・絶対・歴史Web1%品質基準保持。gateLR/初期値/count/source/CP/decoder救済sweepなし。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用gated層共有: probe（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
 
 actual650199は実完了/不在、probeGPU47.258501秒/120。zero-gate native FP32/BF16の32/1024とsigned gate full/cache1024、native重み/RNG不変・logical26KVに合格。初期native W/Adam・scheduler/RNG/Webcursor継承/新gateのみfresh、own CUDA4連続対2+2全state/history・finite/固定nativeLR.00001/newgate.0001、32timing完了。40検証更新/1307952教師/11readonly forward6272contextは科学から除外。ピークVRAM9.735GiB、科学予測1007.293266秒、ownprobe込み1054.551767/1800。これは初期構造と再開/実費用の証明で、日本語品質/容量原因/完成の証明ではない。次は予算内のみ専用科学runnerと全80reviewを実装、同full100M native対照を再GPUせず比較する。
