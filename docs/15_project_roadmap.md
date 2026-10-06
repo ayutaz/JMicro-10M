@@ -808,3 +808,33 @@ actual501165は終了・ps不在。large1B＋20M親から各25M教師、計50M�
 この診断は局所的なtrain文脈差の測定であり、代表的なコーパス品質や因果を単独で証明しない。過去compact1000文書のpacking/shuffle/isolated比較は既に実施・不採用で、同じ比較を再実行しない。今回は広い教材を一周程度学習した後の実重みにおける未確認部分へ限定する。支持された場合にだけ、新しい同教師比較を設計する。旧数値7失敗も未解決記録として残す。
 
 データ増量は引き続き選択肢とするが、独立した内容・多様性の不足が支持された時に行い、「新教材tokens」と「実学習教師tokens」を別計数する。単純に5B/10Bへ進める判断は今回の結果では行わない。独立seed/full dev/保護test/Chat実学習/実人間は現時点で0、全五目標未達。全体の完了日は原因修正の結果次第なので確約せず、各学習比較の予算は実測から都度更新する。13GB index再scanや全量重複照合、旧対照の再学習/再生成は必要な変更がない限り行わない。全PythonはWSL uv、意味のある節目でlocal commit、push/公開なし。
+
+### 広い教材の文脈診断実測と、次の物語教師比率比較（2026-10-06 JST）
+
+前節の最初の診断を実装・実行した。stable1Bの次の実32入力からWeb/教材/物語各8の完全なtrain文書prefixを固定し、前方文脈は切らず、1B+20M/2B+20M重みで連結文脈/単独BOSの全96条件を測った。CPU5tests/1.15秒、actual514599はGPU81.779秒で完了し不在。optimizer/科学教師0。全96のraw/同gold/停止/bytes/flagsを再構築し、全24原文と全96生成を読んだ理由を保存した。実人間ではなく非blind Codex観察、原固定dev80の採用点数へ混ぜない。
+
+| 学習済み重み | 連結の本文NLL/token | 単独の本文NLL/token | gold EOS top1（連結/単独） | 自由生成EOS（連結/単独） | 自動反復（連結/単独） |
+|---|---:|---:|---:|---:|---:|
+| 1B＋20M | 1.980812 | 1.987586 | 22/24・22/24 | 12/24・15/24 | 2/24・0/24 |
+| 2B＋20M | 2.015694 | 2.023371 | 22/24・22/24 | 13/24・17/24 | 4/24・2/24 |
+
+同じ正解suffix本文2303tokensを採点、EOSは本文分母に含めず別表示。case平均の連結有利NLL差は0.010976/0.009563natsで、事前marker0.1nats＋正差60%以上のうち前者が未達。強い文脈依存を支持しない局所結果であり、因果や全train代表性の証明ではない。1B decayが直近に見た親次batchを2B重みは以前に見ており、このtrain局所NLLから学習量増加で全体が悪化したとは推論しない。全devの改善/原不採用は前節のまま保持する。
+
+gold suffixがEOS込み64以内なのは9/24件。ここだけの自由生成EOSは1B連結7/単独7、2B連結7/単独8。goldが64より長い残15件の打切りをEOS学習失敗と同一視しない。逆に単独の両重みに改行だけで止まるempty1があり、EOSだけで内容成功としない。鳥が助けられる側から友達を助ける側へ変わる、目標の自己定義、同じ会社/産地の循環、2B連結の地震→温暖化の飛躍などは両文脈で残る。創作の自然な別継続やgold非一致だけを失敗にしない。原文の事実性認証も行っていない。
+
+[診断完了](../reports/phase6/broad_context_diagnostic_completion.json)、[raw audit](../reports/phase6/broad_context_diagnostic_review.json)、[全24個別観察](../reports/phase6/broad_context_diagnostic_content_notes.json)を保存。archive119text/4,215,027bytes/gzip759,995bytes/SHA7c1c946573235b55b2c8da00d29faaf65f45b419d892c53c4e5ddfc7cd06ce1c。重み不変/gradientなし/eval/RNG復元は双方成功。元10B UI515252/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start12979742とHTTP親SHA/training_tokens/busy=falseを確認。文脈を足すだけで課題が解決したとはせず、旧compact packing/isolated比較を繰り返さない。
+
+次は**同教材内の物語教師比率**の一仮説を調べる。短い日常/人物の条件を学ぶ頻度を上げる効果は仮説で、今回の局所観察だけで不足が証明されたとはしない。教材総量は同じ2,000,001,312 serialized tokens、目的関数はCEのみ。以下は新研究の準備で、学習コマンド未実装・scientific config未凍結・新GPU/学習0。
+
+| 条件 | Web教師 | 教材教師 | 物語教師 | 追加教師計 |
+|---|---:|---:|---:|---:|
+| control75/20/5 | 75M | 20M | 5M | 100M |
+| story20：60/20/20 | 60M | 20M | 20M | 100M |
+
+両条件は実2B+20M親SHA965a06dc1537ed917de98c565d78ae76f19d99ad075f019067a4324a6cbd2249から同一model/Adam/RNGを継ぎ、実terminal LR0.0002を上げずconstantで学習する案。context1024/最速既測定batch32/accum1/BF16/Flash＋compile reduce-overheadを保持する。source別文書shuffleを新しく明示forkし、両条件で同seed/初期source順を揃える。旧mixed block cursorは親lineageに保持し、新samplingが旧cursorをそのまま継いだとは偽らない。新sampler/optimizer/RNG/genre教師/input/physicalは完了更新で保存する。
+
+[供給と親の実確認](../reports/phase6/story_weight_comparison_preparation.json)はprepare_story_weight_comparison.pyによりCPU0.506秒で完了。既存checksum付きcompact indexを使い13GB再scanなし。物語はbody98,478,072＋EOS761,448＝99,239,520教師、Web1,487,009,972/教材397,058,104教師で両条件の供給を満たす。これは独立固有原文量やglobal重複監査ではなく、既存train poolの会計である。新たな取得・全量変換を学習の前提にしない。
+
+次の具体的な作業は、同教師quotaのsource sampler/trainer/永続runner/reviewerを実装し、CPUでquota/EOS/文書境界と連続対再開を確認する。その後、両条件の実CUDA連続4対2+2/fullstate/有限値/実速度を上限120秒で確認。全GPU上限1800秒に検証・各100M・同日本語/生成評価を含めて収まる実測予測が得られた場合だけscientific configを凍結して本学習する。旧品質改善を前提とする自動延長コマンドは拒否条件を保持し、新研究契約に合格したと混同しない。
+
+終了条件は両actual100M教師、同dev256/common-byte BPB・日本語192/331/1119・固定dev80各/全160 raw-bound内容・全原relative/absolute/original-Web採否、実終了PID、可搬証拠/UI復帰/local commit。既存2B+20M評価は親能力保持の参照として再利用し、新100Mのmatched controlへ置き換えない。合格候補だけを独立学習seed/full dev/保護test→実Dialogue/SFT/retention/複数sampling/人間→HF/GGUF/Q8/Q4/実UIへ接続する。不合格なら採用せず、根拠なしの比率総当たり/自動5B・10B延長を行わない。全五目標/旧数値7失敗/全品質基準を維持する。

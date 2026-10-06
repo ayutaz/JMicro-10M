@@ -1,0 +1,154 @@
+{
+  "reviewer": "Codex nonblind; personally read all24 original train documents and all96 actual generated outputs",
+  "result_sha256": "f47f844efdd3f9b2cd0b39556ec53b536b01eb13c2988a8c67eb445527d76bc5",
+  "cases_sha256": "ec4c6c190a3367bdbe3132fbefd448e26d1fd73323d803f5423949019d407f85",
+  "independent_human_blind": false,
+  "quality_adoption_scores": false,
+  "cases": [
+    {
+      "id": "train-10127084",
+      "source": "web",
+      "reason": "両重み/両文脈とも食事の話題は保つが、1B単独は食べ物を消す循環、2B連結は脳の中の脳という循環、2B単独は同文反復。前方文脈だけでは内容破綻を解消しない。原文の医療記述の正確性は別途未検証。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-1650338",
+      "source": "web",
+      "reason": "1B連結は食品メーカーの協力という別の展開、単独は生産量の断定。2B連結は産地の同節を反復し64まで、単独も商品開発の同節を繰り返してEOS。正解の製法説明に一致しないこと自体を失敗基準にはしないが、反復は残る。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-1644180",
+      "source": "web",
+      "reason": "給食の健康/活動という話題は四条件で保つ。1B連結と2B連結は伝聞へ閉じ、単独は話者の発言へ閉じる。2B単独の閉じ引用符重複など文法の弱さもあり、文脈による一様な改善ではない。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-689394",
+      "source": "web",
+      "reason": "CEOという英語固有名詞の途中prefixで四条件とも64未完。1B両条件は仮の人名/イベントを挿入、2B単独はHollyの連打、2B連結も企業名の繰返し。固有名詞を含む局所例で、日常文全体の代表値にはしない。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-3852193",
+      "source": "web",
+      "reason": "1B連結は学校ごとの基準から基準を満たす説明へ移る、単独は引用だけ閉じる。2B連結はひとつに決めない前提をひとつに決めるへ反転して同節を重ね、単独は引用を閉じる。EOSだけでは前提保持の成功にならない。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-6831952",
+      "source": "web",
+      "reason": "1B連結と2B連結は腸内環境へ続く。1B単独はイソフラボンの自己定義ループで64未完、2B単独は食物繊維が食物繊維の2倍という自己比較。連結が良い例はあるが、全体のNLL差/markerを置換しない。健康情報の事実認証はしていない。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-10010280",
+      "source": "web",
+      "reason": "1B連結は美容クリニックを美容液へ接続しメーカー文を反復、単独も医療機器の自己置換。2B連結/単独も販売違反の文脈から使用や計画へ移る。閉じても主体/関係の学習課題が残る。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-6880899",
+      "source": "web",
+      "reason": "1B連結は経験を重ね、単独は持っていたで短く完結。2B連結は家賃の安い家を買う反復へ移り、単独は持っていたで短く完結。前方文脈を付ける方が常に良いとはいえない。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-14987359",
+      "source": "textbook",
+      "reason": "1B連結は絵を描くの列挙を反復し64未完、単独はアートの活動を定義してEOS。2B連結も美術館の絵の同節が重なり64未完、単独は新しい形に作る説明でEOS。正解は一意に要求せず、自然な別継続も認める。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-13350674",
+      "source": "textbook",
+      "reason": "1B連結は同じ1000万円の会社の循環へ、単独は数字を把握する一般論へ。2Bは両文脈でほぼ同じ数字の仕組み/生活の説明。宝石選択から話を運ぶ力は弱く、文脈差が小さい一例。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-15863500",
+      "source": "textbook",
+      "reason": "1B連結は空気を吸い込む反復、単独は飛行機の自己説明で64未完。2B両条件は荷物の説明としてEOSになるが、飛行時間短縮の飛躍や荷物が機内へ入る循環が残る。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-14041492",
+      "source": "textbook",
+      "reason": "1B両条件は薬を使わず手助けする同節を繰り返し64未完。2B連結は二方法を組み合わせると合併と定義し、単独は薬の話へ移る。全条件64で終わるがgold続き59tokensなので、単に正解が長い例とは区別する。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-14088103",
+      "source": "textbook",
+      "reason": "1B連結は目的/目標の関係を説明するが64未完、単独は目標という目標と生命の循環へ飛ぶ。2B連結は目標の自己定義、単独は準備との関係でEOSも同語が多い。循環は固定regexでfalseでも内容上残り、指標を手修正しない。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-14723569",
+      "source": "textbook",
+      "reason": "1B両条件は景色の美しさへ自然に寄せてEOS。2B連結は山/木/生き物の比喩が循環、単独は雪が山上から降る話で64未完。水が届けられる原文の関係が一様には保持されない。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-15282575",
+      "source": "textbook",
+      "reason": "単独は1B/2Bとも地震が起こる可能性で短く閉じる。連結は1Bが地下水道、2Bが温暖化へ無関係な結論を追加する。gold EOSの順位は良くても関係の破綻を防げていない。元原文の数値や最新リスクの事実確認ではない。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-16360737",
+      "source": "story",
+      "reason": "四条件ともフリスビー/一緒に遊ぶ展開でEOS。1B単独はフリスビーの擬人化があるが創作だけで誤りとはしない。2B単独は投げ合う短い自然な別継続。文脈を外した方が必ず破綻する証拠にはならない。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-15665512",
+      "source": "textbook",
+      "reason": "1B連結は遺産目録を生活の記録へ読み替えてEOS、2B連結はこの人にのループ。両単独は改行だけでEOSしempty=true。正解EOSが強くても極端に早い停止/空出力は成功としない。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-16629345",
+      "source": "story",
+      "reason": "ユリは花として導入済み。1B両条件はユリの自己説明を重ね、2B両条件はユリ自身が庭を探索/木を見つける主体へ移る。擬人化は許容しつつも展開の接続と反復が弱い。四条件64、goldは287tokensで長さ制限の影響を保持。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-16122360",
+      "source": "story",
+      "reason": "鳥の怪我の文脈に対して1B/2B両条件とも鳥が友達を助ける側へ移る。1B単独は別の小鳥まで導入する。全条件EOSだが援助する主体とされる主体の取り違えが見える。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-16177912",
+      "source": "story",
+      "reason": "原文冒頭りやりやは語形が不自然で、source品質の局所弱例として保持。1B連結は木の下で遊ぶ同文が重なる、単独は木の実集め。2B連結はお話から食べ物へ、単独はおしゃべりで自然に閉じる。24件から全物語sourceの品質率は推定しない。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-16574827",
+      "source": "story",
+      "reason": "1B両条件はジョニー/おもちゃの同節が多く64未完。2B連結は相手がお母さんへ移りお母さんの同語を重ね、単独は音を追う展開だが64未完。goldは249tokensなのでEOS比較を短いgoldと区別する。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-16262965",
+      "source": "story",
+      "reason": "1B連結は波に乗る/波の音の弱い会話で64未完、単独は突然うさぎを導入してEOS。2B両条件は犬が逃げる/友達と再び遊ぶ同様の展開でEOS。自然な別結末は許すが、前後の役割接続の弱さを保持。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-16057589",
+      "source": "story",
+      "reason": "1B連結は足跡から宝物へ、単独は雪の散歩へ。2B連結は冒険から宝物へ、単独は楽しい冒険だけでEOS。四条件とも停止し、goldの小鳥に一致しないことだけで破綻としない。",
+      "all_four_conditions_read": true
+    },
+    {
+      "id": "train-16557665",
+      "source": "story",
+      "reason": "1B連結は我慢強い服という誤接続とお花を着る展開、単独は君が君を誇る弱い会話。2B連結はお母さんの連打、単独は箱を見つける別展開。四条件64でgold220tokens、停止不足と意味破綻を別に記録。",
+      "all_four_conditions_read": true
+    }
+  ],
+  "limitations": "Local selected train24, not original fixed dev80 or independent human evaluation. Medical/legal/geophysical statements in source/output are not fact-certified. Creative alternative continuations are allowed; no gold memorization or EOS-only adoption criterion."
+}

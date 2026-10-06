@@ -1,0 +1,167 @@
+{
+  "status": "source_supply_and_actual_parent_ready_training_command_missing",
+  "created_at": "2026-10-06T00:35:03.729898Z",
+  "hypothesis": "With the broad material held fixed, increase story teacher weight5%->20% at the expense of Web75%->60%, keeping textbook20%, to test everyday continuation/subject relation learning.",
+  "references": {
+    "context_review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/broad_context_diagnostic_review.json",
+      "sha256": "6714db347e7a049b09b69984090e0c4ad936babc1860f8228cca7278ba53542c"
+    },
+    "context_config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/broad_context_diagnostic.json",
+      "sha256": "36ee1fecd016fd49a1039e766d023e852d7fb2e34145b32abe3f28f5ac2b915b"
+    }
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook-coverage-2b-20261006/decay/checkpoint-00062166.pt",
+    "sha256": "965a06dc1537ed917de98c565d78ae76f19d99ad075f019067a4324a6cbd2249"
+  },
+  "parent_teacher_tokens": 2020000000,
+  "parent_input_tokens": 2037055488,
+  "parent_sampler": {
+    "kind": "teacher-learning-curve-v1",
+    "mode": "shuffle",
+    "goals": {
+      "web": 0,
+      "short": 20000000
+    },
+    "position": 616,
+    "web": {
+      "seed": 42,
+      "epoch": 0,
+      "position": 0,
+      "context": 1024,
+      "blocks": 11939276
+    },
+    "short": {
+      "seed": 42,
+      "epoch": 1,
+      "position": 36186,
+      "context": 1024,
+      "blocks": 1953126,
+      "mode": "lazy-shuffle-whole-documents-v1"
+    },
+    "source_tokens": {
+      "web": 0,
+      "short": 20185088
+    },
+    "source_physical_tokens": {
+      "web": 0,
+      "short": 20185088
+    },
+    "source_teachers": {
+      "web": 0,
+      "short": 20000000
+    },
+    "source_eos": {
+      "web": 0,
+      "short": 168469
+    },
+    "boundaries": [
+      20000000
+    ],
+    "genre_teachers": {
+      "web": 14973097,
+      "story": 1007055,
+      "textbook": 4019848
+    },
+    "genre_eos": {
+      "web": 131086,
+      "story": 7745,
+      "textbook": 29638
+    },
+    "genre_tag_mapping": {
+      "web": 0,
+      "story": 1,
+      "textbook": 2
+    }
+  },
+  "terminal_parent_learning_rates": [
+    0.0002,
+    0.0002
+  ],
+  "material": {
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large",
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133"
+  },
+  "prepared_tokens": 2000001312,
+  "source_supply": {
+    "web": {
+      "documents": 12990036,
+      "body_tokens": 1474019936,
+      "EOS_teacher_tokens": 12990036,
+      "body_plus_EOS_teacher_tokens": 1487009972,
+      "serialized_BOS_body_EOS_tokens": 1500000008
+    },
+    "story": {
+      "documents": 761448,
+      "body_tokens": 98478072,
+      "EOS_teacher_tokens": 761448,
+      "body_plus_EOS_teacher_tokens": 99239520,
+      "serialized_BOS_body_EOS_tokens": 100000968
+    },
+    "textbook": {
+      "documents": 2942232,
+      "body_tokens": 394115872,
+      "EOS_teacher_tokens": 2942232,
+      "body_plus_EOS_teacher_tokens": 397058104,
+      "serialized_BOS_body_EOS_tokens": 400000336
+    }
+  },
+  "accepted_compact_index": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large/.compact-index-8cde6396d433644b/ready.json",
+    "sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606"
+  },
+  "index_reused": true,
+  "original_index_rescan": false,
+  "proposed_arms_teacher_tokens": {
+    "control": {
+      "web": 75000000,
+      "textbook": 20000000,
+      "story": 5000000
+    },
+    "story20": {
+      "web": 60000000,
+      "textbook": 20000000,
+      "story": 20000000
+    }
+  },
+  "scientific_total_new_teacher_tokens": 200000000,
+  "loss": "CE body+EOS only; no sequence unlikelihood, no decoding-policy change",
+  "optimizer_policy": "Both inherit identical actual parent model/Adam/RNG; constant inherited terminal LR0.0002, no reheat; no optimizer updates until measured CUDA gates.",
+  "sampler_policy": "Explicit experimental fork into per-genre document shuffles, same initial seed/order in both arms. Preserve original sampler as parent lineage; do not claim the new mixture keeps its old mixed block cursor. Save new samplers at completed updates.",
+  "shapes": {
+    "context": 1024,
+    "batch": 32,
+    "accumulation": 1,
+    "backend": "flash",
+    "compile_mode": "reduce-overhead",
+    "dtype": "bf16"
+  },
+  "CUDA_verification_budget_seconds": 120,
+  "total_new_GPU_budget_seconds": 1800,
+  "freeze_condition": "Implement matched sampler/trainer/runner/reviewer; continuous4 vs2+2 full-state CUDA and finite results on both arms; measured total including verification/training/evaluations must fit1800s before scientific recipe freeze.",
+  "completion_condition": "Both actual100M teacher arms; common-byte dev256/Japanese/fixed80 per arm and all160 raw-bound content reviews; unchanged relative/absolute/original-Web gates; persisted evidence/actual terminal processes/UI restoration/local commit.",
+  "parent_evaluation_reuse": "Existing2B+20M evaluation is parent retention reference only; both new100M arms must really train and evaluate, not reuse it as a matched scientific control.",
+  "failure_branch": "If original quality gates remain unmet, reject; no blind ratio sweep or automatic5B/10B extension. Select the next single hypothesis from raw failures.",
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "preparation_script_sha256": "8f30e2cecea4898809ed04ce83ce998de34fabe120f2c5792c0f56c93e6f0f15",
+  "actual_CPU_seconds": 0.5059138609940419,
+  "actual_GPU_seconds": 0,
+  "actual_optimizer_updates": 0,
+  "scientific_teacher_tokens_consumed": 0,
+  "training_command_implemented": false,
+  "scientific_config_frozen": false,
+  "quality_criteria_unchanged": true,
+  "old_numerical7_preserved": true,
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "protected_test_used": false,
+  "requested_five_steps_complete": false,
+  "interpretation": "New explicit mixture research, not a claim that an old quality extension gate passed. Same prepared material quantity; only teacher mixture changes. Source quality/global dedup and causal sufficiency remain unproven."
+}
