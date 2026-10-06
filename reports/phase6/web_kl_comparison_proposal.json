@@ -1,0 +1,139 @@
+{
+  "status": "prototype_CPU_verified_GPU_not_started",
+  "created_at": "2026-10-06T06:35:55.438822Z",
+  "rationale": "Same-teacher staged training improves EOS/coherence but all256 natural-dev body losses worsen, across all four length quartiles. Test whether a frozen parent distribution on actual train Web replay can retain body prediction while learning short-body EOS. Recency/forgetting is a hypothesis, not a proven sole cause.",
+  "literature": [
+    {
+      "title": "Learning without Forgetting",
+      "url": "https://arxiv.org/abs/1606.09282",
+      "relevance": "Old-output distillation motivates retention; original work is vision with a different protocol, not proof for JMicro."
+    },
+    {
+      "title": "Distill and Replay for Continual Language Learning",
+      "url": "https://aclanthology.org/2020.coling-main.318/",
+      "relevance": "Language-model-based NLU continual-learning framework combines distillation/replay. This proposal uses its general principle, not an exact replication or a guarantee for free Japanese generation."
+    }
+  ],
+  "diagnostic": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source_order_followup_diagnostic.json",
+    "sha256": "e72ebe56d6fef4e0b70b169ac5f0b882cd91a1de245ef2f98d1dd7972a6e0208"
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+    "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+  },
+  "frozen_reference_teacher": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+    "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+  },
+  "control": {
+    "config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/source_order_condition_comparison_v2.json",
+      "sha256": "03b4ad47fa42b9a669c4588e736648e6339c93b9eb0cf3d08aac22a46cf90a88"
+    },
+    "result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/compare-result.json",
+      "sha256": "cbca7936ebf395b1d5ccd45022ee4cb85de704a636c8bdae48ff2c24a8adc303"
+    },
+    "review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/review.json",
+      "sha256": "d4efc7530850a2a1fe15695c227c4bc6adabb9a7007fbd81091bf20f4900306d"
+    },
+    "notes": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source_order_condition_notes.json",
+      "sha256": "6b143e08096a1ee2365a643c008d5c009d2c2ff48dd1d42a9749ac5301766d2d"
+    },
+    "generation": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/evaluation/source_order/evaluation/generation.json",
+      "sha256": "d5b5a7c6b5d971de9bc46c77f52ac5ea19132cab7b97f034c274974cdbe2620e"
+    },
+    "checkpoint": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323503.pt",
+      "sha256": "fb43f2618c0679ca6c6f7a0c5b9faf1b336be8985271c8513f2e4bbfde3cd7ae"
+    }
+  },
+  "main_teacher_quotas": {
+    "web": 75000000,
+    "story": 5000000,
+    "ordinary_textbook": 10000000,
+    "conditional_textbook": 10000000
+  },
+  "source_order": [
+    "web",
+    "story",
+    "ordinary_textbook",
+    "conditional_textbook"
+  ],
+  "main_ordinary_CE_teacher_tokens": 100000000,
+  "inherited_actual_LR": 1e-05,
+  "optimizer_policy": "inherit",
+  "main_shapes": {
+    "context": 1024,
+    "batch": 32,
+    "accumulation": 1,
+    "backend": "flash",
+    "compile_mode": "reduce-overhead",
+    "dtype": "bf16"
+  },
+  "KL_policy": {
+    "kind": "frozen-parent-Web-body-KL-v1",
+    "direction": "parent_to_student",
+    "temperature": 1.0,
+    "coefficient": 1.0,
+    "every_completed_update": 1,
+    "reference_context": 1024,
+    "reference_batch": 8,
+    "masked_targets": "labels>=8; ignore EOS/BOS/role/padding positions, retain full vocabulary including EOS in probability normalization",
+    "reference_teacher": "immutable actual historical10.5B parent, no optimizer/gradients",
+    "replay_policy": "separate fork of actual historical parent Web cursor; train only, overlaps first75M primary Web, never dev/test"
+  },
+  "reference_physical_input_tokens_if_same_updates": 25133056,
+  "reference_soft_target_body_positions": "Measure actual labels>=8; never add to ordinaryCE/new corpus totals",
+  "combined_training_accounting": "100M ordinaryCE teachers plus separately counted soft-target Web positions; primary100,532,224 physicalinput plus25,133,056 referenceinput expected. Not an equal-total-supervision comparison or a pure isolated objective effect.",
+  "newly_prepared_source_tokens": 0,
+  "replay_overlaps_primary_Web": true,
+  "total_new_GPU_ceiling_seconds": 900,
+  "reused_control_GPU_seconds": 0,
+  "settings_sweep_allowed": false,
+  "alternate_order_allowed": false,
+  "automatic_long_extension_allowed": false,
+  "required_before_science": [
+    "Own trainer/runner/reviewer/durablePS implemented",
+    "Frozen teacher unchanged/eval/no gradients, same actual parent model/Adam/scheduler/RNG/main cursor/LR",
+    "ActualCUDA continuous4 vs2+2 exact fullstate including replay cursor/digest/soft-position counters and finite combined gradients",
+    "32 measured combined-update timings and actual save cost; freeze only if probe+science+full evaluation estimate<=900s",
+    "Inspect real process identities; discard probe weights and reuse cached control results exactly"
+  ],
+  "terminal_evidence": [
+    "Exactly100M ordinaryCE and separate auxiliary counters; allfour primary source terminal states equal cached control",
+    "Same256byte/192semantics/331JBLiMP/1119JCQA/80greedy64/bridge128/retention128",
+    "Read all80 outputs; exact peer reuse only; same relative coherence+8/CI/EOS/repetition and BPB gates versus staged control",
+    "Unchanged absolute grammar56/coherence27/appropriate27/EOS37/repetition<=18/noerror and historicalWeb1percent guard",
+    "Actual terminal process absent/UI restored; portable evidence and local commit"
+  ],
+  "registered_preexisting_configs_checked": 80,
+  "registered_preexisting_KL_matches": [],
+  "novelty_limit": "Only registered phase6 top-level configs and textual implementation search; no proof about unregistered external experiments.",
+  "CPU_prototype_tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web_kl_preservation_tests.xml",
+    "sha256": "c69725192f2212c9fdc41723391c78110d6415e0c91ba07595ab3000c22d8a10"
+  },
+  "initial_test_failure": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/web_kl_preservation_initial_test_failure.xml",
+    "sha256": "6988d4fb7d5d045074f0bfa2604bc776b906bbe9dab3e046d9e5ea8e72d3b818"
+  },
+  "source_sha256": {
+    "scripts/web_kl_preservation.py": "ebc642f4d37339b749420edc74038a15c69e9ce7ceb30c745c36db26e1a19e15",
+    "tests/test_web_kl_preservation.py": "b39e6455488abb0b57cd7244a8e331d8aca1c731475c72e43be02dc99704c426",
+    "scripts/prepare_web_kl_comparison_proposal.py": "803e3a4c6d51f902cb5ce5fb6328474fc3a5b209ea4e846dc402c766fdd07515"
+  },
+  "actual_GPU_seconds": 0,
+  "actual_scientific_teacher_tokens": 0,
+  "Base_adopted": false,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "next_action": "Implement one combined CE+KL inherited trainer and own durable runner/reviewer; verify CPU state/counters then actualCUDA/probe budget before any100M science. No coefficient/batch/temperature/order/source/LR sweep."
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="1.595" timestamp="2026-10-06T15:37:09.031452+09:00" hostname="DESKTOP-42CUV0C"><testcase classname="tests.test_web_kl_condition_trainer" name="test_combined_CPU_updates_full_resume_teacher_immutable_and_separate_reference_ledger" time="0.724"><failure message="AssertionError: assert False&#10; +  where False = equal_state({'state': {0: {'step': tensor(1.), 'exp_avg': tensor([[-2.9660e-04,  2.6385e-04,  3.2469e-04,  ..., -4.1277e-05,\n     ...'betas': (0.9, 0.95), 'eps': 1e-08, ...}, {'weight_decay': 0.0, 'lr': 2e-05, 'betas': (0.9, 0.95), 'eps': 1e-08, ...}]}, {'state': {0: {'step': tensor(1.), 'exp_avg': tensor([[-2.9660e-04,  2.6385e-04,  3.2469e-04,  ..., -4.1277e-05,\n     ...'betas': (0.9, 0.95), 'eps': 1e-08, ...}, {'weight_decay': 0.0, 'lr': 1e-05, 'betas': (0.9, 0.95), 'eps': 1e-08, ...}]})&#10; +    where {'state': {0: {'step': tensor(1.), 'exp_avg': tensor([[-2.9660e-04,  2.6385e-04,  3.2469e-04,  ..., -4.1277e-05,\n     ...'betas': (0.9, 0.95), 'eps': 1e-08, ...}, {'weight_decay': 0.0, 'lr': 2e-05, 'betas': (0.9, 0.95), 'eps': 1e-08, ...}]} = state_dict()&#10; +      where state_dict = AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.95)\n    capturable: False\n    decoupled_weight_decay: ...-08\n    foreach: None\n    fused: False\n    initial_lr: 0.0002\n    lr: 2e-05\n    maximize: False\n    weight_decay: 0.0\n).state_dict&#10; +        where AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.95)\n    capturable: False\n    decoupled_weight_decay: ...-08\n    foreach: None\n    fused: False\n    initial_lr: 0.0002\n    lr: 2e-05\n    maximize: False\n    weight_decay: 0.0\n) = &lt;web_kl_condition_trainer.WebKLTrainer object at 0x72ce220e4860&gt;.optimizer">tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-92/test_combined_CPU_updates_full0')
+
+    def test_combined_CPU_updates_full_resume_teacher_immutable_and_separate_reference_ledger(tmp_path):
+        pool,parent,binding,positive=setup(tmp_path)
+        cursor=copy.deepcopy(parent['sampler'])
+        parent=copy.deepcopy(parent)
+        parent.update(update=320435,tokens=10500014080,supervised_tokens=10477786961,
+            sampler=dict(kind='eos-pilot-mixture-v1',position=0,routes=[],web=cursor,short=dict(position=0),
+                source_tokens=dict(web=0,short=0),source_eos=dict(web=0,short=0)))
+        for g in parent['optimizer']['param_groups']:g['lr']=.00001
+        parent['scheduler']['base_lrs']=[.0001]*len(parent['optimizer']['param_groups'])
+        goals=dict(web=83,story=31,ordinary_textbook=29,conditional_textbook=37)
+        def build():return WebKLTrainer(parent,pool,pool,positive,goals,binding,'cpu',8,3,2)
+        continuous=build()
+        assert equal_state(continuous.model.state_dict(),parent['model'])
+&gt;       assert equal_state(continuous.optimizer.state_dict(),parent['optimizer'])
+E       AssertionError: assert False
+E        +  where False = equal_state({'state': {0: {'step': tensor(1.), 'exp_avg': tensor([[-2.9660e-04,  2.6385e-04,  3.2469e-04,  ..., -4.1277e-05,\n     ...'betas': (0.9, 0.95), 'eps': 1e-08, ...}, {'weight_decay': 0.0, 'lr': 2e-05, 'betas': (0.9, 0.95), 'eps': 1e-08, ...}]}, {'state': {0: {'step': tensor(1.), 'exp_avg': tensor([[-2.9660e-04,  2.6385e-04,  3.2469e-04,  ..., -4.1277e-05,\n     ...'betas': (0.9, 0.95), 'eps': 1e-08, ...}, {'weight_decay': 0.0, 'lr': 1e-05, 'betas': (0.9, 0.95), 'eps': 1e-08, ...}]})
+E        +    where {'state': {0: {'step': tensor(1.), 'exp_avg': tensor([[-2.9660e-04,  2.6385e-04,  3.2469e-04,  ..., -4.1277e-05,\n     ...'betas': (0.9, 0.95), 'eps': 1e-08, ...}, {'weight_decay': 0.0, 'lr': 2e-05, 'betas': (0.9, 0.95), 'eps': 1e-08, ...}]} = state_dict()
+E        +      where state_dict = AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.95)\n    capturable: False\n    decoupled_weight_decay: ...-08\n    foreach: None\n    fused: False\n    initial_lr: 0.0002\n    lr: 2e-05\n    maximize: False\n    weight_decay: 0.0\n).state_dict
+E        +        where AdamW (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.95)\n    capturable: False\n    decoupled_weight_decay: ...-08\n    foreach: None\n    fused: False\n    initial_lr: 0.0002\n    lr: 2e-05\n    maximize: False\n    weight_decay: 0.0\n) = &lt;web_kl_condition_trainer.WebKLTrainer object at 0x72ce220e4860&gt;.optimizer
+
+tests/test_web_kl_condition_trainer.py:25: AssertionError</failure></testcase></testsuite></testsuites>

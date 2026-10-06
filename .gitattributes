@@ -112,3 +112,12 @@ reports/phase6/source_order_*.tar.gz -text
 # These two immutable upstream snapshots retain their original trailing blank line.
 reports/phase6/source-order-condition-comparison-v2-20261006/source/scripts/review_historical_parent_condition_comparison_v3.py -text whitespace=-blank-at-eof
 reports/phase6/source-order-condition-comparison-v2-20261006/source/scripts/review_original_web_retention_comparison.py -text whitespace=-blank-at-eof
+
+# Retain the frozen parent-KL prototype, diagnostic and CPU evidence bytes.
+scripts/*web_kl* text eol=lf
+tests/test_web_kl*.py text eol=lf
+reports/phase6/web_kl_*.json -text
+reports/phase6/web_kl_*.xml -text
+reports/phase6/web_kl_*.tar.gz -text
+# Preserve the original pytest failure traceback, including its emitted spaces.
+reports/phase6/web_kl_preservation_initial_test_failure.xml -text whitespace=-blank-at-eol,-blank-at-eof

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="2" time="2.290" timestamp="2026-10-06T15:34:36.523856+09:00" hostname="DESKTOP-42CUV0C"><testcase classname="tests.test_web_kl_preservation" name="test_KL_direction_teacher_detachment_and_body_only_mask" time="0.043"><failure message="RuntimeError: Can't call numpy() on Tensor that requires grad. Use tensor.detach().numpy() instead.">def test_KL_direction_teacher_detachment_and_body_only_mask():
+        parent=torch.tensor([[[2.,0.,1.],[0.,2.,1.],[1.,0.,2.]]],requires_grad=True)
+        student=torch.tensor([[[0.,2.,1.],[2.,0.,1.],[2.,1.,0.]]],requires_grad=True)
+        labels=torch.tensor([[8,3,-100]])
+        loss,count=body_parent_kl(student,parent,labels)
+        expected=(parent[0,0].detach().softmax(-1)*(parent[0,0].detach().log_softmax(-1)-student[0,0].log_softmax(-1))).sum()
+&gt;       assert loss==pytest.approx(expected.item())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_web_kl_preservation.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/_pytest/python_api.py:449: in __eq__
+    asarray = _as_numpy_array(actual)
+              ^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/_pytest/python_api.py:921: in _as_numpy_array
+    return np.asarray(obj)
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = tensor(1.1504, grad_fn=&lt;DivBackward0&gt;), dtype = None
+
+    def __array__(self, dtype=None):
+        if has_torch_function_unary(self):
+            return handle_torch_function(Tensor.__array__, (self,), self, dtype=dtype)
+        if dtype is None:
+&gt;           return self.numpy()
+                   ^^^^^^^^^^^^
+E           RuntimeError: Can't call numpy() on Tensor that requires grad. Use tensor.detach().numpy() instead.
+
+.venv/lib/python3.12/site-packages/torch/_tensor.py:1255: RuntimeError</failure></testcase><testcase classname="tests.test_web_kl_preservation" name="test_replay_fork_preserves_main_cursor_and_exact_resume_accounting" time="1.178" /></testsuite></testsuites>
