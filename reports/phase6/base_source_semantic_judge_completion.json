@@ -1,0 +1,78 @@
+{
+  "status": "fixed64_classifier_diagnostic_complete_rejected",
+  "created_at": "2026-10-06T16:03:16.2380420Z",
+  "files": {
+    "scripts/base_source_semantic_judge.py": {
+      "bytes": 3960,
+      "sha256": "1171dddca0bb213514b887c92ef883e89c9e83528de4a8dd90acd686032d3a56"
+    },
+    "scripts/prepare_base_source_semantic_judge.py": {
+      "bytes": 4966,
+      "sha256": "a963694767ad9bc2fa51c9f3a4bdf471570155236979c560835f229b600d0ba1"
+    },
+    "scripts/run_base_source_semantic_judge.py": {
+      "bytes": 10351,
+      "sha256": "ca835d45ef4f39fd43f3a5a3d308c1b7fdb3fd147690e08fc934987c47b0e013"
+    },
+    "scripts/run_base_source_semantic_judge.ps1": {
+      "bytes": 1902,
+      "sha256": "b70a57a9db50d1570e005b01fc613d38cf1aaad6307b7504abc60befb560a9fa"
+    },
+    "tests/test_base_source_semantic_judge.py": {
+      "bytes": 1536,
+      "sha256": "fc0ddaeccc7b7198344510eaa861e2de0417046f949ebcc25e767ba69e9610fd"
+    },
+    "configs/phase6/base_source_semantic_judge.json": {
+      "bytes": 5820,
+      "sha256": "149e8b3e9773ce406529d72df7c3f2e5a32b60c18441cff3e2e015eb75df8f7a"
+    },
+    "reports/phase6/base_source_semantic_judge_tests.xml": {
+      "bytes": 527,
+      "sha256": "891ef4ba5cd17837d5c005b496065d57302b5c7814687113770806165d1cbb76"
+    },
+    "reports/phase6/base_source_semantic_judge_result.json": {
+      "bytes": 127487,
+      "sha256": "1221592ac412edb42b27de831bb0391155451ca4c04864f40f53119fbaee460d"
+    },
+    "reports/phase6/base_source_semantic_judge_review.json": {
+      "bytes": 7163,
+      "sha256": "88774050d4a1a139723ad4d296386044b18c62d83c80a98e2cdc0b1d29aa6b70"
+    },
+    "reports/phase6/base_teacher_semantic_signal_proposal.json": {
+      "bytes": 2700,
+      "sha256": "8ca8dc67b8d25553ec61d2fe11abba0c076992abc05644e356c453581d6a10b4"
+    },
+    "reports/phase6/base-source-semantic-judge-20261007/job.json": {
+      "bytes": 761,
+      "sha256": "7bb069c568da06d05ed08e2b45a3525c851c3eb27e44f8ef374c6dc2ad52028a"
+    },
+    "reports/phase6/base-source-semantic-judge-launcher-20261007/launcher.json": {
+      "bytes": 77,
+      "sha256": "39518bc3ee02dbb415c9ff2c06f0b451de76882df4cfc1169ec4e8a2b6801442"
+    },
+    "reports/phase6/base-source-semantic-judge-launcher-20261007/result.json": {
+      "bytes": 155,
+      "sha256": "53fd7f12219e7b8b4802aeac056d6bf9a9097db28383e6c502a4b5d35d5fba89"
+    }
+  },
+  "archive": {
+    "bytes": 34105,
+    "sha256": "4a99a5ef321896d199da00bb59708ebc679c3c1f230403a28ff525f2e92566c5",
+    "path": "reports/phase6/base_source_semantic_judge_evidence.tar.gz"
+  },
+  "actual_identity": {
+    "pid": 669341,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "18548324"
+  },
+  "actual_process_absent": true,
+  "all64_prediction_reasons_read": true,
+  "scientific_teacher_tokens": 0,
+  "optimizer_updates": 0,
+  "GPU_seconds": 54.2281782880018,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "next_action": "既存固定Japanese semantics dev192を同一の本文/選択肢で、公開4Bと元native10Mのplain-BOS conditional likelihoodによりreadonly比較する。正しい/誤った候補のcontext対を全件保ち、raw合計尤度primary・共通UTF8 byte分母・モデル別token数・family CIと全不一致を報告。各codecのcontext境界安定/原byte往復を先に検証、truncationとChat promptなし。GPU上限180秒/optimizer0、全192完了で診断終了。teacherに文脈信号がある場合だけ、tokenizerが異なっても比較可能な文脈表現/関係の知識蒸留という新機構の同教材CE対照を設計し、native10M全品質基準で評価する。4Bを生徒の代わりに採用せず、旧生成/採点promptやthresholdを救済しない。",
+  "limitations": "既存64の非blind Codex採点との一致であり、独立人間gold/全source品質率/未知corpusへの汎化は未測定。prompt作成者は全64を以前に読んでいる。4Bのこのclassifier失敗は、日本語の全能力やteacher representationの無効性、10M容量限界を証明しない。"
+}

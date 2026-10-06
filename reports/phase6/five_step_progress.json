@@ -511,7 +511,7 @@
   "independent_human_blind": "not performed",
   "phase0to3_preserved": true,
   "no_automatic_push": true,
-  "status": "unseen_HQ_source_content_failed_fixed_extractor_closed_Base_pending",
+  "status": "fixed_source_semantic_classifier_complete_rejected_Base_pending",
   "last_updated_at": "2026-10-06T08:36:43.112663Z",
   "current_user_scope": "Base only; notify and stop after actual Base completion; Chat and quantization deferred by user2026-10-06",
   "current_stop_boundary": "reports/phase6/base_only_stop_boundary.json",
@@ -524,7 +524,7 @@
   "condition_positive_active_job": "reports/phase6/condition_positive_active_job.json",
   "condition_positive_scientific_config": "configs/phase6/condition_positive_comparison.json",
   "condition_positive_comparison_completion": "reports/phase6/condition_positive_comparison_completion.json",
-  "next_action": "原文記事の構造抽出branchを終了。次は公開日本語対応の学習済みモデルで文法・局所参照・記事完結を判定する別機構の可否を、一モデル/一prompt・固定holdoutと実処理速度で有限比較として定義する。重み取得前に公開性・ライセンス・4090メモリ適合を確認し、合格条件・GPU上限を凍結。既存64の採点は変更せず、selector/閾値/失敗sourceの再抽選で救済しない。判定器の合格と新たなsource content/supply/family除外の証拠が得られた場合だけ大規模Base学習へ進む。",
+  "next_action": "Implement and freeze the proposed readonly Japanese semantics dev192 comparison of the pinned public4B and unchanged native10M, GPU180s; verify exact raw bytes/token boundaries, plain model-specific BOS, paired context cases/family CI, all mismatches, no optimizer or protected test. Do not tune failed source classifier/extractor or replace10M with4B. If teacher context signal exists, define genuinely new context-representation/relational knowledge transfer against matched CE; all Base gates/independent seed/full dev/final protected test/adoption remain required.",
   "web_KL_launch": "reports/phase6/web_kl_comparison_launch.json",
   "web_KL_completion": "reports/phase6/web_kl_comparison_completion.json",
   "web_KL_followup": "reports/phase6/web_kl_followup_diagnostic_proposal.json",
@@ -583,7 +583,7 @@
     "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/anchored_context_outcome_proposal.json",
     "sha256": "e412bd11e40f60f2f2b14500dfe9b54c24e035630d979d69d9819b6aa66882ed"
   },
-  "updated_at": "2026-10-06T15:55:09.0786536Z",
+  "updated_at": "2026-10-06T16:03:52.7831441Z",
   "anchored_context_outcome_preparation": {
     "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/anchored_context_outcome_preparation.json",
     "sha256": "171149fccc729ce25f6d4d47b0deec29d4a38a8a4c22071dd0cbcb838cc8d825"
@@ -941,6 +941,23 @@
     "minimum_usable": 54,
     "source_accepted": false,
     "fixed_extractor_closed": true,
+    "GPU_seconds": 0
+  },
+  "Base_source_semantic_classifier": {
+    "path": "reports/phase6/base_source_semantic_judge_completion.json",
+    "sha256": "6fc014df7ba680b2f0e5f173abf9cc0d04ba3bf476606edbca580898f96a20e5",
+    "all_predictions_read": 64,
+    "holdout_precision": 0.6451612903225806,
+    "classifier_accepted": false,
+    "branch_closed": true,
+    "actual_pid": 669341,
+    "actual_process_absent": true,
+    "GPU_seconds": 54.2281782880018
+  },
+  "Base_teacher_semantic_signal_proposal": {
+    "path": "reports/phase6/base_teacher_semantic_signal_proposal.json",
+    "sha256": "8ca8dc67b8d25553ec61d2fe11abba0c076992abc05644e356c453581d6a10b4",
+    "status": "not_implemented_or_run",
     "GPU_seconds": 0
   }
 }

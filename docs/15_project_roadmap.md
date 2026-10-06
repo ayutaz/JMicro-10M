@@ -1,3 +1,12 @@
+Base専用・公開モデルによるsource意味判定の有限比較完了、不採用（2026-10-07 JST）。
+
+[全64予測/採点比較](../reports/phase6/base_source_semantic_judge_review.json)と[実結果](../reports/phase6/base_source_semantic_judge_result.json)。既に全hash検証済みの公開Apache2 Qwen3-4B-Instruct-2507 revision cdbee75f17c01a7cc42f958dc650907174af0554をnativeから再利用、重み再取得0byte。以前の自然文生成recipeは不採用のまま、今回は原文記事の分類という別機構。一モデル/一prompt・greedy/BF16/SDPA・全原文保持、元gold/入力hashとsourceを予測前に凍結。元64をsource file別32development/32holdoutに固定し、holdout accepted>=8・precision>=90%/recall>=50%/format error0、GPU180秒/peak22GBを要求。判定集計の関連2CPUtests/0.02秒、PS構文・model stat/pin preflight成功後、actual669341/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18548324で実GPU54.228秒/peak11,565,212,672bytes、全64完了・ps不在。
+
+全64predictionの理由を読んだ。既存非blind Codex goldと比べ全64は60accept/true40/false positive20/false negative1、precision66.667%。file holdout32は31accept/true20/false positive11、precision64.516%・recall100%・format error0で事前条件を不合格。翻訳構文を文法2、未完引用後のサイト質問を完結、検索/ポイント/注文案内をboilerplate0とする。本文にない落城理由をあると述べるなど、表面的な話題の整合を主な根拠にして欠損を見逃す。出力JSONが全件parseできることと内容を正しく評価できることを区別する。固定classifier branchをここで終了しprompt/model/thresholdの救済sweep、誤採用教材による大量学習はしない。sourceの元41/64不合格や採点は改変しない。
+
+[次のreadonly診断案](../reports/phase6/base_teacher_semantic_signal_proposal.json): 固定Japanese semantics dev192を公開4Bと元native10Mのplain-BOS conditional likelihoodで直接比較する。全context対・同じ候補・反対goldを保持し、原byte/codec境界の一致、モデル別token数、family CI、全不一致、実GPU秒を記録。Chat template/役割、生成・truncation・optimizerなし、GPU180秒・全192終端で診断終了。まだrunner未実装/未開始で新GPU/知識転移成功の証拠ではない。source classifier失敗を教師の日本語能力全体の不存在とみなさず、もしteacherの文脈信号が確認された場合だけ、共通原文の文脈特徴/例間関係を10Mへ移す新機構の同教材CE対照を設計する。語彙/Tokenizerの違うlogitsを直接同一視しない。参考RKD論文はCVPR2019で、日本語Baseに効くことは未実証。公開4Bで10Mの成果を置換しない。
+
+既存goldは非blind Codex採点で独立人間0、prompt作成者は全64を既知。全corpus品質やBase精度・容量限界の証明ではない。原全64/hash/終端identityとscript/config/tests/results/review/proposalを可搬archiveへ保存。新training prepared0/科学教師0/optimizer0/保護test本文0。元UIをactual669495/start18554349へ復帰、HTTP元10B SHA410f975d…/10000007168tokens/busy=false確認。Base未完成、完成時に通知停止。Chat/Dialogue/SFT/量子化なし、WSL uv Python3.12.7/local commitのみ/pushなし、元品質基準・旧失敗・数値7・Phase0–3保持。以下は過去の履歴。
 Base専用・固定未確認64の原親/保持本文の全内容採否完了（2026-10-07 JST）。
 
 [全64の原親/span-bound個別採点](../reports/phase6/base_hq_acceptance_review.json): 文法2=57、一貫性2=54、原記事完結2=53、dominantサイト運用等4。全条件を同時に満たす41/64、弱23で、取得前の凍結基準54以上/弱10以下を不合格。本文内部の切れた節/引用、宣言した内容や例文の欠落、未説明の参照、反復する翻訳構文、UIを具体的に記録。正当な抽象・要旨・手順・名詞句・プロフィール・問い・署名・少数OCRを自動失敗扱いせず、政治/医療/法律/歴史/製品等の事実保証とも区別した。全原親と連続spanのSHA、char/UTF8境界、family/固定file数、元契約SHAと終端processを実WSL uvで照合し成功。検査はこの小sample内だけ、旧corpus再scan/新取得/新教師/GPU0。レビューの検査成功を内容合格とはしない。
