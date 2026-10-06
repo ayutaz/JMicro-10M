@@ -1,0 +1,410 @@
+{
+  "status": "actual_both100M_all160_content_complete_candidates_rejected",
+  "created_at": "2026-10-06T02:52:00.6151851Z",
+  "job": {
+    "status": "complete",
+    "pid": 532172,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "13744085",
+    "config_sha256": "c3f3b9d077a5a0c8f61ec16ff614488d5a6146e658141f771349d9e5e90d860e",
+    "started_at": "2026-10-06T02:37:18.590689Z",
+    "GPU_elapsed_seconds": 453.00058993601124,
+    "Base_adopted": false,
+    "protected_test_used": false,
+    "restart_command": "scripts/run_condition_source_learning.ps1 -Mode Train -Worker",
+    "stage": "complete",
+    "heartbeat_at": "2026-10-06T02:44:52.046996Z",
+    "teachers": 99436065,
+    "teacher_budget": 100000000,
+    "source_teachers": {
+      "web": 74575608,
+      "story": 4972405,
+      "ordinary_textbook": 9944030,
+      "conditional_textbook": 9944022
+    },
+    "loss": 2.398797035217285,
+    "completed_tasks": 618,
+    "total_tasks": 618,
+    "completed_cases": 80,
+    "completed_requests": 1024,
+    "total_requests": 1024,
+    "completed_at": "2026-10-06T02:44:52.215542Z"
+  },
+  "actual_process_absent": true,
+  "config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/condition_source_learning_100m.json",
+    "sha256": "c3f3b9d077a5a0c8f61ec16ff614488d5a6146e658141f771349d9e5e90d860e"
+  },
+  "result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-source-learning-100m-20261006/compare-result.json",
+    "sha256": "c2afbceecf13138bcf66d8dbf0340efe0bab947291f3acdf6f75483c06927fee"
+  },
+  "review": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition_source_learning_review.json",
+    "sha256": "8abb695a611c1c9f7437a48f260cd0da4e0c29ca5c4394c65de90e08d54ba38e"
+  },
+  "source_pair_analysis": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition_source_learning_condition_pair_analysis.json",
+    "sha256": "f0e491565562a2a84a1e266d39a011e77c23311b5665c3679f6ef398a3729f01"
+  },
+  "manifest": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition_source_learning_evidence_manifest.json",
+    "sha256": "bcbb4874fdc099200d7be5885e489cae1881d9f1a9bf63141e4d37f0d6f6ce16"
+  },
+  "checkpoints": {
+    "small512": {
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-source-learning-100m-20261006/small512/training/checkpoint-00065244.pt",
+      "checkpoint_sha256": "83e63c29843482ede43f576c3026c1d3e5aabdca2baab64bbe26e80d38d34fc1",
+      "binding": {
+        "config_sha256": "c3f3b9d077a5a0c8f61ec16ff614488d5a6146e658141f771349d9e5e90d860e",
+        "arm": "small512",
+        "parent": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook-coverage-2b-20261006/decay/checkpoint-00062166.pt",
+          "sha256": "965a06dc1537ed917de98c565d78ae76f19d99ad075f019067a4324a6cbd2249"
+        },
+        "short_manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+        "teacher_goals": {
+          "web": 75000000,
+          "story": 5000000,
+          "ordinary_textbook": 10000000,
+          "conditional_textbook": 10000000
+        },
+        "optimizer_policy": "inherit",
+        "peak_lr": 0.0002,
+        "loss": "ordinary original body+EOS CE, outcome weight1",
+        "study_kind": "nested_condition_source_quantity_at_100M",
+        "sampler_policy": "Fresh explicit four-stream seed42 fork from common2B+20M parent; original3 supervised sequences equal, nested512/2048 conditional IDs/interleaving differ. Prior25M terminal quotas are historical, not new100M control.",
+        "outcome_weight": 1,
+        "positive_manifest_sha256": "7ef3df21ec52541d32f4b6e17321cb35271a25ded13af913dab6c1aab5e866fc"
+      },
+      "update": 65244,
+      "tokens": 2137915392,
+      "supervised_tokens": 2120000000,
+      "additional_supervised_tokens": 100000000,
+      "additional_input_tokens": 100859904,
+      "source_teachers": {
+        "web": 75000000,
+        "story": 5000000,
+        "ordinary_textbook": 10000000,
+        "conditional_textbook": 10000000
+      },
+      "source_eos": {
+        "web": 656229,
+        "story": 38240,
+        "ordinary_textbook": 74183,
+        "conditional_textbook": 70720
+      },
+      "source_input_tokens": {
+        "web": 75674624,
+        "story": 5039104,
+        "ordinary_textbook": 10075136,
+        "conditional_textbook": 10071040
+      },
+      "source_focus_teachers": {
+        "web": 0,
+        "story": 0,
+        "ordinary_textbook": 0,
+        "conditional_textbook": 2618331
+      },
+      "focus_teacher_tokens": 2618331,
+      "focus_token_digest": "9f4928eecb02c621b9caaa27335854f868d12ae03019d13b350f68b1c970784a",
+      "weighted_teacher_mass": 100000000,
+      "outcome_weight": 1,
+      "training_seconds": 152.38707779403194,
+      "completed_at": "2026-10-06T02:39:55.618901Z"
+    },
+    "large2048": {
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-source-learning-100m-20261006/large2048/training/checkpoint-00065244.pt",
+      "checkpoint_sha256": "4ef0dedc2269ae585cd05d39c84fb6afc6676210d231d6ac26bafe622f4de1a3",
+      "binding": {
+        "config_sha256": "c3f3b9d077a5a0c8f61ec16ff614488d5a6146e658141f771349d9e5e90d860e",
+        "arm": "large2048",
+        "parent": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook-coverage-2b-20261006/decay/checkpoint-00062166.pt",
+          "sha256": "965a06dc1537ed917de98c565d78ae76f19d99ad075f019067a4324a6cbd2249"
+        },
+        "short_manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+        "teacher_goals": {
+          "web": 75000000,
+          "story": 5000000,
+          "ordinary_textbook": 10000000,
+          "conditional_textbook": 10000000
+        },
+        "optimizer_policy": "inherit",
+        "peak_lr": 0.0002,
+        "loss": "ordinary original body+EOS CE, outcome weight1",
+        "study_kind": "nested_condition_source_quantity_at_100M",
+        "sampler_policy": "Fresh explicit four-stream seed42 fork from common2B+20M parent; original3 supervised sequences equal, nested512/2048 conditional IDs/interleaving differ. Prior25M terminal quotas are historical, not new100M control.",
+        "outcome_weight": 1,
+        "positive_manifest_sha256": "cf0ac3efa0722d54aa1f6107770ca41b7843a0297d5e53b68f3cde6480901280"
+      },
+      "update": 65244,
+      "tokens": 2137915392,
+      "supervised_tokens": 2120000000,
+      "additional_supervised_tokens": 100000000,
+      "additional_input_tokens": 100859904,
+      "source_teachers": {
+        "web": 75000000,
+        "story": 5000000,
+        "ordinary_textbook": 10000000,
+        "conditional_textbook": 10000000
+      },
+      "source_eos": {
+        "web": 656229,
+        "story": 38240,
+        "ordinary_textbook": 74183,
+        "conditional_textbook": 70061
+      },
+      "source_input_tokens": {
+        "web": 75674624,
+        "story": 5039104,
+        "ordinary_textbook": 10075136,
+        "conditional_textbook": 10071040
+      },
+      "source_focus_teachers": {
+        "web": 0,
+        "story": 0,
+        "ordinary_textbook": 0,
+        "conditional_textbook": 2620780
+      },
+      "focus_teacher_tokens": 2620780,
+      "focus_token_digest": "8e2af3a7a69ecc6ea03b6f189587339877c5cf6d20031ae69100d24ffe4a7d85",
+      "weighted_teacher_mass": 100000000,
+      "outcome_weight": 1,
+      "training_seconds": 151.12010613348684,
+      "completed_at": "2026-10-06T02:43:40.425716Z"
+    }
+  },
+  "summaries": {
+    "small512": {
+      "BPB": 1.1332850242844945,
+      "rates": {
+        "outputs": 80,
+        "eos": 42,
+        "repetition": 25,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 56,
+      "relevance2": 59,
+      "coherent": 13,
+      "appropriate": 31,
+      "Japanese": {
+        "semantics": 0.5208333333333334,
+        "jblimp": 0.7824773413897281,
+        "jcqa": 0.29892761394101874
+      },
+      "new_teacher_tokens": 100000000,
+      "source_teacher_tokens": {
+        "web": 75000000,
+        "story": 5000000,
+        "ordinary_textbook": 10000000,
+        "conditional_textbook": 10000000
+      },
+      "outcome_weight": 1,
+      "conditional_source_documents": 512,
+      "mean_conditional_target_exposures": 138.1272704670083,
+      "generation_sha256": "a844cb65301373928ed783f7b4495cce83089583e85baad3e4939d7f058257a3",
+      "notes_sha256": "0d2445b55acddf98c485dca71d4d09c19a0ef1f36e19b1201b5f1706d0666c82",
+      "Base_adopted": false,
+      "independent_human_blind": false
+    },
+    "large2048": {
+      "BPB": 1.136865685906886,
+      "rates": {
+        "outputs": 80,
+        "eos": 42,
+        "repetition": 20,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 62,
+      "relevance2": 74,
+      "coherent": 12,
+      "appropriate": 30,
+      "Japanese": {
+        "semantics": 0.5052083333333334,
+        "jblimp": 0.7854984894259819,
+        "jcqa": 0.29803395889186773
+      },
+      "new_teacher_tokens": 100000000,
+      "source_teacher_tokens": {
+        "web": 75000000,
+        "story": 5000000,
+        "ordinary_textbook": 10000000,
+        "conditional_textbook": 10000000
+      },
+      "outcome_weight": 1,
+      "conditional_source_documents": 2048,
+      "mean_conditional_target_exposures": 34.21248002846478,
+      "generation_sha256": "5f02dd36439eca9b8013ac2fc1ae9220be1358f0f9be11f53c1e6be853c1ac99",
+      "notes_sha256": "c20773f49a310b5eceda42b08d14a4a5c64e102b0e7d36aa3cec478dfff310e0",
+      "Base_adopted": false,
+      "independent_human_blind": false
+    }
+  },
+  "quality_comparison": {
+    "checks": {
+      "coherence_gain_at_least8": false,
+      "paired_CI_lower_above0": false,
+      "EOS_nonworsening": true,
+      "repetition_nonworsening": true,
+      "no_empty_role_unicode": true,
+      "BPB_gate": true,
+      "appropriate_completion_not_punctuation": true
+    },
+    "passed": false,
+    "difference_count": -1,
+    "CI95": [
+      -0.1,
+      0.075
+    ]
+  },
+  "absolute_dev_screen": {
+    "small512": {
+      "grammar_at_least56": true,
+      "coherence_at_least27": false,
+      "appropriate_at_least27": true,
+      "EOS_at_least37": true,
+      "repetition_at_most18": false,
+      "no_empty_role_unicode": true
+    },
+    "large2048": {
+      "grammar_at_least56": true,
+      "coherence_at_least27": false,
+      "appropriate_at_least27": true,
+      "EOS_at_least37": true,
+      "repetition_at_most18": false,
+      "no_empty_role_unicode": true
+    }
+  },
+  "original_Web": {
+    "small512": {
+      "EOS_at_least8_more": true,
+      "repetition_no_worse": true,
+      "no_empty_role_unicode": true,
+      "BPB_degradation_at_most1percent": false,
+      "no_punctuation_only_stops": true
+    },
+    "large2048": {
+      "EOS_at_least8_more": true,
+      "repetition_no_worse": true,
+      "no_empty_role_unicode": true,
+      "BPB_degradation_at_most1percent": false,
+      "no_punctuation_only_stops": true
+    }
+  },
+  "learning25M_to100M": {
+    "small512": {
+      "checks": {
+        "coherence_gain_at_least8": false,
+        "paired_CI_lower_above0": false,
+        "EOS_nonworsening": false,
+        "repetition_nonworsening": true,
+        "no_empty_role_unicode": true,
+        "BPB_gate": true,
+        "appropriate_completion_not_punctuation": true
+      },
+      "passed": false,
+      "difference_count": -2,
+      "CI95": [
+        -0.1,
+        0.05
+      ]
+    },
+    "large2048": {
+      "checks": {
+        "coherence_gain_at_least8": false,
+        "paired_CI_lower_above0": false,
+        "EOS_nonworsening": true,
+        "repetition_nonworsening": true,
+        "no_empty_role_unicode": true,
+        "BPB_gate": true,
+        "appropriate_completion_not_punctuation": true
+      },
+      "passed": false,
+      "difference_count": -4,
+      "CI95": [
+        -0.1503125,
+        0.05
+      ]
+    }
+  },
+  "scientific_teacher_tokens": 200000000,
+  "new_original_corpus_tokens": 0,
+  "verification_teacher_tokens": 2599760,
+  "scientific_GPU_seconds": 453.00058993601124,
+  "verification_GPU_seconds": 21.030304796993732,
+  "total_actual_GPU_seconds": 474.03089473300497,
+  "GPU_ceiling_seconds": 1200,
+  "all160_individually_read": true,
+  "independent_human_blind": false,
+  "reused_exact_prior_content_grades": {
+    "small512": 17,
+    "large2048": 9
+  },
+  "portable_text_files": 253,
+  "portable_uncompressed_bytes": 23732258,
+  "archive": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-source-learning-100m-20261006_evidence.tar.gz",
+    "sha256": "4f12e340b332d5de05ab4cff7861cb89d483954f4c79da83c200bb3dc33b70a9",
+    "bytes": 5126351
+  },
+  "portable_raw_SHA_verified": true,
+  "authority": "Completed fullstate checkpoints and compare-result show exactly100M each; heartbeat99,436,065 is the last periodic20-update observation, not terminal training count.",
+  "source_fit_conclusion": "Expanded2048 original-history source matching both128 increases7->90 and targetNLL(old/new)1.504358/1.578169->.627247/.657038, yet heldout coherent16->12 and dev negation/comparison both0/16. Small512 old64 matching51->63 but unseen-source new64 stays3. Improved train fit does not establish transfer or general quality.",
+  "interpretation_limits": "Source-matching candidates are original text outcomes, not certified incompatible negatives. One learned seed, fixed dev repeatedly inspected, nonblind judgments, historical25M terminal masks differ; no unique causal/capacity/generalization proof.",
+  "UI": {
+    "status": "running",
+    "pid": 532868,
+    "started_at": "2026-10-06T02:44:56.17044Z",
+    "url": "http://127.0.0.1:7860",
+    "additional_training_tokens": 0,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "13789884",
+    "model": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024
+    },
+    "ready_at": "2026-10-06T02:44:56.477828Z"
+  },
+  "HTTP": {
+    "name": "JMicro-10M",
+    "kind": "Base / 文章の続き",
+    "parameters": 10001152,
+    "training_tokens": 10000007168,
+    "update": 305176,
+    "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+    "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+    "device": "NVIDIA GeForce RTX 4090",
+    "precision": "BF16 / math attention",
+    "context": 1024,
+    "busy": false
+  },
+  "UI_process_verified": true,
+  "native_fullstate_preserved": true,
+  "science_job_complete_do_not_restart": true,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "independent_learning_seed_done": false,
+  "full_dev_final_done": false,
+  "protected_test_used": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "quality_criteria_unchanged": true,
+  "old_numerical7_preserved": true,
+  "requested_five_steps_complete": false,
+  "next_action": "Base only: prepare one diverse self-contained conditional curriculum proposal; fixed2048 train documents with separate family-disjoint transfer probes and same100M/parent/optimizer/ordinary quotas versus frozen natural2048 control. Implement bounded CPU preparation, read fixed64 before acceptance, then real CUDA resume/timing and freeze <=900s including probe. No automatic long extension. Only qualified Base proceeds to independentseed/full dev/protectedtest/adoption -> notify and stop. No Chat/quantization."
+}

@@ -1,0 +1,177 @@
+{
+  "research_kind": "nested_condition_source_quantity_at_100M",
+  "phase": "scientific",
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/textbook-coverage-2b-20261006/decay/checkpoint-00062166.pt",
+    "sha256": "965a06dc1537ed917de98c565d78ae76f19d99ad075f019067a4324a6cbd2249"
+  },
+  "original_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/textbook_quantity_comparison.json",
+    "sha256": "f1baece77f9e85d6086f1ac5d1e624a59d19910a90af2202a104fb125c379d98"
+  },
+  "pool": {
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large",
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133"
+  },
+  "accepted_compact_index": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large/.compact-index-8cde6396d433644b/ready.json",
+    "sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606"
+  },
+  "data": {
+    "small512": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/source-condition-positive-20261006",
+      "manifest_sha256": "7ef3df21ec52541d32f4b6e17321cb35271a25ded13af913dab6c1aab5e866fc"
+    },
+    "large2048": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-diversity-positive-20261006",
+      "manifest_sha256": "cf0ac3efa0722d54aa1f6107770ca41b7843a0297d5e53b68f3cde6480901280"
+    }
+  },
+  "arms": {
+    "small512": {
+      "web": 75000000,
+      "story": 5000000,
+      "ordinary_textbook": 10000000,
+      "conditional_textbook": 10000000
+    },
+    "large2048": {
+      "web": 75000000,
+      "story": 5000000,
+      "ordinary_textbook": 10000000,
+      "conditional_textbook": 10000000
+    }
+  },
+  "outcome_weights": {
+    "small512": 1,
+    "large2048": 1
+  },
+  "teachers_per_arm": 100000000,
+  "new_scientific_teacher_tokens": 200000000,
+  "peak_lr": 0.0002,
+  "optimizer_policy": "inherit",
+  "shapes": {
+    "context": 1024,
+    "batch": 32,
+    "accumulation": 1,
+    "backend": "flash",
+    "compile_mode": "reduce-overhead",
+    "dtype": "bf16"
+  },
+  "GPU_budget_seconds": 1178.9696952030063,
+  "total_new_GPU_ceiling_seconds": 1200,
+  "sampler_policy": "Fresh explicit four-stream seed42 fork from common2B+20M parent; original3 supervised sequences equal, nested512/2048 conditional IDs/interleaving differ. Prior25M terminal quotas are historical, not new100M control.",
+  "loss": "ordinary original body+EOS CE, outcome weight1",
+  "references": {
+    "proposal": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition_source_learning_100m_proposal.json",
+      "sha256": "3af9198d2e519c73684c76243e1e6cd6a0efe14d8a0df4e766ebf1fbee37f433"
+    },
+    "ordinary_stream_audit": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-source-learning-100m-20261006/ordinary-stream-audit.json",
+      "sha256": "a6235312997261cf13a699e145f649d4ca18ba4dd2efecd9d252a3d6ac91642f"
+    },
+    "previous25M_config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/condition_diversity_comparison.json",
+      "sha256": "87b4ed4070fb92d5c97ffbb9563d20ad3d649414d81c11426cabe0540a7f80d0"
+    },
+    "previous25M_result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-diversity-comparison-20261006/compare-result.json",
+      "sha256": "19462e8ab867036294a966a47847b753edde33c9000e1eb04ae7444bce55e614"
+    },
+    "previous25M_review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-diversity-comparison-20261006/review.json",
+      "sha256": "dc068ee587688a8d110fc8db59a18a5d0a78d9439f70a43476b1be712ddcf3a7"
+    },
+    "source_ranking_config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/condition_source_ranking.json",
+      "sha256": "ddca20908c914d05dde9392b6221e49db07cc6b794f1be17f54e66a7846800ad"
+    },
+    "source_cases": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-source-ranking-20261006/cases.json",
+      "sha256": "fabd50a0cd903951bdef0df1faa29819143509a050903e89e28529d5cc74aa7b"
+    },
+    "source_ranking_review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition-source-ranking-20261006/review.json",
+      "sha256": "19b4f669f081f5e40063afd2281783a8778ecbb57c0e604c3fb8b8ec076c9c44"
+    },
+    "source_fit": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/condition_source_ranking_fit_analysis.json",
+      "sha256": "1f0283bd5f2378f0bf7d404590bc99da43708db882804b7634da80439e9496e0"
+    }
+  },
+  "source_sha256": {
+    "scripts/run_condition_source_learning.py": "4702a59a0827f03edc25bb2a1cb3c44d66ba79d22e8ab0b619ae84da92e6c69d",
+    "scripts/run_condition_source_learning.ps1": "e7cb7b8a02a7c76608caeab5a0544a7510d1c89aef3454224c301bce339fc682",
+    "scripts/review_condition_source_learning.py": "8067e605f656a6492c7575accc2d75778ebd09082df140202e22683fc67c5bb8",
+    "scripts/run_condition_diversity_comparison.py": "c76ff03994ac64723712d5c98c9e8357c1ffb8fd044abfab7f388ce2b0d46b46",
+    "scripts/run_condition_diversity_comparison.ps1": "a28458ebad2596921cb412e2db31b83f4955c339cee4ff0a0c4e235bb65411ce",
+    "scripts/review_condition_diversity_comparison.py": "557422c5e521c913e0d319c88189e99899385804a8ca9c2acfdf4dce13a110a3",
+    "scripts/run_condition_positive_comparison.py": "8ab13739f65495123dcdb9450b3bcbf1d9e35e743c6f28c505fb2b421730bb9a",
+    "scripts/run_condition_positive_comparison.ps1": "2a6865471e5855ec9ed4f2bc6b8ebac28a2e206a887d2859c48b18629de067ab",
+    "scripts/story_weight_trainer.py": "47d7da7aa511d168ba319dea754deb0bf5688fca5edadf3891e8d4bf5d8c5435",
+    "scripts/run_story_weight_comparison.py": "3598ce68a406aeb98eacc07dc700c04c261cf8e7a093ca805cac431853ba95eb",
+    "scripts/condition_positive_trainer.py": "c2c107b408e38958c36dd43d56d3a78fe623a7b7f12daf4e0d3e39787aea7f33",
+    "scripts/condition_positive_loss.py": "85ef2ba6f3815eacbbe4f7178bca235f2240662b55581fbbf0f925d38879b349",
+    "scripts/review_condition_positive_comparison.py": "43bc26ba6754ebaa7dca4818f9c74312e58315170191e00f1f111c30a2dccf24",
+    "scripts/prepare_condition_positive_teachers.py": "7ab8cd6680e0ab909a5340a9450ba98cc0647be0adc706e8b6cc852cf04ab57c",
+    "scripts/cached_three_source_index.py": "c66a38606d2602c7b2193d41ebcefca7220491d1bb50c5f729dbab01f277bb85",
+    "scripts/textbook_quantity_trainer.py": "c11b8c3650e193118f20cac29122d917228b0b95322c642d061a04c8813cbab8",
+    "scripts/run_complete_text_comparison.py": "9d91d1d6124e62e4f40f7a99762f948186602e95cc362be10bfe03297874d8f7",
+    "scripts/run_complete_text_comparison.ps1": "7fb1a82d9450daf7f6955d56093be61cf31c25dd479e23715372b1d8db345e5b",
+    "src/jmicro/coherent_units.py": "7b0e8cef7726b652f7b88187749090ded2b05042ac4c5fe076c30b5f5e637459",
+    "scripts/prepare_coherent_text.py": "d91f65d6c469690cbb2c01971bddfad73a4b0ae61211a277fa3d522e17901149",
+    "scripts/inspect_complete_text_data.py": "bf18510673c0c4352df911df850e3f598f921977cc34d580aa3fc87e8e8df626",
+    "scripts/prepare_story_text.py": "ecbd5d1a320d59a318b282026b36e4b7ad9284d897169f0c57e77f6dae5c90fa",
+    "src/jmicro/eos_pilot.py": "84b23a04455475b598056b8973a1cf89346aa3faf766e9162fef2ff7e17dbb08",
+    "src/jmicro/low_lr_pilot.py": "dcb6a1374c64c2852086b57a50433720b1e6b60263d5581eb742c3a1864ff64e",
+    "scripts/run_eos_short_pilot.py": "7a381414bdea5b24bbbbf7532f04db743cff948fa47f60e95f65019af2d3ec3d",
+    "scripts/run_eos_complete_100m.py": "62232fd440efbe32d65f25a3fffe8ec9fd7d7a96c74db329ddc3cc3443871a9d",
+    "scripts/evaluate_japanese_base.py": "9cabf705a67181b6a45eb20c1a62b69335140f2465b24ac2066f05e51ee48d02",
+    "src/jmicro/japanese_evaluation.py": "8693e2a54e63c1b085b617b207cc5db618ae80af1eb7cb54133ba8b254da6801",
+    "src/jmicro/readiness.py": "69a92251f4a697b551b9c3cfef9e2b992e776e2047c0331f7c43ba2331d172ea",
+    "src/jmicro/evaluation_memory.py": "ba22fb7ca7ddb6633a308c2b1a32a59147ecb38e568d9f838ab032300147c6b4",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "scripts/run_condition_source_ranking.py": "9635b6625d2c378a2dc478a089366e053bbe18a07554e93b857d6040220b4aa9",
+    "scripts/run_condition_source_ranking.ps1": "3939a4a44c819890f352b05aab7023b7ca8e95dcfa90e9c0c33f3f6b798005f5",
+    "scripts/review_condition_source_ranking.py": "890dafca6a06266a616f56a034bdbf3ed0ec87f9648e359b8c0fa8abf0880a86",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f"
+  },
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "quality_criteria_unchanged": true,
+  "old_numerical7_preserved": true,
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "protected_test_used": false,
+  "requested_five_steps_complete": false,
+  "scientific_teacher_tokens": 0,
+  "created_at": "2026-10-06T02:35:36.304211Z",
+  "probe_config_sha256": "7570107ae0a45cb0bf7184264ce1d8744e06d590e81373f032fc7b017452d47b",
+  "probe_result_sha256": "1d2375b4a8805f6698850c2e27e06ecfd87acae6cdcffded27f20f319845f57e",
+  "verification_GPU_seconds": 21.030304796993732,
+  "verification_teacher_tokens": 2599760,
+  "measured_timings": {
+    "small512": {
+      "steady_step_seconds": 0.049196559499250725,
+      "teachers_per_update": 32496.4375,
+      "estimated_updates": 3078,
+      "warmup_seconds": 1.313001779053593,
+      "save_seconds": 2.480006031866651,
+      "estimated_training_seconds": 155.22001794961398
+    },
+    "large2048": {
+      "steady_step_seconds": 0.04864646198984701,
+      "teachers_per_update": 32497.0625,
+      "estimated_updates": 3078,
+      "warmup_seconds": 1.3173852700856514,
+      "save_seconds": 2.519485275959596,
+      "estimated_training_seconds": 153.57068055079435
+    }
+  },
+  "estimated_GPU_seconds_with_margin": 1021.4279080505308,
+  "save_every_updates": 250
+}
