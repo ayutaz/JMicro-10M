@@ -1,3 +1,13 @@
+固定parameter L2の両100M学習/全評価/160個別読解を完了・不採用（2026-10-06 JST）。CUDA準備d1b44f0・永続起動66bdd3dはprogress。Baseのみ継続・実完成時に通知/停止、Chat/Dialogue/SFT/量子化なし。
+
+actual629059/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16481322はcomplete・不在。両科学200000000教師/6136更新、同input/targets/source/全cursor会計が一致、fixed L2教師0。検証80更新/2615904教師別。scienceGPU481.338513+probe/失敗33.680480=新全515.018993秒/上限1800。係数.04161064039180984/親6d901bd…/実LR.00001を保持。全256common472055bytes/日本語192-331-1119/greedy80各/bridge-ret128各が完了、2arm全160をrawSHA/具体理由で保存。旧raw完全一致は対照7/candidate15の採点をそのまま継承し、幻想/新人物/暗黙設備/自然な別行動/gold不一致を自動失敗にしない。非blind Codex、独立人手なし。
+
+newmatched CE: BPB1.035666704、文法65/関連52/一貫性32/適切37/EOS69/反復6、意味54.167%/JBLiMP76.133%/JCQA29.759%。parameteranchor: BPB0.990667075、文法59/関連60/一貫性25/適切29/EOS67/反復6、意味52.604%/JBLiMP75.529%/JCQA32.172%。両Unicode-role-empty0（各80）。candidate一貫性差-7/CI[-.2125,.05]、oldstrong23比+2/CI[-.0875,.15]でいずれも相対条件未達。絶対一貫性27・歴史WebBPB<=.981285952も失敗。差のCIは0を含み有意な悪化の証明ではない。newCEは絶対screenを満たすがoldEOS76/反復2/歴史WebBPBを満たさず採用なし。oldstrongへの比較は追加mixed100Mの履歴も違い、単純学習量だけの因果としない。
+
+全raw/counters/160notes/review/transfer/probe費用/失敗はparameter_displacement_anchor_completion/portable.json/archiveへ保存、モデルtensorはnative。元10B UI629733/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16529959とHTTP親410f975d…/10000007168/busy=falseを確認。旧Phase0–3/数値7失敗・全不採用と関連費用を保持、当series累積2858.847924秒（全project費用ではない）。Base品質採用/独立学習seed/full dev/protected testは未達。L2係数/anchor/層/source/decoder sweepで救済しない。
+
+次はconditional_prefix_mask_proposal.jsonの一つの別の損失target仮説を実装。Setup語句のhardCEを外し既存outcome focus+EOSだけをconditional教師とする案。source変更0、roleなし、他3source・同残input/順序/実LR/fullstateを保持。oldsourceの最初conditional教師update323190直前の250保存CP323185をsource会計だけで選定・実finite/fullstate/conditional教師0確認、quality/endpoint選別なし。全source2048docs/body85350/outcome12302/prefix73048/EOS2048を既小arrayで確認。hard教師数とEOS率は変わるので同教師100Mとは言わず、原reference quota/digestとmasked actual教師/byte/digestを分ける。CPU準備30/GPUprobe120/新全上限600、own実maskedCUDA保存再開/steady32/実測1.3+reserve150+50を満たしてから科学設定凍結。元strong/absolute/歴史全guardを維持、未実装/未起動、GPU/教師0。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 固定parameter L2対照の本比較を永続起動（2026-10-06 JST）。実両CUDA gate/32timingと凍結設定はd1b44f0へ保存したprogress。Baseのみ継続・完成時に通知/停止、Chat/Dialogue/SFT/量子化なし。
 
 actual629059/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16481322を実確認、configSHA7fb897e9905eceaecc754a4d323f2e8d90c68e47e592872c8f20cf980721e249、run reports/phase6/parameter-displacement-anchor-v3-20261006。stage matched_staged_CE-training、追加教師78457227/当arm100M、loss1.9584909677505493有限で継続。初期status setupラベルで終了/停止を推定せずPID/heartbeat/teacher更新を用いる。両科学200M＋検証2615904教師は別、probe成功/失敗GPU33.680480秒を保ち全上限1800。元UIは科学実行中停止、durable finallyで元10Bへ復帰。

@@ -1,0 +1,77 @@
+{
+  "status": "defined_not_implemented_not_launched",
+  "created_at": "2026-10-06T10:29:46.032856Z",
+  "trigger": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/parameter-displacement-anchor-v3-20261006/review.json",
+    "sha256": "d1360f469c2410dadf288e6a987996fa4a65137d1b610c034f11e4a79ee02c2b"
+  },
+  "question": "Does excluding conditional setup/prefix text from hard CE targets reduce generic template continuation while preserving conditional outcome and EOS learning on exactly the original input suffix?",
+  "reason": "Fixed L2 improved Web loss but not all generation guards; both new CE and L2 outputs reproduce conditional light/person/record phrasing on unrelated natural prefixes. Previous positive-weight/ranking/anchor/KL comparisons still learned hard CE on those setup tokens. This tests target selection, not another parameter coefficient or source variant.",
+  "selected_shared_checkpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323185.pt",
+    "sha256": "ad4747898bc6492e1165edee6b870b09c8be9be944e03a9e4450fde406cb3f34"
+  },
+  "selection_policy": "Last original250-update saved checkpoint strictly before the first conditional teacher, based only on old source counters. No quality/endpoint selection.",
+  "first_original_conditional_update": 323190,
+  "shared_update": 323185,
+  "original_strong_control": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323503.pt",
+    "sha256": "fb43f2618c0679ca6c6f7a0c5b9faf1b336be8985271c8513f2e4bbfde3cd7ae"
+  },
+  "original_control_result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/compare-result.json",
+    "sha256": "cbca7936ebf395b1d5ccd45022ee4cb85de704a636c8bdae48ff2c24a8adc303"
+  },
+  "original_control_notes": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source_order_condition_notes.json",
+    "sha256": "6b143e08096a1ee2365a643c008d5c009d2c2ff48dd1d42a9749ac5301766d2d"
+  },
+  "original_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/source_order_condition_comparison_v2.json",
+    "sha256": "03b4ad47fa42b9a669c4588e736648e6339c93b9eb0cf3d08aac22a46cf90a88"
+  },
+  "accepted_source": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006",
+    "manifest_sha256": "154f13da4a817aaa21586fba2cd335faea7c79358be410e73166f5d0052bf936"
+  },
+  "source_summary": {
+    "documents": 2048,
+    "serialized_positions": 89446,
+    "body_positions": 85350,
+    "outcome_body_positions": 12302,
+    "EOS_positions": 2048,
+    "prefix_body_positions": 73048
+  },
+  "candidate_target_rule": "Continue the original fullstate/sampler/quotas without resetting streams. Other3 sources retain every original body+EOS label. For conditional source only, keep existing outcome-focused body positions plus original EOS3 and ignore the other prefix/setup body targets. Do not change x, BOS, order, document length, source text, shuffle, update count, actual LR0.00001, optimizer/scheduler/RNG, conditional terminal padding or decoder. Ordinary causal Base continuation; no role labels.",
+  "sampling_and_accounting": "The original unmasked quotas remain a reference input stop condition, not masked teacher counts. Keep separate original reference teachers/source/EOS/bodybytes/unmasked target digest and actual hard teachers/bodybytes/masked digest. Reused shared-prefix learning and old100M control are not new exposure. New suffix physical input matches original remaining suffix exactly; actual candidate hard teachers will be fewer. Do not call it a matched-teacher100M comparison.",
+  "remaining_reference_teacher_quotas": {
+    "web": 0,
+    "story": 0,
+    "ordinary_textbook": 159637,
+    "conditional_textbook": 10000000
+  },
+  "parameter_penalty": 0,
+  "KL_teacher": 0,
+  "positive_weight": 1,
+  "new_source_documents": 0,
+  "new_family_selection": 0,
+  "new_tokenizer": 0,
+  "prerequisites": "Implement sampler/target mask/completed-state counters/runner/meaningful CPU tests first. Reuse accepted compact data; no source/full-index scan. Own actual CUDA/BF16 finite save/resume gate must include masked conditional updates and the source transition; measure own32 steady updates. Actual measured suffix time*1.3+save+evaluation reserve150+50 and all probe/failed costs must fit600s before science freeze.",
+  "CPU_preparation_ceiling_seconds": 30,
+  "probe_GPU_ceiling_seconds": 120,
+  "total_new_GPU_ceiling_seconds": 600,
+  "evaluation": "Old strong original100M control reused unchanged. Same common256 bytes, allJapanese192-331-1119, greedy80 individually read/raw SHA, bridge128 and retention128. EOS/raw repetitions/Unicode remain visible. New CE32/80 completion result is supplementary observed evidence, not a lowered primary gate.",
+  "quality_guards": "Keep original strong staged coherence23+8/paired CI lower>0/EOS>=76/repetition<=2; all original absolute/historical WebBPB<=0.9812859519097707 and nonpunctuation completion guards. No favorable rescoring of old controls; no gate relaxation.",
+  "failure": "End this single target-mask comparison after failure; no prefix/outcome/EOS weight, source, mask position, checkpoint, input budget, ratio or decoder sweep to rescue it.",
+  "limits": "Hypothesis chosen after the observed failure. Template repetition and one selected suffix do not prove the sole cause of quality issues, source-wide quality or a model capacity ceiling. Masking also changes hard-teacher count and EOS fraction; hold physical input fixed and label the changed budgets.",
+  "completion": "Actual finite suffix/matched original reference input ledger/full evaluation/all80 review/decision/UI/commit. Only a qualified pilot allows independent learned recipe seed/full dev/protected test/adoption.",
+  "scientific_teacher_tokens_so_far": 0,
+  "GPU_seconds_so_far": 0,
+  "optimizer_updates_so_far": 0,
+  "quality_criteria_unchanged": true,
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false
+}
