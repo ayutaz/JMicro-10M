@@ -1,3 +1,9 @@
+Base専用frozen nonlinear readout: probe（2026-10-06 JST）。Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。
+
+actual653986実完了/不在、ownCUDA probe23.461776秒/120。初期FP32/BF16 native32/1024・nonzero full/cache1024とnative119重み凍結/RNG/13KV、fresh readout-only Adam/fixedLR.0001・連続4対2+2全state/history/finiteと32timingに合格。40検証更新/1307952教師/11readonly forward6272contextは科学へ混ぜない。ピークVRAM2.117GiB、科学予測798.859647秒・ownprobe/旧失敗込み822.654138/900。旧probeはCPU準備moduleのimport副作用でCUDAを隠したため失敗。元source/config/失敗を保存しproposal定数path参照だけへ限定修復、GPU可視性import回帰testを追加し科学recipe不変。これは実装/再開/費用の証明で、日本語品質やBase完成の証明ではない。次は予算内のみ専用科学runner/明示readout評価/全80reviewを実装し、cached native full100M対照を再GPUせず固定条件で比較する。
+
+[Houlsby adapter](https://proceedings.mlr.press/v97/houlsby19a.html)と[feature distortion/linear probing](https://arxiv.org/abs/2202.10054)を参考にした独自の転移仮説。per-layer BERT分類adapter/主にvisionの報告を日本語10Mでの改善保証としない。全旧失敗/数値7/Phase0–3/元相対・絶対・歴史Web1%基準保持。幅/activation/placement/init/LR/source/mask/parent/decoder/CP救済sweepなし、native HF export未対応を完成としない。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用readout probe実データschema修復（2026-10-06 JST）。
 
 v2 actual653385は固定memoryのキーinputs誤読でKeyError、GPU0.232884027秒・学習0、元source/config/job/ログを保存し元UI復帰。実packetのx/y int64[32,1024]へ合わせ、GPU前に同実packetを読む事前検証を追加。GPU可視性と実packet schema/不正形式拒否のCPU2tests/2.89秒合格。v3は同科学recipe、旧二失敗0.332715188秒を900秒総上限へ算入。次は同own CUDA identity/cache/fullstate再開/32timingへ。Base未完成・完成時通知停止、Chat/量子化なし。
