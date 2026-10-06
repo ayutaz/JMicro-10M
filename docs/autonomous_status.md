@@ -1,3 +1,11 @@
+既存TinyStories-JA翻訳源の固定64を全確認し、今回の置換比較を不採用（2026-10-06 JST）。Baseだけを完成時に通知して停止する境界を維持。Base未完了・未採用、Chat/Dialogue/SFT/量子化は未開始。
+
+凍結proposal/source/seed2026100693/calibration除外から、既存TRAIN追加区間のwhole499066文書を本文変更・再encode・新取得なしで読み出した。serialized140036743/body139038611/本文+EOS139537677、長さ44–512。実CPU0.337270秒/上限60、535MB元indexは1200995bytesのみ部分読み。関連CPU3tests/0.76秒で境界・codec・途中文書とepoch再開・固定除外を確認。固定64は個別rawSHA/rationale付きで全読解し、weak12（上限10）/未解消日本語表現6/所有・主体接続2で内容基準未達。めかしめ、パパとうさぎ、バジーを言い返す、店の絵の具を自分の所有物扱い、父が閉めたドアを姉妹の行動へ置き換える等を記録。幻想・悲劇・省略・未使用の属性は自動失敗にしない。非blind Codex判定で独立人手/外部事実保証なし。
+
+rejected sourceはnative loaderも拒否し、提案100M/CUDA probeは内容前提で取り消した。新科学/検証教師・optimizer/GPUすべて0。凍結後の本文修正/selector変更/reroll/別translation filterでの救済なし。前の13翻訳例の表現0からsource全体の品質を保証できなかった結果で、モデル学習効果や容量限界を示さない。全旧採否/Phase0–3/数値7失敗と関連GPU2289.596018秒は保持。completion/review/全64/code/testsをtranslated_story_source_portable.jsonのraw SHA付きarchiveへ保存、全corpusとcompact arrayはWSL側に保持。元10B UI618479をactual identity/HTTP親410f975d…/busy=falseで確認。
+
+次は既存の完了・採否metadataだけで、今回終了した生成/混合/翻訳source置換と完了したモデル比較の未達項目を一つの有限表へ整理する。追加の全量照合・source選別・同実験GPU反復は行わない。別のBase介入は未検証の仮説・比較・終了条件が定義できた場合だけ実装する。既存品質基準を維持し、合格pilot後の独立学習seed/full dev/protected test/採用まで完了としない。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 既存物語100Mの固定64を全確認・不採用、全64の元sourceを小部分読みで確定（2026-10-06 JST）。前回の16384生成文/source失敗はfd48644に保存したprogress。Baseだけを品質・独立学習seed/full dev/protected test/採用まで継続し、実完成時に通知して停止。Base未完了・未採用、Chat/Dialogue/SFT/量子化なし。
 
 natural_story_source_reuse_proposal.jsonで別親/LR/素材の旧自然25M・storyweight100M・fresh教材量比較と、現在same10.5B staged条件源を比較し、最後のconditional10Mだけを既原文物語に置換する対照を定義。GPU起動前にTRAINの761448whole docs/serialized100000968/body98478072/本文+EOS99239520を確認、長さ34–511で切断0。旧2B poolのaccepted manifest/217MB compact cacheを再利用し13GBindex/5.37GBraw再走査・再取得なし。new corpus0/元原文変更0で、新量の用意やモデル改善としない。
