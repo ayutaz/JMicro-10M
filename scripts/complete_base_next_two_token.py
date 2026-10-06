@@ -25,6 +25,7 @@ def main():
     audit_terminal(job, result, c, sha256(CONFIG), alive(job))
     review_path = phase / 'base_next_two_token_comparison_review.json'
     review = read_json(review_path)
+    notes = read_json(NOTES)
     if (review != read_json(RUN / 'review.json')
             or review['config_sha256'] != sha256(CONFIG)
             or review['review_policy_sha256'] != sha256(POLICY)
@@ -36,8 +37,11 @@ def main():
             or review['quality_criteria_unchanged'] is not True
             or any(review[k] is not False for k in (
                 'Base_complete', 'Base_adopted', 'Chat_started', 'quantization_started', 'protected_test_used'))
-            or read_json(NOTES)['generation_sha256'] != sha256(RAW)):
+            or notes['generation_sha256'] != sha256(RAW)):
         raise ValueError('Unchanged complete raw-bound review required; this does not adopt Base')
+    observations = Path(notes['observations']['path']).resolve()
+    if not observations.is_relative_to(phase.resolve()) or sha256(observations) != notes['observations']['sha256']:
+        raise ValueError('Original individual observations must retain their recorded identity')
     ui = read_json(ROOT / 'reports/local/webui/server.json')
     with urllib.request.urlopen('http://127.0.0.1:7860/api/model', timeout=10) as response:
         model = json.load(response)
@@ -45,7 +49,7 @@ def main():
             or model['checkpoint_sha256'] != c['parent']['sha256']):
         raise ValueError('Actual original idle UI process and HTTP parent identity required')
     eligible = review['eligible_for_final_Base_validation']
-    files = [CONFIG, POLICY, NOTES, review_path, Path(__file__),
+    files = [CONFIG, POLICY, NOTES, observations, review_path, Path(__file__),
              phase / 'base_next_two_token_content_review.json',
              phase / 'base_next_two_token_proposal.json',
              phase / 'base_next_two_token_science_start.json',

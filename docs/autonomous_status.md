@@ -1,3 +1,23 @@
+Base限定・next-two補助学習100Mの全評価終了、不採用（2026-10-07 JST）。
+
+[実終了と可搬証拠](../reports/phase6/base_next_two_token_comparison_completion.json)・[全80採点と比較](../reports/phase6/base_next_two_token_comparison_review.json): actual701073/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start20668823はcomplete・実process不在。元gold教師100,000,000/17,698更新をterminal stateで確認。最終training heartbeat99,900,395/17,680は途中の値で、完了量ではない。追加next-two教師99,150,521、総label位置199,150,521、追加係数mass9,915,052.1を元教師と別計数。native推論10,001,152paramsは不変、学習専用688,896params、同TRAINの再利用で新教材量0。GPU1,571.634540秒（26.2分）/凍結3,793秒、checkpoint SHA4d76e678f57d61fc6c6f1617b322dd04f6846ca69a7568cb70cec706c0a0b024。全native・aux・Adam・scheduler・RNG・sampler・17,698完了履歴と全会計をreview。aux Adamも今回は全17,698更新で進行。元教師/source/EOS/input/physical/bodybytes/digest/full samplerはcached CEと一致、対照GPU再実行・再採点0。
+
+|条件|共通byte BPB|文法2/80|関連2/80|一貫性2/80|適切完結/80|EOS/80|反復/80|
+|---|---:|---:|---:|---:|---:|---:|---:|
+|cached CE100M|0.998487|44|25|2|2|19|45|
+|next-two補助100M|1.000047|45|23|1|1|19|45|
+
+全80を個別に読み、同一prefix/text/IDs/停止の38件は既存内容採点を再利用、変わった42件へ個別理由を保存。非blind Codex診断で独立人間ではない。自然な創作・擬人化をgold不一致だけで落とさず、数値誤答と文法を分離した。唯一の一貫性2/適切完結は不眠から夜の時間を大切にする短文。母の呼称、接続節、同一原因、名詞の自己説明を反復する失敗が残る。対照一貫性差-1/80、paired95%CI[-.0375,0]で独立した悪化の確定ではないが、改善条件は未達。BPB差+0.0015597/文書paired CI[0.0012701,0.0018405]、相対+0.1562%は1% guard内でも改善ではなく、単一seed/反復DEVの範囲。全256文書/472,055byte/122,343tokensを同条件で比較した。
+
+意味192件60.9375%（対照62.5%）、JBLiMP331件76.7372%（77.3414%）、JCQA1,119件34.6738%（35.0313%）。意味差CI[-.041667,.005208]は0を含む。Unicode/role/empty0。strong相対・absolute・historical Webの全条件を満たさず、eligible=false/全品質基準不変。固定horizon2/係数0.1/contextual head条件を閉じ、係数・horizon・head・LR・source・親・epoch・教師量・GPU上限で救済しない。next-two一般、全容量限界、全追加学習の無効を証明する結果ではない。
+
+complete_base_next_two_token.pyは終端の実review/個別TSV/元UI実process・HTTP親SHAを確認して実行成功。45text/109,070,455byte、gzip46,920,058byte/SHA28ee81e23fec0dc9410ab2b88e4634472350b91b0ea51cd8bb2f7e9e88d4ccd9をWindowsへ保存・照合。full checkpointsはWSL保持。元10B UI actual701993/同boot/start20826405は実processとHTTP親SHA410f975d…/training_tokens10,000,007,168/busy=falseで復帰。新科学GPUjobなし。
+
+次の具体的アクション: 元10Bのpacked-block学習と固定Base短いprefix生成のBOS/文書境界・過去文脈条件を、既存trainer/config/shard・保存済み診断から棚卸しする。旧診断との重複を確認し、未測定の差があればそれ一つのTRAIN限定診断を上限と完了条件付きで定義・実装してから実行する。全corpusの再scan・重複照合・Tokenizer再学習をしない。今回の未来教師条件や予算不合格の構造比較を再開しない。
+
+Base未完成・未採用。独立学習seed/full DEV/protected final TEST/adoptionは資格のある候補にのみ行い、今回は未実施。実Base完成時にユーザーへ知らせて停止し、Chat/Dialogue/SFT/量子化に進まない。Python3.12.7はWSL uv、local verified commitのみ、自動pushなし。Phase0–3/旧数値7失敗/全負の結果を保存。直前の待機turnはactual701073の実稼働と教師更新を確認したverified wait、今回は実終了・全80採点・採否保存のprogress。以下は過去の履歴。
+
+
 追加準備／実学習継続（2026-10-07 JST）: actual701073/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start20668823を再確認。21:56:27Zに18,191,049元教師/3,220更新/loss3.343921有限、checkpoint-00003000.ptを保持。前goal turnはdiagnostic完了・科学実起動・39ad757 commitのprogress。complete_base_next_two_token.pyを追加し、実終了・凍結review/raw notes・元UI実process/HTTP復帰に基づく終端記録と可搬archiveを準備、uv pinned CPU AST構文成功。live jobにはまだ実行していない。次は本学習と全日本語/80生成の実終了を待ち、全80個別採点→review_base_next_two_token.py→complete_base_next_two_token.py→Windowsへbundle SHA確認→local commit。未合格条件の救済延長・Chat/量子化なし、Base未完成・未採用。
 
 Base限定・Attention診断終了／next-two補助学習100Mを実WSL CUDAで開始（2026-10-07 JST）。
