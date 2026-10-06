@@ -1,3 +1,9 @@
+Base専用ニュース比較: completion（2026-10-06 JST）。
+
+ニュース条件と全80個別raw-bound採点を完了。旧staged対照→newsでBPB1.133612866→1.021511075、文法65→45/関連39→46/一貫性23→17/適切26→18/EOS76→49/反復2→24（各80）。相対gate=False/絶対全gate=False/歴史Web全gate=False/最終Base検証eligible=False。科学新26428122/再利用73571878教師、総新GPU144.871550/1800。実native10M・継承Adam/scheduler・同Web継続と全会計を確認、元UI復帰。source/EOS/多様性・input/update数が変わる比較、523883本文tokensの約47.265反復を新規教材量としない。一学習seed/非blind反復dev・独立人手なし。合格recipeのみ独立学習seed/full dev/protected test/採用へ。未合格なら固定news分岐を終了しsource/epoch/LR/decoder/CP救済sweepなし。
+
+Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。元相対・絶対・歴史Web1%品質基準/全旧失敗/数値7/Phase0–3維持。WSL uv/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用ニュース比較: launch（2026-10-06 JST）。
 
 科学actual658203/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18010439の実稼働、stageauthored_news-dev256/観測新教師25976793/26428122を確認。科学GPU上限1770.245130秒。共通Web73571878教師は再GPUしない。250更新ごと全state原子的CP、中断時は実PID不在を確認して scripts/run_livedoor_base.ps1 -Worker で再開。元UIは終端finallyで復帰。学習終端/全日本語/80内容/採否は未完了。
