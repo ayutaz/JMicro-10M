@@ -1,0 +1,83 @@
+{
+  "status": "single_evidence_defined_train_query_intervention_pending_material_preparation",
+  "created_at": "2026-10-06T05:04:46.995723+00:00",
+  "question": "Does balanced longer/shorter querying on the same training relation forms reduce entity-position shortcuts and improve unchanged natural Base quality?",
+  "references": {
+    "diagnostic": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_transfer_margin_diagnostic.json",
+      "sha256": "151c13beb3f33536ccd92dddd659d04e7ad11db6a3f2f8b80224a2a665078a2e"
+    },
+    "control_result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/original-web-retention-comparison-20261006/compare-result.json",
+      "sha256": "e085206d029ae7ddffdcfc6f6d3e22b18bb39a503ab7bc85973d36a45affc200"
+    },
+    "control_review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/original_web_retention_comparison_review.json",
+      "sha256": "911c6cd4ae44704cb672633296367044e0613298db1b18c8615db7dd7c90441f"
+    },
+    "source_manifest": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/manifest.json",
+      "sha256": "154f13da4a817aaa21586fba2cd335faea7c79358be410e73166f5d0052bf936"
+    },
+    "source_train": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/train-source.json",
+      "sha256": "89fa2aea6fddece74246e447859ec8a90155a76c166912fe1985cff962fd1f48"
+    },
+    "source_content_review": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/content-review.json",
+      "sha256": "a929eeda49d4ed13198090c597a903149910a654f425ecd464ade8479622b825"
+    },
+    "transfer_cases": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/transfer-probes.json",
+      "sha256": "4e9c11d18395b03aeeb8a9ac7caec86f8ef6f59ca598ca00bf14bac447f85823"
+    },
+    "retention_cases": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase6/condition-relation-language-20261006/retention-probes.json",
+      "sha256": "daf92018a167c24db83a4d3bd029d45973bd7f34f3fd452f52419ccc0b651d83"
+    }
+  },
+  "observed": {
+    "structural_comparison_both_correct": "1/32;22/32 both reversed; positive context response3/32",
+    "structural_negation": "1/32 both correct;31/32 same candidate",
+    "normalized_comparison_both_correct": "0/32 token and byte normalization; equal-token-length0/21",
+    "training_orientation": "342/342 select longer;304/342 answer is last-mentioned entity, with no grounded label errors",
+    "gold_dev_EOS": "2.361645->2.291431 mean NLL;143/256 improved; candidate requests contain noEOS"
+  },
+  "hypothesis": "The accepted local comparison source permits a last-mentioned-entity heuristic on88.9% of its examples; all targets select longer. A balanced requested-property intervention can remove much of this correlation without exposing heldout grammar. This is an evidence-guided hypothesis, not proof of the model decision rule or sole Base failure cause.",
+  "change": "Choose86 of171 existing train comparison families using fixed per-form seed, change only query longer->shorter and its logically entailed target in their172 documents. Preserve original facts, relation sentence, context branch IDs, four train relation forms, all other1876 documents, order, category counts and2048 source size.170 longer/172 shorter;24 relation forms/28 relation+query surfaces. No heldout form4/5 or dev prompt added. Different query words, target names, token lengths and EOS density are recorded as confounds; not pure position causality.",
+  "seed": 2026100671,
+  "changed_documents": 172,
+  "CPU_limit_seconds": 120,
+  "tokenizer": {
+    "path": "artifacts/phase2/4096/tokenizer.model",
+    "sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+  },
+  "preparation_gate": "Fixed64 covers28 train surface/query combinations and complete opposite-state pairs; read every text, raw-bound notes; weak<=10, unresolved grammar0, all local states consistent; original heldout probes remain byte-identical and absent from training; complete pinned native-token roundtrip.",
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "scientific_teacher_tokens_each": 100000000,
+  "new_scientific_teacher_tokens": 100000000,
+  "control_reuse": "Actual original-Web100M result/raw80 notes reused without GPU re-evaluation. Same original10B parent, preserved actual Web cursor and fresh seed42 short streams; do not branch from control100M or claim an independent seed. Verify actual three unchanged source teacher/input histories; changed conditional stream lengths can alter interleaving.",
+  "quotas": {
+    "web": 75000000,
+    "story": 5000000,
+    "ordinary_textbook": 10000000,
+    "conditional_textbook": 10000000
+  },
+  "optimizer": "Inherit original10B model/full Adam/scheduler/RNG; actual LR.0002 both groups; no reheat, noLR sweep, ordinary original body+EOS CE/outcome weight1; measured batch32 only if own finite CUDA and exact save/resume pass.",
+  "new_GPU_ceiling_seconds": 900,
+  "measured_budget_condition": "Own actual same-source continuous/resumed4 vs2+2 full optimizer/model/scheduler/RNG/sampler/history/source digest checks, and32 stable finite timings. Include all verification/warmup/save/evaluation/read-only probes within900 cumulative GPU seconds. Do not launch science until measurement supports the fixed100M experiment.",
+  "primary_success": "Unchanged Base relative control coherence+8/pairedCI lower>0, EOS/repetition nonworsening, no Unicode/role/empty, appropriate-completion criterion and BPB<=control1.01; original absolute g56/coh27/appropriate27/EOS37/rep<=18/noerrors and historical Web1% guard all required. Generator mechanism gains alone are not Base adoption.",
+  "mechanism_screen": "On the unchanged32 structural comparison pairs, at least8 more both-correct than control and fewer both-reversed; report all128 bridge/128 retention and all192 semantics categories without selecting favorable metrics. Predefined local screen, secondary to Base quality.",
+  "evaluation": "Same frozen256dev/472055bytes,192/331/1119 Japanese cases,80greedy64 and same128bridge/128retention. Individually read all new80, reuse old grades only exact id/prefix/raw/stop. Target-ID request scoring unchanged; no EOS fabricated for local probes. Protected test remains unused until eligible final validation.",
+  "completion": "Terminal durable job/source/config/PID/budget/history/full checkpoint/evaluations/all80 notes/review/archive/UI restored/verified local commit. If candidate fails, preserve failure and do not automatically extend, sweep ratio/query variants/weights/LR, scan favorable checkpoints or relax gates. If quality passes, independent learned seed/full dev/protected test/adoption remain required before Base completion.",
+  "Base_adopted": false,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "old_numerical7_preserved": true
+}
