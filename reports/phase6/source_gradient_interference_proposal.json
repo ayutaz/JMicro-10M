@@ -1,0 +1,31 @@
+{
+  "review": {
+    "sha256": "911c6cd4ae44704cb672633296367044e0613298db1b18c8615db7dd7c90441f",
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/original_web_retention_comparison_review.json"
+  },
+  "question": "Does the actual same10B-parent four-source mixture exhibit source/full-body/EOS gradient conflicts, and does a hypothetical quota-weighted inherited AdamW direction predict source-loss increases?",
+  "research_source": "https://papers.nips.cc/paper/2020/hash/3fe78a8acf5fda99de95303940a2420c-Abstract.html",
+  "quantization_started": false,
+  "sequences_per_batch": 8,
+  "seed": 2026100641,
+  "comparison": "Same fixed train samples for actual parent10B and completed original-Web-retention100M. Original Web32 uniform aligned blocks sampled without allocating a full permutation; other sources fresh diagnostic seed streams from accepted compact cache and relation source. No dev/test learning, new data or global scan.",
+  "method": "Read-only CUDA/BF16 Flash full-body+EOS CE and EOS-only autograd gradients; recover body-only gradients by exact counted loss decomposition. Pairwise cosine/norm and within-source body-vsEOS geometry. Hypothetical75/5/10/10 aggregate through saved AdamW moments, clipping, group decay and bias correction; report predicted first-order source loss change, never execute optimizer step.",
+  "protected_test_used": false,
+  "Chat_started": false,
+  "status": "defined_read_only_source_gradient_interference_not_started",
+  "failure_policy": "If no conflict marker, do not implement gradient surgery or sweep templates/weights/ratios. Partial or failed assay is not diagnostic completion. No automatic long run.",
+  "context": 1024,
+  "optimizer_updates": 0,
+  "GPU_limit_seconds": 120,
+  "screen": "Predefined descriptive marker: cosine<=-.05 in>=3of4 source batch pairs, or positive predicted first-order source loss change in>=3of4 at either checkpoint. Does not certify causality or projected-gradient quality; only motivates one bounded follow-up if observed.",
+  "source_batches": 4,
+  "endpoint_diagnostic": {
+    "sha256": "2879bb21446e97ef9a3dfd40c2a2440ee08f36021e4557df361b5b42d76d7d17",
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_retention_endpoint_diagnostic.json"
+  },
+  "completion": "Terminal actual PID/job, unchanged weights/no parameter grads/RNG restoration, all2x4x4 source samples and decomposition/AdamW checks, bounded actual GPU/result/source SHA, portable evidence/restored original UI/local commit. Decide next comparison from actual screen.",
+  "created_at": "2026-10-06T04:42:23.9408924Z",
+  "limitations": "Small train-only first-order assay. Different source exposure and related checkpoints. Curvature and actual finite-step loss changes are unmeasured; raw gradient conflict alone does not imply damage with AdamW.",
+  "new_scientific_teacher_tokens": 0,
+  "Base_adopted": false
+}

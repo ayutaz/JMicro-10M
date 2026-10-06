@@ -1,0 +1,1273 @@
+{
+  "status": "actual_two_checkpoint_fixed_source_gradient_assay_complete",
+  "created_at": "2026-10-06T04:42:41.546585Z",
+  "models": {
+    "parent10B": {
+      "checks": {
+        "weights_unchanged": true,
+        "no_parameter_gradients": true
+      },
+      "records": [
+        {
+          "config_sha256": "8114972e29e846f07fc0372969d167dad6897799ec7f23f213f3b88ff5750ef2",
+          "samples_sha256": "c84604b80656e2069c2aa5dd4b6a63441ad8ff02a4f34cb6a4178c95723c4f04",
+          "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+          "draw": 0,
+          "losses": {
+            "web": {
+              "full_CE": 2.5895023345947266,
+              "EOS_CE": 2.450580596923828,
+              "teachers": 8173,
+              "EOS_teachers": 19
+            },
+            "story": {
+              "full_CE": 2.717520236968994,
+              "EOS_CE": 4.243619441986084,
+              "teachers": 8140,
+              "EOS_teachers": 52
+            },
+            "ordinary_textbook": {
+              "full_CE": 2.4844813346862793,
+              "EOS_CE": 3.3170106410980225,
+              "teachers": 8136,
+              "EOS_teachers": 56
+            },
+            "conditional_textbook": {
+              "full_CE": 3.0742297172546387,
+              "EOS_CE": 6.796575546264648,
+              "teachers": 8006,
+              "EOS_teachers": 186
+            }
+          },
+          "full_CE_pairs": {
+            "web|story": {
+              "dot": 0.0221848264336586,
+              "cosine": 0.013440524227917194,
+              "norm_a": 0.7498062252998352,
+              "norm_b": 2.2013585567474365
+            },
+            "web|ordinary_textbook": {
+              "dot": 0.05881495773792267,
+              "cosine": 0.057144422084093094,
+              "norm_a": 0.7498062252998352,
+              "norm_b": 1.3726661205291748
+            },
+            "web|conditional_textbook": {
+              "dot": 0.10891130566596985,
+              "cosine": 0.023435765877366066,
+              "norm_a": 0.7498062252998352,
+              "norm_b": 6.197903156280518
+            },
+            "story|ordinary_textbook": {
+              "dot": 0.8565499782562256,
+              "cosine": 0.28346338868141174,
+              "norm_a": 2.2013585567474365,
+              "norm_b": 1.3726661205291748
+            },
+            "story|conditional_textbook": {
+              "dot": 5.708723068237305,
+              "cosine": 0.4184112846851349,
+              "norm_a": 2.2013585567474365,
+              "norm_b": 6.197903156280518
+            },
+            "ordinary_textbook|conditional_textbook": {
+              "dot": 1.9803876876831055,
+              "cosine": 0.23277725279331207,
+              "norm_a": 1.3726661205291748,
+              "norm_b": 6.197903156280518
+            }
+          },
+          "body_pairs": {
+            "web|story": {
+              "dot": 0.010427726432681084,
+              "cosine": 0.006290330085903406,
+              "norm_a": 0.7528318166732788,
+              "norm_b": 2.2020046710968018
+            },
+            "web|ordinary_textbook": {
+              "dot": 0.05256332829594612,
+              "cosine": 0.05389842763543129,
+              "norm_a": 0.7528318166732788,
+              "norm_b": 1.2954145669937134
+            },
+            "web|conditional_textbook": {
+              "dot": 0.02770751714706421,
+              "cosine": 0.00586875481531024,
+              "norm_a": 0.7528318166732788,
+              "norm_b": 6.271243572235107
+            },
+            "story|ordinary_textbook": {
+              "dot": 0.7561508417129517,
+              "cosine": 0.2650827169418335,
+              "norm_a": 2.2020046710968018,
+              "norm_b": 1.2954145669937134
+            },
+            "story|conditional_textbook": {
+              "dot": 5.810541152954102,
+              "cosine": 0.42076990008354187,
+              "norm_a": 2.2020046710968018,
+              "norm_b": 6.271243572235107
+            },
+            "ordinary_textbook|conditional_textbook": {
+              "dot": 1.5381187200546265,
+              "cosine": 0.1893334686756134,
+              "norm_a": 1.2954145669937134,
+              "norm_b": 6.271243572235107
+            }
+          },
+          "body_EOS": {
+            "web": {
+              "dot": -1.8806061744689941,
+              "cosine": -0.07037641853094101,
+              "norm_a": 0.7528318166732788,
+              "norm_b": 35.495452880859375
+            },
+            "story": {
+              "dot": -5.407957077026367,
+              "cosine": -0.04392758011817932,
+              "norm_a": 2.2020046710968018,
+              "norm_b": 55.908485412597656
+            },
+            "ordinary_textbook": {
+              "dot": 4.264928817749023,
+              "cosine": 0.05482780188322067,
+              "norm_a": 1.2954145669937134,
+              "norm_b": 60.048500061035156
+            },
+            "conditional_textbook": {
+              "dot": -15.323592185974121,
+              "cosine": -0.045060377568006516,
+              "norm_a": 6.271243572235107,
+              "norm_b": 54.226566314697266
+            }
+          },
+          "conditional_EOS_vs_Web_body": {
+            "dot": -0.4911361336708069,
+            "cosine": -0.012030725367367268,
+            "norm_a": 54.226566314697266,
+            "norm_b": 0.7528318166732788
+          },
+          "hypothetical_quota_AdamW_first_order_loss_change": {
+            "web": -0.0353832021355629,
+            "story": -0.01562183815985918,
+            "ordinary_textbook": -0.00906757079064846,
+            "conditional_textbook": -0.09349032491445541
+          },
+          "checks": {
+            "finite_gradients": true,
+            "no_parameter_gradients": true
+          },
+          "optimizer_updates": 0
+        },
+        {
+          "config_sha256": "8114972e29e846f07fc0372969d167dad6897799ec7f23f213f3b88ff5750ef2",
+          "samples_sha256": "c84604b80656e2069c2aa5dd4b6a63441ad8ff02a4f34cb6a4178c95723c4f04",
+          "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+          "draw": 1,
+          "losses": {
+            "web": {
+              "full_CE": 2.6356923580169678,
+              "EOS_CE": 3.202169179916382,
+              "teachers": 8174,
+              "EOS_teachers": 18
+            },
+            "story": {
+              "full_CE": 2.746373176574707,
+              "EOS_CE": 4.400584697723389,
+              "teachers": 8134,
+              "EOS_teachers": 58
+            },
+            "ordinary_textbook": {
+              "full_CE": 2.491400718688965,
+              "EOS_CE": 3.232424020767212,
+              "teachers": 8132,
+              "EOS_teachers": 60
+            },
+            "conditional_textbook": {
+              "full_CE": 3.118452310562134,
+              "EOS_CE": 6.8164963722229,
+              "teachers": 8005,
+              "EOS_teachers": 187
+            }
+          },
+          "full_CE_pairs": {
+            "web|story": {
+              "dot": -0.03533773496747017,
+              "cosine": -0.020160023123025894,
+              "norm_a": 0.806667149066925,
+              "norm_b": 2.1729679107666016
+            },
+            "web|ordinary_textbook": {
+              "dot": 0.008840564638376236,
+              "cosine": 0.007996631786227226,
+              "norm_a": 0.806667149066925,
+              "norm_b": 1.370498538017273
+            },
+            "web|conditional_textbook": {
+              "dot": -0.37673211097717285,
+              "cosine": -0.07826173305511475,
+              "norm_a": 0.806667149066925,
+              "norm_b": 5.967450141906738
+            },
+            "story|ordinary_textbook": {
+              "dot": 0.6691769361495972,
+              "cosine": 0.2247031033039093,
+              "norm_a": 2.1729679107666016,
+              "norm_b": 1.370498538017273
+            },
+            "story|conditional_textbook": {
+              "dot": 5.4184794425964355,
+              "cosine": 0.4178643524646759,
+              "norm_a": 2.1729679107666016,
+              "norm_b": 5.967450141906738
+            },
+            "ordinary_textbook|conditional_textbook": {
+              "dot": 1.2237578630447388,
+              "cosine": 0.1496332436800003,
+              "norm_a": 1.370498538017273,
+              "norm_b": 5.967450141906738
+            }
+          },
+          "body_pairs": {
+            "web|story": {
+              "dot": -0.05540245398879051,
+              "cosine": -0.03156798705458641,
+              "norm_a": 0.8064032196998596,
+              "norm_b": 2.1763556003570557
+            },
+            "web|ordinary_textbook": {
+              "dot": -0.0078122057020664215,
+              "cosine": -0.00749811390414834,
+              "norm_a": 0.8064032196998596,
+              "norm_b": 1.2920204401016235
+            },
+            "web|conditional_textbook": {
+              "dot": -0.47497302293777466,
+              "cosine": -0.09775902330875397,
+              "norm_a": 0.8064032196998596,
+              "norm_b": 6.025038719177246
+            },
+            "story|ordinary_textbook": {
+              "dot": 0.5521725416183472,
+              "cosine": 0.1963701993227005,
+              "norm_a": 2.1763556003570557,
+              "norm_b": 1.2920204401016235
+            },
+            "story|conditional_textbook": {
+              "dot": 5.459914684295654,
+              "cosine": 0.41638603806495667,
+              "norm_a": 2.1763556003570557,
+              "norm_b": 6.025038719177246
+            },
+            "ordinary_textbook|conditional_textbook": {
+              "dot": 0.7007486820220947,
+              "cosine": 0.09001877158880234,
+              "norm_a": 1.2920204401016235,
+              "norm_b": 6.025038719177246
+            }
+          },
+          "body_EOS": {
+            "web": {
+              "dot": -0.9501929879188538,
+              "cosine": -0.03003748506307602,
+              "norm_a": 0.8064032196998596,
+              "norm_b": 39.22798538208008
+            },
+            "story": {
+              "dot": -8.227351188659668,
+              "cosine": -0.06555783003568649,
+              "norm_a": 2.1763556003570557,
+              "norm_b": 57.66411590576172
+            },
+            "ordinary_textbook": {
+              "dot": 3.0089173316955566,
+              "cosine": 0.03948058560490608,
+              "norm_a": 1.2920204401016235,
+              "norm_b": 58.98712921142578
+            },
+            "conditional_textbook": {
+              "dot": -13.294065475463867,
+              "cosine": -0.04084913432598114,
+              "norm_a": 6.025038719177246,
+              "norm_b": 54.01509475708008
+            }
+          },
+          "conditional_EOS_vs_Web_body": {
+            "dot": -0.01649940013885498,
+            "cosine": -0.0003787919704336673,
+            "norm_a": 54.01509475708008,
+            "norm_b": 0.8064032196998596
+          },
+          "hypothetical_quota_AdamW_first_order_loss_change": {
+            "web": -0.036333732306957245,
+            "story": -0.014678196981549263,
+            "ordinary_textbook": -0.008086027577519417,
+            "conditional_textbook": -0.08572334051132202
+          },
+          "checks": {
+            "finite_gradients": true,
+            "no_parameter_gradients": true
+          },
+          "optimizer_updates": 0
+        },
+        {
+          "config_sha256": "8114972e29e846f07fc0372969d167dad6897799ec7f23f213f3b88ff5750ef2",
+          "samples_sha256": "c84604b80656e2069c2aa5dd4b6a63441ad8ff02a4f34cb6a4178c95723c4f04",
+          "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+          "draw": 2,
+          "losses": {
+            "web": {
+              "full_CE": 2.5431785583496094,
+              "EOS_CE": 2.4881739616394043,
+              "teachers": 8174,
+              "EOS_teachers": 18
+            },
+            "story": {
+              "full_CE": 2.7278542518615723,
+              "EOS_CE": 4.43658447265625,
+              "teachers": 8132,
+              "EOS_teachers": 60
+            },
+            "ordinary_textbook": {
+              "full_CE": 2.513331413269043,
+              "EOS_CE": 3.3404417037963867,
+              "teachers": 8132,
+              "EOS_teachers": 60
+            },
+            "conditional_textbook": {
+              "full_CE": 3.158909797668457,
+              "EOS_CE": 6.8481669425964355,
+              "teachers": 7998,
+              "EOS_teachers": 194
+            }
+          },
+          "full_CE_pairs": {
+            "web|story": {
+              "dot": 0.07219001650810242,
+              "cosine": 0.04089222103357315,
+              "norm_a": 0.7972927689552307,
+              "norm_b": 2.2142090797424316
+            },
+            "web|ordinary_textbook": {
+              "dot": 0.07259661704301834,
+              "cosine": 0.06389455497264862,
+              "norm_a": 0.7972927689552307,
+              "norm_b": 1.4250651597976685
+            },
+            "web|conditional_textbook": {
+              "dot": 0.24988171458244324,
+              "cosine": 0.05382022634148598,
+              "norm_a": 0.7972927689552307,
+              "norm_b": 5.823326587677002
+            },
+            "story|ordinary_textbook": {
+              "dot": 0.8650519847869873,
+              "cosine": 0.27415040135383606,
+              "norm_a": 2.2142090797424316,
+              "norm_b": 1.4250651597976685
+            },
+            "story|conditional_textbook": {
+              "dot": 5.713006973266602,
+              "cosine": 0.44307267665863037,
+              "norm_a": 2.2142090797424316,
+              "norm_b": 5.823326587677002
+            },
+            "ordinary_textbook|conditional_textbook": {
+              "dot": 1.8037010431289673,
+              "cosine": 0.21734951436519623,
+              "norm_a": 1.4250651597976685,
+              "norm_b": 5.823326587677002
+            }
+          },
+          "body_pairs": {
+            "web|story": {
+              "dot": 0.06702668964862823,
+              "cosine": 0.0378686748445034,
+              "norm_a": 0.7978997230529785,
+              "norm_b": 2.218295097351074
+            },
+            "web|ordinary_textbook": {
+              "dot": 0.055685605853796005,
+              "cosine": 0.05162258446216583,
+              "norm_a": 0.7978997230529785,
+              "norm_b": 1.351932168006897
+            },
+            "web|conditional_textbook": {
+              "dot": 0.2196870744228363,
+              "cosine": 0.04696059972047806,
+              "norm_a": 0.7978997230529785,
+              "norm_b": 5.863036155700684
+            },
+            "story|ordinary_textbook": {
+              "dot": 0.7455892562866211,
+              "cosine": 0.24861390888690948,
+              "norm_a": 2.218295097351074,
+              "norm_b": 1.351932168006897
+            },
+            "story|conditional_textbook": {
+              "dot": 5.739258766174316,
+              "cosine": 0.44127967953681946,
+              "norm_a": 2.218295097351074,
+              "norm_b": 5.863036155700684
+            },
+            "ordinary_textbook|conditional_textbook": {
+              "dot": 1.3481613397598267,
+              "cosine": 0.17008435726165771,
+              "norm_a": 1.351932168006897,
+              "norm_b": 5.863036155700684
+            }
+          },
+          "body_EOS": {
+            "web": {
+              "dot": -1.1198359727859497,
+              "cosine": -0.037607260048389435,
+              "norm_a": 0.7978997230529785,
+              "norm_b": 37.31937789916992
+            },
+            "story": {
+              "dot": -8.735306739807129,
+              "cosine": -0.06806974858045578,
+              "norm_a": 2.218295097351074,
+              "norm_b": 57.85017776489258
+            },
+            "ordinary_textbook": {
+              "dot": 3.6135361194610596,
+              "cosine": 0.04687117785215378,
+              "norm_a": 1.351932168006897,
+              "norm_b": 57.02582931518555
+            },
+            "conditional_textbook": {
+              "dot": -11.630240440368652,
+              "cosine": -0.036540959030389786,
+              "norm_a": 5.863036155700684,
+              "norm_b": 54.28579330444336
+            }
+          },
+          "conditional_EOS_vs_Web_body": {
+            "dot": -0.7974615097045898,
+            "cosine": -0.018410908058285713,
+            "norm_a": 54.28579330444336,
+            "norm_b": 0.7978997230529785
+          },
+          "hypothetical_quota_AdamW_first_order_loss_change": {
+            "web": -0.036569543182849884,
+            "story": -0.01568814367055893,
+            "ordinary_textbook": -0.00935773178935051,
+            "conditional_textbook": -0.08828575164079666
+          },
+          "checks": {
+            "finite_gradients": true,
+            "no_parameter_gradients": true
+          },
+          "optimizer_updates": 0
+        },
+        {
+          "config_sha256": "8114972e29e846f07fc0372969d167dad6897799ec7f23f213f3b88ff5750ef2",
+          "samples_sha256": "c84604b80656e2069c2aa5dd4b6a63441ad8ff02a4f34cb6a4178c95723c4f04",
+          "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+          "draw": 3,
+          "losses": {
+            "web": {
+              "full_CE": 2.4580678939819336,
+              "EOS_CE": 2.3819198608398438,
+              "teachers": 8176,
+              "EOS_teachers": 16
+            },
+            "story": {
+              "full_CE": 2.75378155708313,
+              "EOS_CE": 4.425049304962158,
+              "teachers": 8135,
+              "EOS_teachers": 57
+            },
+            "ordinary_textbook": {
+              "full_CE": 2.5106923580169678,
+              "EOS_CE": 3.2897961139678955,
+              "teachers": 8132,
+              "EOS_teachers": 60
+            },
+            "conditional_textbook": {
+              "full_CE": 3.1456098556518555,
+              "EOS_CE": 6.743391036987305,
+              "teachers": 8006,
+              "EOS_teachers": 186
+            }
+          },
+          "full_CE_pairs": {
+            "web|story": {
+              "dot": 0.07850300520658493,
+              "cosine": 0.04760720953345299,
+              "norm_a": 0.7332544922828674,
+              "norm_b": 2.2488415241241455
+            },
+            "web|ordinary_textbook": {
+              "dot": 0.006988752633333206,
+              "cosine": 0.0067339264787733555,
+              "norm_a": 0.7332544922828674,
+              "norm_b": 1.415391445159912
+            },
+            "web|conditional_textbook": {
+              "dot": 0.24185311794281006,
+              "cosine": 0.05491682514548302,
+              "norm_a": 0.7332544922828674,
+              "norm_b": 6.0060858726501465
+            },
+            "story|ordinary_textbook": {
+              "dot": 0.7208333015441895,
+              "cosine": 0.2264641374349594,
+              "norm_a": 2.2488415241241455,
+              "norm_b": 1.415391445159912
+            },
+            "story|conditional_textbook": {
+              "dot": 6.232640743255615,
+              "cosine": 0.4614468812942505,
+              "norm_a": 2.2488415241241455,
+              "norm_b": 6.0060858726501465
+            },
+            "ordinary_textbook|conditional_textbook": {
+              "dot": 1.5686553716659546,
+              "cosine": 0.18452680110931396,
+              "norm_a": 1.415391445159912,
+              "norm_b": 6.0060858726501465
+            }
+          },
+          "body_pairs": {
+            "web|story": {
+              "dot": 0.06143152713775635,
+              "cosine": 0.0373276025056839,
+              "norm_a": 0.7312505841255188,
+              "norm_b": 2.250582695007324
+            },
+            "web|ordinary_textbook": {
+              "dot": -0.0009763916023075581,
+              "cosine": -0.0010040162596851587,
+              "norm_a": 0.7312505841255188,
+              "norm_b": 1.3298940658569336
+            },
+            "web|conditional_textbook": {
+              "dot": 0.2119680643081665,
+              "cosine": 0.047820765525102615,
+              "norm_a": 0.7312505841255188,
+              "norm_b": 6.061605930328369
+            },
+            "story|ordinary_textbook": {
+              "dot": 0.5954927206039429,
+              "cosine": 0.19895939528942108,
+              "norm_a": 2.250582695007324,
+              "norm_b": 1.3298940658569336
+            },
+            "story|conditional_textbook": {
+              "dot": 6.303865432739258,
+              "cosine": 0.4620875418186188,
+              "norm_a": 2.250582695007324,
+              "norm_b": 6.061605930328369
+            },
+            "ordinary_textbook|conditional_textbook": {
+              "dot": 1.1016151905059814,
+              "cosine": 0.13665488362312317,
+              "norm_a": 1.3298940658569336,
+              "norm_b": 6.061605930328369
+            }
+          },
+          "body_EOS": {
+            "web": {
+              "dot": 0.12888413667678833,
+              "cosine": 0.005129089113324881,
+              "norm_a": 0.7312505841255188,
+              "norm_b": 34.36315155029297
+            },
+            "story": {
+              "dot": -7.479979038238525,
+              "cosine": -0.05698840320110321,
+              "norm_a": 2.250582695007324,
+              "norm_b": 58.3201904296875
+            },
+            "ordinary_textbook": {
+              "dot": 3.061847448348999,
+              "cosine": 0.03656165301799774,
+              "norm_a": 1.3298940658569336,
+              "norm_b": 62.971012115478516
+            },
+            "conditional_textbook": {
+              "dot": -12.587362289428711,
+              "cosine": -0.038275379687547684,
+              "norm_a": 6.061605930328369,
+              "norm_b": 54.25347137451172
+            }
+          },
+          "conditional_EOS_vs_Web_body": {
+            "dot": -0.2978130280971527,
+            "cosine": -0.0075067151337862015,
+            "norm_a": 54.25347137451172,
+            "norm_b": 0.7312505841255188
+          },
+          "hypothetical_quota_AdamW_first_order_loss_change": {
+            "web": -0.03514188900589943,
+            "story": -0.017114780843257904,
+            "ordinary_textbook": -0.009335888549685478,
+            "conditional_textbook": -0.09036549925804138
+          },
+          "checks": {
+            "finite_gradients": true,
+            "no_parameter_gradients": true
+          },
+          "optimizer_updates": 0
+        }
+      ],
+      "negative_cosine_batches": {
+        "web|story": 0,
+        "web|ordinary_textbook": 0,
+        "web|conditional_textbook": 1,
+        "story|ordinary_textbook": 0,
+        "story|conditional_textbook": 0,
+        "ordinary_textbook|conditional_textbook": 0
+      },
+      "predicted_loss_rise_batches": {
+        "web": 0,
+        "story": 0,
+        "ordinary_textbook": 0,
+        "conditional_textbook": 0
+      },
+      "source_conflict_marker": false
+    },
+    "retention100M": {
+      "checks": {
+        "weights_unchanged": true,
+        "no_parameter_gradients": true
+      },
+      "records": [
+        {
+          "config_sha256": "8114972e29e846f07fc0372969d167dad6897799ec7f23f213f3b88ff5750ef2",
+          "samples_sha256": "c84604b80656e2069c2aa5dd4b6a63441ad8ff02a4f34cb6a4178c95723c4f04",
+          "checkpoint_sha256": "f54ea3fc23086de65bc00cd3f3f3a88f697a543a48c76647a4a66341ab3b2eb0",
+          "draw": 0,
+          "losses": {
+            "web": {
+              "full_CE": 2.6060874462127686,
+              "EOS_CE": 2.3651678562164307,
+              "teachers": 8173,
+              "EOS_teachers": 19
+            },
+            "story": {
+              "full_CE": 1.7674791812896729,
+              "EOS_CE": 0.5136883854866028,
+              "teachers": 8140,
+              "EOS_teachers": 52
+            },
+            "ordinary_textbook": {
+              "full_CE": 2.13645339012146,
+              "EOS_CE": 0.07526588439941406,
+              "teachers": 8136,
+              "EOS_teachers": 56
+            },
+            "conditional_textbook": {
+              "full_CE": 0.20353816449642181,
+              "EOS_CE": 0.0001525459229014814,
+              "teachers": 8006,
+              "EOS_teachers": 186
+            }
+          },
+          "full_CE_pairs": {
+            "web|story": {
+              "dot": 0.017314914613962173,
+              "cosine": 0.022547349333763123,
+              "norm_a": 0.819250762462616,
+              "norm_b": 0.9373634457588196
+            },
+            "web|ordinary_textbook": {
+              "dot": 0.02206994779407978,
+              "cosine": 0.028147384524345398,
+              "norm_a": 0.819250762462616,
+              "norm_b": 0.9570759534835815
+            },
+            "web|conditional_textbook": {
+              "dot": -2.3369211703538895e-06,
+              "cosine": -5.016052909923019e-06,
+              "norm_a": 0.819250762462616,
+              "norm_b": 0.568676233291626
+            },
+            "story|ordinary_textbook": {
+              "dot": 0.053457774221897125,
+              "cosine": 0.05958767980337143,
+              "norm_a": 0.9373634457588196,
+              "norm_b": 0.9570759534835815
+            },
+            "story|conditional_textbook": {
+              "dot": 0.003371028695255518,
+              "cosine": 0.006323963403701782,
+              "norm_a": 0.9373634457588196,
+              "norm_b": 0.568676233291626
+            },
+            "ordinary_textbook|conditional_textbook": {
+              "dot": 0.026949560269713402,
+              "cosine": 0.049515388906002045,
+              "norm_a": 0.9570759534835815,
+              "norm_b": 0.568676233291626
+            }
+          },
+          "body_pairs": {
+            "web|story": {
+              "dot": 0.03136451914906502,
+              "cosine": 0.03870513662695885,
+              "norm_a": 0.8256169557571411,
+              "norm_b": 0.9815024733543396
+            },
+            "web|ordinary_textbook": {
+              "dot": 0.027214806526899338,
+              "cosine": 0.03432540223002434,
+              "norm_a": 0.8256169557571411,
+              "norm_b": 0.9603089690208435
+            },
+            "web|conditional_textbook": {
+              "dot": 0.0010166154243052006,
+              "cosine": 0.002115149749442935,
+              "norm_a": 0.8256169557571411,
+              "norm_b": 0.582152783870697
+            },
+            "story|ordinary_textbook": {
+              "dot": 0.06421811878681183,
+              "cosine": 0.06813263148069382,
+              "norm_a": 0.9815024733543396,
+              "norm_b": 0.9603089690208435
+            },
+            "story|conditional_textbook": {
+              "dot": 0.008475691080093384,
+              "cosine": 0.014833606779575348,
+              "norm_a": 0.9815024733543396,
+              "norm_b": 0.582152783870697
+            },
+            "ordinary_textbook|conditional_textbook": {
+              "dot": 0.028805669397115707,
+              "cosine": 0.051526423543691635,
+              "norm_a": 0.9603089690208435,
+              "norm_b": 0.582152783870697
+            }
+          },
+          "body_EOS": {
+            "web": {
+              "dot": -3.3130393028259277,
+              "cosine": -0.10389626771211624,
+              "norm_a": 0.8256169557571411,
+              "norm_b": 38.6231803894043
+            },
+            "story": {
+              "dot": -8.551469802856445,
+              "cosine": -0.29281163215637207,
+              "norm_a": 0.9815024733543396,
+              "norm_b": 29.755075454711914
+            },
+            "ordinary_textbook": {
+              "dot": 0.3331703543663025,
+              "cosine": 0.05482102185487747,
+              "norm_a": 0.9603089690208435,
+              "norm_b": 6.328608989715576
+            },
+            "conditional_textbook": {
+              "dot": 0.0011929126922041178,
+              "cosine": 0.05192055180668831,
+              "norm_a": 0.582152783870697,
+              "norm_b": 0.039466843008995056
+            }
+          },
+          "conditional_EOS_vs_Web_body": {
+            "dot": -0.00044879672350361943,
+            "cosine": -0.01377332117408514,
+            "norm_a": 0.039466843008995056,
+            "norm_b": 0.8256169557571411
+          },
+          "hypothetical_quota_AdamW_first_order_loss_change": {
+            "web": -0.03907536342740059,
+            "story": -0.002496950328350067,
+            "ordinary_textbook": -0.005644071847200394,
+            "conditional_textbook": -0.0011128548067063093
+          },
+          "checks": {
+            "finite_gradients": true,
+            "no_parameter_gradients": true
+          },
+          "optimizer_updates": 0
+        },
+        {
+          "config_sha256": "8114972e29e846f07fc0372969d167dad6897799ec7f23f213f3b88ff5750ef2",
+          "samples_sha256": "c84604b80656e2069c2aa5dd4b6a63441ad8ff02a4f34cb6a4178c95723c4f04",
+          "checkpoint_sha256": "f54ea3fc23086de65bc00cd3f3f3a88f697a543a48c76647a4a66341ab3b2eb0",
+          "draw": 1,
+          "losses": {
+            "web": {
+              "full_CE": 2.644085168838501,
+              "EOS_CE": 3.1305737495422363,
+              "teachers": 8174,
+              "EOS_teachers": 18
+            },
+            "story": {
+              "full_CE": 1.7508549690246582,
+              "EOS_CE": 0.5591686964035034,
+              "teachers": 8134,
+              "EOS_teachers": 58
+            },
+            "ordinary_textbook": {
+              "full_CE": 2.120500087738037,
+              "EOS_CE": 0.1926828771829605,
+              "teachers": 8132,
+              "EOS_teachers": 60
+            },
+            "conditional_textbook": {
+              "full_CE": 0.20663732290267944,
+              "EOS_CE": 0.00011288161476841196,
+              "teachers": 8005,
+              "EOS_teachers": 187
+            }
+          },
+          "full_CE_pairs": {
+            "web|story": {
+              "dot": -0.009854817762970924,
+              "cosine": -0.010819371789693832,
+              "norm_a": 0.8813942074775696,
+              "norm_b": 1.0334187746047974
+            },
+            "web|ordinary_textbook": {
+              "dot": 0.05323607847094536,
+              "cosine": 0.05687259882688522,
+              "norm_a": 0.8813942074775696,
+              "norm_b": 1.062020182609558
+            },
+            "web|conditional_textbook": {
+              "dot": 0.015074431896209717,
+              "cosine": 0.029278356581926346,
+              "norm_a": 0.8813942074775696,
+              "norm_b": 0.5841495990753174
+            },
+            "story|ordinary_textbook": {
+              "dot": 0.07949497550725937,
+              "cosine": 0.0724320113658905,
+              "norm_a": 1.0334187746047974,
+              "norm_b": 1.062020182609558
+            },
+            "story|conditional_textbook": {
+              "dot": 0.008870970457792282,
+              "cosine": 0.014695038087666035,
+              "norm_a": 1.0334187746047974,
+              "norm_b": 0.5841495990753174
+            },
+            "ordinary_textbook|conditional_textbook": {
+              "dot": 0.06537538021802902,
+              "cosine": 0.10537979751825333,
+              "norm_a": 1.062020182609558,
+              "norm_b": 0.5841495990753174
+            }
+          },
+          "body_pairs": {
+            "web|story": {
+              "dot": 0.010796618647873402,
+              "cosine": 0.011291739530861378,
+              "norm_a": 0.8852419257164001,
+              "norm_b": 1.0801024436950684
+            },
+            "web|ordinary_textbook": {
+              "dot": 0.05737130716443062,
+              "cosine": 0.06051510199904442,
+              "norm_a": 0.8852419257164001,
+              "norm_b": 1.0709495544433594
+            },
+            "web|conditional_textbook": {
+              "dot": 0.01848544552922249,
+              "cosine": 0.03491256758570671,
+              "norm_a": 0.8852419257164001,
+              "norm_b": 0.5981169939041138
+            },
+            "story|ordinary_textbook": {
+              "dot": 0.11776557564735413,
+              "cosine": 0.1018085852265358,
+              "norm_a": 1.0801024436950684,
+              "norm_b": 1.0709495544433594
+            },
+            "story|conditional_textbook": {
+              "dot": 0.016968294978141785,
+              "cosine": 0.026265587657690048,
+              "norm_a": 1.0801024436950684,
+              "norm_b": 0.5981169939041138
+            },
+            "ordinary_textbook|conditional_textbook": {
+              "dot": 0.06718479096889496,
+              "cosine": 0.10488558560609818,
+              "norm_a": 1.0709495544433594,
+              "norm_b": 0.5981169939041138
+            }
+          },
+          "body_EOS": {
+            "web": {
+              "dot": -2.819391965866089,
+              "cosine": -0.07376489043235779,
+              "norm_a": 0.8852419257164001,
+              "norm_b": 43.1761360168457
+            },
+            "story": {
+              "dot": -9.855464935302734,
+              "cosine": -0.2714295983314514,
+              "norm_a": 1.0801024436950684,
+              "norm_b": 33.61669158935547
+            },
+            "ordinary_textbook": {
+              "dot": -0.5074876546859741,
+              "cosine": -0.04825466498732567,
+              "norm_a": 1.0709495544433594,
+              "norm_b": 9.820128440856934
+            },
+            "conditional_textbook": {
+              "dot": 0.00011962146527366713,
+              "cosine": 0.009737607091665268,
+              "norm_a": 0.5981169939041138,
+              "norm_b": 0.02053859457373619
+            }
+          },
+          "conditional_EOS_vs_Web_body": {
+            "dot": -0.00024088399368338287,
+            "cosine": -0.013248760253190994,
+            "norm_a": 0.02053859457373619,
+            "norm_b": 0.8852419257164001
+          },
+          "hypothetical_quota_AdamW_first_order_loss_change": {
+            "web": -0.03978046029806137,
+            "story": -0.0029166112653911114,
+            "ordinary_textbook": -0.005964311771094799,
+            "conditional_textbook": -0.0012840235140174627
+          },
+          "checks": {
+            "finite_gradients": true,
+            "no_parameter_gradients": true
+          },
+          "optimizer_updates": 0
+        },
+        {
+          "config_sha256": "8114972e29e846f07fc0372969d167dad6897799ec7f23f213f3b88ff5750ef2",
+          "samples_sha256": "c84604b80656e2069c2aa5dd4b6a63441ad8ff02a4f34cb6a4178c95723c4f04",
+          "checkpoint_sha256": "f54ea3fc23086de65bc00cd3f3f3a88f697a543a48c76647a4a66341ab3b2eb0",
+          "draw": 2,
+          "losses": {
+            "web": {
+              "full_CE": 2.548752784729004,
+              "EOS_CE": 2.4697697162628174,
+              "teachers": 8174,
+              "EOS_teachers": 18
+            },
+            "story": {
+              "full_CE": 1.726558804512024,
+              "EOS_CE": 0.6337660551071167,
+              "teachers": 8132,
+              "EOS_teachers": 60
+            },
+            "ordinary_textbook": {
+              "full_CE": 2.1402652263641357,
+              "EOS_CE": 0.14270079135894775,
+              "teachers": 8132,
+              "EOS_teachers": 60
+            },
+            "conditional_textbook": {
+              "full_CE": 0.2139444798231125,
+              "EOS_CE": 0.00013080377539154142,
+              "teachers": 7998,
+              "EOS_teachers": 194
+            }
+          },
+          "full_CE_pairs": {
+            "web|story": {
+              "dot": 0.0008768709376454353,
+              "cosine": 0.0010158270597457886,
+              "norm_a": 0.8789949417114258,
+              "norm_b": 0.9820407032966614
+            },
+            "web|ordinary_textbook": {
+              "dot": 0.04386778920888901,
+              "cosine": 0.05023100972175598,
+              "norm_a": 0.8789949417114258,
+              "norm_b": 0.9935448169708252
+            },
+            "web|conditional_textbook": {
+              "dot": -0.01768280379474163,
+              "cosine": -0.03877844288945198,
+              "norm_a": 0.8789949417114258,
+              "norm_b": 0.5187694430351257
+            },
+            "story|ordinary_textbook": {
+              "dot": 0.0064242081716656685,
+              "cosine": 0.006584194488823414,
+              "norm_a": 0.9820407032966614,
+              "norm_b": 0.9935448169708252
+            },
+            "story|conditional_textbook": {
+              "dot": -0.007536349818110466,
+              "cosine": -0.014793031848967075,
+              "norm_a": 0.9820407032966614,
+              "norm_b": 0.5187694430351257
+            },
+            "ordinary_textbook|conditional_textbook": {
+              "dot": 0.00042320636566728354,
+              "cosine": 0.0008210892556235194,
+              "norm_a": 0.9935448169708252,
+              "norm_b": 0.5187694430351257
+            }
+          },
+          "body_pairs": {
+            "web|story": {
+              "dot": 0.011288418434560299,
+              "cosine": 0.01276965718716383,
+              "norm_a": 0.8803819417953491,
+              "norm_b": 1.0041133165359497
+            },
+            "web|ordinary_textbook": {
+              "dot": 0.047286875545978546,
+              "cosine": 0.05400221794843674,
+              "norm_a": 0.8803819417953491,
+              "norm_b": 0.9946215748786926
+            },
+            "web|conditional_textbook": {
+              "dot": -0.0155127989128232,
+              "cosine": -0.03314056992530823,
+              "norm_a": 0.8803819417953491,
+              "norm_b": 0.5316907167434692
+            },
+            "story|ordinary_textbook": {
+              "dot": 0.014758824370801449,
+              "cosine": 0.01477784663438797,
+              "norm_a": 1.0041133165359497,
+              "norm_b": 0.9946215748786926
+            },
+            "story|conditional_textbook": {
+              "dot": 0.0005407514981925488,
+              "cosine": 0.001012875116430223,
+              "norm_a": 1.0041133165359497,
+              "norm_b": 0.5316907167434692
+            },
+            "ordinary_textbook|conditional_textbook": {
+              "dot": 0.0018831980414688587,
+              "cosine": 0.003561057848855853,
+              "norm_a": 0.9946215748786926,
+              "norm_b": 0.5316907167434692
+            }
+          },
+          "body_EOS": {
+            "web": {
+              "dot": -1.6999680995941162,
+              "cosine": -0.046284012496471405,
+              "norm_a": 0.8803819417953491,
+              "norm_b": 41.719459533691406
+            },
+            "story": {
+              "dot": -8.06573486328125,
+              "cosine": -0.19852200150489807,
+              "norm_a": 1.0041133165359497,
+              "norm_b": 40.462486267089844
+            },
+            "ordinary_textbook": {
+              "dot": 0.31693562865257263,
+              "cosine": 0.026687050238251686,
+              "norm_a": 0.9946215748786926,
+              "norm_b": 11.940227508544922
+            },
+            "conditional_textbook": {
+              "dot": -0.0005467599839903414,
+              "cosine": -0.03895396366715431,
+              "norm_a": 0.5316907167434692,
+              "norm_b": 0.026398910209536552
+            }
+          },
+          "conditional_EOS_vs_Web_body": {
+            "dot": -6.851885700598359e-05,
+            "cosine": -0.0029481733217835426,
+            "norm_a": 0.026398910209536552,
+            "norm_b": 0.8803819417953491
+          },
+          "hypothetical_quota_AdamW_first_order_loss_change": {
+            "web": -0.03929504379630089,
+            "story": -0.0030015562660992146,
+            "ordinary_textbook": -0.006177128758281469,
+            "conditional_textbook": -0.000962505058851093
+          },
+          "checks": {
+            "finite_gradients": true,
+            "no_parameter_gradients": true
+          },
+          "optimizer_updates": 0
+        },
+        {
+          "config_sha256": "8114972e29e846f07fc0372969d167dad6897799ec7f23f213f3b88ff5750ef2",
+          "samples_sha256": "c84604b80656e2069c2aa5dd4b6a63441ad8ff02a4f34cb6a4178c95723c4f04",
+          "checkpoint_sha256": "f54ea3fc23086de65bc00cd3f3f3a88f697a543a48c76647a4a66341ab3b2eb0",
+          "draw": 3,
+          "losses": {
+            "web": {
+              "full_CE": 2.4692792892456055,
+              "EOS_CE": 2.266594886779785,
+              "teachers": 8176,
+              "EOS_teachers": 16
+            },
+            "story": {
+              "full_CE": 1.7582552433013916,
+              "EOS_CE": 0.47966238856315613,
+              "teachers": 8135,
+              "EOS_teachers": 57
+            },
+            "ordinary_textbook": {
+              "full_CE": 2.1516919136047363,
+              "EOS_CE": 0.07269303500652313,
+              "teachers": 8132,
+              "EOS_teachers": 60
+            },
+            "conditional_textbook": {
+              "full_CE": 0.20096629858016968,
+              "EOS_CE": 0.00016711876378394663,
+              "teachers": 8006,
+              "EOS_teachers": 186
+            }
+          },
+          "full_CE_pairs": {
+            "web|story": {
+              "dot": 0.055850423872470856,
+              "cosine": 0.0697595626115799,
+              "norm_a": 0.805431067943573,
+              "norm_b": 0.9940182566642761
+            },
+            "web|ordinary_textbook": {
+              "dot": 0.014884386211633682,
+              "cosine": 0.019718170166015625,
+              "norm_a": 0.805431067943573,
+              "norm_b": 0.9372078776359558
+            },
+            "web|conditional_textbook": {
+              "dot": 0.004313647747039795,
+              "cosine": 0.009429782629013062,
+              "norm_a": 0.805431067943573,
+              "norm_b": 0.5679559111595154
+            },
+            "story|ordinary_textbook": {
+              "dot": -0.03482067584991455,
+              "cosine": -0.037377212196588516,
+              "norm_a": 0.9940182566642761,
+              "norm_b": 0.9372078776359558
+            },
+            "story|conditional_textbook": {
+              "dot": 0.0518881119787693,
+              "cosine": 0.09190917760133743,
+              "norm_a": 0.9940182566642761,
+              "norm_b": 0.5679559111595154
+            },
+            "ordinary_textbook|conditional_textbook": {
+              "dot": 0.019332828000187874,
+              "cosine": 0.03631991520524025,
+              "norm_a": 0.9372078776359558,
+              "norm_b": 0.5679559111595154
+            }
+          },
+          "body_pairs": {
+            "web|story": {
+              "dot": 0.06803654879331589,
+              "cosine": 0.08066686987876892,
+              "norm_a": 0.8084036707878113,
+              "norm_b": 1.043323040008545
+            },
+            "web|ordinary_textbook": {
+              "dot": 0.0182673167437315,
+              "cosine": 0.02395658940076828,
+              "norm_a": 0.8084036707878113,
+              "norm_b": 0.9432384371757507
+            },
+            "web|conditional_textbook": {
+              "dot": 0.004484126344323158,
+              "cosine": 0.009540896862745285,
+              "norm_a": 0.8084036707878113,
+              "norm_b": 0.5813803672790527
+            },
+            "story|ordinary_textbook": {
+              "dot": -0.014976345002651215,
+              "cosine": -0.01521827932447195,
+              "norm_a": 1.043323040008545,
+              "norm_b": 0.9432384371757507
+            },
+            "story|conditional_textbook": {
+              "dot": 0.052510909736156464,
+              "cosine": 0.08657058328390121,
+              "norm_a": 1.043323040008545,
+              "norm_b": 0.5813803672790527
+            },
+            "ordinary_textbook|conditional_textbook": {
+              "dot": 0.01974712498486042,
+              "cosine": 0.036009907722473145,
+              "norm_a": 0.9432384371757507,
+              "norm_b": 0.5813803672790527
+            }
+          },
+          "body_EOS": {
+            "web": {
+              "dot": -1.8260784149169922,
+              "cosine": -0.06320695579051971,
+              "norm_a": 0.8084036707878113,
+              "norm_b": 35.737674713134766
+            },
+            "story": {
+              "dot": -9.365180969238281,
+              "cosine": -0.29626044631004333,
+              "norm_a": 1.043323040008545,
+              "norm_b": 30.29867935180664
+            },
+            "ordinary_textbook": {
+              "dot": 0.0003592204302549362,
+              "cosine": 6.745809514541179e-05,
+              "norm_a": 0.9432384371757507,
+              "norm_b": 5.6455397605896
+            },
+            "conditional_textbook": {
+              "dot": 0.002044608350843191,
+              "cosine": 0.08440490067005157,
+              "norm_a": 0.5813803672790527,
+              "norm_b": 0.04166603088378906
+            }
+          },
+          "conditional_EOS_vs_Web_body": {
+            "dot": -0.0015424540033563972,
+            "cosine": -0.045793287456035614,
+            "norm_a": 0.04166603088378906,
+            "norm_b": 0.8084036707878113
+          },
+          "hypothetical_quota_AdamW_first_order_loss_change": {
+            "web": -0.03700980544090271,
+            "story": -0.003239656798541546,
+            "ordinary_textbook": -0.005655990913510323,
+            "conditional_textbook": -0.0010352734243497252
+          },
+          "checks": {
+            "finite_gradients": true,
+            "no_parameter_gradients": true
+          },
+          "optimizer_updates": 0
+        }
+      ],
+      "negative_cosine_batches": {
+        "web|story": 0,
+        "web|ordinary_textbook": 0,
+        "web|conditional_textbook": 0,
+        "story|ordinary_textbook": 0,
+        "story|conditional_textbook": 0,
+        "ordinary_textbook|conditional_textbook": 0
+      },
+      "predicted_loss_rise_batches": {
+        "web": 0,
+        "story": 0,
+        "ordinary_textbook": 0,
+        "conditional_textbook": 0
+      },
+      "source_conflict_marker": false
+    }
+  },
+  "config_sha256": "8114972e29e846f07fc0372969d167dad6897799ec7f23f213f3b88ff5750ef2",
+  "samples_sha256": "c84604b80656e2069c2aa5dd4b6a63441ad8ff02a4f34cb6a4178c95723c4f04",
+  "GPU_seconds": 3.338032489991747,
+  "optimizer_updates": 0,
+  "scientific_teacher_tokens": 0,
+  "full_CE_scored_teacher_tokens": 259570,
+  "EOS_scored_teacher_tokens": 2574,
+  "RNG_restored": true,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "limitations": "Four fixed train batches/source, two related checkpoints, not independent quality evidence or causality. Negative gradient geometry and hypothetical first-order inherited-AdamW loss change do not measure actual finite-step harm or guarantee projection helps. No optimizer created/updated; old quality scores unchanged."
+}
