@@ -1,3 +1,11 @@
+Base専用・文章全体の比較損失の診断（2026-10-06 JST）。
+
+前turnのnews full100M/全80はa2d7809で不採用を保存。今回既存root診断・構成/packing/sequence objectiveの証拠を参照し、同DPO型の原文続き対自身の実生成という新しい損失機構をTRAINだけで診断する。学習後のnews枝を親にせず元d18/native10Mを固定、旧source/epoch/LR/decoder/CP救済なし。元受入ニュースの固定TRAIN64全部、body first quarter/min8・UTF8境界のみ進めた原tokenprefix、原全残文+EOS対greedy64。元sourceには8弱例がありchosenが自動的に勝者とはしない。prompt/BOS/PADを教師から除きcompletion+EOSを一shiftだけscore、固定reference比のsequence-sum DPO(beta.1)とchosen-CEの勾配を比べる。CPU2tests/1.36秒でmask/shift/EOS勾配・参照比/初期ln2/勾配方向に合格、PS構文成功。未実行prelaunchのgeometry fieldをmarginからloss方向微分へ正しく改名し元config/sourceを保存、損失/条件変更0。科学教師/optimizer更新0、Chat/SFTではなく役割なしBase文章のreadonly診断。
+
+actual659437/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start18066087実稼働、Windowsworker27376、GPU上限180秒。再起動前は必ずPIDを確認しone-shot完了/失敗を再実行しない。終端で元UIへ復帰。次は全64実生成・reference scores・CE/DPO勾配と重み/RNG不変を確認、全64原文比較の個別内容を読む。その証拠を満たす場合のみ別予算・新save/resume・一要因CE対CE+DPOを設計する。参考: https://arxiv.org/abs/2305.18290 および https://huggingface.co/docs/trl/dpo_trainer 。長さ差/genre/非blind/単一seed/旧数値7失敗を保持、BPB guardやKL保持の保証なし。Base未完成・完了時通知停止、Chat/量子化なし、WSL uv/local commitのみ/pushなし。
+
+以下は過去の履歴。
+
 Base専用ニュース比較: completion（2026-10-06 JST）。
 
 ニュース条件と全80個別raw-bound採点を完了。旧staged対照→newsでBPB1.133612866→1.021511075、文法65→45/関連39→46/一貫性23→17/適切26→18/EOS76→49/反復2→24（各80）。相対gate=False/絶対全gate=False/歴史Web全gate=False/最終Base検証eligible=False。科学新26428122/再利用73571878教師、総新GPU144.871550/1800。実native10M・継承Adam/scheduler・同Web継続と全会計を確認、元UI復帰。source/EOS/多様性・input/update数が変わる比較、523883本文tokensの約47.265反復を新規教材量としない。一学習seed/非blind反復dev・独立人手なし。合格recipeのみ独立学習seed/full dev/protected test/採用へ。未合格なら固定news分岐を終了しsource/epoch/LR/decoder/CP救済sweepなし。
