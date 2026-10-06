@@ -1,3 +1,17 @@
+Base限定・モデル予測を入力へ混ぜる新比較のCPU処理を実装・検証（2026-10-07 JST）。Base未完成・未採用。
+
+前goal turnはMuon100Mの実終了・全80採否・UI復帰・423fba4保存のprogress。今回はrequired3docs/current worktreeと既存root/FP32・sequence UL/選好/全般化の証拠を確認。旧数値7失敗は保持し、FP32でも反復する既測定診断を再実行しない。Muonやnext-two等の失敗条件を救済しない。
+
+[固定比較案](../reports/phase6/base_context_mixing_proposal.json)と[実CPU検証記録](../reports/phase6/base_context_mixing_prototype_completion.json): native10,001,152/元成熟10B/同accepted2B TRAIN/同gold100M（Web75M・教材20M・物語5M）/batch48/seed42/fresh AdamW LR1e-5・WD0.1 constant/cached CEを保つ。新方式はno-gradientのclean-context一回予測から直前位置のgreedy body tokenを選び、元body入力の5%へ混ぜるparallel history mixing。position0/PAD/全元specialを保持し、元gold本文/EOSラベルは一切変更せず各一度だけCEで学ぶ。追加head/params/新distinct教材/追加教師0、予測forwardのvalid/physical入力と変更数・mixed digestは元gold教師/元source digestと別会計。旧ULの自己反復tokenへの負の勾配とは異なり、混合履歴に対して元goldの正の勾配を与える仮説で、改善の保証はない。
+
+[Parallel Scheduled Sampling](https://arxiv.org/abs/1906.04331)と[Transformerでの二回経路](https://aclanthology.org/P19-2049/)を一次資料として確認。[目的関数の不整合の指摘](https://arxiv.org/abs/1511.05101)も保持。今回はgreedy一回・固定5%の変形で、完全な逐次samplingや尤度整合性を保証しない。固有名詞/数値を替えた入力は元goldと矛盾し得るし、byte片の混合が単独UTF8文になる保証もない。既存すべてのBPB/strong/absolute/歴史Web採用基準を保持し、Devの基準を緩めない。
+
+base_context_mixing_trainer.pyを追加し、実WSL uv3.12.7 CPU9checks/4.53秒に合格。直前位置だけの予測と未来を使わないこと・境界/PAD保持、混合0のnative weights/Adam/scheduler/global RNG/full sampler/会計/履歴と元CEの完全一致、実際に入力が変わっても元gold/source/EOS/digest/full samplerが一致、混合専用CPU Generatorを含む連続4対2+save/resume+2の全state/history完全一致、recipe/update/count/source/RNGの5不正state拒否を確認。最初は反復文字のtied random fixtureが元入力をコピーし変更数0で1check失敗。XMLを保存し、tiedを保った誤予測stress fixtureへ修正、元の変更数>0判定は維持して成功。これは実モデル品質/実CUDA成功の証拠ではない。凍結された旧trainer/model/reviewerは変更していない。
+
+比較前の固定GPU総cap7,200秒、CUDA probe180秒。二回forwardによる追加computeを見込み、科学capは実32timing中央値からceil(100M/speed*1.3+900)を求めprobe実時間込み総cap内でのみ実行する。予算/有限値/state/品質で不合格なら確率/pass/decoder/LR/source/親/batch/教師/上限を替えて救済しない。GPU probe/science/reviewer/永続launcherはまだ未実装・未実行で、今回GPU0/科学教師0。次はこれらの必要コマンドを実装しsource/configを凍結→実CUDA worst1024/512・batch48有限性と全save/resume/source gate・速度を測定→予算内のみ元100Mと同256byte/日本語192・331・1119/全80個別内容を比較→資格ある候補だけ独立学習seed/full DEV/protected final TEST/adoption。
+
+元10B UI actual707311/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start21203291を実processとHTTP親SHA410f975d…/10,000,007,168/busy=falseで確認、終了Muon705306は実不在。UI停止/新GPUjob/新教材全量scan/Tokenizer再学習なし。Baseの全評価・採用が完了したらユーザーへ知らせて停止し、Chat/Dialogue/SFT/量子化へ進まない。全五目標/Phase0–3/旧数値7失敗/全歴史負結果と全品質基準を保持。PythonはWSL uv、verified local commitのみ、自動pushなし。今回は必要trainer実装・実CPU保存再開検証・一比較の固定案保存のprogress、Base完了ではない。以下は過去の履歴。
+
 Base限定・Muon100M比較の全評価を終了、不採用（2026-10-07 JST）。Baseは未完成・未採用。
 
 [終了記録](../reports/phase6/base_muon_comparison_completion.json)・[全80レビュー](../reports/phase6/base_muon_comparison_review.json)・[個別観察](../reports/phase6/base_muon_observations.tsv): actual705306/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start21012791はcomplete・実process不在。terminal full stateで元gold100,000,000教師/17,698更新を確認、最終heartbeat99,900,395/17,680は途中値として保持。科学GPU1,900.415525秒（31.7分）/固定cap4,331秒、probe込み1,910.642585秒/事前総cap4,800秒。最終checkpoint SHA fab4bb0db05aee57759265de5ec38acd1e7f8a58b3a9357e967952ed1a5f9dd7。native10,001,152params、追加params/新distinct教材0。全native・Muon/AdamW・scheduler・RNG・sampler・全17,698完了metrics・有限値/会計とcached CE100Mの同一元教師/source/EOS/input/physical/bodybytes/digest/full sampler一致を実レビュー。cached対照のGPU再実行/再採点0。

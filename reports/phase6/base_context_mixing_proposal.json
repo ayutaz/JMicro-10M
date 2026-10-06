@@ -1,0 +1,146 @@
+{
+  "created_at": "2026-10-06T23:27:52.181022Z",
+  "status": "CPU_protocol_verified_GPU_comparison_not_started",
+  "previous_goal_turn": "Progress: Muon100M terminal, all80 scored, rejected, UI restored, local commit423fba4.",
+  "hypothesis": "Does training on a small proportion of model-predicted history, while retaining original gold labels, reduce native greedy repetition and improve coherent continuations?",
+  "rationale": "Cached FP32 and BF16 generation both repeat; raw numerical failures remain failures. Do not rerun that diagnosis. Previous sequence UL penalized generated repeats; this mechanism instead changes CE conditioning inputs and supplies original gold next-token gradients.",
+  "mechanism": {
+    "prediction_passes": 1,
+    "mixing_probability": 0.05,
+    "prediction": "No-gradient clean-context greedy prediction restricted to IDs>=8",
+    "shift": "Prediction at input position j-1 may replace original body input position j",
+    "boundaries": "Preserve input position0, PAD and all original special IDs; no new EOS/BOS or fragment",
+    "supervision": "Every original body/EOS target stays unchanged, supervised exactly once",
+    "RNG": "Dedicated CPU Generator; full state restored with model/AdamW/scheduler/global RNG/sampler",
+    "objective": "Original-gold CE given the mixed history; no UL, contrastive loss, distillation or added head"
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "goals": {
+    "web": 75000000,
+    "textbook": 20000000,
+    "story": 5000000
+  },
+  "tokenizer": "artifacts/phase2/4096/tokenizer.model",
+  "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+  "batch": 48,
+  "seed": 42,
+  "optimizer": "Fresh AdamW lr1e-5/weight_decay0.1; constant scheduler, matching cached CE",
+  "native_parameters": 10001152,
+  "extra_parameters": 0,
+  "original_gold_teacher_tokens": 100000000,
+  "extra_supervised_targets": 0,
+  "new_unique_dataset_tokens": 0,
+  "cached_control": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/result.json",
+    "sha256": "508990562990d2259fec5e1a330cf1ff77c053360b6678e751f6a02cb2b2394e",
+    "no_GPU_rerun": true,
+    "no_rescoring": true
+  },
+  "budgets": {
+    "CPU_preparation_seconds": 60,
+    "CUDA_probe_seconds": 180,
+    "total_GPU_seconds": 7200,
+    "science_budget": "Ceil(100M/measured median original teachers per second*1.3+900); plus actual probe must fit total cap",
+    "accounting": "Prediction forwards/input positions are additional compute, not teachers; original clean CE input/digest and full sampler match cached CE. Report mixed-input digest and actual replacements separately."
+  },
+  "acceptance": "Native CUDA/BF16 worst1024/512 batch48 finite forward/backward and full continuous4 vs2+save/resume+2, including dedicated mixing RNG, exact source and committed history, before any science. Then complete100M, common256-document BPB, Japanese192/331/1119 and all80 individually read raw-bound continuations. All matched CE/strong/absolute/historical Web gates unchanged. Only qualified candidates proceed to independent trainedseed/full DEV/protected final TEST/adoption.",
+  "failure": "Close failed finite/state/budget or final quality condition. No mixing probability/pass/decoder/LR/source/parent/batch/teacher/cap rescue or automatic extension.",
+  "primary_sources": [
+    "https://arxiv.org/abs/1906.04331",
+    "https://aclanthology.org/P19-2049/",
+    "https://arxiv.org/abs/1511.05101"
+  ],
+  "limitations": "Fixed greedy one-pass variant, not a full sequential sampled rollout or a likelihood-consistent objective. Replaced histories can contradict original gold, especially names/numbers; byte-piece replacements may lack a standalone valid UTF8 rendering. Papers on other tasks do not prove Japanese10M benefit. One seed/mature parent/repeated nonblind DEV. Additional compute differs from cached CE.",
+  "references": {
+    "base_muon_comparison_review.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_muon_comparison_review.json",
+      "sha256": "684d5ce558d84296a80d19190703df5d95583dc6ddc942344deb75150cd40f8e",
+      "status": "Muon_native100M_and_all80_reviewed"
+    },
+    "base_muon_comparison_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_muon_comparison_completion.json",
+      "sha256": "cfa43645b777d9dd5e685cfbce25e4175278c5aeec9d91a2033a3ba82e94cbad",
+      "status": "Muon100M_review_complete_rejected"
+    },
+    "base_decode_cached_evidence_review.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_decode_cached_evidence_review.json",
+      "sha256": "d1e986bbf4cc22bedd56b19e7cba65f576bcfc8651abc4a2bc4300af5b3bb911",
+      "status": "cached_trained_decode_evidence_reviewed"
+    },
+    "root_cause_summary.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/root_cause_summary.json",
+      "sha256": "3a6d99e31360d310ba702ddfc95828ca27ecd11b2645b237c157a1366385d9b3",
+      "status": "diagnostic_scope_complete_quality_unmet"
+    },
+    "sequence_objective_comparison_review.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/sequence_objective_comparison_review.json",
+      "sha256": "7fef26f2a1671a9b7c9a4df533dcff05b55f525b373bf79b24d182cdef4dd6a7",
+      "status": "matched_CE_sequence_UL_learning_and_all160_content_evidence_complete"
+    },
+    "sequence_objective_low_alpha_review.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/sequence_objective_low_alpha_review.json",
+      "sha256": "7e22e03ae51e402c65cbf8c769596be93c51c356039cd904f05d5515c1285257",
+      "status": "matched_reused_CE_and_actual_low_alpha25M_all80_complete"
+    },
+    "sequence_objective_diagnostic_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/sequence_objective_diagnostic_completion.json",
+      "sha256": "4f11a2a2ca974db485ae988bad39b64f05c3fb8de85f976f85e1b4cafe40f4b7",
+      "status": "actual_train_only_diagnosis_complete_next_comparison_planned"
+    },
+    "base_preference_comparison_review.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_preference_comparison_review.json",
+      "sha256": "6e6106743644ba83a931d23ce696a72a11951dd80901c7997ea3eb070c8c06a5",
+      "status": "Base_preference_all160_native_state_and_content_reviewed"
+    },
+    "base_generalization_diagnostic_review.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_generalization_diagnostic_review.json",
+      "sha256": "7ce4e0eaaf8840787ad23b113178521ac1036e1b1a43463a07d1c414be52d5b1",
+      "status": "source_local_generalization_all64_content_reviewed"
+    },
+    "base_next_two_token_comparison_review.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_next_two_token_comparison_review.json",
+      "sha256": "b3589e13181de3a87db5da396bccf4514cade6e6a4ea27c822cba8ffed5f7c65",
+      "status": "new80_and_reused80_next_two_comparison_reviewed"
+    }
+  },
+  "source_sha256": {
+    "scripts/base_context_mixing_trainer.py": "80244da524bb369a28fed40e251c1f56e1640914f4c646e19f0d6a2c70d0f6a2",
+    "scripts/prepare_base_context_mixing.py": "dcfcce794d52cde15340d61698dc5f10acf0ce400918db65167c918c531536f2",
+    "tests/test_base_context_mixing_trainer.py": "874408b6350044073fde8afbc79a807b3cdb0faf4d5d449fd32577173ac57955",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca"
+  },
+  "CPU_tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_context_mixing_trainer_tests.xml",
+    "sha256": "aa2413c5bc5bcc7916a021c9ecb8260efa941c2f7088c61eab5c8a420c4aa494",
+    "passed": 9
+  },
+  "initial_fixture_failure": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_context_mixing_initial_fixture_failure_tests.xml",
+    "sha256": "20d4238618440717fa5b833c53ea1a4745b0f13a4e438220ef3e8e11658f0856",
+    "cause": "Repeated-character tied random fixture copied all selected inputs; no changed-input coverage. Preserved failed receipt; stress predictor now has stronger attention output while preserving tied weights and the original assertion."
+  },
+  "actual_GPU_seconds": 0,
+  "scientific_teacher_tokens": 0,
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "next_action": "Implement one durable bounded CUDA probe/launcher and science/reviewer commands; freeze their configs before executing. GPU training is not authorized by unimplemented commands alone."
+}
