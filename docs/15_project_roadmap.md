@@ -1,3 +1,19 @@
+条件prefix maskのown実CUDA保存再開/速度測定を完了、同入力suffix設定を凍結（2026-10-06 JST）。Baseのみを完成まで継続し通知して停止、Chat/Dialogue/SFT/量子化なし。
+
+actual631701/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16623816はcomplete・不在。元CP323185のmodel/Adam/scheduler/RNG/全stream・source会計/cursor/実LR.00001が初期一致、実CUDA8対4+4でordinary→conditional切替と実mask更新を含む全state/history/有限値が一致。own32timing中央値0.051915秒、検証48更新/653485教師/1572864inputを科学と別記。probe実GPU17.082727秒/上限120。CPU3tests/1.65秒・実準備2.868702秒/元残318全input/reference target digest一致、初回fixture padding1failed XMLも保持。新source/full index scanなし。
+
+科学suffixは元source-order CP323185→323503の同318更新/physical10420224、reference quota教師10159637に対しmask後教師1801392を予測。元75M Web→5M story→10M ordinary→10M conditionalの先行学習/対照100Mを再利用するので新100M教師・同教師比較と称さない。conditional setup bodyだけをhardCEから外し既存outcome+EOSを保持、他source/input/順序/fullstate/LR不変。configs/phase6/conditional_prefix_mask.json SHA0a363551b149a330ce2a92851baa4057eeede146ef0505e384bef8931a831aab。train実測予測18.403642秒に1.3×/save/評価reserve150/余裕50を含みscience223.924735秒、probe込み600秒以内。本学習まだ未開始。raw gates/timing/counters/failure/source/testをpreparation/portable.json/archiveへ保存。
+
+次はscripts/run_conditional_prefix_mask.ps1 -Mode Trainで永続起動→同256common bytes・全日本語192-331-1119・greedy80個別raw/bridge-ret128→元strong/絶対/歴史WebBPBなど全guardで採否→元UI/可搬証拠/commit。失敗時にmask位置/EOS weight/source/checkpoint/decoder sweepで救済しない。qualified pilot後だけ独立学習seed/full dev/protected test/adoption、Baseまだ未完了。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
+条件文prefix targetのmaskを実装・CPU準備を完了（2026-10-06 JST）。Baseのみを完成まで継続し通知して停止、Chat/Dialogue/SFT/量子化なし。前L2両100M不採用は3d56a71へ保存。
+
+元source-orderのfullstate CP323185から全stream/sampler/quota/model/Adam/scheduler/RNG/実LR.00001を保持する実装。conditionalだけ既存outcome focus+EOSをhard教師とし、他3sourceは変更しない。元の残318更新をCPU2.868702秒で一度だけ再構築し全input/元target digest/source counters/終端全samplerが対照と一致。physical input10,420,224、reference教師10,159,637、実masked教師1,801,392の予測を分け、同教師100M比較としない。関連CPU3tests/1.65秒（実入力/terminal padding/zero-focus conditionalのEOS保持/全state4対2+2/予算）、PS構文成功。初回1testはfixtureの末尾にpaddingがなかったため失敗、十分な終端batchで明示的に検証するようtestだけ修正・初回XMLを保存、実GPU0。source/full corpus再走査なし。
+
+probe設定configs/phase6/conditional_prefix_mask_probe.jsonを凍結。own CUDA8対4+4はordinary→conditionalの切替と実mask更新を含める（最初4更新だけではmaskの検証にならない）。32steady timings・probe全120秒/比較全600秒、実suffix見積1.3×+save+評価reserve150+50を満たしてからscience凍結。実probe/GPU/科学教師はまだ0、元UI629733を直前ps確認、永続起動scripts/run_conditional_prefix_mask.ps1 -Mode Probe。実終了まで重複しない。
+
+次はown実CUDA gate/timings→予算内のみ同suffix318更新/同256bytes・全日本語192-331-1119・greedy80個別/bridge-ret128→全80raw notes・元strong/absolute/歴史WebBPB等の全条件で採否・UI復帰・commit。oldstrong EOS>=76/反復<=2/一貫性23+8/CI正などを変更せず、失敗時にmask/weight/source/checkpoint/decoder sweepで救済しない。Base品質採用/独立学習seed/full dev/protected testは未達。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 固定parameter L2の両100M学習/全評価/160個別読解を完了・不採用（2026-10-06 JST）。CUDA準備d1b44f0・永続起動66bdd3dはprogress。Baseのみ継続・実完成時に通知/停止、Chat/Dialogue/SFT/量子化なし。
 
 actual629059/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start16481322はcomplete・不在。両科学200000000教師/6136更新、同input/targets/source/全cursor会計が一致、fixed L2教師0。検証80更新/2615904教師別。scienceGPU481.338513+probe/失敗33.680480=新全515.018993秒/上限1800。係数.04161064039180984/親6d901bd…/実LR.00001を保持。全256common472055bytes/日本語192-331-1119/greedy80各/bridge-ret128各が完了、2arm全160をrawSHA/具体理由で保存。旧raw完全一致は対照7/candidate15の採点をそのまま継承し、幻想/新人物/暗黙設備/自然な別行動/gold不一致を自動失敗にしない。非blind Codex、独立人手なし。

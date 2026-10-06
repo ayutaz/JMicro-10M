@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="3" time="1.934" timestamp="2026-10-06T19:36:04.046468+09:00" hostname="DESKTOP-42CUV0C"><testcase classname="tests.test_conditional_prefix_mask" name="test_original_input_reference_digest_masked_targets_and_terminal_padding" time="0.964"><failure message="assert False">tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-110/test_original_input_reference_0')
+
+    def test_original_input_reference_digest_masked_targets_and_terminal_padding(tmp_path):
+        pool,parent,b,positive=shared_fixture(tmp_path)
+        original=SourceOrderQuotaSampler(pool,pool,positive,parent['sampler']['streams']['web']['sampler'],
+            parent['sampler']['goals'],8,42)
+        original.load_state_dict(parent['sampler'])
+        masked=PrefixMaskSampler(pool,pool,positive,parent['sampler']);masked.reference_token_digest=parent['token_digest']
+        digest=parent['token_digest'];conditional_zero_focus=False;terminal_padding=False
+        while original.source_teachers!=original.goals:
+            x,y,_,focus=original.batch(3);a,z,_,f=masked.batch(3)
+            assert torch.equal(x,a) and torch.equal(focus,f)
+            d=hashlib.sha256(bytes.fromhex(digest));d.update(x.numpy().astype('&lt;i8').tobytes());d.update(y.numpy().astype('&lt;i8').tobytes());digest=d.hexdigest()
+            assert digest==masked.reference_token_digest
+            assert equal_state(original.state_dict(),masked.reference_state())
+            for i,genre in enumerate(masked.last_genres):
+                if genre=='conditional_textbook':
+                    keep=focus[i]|y[i].eq(3);expected=y[i].clone();expected[~keep]=-100
+                    assert torch.equal(z[i],expected)
+                    conditional_zero_focus|=not bool(focus[i].any())
+                else:assert torch.equal(z[i],y[i])
+                terminal_padding|=genre=='web' and not bool(y[i].ne(-100).any())
+&gt;       assert terminal_padding
+E       assert False
+
+tests/test_conditional_prefix_mask.py:47: AssertionError</failure></testcase><testcase classname="tests.test_conditional_prefix_mask" name="test_initial_fullstate_and_resume_across_real_conditional_mask_transition" time="0.072" /><testcase classname="tests.test_conditional_prefix_mask" name="test_same_input_budget_uses_remaining_updates_and_own_all32_timings" time="0.007" /></testsuite></testsuites>
