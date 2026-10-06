@@ -1,3 +1,11 @@
+Base専用・原文CE対CE+DPOの継承trainerとown GPU probe実装（2026-10-06 JST）。
+
+原d18/native10M/Adam2group/scheduler/RNG/LR1e-5/Webcursorを継ぐ共通Web6Mと、固定56の同chosen教師2Mをquotaで学習する両条件を実装。prompt/BOS/PADを除くCEと原全chosen/rejectedの参照比DPOを分け、最後の部分CE例も完全なDPO系列を採点するが別会計・EOS補作なし。負例も対照で同じ形状で評価し、係数0対.1だけが目的差。完了更新の全state/cursor/digest/CE・aux/padding・bytes/Adam/RNGを保存/再開する。新CPU3tests/2.28秒で継承と共通quota、両係数の連続4対2+2全state/historyとepoch境界、部分末尾CE7/aux chosen9・negative12の会計と参照改変拒否に合格。旧coreと損失実装は不変。
+
+ownGPU config凍結、180秒で共通Web4対2+2/32timing、paired8対56各DPO32timingを実測し、重複なし最大56組内の教師/秒でshape選択、選択shape両係数4対2+2とCE32timing。VRAM/有限値/全継承一致とread-only参照cacheを確認し、全検証重みを破棄。実測30%margin+600評価+probe全1800内のみ科学runner/採否を実装して凍結する。新科学0・Base未完成・完成時通知停止、Chat/Dialogue/SFT/量子化なし。固定4565positionsの反復を新教材量に足さず、元原文8弱/非blind/旧数値7失敗/既存全品質基準を保持。source/coef/beta/epoch/LR/decoder/CP救済sweepなし。WSL uv/local commitのみ/pushなし。
+
+以下は過去の履歴。
+
 Base専用・文章全体の比較損失の実診断完了（2026-10-06 JST）。
 
 元d18/native10Mの固定TRAIN64を実GPU69.957002秒/180で生成・score・gradient診断、actual659437完了/不在、元UI復帰。全64EOS0/重度4gram位置8以上64/UTF8良64、正解残文CE2.955113、初期DPOloss ln2。全64勾配DPO/CE norm8.693232/cosine0.558403、重み/parentSHA/RNG不変・終了gradなしの5checksに合格、optimizer更新/科学教師0。全64原文と生成を個別nonblind比較し56に原文の文法/一貫性優位を確認、元source受入時から弱だった8は勝者とせず保持。固定56のpositive completion+EOSは4565positionsのみ。次案は同d18継承状態・LR1e-5から共通Web6M一度→chosenCE対chosenCE+DPO(beta.1/係数0対.1)各positive2M、共通を含め各8M/新実学習10M、negative/prompt/physical/反復を別会計。新loss一要因、原分岐のsource/epoch/LR/decoder/CP救済なし。まだ科学未実装/未凍結/未開始。次は56新reference cache/専用trainer/CPU会計とresume→ownCUDA各4対2+2/32timing→実測30%margin+600評価+probe全1800内のみ科学凍結。全日本語/両80/bridge-retentionと元全品質条件で採否、合格のみ独立学習seed/full dev/protected testへ。小TRAIN集合/元原文8弱/非blind/旧数値7失敗/長さ・作風差を保持しDPOや学習増量の成功を保証しない。
