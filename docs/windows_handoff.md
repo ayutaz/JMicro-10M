@@ -1,3 +1,9 @@
+Base専用Fisher parameter field: terminal（2026-10-06 JST）。Base未完成・完成時通知して停止、Chat/Dialogue/SFT/量子化なし。
+
+固定conditional MC Fisher field実完了、actual647866は実不在。GPU3.623030秒/120、実64score gradient/65276model-sampled label/65536physical、source CE/optimizer0。10,001,152 unique119/weights・RNG・Param.grad不変/会計合格、field globalmean1.00000000、max41089.039062、zero0。model-sampled conditional Fisherの局所近似で有限保持/日本語品質の証明ではない。field.ptはnative保存/親・memory・source・tensor/rawSHA拘束。次はown inherited-state CUDA4対2+2/32timing/保存費用を120秒内で測り、field+probe+本科学+評価1800秒予測内のみ同parent/Adam/source/full100M CE/lambdaの一候補比較を凍結する。旧uniform全80/日本語/dev対照は再実行せず再利用。
+
+全旧不採用/数値7/Phase0–3/相対・絶対・歴史Web1%品質基準を維持。field/seed/回数/normalization/module/lambda/CP救済sweepなし。合格recipeのみ独立学習seed/full dev/protected test/採用へ。WSL uv3.12.7/local commitのみ/pushなし。以下は過去の履歴。
+
 Base専用Fisher parameter field: preparation（2026-10-06 JST）。Base未完成・完成時通知して停止、Chat/Dialogue/SFT/量子化なし。
 
 一律L2の完了済み不採用対照に対し、同mixed親/継承Adam・LR.00001/同full100M CE・source・mask・lambda.04161064039180984を保ち、model-sampled conditional diagonal Fisherのglobal unique-coordinate mean1で重み別抑制を行う別案。同TRAIN32窓/2反復/seed2026100647、行sum NLLをsqrt(全body32638)で割り、行score gradient二乗を和/2するtoken-weighted推定。GT empirical Fisher/全joint Fisher/Hessian/有限NLL保持の証明ではない。関連CPU4tests/1.97秒（独立ラベルの全列挙期待値、tied/一律一致/非有限拒否、private RNG不変、native全state4対2+2と改変拒否）、準備0.280308秒。新GPU/本学習0。次はfield64 gradient/65276model-sampled label（通常source CE0）を120GPU秒内で計算、own CUDA trainer gate/timing後、field+probe+本科学+評価1800秒予測内のみ100M一候補へ。旧対照再GPU/再全量scanなし。
