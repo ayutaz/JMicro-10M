@@ -1,3 +1,16 @@
+Base限定・native中間特徴転移のGPU検証に合格し、同100M比較を永続起動（2026-10-07 JST）。Baseは未完成・未採用。
+
+前turnの事前案・trainer/CPU13checksを286adeeへ保存した後、probe/science runner・native evaluator/reviewer・永続PS launcher・launch evidence commandを実装。同original100M/別会計short25M hint・layer6/FP32 unit-feature/coefficient1・native10M推論を保持し、cached CE/dense KDは再GPUしない。runnerの全32実時間による固定forecast/上限・同gold digest/fullsamplerの関連CPU10checksに合格（JUnit0.817秒）、CLI help/両PS構文成功。過去のCPU fixture失敗/V1と修正V2のbytesを保持、モデル本体/品質基準は変更しない。
+
+[実CUDA・launch証拠](../reports/phase6/base_native_hint_probe_launch.json)。probe actual736544/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start23335902はcomplete・実不在。初期/教師不変/student-only全13checks、CUDA連続4対saved2+2の全12state keysとfinite/history/same source/fullsamplerを含む全16checksが一致。47検証更新/273,521original gold/62,601hintは科学学習に加えず重みを破棄。最長48x1024/stride512の人工all-hint診断はoriginal/hint各24,576位置、CE2.266341/hint.038396/combined2.304737/grad3.239553有限、peak11,248,872,448bytes、optimizer0/student不変/teacher不変。teacherは最初6blocksだけ、upper/norm/headは使わない。診断をWebのラベル変更や科学goldへ数えない。
+
+probe10.147689秒/180。3warmup後の全32実step平均×exact17,698×1.3＋900評価余裕をceilしてscience4066秒、probe込み4076.147689秒で事前total4800以内。中央値速度は参考のみ。science config SHA b6bc849867c1b2c2e062dc8e6a9a27464f91368246d8dad434d4f5d2e9876ad4 と従来matchedCE/strong/absolute/historicalWeb品質policyを結果前に凍結。denseKD差はsecondaryで採用条件を置換しない。layer/係数/正規化/adapter/teacher/親/source/LR/backend/batch/decoder/capを結果後に救済しない。
+
+Windowsworker37152からscience actual737020/同boot/start23344138を起動、実psで稼働確認。run reports/phase6/base-native-hint-comparison-20261007。05:20:08 UTC heartbeatで1,760更新/9,942,248original gold/100M・CE2.620509有限、累積169.392秒/4066、latest checkpoint-00001750.pt。これは監視snapshotであり最新はWSL job.json/metricsを参照。250完了更新ごとにoptimizer/scheduler/RNG/fullsampler/gold/hint/source/digest/teacher lineageを保存、heartbeat20更新。再開は scripts/run_base_native_hint.ps1 -Worker、exact PID/boot/startの実不在と有効completedcheckpointを確認した場合のみ同累積4066秒内で行う。元10B UIは科学中停止、終端で元親へ復帰予定で、復帰完了とはしない。
+
+[可搬launch archive](../reports/phase6/base_native_hint_probe_launch_archive.json)は42text/392,180bytes、SHA d99af73ba30e143d0a916ca6b47088891e6df52650086ac90c593c6145556120 をWindowsへコピーして一度照合。CPU準備・初回失敗/V1/V2・source/config/実probe/fullstate gate/科学launch snapshotを含み、tensor/corpusは含めない。科学checkpoints/metricsはWSLへ保持。科学終端/日本語192・331・1119/共通DEV256/native80と全80個別判定・独立学習seed/fullDEV/protected finalTEST/adoptionはまだ未完。
+
+次はこのexact科学jobだけを監視し、同100M/別25M hint/fullstate終端→全日本語/同byte DEV/native80→全80を個別に読んで凍結全gateを適用→可搬終端記録。資格ある候補だけ独立学習seed/fullDEV/protected finalTEST/adoptionへ進む。品質Base完成を通知して停止、Chat/Dialogue/SFT/量子化/展開・自動pushなし。稼働中に無関係な研究/新条件/重複GPUを始めない。Python3.12.7はWSL uv、検証済み変更をlocalcommit。今回GPU gate・実科学起動のprogressでgoal completeではない。以下は過去の履歴。
 Base限定・native教師の中間表現を転移する別の一条件を定義・実装、CPU13checksに合格（2026-10-07 JST）。Baseは未完成・未採用。
 
 前turnはdense predictiveKDの実100M/25M・全日本語/全80不採用と可搬保存を2d9b7b3へcommitしたprogress。今回はrequired docs/clean worktree・既存五条件/13row inventory・parent/teacher signal/中間CE/nativeKLコードと実processを確認。現在科学GPUjobなし、元10B UIactual733851のみ。実施済みの出力KL・中間shared-head CE・自己文脈InfoNCEと、未実施の同native教師の中間特徴supervisionを区別した。Qwen4Bはreadonly信号gateで外部転移branchを閉じた記録で、特徴転移の実学習が成功/失敗したと読み替えず、その外部branchを再開しない。
