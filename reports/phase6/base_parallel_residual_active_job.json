@@ -24,7 +24,7 @@
     "start_ticks": "1498217",
     "started_at": "2026-10-07T11:17:00.395446Z",
     "config_sha256": "d2df07357165115e4534815d39f1526737a13fa61ebb471d8cd3c6bc45c20768",
-    "GPU_occupancy_seconds": 24642.810096195,
+    "GPU_occupancy_seconds": 25984.817929760004,
     "cumulative_GPU_ledger_closed": false,
     "restart_command": "scripts/run_base_parallel_residual.ps1 -Worker; inspect actual PID/boot/start, closed ledger and valid completed checkpoints first",
     "Base_complete": false,
@@ -38,13 +38,16 @@
       "allocator_allowance_bytes": 23181026918,
       "expected_worst_peak_bytes": 17791499264
     },
-    "stage": "sequential-training",
-    "heartbeat_at": "2026-10-07T18:07:43.904994Z",
+    "stage": "generation80",
+    "heartbeat_at": "2026-10-07T18:30:05.912824Z",
     "residual_arm": "sequential",
-    "completed_updates": 201600,
-    "original_teachers": 1900965709,
-    "CE_loss": 2.5439364910125732,
-    "latest_checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-parallel-residual-comparison-20261007/sequential/checkpoint-00200000.pt"
+    "completed_updates": 212080,
+    "original_teachers": 1999868016,
+    "CE_loss": 2.543199062347412,
+    "latest_checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-parallel-residual-comparison-20261007/sequential/checkpoint-00212095.pt",
+    "completed_tasks": 618,
+    "total_tasks": 618,
+    "completed_cases": 48
   },
   "windows_worker_pid": 31588,
   "windows_worker_alive_confirmed": true,
@@ -53,7 +56,7 @@
     "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
     "pid": 31561
   },
-  "observed_at": "2026-10-07T18:07:45.8612520Z",
+  "observed_at": "2026-10-07T18:30:11.6618694Z",
   "checkpoint_every_updates": 2000,
   "scientific_original_gold_total": 4000000000,
   "Base_adopted": false,
@@ -359,6 +362,100 @@
     "latest_checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-parallel-residual-comparison-20261007/sequential/checkpoint-00200000.pt",
     "checkpoint_bytes": 124374461,
     "quality_evaluation_performed": false,
+    "Base_complete": false
+  },
+  "sequential_2b_training_completion": {
+    "observed_at": "2026-10-07T18:30:11.6618694Z",
+    "status": "sequential_training_complete_evaluation_and_parallel_arm_pending",
+    "actual_process_identity": {
+      "start_ticks": "1498217",
+      "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+      "pid": 31561
+    },
+    "training_result": "reports/phase6/base_parallel_residual_sequential_training_result.json",
+    "training_result_sha256": "a55959a821d9880609be22576b86d1f7f9ee7c373fb98378eb3de6a2ffc36b54",
+    "scientific_CE_teacher_tokens": 2000000000,
+    "counters": {
+      "update": 212095,
+      "supervised_tokens": 2000000000,
+      "CE_input_tokens": 2053285089,
+      "auxiliary_input_tokens": 0,
+      "auxiliary_pairs": 0,
+      "physical_input_tokens": 8620194616,
+      "original_body_bytes": 8118116484,
+      "token_digest": "50452c1e5fccc0928a4b1acce06171b4a869c4251c6efc645348430e6b41d51d",
+      "source_teachers": {
+        "web": 1500000000,
+        "textbook": 400000000,
+        "story": 100000000
+      },
+      "source_EOS": {
+        "web": 13131989,
+        "textbook": 2967040,
+        "story": 764589
+      }
+    },
+    "scheduler": {
+      "kind": "original_teacher_end_position_warmup_cosine_v1",
+      "total": 2000000000,
+      "warmup": 5000000,
+      "peak": 0.002,
+      "final": 1E-05,
+      "tokens": 2000000000,
+      "last_lr": 1E-05
+    },
+    "spec": {
+      "kind": "fresh_equal_parameter_residual_connectivity_original_TRAIN_gold_token_schedule_v1",
+      "batch": 80,
+      "seed": 42,
+      "optimizer": "fresh_AdamW_actual_residual_parameters_once",
+      "weight_decay": 0.1,
+      "gradient_clip": 1.0,
+      "dtype": "bf16",
+      "backend": "flash",
+      "actual_unique_parameters": 10001152,
+      "goals": {
+        "web": 1500000000,
+        "textbook": 400000000,
+        "story": 100000000
+      },
+      "scheduler": {
+        "kind": "original_teacher_end_position_warmup_cosine_v1",
+        "total": 2000000000,
+        "warmup": 5000000,
+        "peak": 0.002,
+        "final": 1E-05
+      },
+      "head_policy": "only_original_supervised_states",
+      "CE_policy": "document_local1024_context512_original_targets_once",
+      "contrast": false,
+      "arm": "sequential",
+      "residual_policy": {
+        "kind": "same_input_attention_FFN_separate_native_RMSNorm_v1",
+        "formula": "x+Attention(RMS1(x))+SwiGLU(RMS2(x))",
+        "norm_weights_tied": false,
+        "residual_gain": 1.0,
+        "additional_parameters": 0,
+        "physical_block_invocations": 1,
+        "initialization": "identical_fresh_native_matrices"
+      },
+      "model_class": "JMicroModel"
+    },
+    "lineage": {
+      "kind": "fresh_equal_parameter_residual_connectivity_original_TRAIN_gold_token_schedule_v1",
+      "initialization": "fresh_native_seed",
+      "seed": 42,
+      "parent": null,
+      "learned_parent_weights_used": false,
+      "probe_weights_used": false,
+      "weights_role": "scientific_fresh_paired_residual",
+      "arm": "sequential",
+      "residual_initialization": "identical_native_initial_weights_no_extra_RNG"
+    },
+    "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-parallel-residual-comparison-20261007/sequential/checkpoint-00212095.pt",
+    "checkpoint_sha256": "a1d29762321f1a9df088ced78d5b67fb174f59e1dd10fd4520bf769ed78c5f51",
+    "checkpoint_bytes": 124374525,
+    "quality_evaluation_complete": false,
     "Base_complete": false
   }
 }
