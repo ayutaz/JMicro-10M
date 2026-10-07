@@ -1,3 +1,10 @@
+Base限定・dense native教師KLの同一学習を実監視、終了後の全内容評価・可搬保存を準備（2026-10-07 JST）。Baseは未完成・未採用。
+
+前turnは最新ユーザー境界の確認とactual732636の実ps/heartbeat確認によるverified wait。今回は同PID/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start23040993を再確認してcloseout commandを実装したprogress。snapshot 4420更新/25004932 original gold/100M、CE 2.51591467857361有限、累積470.807539573027秒/4374上限、latest /home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-native-teacher-KD-science-comparison-20261007/native_teacher_KD/checkpoint-00004250.pt。科学config e583e522…・teacher/source/loss/decoder/予算と全品質基準は凍結保持。同じjobだけが学習中で、元UIは科学終端後に復帰予定。
+
+[complete_base_native_teacher_KD_science.py](../scripts/complete_base_native_teacher_KD_science.py)を追加、WSL uv Python3.12.7のCLI helpと実live jobを終了扱いして保存する試行の拒否を確認。[準備証拠](../reports/phase6/base_native_teacher_KD_science_closeout_preparation.json)は過去middle80を使った機械的fixtureで全80 exact reuseと旧4採点差の保持を確認、旧notes変更0/今回candidate読解0/GPU0。固定優先順cached CE→middle→SAM→on-policyを保ち末尾にconfidenceを追加し、同ID/prefix/text/stopの既採点数値を検査するが書換えない。実今回80は全件個別に読む必要があり、fixtureを今回品質・人手・盲検の証拠にしない。
+
+closeoutは実PID終了・同100M original/別25M predictive位置・teacher不変/student-only optimizer・全評価/全80理由・凍結review・成功launcher logs・元10B UI実process/HTTP親SHAの復帰を要求し、tensor/corpusを除くtext/source/metrics/evaluationをarchiveする。現在本学習は稼働中のため実closeout未完、科学source/config/reviewerを変えず次の学習や研究を始めない。次はexact PID/completed checkpointを監視→実100M/25M/fullstate終端・共通DEV256/日本語192,331,1119/native80→全80内容採否→元UI復帰/終了記録/可搬保存。資格ある候補だけ独立学習seed/fullDEV/protected finalTEST/adoptionへ進む。品質Base完成を通知して停止、Chat/Dialogue/SFT/量子化/展開・自動pushなし。PythonはWSL uv、local commitのみ。以下は過去の履歴。
 Base限定・未学習だったdense native教師KLを別の事前資源計画で実装・検証し、同100M科学比較を永続起動（2026-10-07 JST）。Baseは未完成・未採用。
 
 前goal turnはconfidence100M/全日本語/全80不採用と可搬保存を8eb62f1へlocalcommitしたprogress。今回required docs/clean worktree・実processを確認し科学GPUjobなし/元UIのみの状態から再開。[現在の証拠参照](../reports/phase6/base_current_objective_evidence.json)をCPUで実保存、既存synthesis/3条件companionを上書きせず、on-policy/SAM/middle/confidenceの実100M品質不採用4件と、dense gold-prefix native KDのscience0・品質未検証を区別した。
