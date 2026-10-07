@@ -1,0 +1,65 @@
+{
+  "created_at": "2026-10-07T05:10:45.966448Z",
+  "status": "native_hint_CPU13_passed_GPU_workflow_not_yet_implemented",
+  "proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_native_hint_proposal_v2.json",
+    "sha256": "9641cbd43bbbe54743915c6ca55f0df179001164a0f2cecdee60508574e11ad3"
+  },
+  "recipe": {
+    "layer": "floor_native_depth_over_two_after_completed_block",
+    "coefficient": 1.0,
+    "sources": [
+      "textbook",
+      "story"
+    ],
+    "loss": "sum_one_minus_FP32_unit_feature_dot_over_all_original_gold_positions",
+    "epsilon": 1e-12,
+    "teacher_frozen_eval": true,
+    "teacher_forward": "original_embedding_and_first_middle_blocks_no_norm_or_head",
+    "student_forward": "one_full_native_decoder_original_final_CE_plus_middle_hint",
+    "extra_student_parameters": 0,
+    "optimizer": "fresh_AdamW_lr1e-5_wd0.1_constant",
+    "inference": "unchanged_full_native_10M_no_teacher",
+    "commit_boundary": "original_and_hint_counters_after_single_Adam_scheduler_update_v1"
+  },
+  "trainer": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/base_native_hint_trainer.py",
+    "sha256": "124bec70bae4c2fbf8ec1699cd3d18713c93f264bd8264e84a1b99c1829aaddb"
+  },
+  "tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/tests/test_base_native_hint_trainer.py",
+    "sha256": "bb56fe5c7aae264c0494efe9f85b05a36851c28b3d04a8111fc71b6264bf052a"
+  },
+  "CPU_result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_native_hint_trainer_tests.xml",
+    "sha256": "3c39add3d35ebc40050732820f76213f948782ce94a0269b10b0682384d2e400",
+    "passed": 13,
+    "seconds": 3.669
+  },
+  "initial_failure": {
+    "tests": 13,
+    "failures": 2,
+    "fixture_only": true,
+    "test_source": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_native_hint_tests_initial_failure.py",
+      "sha256": "1152c65cc8b7d3e37ee94b8453a50646075bc031a9f4aab1d580d58b66676c69"
+    },
+    "XML": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_native_hint_trainer_tests_initial_failure.xml",
+      "sha256": "460fb2c62d431a63d1a5c7f5f5a8d8395bf621ca353936735c89a539d09cbd38"
+    }
+  },
+  "CPU_test_seconds_including_failed_run": 6.931,
+  "trainer_numerics_changed": false,
+  "model_source_sha256": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+  "GPU_seconds": 0,
+  "scientific_original_gold_tokens": 0,
+  "scientific_hint_positions": 0,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "old_dense_KD_condition_closed": true,
+  "external_Qwen_transfer_branch_closed": true,
+  "next_action": "Implement persistent native hint CUDA probe/science/reviewer/launch commands; fullstate resume/capacity/all32 measured budget gate before any100M science. Current code and CPU fixtures are not GPU or quality evidence."
+}

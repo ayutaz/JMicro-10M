@@ -1,0 +1,134 @@
+{
+  "created_at": "2026-10-07T05:10:45.965394Z",
+  "status": "same_native_hint_recipe_CPU13_passed_test_fixture_fixes_before_GPU",
+  "question": "Can token-aligned normalized native middle-layer teacher features transfer coherent prose beyond final predictive-KL imitation?",
+  "references": {
+    "base_completed_objective_studies_20261007.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_completed_objective_studies_20261007.json",
+      "sha256": "6fcf7bc7b038e5a33f39d77b6c8bf3c8f1798362bb702ea83cccbfa341b4ee9a"
+    },
+    "base_native_teacher_KD_science_comparison_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_native_teacher_KD_science_comparison_completion.json",
+      "sha256": "94ddf90c0e90215ce1e0666da90c90e140822a01d31133c5f1ae4881add5698a"
+    },
+    "teacher_semantic_signal_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/teacher_semantic_signal_completion.json",
+      "sha256": "270938beee47546142982e1f4c2f47e5801437c7b485b540c9e0c6025fd41bd6"
+    },
+    "base_middle_supervision_comparison_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_middle_supervision_comparison_completion.json",
+      "sha256": "4829d93b24a02a3ded203258887a06934d067f285ee9a4326333dfc1ef8a1975"
+    },
+    "base_failure_route_synthesis.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_failure_route_synthesis.json",
+      "sha256": "2384411b47272b53b9e4eda981a69ff67e335069ca125a43e551c892515826b2"
+    }
+  },
+  "recipe": {
+    "layer": "floor_native_depth_over_two_after_completed_block",
+    "coefficient": 1.0,
+    "sources": [
+      "textbook",
+      "story"
+    ],
+    "loss": "sum_one_minus_FP32_unit_feature_dot_over_all_original_gold_positions",
+    "epsilon": 1e-12,
+    "teacher_frozen_eval": true,
+    "teacher_forward": "original_embedding_and_first_middle_blocks_no_norm_or_head",
+    "student_forward": "one_full_native_decoder_original_final_CE_plus_middle_hint",
+    "extra_student_parameters": 0,
+    "optimizer": "fresh_AdamW_lr1e-5_wd0.1_constant",
+    "inference": "unchanged_full_native_10M_no_teacher",
+    "commit_boundary": "original_and_hint_counters_after_single_Adam_scheduler_update_v1"
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "teacher": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323503.pt",
+    "sha256": "fb43f2618c0679ca6c6f7a0c5b9faf1b336be8985271c8513f2e4bbfde3cd7ae"
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "goals": {
+    "web": 75000000,
+    "textbook": 20000000,
+    "story": 5000000
+  },
+  "batch": 48,
+  "seed": 42,
+  "native_parameters": 10001152,
+  "extra_student_parameters": 0,
+  "teacher_resident_parameters": 10001152,
+  "original_gold_positions": 100000000,
+  "hint_positions": 25000000,
+  "new_unique_dataset_tokens": 0,
+  "novelty": "Not new mathematics. Registry has original CE, final native predictive KL, middle shared-head CE and self-context InfoNCE, but no learned native middle-teacher feature hints. Qwen external transfer was closed at a readonly signal gate and was never implemented as a training objective; that branch remains closed. Same native teacher/parent/data but different supervised object and computation, not alpha/T/teacher rescue of the closed predictive-KL study.",
+  "basis_limitation": "Direct same-width feature axes and layer correspondence are a fixed hypothesis. Architecture equality does not prove feature semantics/axis alignment or that this teacher is an adopted Base. No learned adapter, layer selection or basis/rotation sweep.",
+  "source_scan": "Search existing scripts/configs for hidden-state/feature distillation/teacher-feature losses; run_teacher_semantic_signal contains feature extraction only, not feature-supervised learning. Reuse native manifests/cache/stat; no13GB index rescan.",
+  "primary_sources": [
+    "https://arxiv.org/abs/1412.6550",
+    "https://aclanthology.org/2020.findings-emnlp.372/"
+  ],
+  "literature_limit": "FitNets intermediate hints and TinyBERT Transformer distillation motivate a different object than output probabilities; image classification and BERT/GLUE results do not establish Japanese autoregressive10M quality or exact reproduction.",
+  "accounting": "Original100M body/EOS hard CE remains intact. Add sum(1-dot(unit_FP32_student_h6,unit_FP32_frozen_teacher_h6))/allgold at original short-source25M supervised prediction positions. Teacher first6 completed blocks only, no teacher head/upper blocks. Student full13-block inference remains original10M. Extra hint positions/teacher inputs/angular sum/digest are separate from original gold.",
+  "resource": {
+    "total_GPU_cap_seconds": 4800,
+    "probe_GPU_cap_seconds": 180,
+    "CPU_preparation_cap_seconds": 30,
+    "forecast": "All32 actual postwarmup full-update timings mean times exact17698 updates times1.3 plus900 evaluation seconds, ceil; add actual probe, reject above4800. No median forecast or changed cap after results."
+  },
+  "required_gates": [
+    "Independent FP32 angular loss/gradient/fullgold denominator/teacher-detach checks",
+    "Original full native forward, exact middle capture and causal trim/early teacher-stop checks",
+    "Original source/gold/EOS/fullsampler parity and Web-only no-teacher path",
+    "Frozen teacher/student-only optimizer/committed state and CPU actual4vs2save+2 full history",
+    "Own actual CUDA4vs2save+2 allstate/history/source/RNG,48x1024 finite backward/memory, measured32 timings and finite native hints",
+    "Implement/freeze persistent probe/science/reviewer/launch commands before execution; inspect actual processes to avoid duplicate GPU",
+    "Same commonDEV256/472055bytes and Japanese192/331/1119/native80; individually read all80 and preserve identical historical ratings"
+  ],
+  "quality": "All existing matchedCE/strong/absolute/historical Web gates unchanged. Cached CE and closed denseKD outputs reused, no baseline GPU. DenseKD comparison secondary only. Qualification precedes independent learnedseed/fullDEV/protected finalTEST/adoption.",
+  "failure": "One fixed layer6/coefficient1/unit-feature/teacher/parent/source/optimizer/batch/decoder condition. Close on numeric,save-resume,capacity,budget or quality failure. No layer/coefficient/normalization/adapter/teacher/LR/data/cap/backend/decoder rescue or automatic extension.",
+  "implementation": {
+    "trainer_source": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/base_native_hint_trainer.py",
+      "sha256": "124bec70bae4c2fbf8ec1699cd3d18713c93f264bd8264e84a1b99c1829aaddb"
+    },
+    "CPU_tests_source": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/tests/test_base_native_hint_trainer.py",
+      "sha256": "bb56fe5c7aae264c0494efe9f85b05a36851c28b3d04a8111fc71b6264bf052a"
+    },
+    "CPU_tests_run": true,
+    "GPU_probe_implemented": false,
+    "scientific_runner_implemented": false,
+    "new_GPU_seconds": 0,
+    "scientific_gold_tokens": 0
+  },
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "next_action": "Run meaningful CPU native hint checks; then implement persistent measured CUDA probe/science/reviewer. Do not launch missing commands or claim new quality from fixtures.",
+  "revision": 2,
+  "previous_proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_native_hint_proposal.json",
+    "sha256": "35c58fc3548a56ba8923b86e2761cb98447eb5f57516318998d9d93f4db29b25"
+  },
+  "changes": "CPU fixtures only: original CE control explicitly contrast=False; positive1-token short quotas are completed before a real Web-only batch, comparing from identical pre-update student/Adam/scheduler/cursor. Trainer loss/layer/coefficient/source/parent/teacher/budget/quality unchanged; preserve initial failed tests/XML.",
+  "CPU_result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_native_hint_trainer_tests.xml",
+    "sha256": "3c39add3d35ebc40050732820f76213f948782ce94a0269b10b0682384d2e400",
+    "passed": 13,
+    "seconds": 3.669
+  }
+}

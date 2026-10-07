@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="13" time="3.262" timestamp="2026-10-07T14:08:32.096629+09:00" hostname="DESKTOP-42CUV0C"><testcase classname="tests.test_base_native_hint_trainer" name="test_independent_angular_loss_gradient_denominator_teacher_detach" time="0.040" /><testcase classname="tests.test_base_native_hint_trainer" name="test_unchanged_full_native_forward_and_teacher_stops_exact_middle" time="0.027" /><testcase classname="tests.test_base_native_hint_trainer" name="test_teacher_is_frozen_student_only_optimizer_and_rng_preserved" time="0.984" /><testcase classname="tests.test_base_native_hint_trainer" name="test_same_original_stream_masks_EOS_with_short_only_hints" time="0.316"><failure message="AssertionError: auxiliary_input_tokens&#10;assert False&#10; +  where False = equal_state(0, 1720)">tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-166/test_same_original_stream_mask0')
+
+    def test_same_original_stream_masks_EOS_with_short_only_hints(tmp_path):
+        _,teacher,build=builders(tmp_path); t=build(); control=build(True)
+        for _ in range(4):
+            a,b=t.step(),control.step()
+&gt;           for key in (*t.counters,'draw_trace','lr'): assert equal_state(a[key],b[key]),key
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           AssertionError: auxiliary_input_tokens
+E           assert False
+E            +  where False = equal_state(0, 1720)
+
+tests/test_base_native_hint_trainer.py:79: AssertionError</failure></testcase><testcase classname="tests.test_base_native_hint_trainer" name="test_web_only_no_teacher_compute_and_original_CE_parity" time="0.003"><failure message="ValueError: Positive exact per-genre teacher goals required">tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-166/test_web_only_no_teacher_compu0')
+
+    def test_web_only_no_teacher_compute_and_original_CE_parity(tmp_path):
+&gt;       _,_,build=builders(tmp_path,web_only=True); t=build(); control=build(True)
+                                                      ^^^^^^^
+
+tests/test_base_native_hint_trainer.py:92: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_base_native_hint_trainer.py:22: in build
+    sampler=OriginalTrainCorpusSampler(pool,manifest,FixtureCodec(),goals)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;natural_context_contrast_corpus.OriginalTrainCorpusSampler object at 0x70b170421640&gt;
+pool = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-166/test_web_only_no_teacher_compu0/pool')
+manifest_sha256 = '616e8de8d9d85ee28a041ef6db149467250e80dbd8bae23f66ba5a2f74f81194'
+tokenizer = &lt;test_natural_context_contrast_corpus.FixtureCodec object at 0x70b1705cb0e0&gt;
+goals = {'web': 7500, 'textbook': 0, 'story': 0}, seed = 42
+
+    def __init__(self, pool, manifest_sha256, tokenizer, goals, seed=42):
+        self.pool = Path(pool)
+        if set(goals) != set(GENRES) or any(type(n) is not int or n &lt;= 0 for n in goals.values()):
+&gt;           raise ValueError('Positive exact per-genre teacher goals required')
+E           ValueError: Positive exact per-genre teacher goals required
+
+scripts/natural_context_contrast_corpus.py:70: ValueError</failure></testcase><testcase classname="tests.test_base_native_hint_trainer" name="test_full_state_real_save_resume4vs2plus2" time="0.708" /><testcase classname="tests.test_base_native_hint_trainer" name="test_post_optimizer_failure_cannot_save_or_continue" time="0.046" /><testcase classname="tests.test_base_native_hint_trainer" name="test_incompatible_or_partial_states_cannot_be_reused[recipe]" time="0.055" /><testcase classname="tests.test_base_native_hint_trainer" name="test_incompatible_or_partial_states_cannot_be_reused[teacher]" time="0.059" /><testcase classname="tests.test_base_native_hint_trainer" name="test_incompatible_or_partial_states_cannot_be_reused[positions]" time="0.057" /><testcase classname="tests.test_base_native_hint_trainer" name="test_incompatible_or_partial_states_cannot_be_reused[Adam]" time="0.053" /><testcase classname="tests.test_base_native_hint_trainer" name="test_incompatible_or_partial_states_cannot_be_reused[sampler]" time="0.059" /><testcase classname="tests.test_base_native_hint_trainer" name="test_incompatible_or_partial_states_cannot_be_reused[old_kind]" time="0.052" /></testsuite></testsuites>
