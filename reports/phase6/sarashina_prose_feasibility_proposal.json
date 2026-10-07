@@ -1,0 +1,50 @@
+{
+  "status": "single_new_Japanese_teacher_exact64_contract_frozen_before_recovery_or_GPU",
+  "created_at": "2026-10-07T09:39:15.308614Z",
+  "question": "Does an independently pretrained Japanese teacher supply coherent plain prose on the unchanged64 TRAIN scenarios where the prior public teacher failed?",
+  "teacher_repo": "sbintuitions/sarashina2.2-3b-instruct-v0.1",
+  "teacher_revision": "4f3626fb1b64b3e97c908e67f27b2d627ba2a999",
+  "teacher_license": "mit",
+  "teacher_metadata_sha256": "5cf58d69f2494dabc1bf9c034c3f5c784efbbd11983efc3b7f130df317c3c4c8",
+  "teacher_precision": "BF16",
+  "recovery_limit_seconds": 1800,
+  "teacher_probe_GPU_limit_seconds": 180,
+  "fixed_source_content_cases": 64,
+  "source_seed": 2026100681,
+  "source_sha256": {
+    "scripts/prepare_sarashina_prose_teacher.py": "5d3df8390b6212bff1a36ad2778c50298e4f73f1e82f04b9748a16044c2da521",
+    "scripts/recover_sarashina_prose_teacher.py": "e3beb43c7362d24e5b7589ff30149bb5c8e5c6ae835d2ed9189f474d67c1d7c6",
+    "scripts/recover_sarashina_prose_teacher.ps1": "dbc4a4a30f14adbb9594999504fdc304f189d24098df8e8848bde8fe6a37fb49",
+    "scripts/probe_sarashina_prose_teacher.py": "9d722de50ced2e18f84ce6b9a59738dcd5d7b8182f8b1d45ab0b617cb78a00ab",
+    "scripts/probe_sarashina_prose_teacher.ps1": "c4940409d2e55cbe26e54730dd9449bb267b6aacb54da417164509936cad5a37",
+    "scripts/review_public_prose_teacher.py": "28d65606c5aeee6bd55e909f0425440dec92ae956b8b7dbf98184d4786df9a28"
+  },
+  "previous_review": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/public_prose_teacher_content_review.json",
+    "sha256": "8c9a56a5ab8cb1f913415ac1edd0a9e92bfceec0e9c2f0eaa3aaf1d03c8bfdd8",
+    "weak": 37,
+    "accepted": false
+  },
+  "request_digest": "f064a3778a1e5362a781b62a26ff9fb57fd45821d6d07fe7c3360dff9f081184",
+  "changed": "Teacher model/codec and its official chat template only; model size and pre/posttraining are confounded. Student stays native10M.",
+  "unchanged": "Exact all64 scenario/prompt/id/family/split/seed; batch8, temperature.7/top_p.8/top_k20/max_new_tokens256; BF16/SDPA; allraw IDs/text/stops retained.",
+  "rationale": "Prior37/64 weak prose and latest paired gate1/80 coherent show that cheap unchanged mature-parent optimizer/attention adjustments have not solved generation. Test a Japanese-pretrained source provider once; official Japanese benchmarks are selection rationale, not proof of this source or student quality.",
+  "novelty_limit": "Registered docs/config/scripts have no Sarashina/calm2/Rakuten/Swallow match. This is not a claim about unregistered work or a pure language-pretraining causal comparison.",
+  "content_acceptance": "Existing weak<=10/64 and zero unresolved retained grammar errors; read every generated body with raw-bound individual reasons. Unfinished, role, instruction, malformed or causal/grammar errors are weak and excluded. No automatic model/prompt/sampling retries.",
+  "completion": "Recover fixed revision and verify each file once; actual64 BF16 outputs, all64 individual judgments, accepted-only source token rate and raw GPU/VRAM evidence. Stop this exact route on source failure. If it passes, freeze a feasible production token/GPU budget from measured timing before new source creation; no source10M or student quality claimed from64.",
+  "next_controlled_comparison": "Only after accepted new source exists: define one matched native10M Base TRAIN comparison using a qualified strong Base parent/reference, preserve Web guard and all generation criteria, independent seed/fullDEV/protectedTEST/adoption. No automatic continuation of failed historical parent recipes.",
+  "primary_sources": [
+    "https://huggingface.co/sbintuitions/sarashina2.2-3b-instruct-v0.1",
+    "https://huggingface.co/sbintuitions/sarashina2.2-3b-instruct-v0.1/blob/4f3626fb1b64b3e97c908e67f27b2d627ba2a999/LICENSE",
+    "https://arxiv.org/abs/2305.07759"
+  ],
+  "student_parameters": 10001152,
+  "student_training_started": false,
+  "student_scientific_teacher_tokens": 0,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "no_post_outcome_model_prompt_threshold_sweep": true
+}
