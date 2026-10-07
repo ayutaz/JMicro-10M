@@ -1,3 +1,13 @@
+Base限定・同confidence科学jobを実監視し、全内容評価後の可搬終了コマンドを準備（2026-10-07 JST）。Baseは未完成・未採用。
+
+前goal turnは新confidence実装/CPU23checks・実CUDA保存再開/同100M科学起動を75f0ac5へ保存したprogress。今回required docs/clean worktreeとactual729058/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start22794332を実ps確認。45秒wait後も同PIDの学習量増加を確認、snapshot2,700更新/15,244,629original gold/100M、CE2.556474有限・累積239.728428秒/凍結3916秒、latestcheckpoint-00002500.pt。瞬間値はこの監視snapshotで、最新heartbeat/metricsはWSL reports/phase6/base-confidence-penalty-comparison-20261007を参照。科学設定・source・quality policy変更、新source/重複GPUjobなし。
+
+[complete_base_confidence_penalty.py](../scripts/complete_base_confidence_penalty.py)を追加してWSL uvのCLI helpを確認。実科学終了/同100M fullstate・罰則位置別会計・全評価/全80raw-bound内容と採否・凍結予算・元10B UI actual/API復帰が揃った後だけtext/source/metrics/evaluationをarchive/manifest/比較終了記録へ保存する。今回の科学trainer/runner/reviewer/configには手を加えない。closed middle条件固有のselected13をコピーせず、cachedCE→middle→SAM→on-policyの固定優先順で同id/prefix/text/stopの旧採点を照合し、過去の異なる採点も隠さず記録する独立closeout処理。新候補の全80を個別に読んだ後の機械的照合で、採点の自動生成/旧notesの変更/独立人手や盲検の証明ではない。
+
+保存コマンドのexact-rating helperを既存middleのraw/notesを使うCPU fixtureで実行し、既保存80/80のスコア維持と過去差4recordsを確認、output_written=false/new_candidate_scored=false/GPU0。新confidenceの生成/内容判定はまだ0で、fixtureを新モデル品質へ混同しない。CLI helpを科学終端/品質合格/元UI復帰の証拠にはしない。実科学jobは稼働中のためarchive/終了記録はまだ未作成。
+
+次はこのexact科学PID/completedcheckpointを監視→同100M/fullstateと元cachedCE全11会計一致→共通DEV256・全日本語192/331/1119/native80→全80個別理由と従来matched/strong/absolute/historicalWeb全gate→元UI復帰・可搬保存。資格ある候補だけ独立学習seed/fullDEV/protected finalTEST/adoptionへ進む。品質Base完成を通知し停止、Chat/Dialogue/SFT/量子化/展開・自動pushなし。Python3.12.7はWSL uv、localcommitのみ。今回は保存コマンド実装・歴史fixture確認・verified waitのprogressでgoal completeではない。以下は過去の履歴。
+
 Base限定・confidence penaltyを実装、CPU23checks/実CUDA保存再開に合格し、同100M比較を永続起動（2026-10-07 JST）。Baseは未完成・未採用。
 
 直前のgoal turnは停止境界の確認のみでno progress。今回はrequired docs/worktreeと実processを再確認、科学GPUjobなし・元UIのみの状態から実作業を再開。[最近3条件の負結果](../reports/phase6/base_recent_objective_failure_synthesis.json)を元の凍結synthesisを上書きせず別参照へ保存。on-policy/SAM/middleは全日本語・全80個別内容と既存全gateで不採用、同cachedCEを再GPU・再採点していない。
