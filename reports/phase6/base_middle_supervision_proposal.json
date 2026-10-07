@@ -1,0 +1,87 @@
+{
+  "created_at": "2026-10-07T03:03:20.215386Z",
+  "question": "Does supervising the original next token at one native middle layer improve full-depth Japanese Base generalization?",
+  "prior_turn": "progress: SAM100M/all Japanese/all80 content rejected and committed b010368; scientific process721383 absent.",
+  "references": {
+    "base_failure_route_synthesis.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_failure_route_synthesis.json",
+      "sha256": "2384411b47272b53b9e4eda981a69ff67e335069ca125a43e551c892515826b2"
+    },
+    "base_sam_comparison_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_sam_comparison_completion.json",
+      "sha256": "2f31f34c1235d3f13589e54c44fe695e748d63a11af1103c249de2fd44e28693"
+    },
+    "base_on_policy_teacher_comparison_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_on_policy_teacher_comparison_completion.json",
+      "sha256": "022131b4a404867cc07ec69876ea069dfed03c91cafc8f96a33b1d96d834bfa5"
+    },
+    "base_next_two_token_comparison_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_next_two_token_comparison_completion.json",
+      "sha256": "88f53f937394d1bec453ba658dac25310d8d888ec7959443ba3e7b0692e2e411"
+    },
+    "base_gradient_precision_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_gradient_precision_completion.json",
+      "sha256": "5e9112fb2ee9899dde5b670f48ba0d8ecf386c322f32a3d3ea181282f993d713"
+    }
+  },
+  "novelty": "Inspected proposal/completion/source registry: no native intermediate-layer original next-token CE found. Old next-two MTP used final hidden plus a fresh train-only Block/norm for future targets; this uses unchanged current gold at native layer6/13 through shared final norm/head. No teacher, perturbation, representation pairing, extra layer or learned head. Novelty is not evidence of causation or success.",
+  "primary_sources": [
+    "https://aclanthology.org/2024.acl-long.681/",
+    "https://aclanthology.org/2024.acl-long.681.pdf"
+  ],
+  "literature_limit": "LayerSkip4.1.2 shares one LM head for early-layer CE but also uses layer dropout, normalized multi-layer weights and curriculum. Its authors report that all-layer losses every iteration can reduce last-layer accuracy. This isolated single-middle CE, fixed0.1, no dropout/curriculum/early-exit inference is an exploratory ablation, not an exact reproduction or proven Japanese10M remedy.",
+  "recipe": {
+    "middle_layer": "floor_native_depth_over_two",
+    "coefficient": 0.1,
+    "target": "identical_original_shifted_body_and_EOS_with_identical_mask",
+    "head": "shared_native_final_RMSNorm_and_tied_LM_head",
+    "loss": "final_mean_CE_plus_0.1_middle_mean_CE_single_backward",
+    "optimizer": "fresh_AdamW_lr1e-5_wd0.1_constant",
+    "final_clip_norm": 1.0,
+    "decoder_forwards": 1,
+    "extra_parameters": 0,
+    "dropout": 0,
+    "inference": "unchanged_full_native_depth"
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "goals": {
+    "web": 75000000,
+    "textbook": 20000000,
+    "story": 5000000
+  },
+  "batch": 48,
+  "seed": 42,
+  "native_parameters": 10001152,
+  "extra_parameters": 0,
+  "original_teachers": 100000000,
+  "middle_gold_evaluations": 100000000,
+  "new_unique_dataset_tokens": 0,
+  "control_reused_GPU_seconds": 0,
+  "total_GPU_cap_seconds": 4800,
+  "probe_GPU_cap_seconds": 180,
+  "CPU_checks": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_middle_supervision_trainer_tests.xml",
+    "sha256": "f0e0c8f51c25832730e79748addb922d148d3c0830c1a601614f972f90b74ad7"
+  },
+  "accounting": "One original decoder forward and source/body/EOS/mask stream counted once. Same100M positions projected at middle layer separately count100M repeated gold head evaluations, not extra inputs, new data or unique corpus. Single backward/Adam update for finalCE+0.1middleCE; no inference changes.",
+  "acceptance": "CPU independent masked CE/combined-gradient formula, original final gradient parity, auxiliary gradient reaches embedding/early layers/shared norm/head and not later layers; full state/save-resume/source. Actual CUDA4 vs2+2, all48x1024 finite gradients/memory, all32 step times. Forecast ceil17698*mean32seconds*1.3+900 plus actual probe <=4800. Same cachedCE stream/fullsampler; native DEV256/commonbyte/Japanese192,331,1119/all80; all unchanged matched/strong/absolute/historicalWeb gates. Qualified candidate only gets independent trainedseed/fullDEV/protected finalTEST/adoption.",
+  "failure": "Close this fixed layer/coefficient condition on finite/state/gradient/budget or quality failure. No auxiliary coefficient/layer/curriculum/dropout/LR/parent/data/batch/decoder/cap rescue or automatic extension.",
+  "limitations": "One conservative-LR mature-parent transition, repeated fixed nonblind DEV, extra shared-head compute. An isolated loss change may worsen full-depth quality; negative result does not prove all deep supervision or data increases ineffective.",
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false
+}

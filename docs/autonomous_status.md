@@ -1,3 +1,23 @@
+Base限定・中間層の同next-token正解supervisionを実装、CPU21checksとCUDA全state再開に合格し100M比較を開始（2026-10-07 JST）。Baseは未完成・未採用。
+
+[結果前の一条件案](../reports/phase6/base_middle_supervision_proposal.json)・[実GPUgate/起動記録](../reports/phase6/base_middle_supervision_probe_launch.json)。前turnのSAM100M/全日本語・全80内容/不採用はb010368で保存済み、actual721383は不在。required docsとfailure synthesis/既存MTP・precision・on-policy・SAMの終了記録を確認。registryにはnative中間層へ同current next-token CEを与える比較がなかった。旧MTPはfinal hidden＋新train-only Block/normからnext-two正解、新条件は既存6/13層hiddenから共有final RMSNorm/tied4096 headで元のbody/EOSを予測する。新仮説であり反復の根本原因を証明したわけではない。
+
+LayerSkip一次論文4.1.2を参照。元論文はlayer dropout・normalized多層loss・curriculumも使い、全層lossを毎回加えるとlast-layer accuracyが下がる場合も報告する。今回はその厳密再現ではなく、middle1点・係数0.1・dropout/curriculumなしの独立したbounded ablation。学習・品質結果を見て係数/層/LR/親/data/batch/decoder/capを救済探索しない。
+
+元10B親410f975d…/10,001,152 parameters/native13L、同100M gold/Web75M教材20Mstory5M、sampler/batch48/seed42/freshAdamW1e-5WD.1constantを維持。decoder forward一回でfinalCE＋0.1middleCEをsingle backward/clip1/Adam updateする。元inputs/body/EOS/bytes/digestは一度、同100M正解位置の中間head評価はmiddle_supervision辞書へ別計数。新教材/unique corpus増加・追加parameters・teacher・Chat/SFTは0、推論は従来full native13L。src/jmicro/model.py SHA298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83を保持。
+
+CPU trainer11checks/3.56秒は各位置logsumexpによる独立loss/combined gradient、元final出力・gradient parity、auxがembedding/early layers/shared norm/headへ届きlater decoderへ届かないこと、元stream/counters/fullsampler、continuous4対saved2+2全state/history、wrong coefficient/kind/counter/optimizer/sampler・未完updateの拒否。runner10checks/.76秒は全32timing/固定17698更新forecast、部分/非有限/changed cap/digest/sampler拒否。新workflow生成直後のsource inspectionで広い文字列置換がsame/samplerを壊すことを検出し、凍結/GPU前にword-boundary置換へ修正し関連CPUchecks成功。科学結果による修正ではない。旧SAMのfrozen reviewer import失敗は変更せず、新reviewerはmathを明示import。PS構文/CLI help/preflight成功、CPU fixtureは実品質の証明ではない。
+
+probe config SHA5e95330a773af1f9ce10da69efc7ae9c64dde668784ba68f82100ce3d8e22f95、Windowsworker17364からactual724479/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start22541277を実行、complete・実不在を確認。初期4checksとCUDA4対saved2+2全12state＋有限値/history/source/controlの全16checks true。47検証更新/273,521original gold/250,313middle gold評価は科学へ加えずprobe重みを破棄。all48x1024/stride512の元・middle正解各24,576、decoder一回/optimizer0、CE2.269816/middleCE5.269345/combined2.796751/gradnorm3.347328有限、重み未更新true、peak11,120,493,056bytes。
+
+probe GPU9.417536秒/180上限。warmup3除外の全32step平均×exact17,698更新×1.3＋900評価余裕のceilをscience3970秒と固定、probe込み3979.417536秒で事前total4800秒内。median45,306.161785 originalgold/秒は参考値でforecastには使わない。別middlehead100M computeを新dataや元100M教師に足さない。
+
+science config SHA5e4ef13e6bc903eba76427bcbed150b4938e4151a695d7ac9484fb8e4d5c03ccと全従来matched/strong/absolute/historicalWeb quality policyを結果前に凍結。Windowsworker37868からactual724938/同boot/start22544695を永続起動、実ps/heartbeatでrunning確認。run reports/phase6/base-middle-supervision-comparison-20261007、保存launch snapshot300更新/1,694,544original gold、有限CEで進行。250完了更新checkpoint・20更新heartbeat・PID/boot/start・logs・optimizer/scheduler/RNG/fullsampler/全会計を保持。restart command scripts/run_base_middle_supervision.ps1 -Worker、実同PID不在＋valid completed checkpointを確認した場合のみ同累積3970秒内で再開。科学中の元10B UIは停止、終端で元親へ自動復帰予定、復帰完了をまだ主張しない。
+
+可搬gate/source/config/実結果/launch snapshot bundle159,740bytes/SHA20216094c8dc696702dbbe215163956b959518b8887ef5fe2bb712d396c749c6をWindowsへ保存し一度照合。probe tensors/科学checkpoints/metricsはWSLへ保持。cached CE100MはGPU再学習・全80再採点0。今回科学100M終端/全日本語/共通DEV256/native80/個別内容採否はまだ未完、独立学習seed/fullDEV/protected finalTEST/adoption0。旧数値7失敗と全品質基準を維持。
+
+次はこのexact PIDとcompleted checkpointだけを監視し、元100M/別middlehead100M/fullstate終端→日本語192/331/1119・共通DEV256・native80→全80を個別に読んで凍結全gateへ適用する。稼働中の無関係な研究/重複GPU/新設定は行わない。資格ある候補だけ独立学習seed/fullDEV/protected finalTEST/adoptionへ進む。最新境界を保持: 品質Baseの採用が終わったら通知して停止、Chat/Dialogue/SFT/量子化/展開・自動pushなし。Python3.12.7はWSL uv、検証済み変更をlocalcommit。今回実装/CPU・CUDAgate/実科学起動のprogressでgoal completeではない。以下は過去の履歴。
+
 Base限定・SAM100M学習/全日本語・全80内容評価を完了、不採用（2026-10-07 JST）。Baseは未完成・未採用。
 
 [実終了記録](../reports/phase6/base_sam_comparison_completion.json)・[全採否](../reports/phase6/base_sam_comparison_review.json)・[全80個別理由](../reports/phase6/base_sam_notes.json)。前turnのSAM実装/19CPUchecks・実CUDAgate・永続科学起動b04f313と今turnのcloseout準備0832a02はprogress。今回同actual721383/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start22188114を各実psで監視、科学終端と実不在を確認。元gold100,000,000/17,698更新、Web75M教材20Mstory5M、source EOS657,450/148,625/38,222。digest a1ab0170…・main CE valid102,655,467/physical370,838,917/body405,882,136bytes・full sampler等の全11cachedCE条件がtrue。別会計の同batch第二pass教師評価100,000,000/valid102,655,467/physical370,838,917を記録。新教材100Mやunique corpus増加ではなく、同位置の第二評価。最終checkpoint-00017698.pt/SHAa78317d515cf29490ae979c1505b9a3cf9f05b8d78ab5ade6d8a7950e2ed50e8をWSL保持。heartbeat末尾17,680/99,900,395より実terminal17,698/100Mを使う。
