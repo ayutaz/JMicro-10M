@@ -1,3 +1,12 @@
+Base限定・同native hint科学jobを実監視し、終端保存commandを準備（2026-10-07 JST）。Baseは未完成・未採用。
+
+前turnの実CUDA gate・100M永続起動は1ae0454へcommitしたprogress。今回はrequired docsとclean worktreeを確認し、actual737020/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start23344138の同jobを実psで監視。05:22:35 UTC heartbeatで3,300更新/18,645,205original gold/100M・CE2.541657有限、累積316.200秒/凍結4066秒、最新completed checkpoint-00003250.pt。これはsnapshotであり最新位置はWSL reports/phase6/base-native-hint-comparison-20261007/job.json/metricsを参照。元UIは科学中停止、終端で元10B親へ復帰予定。新GPUjob/研究/設定変更/Chat0。
+
+[complete_base_native_hint.py](../scripts/complete_base_native_hint.py)を追加、WSL uv CLI help成功。実科学process終了・同original100M/別short25M hint・同fullsampler/source/counter/教師不変・全日本語/共通byteDEV/native80・全80個別notesと凍結品質判定・予算・元UI actual/API復帰が揃った後だけ終端記録/manifest/text archiveを作る。candidateはBase未採用のまま、条件合格後にも独立学習seed/fullDEV/protected finalTEST/adoptionを必要とする。科学source/config/reviewer/math/品質基準を変更しない。
+
+[準備検証](../reports/phase6/base_native_hint_closeout_preparation.json)。実live737020に対するcloseoutを拒否し、終端artifact未生成を確認。固定V2 proposal→closed denseKD completion/config/proposal→confidence completion/config/proposalから過去notesのSHA付き参照を継ぐ。既存priority CE→middle→SAM→on-policy→confidenceを保持しdenseKDを最後に追加、実closed denseKD80を歴史fixtureとして全80同一採点の保持・変更したcandidate数値の拒否を確認。歴史difference0/旧notes変更0/GPU0/new candidate80読解0。これは現候補の内容評価/完了ではない。初回verifier fixtureは同じcandidate/prior pathの両読込へ変更を注入したため差分拒否を試せず失敗した。初回sourceを保存しcandidate最初の読込だけを変更するfixtureへ修正、production closeout/学習/基準は変更なし。
+
+次は同exact科学jobだけを監視→original100M/別hint25M/fullstate終端→全日本語192/331/1119/共通DEV256/native80→全80を個別に読み固定全品質gate→終端記録/可搬保存。資格ある候補だけ独立seed/fullDEV/protected finalTEST/adoptionへ。品質Base完成を通知して停止、Chat/Dialogue/SFT/量子化/展開・自動pushなし。Python3.12.7はWSL uv、localcommitのみ。今回は同job監視と終端処理準備のprogressでgoal completeではない。以下は過去の履歴。
 Base限定・native中間特徴転移のGPU検証に合格し、同100M比較を永続起動（2026-10-07 JST）。Baseは未完成・未採用。
 
 前turnの事前案・trainer/CPU13checksを286adeeへ保存した後、probe/science runner・native evaluator/reviewer・永続PS launcher・launch evidence commandを実装。同original100M/別会計short25M hint・layer6/FP32 unit-feature/coefficient1・native10M推論を保持し、cached CE/dense KDは再GPUしない。runnerの全32実時間による固定forecast/上限・同gold digest/fullsamplerの関連CPU10checksに合格（JUnit0.817秒）、CLI help/両PS構文成功。過去のCPU fixture失敗/V1と修正V2のbytesを保持、モデル本体/品質基準は変更しない。
