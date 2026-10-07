@@ -1,3 +1,17 @@
+Base限定・SAM100M学習/全日本語・全80内容評価を完了、不採用（2026-10-07 JST）。Baseは未完成・未採用。
+
+[実終了記録](../reports/phase6/base_sam_comparison_completion.json)・[全採否](../reports/phase6/base_sam_comparison_review.json)・[全80個別理由](../reports/phase6/base_sam_notes.json)。前turnのSAM実装/19CPUchecks・実CUDAgate・永続科学起動b04f313と今turnのcloseout準備0832a02はprogress。今回同actual721383/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start22188114を各実psで監視、科学終端と実不在を確認。元gold100,000,000/17,698更新、Web75M教材20Mstory5M、source EOS657,450/148,625/38,222。digest a1ab0170…・main CE valid102,655,467/physical370,838,917/body405,882,136bytes・full sampler等の全11cachedCE条件がtrue。別会計の同batch第二pass教師評価100,000,000/valid102,655,467/physical370,838,917を記録。新教材100Mやunique corpus増加ではなく、同位置の第二評価。最終checkpoint-00017698.pt/SHAa78317d515cf29490ae979c1505b9a3cf9f05b8d78ab5ade6d8a7950e2ed50e8をWSL保持。heartbeat末尾17,680/99,900,395より実terminal17,698/100Mを使う。
+
+science+全自動評価のGPU2618.292246秒/事前5398秒、probe12.272191秒込み2630.564438秒（約44分）/総7200上限。科学source・rho.05/同batch二回CE・single AdamW/LR1e-5/WD.1/batch48/seed42・native推論は変更せず、再GPU学習/増量/decoder救済0。固定共通DEV256/472,055bytes/122,343tokensのBPB0.999486、意味192=63.542%、JBLiMP331=77.039%、JCQA1119=35.031%。greedy80はEOS12/反復44/Unicode・role・empty0。全80を個別に読みraw SHA3e2bf31e…へ結合したnonblind Codex採点で文法2=22/関連2=23/一貫性2=1/適切完結3。旧on-policyと同prefix/同text/同stopの19例も今回実際に読み同じ採点を維持、旧notesやcached CE80を再採点しない。人間/盲検/独立学習seedの証拠ではなく反復DEVの限界を保持。
+
+cachedCEはBPB0.998487/文法44/関連25/一貫性2/適切2/EOS19/反復45。SAMは一貫性差-1/paired95%CI[-.0375,0]で改善証拠なし、EOSは7件減、反復1件減だけで品質を改善としない。strong stagedの一貫性23/EOS76/反復2に対し差-22/CI[-.375,-.175]。matched/strong/absolute/historicalWebの全採用条件へ至らずeligible_for_final_Base_validation=false。文法56/一貫性27/適切27/EOS37/反復18以下・歴史WebBPB上限と旧数値7失敗を維持。この固定SAM条件を終了しrho/adaptive/period/optimizer/LR/親/data/batch/decoder/capで救済しない。この一保守的LR・成熟親からの結果で全SAMや新しいデータ/学習量の無効を断定しない。
+
+初回 frozen review --templateは全stateとhistoryの読込後にstdlib mathのimport漏れによるNameErrorで終了、notes/品質判定は未作成。[修復記録](../reports/phase6/base_sam_reviewer_import_repair.json)へ実command/error/stageを保存。original reviewer/科学source/config/policy/resultsの凍結bytesを変更せず、review_base_sam_v2.pyから元moduleへstdlib mathだけを供給。既存全state/history・有限値/rho・同byte/日本語/all80・matched/strong/absolute/historical checksを元codeで実行し、未採点template→全80理由→採否まで正常終了。品質基準や許容差を変更した修復ではない。complete_base_sam.pyはV2/元reviewer/resultのSHAとimport-only flagsも確認して修復source/記録をarchiveへ含めた。科学をやり直さず新GPU0。
+
+元10B WebUIactual722575/同boot/start22450363を実alive確認、HTTPは元親410f975d…/10,000,007,168/busy=falseへ復帰。科学実PIDなし。終端/fullstate/全評価/notes/予算/元UI actual/APIをcloseoutが確認し43text/106,105,504bytesの可搬証拠を保存。gzip46,390,369bytes/SHA37ffb5c5f6aaee3ddd38dacc305bd3a6085845010b1c9119bede3f5cc41c114eをWindowsへコピーし一度照合。tensor/corpusはarchiveに含めずnative checkpointsを保持。
+
+次の具体的アクション: 今回の負結果を失敗経路の参照へ加え、同SAM tuning・既失敗data/親/保護objectiveを繰り返さず、未検証の独立したBase比較を一つだけ目的・比較対象・測定予算・終了条件付きで結果前に定める。資格ある実候補のみ独立学習seed/full DEV/protected final TEST/adoptionへ進む。今回それらは0、Baseは未完成・未採用で完了時刻を確約しない。最新境界を保持し品質Base完成を通知して停止、Chat/Dialogue/SFT/量子化/展開・自動pushなし。Python3.12.7はWSL uv、意味のある検証済み変更をlocalcommit。今回実科学終端/全内容採否/可搬保存のprogressでgoal completeではない。以下は過去の履歴。
+
 Base限定・同SAM科学jobを実監視し、全内容評価後の可搬closeout commandを準備（2026-10-07 JST）。Baseは未完成・未採用。
 
 前turnは実SAM実装/CPU19checks/実CUDA保存再開・有限値/同100M科学起動をb04f313へ保存したprogress。今turnもrequired docs/worktree・actual721383/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start22188114を実psで確認。snapshotは1,320更新/7,441,900original gold/100M、CE2.630862有限、累積201.311秒/凍結5398秒、latestcheckpoint-00001250.pt。元goldとは別の同batch第二pass教師評価も同じ量で進み、二倍の新教材量とはしない。最新heartbeat/metricsはWSL reports/phase6/base-sam-comparison-20261007を参照。新設定/再取得/重複GPUjobなし。

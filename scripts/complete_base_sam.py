@@ -41,6 +41,14 @@ def main():
         review['quality_criteria_unchanged'] is not True or
         any(review[k] is not False for k in ('Base_complete','Base_adopted','Chat_started','quantization_started','protected_test_scored'))):
         raise ValueError('Actual complete raw-bound content review required; no Base adoption here')
+    repair=review['reviewer_import_repair']
+    repair_record=read_json(Path(repair['path']))
+    if (sha256(Path(repair['path']))!=repair['sha256'] or
+        repair['wrapper_sha256']!=sha256(ROOT/'scripts/review_base_sam_v2.py') or
+        repair['original_reviewer_sha256']!=c['source_sha256']['scripts/review_base_sam.py'] or
+        repair['scientific_result_sha256']!=sha256(RUN/'result.json') or
+        any(repair_record[k] is not False for k in ('original_frozen_sources_changed','scientific_settings_changed','criteria_changed'))):
+        raise ValueError('Preserved original reviewer and missing-import-only repair required')
     trained=result['training']
     if (trained['scientific_repeated_teacher_evaluations']!=100000000 or review['scientific_repeated_teacher_evaluations']!=100000000 or
         review['SAM']!=trained['SAM'] or trained['SAM']!=dict(updates=trained['counters']['update'],
@@ -57,7 +65,8 @@ def main():
     files=[CONFIG,POLICY,NOTES,review_path,Path(__file__),
         phase/'base_sam_proposal.json',phase/'base_sam_probe_launch.json',
         phase/'base_sam_probe_launch_archive.json',phase/'base_sam_probe_launch_evidence_manifest.json',
-        phase/'base_sam_trainer_tests.xml',phase/'base_sam_run_tests.xml']
+        phase/'base_sam_trainer_tests.xml',phase/'base_sam_run_tests.xml',
+        phase/'base_sam_reviewer_import_repair.json',ROOT/'scripts/review_base_sam_v2.py']
     if notes.get('observations'):
         observation=Path(notes['observations']['path']).resolve()
         if not observation.is_relative_to(phase.resolve()) or sha256(observation)!=notes['observations']['sha256']:
