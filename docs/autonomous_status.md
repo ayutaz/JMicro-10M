@@ -1,3 +1,17 @@
+Base限定・同損失コンパイル性能案は実勾配差の事前基準に未達で終了（2026-10-07 JST）。Baseは未完成・未採用。
+
+[実終了記録](../reports/phase6/base_native_teacher_KD_compile_completion.json)。前のeager版は保存再開・有限値に成功したが、元3600秒予算へ収まらず未学習。その同teacher/gold/shape/lossを維持する別の有限性能案だけ実装した。base_native_teacher_KD_compiled.pyはoriginal right_padded_hiddenをinductor/default/dynamic=True/fullgraph=Trueで一度compileし、bare student/teacherとtied vocab・保存keyを保持、stepのdispatchをfinallyで復元する。実行recipeをspecへ保存し異なるrecipe/eager状態のresumeを拒否。凍結model.pyのSHA298bbac7…や既存科学sourceを変更しない。関連CPU15checks/4.22秒、CLI help/PS構文・preflight成功。CPU mockは実CUDA support/速度/品質の証拠ではない。
+
+config SHA f688503fc84f3b018f40c043605267953fef368b081d600bf52bb713b03a4fa0、永続Windowsworker30416からactual716109/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start21821569を実行し、numeric_webで終了・ps不在を確認。新sourceをdrawせず既存fixedTRAIN24のWeb8原文を使用、shape8×262/849gold位置、optimizer更新0。元BF16 eager CE2.8211193085対compiled2.8215847015、絶対差0.0004653931は事前0.005以内。教師logits相対L2=.0059370348も事前.01以内。しかし全student gradient cosine=.9998670119は事前.9999未満、relativeL2=.0163123451は事前.01を超え、この一条件を終了。Web教師forwardは数値確認だけでWeb KD科学教師へ再分類していない。
+
+teacher cold forward22.498390秒、student cold forward29.987588秒（backwardコンパイル等は全wall会計へ含む）。新probe54.533804秒＋旧12.282180秒＝累積66.815985秒/元180秒、総3600秒は拡張しない。初期7checks（parent/teacher全重み、teacher eval/no-grad、両tied vocab、bare保存key、student-only optimizer）は全true。textbook/story数値・48×1024stress・compiled CUDA連続4vs2+2・32timings/速度forecastは未実施で、欠損をpassとしない。compilerがこのshapeで動いたことだけでは科学使用資格にならない。mode/backend/dtype/buckets/batch/shape/capの再調整、eager fallback、100M科学、品質生成採点は0。従来eager CUDA成功と旧数値7失敗・全品質基準を保持。この失敗はcompiler許容差条件の結果でありnative teacher KDの品質や全torch.compileの無効の証明ではない。
+
+実terminal/source/refs/事前条件・欠損gate・science config不在・元UI actual/APIを終了commandが確認。可搬text archive22673bytes/SHA15e59cb04313333b5c1d91f6dbe6da8782d9588c2ffe2a67b67afa1e0cbba554をWindowsへ保存し一度照合。元10B WebUIactual716463/同bootのserver.json identityを保存、APIは元親410f975d…/10,000,007,168/busy=falseを確認。新科学GPUjobなし。
+
+次の具体的アクション: native KDのeager予算終了と今回compile数値終了を保持し、既存base_failure_route_synthesis.json・source_order_condition_comparison_completion・base_gradient_precision_completionの保存済み結論と今回2記録を整理して、未検証の独立したBase学習比較を一つ選ぶ。同compiler tuning/既失敗sourceの再取得・高コスト原因assayを繰り返さず、次の実学習条件と測定予算を結果前に定める。品質が有望な実候補だけ全matched/strong/absolute/historicalWeb・独立学習seed/full DEV/protected final TEST/adoptionへ進む。
+
+最新ユーザー境界を保持: Baseの実全評価合格・採用が終わったら知らせて停止。Chat/Dialogue/SFT/量子化/展開は開始しない。現在Base未完成・未採用、今回独立seed/full DEV/protected final TEST/adoption0。Python3.12.7はWSL uv、検証済み変更をlocalcommit、自動pushなし。今回は実compiler実装/CPU checks/一度のCUDA数値・条件終了/可搬保存のprogressで、goal completeではない。以下は過去の履歴。
+
 Base限定・native教師KDの実CUDA保存再開/有限値は成功、eager版は時間予算で本学習未開始（2026-10-07 JST）。Baseは未完成・未採用。
 
 前goal turnはOpenJAの実group61/50k準備・TRAIN127,409bodytokens/事前1M未達の固定条件を終了し3331efaへ保存したprogress。今回はrequireddocs/AGENTS/実worktree/全processを確認し、[先に定めたnative教師案](../reports/phase6/base_native_teacher_KD_proposal.json)を実装。base_native_teacher_KD_trainer.pyは元100MhardgoldCE/body/EOS/mask/input/source/byte/digestを保持し、同4096/同10,001,152モデルの未採用strongstaged教師fb43f261…をeval/no-gradで使い教材/storyだけfullvocabT1/coefficient1のKLを同全gold分母へ加える。teacher initializationがstudent RNGを進めないよう復元、teacherをoptimizer/state重みへ混ぜず immutable SHA/spec/lineageを保存し、元Gold countersとsoft25M別会計、oldCE state relabelを拒否。src/jmicro/model.pyの凍結混在改行/hashは変えていない。
