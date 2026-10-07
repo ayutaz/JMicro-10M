@@ -1,3 +1,15 @@
+Base限定・on-policy教師feedbackの100M学習・全日本語評価・全80内容判定を終了、不採用（2026-10-07 JST）。Baseは未完成・未採用。
+
+[終了記録](../reports/phase6/base_on_policy_teacher_comparison_completion.json)・[採否](../reports/phase6/base_on_policy_teacher_comparison_review.json)・[全80個別理由](../reports/phase6/base_on_policy_teacher_notes.json)。actual718057/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start21898450はcomplete・実ps不在。元hardgold100,000,000/17,698更新、Web75M・教材20M・story5M、元token digest/full sampler/全11cached CE一致を終端で確認。CE valid102,655,467/main physical370,838,917/body405,882,136bytes。別会計の現student rollout1,106回/8,784系列/279,734 distribution positions（本文279,587/EOS147）、各rollout/student scoring/teacher valid420,278・physical421,632。教師全重み不変/eval-no-grad/student-only optimizer全true。初回probe21.751486秒＋science/evaluation2187.343045秒＝2209.094531秒、science3562/全7200上限内。最終checkpoint-00017698.pt/SHA6e098877…をWSLに保持。staleheartbeat17,680より実terminal17,698を採用。
+
+固定共通DEV256/472,055bytes/122,343tokensのBPB0.996386、意味192=64.583%、JBLiMP331=77.946%、JCQA1119=35.210%。greedy80はEOS22/反復46/Unicode・role・empty0。全80を個別に読みraw SHA64c591e3…へ結合したnonblind Codex採点で文法2=30/関連2=24/一貫性2=3/適切完結6。花・虫の擬人化をそれだけで失敗にせず、統語・関連・一貫性・EOS後の適切完結を別判定。独立人手/盲検ではなく、反復して使うDEVの限界を維持。
+
+cached CEは再GPU/再採点せずBPB0.998487/文法44/関連25/一貫性2/適切2/EOS19/反復45を保持。一貫性差+1/paired95%CI[-0.025,0.0625]で改善の証拠不足、反復は1件増。strong stagedは一貫性23/EOS76/反復2で、差-20/CI[-0.35,-0.15]。matched/strong/absolute/historicalWeb全採用条件へ至らずeligible_for_final_Base_validation=false、この固定条件を終了。文法56/一貫性27/適切27/EOS37/反復18以下と歴史WebBPB上限を緩めない。独立学習seed/full DEV/protected final TEST/adoptionは今回0、Base完成や全五目標達成を主張しない。alpha/温度/rollout頻度/prefix長/decoder/親/LR/量/batch/上限の救済探索なし。
+
+complete_base_on_policy_teacher.pyが終端・実history/state/source/refs・全評価/notes・予算・元UI actual/APIを確認して比較記録と44text/118,911,276bytesのarchiveを保存。gzip47,127,300bytes/SHA667197519458eda2ca4b4f3de9a94c9865348a8ad2c48b1793c175b17de56370をWindowsへコピーし一度照合。tensor/corpusはarchiveに含めずWSLへ保持。元10B WebUIactual719212/同boot/start22117643、HTTP親410f975d…/10,000,007,168/busy=falseへ復帰確認、新科学GPUjobなし。注記書込みの初回PowerShell配列式をID guardが拒否し未採点templateを保持、括弧を修正して全80保存後に凍結reviewerが正常終了した。科学設定や品質閾値の変更なし。
+
+最新境界を保持: 実評価合格・採用までBaseに限定して進め、完成を知らせて停止。Chat/Dialogue/SFT/量子化/展開・自動pushなし。次の具体的アクションは今回の負結果を既存の失敗経路一覧へ反映し、既失敗の設定探索を再開せず、未検証の独立したBase比較について目的・比較対象・測定予算・終了条件を結果前に定めること。有望な候補だけ独立seed/full DEV/protected final TEST/adoptionへ進む。現段階で完了時刻は確約できない。Python3.12.7はWSL uv、検証済み変更をlocalcommit。今回は実科学終端・全内容判定・採否・可搬保存のprogressで、goal completeではない。以下は過去の履歴。
+
 Base限定・同一科学jobを実監視し、全内容判定後の可搬記録commandを準備（2026-10-07 JST）。Baseは未完成・未採用。
 
 前turnは新on-policy teacher実装/31関連CPUchecks・実CUDA32vs16+16/131検証更新/実科学起動をb09dfe4へ保存したprogress。今turnもrequired docs/worktreeを確認し、actual718057/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start21898450の同科学jobをpsで稼働確認。2,740更新/original15,470,284/100M gold、CE2.5784158707有限、累積351.376秒/凍結3562秒、最新完了checkpoint-00002500.ptを確認。重複job/新研究/設定変更なし。この数値は監視時点のsnapshotで、最新heartbeat/metricsはWSL run job.jsonを参照。
