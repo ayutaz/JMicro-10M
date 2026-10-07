@@ -1,0 +1,80 @@
+{
+  "created_at": "2026-10-07T07:12:51.429911Z",
+  "kind": "bounded_counterbalanced_original_index_reader_CPU_v1",
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "tokenizer": "artifacts/phase2/4096/tokenizer.model",
+  "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+  "goals": {
+    "web": 225000000,
+    "textbook": 60000000,
+    "story": 15000000
+  },
+  "seed": 42,
+  "schedule": [
+    "buffered",
+    "mmap",
+    "mmap",
+    "buffered",
+    "mmap",
+    "buffered",
+    "buffered",
+    "mmap"
+  ],
+  "warmup_batches": 3,
+  "measured_batches": 32,
+  "batch": 80,
+  "CPU_cap_seconds": 30,
+  "select_trials": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "minimum_fractional_speedup": 0.1,
+  "selection": "Last BAAB cycle: mapped median supply seconds <=0.9 * buffered median, plus every row/full state identical in all trials and all32 draw traces match the earlier GPU probe.",
+  "timing": "Only sampler.take(80) is timed. Setup, serialization and equality checks excluded; all included in CPU process cap. No model forward/backward, CUDA or learning.",
+  "cache": "First ABBA cycle descriptive. Cache not flushed or controlled; repeat the identical finite cohort. Results do not predict cold-cache, full-corpus, GPU or long-training throughput.",
+  "limitations": "One seed/cohort and two warm-cache repeats/backend. Original byte-weighted draws/accepted train/body+EOS/masks/quota/RNG/kind remain unchanged. New unique data and learning0.",
+  "failure": "No changed trial subset, cap, threshold, seed, source, variants or automatic old FFN/MHA scientific budget reopening.",
+  "reference_GPU_result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_relu_squared_proposal.json",
+    "sha256": "329fc5e41e8150e6187f9b0172d765345cfbfed23d5210fa133d67d60c69a10d"
+  },
+  "paired_GPU_result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-relu-squared-probe-20261007/result.json",
+    "sha256": "1b13756ef63abd5d5b141ca809d6d982b2344d74ada6e78a4646194f02d882bb"
+  },
+  "prior_probe_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_relu_squared_probe.json",
+    "sha256": "2730cf213f8daf90618da5bf549e0a62d530151f56e57a0fddcff7b09635c6e2"
+  },
+  "CPU_tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_mmap_index_reader_tests.xml",
+    "sha256": "af6010a1a7aa05b109440acfa198d71fb9aa259ba1486561ba441f5eee81d4cc"
+  },
+  "source_sha256": {
+    "scripts/benchmark_base_index_reader.py": "a1d431f1903f7a9c43cab0fb3fe137a41f09aeea124cf81f9a481ef16fd5aace",
+    "scripts/base_mmap_index_reader.py": "cdc996da5fa4b2ad501438230ad5c307c6760a3b7f83120fe8c0e6d8fcafdded",
+    "scripts/base_kv_allocation_trainer.py": "49cbf6a2e6163e16577e385860345e542c3282a9f8e752c164b53a66ac43e7e1",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "tests/test_base_mmap_index_reader.py": "992b146d3af3bca8a7373f2a4719a68396394f7d37392f71c5b43ae56a2fd84f",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca"
+  },
+  "new_GPU_seconds": 0,
+  "new_scientific_gold_tokens": 0,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false
+}

@@ -1,3 +1,17 @@
+Base限定・WSLディスクを2TBへ拡張し、入力供給比較を終了。品質Baseは未完成・未採用（2026-10-07 JST）。
+
+最新のユーザー境界を保持する。品質基準・独立学習seed/full DEV/保護TEST/採用を終えたBaseが完成したら通知して止める。Chat/Dialogue/SFT/量子化/展開・自動pushへ進まない。前turnのFFN検証と固定予算不合格は08c119bに保存済みで、旧FFN/MHAの教師量・GPU上限を変えて再開しない。
+
+native `/` は拡張前1TiB/使用946GiB/空き約11GiB、Windows C空き2,115,392,757,760bytes。既存科学job不在と元UIのみを確認してUI停止・`wsl --shutdown`・公式`wsl --manage Ubuntu --resize 2TB`を実行しexit0。既存data/checkpoints/sourceは保持した。拡張後native total2,163,361,103,872bytes/available約1,038,638,104,576bytes（約968GiB）、2TBはVHD上限で全量物理割当ではない。[実拡張/入力完了記録](../reports/phase6/base_storage_reader_completion_20261007.json)、[Windows起動/exit](../reports/phase6/wsl-storage-expansion-20261007/result.json)、[公式手順](https://learn.microsoft.com/en-us/windows/wsl/disk-space)。WSL3.0.1.0/Ubuntu WSL2を保持、再起動後boot4052bfc5-3850-44e4-9123-d34a9e19f36e。uvからPython3.12.7/torch2.14.1/CUDA13.0/RTX4090/driver616.92/CUDA available/BF16 supportedを実確認。環境captureのPATH-only uv/powershell probesはfalseだがabsolute uv launcher/versionは実成功。native実行snapshot Git HEADはWindows正本HEADの代用にしない。全suiteや学習の再実行はしていない。
+
+モデル・教師・原文を変えないread-only [mmap reader試作](../scripts/base_mmap_index_reader.py)と[bounded CPU比較](../scripts/benchmark_base_index_reader.py)を実装。元CEOnlyOriginalSamplerのbinding検証後にhandleのみ交換し、byte-weighted bounded seek/readline/16384境界、元body+EOS/overlap mask/source quota/full RNG/pending/state kindを保つ。実CPU8tests/1.44秒は独立BytesIO/empty/EOF/UTF8/読取専用、全教師終端row/fullstateと両方向save/loadの次batch一致に合格。元model.py/Tokenizer/旧科学sourceは変更なし。
+
+[結果前の凍結条件](../configs/phase6/base_index_reader_benchmark.json)はCPU30秒/GPU0、seed42/同accepted2B/225M-Web60M教材15M物語quota、各3warmup+32測定×80。8試行buffered→mmap→mmap→buffered→mmap→buffered→buffered→mmapで、最後BAABのmedianと事前10%以上供給短縮を採否に固定。実CPU5.701秒で終了、actual job不在。全8試行の全row/full sampler state/draw traceは一致し、32batchの308,066goldは旧GPU probeと同じ。同cohort反復であり新unique教材・科学学習量へ足さない。accepted manifest/ready/index/streamのsize/mtime_ns bindingは再起動後も同一、13GB全scan/hash/重複照合なし。
+
+[実速度結果](../reports/phase6/base_index_reader_benchmark_result.json)はwarm cycle供給median buffered0.167818秒/mmap0.188992秒、mmap/buffered1.126176。mmapが約12.6%遅く、事前10%短縮に不合格で学習へ採用せず既存bufferedを維持する。cache未flush・同一短いcohort/二回ずつなので全mmapの無効、cold-cache全corpus/長期学習/GPU速度、FFN高速化の証明にしない。旧FFNの待ち時間を引いた別予算へ差し替えず固定cap閉鎖を保持する。新GPU学習/科学教師/品質生成/独立seed/fullDEV/protectedTEST/adoptionは今回0。
+
+元10B WebUIを再起動しactual493/boot4052…/start2780のaliveとHTTP親SHA410f975d…/10,000,007,168tokens/busy=falseを確認。旧boot53f…の745223等は現在の生存PIDではない。次の具体的作業は、保存済み不採用理由と未検証の仮説を照らして、品質改善を測る独立のBase比較を一つ定義すること。入力prototype失敗を理由に旧FFN/MHAのcap・教師・backend等を変更して再起動しない。既存品質・retention条件を保持し、合格候補のみ最終検証/採用へ進む。Base完成見込み時刻を根拠なく確約せず、意味のある検証済み進捗をlocal commit、PythonはWSL uvのみ。以下は歴史記録。
+
 Base限定・fresh同10M ReLU² FFNを実装、両CPU/CUDA検証合格だが各300Mの固定予算を超え、本学習を開始せず終了（2026-10-07 JST）。Baseは未完成・未採用。
 
 前turnの反復計算重複調査を254cf7eへ保存したprogress。required docs/worktreeと実processを確認し元10B UI744423のみ稼働。[Primer一次論文](https://arxiv.org/html/2109.08668v2)のSquared ReLU/Figure6とA.7 insertion/ablationを確認し、FFN比較を事前定義した。全Primerのconvolution込み高速化を日本語10Mの一要因の証明にしない。旧GQA/MHA300Mの9000秒超過・本学習0とgated sharing不採用は維持。
