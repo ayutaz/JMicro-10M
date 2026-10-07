@@ -1,0 +1,207 @@
+{
+  "created_at": "2026-10-07T10:59:18.301556Z",
+  "status": "prospective_fresh_residual_connectivity_comparison",
+  "question": "Does parallel Attention/FFN connectivity improve Japanese Base learning at identical10M matrix, original2B gold and initialization budgets?",
+  "novelty": "Completed depth/width/FFN allocation and learned MoC/MoS remain closed. No parallel residual block/config/training was found in registered sources/proposals. Change only the within-block FFN input; no width/depth/activation/normalization gain/teacher rescue.",
+  "primary_sources": [
+    "https://arxiv.org/html/2204.06745v1#S2.SS1.SSS2",
+    "https://github.com/EleutherAI/gpt-neox/blob/main/megatron/model/transformer.py"
+  ],
+  "source_limitation": "NeoX describes mainly distributed communication efficiency and comparable early losses. This single4090 RMSNorm/SwiGLU/GQA adaptation preserves native initialization; it is not a faithful20B reproduction or Japanese quality/speed proof.",
+  "variants": {
+    "sequential": {
+      "schema_version": 1,
+      "architecture": "decoder_only_transformer",
+      "hidden_size": 256,
+      "num_attention_heads": 4,
+      "num_key_value_heads": 2,
+      "head_dim": 64,
+      "activation": "swiglu",
+      "norm": "rmsnorm",
+      "rms_norm_eps": 1e-06,
+      "qk_norm_type": "none",
+      "qk_norm_before_rope": true,
+      "attention_scale": 0.125,
+      "rope_theta": 10000,
+      "rope_layout": "half_split",
+      "rotary_dim": 64,
+      "max_position_embeddings": 1024,
+      "tie_word_embeddings": true,
+      "attention_bias": false,
+      "mlp_bias": false,
+      "dropout": 0.0,
+      "initializer_std": 0.02,
+      "norm_initial_gain": 1.0,
+      "status": "phase5_ablation",
+      "name": "JMicro-10M-T4K-NoQKNorm",
+      "vocab_size": 4096,
+      "num_hidden_layers": 13,
+      "intermediate_size": 640,
+      "expected_parameter_count": 10001152
+    },
+    "parallel": {
+      "schema_version": 1,
+      "architecture": "decoder_only_transformer",
+      "hidden_size": 256,
+      "num_attention_heads": 4,
+      "num_key_value_heads": 2,
+      "head_dim": 64,
+      "activation": "swiglu",
+      "norm": "rmsnorm",
+      "rms_norm_eps": 1e-06,
+      "qk_norm_type": "none",
+      "qk_norm_before_rope": true,
+      "attention_scale": 0.125,
+      "rope_theta": 10000,
+      "rope_layout": "half_split",
+      "rotary_dim": 64,
+      "max_position_embeddings": 1024,
+      "tie_word_embeddings": true,
+      "attention_bias": false,
+      "mlp_bias": false,
+      "dropout": 0.0,
+      "initializer_std": 0.02,
+      "norm_initial_gain": 1.0,
+      "status": "phase5_ablation",
+      "name": "JMicro-10M-T4K-NoQKNorm",
+      "vocab_size": 4096,
+      "num_hidden_layers": 13,
+      "intermediate_size": 640,
+      "expected_parameter_count": 10001152,
+      "parallel_residual_research": {
+        "policy": {
+          "kind": "same_input_attention_FFN_separate_native_RMSNorm_v1",
+          "formula": "x+Attention(RMS1(x))+SwiGLU(RMS2(x))",
+          "norm_weights_tied": false,
+          "residual_gain": 1.0,
+          "additional_parameters": 0,
+          "physical_block_invocations": 1,
+          "initialization": "identical_fresh_native_matrices"
+        }
+      }
+    }
+  },
+  "policy": {
+    "kind": "same_input_attention_FFN_separate_native_RMSNorm_v1",
+    "formula": "x+Attention(RMS1(x))+SwiGLU(RMS2(x))",
+    "norm_weights_tied": false,
+    "residual_gain": 1.0,
+    "additional_parameters": 0,
+    "physical_block_invocations": 1,
+    "initialization": "identical_fresh_native_matrices"
+  },
+  "parameters_each": 10001152,
+  "additional_parameters": 0,
+  "physical_and_logical_blocks": 13,
+  "initialization": "Fresh seed42 native scaffold with identical every matrix/RMS gain; optimizer/RNG/sampler fresh. No learned parent or verification weights are used; initial predictions need not match across different functions.",
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "tokenizer": "artifacts/phase2/4096/tokenizer.model",
+  "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+  "goals": {
+    "web": 1500000000,
+    "textbook": 400000000,
+    "story": 100000000
+  },
+  "original_gold_each": 2000000000,
+  "scientific_gold_total": 4000000000,
+  "new_unique_corpus_tokens": 0,
+  "sampler": "Original full TRAIN body/EOS1024/512 windows with CEOnlyOriginalSampler; keep accepted binding/stat, no full13GB corpus scan",
+  "optimizer": {
+    "kind": "fresh_AdamW",
+    "peak_lr": 0.002,
+    "final_lr": 1e-05,
+    "warmup_gold": 5000000,
+    "schedule": "completed-update teacher-position warmup then cosine",
+    "weight_decay": 0.1,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "gradient_clip": 1.0,
+    "seed": 42,
+    "batch": 80
+  },
+  "resource": {
+    "CPU_preparation_cap_seconds": 30,
+    "own_probe_GPU_cap_seconds": 180,
+    "total_GPU_cap_seconds": 86400,
+    "fixed_batch": 80,
+    "capacity_shape": [
+      80,
+      1024
+    ],
+    "stride": 512,
+    "forecast": "For each arm ceil(2B*SUM all32 postwarmup step seconds/SUM all32 original gold*1.3+900); sum plus own actual probe<=86400. Include data waits. No median-based forecast or budget rescue.",
+    "rationale": "New24h maximum fixes a full fresh2B paired connectivity comparison before timing. Old MHA/ReLU_squared300M caps and refusals stay closed. This is a ceiling, not a measured completion estimate.",
+    "checkpoint_updates": 2000,
+    "heartbeat_updates": 20
+  },
+  "required_before_science": [
+    "Independent block formula, identical full initial matrices/count/tie/RNG, causal/padded/fast/cache/tagged reconstruction CPU checks",
+    "Fresh original sampler/trainer/typed evaluator/persistent own GPU probe/science/reviewer implemented before execution",
+    "Both actual CUDA continuous4vs2save+2 full optimizer/schedule/RNG/sampler/history/finite checks",
+    "Own80x1024/512 BF16/Flash finite backward/resident90percent and all32 timing within fixed24h",
+    "Freeze scientific source/quality policy before any training outcomes"
+  ],
+  "evaluation": "Each terminal2B: unchanged commonDEV256 bytes/all192-331-1119 Japanese/native greedy64/BOS2/EOS3/all80 each; all160 individually raw-bound",
+  "controls": "New fresh sequential2B is mandatory. Completed mature CE/strong/historical Web are additional references, never substitute for fresh paired control.",
+  "selection": "All original matched/strong/absolute/historical Web conditions unchanged, including coherence+8/paired95percent lower>0/grammar56/coherence27/completion27/EOS37/repetition<=18/no errors. Independent trainedseed/fullDEV/protectedTEST/adoption only for a qualified candidate.",
+  "failure": "Close this exact parallel connectivity/init/source/LR/batch/backend/decoder/token/GPU-cap recipe if finite, budget or quality gates fail; no tied-norm/gain/layer-count/seed/parent/timing-window rescue or automatic extension.",
+  "limitations": "One initialization/training seed and reused nonblind DEV. Same raw matrices differ in initial function, and same teacher counts differ in gradient dynamics. No prior evidence proves sequential FFN dependence causes repetition or that2B suffices.",
+  "references": {
+    "base_output_mixture_comparison_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_output_mixture_comparison_completion.json",
+      "sha256": "f1ad9f9ac838998de62b8bd0be29f58e697cd5a2b0c05b82835deb45d0350c61"
+    },
+    "base_output_mixture_comparison_review.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_output_mixture_comparison_review.json",
+      "sha256": "a758c3febad5e29f5a1a3c5dff48c11e2566936ca5b8bfa2b4a18addfe7a5b5d"
+    },
+    "architecture_comparison_review.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/architecture_comparison_review.json",
+      "sha256": "58ce8d6b877798d0bacefc6f5980ef0f653fb16c1c582009a4b45a6ae49e3869"
+    },
+    "base_capacity_reference_synthesis.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_capacity_reference_synthesis.json",
+      "sha256": "ba603b7bd2d90b54300eee86815f6ed7fa10cf1c250e38420b1998ac5c52fe14"
+    },
+    "base_relu_squared_proposal.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_relu_squared_proposal.json",
+      "sha256": "329fc5e41e8150e6187f9b0172d765345cfbfed23d5210fa133d67d60c69a10d"
+    },
+    "base_relu_squared_probe_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_relu_squared_probe_completion.json",
+      "sha256": "2a53bebec5a10a01071678fabd6d67ee690fa11d60d726e69adf51de7d6667da"
+    },
+    "base_kv_allocation_proposal.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_kv_allocation_proposal.json",
+      "sha256": "50a1a07e82ffe17b6046374b2cb9e00f5a0a03cfdd72b5d5b76cbb08b6149f2f"
+    },
+    "base_failure_route_synthesis.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_failure_route_synthesis.json",
+      "sha256": "2384411b47272b53b9e4eda981a69ff67e335069ca125a43e551c892515826b2"
+    }
+  },
+  "CPU_preparation_seconds": 1.0721340519994556,
+  "new_GPU_seconds": 0,
+  "scientific_gold_tokens": 0,
+  "trainer_implemented": false,
+  "evaluator_implemented": false,
+  "GPU_workflow_implemented": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "next_action": "CPU model/protocol checks, then implement fresh trainer and typed durable workflow; own measured CUDA gate before prospective science freeze/launch."
+}
