@@ -1,3 +1,11 @@
+Base限定・同middle-supervision科学jobを実監視し、全内容評価後の可搬終了記録コマンドを準備（2026-10-07 JST）。Baseは未完成・未採用。
+
+前turnは独立middle-loss実装/CPU21checks・実CUDA全state再開/100M科学起動を8f10ae8へ保存したprogress。今turnもrequired docs/worktreeとactual724938/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start22544695を実psで確認。snapshotは2,240更新/original12,646,331/100M gold、CE2.6334424019有限、累積194.675209秒/凍結3970秒、最新完了checkpoint-00002000.pt。確認済みの同PIDを50秒待った後もactual alive/教師増加を確認した。最新値はnative reports/phase6/base-middle-supervision-comparison-20261007/job.json/metricsを参照。
+
+complete_base_middle_supervision.pyを追加しWSL uvのCLI helpを確認。実科学終了・元100M/fullstate・別middlehead同gold100M会計・全評価/全80raw-bound個別notesと凍結全quality gates・元10B UI actual/API復帰が揃った後だけ、text/source/metrics/evaluationのarchive/manifest/終了記録を保存するコマンド。科学は現在稼働中なのでcloseoutをまだ完了させず、CLI helpを終端/有用品質/採用/UI復帰の証拠にしない。凍結science source/config/quality基準の変更、新研究、重複GPUは0。
+
+次はこのexact PIDとcompleted checkpointを監視→元100M/別middlehead100M/fullstate終端→日本語192/331/1119・共通DEV256・native80→全80を個別に判定し全従来matched/strong/absolute/historicalWeb採否・可搬保存。資格ある候補のみ独立学習seed/fullDEV/protected finalTEST/adoptionへ進む。最新境界を保持し品質Base完成を通知して停止、Chat/Dialogue/SFT/量子化/展開・自動pushなし。Python3.12.7はWSL uv、localcommitのみ。今回は現在の終了記録実装とverified waitのprogressでgoal completeではない。以下は過去の履歴。
+
 Base限定・中間層の同next-token正解supervisionを実装、CPU21checksとCUDA全state再開に合格し100M比較を開始（2026-10-07 JST）。Baseは未完成・未採用。
 
 [結果前の一条件案](../reports/phase6/base_middle_supervision_proposal.json)・[実GPUgate/起動記録](../reports/phase6/base_middle_supervision_probe_launch.json)。前turnのSAM100M/全日本語・全80内容/不採用はb010368で保存済み、actual721383は不在。required docsとfailure synthesis/既存MTP・precision・on-policy・SAMの終了記録を確認。registryにはnative中間層へ同current next-token CEを与える比較がなかった。旧MTPはfinal hidden＋新train-only Block/normからnext-two正解、新条件は既存6/13層hiddenから共有final RMSNorm/tied4096 headで元のbody/EOSを予測する。新仮説であり反復の根本原因を証明したわけではない。
