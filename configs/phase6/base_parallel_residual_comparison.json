@@ -1,0 +1,226 @@
+{
+  "dev_shards": "/home/aihub_ubuntu/jmicro-data/phase6/expanded-v2/shards",
+  "dev_manifest_sha256": "75c7420a1434cf8a97797218b163c694a13ed838f389f09327dcc86f7164c12c",
+  "suite_sha256": "93cd3a19f3e62c8d30d1660b431a9525823f58b9ceb1bf90c6ecbac2c19292eb",
+  "evaluation": {
+    "dev_documents": 256,
+    "fixed_dev_prefixes": 80,
+    "max_new_tokens": 64,
+    "tasks": [
+      "semantics",
+      "jblimp",
+      "jcqa"
+    ],
+    "config": "configs/evaluation/japanese_base_v2.json",
+    "config_sha256": "661dc8d4db7de836ddb99ac3ed5bbf3e10636c24d00e5fb0869773ace4fa03a8",
+    "semantic_suite": "eval/japanese_semantics_v2_1.jsonl",
+    "semantic_sha256": "53e28d39368251a60750ff22da7c261cb20c3136fb5231aa4324ec2d6285ffd9",
+    "data_manifest_sha256": "b5016f3d926dc08c83c5c73c33212a9f40c5c066511bc3ce1574c616046f4402"
+  },
+  "control_CE": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/CE/train-result.json",
+    "sha256": "dc3eae3f5b34bc7c09165ad34cb0f3dac1da9c6ff88c451fc2f9590980383ae2"
+  },
+  "created_at": "2026-10-07T11:16:06.679275Z",
+  "evaluation_reference_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_output_mixture_probe.json",
+    "sha256": "395c7aeba1ba6b4b1582f66b717a702423af21b9e602e260ea9cdcf3ce51dc6f"
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "goals": {
+    "web": 1500000000,
+    "textbook": 400000000,
+    "story": 100000000
+  },
+  "tokenizer": "artifacts/phase2/4096/tokenizer.model",
+  "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+  "variants": {
+    "sequential": {
+      "schema_version": 1,
+      "architecture": "decoder_only_transformer",
+      "hidden_size": 256,
+      "num_attention_heads": 4,
+      "num_key_value_heads": 2,
+      "head_dim": 64,
+      "activation": "swiglu",
+      "norm": "rmsnorm",
+      "rms_norm_eps": 1e-06,
+      "qk_norm_type": "none",
+      "qk_norm_before_rope": true,
+      "attention_scale": 0.125,
+      "rope_theta": 10000,
+      "rope_layout": "half_split",
+      "rotary_dim": 64,
+      "max_position_embeddings": 1024,
+      "tie_word_embeddings": true,
+      "attention_bias": false,
+      "mlp_bias": false,
+      "dropout": 0.0,
+      "initializer_std": 0.02,
+      "norm_initial_gain": 1.0,
+      "status": "phase5_ablation",
+      "name": "JMicro-10M-T4K-NoQKNorm",
+      "vocab_size": 4096,
+      "num_hidden_layers": 13,
+      "intermediate_size": 640,
+      "expected_parameter_count": 10001152
+    },
+    "parallel": {
+      "schema_version": 1,
+      "architecture": "decoder_only_transformer",
+      "hidden_size": 256,
+      "num_attention_heads": 4,
+      "num_key_value_heads": 2,
+      "head_dim": 64,
+      "activation": "swiglu",
+      "norm": "rmsnorm",
+      "rms_norm_eps": 1e-06,
+      "qk_norm_type": "none",
+      "qk_norm_before_rope": true,
+      "attention_scale": 0.125,
+      "rope_theta": 10000,
+      "rope_layout": "half_split",
+      "rotary_dim": 64,
+      "max_position_embeddings": 1024,
+      "tie_word_embeddings": true,
+      "attention_bias": false,
+      "mlp_bias": false,
+      "dropout": 0.0,
+      "initializer_std": 0.02,
+      "norm_initial_gain": 1.0,
+      "status": "phase5_ablation",
+      "name": "JMicro-10M-T4K-NoQKNorm",
+      "vocab_size": 4096,
+      "num_hidden_layers": 13,
+      "intermediate_size": 640,
+      "expected_parameter_count": 10001152,
+      "parallel_residual_research": {
+        "policy": {
+          "kind": "same_input_attention_FFN_separate_native_RMSNorm_v1",
+          "formula": "x+Attention(RMS1(x))+SwiGLU(RMS2(x))",
+          "norm_weights_tied": false,
+          "residual_gain": 1.0,
+          "additional_parameters": 0,
+          "physical_block_invocations": 1,
+          "initialization": "identical_fresh_native_matrices"
+        }
+      }
+    }
+  },
+  "optimizer": {
+    "kind": "fresh_AdamW",
+    "peak_lr": 0.002,
+    "final_lr": 1e-05,
+    "warmup_gold": 5000000,
+    "schedule": "completed-update teacher-position warmup then cosine",
+    "weight_decay": 0.1,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "gradient_clip": 1.0,
+    "seed": 42,
+    "batch": 80
+  },
+  "probe_result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-parallel-residual-probe-20261007/result.json",
+    "sha256": "84340163b1b8bd678d0ef38acf2de08c1f41be784d918d664a405a5c66b875ae"
+  },
+  "probe_job": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-parallel-residual-probe-20261007/job.json",
+    "sha256": "30d3d5525f7dc87b2f4f9718976af13b4fd6b782b4f2ab5a5b504e4ec02e1b9d"
+  },
+  "probe_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_parallel_residual_probe.json",
+    "sha256": "d5d8209cb6a71b2c345554b80d81368520d54b43fb62557f07115a7c55112bd7"
+  },
+  "preparation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_parallel_residual_CPU_preparation.json",
+    "sha256": "18ef69c95ee157f4d5d3ffb379f3d08e961c5a1abaff92aca498d280b73814e2"
+  },
+  "proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_parallel_residual_proposal.json",
+    "sha256": "e92e2ad165be53feb7dce8b56fa90fe301c7fc5007ac217a00544cbb11ccdc86"
+  },
+  "CPU_run_tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_parallel_residual_run_tests.xml",
+    "sha256": "64a935fea14844148f5ffe483681050a8c9b2a5556ceed7427403c042abaa996"
+  },
+  "validator_correction": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_parallel_residual_validator_bridge.json",
+    "sha256": "2396055b52eb341be341766047c63bfc9b27bace0fd6e3b64de63f4def7d4d70"
+  },
+  "source_sha256": {
+    "scripts/run_base_parallel_residual.py": "56d871d9d5334ad6208b17871969ee13d67f3e70d6c06fb510a9da740d74185c",
+    "scripts/run_base_parallel_residual.ps1": "1082210836e005e191542da8b4a7b06fd3b136b0f851e3f3df05e88b5a16f8ef",
+    "scripts/review_base_parallel_residual.py": "6fde4f53f096a98d07d41fc8076652fa381df02f6b7a8aa8b024e9525a281371",
+    "scripts/probe_base_parallel_residual.py": "7466065e00e0d273a3e377362322241120585ff1e4866e4a676aeba282744760",
+    "scripts/base_parallel_residual_model.py": "0dc0c78eab175dcd58f876d5c408a846b1ad7f2ca182a69d3e01f3296aa97180",
+    "scripts/base_parallel_residual_trainer.py": "d090c91089eb4216e03e153bb60b051dcf1721e87c0bf302ff1d3ffacafc6290",
+    "scripts/base_parallel_residual_evaluation.py": "89e7ddf65b0612d13e9b4d69bf4ebb223e8518cf91633e9af19fcd6e7c87bce9",
+    "tests/test_base_parallel_residual_run.py": "f11e036a7cd1bebf7fdedf8bc43456a602f4e354ef09d610811ecbf7dd2d994c",
+    "scripts/base_kv_allocation_trainer.py": "49cbf6a2e6163e16577e385860345e542c3282a9f8e752c164b53a66ac43e7e1",
+    "scripts/base_native_teacher_KD_trainer.py": "644cd0b0ec57df31d927918e8be9adb04e4cbd24a54c900b4374fbad14ef2033",
+    "scripts/verify_base_parallel_residual_validator.py": "394ec1e56525cb4e4f71e54a3871cd8f93f63d6f705c698f84c160e7c2cfc2c3",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "scripts/natural_context_contrast_memory.py": "85735b203e1a6f845078046379c6463b51cdc61068a463a379d93c79368f62e2",
+    "scripts/run_complete_text_comparison.py": "9d91d1d6124e62e4f40f7a99762f948186602e95cc362be10bfe03297874d8f7",
+    "scripts/run_eos_short_pilot.py": "7a381414bdea5b24bbbbf7532f04db743cff948fa47f60e95f65019af2d3ec3d",
+    "scripts/evaluate_japanese_base.py": "9cabf705a67181b6a45eb20c1a62b69335140f2465b24ac2066f05e51ee48d02",
+    "scripts/prepare_japanese_evaluation.py": "c3fc5ef7ed59a618f42d8e69ae8411c980705c117a15222307aaf2780ad35916",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/japanese_evaluation.py": "8693e2a54e63c1b085b617b207cc5db618ae80af1eb7cb54133ba8b254da6801",
+    "src/jmicro/evaluation_memory.py": "ba22fb7ca7ddb6633a308c2b1a32a59147ecb38e568d9f838ab032300147c6b4",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca"
+  },
+  "residual_policy": {
+    "kind": "same_input_attention_FFN_separate_native_RMSNorm_v1",
+    "formula": "x+Attention(RMS1(x))+SwiGLU(RMS2(x))",
+    "norm_weights_tied": false,
+    "residual_gain": 1.0,
+    "additional_parameters": 0,
+    "physical_block_invocations": 1,
+    "initialization": "identical_fresh_native_matrices"
+  },
+  "initialization": "identical_fresh_native_seed42_no_learned_parent_or_probe_weights",
+  "batch": 80,
+  "seed": 42,
+  "arms": [
+    "sequential",
+    "parallel"
+  ],
+  "scientific_CE_teacher_tokens_each": 2000000000,
+  "scientific_CE_teacher_tokens_total": 4000000000,
+  "reused_control_CE_teacher_tokens": 100000000,
+  "reused_control_GPU_seconds": 0,
+  "arm_forecast_seconds": {
+    "sequential": 47779,
+    "parallel": 33957
+  },
+  "GPU_budget_seconds": 81736,
+  "probe_GPU_seconds": 21.390703606000898,
+  "total_GPU_cap_seconds": 86400,
+  "worst_measured_peak_bytes": 17791499264,
+  "checkpoints_every_updates": 2000,
+  "heartbeat_every_updates": 20,
+  "quality_criteria_unchanged": true,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "completion": "Both fresh exited exact2B/fullstate/common original sampler, same bytes/Japanese/all160 individual contents; unchanged matched/strong/absolute/historical guards. Cached mature100M is additional quality reference only, not an equal2B stream. Independent learnedseed/fullDEV/protectedTEST/adoption only if qualified.",
+  "failure": "No residual/init/gain/parent/source/teacher/LR/batch/backend/decoder/cap rescue. Resume only verified completed updates with a closed cumulative GPU ledger."
+}

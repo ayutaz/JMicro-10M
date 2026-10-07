@@ -23,9 +23,24 @@ def builders(tmp_path):
         native['expected_parameter_count']=sum(p.numel() for p in JMicroModel(native).parameters())
     configs=dict(sequential=native,parallel=parallel_config(native))
     def source():return CEOnlyOriginalSampler(pool,manifest,FixtureCodec(),dict(web=7500,textbook=2000,story=500))
-    def build(arm='parallel'):
-        return FreshResidualTrainer(configs[arm],source(),dict(proposal='fixture'),arm,batch=4,device='cpu',warmup=1000)
+    def build(arm='parallel',warmup=1000):
+        return FreshResidualTrainer(configs[arm],source(),dict(proposal='fixture'),arm,batch=4,device='cpu',warmup=warmup)
     return source,build
+
+
+@pytest.mark.parametrize('arm',['sequential','parallel'])
+def test_actual_postwarmup_cosine_updates_remain_saveable(builders,tmp_path,arm):
+    _,build=builders;t=build(arm,warmup=1)
+    for _ in range(16):
+        if t.sampler.exhausted:break
+        row=t.step()
+        assert row['supervised_tokens']>t.scheduler.warmup
+        assert row['lr']==t.scheduler.value(row['supervised_tokens'])
+        assert committed_state(t.state_dict())
+    assert t.counters['supervised_tokens']==sum(t.sampler.goals.values())
+    cp=tmp_path/(arm+'-cosine.pt');t.save(cp)
+    restored=build(arm,warmup=1);restored.load(cp)
+    assert equal_state(host(t.state_dict()),host(restored.state_dict()))
 
 
 def test_same_initial_every_weight_RNG_original_masked_CE_EOS_and_schedule(builders):

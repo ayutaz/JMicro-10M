@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="13" time="7.534" timestamp="2026-10-07T20:15:10.542093+09:00" hostname="DESKTOP-42CUV0C"><testcase classname="tests.test_base_parallel_residual_trainer" name="test_actual_postwarmup_cosine_updates_remain_saveable[sequential]" time="2.266"><failure message="ValueError: Nonexhausted original source and batch&gt;=2 required">builders = (&lt;function builders.&lt;locals&gt;.source at 0x7710486ce2a0&gt;, &lt;function builders.&lt;locals&gt;.build at 0x7710486cdf80&gt;)
+tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-20/test_actual_postwarmup_cosine_0')
+arm = 'sequential'
+
+    @pytest.mark.parametrize('arm',['sequential','parallel'])
+    def test_actual_postwarmup_cosine_updates_remain_saveable(builders,tmp_path,arm):
+        _,build=builders;t=build(arm,warmup=1)
+        for _ in range(16):
+&gt;           row=t.step()
+                ^^^^^^^^
+
+tests/test_base_parallel_residual_trainer.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/base_parallel_residual_trainer.py:129: in step
+    row = super().step()
+          ^^^^^^^^^^^^^^
+scripts/base_kv_allocation_trainer.py:181: in step
+    rows = self.sampler.take(self.spec['batch'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;base_kv_allocation_trainer.CEOnlyOriginalSampler object at 0x771160bcb8f0&gt;
+size = 4
+
+    def take(self, size):
+        if size &lt; 2 or self.exhausted:
+&gt;           raise ValueError('Nonexhausted original source and batch&gt;=2 required')
+E           ValueError: Nonexhausted original source and batch&gt;=2 required
+
+scripts/natural_context_contrast_corpus.py:151: ValueError</failure></testcase><testcase classname="tests.test_base_parallel_residual_trainer" name="test_actual_postwarmup_cosine_updates_remain_saveable[parallel]" time="1.632"><failure message="ValueError: Nonexhausted original source and batch&gt;=2 required">builders = (&lt;function builders.&lt;locals&gt;.source at 0x77105783c180&gt;, &lt;function builders.&lt;locals&gt;.build at 0x771044850720&gt;)
+tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-20/test_actual_postwarmup_cosine_1')
+arm = 'parallel'
+
+    @pytest.mark.parametrize('arm',['sequential','parallel'])
+    def test_actual_postwarmup_cosine_updates_remain_saveable(builders,tmp_path,arm):
+        _,build=builders;t=build(arm,warmup=1)
+        for _ in range(16):
+&gt;           row=t.step()
+                ^^^^^^^^
+
+tests/test_base_parallel_residual_trainer.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/base_parallel_residual_trainer.py:129: in step
+    row = super().step()
+          ^^^^^^^^^^^^^^
+scripts/base_kv_allocation_trainer.py:181: in step
+    rows = self.sampler.take(self.spec['batch'])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;base_kv_allocation_trainer.CEOnlyOriginalSampler object at 0x771048ffaff0&gt;
+size = 4
+
+    def take(self, size):
+        if size &lt; 2 or self.exhausted:
+&gt;           raise ValueError('Nonexhausted original source and batch&gt;=2 required')
+E           ValueError: Nonexhausted original source and batch&gt;=2 required
+
+scripts/natural_context_contrast_corpus.py:151: ValueError</failure></testcase><testcase classname="tests.test_base_parallel_residual_trainer" name="test_same_initial_every_weight_RNG_original_masked_CE_EOS_and_schedule" time="0.734" /><testcase classname="tests.test_base_parallel_residual_trainer" name="test_continuous4_vs_saved2_resume2_allstate_history[sequential]" time="0.781" /><testcase classname="tests.test_base_parallel_residual_trainer" name="test_continuous4_vs_saved2_resume2_allstate_history[parallel]" time="0.762" /><testcase classname="tests.test_base_parallel_residual_trainer" name="test_malformed_state_refused_before_weights_change[arm]" time="0.067" /><testcase classname="tests.test_base_parallel_residual_trainer" name="test_malformed_state_refused_before_weights_change[policy]" time="0.070" /><testcase classname="tests.test_base_parallel_residual_trainer" name="test_malformed_state_refused_before_weights_change[class]" time="0.075" /><testcase classname="tests.test_base_parallel_residual_trainer" name="test_malformed_state_refused_before_weights_change[Adam]" time="0.076" /><testcase classname="tests.test_base_parallel_residual_trainer" name="test_malformed_state_refused_before_weights_change[sampler]" time="0.075" /><testcase classname="tests.test_base_parallel_residual_trainer" name="test_malformed_state_refused_before_weights_change[scheduler]" time="0.074" /><testcase classname="tests.test_base_parallel_residual_trainer" name="test_malformed_state_refused_before_weights_change[nonfinite]" time="0.076" /><testcase classname="tests.test_base_parallel_residual_trainer" name="test_error_after_Adam_refuses_save_and_continue" time="0.053" /></testsuite></testsuites>

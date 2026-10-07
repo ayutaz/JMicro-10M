@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="13" time="5.982" timestamp="2026-10-07T20:14:24.125417+09:00" hostname="DESKTOP-42CUV0C"><testcase classname="tests.test_base_parallel_residual_trainer" name="test_actual_postwarmup_cosine_updates_remain_saveable[sequential]" time="1.823"><failure message="ValueError: Nonfinite or inconsistent residual completed-update state">builders = (&lt;function builders.&lt;locals&gt;.source at 0x7bfb36b0d800&gt;, &lt;function builders.&lt;locals&gt;.build at 0x7bfb2779e020&gt;)
+tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-19/test_actual_postwarmup_cosine_0')
+arm = 'sequential'
+
+    @pytest.mark.parametrize('arm',['sequential','parallel'])
+    def test_actual_postwarmup_cosine_updates_remain_saveable(builders,tmp_path,arm):
+        _,build=builders;t=build(arm,warmup=1)
+        for _ in range(16):
+            row=t.step()
+            assert row['supervised_tokens']&gt;t.scheduler.warmup
+            assert row['lr']==t.scheduler.value(row['supervised_tokens'])
+&gt;           assert committed_state(t.state_dict())
+                                   ^^^^^^^^^^^^^^
+
+tests/test_base_parallel_residual_trainer.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;base_parallel_residual_trainer.FreshResidualTrainer object at 0x7bfb28078620&gt;
+
+    def state_dict(self):
+        if self._step_in_progress:
+            raise ValueError('Cannot save an uncommitted residual update')
+        state = super().state_dict()
+        state['kind'] = KIND
+        if not committed_state(state):
+&gt;           raise ValueError('Nonfinite or inconsistent residual completed-update state')
+E           ValueError: Nonfinite or inconsistent residual completed-update state
+
+scripts/base_parallel_residual_trainer.py:115: ValueError</failure></testcase><testcase classname="tests.test_base_parallel_residual_trainer" name="test_actual_postwarmup_cosine_updates_remain_saveable[parallel]" time="0.583"><failure message="ValueError: Nonfinite or inconsistent residual completed-update state">builders = (&lt;function builders.&lt;locals&gt;.source at 0x7bfb36c0ec00&gt;, &lt;function builders.&lt;locals&gt;.build at 0x7bfb277d0180&gt;)
+tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-19/test_actual_postwarmup_cosine_1')
+arm = 'parallel'
+
+    @pytest.mark.parametrize('arm',['sequential','parallel'])
+    def test_actual_postwarmup_cosine_updates_remain_saveable(builders,tmp_path,arm):
+        _,build=builders;t=build(arm,warmup=1)
+        for _ in range(16):
+            row=t.step()
+            assert row['supervised_tokens']&gt;t.scheduler.warmup
+            assert row['lr']==t.scheduler.value(row['supervised_tokens'])
+&gt;           assert committed_state(t.state_dict())
+                                   ^^^^^^^^^^^^^^
+
+tests/test_base_parallel_residual_trainer.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;base_parallel_residual_trainer.FreshResidualTrainer object at 0x7bfb2779bad0&gt;
+
+    def state_dict(self):
+        if self._step_in_progress:
+            raise ValueError('Cannot save an uncommitted residual update')
+        state = super().state_dict()
+        state['kind'] = KIND
+        if not committed_state(state):
+&gt;           raise ValueError('Nonfinite or inconsistent residual completed-update state')
+E           ValueError: Nonfinite or inconsistent residual completed-update state
+
+scripts/base_parallel_residual_trainer.py:115: ValueError</failure></testcase><testcase classname="tests.test_base_parallel_residual_trainer" name="test_same_initial_every_weight_RNG_original_masked_CE_EOS_and_schedule" time="0.714" /><testcase classname="tests.test_base_parallel_residual_trainer" name="test_continuous4_vs_saved2_resume2_allstate_history[sequential]" time="0.769" /><testcase classname="tests.test_base_parallel_residual_trainer" name="test_continuous4_vs_saved2_resume2_allstate_history[parallel]" time="0.755" /><testcase classname="tests.test_base_parallel_residual_trainer" name="test_malformed_state_refused_before_weights_change[arm]" time="0.068" /><testcase classname="tests.test_base_parallel_residual_trainer" name="test_malformed_state_refused_before_weights_change[policy]" time="0.068" /><testcase classname="tests.test_base_parallel_residual_trainer" name="test_malformed_state_refused_before_weights_change[class]" time="0.075" /><testcase classname="tests.test_base_parallel_residual_trainer" name="test_malformed_state_refused_before_weights_change[Adam]" time="0.076" /><testcase classname="tests.test_base_parallel_residual_trainer" name="test_malformed_state_refused_before_weights_change[sampler]" time="0.076" /><testcase classname="tests.test_base_parallel_residual_trainer" name="test_malformed_state_refused_before_weights_change[scheduler]" time="0.075" /><testcase classname="tests.test_base_parallel_residual_trainer" name="test_malformed_state_refused_before_weights_change[nonfinite]" time="0.072" /><testcase classname="tests.test_base_parallel_residual_trainer" name="test_error_after_Adam_refuses_save_and_continue" time="0.050" /></testsuite></testsuites>

@@ -56,7 +56,7 @@ def committed_state(state):
         if not 0 <= tokens <= total or not 0 < warmup < total or not 0 < final <= peak:
             return False
         expected_lr = (peak * tokens / warmup if tokens <= warmup else
-            final + (peak - final) * (1 + math.cos(math.pi * (tokens - warmup) / (total - warmup))) / 2)
+            final + (peak - final) * (1 + math.cos(math.pi * ((tokens - warmup) / (total - warmup)))) / 2)
         if schedule['last_lr'] != expected_lr or len(opt['param_groups']) != 1:
             return False
         group = opt['param_groups'][0]
