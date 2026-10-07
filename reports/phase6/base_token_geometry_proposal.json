@@ -1,0 +1,105 @@
+{
+  "created_at": "2026-10-07T06:41:15.061732Z",
+  "status": "prospective_severe_token_geometry_screen_before_GPU",
+  "question": "Do original parent and cached CE exhibit severe similarity between distinct separated token states on the same12 original TRAIN units, motivating a single token-level separation objective?",
+  "references": {
+    "base_completed_objective_studies_v3_20261007.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_completed_objective_studies_v3_20261007.json",
+      "sha256": "716b4ef75300e630d76467e75146734777dfd31c8023fb2449548ffb0f1f7252"
+    },
+    "base_sigsoftmax_comparison_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_sigsoftmax_comparison_completion.json",
+      "sha256": "b30ea93293262f6a232b09251381f165129882bdf03afc12de0ca11e3fb23dd3"
+    },
+    "base_sigsoftmax_comparison.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_sigsoftmax_comparison.json",
+      "sha256": "e5af1299b5f89d2ad346f0292b2a660f0146a448958aaca40d5a3e43c441fbac"
+    },
+    "base_sigsoftmax_review.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_sigsoftmax_review.json",
+      "sha256": "fd0d78441067b09a4108eb0583e9089588ee52912ec68cede7b5eabecff67acc"
+    },
+    "base_kv_allocation_proposal.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_kv_allocation_proposal.json",
+      "sha256": "50a1a07e82ffe17b6046374b2cb9e00f5a0a03cfdd72b5d5b76cbb08b6149f2f"
+    },
+    "base_kv_allocation_bucketed_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_kv_allocation_bucketed_completion.json",
+      "sha256": "604dc6d65f15ffe2b7b78e3783cf6538b85799bc85134c1facb0c5fb26f613da"
+    },
+    "base_embedding_gradient_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_embedding_gradient_completion.json",
+      "sha256": "1fd5cae17e1116c87c52db5f68dd3b85d76e538c9268ae17b872801ec2923cf7"
+    },
+    "base_attention_saturation_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_attention_saturation_completion.json",
+      "sha256": "78a8c02ec4a8a5740b7ee4eb049d5a859ef68d93374932819dd91217534c41ed"
+    }
+  },
+  "primary_sources": [
+    {
+      "url": "https://papers.nips.cc/paper_files/paper/2022/file/871cae8f599cb8bbfcb0f58fe1af95ad-Paper-Conference.pdf",
+      "role": "SimCTG studies token-state similarity; its training and contrastive decoding are separate mechanisms."
+    },
+    {
+      "url": "https://arxiv.org/abs/2210.14140",
+      "role": "Follow-up finds severe anisotropy in specific English GPT2s, not every autoregressive LM. Diagnose local model before selecting learning."
+    }
+  ],
+  "novelty": "No token-position geometry screen/SimCTG learning found in current sources/proposals/completions. Earlier context-suffix InfoNCE/projection, middle teacher hints, gradient sharing and confidence/output-link tests address different quantities.",
+  "declined_head_candidate": "Do not add a head-count variant as rescue of the closed MHA4/FFN560 allocation study; its scientific training never ran due9000s budget and its failure is not a quality result.",
+  "models": {
+    "parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "size": 120181763,
+      "mtime_ns": 1791114231712428007
+    },
+    "cached_CE": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/CE/checkpoint-00017698.pt",
+      "sha256": "f691a7587c03c51293a2e77889307da0efa18d2349c13e4f77439fd339586967",
+      "size": 124373565,
+      "mtime_ns": 1791307063680713152
+    },
+    "strong_staged": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323503.pt",
+      "sha256": "fb43f2618c0679ca6c6f7a0c5b9faf1b336be8985271c8513f2e4bbfde3cd7ae",
+      "size": 120205059,
+      "mtime_ns": 1791267912487489301
+    }
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "units_per_source": 4,
+  "prefix_tokens_at_most": 128,
+  "min_body_states": 16,
+  "last_hidden": "Final post-RMSNorm native decoder state; single unchanged causal forward, no vocabulary head needed",
+  "metrics": "FP32 unit-state cosine; report all body offdiagonal and primary different input IDs at absolute separation>=4. Same word/special/nearby/diagonal pairs excluded only from primary; retain actual denominators.",
+  "criterion": "cosine>.95 in>=25percent primary ordered pairs per source; same>=two sources in BOTH original parent and cached CE. strong staged is descriptive, cannot rescue a missing marker.",
+  "thresholds": "Fixed conservative local feasibility screen; not a validated causal threshold, quality proxy, global isotropy metric or sufficient signal of successful training.",
+  "budgets": {
+    "CPU_preparation_cap_seconds": 30,
+    "GPU_cap_seconds": 120,
+    "optimizer_updates": 0,
+    "new_gold_tokens": 0
+  },
+  "if_positive": "Implement one separately frozen same-parent original100M hardCE plus token-position separation training comparison, native10M/no teacher/extra parameters, same cachedCE and full Japanese/80/retention gates, measured totalGPU4800. Training commands/probe are still absent; do not launch this prospective outline or treat a positive marker as quality.",
+  "if_negative": "Close this severe-marker-led SimCTG branch; no threshold, subset, normalization, source, parent, layer, decoder or cap rescue; no learning or automatic geometry-loss sweep.",
+  "completion": "Actual exited bounded read-only CUDA result/all12units on all3models; original weights/no grads/RNG/parameters unchanged; finite pair metrics/denominators and fixed decision; restore original UI/portable evidence/local commit.",
+  "scope": "Correlated token pairs in twelve short TRAIN prefixes; not global rank/causal proof. Does not infer useful Japanese quality, data futility or10M capacity ceiling.",
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "new_GPU_seconds": 0,
+  "new_scientific_teacher_tokens": 0
+}
