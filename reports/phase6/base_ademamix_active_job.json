@@ -1,0 +1,112 @@
+{
+  "created_at": "2026-10-07T07:25:01.423112Z",
+  "status": "own_probe_complete_scientific100M_active",
+  "previous_turn": "progress: WSL expanded and unchanged input benchmark completed at9dd5463",
+  "actual_probe_identity": {
+    "pid": 1302,
+    "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+    "start_ticks": "79382"
+  },
+  "actual_probe_absent_verified": true,
+  "probe_result": {
+    "path": "reports/phase6/base-ademamix-probe-20261007/result.json",
+    "sha256": "47bb4a08d06dbd11b432b9391be136af5726e08aa263fa4382d1b8b146b8928e"
+  },
+  "probe_initial_checks": {
+    "native_parent_weights": true,
+    "candidate_control_initial_weights": true,
+    "global_RNG_equal": true,
+    "tied_native_vocab": true,
+    "exact10M_parameters": true,
+    "all_parameters_once": true,
+    "fresh_optimizer_empty": true,
+    "sampler_full_initial_state_equal": true
+  },
+  "all_resume_and_source_checks": {
+    "kind": true,
+    "spec": true,
+    "binding": true,
+    "lineage": true,
+    "model_config": true,
+    "model": true,
+    "optimizer": true,
+    "scheduler": true,
+    "RNG": true,
+    "sampler": true,
+    "counters": true,
+    "finite_model_and_three_moments": true,
+    "all_history_except_timing": true,
+    "same_original_source_digest_masks_EOS": true,
+    "full_sampler_matches_AdamW": true,
+    "initial_actual_CE_equal": true
+  },
+  "capacity": {
+    "batch": 48,
+    "context": 1024,
+    "teacher_stride": 512,
+    "backward_original_positions": 24576,
+    "peak_VRAM_bytes": 10745063424,
+    "loss": 2.2704575061798096,
+    "gradient_norm": 3.172720432281494,
+    "optimizer_updates": 0,
+    "weights_unchanged": true,
+    "optimizer_steps_unchanged": true
+  },
+  "GPU_probe_seconds": 9.068181484999968,
+  "verification_updates": 47,
+  "verification_original_gold": 273521,
+  "scientific_GPU_cap_seconds": 3199,
+  "total_GPU_cap_seconds": 4800,
+  "probe_weights_used_for_science": false,
+  "science_config": {
+    "path": "configs/phase6/base_ademamix_comparison.json",
+    "sha256": "e980082d37b82bd13f1ff92376fecd4f706868da4dc5765c4a5249a518b033de"
+  },
+  "actual_science_identity": {
+    "pid": 1816,
+    "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+    "start_ticks": "100189"
+  },
+  "actual_science_alive_verified": true,
+  "scientific_job_observed": {
+    "status": "running",
+    "pid": 1816,
+    "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+    "start_ticks": "100189",
+    "started_at": "2026-10-07T07:24:00.121495Z",
+    "config_sha256": "e980082d37b82bd13f1ff92376fecd4f706868da4dc5765c4a5249a518b033de",
+    "GPU_occupancy_seconds": 59.719619719999855,
+    "restart_command": "scripts/run_base_ademamix.ps1 -Worker; inspect PID/boot/start and valid completed checkpoint first; same cumulative budget",
+    "Base_complete": false,
+    "Chat_started": false,
+    "quantization_started": false,
+    "memory_policy": {
+      "torch_version": "2.14.1+cu130",
+      "device": "NVIDIA GeForce RTX 4090",
+      "visible_device_bytes": 25756696576,
+      "process_fraction": 0.8999999999844701,
+      "allocator_allowance_bytes": 23181026918,
+      "expected_worst_peak_bytes": 10745063424
+    },
+    "stage": "ademamix-training",
+    "heartbeat_at": "2026-10-07T07:25:01.120840Z",
+    "completed_updates": 540,
+    "original_teachers": 3056829,
+    "CE_loss": 2.7199888229370117,
+    "latest_checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-ademamix-comparison-20261007/ademamix/checkpoint-00000500.pt"
+  },
+  "UI": "Original UI returned after probe as1412/boot4052/start; now intentionally stopped during scientific GPU job. Launcher will restore original10B after exit.",
+  "CPU_checks": {
+    "optimizer_trainer": 16,
+    "workflow": 12
+  },
+  "initial_CPU_failure": "Budget test fixture2.6seconds/100000gold incorrectly expected3500; corrected fixture to2.0seconds. Original prospective formula/caps/quality thresholds unchanged; run forecast now uses identical direct probe arithmetic.",
+  "new_unique_dataset_tokens": 0,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "old_FFN_and_MHA_caps_remain_closed": true,
+  "next_action": "Monitor exact live science identity and checkpoints; finish original100M, same commonbyte/Japanese/Base80 evaluation, read all80 and apply unchanged quality gates. Only qualifying candidate gets independent trainedseed/fullDEV/protectedTEST/adoption; notify and stop at Base completion."
+}

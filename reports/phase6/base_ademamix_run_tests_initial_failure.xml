@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="12" time="1.698" timestamp="2026-10-07T16:22:40.957244+09:00" hostname="DESKTOP-42CUV0C"><testcase classname="tests.test_base_ademamix_run" name="test_all_step_sum_and_gold_determine_forecast_not_fastest_subset" time="0.000"><failure message="ValueError: Fixed100M forecast exceeds4800s total; no cap/teacher rescue">def test_all_step_sum_and_gold_determine_forecast_not_fastest_subset():
+&gt;       assert science_budget(measured()) == 3500
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_base_ademamix_run.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+probe = {'all32_step_seconds': 2.6, 'all32_original_gold': 100000, 'GPU_occupancy_seconds': 15, 'science_budget_seconds': 3500, ...}
+
+    def science_budget(probe):
+        seconds, gold = probe['all32_step_seconds'], probe['all32_original_gold']
+        elapsed = probe['GPU_occupancy_seconds']
+        if not math.isfinite(seconds) or seconds &lt;= 0 or type(gold) is not int or gold &lt;= 0:
+            raise ValueError('All32 measured step seconds and exact original gold required')
+        speed = gold / seconds
+        if not math.isfinite(speed) or speed &lt;= 0 or not 0 &lt; elapsed &lt;= 180:
+            raise ValueError('Actual finite speed and bounded probe required')
+        budget = math.ceil(100000000/speed*1.3+900)
+        if budget != probe['science_budget_seconds'] or budget+elapsed &gt; 4800 or not probe['science_budget_eligible']:
+&gt;           raise ValueError('Fixed100M forecast exceeds4800s total; no cap/teacher rescue')
+E           ValueError: Fixed100M forecast exceeds4800s total; no cap/teacher rescue
+
+scripts/run_base_ademamix.py:54: ValueError</failure></testcase><testcase classname="tests.test_base_ademamix_run" name="test_invalid_measurement_caps_or_recomputed_budget_refused[all32_step_seconds-0]" time="0.000" /><testcase classname="tests.test_base_ademamix_run" name="test_invalid_measurement_caps_or_recomputed_budget_refused[all32_step_seconds-nan]" time="0.001" /><testcase classname="tests.test_base_ademamix_run" name="test_invalid_measurement_caps_or_recomputed_budget_refused[all32_original_gold-0]" time="0.001" /><testcase classname="tests.test_base_ademamix_run" name="test_invalid_measurement_caps_or_recomputed_budget_refused[all32_original_gold-100000.0]" time="0.000" /><testcase classname="tests.test_base_ademamix_run" name="test_invalid_measurement_caps_or_recomputed_budget_refused[GPU_occupancy_seconds-181]" time="0.000" /><testcase classname="tests.test_base_ademamix_run" name="test_invalid_measurement_caps_or_recomputed_budget_refused[science_budget_seconds-3501]" time="0.000" /><testcase classname="tests.test_base_ademamix_run" name="test_invalid_measurement_caps_or_recomputed_budget_refused[science_budget_eligible-False]" time="0.000" /><testcase classname="tests.test_base_ademamix_run" name="test_invalid_measurement_caps_or_recomputed_budget_refused[all32_step_seconds-5.0]" time="0.000" /><testcase classname="tests.test_base_ademamix_run" name="test_same_teacher_count_cannot_hide_changed_rng_masks_stream_or_pending" time="0.000" /><testcase classname="tests.test_base_ademamix_run" name="test_native_review_rejects_unfinished_actual_teacher_budget" time="0.000" /><testcase classname="tests.test_base_ademamix_run" name="test_finished_result_cannot_be_restarted" time="0.002" /></testsuite></testsuites>
