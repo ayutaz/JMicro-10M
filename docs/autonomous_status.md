@@ -1,3 +1,21 @@
+Base限定・confidence penaltyを実装、CPU23checks/実CUDA保存再開に合格し、同100M比較を永続起動（2026-10-07 JST）。Baseは未完成・未採用。
+
+直前のgoal turnは停止境界の確認のみでno progress。今回はrequired docs/worktreeと実processを再確認、科学GPUjobなし・元UIのみの状態から実作業を再開。[最近3条件の負結果](../reports/phase6/base_recent_objective_failure_synthesis.json)を元の凍結synthesisを上書きせず別参照へ保存。on-policy/SAM/middleは全日本語・全80個別内容と既存全gateで不採用、同cachedCEを再GPU・再採点していない。
+
+[結果前の一条件案](../reports/phase6/base_confidence_penalty_proposal.json)。元10B親410f975d…、native10,001,152parameters/4096codec・TRAIN Web75M/教材20M/story5M・sampler42/batch48・freshAdamW1e-5WD.1constantを保持。元hard body/EOS/maskに対するmeanCE係数1を保ち、同位置の予測へ0.1 KL(p||full native uniform)=0.1(log4096-H(p))を加える。native decoder/head forward一回、single backward/Adam、追加parameters/teacher/newdataなし、元stream会計は一回。閉じたlabel smoothingの0.9CE+0.1uniformCE/KL(u||p)とは方向とgold係数が異なる。同じ0.1でも罰則の強さが等しいとはしない。Pereyra et al.2017の原論文sections3/3.2を参考にした仮説で、日本語10Mの成功・校正不良という原因・飽和した誤予測の改善を実証したものではない。coefficient/T/annealing/threshold/LR/親/data/batch/decoder/capの救済探索はしない。
+
+CPU trainer13checks/3.61秒とrunner10checks/.88秒に合格。独立した確率・CE/KL/logit勾配の式、罰則の方向とlabel smoothingとの差、uniform/peaked/shift、元supervised位置と最終CE/gradient parity、native/tied/元stream、continuous4対saved2+2の全state/history、wrongrecipe/count/kind/Adam/sampler・未完update保存/継続拒否を検証。両PS構文と凍結preflight成功。src/jmicro/model.pyのSHA298bbac7…と旧数値7失敗は保持、元corpus全scan/再取得/Tokenizer再訓練なし。
+
+[実CUDAgate・科学launch記録](../reports/phase6/base_confidence_penalty_probe_launch.json)。probe config712d1064…、Windowsworker13212/actual728611/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start22791197はcomplete・実ps不在。native初期4checks、CUDA continuous4対2+2全12state keys＋finite/history/source/fullsampler全16checks一致。47検証更新/273,521元gold/250,313罰則位置は科学100Mへ加算せずprobe重みを捨てた。最大48x1024/stride512でgold/罰則位置各24,576、CE2.270978/KL5.815214/entropy2.502552/combined2.852499/grad3.103584有限、optimizer0・重み不変true、peak allocated11,913,217,024bytes。
+
+実probe9.440693秒/180上限、3warmup後32実stepの全平均×exact17,698更新×1.3＋900評価余裕からscience3916秒、probe込みforecast3925.440693秒/事前total4800秒内。median速度は診断のみでforecastへ使わず、追加罰則100M位置を新教材や追加正解100Mとはしない。science config SHAa9035f846eedbb8355e362d0b944ce24c81410d883290e0fffb42b72ba9df069と元matched/strong/absolute/historicalWeb全quality policyを結果前に凍結。
+
+Windowsworker37696からactual729058/同boot/start22794332を永続起動・実ps確認。run reports/phase6/base-confidence-penalty-comparison-20261007、確認snapshot420更新/2,370,802original gold/100M、CE2.655339有限・累積38.399354秒/3916上限、latestcheckpoint-00000250.pt。元optimizer/scheduler/RNG/fullsampler/全会計/罰則位置を250完了更新で保存・20更新heartbeat、ログ/PID/boot/startを保持。restartはscripts/run_base_confidence_penalty.ps1 -Worker、exact PID不在と有効completedcheckpointを先に確認し同累積3916秒内のみ。科学中の元UIは停止、終端で元10B親へ復帰予定で、今は復帰完了としない。瞬間nvidia-smi49%/18,237MiBはVRAM予約等を含み、11.1GiBのprobe peak allocatedと同一量ではない。
+
+可搬gate/source/config/launch snapshot archive160,911bytes/SHA c5539dd2848fa62108cae8f2a4b7f77f229b429cbb33718f1257c5c5af0426baをWindowsへコピーし一度照合、科学checkpoints/tensors/metricsはWSLへ保持。100M終端・共通DEV256/日本語192,331,1119/native80・全80内容採否はまだ未完了。独立学習seed/fullDEV/protected finalTEST/adoptionは0、Base完成や品質改善を主張しない。
+
+次はこのexact PID/completedcheckpointを監視→同100M終端/fullstate/sourceとcachedCE全11会計一致→共通DEV256/全日本語/native80→全80を個別に読んで従来全quality gatesで採否・可搬保存。資格ある候補だけ独立学習seed/fullDEV/protected finalTEST/adoptionへ進む。品質Baseの完成を通知して停止、Chat/Dialogue/SFT/量子化/展開・自動pushなし。Python3.12.7はWSL uv、検証済み意味のある変更をlocalcommit。今回は実装・CPU/CUDAgate・実科学起動のprogressでgoal completeではない。以下は過去の履歴。
+
 Base限定・中間層supervisionの100M学習/全日本語・全80内容評価を完了、不採用（2026-10-07 JST）。Baseは未完成・未採用。
 
 [実終了記録](../reports/phase6/base_middle_supervision_comparison_completion.json)・[全採否](../reports/phase6/base_middle_supervision_comparison_review.json)・[全80個別理由](../reports/phase6/base_middle_supervision_notes.json)。前turnの終了記録準備21de67eはprogress。今回actual724938/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start22544695の同jobを実psで確認し50秒以下のwait/再pollを継続、科学終端と実不在を確認。元gold100,000,000/17,698更新、Web75M教材20Mstory5M/sourceEOS657,450・148,625・38,222、digest a1ab0170…/CE valid102,655,467/physical370,838,917/body405,882,136bytes/fullsampler等の全11cachedCE条件true。別会計の同gold100M middle-head評価、decoder forwardは一回、追加parameters/data/unique corpus0。最終checkpoint-00017698.pt/SHA9bc3904604459303bd4ddbc09f1b80c810d212804cb70c372d50b460adbb1e19をWSL保持。staleheartbeat17,680/99,900,395より実terminal17,698/100Mを使う。

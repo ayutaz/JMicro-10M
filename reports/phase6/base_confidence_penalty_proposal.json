@@ -1,0 +1,94 @@
+{
+  "created_at": "2026-10-07T03:45:01.451927Z",
+  "question": "Does fixed negative prediction entropy improve native Japanese Base continuation quality at the same original100M gold budget?",
+  "prior_turn": "Boundary-confirmation-only turn was no progress; middle100M/all80 rejected and committed40ac32c before it. No live scientific GPU job at preparation.",
+  "references": {
+    "base_failure_route_synthesis.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_failure_route_synthesis.json",
+      "sha256": "2384411b47272b53b9e4eda981a69ff67e335069ca125a43e551c892515826b2"
+    },
+    "base_recent_objective_failure_synthesis.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_recent_objective_failure_synthesis.json",
+      "sha256": "fac67855f7e041d18aaf9d8055a9829587a72a61f7d14019704c8c404ceb4133"
+    },
+    "base_middle_supervision_comparison_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_middle_supervision_comparison_completion.json",
+      "sha256": "4829d93b24a02a3ded203258887a06934d067f285ee9a4326333dfc1ef8a1975"
+    },
+    "base_label_smoothing_comparison_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_label_smoothing_comparison_completion.json",
+      "sha256": "9a5904a9db1398667e24aec1f578c0aa6587c3ee107dd789638f33ff4aeee6c5"
+    },
+    "base_sam_comparison_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_sam_comparison_completion.json",
+      "sha256": "2f31f34c1235d3f13589e54c44fe695e748d63a11af1103c249de2fd44e28693"
+    },
+    "base_on_policy_teacher_comparison_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_on_policy_teacher_comparison_completion.json",
+      "sha256": "022131b4a404867cc07ec69876ea069dfed03c91cafc8f96a33b1d96d834bfa5"
+    }
+  },
+  "novelty": "Registry and trainer inspection found no implemented fixed KL(student prediction||full native uniform) confidence loss. Closed uniform label smoothing used0.9CE+0.1uniform cross-entropy/opposite KL(uniform||prediction). This keeps original CE coefficient1 and adds0.1 reverse-uniform KL. The numerical0.1 does not imply equal regularization strength. Not a repeat of softened gold, teacher KL, middle-head CE or weight perturbation.",
+  "primary_sources": [
+    "https://arxiv.org/abs/1701.06548",
+    "https://arxiv.org/html/1701.06548v1"
+  ],
+  "literature_limit": "Pereyra et al.2017 sections3/3.2 motivate negative entropy and reversed uniform KL; Penn Treebank language-model experiments are not Japanese10M continuation evidence or an exact reproduction. Coefficient0.1 is one fixed conservative exploratory choice, not an asserted literature optimum. Calibration has not been proven the cause; at a saturated delta the entropy-only gradient also vanishes.",
+  "recipe": {
+    "coefficient": 0.1,
+    "temperature": 1.0,
+    "target": "original_hard_body_and_EOS_targets_unchanged",
+    "regularizer": "mean_KL_student_full_native_vocab_prediction_to_uniform",
+    "loss": "original_mean_CE_plus_0.1_times_log_vocab_minus_mean_prediction_entropy",
+    "gold_CE_coefficient": 1.0,
+    "mask": "only_original_supervised_positions",
+    "annealing": false,
+    "entropy_threshold": null,
+    "extra_parameters": 0,
+    "decoder_forwards": 1,
+    "optimizer": "fresh_AdamW_lr1e-5_wd0.1_constant",
+    "final_clip_norm": 1.0,
+    "inference": "unchanged_full_native_depth_greedy"
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "goals": {
+    "web": 75000000,
+    "textbook": 20000000,
+    "story": 5000000
+  },
+  "batch": 48,
+  "seed": 42,
+  "native_parameters": 10001152,
+  "extra_parameters": 0,
+  "original_teachers": 100000000,
+  "confidence_positions": 100000000,
+  "new_unique_dataset_tokens": 0,
+  "control_reused_GPU_seconds": 0,
+  "total_GPU_cap_seconds": 4800,
+  "probe_GPU_cap_seconds": 180,
+  "CPU_checks": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_confidence_penalty_trainer_tests.xml",
+    "sha256": "9a72813cf3c179175d3690401ab49e62fb1b6e6090ae0f4082b793362bc15ca8"
+  },
+  "accounting": "One native decoder/head forward; same hard-gold body/EOS/input/mask stream counted once. KL(p||uniform)=log4096-H(p) evaluated at those same100M positions; it is not new labels, data or extra teacher forwards. Original mean CE+0.1mean KL, one backward and Adam update; unchanged inference.",
+  "acceptance": "Independent analytic CE/KL/logit-gradient/sign/mask/bounds/shift tests; native final CE/gradient parity; full state and original source/save-resume. Actual CUDA4 vs2+2 and all48x1024 finite backward/memory;32 actual postwarmup times, exact17698-update mean forecast*1.3+900 plus actual probe<=4800. Reuse cachedCE and require fullstream/sampler; commonDEV256/Japanese192,331,1119/all80 and unchanged matched/strong/absolute/historicalWeb gates. Only a qualified candidate gets independent trainedseed/fullDEV/protected finalTEST/adoption.",
+  "failure": "Close this fixed condition on numeric/state/stream/budget or quality failure. No coefficient/temperature/annealing/threshold/LR/parent/data/batch/decoder/cap rescue or automatic extension.",
+  "limitations": "One conservative-LR mature-parent transition and repeatedly used nonblind DEV. Entropy regularization can worsen hard-gold prediction and EOS. Failure does not prove all entropy objectives, different data or learning amounts ineffective.",
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false
+}

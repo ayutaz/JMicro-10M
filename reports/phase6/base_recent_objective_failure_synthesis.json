@@ -1,0 +1,243 @@
+{
+  "status": "three_recent_native_same100M_objective_conditions_rejected",
+  "created_at": "2026-10-07T03:40:00.449399Z",
+  "historical_synthesis": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_failure_route_synthesis.json",
+    "sha256": "2384411b47272b53b9e4eda981a69ff67e335069ca125a43e551c892515826b2"
+  },
+  "historical_synthesis_changed": false,
+  "cached_control": {
+    "BPB": 0.998487162513845,
+    "rates": {
+      "outputs": 80,
+      "eos": 19,
+      "repetition": 45,
+      "unicode_failure": 0,
+      "role_leak": 0,
+      "empty": 0
+    },
+    "grammar2": 44,
+    "relevance2": 25,
+    "coherent": 2,
+    "appropriate": 2,
+    "notes_sha256": "5a36aa6d4914260d1975974ae0fbee6c1e0024d900ea8103da970fdbc4ee9369",
+    "generation_sha256": "73a952a4e08ca8cfffa229fdb8c8f497d0373ff0646ca4b4f5cecd90a27e644b",
+    "Japanese": {
+      "semantics": 0.625,
+      "jblimp": 0.7734138972809668,
+      "jcqa": 0.35031277926720283
+    }
+  },
+  "conditions": [
+    {
+      "condition": "on_policy_teacher",
+      "completion": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_on_policy_teacher_comparison_completion.json",
+        "sha256": "022131b4a404867cc07ec69876ea069dfed03c91cafc8f96a33b1d96d834bfa5"
+      },
+      "original_gold_positions": 100000000,
+      "new_unique_corpus": 0,
+      "candidate": {
+        "BPB": 0.9963855283048731,
+        "rates": {
+          "outputs": 80,
+          "eos": 22,
+          "repetition": 46,
+          "unicode_failure": 0,
+          "role_leak": 0,
+          "empty": 0
+        },
+        "grammar2": 30,
+        "relevance2": 24,
+        "coherent": 3,
+        "appropriate": 6,
+        "notes_sha256": "3beec2b508158c57f84e7bc34d7ffc5a7b2cf23fea46a35ad4b47cad4dabe041",
+        "generation_sha256": "64c591e33c4960ae918263f6c1abea273d9938ebdada458bac8bf8e415ebeaf3",
+        "Japanese": {
+          "semantics": 0.6458333333333334,
+          "jblimp": 0.7794561933534743,
+          "jcqa": 0.3521000893655049
+        }
+      },
+      "matched_gates": {
+        "checks": {
+          "coherence_gain_at_least8": false,
+          "paired_CI_lower_above0": false,
+          "EOS_nonworsening": true,
+          "repetition_nonworsening": false,
+          "no_empty_role_unicode": true,
+          "BPB_gate": true,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": 1,
+        "CI95": [
+          -0.025,
+          0.0625
+        ]
+      },
+      "absolute_gates": {
+        "grammar_at_least56": false,
+        "coherence_at_least27": false,
+        "appropriate_at_least27": false,
+        "EOS_at_least37": false,
+        "repetition_at_most18": false,
+        "no_empty_role_unicode": true
+      },
+      "historical_Web": {
+        "EOS_at_least8_more": true,
+        "repetition_no_worse": true,
+        "no_empty_role_unicode": true,
+        "BPB_degradation_at_most1percent": false,
+        "no_punctuation_only_stops": true
+      },
+      "GPU_seconds_including_probe": 2209.094531035982
+    },
+    {
+      "condition": "sam",
+      "completion": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_sam_comparison_completion.json",
+        "sha256": "2f31f34c1235d3f13589e54c44fe695e748d63a11af1103c249de2fd44e28693"
+      },
+      "original_gold_positions": 100000000,
+      "new_unique_corpus": 0,
+      "candidate": {
+        "BPB": 0.9994859554644886,
+        "rates": {
+          "outputs": 80,
+          "eos": 12,
+          "repetition": 44,
+          "unicode_failure": 0,
+          "role_leak": 0,
+          "empty": 0
+        },
+        "grammar2": 22,
+        "relevance2": 23,
+        "coherent": 1,
+        "appropriate": 3,
+        "notes_sha256": "2de393a2b409acce5461730443e200e0e82ed5c93719d23ea87a8830344c4b3e",
+        "generation_sha256": "3e2bf31e287852a71d92be3c5dd430ae3c3d0483b533d5da0404ff095d7fb02d",
+        "Japanese": {
+          "semantics": 0.6354166666666666,
+          "jblimp": 0.770392749244713,
+          "jcqa": 0.35031277926720283
+        }
+      },
+      "matched_gates": {
+        "checks": {
+          "coherence_gain_at_least8": false,
+          "paired_CI_lower_above0": false,
+          "EOS_nonworsening": false,
+          "repetition_nonworsening": true,
+          "no_empty_role_unicode": true,
+          "BPB_gate": false,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": -1,
+        "CI95": [
+          -0.0375,
+          0.0
+        ]
+      },
+      "absolute_gates": {
+        "grammar_at_least56": false,
+        "coherence_at_least27": false,
+        "appropriate_at_least27": false,
+        "EOS_at_least37": false,
+        "repetition_at_most18": false,
+        "no_empty_role_unicode": true
+      },
+      "historical_Web": {
+        "EOS_at_least8_more": true,
+        "repetition_no_worse": true,
+        "no_empty_role_unicode": true,
+        "BPB_degradation_at_most1percent": false,
+        "no_punctuation_only_stops": true
+      },
+      "GPU_seconds_including_probe": 2630.5644376760174
+    },
+    {
+      "condition": "middle_supervision",
+      "completion": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_middle_supervision_comparison_completion.json",
+        "sha256": "4829d93b24a02a3ded203258887a06934d067f285ee9a4326333dfc1ef8a1975"
+      },
+      "original_gold_positions": 100000000,
+      "new_unique_corpus": 0,
+      "candidate": {
+        "BPB": 1.0037105165554707,
+        "rates": {
+          "outputs": 80,
+          "eos": 14,
+          "repetition": 44,
+          "unicode_failure": 0,
+          "role_leak": 0,
+          "empty": 0
+        },
+        "grammar2": 19,
+        "relevance2": 20,
+        "coherent": 1,
+        "appropriate": 3,
+        "notes_sha256": "fb17668751b0577c84e875e8a42dd53dc47aef9cd8695eaeb5a551e94ea91685",
+        "generation_sha256": "be17d6639e6ff5f4c8d13b7920eb6cbe1a48d84eb514d8d1002b02ecbdb5e383",
+        "Japanese": {
+          "semantics": 0.6614583333333334,
+          "jblimp": 0.7794561933534743,
+          "jcqa": 0.3489722966934763
+        }
+      },
+      "matched_gates": {
+        "checks": {
+          "coherence_gain_at_least8": false,
+          "paired_CI_lower_above0": false,
+          "EOS_nonworsening": false,
+          "repetition_nonworsening": true,
+          "no_empty_role_unicode": true,
+          "BPB_gate": false,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": -1,
+        "CI95": [
+          -0.0625,
+          0.025
+        ]
+      },
+      "absolute_gates": {
+        "grammar_at_least56": false,
+        "coherence_at_least27": false,
+        "appropriate_at_least27": false,
+        "EOS_at_least37": false,
+        "repetition_at_most18": false,
+        "no_empty_role_unicode": true
+      },
+      "historical_Web": {
+        "EOS_at_least8_more": true,
+        "repetition_no_worse": true,
+        "no_empty_role_unicode": true,
+        "BPB_degradation_at_most1percent": false,
+        "no_punctuation_only_stops": true
+      },
+      "GPU_seconds_including_probe": 1480.3736064040277
+    }
+  ],
+  "conclusions": [
+    "No candidate is an adopted Base. All3 original100M comparisons remain rejected under the same quality gates.",
+    "On-policy feedback, same-batch perturbation and intermediate CE did not establish free-generation coherence gains. Small choice-score or repetition changes are not Base completion.",
+    "These results do not prove data insufficiency, an architecture limit or overconfidence as the sole cause. No failed source/parent/optimizer/layer coefficient sweep should be restarted."
+  ],
+  "next_candidate": "One prospective confidence-penalty condition: original CE plus0.1 KL(p||native full-vocab uniform). Distinct KL direction and unchanged hard-label CE versus closed uniform-label smoothing. Existing repetition makes this worth a bounded test but is not evidence of a causal calibration defect. Not selected by old DEV scores or an optimized coefficient.",
+  "next_action": "Implement independent analytic-loss/gradient/masking, CPU fullstate and CUDA save/resume/capacity/budget gate before a single same100M study. Preserve cachedCE/strong/absolute/historicalWeb and final independentseed/fullDEV/protectedTEST/adoption requirements.",
+  "CPU_seconds": 0.009786641981918365,
+  "GPU_seconds": 0,
+  "new_scientific_gold_positions": 0,
+  "new_content_judgments": 0,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "limitations": "Repeated fixed DEV, nonblind content and one learned seed; synthesis reuses authoritative ratings without new evaluations."
+}
