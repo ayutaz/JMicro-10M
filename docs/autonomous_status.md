@@ -1,3 +1,15 @@
+Base限定・反復計算案の重複調査を完了、追加学習は選ばず（2026-10-07 JST）。Baseは未完成・未採用。
+
+最新のユーザー境界を確認した。評価済み・品質合格・最終検証と採用を終えたBaseが完成したら通知して停止し、Chat/Dialogue/SFT/量子化/展開へ進まない。required docs/clean worktreeとactual processを確認。科学740850/744364は不在、元10B UI744423だけ稼働し、今回はUIを停止せず新GPU0・新教師0・新生成採点0。
+
+[反復計算の重複調査](../reports/phase6/base_recurrent_compute_novelty_review.json)を保存した。最初のloop/recurrent keyword検索だけでは既存gated sharingを見落とすため、実model/proposal/reviewer/testsを直接確認。13physical/26logical・追加13gateの同100M研究は既に終了し、文法68/一貫性30/適切36/EOS73/反復7/BPB1.035926（全80）。同親matched CEは一貫性32/適切37/反復6/BPB1.035667。絶対screenは通るが同対照の改善、strong staged比較、元Web BPB保持の全条件を満たさず不採用。これは直近ordinary100M CE対照とは親/教材/optimizer履歴が異なる既存比較であり、七条件snapshotへ同じ条件として追加しない。
+
+一次研究Huginn/DeepLoop/Training-Free Looped Transformersを確認。共有重みの反復自体は既存研究と重なり、単純反復の悪化、共有勾配・residual scaling、wide windowやcache policyの注意がある。whole-stack二回と既存immediate gated方式は数学的に異なるが、今回のvisit order/gate初期化/damping変更は旧固定recipeの救済へ重なるため選ばない。全recurrenceが無効、日本語10Mでdamped Eulerを実検証済み、容量限界を証明したとはしない。旧source/config/checkpoints/review/ratings/全品質条件は不変。docs/03_architecture.mdの「Layer Sharing未実装」を実証拠に合わせ修正した。
+
+次の具体的アクションは、同architecture文書で未実装のReLU² FFNについてPrimer一次論文の定義/ablationと既存fresh baseline/実予算を確認し、一つの比較を選ぶか断るところまでの限定調査。候補はSwiGLU640対two-projection squared-ReLU960（hidden256で3×256×640=2×256×960のFFN行列予算）、同13L/GQA/Tokenizer/同train原文。現成熟CEをfresh対照へ流用しない。Primerのconvolution込みの成果をこの一要因の高速化/品質証明へ転用せず、追加convolutionやMHA配分の救済はしない。まだmodel/trainer/config/GPUは未実装・未選定。選ぶ場合は教師/source/LR/seed/上限/全品質条件を結果前に固定し、actual CUDA/保存再開/速度を先行させる。
+
+有資格候補だけ独立学習seed/full DEV/保護final TEST/adoptionへ進む。Base未完成でgoal completeではない。PythonはWSL pinned3.12.7 uv、意味のある検証済み進捗をlocal commit、pushなし。以下は歴史記録。
+
 Base限定・七条件の負結果を保持し、別のtoken表現幾何仮説を短い実GPU診断で終了（2026-10-07 JST）。Baseは未完成・未採用。
 
 前turnのSigsoftmax同100M/全日本語/全80不採用を03069bcへ保存したprogress。今回はrequired docs/clean worktree・実processを確認し科学740850は不在、元UI742417のみ稼働。[七条件companion](../reports/phase6/base_completed_objective_studies_v3_20261007.json)へ前の六条件snapshotとSigsoftmax終了record/review/notes SHA・同cachedCE/strongを照合して追加。旧六/五/三条件snapshot・13row inventory・旧数値失敗を上書きしない。700M originalgold exposuresは同100Mstreamを七条件で使った会計であり、新unique700M教材ではない。七条件とも既存全品質条件未達。

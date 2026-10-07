@@ -1,0 +1,192 @@
+{
+  "created_at": "2026-10-07T06:50:46.2202372Z",
+  "status": "recurrent_compute_candidate_declined_after_prior_route_and_primary_source_review",
+  "question": "Is applying the existing 13 physical decoder blocks twice an independent untested Base intervention?",
+  "comparison_considered": "Same 10001152 native weights and original100M gold, two whole-stack visits versus one; additional parameters0, more compute and KV memory.",
+  "decision": "Do not implement or launch the proposed full-stack recurrence or damped layer-reuse variant. Prior gated immediate sharing already tested26 invocations; changing visit order, gate initialization or residual scaling would reopen its closed recipe rather than establish a clean independent route.",
+  "decision_scope": "Conservative project scope decision; whole-stack recurrence and damped Euler are mathematically different from the old gated model. Their Japanese10M performance was not measured, and a universal recurrence failure is not claimed.",
+  "historical_sharing": {
+    "physical_blocks": 13,
+    "logical_invocations": 26,
+    "native_parameters": 10001152,
+    "additional_gate_parameters": 13,
+    "original_gold_tokens": 100000000,
+    "candidate": {
+      "BPB": 1.0359260398203731,
+      "rates": {
+        "outputs": 80,
+        "eos": 73,
+        "repetition": 7,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 68,
+      "relevance2": 53,
+      "coherent": 30,
+      "appropriate": 36,
+      "notes_sha256": "40040c25ee7f83f4a59a9b6549f1c205cfa10e93525ed6d445ee5345c1201519",
+      "generation_sha256": "77e7a8b0e43d7800494c7280ca919cb4fdc0e18fd2ee47659de5ab48f9bb0160",
+      "Japanese": {
+        "semantics": 0.5364583333333334,
+        "jblimp": 0.7643504531722054,
+        "jcqa": 0.2940125111706881
+      }
+    },
+    "matched_control": {
+      "BPB": 1.0356667036495277,
+      "rates": {
+        "outputs": 80,
+        "eos": 69,
+        "repetition": 6,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 65,
+      "relevance2": 52,
+      "coherent": 32,
+      "appropriate": 37,
+      "notes_sha256": "366209389693d5b382ab5a4f4001e0dd6c52fd10c33f9304672a195607b51e69",
+      "generation_sha256": "c46048934bbc1b710ba198ec6a7eb868e21c5a9beb7a731601f29414ce8d8cc6",
+      "Japanese": {
+        "semantics": 0.5416666666666666,
+        "jblimp": 0.7613293051359517,
+        "jcqa": 0.2975871313672922
+      }
+    },
+    "quality_comparisons": {
+      "native_CE": {
+        "checks": {
+          "coherence_gain_at_least8": false,
+          "paired_CI_lower_above0": false,
+          "EOS_nonworsening": true,
+          "repetition_nonworsening": false,
+          "no_empty_role_unicode": true,
+          "BPB_gate": true,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": -2,
+        "CI95": [
+          -0.125,
+          0.075
+        ]
+      },
+      "strong_staged": {
+        "checks": {
+          "coherence_gain_at_least8": false,
+          "paired_CI_lower_above0": false,
+          "EOS_nonworsening": false,
+          "repetition_nonworsening": false,
+          "no_empty_role_unicode": true,
+          "BPB_gate": true,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": 7,
+        "CI95": [
+          -0.03781249999999998,
+          0.2125
+        ]
+      }
+    },
+    "absolute_dev_screen": {
+      "grammar_at_least56": true,
+      "coherence_at_least27": true,
+      "appropriate_at_least27": true,
+      "EOS_at_least37": true,
+      "repetition_at_most18": true,
+      "no_empty_role_unicode": true
+    },
+    "original_Web": {
+      "EOS_at_least8_more": true,
+      "repetition_no_worse": true,
+      "no_empty_role_unicode": true,
+      "BPB_degradation_at_most1percent": false,
+      "no_punctuation_only_stops": true
+    },
+    "eligible_for_final_Base_validation": false,
+    "no_rescue": "No gate LR/init/count/sign constraint/reuse order/depth/parent/source/mask/native LR/batch/precision/decoder/checkpoint sweep. Failed finite/quality/cost branch ends. No automatic100M extension."
+  },
+  "primary_sources": [
+    {
+      "url": "https://arxiv.org/abs/2502.05171",
+      "relevance": "Recurrent-depth architecture trained at3.5B parameters/800B tokens; motivates compute axis, not evidence for Japanese10M mature-parent transfer."
+    },
+    {
+      "url": "https://arxiv.org/abs/2607.13491v2",
+      "relevance": "Tied-depth residual scaling and aggregated repeated-visit gradients; Post-LN DeepNorm method is not a direct patch to the native pretrained Pre-RMSNorm blocks."
+    },
+    {
+      "url": "https://arxiv.org/html/2605.23872v1",
+      "relevance": "Sections2.3/D: naive reapplication and wide windows can degrade; damped substeps differ from naive recurrence. Inference-only wrapper, per-cell search and cache policy do not establish a learned native Japanese Base."
+    }
+  ],
+  "novelty_search": {
+    "directories": [
+      "scripts",
+      "configs",
+      "tests",
+      "reports/phase6"
+    ],
+    "first_pattern_limitation": "A loop/recurrent-depth keyword search missed the earlier gated immediate sharing; direct inspection of gated_shared_model/proposal/review found the overlap. Never interpret absence of one keyword as absence of a tested mechanism.",
+    "inspected": [
+      "scripts/gated_shared_model.py",
+      "scripts/define_gated_shared_comparison.py",
+      "scripts/review_gated_shared_comparison.py",
+      "tests/test_gated_shared.py"
+    ]
+  },
+  "next_bounded_research": {
+    "candidate": "Squared-ReLU FFN already listed in docs/03_architecture.md, not selected for GPU yet",
+    "primary_source": "https://arxiv.org/abs/2109.08668",
+    "local_search": "rg -l -i relu/squared_relu/primer across scripts, configs/phase6, tests and reports/phase6: no matches",
+    "comparison_to_define": "Fresh SwiGLU640 versus two-projection squared-ReLU960 at hidden256:3*256*640 equals2*256*960 FFN matrix parameters. Same13layers/GQA/Tokenizer/causal body+EOS and paired source stream. Need distinct fresh control; mature cachedCE is not a fresh-training control.",
+    "limitations": "Primer combines squared ReLU with QKV depthwise convolution; its speed or quality gains are not evidence for the isolated activation versus SwiGLU or Japanese10M. No convolution or MHA allocation rescue is proposed.",
+    "completion_condition": "Inspect primary FFN definition/ablation and existing fresh control/budget evidence, then select or decline one exact comparison before implementing any GPU workflow. If selected, freeze token/source/LR/seed/budget and require actual CUDA/resume/timing before learning.",
+    "no_automatic_launch": true
+  },
+  "references": {
+    "scripts/gated_shared_model.py": {
+      "path": "scripts/gated_shared_model.py",
+      "sha256": "07ecb95fb38db330eb566332aaa69c9752a9c6491cd98e23d929f1cc2356f6da"
+    },
+    "scripts/define_gated_shared_comparison.py": {
+      "path": "scripts/define_gated_shared_comparison.py",
+      "sha256": "53621fd99cd0d5d8a2227bfddd80f68e762db147dfc34a900017b77ee25fee9e"
+    },
+    "reports/phase6/gated_shared_proposal.json": {
+      "path": "reports/phase6/gated_shared_proposal.json",
+      "sha256": "e5564618ba5333140a5dc3a18b77c90bf9e3f2b1a0b1b8e291683114a493d0cd"
+    },
+    "reports/phase6/gated_shared_comparison_review.json": {
+      "path": "reports/phase6/gated_shared_comparison_review.json",
+      "sha256": "f93ff38b6cbd3cacf11ba4ed1054e59bb35805013edcfea3ed5cff72015d9d03"
+    },
+    "reports/phase6/gated_shared_comparison_completion.json": {
+      "path": "reports/phase6/gated_shared_comparison_completion.json",
+      "sha256": "9ef8553215231de40e7d9c541aa7d2c50507fae28c50cbb514bf288274d21647"
+    },
+    "reports/phase6/base_completed_objective_studies_v3_20261007.json": {
+      "path": "reports/phase6/base_completed_objective_studies_v3_20261007.json",
+      "sha256": "716b4ef75300e630d76467e75146734777dfd31c8023fb2449548ffb0f1f7252"
+    },
+    "src/jmicro/model.py": {
+      "path": "src/jmicro/model.py",
+      "sha256": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83"
+    }
+  },
+  "new_GPU_seconds": 0,
+  "new_scientific_gold_tokens": 0,
+  "new_unique_dataset_tokens": 0,
+  "new_generation_ratings": 0,
+  "historical_files_overwritten": false,
+  "quality_criteria_unchanged": true,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "user_stop_boundary": "Notify and stop only after evaluated qualified/adopted Base. Do not enter Chat, Dialogue, SFT, quantization, deployment or push."
+}

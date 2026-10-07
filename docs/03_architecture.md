@@ -1,6 +1,6 @@
 # アーキテクチャ設計
 
-現在の実装はQK-Normあり/なしの両方をサポートする。[Phase 5](23_phase5_completion.md)でT4K / NoQK-Norm / LR 0.002を本学習候補に選定した。ReLU²、Layer Sharing、hybridは未実装の後半候補。設定を変える場合はparameter予算・数値一致・GPU容量を別runで検証する。NoNormのHF/Llama・GGUF/Llama adapterは実装済み。[④⑤](30_phase6_readiness_execution.md)で学習済み重みの短/1024・full/cacheの全12比較をCPU精度profileで検証した。未修正stock FP32の失敗は保持する。
+現在の実装はQK-Normあり/なしの両方をサポートする。[Phase 5](23_phase5_completion.md)でT4K / NoQK-Norm / LR 0.002を本学習候補に選定した。ReLU²とhybridは未実装の候補。Layer Sharingは13個のnative blockを各2回使うzero-gated方式を実装・実100M学習・全80評価済みで、[既存採否](../reports/phase6/gated_shared_comparison_review.json)では不採用。下の初期Layer Sharing案を未検証の一般候補と扱わない。[反復計算の重複調査](../reports/phase6/base_recurrent_compute_novelty_review.json)を参照。設定を変える場合はparameter予算・数値一致・GPU容量を別runで検証する。NoNormのHF/Llama・GGUF/Llama adapterは実装済み。[④⑤](30_phase6_readiness_execution.md)で学習済み重みの短/1024・full/cacheの全12比較をCPU精度profileで検証した。未修正stock FP32の失敗は保持する。
 
 **実装状況（2026-10-03）**: T8K/T4Kを実装し、実parameter数9,772,800／10,002,816、因果性、padding/cache、HF/native float GGUFをCPUで検証済み。[Phase 3完了記録](19_phase3_completion.md)。Phase 4で両モデルのCUDA/BF16学習・再開・評価・容量を検証済み。Phase 5では同一token予算と近い時間予算の結果からT4K NoNormを選定した。近いbytes予算ではT8Kが僅かに良く、モデルfamilyと予算に依存した選択。Base/Chatの品質目標は未達で、以下の派生案は研究候補として残す。
 
