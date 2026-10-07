@@ -1,3 +1,21 @@
+Base限定・fresh同10M ReLU² FFNを実装、両CPU/CUDA検証合格だが各300Mの固定予算を超え、本学習を開始せず終了（2026-10-07 JST）。Baseは未完成・未採用。
+
+前turnの反復計算重複調査を254cf7eへ保存したprogress。required docs/worktreeと実processを確認し元10B UI744423のみ稼働。[Primer一次論文](https://arxiv.org/html/2109.08668v2)のSquared ReLU/Figure6とA.7 insertion/ablationを確認し、FFN比較を事前定義した。全Primerのconvolution込み高速化を日本語10Mの一要因の証明にしない。旧GQA/MHA300Mの9000秒超過・本学習0とgated sharing不採用は維持。
+
+[事前案](../reports/phase6/base_relu_squared_proposal.json)、[tagged model](../scripts/base_relu_squared_model.py)、[fresh trainer](../scripts/base_relu_squared_trainer.py)、[typed評価](../scripts/base_relu_squared_evaluation.py)を実装。SwiGLU640の3×256×640とReLU²960の2×256×960は同FFN行列予算、両native実10,001,152。13L/Q4-KV2/Tokenizer4096/NoNorm/RMSNorm/causal/元body+EOSを維持し、FFN関数と内部幅が同時に変わる比較と明記。fresh seed42 scaffoldの非FFN重み/RNGは同じ、candidate FFNだけCPU forkでfresh normal(.02)を初期化、実optimizerはactual parameters各一回。元10Bやprobe重みを科学親へ使わず、成熟cachedCEをfresh対照へ流用しない。
+
+実CPU22checks/4.46秒は独立activation/解析gradient、同非FFN/RNG/tie/params/optimizer、full/padded/causal/fast/cache、taggedロード/stock拒否、元sampler/gold/EOS/schedule、両saved4vs2+2全state/history、wrong kind/arm/width/Adam/source/scheduler/nonfinite拒否、Adam後例外のsave/continue拒否、NativeLikelihood実NLLとfactoryの復帰に合格。初回はpytest.approxへ勾配付きtensorを直接渡した1fixtureが失敗（15pass）、detach+floatへ修正した初期XMLを保持。数値・品質閾値の変更なし。CPUは有用品質/GPUの代入にしない。
+
+[凍結probe](../configs/phase6/base_relu_squared_probe.json)はCPU22/source/payload SHA、accepted2Bの既存bindingを再利用し全corpus再scanなし。batch80/seed42/freshAdamW peak.002/warmup5M/cosine final1e-5、各TRAIN Web225M/教材60M/story15Mを固定。事前probe180秒・総GPU14400秒は結果前に定義した新FFN研究の条件で、旧MHA予算を増やした扱いにしない。永続launcher Windows26952、actual745144/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start23952777を実psで監視して終了/不在を確認。
+
+[実終了記録](../reports/phase6/base_relu_squared_probe_completion.json)。GPU22.554601秒/180、両CUDA/BF16/Flash4連続対2save+2の各13state/history checksと初期5checksが全true。86検証更新/824,014goldは科学と別、stressは各80×1024/40960loss位置・optimizer0/重み不変、追加81,920backward位置は学習量へ足さない。peak SwiGLU17,791,499,264bytes/ReLU²19,971,449,856bytesは実90%resident allowance内。元model.py/source/Tokenizer不変、科学教師・新品質評価・採用0。
+
+両同32測定batchは308,066元goldずつで全source/digest/draw/mask/EOS/LR一致。全step時間SwiGLU5.518083秒/ReLU²4.912113秒、sampler待ちは1.794552秒/.186533秒。wall throughput55,828/62,716gold/sはReLU²約12%高いが、常にSwiGLU先・同batchのReLU²後で読み込みcache条件を揃えていない。待ちを除く残りは3.723531/4.725580秒で逆向き（純GPU profiler時間ではない）。従ってarchitecture高速化/キャッシュ因果を証明したとしない。sampler待ちを引いた値へ予算を差し替えず、元式300M×全32step秒/全gold×1.3+900から各7886/7119秒＋probe=15,027.554601秒（約4時間10分）>事前14,400秒。science_budget_eligible=false、固定各300M FFN比較を閉じ、上限増加/教師縮小/batch/backend/decoder救済・自動延長なし。性能の負結果や全ReLU²無効ではなく予算不合格である。
+
+元10B UIactual745223/同boot/start23955423へ復帰し、実aliveとHTTP親410f975d…/10,000,007,168/busy=falseを確認。54text/4,205,593bytes・gzip1,170,170bytes/SHA899cef77cddc467d6aaa8156535345db8841e3cb86ed91f9349821a2678e006cの可搬証拠をWindowsへコピーして一度照合、tensor/corpusは除外しnative full checkpoints保持。
+
+次の具体的アクションは、保存済みpaired timingのsource待ちと測定順/cacheの交絡から、モデルや教師を変えない独立の入力供給・測定妥当性調査を定義する。先に同TRAIN固定32×80のCPU供給比較・元row/digest/full sampler保持・CPU30秒/新GPU0・終了条件を固定し、入力供給の改善余地と測定条件を判断するところまでに限定する。未測定の速度を仮定して旧FFN/MHA capを再開せず、cache条件を揃えずarchitecture比較を採用しない。合格学習候補だけ最終independent trainedseed/fullDEV/protectedTEST/adoptionへ進む。品質Base完成で通知して停止、Chat/Dialogue/SFT/量子化/展開・pushなし。Base未完成でgoal completeではない、PythonはWSL pinned3.12.7 uv、検証済み進捗をlocal commit。以下は歴史記録。
+
 Base限定・反復計算案の重複調査を完了、追加学習は選ばず（2026-10-07 JST）。Baseは未完成・未採用。
 
 最新のユーザー境界を確認した。評価済み・品質合格・最終検証と採用を終えたBaseが完成したら通知して停止し、Chat/Dialogue/SFT/量子化/展開へ進まない。required docs/clean worktreeとactual processを確認。科学740850/744364は不在、元10B UI744423だけ稼働し、今回はUIを停止せず新GPU0・新教師0・新生成採点0。
