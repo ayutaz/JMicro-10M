@@ -1,0 +1,187 @@
+{
+  "created_at": "2026-10-07T10:50:48.793803Z",
+  "status": "paired_output_mixture200M_review_complete",
+  "actual_identity": {
+    "pid": 20243,
+    "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+    "start_ticks": "1022196"
+  },
+  "actual_process_absent_verified": true,
+  "scientific_CE_teacher_tokens": 200000000,
+  "checkpoints": {
+    "mixture_contexts": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-output-mixture-comparison-20261007/mixture_contexts/checkpoint-00017698.pt",
+      "sha256": "4babded5c01b1b60d6561ec0c7081b32100ce2353e06471a4c815e00003f1b72"
+    },
+    "mixture_softmaxes": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-output-mixture-comparison-20261007/mixture_softmaxes/checkpoint-00017698.pt",
+      "sha256": "e41a2f1dba3585a3e77032a5ffcd74ffaa84b9d3fc2becdae07f2c7a0bd8521a"
+    }
+  },
+  "mixture_policy": {
+    "kind": "paired_two_residual_rank32_contexts_MoC_or_MoS_v1",
+    "experts": 2,
+    "rank": 32,
+    "residual": "hidden+up(tanh(down(hidden)))",
+    "down_initializer_std": 0.02,
+    "up_initializer": 0.0,
+    "prior_weights_initializer": 0.0,
+    "initial_prior": [
+      0.75,
+      0.25
+    ],
+    "initialization_seed": 2026100741,
+    "shared_original_vocabulary": true,
+    "distribution_computation": "FP32_log_space",
+    "additional_decoder_passes": 0
+  },
+  "study_parameters_each": 10034434,
+  "added_physical_parameters_each": 33282,
+  "GPU_occupancy_seconds": 2950.119308042,
+  "GPU_cap_seconds": 6880,
+  "total_GPU_seconds_including_probe": 2967.255924401001,
+  "config_sha256": "c75d54dff299a69258a3dfedb2525e68b01db7a227037f6d883165e04cf58a15",
+  "review": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_output_mixture_comparison_review.json",
+    "sha256": "a758c3febad5e29f5a1a3c5dff48c11e2566936ca5b8bfa2b4a18addfe7a5b5d"
+  },
+  "exact_text_rating_reuse": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_output_mixture_rating_reuse.json",
+    "sha256": "a9d9ec564dee3c3e4a4f9297e38f5dc50602937c616e7a7c23e66a3356ee955c"
+  },
+  "summaries": {
+    "strong_staged": {
+      "BPB": 1.1336128657420816,
+      "rates": {
+        "outputs": 80,
+        "eos": 76,
+        "repetition": 2,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 65,
+      "relevance2": 39,
+      "coherent": 23,
+      "appropriate": 26,
+      "notes_sha256": "6b143e08096a1ee2365a643c008d5c009d2c2ff48dd1d42a9749ac5301766d2d",
+      "generation_sha256": "d5b5a7c6b5d971de9bc46c77f52ac5ea19132cab7b97f034c274974cdbe2620e",
+      "Japanese": {
+        "semantics": 0.5625,
+        "jblimp": 0.7824773413897281,
+        "jcqa": 0.26541554959785524
+      }
+    },
+    "mixture_contexts": {
+      "BPB": 0.9986802367143548,
+      "rates": {
+        "outputs": 80,
+        "eos": 18,
+        "repetition": 48,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 40,
+      "relevance2": 31,
+      "coherent": 1,
+      "appropriate": 2,
+      "notes_sha256": "bf96201e1425faa963476d0835d372e03cfc7e936e4757c5a0934d2a2e5bc051",
+      "generation_sha256": "bcfe65550fdc70a45032fa6d2136e2149b6260cbb3be8b6b5d7b7d8d4cec31d1",
+      "Japanese": {
+        "semantics": 0.625,
+        "jblimp": 0.7734138972809668,
+        "jcqa": 0.3489722966934763
+      }
+    },
+    "mixture_softmaxes": {
+      "BPB": 0.9986350072186795,
+      "rates": {
+        "outputs": 80,
+        "eos": 21,
+        "repetition": 45,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 43,
+      "relevance2": 26,
+      "coherent": 2,
+      "appropriate": 2,
+      "notes_sha256": "f55ba9c9b3dc1effa67a52a0f8b9c731f128f5582c17db0561d129a2b0fb757b",
+      "generation_sha256": "517651e969d08e35de4a5942f23ff39b9a2c90b4fbea6a5fb087c30996f26fa4",
+      "Japanese": {
+        "semantics": 0.6302083333333334,
+        "jblimp": 0.770392749244713,
+        "jcqa": 0.35031277926720283
+      }
+    },
+    "cached_CE": {
+      "BPB": 0.998487162513845,
+      "rates": {
+        "outputs": 80,
+        "eos": 19,
+        "repetition": 45,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 44,
+      "relevance2": 25,
+      "coherent": 2,
+      "appropriate": 2,
+      "notes_sha256": "5a36aa6d4914260d1975974ae0fbee6c1e0024d900ea8103da970fdbc4ee9369",
+      "generation_sha256": "73a952a4e08ca8cfffa229fdb8c8f497d0373ff0646ca4b4f5cecd90a27e644b",
+      "Japanese": {
+        "semantics": 0.625,
+        "jblimp": 0.7734138972809668,
+        "jcqa": 0.35031277926720283
+      }
+    }
+  },
+  "eligible_for_final_Base_validation": false,
+  "fixed_output_mixture_condition_closed": true,
+  "archive": {
+    "files": 68,
+    "bytes": 211530292,
+    "manifest": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_output_mixture_comparison_evidence_manifest.json",
+      "sha256": "94500cac996af585ff851e59bd658bc46dfcddd42d146e2229554462266a77b1"
+    },
+    "bundle": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_output_mixture_comparison_evidence.tar.gz",
+      "sha256": "4452f0cec99024c6d9f268f315565d56fde4b6c0f5f7bf6d0c37a80cdf210217"
+    }
+  },
+  "UI_restored": {
+    "identity": {
+      "pid": 24230,
+      "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+      "start_ticks": "1317617"
+    },
+    "actual_alive": true,
+    "model": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    }
+  },
+  "all160_individually_read": true,
+  "independent_human_blind": false,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_scored": false,
+  "quality_criteria_unchanged": true,
+  "next_action": "Only a qualified candidate proceeds to independent learnedseed/fullDEV/protectedTEST/adoption; otherwise close this fixed recipe without tuning rescue. No Chat or quantization."
+}
