@@ -1,3 +1,12 @@
+Base限定・同Sigsoftmax科学jobを実監視し、全内容評価後の可搬終了commandを準備（2026-10-07 JST）。Baseは未完成・未採用。
+
+前段のtyped workflow/追加CPU15/実CUDA全state再開・最大長検証/同100M起動を08d8324へ保存したprogress。今回はactual740850/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start23633274を実psで確認。snapshot1,760更新/9,942,248original gold（100Mの約10%）/linked NLL2.619706有限、GPU154.815秒/凍結3,809秒、checkpoint-00001750.pt。snapshotで終端/品質を主張せず、最新進捗はnative reports/phase6/base-sigsoftmax-comparison-20261007/job.json/metricsを参照。元UIは科学中停止。新source/設定/重複GPUjobなし。
+
+[終了command](../scripts/complete_base_sigsoftmax.py)を追加し、WSL uvのCLI help・[実準備検証](../reports/phase6/base_sigsoftmax_closeout_preparation.json)に合格。現在のlive scienceから終了record/archiveを作る操作を拒否し、terminal artifactsを作らないことを確認。既に読んだ過去nativehint80をCPUの歴史fixtureとして使い、cachedCE→middle→SAM→on-policy→confidence→denseKD→nativehintの順で同id/prefix/text/stop採点を保存、全80selected/過去15不一致を隠さず保持し、候補側の同文score変更だけを拒否。旧notesは変更せず、このfixtureを現候補80の新読解や独立人手の証拠にしない。現候補80は未生成/未読、追加GPU0。
+
+実科学終端・同original100M fullstate/typed linked commonDEV/日本語/native80・全80raw-bound理由・既存全quality gates・元10B UI actual/API復帰が揃った後だけ、新text evidenceをtmp→atomic archive/manifest/completionへ保存する。新commandはteacher/hint positionsをSigsoftmaxへ混入せず、元100Mと同linked100M位置を重複学習量へ足さない。可搬source/metrics/評価・採点とnative checkpointを保持。科学source/config/policy/probeは変更しない。
+
+次の具体的アクション: 同exact PIDの元100M終端と共通DEV256/日本語192・331・1119/greedy80を監視→全80を実際に読み旧exact同文採点を維持→全既存matchedCE/strong/absolute/historicalWeb採否→終了保存/localcommit。資格ある候補だけ独立学習seed/fullDEV/protected finalTEST/adoptionへ進み、Base完成を通知して止める。Chat/Dialogue/SFT/量子化/展開・自動pushなし、PythonはWSL pinned3.12.7 uv。これはcloseout準備・監視progressでgoal completeではない。再開条件と同累積上限・正確なcommandは直下の実起動記録を保持。以下は歴史記録。
 Base限定・SigsoftmaxのGPU保存再開/最大長検証に合格し、同100M比較を永続起動（2026-10-07 JST）。Baseは未完成・未採用。
 
 前turnの事前案/model/trainer/CPU14はf238efeへ保存済み。今回はtyped evaluator/persistent probe/science/reviewerを実装し、追加CPU15checks（runner10/0.87秒、typed評価5/0.81秒）・3CLI help・両PS構文に合格。実CPU小型モデルのNativeLikelihoodを独立exp(z)*sigmoid(z)正規化のNLLと照合し、tagged factory・full/cache・metadata・旧plain-softmax result拒否・例外後の元factory/RUN復帰を確認。元src/jmicro/model.py/旧科学sourceや既存評価基準は変更しない。CPU検証は日本語品質やGPU成功の証拠にしない。
