@@ -1,0 +1,86 @@
+{
+  "status": "readonly_gradient_precision_assay_closed",
+  "created_at": "2026-10-07T00:14:42.003624Z",
+  "actual_identity": {
+    "pid": 713034,
+    "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+    "start_ticks": "21522851"
+  },
+  "actual_process_absent_verified": true,
+  "result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-gradient-precision-20261007/result.json",
+    "sha256": "196cf6ebbfd13e3d6ebba9fbacb3563eaf83011eb607da41f9d1836f3b328504"
+  },
+  "config_sha256": "fff9402934896b6ea45617d6c5358ea4f3c98277821fc3d6dc7eeb3e23c6dd64",
+  "GPU_occupancy_seconds": 22.72867154001142,
+  "GPU_cap_seconds": 120,
+  "peak_VRAM_bytes": 665210368,
+  "research_screen": {
+    "bf16_math": {
+      "marked_sources": {
+        "parent": [],
+        "CE100M": []
+      },
+      "supported": false
+    },
+    "bf16_flash": {
+      "marked_sources": {
+        "parent": [],
+        "CE100M": []
+      },
+      "supported": false
+    }
+  },
+  "precision_training_comparison_supported": false,
+  "original_TRAIN_rows_per_endpoint": 25,
+  "new_source_draws": 0,
+  "diagnostic_teacher_positions_all_paths": 18264,
+  "optimizer_updates": 0,
+  "scientific_teacher_tokens": 0,
+  "new_unique_data_tokens": 0,
+  "UI_restored": {
+    "identity": {
+      "pid": 713143,
+      "boot_id": "53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe",
+      "start_ticks": "21525511"
+    },
+    "actual_alive": true,
+    "model": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    }
+  },
+  "archive": {
+    "files": 42,
+    "bytes": 2084614,
+    "manifest": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_gradient_precision_evidence_manifest.json",
+      "sha256": "c4d7d7803763c38ee6a9319a6e21a5f6edd7215cec83b91c1d8b61bb5639b0e7"
+    },
+    "compressed_bundle": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_gradient_precision_evidence.tar.gz",
+      "bytes": 490198,
+      "sha256": "2df811f3061f2a793cc3936c737c75fdf43f7a29fe84d3cc9ccef66c95980508"
+    }
+  },
+  "fixed_diagnostic_closed": true,
+  "old_numeric7_preserved": true,
+  "quality_criteria_unchanged": true,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "next_action": "Positive fixed marker: define an independently bounded precision training comparison before learning. Otherwise no precision training/sample/threshold/cap rescue; select a distinct mechanism from existing evidence.",
+  "limitations": "Only24 fixed previously selected TRAIN families and one original long window, two mature endpoints. Local all-parameter CE gradients and simulated fresh first AdamW direction cannot prove accumulated optimizer behavior, quality, every corpus position or sole cause. BF16 backend comparison is descriptive; previous numeric failures are preserved."
+}

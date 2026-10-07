@@ -1,0 +1,55 @@
+{
+  "status": "bounded_new_source_feasibility_defined_no_download_or_training_yet",
+  "date_JST": "2026-10-07",
+  "previous_progress": "Context-mixing100M closed/rejected; new all-parameter FP32-vs-BF16 TRAIN gradient assay completed in22.72867154GPU seconds with no severe marker at either fixed endpoint. No precision-training rescue.",
+  "hypothesis": "Natural short Japanese sentences contributed as original utterances may provide broader grammatical complete-text supervision than the already-tested synthetic textbook/template and translated-story routes. Sentence fragments, translationese and repetitive examples remain possible; source availability is not a quality result.",
+  "novelty_check": {
+    "command": "rg -l -i tatoeba scripts docs configs reports/phase6 -g '*.py' -g '*.json' -g '*.md' -g '*.ps1'",
+    "prior_result": "No matching existing implementation, proposal or documented experiment found before this proposal",
+    "distinction": "One new externally supplied original short-sentence corpus. Reuse existing10M model,4096 tokenizer and old evaluation/retention gates. No failed LR/ratio/loss/decoder recipe rescue. This is not Chat data formatting or SFT."
+  },
+  "primary_sources_checked": [
+    {
+      "url": "https://tatoeba.org/en/downloads",
+      "finding": "Official weekly exports include Japanese text, detailed sentence records and CC0 text; default text export license is CC BY2.0 FR. Source is mutable and must be locally pinned before use. Audio has different contributor licenses and is outside scope."
+    },
+    {
+      "url": "https://en.wiki.tatoeba.org/articles/show/cc0-contributions",
+      "finding": "Tatoeba describes CC0 contributions as available for original sentences rather than translations in its current workflow. Do not infer independent original provenance from a general Japanese export."
+    },
+    {
+      "url": "https://en.wiki.tatoeba.org/articles/show/using-the-tatoeba-corpus",
+      "finding": "Corpus reuse guidance documents attribution and warns that corpus use requires understanding the actual contents. This source is not certified perfect human-written Japanese."
+    }
+  ],
+  "source_scope": "Official Japanese-only CC0 original-text export; no audio, all-language corpus, translation links, private accounts, external messages or paid service. Verify the actual download URL and schema from official metadata before acquisition.",
+  "budgets": {
+    "network_wall_seconds": 60,
+    "maximum_compressed_download_bytes": 67108864,
+    "maximum_decompressed_bytes": 134217728,
+    "CPU_preparation_seconds": 90,
+    "GPU_seconds": 0,
+    "scientific_teacher_tokens": 0
+  },
+  "pinning": "Stream compressed bytes once while hashing. Save actual URL, HTTP metadata, fetch time, SHA256 and size; store only inside documented WSL data environment. Do not redownload or silently follow changed snapshots. No re-scan of old2B corpus and no tokenizer training.",
+  "predeclared_eligibility": "Strict UTF8/lang=jpn/verified CC0/schema/source sentence ID; original unmodified body; native6..64body tokens and10..256characters; terminal Japanese sentence punctuation permitting closing quotes/brackets; no original special-token spellings, URLs or wrapper text. Exact-body dedup during this small one-pass preparation. Stable source-ID/body hash split before sampling; source TRAIN only for learning and readiness review. Keep dev/test and fixed suites separate using existing decontamination contracts. No rewriting or selection using model-generated success.",
+  "sample": "Single frozen80 uniformly drawn eligible TRAIN sentences using seed2026100747. Save raw IDs, exact bytes, source URLs, tokenizer IDs, corpus binding and draw method before reading contents. Individually review all80, nonblind Codex clearly labeled. Do not replace weak examples, regenerate sentences, reroll seed or increase sample after results.",
+  "readiness_screen": {
+    "minimum_distinct_eligible_TRAIN_body_tokens": 1000000,
+    "grammatical_complete_originals_at_least": 72,
+    "coherent_standalone_originals_at_least": 64,
+    "sample_total": 80,
+    "invalid_UTF8_or_special_wrapper": 0,
+    "criteria_frozen_before_sample": true,
+    "Base_quality_gate": false
+  },
+  "comparison_after_readiness_only": "Define one source-replacement comparison against cached CE100M: same native10M/parent/tokenizer, total100M original gold teachers, Web75M/short-text20M/story5M; replace synthetic textbook20M with qualified new original short sentences. Distinct corpus tokens, body bytes, repeated exposure, optimizer-update count and measured GPU budget differ and must be explicitly reported. Implement commands, exact state/accounting, actual finite worst-batch and save/resume first; freeze real scientific budget only from measured timing. No training from this proposal alone.",
+  "final_acceptance": "Existing common-byte BPB, Japanese suites, individually read all80, matched/strong/absolute/historical Web gates unchanged. Only qualified candidate may proceed to independent trained seed/full DEV/protected final TEST/adoption. Dataset readiness, short EOS or a code change is not Base completion.",
+  "failure_policy": "If access/provenance/license/budget/schema/amount or fixed80 readiness screen fails, close this fixed CC0 source proposal; no CC-BY/translation-export substitution, source filter/seed/threshold/epoch rescue or extra GPU. Other public sources require a distinct evidence-based proposal. No automatic20B/50B extension.",
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_scored": false,
+  "quality_criteria_unchanged": true
+}

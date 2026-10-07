@@ -1,0 +1,13 @@
+{
+  "status": "CPU_preparation_reference_path_failure_before_config_UI_or_GPU",
+  "first_command": "uv run --frozen --extra hub --extra data --extra ml --extra export scripts/diagnose_base_gradient_precision.py --prepare",
+  "first_error": "FileNotFoundError: reports/phase6/root_cause_precision-contract.json is a Windows portable alias; actual native report is reports/phase6/root-cause-20261005/precision-contract.json",
+  "dependent_inspection": "Config did not exist; --inspect failed without UI or GPU changes",
+  "partial_payload_preserved": "reports/phase6/base_gradient_precision_initial_preparation_payload.json",
+  "initial_source_preserved": "reports/phase6/base_gradient_precision_initial_preparation.py",
+  "correction": "Bind to the actual native precision contract and validate all references before writing the payload. Reuse the exact same cached24 TRAIN records and same fixed long window; no new random draws or threshold/recipe/budget changes.",
+  "GPU_seconds": 0,
+  "optimizer_updates": 0,
+  "UI_changed": false,
+  "config_frozen_before_error": false
+}
