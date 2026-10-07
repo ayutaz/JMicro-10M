@@ -1,3 +1,11 @@
+Base限定・同SAM科学jobを実監視し、全内容評価後の可搬closeout commandを準備（2026-10-07 JST）。Baseは未完成・未採用。
+
+前turnは実SAM実装/CPU19checks/実CUDA保存再開・有限値/同100M科学起動をb04f313へ保存したprogress。今turnもrequired docs/worktree・actual721383/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start22188114を実psで確認。snapshotは1,320更新/7,441,900original gold/100M、CE2.630862有限、累積201.311秒/凍結5398秒、latestcheckpoint-00001250.pt。元goldとは別の同batch第二pass教師評価も同じ量で進み、二倍の新教材量とはしない。最新heartbeat/metricsはWSL reports/phase6/base-sam-comparison-20261007を参照。新設定/再取得/重複GPUjobなし。
+
+complete_base_sam.pyを追加しWSL uvのCLI helpを確認。実科学終了・同original100M/別会計repeated100M・全評価/全80raw-bound個別notesと凍結全quality gates・元10B UI actual/API復帰が揃った後だけ、科学text/source/metrics/evaluationのarchive/manifest/終了記録を保存する。学習は現在稼働中なのでcloseoutをまだ実完了させず、CLI helpを終端/有用品質/採用/UI復帰の証拠にしない。学習・評価・既存品質基準の凍結sourceは変更しない。
+
+次はこのexact PIDとcompletedcheckpointを監視→同100M＋別会計第二pass100M/full state終端→日本語192/331/1119・共通DEV256・native80→全80を個別に判定して採否/可搬保存。資格ある候補だけ独立学習seed/full DEV/protected final TEST/adoptionへ進む。品質Base完成を通知し停止、Chat/Dialogue/SFT/量子化/展開・自動pushなし。Python3.12.7はWSL uv、localcommitのみ。今回はcloseout実装/実job監視のprogressでgoal completeではない。以下は過去の履歴。
+
 Base限定・未検証のSAM二回CEを実装、CPU19checks/実CUDA全state保存再開に合格、同100M比較を永続起動（2026-10-07 JST）。Baseは未完成・未採用。
 
 前turnはon-policy100M/全日本語・全80内容/不採用の終端と可搬保存を1530346へlocalcommitしたprogress。今回required docs・既存failure_route_synthesis/Muon/on-policy/gradient precision結果と実processを確認。最新on-policyの一貫性3/80、反復46/80は既存条件未達、gold-prefixKDのeager予算/compile数値失敗も閉じたまま。既存optimizer/objectiveの検査ではAdamW/Muon/contrast/teacher/anchor/dropout/smoothingはあるがfull-parameter二回SAMは未実施。新sourceの取得・旧2B corpus全scan・Tokenizer再訓練なし。
