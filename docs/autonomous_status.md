@@ -1,3 +1,19 @@
+Base限定・中間層supervisionの100M学習/全日本語・全80内容評価を完了、不採用（2026-10-07 JST）。Baseは未完成・未採用。
+
+[実終了記録](../reports/phase6/base_middle_supervision_comparison_completion.json)・[全採否](../reports/phase6/base_middle_supervision_comparison_review.json)・[全80個別理由](../reports/phase6/base_middle_supervision_notes.json)。前turnの終了記録準備21de67eはprogress。今回actual724938/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start22544695の同jobを実psで確認し50秒以下のwait/再pollを継続、科学終端と実不在を確認。元gold100,000,000/17,698更新、Web75M教材20Mstory5M/sourceEOS657,450・148,625・38,222、digest a1ab0170…/CE valid102,655,467/physical370,838,917/body405,882,136bytes/fullsampler等の全11cachedCE条件true。別会計の同gold100M middle-head評価、decoder forwardは一回、追加parameters/data/unique corpus0。最終checkpoint-00017698.pt/SHA9bc3904604459303bd4ddbc09f1b80c810d212804cb70c372d50b460adbb1e19をWSL保持。staleheartbeat17,680/99,900,395より実terminal17,698/100Mを使う。
+
+science+全自動評価GPU1470.956071秒/事前3970秒、probe9.417536秒込み1480.373606秒（約24.7分）/総4800上限。科学source/元10B親/LR1e-5WD.1/batch48/seed42/finalCE＋0.1native middle6/13 CE/sharednorm/head/singlebackward/native推論を変更せず、再学習/増量/decoder救済0。固定共通DEV256/472,055bytes/122,343tokensでBPB1.003711、意味192=66.146%、JBLiMP331=77.946%、JCQA1119=34.897%。greedy80のEOS14/自動反復44/Unicode・role・empty0。
+
+全80を個別に読みraw SHAbe17d663…へ結合したnonblind Codex採点で文法2=19/関連2=20/一貫性2=1/適切完結3。冷める前に皆で食べて笑い合うbase016は自然に完結。散歩の犬064・別れ後に遊びへ誘う080は軽い重複を伴う部分的なつながりと停止を別判定。犬や鳥等の擬人化だけを失敗にしない。大半で同じ主節/条件節を反復し、正しい玉の計数だけやEOS自体を一貫性合格としない。独立人手/盲検ではなく、反復して使うDEVの限界を維持。
+
+同id/prefix/text/stopの既保存13例は実際に再読後、cached matched CE8件を最優先、残りSAM/on-policyの既存採点を保持。[raw SHA付きreuse記録](../reports/phase6/base_middle_supervision_rating_reuse.json)に13一致/元notes SHAと過去採点差4records（3ids）を保存。以前のCEと後続SAM/on-policyにあった関連・文法の小さな採点差を隠さず、過去のnotes/基準は変更しない。初回PowerShell auditは一行collectionを直接rowとしてindexしてguard拒否・保存なし。collection[0]への修正だけで13score一致を確認、今回notes/品質結果は変更せずGPU0。completionはこのreuse記録と今回raw/notes SHAも照合して可搬保存へ含めた。
+
+cached CEはBPB0.998487/意味62.500%/文法44/関連25/一貫性2/適切2/EOS19/反復45を再GPU・再採点せず保持。今回の意味選択式上昇だけを自由生成精度改善としない。一貫性差-1/paired95%CI[-.0625,.025]で改善証拠なし、悪化の独立確定とも言わない。EOS5件減、反復1件減だけで総合品質改善としない。strong stagedは一貫性23/EOS76/反復2で差-22/CI[-.375,-.175]。matched/strong/absolute/historicalWebの全採用条件に至らずeligible_for_final_Base_validation=false。文法56/一貫性27/適切27/EOS37/反復18以下と歴史Web BPB1%を緩めない。独立学習seed/fullDEV/protected finalTEST/adoption0、この固定middle-loss条件は終了。coefficient/layer/curriculum/dropout/LR/親/data/batch/decoder/capによる救済探索や延長なし。保守的LRの成熟親での一条件で、全deep supervisionや新教材量の無効を証明したとはしない。
+
+frozen reviewerが実fullstate/全17,698update有限history/sourceと元同byte/全日本語/all80/従来全quality gatesを正常確認。complete_base_middle_supervision.pyは実終了/全評価/notes/予算/UI actual/APIを確認して46text/102,472,052bytesを可搬保存。gzip45,719,549bytes/SHAce5286b252874e7fcfab95b0627bea1cd9cfb7631d427c85346c2eee59d5b434をWindowsへコピーし一度照合、tensor/corpusはarchiveへ含めずnative checkpointsを保持。元10B WebUIactual725756/同boot/start22692202を実alive確認、HTTP親410f975d…/10,000,007,168/busy=falseへ復帰。新科学GPUjobなし。
+
+次の具体的アクションは今回の負結果を既存失敗経路の参照に加え、同middle-loss tuning/既失敗source・親・保護objectiveを繰り返さず、未検証の独立したBase比較を一つだけ目的・対照・測定予算・終了条件付きで結果前に定めること。資格ある実候補だけ独立学習seed/fullDEV/protected finalTEST/adoptionへ進む。現在完了時刻は確約できず、旧数値7失敗/既存品質基準を維持する。最新境界を保持し品質Base完成を通知して停止、Chat/Dialogue/SFT/量子化/展開・自動pushなし。Python3.12.7はWSL uv、検証済み変更をlocalcommit。今回実科学終端・全内容採否・可搬保存のprogressでgoal completeではない。以下は過去の履歴。
+
 Base限定・同middle-supervision科学jobを実監視し、全内容評価後の可搬終了記録コマンドを準備（2026-10-07 JST）。Baseは未完成・未採用。
 
 前turnは独立middle-loss実装/CPU21checks・実CUDA全state再開/100M科学起動を8f10ae8へ保存したprogress。今turnもrequired docs/worktreeとactual724938/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start22544695を実psで確認。snapshotは2,240更新/original12,646,331/100M gold、CE2.6334424019有限、累積194.675209秒/凍結3970秒、最新完了checkpoint-00002000.pt。確認済みの同PIDを50秒待った後もactual alive/教師増加を確認した。最新値はnative reports/phase6/base-middle-supervision-comparison-20261007/job.json/metricsを参照。

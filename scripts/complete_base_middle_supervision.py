@@ -53,10 +53,17 @@ def main():
         raise ValueError('Original idle UI process and HTTP parent SHA must be restored')
     eligible=review['eligible_for_final_Base_validation']
     if type(eligible) is not bool: raise ValueError('Explicit qualified/rejected decision required')
+    reuse_path=phase/'base_middle_supervision_rating_reuse.json'
+    reuse=read_json(reuse_path)
+    if (reuse['candidate_notes_sha256']!=sha256(NOTES) or reuse['candidate_raw_sha256']!=sha256(RAW) or
+        len(reuse['selected13'])!=13 or len({r['id'] for r in reuse['selected13']})!=13 or
+        reuse['historical_notes_changed'] is not False or reuse['GPU_seconds']!=0 or
+        reuse['all_current80_individually_read'] is not True):
+        raise ValueError('Current raw-bound unchanged exact-text historical ratings required')
     files=[CONFIG,POLICY,NOTES,review_path,Path(__file__),
         phase/'base_middle_supervision_proposal.json',phase/'base_middle_supervision_probe_launch.json',
         phase/'base_middle_supervision_probe_launch_archive.json',phase/'base_middle_supervision_probe_launch_evidence_manifest.json',
-        phase/'base_middle_supervision_trainer_tests.xml',phase/'base_middle_supervision_run_tests.xml']
+        phase/'base_middle_supervision_trainer_tests.xml',phase/'base_middle_supervision_run_tests.xml',reuse_path]
     if notes.get('observations'):
         observation=Path(notes['observations']['path']).resolve()
         if not observation.is_relative_to(phase.resolve()) or sha256(observation)!=notes['observations']['sha256']:
@@ -83,6 +90,7 @@ def main():
         probe_GPU_seconds=c['probe_GPU_seconds'],total_GPU_seconds_including_probe=result['total_GPU_seconds_including_probe'],
         checkpoint=trained['checkpoint'],checkpoint_sha256=trained['checkpoint_sha256'],config_sha256=sha256(CONFIG),
         review=dict(path=str(review_path),sha256=sha256(review_path)),notes=dict(path=str(NOTES),sha256=sha256(NOTES)),
+        exact_text_rating_reuse=dict(path=str(reuse_path),sha256=sha256(reuse_path)),
         generation_sha256=sha256(RAW),all80_individually_read=True,reused80_control_scores_unchanged=True,
         independent_human_blind=False,reused_control_GPU_seconds=0,new_unique_corpus=0,extra_parameters=0,
         summaries=review['summaries'],eligible_for_final_Base_validation=eligible,fixed_middle_condition_closed=not eligible,
