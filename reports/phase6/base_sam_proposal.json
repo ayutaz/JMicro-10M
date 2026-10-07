@@ -1,0 +1,81 @@
+{
+  "created_at": "2026-10-07T02:03:12.351274Z",
+  "question": "Does full-batch sharpness-aware CE optimization improve same-parent Japanese Base generalization and repetition while preserving Web quality?",
+  "prior_turn": "progress: actual on-policy100M/all Japanese/all80 content rejection and portable closeout committed1530346; actual process718057 absent",
+  "references": {
+    "base_failure_route_synthesis.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_failure_route_synthesis.json",
+      "sha256": "2384411b47272b53b9e4eda981a69ff67e335069ca125a43e551c892515826b2"
+    },
+    "base_muon_comparison_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_muon_comparison_completion.json",
+      "sha256": "cfa43645b777d9dd5e685cfbce25e4175278c5aeec9d91a2033a3ba82e94cbad"
+    },
+    "base_on_policy_teacher_comparison_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_on_policy_teacher_comparison_completion.json",
+      "sha256": "022131b4a404867cc07ec69876ea069dfed03c91cafc8f96a33b1d96d834bfa5"
+    },
+    "base_gradient_precision_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_gradient_precision_completion.json",
+      "sha256": "5e9112fb2ee9899dde5b670f48ba0d8ecf386c322f32a3d3ea181282f993d713"
+    }
+  },
+  "novelty": "Inspection of existing optimizer/objective proposals found AdamW, Muon, contrastive, dropout/smoothing and teacher feedback, but no full-parameter two-pass SAM. Unlike Muon it uses a second same-batch CE gradient at adversarially perturbed weights; unlike anchors/KL it has no reference model or parameter-location penalty. Exploratory mechanism, not a proven root cause.",
+  "primary_sources": [
+    "https://arxiv.org/abs/2010.01412",
+    "https://arxiv.org/abs/2110.08529",
+    "https://github.com/google-research/sam"
+  ],
+  "literature_limit": "The NLP paper reports task finetuning/choice/QA gains on larger models. It does not prove free Japanese10M continuation quality; this is a local Base full-body/EOS study, no Chat/SFT.",
+  "recipe": {
+    "rho": 0.05,
+    "epsilon": 1e-12,
+    "adaptive": false,
+    "perturbation": "rho_times_unclipped_global_CE_gradient_over_global_L2_norm_plus_epsilon",
+    "second_batch": "identical_original_ids_targets_masks",
+    "restore": "exact_copy_original_FP32_parameters_before_single_AdamW_update",
+    "optimizer": "fresh_AdamW_lr1e-5_wd0.1_constant",
+    "final_clip_norm": 1.0
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "goals": {
+    "web": 75000000,
+    "textbook": 20000000,
+    "story": 5000000
+  },
+  "batch": 48,
+  "seed": 42,
+  "native_parameters": 10001152,
+  "extra_parameters": 0,
+  "original_teachers": 100000000,
+  "repeated_SAM_teacher_evaluations": 100000000,
+  "new_unique_dataset_tokens": 0,
+  "control_reused_GPU_seconds": 0,
+  "total_GPU_cap_seconds": 7200,
+  "probe_GPU_cap_seconds": 180,
+  "CPU_checks": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_sam_trainer_tests.xml",
+    "sha256": "1ff4fb144ae9f7dd31b10ae0e013517e9c208c94ed37aa723a9e161abd13af75"
+  },
+  "accounting": "Draw/CE source quotas, EOS/body/bytes/digest and sampler once; second evaluation of exact same inputs/targets is separate repeated teacher/valid/physical compute. Single optimizer update after exact FP32 restoration. No new data, teacher, auxiliary parameters or decoder changes.",
+  "acceptance": "Actual CPU and CUDA continuous4 vs2-save-resume2/full state, two-pass worst48x1024 finite gradients/restoration before science. Forecast ceil(exact17698 updates*mean32 measured two-pass seconds*1.3+900) plus actual probe within7200. Same cachedCE100M source and fullsampler, same256 commonbyte/Japanese192,331,1119/all80 raw-bound content, unchanged matched/strong/absolute/historicalWeb gates. Only qualified candidate gets independent learnedseed/fullDEV/protected finalTEST/adoption.",
+  "failure": "Close this one fixed condition on finite/state/radius/budget or quality failure. No rho/adaptive/period/optimizer/LR/parent/data/batch/decoder/cap rescue or extension.",
+  "limitations": "One conservative-LR mature-parent transition, extra second-pass compute, repeated nonblind DEV. Negative result does not disprove all SAM; local fit/likelihood is not useful Base quality.",
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false
+}
