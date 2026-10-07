@@ -1,0 +1,17 @@
+{
+  "status": "CPU_preparation_refused_incorrect_128_position_packet_assumption_before_forward",
+  "date": "2026-10-07",
+  "command": "uv run --frozen --extra hub --extra data --extra ml --extra export scripts/prepare_base_headwise_gate.py",
+  "error": "ValueError: Exact bounded retained128-position original-codec inputs required",
+  "cause": "The retained 24-window TRAIN packet includes original windows longer than 128; preparation incorrectly assumed all windows were at most 128.",
+  "repair": "Validate against the original model context limit and retain all 24 original windows without cropping/resampling; CPU30s ceiling remains unchanged. No scientific configuration had been frozen.",
+  "initial_forward_completed": false,
+  "scientific_teacher_tokens": 0,
+  "GPU_seconds": 0,
+  "quality_evaluations": 0,
+  "model_code_changed_for_this_repair": false,
+  "quality_criteria_unchanged": true,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false
+}

@@ -1,0 +1,127 @@
+{
+  "status": "paired_static_vs_query_headwise_gate_defined_CPU_validated_GPU_unstarted",
+  "created_at": "2026-10-07T08:14:11.892233Z",
+  "question": "Can query-dependent post-SDPA output selection improve coherent Japanese continuation without sacrificing original Web prediction?",
+  "hypothesis": "Add input-dependent nonlinearity between SDPA and output projection while retaining the parent function at initialization. Existing probability/optimizer changes have not delivered coherent generation. This is a literature-grounded adaptation hypothesis, not a diagnosed attention sink or proven remedy.",
+  "policy": {
+    "kind": "head_specific_query_dependent_post_SDPA_sigmoid_v1",
+    "input": "original_pre_attention_RMSNorm_output",
+    "position": "after_SDPA_before_head_concatenation_and_o_proj",
+    "granularity": "one_scalar_per_query_token_and_query_head",
+    "gate_bias": false,
+    "initial_gate_weights": 0.0,
+    "initial_gate_value": 0.5,
+    "initial_o_proj_multiplier": 2.0,
+    "extra_block_invocations": 0
+  },
+  "arms": [
+    "static_half",
+    "query_headwise"
+  ],
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "goals": {
+    "web": 75000000,
+    "textbook": 20000000,
+    "story": 5000000
+  },
+  "native_parameters": 10001152,
+  "study_parameters_per_arm": 10014464,
+  "added_parameters_per_arm": 13312,
+  "parameter_difference_fraction": 0.0013310466634243736,
+  "count_scope": "Both arms approximately10M and have exactly equal physical parameters; original native10,001,152 remains frozen. Static gates have zero gradients and stay zero. Not a same-inference-architecture claim.",
+  "initialization": "Independent deep copies of same original10B weights; gate matrices zero, sigmoid1/2, o_proj doubled. No gate or residual inference decoder rescue.",
+  "optimizer": "Both fresh all-parameter AdamW, same LR1e-5/WD.1/betas(.9,.999)/eps1e-8/globalclip1/constant schedule, seed42/batch48. Actual native parameterization is changed in both arms; same nominal LR does not mean same effective native update.",
+  "teacher_policy": "Each exact100M original Web75M/textbook20M/story5M body+EOS teachers, OriginalTrainCorpusSampler including full metadata; original masks/draws/sequence order/fullstate. No new data, tokenization or role targets.",
+  "comparison": "Train NEW static-half matched100M and query-dependent100M. Reused old nativeCE100M and strong staged remain qualification references; old nativeCE is not a matched reparameterized control. Account new scientific total200M separately from probe and reused100M.",
+  "literature": [
+    {
+      "url": "https://arxiv.org/html/2505.06708",
+      "scope": "G1/head-specific SDPA sigmoid gate; primarily1.7B/15B fresh learning, not Japanese10M mature-weight adaptation."
+    },
+    {
+      "url": "https://github.com/qiuzh20/gated_attention/blob/main/modeling_qwen3.py",
+      "scope": "Author implementation multiplies SDPA output by query-derived sigmoid gate before o_proj; own native implementation keeps existing cache/masks/GQA."
+    }
+  ],
+  "novelty": "Existing gated_shared uses scalar residual gates for a second invocation. This gate is query/head dependent inside the sole attention invocation. Closed negative saturation assay did not diagnose sinks and does not support QK restoration/softcap/sigma learning; those routes remain closed. Local registered scan found no post-SDPA query-gate learning before this implementation.",
+  "references": {
+    "previous": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_ademamix_comparison_completion.json",
+      "sha256": "dfb2fabb821a3a181ebdcb63807a06e8630bbd9448ca77d8994c1163206c8302"
+    },
+    "CPU_parity": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_headwise_gate_parent_CPU_parity.json",
+      "sha256": "f6af579f2fd09bb4eaad85d5e34864bcdfe79293a7a38c8666dc27e47323968c"
+    },
+    "CPU_tests": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_headwise_gate_model_tests.xml",
+      "sha256": "d99f9100a5f53b5d627abfe438d3b942f6b2c21deeda579770e8efc14eeae17c"
+    },
+    "initial_CPU_fixture_failure": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_headwise_gate_model_tests_initial.xml",
+      "sha256": "f056fc3b4d7714840e16bc29d3ddf16d860b3f256a7280fa4b228be2071dfd11"
+    },
+    "saturation": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_attention_saturation_completion.json",
+      "sha256": "78a8c02ec4a8a5740b7ee4eb049d5a859ef68d93374932819dd91217534c41ed"
+    },
+    "gated_shared": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/gated_shared_comparison_completion.json",
+      "sha256": "9ef8553215231de40e7d9c541aa7d2c50507fae28c50cbb514bf288274d21647"
+    },
+    "native_control_config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_ademamix_comparison.json",
+      "sha256": "e980082d37b82bd13f1ff92376fecd4f706868da4dc5765c4a5249a518b033de"
+    }
+  },
+  "source_sha256": {
+    "scripts/base_headwise_gate_model.py": "616433560f318097eae839ae83815a92ba7c4b4224fdae247b3e41a7f8527bdd",
+    "scripts/prepare_base_headwise_gate.py": "b40de83e7a85fd13fd20ae871f54a20546c73bdf34c5d3c9c3c6550066f7e61d",
+    "tests/test_base_headwise_gate_model.py": "7780b1748c9fa739e9a0f565e3366510efb0b9cd4960792154bad0055eda8c14",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83"
+  },
+  "CPU_model_tests": 15,
+  "probe_GPU_ceiling_seconds": 180,
+  "total_GPU_ceiling_seconds": 9000,
+  "prospective_budget_formula": "For EACH arm ceil(100M*sum(all32 completed step seconds)/sum(all32 original gold)*1.3+900 evaluation/save reserve); SUM both plus actual probe must fit9000. No subset timing or old FFN/MHA cap replacement.",
+  "before_GPU": [
+    "Own trainer: exact all-parameter partition, partial-update refusal, typed config/arm/parent, full optimizer/scheduler/RNG/sampler/counters save/resume and original CE/mask/quotas CPU checks",
+    "Own typed evaluator/runner/heartbeat/checkpoint/launcher and unchanged reviewer",
+    "Own persisted CUDA4vs2+2 allstate/fullhistory and BF16 finite maximum48x1024, resident90percent limit, paired all32 timings and cumulative forecast"
+  ],
+  "quality": "Same DEV256/common472055bytes/Japanese192-331-1119/nativegreedy64 all80 EACH/all160 individually raw-bound. Require original relative coherence+8/paired95%lower>0/EOS/rep/BPB/errors against new static and strong staged, absolute g56/coh27/appropriate27/EOS37/rep18/errors0 and historical WebBPB<=.9812859519097707. No thresholds changed.",
+  "completion": "Both exited exact100M and all automatic evaluations/all160 content plus unchanged acceptance/archive/original idleUI/local commit, or explicit own numerical/state/resource-gate failure without science. Only a qualified candidate proceeds to independent trainedseed/fullDEV/protectedTEST/adoption.",
+  "failure": "Close this fixed headwise/query/zero-init/doubled-o_proj/parent/source/teacher/LR recipe on failure. No elementwise/head-share/bias/gain/init/LR/parent/source/batch/backend/decoder/teacher/cap rescue or automatic extension.",
+  "limitations": [
+    "Mature-weight adaptation and added13,312 parameters differ from the paper setup",
+    "Function-preserving conversion does not preserve native Adam dynamics; a new static matched arm is essential",
+    "Repeated nonblind fixedDEV is not independent human/blind or final TEST",
+    "Negative saturation marker does not diagnose a gating benefit; no capacity/improvement guarantee"
+  ],
+  "scientific_configuration_frozen": false,
+  "trainer_implemented": false,
+  "CUDA_verified": false,
+  "scientific_started": false,
+  "GPU_seconds": 0,
+  "new_scientific_teacher_tokens": 0,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "next_action": "Implement owned paired all-state trainer/typed evaluation and durable CUDA gate before any scientific training; keep parent UI running until a GPU job actually needs it."
+}

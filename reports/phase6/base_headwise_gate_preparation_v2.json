@@ -1,0 +1,127 @@
+{
+  "status": "matched_headwise_gate_model_trainer_typed_evaluator_CPU_verified_GPU_unstarted",
+  "created_at": "2026-10-07T08:19:47.388809Z",
+  "prospective_contract": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_headwise_gate_proposal.json",
+    "sha256": "15a06e61ef89b52dbfad517bdc849579d4ba83610f10efd6a45222871dd7a67e"
+  },
+  "preserved_original_parent_parity": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_headwise_gate_parent_CPU_parity.json",
+    "sha256": "f6af579f2fd09bb4eaad85d5e34864bcdfe79293a7a38c8666dc27e47323968c"
+  },
+  "preserved_model_source": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-headwise-gate-preparation-v1/source/scripts/base_headwise_gate_model.py",
+    "sha256": "616433560f318097eae839ae83815a92ba7c4b4224fdae247b3e41a7f8527bdd"
+  },
+  "all_non_loader_model_AST_unchanged": true,
+  "current_CPU_tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_headwise_gate_CPU_tests_v2.xml",
+    "sha256": "d3d733e852387cb2749e159cec8a9ab2b25085d8bf52c5572483630c8e9dfafd"
+  },
+  "CPU_tests": 33,
+  "model_checks": 16,
+  "trainer_and_evaluation_checks": 17,
+  "initial_failures": {
+    "model_fixture": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_headwise_gate_model_tests_initial.xml",
+      "sha256": "f056fc3b4d7714840e16bc29d3ddf16d860b3f256a7280fa4b228be2071dfd11"
+    },
+    "trainer_static_validation": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_headwise_gate_trainer_tests_initial_failure.xml",
+      "sha256": "d1e6895d563506ce542b488d1282171f6179905230874db8b25d0ba6645bea2a"
+    },
+    "preparation_input_assumption": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_headwise_gate_parent_CPU_preparation_initial_failure.json",
+      "sha256": "2b7e6baf3be3299ea0975ffac9d6e9318105076d426730331f3f3b7641b459f3"
+    }
+  },
+  "repair": "Static gate checkpoint validation incorrectly matched SwiGLU MLP gate_proj as well as the added attention gate. Restrict the predicate to .self_attn.gate_proj.weight. Keep static gates zero; add a successful static model/Adam roundtrip and both-arm full trainer resume checks. Model forward/conversion, optimizer, teachers, caps and quality policy unchanged. No scientific config had been frozen.",
+  "source_sha256": {
+    "scripts/base_headwise_gate_model.py": "d775d826a440296b4666a962db60e5ee6eafa322dc17a606389d885338c130df",
+    "scripts/base_headwise_gate_trainer.py": "37f79d3007aed1cd3b1e42fc6839ae9be7076c62afacf984a801d1905cbb0c2e",
+    "scripts/base_headwise_gate_evaluation.py": "8d53e77990ef8ef2b11b504aef5e5ba7bbcc914137da106efc6f2db502c8c446",
+    "scripts/prepare_base_headwise_gate.py": "b40de83e7a85fd13fd20ae871f54a20546c73bdf34c5d3c9c3c6550066f7e61d",
+    "scripts/record_base_headwise_gate_preparation.py": "09087fba59cc5a8310c40a4ff9a3c93079deb10c7ac5dbda774477f744b38ceb",
+    "tests/test_base_headwise_gate_model.py": "5aedad7f5deaf530eb77a15a98b07f495da50608d6c2289c183683594964f91f",
+    "tests/test_base_headwise_gate_trainer.py": "2511f0f3c74ea89c0482d8e5ab0ee0ebefccc3707fba8f2145305f286ee85745",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "scripts/run_complete_text_comparison.py": "9d91d1d6124e62e4f40f7a99762f948186602e95cc362be10bfe03297874d8f7"
+  },
+  "policy": {
+    "kind": "head_specific_query_dependent_post_SDPA_sigmoid_v1",
+    "input": "original_pre_attention_RMSNorm_output",
+    "position": "after_SDPA_before_head_concatenation_and_o_proj",
+    "granularity": "one_scalar_per_query_token_and_query_head",
+    "gate_bias": false,
+    "initial_gate_weights": 0.0,
+    "initial_gate_value": 0.5,
+    "initial_o_proj_multiplier": 2.0,
+    "extra_block_invocations": 0
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "goals": {
+    "web": 75000000,
+    "textbook": 20000000,
+    "story": 5000000
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "native_parameters": 10001152,
+  "study_parameters_each": 10014464,
+  "added_parameters_each": 13312,
+  "total_proposed_scientific_teachers": 200000000,
+  "new_scientific_teacher_tokens": 0,
+  "GPU_seconds": 0,
+  "quality_generations": 0,
+  "total_GPU_ceiling_seconds": 9000,
+  "probe_GPU_ceiling_seconds": 180,
+  "scientific_configuration_frozen": false,
+  "CUDA_verified": false,
+  "scientific_started": false,
+  "same_original_full_sampler_and_CE_verified": true,
+  "typed_likelihood_cache_generation_factory_verified": true,
+  "fullstate_CPU4_vs_2_save_2_both_arms_verified": true,
+  "partial_update_save_continue_refused": true,
+  "UI": {
+    "identity": {
+      "pid": 2758,
+      "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+      "start_ticks": "287335"
+    },
+    "actual_alive": true,
+    "model": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    }
+  },
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_used": false,
+  "quality_criteria_unchanged": true,
+  "next_action": "Implement durable paired CUDA probe/launcher and science runner/reviewer. Probe both actual arms4vs2+2 fullstate/history,48x1024 BF16 finite resident90percent, and all32 aggregate timings. Start paired100M only if both prospective forecasts plus measured probe fit9000; fixed science and quality conditions unchanged."
+}

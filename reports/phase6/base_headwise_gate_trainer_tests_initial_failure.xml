@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="13" skipped="0" tests="17" time="4.298" timestamp="2026-10-07T17:17:36.030421+09:00" hostname="DESKTOP-42CUV0C"><testcase classname="tests.test_base_headwise_gate_trainer" name="test_paired_initial_CE_exact_native_gold_masks_and_full_sampler" time="1.439" /><testcase classname="tests.test_base_headwise_gate_trainer" name="test_continuous_four_vs_two_save_two_allstate_history_and_sampler[static_half]" time="0.348"><failure message="ValueError: Exact finite gate shapes/vocabulary tie/static zeros required">build = &lt;function build.&lt;locals&gt;.constructor at 0x7b53fb23b880&gt;
+tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-7/test_continuous_four_vs_two_sa0')
+arm = 'static_half'
+
+    @pytest.mark.parametrize('arm',ARMS)
+    def test_continuous_four_vs_two_save_two_allstate_history_and_sampler(build,tmp_path,arm):
+&gt;       a = build(arm);ah = [a.step() for _ in range(4)];expected = host(a.state_dict())
+                                                                         ^^^^^^^^^^^^^^
+
+tests/test_base_headwise_gate_trainer.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/base_headwise_gate_trainer.py:108: in state_dict
+    self.validate_committed(state)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;base_headwise_gate_trainer.HeadwiseGateTrainer object at 0x7b53fbcff5f0&gt;
+state = {'kind': 'original_CE_matched_static_or_query_headwise_SDPA_gate_v1', 'spec': {'kind': 'original_CE_matched_static_or_...th': 'fixture', 'sha256': 'fixed'}, 'parent_update': 5, 'parent_tokens': 90, 'parent_supervised_tokens': 80, ...}, ...}
+
+    def validate_committed(self,state):
+        try:
+            if any(state[k]!=self.state_recipe(k) for k in ('kind','spec','binding','lineage','model_config')):
+                raise ValueError('Gate recipe/arm/parent/source/config differs')
+            c,sampler,schedule,opt = (state[k] for k in ('counters','sampler','scheduler','optimizer'))
+            steps,tokens = c['update'],c['supervised_tokens']
+            if (type(steps) is not int or steps&lt;0 or type(tokens) is not int or tokens&lt;0
+                    or (steps==0)!=(tokens==0)
+                    or tokens!=sum(c['source_teachers'].values())
+                    or c['source_teachers']!=sampler['consumed']
+                    or c['auxiliary_input_tokens'] or c['auxiliary_pairs']
+                    or c['auxiliary_digest']!='0'*64
+                    or not c['physical_input_tokens']&gt;=c['CE_input_tokens']&gt;=tokens
+                    or any(type(n) is not int or not 0&lt;=n&lt;=self.sampler.goals[k]
+                           for k,n in c['source_teachers'].items())
+                    or set(c['source_teachers'])!=set(self.sampler.goals)
+                    or any(type(n) is not int or not 0&lt;=n&lt;=c['source_teachers'][k]
+                           for k,n in c['source_EOS'].items())
+                    or set(c['source_EOS'])!=set(self.sampler.goals)
+                    or schedule['last_epoch']!=steps or schedule['_step_count']!=steps+1
+                    or schedule['base_lrs']!=[1e-5] or schedule['_last_lr']!=[1e-5]):
+                raise ValueError('Completed gate update/source/constant-scheduler counters differ')
+            recipe = self.sampler.state_dict()
+            if any(sampler[k]!=recipe[k] for k in ('kind','binding','seed','goals')):
+                raise ValueError('Full original sampler recipe differs')
+            actual = self.model.state_dict()
+            if (set(actual)!=set(state['model']) or any(
+                    not isinstance(v,torch.Tensor) or actual[k].shape!=v.shape or actual[k].dtype!=v.dtype
+                    for k,v in state['model'].items())
+                    or not torch.equal(state['model']['lm_head.weight'],state['model']['model.embed_tokens.weight'])
+                    or (self.spec['gate_arm']=='static_half' and any(
+                        torch.count_nonzero(v) for k,v in state['model'].items() if 'gate_proj.weight' in k))):
+&gt;               raise ValueError('Exact finite gate shapes/vocabulary tie/static zeros required')
+E               ValueError: Exact finite gate shapes/vocabulary tie/static zeros required
+
+scripts/base_headwise_gate_trainer.py:77: ValueError</failure></testcase><testcase classname="tests.test_base_headwise_gate_trainer" name="test_continuous_four_vs_two_save_two_allstate_history_and_sampler[query_headwise]" time="0.700" /><testcase classname="tests.test_base_headwise_gate_trainer" name="test_malformed_fullstate_rejected_before_weight_mutation[kind]" time="0.049"><failure message="ValueError: Exact finite gate shapes/vocabulary tie/static zeros required">build = &lt;function build.&lt;locals&gt;.constructor at 0x7b540a68cb80&gt;
+tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-7/test_malformed_fullstate_rejec0')
+problem = 'kind'
+
+    @pytest.mark.parametrize('problem',('kind','arm','policy','moment_step','moment_shape','negative_variance',
+        'nonfinite','scheduler','source','tie','static_weights','parameter_partition'))
+    def test_malformed_fullstate_rejected_before_weight_mutation(build,tmp_path,problem):
+&gt;       a = build('static_half');a.step();state = copy.deepcopy(host(a.state_dict()))
+                                                                     ^^^^^^^^^^^^^^
+
+tests/test_base_headwise_gate_trainer.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/base_headwise_gate_trainer.py:108: in state_dict
+    self.validate_committed(state)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;base_headwise_gate_trainer.HeadwiseGateTrainer object at 0x7b53fb25f710&gt;
+state = {'kind': 'original_CE_matched_static_or_query_headwise_SDPA_gate_v1', 'spec': {'kind': 'original_CE_matched_static_or_...th': 'fixture', 'sha256': 'fixed'}, 'parent_update': 5, 'parent_tokens': 90, 'parent_supervised_tokens': 80, ...}, ...}
+
+    def validate_committed(self,state):
+        try:
+            if any(state[k]!=self.state_recipe(k) for k in ('kind','spec','binding','lineage','model_config')):
+                raise ValueError('Gate recipe/arm/parent/source/config differs')
+            c,sampler,schedule,opt = (state[k] for k in ('counters','sampler','scheduler','optimizer'))
+            steps,tokens = c['update'],c['supervised_tokens']
+            if (type(steps) is not int or steps&lt;0 or type(tokens) is not int or tokens&lt;0
+                    or (steps==0)!=(tokens==0)
+                    or tokens!=sum(c['source_teachers'].values())
+                    or c['source_teachers']!=sampler['consumed']
+                    or c['auxiliary_input_tokens'] or c['auxiliary_pairs']
+                    or c['auxiliary_digest']!='0'*64
+                    or not c['physical_input_tokens']&gt;=c['CE_input_tokens']&gt;=tokens
+                    or any(type(n) is not int or not 0&lt;=n&lt;=self.sampler.goals[k]
+                           for k,n in c['source_teachers'].items())
+                    or set(c['source_teachers'])!=set(self.sampler.goals)
+                    or any(type(n) is not int or not 0&lt;=n&lt;=c['source_teachers'][k]
+                           for k,n in c['source_EOS'].items())
+                    or set(c['source_EOS'])!=set(self.sampler.goals)
+                    or schedule['last_epoch']!=steps or schedule['_step_count']!=steps+1
+                    or schedule['base_lrs']!=[1e-5] or schedule['_last_lr']!=[1e-5]):
+                raise ValueError('Completed gate update/source/constant-scheduler counters differ')
+            recipe = self.sampler.state_dict()
+            if any(sampler[k]!=recipe[k] for k in ('kind','binding','seed','goals')):
+                raise ValueError('Full original sampler recipe differs')
+            actual = self.model.state_dict()
+            if (set(actual)!=set(state['model']) or any(
+                    not isinstance(v,torch.Tensor) or actual[k].shape!=v.shape or actual[k].dtype!=v.dtype
+                    for k,v in state['model'].items())
+                    or not torch.equal(state['model']['lm_head.weight'],state['model']['model.embed_tokens.weight'])
+                    or (self.spec['gate_arm']=='static_half' and any(
+                        torch.count_nonzero(v) for k,v in state['model'].items() if 'gate_proj.weight' in k))):
+&gt;               raise ValueError('Exact finite gate shapes/vocabulary tie/static zeros required')
+E               ValueError: Exact finite gate shapes/vocabulary tie/static zeros required
+
+scripts/base_headwise_gate_trainer.py:77: ValueError</failure></testcase><testcase classname="tests.test_base_headwise_gate_trainer" name="test_malformed_fullstate_rejected_before_weight_mutation[arm]" time="0.047"><failure message="ValueError: Exact finite gate shapes/vocabulary tie/static zeros required">build = &lt;function build.&lt;locals&gt;.constructor at 0x7b5513f36de0&gt;
+tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-7/test_malformed_fullstate_rejec1')
+problem = 'arm'
+
+    @pytest.mark.parametrize('problem',('kind','arm','policy','moment_step','moment_shape','negative_variance',
+        'nonfinite','scheduler','source','tie','static_weights','parameter_partition'))
+    def test_malformed_fullstate_rejected_before_weight_mutation(build,tmp_path,problem):
+&gt;       a = build('static_half');a.step();state = copy.deepcopy(host(a.state_dict()))
+                                                                     ^^^^^^^^^^^^^^
+
+tests/test_base_headwise_gate_trainer.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/base_headwise_gate_trainer.py:108: in state_dict
+    self.validate_committed(state)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;base_headwise_gate_trainer.HeadwiseGateTrainer object at 0x7b53f84f8ce0&gt;
+state = {'kind': 'original_CE_matched_static_or_query_headwise_SDPA_gate_v1', 'spec': {'kind': 'original_CE_matched_static_or_...th': 'fixture', 'sha256': 'fixed'}, 'parent_update': 5, 'parent_tokens': 90, 'parent_supervised_tokens': 80, ...}, ...}
+
+    def validate_committed(self,state):
+        try:
+            if any(state[k]!=self.state_recipe(k) for k in ('kind','spec','binding','lineage','model_config')):
+                raise ValueError('Gate recipe/arm/parent/source/config differs')
+            c,sampler,schedule,opt = (state[k] for k in ('counters','sampler','scheduler','optimizer'))
+            steps,tokens = c['update'],c['supervised_tokens']
+            if (type(steps) is not int or steps&lt;0 or type(tokens) is not int or tokens&lt;0
+                    or (steps==0)!=(tokens==0)
+                    or tokens!=sum(c['source_teachers'].values())
+                    or c['source_teachers']!=sampler['consumed']
+                    or c['auxiliary_input_tokens'] or c['auxiliary_pairs']
+                    or c['auxiliary_digest']!='0'*64
+                    or not c['physical_input_tokens']&gt;=c['CE_input_tokens']&gt;=tokens
+                    or any(type(n) is not int or not 0&lt;=n&lt;=self.sampler.goals[k]
+                           for k,n in c['source_teachers'].items())
+                    or set(c['source_teachers'])!=set(self.sampler.goals)
+                    or any(type(n) is not int or not 0&lt;=n&lt;=c['source_teachers'][k]
+                           for k,n in c['source_EOS'].items())
+                    or set(c['source_EOS'])!=set(self.sampler.goals)
+                    or schedule['last_epoch']!=steps or schedule['_step_count']!=steps+1
+                    or schedule['base_lrs']!=[1e-5] or schedule['_last_lr']!=[1e-5]):
+                raise ValueError('Completed gate update/source/constant-scheduler counters differ')
+            recipe = self.sampler.state_dict()
+            if any(sampler[k]!=recipe[k] for k in ('kind','binding','seed','goals')):
+                raise ValueError('Full original sampler recipe differs')
+            actual = self.model.state_dict()
+            if (set(actual)!=set(state['model']) or any(
+                    not isinstance(v,torch.Tensor) or actual[k].shape!=v.shape or actual[k].dtype!=v.dtype
+                    for k,v in state['model'].items())
+                    or not torch.equal(state['model']['lm_head.weight'],state['model']['model.embed_tokens.weight'])
+                    or (self.spec['gate_arm']=='static_half' and any(
+                        torch.count_nonzero(v) for k,v in state['model'].items() if 'gate_proj.weight' in k))):
+&gt;               raise ValueError('Exact finite gate shapes/vocabulary tie/static zeros required')
+E               ValueError: Exact finite gate shapes/vocabulary tie/static zeros required
+
+scripts/base_headwise_gate_trainer.py:77: ValueError</failure></testcase><testcase classname="tests.test_base_headwise_gate_trainer" name="test_malformed_fullstate_rejected_before_weight_mutation[policy]" time="0.052"><failure message="ValueError: Exact finite gate shapes/vocabulary tie/static zeros required">build = &lt;function build.&lt;locals&gt;.constructor at 0x7b53fb253380&gt;
+tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-7/test_malformed_fullstate_rejec2')
+problem = 'policy'
+
+    @pytest.mark.parametrize('problem',('kind','arm','policy','moment_step','moment_shape','negative_variance',
+        'nonfinite','scheduler','source','tie','static_weights','parameter_partition'))
+    def test_malformed_fullstate_rejected_before_weight_mutation(build,tmp_path,problem):
+&gt;       a = build('static_half');a.step();state = copy.deepcopy(host(a.state_dict()))
+                                                                     ^^^^^^^^^^^^^^
+
+tests/test_base_headwise_gate_trainer.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/base_headwise_gate_trainer.py:108: in state_dict
+    self.validate_committed(state)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;base_headwise_gate_trainer.HeadwiseGateTrainer object at 0x7b53fb25d370&gt;
+state = {'kind': 'original_CE_matched_static_or_query_headwise_SDPA_gate_v1', 'spec': {'kind': 'original_CE_matched_static_or_...th': 'fixture', 'sha256': 'fixed'}, 'parent_update': 5, 'parent_tokens': 90, 'parent_supervised_tokens': 80, ...}, ...}
+
+    def validate_committed(self,state):
+        try:
+            if any(state[k]!=self.state_recipe(k) for k in ('kind','spec','binding','lineage','model_config')):
+                raise ValueError('Gate recipe/arm/parent/source/config differs')
+            c,sampler,schedule,opt = (state[k] for k in ('counters','sampler','scheduler','optimizer'))
+            steps,tokens = c['update'],c['supervised_tokens']
+            if (type(steps) is not int or steps&lt;0 or type(tokens) is not int or tokens&lt;0
+                    or (steps==0)!=(tokens==0)
+                    or tokens!=sum(c['source_teachers'].values())
+                    or c['source_teachers']!=sampler['consumed']
+                    or c['auxiliary_input_tokens'] or c['auxiliary_pairs']
+                    or c['auxiliary_digest']!='0'*64
+                    or not c['physical_input_tokens']&gt;=c['CE_input_tokens']&gt;=tokens
+                    or any(type(n) is not int or not 0&lt;=n&lt;=self.sampler.goals[k]
+                           for k,n in c['source_teachers'].items())
+                    or set(c['source_teachers'])!=set(self.sampler.goals)
+                    or any(type(n) is not int or not 0&lt;=n&lt;=c['source_teachers'][k]
+                           for k,n in c['source_EOS'].items())
+                    or set(c['source_EOS'])!=set(self.sampler.goals)
+                    or schedule['last_epoch']!=steps or schedule['_step_count']!=steps+1
+                    or schedule['base_lrs']!=[1e-5] or schedule['_last_lr']!=[1e-5]):
+                raise ValueError('Completed gate update/source/constant-scheduler counters differ')
+            recipe = self.sampler.state_dict()
+            if any(sampler[k]!=recipe[k] for k in ('kind','binding','seed','goals')):
+                raise ValueError('Full original sampler recipe differs')
+            actual = self.model.state_dict()
+            if (set(actual)!=set(state['model']) or any(
+                    not isinstance(v,torch.Tensor) or actual[k].shape!=v.shape or actual[k].dtype!=v.dtype
+                    for k,v in state['model'].items())
+                    or not torch.equal(state['model']['lm_head.weight'],state['model']['model.embed_tokens.weight'])
+                    or (self.spec['gate_arm']=='static_half' and any(
+                        torch.count_nonzero(v) for k,v in state['model'].items() if 'gate_proj.weight' in k))):
+&gt;               raise ValueError('Exact finite gate shapes/vocabulary tie/static zeros required')
+E               ValueError: Exact finite gate shapes/vocabulary tie/static zeros required
+
+scripts/base_headwise_gate_trainer.py:77: ValueError</failure></testcase><testcase classname="tests.test_base_headwise_gate_trainer" name="test_malformed_fullstate_rejected_before_weight_mutation[moment_step]" time="0.051"><failure message="ValueError: Exact finite gate shapes/vocabulary tie/static zeros required">build = &lt;function build.&lt;locals&gt;.constructor at 0x7b53f84d0ea0&gt;
+tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-7/test_malformed_fullstate_rejec3')
+problem = 'moment_step'
+
+    @pytest.mark.parametrize('problem',('kind','arm','policy','moment_step','moment_shape','negative_variance',
+        'nonfinite','scheduler','source','tie','static_weights','parameter_partition'))
+    def test_malformed_fullstate_rejected_before_weight_mutation(build,tmp_path,problem):
+&gt;       a = build('static_half');a.step();state = copy.deepcopy(host(a.state_dict()))
+                                                                     ^^^^^^^^^^^^^^
+
+tests/test_base_headwise_gate_trainer.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/base_headwise_gate_trainer.py:108: in state_dict
+    self.validate_committed(state)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;base_headwise_gate_trainer.HeadwiseGateTrainer object at 0x7b53f85839b0&gt;
+state = {'kind': 'original_CE_matched_static_or_query_headwise_SDPA_gate_v1', 'spec': {'kind': 'original_CE_matched_static_or_...th': 'fixture', 'sha256': 'fixed'}, 'parent_update': 5, 'parent_tokens': 90, 'parent_supervised_tokens': 80, ...}, ...}
+
+    def validate_committed(self,state):
+        try:
+            if any(state[k]!=self.state_recipe(k) for k in ('kind','spec','binding','lineage','model_config')):
+                raise ValueError('Gate recipe/arm/parent/source/config differs')
+            c,sampler,schedule,opt = (state[k] for k in ('counters','sampler','scheduler','optimizer'))
+            steps,tokens = c['update'],c['supervised_tokens']
+            if (type(steps) is not int or steps&lt;0 or type(tokens) is not int or tokens&lt;0
+                    or (steps==0)!=(tokens==0)
+                    or tokens!=sum(c['source_teachers'].values())
+                    or c['source_teachers']!=sampler['consumed']
+                    or c['auxiliary_input_tokens'] or c['auxiliary_pairs']
+                    or c['auxiliary_digest']!='0'*64
+                    or not c['physical_input_tokens']&gt;=c['CE_input_tokens']&gt;=tokens
+                    or any(type(n) is not int or not 0&lt;=n&lt;=self.sampler.goals[k]
+                           for k,n in c['source_teachers'].items())
+                    or set(c['source_teachers'])!=set(self.sampler.goals)
+                    or any(type(n) is not int or not 0&lt;=n&lt;=c['source_teachers'][k]
+                           for k,n in c['source_EOS'].items())
+                    or set(c['source_EOS'])!=set(self.sampler.goals)
+                    or schedule['last_epoch']!=steps or schedule['_step_count']!=steps+1
+                    or schedule['base_lrs']!=[1e-5] or schedule['_last_lr']!=[1e-5]):
+                raise ValueError('Completed gate update/source/constant-scheduler counters differ')
+            recipe = self.sampler.state_dict()
+            if any(sampler[k]!=recipe[k] for k in ('kind','binding','seed','goals')):
+                raise ValueError('Full original sampler recipe differs')
+            actual = self.model.state_dict()
+            if (set(actual)!=set(state['model']) or any(
+                    not isinstance(v,torch.Tensor) or actual[k].shape!=v.shape or actual[k].dtype!=v.dtype
+                    for k,v in state['model'].items())
+                    or not torch.equal(state['model']['lm_head.weight'],state['model']['model.embed_tokens.weight'])
+                    or (self.spec['gate_arm']=='static_half' and any(
+                        torch.count_nonzero(v) for k,v in state['model'].items() if 'gate_proj.weight' in k))):
+&gt;               raise ValueError('Exact finite gate shapes/vocabulary tie/static zeros required')
+E               ValueError: Exact finite gate shapes/vocabulary tie/static zeros required
+
+scripts/base_headwise_gate_trainer.py:77: ValueError</failure></testcase><testcase classname="tests.test_base_headwise_gate_trainer" name="test_malformed_fullstate_rejected_before_weight_mutation[moment_shape]" time="0.051"><failure message="ValueError: Exact finite gate shapes/vocabulary tie/static zeros required">build = &lt;function build.&lt;locals&gt;.constructor at 0x7b53fb253100&gt;
+tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-7/test_malformed_fullstate_rejec4')
+problem = 'moment_shape'
+
+    @pytest.mark.parametrize('problem',('kind','arm','policy','moment_step','moment_shape','negative_variance',
+        'nonfinite','scheduler','source','tie','static_weights','parameter_partition'))
+    def test_malformed_fullstate_rejected_before_weight_mutation(build,tmp_path,problem):
+&gt;       a = build('static_half');a.step();state = copy.deepcopy(host(a.state_dict()))
+                                                                     ^^^^^^^^^^^^^^
+
+tests/test_base_headwise_gate_trainer.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/base_headwise_gate_trainer.py:108: in state_dict
+    self.validate_committed(state)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;base_headwise_gate_trainer.HeadwiseGateTrainer object at 0x7b53f8563b60&gt;
+state = {'kind': 'original_CE_matched_static_or_query_headwise_SDPA_gate_v1', 'spec': {'kind': 'original_CE_matched_static_or_...th': 'fixture', 'sha256': 'fixed'}, 'parent_update': 5, 'parent_tokens': 90, 'parent_supervised_tokens': 80, ...}, ...}
+
+    def validate_committed(self,state):
+        try:
+            if any(state[k]!=self.state_recipe(k) for k in ('kind','spec','binding','lineage','model_config')):
+                raise ValueError('Gate recipe/arm/parent/source/config differs')
+            c,sampler,schedule,opt = (state[k] for k in ('counters','sampler','scheduler','optimizer'))
+            steps,tokens = c['update'],c['supervised_tokens']
+            if (type(steps) is not int or steps&lt;0 or type(tokens) is not int or tokens&lt;0
+                    or (steps==0)!=(tokens==0)
+                    or tokens!=sum(c['source_teachers'].values())
+                    or c['source_teachers']!=sampler['consumed']
+                    or c['auxiliary_input_tokens'] or c['auxiliary_pairs']
+                    or c['auxiliary_digest']!='0'*64
+                    or not c['physical_input_tokens']&gt;=c['CE_input_tokens']&gt;=tokens
+                    or any(type(n) is not int or not 0&lt;=n&lt;=self.sampler.goals[k]
+                           for k,n in c['source_teachers'].items())
+                    or set(c['source_teachers'])!=set(self.sampler.goals)
+                    or any(type(n) is not int or not 0&lt;=n&lt;=c['source_teachers'][k]
+                           for k,n in c['source_EOS'].items())
+                    or set(c['source_EOS'])!=set(self.sampler.goals)
+                    or schedule['last_epoch']!=steps or schedule['_step_count']!=steps+1
+                    or schedule['base_lrs']!=[1e-5] or schedule['_last_lr']!=[1e-5]):
+                raise ValueError('Completed gate update/source/constant-scheduler counters differ')
+            recipe = self.sampler.state_dict()
+            if any(sampler[k]!=recipe[k] for k in ('kind','binding','seed','goals')):
+                raise ValueError('Full original sampler recipe differs')
+            actual = self.model.state_dict()
+            if (set(actual)!=set(state['model']) or any(
+                    not isinstance(v,torch.Tensor) or actual[k].shape!=v.shape or actual[k].dtype!=v.dtype
+                    for k,v in state['model'].items())
+                    or not torch.equal(state['model']['lm_head.weight'],state['model']['model.embed_tokens.weight'])
+                    or (self.spec['gate_arm']=='static_half' and any(
+                        torch.count_nonzero(v) for k,v in state['model'].items() if 'gate_proj.weight' in k))):
+&gt;               raise ValueError('Exact finite gate shapes/vocabulary tie/static zeros required')
+E               ValueError: Exact finite gate shapes/vocabulary tie/static zeros required
+
+scripts/base_headwise_gate_trainer.py:77: ValueError</failure></testcase><testcase classname="tests.test_base_headwise_gate_trainer" name="test_malformed_fullstate_rejected_before_weight_mutation[negative_variance]" time="0.051"><failure message="ValueError: Exact finite gate shapes/vocabulary tie/static zeros required">build = &lt;function build.&lt;locals&gt;.constructor at 0x7b5513f36de0&gt;
+tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-7/test_malformed_fullstate_rejec5')
+problem = 'negative_variance'
+
+    @pytest.mark.parametrize('problem',('kind','arm','policy','moment_step','moment_shape','negative_variance',
+        'nonfinite','scheduler','source','tie','static_weights','parameter_partition'))
+    def test_malformed_fullstate_rejected_before_weight_mutation(build,tmp_path,problem):
+&gt;       a = build('static_half');a.step();state = copy.deepcopy(host(a.state_dict()))
+                                                                     ^^^^^^^^^^^^^^
+
+tests/test_base_headwise_gate_trainer.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/base_headwise_gate_trainer.py:108: in state_dict
+    self.validate_committed(state)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;base_headwise_gate_trainer.HeadwiseGateTrainer object at 0x7b53f8583080&gt;
+state = {'kind': 'original_CE_matched_static_or_query_headwise_SDPA_gate_v1', 'spec': {'kind': 'original_CE_matched_static_or_...th': 'fixture', 'sha256': 'fixed'}, 'parent_update': 5, 'parent_tokens': 90, 'parent_supervised_tokens': 80, ...}, ...}
+
+    def validate_committed(self,state):
+        try:
+            if any(state[k]!=self.state_recipe(k) for k in ('kind','spec','binding','lineage','model_config')):
+                raise ValueError('Gate recipe/arm/parent/source/config differs')
+            c,sampler,schedule,opt = (state[k] for k in ('counters','sampler','scheduler','optimizer'))
+            steps,tokens = c['update'],c['supervised_tokens']
+            if (type(steps) is not int or steps&lt;0 or type(tokens) is not int or tokens&lt;0
+                    or (steps==0)!=(tokens==0)
+                    or tokens!=sum(c['source_teachers'].values())
+                    or c['source_teachers']!=sampler['consumed']
+                    or c['auxiliary_input_tokens'] or c['auxiliary_pairs']
+                    or c['auxiliary_digest']!='0'*64
+                    or not c['physical_input_tokens']&gt;=c['CE_input_tokens']&gt;=tokens
+                    or any(type(n) is not int or not 0&lt;=n&lt;=self.sampler.goals[k]
+                           for k,n in c['source_teachers'].items())
+                    or set(c['source_teachers'])!=set(self.sampler.goals)
+                    or any(type(n) is not int or not 0&lt;=n&lt;=c['source_teachers'][k]
+                           for k,n in c['source_EOS'].items())
+                    or set(c['source_EOS'])!=set(self.sampler.goals)
+                    or schedule['last_epoch']!=steps or schedule['_step_count']!=steps+1
+                    or schedule['base_lrs']!=[1e-5] or schedule['_last_lr']!=[1e-5]):
+                raise ValueError('Completed gate update/source/constant-scheduler counters differ')
+            recipe = self.sampler.state_dict()
+            if any(sampler[k]!=recipe[k] for k in ('kind','binding','seed','goals')):
+                raise ValueError('Full original sampler recipe differs')
+            actual = self.model.state_dict()
+            if (set(actual)!=set(state['model']) or any(
+                    not isinstance(v,torch.Tensor) or actual[k].shape!=v.shape or actual[k].dtype!=v.dtype
+                    for k,v in state['model'].items())
+                    or not torch.equal(state['model']['lm_head.weight'],state['model']['model.embed_tokens.weight'])
+                    or (self.spec['gate_arm']=='static_half' and any(
+                        torch.count_nonzero(v) for k,v in state['model'].items() if 'gate_proj.weight' in k))):
+&gt;               raise ValueError('Exact finite gate shapes/vocabulary tie/static zeros required')
+E               ValueError: Exact finite gate shapes/vocabulary tie/static zeros required
+
+scripts/base_headwise_gate_trainer.py:77: ValueError</failure></testcase><testcase classname="tests.test_base_headwise_gate_trainer" name="test_malformed_fullstate_rejected_before_weight_mutation[nonfinite]" time="0.053"><failure message="ValueError: Exact finite gate shapes/vocabulary tie/static zeros required">build = &lt;function build.&lt;locals&gt;.constructor at 0x7b53f84d19e0&gt;
+tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-7/test_malformed_fullstate_rejec6')
+problem = 'nonfinite'
+
+    @pytest.mark.parametrize('problem',('kind','arm','policy','moment_step','moment_shape','negative_variance',
+        'nonfinite','scheduler','source','tie','static_weights','parameter_partition'))
+    def test_malformed_fullstate_rejected_before_weight_mutation(build,tmp_path,problem):
+&gt;       a = build('static_half');a.step();state = copy.deepcopy(host(a.state_dict()))
+                                                                     ^^^^^^^^^^^^^^
+
+tests/test_base_headwise_gate_trainer.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/base_headwise_gate_trainer.py:108: in state_dict
+    self.validate_committed(state)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;base_headwise_gate_trainer.HeadwiseGateTrainer object at 0x7b53f85603b0&gt;
+state = {'kind': 'original_CE_matched_static_or_query_headwise_SDPA_gate_v1', 'spec': {'kind': 'original_CE_matched_static_or_...th': 'fixture', 'sha256': 'fixed'}, 'parent_update': 5, 'parent_tokens': 90, 'parent_supervised_tokens': 80, ...}, ...}
+
+    def validate_committed(self,state):
+        try:
+            if any(state[k]!=self.state_recipe(k) for k in ('kind','spec','binding','lineage','model_config')):
+                raise ValueError('Gate recipe/arm/parent/source/config differs')
+            c,sampler,schedule,opt = (state[k] for k in ('counters','sampler','scheduler','optimizer'))
+            steps,tokens = c['update'],c['supervised_tokens']
+            if (type(steps) is not int or steps&lt;0 or type(tokens) is not int or tokens&lt;0
+                    or (steps==0)!=(tokens==0)
+                    or tokens!=sum(c['source_teachers'].values())
+                    or c['source_teachers']!=sampler['consumed']
+                    or c['auxiliary_input_tokens'] or c['auxiliary_pairs']
+                    or c['auxiliary_digest']!='0'*64
+                    or not c['physical_input_tokens']&gt;=c['CE_input_tokens']&gt;=tokens
+                    or any(type(n) is not int or not 0&lt;=n&lt;=self.sampler.goals[k]
+                           for k,n in c['source_teachers'].items())
+                    or set(c['source_teachers'])!=set(self.sampler.goals)
+                    or any(type(n) is not int or not 0&lt;=n&lt;=c['source_teachers'][k]
+                           for k,n in c['source_EOS'].items())
+                    or set(c['source_EOS'])!=set(self.sampler.goals)
+                    or schedule['last_epoch']!=steps or schedule['_step_count']!=steps+1
+                    or schedule['base_lrs']!=[1e-5] or schedule['_last_lr']!=[1e-5]):
+                raise ValueError('Completed gate update/source/constant-scheduler counters differ')
+            recipe = self.sampler.state_dict()
+            if any(sampler[k]!=recipe[k] for k in ('kind','binding','seed','goals')):
+                raise ValueError('Full original sampler recipe differs')
+            actual = self.model.state_dict()
+            if (set(actual)!=set(state['model']) or any(
+                    not isinstance(v,torch.Tensor) or actual[k].shape!=v.shape or actual[k].dtype!=v.dtype
+                    for k,v in state['model'].items())
+                    or not torch.equal(state['model']['lm_head.weight'],state['model']['model.embed_tokens.weight'])
+                    or (self.spec['gate_arm']=='static_half' and any(
+                        torch.count_nonzero(v) for k,v in state['model'].items() if 'gate_proj.weight' in k))):
+&gt;               raise ValueError('Exact finite gate shapes/vocabulary tie/static zeros required')
+E               ValueError: Exact finite gate shapes/vocabulary tie/static zeros required
+
+scripts/base_headwise_gate_trainer.py:77: ValueError</failure></testcase><testcase classname="tests.test_base_headwise_gate_trainer" name="test_malformed_fullstate_rejected_before_weight_mutation[scheduler]" time="0.052"><failure message="ValueError: Exact finite gate shapes/vocabulary tie/static zeros required">build = &lt;function build.&lt;locals&gt;.constructor at 0x7b540a68d580&gt;
+tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-7/test_malformed_fullstate_rejec7')
+problem = 'scheduler'
+
+    @pytest.mark.parametrize('problem',('kind','arm','policy','moment_step','moment_shape','negative_variance',
+        'nonfinite','scheduler','source','tie','static_weights','parameter_partition'))
+    def test_malformed_fullstate_rejected_before_weight_mutation(build,tmp_path,problem):
+&gt;       a = build('static_half');a.step();state = copy.deepcopy(host(a.state_dict()))
+                                                                     ^^^^^^^^^^^^^^
+
+tests/test_base_headwise_gate_trainer.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/base_headwise_gate_trainer.py:108: in state_dict
+    self.validate_committed(state)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;base_headwise_gate_trainer.HeadwiseGateTrainer object at 0x7b53f855ac60&gt;
+state = {'kind': 'original_CE_matched_static_or_query_headwise_SDPA_gate_v1', 'spec': {'kind': 'original_CE_matched_static_or_...th': 'fixture', 'sha256': 'fixed'}, 'parent_update': 5, 'parent_tokens': 90, 'parent_supervised_tokens': 80, ...}, ...}
+
+    def validate_committed(self,state):
+        try:
+            if any(state[k]!=self.state_recipe(k) for k in ('kind','spec','binding','lineage','model_config')):
+                raise ValueError('Gate recipe/arm/parent/source/config differs')
+            c,sampler,schedule,opt = (state[k] for k in ('counters','sampler','scheduler','optimizer'))
+            steps,tokens = c['update'],c['supervised_tokens']
+            if (type(steps) is not int or steps&lt;0 or type(tokens) is not int or tokens&lt;0
+                    or (steps==0)!=(tokens==0)
+                    or tokens!=sum(c['source_teachers'].values())
+                    or c['source_teachers']!=sampler['consumed']
+                    or c['auxiliary_input_tokens'] or c['auxiliary_pairs']
+                    or c['auxiliary_digest']!='0'*64
+                    or not c['physical_input_tokens']&gt;=c['CE_input_tokens']&gt;=tokens
+                    or any(type(n) is not int or not 0&lt;=n&lt;=self.sampler.goals[k]
+                           for k,n in c['source_teachers'].items())
+                    or set(c['source_teachers'])!=set(self.sampler.goals)
+                    or any(type(n) is not int or not 0&lt;=n&lt;=c['source_teachers'][k]
+                           for k,n in c['source_EOS'].items())
+                    or set(c['source_EOS'])!=set(self.sampler.goals)
+                    or schedule['last_epoch']!=steps or schedule['_step_count']!=steps+1
+                    or schedule['base_lrs']!=[1e-5] or schedule['_last_lr']!=[1e-5]):
+                raise ValueError('Completed gate update/source/constant-scheduler counters differ')
+            recipe = self.sampler.state_dict()
+            if any(sampler[k]!=recipe[k] for k in ('kind','binding','seed','goals')):
+                raise ValueError('Full original sampler recipe differs')
+            actual = self.model.state_dict()
+            if (set(actual)!=set(state['model']) or any(
+                    not isinstance(v,torch.Tensor) or actual[k].shape!=v.shape or actual[k].dtype!=v.dtype
+                    for k,v in state['model'].items())
+                    or not torch.equal(state['model']['lm_head.weight'],state['model']['model.embed_tokens.weight'])
+                    or (self.spec['gate_arm']=='static_half' and any(
+                        torch.count_nonzero(v) for k,v in state['model'].items() if 'gate_proj.weight' in k))):
+&gt;               raise ValueError('Exact finite gate shapes/vocabulary tie/static zeros required')
+E               ValueError: Exact finite gate shapes/vocabulary tie/static zeros required
+
+scripts/base_headwise_gate_trainer.py:77: ValueError</failure></testcase><testcase classname="tests.test_base_headwise_gate_trainer" name="test_malformed_fullstate_rejected_before_weight_mutation[source]" time="0.051"><failure message="ValueError: Exact finite gate shapes/vocabulary tie/static zeros required">build = &lt;function build.&lt;locals&gt;.constructor at 0x7b53f84d25c0&gt;
+tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-7/test_malformed_fullstate_rejec8')
+problem = 'source'
+
+    @pytest.mark.parametrize('problem',('kind','arm','policy','moment_step','moment_shape','negative_variance',
+        'nonfinite','scheduler','source','tie','static_weights','parameter_partition'))
+    def test_malformed_fullstate_rejected_before_weight_mutation(build,tmp_path,problem):
+&gt;       a = build('static_half');a.step();state = copy.deepcopy(host(a.state_dict()))
+                                                                     ^^^^^^^^^^^^^^
+
+tests/test_base_headwise_gate_trainer.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/base_headwise_gate_trainer.py:108: in state_dict
+    self.validate_committed(state)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;base_headwise_gate_trainer.HeadwiseGateTrainer object at 0x7b53fb2e54f0&gt;
+state = {'kind': 'original_CE_matched_static_or_query_headwise_SDPA_gate_v1', 'spec': {'kind': 'original_CE_matched_static_or_...th': 'fixture', 'sha256': 'fixed'}, 'parent_update': 5, 'parent_tokens': 90, 'parent_supervised_tokens': 80, ...}, ...}
+
+    def validate_committed(self,state):
+        try:
+            if any(state[k]!=self.state_recipe(k) for k in ('kind','spec','binding','lineage','model_config')):
+                raise ValueError('Gate recipe/arm/parent/source/config differs')
+            c,sampler,schedule,opt = (state[k] for k in ('counters','sampler','scheduler','optimizer'))
+            steps,tokens = c['update'],c['supervised_tokens']
+            if (type(steps) is not int or steps&lt;0 or type(tokens) is not int or tokens&lt;0
+                    or (steps==0)!=(tokens==0)
+                    or tokens!=sum(c['source_teachers'].values())
+                    or c['source_teachers']!=sampler['consumed']
+                    or c['auxiliary_input_tokens'] or c['auxiliary_pairs']
+                    or c['auxiliary_digest']!='0'*64
+                    or not c['physical_input_tokens']&gt;=c['CE_input_tokens']&gt;=tokens
+                    or any(type(n) is not int or not 0&lt;=n&lt;=self.sampler.goals[k]
+                           for k,n in c['source_teachers'].items())
+                    or set(c['source_teachers'])!=set(self.sampler.goals)
+                    or any(type(n) is not int or not 0&lt;=n&lt;=c['source_teachers'][k]
+                           for k,n in c['source_EOS'].items())
+                    or set(c['source_EOS'])!=set(self.sampler.goals)
+                    or schedule['last_epoch']!=steps or schedule['_step_count']!=steps+1
+                    or schedule['base_lrs']!=[1e-5] or schedule['_last_lr']!=[1e-5]):
+                raise ValueError('Completed gate update/source/constant-scheduler counters differ')
+            recipe = self.sampler.state_dict()
+            if any(sampler[k]!=recipe[k] for k in ('kind','binding','seed','goals')):
+                raise ValueError('Full original sampler recipe differs')
+            actual = self.model.state_dict()
+            if (set(actual)!=set(state['model']) or any(
+                    not isinstance(v,torch.Tensor) or actual[k].shape!=v.shape or actual[k].dtype!=v.dtype
+                    for k,v in state['model'].items())
+                    or not torch.equal(state['model']['lm_head.weight'],state['model']['model.embed_tokens.weight'])
+                    or (self.spec['gate_arm']=='static_half' and any(
+                        torch.count_nonzero(v) for k,v in state['model'].items() if 'gate_proj.weight' in k))):
+&gt;               raise ValueError('Exact finite gate shapes/vocabulary tie/static zeros required')
+E               ValueError: Exact finite gate shapes/vocabulary tie/static zeros required
+
+scripts/base_headwise_gate_trainer.py:77: ValueError</failure></testcase><testcase classname="tests.test_base_headwise_gate_trainer" name="test_malformed_fullstate_rejected_before_weight_mutation[tie]" time="0.050"><failure message="ValueError: Exact finite gate shapes/vocabulary tie/static zeros required">build = &lt;function build.&lt;locals&gt;.constructor at 0x7b5513f36de0&gt;
+tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-7/test_malformed_fullstate_rejec9')
+problem = 'tie'
+
+    @pytest.mark.parametrize('problem',('kind','arm','policy','moment_step','moment_shape','negative_variance',
+        'nonfinite','scheduler','source','tie','static_weights','parameter_partition'))
+    def test_malformed_fullstate_rejected_before_weight_mutation(build,tmp_path,problem):
+&gt;       a = build('static_half');a.step();state = copy.deepcopy(host(a.state_dict()))
+                                                                     ^^^^^^^^^^^^^^
+
+tests/test_base_headwise_gate_trainer.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/base_headwise_gate_trainer.py:108: in state_dict
+    self.validate_committed(state)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;base_headwise_gate_trainer.HeadwiseGateTrainer object at 0x7b53fb23f740&gt;
+state = {'kind': 'original_CE_matched_static_or_query_headwise_SDPA_gate_v1', 'spec': {'kind': 'original_CE_matched_static_or_...th': 'fixture', 'sha256': 'fixed'}, 'parent_update': 5, 'parent_tokens': 90, 'parent_supervised_tokens': 80, ...}, ...}
+
+    def validate_committed(self,state):
+        try:
+            if any(state[k]!=self.state_recipe(k) for k in ('kind','spec','binding','lineage','model_config')):
+                raise ValueError('Gate recipe/arm/parent/source/config differs')
+            c,sampler,schedule,opt = (state[k] for k in ('counters','sampler','scheduler','optimizer'))
+            steps,tokens = c['update'],c['supervised_tokens']
+            if (type(steps) is not int or steps&lt;0 or type(tokens) is not int or tokens&lt;0
+                    or (steps==0)!=(tokens==0)
+                    or tokens!=sum(c['source_teachers'].values())
+                    or c['source_teachers']!=sampler['consumed']
+                    or c['auxiliary_input_tokens'] or c['auxiliary_pairs']
+                    or c['auxiliary_digest']!='0'*64
+                    or not c['physical_input_tokens']&gt;=c['CE_input_tokens']&gt;=tokens
+                    or any(type(n) is not int or not 0&lt;=n&lt;=self.sampler.goals[k]
+                           for k,n in c['source_teachers'].items())
+                    or set(c['source_teachers'])!=set(self.sampler.goals)
+                    or any(type(n) is not int or not 0&lt;=n&lt;=c['source_teachers'][k]
+                           for k,n in c['source_EOS'].items())
+                    or set(c['source_EOS'])!=set(self.sampler.goals)
+                    or schedule['last_epoch']!=steps or schedule['_step_count']!=steps+1
+                    or schedule['base_lrs']!=[1e-5] or schedule['_last_lr']!=[1e-5]):
+                raise ValueError('Completed gate update/source/constant-scheduler counters differ')
+            recipe = self.sampler.state_dict()
+            if any(sampler[k]!=recipe[k] for k in ('kind','binding','seed','goals')):
+                raise ValueError('Full original sampler recipe differs')
+            actual = self.model.state_dict()
+            if (set(actual)!=set(state['model']) or any(
+                    not isinstance(v,torch.Tensor) or actual[k].shape!=v.shape or actual[k].dtype!=v.dtype
+                    for k,v in state['model'].items())
+                    or not torch.equal(state['model']['lm_head.weight'],state['model']['model.embed_tokens.weight'])
+                    or (self.spec['gate_arm']=='static_half' and any(
+                        torch.count_nonzero(v) for k,v in state['model'].items() if 'gate_proj.weight' in k))):
+&gt;               raise ValueError('Exact finite gate shapes/vocabulary tie/static zeros required')
+E               ValueError: Exact finite gate shapes/vocabulary tie/static zeros required
+
+scripts/base_headwise_gate_trainer.py:77: ValueError</failure></testcase><testcase classname="tests.test_base_headwise_gate_trainer" name="test_malformed_fullstate_rejected_before_weight_mutation[static_weights]" time="0.050"><failure message="ValueError: Exact finite gate shapes/vocabulary tie/static zeros required">build = &lt;function build.&lt;locals&gt;.constructor at 0x7b53f84d3060&gt;
+tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-7/test_malformed_fullstate_rejec10')
+problem = 'static_weights'
+
+    @pytest.mark.parametrize('problem',('kind','arm','policy','moment_step','moment_shape','negative_variance',
+        'nonfinite','scheduler','source','tie','static_weights','parameter_partition'))
+    def test_malformed_fullstate_rejected_before_weight_mutation(build,tmp_path,problem):
+&gt;       a = build('static_half');a.step();state = copy.deepcopy(host(a.state_dict()))
+                                                                     ^^^^^^^^^^^^^^
+
+tests/test_base_headwise_gate_trainer.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/base_headwise_gate_trainer.py:108: in state_dict
+    self.validate_committed(state)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;base_headwise_gate_trainer.HeadwiseGateTrainer object at 0x7b53f8582ab0&gt;
+state = {'kind': 'original_CE_matched_static_or_query_headwise_SDPA_gate_v1', 'spec': {'kind': 'original_CE_matched_static_or_...th': 'fixture', 'sha256': 'fixed'}, 'parent_update': 5, 'parent_tokens': 90, 'parent_supervised_tokens': 80, ...}, ...}
+
+    def validate_committed(self,state):
+        try:
+            if any(state[k]!=self.state_recipe(k) for k in ('kind','spec','binding','lineage','model_config')):
+                raise ValueError('Gate recipe/arm/parent/source/config differs')
+            c,sampler,schedule,opt = (state[k] for k in ('counters','sampler','scheduler','optimizer'))
+            steps,tokens = c['update'],c['supervised_tokens']
+            if (type(steps) is not int or steps&lt;0 or type(tokens) is not int or tokens&lt;0
+                    or (steps==0)!=(tokens==0)
+                    or tokens!=sum(c['source_teachers'].values())
+                    or c['source_teachers']!=sampler['consumed']
+                    or c['auxiliary_input_tokens'] or c['auxiliary_pairs']
+                    or c['auxiliary_digest']!='0'*64
+                    or not c['physical_input_tokens']&gt;=c['CE_input_tokens']&gt;=tokens
+                    or any(type(n) is not int or not 0&lt;=n&lt;=self.sampler.goals[k]
+                           for k,n in c['source_teachers'].items())
+                    or set(c['source_teachers'])!=set(self.sampler.goals)
+                    or any(type(n) is not int or not 0&lt;=n&lt;=c['source_teachers'][k]
+                           for k,n in c['source_EOS'].items())
+                    or set(c['source_EOS'])!=set(self.sampler.goals)
+                    or schedule['last_epoch']!=steps or schedule['_step_count']!=steps+1
+                    or schedule['base_lrs']!=[1e-5] or schedule['_last_lr']!=[1e-5]):
+                raise ValueError('Completed gate update/source/constant-scheduler counters differ')
+            recipe = self.sampler.state_dict()
+            if any(sampler[k]!=recipe[k] for k in ('kind','binding','seed','goals')):
+                raise ValueError('Full original sampler recipe differs')
+            actual = self.model.state_dict()
+            if (set(actual)!=set(state['model']) or any(
+                    not isinstance(v,torch.Tensor) or actual[k].shape!=v.shape or actual[k].dtype!=v.dtype
+                    for k,v in state['model'].items())
+                    or not torch.equal(state['model']['lm_head.weight'],state['model']['model.embed_tokens.weight'])
+                    or (self.spec['gate_arm']=='static_half' and any(
+                        torch.count_nonzero(v) for k,v in state['model'].items() if 'gate_proj.weight' in k))):
+&gt;               raise ValueError('Exact finite gate shapes/vocabulary tie/static zeros required')
+E               ValueError: Exact finite gate shapes/vocabulary tie/static zeros required
+
+scripts/base_headwise_gate_trainer.py:77: ValueError</failure></testcase><testcase classname="tests.test_base_headwise_gate_trainer" name="test_malformed_fullstate_rejected_before_weight_mutation[parameter_partition]" time="0.051"><failure message="ValueError: Exact finite gate shapes/vocabulary tie/static zeros required">build = &lt;function build.&lt;locals&gt;.constructor at 0x7b53f84d2f20&gt;
+tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-7/test_malformed_fullstate_rejec11')
+problem = 'parameter_partition'
+
+    @pytest.mark.parametrize('problem',('kind','arm','policy','moment_step','moment_shape','negative_variance',
+        'nonfinite','scheduler','source','tie','static_weights','parameter_partition'))
+    def test_malformed_fullstate_rejected_before_weight_mutation(build,tmp_path,problem):
+&gt;       a = build('static_half');a.step();state = copy.deepcopy(host(a.state_dict()))
+                                                                     ^^^^^^^^^^^^^^
+
+tests/test_base_headwise_gate_trainer.py:70: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+scripts/base_headwise_gate_trainer.py:108: in state_dict
+    self.validate_committed(state)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;base_headwise_gate_trainer.HeadwiseGateTrainer object at 0x7b53fb2e5700&gt;
+state = {'kind': 'original_CE_matched_static_or_query_headwise_SDPA_gate_v1', 'spec': {'kind': 'original_CE_matched_static_or_...th': 'fixture', 'sha256': 'fixed'}, 'parent_update': 5, 'parent_tokens': 90, 'parent_supervised_tokens': 80, ...}, ...}
+
+    def validate_committed(self,state):
+        try:
+            if any(state[k]!=self.state_recipe(k) for k in ('kind','spec','binding','lineage','model_config')):
+                raise ValueError('Gate recipe/arm/parent/source/config differs')
+            c,sampler,schedule,opt = (state[k] for k in ('counters','sampler','scheduler','optimizer'))
+            steps,tokens = c['update'],c['supervised_tokens']
+            if (type(steps) is not int or steps&lt;0 or type(tokens) is not int or tokens&lt;0
+                    or (steps==0)!=(tokens==0)
+                    or tokens!=sum(c['source_teachers'].values())
+                    or c['source_teachers']!=sampler['consumed']
+                    or c['auxiliary_input_tokens'] or c['auxiliary_pairs']
+                    or c['auxiliary_digest']!='0'*64
+                    or not c['physical_input_tokens']&gt;=c['CE_input_tokens']&gt;=tokens
+                    or any(type(n) is not int or not 0&lt;=n&lt;=self.sampler.goals[k]
+                           for k,n in c['source_teachers'].items())
+                    or set(c['source_teachers'])!=set(self.sampler.goals)
+                    or any(type(n) is not int or not 0&lt;=n&lt;=c['source_teachers'][k]
+                           for k,n in c['source_EOS'].items())
+                    or set(c['source_EOS'])!=set(self.sampler.goals)
+                    or schedule['last_epoch']!=steps or schedule['_step_count']!=steps+1
+                    or schedule['base_lrs']!=[1e-5] or schedule['_last_lr']!=[1e-5]):
+                raise ValueError('Completed gate update/source/constant-scheduler counters differ')
+            recipe = self.sampler.state_dict()
+            if any(sampler[k]!=recipe[k] for k in ('kind','binding','seed','goals')):
+                raise ValueError('Full original sampler recipe differs')
+            actual = self.model.state_dict()
+            if (set(actual)!=set(state['model']) or any(
+                    not isinstance(v,torch.Tensor) or actual[k].shape!=v.shape or actual[k].dtype!=v.dtype
+                    for k,v in state['model'].items())
+                    or not torch.equal(state['model']['lm_head.weight'],state['model']['model.embed_tokens.weight'])
+                    or (self.spec['gate_arm']=='static_half' and any(
+                        torch.count_nonzero(v) for k,v in state['model'].items() if 'gate_proj.weight' in k))):
+&gt;               raise ValueError('Exact finite gate shapes/vocabulary tie/static zeros required')
+E               ValueError: Exact finite gate shapes/vocabulary tie/static zeros required
+
+scripts/base_headwise_gate_trainer.py:77: ValueError</failure></testcase><testcase classname="tests.test_base_headwise_gate_trainer" name="test_actual_post_Adam_failure_cannot_save_or_continue_and_clean_resume_recovers" time="0.376" /><testcase classname="tests.test_base_headwise_gate_trainer" name="test_typed_evaluator_requires_exact_gate_record_and_restores_native_factory" time="0.014" /></testsuite></testsuites>
