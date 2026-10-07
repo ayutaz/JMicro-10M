@@ -1,3 +1,22 @@
+Base限定・入力混合100M比較の学習と全評価を終了、不採用（2026-10-07 JST）。Baseは未完成・未採用。
+
+[終了記録](../reports/phase6/base_context_mixing_comparison_completion.json)・[全80レビュー](../reports/phase6/base_context_mixing_comparison_review.json)・[個別観察](../reports/phase6/base_context_mixing_observations.tsv): actual709696/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start21284143はcomplete・実process不在。terminal full stateで元gold100,000,000教師/17,698更新を確認。最終heartbeat99,900,395/17,680は途中値として保持し、完了量とはしない。科学GPU1,823.248917秒（30.4分）/固定cap4,072秒、probe込み1,833.718489秒/事前総cap7,200秒。最終checkpoint SHA1490a80e327e6b6476d3cf6e44cdcbdb8a26dea4671f5b639963cc5221ba6c6b。native10,001,152params/同parent/同gold/source/batch/seed/fresh AdamWは維持、cached CE対照のGPU再実行・再採点0。
+
+予測用追加forwardはvalid102,655,467/physical370,838,917入力。混合対象101,805,988位置のうち5,091,856位置で予測を選択、実変更2,732,520位置（5%は選択確率で、実変更率ではない）。元gold教師/Web75M・教材20M・物語5M/元EOS・bodybytes/digest/full samplerの全11一致checks、専用mixing RNGを含むfull state、全17,698完了metrics・有限値/会計を実レビュー。追加教師/params/新distinct教材0。追加forward computeは元教師tokensと分けて記録。
+
+|条件|共通byte BPB|文法2/80|関連2/80|一貫性2/80|適切完結/80|EOS/80|自動反復/80|
+|---|---:|---:|---:|---:|---:|---:|---:|
+|cached CE100M|0.998487|44|25|2|2|19|45|
+|入力混合100M|1.007638|43|24|1|4|11|53|
+
+固定全80を個別に読み、prefix/text/generated_ids/停止が完全一致した11件のみ既存CEの理由・採点を再利用、変化した69件に個別理由を保存。非blind Codexの反復DEV判定で独立人間ではない。犬の擬人化を単独で誤りにせず、数値/条件の誤りは文法と分離し、自動反復falseでも実際の循環を記録。単なるEOSを適切な完結としない。一貫性差-1/80、paired95%CI[-.05,.025]で悪化確定ではないが改善条件は未達。意味192件59.896%/JBLiMP331件77.946%/JCQA1,119件34.853%、Unicode/role/empty各0。common256文書/472,055bytes/122,343tokensで比較。matched CE/strong relative/absolute/historical Webの全採用gateは未達、eligible=false。
+
+review_base_context_mixing.py、complete_base_context_mixing.pyの実終端監査・全80 raw/codec/suite結合・採否保存・元UI復帰・text archiveに成功。42text/107,768,551bytes、gzip46,995,094bytes/SHA56e7830c4deef7a628f157f4d7da7e2a58777c7a67e46e10a92309bd1e772c4cをWindowsへ保存し一度照合。full checkpointsはWSL保持。元10B UI actual711570/同boot/start21466885を実processとHTTP親SHA410f975d…/10,000,007,168/busy=falseで確認。新科学GPUjobなし。
+
+この固定5%・greedy一回の条件を閉じ、確率/pass/decoder/LR/source/parent/batch/教師/上限の救済変更で再実行しない。単一成熟親・単一seed・尤度不整合/元goldと混合履歴の矛盾を含む変形の負結果であり、全scheduled sampling/10M容量/追加学習の無効を証明しない。既測定のUL/next-two/Muon/packing/BOS/teacher/Attention等を再実行せず、corpus再全scan・Tokenizer再学習・自動20B/50B延長なし。次の具体的アクションは既存のTRAIN内容と学習・生成評価を統合して未検証の根本要因を一つ特定し、追加GPU開始前に固定対照・実測予算・終了条件を記録すること。資格ある候補だけ独立学習seed/full DEV/protected final TEST/adoptionへ進む。
+
+最新ユーザー指示を保持: 実Baseの全評価合格・採用が完了したら知らせて停止する。Chat/Dialogue/SFT/量子化は開始しない。現在Base未完成、独立学習seed/full DEV/protected final TEST/adoptionは今回未実施。全五目標/Phase0–3/旧数値7失敗/歴史負結果と品質条件を保持。Python3.12.7はWSL uv、verified local commitのみ、自動pushなし。今回は一比較の実終端・全80採否・可搬保存のprogress。以下は過去の履歴。
+
 Base限定・入力混合の実CUDA検証を終了、同gold100M比較を永続起動（2026-10-07 JST）。Base未完成・未採用。
 
 前goal turnはcontext-mixing trainerの実装/CPU9checks/固定比較案・5d07579保存のprogress。今回は不足していたprobe/science/review/closeoutと2永続PS launcherを実装し、旧Muon harnessは変更せず評価と会計の契約を再利用。新state/worst-window fixtureとCPU runner8checks/2.55秒（予算7200秒固定、同教師でもdigest/full sampler違い拒否、未commit optimizer/mixing/source会計拒否、元TRAIN worst1024/512/EOS保持と再実行拒否）に成功。AST9sources/両CLI import/2PS構文/CPU inspect成功。凍結されたprototype/旧trainer/model/既存品質helperは変更していない。

@@ -1,0 +1,148 @@
+{
+  "status": "ContextMixing_native100M_and_all80_reviewed",
+  "created_at": "2026-10-07T00:07:49.637958Z",
+  "config_sha256": "e1b2b64d9b57ccd1dc1ba341eb5a389c424842a7ce735583365da9ed2518b782",
+  "result_sha256": "893b5adedd7aac27ab0e1e5d07de539c54a8a874ab1c7b0f96e0ff76dea0a86e",
+  "policy_sha256": "fb6e7ee95fae37453297111a1f4f3f7e55bc2f9c01e0e224c7c4f7302ddffcf2",
+  "summaries": {
+    "context_mixing": {
+      "BPB": 1.007637929885986,
+      "rates": {
+        "outputs": 80,
+        "eos": 11,
+        "repetition": 53,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 43,
+      "relevance2": 24,
+      "coherent": 1,
+      "appropriate": 4,
+      "notes_sha256": "c0f154397920815184bf76d27c12eac51bd23340190d829372d288412c3ebf69",
+      "generation_sha256": "ae1b169b111ff657ee84c514e52a0fa6b0e4899a8012f41e03e067e11b4620a7",
+      "Japanese": {
+        "semantics": 0.5989583333333334,
+        "jblimp": 0.7794561933534743,
+        "jcqa": 0.3485254691689008
+      }
+    },
+    "CE": {
+      "BPB": 0.998487162513845,
+      "rates": {
+        "outputs": 80,
+        "eos": 19,
+        "repetition": 45,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 44,
+      "relevance2": 25,
+      "coherent": 2,
+      "appropriate": 2,
+      "notes_sha256": "5a36aa6d4914260d1975974ae0fbee6c1e0024d900ea8103da970fdbc4ee9369",
+      "generation_sha256": "73a952a4e08ca8cfffa229fdb8c8f497d0373ff0646ca4b4f5cecd90a27e644b",
+      "Japanese": {
+        "semantics": 0.625,
+        "jblimp": 0.7734138972809668,
+        "jcqa": 0.35031277926720283
+      }
+    },
+    "strong_staged": {
+      "BPB": 1.1336128657420816,
+      "rates": {
+        "outputs": 80,
+        "eos": 76,
+        "repetition": 2,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 65,
+      "relevance2": 39,
+      "coherent": 23,
+      "appropriate": 26,
+      "notes_sha256": "6b143e08096a1ee2365a643c008d5c009d2c2ff48dd1d42a9749ac5301766d2d",
+      "generation_sha256": "d5b5a7c6b5d971de9bc46c77f52ac5ea19132cab7b97f034c274974cdbe2620e",
+      "Japanese": {
+        "semantics": 0.5625,
+        "jblimp": 0.7824773413897281,
+        "jcqa": 0.26541554959785524
+      }
+    }
+  },
+  "matched_objective_quality": {
+    "checks": {
+      "coherence_gain_at_least8": false,
+      "paired_CI_lower_above0": false,
+      "EOS_nonworsening": false,
+      "repetition_nonworsening": false,
+      "no_empty_role_unicode": true,
+      "BPB_gate": false,
+      "appropriate_completion_not_punctuation": true
+    },
+    "passed": false,
+    "difference_count": -1,
+    "CI95": [
+      -0.05,
+      0.025
+    ]
+  },
+  "quality_comparison": {
+    "checks": {
+      "coherence_gain_at_least8": false,
+      "paired_CI_lower_above0": false,
+      "EOS_nonworsening": false,
+      "repetition_nonworsening": false,
+      "no_empty_role_unicode": true,
+      "BPB_gate": true,
+      "appropriate_completion_not_punctuation": true
+    },
+    "passed": false,
+    "difference_count": -22,
+    "CI95": [
+      -0.375,
+      -0.1625
+    ]
+  },
+  "absolute_dev_screen": {
+    "grammar_at_least56": false,
+    "coherence_at_least27": false,
+    "appropriate_at_least27": false,
+    "EOS_at_least37": false,
+    "repetition_at_most18": false,
+    "no_empty_role_unicode": true
+  },
+  "original_Web": {
+    "EOS_at_least8_more": true,
+    "repetition_no_worse": true,
+    "no_empty_role_unicode": true,
+    "BPB_degradation_at_most1percent": false,
+    "no_punctuation_only_stops": true
+  },
+  "eligible_for_final_Base_validation": false,
+  "scientific_CE_teacher_tokens": 100000000,
+  "reused_control_teacher_tokens": 100000000,
+  "GPU_seconds": 1823.2489165220177,
+  "probe_GPU_seconds": 10.469572045985842,
+  "context_mixing": {
+    "updates": 17698,
+    "eligible_positions": 101805988,
+    "selected_positions": 5091856,
+    "changed_positions": 2732520,
+    "prediction_valid_inputs": 102655467,
+    "prediction_physical_inputs": 370838917,
+    "digest": "a09bba0262fbf06734a9b056c6dbd31a69cbd43ebbf2435f4223c1d377607774"
+  },
+  "all80_individually_read": true,
+  "independent_human_blind": false,
+  "notes_sha256": "c0f154397920815184bf76d27c12eac51bd23340190d829372d288412c3ebf69",
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "quality_criteria_unchanged": true,
+  "protected_test_scored": false,
+  "limitations": "Single seed and mature-parent history-mixing transition; repeated nonblind DEV; additional prediction compute. Fixed greedy variant is not full on-policy sampling or a likelihood-consistent objective. No new unique corpus or capacity proof. Independent learnedseed/full DEV/protected TEST/adoption remain required."
+}
