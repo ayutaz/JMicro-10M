@@ -1,3 +1,11 @@
+Base限定・同一科学jobを実監視し、全内容判定後の可搬記録commandを準備（2026-10-07 JST）。Baseは未完成・未採用。
+
+前turnは新on-policy teacher実装/31関連CPUchecks・実CUDA32vs16+16/131検証更新/実科学起動をb09dfe4へ保存したprogress。今turnもrequired docs/worktreeを確認し、actual718057/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start21898450の同科学jobをpsで稼働確認。2,740更新/original15,470,284/100M gold、CE2.5784158707有限、累積351.376秒/凍結3562秒、最新完了checkpoint-00002500.ptを確認。重複job/新研究/設定変更なし。この数値は監視時点のsnapshotで、最新heartbeat/metricsはWSL run job.jsonを参照。
+
+complete_base_on_policy_teacher.pyを追加しCLI helpをWSL uvで確認。実科学process終了・全評価/all80 raw-bound notesと採否・同元gold stream/fullsampler・測定上限・元10B UI actual/API復帰が揃った後だけtext/source/metrics/evaluationのarchiveとmanifest/完成比較記録を保存するcommand。aux distribution位置/生成input会計/教師不変checksをgold100Mとは別に記録。現在本学習は稼働中なのでarchive commandはまだ実完了させておらず、CLI helpを品質・終端・UI復帰の証拠にしない。
+
+次はこのexact jobの学習と評価完了を待ち、80件を個別に判定→凍結matched/strong/absolute/historicalWeb全gate→終了記録/可搬保存。資格ある実候補だけ独立学習seed/full DEV/protected final TEST/adoptionへ進む。Base完成を知らせて停止、Chat/Dialogue/SFT/量子化/展開なし。Python3.12.7はWSL uv、localcommitのみ、pushなし。goal completeではない。以下は過去の履歴。
+
 Base限定・現在生成したprefixへのnative教師feedbackを実装し、実CUDA保存再開に成功、100M科学学習を開始（2026-10-07 JST）。Baseは未完成・未採用。
 
 [実gate・起動記録](../reports/phase6/base_on_policy_teacher_probe_launch.json)・[結果前の修正済み案](../reports/phase6/base_on_policy_teacher_proposal_v2.json)。前turnのgold-prefix KDのeager3600秒予算失敗とcompiler数値失敗は5b65dbcへ保存したprogress。今回保存済みsynthesis/source-order/gradient-precision・両KD終了・context-mixing終了を確認。次の一条件は、現studentがTRAIN短文の頭からsamplingしたprefixに未採用native staged教師fb43f261…のfull4096予測を与える。goldを変更したprefixにそのまま与える旧mixing、反復UL/localDPO、未学習gold-prefix KDとは異なる実学習機構。[GKD一次論文](https://arxiv.org/abs/2306.13649)を参考にした仮説で、日本語10Mの成功証明や論文の厳密再現ではない。
