@@ -1,0 +1,73 @@
+{
+  "status": "native_same_architecture_short_target_KD_comparison_defined_not_implemented_or_GPU_started",
+  "date_JST": "2026-10-07",
+  "question": "Does a frozen native10M checkpoint with better free Japanese generation transfer useful short-source predictive distributions to the original Web-oriented10M, while retaining original gold CE on all sources?",
+  "evidence": {
+    "teacher_checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323503.pt",
+    "teacher_quality": {
+      "grammar2": 65,
+      "coherent": 23,
+      "EOS": 76,
+      "BPB": 1.1336128657420816,
+      "repetition": 2
+    },
+    "teacher_checkpoint_SHA256": "fb43f2618c0679ca6c6f7a0c5b9faf1b336be8985271c8513f2e4bbfde3cd7ae",
+    "source_closeout": "reports/phase6/openja_base_source_completion.json",
+    "source_closeout_SHA256": "e1a749dc2716d9c7d8d9326526af90b957e44c865b54b59173b53153a4c00a62",
+    "teacher_quality_review": "reports/phase6/natural_context_contrast_comparison_review.json",
+    "teacher_quality_review_SHA256": "d034f4f5c20d67c6d94e5052f569670fce2fd5e166fd0d625b16c1def003c674",
+    "teacher_is_adopted_Base": false
+  },
+  "rationale": "The native staged teacher has markedly better generation/EOS than original-parent CE100M, but fails Web retention and remains unadopted. Unlike Qwen4B representation-transfer, teacher and student have identical native10M architecture, vocab and exact byte codec. Context-dependent soft predictive classes can be transferred without cross-tokenizer/hidden-state alignment. This is an unproven hypothesis; teacher cannot be adopted by substitution.",
+  "literature": {
+    "url": "https://proceedings.mlr.press/v80/furlanello18a.html",
+    "scope": "Reports identically parameterized teacher/student distillation in vision and language modeling. Different tasks/data/training from Japanese10M; not proof of improvement or exact reproduction.",
+    "title": "Born Again Neural Networks, ICML2018"
+  },
+  "novelty": "Repository source scan shows frozen original-parent Web-KL retention and Qwen3-4B semantic representation-transfer, not frozen staged-native short-source full-vocabulary predictive KD. Preserve those negatives. Same-model capacity/vocab avoids only the alignment difference; no general capacity claim.",
+  "student_parent": {
+    "tokenizer_SHA256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "parameters": 10001152
+  },
+  "cached_control": {
+    "notes": "reports/phase6/natural_context_contrast_CE_notes.json",
+    "coherent": 2,
+    "checkpoint_SHA256": "f691a7587c03c51293a2e77889307da0efa18d2349c13e4f77439fd339586967",
+    "updates": 17698,
+    "EOS": 19,
+    "config": "configs/phase6/natural_context_contrast_comparison.json",
+    "repetition": 45,
+    "grammar2": 44,
+    "BPB": 0.998487162513845,
+    "scientific_gold_positions": 100000000
+  },
+  "objective": "All original100M body/EOS gold CE unchanged; add KL(q_frozen_staged_native || p_student) at temperature1, coefficient1, only on existing textbook/story supervised positions. Sum KL over exactly the existing short positions and normalize by all original gold positions in each update, as CE does. No targets/role/BOS/positions/masks/input rewriting. Log original hard gold100M and extra distribution25M positions separately; shared student inputs are not counted twice.",
+  "main_quota": {
+    "web": 75000000,
+    "story": 5000000,
+    "textbook": 20000000
+  },
+  "state_and_settings": "Same originalparent/4096/model/context1024, freshAdamW LR1e-5 WD.1 constant, seed42 and exact original sampler/teacher order/100M gold positions. Aim existing stablebatch48; must actually measure added frozen-teacher CUDA path and reject if incompatible. Teacher eval/no gradients/weights unchanged, full vocab softtargetsT1, BF16 forward/FP32 logits/loss. Preserve studentoptimizer/scheduler/RNG/sampler/consumedgold andKD counters/teacher hash at completed updates.",
+  "supervision_comparison": "CE hardgold100M matched. KD adds25M distribution-target positions and teacher forward compute, so not equal total supervision/compute or isolated architecture effect. Same native teacher was trained from a different historical parent/source order; report that history and repeated source exposure. Actual per-position teacher entropy/goldprob/KL/bodyvsEOS reported, not assumed superior gold labels.",
+  "new_data_tokens": 0,
+  "old_corpus_full_scan": false,
+  "tokenizer_retrained": false,
+  "protocol_before_science": "Implement actual trainer/runner/reviewer/persistentlauncher/fullstate and boundedbatch timing, CPUcheck meaningfulloss/mask/teacherimmutability/accounting/oldfullstates. Reuse fixedTRAIN24 and original1024stress window if needed; no new expensive root-cause assay. ActualCUDA continuous4vs2+2 allweights/Adam/scheduler/RNG/fullsampler/digest/gold/KD/finite history and frozen-teacher unchanged checks, worstbatch finite BF16, discard probe weights. Confirm all100M original gold streams/cursors equal cachedCE at terminal; no cachedcontrolGPU/rating rerun.",
+  "preliminary_limits": {
+    "batch_resume_timing_GPU_seconds": 180,
+    "CPU_implementation_protocol_checks": "relevant only",
+    "science_cap": "Freeze from actual measured total100M/update/evaluation cost, <=remaining3600; if forecast exceeds cap, close budget condition without raisingcap/batch/teacher/shape rescue",
+    "total_new_GPU_seconds": 3600
+  },
+  "evaluation": "Same common256DEV/472055bytes/122343tokens, Japanese192/331/1119, fixed80 plainBOS/greedy64/EOS3/suppress0,1,2,4,5,6,7 and all80 individually raw-bound nonblind notes. Exact reused raw outputs alone may reuse old ratings. All matchedCE/strong/absolute/historicalWeb guards unchanged; independent trainedseed/fullDEV/protectedTEST/adoption only after qualified science.",
+  "completion": "Actual immutable full100M terminal, gold/KD/input/bytes/fullstate/cursors/timings, all evaluation/content/gates, originalWebUI restored, portable evidence and localcommit. Passing research comparison is not Base completion.",
+  "failure_policy": "One native teacher/T1/coefficient1/same100M condition. No teacher/temperature/alpha/LR/parent/data/batch/shape/cap/checkpoint/threshold sweep or automatic extra learning if failed. Preserve oldclosedKD/WebKL/numeric7 and all historical negatives.",
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_scored": false,
+  "quality_criteria_unchanged": true
+}
