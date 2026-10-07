@@ -24,7 +24,7 @@
     "start_ticks": "1498217",
     "started_at": "2026-10-07T11:17:00.395446Z",
     "config_sha256": "d2df07357165115e4534815d39f1526737a13fa61ebb471d8cd3c6bc45c20768",
-    "GPU_occupancy_seconds": 25984.817929760004,
+    "GPU_occupancy_seconds": 26109.006321903,
     "cumulative_GPU_ledger_closed": false,
     "restart_command": "scripts/run_base_parallel_residual.ps1 -Worker; inspect actual PID/boot/start, closed ledger and valid completed checkpoints first",
     "Base_complete": false,
@@ -38,16 +38,16 @@
       "allocator_allowance_bytes": 23181026918,
       "expected_worst_peak_bytes": 17791499264
     },
-    "stage": "generation80",
-    "heartbeat_at": "2026-10-07T18:30:05.912824Z",
-    "residual_arm": "sequential",
-    "completed_updates": 212080,
-    "original_teachers": 1999868016,
-    "CE_loss": 2.543199062347412,
+    "stage": "parallel-training",
+    "heartbeat_at": "2026-10-07T18:32:10.101215Z",
+    "residual_arm": "parallel",
+    "completed_updates": 660,
+    "original_teachers": 6209424,
+    "CE_loss": 3.897742748260498,
     "latest_checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-parallel-residual-comparison-20261007/sequential/checkpoint-00212095.pt",
     "completed_tasks": 618,
     "total_tasks": 618,
-    "completed_cases": 48
+    "completed_cases": 80
   },
   "windows_worker_pid": 31588,
   "windows_worker_alive_confirmed": true,
@@ -56,7 +56,7 @@
     "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
     "pid": 31561
   },
-  "observed_at": "2026-10-07T18:30:11.6618694Z",
+  "observed_at": "2026-10-07T18:32:10.2327279Z",
   "checkpoint_every_updates": 2000,
   "scientific_original_gold_total": 4000000000,
   "Base_adopted": false,
@@ -456,6 +456,24 @@
     "checkpoint_sha256": "a1d29762321f1a9df088ced78d5b67fb174f59e1dd10fd4520bf769ed78c5f51",
     "checkpoint_bytes": 124374525,
     "quality_evaluation_complete": false,
+    "Base_complete": false
+  },
+  "parallel_training_started": {
+    "observed_at": "2026-10-07T18:32:10.2327279Z",
+    "actual_process_identity": {
+      "start_ticks": "1498217",
+      "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+      "pid": 31561
+    },
+    "original_teachers": 6209424,
+    "completed_updates": 660,
+    "CE_loss": 3.897742748260498,
+    "GPU_occupancy_seconds": 26109.006321903,
+    "sequential_automated_evaluation_completed_at": "2026-10-07T18:30:48.487050Z",
+    "sequential_automated_evaluation_result": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-parallel-residual-comparison-20261007/evaluation/sequential/evaluation/result.json",
+    "sequential_automated_evaluation_result_sha256": "8ca51cf98d9b787619bd08805f6745c736bb1aa3d565f9dad4b1a13dd69fe2bb",
+    "personally_read_current_generation_cases": 0,
+    "comparison_quality_review_complete": false,
     "Base_complete": false
   }
 }
