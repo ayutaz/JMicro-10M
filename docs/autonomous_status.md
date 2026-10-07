@@ -1,3 +1,39 @@
+Base限定・2008年編集例文の公式取得とCPU検証を終了、厳密encoding条件で不採用（2026-10-07 JST）。Baseは未完成・未採用。
+
+[実終了記録](../reports/phase6/tanaka_edited_pd2008_source_completion.json)・[source pin](../reports/phase6/tanaka_edited_pd2008_source_pin.json)・[実encoding診断](../reports/phase6/tanaka_edited_pd2008_encoding_failure.json)。以下のTatoeba閉鎖記録の「次のarchive未取得」は当時の状態。今回、同EDRDG publisherの実HTML SHA13525a5acbdafbcb009f55ceba3cd3270dc2c89ac0a8552fc2eece3cac96334fに掲載された正確なFTP URL ftp://ftp.edrdg.org/pub/Nihongo/examples_pd.gz のOctober2008最終Public Domain編集版を一度だけ取得した。実8,386,099bytes、SHA b98033e3d740dae6a2c572795e6c0c768502ab0c2b0a268020e34ebdbb2b05e2。network累積8.340231秒/事前60秒。rawはWSL /home/aihub_ubuntu/jmicro-data/phase6/tanaka-edited-pd2008-20261007/examples_pd.gz に保持し、再取得なし。
+
+候補HTTPS endpointはhostname不一致certificateで失敗、TLS検証は弱めていない。実publisherのpublished FTP linkとlast editedPD2008説明を確認し、FTP SIZEの非数値213metadata失敗後に同exact RETRをstream cap/hash付きで実施した。これらの初期metadata失敗と修正script/resultを保持。同archive/source/license/network/CPU/内容基準を替えた救済ではない。権利・原著者を独立監査したとはしない。
+
+最初の5行の厳密EUC-JP/CRLF/A:日本語TAB英語/B:index構造だけをCPU0.008786秒で確認。これは全archiveのencoding証明ではなく、本文を表示・採点して選別しないdiscovery。元4096codec/原文10..256characters・6..64bodytokens・日本語終句/構造ID・wrapper除外/fixedDEV prefix>=12除外/原文body family90/5/5split/一pass exact dedup/固定TRAIN80seed2026100751・最低TRAIN1Mbodytokens/文法72・一貫性64を変更せずCPU準備を実装。元の2B corpus再scan・Tokenizer再学習なし、英語対訳/index/role/EOTは学習しない。
+
+実CPU4checks/0.04秒成功後、初版config SHA3efe15d27fcd5a18dce79178f55050f62b0e066d170d406eaf0d3288998be12dを凍結。actual714209/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start21663195は147,262 activeA/line294525でpublisherの#A:/#B:コメント化された非学習部分をparserが誤拒否して終了。構造診断で提供元が「学習用として有用でない」と区別したmetadataを確認。元proposalはheader/indexの除外を予定していたため、内容を変更せずコメントを除外するV2 parserへ修正、失敗済みsource/config/jobを保持。最初のtest collectionの括弧記述ミスも修正し初期XMLを保持した。
+
+V2も実CPU4checks/0.04秒成功、config SHAd4e7587f3dd71c7345e62f97b3e1b14c6d070307914de094eceb41a0c49356f1を凍結。actual714357/同boot/start21668310は終了・実不在。activeAを149,187処理した時点のline298737、byte33=0xadで標準EUC-JPのUnicodeDecodeError。実診断で当該行は除外commentではなくactiveA:本文であることを確認。decompressed25,154,490bytesまでの部分scanであり、全量・採用TRAINtoken数を推定しない。初版失敗・両構造診断込みCPU累積5.195449秒/事前90秒。source/schemaを全件厳密検証できず固定source readiness失敗。encodingを推測して替える・error ignore/置換・問題行drop・別版/mirror/filter/seed/threshold/epochで救済せず、この2008条件を終了する。3回目の準備なし。
+
+prepared train/dev/test、fixed80、内容合格、科学教師、optimizer更新、GPU学習はすべて0。sourceの取得・形式検証失敗でありモデルの学習失敗ではない。全human Japanese/大きな学習量の無効を証明せず、旧数値7失敗/全歴史負結果/全Base品質基準を維持。complete_tanaka_edited_pd2008_source.pyは実process終了・失敗stage/line・全凍結source/refs SHA・stream pin stat・prepared/sample不在を確認。28text/portable archive20,482bytes、SHA78cc2613e99f95791aec84b9eb03e525bdd6c1b693f567fda91053ea4645c40dをWindowsへ保存し一度照合。rawgzip/full checkpointsはWSLに保持、旧2B・rawgzipの再全hashなし。元10B WebUI713143をCPU準備中に停止/変更せず、新GPUjobなし。
+
+次の具体的アクション: 既存のsource registryと公的日本語本文の一次metadataを有限に確認し、未検証かつ実UTF8原文を用意できる候補を一つだけ比較案にする。既に終了したWeb/HQ/Wikipedia/青空/翻訳story/生成教材/CC0/2008例文を同じ条件で再試行せず、source選別の無制限探索にしない。新sourceを使う場合も、取得/CPU上限と量・固定TRAIN80の品質条件を結果前に記録し、原文・family split・既存DEV分離を維持する。source合格と実CUDA state/安定batch/測定予算が揃うまで追加科学GPUを開始しない。有望な実学習候補だけ既存matched/strong/absolute/historicalWeb gatesと独立学習seed/full DEV/protected final TEST/adoptionへ進む。
+
+最新ユーザー境界: Baseの実全評価合格・採用が終わったら知らせ、そこで停止する。Chat/Dialogue/SFT/量子化/展開は開始しない。現在Base未完成・未採用、独立seed/full DEV/protected final TEST/adoptionは今回未実施。Python3.12.7はWSL uv、意味のある検証済み変更をlocal commit、自動pushなし。今回は公式archiveの実取得・CPU検証・固定source条件終了・可搬記録のprogressで、goal completeではない。以下は過去の履歴。
+
+Base限定・Tatoeba日本語CC0取得を実行、量不足で固定案を終了（2026-10-07 JST）。Baseは未完成・未採用。
+
+前goal turnは全parameter FP32/BF16勾配の実CUDA診断・精度修復分岐終了・92fac76保存のprogress。今回、required3docs/AGENTS/現worktree/既存source案を確認。[Tatoeba公式download](https://tatoeba.org/en/downloads)の実HTMLから日本語CC0専用URL /exports/per_language/jpn/jpn_sentences_CC0.tsv.bz2 と4column（ID/lang/text/modified）を特定。[CC0 original-only方針](https://en.wiki.tatoeba.org/articles/show/cc0-contributions)も実取得して確認。general Japanese/翻訳/音声/全言語exportへ替えない。
+
+[実終了記録](../reports/phase6/tatoeba_original_short_source_completion.json)・[実準備結果](../reports/phase6/tatoeba_original_short_source_preparation.json)・[2文の観察](../reports/phase6/tatoeba_original_short_source_observations.json): actual713617/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start21575831はcomplete・実process不在。Windows worker35924。固定config SHA6ef993f6fbecfb0cf845881794be8512b619229aafdc4261e67205daac5f5019。元の失敗済みCUDA/科学jobは実不在、元UIだけが稼働する状態からCPU専用uv3.12.7 workerを起動。network5.713639秒/事前60秒、source preparation CPU0.006176秒/事前90秒、GPU/optimizer更新/科学教師0。compressed228bytes/decompressed260bytes、snapshot SHA39e6768de61f901a0904d9e74e554772d4e12286121ec3e2c6bd5307ce543465、HTTP Content-Length228/Last-Modified2026-10-03 06:31:09GMTを保存。一度のstream hash/pinと一度のdecompressionで完了、再取得0。
+
+取得ファイルは実際に2文のみ。全2文が事前のUTF8/jpn/terminal punctuation/6..64bodytokens/10..256characters/codec原文byte/exclusionを満たし、TRAIN2文/47bodytokens（BOS/EOS込み51 serializedtokens）/192bodybytes、reserved DEV/TEST各0、rejection0。元の本文・sourceID/URL/CC0 metadataを保ち、exact body-family hashで90/5/5splitと一pass dedupを実装。元4096codecの再学習なし。旧2B index/tokenstreamの再scan/照合なし。既存public-magpieのfixed Base DEV prefix>=12characters除外契約を再利用し、source splitを学習と分離。semantic near-duplicateや全cross-corpus decontaminationを証明したものではない。
+
+事前最低TRAIN1,000,000bodytokensに未達、amount_screen_passed=false/eligible_for_training=false。80文が存在せず、fixed80はrows/indicesとも空の記録として保持。代わりに2文を80文と見なすことも閾値を替えることもしない。2文を個別に読み、両方がCreative Commonsライセンス宣言の表記違いであることを記録。本文のCC BY4.0表記と取得ファイル自体のCC0 metadataを混同しない。全80内容screenは未実施で品質合格0、モデルの学習失敗ではなくこのCC0 snapshotの量不足。Tatoeba全体/他license版の量不足を主張しない。
+
+実CPU5checks/0.11秒（実元codecの原文byte/構造ID除外、異なるsourceIDの同body同split、未完/URL/役割wrapper拒否、厳密UTF8/4column/schema/既存DEV除外、TRAIN限定80sampleのseed再現・duplicate/DEV混入拒否）・PS構文・uv CPU preflightが成功してからsourceを凍結/取得。complete_tatoeba_original_short_source.pyの実終端・全source/refs SHA・rawpin stat・split会計/家族漏洩・空80・元UI実identity/HTTP監査に成功。23text/642,511bytes、gzip194,717bytes/SHA9c94d75983a741bda5b843104b6fc72afae07465c5aed3cd850a2aee1a1e0fbbをWindowsへ保存し一度照合。rawcompressed/officialHTML/原文splitはWSL data環境に保持。元10B UI actual713143/同boot/start21525511は実稼働、HTTP親SHA410f975d…/10,000,007,168/busy=falseを確認。UI停止/変更なし、新科学GPUjobなし。
+
+この固定CC0案を閉じ、CC-BY/現行翻訳export/seed/filter/threshold/epochで救済せず、追加GPU学習なし。全Base品質条件と旧数値7失敗/全歴史負結果を保持。この結果から自然な日本語教材や追加学習一般の無効を断定しない。
+
+次の具体的アクションを[別のhistorical edited corpus案](../reports/phase6/tanaka_edited_pd2008_source_proposal.json)として記録。[EDRDG publisher](https://www.edrdg.org/wiki/Tanaka_Corpus.html)はOct2008の最後のPublic Domain編集版と、エラーの多い元収集/現行CC-BY版を区別している。編集版にも不自然な翻訳・人工的用例・反復/誤りが残るとの注意を保持し、自然な教材だと保証しない。既存repoにexamples_pd/Tanaka corpus実装/比較の該当なし。候補 examples_pd.gz の実official catalog/provenance/アクセス/encodingを先に確認する（web catalog fetchはInternal Errorで実archive未取得）。別のpublisher固定編集版の一調査であり、閉じた2文CC0案の再開/現行CC-BY exportへの置換ではない。network60秒/compressed64MiB/decompressed128MiB/CPU90秒、元codec/同最低1M TRAINbodytokens/結果前のfixed TRAIN80（seed2026100751、文法2>=72・standalone一貫性2>=64）、未達なら同2008条件終了を維持。元2001/current版/別archive/mirrorによる救済なし。qualified sourceだけ同100M/Web75M・新短文20M・物語5M比較の実装/実CUDA state/実測予算へ進む。今はこのarchive取得/品質/科学GPU0で、モデル品質改善を主張しない。
+
+実Baseの全評価合格・独立学習seed/full DEV/protected final TEST/adoptionが完了したら知らせて停止する。現在Base未完成、Chat/Dialogue/SFT/量子化は開始しない。全五目標/Phase0–3/全基準/歴史負結果を保持。Python3.12.7はWSL uv、verified local commitのみ、自動pushなし。今回は新sourceの実取得・全量会計・量不足の確定・可搬保存のprogress。以下は過去の履歴。
+
 Base限定・学習勾配の精度差を実CUDAで測定し、この固定診断を終了（2026-10-07 JST）。Baseは未完成・未採用。
 
 前goal turnは入力混合100Mの実終端・全80採否・UI復帰・e1120d6保存のprogress。今回、required3docsと現worktree/実processを確認。旧root診断はFP32 full/causalの3parameter勾配とBF16 flash/mathの3parameter勾配比較、旧precision followupはno-grad分布/FP32生成であり、全parameterのFP32対BF16学習勾配とは異なる。FP32推論でも反復する既測定結果と旧数値7失敗を保持し再実行しない。[PyTorch AMP一次資料](https://docs.pytorch.org/docs/stable/notes/amp_examples.html)のforwardに選択されたdtypeをbackwardも使う説明、[数値精度資料](https://docs.pytorch.org/docs/main/notes/numerical_accuracy.html)を確認し、新しいreadonly比較だけを定義。

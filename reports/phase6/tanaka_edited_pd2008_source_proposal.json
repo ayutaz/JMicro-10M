@@ -1,0 +1,47 @@
+{
+  "status": "distinct_archival_source_feasibility_defined_no_acquisition_or_training",
+  "date_JST": "2026-10-07",
+  "previous_progress": "Official Japanese CC0 snapshot pinned once:2sentences/47TRAIN bodytokens, amount screen failed; no full80 and no training. Closed CC0 proposal is not reopened or converted to a general CC-BY export.",
+  "source": "EDRDG-hosted last edited Public Domain edition of the Tanaka example-sentence corpus, October2008, examples_pd.gz",
+  "candidate_official_archive_url_to_verify": "https://ftp.edrdg.org/pub/Nihongo/examples_pd.gz",
+  "primary_sources_checked": [
+    {
+      "url": "https://www.edrdg.org/wiki/Tanaka_Corpus.html",
+      "finding": "Publisher documents a last Public Domain edited version fromOctober2008 separately from the error-filled original compilation and current edited CC-BY release. It describes corrections and reduction of similar examples, while warning about remaining errors, contrived usage and nonrepresentative texts."
+    },
+    {
+      "url": "https://ftp.edrdg.org/pub/Nihongo/00INDEX.html",
+      "finding": "Search index of publisher catalog names examples_pd.gz as the last Public Domain edition; live catalog fetch in web tool returned Internal Error. Actual catalog/archive reachability, exact file identity and encoding are not yet verified."
+    }
+  ],
+  "novelty_check": "Before this proposal, repository scripts/configs/docs/reports contained no examples_pd/tanakacorp/Tanaka Corpus/田中コーパス implementation or comparison. This is a different frozen archival edited corpus with a different publisher release, not the2row CC0 file or the current Tatoeba translation export.",
+  "hypothesis": "Human-collected and subsequently edited short Japanese dictionary examples may provide more diverse complete grammatical clauses than the already-tested generated textbook/template and machine-translated story routes. Original Japanese authorship is not assumed; human collection includes translated and contrived examples. Historical editing and the publisher's caveats require an actual fixed content screen.",
+  "metadata_gate": "Verify the actual publisher catalog/provenance and separateOct2008 edited archive before acquiring it. Do not use the error-filled original tanakacorp file, current examples.utf file, modern CC-BY export or unofficial mirror as a substitute. Publisher description is a source claim, not an independent rights audit or quality certification.",
+  "budgets": {
+    "network_wall_seconds": 60,
+    "maximum_compressed_bytes": 67108864,
+    "maximum_decompressed_bytes": 134217728,
+    "CPU_preparation_seconds": 90,
+    "GPU_seconds": 0,
+    "scientific_teacher_tokens": 0
+  },
+  "preparation": "Pin the official compressed archive once with source URL/HTTP metadata/SHA/size. Verify actual encoding/schema; extract only exact decoded Japanese example bodies, preserving characters and punctuation and omitting English pairs, indexing metadata and headers. Use the original4096 codec;6..64bodytokens/10..256characters/terminalJapanese punctuation/no special wrappers or URLs. Exact-body dedup and stable body-family TRAIN90/DEV5/TEST5 split; reuse existing fixedDEV prefix exclusion; never train reserved splits or evaluation records. No old2B scan or tokenizer retraining.",
+  "sample": "Freeze one uniformly drawn eligible TRAIN80 without replacement with seed2026100751 before reading contents. Save exact Japanese bytes/body IDs/source-line identity/archive binding. All80 individually reviewed nonblind with original-source grammar/standalone coherence0..2; positive requires2. No reroll, rewriting, dropping weak sampled rows or favorable model-generation selection.",
+  "readiness_screen": {
+    "minimum_distinct_eligible_TRAIN_body_tokens": 1000000,
+    "grammar2_at_least": 72,
+    "standalone_coherence2_at_least": 64,
+    "sample_total": 80,
+    "invalid_UTF8_or_special_wrapper": 0,
+    "Base_quality_gate": false
+  },
+  "comparison_after_readiness_only": "One separately frozen source replacement against cached CE100M: same original10M/parent/4096 tokenizer/100Moriginal gold teachers, Web75M/qualified edited Japanese examples20M/story5M. Report distinct corpus quantity/bytes/repeated exposure/update grouping/GPUtime; these differ from original synthetic textbook source. Implement all-state accounting, actual CUDA/BF16 finite worst batch/save-resume and measured bounded budget before any science. Source readiness is not model quality or permission to extend20B/50B.",
+  "acceptance": "Existing common-byte BPB, Japanese suites, full80 raw-bound generation and matched/strong/absolute/historicalWeb Base gates remain unchanged. Only qualified candidate may proceed to independent trained seed/full DEV/protected final TEST/adoption; finish Base and notify/stop before Chat or quantization.",
+  "failure_policy": "If exact archive/provenance/encoding/schema/access/budget/amount or fixed80 content screen fails, close this fixedOct2008 source. No original2001/currentCC-BY/alternate archive/mirror/filter/seed/threshold/epoch rescue, no automatic GPU training. Do not generalize an archival readiness failure into a proof that all human Japanese data or larger learning budgets are useless.",
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_scored": false,
+  "quality_criteria_unchanged": true
+}
