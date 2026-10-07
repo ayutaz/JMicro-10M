@@ -1,3 +1,5 @@
+最新の実状態（2026-10-07 JST）: 未学習だったdense native教師KLを別のprospective資源計画で検証し、実CUDA保存再開に合格して同100M比較を起動。科学actual732636、Base未完成・未採用。元3600予算超過とcompile数値失敗を上書きせず、数学的新規性は主張しない。詳細・active job・次の具体的アクションは [autonomous_status.md](autonomous_status.md) 冒頭参照。品質Base完成で通知して停止し、Chat/Dialogue/SFT/量子化には進まない。以下は歴史記録・既存計画。
+
 最新の実状態（2026-10-07 JST）: confidence penalty同100M比較は全評価・全80内容まで終了し、既存品質条件で不採用。Baseは未完成・未採用。詳細と次の具体的アクションは [autonomous_status.md](autonomous_status.md) 冒頭および [終了記録](../reports/phase6/base_confidence_penalty_comparison_completion.json) を参照。品質Base完成を通知して停止し、Chat/Dialogue/SFT/量子化には進まない。以下は歴史記録・既存計画で、古い実状態や停止境界で最新statusを上書きしない。
 
 Base限定・SAM100M学習/全日本語・全80内容評価を完了、不採用（2026-10-07 JST）。Baseは未完成・未採用。

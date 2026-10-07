@@ -1,0 +1,258 @@
+{
+  "created_at": "2026-10-07T04:21:54.944956Z",
+  "status": "four_actual_quality_rejections_and_one_never_trained_KD_effect_distinguished",
+  "historical_synthesis": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_failure_route_synthesis.json",
+    "sha256": "2384411b47272b53b9e4eda981a69ff67e335069ca125a43e551c892515826b2"
+  },
+  "previous_companion": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_recent_objective_failure_synthesis.json",
+    "sha256": "fac67855f7e041d18aaf9d8055a9829587a72a61f7d14019704c8c404ceb4133"
+  },
+  "historical_files_overwritten": false,
+  "conditions": [
+    {
+      "condition": "on_policy_teacher",
+      "completion": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_on_policy_teacher_comparison_completion.json",
+        "sha256": "022131b4a404867cc07ec69876ea069dfed03c91cafc8f96a33b1d96d834bfa5"
+      },
+      "summary": {
+        "BPB": 0.9963855283048731,
+        "rates": {
+          "outputs": 80,
+          "eos": 22,
+          "repetition": 46,
+          "unicode_failure": 0,
+          "role_leak": 0,
+          "empty": 0
+        },
+        "grammar2": 30,
+        "relevance2": 24,
+        "coherent": 3,
+        "appropriate": 6,
+        "notes_sha256": "3beec2b508158c57f84e7bc34d7ffc5a7b2cf23fea46a35ad4b47cad4dabe041",
+        "generation_sha256": "64c591e33c4960ae918263f6c1abea273d9938ebdada458bac8bf8e415ebeaf3",
+        "Japanese": {
+          "semantics": 0.6458333333333334,
+          "jblimp": 0.7794561933534743,
+          "jcqa": 0.3521000893655049
+        }
+      },
+      "original_gold_positions": 100000000,
+      "new_unique_corpus": 0,
+      "matched_gates": {
+        "checks": {
+          "coherence_gain_at_least8": false,
+          "paired_CI_lower_above0": false,
+          "EOS_nonworsening": true,
+          "repetition_nonworsening": false,
+          "no_empty_role_unicode": true,
+          "BPB_gate": true,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": 1,
+        "CI95": [
+          -0.025,
+          0.0625
+        ]
+      },
+      "GPU_seconds_including_probe": 2209.094531035982
+    },
+    {
+      "condition": "sam",
+      "completion": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_sam_comparison_completion.json",
+        "sha256": "2f31f34c1235d3f13589e54c44fe695e748d63a11af1103c249de2fd44e28693"
+      },
+      "summary": {
+        "BPB": 0.9994859554644886,
+        "rates": {
+          "outputs": 80,
+          "eos": 12,
+          "repetition": 44,
+          "unicode_failure": 0,
+          "role_leak": 0,
+          "empty": 0
+        },
+        "grammar2": 22,
+        "relevance2": 23,
+        "coherent": 1,
+        "appropriate": 3,
+        "notes_sha256": "2de393a2b409acce5461730443e200e0e82ed5c93719d23ea87a8830344c4b3e",
+        "generation_sha256": "3e2bf31e287852a71d92be3c5dd430ae3c3d0483b533d5da0404ff095d7fb02d",
+        "Japanese": {
+          "semantics": 0.6354166666666666,
+          "jblimp": 0.770392749244713,
+          "jcqa": 0.35031277926720283
+        }
+      },
+      "original_gold_positions": 100000000,
+      "new_unique_corpus": 0,
+      "matched_gates": {
+        "checks": {
+          "coherence_gain_at_least8": false,
+          "paired_CI_lower_above0": false,
+          "EOS_nonworsening": false,
+          "repetition_nonworsening": true,
+          "no_empty_role_unicode": true,
+          "BPB_gate": false,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": -1,
+        "CI95": [
+          -0.0375,
+          0.0
+        ]
+      },
+      "GPU_seconds_including_probe": 2630.5644376760174
+    },
+    {
+      "condition": "middle_supervision",
+      "completion": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_middle_supervision_comparison_completion.json",
+        "sha256": "4829d93b24a02a3ded203258887a06934d067f285ee9a4326333dfc1ef8a1975"
+      },
+      "summary": {
+        "BPB": 1.0037105165554707,
+        "rates": {
+          "outputs": 80,
+          "eos": 14,
+          "repetition": 44,
+          "unicode_failure": 0,
+          "role_leak": 0,
+          "empty": 0
+        },
+        "grammar2": 19,
+        "relevance2": 20,
+        "coherent": 1,
+        "appropriate": 3,
+        "notes_sha256": "fb17668751b0577c84e875e8a42dd53dc47aef9cd8695eaeb5a551e94ea91685",
+        "generation_sha256": "be17d6639e6ff5f4c8d13b7920eb6cbe1a48d84eb514d8d1002b02ecbdb5e383",
+        "Japanese": {
+          "semantics": 0.6614583333333334,
+          "jblimp": 0.7794561933534743,
+          "jcqa": 0.3489722966934763
+        }
+      },
+      "original_gold_positions": 100000000,
+      "new_unique_corpus": 0,
+      "matched_gates": {
+        "checks": {
+          "coherence_gain_at_least8": false,
+          "paired_CI_lower_above0": false,
+          "EOS_nonworsening": false,
+          "repetition_nonworsening": true,
+          "no_empty_role_unicode": true,
+          "BPB_gate": false,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": -1,
+        "CI95": [
+          -0.0625,
+          0.025
+        ]
+      },
+      "GPU_seconds_including_probe": 1480.3736064040277
+    },
+    {
+      "condition": "confidence_penalty",
+      "completion": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_confidence_penalty_comparison_completion.json",
+        "sha256": "9b60041cb33f9d1ee1c84e16d66e7a8bae0727868cbe73460778247834692d6d"
+      },
+      "summary": {
+        "BPB": 1.0066673599304765,
+        "rates": {
+          "outputs": 80,
+          "eos": 16,
+          "repetition": 50,
+          "unicode_failure": 0,
+          "role_leak": 0,
+          "empty": 0
+        },
+        "grammar2": 33,
+        "relevance2": 28,
+        "coherent": 1,
+        "appropriate": 2,
+        "notes_sha256": "bdfba89dc6e344e0fc63c93e15cf64233f7775d40bf15046394d9e1236f00b82",
+        "generation_sha256": "05abe7249f01e4e24de2a02920320fe1d1bf4f9571b8c1d9e9cda1ec89bf235e",
+        "Japanese": {
+          "semantics": 0.6302083333333334,
+          "jblimp": 0.7764350453172205,
+          "jcqa": 0.3449508489722967
+        }
+      },
+      "original_gold_positions": 100000000,
+      "new_unique_corpus": 0,
+      "matched_gates": {
+        "checks": {
+          "coherence_gain_at_least8": false,
+          "paired_CI_lower_above0": false,
+          "EOS_nonworsening": false,
+          "repetition_nonworsening": false,
+          "no_empty_role_unicode": true,
+          "BPB_gate": false,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": -1,
+        "CI95": [
+          -0.0375,
+          0.0
+        ]
+      },
+      "GPU_seconds_including_probe": 1495.1747415409773
+    }
+  ],
+  "cached_control": {
+    "BPB": 0.998487162513845,
+    "rates": {
+      "outputs": 80,
+      "eos": 19,
+      "repetition": 45,
+      "unicode_failure": 0,
+      "role_leak": 0,
+      "empty": 0
+    },
+    "grammar2": 44,
+    "relevance2": 25,
+    "coherent": 2,
+    "appropriate": 2,
+    "notes_sha256": "5a36aa6d4914260d1975974ae0fbee6c1e0024d900ea8103da970fdbc4ee9369",
+    "generation_sha256": "73a952a4e08ca8cfffa229fdb8c8f497d0373ff0646ca4b4f5cecd90a27e644b",
+    "Japanese": {
+      "semantics": 0.625,
+      "jblimp": 0.7734138972809668,
+      "jcqa": 0.35031277926720283
+    }
+  },
+  "untrained_native_KD": {
+    "completion": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_native_teacher_KD_probe_completion.json",
+      "sha256": "2672f10105a206c9965fdeda98d260444487dec643c58c04957db247d6662dbe"
+    },
+    "result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-native-teacher-KD-probe-v2-20261007/result.json",
+      "sha256": "1e2d535768db080ba3e06beb1770e16491a23df287130d22344601b33724cfca"
+    },
+    "scientific_gold_positions": 0,
+    "old3600_budget_closed": true,
+    "old_median_based_forecast": 4029,
+    "exact17698_mean32_forecast_seconds": 4489,
+    "mean32_step_seconds": 0.15595599255902926,
+    "actual_old_probe_seconds": 12.28218039200874,
+    "distinction": "Finite CUDA/save-resume passed, science budget exceeded; no model-quality result exists for dense native gold-prefix KD. On-policy279734 distribution targets is a different context/amount and not this25M effect."
+  },
+  "next_action": "A separately declared new prospective4800-total study of the same original eager native full-vocab short-prefix KD; explicit resource-plan reconsideration, not novel mathematics or retroactive old-budget success. Current implementation/state/teacher/source/budget gate before science; old3600 and failed compile/numeric results unchanged. No coefficient/teacher/decoder/source/parent tuning after result.",
+  "GPU_seconds": 0,
+  "CPU_seconds": 0.0063947449962142855,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_scored": false
+}

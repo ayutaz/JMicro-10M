@@ -1,0 +1,114 @@
+{
+  "created_at": "2026-10-07T04:25:22.317745Z",
+  "question": "Does unchanged dense native short gold-prefix predictive KD transfer useful generation while retaining original Web CE?",
+  "prior_turn": "progress: confidence100M/allJapanese/all80 rejected and committed8eb62f1; scientific729058 absent. Four actual quality failures distinguished from never-trained denseKD.",
+  "references": {
+    "base_current_objective_evidence.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_current_objective_evidence.json",
+      "sha256": "1c313018ffdfd5147cc30f53b2af4de48dca740302d8dbd043b2c7c5234d2267"
+    },
+    "base_native_teacher_KD_proposal.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_native_teacher_KD_proposal.json",
+      "sha256": "ef7c87cda64c6eda1be9967d700bacb08ce9e7a758c3140f795fd1af1d0764ec"
+    },
+    "base_native_teacher_KD_probe_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_native_teacher_KD_probe_completion.json",
+      "sha256": "2672f10105a206c9965fdeda98d260444487dec643c58c04957db247d6662dbe"
+    },
+    "base_native_teacher_KD_compile_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_native_teacher_KD_compile_completion.json",
+      "sha256": "2726a6fc5884b08168ffc35d4a8b23e9ca34c888645d62cf52b8e34e48a7f4f3"
+    },
+    "base_confidence_penalty_comparison_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_confidence_penalty_comparison_completion.json",
+      "sha256": "9b60041cb33f9d1ee1c84e16d66e7a8bae0727868cbe73460778247834692d6d"
+    },
+    "base_on_policy_teacher_comparison_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_on_policy_teacher_comparison_completion.json",
+      "sha256": "022131b4a404867cc07ec69876ea069dfed03c91cafc8f96a33b1d96d834bfa5"
+    }
+  },
+  "recipe": {
+    "original_CE_coefficient": 1.0,
+    "KD_coefficient": 1.0,
+    "KD_temperature": 1.0,
+    "KD_sources": [
+      "textbook",
+      "story"
+    ],
+    "KD_denominator": "all_original_gold_positions_this_update",
+    "KD_targets": "full_native_vocab_predictive_distribution_on_same_original_supervised_positions",
+    "teacher_frozen_eval": true,
+    "forward_implementation": "unchanged_eager_native_no_compile",
+    "optimizer": "fresh_AdamW_lr1e-5_wd0.1_constant",
+    "commit_boundary": "original_and_KD_counters_after_single_Adam_scheduler_update_v1",
+    "study": "new_prospective4800_budget_for_previously_untrained_effect_not_novel_math"
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "teacher": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323503.pt",
+    "sha256": "fb43f2618c0679ca6c6f7a0c5b9faf1b336be8985271c8513f2e4bbfde3cd7ae"
+  },
+  "teacher_quality": {
+    "grammar2": 65,
+    "coherent": 23,
+    "EOS": 76,
+    "BPB": 1.1336128657420816,
+    "repetition": 2
+  },
+  "teacher_is_adopted_Base": false,
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "goals": {
+    "web": 75000000,
+    "textbook": 20000000,
+    "story": 5000000
+  },
+  "batch": 48,
+  "seed": 42,
+  "native_parameters": 10001152,
+  "extra_student_parameters": 0,
+  "teacher_resident_parameters": 10001152,
+  "original_gold_positions": 100000000,
+  "KD_distribution_positions": 25000000,
+  "new_unique_dataset_tokens": 0,
+  "novelty": "Not a new loss, new teacher or new algorithm. Earlier same eager full-vocabulary native KD passed CUDA/state but never entered science because its self-selected3600 resource plan failed. This is an explicit separate prospective resource-plan reconsideration; no old file or failure is overwritten or retroactively passed. Current user authorization covers local GPU;3600 was not a user lifetime budget.",
+  "resource_reconsideration": {
+    "old_total_cap": 3600,
+    "old_closed": true,
+    "old_scientific_gold_positions": 0,
+    "old_median_based_forecast": 4029,
+    "old_exact_update_mean32_forecast": 4489,
+    "new_total_GPU_cap_seconds": 4800,
+    "new_probe_GPU_cap_seconds": 180,
+    "rationale": "Later bounded100M studies used4800 total, including actual confidence1495s/middle1480s; old32 measured steps imply4489s conservative mean forecast. Keep one fixed new4800 plan before new gate/results; reject if new mean forecast plus actual probe exceeds it. This does not reuse discarded old probe weights or change numeric tolerances."
+  },
+  "distinction": "On-policy279734 distribution positions trained on sampled student contexts; here25M original short-source gold-prefix positions. Closed online rollout, contrast/entropy/anchor routes are not retried. Compiler numeric failure remains failed; this is unchanged eager native math.",
+  "primary_sources": [
+    "https://proceedings.mlr.press/v80/furlanello18a.html"
+  ],
+  "literature_limit": "Born Again Neural Networks studies identically parameterized teacher/student, including language modeling. Different language, data, teacher history and optimization; not an exact reproduction or Japanese10M success proof.",
+  "accounting": "Original hard body/EOS CE100M counted once. Add teacher-to-student full4096 forward KL(T1/coefficient1), only textbook/story25M positions, normalized by all original gold positions in each update. Extra distribution targets and teacher valid/physical inputs/entropy/goldprob/KL are separate, not new hard labels or corpus. Student native inference unchanged; frozen teacher never optimized or stored as student weights.",
+  "acceptance": "CPU frozen analytic KL/mask/teacher/source checks plus committed update safety/parity/full save-resume. Actual CUDA4 vs2+2 allstate/history/source/teacher immutable, max48x1024 finite backward/memory, all32 actual postwarmup times. ceil17698*mean32seconds*1.3+900 plus current probe<=4800. Original100M/fullsampler exactly matched to cachedCE; commonDEV256/Japanese192,331,1119/native80/all80 individual reasons and unchanged matched/strong/absolute/historicalWeb quality. Qualification before independent trainedseed/fullDEV/protected finalTEST/adoption.",
+  "failure": "After this prospective reconsideration no further cap/teacher/coefficient/temperature/LR/parent/source/batch/shape/backend/decoder rescue or automatic extension. Keep original3600 and compiled numeric failures intact. Close this study on new gate/budget or quality failure.",
+  "limitations": "Single mature student seed and different historically trained staged teacher;25M extra predictive supervision/teacher compute, repeatedly used nonblind DEV. No isolated data/architecture or capacity proof.",
+  "CPU_checks": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_native_teacher_KD_science_trainer_tests.xml",
+    "sha256": "c173e8a4bde72b6ecb396a97385533f88ac08acc18f1f6070a531f888388cdf7"
+  },
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false
+}
