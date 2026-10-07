@@ -1,3 +1,18 @@
+Base限定・native中間特徴転移の同100M学習・全日本語・全80内容評価を終了、不採用（2026-10-07 JST）。Baseは未完成・未採用。
+
+[実終端](../reports/phase6/base_native_hint_comparison_completion.json)・[採否](../reports/phase6/base_native_hint_comparison_review.json)・[全80個別理由](../reports/phase6/base_native_hint_notes.json)。前turn群は同科学actual737020のverified wait。今回も毎回実psで同PID/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start23344138を確認し、50秒以下で待って同jobを終端へ監視。status complete後に実PID不在を確認し、staleheartbeat17680/99,900,395ではなくtrain-result/最終stateの17698/100,000,000を採用。Web75M/教材20M/story5M・EOS657450/148625/38222・token digest/全fullsampler等の11cachedCE条件true。別会計の短文hint25M/全17698更新、source位置Web0/教材20M/story5M、hintEOS186847。teacher不変/eval-no-grad/student-only optimizer全true。checkpoint-00017698.pt/SHAf6505498e09668337b0dd3e4f7748839d0e54e673e9a3dd1e4e479c105e6ca42をWSL保持。
+
+科学＋自動評価1618.756306秒/凍結4066秒、probe10.147689込み1628.903995秒（約27.15分）/事前total4800以内。元10B parent410f…/same native10,001,152/4096codec/第6block unit-feature係数1/同100M hardgold＋別25M hints/frozen native教師fb43…/batch48/seed42/freshAdamW1e-5WD.1constantを維持。teacherは最初6blocksのみでnorm/head/upperは使わず、student推論は元full13blocks。学習結果から設定/上限を変更せず旧失敗とsource/hashを保持。
+
+共通DEV256/472,055bytes/122,343tokensのBPB0.9983566975、意味192=64.0625%、JBLiMP331=77.0393%、JCQA1119=34.9866%。greedy80はEOS20/自動反復42/Unicode・role・empty0。全80を二つの40件raw出力で実際に読み、raw SHAe3b6f912…へ結合したnonblind Codex採点で文法2=38/関連2=28/一貫性2=1/適切完結1。自然な完結086は不眠から夜の時間を大切にする方針への一文。001は木の下の笑顔という一部場面を保つが末尾未完。多数で母等の呼称・同節反復、20度と15度の逆比較・午前の集合と午後の到着の矛盾、時計/花火の同語説明、財布から食べ物への逸脱が残る。人間/盲検/独立学習seedではなく反復DEVの限界を保持。
+
+既存priority CE→middle→SAM→on-policy→confidence→denseKDに従い同id/prefix/text/stopの50例の過去数値を保持、残30例に新個別理由を保存。[個別観察](../reports/phase6/base_native_hint_individual_observations.json)と[機械的reuse監査](../reports/phase6/base_native_hint_rating_reuse.json)。prior間の旧採点difference15は残し過去notesを変更しない。今回全80を読んだことと同一出力の機械的確認を区別し、旧対照全80のGPU再実行/再採点0。
+
+cachedCEのBPB0.998487/文法44/関連25/一貫性2/適切2/EOS19/反復45を維持。今回一貫性差-1/paired95%CI[-.0375,0]、EOS+1/反復-3にとどまり一貫性改善の既存条件に至らない。strong stagedの一貫性23/EOS76/反復2に対して差-22/CI[-.375,-.175]。secondary denseKDの一貫性5/EOS46/反復25/BPB0.995826に対して差-4/CI[-.1,-.0125]、secondaryを採用条件へ置換しない。absoluteは文法56/一貫性27/適切27/EOS37/反復18以下がすべて未達、errorのみtrue。historicalWebの1% BPB guardもfalse。eligible_for_final_Base_validation=false、この固定layer6/unit-feature/係数1条件を終了。layer/coefficient/normalization/adapter/teacher/LR/data/parent/batch/backend/decoder/capの救済探索・自動延長なし。全特徴蒸留や教材量/学習量の無効をこの一条件から断定しない。
+
+complete_base_native_hint.pyが実終端・same original/hint会計/教師不変・全80/全gate/予算/元UI actual/APIを確認して55text/109,820,761bytesのarchiveとmanifest/completionを保存。gzip47,505,516bytes/SHA422dae9be27b0f18fb5e7952e394855840f4c05d7d49544b2a6a38023f2e6ec2をWindowsへコピーして一度照合。tensor/corpusは含めずnativeCPを保持。元10B UIactual738096/同boot/start23506436とHTTP親SHA410f975d…/busy=falseへ復帰を確認。科学GPUjobなし、Chat/量子化0、独立学習seed/fullDEV/protected finalTEST/adoptionは今回0。
+
+最新境界を保持: 品質Base完成を通知して停止、Chat/Dialogue/SFT/量子化/展開・自動pushなし。次の具体的アクションは今回の負結果を既存五条件/失敗経路へ追加の証拠として統合し、既失敗の救済探索を再開せず、未検証の独立Base比較の目的/比較対象/実測予算/終了条件を事前に定める。資格ある候補だけ独立seed/fullDEV/protected finalTEST/adoptionへ進む。Python3.12.7はWSL uv、検証済み変更をlocalcommit。今回実100M終端・全内容採否・可搬保存のprogressでgoal completeではない。以下は過去の履歴。
 Base限定・同native hint科学jobを実監視し、終端保存commandを準備（2026-10-07 JST）。Baseは未完成・未採用。
 
 前turnの実CUDA gate・100M永続起動は1ae0454へcommitしたprogress。今回はrequired docsとclean worktreeを確認し、actual737020/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start23344138の同jobを実psで監視。05:22:35 UTC heartbeatで3,300更新/18,645,205original gold/100M・CE2.541657有限、累積316.200秒/凍結4066秒、最新completed checkpoint-00003250.pt。これはsnapshotであり最新位置はWSL reports/phase6/base-native-hint-comparison-20261007/job.json/metricsを参照。元UIは科学中停止、終端で元10B親へ復帰予定。新GPUjob/研究/設定変更/Chat0。
