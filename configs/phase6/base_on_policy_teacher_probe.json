@@ -1,0 +1,130 @@
+{
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "parent_size": 120181763,
+  "parent_mtime_ns": 1791114231712428007,
+  "teacher": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323503.pt",
+    "sha256": "fb43f2618c0679ca6c6f7a0c5b9faf1b336be8985271c8513f2e4bbfde3cd7ae"
+  },
+  "teacher_size": 120205059,
+  "teacher_mtime_ns": 1791267912487489301,
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "goals": {
+    "web": 75000000,
+    "textbook": 20000000,
+    "story": 5000000
+  },
+  "tokenizer": "artifacts/phase2/4096/tokenizer.model",
+  "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+  "dev_shards": "/home/aihub_ubuntu/jmicro-data/phase6/expanded-v2/shards",
+  "dev_manifest_sha256": "75c7420a1434cf8a97797218b163c694a13ed838f389f09327dcc86f7164c12c",
+  "suite_sha256": "93cd3a19f3e62c8d30d1660b431a9525823f58b9ceb1bf90c6ecbac2c19292eb",
+  "evaluation": {
+    "dev_documents": 256,
+    "fixed_dev_prefixes": 80,
+    "max_new_tokens": 64,
+    "tasks": [
+      "semantics",
+      "jblimp",
+      "jcqa"
+    ],
+    "config": "configs/evaluation/japanese_base_v2.json",
+    "config_sha256": "661dc8d4db7de836ddb99ac3ed5bbf3e10636c24d00e5fb0869773ace4fa03a8",
+    "semantic_suite": "eval/japanese_semantics_v2_1.jsonl",
+    "semantic_sha256": "53e28d39368251a60750ff22da7c261cb20c3136fb5231aa4324ec2d6285ffd9",
+    "data_manifest_sha256": "b5016f3d926dc08c83c5c73c33212a9f40c5c066511bc3ce1574c616046f4402"
+  },
+  "payload": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/natural-context-contrast-capacity-20261007/maximum-original-window.json",
+    "sha256": "518b7158e824a6504e71404864b57d7072d592cd6f200869844e96670c1c5fee"
+  },
+  "control_CE": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/CE/train-result.json",
+    "sha256": "dc3eae3f5b34bc7c09165ad34cb0f3dac1da9c6ff88c451fc2f9590980383ae2"
+  },
+  "control_result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/CE/train-result.json",
+    "sha256": "dc3eae3f5b34bc7c09165ad34cb0f3dac1da9c6ff88c451fc2f9590980383ae2"
+  },
+  "created_at": "2026-10-07T01:13:22.457802Z",
+  "proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_on_policy_teacher_proposal_v2.json",
+    "sha256": "c7e0c5c06167d65aaae3e17583b6df731504651260e1e711332dd9f18094e157"
+  },
+  "CPU_tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_on_policy_teacher_tests.xml",
+    "sha256": "b05aa6f1a8062dbc441b56ac7ec00bde40802e5d1453daf27581ccf06b343450"
+  },
+  "CPU_protocol_tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_on_policy_teacher_probe_tests.xml",
+    "sha256": "d57e635fd5251763115c708836b5b16df701479934597cc9921805501c284ca8"
+  },
+  "fixed_TRAIN24": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_gradient_precision_payload.json",
+    "sha256": "ad40e86d8c5ec449b29c167d106f65c99e4b368b0d20840e703d55350e9498ec"
+  },
+  "recipe": {
+    "every_completed_updates": 16,
+    "max_prefixes": 8,
+    "max_prompt_body_tokens": 16,
+    "max_new_tokens": 32,
+    "temperature": 1.0,
+    "coefficient": 1.0,
+    "divergence": "forward_KL_teacher_to_student",
+    "denominator": "generated_prediction_positions_this_scheduled_update",
+    "sources": [
+      "textbook",
+      "story"
+    ],
+    "sample_blocked_ids": [
+      0,
+      1,
+      2,
+      4,
+      5,
+      6,
+      7
+    ],
+    "EOS": 3
+  },
+  "source_sha256": {
+    "scripts/base_on_policy_teacher_trainer.py": "135edb76f0eaf28b31585c95849dca6365ebe79b3d39fd61fe90913705fd9c5e",
+    "scripts/probe_base_on_policy_teacher.py": "a6dc8d20252addd5e54f2519280652e7a99ccc6556f8333549244805b84f4b04",
+    "scripts/probe_base_on_policy_teacher.ps1": "0b6d71b9f954f1506aecd4439703937c592b6da82e69ae8fb9737f8b27ea4f3c",
+    "tests/test_base_on_policy_teacher.py": "a663761bbe1d708c8c65c87614a4934390fe7e3684ee5ce4c0d49394d0eac8c6",
+    "tests/test_base_on_policy_teacher_probe.py": "f32dd83d2334a92592dcb3595b564f081b4611be5337cdd69486c13863e80e70",
+    "scripts/base_native_teacher_KD_trainer.py": "644cd0b0ec57df31d927918e8be9adb04e4cbd24a54c900b4374fbad14ef2033",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "scripts/natural_context_contrast_memory.py": "85735b203e1a6f845078046379c6463b51cdc61068a463a379d93c79368f62e2",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca"
+  },
+  "batch": 48,
+  "seed": 42,
+  "probe_GPU_cap_seconds": 180,
+  "total_GPU_cap_seconds": 7200,
+  "warmup_updates": 3,
+  "timed_updates": 32,
+  "continuous_updates": 32,
+  "saved_split_updates": 16,
+  "scientific_teacher_positions": 0,
+  "Base_complete": false,
+  "Chat_started": false,
+  "quantization_started": false
+}

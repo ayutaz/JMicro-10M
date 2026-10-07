@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="20" time="24.587" timestamp="2026-10-07T10:10:39.507859+09:00" hostname="DESKTOP-42CUV0C"><testcase classname="tests.test_base_on_policy_teacher" name="test_original_heads_only_and_exact_prefix_without_new_source_draw" time="0.888"><failure message="assert ([])">tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-159/test_original_heads_only_and_e0')
+
+    def test_original_heads_only_and_exact_prefix_without_new_source_draw(tmp_path):
+        build,_=build_factory(tmp_path);t=build();rows=t.sampler.take(8);before=copy.deepcopy(rows)
+        prefixes=prefixes_from_rows(rows)
+&gt;       assert prefixes and all(p['source'] in ('textbook','story') for p in prefixes)
+E       assert ([])
+
+tests/test_base_on_policy_teacher.py:29: AssertionError</failure></testcase><testcase classname="tests.test_base_on_policy_teacher" name="test_generated_position_alignment_first_EOS_and_prompt_padding_mask" time="0.010" /><testcase classname="tests.test_base_on_policy_teacher" name="test_sampled_EOS_stops_per_row_masks_cache_and_restores_mode" time="0.014" /><testcase classname="tests.test_base_on_policy_teacher" name="test_actual_CPU_random_rollouts_saved16plus16_equal_continuous32" time="6.725"><failure message="assert (0 == 2)">tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-159/test_actual_CPU_random_rollout0')
+
+    def test_actual_CPU_random_rollouts_saved16plus16_equal_continuous32(tmp_path):
+        build,_=build_factory(tmp_path)
+        continuous=build();expected_history=[continuous.step() for _ in range(32)];expected=host(continuous.state_dict())
+        split=build();actual_history=[split.step() for _ in range(16)];split.save(tmp_path/'split.pt')
+        resumed=build();resumed.load(tmp_path/'split.pt');actual_history.extend(resumed.step() for _ in range(16))
+        assert equal_state(expected,host(resumed.state_dict())) and committed_state(expected)
+&gt;       assert expected['on_policy_teacher']['rollout_batches']==2 and expected['on_policy_teacher']['distribution_positions']&gt;0
+E       assert (0 == 2)
+
+tests/test_base_on_policy_teacher.py:80: AssertionError</failure></testcase><testcase classname="tests.test_base_on_policy_teacher" name="test_all_original_gold_and_sampler_unchanged_while_teacher_immutable" time="6.645"><failure message="assert (0 == 0 and 0 &gt; 0)">tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-159/test_all_original_gold_and_sam0')
+
+    def test_all_original_gold_and_sampler_unchanged_while_teacher_immutable(tmp_path):
+        build,teacher=build_factory(tmp_path);t,control=build(),build(True)
+        for _ in range(32):
+            a,b=t.step(),control.step()
+            assert all(equal_state(a[k],b[k]) for k in (*t.counters,'draw_trace','lr'))
+        assert equal_state(t.sampler.state_dict(),control.sampler.state_dict())
+        assert equal_state(teacher['model'],host(t.teacher.state_dict())) and all(p.grad is None for p in t.teacher.parameters())
+&gt;       assert t.on_policy['source_positions']['web']==0 and t.on_policy['teacher_physical_inputs']&gt;0
+E       assert (0 == 0 and 0 &gt; 0)
+
+tests/test_base_on_policy_teacher.py:93: AssertionError</failure></testcase><testcase classname="tests.test_base_on_policy_teacher" name="test_wrong_teacher_recipe_and_uncommitted_auxiliary_counts_rejected[teacher]" time="1.549" /><testcase classname="tests.test_base_on_policy_teacher" name="test_wrong_teacher_recipe_and_uncommitted_auxiliary_counts_rejected[recipe]" time="1.544" /><testcase classname="tests.test_base_on_policy_teacher" name="test_wrong_teacher_recipe_and_uncommitted_auxiliary_counts_rejected[positions]" time="1.550" /><testcase classname="tests.test_base_on_policy_teacher" name="test_wrong_teacher_recipe_and_uncommitted_auxiliary_counts_rejected[scheduled]" time="1.559" /><testcase classname="tests.test_base_on_policy_teacher" name="test_wrong_teacher_recipe_and_uncommitted_auxiliary_counts_rejected[oldkind]" time="1.544" /><testcase classname="tests.test_base_native_teacher_KD" name="test_T1_full_gold_denominator_gradient_and_teacher_stop_gradient" time="0.001" /><testcase classname="tests.test_base_native_teacher_KD" name="test_teacher_construction_keeps_student_rng_ties_optimizer_and_weights" time="0.018" /><testcase classname="tests.test_base_native_teacher_KD" name="test_all_gold_masks_sources_and_full_sampler_match_CE_while_KD_counts_only_short" time="0.675" /><testcase classname="tests.test_base_native_teacher_KD" name="test_all_state_and_history_continuous_vs_real_saved_resume" time="0.695" /><testcase classname="tests.test_base_native_teacher_KD" name="test_committed_state_teacher_recipe_and_old_CE_relabel_are_rejected[updates]" time="0.065" /><testcase classname="tests.test_base_native_teacher_KD" name="test_committed_state_teacher_recipe_and_old_CE_relabel_are_rejected[gold]" time="0.056" /><testcase classname="tests.test_base_native_teacher_KD" name="test_committed_state_teacher_recipe_and_old_CE_relabel_are_rejected[KD]" time="0.055" /><testcase classname="tests.test_base_native_teacher_KD" name="test_committed_state_teacher_recipe_and_old_CE_relabel_are_rejected[teacher]" time="0.066" /><testcase classname="tests.test_base_native_teacher_KD" name="test_committed_state_teacher_recipe_and_old_CE_relabel_are_rejected[temperature]" time="0.058" /><testcase classname="tests.test_base_native_teacher_KD" name="test_committed_state_teacher_recipe_and_old_CE_relabel_are_rejected[oldkind]" time="0.054" /></testsuite></testsuites>

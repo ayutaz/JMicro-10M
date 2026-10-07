@@ -1,3 +1,21 @@
+Base限定・現在生成したprefixへのnative教師feedbackを実装し、実CUDA保存再開に成功、100M科学学習を開始（2026-10-07 JST）。Baseは未完成・未採用。
+
+[実gate・起動記録](../reports/phase6/base_on_policy_teacher_probe_launch.json)・[結果前の修正済み案](../reports/phase6/base_on_policy_teacher_proposal_v2.json)。前turnのgold-prefix KDのeager3600秒予算失敗とcompiler数値失敗は5b65dbcへ保存したprogress。今回保存済みsynthesis/source-order/gradient-precision・両KD終了・context-mixing終了を確認。次の一条件は、現studentがTRAIN短文の頭からsamplingしたprefixに未採用native staged教師fb43f261…のfull4096予測を与える。goldを変更したprefixにそのまま与える旧mixing、反復UL/localDPO、未学習gold-prefix KDとは異なる実学習機構。[GKD一次論文](https://arxiv.org/abs/2306.13649)を参考にした仮説で、日本語10Mの成功証明や論文の厳密再現ではない。
+
+同元410f親・original100M gold/Web75M教材20Mstory5M・同sampler/batch48/seed42/freshAdamW1e-5WD.1constant・originalCE/body/EOS/mask/physical main入力を保持。16更新ごとに同main batchの先頭最大8教材/storyのoriginal document headsだけ使い、BOS＋最大16bodytokensから現studentがT1/32tokensまでsample、0/1/2/4/5/6/7抑制・EOS3停止。元gold CE backward後、同pre-update studentでno-grad native KV/math BF16生成、教師とstudentを同生成prefixでscoringしgenerated位置だけmean forwardKL(T1/coefficient1) backward、単一clip/Adam更新。教師eval/no-grad/不変・optimizer student-only、teacher重みをstudent checkpointへ複製せずSHA/lineage保存。gold/input全会計と追加rollout/scoring/teacher/distribution位置は別に保存、新data0・Chat/SFT0。元model.py/Tokenizer/旧2Bの再scanや再訓練なし。
+
+初回proposal作成時の短縮completion filename誤りを保存前に修正。CPU初版ではserialized BOS位置0と最初body位置1を取り違えtarget_first0を要求し全auxをskip、3testsが拒否した。original proposal/failed XMLを保持し、意図した既存original_document_first_window/target_first1へ修正をV2案へ明記。GPU/品質を見てsource/settingを選び直した修正ではない。関連CPU20checks/25.03秒＋rare rollout込み予算4checks/.74秒＋runner/history7checks/3.27秒、両CLI help/PS構文成功。fixtureは実品質証拠ではない。
+
+probe config SHA0269e8d90c7ee4659f8ce4d7fd29563cfa06c68c99dc86d67a9ab2677b823aaf、Windowsworker35464からactual717260/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start21880729はcomplete・実不在。CUDA32対saved16+16はscheduled rollout2回を含む全12state/RNG/生成列/history/source/fullsampler/committed checksすべてtrue。教師全重みはstress/continuous/resume/timingで不変。最長gold48×1024＋aux8×49上限のBF16 backwardはCE2.271785/KL.606474/gradnorm4.283653有限、peak11,034,152,960bytes（aux実max8×48より1token大きい診断のみ）。131検証更新/762296originalgold/1470distribution、capacity24576gold＋256auxは別、すべてscienceへ足さずprobe重みを捨てる。実21.751486秒/事前180秒。
+
+warmup3除外32の合計3.702359秒には実rollout更新2回/.682260秒と.641807秒を含む。普通step中央値だけで見積もらず、cached exact17698updates×合計32/32×1.3＋900評価余裕をceilして科学予算3562秒、probe込み3583.751486秒。追加autoregressive教師feedbackという別objectiveに先に固定したtotal7200秒へ入り、旧gold-prefix KD3600秒条件を拡張/再開したものではない。runner/reviewer/persistentlauncherと全既存matched/strong/absolute/historicalWeb policyをscience結果前に凍結。cachedCE100MはGPU再学習/再採点しない。
+
+science config SHAedd40c9cf7f69ee8677310f953183ecc10bd4f961388c1b25739c1fb7220fdb4、Windowsworker34264からactual718057/同boot/start21898450、reports/phase6/base-on-policy-teacher-comparison-20261007で実runningを確認。launch snapshotはoriginal2,829,899/100M gold、有限lossで増加。全sampler/optimizer/scheduler/RNG/aux/digestを250完了更新ごと保存、20更新heartbeat・PID/boot/start/実ログ/累積予算を保持。再開commandは scripts/run_base_on_policy_teacher.ps1 -Worker、実同PID不在・有効完了checkpointを確認した場合のみ同累積3562秒内へ再開。科学job中の元UIは停止し終端で元10Bへ復帰予定、復帰完了をまだ主張しない。
+
+可搬text archive755290bytes/SHAc3a7117654182fce7f2ac3a116963f1ac10617d2dbcc034fa3c64893c57ea6d6をWindowsへ保存し一度照合。probe tensors・本学習checkpoints/進行中metricsはWSLに保持。今回GPU品質生成/全80判定/独立seed/full DEV/protected TEST/adoptionはまだ0。次はこのexact科学jobだけを監視し、同100M終端/全source/fullstate・全日本語/共通DEV256/native80を完了→全80を個別に読み凍結全品質gateを適用する。稼働中に無関係な研究・重複GPUを開始しない。資格ある候補だけ独立学習seed/full DEV/protected final TEST/adoptionへ進む。
+
+最新ユーザー境界: 評価基準を満たすBaseの採用が終わったら知らせて停止し、Chat/Dialogue/SFT/量子化/展開には進まない。現在Base未完成・未採用。Python3.12.7はWSL uv、意味のある検証済み変更をlocalcommit、自動pushなし。今回実新teacher-feedback実装/CPU+CUDA gate・永続science起動はprogressで、goal completeではない。以下は過去の履歴。
+
 Base限定・同損失コンパイル性能案は実勾配差の事前基準に未達で終了（2026-10-07 JST）。Baseは未完成・未採用。
 
 [実終了記録](../reports/phase6/base_native_teacher_KD_compile_completion.json)。前のeager版は保存再開・有限値に成功したが、元3600秒予算へ収まらず未学習。その同teacher/gold/shape/lossを維持する別の有限性能案だけ実装した。base_native_teacher_KD_compiled.pyはoriginal right_padded_hiddenをinductor/default/dynamic=True/fullgraph=Trueで一度compileし、bare student/teacherとtied vocab・保存keyを保持、stepのdispatchをfinallyで復元する。実行recipeをspecへ保存し異なるrecipe/eager状態のresumeを拒否。凍結model.pyのSHA298bbac7…や既存科学sourceを変更しない。関連CPU15checks/4.22秒、CLI help/PS構文・preflight成功。CPU mockは実CUDA support/速度/品質の証拠ではない。
