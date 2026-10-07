@@ -1,3 +1,20 @@
+Base限定・dense native教師KLの100M学習・全日本語・全80内容評価を終了。一部改善を認めるが既存基準では不採用（2026-10-07 JST）。Baseは未完成・未採用。
+
+[終了記録](../reports/phase6/base_native_teacher_KD_science_comparison_completion.json)・[採否](../reports/phase6/base_native_teacher_KD_science_comparison_review.json)・[全80個別理由](../reports/phase6/base_native_teacher_KD_science_notes.json)。前goal turnはactual732636のverified wait。今回は同exactPID/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start23040993を毎回実psで確認し、50秒以下のverified waitで同jobだけを終端へ監視。実科学status completeとPID不在を確認し、古いheartbeat17680/99,900,395ではなくterminal17698/100,000,000を採用。Web75M/教材20M/story5Mとtoken digest/fullsampler/全11cachedCE条件true。別会計のshort gold-prefix predictive位置25M、teacher重み不変/eval-no-grad/student-only optimizer全true。最終checkpoint-00017698.pt/SHAaa3b45cc8b2d4bbebedbadd2d7d78e860d1f2dd3482841e73231b30771fc352aをWSLへ保持。
+
+科学・自動評価1782.938449秒/4374上限、probe10.718666込み1793.657115秒（約29.9分）/事前total4800。元10B student410f975d…・native10,001,152/4096codec・same original100M/body/EOS/masks・staged10M teacherfb43f261…・short25M/T1/coefficient1/allgold denominator・batch48/seed42/freshAdamW1e-5WD.1constant/native推論を変更しない。旧eager3600予算失敗とcompiler数値失敗は上書きしない。今回の別prospective資源計画は実施済みになったが、数学的新規性や旧予算合格は主張しない。
+
+共通DEV256/472,055bytes/122,343tokensのBPB0.9958258513、意味192=64.5833%、JBLiMP331=77.3414%、JCQA1119=34.1376%。greedy80はEOS46/反復25/Unicode・role・empty0。全80を二つの40件raw出力で個別に読み、raw SHAee87fa3e…へ結合したnonblind Codex採点で文法2=45/関連2=37/一貫性2=5/適切完結7。025は道で本を見つける、066は看板で桜町の名を知る、079は見覚えのある鳥を見て嬉しくなる、084は音を怖がる犬に対して花火を止める、086は寝不足から夜を大切にする短い続き。024/029は葉書の裏の海色/音に対する窓外の点灯というつながりが弱い部分的完結。多数にライト等への逸脱、同じ節の反復、時刻・温度・主体・因果の矛盾が残る。独立人間・盲検の証拠ではない。
+
+cachedCEは再GPU/再採点せずBPB0.998487/文法44/関連25/一貫性2/適切2/EOS19/反復45を保持。今回EOS19→46/反復45→25/適切2→7と停止・反復に改善があるが、一貫性差+3/paired95%CI[-0.0125,0.1]で既存gain8/CI下端正の条件を満たさない。strong stagedの一貫性23/EOS76/反復2に対し差-18/CI[-0.3375,-0.1125]。絶対条件はEOS/errorだけtrueで文法56/一貫性27/適切27/反復18以下に至らず、歴史WebBPB1% guardもfalse。eligible_for_final_Base_validation=false、この固定条件を終了。teacher/alpha/T/LR/親/source/batch/shape/backend/decoder/capの救済探索・自動延長なし。局所的な改善を無効と断定せず、十分なBase品質の証拠とは区別する。
+
+全80読解後の[exact rating audit](../reports/phase6/base_native_teacher_KD_science_rating_reuse.json)で固定priority cachedCE→middle→SAM→on-policy→confidenceの同ID/prefix/text/stop6例の既採点数値を保持、旧採点差0/旧notes変更0。初回の旧cached raw参照パスを実policyのpathへ直して全5参照を再確認したが、raw/notesや科学source/config/閾値は変更しない。frozen reviewerが全committed state/historyと全評価を正常確認。
+
+closeoutが実終了・全内容/採否・予算・元UIactual/APIを確認し50text/110,600,684bytesのarchiveを保存。gzip47,919,554bytes/SHAc51ed3ead68f161fbf3ea01acba6e39137889e41153d82b3fadc16d4eb51c52fをWindowsへコピーし一度照合。tensor/corpusはWSL保持。元10B WebUIactual733851/同boot/start23219702、HTTP親410f975d…/10,000,007,168/busy=falseへ復帰確認、新科学GPUjobなし。
+
+[五条件の既存結果整理](../reports/phase6/base_completed_objective_studies_20261007.json)はon-policy/SAM/middle/confidence/denseKDの実100M・全80不採用を各completion SHAで参照するCPUのみの小さな追加記録。旧13row synthesis/3条件companion/四失敗と未学習KDを区別した旧snapshotは上書きしない。五条件の元gold曝露500Mは同streamを五回学んだ会計で新教材500Mではなく、各aux監督も同じ新hard labelsに足さない。追加GPU/再評価/既存採点変更0。
+
+最新境界を保持: 実品質・独立学習seed/fullDEV/protected finalTEST/adoptionまでBaseに限定し、品質Base完成を通知して停止。今回資格なしのため最終seed/test/adoption0、Chat/Dialogue/SFT/量子化/展開・自動pushなし。次は今回の一部改善と残る内容失敗をこの五条件の実証拠と既存failure-route inventoryへ照らし、実品質不採用と未学習の資源失敗を分けて、未実施の独立した根本比較の対象・測定予算・終了条件を先に定める。これら五つの固定条件を設定探索で救済せず、有望な候補だけ最終検証へ進む。Base完了時刻は現段階で確約できない。Python3.12.7はWSL uv、検証済み成果をlocalcommit。今回は実科学終端・全内容評価・採否・可搬保存のprogressで、goal completeではない。以下は過去の履歴。
 Base限定・dense native教師KLの同一学習を実監視、終了後の全内容評価・可搬保存を準備（2026-10-07 JST）。Baseは未完成・未採用。
 
 前turnは最新ユーザー境界の確認とactual732636の実ps/heartbeat確認によるverified wait。今回は同PID/boot53f39671-20b4-4bd5-9b9c-cd6b1e4d1bfe/start23040993を再確認してcloseout commandを実装したprogress。snapshot 4420更新/25004932 original gold/100M、CE 2.51591467857361有限、累積470.807539573027秒/4374上限、latest /home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-native-teacher-KD-science-comparison-20261007/native_teacher_KD/checkpoint-00004250.pt。科学config e583e522…・teacher/source/loss/decoder/予算と全品質基準は凍結保持。同じjobだけが学習中で、元UIは科学終端後に復帰予定。
