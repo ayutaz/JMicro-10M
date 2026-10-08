@@ -1,0 +1,3124 @@
+{
+  "status": "all80_paired_existing_generation_failures_classified",
+  "created_at": "2026-10-08T02:03:58.896117Z",
+  "inputs": {
+    "strong_raw": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/evaluation/source_order/evaluation/generation.json",
+      "sha256": "d5b5a7c6b5d971de9bc46c77f52ac5ea19132cab7b97f034c274974cdbe2620e"
+    },
+    "strong_notes": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source_order_condition_notes.json",
+      "sha256": "6b143e08096a1ee2365a643c008d5c009d2c2ff48dd1d42a9749ac5301766d2d"
+    },
+    "sequential_raw": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-parallel-residual-comparison-20261007/evaluation/sequential/evaluation/generation.json",
+      "sha256": "79256b59752c3002cf6f6e6d0f25fa01c8cbf336ba6d8eac51e427976b68104f"
+    },
+    "sequential_notes": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_parallel_residual_sequential_notes.json",
+      "sha256": "4a65fa58b63910688b3e3b09165b9b7906e522c0b7dde54d67c2eb0ee85be1a7"
+    }
+  },
+  "annotation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_residual_failure_pair_notes.json",
+    "sha256": "26f9e48b581990c3e69f5fe391e96547c7edf3ac127cbbbff53af95fc90c8be9"
+  },
+  "source": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/diagnose_base_residual_failures.py",
+    "sha256": "a04dc645316d3430e8e94077b448cb2b303078339d0ade98a2a424a7b8c45d6e"
+  },
+  "CPU_seconds": 0.012416926998412237,
+  "GPU_seconds": 0,
+  "generated_tokens": 0,
+  "scientific_teacher_tokens": 0,
+  "optimizer_updates": 0,
+  "summaries": {
+    "strong": {
+      "outputs": 80,
+      "eos": 76,
+      "grammar2": 65,
+      "coherence2": 23,
+      "appropriate": 26,
+      "premise": {
+        "maintained": 25,
+        "unresolved": 48,
+        "violated": 7
+      },
+      "nonprogressive_repetition": 6,
+      "automatic_repetition": 2,
+      "descriptive_manual_auto_table": [
+        {
+          "nonprogressive_repetition": false,
+          "automatic_repetition": false,
+          "count": 74
+        },
+        {
+          "nonprogressive_repetition": false,
+          "automatic_repetition": true,
+          "count": 0
+        },
+        {
+          "nonprogressive_repetition": true,
+          "automatic_repetition": false,
+          "count": 4
+        },
+        {
+          "nonprogressive_repetition": true,
+          "automatic_repetition": true,
+          "count": 2
+        }
+      ]
+    },
+    "sequential": {
+      "outputs": 80,
+      "eos": 20,
+      "grammar2": 23,
+      "coherence2": 3,
+      "appropriate": 7,
+      "premise": {
+        "maintained": 20,
+        "violated": 13,
+        "unresolved": 47
+      },
+      "nonprogressive_repetition": 64,
+      "automatic_repetition": 27,
+      "descriptive_manual_auto_table": [
+        {
+          "nonprogressive_repetition": false,
+          "automatic_repetition": false,
+          "count": 16
+        },
+        {
+          "nonprogressive_repetition": false,
+          "automatic_repetition": true,
+          "count": 0
+        },
+        {
+          "nonprogressive_repetition": true,
+          "automatic_repetition": false,
+          "count": 37
+        },
+        {
+          "nonprogressive_repetition": true,
+          "automatic_repetition": true,
+          "count": 27
+        }
+      ]
+    }
+  },
+  "paired": [
+    {
+      "id": "base-001",
+      "prefix": "朝、カーテンを開けると、",
+      "category": "daily",
+      "strong": {
+        "text": "そこにはライトが付いている。このライトは、ボタンを押している間は点灯し、押していない間は消える仕組みだ。今はボタンを押している状態である。そのため、ライトは点灯している。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "ライトの説明へ移るが朝の部屋の状況と矛盾せず条件と結果も保つ。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "カーテンの先のライトへ話題を移し、押下状態と点灯の説明自体は矛盾なく完結する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "空気が澄んで、空気が澄んでいきます。空気が澄んでいると、空気は澄んでいきます。空気が澄んでいると、空気は澄んでいきます。空気が澄んでいると、空気は澄んでいきます。空気",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "maintained",
+        "diagnostic_rationale": "朝の空気という対象は保つが、澄む同じ内容を繰り返す。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "空気が澄む同一内容を四度反復し、最後は名詞だけで切れて進展も終結もない。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-002",
+      "prefix": "仕事を終えて家に帰ると、",
+      "category": "daily",
+      "strong": {
+        "text": "その作業は終わった。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "仕事を終えたという直前の出来事を保持して短く終える。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "帰宅した時点で作業が終わったと述べるだけだが、前の仕事の終了と整合している。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "家の中にたくさんの人が集まっていました。家の中には、おもちゃやおもちゃ、おもちゃがたくさんありました。家の中には、おもちゃやおもちゃがたくさんありました。家の中には、おもちゃやおもちゃがたくさんありました。",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "maintained",
+        "diagnostic_rationale": "帰宅した家の描写は維持するが、玩具の同じ列挙を重ねる。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "帰宅後の家の描写にはつながるが、おもちゃの列挙と同じ文の反復で場面が進まない。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-004",
+      "prefix": "休日の朝は少し遅く起きて、",
+      "category": "daily",
+      "strong": {
+        "text": "帰る。その行動を言い直すと、今朝、はるかは朝、はるかは朝、はるかは朝、はるかは朝、というように、働いている。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "休日の起床から帰宅と未導入のはるかの仕事へ逸れる。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 0,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "今朝とはるかの同じ節を三回以上繰り返し、休日に遅く起きた話の続きを作れない。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "朝の時間帯に休憩をとるようにしましょう。休日の朝は、朝の時間帯に休憩をとるようにしましょう。休憩をとる時間帯は、朝の時間帯に休憩をとるようにしましょう。\n",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "maintained",
+        "diagnostic_rationale": "休日の朝という時間を保つが、休憩を同語で循環説明する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "休日の朝の話題は維持するが、休憩時間を休憩時間で説明する同語反復で終わる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-005",
+      "prefix": "洗濯物を干し終わったので、",
+      "category": "daily",
+      "strong": {
+        "text": "その場で水を飲んだ。その場で飲んだ水は、あかねである。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "洗濯後の水飲みはあり得るが、水を人名とする指示が解釈できない。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "水を飲む行動までは自然だが、飲んだ水を人名あかねと同一視してしまう。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "洗濯機の中に入れておくと、洗濯物が乾くのを防ぐことができます。また、洗濯物を干すときには、洗濯機の中に水を入れておくと、水が蒸発するのを防ぐことができます。\n",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "violated",
+        "diagnostic_rationale": "干し終えた洗濯物を機械へ戻して乾燥を防ぐとし、乾かす行動の目的を逆転する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "洗濯の話題と文法は保つが、干した後で洗濯機へ戻し乾燥を防ぐという目的の矛盾がある。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-006",
+      "prefix": "駅の改札を出ると、",
+      "category": "daily",
+      "strong": {
+        "text": "すみれが本をしまう箱に、小さなライトが付いている。この装置のライトは、スイッチがオンなら点灯し、オフなら消える設定だ。すみれはスイッチをオンにした。設定に従うと",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "改札を出た結果から無関係な人物の箱の装置へ場面が飛ぶ。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 1,
+          "completion": 0
+        },
+        "original_rationale": "改札の話から箱のライト説明へ飛び、最後も設定に従うとという従属節で途切れる。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "駅のホームに入ると、駅のホームに入ると、駅のホームに入ると、駅のホームに入ると、駅のホームに入ると、駅のホームに入ると、駅のホームに入ると、駅のホームに入ると、駅のホームに入ると、駅",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "駅には関連するが、改札からホームへ移る節だけで後続の行動がない。",
+        "original_scores": {
+          "grammar": 0,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "駅には関連するが、ホームに入るとという条件節だけを連ね主節が成立しない。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-007",
+      "prefix": "夕飯の支度をしていると、",
+      "category": "daily",
+      "strong": {
+        "text": "紙が消えている。そこへ1枚を加えた。変更後の支度は、なおである。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "夕食の支度を紙の枚数と人物名へ変えて入力の出来事を続けられない。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 0,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "夕飯から紙の枚数へ話題を変え、変更後の支度を人名なおとして文脈を壊す。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "お腹がすいたり、お腹がすいたり、お腹がすいたりすることがあります。これは、お腹の中に食べ物がたまっているからです。お腹がすいた状態になると、食べ物がたまってしまい、お腹がすいたままになります。",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "violated",
+        "diagnostic_rationale": "空腹の原因を食べ物がたまったこととし、通常の原因と結果を逆転する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "夕飯と空腹には関連するが、食べ物がたまるから空腹になる説明が循環し内容も反復する。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-009",
+      "prefix": "庭の草を抜いていると、",
+      "category": "daily",
+      "strong": {
+        "text": "ライトが点灯し、ライトは消えている。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "草を抜く場面からライトへ飛び、同じライトの状態も矛盾する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 0,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "草を抜く場面との接続がなく、同じライトを点灯していて消えていると矛盾させる。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "草の中に小さな虫がいました。虫は、虫を助けたいと思いました。虫は、虫を助けるために、草を食べていました。虫は、虫を助けるために、草を食べました。虫は、虫を助けることができて、とても嬉",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "maintained",
+        "diagnostic_rationale": "庭の草と虫は維持するが、同じ助ける目的と食べる行為を繰り返す。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "庭の虫へ接続するが、助ける虫と助けられる虫の区別がなく草を食べる行為を反復し末尾も切れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-010",
+      "prefix": "昼休みに窓の外を見ると、",
+      "category": "daily",
+      "strong": {
+        "text": "ライトが点灯している。このライトは、ボタンを押している間は点灯し、押していない間は消える仕組みだ。今はボタンを押している状態である。そのため、ライトは点灯している。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "窓外に見えるライトという接続と現在の点灯状態は整合する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "窓の外で見たライトについてボタンの状態と現在の点灯を一貫して説明する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "小さな虫がいました。虫は、虫を捕まえるのが大好きでした。ある日、虫は大きな木の下で、虫を捕まえようとしました。虫はとても怖がりましたが、虫は優しく「大丈夫だよ」と言いました。虫",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "虫を見る場面は保つが、捕まえる側と捕まる側の指示が区別できない。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "窓外の虫から始まるが、捕まえる虫と怖がる虫と慰める虫の指示が崩れ末尾も切れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-011",
+      "prefix": "昨日は疲れていたので、早めに",
+      "category": "grammar",
+      "strong": {
+        "text": "帰りました。早めたので、その時刻は、10時になったので、その時刻は、12時になったので、その時刻は、12時になったので、その時刻は、12時になったので、その時刻は、12時になったので、その時刻は、",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "早い帰宅にはつながるが、その時刻を十時と十二時で混同して反復する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "早く帰る最初の文は成立するが、時刻になったのでという同じ節を何度も繰り返す。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "休憩をとりました。\n今日は、お昼休みに、お昼休みに、お昼休みに、お昼休みに、お昼休みに、お昼休みに、お昼休みに、お昼休みに、お昼休みに、お昼休みに、お昼休み",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "maintained",
+        "diagnostic_rationale": "疲れて早めに休憩した初文は合うが、その後は昼休みの句を重ねる。",
+        "original_scores": {
+          "grammar": 0,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "初文は疲れから休憩につながるが、その後はお昼休みにだけを延々と重ね文が成立しない。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-012",
+      "prefix": "雨が降っているのに、彼は傘を",
+      "category": "grammar",
+      "strong": {
+        "text": "さくらに渡した。さくらはその傘を渡した。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "降雨中に自分の傘を相手へ渡す行動は逆接の前提にも沿う。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "雨の中でも傘をさくらへ渡し、その後さくらも渡したという行動の連続が成立する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "持って外に出た。雨が降り始めると、彼は外に出た。外に出ると、彼は大きな木の下に隠れた。そこには、友達が遊んでいた。みんなで遊び、笑い合った。雨が止むと、",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "雨中に外出するが、既に降る雨が降り始めるという時間の関係が曖昧になる。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 2,
+          "coherence": 1,
+          "completion": 0
+        },
+        "original_rationale": "雨中の行動を描くが、すでに降る雨を再び降り始めとし出る動作も重複、最後の条件節が未完。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-014",
+      "prefix": "電車が遅れたため、待ち合わせに",
+      "category": "grammar",
+      "strong": {
+        "text": "あたった。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "待ち合わせにあたるという不自然な述語で遅延の影響が特定できない。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 1,
+          "completion": 0
+        },
+        "original_rationale": "遅刻に関連する待ち合わせの語は保持するが、待ち合わせにあたったという結びが不自然。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "遅れた。電車の中に入ると、電車の中に入った。電車は、おじいさんが乗っていた。おじいさんは、電車が遅れたことを知って、とても嬉しかった。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "遅刻は保持するが、乗車を二度描き列車の遅れを喜ぶ理由が示されない。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "遅刻への接続は合うが乗車を重複し、電車はおじいさんが乗っていたという係り受けと喜ぶ理由が不自然。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-015",
+      "prefix": "コーヒーではなく、お茶を",
+      "category": "grammar",
+      "strong": {
+        "text": "飲んだのだ。その結果、コーヒーはお茶を飲んだ。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "茶を飲む初文は合うが、その後は飲物のコーヒー自身が飲む主体になる。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "茶を飲む選択に続いてコーヒーそのものが茶を飲んだ結果を述べ、主体を混同する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "飲むのが好きな人には、コーヒーの飲み方を知っておくと良いでしょう。コーヒーは、コーヒーの香りがする飲み物です。コーヒーの香りがする飲み物は、コーヒーの香りがするの",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "violated",
+        "diagnostic_rationale": "茶を選ぶ前提からコーヒーを勧める話へ変え、選択の条件を維持しない。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "茶を選ぶ前提からコーヒー解説へ逸れ、香りの同語反復に陥り末尾も未完。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-016",
+      "prefix": "料理が冷めないうちに、みんなで",
+      "category": "grammar",
+      "strong": {
+        "text": "水を飲ませた。そのみんなは、スイッチをオンにした。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "料理が冷める前の共同動作から水を飲ませスイッチを入れる話へ逸れる。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 1,
+          "completion": 0
+        },
+        "original_rationale": "皆で水を飲ませた後にスイッチをオンにするが、料理が冷める前の場面との結びが弱い。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "調理するのはとても大変です。そこで、料理の仕組みを学ぶことができます。例えば、お肉を焼くとき、お肉の表面に薄い膜を作って、熱を加えることで、お肉の表面に熱を伝えます。この熱を加",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "すでにできた料理が冷める前の話から一般的な調理手順へ移る。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 1,
+          "completion": 0
+        },
+        "original_rationale": "料理には関連するが冷める前の共同動作から一般調理説明へ移り、熱を加える途中で切れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-017",
+      "prefix": "靴を脱いでから、部屋に",
+      "category": "grammar",
+      "strong": {
+        "text": "戻る。その行動を言い直すと、今朝、靴を脱いでいたのは、すみれだ。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "靴を脱いでから部屋へ戻るという順序と行動を維持する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "靴を脱いで部屋へ戻り、その行動をすみれがしたと補足するので出来事はつながる。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "入るまでの時間は、とても長い時間です。靴を脱いでから、おうちの人と一緒に歩く時間は、とても長い時間です。靴を脱いでから、おうちの人と一緒に歩く時間は、とても長い時間です。靴を脱",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "maintained",
+        "diagnostic_rationale": "脱いで部屋に入る接続は合うが、歩く時間が長い同文を反復する。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "靴を脱ぐ文脈には続くが家族と歩く時間が長い同文を反復して末尾が切れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-019",
+      "prefix": "走り続けたので、息が",
+      "category": "grammar",
+      "strong": {
+        "text": "切れました。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "走ったため息が切れたという直接の因果を保って終える。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "走り続けて息が切れたという自然な因果の一文として完結している。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "切れるほどの痛みを感じました。また、体が痛いと感じたので、今度は、体が痛いと感じたので、今度は、体が痛いと感じたので、今度は、体が痛いと感じたので、今度は、",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "走った後の息から痛みの説明へずれ、痛いので今度はという節を重ねる。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "息が切れる接続を痛みへ置き換え、体が痛いので今度はという未完の因果節を反復する。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-020",
+      "prefix": "写真を見ながら、子どもの頃を",
+      "category": "grammar",
+      "strong": {
+        "text": "思い出した。その時、子どもは「つき」、あるいは「ほし」という別名で呼ばれている。「ほし」と呼ばれる人は、つばさである。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "回想から未導入の人物の別名へ移り、写真の内容との関係が不明になる。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 1,
+          "completion": 0
+        },
+        "original_rationale": "子供時代を思い出す出だしは自然だが、子供の別名から未導入のつばさへ移る。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "思い出してみてください。子どもの頃は、お父さんやお母さんが、お母さんのお世話をしてくれたり、お母さんのお世話をしてくれたり、お父さんのお世話をしてくれたり、子どもの頃は、",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "幼少期には関連するが、世話をする父母とされる母の指示が混ざる。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "幼少期の回想には沿うが世話をする父母と世話される母の関係が揺れ、同じ世話を反復して切れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-021",
+      "prefix": "公園のベンチに、小さな手袋が置いてあった。私は",
+      "category": "short_story",
+      "strong": {
+        "text": "それを渡した。その手袋を渡した人は、なおである。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "ベンチの手袋を渡す行動として対象が保たれる。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "見つけた手袋を渡し、その行動者をなおと呼ぶ説明で対象と行動を保持している。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "その手袋を持って、友達と遊びに行った。みんなで遊んで、笑顔が広がった。楽しい時間が過ぎ、友達との絆が深まった。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "手袋を持って友達と遊ぶ短い場面として対象と行動が保たれる。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "手袋を持ち友達と遊んだ一連の出来事が自然文として成立し、笑顔と絆の変化で終わる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-022",
+      "prefix": "古い箱を開けると、学生時代の写真が出てきた。そこには",
+      "category": "short_story",
+      "strong": {
+        "text": "本が9冊あった。そこへ1冊を加えた。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "写真を見つけた箱から本の冊数と追加へ主題を変える。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 1,
+          "completion": 0
+        },
+        "original_rationale": "写真の入った箱から本の数と追加へ移り、写真を見つけた場面の説明が弱い。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "、大人になった彼女の写真が入っていた。彼女は、彼女の写真を見て、自分が何をしたいのかを思い出した。彼女は、自分が何をしたいのかを考え、写真を撮り始めた。\n",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "violated",
+        "diagnostic_rationale": "学生時代の写真を大人になった彼女の写真とし、写真の時間条件を変える。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 1,
+          "completion": 1
+        },
+        "original_rationale": "写真から回想と撮影へ進み終止するが、学生時代の写真が大人の彼女へ変わり人物の指示も曖昧。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-024",
+      "prefix": "友人から届いた葉書には、海の絵が描かれていた。裏を見ると",
+      "category": "short_story",
+      "strong": {
+        "text": "、海の色は変わっている。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "海の絵の葉書で裏側の色の違いを描く続きとして読める。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "葉書の裏を見て海の色の違いを述べる短い続きを作り、葉書の絵の対象を保つ。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "、海の生き物たちが泳いでいた。みんなでその生き物たちと遊び、楽しい時間を過ごした。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "海の絵から生き物との実際の遊びへの場面転換が未説明である。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 1,
+          "completion": 1
+        },
+        "original_rationale": "海の葉書から生き物との遊びへつながり終止するが、葉書の絵から実際の遊びへの場面転換が唐突。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-025",
+      "prefix": "図書館の帰りに、細い道を見つけた。進んでみると",
+      "category": "short_story",
+      "strong": {
+        "text": "、道の両側に、小さなライトが付いている。このライトは、ボタンを押している間は点灯し、押していない間は消える仕組みだ。今はボタンを押していない状態である。そのため、ライトは消えている。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "道の両側のライトを見つける接続と消灯の条件が保たれる。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "細道の両側のライトについて仕組みと現在の非押下状態から消灯を説明できている。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "、古い本が見つかった。「これは何だろう？」と思った。本の中の冒険が始まった。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "進んだ道で本を見つけ本の冒険が始まる場面としてつながる。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "道で古い本を見つけ、疑問を抱き本の冒険が始まるという短い導入が文脈に沿って完結する。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-026",
+      "prefix": "父が昔使っていた時計を直した。針が動き出すと",
+      "category": "short_story",
+      "strong": {
+        "text": "、父はそれを取り出した。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "動き出した父の時計を父が取り出し対象を保持する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "直して動き出した時計を父が取り出す行動として、時計と人物の参照が保たれる。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "、その針が左右に回転する。その回転を左右に回転させると、左右に回転する。左右に回転するのは、右右に回転する。左右に回転するのは右右に回転する。左右に",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "maintained",
+        "diagnostic_rationale": "時計の針を対象にし続けるが左右の回転を循環させる。",
+        "original_scores": {
+          "grammar": 0,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "時計の針の説明だが左右の回転を循環させ、右右という壊れた語と未完の末尾がある。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-027",
+      "prefix": "姉と山を登っている途中で、霧が出てきた。私たちは",
+      "category": "short_story",
+      "strong": {
+        "text": "それを聞き取った。その霧は、においを放つ。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "霧を聞き取る対象が曖昧で、登山中の対応を特定できない。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "山の霧の場面でそれを聞き取ったと述べ、次に匂いへ飛び、行動の対象がつながらない。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "怖がりながらも、急に怖い気持ちになった。でも、友達が「一緒に行こう！」と言った。みんなで力を合わせて、無事に山を登った。怖さを乗り越えたことで、心が温かくなった。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "霧で怖がり協力して山を登る出来事を保つが、友人を追加する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 1,
+          "completion": 1
+        },
+        "original_rationale": "登山の恐怖から協力して登頂し安堵する流れは成立するが、姉から友達への人物追加と恐怖の重複がある。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-029",
+      "prefix": "夜、窓をたたく音がした。そっと開けると",
+      "category": "short_story",
+      "strong": {
+        "text": "、付いている音は、あかねの耳にあたる。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "窓をたたく音を耳にあたる音へ変えて出来事の原因を説明しない。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "窓の音を付いている音として人の耳に当てるが、窓を開いた出来事を説明できない。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "、星が輝いていた。「あの星、何をしているの？」と聞くと、星は「願いをかなえてくれる」と答えた。星は「私は夢を叶える」と言った。星は「夢を叶えるために、毎日頑張る」",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "星の会話は寓話として読めるが、窓をたたく音が回収されない。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 1,
+          "completion": 0
+        },
+        "original_rationale": "夜窓から星との会話へ進む寓話として読めるが、ノックの理由が回収されず星の発言も途中で切れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-030",
+      "prefix": "落とした財布を届けてくれた人は、近所の店員だった。私は",
+      "category": "short_story",
+      "strong": {
+        "text": "それを借りた。借りる前の店員は、あかねである。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "届いた財布を借りる話へ変え、借りる前の店員という指示も曖昧になる。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "届いた財布の代わりに店員を借りる前と表現し、人と借りる対象を混同する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "、その店員に「おもちゃを買ってもらったら、おもちゃを買ってくれ」と頼んだ。そのおもちゃを買ってくれたお母さんは、とても喜んでくれた。\n",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "財布の返却から玩具購入の循環依頼へ話題が外れる。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 0,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "財布を届けた店員への反応が玩具購入の循環依頼になり、母へ主語も移って元の出来事を保てない。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-031",
+      "prefix": "「おはよう」「",
+      "category": "conversation",
+      "strong": {
+        "text": "つき」という意味で呼ばれている。あかねが箱をしまう箱に、つばさがつばさをさくらに渡した。そのつばさがつばさをつばさへ渡した。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "朝の挨拶に応答せず人名や箱の動作へ移る。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 0,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "挨拶への応答を作らず、箱に人が人を渡す文へ移り、人名の参照も混乱する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "おはよう」「おはよう」の3つの言葉を組み合わせて、おはようの心を癒すことを目的としています。「おはよう」は、おはようの心を癒すための言葉です。「おはよう」は、おはようの心",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "挨拶を解説へ変え、おはようの心という未説明の対象を反復する。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "挨拶から挨拶語の説明へ移り、おはようの心を癒すという未説明の表現を反復して切れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-032",
+      "prefix": "「今日のお昼、何にする？」「",
+      "category": "conversation",
+      "strong": {
+        "text": "みなとは、あかねをつばさに渡した。その日に、みなとは、あかねをつばさに渡した。その結果、みなとは、あかねをつばさに渡した。みなとは、あかねをつばさに渡",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "昼食の問いに答えず人を渡す同じ行為を三度反復する。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 0,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "昼食の質問に答えず、あかねをつばさに渡したという節を三回以上繰り返して途切れる。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "今日は、お昼の時間だよ。」と、お母さんが言うと、お母さんは「お昼の時間だよ。」と答えました。「お昼の時間だよ。」と、お母さんは答えました。「お昼の時間だ",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "昼食の選択に答えず母が同じ時刻の発言を繰り返す。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "昼食への返答を時刻の宣言に置き換え、母が同じ発言に同じ返答を繰り返して切れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-034",
+      "prefix": "「助けてくれてありがとう」「",
+      "category": "conversation",
+      "strong": {
+        "text": "ありがとう」という気持ちを込めた。このカードをもとに、店にカードが10枚残っている。そこへ3枚を加えた。変更後の店の在庫数は、12枚である。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "感謝からカードの在庫へ移り、独立した計算も誤る。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "感謝から未導入のカード在庫へ飛び、十枚に三枚を足した結果も十二枚と誤る。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "ありがとう」という言葉を、私たちは「助けてくれてありがとう」と感じます。助けてくれたことに感謝し、その喜びを分かち合うことは、とても大切なことです。\n\n",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "感謝には関連するが、相手への返答から感謝語の一般説明へ移る。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 1,
+          "completion": 1
+        },
+        "original_rationale": "感謝の話題と最後の終止は保つが、言葉をありがとうと感じますという接続が不自然で会話から解説へ移る。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-035",
+      "prefix": "「久しぶりだね」「",
+      "category": "conversation",
+      "strong": {
+        "text": "あかね」と声をかけた。その結果、みなとは「つき」、まことは「ほし」という別名で呼ばれている。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "再会から別人の別名へ主題が移って会話を継続しない。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 1,
+          "completion": 0
+        },
+        "original_rationale": "久しぶりの相手へ名前で声をかける出だしの後、別の二人の別名へ唐突に移る。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "おかしなね」と、お子さんのお子さんの様子を見て、お子さんの様子を見て、お子さんの様子を見て、お子さんの様子を見て、お子さんの様子を見て、お子さんの様子を",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "再会の挨拶に応答せず子供の様子を見てという節を反復する。",
+        "original_scores": {
+          "grammar": 0,
+          "relevance": 0,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "おかしなねという壊れた返答から子供の様子を見る節を反復し、再会の会話を続けられない。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-036",
+      "prefix": "「外、寒かった？」「",
+      "category": "conversation",
+      "strong": {
+        "text": "このままではいけない」という理由で、本を数えると20冊あった。続いて、『本を数えると、22冊あった。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "外の寒さに答えず本を数える場面へ理由なく移る。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 0,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "寒さの質問から本の数へ理由なく移り、引用符を開いたまま数えた文で終える。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "寒いな」と、心の中で思うのは、このような心の動きです。心の中には、目に見えないけれど、とても大切な「心の仕組み」が隠れています。心の中には、目に見えないけれど、とても大",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "寒いという返答から心の一般的な仕組みの説明へ移る。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 1,
+          "completion": 0
+        },
+        "original_rationale": "寒さへの返答から内心の説明へつながるが、心の仕組みの同文を重ね最後も切れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-037",
+      "prefix": "「もう宿題は終わった？」「",
+      "category": "conversation",
+      "strong": {
+        "text": "もう宿題は終わった」という感情は、本を数えると20冊あった。続いて1冊を加えたのは、あおいの箱にある「つばさ」」である。いずみの箱には、3冊あった。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "宿題への返答を本の冊数や箱の人物へ置換する。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "宿題終了の感情を本の冊数へ結び、余分な引用符と箱の対象混同も生じる。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "宿題は終わったよ」と、みんなで話し合う時間がありました。「宿題は終わったよ」と、みんなで話し合いました。「次はもっとやりたいな」と、みんなで考えました。「次はもっと",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "maintained",
+        "diagnostic_rationale": "宿題が終わったとする返答は保つが、同じ報告を話し合う文を重ねる。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 2,
+          "coherence": 1,
+          "completion": 0
+        },
+        "original_rationale": "宿題が終わったと返答する点は合うが、同じ報告を話し合う文を反復し次の発言も未完。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-039",
+      "prefix": "「明日、何時に集合する？」「",
+      "category": "conversation",
+      "strong": {
+        "text": "明日、明後日」など、明日の行動をまとめると、今朝、明日は明日の行動を変えた。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "集合の時刻を答えず明日と今朝を混ぜた行動説明へ移る。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "集合時刻を答えず、明日と今朝の行動を混ぜて同じ語を反復する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "今日は、今日は、今日は、今日は、今日は、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "集合時刻を答えず今日はと読点だけを反復する。",
+        "original_scores": {
+          "grammar": 0,
+          "relevance": 0,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "集合時刻に答えず今日はと読点だけを反復し、文の構造が成立していない。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-040",
+      "prefix": "「お茶をもう一杯どうぞ」「",
+      "category": "conversation",
+      "strong": {
+        "text": "みかんをもう一杯」という感じで飲ませた。その結果、あかねははるかへと飲ませた。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "茶を勧める会話からみかんや未説明の飲ませる人物へ移る。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "お茶への返答をみかんの杯数へ置換し、誰に何を飲ませたのかが一貫しない。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "お茶のおいしさをもっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっともっと",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "茶という対象はあるが、もっとだけの反復で返答を作れない。",
+        "original_scores": {
+          "grammar": 0,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "お茶の話題から始まるがもっとだけを大量反復し、返答も述語も終結も成立しない。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-041",
+      "prefix": "このマグカップは、手のひらに収まる大きさで、",
+      "category": "description",
+      "strong": {
+        "text": "長さは32センチと34センチである。まことのマグカップは、15センチと22センチである。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "violated",
+        "diagnostic_rationale": "手のひらに収まるカップへ三十二センチと三十四センチの長さを与える。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "手のひらに収まるカップへ三十二と三十四センチという二つの長さを与えて矛盾する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "手のひらに収まるほど小さい。手のひらに収まるほど小さい。手のひらに収まるほど小さい。手のひらに収まるほど小さい。\n",
+        "stop_reason": "stop_id",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "maintained",
+        "diagnostic_rationale": "カップの小ささは保つが、収まるという同じ説明を四度重ねる。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "マグカップの大きさには沿うが手のひらに収まるほど小さい同文を四回繰り返すだけで終わる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-042",
+      "prefix": "秋の夕方の空は、薄いオレンジ色に染まり、",
+      "category": "description",
+      "strong": {
+        "text": "やや薄い青色に変わった。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "夕方の空の色が変わる短い描写として元の対象を保持する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "夕方の空がオレンジから薄い青へ変わる様子を自然な一文で描いている。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "白い雲が広がる。この雲は、地球の周りを回る大きな波のように、地球の周りを回る。雲の形は、地球の周りを回るための、とても大切な道具です。\n\n",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "空から雲へ関連するが、雲の形を地球の周りを回る道具と説明する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "空と雲には関連するが、雲の形を地球の周りを回る道具とする説明が循環して場面描写を失う。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-044",
+      "prefix": "水を入れた花瓶を、窓辺に",
+      "category": "description",
+      "strong": {
+        "text": "置いてあった。その花瓶を借りた人は、なおである。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "水の入った花瓶を窓辺に置き、花瓶を借りた人を補足する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "花瓶を窓辺に置き、それを借りた人をなおと紹介し、対象を保持して完結する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "置いておくと、その花瓶の中に水が入っていきます。水が入っていない場所では、水が入っていない場所では、水が入っていない場所では、水が入っていない場所では、水が入っていない場所では、水が入っていない",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "水を既に入れた花瓶から水が入らない場所の条件へ変えて反復する。",
+        "original_scores": {
+          "grammar": 0,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "花瓶を置く初文には続くが、既に入れた水が入る説明と水が入らない場所ではの未完節を反復する。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-045",
+      "prefix": "雨上がりの道路には、街灯の",
+      "category": "description",
+      "strong": {
+        "text": "ライトが点灯している。レバーが上にあるとライトが点灯し、下にあると消える装置だ。いまレバーは上にある。仕組みに従って、ライトは点灯している。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "雨上がりの街灯の状態を同じライトとレバーの条件で説明する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "街灯のライトについてレバーの状態と点灯の仕組みを矛盾なく説明する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "灯りが灯りを灯します。道路の灯りは、雨が降ったときに、道路の中に入ってくる光を反射して、光を放ちます。道路の灯りは、雨が降ったときに、道路の中に入ってくる光",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "街灯の反射の話題は続くが道路内の光や灯り自身が灯す指示が曖昧になる。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "街灯と反射には関連するが、灯りが灯りを灯す表現と道路内の光という説明が重複し末尾も未完。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-046",
+      "prefix": "新しい靴は少し硬いが、歩くと",
+      "category": "description",
+      "strong": {
+        "text": "柔らかい。ゆうきの靴は、点灯している。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "靴の硬さから別の人の靴が点灯する話へ唐突に移る。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 1,
+          "completion": 0
+        },
+        "original_rationale": "硬い靴が歩くと柔らかいという説明から、別人の靴の点灯へ唐突に移る。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "足が柔らかくなる。足が柔らかくなると、足が柔らかくなる。足が柔らかくなると、足が柔らかくなる。足が柔らかくなると、足が柔らかくなる。足が柔らかくなると、足が柔ら",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "硬い靴から足自体が柔らかくなる話へ変えて同じ結果を循環させる。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "硬い靴の話から足が柔らかくなるへ移り、同じ条件と結果を循環させ末尾が切れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-047",
+      "prefix": "部屋の棚には、本と小さな",
+      "category": "description",
+      "strong": {
+        "text": "ライトが付いている。レバーが上にあるとライトが点灯し、下にあると消える装置だ。いまレバーは上にある。仕組みに従って、ライトは点灯している。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "棚の本と小さなライトへ接続し、装置の条件と状態を保持する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "棚の小さなライトについてレバーの上下と点灯の仕組みを説明し、現在の状態と整合する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "箱が入っています。この箱の中には、おもちゃや本、おもちゃ、おもちゃが入っています。おもちゃは、おもちゃを動かすための大切な道具です。おもちゃを置く場所には、おもちゃの箱と",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "棚の箱と玩具から玩具を動かす玩具という循環定義へ移る。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "棚の箱へ接続するが玩具の列挙を重ね、玩具を動かす玩具という説明と箱の途中で終わる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-049",
+      "prefix": "冬の朝、車の窓には",
+      "category": "description",
+      "strong": {
+        "text": "みかんが10個残っている。そこへ5個を加えた。いまの窓は、9個である。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "冬の車窓から無関係なみかんの在庫へ飛躍する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 0,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "冬の車窓からみかんの在庫へ飛び、十個に五個を足して九個という誤った結果を示す。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "雪が降り始めました。子供たちは雪だるまを作り、雪だるまを作りました。「雪だるまを作ろう！」と一人が言いました。みんなで協力して、雪だるまを作りました。雪だるまが完成",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "冬の雪遊びには関連するが車窓の場面から離れ、作る行為も反復する。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 1,
+          "completion": 0
+        },
+        "original_rationale": "冬の窓から雪遊びへ進むが雪だるま作りを同じ順で反復し、完成の文が最後に切れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-050",
+      "prefix": "この毛布は柔らかく、触ると",
+      "category": "description",
+      "strong": {
+        "text": "柔らかい。この毛布の持ち主はゆうきだ。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "柔らかい毛布の対象と触感を保ち、持ち主を補足する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "毛布の柔らかさを軽く繰り返して持ち主を紹介するだけだが、毛布の対象は一貫している。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "柔らかく、そして柔らかく、そして柔らかく、そして、柔らかく、とろけるように、柔らかく、柔らかく、柔らかく、柔らかく、柔らかく、柔らかく、柔らかく、",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "maintained",
+        "diagnostic_rationale": "毛布の柔らかさという対象は保つが、連用形だけを繰り返す。",
+        "original_scores": {
+          "grammar": 0,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "毛布の柔らかさには沿うが柔らかくという連用形だけを繰り返し述語と終結がない。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-051",
+      "prefix": "りんごを3個買った。1個食べたので、残りは",
+      "category": "numbers",
+      "strong": {
+        "text": "そのままである。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "violated",
+        "diagnostic_rationale": "三個から一個を食べた後に残りはそのままとして減少を保持しない。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "三個から一個食べたのに残りがそのままと述べ、減った数量への回答が成立しない。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "、1個で買った。1個で、1個で、2個で、3個で、3個で、3個で、3個で、3個で、3個で、3個で、3個で、3個で、3個で、3個で、3",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "残り二個を示さず個数を無秩序に並べ、数量の関係を特定できない。",
+        "original_scores": {
+          "grammar": 0,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "りんごの残数を答えず個数を重複して並べ、残り二個の前提も文の構造も維持しない。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-052",
+      "prefix": "集合時刻は午前9時です。8時50分に着けば、",
+      "category": "numbers",
+      "strong": {
+        "text": "集合は始まる予定です。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "集合が始まるとだけ述べ、八時五十分と九時の早着の関係を示さない。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 1,
+          "completion": 0
+        },
+        "original_rationale": "早く着けば集合が始まる予定とだけ述べ、九時との関係や早着の意味を説明しない。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "午後9時30分に集合します。集合時間は、午後9時30分に集合します。集合時間は、午後9時30分に集合します。集合時間は、午後9時30分に集合します。集合時間は、",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "violated",
+        "diagnostic_rationale": "午前九時の集合を午後九時半に変更し、指定時刻を保持しない。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "時刻の話題はあるが午前九時を午後九時半へ変え、集合時間は集合しますという文を反復する。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-054",
+      "prefix": "2024年に引っ越して、翌年の2025年には",
+      "category": "numbers",
+      "strong": {
+        "text": "323万人へと増加する予定だ。なおは「つき」、かおるは「ほし」という別名で呼ばれている。「ほし」と呼ばれる人は、かおるである。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "引越しの翌年の出来事から人口や人物の別名へ移る。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 0,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "引っ越しの続きを人口三百二十三万人と人名の別名へ移し、話題がつながらない。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "、日本の国土の約3分の1が、日本の国土の約3分の1を占める国土になっています。この国土の約3分の1は、日本の国土の約3分の1を占めています。\n",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "引越しや翌年の出来事に触れず国土の割合へ主題を変える。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 0,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "転居翌年の出来事から国土の三分の一の循環説明へ逸れ、元の人物や時間を維持しない。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-055",
+      "prefix": "千円札を出して、700円の商品を買った。お釣りは",
+      "category": "numbers",
+      "strong": {
+        "text": "、100円である。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "violated",
+        "diagnostic_rationale": "千円から七百円を引いた釣銭を百円とし、入力の数量条件に反する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "千円から七百円を引いた釣銭を百円と誤る。数値誤りは文法の成立とは別に判定する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "、お釣りのお釣りのお釣りのお釣りのお釣りのお釣りのお釣りのお釣りのお釣りのお釣りのお釣りのお釣りのお釣りのお釣りのお釣りのお釣り",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "釣銭の語だけを繰り返し、必要な金額の回答が存在しない。",
+        "original_scores": {
+          "grammar": 0,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "釣銭の単語だけを延々と重ね、金額を示す述語や数量計算が成立しない。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-056",
+      "prefix": "温度計を見ると20度だった。昨日の15度より",
+      "category": "numbers",
+      "strong": {
+        "text": "22度高くなった。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "violated",
+        "diagnostic_rationale": "二十度と十五度の差を二十二度とし、入力の数値比較に反する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "二十度と十五度の差を二十二度と誤答する。数値誤りと文法の成立は分けて判定する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "は、1時間あたりの温度が上がった。この時、1時間あたりの温度は、1時間あたりの温度が上がった。この時、1時間あたりの温度は、1時間あたりの温度が上がった。\n",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "violated",
+        "diagnostic_rationale": "昨日からの温度差を一時間の変化へ変え、比較の時間条件を保持しない。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "温度上昇の話題は保つが前日との差を一時間の変化へ変え、同じ上昇の循環説明を繰り返す。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-057",
+      "prefix": "箱には赤い玉が2個、青い玉が1個入っている。全部で",
+      "category": "numbers",
+      "strong": {
+        "text": "3個を取り出した。変更後の箱の在庫数は、12個である。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "violated",
+        "diagnostic_rationale": "合計三個の箱から三個取り出した後を十二個とし、数の保存に反する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "三個の玉をすべて取り出した後の箱を十二個とし、数の推移に矛盾する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "2個の玉が入っている。箱の中には、赤い玉が入っている。箱の中には、赤い玉が入っている。箱の中には、赤い玉が入っている。箱の中には、赤い玉が入っている。箱の中には、赤い玉",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "violated",
+        "diagnostic_rationale": "赤二個と青一個の合計を二個とし、入力の個数条件に反する。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "玉には関連するが二個と答えて三個の前提を失い、赤い玉の同文を反復して末尾が切れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-059",
+      "prefix": "午後3時から1時間休憩すると、終わるのは",
+      "category": "numbers",
+      "strong": {
+        "text": "午後4時になった。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "午後三時から一時間後を午後四時と正しく保持する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "午後三時から一時間の休憩を午後四時に終えるという正しい一文を作る。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "、午後3時半から4時半の間です。午後3時半から4時半までは、午前中に休憩をとり、午後3時半から4時半までは、午後3時半から4時半まで休憩をとります。",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "violated",
+        "diagnostic_rationale": "午後三時開始の一時間休憩を三時半から四時半とし、時刻条件を変える。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "休憩時刻に触れるが開始と終了を三時半から四時半へ変え、同じ午後時間を午前とも記して矛盾する。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-060",
+      "prefix": "5ページ読んで、さらに2ページ読んだ。読んだのは",
+      "category": "numbers",
+      "strong": {
+        "text": "、3ページである。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "violated",
+        "diagnostic_rationale": "五ページと二ページの合計を三ページとし、入力の加算条件に反する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "五ページと二ページを読んだ合計を三ページと誤り、数の整合性を保てない。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "、『おもしろい』(小説)で、『おもしろい』(小説)で、『おもしろい』(小説)で、『おもしろい』(小説)で、『おもしろい』(小説)",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "読んだ量を答えず同じ小説名の接続句を繰り返す。",
+        "original_scores": {
+          "grammar": 0,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "読書には関連するが小説名と括弧説明の接続句を反復し、ページ合計にも文の終止にも達しない。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-061",
+      "prefix": "山田さんは、京都駅で友人を待っていた。すると",
+      "category": "proper_names",
+      "strong": {
+        "text": "、そこへ2人のみが入り、2人のみが入り、3人のみが入り、というルールだ。あおいはルールを守った。ルールに従うと、ライトは点灯し、ライトは消える仕組みだ。今はライトが点灯",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "京都駅で待つ友人の話から人数ルールとライトの説明へ移る。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "待ち合わせから入場人数のルールとライトへ飛び、最後も点灯という断片で切れる。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "、友人たちが「私の友人に会いたい」と言った。友人たちは「私の友人に会いたい」と言った。友人は「私の友人に会いたい」と言った。友人は「私の友人に会いたい",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "友人が登場するが会いたい発言を反復し、待ち合わせの出来事が進まない。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "待つ友人が登場する点は合うが友人に会いたい同発言を繰り返し指示と末尾が崩れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-062",
+      "prefix": "佐藤さんが持ってきたお菓子を、みんなで",
+      "category": "proper_names",
+      "strong": {
+        "text": "分け合う作業を、みなとが今朝手紙を書いた。みなとは手紙を書いた。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "菓子を分ける目的語を未導入の人が手紙を書く述語へつなぎ、行動の関係が取れない。",
+        "original_scores": {
+          "grammar": 0,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "お菓子を分け合う作業をという目的語に手紙を書いたを続け、構文が成立しない。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "分け合うことは、とても素晴らしいことです。お菓子を作る人たちは、お菓子を作る人たちと、お菓子を作る人たちが、お互いに助け合うことで、おいしいお菓子が生まれます。お菓子を作る人たちは",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "持参した菓子を分ける話から一般の菓子作りへ対象を移す。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 1,
+          "completion": 0
+        },
+        "original_rationale": "菓子を分ける接続は自然だが菓子を作る人同士の一般説明へ移り最後の主題が未完。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-064",
+      "prefix": "高橋さんの犬、ポチは散歩の時間になると",
+      "category": "proper_names",
+      "strong": {
+        "text": "、スイッチがオンなら点灯し、オフなら消える設定だ。この設定は、あおいが本をしまう箱に、ライトが付いているからである。レバーが上にあるとライトが点灯し、下にあると消える設定だ。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "犬の散歩への反応をスイッチや別人の箱の設定へ置換する。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "散歩に反応する犬をスイッチの設定として説明し、別人の箱のライトへ置き換える。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "、犬の足の裏に小さな穴が開いています。この穴は、犬の足の裏にあたる、とても小さな穴です。この穴の中には、犬の足の裏にある小さな穴がたくさんあります。この穴の中には、犬",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "散歩への犬の反応から足裏の穴の再帰的説明へ主題が移る。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "犬には関連するが散歩時の反応を足裏の穴の循環説明へ変え、同じ穴の中に穴があると反復する。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-065",
+      "prefix": "「青空文庫」という名前を、ノートに",
+      "category": "proper_names",
+      "strong": {
+        "text": "書いてあった。そのノートを読んだ人は、ノートを数えると20個あった。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "ノートへ書く初めは合うが、読んだ人の主題を冊数の述語へ変える。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "ノートを読んだ人はノートを数えると二十個あったと続け、人の主題と述語が合わない。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "書いておくと、その日の気分が変わります。「青空文庫」は、その日の気分を、その日の気分に合わせて、少しずつ変えていきます。例えば、お昼の時間に、お昼の時間に、お昼",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "名前を書くことから気分が変わる説明へ移り、その接続を具体化しない。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "青空文庫を書く接続はあるが名前が気分を変える説明を循環させ、お昼の時間にを重ねて切れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-066",
+      "prefix": "駅の名前は「桜町」だった。私は看板を見て",
+      "category": "proper_names",
+      "strong": {
+        "text": "、なおは喜ぶ。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "桜町の看板を見る私から未導入のなおへ主体を切り替える。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 1,
+          "completion": 0
+        },
+        "original_rationale": "私は看板を見てなおは喜ぶと人物を切り替え、誰が喜ぶ理由なのかが弱い。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "「桜町」と呼び、駅の名前は「桜町」と呼んでいた。駅の名前は「桜町」と呼ばれていた。駅の名前は「桜町」と呼ばれていた。\n",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "maintained",
+        "diagnostic_rationale": "駅の桜町という名前は保つが、同じ名前の説明を重ねる。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "駅名の桜町を保つが駅の名前は桜町と呼ぶという係り受けと同文反復で場面が進まない。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-067",
+      "prefix": "渡辺さんからの伝言には、「先に行きます」と",
+      "category": "proper_names",
+      "strong": {
+        "text": "書いてありました。その書を言い直すと、先に行きました。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "先に行きますという予定を先に行った過去へ変えるが、行動時点が説明されない。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 1,
+          "completion": 1
+        },
+        "original_rationale": "伝言の引用を保持し、予定の表現を行ったという過去形へ言い換えるので厳密な保持は弱い。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "の言葉がありました。「先に行く」との言葉は、先に行くと「先に行く」との意味が込められています。「先に行く」との意味は、先に行くと「先に行く」との意味が「先",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "maintained",
+        "diagnostic_rationale": "先に行く伝言の意味自体は保つが、同じ語で循環説明する。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "伝言の語句は維持するが先に行く意味を同じ言葉で説明し続け、最後の引用も切れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-069",
+      "prefix": "北海道の冬は寒いと聞いていたので、",
+      "category": "proper_names",
+      "strong": {
+        "text": "この冬は寒いと感じた。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "北海道の冬が寒いという聞いた内容と実感の関係が成立する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "寒いと聞いた北海道の冬を実際に寒いと感じたという自然なつながりで完結する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "寒いと感じる日はないのかと思いました。寒いと感じる日は、寒いと感じる日はないのかと思いました。寒いと感じる日は、寒いと感じる日はないのかと思いました。\n",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "violated",
+        "diagnostic_rationale": "寒いと聞いたため寒い日がないと考える説明で、直前の因果を逆転する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "北海道の寒さには関連するが寒いと聞き寒い日がないとする因果が不自然で同文を反復する。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-070",
+      "prefix": "会議室「楓」に入ると、すでに",
+      "category": "proper_names",
+      "strong": {
+        "text": "「楓」は開いている。なおの置く棚には「楓」が16個残っている。「楓」は消えている。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "会議室の固有名を棚に十六個ある物へ変え、対象が保たれない。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "会議室の名を十六個ある物へ変え、その後同じ楓が消えていると述べる。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "会議室が開設されている。会議室は、会議室の中に、会議室の中に、会議室を設置する。会議室は、会議室の中に、会議室を設置する。会議室は、会議室の中に",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "入った会議室から会議室の中に会議室を設置する説明へ変わる。",
+        "original_scores": {
+          "grammar": 0,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "会議室という語は続くが中にという句を重ね、会議室内に会議室を設置する循環に陥る。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-071",
+      "prefix": "「ありがとう」と言うと、彼女は",
+      "category": "punctuation",
+      "strong": {
+        "text": "「ありがとう」と言います。ありがとうを言うと、彼女は「ありがとう」を言います。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "maintained",
+        "diagnostic_rationale": "感謝への感謝の返答は成立するが、同じ対応関係を繰り返す。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 1,
+          "completion": 1
+        },
+        "original_rationale": "感謝に感謝を返す応答は成立するが、同じ説明をもう一度繰り返して内容を増やさない。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "「ありがとう」と言って、彼女の言葉を聞いてくださった。彼女は、彼女の言葉を聞くと、彼女の言葉が彼女の言葉に変わっていくのを感じました。\n",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "感謝の場面から彼女自身の言葉が彼女の言葉になる循環へ移る。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "感謝の場面から彼女自身の言葉を聞く話へ移り、彼女の言葉が彼女の言葉になるだけで意味が循環する。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-072",
+      "prefix": "あれ……鍵をどこに置いたかな。私は",
+      "category": "punctuation",
+      "strong": {
+        "text": "それを読んだ。その行動を言い直すと、今朝、鍵をはるかに渡した。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "鍵の場所探しからそれを読む行動へ変わり、読む対象が不明である。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "鍵を置いた場所を探す場面からそれを読む行動に移り、鍵を渡した話との接続が弱い。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "、鍵を持っていなかった。鍵を持っていなかったのだ。鍵を持っていなかったのは、鍵を持っていないからだ。鍵を持っていないのは、鍵を持っていないからだ。鍵を持っていないのは、鍵を持っていないから",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "maintained",
+        "diagnostic_rationale": "鍵を持たない状態は紛失と整合するが、理由を同語で循環させる。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "紛失した鍵には沿うが持たない理由を持たないからと繰り返し、探索が進まず末尾が切れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-074",
+      "prefix": "メモには「牛乳、卵、パン」と書いた。これで",
+      "category": "punctuation",
+      "strong": {
+        "text": "、子牛は15時に作業を始める予定である。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "買い物の品物を記したメモから子牛の作業時刻へ逸れる。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 0,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "買い物のメモから子牛の作業開始時刻へ飛び、前の品物と関係しない。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "、牛乳を飲むと、牛乳の量が減る。牛乳を飲むと、牛乳の量が減る。牛乳を飲むと、牛乳の量が減る。牛乳を飲むと、牛乳の量が減る。牛乳を",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "買い物メモから牛乳を飲む量の変化へ話題を変える。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "買い物メモから牛乳を飲む量の話へ逸れ、同じ減る文を四回反復して終わりも切れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-075",
+      "prefix": "春が来た――そう感じたのは、",
+      "category": "punctuation",
+      "strong": {
+        "text": "あかねだ。いずみの箱にはみかんが16個あった。そこへ4個を加えた。いま箱にあるみかんは、17個である。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "春を感じた理由から無関係な人物のみかん加算へ移る。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "春を感じた人物の後に無関係なみかんの数を加え、十六足す四を十七と誤る。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "この「春の日」が、日本の歴史や文化を象徴するものであるからだ。日本の歴史を知る上で、春の日は、日本の歴史を知る上で最も重要な日である。日本の歴史を知る上で、春の日は、日本の歴史を",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "春の感覚を日本史最重要の日という未説明の主張へ置換する。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "春の話題には触れるが春の日を日本史の最重要日とする未説明の主張と同句反復で切れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-076",
+      "prefix": "本当かな？と思ったので、もう一度",
+      "category": "punctuation",
+      "strong": {
+        "text": "読んだ。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "本当か確認するため再び読む行動として自然に続く。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "真偽を確かめるためもう一度読むという素直な行動の続きを完結させる。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "、お話を聞いてみました。\nお話を聞いてみると、お話の内容は、お話の内容は、お話の内容は、お話の内容は、お話の内容は、お話の内容は、お話の内容は、お話の内容",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "maintained",
+        "diagnostic_rationale": "確認のため話を再び聞く初文は合うが、その後は内容はだけを重ねる。",
+        "original_scores": {
+          "grammar": 0,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "聞き直す初文はつながるが、お話の内容はという主題だけを重ね述語が成立しない。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-077",
+      "prefix": "嬉しい！思わず声を上げて、",
+      "category": "punctuation",
+      "strong": {
+        "text": "言いたいことを言い直すと、みなとは「ありがとう」を言った。「ありがとう」を言った人は、「ありがとう」を述べた。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "maintained",
+        "diagnostic_rationale": "嬉しさから感謝を述べる行動は保つが、ありがとうを述べた同義文を重ねる。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 1,
+          "completion": 0
+        },
+        "original_rationale": "嬉しさから感謝へつなぐが、ありがとうを言った人がありがとうを述べたと重複する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "友達と一緒に遊びました。楽しい時間が過ぎて、みんなで笑いました。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "嬉しさから友達と遊び笑う短い場面へ自然につながる。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "喜びから友達との遊びとみんなの笑いへつながり、短い出来事として自然に終止する。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-079",
+      "prefix": "窓の外には、小さな鳥がいた（昨日も見かけた鳥だ）。私は",
+      "category": "punctuation",
+      "strong": {
+        "text": "、小さな鳥を探した。その時、犬は、小さな鳥を探した。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "鳥を探す対象は保つが、私から未導入の犬へ行動主体が移る。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 1,
+          "completion": 1
+        },
+        "original_rationale": "鳥を探す対象は保持するが、私から未導入の犬へ主体を切り替えて関係が弱い。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "、鳥の名前を知らないが、鳥の名前を知らない。鳥の名前を知らない鳥は、鳥の名前を知らない。鳥の名前を知らない鳥は、鳥の名前を知らない。鳥の名前を知らない鳥は、鳥の名前を知らない鳥",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "鳥を観察する私から名前を知らない鳥へ指示が移る。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "鳥の名前を知らない説明を反復し、知らない主体を人から鳥へ移して同じ句で切れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-080",
+      "prefix": "「またね！」と手を振ると、",
+      "category": "punctuation",
+      "strong": {
+        "text": "みなとはその手をつばさへ届けた。その手を届けた人は、みなとである。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "別れの手振りを実物の手を他人に届ける行為へ変える。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "別れの手振りを実物の手を他人へ届ける行動へ変え、比喩の足場もない。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "おばあちゃんが「おばあちゃん、おばあちゃん、おばあちゃん、おばあちゃん、おばあちゃん、おばあちゃん、おばあちゃん、おばあちゃん、おばあちゃん、おばあちゃん、おばあちゃん、おばあ",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "別れの会話から祖母の呼び名だけの反復へ崩れる。",
+        "original_scores": {
+          "grammar": 0,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "別れの場面で祖母が登場するが呼び名だけを大量反復し、引用の発言と文が成立しない。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-081",
+      "prefix": "母は花が好きだ。今日は母の誕生日なので、私は",
+      "category": "local_context",
+      "strong": {
+        "text": "花を探している。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "花好きの母の誕生日に花を探すという二つの条件を保つ。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "花好きの母の誕生日に花を探すという自然な続きを一文で完結する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "母の誕生日を祝う。母は母の誕生日を祝う。母は母の誕生日を祝う。母は母の誕生日を祝う。母は母の誕生日を祝う。母は母の誕生日を祝う。",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "maintained",
+        "diagnostic_rationale": "母の誕生日を祝う行動は保つが、同じ祝う文を五度反復する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "誕生日を祝う接続は自然だが母自身が祝う同文を五回繰り返し、花好きの条件も活かせない。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-082",
+      "prefix": "自転車の鍵が見つからない。歩いて行くには遠いので、",
+      "category": "local_context",
+      "strong": {
+        "text": "そのままにしておく。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "距離と鍵の問題を何をそのままにするのか分からない行動で終える。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 1,
+          "completion": 0
+        },
+        "original_rationale": "自転車と距離の問題にそのままにしておくとだけ答え、何を放置するのかが曖昧。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "車の鍵を開けて、そのまま歩いて行くのが一番いい。車の鍵を開けて、車の鍵を開けて、車の鍵を開けて、車の鍵を開けて、車の鍵を開けて、車の鍵を開",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "violated",
+        "diagnostic_rationale": "歩いて行くには遠い前提に対しそのまま歩くことを最善とする。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "鍵の話題はあるが遠くて歩けない前提から歩く方がよいとし、車の鍵を開ける句を反復する。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-084",
+      "prefix": "この犬は音を怖がる。花火が始まったので、私は",
+      "category": "local_context",
+      "strong": {
+        "text": "それを聞かなかった。その時は、開始を1時間遅らせた。新しい開始時刻は、8時になった。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "音が怖い犬に対処せず自分が聞かない話と未導入の開始時刻へ移る。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 1,
+          "completion": 0
+        },
+        "original_rationale": "怖がる犬への対応を述べず、自分が聞かなかった話と未導入の開始時刻へ移る。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "その音を聞いて、それを聞いて、それを聞いて、それを聞いて、それを聞いて、それを聞いて、それを聞いて、それを聞いて、それを聞いて、それを聞いて、それを聞いて、それを聞いて、それを聞",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "音を聞く接続はあるが、怖がる犬に対して行う行動が示されない。",
+        "original_scores": {
+          "grammar": 0,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "音を聞く初めの句は関連するがそれを聞いてだけを連ね、犬への対応や述語が成立しない。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-085",
+      "prefix": "姉は甘いものを食べない。お土産には、お菓子より",
+      "category": "local_context",
+      "strong": {
+        "text": "小さなライトをつけた。レバーが上にあるとライトが点灯し、下にあると消える装置だ。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "菓子以外のライトへ関連するが、お土産を選ぶ比較から装置をつける行為へずれる。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 1,
+          "completion": 0
+        },
+        "original_rationale": "甘い菓子の代わりのライトという関連はあるが、土産につけたという動作と選択が曖昧。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "、お菓子の方がおいしい。お菓子のお菓子は、お菓子の方がおいしい。お菓子のお菓子は、お菓子の方がおいしい。お菓子のお菓子は、お菓子の方がおいしい。",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "violated",
+        "diagnostic_rationale": "甘い物を食べない姉へ菓子より菓子を選ぶ比較を続け条件を維持しない。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "菓子の話題は続くが甘い物を食べない姉へ菓子を選ぶ比較を反復し、前提と目的が崩れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-086",
+      "prefix": "昨夜は眠れなかった。今日は無理をせず、",
+      "category": "local_context",
+      "strong": {
+        "text": "ゆっくりと眠ることができた。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "昨夜眠れず今日は休むという時間と目的を保って眠れたと述べる。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "眠れなかった翌日に無理せずゆっくり眠れたと述べ、前後の時間関係が整合する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "朝起きてから寝るまでの間に、眠りにつくまでの時間を、寝る前に、寝る前に、寝る前に、寝る前に、寝る前に、寝る前に、寝る前に、寝る前に、寝る前に、寝る前に、寝る前に、",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "睡眠の話題は保つが、今日の休息の行動を示す主節がない。",
+        "original_scores": {
+          "grammar": 0,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "睡眠の話題には触れるが時間をという未完の目的語から寝る前にだけを反復して終わる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-087",
+      "prefix": "図書館では静かにする約束だ。電話が鳴ったので、",
+      "category": "local_context",
+      "strong": {
+        "text": "その時刻は、10時になった。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "静かにする約束と電話への対応を、無関係な十時という時刻へ置き換える。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "静かな図書館で鳴った電話への対応を作らず、十時という時刻だけを述べる。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "その場で「おもしろい」と思った。「おもしろい」と思ったのは、その時のことだ。「おもしろい」と思ったのは、その時のことだ。\n",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "電話が鳴った反応には続くが、静かにする行動との関係が示されない。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "電話に反応する接続はあるが静かにする約束に対処せず、面白いと思う同文を反復する。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-089",
+      "prefix": "使っていたペンのインクが切れた。引き出しから",
+      "category": "local_context",
+      "strong": {
+        "text": "インクを取り出した。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "インク切れに対して引き出しからインクを補う行動が成立する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "切れたペンのインクを引き出しから補う準備として、対象と行動が自然につながる。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "は、ペンが落ちてきて、ペンが切れた。ペンは、ペンを切った後、ペンを開けてみた。ペンが切れた後、ペンは消えてしまった。ペンは、ペンを切ったあと、ペ",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "インク切れをペンの切断やペン自身の行動へ変え、対象が混同される。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "ペンには関連するがインク切れを物体の切断へ変え、ペン自身が開けるという指示崩れと末尾切れがある。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-090",
+      "prefix": "窓を開けると雨が吹き込んだ。私は急いで",
+      "category": "local_context",
+      "strong": {
+        "text": "手をつばさにかかせた。その行動を言い直すと、今朝、雨は吹かなかった。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "violated",
+        "diagnostic_rationale": "雨が吹き込んだ直前の出来事を雨は吹かなかったと言い換えて否定する。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "急いで手をかかせたという不自然な動作に移り、吹き込んだ雨を吹かなかったと否定する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "窓を開けた。窓の外は雨が降っていて、窓は雨に濡れていた。窓を開けると、外は雨が降っていた。窓は雨を止め、外は雨を止めていた。窓は雨を止め、外は雨を止",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "雨の窓という対象は保つが、再び開ける理由と窓が雨を止める仕組みが未説明である。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "窓への行動にはつながるが雨が吹き込む時さらに開け、窓と外が雨を止める文を反復する。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-091",
+      "prefix": "氷を暖かい部屋に置いておくと、少しずつ",
+      "category": "common_sense",
+      "strong": {
+        "text": "氷が下に落ちる仕組みだ。あかねは箱を数えると20個あった。続いて3個を取り出した。いま箱にある箱は、22個である。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "暖かい部屋の氷から無関係な箱の数量へ移る。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "暖かい部屋の氷から箱の在庫へ飛び、二十個から三個を引いた結果も二十二個と誤る。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "温度が上がっていきます。温度が上がると、体は熱を逃がさないように、体を温めるための温度を調節しています。温度が上がると、体は熱を逃がさないように、体を温めるための温度",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "氷の温度変化から人体の体温調節へ対象を置き換える。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "氷の温度上昇から人体の体温調節へ逸れ、同じ調節文を反復して末尾も切れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-092",
+      "prefix": "夜になって部屋が暗くなったので、電気を",
+      "category": "common_sense",
+      "strong": {
+        "text": "流した。その結果、ライトは点灯している。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "暗い部屋に電気を流して明るくする直接の目的を保つ。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "暗い部屋で電気を流してライトを点灯させる因果が成立し、短く完結する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "つけておくと、夜中に部屋が暗くなるのを防ぐことができます。また、夜中に部屋を暗くしておけば、夜中に部屋が暗くなるのを防ぐことができます。夜中に部屋を暗くしておけば、夜中に部屋が暗",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "violated",
+        "diagnostic_rationale": "部屋を暗くして暗くなるのを防ぐと述べ、明るくする目的を逆転する。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "電気をつける接続は合うが部屋を暗くして暗くなるのを防ぐ説明が矛盾し同じ句で切れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-094",
+      "prefix": "熱い鍋を持つときは、やけどをしないように",
+      "category": "common_sense",
+      "strong": {
+        "text": "注意する。やけどをした鍋は、ふくらはずれに置く。ふくらはずれに置くと、ライトが点灯し、ライトが消える。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "注意する初文は合うが、鍋をやけどする主体やライトの状態へ変える。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "鍋がやけどしたとし、意味の取れないふくらはずれとライトの状態へ話を変える。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "、少しずつ温度を上げていきます。熱い鍋に入れて、熱いお湯を入れてから、少しずつ熱を加えていきます。このとき、熱いお湯を入れておくと、熱が逃げていきます。お湯が熱",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "鍋を持つ際のやけど防止から一般的な加熱手順へ逸れる。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "熱い鍋には関連するが持つ際のやけど防止を加熱手順へ変え、熱の説明も途中で切れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-095",
+      "prefix": "喉が渇いたので、コップに水を",
+      "category": "common_sense",
+      "strong": {
+        "text": "20ml入れた。その水を入れたのは、しおりだ。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "maintained",
+        "diagnostic_rationale": "喉の渇きに対してコップへ水を入れる行動と対象を保持する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 2,
+          "completion": 1
+        },
+        "original_rationale": "渇きを受けてコップへ少量の水を入れ、その行動者をしおりと補足する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "入れて水を飲むと、喉が渇いたと感じるほどの効果が得られるといわれています。また、水を飲むと、喉の渇きを感じるようになるので、喉が渇いたと感じる時は、水を飲むようにしましょう。\n",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "violated",
+        "diagnostic_rationale": "渇きを和らげるための水飲みを渇きを感じる効果とし、目的を逆転する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "水を飲む行動は前提に合うが飲むと渇くことを効果として説明し、目的と結果が矛盾する。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-096",
+      "prefix": "信号が赤になったので、横断歩道の手前で",
+      "category": "common_sense",
+      "strong": {
+        "text": "止めた。その結果、横断歩道は消えている。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "信号で止まる行動には続くが、横断歩道が消える結果が説明されない。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "赤信号で止める行動の結果として横断歩道が消えるとし、因果を混同する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "、右手に「おおよそ、おおよそ、おおよそ、おおよそ、おおよそ、おおよそ、おおよそ、おおよそ、おおよそ、おおよそ、おおよそ、おおよそ",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "赤信号の手前での行動を示さず、おおよその語だけを重ねる。",
+        "original_scores": {
+          "grammar": 0,
+          "relevance": 0,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "赤信号への対応を続けず右手にという未完節からおおよそだけを反復する。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-097",
+      "prefix": "紙が風で飛びそうなので、上に",
+      "category": "common_sense",
+      "strong": {
+        "text": "のる。つばさはそれを借りた。借りる前の紙は、消えることはない。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "紙の上に乗る行動はあり得るが、貸借と消失の話へつなぐ理由がない。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 1,
+          "completion": 0
+        },
+        "original_rationale": "紙に乗って風を防ぐ行動から借りる話へ移り、消えないという補足との関係が弱い。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "書いたように、紙の上に紙を載せて、それを上に書く。この作業を「紙の上に書く」といいます。紙の上に書く作業は、紙の上に書く作業と似ています。紙の上に書く作業は",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "風で飛ぶ紙への重しの話から上に書く参照と書く作業の説明へ逸れる。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "紙には関連するが重しを置く文脈を紙に書く説明へ変え、同じ作業の定義を循環させて切れる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-099",
+      "prefix": "濡れた靴下を脱いで、乾いた",
+      "category": "common_sense",
+      "strong": {
+        "text": "布をしまう箱に、小さなライトが付いている。この装置のライトは、スイッチがオンなら点灯し、オフなら消える設定だ。スイッチがオンなら点灯し、オフなら消える設定だ。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "濡れた靴下から乾いた布をしまう箱の装置へ主題を変える。",
+        "original_scores": {
+          "grammar": 1,
+          "relevance": 1,
+          "coherence": 1,
+          "completion": 0
+        },
+        "original_rationale": "靴下を脱ぐ節から乾いた布の箱へ主題が変わり、スイッチの同じ設定を二度説明する。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "靴下を履くと、靴下の表面が乾いた状態になります。この状態で靴下を履くと、靴下の表面が乾いた状態になります。この状態で靴下を履くと、靴下の表面が乾いた状態になります。\n",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": true,
+        "premise": "maintained",
+        "diagnostic_rationale": "乾いた靴下を履く行動と乾く表面は合うが、同じ状態の説明を三度反復する。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 2,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "乾いた靴下を履く初文は合うが表面が乾く同じ文を三回繰り返すだけで終わる。",
+        "original_scores_changed": false
+      }
+    },
+    {
+      "id": "base-100",
+      "prefix": "外に出る前に、玄関で靴を",
+      "category": "common_sense",
+      "strong": {
+        "text": "買うことができます。玄関は、19台を分けた。分けた靴を持っているのは、玄関です。",
+        "stop_reason": "stop_id",
+        "automatic_repetition": false,
+        "nonprogressive_repetition": false,
+        "premise": "unresolved",
+        "diagnostic_rationale": "玄関で靴を扱う行動から玄関自身が靴を持つ主体へ移る。",
+        "original_scores": {
+          "grammar": 2,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "玄関を靴を買う場所から十九台を分けて靴を持つ主体へ変え、対象の関係が崩れる。",
+        "original_scores_changed": false
+      },
+      "sequential": {
+        "text": "脱いだり、外に出る前に靴を脱いだり、靴を脱いだ後に靴を脱いだり、靴を脱いだ後に靴を脱いだ後に靴を脱いだ後に靴を脱いだ後に靴を脱いだ",
+        "stop_reason": "max_new_tokens",
+        "automatic_repetition": true,
+        "nonprogressive_repetition": true,
+        "premise": "unresolved",
+        "diagnostic_rationale": "外出前の靴の話から脱いだ後また脱ぐ動作だけを反復し、出る行動が示されない。",
+        "original_scores": {
+          "grammar": 0,
+          "relevance": 1,
+          "coherence": 0,
+          "completion": 0
+        },
+        "original_rationale": "外出時の靴という話題はあるが脱ぐ動作を未完の列挙と後に節で反復し、行動の順序も崩れる。",
+        "original_scores_changed": false
+      }
+    }
+  ],
+  "classification_definitions": {
+    "nonprogressive_repetition": "Same event, phrase or explanatory relation repeated without new progression; semantic paraphrases count. A repeated condition followed by its justified outcome or one echo before genuine new information alone does not count. Diagnostic observation, not a replacement for the original automatic repetition metric.",
+    "premise": "maintained: central source situation/objects/constraints retained, even if later grammar or repetition fails. violated: concrete numeric/time/choice constraints or straightforward stated causal purpose reversed. unresolved: omitted response, abrupt topic/entity shift or ambiguity prevents deciding full premise retention; not evidence of literal contradiction or proof that fantasy is wrong."
+  },
+  "original_scores_changed": false,
+  "acceptance_criteria_changed": false,
+  "additional_model_evaluation": false,
+  "independent_human_blind": false,
+  "classification_prespecified_before_outputs_read": false,
+  "causal_effect_estimated": false,
+  "model_history": {
+    "strong": {
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/source_order/training/checkpoint-00323503.pt",
+      "tokens": 10600546304,
+      "binding": {
+        "config_sha256": "03b4ad47fa42b9a669c4588e736648e6339c93b9eb0cf3d08aac22a46cf90a88",
+        "arm": "source_order",
+        "parent": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+          "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+        },
+        "short_manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+        "teacher_goals": {
+          "web": 75000000,
+          "story": 5000000,
+          "ordinary_textbook": 10000000,
+          "conditional_textbook": 10000000
+        },
+        "optimizer_policy": "inherit",
+        "peak_lr": 1e-05,
+        "loss": "ordinary original body+EOS CE, outcome weight1",
+        "study_kind": "historical_parent_source_order_100M",
+        "sampler_policy": "Same historical10.5B fullstate/actualLR.00001, same exact100M quotas and all four per-source streams/cursors as cached mixed control. Only order is Web then story then ordinary then conditional; no stage reset, no reheat, same all-masked Web terminal padding.",
+        "outcome_weight": 1,
+        "positive_manifest_sha256": "154f13da4a817aaa21586fba2cd335faea7c79358be410e73166f5d0052bf936",
+        "original_web": {
+          "path": "/home/aihub_ubuntu/jmicro-data/phase6/ten-billion/prepared-v2/export-001/shards",
+          "manifest_sha256": "2edfd35bf077cd1aa583713c01341c0db52f39adc5701f30ede0aacae840b2de"
+        }
+      }
+    },
+    "sequential": {
+      "original_gold": 2000000000,
+      "fresh_initialization": true,
+      "training_seed": 42
+    }
+  },
+  "limitations": "Posthoc nonblind descriptive labels from already-reused DEV. Manual repetition is not an independent ground-truth detector benchmark. Maintained does not mean overall coherent, and unresolved does not assert a literal contradiction. Training histories differ, so this is not a causal architecture or quantity comparison. No score/gate replacement.",
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_scored": false
+}
