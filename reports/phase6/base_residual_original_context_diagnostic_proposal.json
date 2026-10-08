@@ -1,0 +1,27 @@
+{
+  "created_at": "2026-10-08",
+  "status": "prospective_original_context_diagnostic_defined_not_implemented_or_started",
+  "purpose": "Test whether restoring the actual article context omitted by selected paragraph units improves prediction of the same original paragraph body in the current frozen sequential2B. The consumed first640-window provenance audit found81.55% of Web teachers from intact paragraphs and73.59% from noninitial source slices. These descriptive initial-update rates do not establish the cause of generation failure.",
+  "references": {
+    "provenance": "reports/phase6/base_residual_consumed_unit_provenance.json",
+    "same_checkpoint_baseline": "reports/phase6/base_residual_train_dev_history.json",
+    "boundary_counterfactual": "reports/phase6/base_residual_boundary_counterfactual_completion.json"
+  },
+  "parent_checkpoint_sha256": "a1d29762321f1a9df088ced78d5b67fb174f59e1dd10fd4520bf769ed78c5f51",
+  "selection": "Exactly all16 already-bound actually-consumed Web TRAIN units from base_residual_train_dev_history_preparation.json. Resolve each exact index row from the saved consumed-unit provenance, then recover its original article through source_manifest_sha256/source_start/source_end and source_char_start/source_char_end. Reuse the existing native accepted Web source. No corpus scan, new source draw or easier-example substitution.",
+  "CPU_preparation_budget_seconds": 30,
+  "GPU_budget_seconds": 60,
+  "alignment": "Validate original source BOS/body/EOS bounds and decoded UTF8. Article character slice must exactly equal the selected original paragraph bytes. Preserve the existing24-token paragraph prefix and every original continuation body ID. Re-encode only the actual preceding source text and verify the context-plus-selected-prefix byte/token boundary. For context exceeding959 prompt tokens, discard only oldest source history without inserting a fragment BOS. Whole original units with no preceding source text reuse their baseline and are recorded as no-context controls, not replaced.",
+  "inference": "Same actual10M/sequential2B factory, BF16/math, same cached greedy64/suppression/EOS3. Reuse all16 existing standalone teacher/free records. New forwards only for units with recovered preceding text. Compare old versus recovered-context predictions for exactly the same paragraph continuation body positions, at most64. A paragraph-created EOS is not an actual original-article EOS: exclude that target from the primary comparison and never invent an article-end target for an internal paragraph. Store all recovered raw contexts/IDs/source spans and every new teacher/free output.",
+  "primary_screen": "For at least8 units with nonempty recovered source context, calculate per-unit standalone minus recovered-context teacher BODY NLL on equal original positions. A descriptive context-benefit screen passes only if the mean improvement>0.20 nats and paired bootstrap95% CI is wholly>0. Report every eligible unit and all missing/no-context cases. No changed source, context cap, gold continuation or extra examples after seeing results.",
+  "content": "Read all newly generated continuations. Record semantic repetition and unfinished endings, but do not grade a prompt's premise as preserved unless its full supplied context has been read. The existing Base80 ratings/gates remain unchanged. Original-reference token mismatch or higher free-history reference NLL alone is not a quality error.",
+  "completion": "Implement missing preparation/typed runner/durable launcher and relevant source-boundary/no-artificial-EOS fixtures. Actual exited<=60seconds job, unchanged weights/RNG/eval-mode, persistent PID/boot/start/closed GPU ledger, full raw and CPU matched-body summary, original idle10B UI restored and verified local commit.",
+  "interpretation": "A pass supports a local benefit from available original context within these weights; added context length and positions are part of the intervention, so this alone does not isolate semantic attention, show a defective trainer, or prove that training with restored context improves Base. A later original-context versus standalone learning comparison requires its own measured budget and unchanged full quality gates. A negative result closes this fixed diagnostic rather than authorizing context/data/decoder sweeps.",
+  "scientific_teacher_tokens": 0,
+  "optimizer_updates": 0,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_scored": false
+}
