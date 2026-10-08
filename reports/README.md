@@ -1,5 +1,9 @@
 # 実験台帳と検証結果
 
+## モデル保存・公開（2026-10-09）
+
+[publication report](publication/model_archive_20261009.json)に、主要3系列のpublic / manual gated保存、全1,544ファイルのサイズ・hash照合、匿名重み取得HTTP401、元checkpoint・学習量を記録した。[保存先](https://huggingface.co/japanese-data-analyze/JMicro-10M-research-archive)、[内容・読み込み手順126](../docs/126_model_archive.md)。データセットを含まず、新学習/GPU評価/量子化は0。現在の科学結果は[結果123](../docs/123_base_teacher_decay_2b_results.md)と[status](../docs/autonomous_status.md)を参照し、以下の「最新」は各記録当時の記述として読む。
+
 ## 最新の保存結果（2026-10-05）
 
 最新は[selector v2準備結果65](../docs/65_condition_selector_v2_preparation_results.md)。別train32の[開発比較](phase6/condition_v2_calibration_review.json)後に凍結し、同source各20M/未確認全80を診断したが弱例対照12/候補14で両内容gate未達。新GPUなし、準備失敗分岐完了で停止。[全80原文付きdata review](phase6/condition_v2_data_review.json)、[notes](phase6/condition_v2_source_notes.json)、[ready](phase6/condition_v2_ready.json)、[prepare job](phase6/condition_v2_prepare_job.json)、[judgment](phase6/condition_v2_judgment.json)、[completion/UI](phase6/condition_v2_completion.json)、[CPU5tests](phase6/condition_v2_selector_tests.xml)を保存。旧結果63とcondition_preservation証拠は保持。

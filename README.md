@@ -6,6 +6,8 @@
 
 [現在の状態](docs/autonomous_status.md) / [最新結果123](docs/123_base_teacher_decay_2b_results.md) / [今後の計画124](docs/124_base_recovery_plan.md) / [文書一覧](docs/README.md)
 
+将来の検討用に、[研究モデル保存版](https://huggingface.co/japanese-data-analyze/JMicro-10M-research-archive)を公開しました。元WebUIの10B、文章品質が比較的良かった約10.6B、最新2Bの3系列と、Tokenizer・実装・設定・試行錯誤の記録を保存しています。**データセットは含めず、ダウンロード申請は手動承認です。** [保存内容と読み込み手順](docs/126_model_archive.md)。
+
 **固定方針: 10Mのサイズを維持し、その小ささを優位性とします。** 品質改善は約10Mの総パラメータ予算内で検討し、大型化を解決策にしません。日本語Baseの品質基準は維持します。
 
 文書・計画の最終更新: 2026-10-09 JST。10M内で次の比較を1件選び、対象とする失敗・主要指標・同教師対照・予算・停止条件を事前に定めます。現在の結果から10Mの容量限界は断定できず、大幅改善も未実証です。次の介入はまだ未選定・未凍結です。

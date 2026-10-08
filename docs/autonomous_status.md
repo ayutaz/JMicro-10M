@@ -1,6 +1,12 @@
 # 現在の状態
 
-最終更新: 2026-10-09 JST。**学習・研究実行はユーザー指示により一時停止。今回の依頼はドキュメントと計画の更新のみ。Baseは未完成・未採用。**
+最終更新: 2026-10-09 JST。**学習・研究実行はユーザー指示により一時停止。Baseは未完成・未採用。最新依頼のモデル保存・公開は完了。**
+
+## モデル保存・公開
+
+ユーザーは将来の改善検討のため、モデルをHugging Faceへpublic / manual gatedで残すよう依頼し、データセットは不要と指定した。[保存版](https://huggingface.co/japanese-data-analyze/JMicro-10M-research-archive)へ元WebUIの10B、source-order約10.6B、最新teacher-decay2Bの3系列を保存した。1,544ファイル・396,038,805 bytes、Hub revision `853d52d2323653331b610249912fbe25615615fc`。全ファイルのサイズ・リモートhash、公開設定、手動承認、匿名重み取得HTTP401を確認済み。[保存内容・読み込み手順126](126_model_archive.md)、[実施report](../reports/publication/model_archive_20261009.json)。
+
+native重み・Tokenizer・数値学習state・実装・設定・文書・評価metadataを保存し、sampler内の文書とデータセットは除外した。元checkpointはWSLに保持する。保存版だけで元学習の厳密再開はできない。新しい学習/GPU評価/量子化は0。以前の詳細文書整理・README・GitHub push依頼は途中停止のままであり、この公開をその完了と扱わない。
 
 ## 最新のユーザー方針
 

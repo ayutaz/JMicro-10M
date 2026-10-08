@@ -1,6 +1,12 @@
 # Windows / WSL 引継ぎ
 
-最終更新: 2026-10-09 JST。**学習・研究実行は一時停止。今回の文書整備は学習の再開指示ではない。** [状態](autonomous_status.md)、[結果123](123_base_teacher_decay_2b_results.md)、[計画124](124_base_recovery_plan.md)を先に読む。
+最終更新: 2026-10-09 JST。**学習・研究実行は一時停止。今回のモデル保存・公開は学習の再開指示ではない。** [状態](autonomous_status.md)、[結果123](123_base_teacher_decay_2b_results.md)、[計画124](124_base_recovery_plan.md)を先に読む。
+
+## 将来確認するためのモデル保存版
+
+[JMicro-10M-research-archive](https://huggingface.co/japanese-data-analyze/JMicro-10M-research-archive)へ主要3系列をpublic / gated=manualで保存済み。revision `853d52d2323653331b610249912fbe25615615fc`。native safetensors・共通Tokenizer・optimizer/scheduler/RNG等の数値状態・実装/設定/文書/評価metadataがある。データセットとsamplerは含めず、元checkpointの完全な代替ではない。[保存内容・uv読み込み手順126](126_model_archive.md)、[全公開fileのhash照合report](../reports/publication/model_archive_20261009.json)。
+
+ユーザーの「データセットは残さなくてよい」は今回のアップロード対象から除く指定であり、既存のWSLデータを削除する指示とは扱わない。元のローカルdata/checkpointを削除・変更していない。
 
 ## 固定方針と実行範囲
 

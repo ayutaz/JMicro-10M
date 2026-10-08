@@ -1,6 +1,6 @@
 # JMicro-10M 文書一覧
 
-最終更新: 2026-10-09 JST。最新の累積2B比較と全80評価は完了・不採用。Base未完成、学習・研究実行は一時停止中です。今回の依頼は文書と計画の更新のみです。
+最終更新: 2026-10-09 JST。最新の累積2B比較と全80評価は完了・不採用。Base未完成、学習・研究実行は一時停止中です。最新依頼の[モデル保存・公開126](126_model_archive.md)は完了しました。データセットを除き、主要3系列をpublic / manual gatedで保存しています。
 
 固定方針は10M維持（現10,001,152 parameters、既存9.5M〜10.1M予算）。今の品質を10Mの限界と断定せず、同予算内の改善を検討します。計画124に検討順と次の比較案の必須事項を記載しています。次の介入は未選定・未凍結で、大型化・品質基準の緩和は既定方針に含めません。
 
@@ -114,3 +114,4 @@
 | [122_base_native_seed_confirmation_preparation.md](122_base_native_seed_confirmation_preparation.md) | native学習方式の独立seed確認に向けたCPU準備 |
 | [123_base_teacher_decay_2b_results.md](123_base_teacher_decay_2b_results.md) | 2B teacher-normalized weight-decay comparison: results and user pause |
 | [124_base_recovery_plan.md](124_base_recovery_plan.md) | Base改善の今後の計画 |
+| [126_model_archive.md](126_model_archive.md) | データセットを含めない主要3系列のHugging Face保存・手動承認・読み込み手順 |

@@ -1,5 +1,7 @@
 # Hugging Face経由での成果物共有
 
+2026-10-09追記: 学習済みの主要3系列は別の[研究モデル保存版](https://huggingface.co/japanese-data-analyze/JMicro-10M-research-archive)へpublic / manual gatedで保存した。[保存内容と取得手順126](126_model_archive.md)。データセット・samplerは含まない。以下の固定pilot/Tokenizer bundleの内容・revisionは変更していない。「Hubに学習済み重みがない」という旧記述は、この固定dataset bundleの範囲についての説明である。
+
 復元状況更新: 2026-10-03。現在のWSLで公開25 payloadをhash検証済み、再確認時のrestored_filesは0。最近のコードコミットはローカル保存で未push。新規PCでは公開bundleに加えて最新コードと必要なLinux checkpointも引き継ぐ。公開版の範囲・revisionは変更していない。
 
 [japanese-data-analyze/japanese-tiny-llm-10m-artifacts](https://huggingface.co/datasets/japanese-data-analyze/japanese-tiny-llm-10m-artifacts)へpublicで公開済み。GitHubのコードリポジトリは非公開のまま、Tokenizerと前処理済みpilotを共有する。
