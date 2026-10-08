@@ -1,0 +1,13 @@
+# native学習方式の独立seed確認に向けたCPU準備
+
+今回の教師量正規化decayの累積2B候補はまだ学習中で、品質合格・Base採用は未達。既存の `run_seeded_base_confirmation.py` は旧three-source stable/20M decay方式、`run_final_base_dev.py:source_evidence` はそのcheckpointとreview形式を前提としている。今回のnative counters/sampler/teacher-position cosine/decay policyを旧形式に偽装して渡してはならない。
+
+`base_teacher_decay_seed_protocol.py` に、同じnative方式でseed43をゼロから構築する低水準factoryを追加した。既存の凍結trainer/実行中runner/configは変更していない。初期化・学習RNGだけでなく、accepted TRAINのbyte draw用の独立RNGも43にする。同じ教材binding、Web1.5B/textbook400M/story100Mの教師quota、model、batch、CE/clip/Adam、teacher-position schedulerと32768基準のdecayを保持する。seed42の学習済み重み・Adam・samplerをseed43へ読み込むことは、独立学習の証拠にならない。
+
+`validate_independent_zero` は実際のfresh42/43 stateの同一レシピとゼロ更新、異なる重み・学習RNG・教材RNGを検査する。別seedでは抽出する文書/streamが変わるため、seed42と全sampler/digest/更新数が完全一致するという誤った条件を課さない。同じ各source教師quotaと同じscheduler/減衰規則で比較し、有利なseedだけを採用しない。
+
+関連CPUテストは小さいfixtureモデルで、実fresh stateの独立性・再現性、学習済みseed43親から連続4対2+save+2の全state/history一致、seed42 checkpointの読込み拒否と拒否後のstate不変、seed/教師quota/source bindingの取り違え拒否、pilotだけや元品質guardの失敗では次の長期学習へ進めないことを確認する。fixtureは実モデル品質や独立GPU学習の代用ではない。
+
+追加GPUの開始条件は、実2Bの終了/閉じた台帳/元UI復帰、全80個別raw-bound採点、元matched/strong/cached・絶対品質・歴史Web保持policyのすべての合格。短いpilotのBPB screenだけでは開始しない。低水準factory自体は実行許可や完了証拠を与えず、将来の永続runnerが実参照SHA・型付きstate・実process・品質reviewを検査する必要がある。
+
+候補が品質を通過した場合に残る実装は、native用seed43永続runner/reviewerと実測予算の凍結、実CUDA gate、同2Bの独立学習・全評価、両学習seedの合格確認、native checkpoint/evidenceを受け取るfullDEV/400+40生成/最終protectedTESTの明示的な接続である。既存の閾値や全件内容確認を維持し、読み替えだけで合格扱いにしない。現在はfactoryとCPU gateの準備までで、seed43本学習・fullDEV・protectedTEST・Base採用は未開始。Chat/SFT/量子化には進まない。
