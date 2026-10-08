@@ -6,7 +6,15 @@
 
 ユーザーは将来の改善検討のため、モデルをHugging Faceへpublic / manual gatedで残すよう依頼し、データセットは不要と指定した。[保存版](https://huggingface.co/japanese-data-analyze/JMicro-10M-research-archive)へ元WebUIの10B、source-order約10.6B、最新teacher-decay2Bの3系列を保存した。1,544ファイル・396,038,805 bytes、Hub revision `853d52d2323653331b610249912fbe25615615fc`。全ファイルのサイズ・リモートhash、公開設定、手動承認、匿名重み取得HTTP401を確認済み。[保存内容・読み込み手順126](126_model_archive.md)、[実施report](../reports/publication/model_archive_20261009.json)。
 
-native重み・Tokenizer・数値学習state・実装・設定・文書・評価metadataを保存し、sampler内の文書とデータセットは除外した。元checkpointはWSLに保持する。保存版だけで元学習の厳密再開はできない。新しい学習/GPU評価/量子化は0。以前の詳細文書整理・README・GitHub push依頼は途中停止のままであり、この公開をその完了と扱わない。
+native重み・Tokenizer・数値学習state・実装・設定・文書・評価metadataを保存し、sampler内の文書とデータセットは除外した。元checkpointはWSLに保持する。保存版だけで元学習の厳密再開はできない。新しい学習/GPU評価/量子化は0。この公開時点では以前の詳細文書整理・README・GitHub push依頼は途中停止しており、モデル公開だけでそれらを完了とは扱わなかった。後続のGitHub保存は次節を参照する。
+
+## 詳細記録とGitHub保存
+
+上記の公開後、ユーザーはGitHubへ残りをすべてpushするよう明示した。[全体記録125](125_project_retrospective.md)と[詳細台帳](retrospective/README.md)に初期調査・環境構築・Tokenizer・学習/評価・改善比較・不採用・未達・保存先を整理し、READMEを人間向けの入口として更新した。台帳は整理前revision `2d48062`を固定し、4,947 JSON報告を詳細抽出4,815件と理由付き対象外132件に分ける。後続のモデル公開記録は126とpublication reportから参照する。
+
+今回の対象は文書・記録の検証、commit、既存remoteへのpush。学習/データ処理/研究実行は再開しない。GitHubの反映はpush後のremote SHAとlocal HEAD一致をもって確認し、既存の科学結果やPhase0〜3の報告・凍結sourceを上書きしない。
+
+[文書保存の確認結果](../reports/publication/documentation_archive_20261009.json): 元報告4,815件のSHA256一致、表示180,595項目・104ページの全記録/原キーとの一致、ローカルfileリンク5,885件を確認した。11,289ファイルの保存一覧は元revisionのGit treeと一致。これは文書の検証であり、新しいGPU評価・独立corpus監査・モデル品質改善の証拠ではない。
 
 ## 最新のユーザー方針
 

@@ -10,6 +10,7 @@ Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/window
 - Independent trained seed43, fullDEV, final continuation suites, protectedTEST and adoption remain pending. CPU seed preparation is not learning or quality evidence.
 - Keep the original10B local WebUI available. Recorded process identities are observations, not proof of current liveness. Do not relaunch completed pilots or2B runs.
 - User-authorized archival publication (2026-10-09): three major model lineages, numerical training state excluding samplers, Tokenizer, implementation/configs/docs and stored evaluation metadata were uploaded to `japanese-data-analyze/JMicro-10M-research-archive` as public with manual gating. Datasets are excluded. See `docs/126_model_archive.md`. This does not resume training/research or the previously paused documentation/GitHub-push task, and does not authorize unrelated publication.
+- Subsequent user request (2026-10-09): commit and push all remaining project documentation/records to the existing GitHub remote. Finish the detailed retrospective and readable README within that delivery; training/research remains paused. This explicit push authorization applies to this delivery, not future automatic publication.
 
 ## Fixed model-size requirement — user clarification, 2026-10-08 JST
 

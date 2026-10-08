@@ -6,6 +6,8 @@
 
 ## 読む順序
 
+経緯をまとめて読む場合は[調査・検証・学習の全体記録125](125_project_retrospective.md)から始め、数値・失敗・採否を調べる場合は[詳細台帳](retrospective/README.md)を参照してください。
+
 1. [現在の状態](autonomous_status.md): 実際の成果、未達、停止境界、processと保存先。
 2. [最新結果123](123_base_teacher_decay_2b_results.md): 同native2B比較、全80、BPB改善と文章品質未改善、採否。
 3. [今後の計画124](124_base_recovery_plan.md): 再開後の目的・ゴール・進行/停止条件・予算。
@@ -114,4 +116,5 @@
 | [122_base_native_seed_confirmation_preparation.md](122_base_native_seed_confirmation_preparation.md) | native学習方式の独立seed確認に向けたCPU準備 |
 | [123_base_teacher_decay_2b_results.md](123_base_teacher_decay_2b_results.md) | 2B teacher-normalized weight-decay comparison: results and user pause |
 | [124_base_recovery_plan.md](124_base_recovery_plan.md) | Base改善の今後の計画 |
+| [125_project_retrospective.md](125_project_retrospective.md) | 調査・検証・学習・失敗・未達・保存先の全体記録と詳細台帳 |
 | [126_model_archive.md](126_model_archive.md) | データセットを含めない主要3系列のHugging Face保存・手動承認・読み込み手順 |

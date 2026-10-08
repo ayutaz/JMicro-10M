@@ -1,75 +1,63 @@
 # JMicro-10M
 
-日本語短文生成と短い雑談を目指す、Tokenizerからスクラッチ構築した10,001,152パラメータの言語モデル。現在はBaseの品質改善段階です。
+約1,000万パラメータで、日本語の短い文章を自然に続けられるモデルを目指した研究プロジェクトです。Tokenizerからモデル、学習・評価の仕組みまでスクラッチで構築しました。**10Mの小ささを維持すること**を大切にしています。
 
-**2026-10-08: 累積20億教師トークンの比較学習と全80件の評価が完了し、ユーザー指示で一時停止しています。Baseは未完成・未採用です。** 今回のドキュメント更新では学習を再開していません。Chat・量子化も開始しません。
+現在は学習を停止しています。GPUでの学習と多数の比較は実施できましたが、文章の一貫性・反復・自然な完結に課題が残り、**目標とする日本語Baseモデルの品質は未達です。** Chat学習と最終モデルの量子化には進んでいません。
 
-[現在の状態](docs/autonomous_status.md) / [最新結果123](docs/123_base_teacher_decay_2b_results.md) / [今後の計画124](docs/124_base_recovery_plan.md) / [文書一覧](docs/README.md)
+これまでの成果と失敗は、将来の改善検討に使えるよう保存しています。
 
-将来の検討用に、[研究モデル保存版](https://huggingface.co/japanese-data-analyze/JMicro-10M-research-archive)を公開しました。元WebUIの10B、文章品質が比較的良かった約10.6B、最新2Bの3系列と、Tokenizer・実装・設定・試行錯誤の記録を保存しています。**データセットは含めず、ダウンロード申請は手動承認です。** [保存内容と読み込み手順](docs/126_model_archive.md)。
+- [調査・検証・学習の全体記録](docs/125_project_retrospective.md)：何を試し、何が改善し、何が解決しなかったか。
+- [詳細な実験台帳](docs/retrospective/README.md)：保存済み報告の数値・設定・失敗・採否と原記録へのリンク。
+- [現在の状態](docs/autonomous_status.md) / [文書一覧](docs/README.md)。
 
-**固定方針: 10Mのサイズを維持し、その小ささを優位性とします。** 品質改善は約10Mの総パラメータ予算内で検討し、大型化を解決策にしません。日本語Baseの品質基準は維持します。
+## できたことと、残った課題
 
-文書・計画の最終更新: 2026-10-09 JST。10M内で次の比較を1件選び、対象とする失敗・主要指標・同教師対照・予算・停止条件を事前に定めます。現在の結果から10Mの容量限界は断定できず、大幅改善も未実証です。次の介入はまだ未選定・未凍結です。
+追跡可能なデータ処理、日本語Tokenizer、10,001,152パラメータのモデル、WSL・RTX4090での学習、学習状態の保存・再開、日本語を複数の観点から評価する仕組みを整えました。
 
-## 最新の成果
+教材の配合などで停止や反復が改善した条件もありました。一方、予測損失が下がっても、読みやすい文章になるとは限りませんでした。最新の同条件2B比較は次の結果です。生成評価は各80件、Codexによる非blind採点です。
 
-同じnative10Mモデル、既存2B TRAIN pool、同じ2B教師予算で、教師数に応じてweight decayを調整する条件を比較しました。データ増量の実験ではありません。
-
-| 指標 | 元native2B | 今回の候補 |
+| 指標 | 対照 | 改善候補 |
 |---|---:|---:|
-| 共通DEV256本文BPB ↓ | 1.106386 | 1.090316 |
-| 一貫性が良好 /80 ↑ | 3 | 3 |
-| 適切に完結 /80 ↑ | 7 | 5 |
-| EOS停止 /80 ↑ | 20 | 23 |
-| 自動反復 /80 ↓ | 27 | 27 |
-| Unicode失敗 /80 ↓ | 0 | 1 |
+| BPB：次の文字列の予測損失。低いほど良い | 1.1064 | 1.0903 |
+| 内容に一貫性がある | 3 / 80 | 3 / 80 |
+| 適切に完結する | 7 / 80 | 5 / 80 |
+| 反復が発生する | 27 / 80 | 27 / 80 |
 
-BPBは約1.45%改善しましたが、文章の一貫性や完結性は改善しませんでした。元の採用条件を満たさないため、今回の条件は不採用として閉じています。全80件の内容評価はCodexによる非blind採点です。
+この候補は不採用です。別の約10.6B学習系列では一貫性23/80・適切完結26/80まで達しましたが、そちらも採用基準には届いていません。最新候補、過去の比較的良かった系列、元WebUIのモデルはそれぞれ別の重みです。[最新結果の詳細](docs/123_base_teacher_decay_2b_results.md)。
 
-## データ量・学習量・モデル規模
+現状から「10Mではこれ以上改善できない」とは断定できません。ただし、データ量や学習時間を追加するだけで大幅に改善する根拠も得られていません。再開する場合は、10Mを維持して仮説と終了条件を決め、比較を1件に絞ります。[条件付きの再開計画](docs/124_base_recovery_plan.md)。
 
-| 区分 | 保存証拠にある量 |
-|---|---:|
-| モデル規模 | 10,001,152 parameters |
-| 一般Web TRAIN準備量 | 12,225,819,077 tokens |
-| 短い物語準備量 | 200,000,192 tokens |
-| 最新比較のaccepted混合pool | 約2B tokens、Web75%/textbook20%/story5% |
-| 最新候補の学習量 | 正確に2,000,000,000 supervised tokens |
-| 元WebUIモデルの学習量 | 10,000,007,168 tokens |
+## 保存したモデル
 
-別系列の学習量は合算しません。再利用した教材を新規量として二重加算せず、本文教師・入力・padding・bytesを区別します。データ不足、学習不足、10Mの容量限界のいずれも単独原因として確定していません。
+[Hugging Faceの研究モデル保存版](https://huggingface.co/japanese-data-analyze/JMicro-10M-research-archive)に、主要3系列を公開しています。**ダウンロード申請は手動承認です。**
+
+| 保存名 | 内容 |
+|---|---|
+| `web-10b` | 元のローカルWebUIで使う10B学習モデル |
+| `staged-10p6b` | 文章品質が比較的良かった約10.6Bの研究系列 |
+| `teacher-decay-2b` | 最後の教師量正規化weight decay比較の2Bモデル |
+
+いずれもモデル規模は10Mです。10B・2Bは各系列の学習量を表し、パラメータ数ではありません。正確な入力量と教師量は個々のprovenanceに記録しています。
+
+重み・Tokenizer・数値学習状態・実装・設定・評価要約・試行錯誤の記録を保存し、**データセットとsamplerは含めていません。** 全ファイルの照合と、3モデルの再ダウンロード確認は完了しています。[保存内容と読み込み手順](docs/126_model_archive.md)。
 
 ## ローカルで試す
 
-[http://127.0.0.1:7860](http://127.0.0.1:7860)で、以前の10Bモデルの続きを生成できます。最新の不採用2B候補へ差し替えていません。推論はWSL/RTX4090です。文書更新時に元checkpointのHTTP応答とidleを確認しています。将来の稼働は起動状態を再確認してください。
+既存のWindows/WSL環境では、[http://127.0.0.1:7860](http://127.0.0.1:7860)で文章の続きを試せます。元の10Bモデルを使用します。サーバーが停止している場合は、プロジェクトrootから次を実行します。
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start_webui.ps1
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/stop_webui.ps1
 ```
 
-[操作43](docs/43_local_webui.md)。既存processを確認して重複起動を避けます。UIはGPU lockを保持するため、再開されたGPU実験中だけ停止し、終端で元10Bへ復帰します。
+[WebUIの操作方法](docs/43_local_webui.md)。Git cloneだけでは学習済み重みは入りません。新しいPCでは、保存版のモデル取得と環境の復元が必要です。
 
-## 再開後の計画
+## 開発環境
 
-既存結果から未解決の比較を最大1件選び、必要な診断だけを行い、短い同条件比較から始めます。生成品質と保持条件が改善した候補だけを本比較へ進めます。その後に独立学習seed、fullDEV、protectedTEST、採用を確認し、Base完成時に通知して停止します。[目的・成果物・進行条件](docs/124_base_recovery_plan.md)。
-
-次の介入条件は未選定・未凍結です。BPB改善だけを理由に10Bへ延長したり、失敗後に別仮説を自動で起動したりしません。
-
-## 環境と保存先
-
-全Pythonはuv管理3.12.7から実行します。依存変更は `uv add`。学習はWSL2/RTX4090/Linux disk。以下は新規環境・欠損時の復元用です。
+学習環境はWSL2・RTX4090・Linux disk、Pythonは3.12.7をuvで管理します。全Pythonコマンドを`uv run --frozen`から実行し、依存の変更には`uv add`を使います。
 
 ```sh
 uv python install 3.12.7
 uv sync --frozen --python 3.12.7 --extra hub --extra data --extra ml --extra export
 ```
 
-Python commandは `uv run --frozen --extra hub --extra data --extra ml --extra export ...` を使います。system Python/pipへ切り替えません。
-
-Git正本はWindows `C:\Users\AiHUB\Desktop\japanese-tiny-llm-10m`、Linux実行コピーは `/home/aihub_ubuntu/src/japanese-tiny-llm-10m`、dataは `/home/aihub_ubuntu/jmicro-data`。重み・shards・大型metricsはGit外なので別途保全が必要です。[引継ぎ](docs/windows_handoff.md)、[固定pilot/Tokenizer復元](docs/huggingface_handoff.md)。
-
-Git identityは `yousan <ka1357amnbpdr@gmail.com>`。検証済み変更はlocal commitし、自動push・公開は行いません。Phase0〜3や過去の凍結report/source/rawを保持します。
-
-[作業ルール](AGENTS.md) / [ロードマップ](docs/15_project_roadmap.md) / [チェックリスト](docs/10_next_steps.md) / [評価契約](docs/evaluation_protocol.md) / [実験の探し方](docs/base_experiment_lookup.md)
+復元先・チェックポイント・データの所在は[Windows/WSL引継ぎ](docs/windows_handoff.md)、実行時のルールは[AGENTS.md](AGENTS.md)を参照してください。元の重みや大容量データはGit外に保持しています。過去の失敗記録と凍結した実験条件は変更せず残します。

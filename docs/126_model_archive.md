@@ -34,7 +34,7 @@ stagedはhistorical-parent対照の`6d901b...`ではなく、source-order候補�
 
 調査・試行錯誤を参照するため、当時の`src/scripts/configs/schemas`、uv固定環境、原文書と[公開保存版の全体記録125](https://huggingface.co/japanese-data-analyze/JMicro-10M-research-archive/blob/main/project/docs/125_project_retrospective.md)、保存済み4,815 JSON報告の指標・採否・原SHA256を含む機械可読の記録も保存する。Gitの全履歴・全raw reportを複製するものではなく、文書内の原reports/data絶対pathやリンクは元環境への参照として残る。機械可読記録の数を独立実験数とせず、重複したGPU時間や教師量を合算しない。
 
-学習停止と今回の記録保存の関係、未完了の文書保存タスクも区別する。以前のREADME整理・GitHub push依頼は途中で停止された。今回のHugging Face保存を、その以前の全依頼の完了やGitHubへのpushと扱わない。
+学習停止と今回の記録保存の関係も区別する。以前のREADME整理・GitHub push依頼は一度途中で停止され、Hugging Face保存時点では未完了だった。その後の「すべてpushして」という明示依頼で文書とGitHub保存を再開した。Hugging Faceのモデル公開とGitHubの文書保存は別の成果物として確認する。
 
 ## 確認方法
 

@@ -1,5 +1,7 @@
 # 実験台帳と検証結果
 
+調査から最新の不採用までの経緯は[全体記録125](../docs/125_project_retrospective.md)、保存報告の分野別指標・採否は[詳細台帳](../docs/retrospective/README.md)から参照できます。台帳は整理前revisionを固定したもので、後続のモデル公開は以下のpublication reportに記録しています。
+
 ## モデル保存・公開（2026-10-09）
 
 [publication report](publication/model_archive_20261009.json)に、主要3系列のpublic / manual gated保存、全1,544ファイルのサイズ・hash照合、匿名重み取得HTTP401、元checkpoint・学習量を記録した。[保存先](https://huggingface.co/japanese-data-analyze/JMicro-10M-research-archive)、[内容・読み込み手順126](../docs/126_model_archive.md)。データセットを含まず、新学習/GPU評価/量子化は0。現在の科学結果は[結果123](../docs/123_base_teacher_decay_2b_results.md)と[status](../docs/autonomous_status.md)を参照し、以下の「最新」は各記録当時の記述として読む。
