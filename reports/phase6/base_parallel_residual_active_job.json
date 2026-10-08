@@ -1,7 +1,7 @@
 {
   "prospective_total_GPU_cap_seconds": 86400,
   "run": "reports/phase6/base-parallel-residual-comparison-20261007",
-  "next_action": "Freeze a bounded same-current-checkpoint actually-consumed TRAIN versus independent DEV teacher/free comparison to distinguish broad underfitting from free-generation degradation. No repeat of completed six-case control, closed parallel rescue, quantity-only extension, Chat or quantization.",
+  "next_action": "Implement the frozen all32 same-body LF-ending counterfactual next-token EOS diagnostic, with CPU byte/protocol fixtures and durable30-second GPU ledger, then run and close out. No repeated TRAIN/DEV or six-case inference, no new training, no DEV normalization or quality-gate change.",
   "actual_process_alive_confirmed": false,
   "Base_complete": false,
   "UI_stopped_during_science": true,
@@ -1499,5 +1499,584 @@
     "protected_test_scored": false,
     "conclusion": "The corrected current sequential2B learning/evaluation path can memorize these six already-seen TRAIN units and stop at original EOS. An end-to-end inability to learn these examples is unsupported. This does not establish generalization, explain corpus-wide repetition, validate all data quality or qualify Base.",
     "next_action": "Use the current same-checkpoint TRAIN versus separate DEV teacher/free diagnostics to separate broad underfitting from generation degradation. Define one bounded comparison and decision rule before any new GPU training; reuse existing six-case and historical diagnostics, no corpus rescan or quantity-only extension."
+  },
+  "train_DEV_history_completion": {
+    "status": "complete",
+    "created_at": "2026-10-08T03:02:53.668418Z",
+    "result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_residual_train_dev_history.json",
+      "sha256": "c760be4eca41ddd689d56b8078d699a1592e0b746fecb777b3b77b52a7be041e"
+    },
+    "config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_residual_train_dev_history.json",
+      "sha256": "bb155ca928f1e58d1cacd5e540f80a9e126da19f0554b5b2fad0c7b260c33c07"
+    },
+    "notes": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_residual_train_dev_history_content_notes.json",
+      "sha256": "b12e0b136ab48a901698060e7888ee9f019721694e455b56d141684cb88de577"
+    },
+    "process_exited": true,
+    "launcher_exit_code": 0,
+    "GPU_seconds": 53.500711676999344,
+    "GPU_cap_seconds": 120,
+    "checks": {
+      "weights_unchanged": true,
+      "RNG_unchanged": true,
+      "eval_mode_unchanged": true,
+      "all32_same_first_prefix_exact": true
+    },
+    "populations": {
+      "TRAIN": {
+        "documents": 16,
+        "teacher_targets": 903,
+        "teacher_original_argmax_correct": 436,
+        "teacher_original_argmax_accuracy": 0.48283499446290146,
+        "teacher_mean_NLL": 2.558186787413917,
+        "teacher_body_targets": 892,
+        "teacher_body_mean_NLL": 2.586085458288423,
+        "teacher_actual_gold_EOS_observations": [
+          {
+            "id": "TRAIN-00",
+            "probability": 0.9969845414161682,
+            "rank": 1
+          },
+          {
+            "id": "TRAIN-02",
+            "probability": 0.9933992028236389,
+            "rank": 1
+          },
+          {
+            "id": "TRAIN-03",
+            "probability": 0.9814849495887756,
+            "rank": 1
+          },
+          {
+            "id": "TRAIN-05",
+            "probability": 0.9702944755554199,
+            "rank": 1
+          },
+          {
+            "id": "TRAIN-06",
+            "probability": 0.9834433197975159,
+            "rank": 1
+          },
+          {
+            "id": "TRAIN-08",
+            "probability": 0.9664199352264404,
+            "rank": 1
+          },
+          {
+            "id": "TRAIN-09",
+            "probability": 0.9751351475715637,
+            "rank": 1
+          },
+          {
+            "id": "TRAIN-11",
+            "probability": 0.9632113575935364,
+            "rank": 1
+          },
+          {
+            "id": "TRAIN-12",
+            "probability": 0.8027626872062683,
+            "rank": 1
+          },
+          {
+            "id": "TRAIN-14",
+            "probability": 0.0573916882276535,
+            "rank": 2
+          },
+          {
+            "id": "TRAIN-15",
+            "probability": 0.9951242208480835,
+            "rank": 1
+          }
+        ],
+        "teacher_gold_EOS_unobserved": 5,
+        "free_EOS": 8,
+        "free_automatic_repetition": 5,
+        "free_Unicode_errors": 0,
+        "free_role_leak": 0,
+        "free_empty": 0,
+        "common_positions": 823,
+        "common_teacher_NLL": 2.572555955830586,
+        "common_free_original_reference_NLL": 10.82217379615564,
+        "common_reference_by_document": [
+          {
+            "id": "TRAIN-00",
+            "positions": 54,
+            "teacher_NLL_sum": 169.1215868871659,
+            "free_original_reference_NLL_sum": 582.6941089630127,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "TRAIN-01",
+            "positions": 64,
+            "teacher_NLL_sum": 183.77619633614086,
+            "free_original_reference_NLL_sum": 725.5074870847166,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "TRAIN-02",
+            "positions": 43,
+            "teacher_NLL_sum": 127.46299518318847,
+            "free_original_reference_NLL_sum": 463.17448137747124,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "TRAIN-03",
+            "positions": 42,
+            "teacher_NLL_sum": 87.12173775117844,
+            "free_original_reference_NLL_sum": 421.42683320865035,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "TRAIN-04",
+            "positions": 46,
+            "teacher_NLL_sum": 152.10293031833135,
+            "free_original_reference_NLL_sum": 532.8810629844666,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "TRAIN-05",
+            "positions": 61,
+            "teacher_NLL_sum": 155.36015170440078,
+            "free_original_reference_NLL_sum": 738.5769015550613,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "TRAIN-06",
+            "positions": 53,
+            "teacher_NLL_sum": 160.14145562052727,
+            "free_original_reference_NLL_sum": 619.9467868804932,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "TRAIN-07",
+            "positions": 64,
+            "teacher_NLL_sum": 140.498566911323,
+            "free_original_reference_NLL_sum": 685.2358745187521,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "TRAIN-08",
+            "positions": 56,
+            "teacher_NLL_sum": 121.94069857505383,
+            "free_original_reference_NLL_sum": 655.000960201025,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "TRAIN-09",
+            "positions": 42,
+            "teacher_NLL_sum": 78.08383191120811,
+            "free_original_reference_NLL_sum": 473.55272340774536,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "TRAIN-10",
+            "positions": 42,
+            "teacher_NLL_sum": 91.00809912802652,
+            "free_original_reference_NLL_sum": 415.6061637401581,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "TRAIN-11",
+            "positions": 59,
+            "teacher_NLL_sum": 123.15577641874552,
+            "free_original_reference_NLL_sum": 568.1328325495124,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "TRAIN-12",
+            "positions": 41,
+            "teacher_NLL_sum": 109.58658874203684,
+            "free_original_reference_NLL_sum": 427.3731913752854,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "TRAIN-13",
+            "positions": 48,
+            "teacher_NLL_sum": 109.5385103028093,
+            "free_original_reference_NLL_sum": 461.5550217628479,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "TRAIN-14",
+            "positions": 50,
+            "teacher_NLL_sum": 147.60881691984832,
+            "free_original_reference_NLL_sum": 587.2872357964516,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "TRAIN-15",
+            "positions": 58,
+            "teacher_NLL_sum": 160.70560893858783,
+            "free_original_reference_NLL_sum": 548.6973688304424,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          }
+        ],
+        "manual_diagnostic_observations": {
+          "premise": {
+            "maintained": 10,
+            "violated": 0,
+            "unclear": 6
+          },
+          "nonprogressive_repetition": 16,
+          "appropriate_end": 1
+        }
+      },
+      "DEV": {
+        "documents": 16,
+        "teacher_targets": 978,
+        "teacher_original_argmax_correct": 450,
+        "teacher_original_argmax_accuracy": 0.4601226993865031,
+        "teacher_mean_NLL": 2.637304196155249,
+        "teacher_body_targets": 973,
+        "teacher_body_mean_NLL": 2.625721544373912,
+        "teacher_actual_gold_EOS_observations": [
+          {
+            "id": "DEV-00",
+            "probability": 0.010594881139695644,
+            "rank": 3
+          },
+          {
+            "id": "DEV-02",
+            "probability": 0.07321303337812424,
+            "rank": 2
+          },
+          {
+            "id": "DEV-03",
+            "probability": 1.3054683222435415E-05,
+            "rank": 1371
+          },
+          {
+            "id": "DEV-05",
+            "probability": 0.04713575169444084,
+            "rank": 2
+          },
+          {
+            "id": "DEV-06",
+            "probability": 0.050107330083847046,
+            "rank": 2
+          }
+        ],
+        "teacher_gold_EOS_unobserved": 11,
+        "free_EOS": 4,
+        "free_automatic_repetition": 5,
+        "free_Unicode_errors": 0,
+        "free_role_leak": 0,
+        "free_empty": 0,
+        "common_positions": 918,
+        "common_teacher_NLL": 2.684084259401168,
+        "common_free_original_reference_NLL": 10.721288487650728,
+        "common_reference_by_document": [
+          {
+            "id": "DEV-00",
+            "positions": 62,
+            "teacher_NLL_sum": 207.41503892093897,
+            "free_original_reference_NLL_sum": 651.1505563259125,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "DEV-01",
+            "positions": 64,
+            "teacher_NLL_sum": 175.35852226556744,
+            "free_original_reference_NLL_sum": 657.8632316435687,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "DEV-02",
+            "positions": 45,
+            "teacher_NLL_sum": 113.71539488353301,
+            "free_original_reference_NLL_sum": 490.965345417615,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "DEV-03",
+            "positions": 41,
+            "teacher_NLL_sum": 160.78941314993426,
+            "free_original_reference_NLL_sum": 432.7439623773098,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "DEV-04",
+            "positions": 64,
+            "teacher_NLL_sum": 197.29853399423882,
+            "free_original_reference_NLL_sum": 714.8419656213373,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "DEV-05",
+            "positions": 56,
+            "teacher_NLL_sum": 142.35462471509527,
+            "free_original_reference_NLL_sum": 580.3576128426939,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "DEV-06",
+            "positions": 51,
+            "teacher_NLL_sum": 85.800766171742,
+            "free_original_reference_NLL_sum": 589.7221511006355,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "DEV-07",
+            "positions": 55,
+            "teacher_NLL_sum": 117.97672737995163,
+            "free_original_reference_NLL_sum": 648.8225968107581,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "DEV-08",
+            "positions": 64,
+            "teacher_NLL_sum": 157.71096003323328,
+            "free_original_reference_NLL_sum": 720.1431720256805,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "DEV-09",
+            "positions": 64,
+            "teacher_NLL_sum": 228.64834332093596,
+            "free_original_reference_NLL_sum": 707.2650905549526,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "DEV-10",
+            "positions": 64,
+            "teacher_NLL_sum": 135.92690860375296,
+            "free_original_reference_NLL_sum": 702.6351329907775,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "DEV-11",
+            "positions": 64,
+            "teacher_NLL_sum": 170.25361778121442,
+            "free_original_reference_NLL_sum": 635.1097346842289,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "DEV-12",
+            "positions": 51,
+            "teacher_NLL_sum": 116.14144094410585,
+            "free_original_reference_NLL_sum": 538.9981091022491,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "DEV-13",
+            "positions": 64,
+            "teacher_NLL_sum": 170.94483735156246,
+            "free_original_reference_NLL_sum": 590.4659977201372,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "DEV-14",
+            "positions": 64,
+            "teacher_NLL_sum": 160.75348078156821,
+            "free_original_reference_NLL_sum": 654.4212349653244,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          },
+          {
+            "id": "DEV-15",
+            "positions": 45,
+            "teacher_NLL_sum": 122.90073983289767,
+            "free_original_reference_NLL_sum": 526.636937480187,
+            "original_reference_divergence_is_not_itself_a_quality_error": true
+          }
+        ],
+        "manual_diagnostic_observations": {
+          "premise": {
+            "maintained": 8,
+            "violated": 0,
+            "unclear": 8
+          },
+          "nonprogressive_repetition": 16,
+          "appropriate_end": 2
+        }
+      }
+    },
+    "paired_teacher_NLL": [
+      {
+        "TRAIN_id": "TRAIN-00",
+        "DEV_id": "DEV-00",
+        "TRAIN_teacher_mean_NLL": 3.0202907187631354,
+        "DEV_teacher_mean_NLL": 3.3454038535635315,
+        "DEV_minus_TRAIN": 0.32511313480039616
+      },
+      {
+        "TRAIN_id": "TRAIN-01",
+        "DEV_id": "DEV-01",
+        "TRAIN_teacher_mean_NLL": 2.871503067752201,
+        "DEV_teacher_mean_NLL": 2.7399769103994913,
+        "DEV_minus_TRAIN": -0.13152615735270956
+      },
+      {
+        "TRAIN_id": "TRAIN-02",
+        "DEV_id": "DEV-02",
+        "TRAIN_teacher_mean_NLL": 2.712936546584805,
+        "DEV_teacher_mean_NLL": 2.398034131483655,
+        "DEV_minus_TRAIN": -0.3149024151011499
+      },
+      {
+        "TRAIN_id": "TRAIN-03",
+        "DEV_id": "DEV-03",
+        "TRAIN_teacher_mean_NLL": 2.0743270893137726,
+        "DEV_teacher_mean_NLL": 3.9216930036569333,
+        "DEV_minus_TRAIN": 1.8473659143431607
+      },
+      {
+        "TRAIN_id": "TRAIN-04",
+        "DEV_id": "DEV-04",
+        "TRAIN_teacher_mean_NLL": 3.1460965392216167,
+        "DEV_teacher_mean_NLL": 3.0827895936599816,
+        "DEV_minus_TRAIN": -0.06330694556163508
+      },
+      {
+        "TRAIN_id": "TRAIN-05",
+        "DEV_id": "DEV-05",
+        "TRAIN_teacher_mean_NLL": 2.5468877328590294,
+        "DEV_teacher_mean_NLL": 2.5420468699124155,
+        "DEV_minus_TRAIN": -0.0048408629466139
+      },
+      {
+        "TRAIN_id": "TRAIN-06",
+        "DEV_id": "DEV-06",
+        "TRAIN_teacher_mean_NLL": 3.0215368985005147,
+        "DEV_teacher_mean_NLL": 1.682367964151804,
+        "DEV_minus_TRAIN": -1.3391689343487108
+      },
+      {
+        "TRAIN_id": "TRAIN-07",
+        "DEV_id": "DEV-07",
+        "TRAIN_teacher_mean_NLL": 2.195290107989422,
+        "DEV_teacher_mean_NLL": 2.378375185515324,
+        "DEV_minus_TRAIN": 0.1830850775259023
+      },
+      {
+        "TRAIN_id": "TRAIN-08",
+        "DEV_id": "DEV-08",
+        "TRAIN_teacher_mean_NLL": 2.1775124745545327,
+        "DEV_teacher_mean_NLL": 2.46423375051927,
+        "DEV_minus_TRAIN": 0.2867212759647373
+      },
+      {
+        "TRAIN_id": "TRAIN-09",
+        "DEV_id": "DEV-09",
+        "TRAIN_teacher_mean_NLL": 1.8591388550287644,
+        "DEV_teacher_mean_NLL": 3.5726303643896244,
+        "DEV_minus_TRAIN": 1.71349150936086
+      },
+      {
+        "TRAIN_id": "TRAIN-10",
+        "DEV_id": "DEV-10",
+        "TRAIN_teacher_mean_NLL": 2.2852721166200354,
+        "DEV_teacher_mean_NLL": 2.12385794693364,
+        "DEV_minus_TRAIN": -0.16141416968639533
+      },
+      {
+        "TRAIN_id": "TRAIN-11",
+        "DEV_id": "DEV-11",
+        "TRAIN_teacher_mean_NLL": 2.087386040995687,
+        "DEV_teacher_mean_NLL": 2.6602127778314753,
+        "DEV_minus_TRAIN": 0.5728267368357884
+      },
+      {
+        "TRAIN_id": "TRAIN-12",
+        "DEV_id": "DEV-12",
+        "TRAIN_teacher_mean_NLL": 2.672843627854557,
+        "DEV_teacher_mean_NLL": 2.0026237849224344,
+        "DEV_minus_TRAIN": -0.6702198429321227
+      },
+      {
+        "TRAIN_id": "TRAIN-13",
+        "DEV_id": "DEV-13",
+        "TRAIN_teacher_mean_NLL": 2.308579261943578,
+        "DEV_teacher_mean_NLL": 2.6710130836181634,
+        "DEV_minus_TRAIN": 0.3624338216745855
+      },
+      {
+        "TRAIN_id": "TRAIN-14",
+        "DEV_id": "DEV-14",
+        "TRAIN_teacher_mean_NLL": 2.9521763383969666,
+        "DEV_teacher_mean_NLL": 2.5117731372120033,
+        "DEV_minus_TRAIN": -0.44040320118496323
+      },
+      {
+        "TRAIN_id": "TRAIN-15",
+        "DEV_id": "DEV-15",
+        "TRAIN_teacher_mean_NLL": 2.770786361010135,
+        "DEV_teacher_mean_NLL": 2.377661534798108,
+        "DEV_minus_TRAIN": -0.39312482621202705
+      }
+    ],
+    "descriptive_fit_gap": {
+      "mean_DEV_minus_TRAIN": 0.11075813219869393,
+      "bootstrap95CI": [
+        -0.2578728060934418,
+        0.5019889472172607
+      ],
+      "bootstrap_seed": 42,
+      "bootstrap_samples": 10000,
+      "predeclared_mean_threshold": 0.25,
+      "screen_triggered": false,
+      "interpretation": "Small length-matched observational samples only; non-trigger is not proof of sufficient learning or absence of overfitting."
+    },
+    "DEV_minus_TRAIN_body_token_lengths": [
+      2,
+      0,
+      3,
+      -1,
+      -1,
+      -5,
+      -2,
+      0,
+      11,
+      28,
+      0,
+      12,
+      31,
+      0,
+      23,
+      20
+    ],
+    "restored_UI_identity": {
+      "pid": 108841,
+      "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+      "start_ticks": "7152852"
+    },
+    "restored_UI_model": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    },
+    "scientific_teacher_tokens": 0,
+    "optimizer_updates": 0,
+    "Base_complete": false,
+    "Base_adopted": false,
+    "Chat_started": false,
+    "quantization_started": false,
+    "protected_test_scored": false,
+    "limits": "Only Web and initial consumed windows; do not generalize to all sources or learning history. Repetition judgments are diagnostic observations, not a replacement acceptance criterion. Current checkpoint trained on2B gold, not the discarded six-case memorization probe."
+  },
+  "boundary_format_observation": {
+    "TRAIN_trailing_LF": 13,
+    "sha256": "fdbb7bf47440f858b33c4aa5262aad3fa663d23df3fbee5d5b7b13dba6ac8754",
+    "path": "reports/phase6/base_residual_boundary_format_observation.json",
+    "causal_claim": false,
+    "DEV_trailing_LF": 2
+  },
+  "boundary_counterfactual_proposal": {
+    "implemented": false,
+    "sha256": "1b52d6e2a0450e6055dfb408f24aaefd85fe924713b8ca6266ca097a764d2398",
+    "path": "reports/phase6/base_residual_boundary_counterfactual_proposal.json",
+    "GPU_cap_seconds": 30,
+    "GPU_started": false
   }
 }

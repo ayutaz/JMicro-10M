@@ -1,0 +1,127 @@
+"""CPU-only closed-ledger and all32 diagnostic aggregation, no new scoring."""
+import json
+from pathlib import Path
+import sys
+import urllib.request
+sys.path[:0]=[str(Path(__file__).resolve().parents[1]/'src'),str(Path(__file__).resolve().parent)]
+import numpy as np
+from jmicro.experiment import ROOT,now,read_json,sha256
+from jmicro.training import atomic_json
+from jmicro.tokenizer import Tokenizer
+from phase6_performance import alive
+from run_base_residual_train_dev_history import CONFIG,OUTPUT,RUN
+from run_base_residual_seen_train import checked,ref
+
+
+def summary(rows):
+    targets=sum(len(r['teacher']['steps']) for r in rows)
+    correct=sum(s['greedy_id']==s['original_gold_id'] for r in rows for s in r['teacher']['steps'])
+    nll=sum(s['original_gold_nll'] for r in rows for s in r['teacher']['steps'])
+    body=[s for r in rows for s in r['teacher']['steps'] if not s['actual_gold_EOS']]
+    eos=[dict(id=r['id'],probability=s['original_gold_probability'],rank=s['original_gold_rank'])
+         for r in rows for s in r['teacher']['steps'] if s['actual_gold_EOS']]
+    common=[]
+    for r in rows:
+        n=min(len(r['teacher']['steps']),len(r['free']['steps']))
+        common.append(dict(id=r['id'],positions=n,
+            teacher_NLL_sum=sum(s['original_gold_nll'] for s in r['teacher']['steps'][:n]),
+            free_original_reference_NLL_sum=sum(s['original_gold_nll'] for s in r['free']['steps'][:n]),
+            original_reference_divergence_is_not_itself_a_quality_error=True))
+    return dict(documents=len(rows),teacher_targets=targets,teacher_original_argmax_correct=correct,
+        teacher_original_argmax_accuracy=correct/targets,teacher_mean_NLL=nll/targets,
+        teacher_body_targets=len(body),teacher_body_mean_NLL=sum(s['original_gold_nll'] for s in body)/len(body),
+        teacher_actual_gold_EOS_observations=eos,teacher_gold_EOS_unobserved=len(rows)-len(eos),
+        free_EOS=sum(r['free']['stop_reason']=='stop_id' for r in rows),
+        free_automatic_repetition=sum(r['free']['automatic_repetition'] for r in rows),
+        free_Unicode_errors=sum(not r['free']['valid_UTF8'] for r in rows),
+        free_role_leak=sum(r['free']['role_leak'] for r in rows),free_empty=sum(r['free']['empty'] for r in rows),
+        common_positions=sum(r['positions'] for r in common),
+        common_teacher_NLL=sum(r['teacher_NLL_sum'] for r in common)/sum(r['positions'] for r in common),
+        common_free_original_reference_NLL=sum(r['free_original_reference_NLL_sum'] for r in common)/sum(r['positions'] for r in common),
+        common_reference_by_document=common)
+
+
+def complete():
+    destination=ROOT/'reports/phase6/base_residual_train_dev_history_completion.json'
+    if destination.exists(): raise ValueError('Preserve completed diagnostic')
+    result=read_json(OUTPUT); c=checked(result['config']); prepared=checked(result['preparation'])
+    if result['config']!=ref(CONFIG) or result['parent']!=c['parent']: raise ValueError('Fixed2B result binding differs')
+    job=read_json(RUN/'job.json')
+    launcher=read_json(ROOT/'reports/phase6/base-residual-train-dev-history-launcher-20261008/result.json')
+    if (alive(job) or job['status']!='complete' or not job['cumulative_GPU_ledger_closed']
+            or job['GPU_seconds']!=result['GPU_seconds'] or result['GPU_seconds']>120
+            or not all(result['checks'].values()) or result['optimizer_updates'] or result['scientific_teacher_tokens']
+            or launcher['status']!='complete' or launcher['exit_code'] or not launcher['UI_restore_command_succeeded']):
+        raise ValueError('Actual exited read-only diagnostic, closed120-second budget and successful launcher required')
+    notes_path=ROOT/'reports/phase6/base_residual_train_dev_history_content_notes.json'
+    notes=read_json(notes_path)
+    if notes['raw_result_sha256']!=sha256(OUTPUT) or not notes['all32_free_continuations_individually_read']:
+        raise ValueError('All32 raw-bound content readings required')
+    keyed={r['id']:r for r in notes['notes']}
+    expected=[r['id'] for r in prepared['selected']]
+    if len(keyed)!=32 or set(keyed)!=set(expected) or [r['id'] for r in result['results']]!=expected:
+        raise ValueError('Exactly all16 TRAIN/16 DEV required')
+    codec=Tokenizer(ROOT/c['tokenizer'])
+    for unit,row in zip(prepared['selected'],result['results'],strict=True):
+        teacher,free=row['teacher'],row['free']
+        gold=unit['continuation_gold_ids']
+        if teacher['fed_ids']!=gold[:64] or teacher['steps'][0]!=free['steps'][0]:
+            raise ValueError('Original forced history and same first-prefix prediction required')
+        for series in (teacher,free):
+            raw=codec.decode_bytes(series['fed_ids'])
+            if raw.hex()!=series['raw_UTF8_bytes_hex'] or raw.decode('utf-8',errors='replace')!=series['text']:
+                raise ValueError('Raw original/generated bytes differ')
+            for i,step in enumerate(series['steps']):
+                target=gold[i] if i<len(gold) else None
+                if step['original_gold_id']!=target or step['actual_gold_EOS']!=(target==3):
+                    raise ValueError('Actual reference position/EOS differs')
+        note=keyed[row['id']]
+        if (note['premise'] not in ('maintained','violated','unclear')
+                or type(note['nonprogressive_repetition']) is not bool or type(note['appropriate_end']) is not bool
+                or len(note['reason'])<12 or (note['appropriate_end'] and free['stop_reason']!='stop_id')):
+            raise ValueError('Individual raw-bound diagnostic note required')
+    train=result['results'][:16];dev=result['results'][16:]
+    populations={name:summary(rows) for name,rows in (('TRAIN',train),('DEV',dev))}
+    for name,rows in (('TRAIN',train),('DEV',dev)):
+        population=populations[name]
+        selected=[keyed[r['id']] for r in rows]
+        population['manual_diagnostic_observations']=dict(
+            premise={label:sum(n['premise']==label for n in selected) for label in ('maintained','violated','unclear')},
+            nonprogressive_repetition=sum(n['nonprogressive_repetition'] for n in selected),
+            appropriate_end=sum(n['appropriate_end'] for n in selected))
+    pairs=[]
+    for a,b in zip(train,dev,strict=True):
+        ta,tb=a['teacher']['steps'],b['teacher']['steps']
+        aa=sum(s['original_gold_nll'] for s in ta)/len(ta)
+        bb=sum(s['original_gold_nll'] for s in tb)/len(tb)
+        pairs.append(dict(TRAIN_id=a['id'],DEV_id=b['id'],TRAIN_teacher_mean_NLL=aa,
+                          DEV_teacher_mean_NLL=bb,DEV_minus_TRAIN=bb-aa))
+    values=np.array([p['DEV_minus_TRAIN'] for p in pairs])
+    samples=np.random.default_rng(42).choice(values,size=(10000,16),replace=True).mean(axis=1)
+    ci=np.quantile(samples,[.025,.975]).tolist()
+    screen=bool(values.mean()>.25 and ci[0]>0)
+    lengths=[b['original_body_tokens']-a['original_body_tokens'] for a,b in zip(prepared['selected'][:16],prepared['selected'][16:],strict=True)]
+    ui=read_json(ROOT/'reports/local/webui/server.json')
+    with urllib.request.urlopen('http://127.0.0.1:7860/api/model',timeout=3) as response: model=json.load(response)
+    if (not alive(ui) or model['checkpoint_sha256']!='410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290'
+            or model['training_tokens']!=10000007168 or model['busy']):
+        raise ValueError('Actual idle original10B UI restored required')
+    final=dict(status='complete',created_at=now(),result=ref(OUTPUT),config=ref(CONFIG),notes=ref(notes_path),
+        process_exited=True,launcher_exit_code=0,GPU_seconds=result['GPU_seconds'],GPU_cap_seconds=120,
+        checks=result['checks'],populations=populations,paired_teacher_NLL=pairs,
+        descriptive_fit_gap=dict(mean_DEV_minus_TRAIN=float(values.mean()),bootstrap95CI=ci,bootstrap_seed=42,
+            bootstrap_samples=10000,predeclared_mean_threshold=.25,screen_triggered=screen,
+            interpretation='Small length-matched observational samples only; non-trigger is not proof of sufficient learning or absence of overfitting.'),
+        DEV_minus_TRAIN_body_token_lengths=lengths,
+        restored_UI_identity={k:ui[k] for k in ('pid','boot_id','start_ticks')},restored_UI_model=model,
+        scientific_teacher_tokens=0,optimizer_updates=0,Base_complete=False,Base_adopted=False,
+        Chat_started=False,quantization_started=False,protected_test_scored=False,
+        limits=read_json(ROOT/'reports/phase6/base_residual_train_dev_history_proposal.json')['limits'])
+    atomic_json(destination,final)
+    print(json.dumps(dict(status='complete',GPU_seconds=final['GPU_seconds'],fit_gap=final['descriptive_fit_gap'],
+                         Base_complete=False,restored_UI=ui['pid'])))
+
+
+if __name__=='__main__':
+    if sys.version_info[:3]!=(3,12,7): raise RuntimeError('Pinned uv Python3.12.7 required')
+    complete()

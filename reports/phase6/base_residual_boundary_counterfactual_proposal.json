@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-10-08",
+  "status": "prospective_read_only_counterfactual_defined_not_implemented_or_started",
+  "purpose": "Determine within the same frozen current sequential2B whether a trailing LF itself changes next-token EOS preference, after the existing32-unit observational diagnostic showed different TRAIN/DEV ending formats. Separate this narrowly testable boundary cue from unresolved semantic repetition and generalization.",
+  "observation": "reports/phase6/base_residual_boundary_format_observation.json",
+  "parent_checkpoint_sha256": "a1d29762321f1a9df088ced78d5b67fb174f59e1dd10fd4520bf769ed78c5f51",
+  "selection": "Exactly all32 already-bound actual-consumed Web TRAIN and separate DEV units in base_residual_train_dev_history_preparation.json; no additional draws, reselection or source edits. Diagnostic variants are not training data and never replace original DEV/test bytes.",
+  "variants": "Original exact body IDs; original decoded text with only trailing LF characters removed; that same LF-stripped text plus exactly one LF. Preserve spaces, internal LF, punctuation and all other bytes. Retokenize counterfactual text with the existing pinned tokenizer, verify exact byte roundtrip and context<1024. Original body tokenization must retain its already-bound exact IDs. Never add, train on, or force a synthetic EOS.",
+  "inference": "For each full original/counterfactual body, original BOS2 plus body only, same actual10M explicit residual factory, BF16/math. Measure the next-token unmasked EOS3 probability/rank, next-token LF preference if its tokenizer encoding is a single token, top8 IDs/probabilities and decoded raw bytes. No free generation or optimizer update. EOS is a queried next-token event, not an observed gold boundary claim on altered text.",
+  "CPU_preparation_budget_seconds": 30,
+  "GPU_budget_seconds": 30,
+  "screen": "For all32 paired stripped-LF versus one-LF variants, report per-unit EOS probability difference. Supports a strong LF cue within these fixed weights only if median P(EOS|oneLF)-P(EOS|noTrailingLF)>0.25 and at least24/32 differences are positive. Report both populations and all variants regardless of screen outcome. Do not modify this rule after reading GPU outputs.",
+  "completion": "Implement missing typed command and durable launcher first; protocol fixtures for LF-only edits/context/original bytes. Actual exited<=30seconds job, all96 next-token records, unchanged weights/RNG/eval-mode, closed PID/boot/start GPU ledger, original idle10B UI restored, CPU paired summary and local commit. Preserve any failure and do not sweep markers or normalize DEV to pass a gate.",
+  "interpretation": "A positive result establishes a local ending-marker sensitivity of the frozen model, not that stripping/appending LF improves general free generation, causes the full TRAIN/DEV gap, resolves repetition, or qualifies Base. A negative result leaves source/topic/completion differences unresolved. Any later learning comparison needs its own source/quantity/budget/quality protocol.",
+  "scientific_teacher_tokens": 0,
+  "optimizer_updates": 0,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_scored": false
+}
