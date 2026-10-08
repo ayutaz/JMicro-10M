@@ -1,24 +1,37 @@
-# 次回のチェックリスト
+# 現在のチェックリスト
 
-最終更新: 2026-10-05 JST。[最新結果65](65_condition_selector_v2_preparation_results.md)、[実行64](64_condition_selector_v2_execution.md)、[status](autonomous_status.md)を正とする。四項目は教材準備不成立の停止分岐まで完了。新100M/一次/全文は未起動で、学習比較が完了したとは扱わない。
+最終更新: 2026-10-08 JST。[状態](autonomous_status.md)、[結果123](123_base_teacher_decay_2b_results.md)、[計画124](124_base_recovery_plan.md)を正とする。チェック印は保存証拠の案内であり、それ自体を科学的な証拠とはしない。
 
-## 今回の完了
+## 直近の完了
 
-- [x] 過去の確認教材と重ならないtrain32全文を固定抽出し、全個別理由を保存。
-- [x] selector v2の検出範囲/誤除外/限界を記録。開発弱例12のうち9を除外、正しい例4も除外。開発32を独立評価と扱わない。
-- [x] 関連5tests成功、selector/builderを3273e77で固定してから受け入れpoolを準備。
-- [x] 同source両20,000,072tokens/71,268全文、量/長さ全並び/BOS/EOS位置一致、共有10,232を記録。
-- [x] 既知教材/開発32のhash集合152を両poolから除外。再取得・再tokenize・主Web全走査なし。
-- [x] 未確認から固定random40各を一度だけ抽出し、全80原文・個別理由を保存。
-- [x] 対照弱例12/候補14、「対照より少ない」「候補10/40以下」の両準備gate不合格を保持。再抽出・受け入れ後の再改修なし。
-- [x] 101data evidencechecks/13終了checks成功。証拠の成功と準備品質失敗を区別。
-- [x] 準備失敗分岐に従い、各100M/config/runtime凍結/新CUDA/日本語と全160/条件付き全文は未実施と記録。科学0/検証0。
-- [x] 採否・結果65・限界と次案、元UI actual identity/HTTPを保存。元UIは停止していない。
+- [x] 同じnativeモデル・同じstreamの累積2B教師比較を完了。最終212095更新。
+- [x] 実CUDA連続/保存再開15checksを通過。検証8更新/71464教師と科学学習を別計数。
+- [x] 固定DEV256本文BPB、日本語評価、全80生成を保存。
+- [x] 全80を個別に読み、raw SHA付き非blindレビューを保存。
+- [x] BPB改善と文章品質未改善を分け、元基準で不採用・固定条件closedと記録。
+- [x] 実science終了、Windows worker exit0、GPU ledger closed、元10B UI復帰を確認。
+- [x] 重み・全stateはWSLに保全。小評価/レビュー/完了記録はGitに保存（科学結果commit `a26194c`）。
+- [x] ユーザー指示で学習・研究実行を一時停止。
 
-Windows/Linux同期とverified local commitをGit実状態で確認して停止。文書のチェック印だけを証拠としない。旧結果60/63、Phase0〜3、全source/raw/weights/checkpoint・原品質条件は保持。
+証拠: [completion](../reports/phase6/base_teacher_decay_2b_completion.json)、[全80notes](../reports/phase6/base_teacher_decay_2b_candidate_notes.json)、[science result](../reports/phase6/base-teacher-decay-2b-20261008/result.json)、[終端・停止記録](../reports/phase6/base_teacher_decay_2b_active_job.json)。
 
-## 次回案（未開始）
+## 今回の文書更新
 
-意味を個別に確認できる小さなwhole-doc教材による同量学習比較を設計する。準備量と反復回数を独立に記録し、同source/文長/EOSの対照と未確認評価を使う。今回の20M準備gateは変更せず、別の実験契約として提案する。設計・新教材・GPUは今回未開始。
+- [x] README・文書一覧・状態・ロードマップ・引継ぎ・AGENTSを最新結果と停止境界へ統一。
+- [x] 旧運用文書の全原文を20261008履歴へ保存し、現在の指示と分離。
+- [x] 次の比較の選定からBase採用まで、目的・成果物・進行/停止条件・予算の扱いを計画124へ記載。
+- [x] 次の介入条件は未選定・新GPU/data/診断は未開始と明記。
 
-開発用例の数字を未確認教材・モデル品質と取り違えない。データ増量/追加学習の無効性や10Mの容量限界は未確定。Base/Chat未達、独立人手blind/主Web全件監査/保護test未実施を保持。500M/1B/20B/50B/Chat/量子化/公開へ自動移行しない。
+## 明示的な実行再開後
+
+- [ ] 既存結果と失敗条件を対応付け、次の比較を最大1件選ぶ。根拠不足なら理由を報告して停止。
+- [ ] 必要な診断だけを定義・実装し、事前screenで採否を決める。既存診断の再実行を既定にしない。
+- [ ] 同教師pilotを実装・凍結し、実CUDA再開gate後に実行する。
+- [ ] 全80の生成品質・保持guardで判定し、BPBだけの改善を進行条件にしない。
+- [ ] 有望条件のみ実測予算を固定して本比較。失敗時は閉鎖し、一巡の結果を報告して停止。
+- [ ] 合格レシピのfresh学習seed43とnative runner/reviewer接続を完成・実行する。
+- [ ] fullDEVと全400＋長文40を評価し、全内容を確認する。
+- [ ] 選定封印後にprotectedTESTを実行し全100内容と元基準を確認する。
+- [ ] Base採用・復旧・成果物がそろったらユーザーへ通知して停止する。
+
+独立人間blind・独立全corpus監査・旧数値7失敗の未完了を隠さない。Chat/SFT/量子化・20B/50B・push/公開へ自動移行しない。旧selector等のチェックリストはGit履歴と当時の結果文書で参照する。

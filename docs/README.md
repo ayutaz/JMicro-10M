@@ -1,81 +1,114 @@
 # JMicro-10M 文書一覧
 
-最終更新: 2026-10-05 JST。現在地は[status](autonomous_status.md)、最新完了は[selector v2準備結果65](65_condition_selector_v2_preparation_results.md)。別train32で改修/凍結、同source両20M/未確認全80を診断したが弱例対照12/候補14で準備失敗分岐完了・停止。新GPUなし。Phase0〜5と10B/過去追加比較は完了、Base/Chat品質未達。
+最終更新: 2026-10-08 JST。最新の累積2B比較と全80評価は完了・不採用。Base未完成、学習・研究実行は一時停止中です。今回の依頼は文書と計画の更新のみです。
 
 ## 読む順序
 
-1. [status](autonomous_status.md): 実量、最新比較、採否、processと停止境界。
-2. [roadmap](15_project_roadmap.md): 全体の目的・各Phase・元品質条件。
-3. [結果65](65_condition_selector_v2_preparation_results.md): 開発32と未確認80診断・準備失敗判断。最新科学学習は[結果60](60_dataset_expansion_results.md)。
-4. [実行64](64_condition_selector_v2_execution.md)、原[計画61](61_condition_preservation_next_plan.md)、[checklist](10_next_steps.md): 原準備条件と実際の停止分岐。
-5. [引継ぎ](windows_handoff.md): WSL/uv、Git管理外のweights/data、完成runの扱い。
+1. [現在の状態](autonomous_status.md): 実際の成果、未達、停止境界、processと保存先。
+2. [最新結果123](123_base_teacher_decay_2b_results.md): 同native2B比較、全80、BPB改善と文章品質未改善、採否。
+3. [今後の計画124](124_base_recovery_plan.md): 再開後の目的・ゴール・進行/停止条件・予算。
+4. [ロードマップ](15_project_roadmap.md): Phase0〜10の現在地と元品質条件。
+5. [Windows/WSL引継ぎ](windows_handoff.md): uv、Git外の重み/data、元UI、復元と再開。
+6. [チェックリスト](10_next_steps.md)、[評価契約](evaluation_protocol.md)、[実験の探し方](base_experiment_lookup.md)。
 
-主系列/UIは10,000,007,168学習tokens、最新比較枝は各11,000,020,992。モデルは10,001,152 parameters。Web準備12,225,819,077、短い物語準備200,000,192tokens。最新新条件は常識改善と生成/停止未達を分けて不採用。source/長さ/EOS密度も変わるので量だけの効果ではない。
+番号付き文書は原則として作成時点の計画・結果です。古い「次回」「未開始」「実行中」は現在の状態や新しい開始指示ではありません。最新の実状態はstatus、各runの採否は原completionを参照します。準備コード、CPU tests、学習終了、Base採用を区別します。
 
-文書のラベルは「確定/確認済み/提案・未実行」を区別する。凍結report/source/rawは当時の証拠として保存し、過去の進捗を現在の指示にしない。
+## 運用文書と履歴
 
-## 文書一覧
+- [作業ルール](../AGENTS.md)、[自律runner](codex_automation.md)、[固定pilot/Tokenizer復元](huggingface_handoff.md)。
+- [旧状態の全原文](autonomous_status_history_20261008.md)、[旧ロードマップの全原文](project_roadmap_history_20261008.md)、[旧引継ぎの全原文](windows_handoff_history_20261008.md)、[旧AGENTSの全原文](agents_history_20261008.md)。
+- [2026-10-05履歴](autonomous_history_20261005.md)、[2026-10-04履歴](autonomous_history_20261004.md)、[2026-10-03履歴](autonomous_history_20261003.md)。
+- [data](../data/README.md)、[eval](../eval/README.md)、[reports](../reports/README.md)。
 
-1. [01_project_goal.md](01_project_goal.md) — 目的、成功条件、過去モデルとの位置付け
-2. [02_research_summary.md](02_research_summary.md) — 調査結果と採否の要約
-3. [03_architecture.md](03_architecture.md) — モデル仕様、パラメータ予算、派生案
-4. [04_tokenizer.md](04_tokenizer.md) — 4k/8k Tokenizer、特殊token、正規化
-5. [05_dataset.md](05_dataset.md) — データ候補、ライセンス、50〜100B master corpus
-6. [06_training_plan.md](06_training_plan.md) — 段階学習、SFT、Vast.ai方針
-7. [07_environment.md](07_environment.md) — RTX 4090、WSL、8TB、shard配置
-8. [08_evaluation.md](08_evaluation.md) — 評価、checkpoint、TDD、再現性
-9. [09_prior_art_and_baselines.md](09_prior_art_and_baselines.md) — 25M/100M configと100M以下の公開モデル
-10. [10_next_steps.md](10_next_steps.md) — フェーズ別計画に対応した実装checklist
-11. [11_technical_research_gaps.md](11_technical_research_gaps.md) — 追加調査の入口、未解決課題、優先順位、検証gate
-12. [12_training_implementation_research.md](12_training_implementation_research.md) — QK-Norm仕様、cache、parameter再計算、段階学習、4090 benchmark
-13. [13_tokenizer_dialogue_data_research.md](13_tokenizer_dialogue_data_research.md) — 正規化、特殊token、4k語彙予算、会話データ候補、SFT、蒸留
-14. [14_evaluation_deployment_research.md](14_evaluation_deployment_research.md) — BPBの実装、公平な比較、雑談評価、GGUF、量子化、CPU推論
-15. [15_project_roadmap.md](15_project_roadmap.md) — 目標から逆算したフェーズ別計画、目的・ゴール・成果物・完了条件・進行判断
-16. [16_phase0_completion.md](16_phase0_completion.md) — Phase 0の実施結果、要求ごとの証拠、検証範囲、次の着手
-17. [17_phase1_completion.md](17_phase1_completion.md) — 実データpilot、manifest・split、会話品質、Tokenizer sample、再生成・完了監査
-18. [18_phase2_completion.md](18_phase2_completion.md) — Tokenizer学習・入出力・会話tokensの実測
-19. [19_phase3_completion.md](19_phase3_completion.md) — モデル/cache/HF/native GGUF/量子化の実測
-20. [20_publication_review.md](20_publication_review.md) — 当時の公開前確認、ローカル情報除去
-21. [21_phase4_completion.md](21_phase4_completion.md) — WSL/CUDA・学習器・保存再開・評価・容量・速度の実機証拠
-22. [22_phase5_plan.md](22_phase5_plan.md) — Phase 5の目的・条件・予算・scheduler判断
-23. [23_phase5_completion.md](23_phase5_completion.md) — overfit/smoke/100M比較・候補選定・品質未達・独立監査
-24. [24_phase6_plan.md](24_phase6_plan.md) — 実学習5B・仕上げ結果と直接10Bの現在地・予算
-25. [25_phase6_preparation.md](25_phase6_preparation.md) — ①②の事前の目的、凍結条件と停止境界
-26. [26_phase6_preparation_completion.md](26_phase6_preparation_completion.md) — ①②の実量、全corpus/CUDA監査、保存先、実CLI
-27. [27_phase6_remaining_plan.md](27_phase6_remaining_plan.md) — 最新比較後の残作業、教材品質提案61、Chat・量子化・条件付き拡張
-28. [28_phase6_performance.md](28_phase6_performance.md) — ③の実GPU高速化・backend実効確認・容量と厳密再開の比較
-29. [29_phase6_performance_completion.md](29_phase6_performance_completion.md) — ③の採用速度・最大容量・厳密/cold再開・独立監査と停止記録
-30. [30_phase6_readiness_execution.md](30_phase6_readiness_execution.md) — ④⑤の限定比較、CPU精度修復、正式検証・凍結設定・commitと停止記録
+旧運用文書は今回の整理前のbytesをそのまま保存しています。凍結report/source/raw、Phase0〜3の証拠は変更していません。native seedの[準備122](122_base_native_seed_confirmation_preparation.md)はCPU準備のみで、候補の後続不採用は結果123を参照します。
 
+## 番号付きの計画・結果
 
-- [32_local_10b_corpus.md](32_local_10b_corpus.md) — 大規模corpus構築の履歴。現行量・利用確認と独立監査の範囲はstatusを正とする
-- [35_base_5b_execution.md](35_base_5b_execution.md) — 主要5B学習の実行記録
-- [36_base_5b_comparison.md](36_base_5b_comparison.md) — 主要5Bの固定評価比較
-- [37_eos_repetition_utf8_improvement_plan.md](37_eos_repetition_utf8_improvement_plan.md) — EOS・反復・UTF8改善の事前計画
-- [38_eos_5b_finish_results.md](38_eos_5b_finish_results.md) — Web/短文比較の結果と採用不合格
-- [39_learning_scale_and_generation_plan.md](39_learning_scale_and_generation_plan.md) — 当時の直接10B・評価・報告案（完了履歴）
-- [40_base_10b_preparation.md](40_base_10b_preparation.md) — 完了した専用10B準備。科学学習の完了ではない
-- [41_base_10b_training.md](41_base_10b_training.md) — 総10B学習・保存確認の完了時の記録、実測速度。品質比較は後続42へ
-- [42_base_10b_quality_evaluation.md](42_base_10b_quality_evaluation.md) — 同条件dev/400品質比較、生成内容、元gateと未達課題
-- [43_local_webui.md](43_local_webui.md) — 学習済み10BモデルのローカルUI、起動・停止と実操作確認
-- [44_japanese_base_evaluation_audit.md](44_japanese_base_evaluation_audit.md) — 現行評価の不足、日本語Baseの追加benchmark/意味診断、v2実装案
-運用文書: [最新状態](autonomous_status.md)、[復旧履歴](autonomous_history_20261003.md)、[Windows/WSL引継ぎ](windows_handoff.md)、[固定Hub復元](huggingface_handoff.md)、[自律runner](codex_automation.md)、[評価仕様](evaluation_protocol.md)。[data](../data/README.md)、[eval](../eval/README.md)、[reports](../reports/README.md)に各保存領域の手順を記載する。
-
-実行時の仕様は[評価仕様](evaluation_protocol.md)と[Windows/WSL移行手順](windows_handoff.md)を参照する。データとTokenizerの[Hugging Face公開版の取得手順](huggingface_handoff.md)も利用できる。
-
-
-## 日本語評価と追加比較の履歴
-
-| 文書 | 位置付け |
+| 文書 | 作成時点の主題 |
 |---|---|
-| [45 日本語評価v2.1](45_japanese_base_evaluation_v2.md) / [46 実測結果](46_japanese_base_evaluation_v2_results.md) | 日本語Base評価の仕様と元10B実測 |
-| [47 改善計画](47_post_evaluation_training_plan.md) / [48 完結文比較](48_complete_text_10b_comparison.md) | 当時の提案と三条件100Mの完了結果 |
-| [49 配合計画](49_next_mixture_and_training_budget_plan.md) / [50 実行](50_story10_and_budget_execution.md) / [51 判断](51_story10_judgment_and_next_proposal.md) | 10%/低LR追加比較の完了結果・当時の次案 |
-| [52 20%低LR実行](52_story20_low_lr_execution.md) / [53 判断](53_story20_low_lr_judgment.md) | 100M/500M・条件付き全文、研究候補採用と実用品質未達 |
-| [54 全文pool計画](54_complete_document_500m_execution.md) / [55 結果](55_complete_document_500m_results.md) | 110M教材・500M比較、不採用 |
-| [56 教材/学習量計画](56_matched_story_and_learning_budget_plan.md) / [57 結果](57_matched_story_and_learning_budget_results.md) | matched教材と固定教材一定LR1B、採用未達 |
-| [58 増量案](58_dataset_expansion_proposal.md) / [59 実行](59_dataset_expansion_execution.md) / [60 結果](60_dataset_expansion_results.md) | 最新科学学習。物語60M→200M・各1B、不採用 |
-| [61 原計画](61_condition_preservation_next_plan.md) / [62 実行](62_condition_preservation_execution.md) / [63 結果](63_condition_preservation_preparation_results.md) | 前回完了。保存失敗診断・同source各20M/全80内容、準備失敗分岐で学習前停止 |
-| [64 新selector実行](64_condition_selector_v2_execution.md) / [65 結果](65_condition_selector_v2_preparation_results.md) | 最新完了。別train32で改修・凍結し、未確認各40で準備改善未確認、学習前停止 |
-
-過去の番号付き計画にある「次回」「未開始」は記載当時の状態。現在の実行範囲はAGENTS.mdとstatusを正とする。詳細な原文は[2026-10-05履歴](autonomous_history_20261005.md)へ保持する。
+| [01_project_goal.md](01_project_goal.md) | プロジェクト目的 |
+| [02_research_summary.md](02_research_summary.md) | 調査要約 |
+| [03_architecture.md](03_architecture.md) | アーキテクチャ設計 |
+| [04_tokenizer.md](04_tokenizer.md) | Tokenizer設計 |
+| [05_dataset.md](05_dataset.md) | データ設計 |
+| [06_training_plan.md](06_training_plan.md) | 学習計画 |
+| [07_environment.md](07_environment.md) | 実行環境とデータ配置 |
+| [08_evaluation.md](08_evaluation.md) | 評価・Checkpoint・TDD |
+| [09_prior_art_and_baselines.md](09_prior_art_and_baselines.md) | 先行例とベースライン |
+| [10_next_steps.md](10_next_steps.md) | 現在のチェックリスト |
+| [11_technical_research_gaps.md](11_technical_research_gaps.md) | 未解決の技術課題と追加調査 |
+| [12_training_implementation_research.md](12_training_implementation_research.md) | モデル実装・段階学習・実行環境の追加調査 |
+| [13_tokenizer_dialogue_data_research.md](13_tokenizer_dialogue_data_research.md) | Tokenizer・日本語会話データ・SFTの追加調査 |
+| [14_evaluation_deployment_research.md](14_evaluation_deployment_research.md) | 比較評価・量子化・ローカル推論の追加調査 |
+| [15_project_roadmap.md](15_project_roadmap.md) | JMicro-10M フェーズ別実行計画 |
+| [16_phase0_completion.md](16_phase0_completion.md) | Phase 0 完了記録 |
+| [17_phase1_completion.md](17_phase1_completion.md) | Phase 1 完了記録 |
+| [18_phase2_completion.md](18_phase2_completion.md) | Phase 2完了記録 |
+| [19_phase3_completion.md](19_phase3_completion.md) | Phase 3完了記録 |
+| [20_publication_review.md](20_publication_review.md) | Hugging Face公開前のライセンス・個人情報確認 |
+| [21_phase4_completion.md](21_phase4_completion.md) | Phase 4完了: WSL・学習器・再開・4090実測 |
+| [22_phase5_plan.md](22_phase5_plan.md) | Phase 5: 目的・ゴール・実行計画 |
+| [23_phase5_completion.md](23_phase5_completion.md) | Phase 5完了: 小予算の学習検証と候補選定 |
+| [24_phase6_plan.md](24_phase6_plan.md) | Phase 6 Base学習の現在地と進行条件 |
+| [25_phase6_preparation.md](25_phase6_preparation.md) | Phase 6の①データ拡充・②長時間学習準備 |
+| [26_phase6_preparation_completion.md](26_phase6_preparation_completion.md) | Phase 6①②の完了記録 |
+| [27_phase6_remaining_plan.md](27_phase6_remaining_plan.md) | Phase 6以降に残る作業 |
+| [28_phase6_performance.md](28_phase6_performance.md) | Phase 6③: 高速化と資源活用の実測 |
+| [29_phase6_performance_completion.md](29_phase6_performance_completion.md) | Phase 6③ 高速化・資源活用の完了記録 |
+| [30_phase6_readiness_execution.md](30_phase6_readiness_execution.md) | Phase 6④⑤: 生成・変換と本学習設定の確定 |
+| [32_local_10b_corpus.md](32_local_10b_corpus.md) | ローカル10Bデータセットの整備 |
+| [35_base_5b_execution.md](35_base_5b_execution.md) | 次計画1・2：10Mモデルを総5Bまで学習 |
+| [36_base_5b_comparison.md](36_base_5b_comparison.md) | 5B学習済み10Mモデルの比較結果 |
+| [37_eos_repetition_utf8_improvement_plan.md](37_eos_repetition_utf8_improvement_plan.md) | 5B後のEOS・反復・UTF8末尾改善：調査と次回計画 |
+| [38_eos_5b_finish_results.md](38_eos_5b_finish_results.md) | EOS・反復・UTF8改善の1〜3：実行結果 |
+| [39_learning_scale_and_generation_plan.md](39_learning_scale_and_generation_plan.md) | 学習量拡大とEOS 反復 UTF8改善の次回計画 |
+| [40_base_10b_preparation.md](40_base_10b_preparation.md) | 直接10B学習の実行準備完了 |
+| [41_base_10b_training.md](41_base_10b_training.md) | 直接10B学習の完了記録 |
+| [42_base_10b_quality_evaluation.md](42_base_10b_quality_evaluation.md) | 10Bの同条件品質評価 |
+| [43_local_webui.md](43_local_webui.md) | 学習済み10BモデルのローカルWeb UI |
+| [44_japanese_base_evaluation_audit.md](44_japanese_base_evaluation_audit.md) | 日本語Baseモデル評価の棚卸しと改善案 |
+| [45_japanese_base_evaluation_v2.md](45_japanese_base_evaluation_v2.md) | 日本語Base追加評価v2の実施計画 |
+| [46_japanese_base_evaluation_v2_results.md](46_japanese_base_evaluation_v2_results.md) | 日本語Base評価v2.1の結果 |
+| [47_post_evaluation_training_plan.md](47_post_evaluation_training_plan.md) | 追加評価後のデータ・学習改善計画 |
+| [48_complete_text_10b_comparison.md](48_complete_text_10b_comparison.md) | 完結文配合の三条件100M比較 |
+| [49_next_mixture_and_training_budget_plan.md](49_next_mixture_and_training_budget_plan.md) | 完結文比較後の配合・学習量計画 |
+| [50_story10_and_budget_execution.md](50_story10_and_budget_execution.md) | 配合10%・学習量比較の実行 |
+| [51_story10_judgment_and_next_proposal.md](51_story10_judgment_and_next_proposal.md) | 物語10%・低LR比較の判断と次の提案 |
+| [52_story20_low_lr_execution.md](52_story20_low_lr_execution.md) | 物語20%・低学習率と学習量比較の実行計画 |
+| [53_story20_low_lr_judgment.md](53_story20_low_lr_judgment.md) | 物語20%・低学習率と学習量比較の判断 |
+| [54_complete_document_500m_execution.md](54_complete_document_500m_execution.md) | 完結文データ構成比較・実行計画 |
+| [55_complete_document_500m_results.md](55_complete_document_500m_results.md) | 完結文データ構成・固定500M比較結果 |
+| [56_matched_story_and_learning_budget_plan.md](56_matched_story_and_learning_budget_plan.md) | 教材内容と学習量の切り分け・段階1〜3実行計画 |
+| [57_matched_story_and_learning_budget_results.md](57_matched_story_and_learning_budget_results.md) | 教材内容と学習量の比較結果 |
+| [58_dataset_expansion_proposal.md](58_dataset_expansion_proposal.md) | 教材量を増やす次回比較案 |
+| [59_dataset_expansion_execution.md](59_dataset_expansion_execution.md) | 教材200M・各1B比較の実行 |
+| [60_dataset_expansion_results.md](60_dataset_expansion_results.md) | 短い物語教材60M→200M・同量追加1Bの比較結果 |
+| [61_condition_preservation_next_plan.md](61_condition_preservation_next_plan.md) | 次回計画: 条件保持と教材品質を切り分ける |
+| [62_condition_preservation_execution.md](62_condition_preservation_execution.md) | 条件保持・教材品質比較の実行記録 |
+| [63_condition_preservation_preparation_results.md](63_condition_preservation_preparation_results.md) | 同source・長さ/EOS一致教材の準備結果 |
+| [64_condition_selector_v2_execution.md](64_condition_selector_v2_execution.md) | 条件保持selector改修と各100M比較 |
+| [65_condition_selector_v2_preparation_results.md](65_condition_selector_v2_preparation_results.md) | 条件保持selector v2の検証・教材準備結果 |
+| [66_condition_learning_diagnostic_plan.md](66_condition_learning_diagnostic_plan.md) | 条件保持の学習可能性診断：実行契約 |
+| [67_condition_learning_diagnostic_results.md](67_condition_learning_diagnostic_results.md) | 条件保持の小教材学習・拡張・総合評価結果 |
+| [68_packing_learning_execution.md](68_packing_learning_execution.md) | 文書連結依存の三条件比較：実行契約 |
+| [69_packing_learning_results.md](69_packing_learning_results.md) | 同じ教材の文書連結・順序変更・文書単位学習の結果 |
+| [70_root_cause_investigation_plan.md](70_root_cause_investigation_plan.md) | 日本語Baseの停止・反復・意味保持を根本から切り分ける計画 |
+| [71_root_cause_diagnostic_execution.md](71_root_cause_diagnostic_execution.md) | 根本原因診断の実行契約 |
+| [72_root_cause_diagnostic_results.md](72_root_cause_diagnostic_results.md) | 根本原因診断の結果と次の修正計画 |
+| [73_natural_learning_execution.md](73_natural_learning_execution.md) | 自然短文の学習診断から教材比較・条件付き拡大まで |
+| [74_natural_learning_results.md](74_natural_learning_results.md) | 自然短文の記憶診断と同量教材比較の結果 |
+| [75_diverse_learning_execution.md](75_diverse_learning_execution.md) | 多様な完結文の準備・同量比較・条件付き拡大 |
+| [76_diverse_preparation_repair.md](76_diverse_preparation_repair.md) | 準備の失敗を保持した抽出修正 |
+| [77_narrative_diversity_execution.md](77_narrative_diversity_execution.md) | 同じ三段階を満たすためのsource選択修正 |
+| [78_narrative_supply_execution.md](78_narrative_supply_execution.md) | 実供給量を反映した準備の固定 |
+| [79_narrative_diversity_results.md](79_narrative_diversity_results.md) | 多様な原文教材の同量比較結果 |
+| [80_generation_transfer_plan.md](80_generation_transfer_plan.md) | 生成の逸脱・停止位置・教材適合性を切り分ける次の計画 |
+| [116_base_gradient_accumulation_pilot_results.md](116_base_gradient_accumulation_pilot_results.md) | 同stream勾配蓄積pilotの結果（2026-10-08） |
+| [117_base_residual_initialization_pilot.md](117_base_residual_initialization_pilot.md) | Base初期化の短期比較（2026-10-08） |
+| [118_base_residual_initialization_results.md](118_base_residual_initialization_results.md) | Base残差出力初期化の結果（2026-10-08） |
+| [119_base_teacher_decay_pilot.md](119_base_teacher_decay_pilot.md) | 教師トークン数に合わせる重み減衰の比較 |
+| [120_base_teacher_decay_pilot_results.md](120_base_teacher_decay_pilot_results.md) | 教師量正規化decayの短い比較結果 |
+| [121_base_teacher_decay_2b_continuation.md](121_base_teacher_decay_2b_continuation.md) | 同じ減衰条件で累積2Bまで継続する |
+| [122_base_native_seed_confirmation_preparation.md](122_base_native_seed_confirmation_preparation.md) | native学習方式の独立seed確認に向けたCPU準備 |
+| [123_base_teacher_decay_2b_results.md](123_base_teacher_decay_2b_results.md) | 2B teacher-normalized weight-decay comparison: results and user pause |
+| [124_base_recovery_plan.md](124_base_recovery_plan.md) | Base改善の今後の計画 |
