@@ -2,11 +2,13 @@
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import sys
 import time
 
 sys.path[:0] = [str(Path(__file__).resolve().parents[1] / 'src'), str(Path(__file__).resolve().parent)]
+os.environ.setdefault('CUBLAS_WORKSPACE_CONFIG', ':4096:8')
 import torch
 from torch.nn import functional as F
 from torch.nn.attention import SDPBackend, sdpa_kernel
@@ -19,8 +21,8 @@ from natural_context_contrast_trainer import host, right_pad, right_padded_hidde
 from phase6_performance import alive, identity, finite_state
 
 PHASE = ROOT / 'reports/phase6'
-RUN = PHASE / 'base-residual-capacity-control-20261008'
-CONFIG = ROOT / 'configs/phase6/base_residual_capacity_control.json'
+RUN = PHASE / 'base-residual-capacity-control-r2-20261008'
+CONFIG = ROOT / 'configs/phase6/base_residual_capacity_control_r2.json'
 OUTPUT = PHASE / 'base_residual_capacity_control.json'
 KIND = 'six_original_TRAIN_sequential2B_capacity_control_only_v1'
 CAP = 3000000
@@ -95,9 +97,10 @@ def pack(rows, cursor, batch, remaining, device):
 class Trainer:
     def __init__(self, parent, rows, binding, device='cuda', batch=80):
         validate_rows(rows)
+        torch.use_deterministic_algorithms(True)
         self.device, self.rows, self.binding = torch.device(device), rows, binding
         self.spec = dict(kind=KIND, batch=batch, seed=42, lr=.0002, weight_decay=.1,
-                         betas=(.9,.999), eps=1e-8, clip=1., schedule='constant')
+                         betas=(.9,.999), eps=1e-8, clip=1., schedule='constant',deterministic_algorithms=True)
         seed_all(42)
         self.model = model_from_config(parent['model_config']).to(self.device).train()
         self.model.load_state_dict(parent['model'], strict=True)
@@ -275,7 +278,7 @@ def freeze():
     names=['scripts/run_base_residual_capacity.py','scripts/run_base_residual_capacity.ps1',
            'tests/test_base_residual_capacity.py']
     import xml.etree.ElementTree as ET
-    tests=PHASE/'base_residual_capacity_runner_tests.xml'
+    tests=PHASE/'base_residual_capacity_r2_tests.xml'
     cases=ET.parse(tests).findall('.//testcase')
     if len(cases)!=4 or any(r.find(t) is not None for r in cases for t in ('failure','error','skipped')):
         raise ValueError('Four passed accounting/resume fixtures required')
@@ -286,6 +289,14 @@ def freeze():
         actual_model_class='JMicroModel',actual_unique_parameters=10001152,
         tokenizer=read_json(ROOT/'configs/phase6/base_parallel_residual_comparison.json')['tokenizer'],
         diagnostic_only=True,Base_complete=False,Chat_started=False,quantization_started=False)
+    failure=PHASE/'base-residual-capacity-control-20261008/job.json'
+    old=read_json(failure)
+    if (old['status']!='failed' or alive(old) or not old['cumulative_GPU_ledger_closed']
+            or old['error']!="ValueError('Own actual CUDA continuous4 vs2+save+2 failed')"):
+        raise ValueError('Preserved ended first gate failure required, no identical retry')
+    config.update(prior_attempt=ref(failure),prior_GPU_seconds=old['GPU_seconds'],
+        implementation_repair='Enable the existing production deterministic algorithms policy and CUBLAS workspace before torch import. First-step norm already differed prior to save, so earlier control cannot certify resume; preserve its failed result and count elapsed GPU within the same300-second cap.',
+        prior_source_snapshot=str(PHASE/'base-residual-capacity-control-first-gate-failure-20261008'))
     if time.monotonic()-start>30: raise TimeoutError('CPU preparation cap exhausted')
     atomic_json(CONFIG,config)
     print('Capacity control frozen before CUDA: six original units,3M teachers,300seconds,own exact-resume gate')
@@ -296,6 +307,9 @@ def inspect():
     for name,digest in c['source_sha256'].items():
         if sha256(ROOT/name)!=digest: raise ValueError('Frozen code differs: '+name)
     checked(c['proposal']); prepared=checked(c['preparation']); checked(c['training_record'])
+    prior=checked(c['prior_attempt'])
+    if alive(prior) or prior['GPU_seconds']!=c['prior_GPU_seconds'] or prior['status']!='failed':
+        raise ValueError('Previous capacity attempt must be ended and budget retained')
     validate_rows(prepared['selected'])
     if c['max_teacher_tokens']!=CAP or c['GPU_budget_seconds']!=300:
         raise ValueError('Fixed budget differs')
@@ -317,7 +331,7 @@ def run():
     if not torch.cuda.is_available() or not torch.cuda.is_bf16_supported():
         raise RuntimeError('Actual CUDA/BF16 required')
     RUN.mkdir(parents=True)
-    job=dict(status='starting',**identity(),started_at=now(),config=ref(CONFIG),GPU_seconds=0,
+    job=dict(status='starting',**identity(),started_at=now(),config=ref(CONFIG),GPU_seconds=c['prior_GPU_seconds'],
              cumulative_GPU_ledger_closed=False,diagnostic_only=True)
     atomic_json(RUN/'job.json',job)
     started=None
@@ -326,7 +340,7 @@ def run():
         with gpu_lock('cuda'):
             started=time.monotonic()
             def check():
-                if time.monotonic()-started>=295:
+                if time.monotonic()-started+c['prior_GPU_seconds']>=295:
                     raise TimeoutError('Capacity300-second ledger: reserve5seconds for final state/save')
             parent_path=Path(c['parent']['path'])
             if sha256(parent_path)!=c['parent']['sha256']: raise ValueError('Actual parent checkpoint differs')
@@ -360,7 +374,7 @@ def run():
                                 continuations=decode(trainer.model,rows,codec,check)
                                 passed=all(r['exact'] for r in continuations)
                             atomic_json(RUN/f'check-{update:05d}.json',dict(teacher=last_accuracy,free=continuations,passed=passed))
-                            job.update(status='running',GPU_seconds=time.monotonic()-started,counters=host(trainer.counters),
+                            job.update(status='running',GPU_seconds=time.monotonic()-started+c['prior_GPU_seconds'],counters=host(trainer.counters),
                                 cursor=trainer.cursor,checkpoint=str(RUN/'latest.pt'),heartbeat_at=now())
                             atomic_json(RUN/'job.json',job)
                             print(json.dumps(dict(update=update,teachers=trainer.counters['supervised_tokens'],
@@ -370,7 +384,7 @@ def run():
                 reason='bounded_GPU_deadline'
             trainer.save(RUN/'latest.pt')
             synchronize('cuda')
-            elapsed=time.monotonic()-started
+            elapsed=time.monotonic()-started+c['prior_GPU_seconds']
             if elapsed>300: raise TimeoutError('Actual cumulative300-second budget exceeded')
             result=dict(status='complete',created_at=now(),identity=identity(),config=ref(CONFIG),
                 parent=c['parent'],preparation=c['preparation'],resume_gate=gate,counters=host(trainer.counters),
@@ -378,6 +392,7 @@ def run():
                 last_teacher=last_accuracy,teacher_measured_at_update=accuracy_update,
                 free=continuations,capacity_control_passed=passed,completion_reason=reason,
                 GPU_seconds=elapsed,GPU_cap_seconds=300,cumulative_GPU_ledger_closed=True,
+                prior_GPU_seconds=c['prior_GPU_seconds'],this_process_GPU_seconds=elapsed-c['prior_GPU_seconds'],
                 scientific_Base_teacher_tokens=0,diagnostic_learning_teacher_tokens=trainer.counters['supervised_tokens'],
                 unique_original_teacher_tokens=sum(len(r['gold_targets']) for r in rows),
                 original_parent_not_modified=True,probe_weights_discarded_for_adoption=True,
@@ -390,7 +405,7 @@ def run():
             atomic_json(RUN/'job.json',job)
     except BaseException as error:
         if started is not None: synchronize('cuda')
-        job.update(status='failed',error=repr(error),ended_at=now(),GPU_seconds=0 if started is None else time.monotonic()-started,
+        job.update(status='failed',error=repr(error),ended_at=now(),GPU_seconds=c['prior_GPU_seconds'] if started is None else time.monotonic()-started+c['prior_GPU_seconds'],
                    cumulative_GPU_ledger_closed=True)
         if trainer is not None: job['counters']=host(trainer.counters)
         atomic_json(RUN/'job.json',job)

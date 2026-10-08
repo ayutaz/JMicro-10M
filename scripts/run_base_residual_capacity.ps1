@@ -1,7 +1,7 @@
 param([switch]$Worker)
 $ErrorActionPreference='Stop'
 $taskWorkspace=Split-Path -Parent $PSScriptRoot
-$taskRunDir=Join-Path $taskWorkspace 'reports/phase6/base-residual-capacity-launcher-20261008'
+$taskRunDir=Join-Path $taskWorkspace 'reports/phase6/base-residual-capacity-launcher-r2-20261008'
 New-Item -ItemType Directory -Force -Path $taskRunDir | Out-Null
 if(-not $Worker) {
     if(Test-Path -LiteralPath (Join-Path $taskRunDir 'launcher.json')) {throw 'Inspect existing actual diagnostic; no duplicate launcher.'}
@@ -34,7 +34,7 @@ finally {
     }
     $taskResult.ended_at=[DateTime]::UtcNow.ToString('o')
     [IO.File]::WriteAllText((Join-Path $taskRunDir 'result.json'),($taskResult | ConvertTo-Json),[Text.UTF8Encoding]::new($false))
-    $taskNativeLauncher='\\wsl.localhost\Ubuntu\home\aihub_ubuntu\src\japanese-tiny-llm-10m\reports\phase6\base-residual-capacity-launcher-20261008'
+    $taskNativeLauncher='\\wsl.localhost\Ubuntu\home\aihub_ubuntu\src\japanese-tiny-llm-10m\reports\phase6\base-residual-capacity-launcher-r2-20261008'
     New-Item -ItemType Directory -Force -Path $taskNativeLauncher | Out-Null
     Get-ChildItem -LiteralPath $taskRunDir -File | ForEach-Object {Copy-Item -LiteralPath $_.FullName -Destination (Join-Path $taskNativeLauncher $_.Name)}
 }
