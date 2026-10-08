@@ -1,6 +1,6 @@
 {
-  "status": "own_learned_parent_CUDA_gate_passed_cumulative2B_continuation_running",
-  "observed_at": "2026-10-08T06:16:06.271751Z",
+  "status": "complete_all80_reviewed_condition_rejected_user_paused",
+  "observed_at": "2026-10-08T13:21:34.0579785Z",
   "config": "configs/phase6/base_teacher_decay_2b.json",
   "config_sha256": "ac3ede7688a6dfd074a6c22062fff296c8cdbfc03de5f5379ab556a561a0f399",
   "run": "reports/phase6/base-teacher-decay-2b-20261008",
@@ -56,37 +56,33 @@
   },
   "repaired_preflight": "reports/phase6/base-teacher-decay-2b-preflight-v1/failure.json",
   "native_parent_metadata_JSON_roundtrip_all8_verified": true,
-  "science_job": {
-    "pid": 118881,
-    "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
-    "start_ticks": "8215874"
-  },
-  "actual_process_alive_confirmed": true,
+  "science_job": null,
+  "actual_process_alive_confirmed": false,
   "current_UI_identity": {
-    "pid": 117764,
+    "pid": 120460,
     "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
-    "start_ticks": "8098103"
+    "start_ticks": "10822295"
   },
   "checkpoint_path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-teacher-decay-2b-20261008/latest.pt",
   "restart_command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/run_base_teacher_decay_2b.ps1 -Worker; first inspect actual PID/boot/start, closed prior cumulative ledger and valid committed latest.pt",
-  "next_action": "Monitor only actual118881/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start8215874. Finish same-condition cumulative2B and fixed256DEV/Japanese/all80 individual raw-bound review against reused native2B control and unchanged full quality/retention policy. Require actual terminal/closed ledger/originalUI restoration. No duplicate GPU/coefficient/reference/LR/seed/cap rescue. Base remains pending; no Chat/quantization.",
+  "next_action": "Await explicit user resume. Current scientific condition is closed and rejected; do not relaunch pilot/2B, start seed43, research, Chat/SFT, quantization or push. Base is unfinished. Leave original local UI available.",
   "Base_complete": false,
   "Base_adopted": false,
   "Chat_started": false,
   "quantization_started": false,
   "protected_test_scored": false,
   "windows_worker_pid": 38176,
-  "windows_worker_observed_alive": true,
+  "windows_worker_observed_alive": false,
   "job_snapshot": {
-    "status": "running",
+    "status": "complete",
     "pid": 118881,
     "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
     "start_ticks": "8215874",
-    "started_at": "2026-10-08T05:56:37.042620Z",
+    "started_at": "2026-10-08T05:56:37.04262Z",
     "config_sha256": "ac3ede7688a6dfd074a6c22062fff296c8cdbfc03de5f5379ab556a561a0f399",
-    "GPU_seconds": 1166.3664607890096,
+    "GPU_seconds": 26060.094265680003,
     "prior_pilot_GPU_seconds": 1415.1338874759967,
-    "cumulative_GPU_ledger_closed": false,
+    "cumulative_GPU_ledger_closed": true,
     "restart_command": "scripts/run_base_teacher_decay_2b.ps1 -Worker; first inspect actual identity, closed cumulative ledger and valid committed latest checkpoint",
     "Base_complete": false,
     "Chat_started": false,
@@ -99,20 +95,24 @@
       "allocator_allowance_bytes": 23181026918,
       "expected_worst_peak_bytes": 17791499264
     },
-    "stage": "continuation-learning",
-    "heartbeat_at": "2026-10-08T06:16:04.177538Z",
+    "stage": "candidate-jcqa",
+    "heartbeat_at": "2026-10-08T13:10:49.296938Z",
     "latest_checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-teacher-decay-2b-20261008/latest.pt",
     "metrics_path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-teacher-decay-2b-20261008/metrics-118881-8215874.jsonl",
-    "optimizer_updates": 18340,
-    "scientific_cumulative_teacher_tokens": 172783770,
-    "new_scientific_teacher_tokens": 78623575,
-    "CE_loss": 2.7709994316101074
+    "optimizer_updates": 212080,
+    "scientific_cumulative_teacher_tokens": 1999868016,
+    "new_scientific_teacher_tokens": 1905707821,
+    "CE_loss": 2.512122392654419,
+    "completed_tasks": 618,
+    "total_tasks": 618,
+    "completed_cases": 80,
+    "ended_at": "2026-10-08T13:10:57.906152Z"
   },
-  "scientific_cumulative_teacher_tokens": 172783770,
-  "new_scientific_teacher_tokens": 78623575,
-  "optimizer_updates": 18340,
+  "scientific_cumulative_teacher_tokens": 2000000000,
+  "new_scientific_teacher_tokens": 1905839805,
+  "optimizer_updates": 212095,
   "metrics_path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-teacher-decay-2b-20261008/metrics-118881-8215874.jsonl",
-  "original_UI_temporarily_stopped": true,
+  "original_UI_temporarily_stopped": false,
   "latest_checkpoint_exists": true,
   "resume_gate": {
     "path": "reports/phase6/base_teacher_decay_2b_resume_gate.json",
@@ -124,5 +124,61 @@
     "peak_VRAM_bytes": 12443788800,
     "verification_weights_used_for_science": false
   },
-  "conditional_native_seed_CPU_preparation": "reports/phase6/base_teacher_decay_seed_preparation.json"
+  "conditional_native_seed_CPU_preparation": "reports/phase6/base_teacher_decay_seed_preparation.json",
+  "terminal_science_identity": {
+    "pid": 118881,
+    "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+    "start_ticks": "8215874"
+  },
+  "restored_UI_identity": {
+    "pid": 120460,
+    "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+    "start_ticks": "10822295"
+  },
+  "restored_UI_model": {
+    "name": "JMicro-10M",
+    "kind": "Base / 文章の続き",
+    "parameters": 10001152,
+    "training_tokens": 10000007168,
+    "update": 305176,
+    "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+    "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+    "device": "NVIDIA GeForce RTX 4090",
+    "precision": "BF16 / math attention",
+    "context": 1024,
+    "busy": false
+  },
+  "final_counters": {
+    "update": 212095,
+    "supervised_tokens": 2000000000,
+    "CE_input_tokens": 2053285089,
+    "auxiliary_input_tokens": 0,
+    "auxiliary_pairs": 0,
+    "physical_input_tokens": 8620194616,
+    "original_body_bytes": 8118116484,
+    "token_digest": "50452c1e5fccc0928a4b1acce06171b4a869c4251c6efc645348430e6b41d51d",
+    "source_teachers": {
+      "web": 1500000000,
+      "textbook": 400000000,
+      "story": 100000000
+    },
+    "source_EOS": {
+      "web": 13131989,
+      "textbook": 2967040,
+      "story": 764589
+    }
+  },
+  "GPU_seconds": 26060.094265680003,
+  "combined_GPU_seconds": 27475.228153156,
+  "cumulative_GPU_ledger_closed": true,
+  "final_checkpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-teacher-decay-2b-20261008/latest.pt",
+    "sha256": "03ebf266853541759054ee7100903fa175815adfcfc8e62e559ccdb1ce657442"
+  },
+  "completion": "reports/phase6/base_teacher_decay_2b_completion.json",
+  "eligible_for_final_Base_validation": false,
+  "fixed_condition_closed": true,
+  "user_requested_pause": true,
+  "last_heartbeat_counter_caveat": "Terminal job.json retains periodic update212080/1999868016 teachers. Final result/train-result/checkpoint counters are update212095/exact2000000000 teachers; do not substitute heartbeat counters."
 }
