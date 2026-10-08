@@ -1,0 +1,147 @@
+{
+  "status": "prospective_same_stream_decay_only_learning_comparison_not_started",
+  "created_at": "2026-10-08T05:12:18.743531Z",
+  "accounting": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_teacher_decay_accounting_20261008.json",
+    "sha256": "750302cf1ce0bcffe4b242b1968d6c318e6c0959bc417e0873ca416495a236af"
+  },
+  "decay_policy": {
+    "kind": "fresh_native_teacher_normalized_decoupled_decay_v1",
+    "reference_teachers": 32768,
+    "reference_weight_decay": 0.1,
+    "formula": "(1-lr*0.1)^(original_teachers_this_update/32768)",
+    "parameter_scope": "same_all_native_parameters",
+    "changes_Adam_timing": false
+  },
+  "related_prior_reports": {
+    "base_gradient_accumulation_pilot_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_gradient_accumulation_pilot_completion.json",
+      "sha256": "75a5c117e104279037bb727a0a34d9c1d90cc02cec9ed00b931a1208a08a0006"
+    },
+    "base_residual_norm_gain_screen.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_residual_norm_gain_screen.json",
+      "sha256": "9b413902f380317c59a2fc4e2ee969d5ca772c44c75bf6127a6ebd0e9f1c2730"
+    },
+    "base_residual_initialization_pilot_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_residual_initialization_pilot_completion.json",
+      "sha256": "a34afc1dffa7a96138f7f9d830f7ff19c7aee06e1daa8b007a503f890eb26bea"
+    },
+    "gated_shared_proposal.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/gated_shared_proposal.json",
+      "sha256": "e5564618ba5333140a5dc3a18b77c90bf9e3f2b1a0b1b8e291683114a493d0cd"
+    },
+    "readout_adapter_proposal.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/readout_adapter_proposal.json",
+      "sha256": "d4991124a3f7294840fa8b44f60288ccf56c0f6b3e64cc62e857e84123c428dc"
+    }
+  },
+  "related_prior_reports_individually_inspected": true,
+  "equivalent_teacher_decay_learning_not_found_in_bounded_search": true,
+  "novelty_scope": "383 bounded metadata records, related original reports and newer closed initialization result. Explicit normalized-decay hits are only next-action plans. Readout/gate zero decay and negative selective-norm screen are distinct; none authorizes norm-only rescue.",
+  "hypothesis": "Same teacher stream with fixed per-teacher decay exposure may improve Japanese heldout loss/generation versus per-update0.1 decay. Arithmetic is not evidence of causal failure.",
+  "scientific_teacher_tokens": 94160195,
+  "reused_control_teacher_tokens": 94160195,
+  "microbatches": 10000,
+  "optimizer_updates": 10000,
+  "seed": 42,
+  "actual_unique_parameters": 10001152,
+  "batch": 80,
+  "GPU_cap_seconds": 1992,
+  "measured_budget": {
+    "updates": 10000,
+    "teachers": 94160195,
+    "mean_teachers_per_update": 9416.0195,
+    "reference_teachers": 32768,
+    "reference_scope": "Fixed32768 teacher reference motivated by historical packed32x1024 input shape; actual historical valid teachers may be fewer. Not an exact historical-decay reconstruction.",
+    "native_weight_decay": 0.1,
+    "formula": "effective_wd=-expm1((n/32768)*log1p(-lr*0.1))/lr; factor=(1-lr*0.1)^(n/32768)",
+    "native_decay_only_factor": 0.14311337938101185,
+    "teacher_normalized_decay_only_factor": 0.5719837096734686,
+    "minimum_effective_weight_decay": 0.02314020395728578,
+    "maximum_effective_weight_decay": 0.03669055430900011,
+    "sum_learning_rates": 19.439257616313924,
+    "milestones": [
+      {
+        "update": 1,
+        "teachers": 9178,
+        "last_update_teachers": 9178,
+        "last_lr": 3.6712000000000005e-06,
+        "last_effective_weight_decay": 0.02800903690442481,
+        "native_decay_only_factor": 0.99999963288,
+        "teacher_normalized_decay_only_factor": 0.9999998971732237
+      },
+      {
+        "update": 100,
+        "teachers": 944217,
+        "last_update_teachers": 9960,
+        "last_lr": 0.0003776868,
+        "last_effective_weight_decay": 0.030395907350192652,
+        "native_decay_only_factor": 0.9980912611206603,
+        "teacher_normalized_decay_only_factor": 0.9994505236759702
+      },
+      {
+        "update": 1000,
+        "teachers": 9408308,
+        "last_update_teachers": 9600,
+        "last_lr": 0.0019999760255227273,
+        "last_effective_weight_decay": 0.029298946591538793,
+        "native_decay_only_factor": 0.8632628295801122,
+        "teacher_normalized_decay_only_factor": 0.9586805124501439
+      },
+      {
+        "update": 5000,
+        "teachers": 47149501,
+        "last_update_teachers": 9488,
+        "last_lr": 0.001997809050044248,
+        "last_effective_weight_decay": 0.028957133216839685,
+        "native_decay_only_factor": 0.38798450703856985,
+        "teacher_normalized_decay_only_factor": 0.7614882713983212
+      },
+      {
+        "update": 10000,
+        "teachers": 94160195,
+        "last_update_teachers": 9765,
+        "last_lr": 0.0019902088097369934,
+        "last_effective_weight_decay": 0.029802497009440848,
+        "native_decay_only_factor": 0.14311337938101185,
+        "teacher_normalized_decay_only_factor": 0.5719837096734686
+      }
+    ],
+    "actual_microbatch_wall_seconds": 1301.4725201429137,
+    "measured_same_work_pilot_GPU_cap_seconds": 1992,
+    "pilot_budget_limit_seconds": 3600,
+    "measured_budget_eligible": true
+  },
+  "same_conditions": [
+    "original native initialization",
+    "TRAIN draws/teacher masks/source/EOS",
+    "forward and CE",
+    "one Adam step per80 windows",
+    "Adam betas/eps",
+    "gradient clip",
+    "teacher-position LR",
+    "sampler and exact token digest"
+  ],
+  "change": "Only all-parameter decoupled weight decay exposure; effective_wd=-expm1((n/32768)*log1p(-lr*0.1))/lr",
+  "prospective_screen": {
+    "BPB_relative_maximum": 0.98,
+    "grammar_nonworsening": true,
+    "coherence_nonworsening": true,
+    "appropriate_completion_nonworsening": true,
+    "EOS_nonworsening": true,
+    "automatic_repetition_nonincreasing": true,
+    "Unicode_role_empty_zero": true
+  },
+  "completion_condition": "Own actual CUDA4vs2+save+2 all-state/history finite gate, exact10000 native updates/same94160195 teachers and stream, cumulativeGPU<=1992, candidate256DEV/all80 individually read/raw-bound notes, unchanged screen/adoption separation, actual process exit/ledger closed/original10B UI restored.",
+  "failure_policy": "Close this fixed recipe on numeric/budget/quality failure. No reference/coefficient/LR/seed/cap rescue, no automatic2B extension.",
+  "reference_teachers_scope": "Fixed32768 motivated by historical packed32x1024 INPUT shape; not claim historical valid teachers always32768, not exact historical-decay replay, not the AdamW sqrt normalization.",
+  "primary_sources": [
+    "https://arxiv.org/html/1711.05101v3",
+    "https://github.com/pytorch/pytorch/blob/main/torch/optim/adam.py"
+  ],
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_scored": false
+}
