@@ -1,0 +1,65 @@
+{
+  "status": "prospective_fresh_residual_output_initialization_comparison",
+  "created_at": "2026-10-08T04:27:44.8139622Z",
+  "hypothesis": "Native thirteen-layer fresh initialization adds26 unscaled residual branches. Scaling only each attention.o_proj and MLP.down_proj initial matrix by1/sqrt26 may preserve input signal and improve subsequent original-gold learning. This is a distinct initialization hypothesis, not a diagnosed bug or future quality claim.",
+  "trigger": {
+    "path": "reports/phase6/base_gradient_accumulation_pilot_completion.json",
+    "sha256": "75a5c117e104279037bb727a0a34d9c1d90cc02cec9ed00b931a1208a08a0006"
+  },
+  "six_TRAIN_windows": {
+    "path": "reports/phase6/base_residual_seen_train_preparation.json",
+    "sha256": "33ba90940e4d7c1b1c17b977c898a563e639e0b8475d683edd0e8e10bb27635e"
+  },
+  "source_quantity_status": {
+    "sha256": "973d86492c28c69a47a1daf7940a7c2056224e7322398ead94c061a5e3103312",
+    "decision": "The already-prepared matched500M/2B Web95/story5 source failed11weak/64, limit10. Do not rerun or relax this source; naive data or learning expansion is not currently an accepted alternative.",
+    "path": "reports/phase6/larger_material_v3_completion.json"
+  },
+  "primary_sources": [
+    "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf",
+    "https://github.com/huggingface/transformers/blob/main/src/transformers/models/gpt2/modeling_gpt2.py"
+  ],
+  "adaptation_limit": "GPT2 motivates depth-dependent residual initialization. Native RMSNorm/SwiGLU/GQA10M Japanese is a different model; no faithful reproduction or proven quality/speed benefit is claimed. Multiply the same fresh native samples rather than drawing new matrices, preserving all other weights and RNG.",
+  "CPU_measurement": {
+    "dtype": "CPU_FP32",
+    "exploratory_entry_screen": "All finite gradients in both conditions, native mean residual/embedding RMS >=2, and candidate mean ratio at most half of native. Initial loss is reported but is not an entry gate.",
+    "permitted_GPU_seconds": 0,
+    "optimizer_updates": 0,
+    "observations": [
+      "per-layer residual/attention/FFN RMS",
+      "final residual vs embedding RMS",
+      "input-final cosine",
+      "original next-token initial NLL",
+      "first/last residual-output and tied-embedding gradient RMS"
+    ],
+    "budget_seconds": 30,
+    "seed": 42,
+    "windows": 6
+  },
+  "conditional_learning_pilot": {
+    "status": "not_implemented_not_frozen_not_started",
+    "prerequisites": [
+      "CPU entry screen",
+      "meaningful initial-weight and CPU continuous-vs-resumed tests",
+      "prospectively frozen source/config",
+      "own actualCUDA4vs2+2 all state/history/finite/VRAM gate, probe weights discarded",
+      "no live scientific process and actual idle originalUI"
+    ],
+    "batch_windows": 80,
+    "failure": "Close fixed condition without LR/scaling/cap/seed rescue or automatic2B extension",
+    "maximum_GPU_seconds": 1992,
+    "teacher_tokens": 94160195,
+    "microbatches": 10000,
+    "exploratory_advance_screen": "BPB at least2percent better; grammar2/coherence2/appropriateEnd/EOS counts nonworsening; automatic repetition nonincreasing; no unicode/role/empty failures. Same256DEV and individually read all80 candidate outputs, existing control80 ratings retained. This is not Base adoption.",
+    "optimizer_updates": 10000,
+    "control": "Existing actual sequential checkpoint-00010000.pt and its completed256DEV/fixed80 evaluation; no control retraining",
+    "training_seed": 42,
+    "change": "Only initial26 residual-output matrices scaled by1/sqrt26; unchanged original2B teacher-position schedule, all subsequent native forward/optimizer math, same exact sampler/digest/source teachers",
+    "budget_origin": "ceil(1.3*actual first10000 baseline microbatch1301.4725201429137 seconds+300), unchanged measured budget method"
+  },
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_scored": false
+}

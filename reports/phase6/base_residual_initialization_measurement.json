@@ -1,0 +1,1265 @@
+{
+  "status": "fresh_seed42_six_TRAIN_residual_scale_measurement_complete",
+  "created_at": "2026-10-08T04:27:46.605000Z",
+  "proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_residual_initialization_proposal.json",
+    "sha256": "42f01012509d12b91981859d805ff5a044b1bf8624c7c9b2f6036dd0801c3859"
+  },
+  "preparation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_residual_seen_train_preparation.json",
+    "sha256": "33ba90940e4d7c1b1c17b977c898a563e639e0b8475d683edd0e8e10bb27635e"
+  },
+  "script": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/inspect_base_residual_initialization.py",
+    "sha256": "00cf89a4f07a7cfb8ecd6c8e4a8b2b3bab830faae584f95d1e10bee0e828bda2"
+  },
+  "native_model": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/src/jmicro/model.py",
+    "sha256": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83"
+  },
+  "model_config": {
+    "schema_version": 1,
+    "architecture": "decoder_only_transformer",
+    "hidden_size": 256,
+    "num_attention_heads": 4,
+    "num_key_value_heads": 2,
+    "head_dim": 64,
+    "activation": "swiglu",
+    "norm": "rmsnorm",
+    "rms_norm_eps": 1e-06,
+    "qk_norm_type": "none",
+    "qk_norm_before_rope": true,
+    "attention_scale": 0.125,
+    "rope_theta": 10000,
+    "rope_layout": "half_split",
+    "rotary_dim": 64,
+    "max_position_embeddings": 1024,
+    "tie_word_embeddings": true,
+    "attention_bias": false,
+    "mlp_bias": false,
+    "dropout": 0.0,
+    "initializer_std": 0.02,
+    "norm_initial_gain": 1.0,
+    "status": "phase5_ablation",
+    "name": "JMicro-10M-T4K-NoQKNorm",
+    "vocab_size": 4096,
+    "num_hidden_layers": 13,
+    "intermediate_size": 640,
+    "expected_parameter_count": 10001152
+  },
+  "actual_unique_parameters": 10001152,
+  "scale": 0.19611613513818404,
+  "scaled_output_matrices": [
+    "model.layers.0.mlp.down_proj.weight",
+    "model.layers.0.self_attn.o_proj.weight",
+    "model.layers.1.mlp.down_proj.weight",
+    "model.layers.1.self_attn.o_proj.weight",
+    "model.layers.10.mlp.down_proj.weight",
+    "model.layers.10.self_attn.o_proj.weight",
+    "model.layers.11.mlp.down_proj.weight",
+    "model.layers.11.self_attn.o_proj.weight",
+    "model.layers.12.mlp.down_proj.weight",
+    "model.layers.12.self_attn.o_proj.weight",
+    "model.layers.2.mlp.down_proj.weight",
+    "model.layers.2.self_attn.o_proj.weight",
+    "model.layers.3.mlp.down_proj.weight",
+    "model.layers.3.self_attn.o_proj.weight",
+    "model.layers.4.mlp.down_proj.weight",
+    "model.layers.4.self_attn.o_proj.weight",
+    "model.layers.5.mlp.down_proj.weight",
+    "model.layers.5.self_attn.o_proj.weight",
+    "model.layers.6.mlp.down_proj.weight",
+    "model.layers.6.self_attn.o_proj.weight",
+    "model.layers.7.mlp.down_proj.weight",
+    "model.layers.7.self_attn.o_proj.weight",
+    "model.layers.8.mlp.down_proj.weight",
+    "model.layers.8.self_attn.o_proj.weight",
+    "model.layers.9.mlp.down_proj.weight",
+    "model.layers.9.self_attn.o_proj.weight"
+  ],
+  "RNG_unchanged_after_scaling_and_measurement": true,
+  "measurements": {
+    "control": [
+      {
+        "id": "seen-web-01",
+        "source": "web",
+        "teachers": 318,
+        "initial_teacher_NLL": 8.367561340332031,
+        "embedding_RMS": 0.020005367506585877,
+        "final_residual_RMS": 0.339058342724285,
+        "final_to_embedding_RMS": 16.948368612206956,
+        "input_final_cosine": 0.06104988604784012,
+        "layer_RMS": [
+          {
+            "block": 0,
+            "residual": 0.03703496845264428,
+            "attention": 0.016222513965305965,
+            "FFN": 0.02626201501231046
+          },
+          {
+            "block": 1,
+            "residual": 0.06880975677227305,
+            "attention": 0.04955698770089268,
+            "FFN": 0.027730842123990015
+          },
+          {
+            "block": 2,
+            "residual": 0.11355378565122068,
+            "attention": 0.08097613867562889,
+            "FFN": 0.028384223888793633
+          },
+          {
+            "block": 3,
+            "residual": 0.13961277891011115,
+            "attention": 0.0854758869276103,
+            "FFN": 0.0251165773744348
+          },
+          {
+            "block": 4,
+            "residual": 0.17102631761017162,
+            "attention": 0.10054907556757224,
+            "FFN": 0.02663428325148695
+          },
+          {
+            "block": 5,
+            "residual": 0.1984741958302089,
+            "attention": 0.09313550082104989,
+            "FFN": 0.029309447051924474
+          },
+          {
+            "block": 6,
+            "residual": 0.2302653329366336,
+            "attention": 0.09514702678000855,
+            "FFN": 0.022447939336452668
+          },
+          {
+            "block": 7,
+            "residual": 0.23992647306587345,
+            "attention": 0.09567308181760462,
+            "FFN": 0.026338596271864134
+          },
+          {
+            "block": 8,
+            "residual": 0.25522034874692706,
+            "attention": 0.09272631629530807,
+            "FFN": 0.025029527832500214
+          },
+          {
+            "block": 9,
+            "residual": 0.2706423327214125,
+            "attention": 0.0864879294713701,
+            "FFN": 0.023332120181309514
+          },
+          {
+            "block": 10,
+            "residual": 0.29964860338408067,
+            "attention": 0.10527848701617812,
+            "FFN": 0.03077036459428034
+          },
+          {
+            "block": 11,
+            "residual": 0.31717805881874733,
+            "attention": 0.09867509248971024,
+            "FFN": 0.02828576240103806
+          },
+          {
+            "block": 12,
+            "residual": 0.339058342724285,
+            "attention": 0.10063363081509706,
+            "FFN": 0.030181653837066936
+          }
+        ],
+        "gradients_RMS": {
+          "model.embed_tokens.weight": 0.002185103295050475,
+          "model.layers.0.self_attn.o_proj.weight": 0.006253359041951074,
+          "model.layers.12.self_attn.o_proj.weight": 0.0017754827880125297
+        },
+        "finite_gradients": true
+      },
+      {
+        "id": "seen-textbook-01",
+        "source": "textbook",
+        "teachers": 110,
+        "initial_teacher_NLL": 8.40377426147461,
+        "embedding_RMS": 0.019952660678172775,
+        "final_residual_RMS": 0.3399063363495976,
+        "final_to_embedding_RMS": 17.035639598754784,
+        "input_final_cosine": 0.051113709807395935,
+        "layer_RMS": [
+          {
+            "block": 0,
+            "residual": 0.04180484307748596,
+            "attention": 0.02624742961966848,
+            "FFN": 0.026670508932233307
+          },
+          {
+            "block": 1,
+            "residual": 0.08138205574091563,
+            "attention": 0.06438072191629177,
+            "FFN": 0.02738464462855812
+          },
+          {
+            "block": 2,
+            "residual": 0.12326641020325785,
+            "attention": 0.08408456850492455,
+            "FFN": 0.023970652926674746
+          },
+          {
+            "block": 3,
+            "residual": 0.15076070791896365,
+            "attention": 0.08304006543035068,
+            "FFN": 0.026063544699244347
+          },
+          {
+            "block": 4,
+            "residual": 0.1816924729443208,
+            "attention": 0.09406140833536876,
+            "FFN": 0.027244125084050455
+          },
+          {
+            "block": 5,
+            "residual": 0.2142181085003749,
+            "attention": 0.09282347116461256,
+            "FFN": 0.026788328915981943
+          },
+          {
+            "block": 6,
+            "residual": 0.23009658008695347,
+            "attention": 0.08565444449538144,
+            "FFN": 0.026111622537008168
+          },
+          {
+            "block": 7,
+            "residual": 0.2451556009947529,
+            "attention": 0.08960036702247483,
+            "FFN": 0.02924424843144736
+          },
+          {
+            "block": 8,
+            "residual": 0.26431421911042174,
+            "attention": 0.10250124573714642,
+            "FFN": 0.029706787622189083
+          },
+          {
+            "block": 9,
+            "residual": 0.28528428106990666,
+            "attention": 0.10182753059809486,
+            "FFN": 0.026992150169896863
+          },
+          {
+            "block": 10,
+            "residual": 0.30542071413401056,
+            "attention": 0.10471313084910876,
+            "FFN": 0.026675323699779176
+          },
+          {
+            "block": 11,
+            "residual": 0.3154558660394554,
+            "attention": 0.08846720035512687,
+            "FFN": 0.026551334771029084
+          },
+          {
+            "block": 12,
+            "residual": 0.3399063363495976,
+            "attention": 0.09943569226775131,
+            "FFN": 0.02282740383156607
+          }
+        ],
+        "gradients_RMS": {
+          "model.embed_tokens.weight": 0.003085942469084066,
+          "model.layers.0.self_attn.o_proj.weight": 0.009907681209238047,
+          "model.layers.12.self_attn.o_proj.weight": 0.002612988068353545
+        },
+        "finite_gradients": true
+      },
+      {
+        "id": "seen-story-01",
+        "source": "story",
+        "teachers": 86,
+        "initial_teacher_NLL": 8.406533241271973,
+        "embedding_RMS": 0.02011078206571109,
+        "final_residual_RMS": 0.34036632643788,
+        "final_to_embedding_RMS": 16.924569384012422,
+        "input_final_cosine": 0.05174550414085388,
+        "layer_RMS": [
+          {
+            "block": 0,
+            "residual": 0.04131021744812511,
+            "attention": 0.023783187361543105,
+            "FFN": 0.02703651437354238
+          },
+          {
+            "block": 1,
+            "residual": 0.07729003477187216,
+            "attention": 0.058892708943597175,
+            "FFN": 0.026936457307972353
+          },
+          {
+            "block": 2,
+            "residual": 0.12013546073966767,
+            "attention": 0.0870749730773382,
+            "FFN": 0.02722589805601435
+          },
+          {
+            "block": 3,
+            "residual": 0.1453474238341911,
+            "attention": 0.09073287921794497,
+            "FFN": 0.02647405187832414
+          },
+          {
+            "block": 4,
+            "residual": 0.17199180614631224,
+            "attention": 0.09842083946233089,
+            "FFN": 0.027623720115216983
+          },
+          {
+            "block": 5,
+            "residual": 0.19658518320452548,
+            "attention": 0.10272585021496443,
+            "FFN": 0.02618815480537721
+          },
+          {
+            "block": 6,
+            "residual": 0.20836390097185659,
+            "attention": 0.08557868932799516,
+            "FFN": 0.024949058712652638
+          },
+          {
+            "block": 7,
+            "residual": 0.24022826419838067,
+            "attention": 0.09964868006287182,
+            "FFN": 0.026525564572234386
+          },
+          {
+            "block": 8,
+            "residual": 0.2582837888447577,
+            "attention": 0.0953192770169459,
+            "FFN": 0.02795255667792589
+          },
+          {
+            "block": 9,
+            "residual": 0.27816655868397366,
+            "attention": 0.10164612907680526,
+            "FFN": 0.024487564724426408
+          },
+          {
+            "block": 10,
+            "residual": 0.3009761667575365,
+            "attention": 0.09529552140528287,
+            "FFN": 0.0283317102694478
+          },
+          {
+            "block": 11,
+            "residual": 0.3238706283726099,
+            "attention": 0.10118397690891881,
+            "FFN": 0.026032233958514957
+          },
+          {
+            "block": 12,
+            "residual": 0.34036632643788,
+            "attention": 0.09617219605723569,
+            "FFN": 0.024343470150911487
+          }
+        ],
+        "gradients_RMS": {
+          "model.embed_tokens.weight": 0.004451222860690248,
+          "model.layers.0.self_attn.o_proj.weight": 0.01268327656089963,
+          "model.layers.12.self_attn.o_proj.weight": 0.002464799613103664
+        },
+        "finite_gradients": true
+      },
+      {
+        "id": "seen-web-02",
+        "source": "web",
+        "teachers": 68,
+        "initial_teacher_NLL": 8.381146430969238,
+        "embedding_RMS": 0.02008542585807082,
+        "final_residual_RMS": 0.33334077065303686,
+        "final_to_embedding_RMS": 16.596151508487548,
+        "input_final_cosine": 0.06109577789902687,
+        "layer_RMS": [
+          {
+            "block": 0,
+            "residual": 0.04381937705838386,
+            "attention": 0.028927823685239083,
+            "FFN": 0.026383553795752777
+          },
+          {
+            "block": 1,
+            "residual": 0.08134603087726167,
+            "attention": 0.0609523405239934,
+            "FFN": 0.028177799591948403
+          },
+          {
+            "block": 2,
+            "residual": 0.12819061405960544,
+            "attention": 0.09057656250101333,
+            "FFN": 0.030343280943103974
+          },
+          {
+            "block": 3,
+            "residual": 0.16482309890906113,
+            "attention": 0.0869391871357824,
+            "FFN": 0.026567336476453648
+          },
+          {
+            "block": 4,
+            "residual": 0.1980476908123914,
+            "attention": 0.10513341486226781,
+            "FFN": 0.026025474898799694
+          },
+          {
+            "block": 5,
+            "residual": 0.2190691318325748,
+            "attention": 0.09169063882446547,
+            "FFN": 0.028584695927335962
+          },
+          {
+            "block": 6,
+            "residual": 0.24543673952938663,
+            "attention": 0.08963228215541828,
+            "FFN": 0.025726642749828225
+          },
+          {
+            "block": 7,
+            "residual": 0.2613237864170212,
+            "attention": 0.08960550655968574,
+            "FFN": 0.026697936879086205
+          },
+          {
+            "block": 8,
+            "residual": 0.2740034224754921,
+            "attention": 0.08447796181992874,
+            "FFN": 0.030013432973374377
+          },
+          {
+            "block": 9,
+            "residual": 0.2971849991746679,
+            "attention": 0.10321106987144957,
+            "FFN": 0.030045474002403146
+          },
+          {
+            "block": 10,
+            "residual": 0.3120779958791385,
+            "attention": 0.08541224742878877,
+            "FFN": 0.025720248922249278
+          },
+          {
+            "block": 11,
+            "residual": 0.3228774951075808,
+            "attention": 0.09279891947882236,
+            "FFN": 0.027716383123784667
+          },
+          {
+            "block": 12,
+            "residual": 0.33334077065303686,
+            "attention": 0.09349352013170763,
+            "FFN": 0.02492915879594721
+          }
+        ],
+        "gradients_RMS": {
+          "model.embed_tokens.weight": 0.0027498722483878598,
+          "model.layers.0.self_attn.o_proj.weight": 0.006728901130619029,
+          "model.layers.12.self_attn.o_proj.weight": 0.002452315954075719
+        },
+        "finite_gradients": true
+      },
+      {
+        "id": "seen-textbook-02",
+        "source": "textbook",
+        "teachers": 120,
+        "initial_teacher_NLL": 8.292245864868164,
+        "embedding_RMS": 0.019950996140824292,
+        "final_residual_RMS": 0.32566962214327133,
+        "final_to_embedding_RMS": 16.32347677502062,
+        "input_final_cosine": 0.0779898390173912,
+        "layer_RMS": [
+          {
+            "block": 0,
+            "residual": 0.040905356473702324,
+            "attention": 0.023890331995496537,
+            "FFN": 0.026151371468064195
+          },
+          {
+            "block": 1,
+            "residual": 0.0747374008443024,
+            "attention": 0.05720884501285208,
+            "FFN": 0.024470237893208523
+          },
+          {
+            "block": 2,
+            "residual": 0.11058183228457442,
+            "attention": 0.07934890784861727,
+            "FFN": 0.025287948745392502
+          },
+          {
+            "block": 3,
+            "residual": 0.14505274561097328,
+            "attention": 0.09539435300266699,
+            "FFN": 0.02639245548081565
+          },
+          {
+            "block": 4,
+            "residual": 0.17054962852146863,
+            "attention": 0.09523646418681225,
+            "FFN": 0.027281704668168913
+          },
+          {
+            "block": 5,
+            "residual": 0.19606052514354444,
+            "attention": 0.09552391543228475,
+            "FFN": 0.0240507476301899
+          },
+          {
+            "block": 6,
+            "residual": 0.22149682870258086,
+            "attention": 0.08845907161543523,
+            "FFN": 0.0262887841026551
+          },
+          {
+            "block": 7,
+            "residual": 0.24876781993885586,
+            "attention": 0.09187647395587123,
+            "FFN": 0.027614185495422043
+          },
+          {
+            "block": 8,
+            "residual": 0.26116287197576177,
+            "attention": 0.09980095858870569,
+            "FFN": 0.026460355480896952
+          },
+          {
+            "block": 9,
+            "residual": 0.2696678529764572,
+            "attention": 0.08457544396549248,
+            "FFN": 0.025593259648864764
+          },
+          {
+            "block": 10,
+            "residual": 0.2898086665190512,
+            "attention": 0.09580991339961754,
+            "FFN": 0.026750362380744856
+          },
+          {
+            "block": 11,
+            "residual": 0.3055439135262342,
+            "attention": 0.09505606323272134,
+            "FFN": 0.025815170438730696
+          },
+          {
+            "block": 12,
+            "residual": 0.32566962214327133,
+            "attention": 0.09659252324421416,
+            "FFN": 0.030154085679546836
+          }
+        ],
+        "gradients_RMS": {
+          "model.embed_tokens.weight": 0.0029803786770079043,
+          "model.layers.0.self_attn.o_proj.weight": 0.008308077309847414,
+          "model.layers.12.self_attn.o_proj.weight": 0.002230417476232518
+        },
+        "finite_gradients": true
+      },
+      {
+        "id": "seen-story-02",
+        "source": "story",
+        "teachers": 54,
+        "initial_teacher_NLL": 8.26974868774414,
+        "embedding_RMS": 0.020055789784553055,
+        "final_residual_RMS": 0.31546729218555847,
+        "final_to_embedding_RMS": 15.729487373692509,
+        "input_final_cosine": 0.08568941801786423,
+        "layer_RMS": [
+          {
+            "block": 0,
+            "residual": 0.04623747987259549,
+            "attention": 0.03209500411807968,
+            "FFN": 0.026084542152057036
+          },
+          {
+            "block": 1,
+            "residual": 0.08354522855689793,
+            "attention": 0.06898624419082063,
+            "FFN": 0.025459949401254203
+          },
+          {
+            "block": 2,
+            "residual": 0.11419546626281549,
+            "attention": 0.07678926018637101,
+            "FFN": 0.02566326267448151
+          },
+          {
+            "block": 3,
+            "residual": 0.1439961358511671,
+            "attention": 0.0862015761320972,
+            "FFN": 0.027576210026749107
+          },
+          {
+            "block": 4,
+            "residual": 0.18038399418258402,
+            "attention": 0.1068528269551532,
+            "FFN": 0.029262007812394228
+          },
+          {
+            "block": 5,
+            "residual": 0.20026405833736835,
+            "attention": 0.09731029037877519,
+            "FFN": 0.029326363699500577
+          },
+          {
+            "block": 6,
+            "residual": 0.2288347430211335,
+            "attention": 0.09564216725702972,
+            "FFN": 0.02357067403021027
+          },
+          {
+            "block": 7,
+            "residual": 0.24396630564050037,
+            "attention": 0.08977136560462326,
+            "FFN": 0.02669964912971976
+          },
+          {
+            "block": 8,
+            "residual": 0.2594139663893816,
+            "attention": 0.08961323886473026,
+            "FFN": 0.028711076325670493
+          },
+          {
+            "block": 9,
+            "residual": 0.2700093315090367,
+            "attention": 0.09005966526431326,
+            "FFN": 0.028188771777187562
+          },
+          {
+            "block": 10,
+            "residual": 0.2975155386785827,
+            "attention": 0.09729217880568848,
+            "FFN": 0.02411555505444112
+          },
+          {
+            "block": 11,
+            "residual": 0.3075569203574434,
+            "attention": 0.0895322307105918,
+            "FFN": 0.027971323555981933
+          },
+          {
+            "block": 12,
+            "residual": 0.31546729218555847,
+            "attention": 0.09532548453636135,
+            "FFN": 0.026605362245857446
+          }
+        ],
+        "gradients_RMS": {
+          "model.embed_tokens.weight": 0.004288395818876493,
+          "model.layers.0.self_attn.o_proj.weight": 0.014743970791589567,
+          "model.layers.12.self_attn.o_proj.weight": 0.0031021435793554698
+        },
+        "finite_gradients": true
+      }
+    ],
+    "scaled_initialization": [
+      {
+        "id": "seen-web-01",
+        "source": "web",
+        "teachers": 318,
+        "initial_teacher_NLL": 8.379000663757324,
+        "embedding_RMS": 0.020005367506585877,
+        "final_residual_RMS": 0.053970328766042,
+        "final_to_embedding_RMS": 2.6977924173737207,
+        "input_final_cosine": 0.3698980510234833,
+        "layer_RMS": [
+          {
+            "block": 0,
+            "residual": 0.020953267637014987,
+            "attention": 0.0031814967332893323,
+            "FFN": 0.0052204787150725435
+          },
+          {
+            "block": 1,
+            "residual": 0.022146555340486936,
+            "attention": 0.004635442364669332,
+            "FFN": 0.0052495369452378185
+          },
+          {
+            "block": 2,
+            "residual": 0.023780002426157267,
+            "attention": 0.006371386178915021,
+            "FFN": 0.005223393426956874
+          },
+          {
+            "block": 3,
+            "residual": 0.025974241013106816,
+            "attention": 0.00899239213053224,
+            "FFN": 0.005180072220453727
+          },
+          {
+            "block": 4,
+            "residual": 0.02866693490321784,
+            "attention": 0.011597649059163124,
+            "FFN": 0.005085144602257759
+          },
+          {
+            "block": 5,
+            "residual": 0.03194740029074015,
+            "attention": 0.012192617982330447,
+            "FFN": 0.005530970710186596
+          },
+          {
+            "block": 6,
+            "residual": 0.034919870082975694,
+            "attention": 0.012615022412109465,
+            "FFN": 0.004968050114126473
+          },
+          {
+            "block": 7,
+            "residual": 0.03720154584844021,
+            "attention": 0.014439780828182647,
+            "FFN": 0.005280045510397035
+          },
+          {
+            "block": 8,
+            "residual": 0.04030650911764849,
+            "attention": 0.014857877928550032,
+            "FFN": 0.005437830192738807
+          },
+          {
+            "block": 9,
+            "residual": 0.04276772433177068,
+            "attention": 0.014493302835190125,
+            "FFN": 0.005227370546813241
+          },
+          {
+            "block": 10,
+            "residual": 0.04592160350520454,
+            "attention": 0.01648277872341656,
+            "FFN": 0.00556804220770656
+          },
+          {
+            "block": 11,
+            "residual": 0.04953728487301671,
+            "attention": 0.016211871765298803,
+            "FFN": 0.00512775730765966
+          },
+          {
+            "block": 12,
+            "residual": 0.053970328766042,
+            "attention": 0.018812786593991923,
+            "FFN": 0.005845540786686347
+          }
+        ],
+        "gradients_RMS": {
+          "model.embed_tokens.weight": 0.0020912807168135994,
+          "model.layers.0.self_attn.o_proj.weight": 0.023155509350786398,
+          "model.layers.12.self_attn.o_proj.weight": 0.010225226005190307
+        },
+        "finite_gradients": true
+      },
+      {
+        "id": "seen-textbook-01",
+        "source": "textbook",
+        "teachers": 110,
+        "initial_teacher_NLL": 8.361190795898438,
+        "embedding_RMS": 0.019952660678172775,
+        "final_residual_RMS": 0.055994374583388,
+        "final_to_embedding_RMS": 2.806361291185745,
+        "input_final_cosine": 0.35442039370536804,
+        "layer_RMS": [
+          {
+            "block": 0,
+            "residual": 0.02121752606473936,
+            "attention": 0.005147544369979926,
+            "FFN": 0.005177797928650132
+          },
+          {
+            "block": 1,
+            "residual": 0.023056219537741243,
+            "attention": 0.007041841700726666,
+            "FFN": 0.005266029278993172
+          },
+          {
+            "block": 2,
+            "residual": 0.025267914654940823,
+            "attention": 0.008679611419530124,
+            "FFN": 0.005350541820105557
+          },
+          {
+            "block": 3,
+            "residual": 0.027715453085317664,
+            "attention": 0.010558015608332739,
+            "FFN": 0.0052639105264461975
+          },
+          {
+            "block": 4,
+            "residual": 0.031611847877791616,
+            "attention": 0.013877713708745564,
+            "FFN": 0.005389455474614655
+          },
+          {
+            "block": 5,
+            "residual": 0.03553659369014974,
+            "attention": 0.013948174048291836,
+            "FFN": 0.005460688960066822
+          },
+          {
+            "block": 6,
+            "residual": 0.03853216512927038,
+            "attention": 0.014021909984143495,
+            "FFN": 0.005295954115191728
+          },
+          {
+            "block": 7,
+            "residual": 0.04020226595876717,
+            "attention": 0.013419807498590407,
+            "FFN": 0.005177910044960049
+          },
+          {
+            "block": 8,
+            "residual": 0.0433715477531828,
+            "attention": 0.01603205668480041,
+            "FFN": 0.0054518538342387
+          },
+          {
+            "block": 9,
+            "residual": 0.04680162362326089,
+            "attention": 0.016576883209969938,
+            "FFN": 0.005154082779595763
+          },
+          {
+            "block": 10,
+            "residual": 0.05016579683593708,
+            "attention": 0.017729532956071447,
+            "FFN": 0.005602556242166469
+          },
+          {
+            "block": 11,
+            "residual": 0.05275136334768885,
+            "attention": 0.016927358568153396,
+            "FFN": 0.005359327487009374
+          },
+          {
+            "block": 12,
+            "residual": 0.055994374583388,
+            "attention": 0.01750768363641142,
+            "FFN": 0.005558646777812109
+          }
+        ],
+        "gradients_RMS": {
+          "model.embed_tokens.weight": 0.0029061446947696284,
+          "model.layers.0.self_attn.o_proj.weight": 0.03322075960387335,
+          "model.layers.12.self_attn.o_proj.weight": 0.014642336393994888
+        },
+        "finite_gradients": true
+      },
+      {
+        "id": "seen-story-01",
+        "source": "story",
+        "teachers": 86,
+        "initial_teacher_NLL": 8.429691314697266,
+        "embedding_RMS": 0.02011078206571109,
+        "final_residual_RMS": 0.05410039109181818,
+        "final_to_embedding_RMS": 2.6901187092101915,
+        "input_final_cosine": 0.35786172747612,
+        "layer_RMS": [
+          {
+            "block": 0,
+            "residual": 0.02129203000287605,
+            "attention": 0.004664266702505825,
+            "FFN": 0.005315325856114106
+          },
+          {
+            "block": 1,
+            "residual": 0.022692016570287323,
+            "attention": 0.006225405493528735,
+            "FFN": 0.005236931618797996
+          },
+          {
+            "block": 2,
+            "residual": 0.024466950218657284,
+            "attention": 0.007350754132159666,
+            "FFN": 0.005294006718818038
+          },
+          {
+            "block": 3,
+            "residual": 0.026916588894458075,
+            "attention": 0.010348095239271741,
+            "FFN": 0.00521705777833076
+          },
+          {
+            "block": 4,
+            "residual": 0.028813102863348178,
+            "attention": 0.011387782213865293,
+            "FFN": 0.005202205126301973
+          },
+          {
+            "block": 5,
+            "residual": 0.031194517234970732,
+            "attention": 0.011512846802480216,
+            "FFN": 0.005211872256038179
+          },
+          {
+            "block": 6,
+            "residual": 0.034081879375555256,
+            "attention": 0.014104736652234636,
+            "FFN": 0.005086776758656784
+          },
+          {
+            "block": 7,
+            "residual": 0.03702801713230556,
+            "attention": 0.013744005089866961,
+            "FFN": 0.005040905203867131
+          },
+          {
+            "block": 8,
+            "residual": 0.04011506188580306,
+            "attention": 0.01600328850352409,
+            "FFN": 0.005134711345547785
+          },
+          {
+            "block": 9,
+            "residual": 0.04426576620124613,
+            "attention": 0.01598552176234695,
+            "FFN": 0.004963882151197139
+          },
+          {
+            "block": 10,
+            "residual": 0.04725051767363212,
+            "attention": 0.01620536328048143,
+            "FFN": 0.005360671163751453
+          },
+          {
+            "block": 11,
+            "residual": 0.05014568943665713,
+            "attention": 0.016182667663132075,
+            "FFN": 0.005117864834672581
+          },
+          {
+            "block": 12,
+            "residual": 0.05410039109181818,
+            "attention": 0.017638902719287464,
+            "FFN": 0.005054367346085788
+          }
+        ],
+        "gradients_RMS": {
+          "model.embed_tokens.weight": 0.00422414491582333,
+          "model.layers.0.self_attn.o_proj.weight": 0.048359953504484264,
+          "model.layers.12.self_attn.o_proj.weight": 0.013997387853544065
+        },
+        "finite_gradients": true
+      },
+      {
+        "id": "seen-web-02",
+        "source": "web",
+        "teachers": 68,
+        "initial_teacher_NLL": 8.376908302307129,
+        "embedding_RMS": 0.02008542585807082,
+        "final_residual_RMS": 0.05376687263322389,
+        "final_to_embedding_RMS": 2.6769097659743686,
+        "input_final_cosine": 0.3783622682094574,
+        "layer_RMS": [
+          {
+            "block": 0,
+            "residual": 0.021536988931541805,
+            "attention": 0.005673212928980495,
+            "FFN": 0.0052590930367024296
+          },
+          {
+            "block": 1,
+            "residual": 0.023391675907132845,
+            "attention": 0.007009845275894657,
+            "FFN": 0.005380467788317188
+          },
+          {
+            "block": 2,
+            "residual": 0.025661851831273022,
+            "attention": 0.008531038409755262,
+            "FFN": 0.0052683791562707985
+          },
+          {
+            "block": 3,
+            "residual": 0.028045945661684266,
+            "attention": 0.009313108730700745,
+            "FFN": 0.005368471827552689
+          },
+          {
+            "block": 4,
+            "residual": 0.031611591281907526,
+            "attention": 0.012885844629855307,
+            "FFN": 0.005107801745649309
+          },
+          {
+            "block": 5,
+            "residual": 0.03439548592065736,
+            "attention": 0.014076429157320136,
+            "FFN": 0.00524132516645962
+          },
+          {
+            "block": 6,
+            "residual": 0.0382270804695264,
+            "attention": 0.014637273901630889,
+            "FFN": 0.005238328304037826
+          },
+          {
+            "block": 7,
+            "residual": 0.04153456456738525,
+            "attention": 0.015457557655717153,
+            "FFN": 0.005025467817762185
+          },
+          {
+            "block": 8,
+            "residual": 0.04389068959164093,
+            "attention": 0.014646936517779036,
+            "FFN": 0.005332317456778093
+          },
+          {
+            "block": 9,
+            "residual": 0.04644515394467084,
+            "attention": 0.015420803190291661,
+            "FFN": 0.005100277998663464
+          },
+          {
+            "block": 10,
+            "residual": 0.04795393834298996,
+            "attention": 0.015166125953952678,
+            "FFN": 0.004997850522269188
+          },
+          {
+            "block": 11,
+            "residual": 0.051364679617164344,
+            "attention": 0.01810808294520559,
+            "FFN": 0.005553643689383279
+          },
+          {
+            "block": 12,
+            "residual": 0.05376687263322389,
+            "attention": 0.015185425024699772,
+            "FFN": 0.005045167687780021
+          }
+        ],
+        "gradients_RMS": {
+          "model.embed_tokens.weight": 0.0029363749010243366,
+          "model.layers.0.self_attn.o_proj.weight": 0.03070729811506421,
+          "model.layers.12.self_attn.o_proj.weight": 0.012854096287475565
+        },
+        "finite_gradients": true
+      },
+      {
+        "id": "seen-textbook-02",
+        "source": "textbook",
+        "teachers": 120,
+        "initial_teacher_NLL": 8.309343338012695,
+        "embedding_RMS": 0.019950996140824292,
+        "final_residual_RMS": 0.05468380386623033,
+        "final_to_embedding_RMS": 2.740905941750687,
+        "input_final_cosine": 0.37660616636276245,
+        "layer_RMS": [
+          {
+            "block": 0,
+            "residual": 0.021158935026783367,
+            "attention": 0.004685279511242594,
+            "FFN": 0.0052636284226242345
+          },
+          {
+            "block": 1,
+            "residual": 0.02278091234762168,
+            "attention": 0.006462668319024455,
+            "FFN": 0.005203718122365632
+          },
+          {
+            "block": 2,
+            "residual": 0.02478116053285549,
+            "attention": 0.008143720760487997,
+            "FFN": 0.005186182795833584
+          },
+          {
+            "block": 3,
+            "residual": 0.027983872247977385,
+            "attention": 0.011480287017876595,
+            "FFN": 0.005432272504332
+          },
+          {
+            "block": 4,
+            "residual": 0.029530044239904407,
+            "attention": 0.011173406453604155,
+            "FFN": 0.005105268445824719
+          },
+          {
+            "block": 5,
+            "residual": 0.03268155942595856,
+            "attention": 0.012495348809994746,
+            "FFN": 0.005278114644026925
+          },
+          {
+            "block": 6,
+            "residual": 0.0360927954842548,
+            "attention": 0.013199051582501743,
+            "FFN": 0.005259336318021029
+          },
+          {
+            "block": 7,
+            "residual": 0.0396497093948876,
+            "attention": 0.01472152093387641,
+            "FFN": 0.0053822867552736015
+          },
+          {
+            "block": 8,
+            "residual": 0.04204123206604098,
+            "attention": 0.015976207510875307,
+            "FFN": 0.005363214460047689
+          },
+          {
+            "block": 9,
+            "residual": 0.04372526236993462,
+            "attention": 0.014213085000409059,
+            "FFN": 0.005548353637039912
+          },
+          {
+            "block": 10,
+            "residual": 0.046539177469200464,
+            "attention": 0.01631664521948617,
+            "FFN": 0.004979584400420575
+          },
+          {
+            "block": 11,
+            "residual": 0.05003032223477774,
+            "attention": 0.01692859005470053,
+            "FFN": 0.004879163341204897
+          },
+          {
+            "block": 12,
+            "residual": 0.05468380386623033,
+            "attention": 0.018910569034902406,
+            "FFN": 0.005780950478235531
+          }
+        ],
+        "gradients_RMS": {
+          "model.embed_tokens.weight": 0.002678278938334117,
+          "model.layers.0.self_attn.o_proj.weight": 0.027245341646159337,
+          "model.layers.12.self_attn.o_proj.weight": 0.012639923411589002
+        },
+        "finite_gradients": true
+      },
+      {
+        "id": "seen-story-02",
+        "source": "story",
+        "teachers": 54,
+        "initial_teacher_NLL": 8.319461822509766,
+        "embedding_RMS": 0.020055789784553055,
+        "final_residual_RMS": 0.054111978673191966,
+        "final_to_embedding_RMS": 2.698072688958325,
+        "input_final_cosine": 0.3837900459766388,
+        "layer_RMS": [
+          {
+            "block": 0,
+            "residual": 0.021647976449133386,
+            "attention": 0.006294348019573762,
+            "FFN": 0.0052537810526802975
+          },
+          {
+            "block": 1,
+            "residual": 0.023681280080477436,
+            "attention": 0.007986425840373802,
+            "FFN": 0.005126142463179164
+          },
+          {
+            "block": 2,
+            "residual": 0.025918368567281573,
+            "attention": 0.009486932225529815,
+            "FFN": 0.0052851489163237494
+          },
+          {
+            "block": 3,
+            "residual": 0.0287902565037125,
+            "attention": 0.011249054540544598,
+            "FFN": 0.005126015834040011
+          },
+          {
+            "block": 4,
+            "residual": 0.03145450874463634,
+            "attention": 0.01342960671655684,
+            "FFN": 0.0051285074449645375
+          },
+          {
+            "block": 5,
+            "residual": 0.03383400788509425,
+            "attention": 0.01215598800579904,
+            "FFN": 0.005218641514978014
+          },
+          {
+            "block": 6,
+            "residual": 0.037589335329185694,
+            "attention": 0.015065515686887236,
+            "FFN": 0.005156962816840075
+          },
+          {
+            "block": 7,
+            "residual": 0.040471379769882486,
+            "attention": 0.01535294220242375,
+            "FFN": 0.00530595891878274
+          },
+          {
+            "block": 8,
+            "residual": 0.04358592628949502,
+            "attention": 0.015022459783773458,
+            "FFN": 0.005620603333855132
+          },
+          {
+            "block": 9,
+            "residual": 0.0461465516638424,
+            "attention": 0.015015092898797275,
+            "FFN": 0.005367073384666066
+          },
+          {
+            "block": 10,
+            "residual": 0.04926214744974291,
+            "attention": 0.017743739230035083,
+            "FFN": 0.004908707963670311
+          },
+          {
+            "block": 11,
+            "residual": 0.05253323856431694,
+            "attention": 0.017329607676233323,
+            "FFN": 0.005563699224648332
+          },
+          {
+            "block": 12,
+            "residual": 0.054111978673191966,
+            "attention": 0.017237777724422126,
+            "FFN": 0.005776923677602618
+          }
+        ],
+        "gradients_RMS": {
+          "model.embed_tokens.weight": 0.0036341440662542826,
+          "model.layers.0.self_attn.o_proj.weight": 0.04185023227813192,
+          "model.layers.12.self_attn.o_proj.weight": 0.01622166343623683
+        },
+        "finite_gradients": true
+      }
+    ]
+  },
+  "summaries": {
+    "control": {
+      "mean_final_to_embedding_RMS": 16.592948875362474,
+      "mean_input_final_cosine": 0.06478068915506204,
+      "teacher_weighted_initial_NLL": 8.359544211594516,
+      "finite_gradients": true
+    },
+    "scaled_initialization": {
+      "mean_final_to_embedding_RMS": 2.718360135742173,
+      "mean_input_final_cosine": 0.3701564421256383,
+      "teacher_weighted_initial_NLL": 8.366677983097299,
+      "finite_gradients": true
+    }
+  },
+  "CPU_seconds": 0.9356308239948703,
+  "CPU_cap_seconds": 30,
+  "GPU_seconds": 0,
+  "optimizer_updates": 0,
+  "scientific_teacher_tokens": 0,
+  "fresh_forward_backward_teacher_positions": 1512,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_scored": false,
+  "limits": "Six previously consumed TRAIN windows, fresh CPU FP32 weights; initial NLL/RMS/gradient measurements are not trained-model quality, instability proof, or evidence of future learning benefit. No learned weights changed or saved. Depth-scaled attention/FFN outputs jointly change initialization only; no inference-time scaling."
+}
