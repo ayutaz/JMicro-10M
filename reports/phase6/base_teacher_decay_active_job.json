@@ -1,6 +1,6 @@
 {
-  "status": "frozen_CPU_verified_GPU_not_started",
-  "observed_at": "2026-10-08T05:13:12.385954Z",
+  "status": "own_CUDA_gate_passed_same_stream_science_running",
+  "observed_at": "2026-10-08T05:14:06.526132Z",
   "config": "configs/phase6/base_teacher_decay_pilot.json",
   "config_sha256": "dfd6a6aee8507dcae3f66e3309e3d2ffd4845004f053ad3f07e0eea0829daef0",
   "run": "reports/phase6/base-teacher-decay-pilot-20261008",
@@ -17,8 +17,12 @@
     "path": "reports/phase6/base_teacher_decay_accounting_20261008.json",
     "CPU_seconds": 0.6839352149982005
   },
-  "science_job": null,
-  "actual_process_alive_confirmed": false,
+  "science_job": {
+    "pid": 117377,
+    "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+    "start_ticks": "7956207"
+  },
+  "actual_process_alive_confirmed": true,
   "current_UI_identity": {
     "pid": 116142,
     "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
@@ -26,10 +30,50 @@
   },
   "checkpoint_path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-teacher-decay-pilot-20261008/latest.pt",
   "restart_command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/run_base_teacher_decay_pilot.ps1 -Worker; inspect actual PID/boot/start, prior closed cumulative ledger and valid committed checkpoint first",
-  "next_action": "Start durable frozen teacher-decay pilot after committed preparation. Own CUDA4vs2+save+2 finite/full-state gate then fresh same94160195 teachers/10000 native updates within1992seconds, candidate256DEV/all80 individual raw-bound review versus retained control, terminal/UI restore and unchanged screen. No rescue or automatic extension.",
+  "next_action": "Monitor exact live117377/boot4052bfc5/start7956207 and durable Windows32512; complete frozen10000updates/94160195teachers within cumulative1992seconds, candidate256DEV/80raw, individually read new80 and retain original control80 notes, CPU review only after actual terminal/closed ledger and original10B UI restoration. Same recipe only valid checkpoint resume after interruption; no duplicate GPU or reference/coefficient/LR/cap rescue. Base pending; no Chat/quantization.",
   "Base_complete": false,
   "Base_adopted": false,
   "Chat_started": false,
   "quantization_started": false,
-  "protected_test_scored": false
+  "protected_test_scored": false,
+  "windows_worker_pid": 32512,
+  "job_snapshot": {
+    "status": "running",
+    "pid": 117377,
+    "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+    "start_ticks": "7956207",
+    "started_at": "2026-10-08T05:13:20.266770Z",
+    "config_sha256": "dfd6a6aee8507dcae3f66e3309e3d2ffd4845004f053ad3f07e0eea0829daef0",
+    "GPU_seconds": 44.576848975993926,
+    "cumulative_GPU_ledger_closed": false,
+    "Base_complete": false,
+    "Chat_started": false,
+    "quantization_started": false,
+    "restart_command": "scripts/run_base_teacher_decay_pilot.ps1 -Worker; inspect actual identity, closed ledger and committed teacher-decay checkpoint first",
+    "memory_policy": {
+      "torch_version": "2.14.1+cu130",
+      "device": "NVIDIA GeForce RTX 4090",
+      "visible_device_bytes": 25756696576,
+      "process_fraction": 0.8999999999844701,
+      "allocator_allowance_bytes": 23181026918,
+      "expected_worst_peak_bytes": 17791499264
+    },
+    "stage": "fresh-learning",
+    "heartbeat_at": "2026-10-08T05:14:05.379642Z",
+    "optimizer_updates": 260,
+    "microbatches": 260,
+    "scientific_teacher_tokens": 2448555,
+    "CE_loss": 4.797571182250977
+  },
+  "resume_gate": {
+    "path": "reports/phase6/base_teacher_decay_resume_gate.json",
+    "sha256": "179b46d565bc6d6b64ef092312d1830391e5f5b45bed9f1b7aff195724683125",
+    "verification_optimizer_updates": 8,
+    "verification_microbatches": 8,
+    "verification_teacher_tokens": 75076,
+    "peak_VRAM_bytes": 10634586624,
+    "probe_weights_used_for_science": false
+  },
+  "metrics_path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-teacher-decay-pilot-20261008/metrics-117377-7956207.jsonl",
+  "original_UI_temporarily_stopped": true
 }
