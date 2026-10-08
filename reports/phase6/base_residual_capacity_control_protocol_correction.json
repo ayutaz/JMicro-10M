@@ -1,0 +1,101 @@
+{
+  "created_at": "2026-10-08T02:47:17.290842Z",
+  "status": "prospective_pre_GPU_structural_protocol_correction",
+  "purpose": "Positive end-to-end learning control on the current fresh sequential2B path. Distinguish the ability to learn six actual original TRAIN units from their existing imperfect free-running behavior. Not a Base-quality experiment or a rescue of parallel residual training.",
+  "references": {
+    "six_exposure_preparation": "reports/phase6/base_residual_seen_train_preparation.json",
+    "six_inference_completion": "reports/phase6/base_residual_seen_train_diagnostic_completion.json",
+    "norm_gain_screen": "reports/phase6/base_residual_norm_gain_screen.json"
+  },
+  "parent_checkpoint_sha256": "a1d29762321f1a9df088ced78d5b67fb174f59e1dd10fd4520bf769ed78c5f51",
+  "parent_model_class": "JMicroModel via explicit current residual model factory",
+  "actual_unique_parameters": 10001152,
+  "dataset": "Exactly the six already-bound actually-consumed whole TRAIN units. No DEV/TEST, no new data, no new source sample draw. Retain original BOS/body/EOS and next-token shift.",
+  "conditioning_prefix": "Same codec-stable24-token prefixes as the completed six-case inference diagnostic.",
+  "probe_initialization": "Shadow clone of frozen sequential2B learned weights; fresh diagnostic AdamW/moments/counters/RNG seed42 and fixed six-unit cycle. All capacity-control weights are discarded for science/adoption; original checkpoint remains unchanged.",
+  "optimizer": {
+    "kind": "fresh_diagnostic_AdamW",
+    "lr": 0.0002,
+    "weight_decay": 0.1,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "gradient_clip": 1,
+    "schedule": "fixed constant learning rate, no sweep"
+  },
+  "batch": 80,
+  "training_dtype": "bf16",
+  "training_backend": "flash",
+  "training_forward": "Existing right_padded_hidden and original supervised-state CE-only head; original whole-unit gold including actual EOS. Partially masked final budget update permitted; never synthesize an EOS.",
+  "maximum_capacity_control_original_teacher_tokens": 3000000,
+  "maximum_cumulative_GPU_seconds": 300,
+  "maximum_CPU_preparation_seconds": 30,
+  "resume_gate": "Before capacity control, own CUDA continuous4 vs2+save+2 with fixed six-unit cycle/fresh AdamW; compare model/Adam/RNG/cycle/counters/history. Record verification learning separately, discard those gate weights, restore the original parent for the capacity control. Budget includes gate/training/decoding/save.",
+  "capacity_completion_condition": "All six fixed24-token-prefix-conditioned teacher suffixes100% argmax correct and all six cached BF16/math greedy original suffixes plus real EOS exactly reproduced. Entire original body/EOS still trained and full-target accuracy still reported.",
+  "capacity_early_stop": "Check every25 completed updates; only conditioned suffix100% triggers six cached decodes. No cap/LR/selection rescue.",
+  "decode_cap": "For this memorization control only, fixed each original suffix token count+8, context<1024; larger than64 for long articles because exact original EOS must be reachable. The completed6-inference/DEV80 decoder remains unchanged. This long-cap control is never used to claim Base-quality gains.",
+  "persistence": "Record real PID/boot/start, original parent/source binding, cumulative GPU ledger, original teacher/body byte/source/EOS counters, optimizer/RNG/fixed-cycle position at completed updates, raw cases and logs. Inspect prior GPU processes before launch. Restore original10B WebUI at end.",
+  "interpretation": "A pass proves this fixed path can learn these six examples, not generalization or a solution for Base. A bounded failure is not proof that10M is incapable; inspect actual training/evaluation behavior, do not automatically extend or sweep. Earlier capacity and trainfit evidence used other checkpoints/data/trainers, and is retained.",
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_scored": false,
+  "original_proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_residual_capacity_control_proposal.json",
+    "sha256": "524c4001bd53d999f96562e59074459a3041261980f7be460c1f7c9337ee5fc3"
+  },
+  "preparation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_residual_seen_train_preparation.json",
+    "sha256": "33ba90940e4d7c1b1c17b977c898a563e639e0b8475d683edd0e8e10bb27635e"
+  },
+  "conflicting_original_histories": [
+    {
+      "input_history": [
+        2
+      ],
+      "positions": [
+        [
+          "seen-web-01",
+          0,
+          367
+        ],
+        [
+          "seen-textbook-01",
+          0,
+          2774
+        ],
+        [
+          "seen-story-01",
+          0,
+          425
+        ],
+        [
+          "seen-web-02",
+          0,
+          330
+        ],
+        [
+          "seen-textbook-02",
+          0,
+          1660
+        ],
+        [
+          "seen-story-02",
+          0,
+          1114
+        ]
+      ],
+      "unavoidable_argmax_errors": 5
+    }
+  ],
+  "maximum_possible_full_teacher_argmax_correct": 751,
+  "actual_unique_gold_targets": 756,
+  "conditioned_gold_targets": 612,
+  "reason": "Identical BOS history has six distinct first-token targets. Full teacher100% is impossible. Before any CUDA/learning, correct the diagnostic criterion to exact original suffix after the existing fixed24-token prefix; train on unchanged full originals and retain all full-target scores. This changes no Base gates, source, optimizer, budget or decoder.",
+  "GPU_learning_started": false,
+  "GPU_seconds": 0,
+  "diagnostic_learning_teacher_tokens": 0
+}
