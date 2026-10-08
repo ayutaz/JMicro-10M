@@ -1,7 +1,7 @@
 {
   "prospective_total_GPU_cap_seconds": 86400,
   "run": "reports/phase6/base-parallel-residual-comparison-20261007",
-  "next_action": "Implement bounded original-article context recovery for the same16 consumed TRAIN paragraphs using recorded source token and character bounds. Reuse standalone outputs; compare identical original BODY targets, exclude paragraph-unit EOS from article-end claims. Then run own60-second read-only diagnostic and close out. No LF-only training rescue, DEV normalization, repeated marker diagnosis, quantity-only extension, Chat or quantization.",
+  "next_action": "Create a bounded CPU decision table from existing completed Base learning reviews (parents, unique material, actual teacher tokens, quality gates and GPU cost), without rerating or more inference-only diagnostics. Select at most one genuinely untested learning comparison with a measured budget and prospective stop rule, or explicitly leave new GPU unselected if evidence does not justify one. Do not relaunch closed recipes, context/LF/source/cap sweeps, quantity-only extensions, Chat or quantization.",
   "actual_process_alive_confirmed": false,
   "Base_complete": false,
   "UI_stopped_during_science": true,
@@ -48,7 +48,7 @@
     "completed_tasks": 618,
     "total_tasks": 618,
     "completed_cases": 80,
-    "ended_at": "2026-10-08T01:45:14.782590Z"
+    "ended_at": "2026-10-08T01:45:14.78259Z"
   },
   "windows_worker_pid": 31588,
   "windows_worker_alive_confirmed": false,
@@ -57,7 +57,7 @@
     "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
     "pid": 31561
   },
-  "observed_at": "2026-10-08T02:41:15.9703828Z",
+  "observed_at": "2026-10-08T03:30:56.4675017Z",
   "checkpoint_every_updates": 2000,
   "scientific_original_gold_total": 4000000000,
   "Base_adopted": false,
@@ -350,7 +350,7 @@
     "Base_complete": false
   },
   "sequential_1900m_milestone": {
-    "observed_at": "2026-10-07T18:07:45.8612520Z",
+    "observed_at": "2026-10-07T18:07:45.861252Z",
     "original_teachers": 1900965709,
     "completed_updates": 201600,
     "current_CE_loss": 2.5439364910125732,
@@ -470,7 +470,7 @@
     "completed_updates": 660,
     "CE_loss": 3.897742748260498,
     "GPU_occupancy_seconds": 26109.006321903,
-    "sequential_automated_evaluation_completed_at": "2026-10-07T18:30:48.487050Z",
+    "sequential_automated_evaluation_completed_at": "2026-10-07T18:30:48.48705Z",
     "sequential_automated_evaluation_result": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-parallel-residual-comparison-20261007/evaluation/sequential/evaluation/result.json",
     "sequential_automated_evaluation_result_sha256": "8ca51cf98d9b787619bd08805f6745c736bb1aa3d565f9dad4b1a13dd69fe2bb",
     "personally_read_current_generation_cases": 0,
@@ -494,7 +494,7 @@
     "Base_complete": false
   },
   "parallel_200m_milestone": {
-    "observed_at": "2026-10-07T19:14:25.4106240Z",
+    "observed_at": "2026-10-07T19:14:25.410624Z",
     "original_teachers": 201414263,
     "completed_updates": 21380,
     "current_CE_loss": 2.864327907562256,
@@ -526,7 +526,7 @@
     "Base_complete": false
   },
   "parallel_400m_milestone": {
-    "observed_at": "2026-10-07T19:58:00.5556280Z",
+    "observed_at": "2026-10-07T19:58:00.555628Z",
     "original_teachers": 402825272,
     "completed_updates": 42740,
     "current_CE_loss": 2.9991376399993896,
@@ -558,7 +558,7 @@
     "Base_complete": false
   },
   "parallel_600m_milestone": {
-    "observed_at": "2026-10-07T20:41:01.0702420Z",
+    "observed_at": "2026-10-07T20:41:01.070242Z",
     "original_teachers": 601512945,
     "completed_updates": 63820,
     "current_CE_loss": 2.8758490085601807,
@@ -2636,8 +2636,45 @@
   "original_context_diagnostic_proposal": {
     "path": "reports/phase6/base_residual_original_context_diagnostic_proposal.json",
     "GPU_cap_seconds": 60,
-    "GPU_started": false,
+    "GPU_started": true,
     "sha256": "273faaf019b92eb4f07b10ce5e38801d4400bff000c08c90b46b5268a604f385",
-    "implemented": false
+    "implemented": true
+  },
+  "original_context_completion": {
+    "path": "reports/phase6/base_residual_original_context_completion.json",
+    "sha256": "2581220368261734b04467ac84846dfdee7061dab465fb52595dffbd132469c5",
+    "GPU_seconds": 22.96236798800237,
+    "new_context_units": 14,
+    "mean_BODY_NLL_improvement": 0.1142410210216264,
+    "bootstrap95CI": [
+      0.03722156005696978,
+      0.20032746828517192
+    ],
+    "prespecified_context_benefit_screen": false,
+    "fixed_diagnostic_closed": true,
+    "new_free_EOS": 0,
+    "new_free_semantic_repetition": 14,
+    "new_free_appropriate_end": 0,
+    "Base_complete": false
+  },
+  "current_scientific_GPU_job": null,
+  "restored_current_UI_identity": {
+    "pid": 112044,
+    "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+    "start_ticks": "7306501"
+  },
+  "restored_current_UI_model": {
+    "name": "JMicro-10M",
+    "kind": "Base / 文章の続き",
+    "parameters": 10001152,
+    "training_tokens": 10000007168,
+    "update": 305176,
+    "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+    "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+    "device": "NVIDIA GeForce RTX 4090",
+    "precision": "BF16 / math attention",
+    "context": 1024,
+    "busy": false
   }
 }
