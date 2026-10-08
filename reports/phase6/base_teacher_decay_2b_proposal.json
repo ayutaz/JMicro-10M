@@ -1,0 +1,86 @@
+{
+  "status": "prospective_same_condition_cumulative2B_continuation_defined_not_implemented_or_started",
+  "created_at": "2026-10-08T05:44:24.237790Z",
+  "pilot_completion": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_teacher_decay_pilot_completion.json",
+    "sha256": "4d40b8ca019cb25e9af01958603b12b7122f4b1752fd22c5b85bf7efa149d728"
+  },
+  "pilot_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_teacher_decay_pilot.json",
+    "sha256": "dfd6a6aee8507dcae3f66e3309e3d2ffd4845004f053ad3f07e0eea0829daef0"
+  },
+  "parent_checkpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-teacher-decay-pilot-20261008/latest.pt",
+    "sha256": "b7b9808a70ac4e6ca1bfe3751b70fcfa12c292c216ef512b00588a5e75f649ad"
+  },
+  "initial_scientific_teacher_tokens": 94160195,
+  "final_scientific_teacher_tokens": 2000000000,
+  "new_scientific_teacher_tokens": 1905839805,
+  "reused_control_teacher_tokens": 2000000000,
+  "decay_policy": {
+    "kind": "fresh_native_teacher_normalized_decoupled_decay_v1",
+    "reference_teachers": 32768,
+    "reference_weight_decay": 0.1,
+    "formula": "(1-lr*0.1)^(original_teachers_this_update/32768)",
+    "parameter_scope": "same_all_native_parameters",
+    "changes_Adam_timing": false
+  },
+  "control_checkpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-parallel-residual-comparison-20261007/sequential/checkpoint-00212095.pt",
+    "sha256": "a1d29762321f1a9df088ced78d5b67fb174f59e1dd10fd4520bf769ed78c5f51"
+  },
+  "control_training_record": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-parallel-residual-comparison-20261007/sequential/train-result.json",
+    "sha256": "a55959a821d9880609be22576b86d1f7f9ee7c373fb98378eb3de6a2ffc36b54"
+  },
+  "control_evaluation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-parallel-residual-comparison-20261007/evaluation/sequential/evaluation/result.json",
+    "sha256": "8ca51cf98d9b787619bd08805f6745c736bb1aa3d565f9dad4b1a13dd69fe2bb"
+  },
+  "control_raw": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-parallel-residual-comparison-20261007/evaluation/sequential/evaluation/generation.json",
+    "sha256": "79256b59752c3002cf6f6e6d0f25fa01c8cbf336ba6d8eac51e427976b68104f"
+  },
+  "control_notes": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_parallel_residual_sequential_notes.json",
+    "sha256": "4a65fa58b63910688b3e3b09165b9b7906e522c0b7dde54d67c2eb0ee85be1a7"
+  },
+  "original_quality_policy": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_parallel_residual_review.json",
+    "sha256": "1d9ff130852499c340f29a6f21f7d6bc723caf17883cdfbe6e148c55112a9aac"
+  },
+  "related_completed_comparison": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_parallel_residual_comparison_completion.json",
+    "sha256": "427561834d6d8549646f9c91c946a6019813f70d08431079472e16d097a627f6"
+  },
+  "hypothesis": "The matched94.16M pilot passed its prospective2percentBPB/nonworsening content screen. Test whether the SAME fixed per-teacher decay rule improves the full2B matched stream. Coherence improvement was NOT observed in pilot; long quality remains unknown.",
+  "continuation_contract": "Load exact pilot model/Adam/scheduler/RNG/sampler/counters/decay metadata without reheat/reset/rebinding. The existing training spec already targets2B. New experiment/job/result references bind this unchanged parent/pilot identity separately; do not pretend a new fresh initialization or count pilot teachers twice.",
+  "same_conditions": [
+    "fresh seed42/native10001152 initialization ancestry",
+    "original exact accepted2B TRAIN draw/teacher/EOS stream",
+    "80windows per native Adam update",
+    "original2B teacher-position LR and clip/Adam parameters",
+    "same teacher-normalized decay reference32768 and0.1",
+    "same native BF16 Flash training/math likelihood and generation"
+  ],
+  "new_GPU_cap_seconds": 37536,
+  "measured_remaining_seconds": 28642.87284192801,
+  "measurement_scope": "Conservative full pilot GPU including fixed gate/evaluation costs per teacher, not pure training speed; reused old full2B control adds0 scienceGPU.",
+  "prior_pilot_GPU_seconds": 1415.1338874759967,
+  "maximum_combined_GPU_seconds": 38951.133887476,
+  "preconditions": [
+    "Implement durable2B continuation runner and CPU reviewer before GPU",
+    "Actual CPU mid-parent resume/accounting/refusal checks and frozen source/config",
+    "Current actual PID/boot/start and idle original10B UI preflight, no duplicate science",
+    "Own actual CUDA continuous4vs2+save+2 FROM the exact pilot parent, all state/history finite equality; discard verification weights, separate teachers",
+    "Measured worst native80x1024 capacity evidence, fixed cumulative GPU cap, persist exact identity/checkpoint/log/restart and closed ledgers"
+  ],
+  "completion_condition": "Exact cumulative2B original teachers and same sampler/digest/counters/scheduler endpoint as native sequential2B control; original256DEV/all80/Japanese192+331+1119; all80 candidate original contents individually read, old control notes retained; reuse unchanged original matched/strong/cached/absolute/Web-retention quality policy and paired CI; actual science and launcher exit/closed ledger/originalUI restoration. This is research comparison completion, not Base adoption.",
+  "quality_policy": "Use existing original full2B quality policy/helper criteria unchanged, not merely the shortpilot2percent screen. All original independent training seed43/fullDEV/protectedTEST/adoption remain required after qualified primary seed. Strong mature and cached100M are extra quality references, not same-history matched control.",
+  "failure_policy": "Close fixed2B condition on numeric/budget/quality failure. No reference/coefficient/LR/seed/cap rescue or automatic longer sweep.",
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_scored": false
+}
