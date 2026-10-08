@@ -1,0 +1,128 @@
+{
+  "status": "residual_initialization_pilot_all160_review_complete",
+  "created_at": "2026-10-08T05:01:14.279917Z",
+  "result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-residual-initialization-pilot-20261008/result.json",
+    "sha256": "465790046d813bf4d4f8d7597483d54c90a12ceaecc6cca0572087dcdf5413ba"
+  },
+  "config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_residual_initialization_pilot.json",
+    "sha256": "f601ce94b6e905a30bf35783d8824e2fd103725562a9f9867711a3b820f3ae34"
+  },
+  "reviewer_source": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/review_base_residual_initialization_pilot.py",
+    "sha256": "07ab13437fdfe0cf3d1c8b2806a191399ab184f2cb8f77f7c2eed046639a81ae"
+  },
+  "summaries": {
+    "control": {
+      "BPB": 1.2902028921801718,
+      "rates": {
+        "outputs": 80,
+        "eos": 13,
+        "repetition": 49,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 28,
+      "coherence2": 2,
+      "appropriate_end": 3,
+      "notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_gradient_accumulation_control_notes.json",
+        "sha256": "fff81c2b64803d15523e802868979cd91f08542a0dd9cdd3a24c49506b471e43"
+      },
+      "raw": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-gradient-accumulation-pilot-20261008/control-evaluation.json",
+        "sha256": "aac002cebbd7c25f8cc482f42280233f27673253abcbd6f3bc18d42d4954fea3"
+      }
+    },
+    "candidate": {
+      "BPB": 1.3066059474634544,
+      "rates": {
+        "outputs": 80,
+        "eos": 16,
+        "repetition": 54,
+        "unicode_failure": 0,
+        "role_leak": 0,
+        "empty": 0
+      },
+      "grammar2": 27,
+      "coherence2": 1,
+      "appropriate_end": 2,
+      "notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_residual_initialization_candidate_notes.json",
+        "sha256": "34557dcbe9150a2b9a656e55da7204b2143d1309346cbc1619395322e55f5631"
+      },
+      "raw": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-residual-initialization-pilot-20261008/candidate-evaluation.json",
+        "sha256": "d3ef0e6070ab0e6e80a86b623ec2dad0fc15517a953f8990873976999add7e91"
+      }
+    }
+  },
+  "prospective_advance_screen": {
+    "BPB_at_least2percent_better": false,
+    "grammar2_nonworsening": false,
+    "coherence2_nonworsening": false,
+    "appropriate_end_nonworsening": false,
+    "EOS_nonworsening": true,
+    "repetition_nonworsening": false,
+    "no_empty_role_unicode": true
+  },
+  "exploratory_advance_eligible": false,
+  "fixed_initialization_pilot_closed": true,
+  "absolute_dev_screen": {
+    "grammar_at_least56": false,
+    "coherence_at_least27": false,
+    "appropriate_at_least27": false,
+    "EOS_at_least37": false,
+    "repetition_at_most18": false,
+    "no_empty_role_unicode": true
+  },
+  "paired_differences": {
+    "BPB_difference": 0.016403055283282564,
+    "paired_document_BPB_difference95CI": [
+      0.014029334021878835,
+      0.018854340344747436
+    ],
+    "coherence_count_difference": -1,
+    "coherence_fraction_difference95CI": [
+      -0.0375,
+      0.0
+    ],
+    "bootstrap_seed": 42,
+    "bootstrap_samples": 10000
+  },
+  "all160_individually_read": true,
+  "independent_human_blind": false,
+  "scientific_teacher_tokens": 94160195,
+  "reused_control_teacher_tokens": 94160195,
+  "verification_teacher_tokens": 75076,
+  "GPU_seconds": 1420.907099103002,
+  "GPU_cap_seconds": 1992,
+  "process_exited": true,
+  "restored_UI_identity": {
+    "pid": 116142,
+    "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+    "start_ticks": "7854156"
+  },
+  "restored_UI_model": {
+    "name": "JMicro-10M",
+    "kind": "Base / 文章の続き",
+    "parameters": 10001152,
+    "training_tokens": 10000007168,
+    "update": 305176,
+    "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+    "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+    "device": "NVIDIA GeForce RTX 4090",
+    "precision": "BF16 / math attention",
+    "context": 1024,
+    "busy": false
+  },
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false,
+  "protected_test_scored": false,
+  "limits": "One fresh seed42, repeated fixedDEV, nonblind160 readings. Only the fresh residual-output matrix initialization is changed. Original control80 read previously; candidate80 read in this experiment. Pilot advance is not Base adoption or automatic longer training; all original retention/independent-trained-seed/fullDEV/protectedTEST/adoption gates remain pending."
+}
