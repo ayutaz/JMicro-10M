@@ -10,6 +10,10 @@ Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/window
 - Independent trained seed43, fullDEV, final continuation suites, protectedTEST and adoption remain pending. CPU seed preparation is not learning or quality evidence.
 - Keep the original10B local WebUI available. Recorded process identities are observations, not proof of current liveness. Do not relaunch completed pilots or2B runs.
 
+## Fixed model-size requirement — user clarification, 2026-10-08 JST
+
+Maintaining the 10M size is a core project requirement and its intended advantage. Keep total trainable parameters within the existing approximately10M budget (9.5M–10.1M; current10,001,152). Do not switch to a larger model to meet quality targets or launch a larger-model comparison without a separate explicit user request. Prioritize data quality, training objectives, optimization and architecture allocation within that same budget. Preserve quality criteria and the Japanese Base goal; do not silently narrow the target domain or lower thresholds. This clarification does not resume paused training/research execution.
+
 ## Project rules
 
 The user authorizes autonomous implementation, repair, local GPU work and required WSL preparation within the active requested scope. Continue routine authorized decisions without renewed permission. Authorization cannot override tool permissions or the current pause.

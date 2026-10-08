@@ -6,6 +6,8 @@
 
 [現在の状態](docs/autonomous_status.md) / [最新結果123](docs/123_base_teacher_decay_2b_results.md) / [今後の計画124](docs/124_base_recovery_plan.md) / [文書一覧](docs/README.md)
 
+**固定方針: 10Mのサイズを維持し、その小ささを優位性とします。** 品質改善は約10Mの総パラメータ予算内で検討し、大型化を解決策にしません。日本語Baseの品質基準は維持します。
+
 ## 最新の成果
 
 同じnative10Mモデル、既存2B TRAIN pool、同じ2B教師予算で、教師数に応じてweight decayを調整する条件を比較しました。データ増量の実験ではありません。
