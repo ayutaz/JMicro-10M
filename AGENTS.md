@@ -2,7 +2,7 @@
 
 Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/windows_handoff.md` before continuing. Status records actual evidence; the roadmap and `docs/124_base_recovery_plan.md` define the current plan. Historical progress is in dated reports and archives, not in this instruction file.
 
-## Current scope — 2026-10-08 JST
+## Current scope — 2026-10-09 JST
 
 - The user requested stopping at a sensible boundary. The cumulative2B teacher-normalized decay experiment and all80 individual reviews finished; the condition was rejected and closed. Base remains unfinished and unadopted.
 - The subsequent request authorizes updating documentation and plans only. It does not resume research execution, data preparation, diagnostics or GPU training. Await explicit user resumption for those actions.

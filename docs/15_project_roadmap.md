@@ -1,6 +1,6 @@
 # JMicro-10M フェーズ別実行計画
 
-最終更新: 2026-10-08 JST。現在の事実は[状態](autonomous_status.md)、直近の成果は[結果123](123_base_teacher_decay_2b_results.md)、再開後の具体的な進め方は[計画124](124_base_recovery_plan.md)を正とする。**現在は学習・研究実行を一時停止。文書更新だけが今回の範囲。**
+最終更新: 2026-10-09 JST。現在の事実は[状態](autonomous_status.md)、直近の成果は[結果123](123_base_teacher_decay_2b_results.md)、再開後の具体的な進め方は[計画124](124_base_recovery_plan.md)を正とする。**現在は学習・研究実行を一時停止。文書更新だけが今回の範囲。**
 
 ## 目的と停止境界
 

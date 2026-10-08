@@ -1,6 +1,10 @@
 # Windows / WSL 引継ぎ
 
-最終更新: 2026-10-08 JST。**学習・研究実行は一時停止。今回の文書整備は学習の再開指示ではない。** [状態](autonomous_status.md)、[結果123](123_base_teacher_decay_2b_results.md)、[計画124](124_base_recovery_plan.md)を先に読む。
+最終更新: 2026-10-09 JST。**学習・研究実行は一時停止。今回の文書整備は学習の再開指示ではない。** [状態](autonomous_status.md)、[結果123](123_base_teacher_decay_2b_results.md)、[計画124](124_base_recovery_plan.md)を先に読む。
+
+## 固定方針と実行範囲
+
+10Mのサイズ維持がユーザーの優先条件。現在10,001,152 parameters、既存9.5M〜10.1Mの総parameter予算を保ち、大型化や大型モデル比較を復旧・改善の既定作業にしない。元の日本語Base品質基準を維持する。次の比較は計画124で選定する段階で、介入条件・教師予算・新configは未凍結。文書更新から学習/診断/data準備へ進まない。
 
 ## 正本と保存場所
 
@@ -19,7 +23,7 @@ WindowsのNVIDIA driverがWSL CUDAにも関係する。WSLへLinux display drive
 
 最新scienceは `reports/phase6/base-teacher-decay-2b-20261008/`。PID118881 / boot `4052bfc5-3850-44e4-9123-d34a9e19f36e` / start_ticks8215874は終了し、Windows worker38176はexit0。累積2B教師・212095更新、全80レビュー済み、不採用・固定条件closed。追加GPU26,060.094秒、pilot込27,475.228秒、ledger closed。**完了runを再起動しない。**
 
-元[WebUI](http://127.0.0.1:7860)は10,000,007,168学習tokensの元10B checkpointを配信。今回の文書更新時にPID120460 / start_ticks10822295、HTTP親SHA `410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290` /busy=falseを再確認した。将来は `reports/local/webui/server.json` と実PID/boot/start、HTTPを再確認する。保存PIDだけで稼働を判定しない。
+元[WebUI](http://127.0.0.1:7860)は10,000,007,168学習tokensの元10B checkpointを配信。2026-10-09 JSTの文書更新時にPID120460 / start_ticks10822295、HTTP親SHA `410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290` /busy=falseを再確認した。将来は `reports/local/webui/server.json` と実PID/boot/start、HTTPを再確認する。保存PIDだけで稼働を判定しない。
 
 Windows正本でのUI操作:
 
@@ -81,7 +85,7 @@ uv run --frozen --extra hub --extra data --extra ml --extra export scripts/exper
 ## 再開時の手順
 
 1. 最新Windows local commitとAGENTS/status/roadmap/本書/計画124を読む。
-2. ユーザーが再開した範囲を確認する。文書更新だけならGPU/data/診断へ進まない。
+2. ユーザーが再開した範囲と10M維持の固定条件を確認する。文書更新だけならGPU/data/診断へ進まない。
 3. 実process・GPU lock・job/result・有効checkpointを確認する。観測timeoutや残存lockだけで終了を決めない。
 4. 最新teacher-decay pilot/2Bは完了・不採用なので復旧対象にしない。計画124の次条件選定から始める。
 5. 新実験は不足command/型付き証拠接続/関連checks/予算/configを先に完成する。長期jobは全state再開gate・永続identity/ledgerを必須とする。
