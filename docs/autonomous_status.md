@@ -1,6 +1,8 @@
 # 現在の状態
 
-最終更新: 2026-10-10 JST。**学習・GPU診断・データ準備は一時停止。Baseは未完成・未採用。モデル保存・公開と前回の文書保存は完了。今回は既存Baseを直接Chat学習して検証する計画の作成まで。**
+2026-10-10 実行再開: ユーザーの「5まで進めてください」により、計画128の保全・専用入口実装・CUDA gate・最大3周の直接SFT・matched会話評価と結果報告までを再開した。従来のplanning-only記録は依頼時点の履歴。元10B親/Tokenizer hash・WSLデータ所在・RTX4090・元UI実PIDを確認した。新しい学習は準備段階で、品質未達・未採用、追加比較/量子化/公開は範囲外。
+
+最終更新: 2026-10-10 JST。**計画128の限定Chat-first診断を明示依頼で再開。Baseは未完成・未採用。元10Bの保全と専用入口の実装、CPU24tests、masked batch32の選定、CUDA全state resume gateが完了。学習前Baseのmatched Chat評価を実行中。** [実行記録129](129_chat_first_sft_execution.md)。後続のplanning-only記録は今回の再開前の履歴。
 
 ## 最新のChat-first計画
 

@@ -1,5 +1,7 @@
 # Windows / WSL 引継ぎ
 
+2026-10-10 実行再開: ユーザーの「5まで進めてください」により128の限定Chat-first診断を再開した。専用入口が実装され、CPU24tests、実batch32、CUDA resume gateが完了。[実行記録129](129_chat_first_sft_execution.md)と実job/PIDを先に確認する。後続の「計画まで」「予定scriptは存在しない」は再開前の記録で、現在の禁止・不存在の証拠ではない。
+
 最終更新: 2026-10-10 JST。**学習・GPU診断・データ準備は一時停止。最新依頼はChat-first診断の計画作成までで、実行の再開指示ではない。** [状態](autonomous_status.md)、[結果123](123_base_teacher_decay_2b_results.md)、[最新計画128](128_chat_first_sft_plan.md)を先に読む。Base復旧を選ぶ場合は[計画124](124_base_recovery_plan.md)。
 
 128では元WebUI10Bを保全し、既存RealPersonaChat TRAINから1条件・最大3周の直接SFTを提案した。親checkpoint SHAは下記元UI記録と同じ。既存 `run_chat_sft.py` /batch probe/stage評価の採用済みBase gateを無効化せず、別の診断入口を先に実装する必要がある。予定scriptはまだ存在せず、実行commandとして扱わない。次の実行は明示的な再開待ちで、今回はWSLへcopy・process診断・data準備・GPU実行をしていない。
