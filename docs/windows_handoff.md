@@ -1,6 +1,8 @@
 # Windows / WSL 引継ぎ
 
-最終更新: 2026-10-09 JST。**学習・研究実行は一時停止。今回のモデル保存・公開は学習の再開指示ではない。** [状態](autonomous_status.md)、[結果123](123_base_teacher_decay_2b_results.md)、[計画124](124_base_recovery_plan.md)を先に読む。
+最終更新: 2026-10-10 JST。**学習・GPU診断・データ準備は一時停止。今回の参考モデル・既存証拠の調査は学習の再開指示ではない。** [状態](autonomous_status.md)、[結果123](123_base_teacher_decay_2b_results.md)、[計画124](124_base_recovery_plan.md)を先に読む。
+
+[調査127](127_rebuild_investigation.md)と[固定公開資料](../reports/investigation/rebuild_20261010/README.md)を追加した。取得したコードは資料として保持し、実行コピーやモデルへ取り込んでいない。元source/weights/Tokenizer/UI・WSL環境は変更していない。GitHubの今回のreadは匿名404・既存gh認証401で確認できず、local `8f50c47`を調査開始時の正本とした。remote状態を推測しない。今回の調査にpush・外部公開の許可は含まない。
 
 ## 将来確認するためのモデル保存版
 

@@ -7,6 +7,7 @@
 これまでの成果と失敗は、将来の改善検討に使えるよう保存しています。
 
 - [調査・検証・学習の全体記録](docs/125_project_retrospective.md)：何を試し、何が改善し、何が解決しなかったか。
+- [作り直す前の調査](docs/127_rebuild_investigation.md)：Akebono-10M-chatとの比較、前回の失敗原因と未確定事項、再構築の順序。
 - [詳細な実験台帳](docs/retrospective/README.md)：保存済み報告の数値・設定・失敗・採否と原記録へのリンク。
 - [現在の状態](docs/autonomous_status.md) / [文書一覧](docs/README.md)。
 
