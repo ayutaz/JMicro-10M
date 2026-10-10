@@ -30,6 +30,20 @@ CPU preflightで2,688 TRAIN会話、40,366 windows/周、633,185 Assistant教師
 
 独立CUDA resume gateは完了・exit0。Windows worker35016、WSL実PID131049 / 同boot / start_ticks24398154、driver SHA256 `a6563575468098500b798760d7f464ee5b7a29cea364621ee21531892d03d145`。GPU21.418秒、連続4更新と2更新→保存→再開2更新のmodel/optimizer/scheduler/RNG/sampler/counters/消費列/履歴等19checksすべて一致。gate stateを本学習へ引き継がない。これらは終端までの観察であり、将来の稼働は実PID/identityとjobを再確認する。
 
-学習前Baseのmatched Chat評価をWindows worker33892から開始した。次はその全219応答を取得し、fresh SFTを最大3周、checkpoint群の全評価・内容確認へ進む。probe/gate/Base対照を学習量へ加えない。各stageの完了後に記録を追記する。
+学習前Baseのmatched Chat評価はWindows worker33892 / WSL実PID131340、start_ticks24402896から実行し、219応答を取得・exit0で終了。全219件の内容notesをCodex非blindで確認した。無抑制80は履歴・生成token IDs・raw bytesが標準条件と完全一致したため、確認済みの同一内容採点を明示的に再利用し、別々の219 judgmentsとしてraw reviewerで検証した。
+
+| Chat形式での元10B対照 | 結果 |
+|---|---:|
+| 固定80・文法2 | 2/80 |
+| 固定80・文法2かつ関連性2 | 0/80 |
+| 固定80・EOT/EOS停止 | 4/80（EOT0、EOS4） |
+| 固定80・反復 | 56/80 |
+| 固定80・raw Unicode失敗 | 1/80 |
+| 自生成履歴・最終文脈2 | 0/24 |
+| 自生成履歴・全turn停止 | 1/59 |
+
+これは元のuntagged Base評価ではなく、未学習のChat形式によるmatched対照。過去のBase生成の文法件数と同じ指標として比較しない。自生成した京都や青い傘の返答へ固定され、後続の訂正を取り込まない例がある。既存DEV screenは不合格。
+
+本SFTをWindows worker26416から開始した。実jobのidentity・metrics・checkpointを正とし、最大3周の終了後にepoch1/2/3の同条件評価と全内容確認を行う。probe/gate/Base対照を学習量へ加えない。中間lossの改善を会話品質改善と呼ばない。各stageの完了後に記録を追記する。
 
 今の準備・速度測定は会話品質の証拠ではなく、Base/Chatは未採用。学習・最終結果・全内容採点・停止報告は未完了。
