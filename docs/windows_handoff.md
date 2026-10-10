@@ -1,13 +1,14 @@
 # Windows / WSL 引継ぎ
 
-2026-10-10 実行再開: ユーザーの「5まで進めてください」により128の限定Chat-first診断を再開した。専用入口が実装され、CPU24tests、実batch32、CUDA resume gateが完了。[実行記録129](129_chat_first_sft_execution.md)と実job/PIDを先に確認する。後続の「計画まで」「予定scriptは存在しない」は再開前の記録で、現在の禁止・不存在の証拠ではない。
+最終更新: 2026-10-10 JST。**計画128の限定Chat-first診断の5段階は完了・不合格終了。学習・研究実行は停止中。Base/Chat未採用。** [状態](autonomous_status.md)、[実行・結果129](129_chat_first_sft_execution.md)、[完了監査](../reports/phase7/chat-first-sft-20261010/completion.json)を先に読む。Base復旧を選ぶ場合の[計画124](124_base_recovery_plan.md)は未再開。
 
-最終更新: 2026-10-10 JST。**学習・GPU診断・データ準備は一時停止。最新依頼はChat-first診断の計画作成までで、実行の再開指示ではない。** [状態](autonomous_status.md)、[結果123](123_base_teacher_decay_2b_results.md)、[最新計画128](128_chat_first_sft_plan.md)を先に読む。Base復旧を選ぶ場合は[計画124](124_base_recovery_plan.md)。
+元WebUI10Bからfresh AdamWでSFTを3周、1,899,555 Assistant+EOT教師tokens・121,098応答・3,785更新まで実施した。元採用gateを変更せず専用診断入口を使用。1/2/3周の全stateはWSLの reports/phase7/chat-first-sft-20261010/ に保存し、親10B・Tokenizer・モデル構成は保全。Gitに重みや教材は入れない。config、job、metrics、training_audit、raw、全notes、paired比較、completionを保存する。
 
-128では元WebUI10Bを保全し、既存RealPersonaChat TRAINから1条件・最大3周の直接SFTを提案した。親checkpoint SHAは下記元UI記録と同じ。既存 `run_chat_sft.py` /batch probe/stage評価の採用済みBase gateを無効化せず、別の診断入口を先に実装する必要がある。予定scriptはまだ存在せず、実行commandとして扱わない。次の実行は明示的な再開待ちで、今回はWSLへcopy・process診断・data準備・GPU実行をしていない。
+全4条件876応答を確認し、3周候補も内容17/80・最終文脈2/24・自生成停止51/59で事前基準未達。sampling・Base保持・候補とのローカル5会話は合格候補なしの条件により省略。実装した診断CLIはcompile確認だけでGPU未実行。保持・独立seed・人間blind・fullDEV/TESTは完了扱いにしない。追加実験・量子化・公開へ進まない。完了runを再起動しない。
 
-[調査127](127_rebuild_investigation.md)と[固定公開資料](../reports/investigation/rebuild_20261010/README.md)を追加した。取得したコードは資料として保持し、実行コピーやモデルへ取り込んでいない。元source/weights/Tokenizer/UI・WSL環境は変更していない。GitHubの今回のreadは匿名404・既存gh認証401で確認できず、local `8f50c47`を調査開始時の正本とした。remote状態を推測しない。今回の調査にpush・外部公開の許可は含まない。
+元UIは終端に元10Bへ復帰し、HTTP親SHA・busy=falseと実processを確認した。保存済みPIDを将来の生存証拠にせず、reports/local/webui/server.json と実PID/boot/start・HTTPを再確認する。計画128の「入口未実装・学習0」は作成時点の履歴。
 
+[調査127](127_rebuild_investigation.md)の公開資料は参照用で、モデルへ移植していない。今回の診断にGitHub push・外部公開は含まない。既存remote認証の401を同じ条件で再試行しない。
 ## 将来確認するためのモデル保存版
 
 [JMicro-10M-research-archive](https://huggingface.co/japanese-data-analyze/JMicro-10M-research-archive)へ主要3系列をpublic / gated=manualで保存済み。revision `853d52d2323653331b610249912fbe25615615fc`。native safetensors・共通Tokenizer・optimizer/scheduler/RNG等の数値状態・実装/設定/文書/評価metadataがある。データセットとsamplerは含めず、元checkpointの完全な代替ではない。[保存内容・uv読み込み手順126](126_model_archive.md)、[全公開fileのhash照合report](../reports/publication/model_archive_20261009.json)。
@@ -18,7 +19,7 @@
 
 ## 固定方針と実行範囲
 
-10Mのサイズ維持がユーザーの優先条件。現在10,001,152 parameters、既存9.5M〜10.1Mの総parameter予算を保ち、大型化や大型モデル比較を復旧・改善の既定作業にしない。元の日本語Base品質基準を維持する。最新の128はdirect SFTの量・recipe・評価・停止を提案したが、安定batch・実行configは未凍結。文書更新から実装/学習/診断/data準備へ進まない。診断完了後は結果報告で停止し、Base復旧を選ぶ場合の124も保持する。
+10Mのサイズ維持がユーザーの優先条件。現在10,001,152 parameters、既存9.5M〜10.1Mの総parameter予算を保ち、大型化や大型モデル比較を復旧・改善の既定作業にしない。元の日本語Base品質基準を維持する。128のdirect SFTは実測batch32・config凍結・3周・matched全内容評価まで完了し、全候補不合格で終了。結果記録で停止し、Base復旧を選ぶ場合の124も保持する。
 
 ## 正本と保存場所
 

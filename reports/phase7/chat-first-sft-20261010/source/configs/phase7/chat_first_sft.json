@@ -1,0 +1,104 @@
+{
+  "purpose": "chat_first_diagnostic",
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "protected_test_used": false,
+  "route": "direct-sft",
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "tokenizer": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/phase2/4096/tokenizer.model",
+    "sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+  },
+  "data_directory": "/home/aihub_ubuntu/jmicro-data/phase7/real-persona-pilot-20261006",
+  "data_manifest_sha256": "1ad9f04c0b7d43c4fc253c7cdc8057e9a09d7ef34b9073e53d972aeef278e0ee",
+  "train_records": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase7/real-persona-pilot-20261006/train.jsonl",
+    "sha256": "4b062f827e5d33e178959720f927e42f6606ff6412cbe1ec46b6e8740b255d60"
+  },
+  "dev_records": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase7/real-persona-pilot-20261006/dev.jsonl",
+    "sha256": "6074afd2ca787615c83f83ff5e356bcac7cbe6d752947357639c2d54b10cef92"
+  },
+  "dialogue_binding": "d5676756d9f72e5c4278528bbb4f9e98eec2c3f0d05cc665a0935369501fd549",
+  "series_budget": 30567471,
+  "output": "reports/phase7/chat-first-sft-20261010",
+  "GPU_budget_seconds": 4200,
+  "training_GPU_budget_seconds": 3600,
+  "resume_GPU_budget_seconds": 600,
+  "total_experiment_GPU_budget_seconds": 21600,
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "source_sha256": {
+    "scripts/run_chat_sft.py": "98b725b943f9a0aaf7eae49918573fbfe45dcd84401d86b282d311373dc71c6b",
+    "src/jmicro/chat_training.py": "c816cd8386f8db4c65adc1125407dad3f2c26ed8c77d7a2c313f5611a42dd826",
+    "src/jmicro/assistant_sampler.py": "a774998a14f4adfdc6598cf23ae82630e3b22220641c3f83fa29a38f79d9022c",
+    "scripts/run_chat_sft.ps1": "5ec046ca54d2dfb0eccf5805b1e5761413dc88e6f633d935e47dd73779b2955d",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f",
+    "scripts/run_amount_learning_comparison.py": "7d7cb24045533e55a0d72b85aaedf66c9e14e84d8b42221fb682a106ccb31767",
+    "scripts/run_eos_short_pilot.py": "7a381414bdea5b24bbbbf7532f04db743cff948fa47f60e95f65019af2d3ec3d",
+    "scripts/review_eos_5b_finish.py": "483d0bd97ebc5130fd7fe3104cfd5f4f4ee8c688b5bd2c8a03108018395eba46",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "scripts/require_adopted_base.py": "ca18be5a3cbc950fa0f385cbd6742a133c175b414a625b8eb60212855397df98",
+    "scripts/run_dialogue_midtraining.py": "aead0c8d0d035befa998a22ecccdabec29a9a2a30e69ac88f0850e06b5ab92a2",
+    "src/jmicro/dialogue_training.py": "98a87f22b1c0d1117858a8efecff610d1b60bda203497ca76b94b82c21794882",
+    "scripts/chat_batch_evidence.py": "615adc7202ca83aee3b09fba6bba865d8a82bfe7814e8afc97d7100ecad96856",
+    "scripts/run_chat_first_sft.py": "ed965125ffedec3d79f2d6b99d042d5a40f859d003ee5a5108925e76da272f0a",
+    "scripts/run_chat_first_sft.ps1": "d7ef7c3f80d4f63cec926ac019fa5f14a7a914586c10a587a935b342ff050389",
+    "scripts/chat_first_contract.py": "460d365e4c8db2476fde6ecb89d0f887335e22a89eebea5fcdaf77fb268ccb88"
+  },
+  "evaluation_sha256": {
+    "eval/chat.jsonl": "86ed01af44926370bbe2b863d6984dd00358dbb88b21a02cf124e7c388b67a86",
+    "eval/base.jsonl": "93cd3a19f3e62c8d30d1660b431a9525823f58b9ceb1bf90c6ecbac2c19292eb",
+    "configs/evaluation/protocol.json": "49e0273d4ae315288c9969a11493bf52d9ba8aa21d51f7ac1c35757f5b3b4ec9"
+  },
+  "spec": {
+    "seed": 42,
+    "context": 1024,
+    "batch": 32,
+    "accumulation": 1,
+    "lr": 0.0001,
+    "weight_decay": 0.01,
+    "warmup": 190,
+    "schedule_updates": 3785,
+    "dtype": "bf16",
+    "compile": false,
+    "backend": "math",
+    "sampler": "document",
+    "training_fast_path": false,
+    "scheduler": "wsd",
+    "deterministic": true
+  },
+  "probe_kind": "sft",
+  "probe_source_sha256": {
+    "scripts/probe_chat_first_batch.py": "208fe76a3439f5684cb732da359e6055774353f51d9126fe8c4e54a956ffd065",
+    "scripts/probe_chat_first_batch.ps1": "923fba9bc93e0d877006c502392c2494ec07511e8b1f400044887770e8bdfe4e",
+    "scripts/chat_batch_evidence.py": "615adc7202ca83aee3b09fba6bba865d8a82bfe7814e8afc97d7100ecad96856"
+  },
+  "candidate_batches": [
+    8,
+    16,
+    32,
+    64
+  ],
+  "probe_warmup_updates": 2,
+  "probe_measured_updates": 6,
+  "probe_GPU_budget_seconds": 600,
+  "probe_output": "reports/phase7/chat-first-sft-20261010-probe",
+  "selection_policy": "existing DEV screen then joint grammar/relevance, context, fewer repeats, earliest checkpoint",
+  "retention_policy": {
+    "maximum_relative_BPB_regression": 0.05,
+    "grammar_score2_must_not_decrease": true,
+    "failures_must_not_increase": true
+  },
+  "batch_evidence": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-first-sft-20261010-probe/batch-report.json",
+    "sha256": "5c9e7b333bee6782b8b7a04d6726e4c5476e14ee34bab75bba719c4e02207fb3"
+  }
+}

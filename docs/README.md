@@ -1,11 +1,8 @@
-# JMicro-10M 文書一覧
+# 文書一覧
 
-最新: ユーザーの「5まで進めてください」に基づき、[計画128](128_chat_first_sft_plan.md)の限定実行を再開。[実行記録129](129_chat_first_sft_execution.md)に保全・実装・tests・実GPU gateと進行状況を保存する。Base/Chat採用は未達。
+最終更新: 2026-10-10 JST。ユーザーの「5まで進めてください」に基づく[Chat-first計画128](128_chat_first_sft_plan.md)の限定実行を完了しました。1条件のSFT3周と全4条件876内容確認・paired比較まで実施し、全候補不合格で停止しています。[実行・結果129](129_chat_first_sft_execution.md)、[完了監査](../reports/phase7/chat-first-sft-20261010/completion.json)。Base/Chatは未完成・未採用。sampling/保持/手動5会話は合格候補なしの事前条件により省略しました。
 
-最終更新: 2026-10-10 JST。最新の累積2B比較と全80評価は完了・不採用。Base未完成、学習・GPU診断・データ準備は一時停止中です。[モデル保存・公開126](126_model_archive.md)は完了。[作り直す前の調査127](127_rebuild_investigation.md)に続き、ユーザーの依頼で[現在のBaseから直接Chat学習を検証する計画128](128_chat_first_sft_plan.md)を追加しました。現在は計画までで、実行していません。
-
-固定方針は10M維持（現10,001,152 parameters、既存9.5M〜10.1M予算）。今の品質を10Mの限界と断定しません。最新の128は元10Bから1条件・最大3周の直接SFTを提案し、実測batchと実行configの凍結は再開後に行います。Base復旧の検討順は124に保持し、大型化・品質基準の緩和は含めません。
-
+10M維持（現10,001,152 parameters、9.5M〜10.1M予算）、元UI・Tokenizer・重み・旧証拠を保全します。追加学習、比較、量子化、公開は未再開。[調査127](127_rebuild_investigation.md)、[Base復旧計画124](124_base_recovery_plan.md)、[モデル保存126](126_model_archive.md)も保持します。
 ## 読む順序
 
 最新の[Chat-first SFT計画128](128_chat_first_sft_plan.md): 親モデル、準備済み会話の正確な量、Assistant本文+EOT、専用診断入口、学習前後/自生成履歴/保持の評価、時間上限と停止。従来のBase-first順序に対する限定診断の計画で、Base/Chat採用とは区別します。

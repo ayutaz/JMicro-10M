@@ -1,0 +1,1824 @@
+{
+  "status": "all_four_greedy_conditions_reviewed",
+  "fixed_rule": "DEV screen; no repetition increase; joint, context, fewer repeats, earlier checkpoint",
+  "comparisons": {
+    "epoch1": {
+      "status": "matched_chat_first_dev_comparison_only",
+      "difference_direction": "SFT candidate minus unadopted original10B Base; positive failure differences mean regression",
+      "paired": {
+        "primary": {
+          "grammar_score2": {
+            "point": 0.4,
+            "ci95": [
+              0.2875,
+              0.5125
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "relevance_score2": {
+            "point": 0.175,
+            "ci95": [
+              0.0875,
+              0.2625
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "joint_grammar_relevance": {
+            "point": 0.15,
+            "ci95": [
+              0.075,
+              0.2375
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "context_score2": {
+            "point": 0.175,
+            "ci95": [
+              0.0875,
+              0.2625
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "stop": {
+            "point": 0.7,
+            "ci95": [
+              0.5875,
+              0.8
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "repetition": {
+            "point": -0.4375,
+            "ci95": [
+              -0.575,
+              -0.3
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "empty": {
+            "point": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "role_leak": {
+            "point": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "unicode_failure": {
+            "point": -0.0125,
+            "ci95": [
+              -0.0375,
+              0.0
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          }
+        },
+        "own_history_final24": {
+          "grammar_score2": {
+            "point": 0.16666666666666666,
+            "ci95": [
+              -0.041666666666666664,
+              0.3343749999999943
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "relevance_score2": {
+            "point": 0.08333333333333333,
+            "ci95": [
+              0.0,
+              0.20833333333333334
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "joint_grammar_relevance": {
+            "point": 0.08333333333333333,
+            "ci95": [
+              0.0,
+              0.20833333333333334
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "context_score2": {
+            "point": 0.08333333333333333,
+            "ci95": [
+              0.0,
+              0.20833333333333334
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "stop": {
+            "point": 0.4583333333333333,
+            "ci95": [
+              0.20833333333333334,
+              0.6666666666666666
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "repetition": {
+            "point": -0.3333333333333333,
+            "ci95": [
+              -0.5833333333333334,
+              -0.041666666666666664
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "empty": {
+            "point": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "role_leak": {
+            "point": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "unicode_failure": {
+            "point": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          }
+        }
+      },
+      "summaries": {
+        "base": {
+          "primary": {
+            "responses": 80,
+            "grammar_score2": 2,
+            "relevance_score2": 1,
+            "context_score2": 1,
+            "joint_grammar_relevance_score2": 0,
+            "joint_grammar_relevance_fraction": 0.0,
+            "response_characters": {
+              "7": 1,
+              "8": 1,
+              "9": 1,
+              "11": 1,
+              "50": 1,
+              "64": 8,
+              "65": 4,
+              "66": 2,
+              "67": 2,
+              "68": 2,
+              "69": 3,
+              "70": 1,
+              "71": 4,
+              "72": 3,
+              "73": 5,
+              "74": 5,
+              "75": 4,
+              "76": 1,
+              "77": 5,
+              "78": 2,
+              "79": 4,
+              "80": 1,
+              "81": 1,
+              "82": 1,
+              "83": 1,
+              "84": 1,
+              "85": 4,
+              "87": 2,
+              "89": 2,
+              "90": 1,
+              "92": 1,
+              "93": 1,
+              "97": 2,
+              "103": 1,
+              "106": 1
+            }
+          },
+          "role_control": {
+            "responses": 80,
+            "grammar_score2": 2,
+            "relevance_score2": 1,
+            "context_score2": 1,
+            "joint_grammar_relevance_score2": 0,
+            "joint_grammar_relevance_fraction": 0.0,
+            "response_characters": {
+              "7": 1,
+              "8": 1,
+              "9": 1,
+              "11": 1,
+              "50": 1,
+              "64": 8,
+              "65": 4,
+              "66": 2,
+              "67": 2,
+              "68": 2,
+              "69": 3,
+              "70": 1,
+              "71": 4,
+              "72": 3,
+              "73": 5,
+              "74": 5,
+              "75": 4,
+              "76": 1,
+              "77": 5,
+              "78": 2,
+              "79": 4,
+              "80": 1,
+              "81": 1,
+              "82": 1,
+              "83": 1,
+              "84": 1,
+              "85": 4,
+              "87": 2,
+              "89": 2,
+              "90": 1,
+              "92": 1,
+              "93": 1,
+              "97": 2,
+              "103": 1,
+              "106": 1
+            }
+          },
+          "own_history_final24": {
+            "responses": 24,
+            "grammar_score2": 1,
+            "relevance_score2": 0,
+            "context_score2": 0,
+            "joint_grammar_relevance_score2": 0,
+            "joint_grammar_relevance_fraction": 0.0,
+            "response_characters": {
+              "11": 1,
+              "64": 1,
+              "66": 1,
+              "68": 1,
+              "69": 1,
+              "70": 1,
+              "71": 2,
+              "72": 2,
+              "74": 1,
+              "76": 1,
+              "77": 4,
+              "78": 1,
+              "79": 1,
+              "82": 1,
+              "84": 1,
+              "88": 1,
+              "89": 1,
+              "92": 1,
+              "94": 1
+            }
+          },
+          "own_history_all_turns": {
+            "responses": 59,
+            "grammar_score2": 1,
+            "relevance_score2": 0,
+            "context_score2": 0,
+            "joint_grammar_relevance_score2": 0,
+            "joint_grammar_relevance_fraction": 0.0,
+            "response_characters": {
+              "11": 1,
+              "64": 2,
+              "65": 1,
+              "66": 2,
+              "68": 4,
+              "69": 1,
+              "70": 2,
+              "71": 6,
+              "72": 3,
+              "73": 1,
+              "74": 3,
+              "75": 1,
+              "76": 3,
+              "77": 8,
+              "78": 1,
+              "79": 2,
+              "80": 2,
+              "81": 2,
+              "82": 3,
+              "84": 3,
+              "86": 1,
+              "88": 2,
+              "89": 1,
+              "91": 1,
+              "92": 1,
+              "94": 2
+            }
+          }
+        },
+        "candidate": {
+          "primary": {
+            "responses": 80,
+            "grammar_score2": 34,
+            "relevance_score2": 15,
+            "context_score2": 15,
+            "joint_grammar_relevance_score2": 12,
+            "joint_grammar_relevance_fraction": 0.15,
+            "response_characters": {
+              "7": 1,
+              "8": 3,
+              "9": 3,
+              "10": 4,
+              "11": 7,
+              "12": 7,
+              "13": 2,
+              "14": 3,
+              "15": 2,
+              "16": 4,
+              "17": 5,
+              "18": 3,
+              "19": 2,
+              "20": 1,
+              "21": 3,
+              "22": 3,
+              "23": 1,
+              "24": 1,
+              "25": 1,
+              "27": 1,
+              "35": 2,
+              "46": 1,
+              "64": 10,
+              "65": 1,
+              "67": 1,
+              "76": 1,
+              "78": 2,
+              "83": 1,
+              "86": 2,
+              "96": 1,
+              "144": 1
+            }
+          },
+          "role_control": {
+            "responses": 80,
+            "grammar_score2": 34,
+            "relevance_score2": 15,
+            "context_score2": 15,
+            "joint_grammar_relevance_score2": 12,
+            "joint_grammar_relevance_fraction": 0.15,
+            "response_characters": {
+              "7": 1,
+              "8": 3,
+              "9": 3,
+              "10": 4,
+              "11": 7,
+              "12": 7,
+              "13": 2,
+              "14": 3,
+              "15": 2,
+              "16": 4,
+              "17": 5,
+              "18": 3,
+              "19": 2,
+              "20": 1,
+              "21": 3,
+              "22": 3,
+              "23": 1,
+              "24": 1,
+              "25": 1,
+              "27": 1,
+              "35": 2,
+              "46": 1,
+              "64": 10,
+              "65": 1,
+              "67": 1,
+              "76": 1,
+              "78": 2,
+              "83": 1,
+              "86": 2,
+              "96": 1,
+              "144": 1
+            }
+          },
+          "own_history_final24": {
+            "responses": 24,
+            "grammar_score2": 5,
+            "relevance_score2": 2,
+            "context_score2": 2,
+            "joint_grammar_relevance_score2": 2,
+            "joint_grammar_relevance_fraction": 0.08333333333333333,
+            "response_characters": {
+              "9": 2,
+              "12": 1,
+              "13": 1,
+              "16": 1,
+              "17": 1,
+              "18": 1,
+              "23": 1,
+              "24": 1,
+              "25": 2,
+              "30": 1,
+              "64": 8,
+              "71": 1,
+              "80": 1,
+              "86": 2
+            }
+          },
+          "own_history_all_turns": {
+            "responses": 59,
+            "grammar_score2": 25,
+            "relevance_score2": 5,
+            "context_score2": 4,
+            "joint_grammar_relevance_score2": 5,
+            "joint_grammar_relevance_fraction": 0.0847457627118644,
+            "response_characters": {
+              "6": 2,
+              "7": 1,
+              "8": 2,
+              "9": 3,
+              "10": 1,
+              "11": 1,
+              "12": 5,
+              "13": 3,
+              "14": 3,
+              "15": 2,
+              "16": 4,
+              "17": 1,
+              "18": 1,
+              "20": 1,
+              "22": 1,
+              "23": 1,
+              "24": 1,
+              "25": 2,
+              "30": 1,
+              "36": 1,
+              "64": 15,
+              "70": 1,
+              "71": 2,
+              "72": 1,
+              "80": 1,
+              "86": 2
+            }
+          }
+        }
+      },
+      "dev_screens": {
+        "base": false,
+        "candidate": false
+      },
+      "statistical_note": "Family-paired descriptive bootstrap; multiple comparisons uncorrected, not independent confirmation",
+      "reviewer": {
+        "kind": "codex_nonblind",
+        "identity": "Codex / 2026-10-10 Chat-first diagnostic",
+        "independent_human": false,
+        "blind": false
+      },
+      "independent_human_blind_evidence_verified": false,
+      "generation_policy": {
+        "decoding": "greedy",
+        "evaluation_seed": 42
+      },
+      "sampling_comparison_scope": "Fixed greedy comparison",
+      "protected_test_used": false,
+      "Chat_adopted": false,
+      "requested_five_steps_complete": false,
+      "pending": [
+        "matched Base/mid-training/direct-SFT comparison",
+        "Base fluency retention",
+        "multiple-seed sampling",
+        "blind human packet/provenance and reviewer agreement",
+        "final recipe frozen then protected test"
+      ],
+      "Base_adopted": false,
+      "evidence": {
+        "base": {
+          "evaluation_sha256": "5cd46c1ab457240aa78e1e58528fd76d2139a31fe5751bc9452c28956e4bc9f3",
+          "review_sha256": "8297091a35c60011c6dd46ddf28dd6fac65425771888d0e3a510778b71c05913"
+        },
+        "candidate": {
+          "evaluation_sha256": "699a89f8258991fc996d3883a3e11ceb1104701ec409670f0eced6e372c9a4a8",
+          "review_sha256": "05f7923eff7a405f4369ddd4aec21f955698800f2ed7c465088981b22cfade43"
+        }
+      }
+    },
+    "epoch2": {
+      "status": "matched_chat_first_dev_comparison_only",
+      "difference_direction": "SFT candidate minus unadopted original10B Base; positive failure differences mean regression",
+      "paired": {
+        "primary": {
+          "grammar_score2": {
+            "point": 0.5,
+            "ci95": [
+              0.3875,
+              0.625
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "relevance_score2": {
+            "point": 0.1625,
+            "ci95": [
+              0.075,
+              0.25
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "joint_grammar_relevance": {
+            "point": 0.15,
+            "ci95": [
+              0.075,
+              0.2375
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "context_score2": {
+            "point": 0.1625,
+            "ci95": [
+              0.075,
+              0.25
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "stop": {
+            "point": 0.75,
+            "ci95": [
+              0.65,
+              0.8378124999999983
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "repetition": {
+            "point": -0.5,
+            "ci95": [
+              -0.6375,
+              -0.3625
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "empty": {
+            "point": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "role_leak": {
+            "point": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "unicode_failure": {
+            "point": -0.0125,
+            "ci95": [
+              -0.0375,
+              0.0
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          }
+        },
+        "own_history_final24": {
+          "grammar_score2": {
+            "point": 0.375,
+            "ci95": [
+              0.20833333333333334,
+              0.5833333333333334
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "relevance_score2": {
+            "point": 0.08333333333333333,
+            "ci95": [
+              0.0,
+              0.20833333333333334
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "joint_grammar_relevance": {
+            "point": 0.041666666666666664,
+            "ci95": [
+              0.0,
+              0.125
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "context_score2": {
+            "point": 0.08333333333333333,
+            "ci95": [
+              0.0,
+              0.20833333333333334
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "stop": {
+            "point": 0.6666666666666666,
+            "ci95": [
+              0.4583333333333333,
+              0.8333333333333334
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "repetition": {
+            "point": -0.5416666666666666,
+            "ci95": [
+              -0.75,
+              -0.3333333333333333
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "empty": {
+            "point": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "role_leak": {
+            "point": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "unicode_failure": {
+            "point": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          }
+        }
+      },
+      "summaries": {
+        "base": {
+          "primary": {
+            "responses": 80,
+            "grammar_score2": 2,
+            "relevance_score2": 1,
+            "context_score2": 1,
+            "joint_grammar_relevance_score2": 0,
+            "joint_grammar_relevance_fraction": 0.0,
+            "response_characters": {
+              "7": 1,
+              "8": 1,
+              "9": 1,
+              "11": 1,
+              "50": 1,
+              "64": 8,
+              "65": 4,
+              "66": 2,
+              "67": 2,
+              "68": 2,
+              "69": 3,
+              "70": 1,
+              "71": 4,
+              "72": 3,
+              "73": 5,
+              "74": 5,
+              "75": 4,
+              "76": 1,
+              "77": 5,
+              "78": 2,
+              "79": 4,
+              "80": 1,
+              "81": 1,
+              "82": 1,
+              "83": 1,
+              "84": 1,
+              "85": 4,
+              "87": 2,
+              "89": 2,
+              "90": 1,
+              "92": 1,
+              "93": 1,
+              "97": 2,
+              "103": 1,
+              "106": 1
+            }
+          },
+          "role_control": {
+            "responses": 80,
+            "grammar_score2": 2,
+            "relevance_score2": 1,
+            "context_score2": 1,
+            "joint_grammar_relevance_score2": 0,
+            "joint_grammar_relevance_fraction": 0.0,
+            "response_characters": {
+              "7": 1,
+              "8": 1,
+              "9": 1,
+              "11": 1,
+              "50": 1,
+              "64": 8,
+              "65": 4,
+              "66": 2,
+              "67": 2,
+              "68": 2,
+              "69": 3,
+              "70": 1,
+              "71": 4,
+              "72": 3,
+              "73": 5,
+              "74": 5,
+              "75": 4,
+              "76": 1,
+              "77": 5,
+              "78": 2,
+              "79": 4,
+              "80": 1,
+              "81": 1,
+              "82": 1,
+              "83": 1,
+              "84": 1,
+              "85": 4,
+              "87": 2,
+              "89": 2,
+              "90": 1,
+              "92": 1,
+              "93": 1,
+              "97": 2,
+              "103": 1,
+              "106": 1
+            }
+          },
+          "own_history_final24": {
+            "responses": 24,
+            "grammar_score2": 1,
+            "relevance_score2": 0,
+            "context_score2": 0,
+            "joint_grammar_relevance_score2": 0,
+            "joint_grammar_relevance_fraction": 0.0,
+            "response_characters": {
+              "11": 1,
+              "64": 1,
+              "66": 1,
+              "68": 1,
+              "69": 1,
+              "70": 1,
+              "71": 2,
+              "72": 2,
+              "74": 1,
+              "76": 1,
+              "77": 4,
+              "78": 1,
+              "79": 1,
+              "82": 1,
+              "84": 1,
+              "88": 1,
+              "89": 1,
+              "92": 1,
+              "94": 1
+            }
+          },
+          "own_history_all_turns": {
+            "responses": 59,
+            "grammar_score2": 1,
+            "relevance_score2": 0,
+            "context_score2": 0,
+            "joint_grammar_relevance_score2": 0,
+            "joint_grammar_relevance_fraction": 0.0,
+            "response_characters": {
+              "11": 1,
+              "64": 2,
+              "65": 1,
+              "66": 2,
+              "68": 4,
+              "69": 1,
+              "70": 2,
+              "71": 6,
+              "72": 3,
+              "73": 1,
+              "74": 3,
+              "75": 1,
+              "76": 3,
+              "77": 8,
+              "78": 1,
+              "79": 2,
+              "80": 2,
+              "81": 2,
+              "82": 3,
+              "84": 3,
+              "86": 1,
+              "88": 2,
+              "89": 1,
+              "91": 1,
+              "92": 1,
+              "94": 2
+            }
+          }
+        },
+        "candidate": {
+          "primary": {
+            "responses": 80,
+            "grammar_score2": 42,
+            "relevance_score2": 14,
+            "context_score2": 14,
+            "joint_grammar_relevance_score2": 12,
+            "joint_grammar_relevance_fraction": 0.15,
+            "response_characters": {
+              "5": 1,
+              "6": 1,
+              "7": 5,
+              "8": 2,
+              "9": 6,
+              "10": 5,
+              "12": 5,
+              "13": 3,
+              "14": 2,
+              "15": 4,
+              "16": 1,
+              "17": 4,
+              "18": 6,
+              "19": 3,
+              "20": 2,
+              "21": 2,
+              "22": 2,
+              "23": 2,
+              "25": 1,
+              "26": 1,
+              "27": 2,
+              "32": 1,
+              "33": 1,
+              "34": 1,
+              "37": 1,
+              "64": 9,
+              "73": 1,
+              "86": 3,
+              "91": 1,
+              "95": 1,
+              "97": 1
+            }
+          },
+          "role_control": {
+            "responses": 80,
+            "grammar_score2": 42,
+            "relevance_score2": 14,
+            "context_score2": 14,
+            "joint_grammar_relevance_score2": 12,
+            "joint_grammar_relevance_fraction": 0.15,
+            "response_characters": {
+              "5": 1,
+              "6": 1,
+              "7": 5,
+              "8": 2,
+              "9": 6,
+              "10": 5,
+              "12": 5,
+              "13": 3,
+              "14": 2,
+              "15": 4,
+              "16": 1,
+              "17": 4,
+              "18": 6,
+              "19": 3,
+              "20": 2,
+              "21": 2,
+              "22": 2,
+              "23": 2,
+              "25": 1,
+              "26": 1,
+              "27": 2,
+              "32": 1,
+              "33": 1,
+              "34": 1,
+              "37": 1,
+              "64": 9,
+              "73": 1,
+              "86": 3,
+              "91": 1,
+              "95": 1,
+              "97": 1
+            }
+          },
+          "own_history_final24": {
+            "responses": 24,
+            "grammar_score2": 10,
+            "relevance_score2": 2,
+            "context_score2": 2,
+            "joint_grammar_relevance_score2": 1,
+            "joint_grammar_relevance_fraction": 0.041666666666666664,
+            "response_characters": {
+              "3": 1,
+              "9": 2,
+              "10": 1,
+              "12": 1,
+              "13": 2,
+              "14": 2,
+              "17": 2,
+              "18": 1,
+              "20": 1,
+              "21": 2,
+              "23": 1,
+              "29": 1,
+              "64": 5,
+              "66": 1,
+              "79": 1
+            }
+          },
+          "own_history_all_turns": {
+            "responses": 59,
+            "grammar_score2": 32,
+            "relevance_score2": 8,
+            "context_score2": 6,
+            "joint_grammar_relevance_score2": 7,
+            "joint_grammar_relevance_fraction": 0.11864406779661017,
+            "response_characters": {
+              "3": 1,
+              "6": 1,
+              "7": 1,
+              "8": 5,
+              "9": 4,
+              "10": 3,
+              "11": 2,
+              "12": 1,
+              "13": 5,
+              "14": 5,
+              "15": 2,
+              "17": 3,
+              "18": 3,
+              "19": 1,
+              "20": 1,
+              "21": 2,
+              "23": 1,
+              "29": 1,
+              "64": 12,
+              "66": 1,
+              "68": 1,
+              "70": 1,
+              "72": 1,
+              "79": 1
+            }
+          }
+        }
+      },
+      "dev_screens": {
+        "base": false,
+        "candidate": false
+      },
+      "statistical_note": "Family-paired descriptive bootstrap; multiple comparisons uncorrected, not independent confirmation",
+      "reviewer": {
+        "kind": "codex_nonblind",
+        "identity": "Codex / 2026-10-10 Chat-first diagnostic",
+        "independent_human": false,
+        "blind": false
+      },
+      "independent_human_blind_evidence_verified": false,
+      "generation_policy": {
+        "decoding": "greedy",
+        "evaluation_seed": 42
+      },
+      "sampling_comparison_scope": "Fixed greedy comparison",
+      "protected_test_used": false,
+      "Chat_adopted": false,
+      "requested_five_steps_complete": false,
+      "pending": [
+        "matched Base/mid-training/direct-SFT comparison",
+        "Base fluency retention",
+        "multiple-seed sampling",
+        "blind human packet/provenance and reviewer agreement",
+        "final recipe frozen then protected test"
+      ],
+      "Base_adopted": false,
+      "evidence": {
+        "base": {
+          "evaluation_sha256": "5cd46c1ab457240aa78e1e58528fd76d2139a31fe5751bc9452c28956e4bc9f3",
+          "review_sha256": "8297091a35c60011c6dd46ddf28dd6fac65425771888d0e3a510778b71c05913"
+        },
+        "candidate": {
+          "evaluation_sha256": "97a61f41907b480dbe4325b4f4ca6ad8b1474090accfe0123b5f8e3a1047bac1",
+          "review_sha256": "4b911744c67909b17cd6d19451d650388f43dd2f98cb015875c340f3014393b9"
+        }
+      }
+    },
+    "epoch3": {
+      "status": "matched_chat_first_dev_comparison_only",
+      "difference_direction": "SFT candidate minus unadopted original10B Base; positive failure differences mean regression",
+      "paired": {
+        "primary": {
+          "grammar_score2": {
+            "point": 0.7,
+            "ci95": [
+              0.6,
+              0.8
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "relevance_score2": {
+            "point": 0.2125,
+            "ci95": [
+              0.125,
+              0.3125
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "joint_grammar_relevance": {
+            "point": 0.2125,
+            "ci95": [
+              0.125,
+              0.3125
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "context_score2": {
+            "point": 0.2125,
+            "ci95": [
+              0.125,
+              0.3125
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "stop": {
+            "point": 0.9125,
+            "ci95": [
+              0.8496875,
+              0.9625
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "repetition": {
+            "point": -0.65,
+            "ci95": [
+              -0.7625,
+              -0.55
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "empty": {
+            "point": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "role_leak": {
+            "point": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "unicode_failure": {
+            "point": -0.0125,
+            "ci95": [
+              -0.0375,
+              0.0
+            ],
+            "units": 80,
+            "examples": 80,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          }
+        },
+        "own_history_final24": {
+          "grammar_score2": {
+            "point": 0.5,
+            "ci95": [
+              0.2916666666666667,
+              0.7083333333333334
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "relevance_score2": {
+            "point": 0.08333333333333333,
+            "ci95": [
+              0.0,
+              0.20833333333333334
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "joint_grammar_relevance": {
+            "point": 0.041666666666666664,
+            "ci95": [
+              0.0,
+              0.125
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "context_score2": {
+            "point": 0.08333333333333333,
+            "ci95": [
+              0.0,
+              0.20833333333333334
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "stop": {
+            "point": 0.875,
+            "ci95": [
+              0.75,
+              1.0
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "repetition": {
+            "point": -0.6666666666666666,
+            "ci95": [
+              -0.834375,
+              -0.5
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "empty": {
+            "point": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "role_leak": {
+            "point": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          },
+          "unicode_failure": {
+            "point": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "units": 24,
+            "examples": 24,
+            "unit": "family/prompt",
+            "seed": 42,
+            "repetitions": 2000,
+            "note": "cluster resampling; example-weighted ratio; all-identical outcomes yield degenerate bootstrap CI"
+          }
+        }
+      },
+      "summaries": {
+        "base": {
+          "primary": {
+            "responses": 80,
+            "grammar_score2": 2,
+            "relevance_score2": 1,
+            "context_score2": 1,
+            "joint_grammar_relevance_score2": 0,
+            "joint_grammar_relevance_fraction": 0.0,
+            "response_characters": {
+              "7": 1,
+              "8": 1,
+              "9": 1,
+              "11": 1,
+              "50": 1,
+              "64": 8,
+              "65": 4,
+              "66": 2,
+              "67": 2,
+              "68": 2,
+              "69": 3,
+              "70": 1,
+              "71": 4,
+              "72": 3,
+              "73": 5,
+              "74": 5,
+              "75": 4,
+              "76": 1,
+              "77": 5,
+              "78": 2,
+              "79": 4,
+              "80": 1,
+              "81": 1,
+              "82": 1,
+              "83": 1,
+              "84": 1,
+              "85": 4,
+              "87": 2,
+              "89": 2,
+              "90": 1,
+              "92": 1,
+              "93": 1,
+              "97": 2,
+              "103": 1,
+              "106": 1
+            }
+          },
+          "role_control": {
+            "responses": 80,
+            "grammar_score2": 2,
+            "relevance_score2": 1,
+            "context_score2": 1,
+            "joint_grammar_relevance_score2": 0,
+            "joint_grammar_relevance_fraction": 0.0,
+            "response_characters": {
+              "7": 1,
+              "8": 1,
+              "9": 1,
+              "11": 1,
+              "50": 1,
+              "64": 8,
+              "65": 4,
+              "66": 2,
+              "67": 2,
+              "68": 2,
+              "69": 3,
+              "70": 1,
+              "71": 4,
+              "72": 3,
+              "73": 5,
+              "74": 5,
+              "75": 4,
+              "76": 1,
+              "77": 5,
+              "78": 2,
+              "79": 4,
+              "80": 1,
+              "81": 1,
+              "82": 1,
+              "83": 1,
+              "84": 1,
+              "85": 4,
+              "87": 2,
+              "89": 2,
+              "90": 1,
+              "92": 1,
+              "93": 1,
+              "97": 2,
+              "103": 1,
+              "106": 1
+            }
+          },
+          "own_history_final24": {
+            "responses": 24,
+            "grammar_score2": 1,
+            "relevance_score2": 0,
+            "context_score2": 0,
+            "joint_grammar_relevance_score2": 0,
+            "joint_grammar_relevance_fraction": 0.0,
+            "response_characters": {
+              "11": 1,
+              "64": 1,
+              "66": 1,
+              "68": 1,
+              "69": 1,
+              "70": 1,
+              "71": 2,
+              "72": 2,
+              "74": 1,
+              "76": 1,
+              "77": 4,
+              "78": 1,
+              "79": 1,
+              "82": 1,
+              "84": 1,
+              "88": 1,
+              "89": 1,
+              "92": 1,
+              "94": 1
+            }
+          },
+          "own_history_all_turns": {
+            "responses": 59,
+            "grammar_score2": 1,
+            "relevance_score2": 0,
+            "context_score2": 0,
+            "joint_grammar_relevance_score2": 0,
+            "joint_grammar_relevance_fraction": 0.0,
+            "response_characters": {
+              "11": 1,
+              "64": 2,
+              "65": 1,
+              "66": 2,
+              "68": 4,
+              "69": 1,
+              "70": 2,
+              "71": 6,
+              "72": 3,
+              "73": 1,
+              "74": 3,
+              "75": 1,
+              "76": 3,
+              "77": 8,
+              "78": 1,
+              "79": 2,
+              "80": 2,
+              "81": 2,
+              "82": 3,
+              "84": 3,
+              "86": 1,
+              "88": 2,
+              "89": 1,
+              "91": 1,
+              "92": 1,
+              "94": 2
+            }
+          }
+        },
+        "candidate": {
+          "primary": {
+            "responses": 80,
+            "grammar_score2": 58,
+            "relevance_score2": 18,
+            "context_score2": 18,
+            "joint_grammar_relevance_score2": 17,
+            "joint_grammar_relevance_fraction": 0.2125,
+            "response_characters": {
+              "5": 2,
+              "6": 7,
+              "7": 5,
+              "8": 2,
+              "9": 6,
+              "10": 6,
+              "11": 2,
+              "12": 7,
+              "13": 3,
+              "14": 3,
+              "15": 1,
+              "16": 6,
+              "17": 4,
+              "18": 4,
+              "19": 1,
+              "20": 5,
+              "22": 1,
+              "23": 2,
+              "24": 3,
+              "25": 1,
+              "26": 1,
+              "27": 1,
+              "29": 2,
+              "30": 1,
+              "32": 1,
+              "64": 1,
+              "86": 1,
+              "90": 1
+            }
+          },
+          "role_control": {
+            "responses": 80,
+            "grammar_score2": 58,
+            "relevance_score2": 18,
+            "context_score2": 18,
+            "joint_grammar_relevance_score2": 17,
+            "joint_grammar_relevance_fraction": 0.2125,
+            "response_characters": {
+              "5": 2,
+              "6": 7,
+              "7": 5,
+              "8": 2,
+              "9": 6,
+              "10": 6,
+              "11": 2,
+              "12": 7,
+              "13": 3,
+              "14": 3,
+              "15": 1,
+              "16": 6,
+              "17": 4,
+              "18": 4,
+              "19": 1,
+              "20": 5,
+              "22": 1,
+              "23": 2,
+              "24": 3,
+              "25": 1,
+              "26": 1,
+              "27": 1,
+              "29": 2,
+              "30": 1,
+              "32": 1,
+              "64": 1,
+              "86": 1,
+              "90": 1
+            }
+          },
+          "own_history_final24": {
+            "responses": 24,
+            "grammar_score2": 13,
+            "relevance_score2": 2,
+            "context_score2": 2,
+            "joint_grammar_relevance_score2": 1,
+            "joint_grammar_relevance_fraction": 0.041666666666666664,
+            "response_characters": {
+              "5": 1,
+              "9": 3,
+              "10": 1,
+              "11": 2,
+              "12": 3,
+              "13": 2,
+              "14": 3,
+              "15": 2,
+              "18": 2,
+              "21": 1,
+              "31": 1,
+              "32": 1,
+              "64": 2
+            }
+          },
+          "own_history_all_turns": {
+            "responses": 59,
+            "grammar_score2": 36,
+            "relevance_score2": 12,
+            "context_score2": 10,
+            "joint_grammar_relevance_score2": 10,
+            "joint_grammar_relevance_fraction": 0.1694915254237288,
+            "response_characters": {
+              "5": 1,
+              "7": 1,
+              "8": 4,
+              "9": 7,
+              "10": 2,
+              "11": 7,
+              "12": 6,
+              "13": 4,
+              "14": 5,
+              "15": 4,
+              "17": 1,
+              "18": 2,
+              "19": 1,
+              "20": 1,
+              "21": 1,
+              "22": 1,
+              "28": 1,
+              "31": 1,
+              "32": 1,
+              "64": 6,
+              "69": 1,
+              "94": 1
+            }
+          }
+        }
+      },
+      "dev_screens": {
+        "base": false,
+        "candidate": false
+      },
+      "statistical_note": "Family-paired descriptive bootstrap; multiple comparisons uncorrected, not independent confirmation",
+      "reviewer": {
+        "kind": "codex_nonblind",
+        "identity": "Codex / 2026-10-10 Chat-first diagnostic",
+        "independent_human": false,
+        "blind": false
+      },
+      "independent_human_blind_evidence_verified": false,
+      "generation_policy": {
+        "decoding": "greedy",
+        "evaluation_seed": 42
+      },
+      "sampling_comparison_scope": "Fixed greedy comparison",
+      "protected_test_used": false,
+      "Chat_adopted": false,
+      "requested_five_steps_complete": false,
+      "pending": [
+        "matched Base/mid-training/direct-SFT comparison",
+        "Base fluency retention",
+        "multiple-seed sampling",
+        "blind human packet/provenance and reviewer agreement",
+        "final recipe frozen then protected test"
+      ],
+      "Base_adopted": false,
+      "evidence": {
+        "base": {
+          "evaluation_sha256": "5cd46c1ab457240aa78e1e58528fd76d2139a31fe5751bc9452c28956e4bc9f3",
+          "review_sha256": "8297091a35c60011c6dd46ddf28dd6fac65425771888d0e3a510778b71c05913"
+        },
+        "candidate": {
+          "evaluation_sha256": "3599b678916d4f36fbc743bf059633352e6c605166d7ed334b76440ade8a77be",
+          "review_sha256": "c433cdb3a11bbaa2075d7e8c12184f903b48c46622d8b741fc23328081881f93"
+        }
+      }
+    }
+  },
+  "checkpoint_summaries": [
+    {
+      "epoch": 1,
+      "dev_screen_passed": false,
+      "joint": 12,
+      "context": 2,
+      "repetition": 21,
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-first-sft-20261010/checkpoint-00001262.pt",
+        "sha256": "2e5e66bfb260e861c376e8da8570d7d88db62cbe040ffad4294825f19090499f",
+        "update": 1262,
+        "examples": 40384,
+        "Assistant_teachers": 633454,
+        "series_tokens": 10194132
+      },
+      "review_path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-first-sft-20261010-epoch1-chat/greedy/content_review.json"
+    },
+    {
+      "epoch": 2,
+      "dev_screen_passed": false,
+      "joint": 12,
+      "context": 2,
+      "repetition": 16,
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-first-sft-20261010/checkpoint-00002523.pt",
+        "sha256": "9bdbe47bf3b074f0666512d50b9b0d6895a8d92136884674fd304e4dbdad99d5",
+        "update": 2523,
+        "examples": 80736,
+        "Assistant_teachers": 1266413,
+        "series_tokens": 20379091
+      },
+      "review_path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-first-sft-20261010-epoch2-chat/greedy/content_review.json"
+    },
+    {
+      "epoch": 3,
+      "dev_screen_passed": false,
+      "joint": 17,
+      "context": 2,
+      "repetition": 4,
+      "checkpoint": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-first-sft-20261010/checkpoint-00003785.pt",
+        "sha256": "1c79692f71efacecf5444a6be250518a4603248ee2b2811b531e566f2cfc2f24",
+        "update": 3785,
+        "examples": 121098,
+        "Assistant_teachers": 1899555,
+        "series_tokens": 30567471
+      },
+      "review_path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-first-sft-20261010-epoch3-chat/greedy/content_review.json"
+    }
+  ],
+  "selected_candidate": null,
+  "diagnostic_best": {
+    "epoch": 3,
+    "dev_screen_passed": false,
+    "joint": 17,
+    "context": 2,
+    "repetition": 4,
+    "checkpoint": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-first-sft-20261010/checkpoint-00003785.pt",
+      "sha256": "1c79692f71efacecf5444a6be250518a4603248ee2b2811b531e566f2cfc2f24",
+      "update": 3785,
+      "examples": 121098,
+      "Assistant_teachers": 1899555,
+      "series_tokens": 30567471
+    },
+    "review_path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-first-sft-20261010-epoch3-chat/greedy/content_review.json"
+  },
+  "sampling_required": false,
+  "retention_required": false,
+  "independent_human_blind": false,
+  "protected_test_used": false,
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "created_at": "2026-10-10T03:28:07.274297Z",
+  "statistical_note": "DEV-selected checkpoints; descriptive paired bootstrap, not independent confirmation"
+}
