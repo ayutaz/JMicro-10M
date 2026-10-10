@@ -1,10 +1,12 @@
 # JMicro-10M 文書一覧
 
-最終更新: 2026-10-10 JST。最新の累積2B比較と全80評価は完了・不採用。Base未完成、学習・GPU診断・データ準備は一時停止中です。[モデル保存・公開126](126_model_archive.md)は完了し、今回は[作り直す前の調査127](127_rebuild_investigation.md)を追加しました。データセットを除き、主要3系列をpublic / manual gatedで保存しています。
+最終更新: 2026-10-10 JST。最新の累積2B比較と全80評価は完了・不採用。Base未完成、学習・GPU診断・データ準備は一時停止中です。[モデル保存・公開126](126_model_archive.md)は完了。[作り直す前の調査127](127_rebuild_investigation.md)に続き、ユーザーの依頼で[現在のBaseから直接Chat学習を検証する計画128](128_chat_first_sft_plan.md)を追加しました。現在は計画までで、実行していません。
 
-固定方針は10M維持（現10,001,152 parameters、既存9.5M〜10.1M予算）。今の品質を10Mの限界と断定せず、同予算内の改善を検討します。計画124に検討順と次の比較案の必須事項を記載しています。次の介入は未選定・未凍結で、大型化・品質基準の緩和は既定方針に含めません。
+固定方針は10M維持（現10,001,152 parameters、既存9.5M〜10.1M予算）。今の品質を10Mの限界と断定しません。最新の128は元10Bから1条件・最大3周の直接SFTを提案し、実測batchと実行configの凍結は再開後に行います。Base復旧の検討順は124に保持し、大型化・品質基準の緩和は含めません。
 
 ## 読む順序
+
+最新の[Chat-first SFT計画128](128_chat_first_sft_plan.md): 親モデル、準備済み会話の正確な量、Assistant本文+EOT、専用診断入口、学習前後/自生成履歴/保持の評価、時間上限と停止。従来のBase-first順序に対する限定診断の計画で、Base/Chat採用とは区別します。
 
 2026-10-10の[作り直す前の調査127](127_rebuild_investigation.md): 参考Akebonoの公開実装・評価、前回の失敗原因の確度、再利用する基盤と再構築順序。公開資料と既存結果の調査で、新しい学習や推論評価は行っていません。
 
@@ -120,3 +122,5 @@
 | [124_base_recovery_plan.md](124_base_recovery_plan.md) | Base改善の今後の計画 |
 | [125_project_retrospective.md](125_project_retrospective.md) | 調査・検証・学習・失敗・未達・保存先の全体記録と詳細台帳 |
 | [126_model_archive.md](126_model_archive.md) | データセットを含めない主要3系列のHugging Face保存・手動承認・読み込み手順 |
+| [127_rebuild_investigation.md](127_rebuild_investigation.md) | 作り直す前のAkebono比較・前回の原因分析・再利用方針 |
+| [128_chat_first_sft_plan.md](128_chat_first_sft_plan.md) | 元10B Baseから小規模な直接SFTで会話を先に検証する計画 |

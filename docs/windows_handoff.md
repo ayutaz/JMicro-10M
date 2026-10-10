@@ -1,6 +1,8 @@
 # Windows / WSL 引継ぎ
 
-最終更新: 2026-10-10 JST。**学習・GPU診断・データ準備は一時停止。今回の参考モデル・既存証拠の調査は学習の再開指示ではない。** [状態](autonomous_status.md)、[結果123](123_base_teacher_decay_2b_results.md)、[計画124](124_base_recovery_plan.md)を先に読む。
+最終更新: 2026-10-10 JST。**学習・GPU診断・データ準備は一時停止。最新依頼はChat-first診断の計画作成までで、実行の再開指示ではない。** [状態](autonomous_status.md)、[結果123](123_base_teacher_decay_2b_results.md)、[最新計画128](128_chat_first_sft_plan.md)を先に読む。Base復旧を選ぶ場合は[計画124](124_base_recovery_plan.md)。
+
+128では元WebUI10Bを保全し、既存RealPersonaChat TRAINから1条件・最大3周の直接SFTを提案した。親checkpoint SHAは下記元UI記録と同じ。既存 `run_chat_sft.py` /batch probe/stage評価の採用済みBase gateを無効化せず、別の診断入口を先に実装する必要がある。予定scriptはまだ存在せず、実行commandとして扱わない。次の実行は明示的な再開待ちで、今回はWSLへcopy・process診断・data準備・GPU実行をしていない。
 
 [調査127](127_rebuild_investigation.md)と[固定公開資料](../reports/investigation/rebuild_20261010/README.md)を追加した。取得したコードは資料として保持し、実行コピーやモデルへ取り込んでいない。元source/weights/Tokenizer/UI・WSL環境は変更していない。GitHubの今回のreadは匿名404・既存gh認証401で確認できず、local `8f50c47`を調査開始時の正本とした。remote状態を推測しない。今回の調査にpush・外部公開の許可は含まない。
 
@@ -14,7 +16,7 @@
 
 ## 固定方針と実行範囲
 
-10Mのサイズ維持がユーザーの優先条件。現在10,001,152 parameters、既存9.5M〜10.1Mの総parameter予算を保ち、大型化や大型モデル比較を復旧・改善の既定作業にしない。元の日本語Base品質基準を維持する。次の比較は計画124で選定する段階で、介入条件・教師予算・新configは未凍結。文書更新から学習/診断/data準備へ進まない。
+10Mのサイズ維持がユーザーの優先条件。現在10,001,152 parameters、既存9.5M〜10.1Mの総parameter予算を保ち、大型化や大型モデル比較を復旧・改善の既定作業にしない。元の日本語Base品質基準を維持する。最新の128はdirect SFTの量・recipe・評価・停止を提案したが、安定batch・実行configは未凍結。文書更新から実装/学習/診断/data準備へ進まない。診断完了後は結果報告で停止し、Base復旧を選ぶ場合の124も保持する。
 
 ## 正本と保存場所
 
@@ -94,12 +96,12 @@ uv run --frozen --extra hub --extra data --extra ml --extra export scripts/exper
 
 ## 再開時の手順
 
-1. 最新Windows local commitとAGENTS/status/roadmap/本書/計画124を読む。
+1. 最新Windows local commitとAGENTS/status/roadmap/本書/計画128を読む。Base復旧を選ぶ場合は124も読む。
 2. ユーザーが再開した範囲と10M維持の固定条件を確認する。文書更新だけならGPU/data/診断へ進まない。
 3. 実process・GPU lock・job/result・有効checkpointを確認する。観測timeoutや残存lockだけで終了を決めない。
-4. 最新teacher-decay pilot/2Bは完了・不採用なので復旧対象にしない。計画124の次条件選定から始める。
+4. 最新teacher-decay pilot/2Bは完了・不採用なので復旧対象にしない。限定Chat診断を再開した場合は128の元10B親確認と専用入口の実装から始め、Base復旧を選んだ場合は124の次条件選定から始める。
 5. 新実験は不足command/型付き証拠接続/関連checks/予算/configを先に完成する。長期jobは全state再開gate・永続identity/ledgerを必須とする。
-6. native方式の独立seed/fullDEV/TEST接続は未完成。旧stable+20M形式へ偽装しない。Base採用前にChatや量子化へ進まない。
+6. native方式の独立seed/fullDEV/TEST接続は未完成。旧stable+20M形式へ偽装しない。128の限定診断以外の通常Chat完成と量子化は別の再開判断まで進めず、未採用Baseを採用済みへ偽装しない。
 
 本当に未完了のjobを復旧する場合に限り、同じ凍結条件・累積予算でvalid checkpointから再開する。歴史的なrestart commandは現在の実行指示ではない。外部公開・有料cloud・他者連絡は別途許可が必要。自動pushなし。
 
