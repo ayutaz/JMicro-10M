@@ -44,6 +44,13 @@ CPU preflightで2,688 TRAIN会話、40,366 windows/周、633,185 Assistant教師
 
 これは元のuntagged Base評価ではなく、未学習のChat形式によるmatched対照。過去のBase生成の文法件数と同じ指標として比較しない。自生成した京都や青い傘の返答へ固定され、後続の訂正を取り込まない例がある。既存DEV screenは不合格。
 
-本SFTをWindows worker26416から開始した。実jobのidentity・metrics・checkpointを正とし、最大3周の終了後にepoch1/2/3の同条件評価と全内容確認を行う。probe/gate/Base対照を学習量へ加えない。中間lossの改善を会話品質改善と呼ばない。各stageの完了後に記録を追記する。
+本SFTをWindows worker26416 / WSL実PID132263 / 同boot / start_ticks24428683から開始した。実jobのidentity・metrics・checkpointを正とし、最大3周の終了後にepoch1/2/3の同条件評価と全内容確認を行う。probe/gate/Base対照を学習量へ加えない。中間lossの改善を会話品質改善と呼ばない。
+
+| 保存点 | 完了更新 | 実応答数 | Assistant教師tokens | 直列tokens |
+|---|---:|---:|---:|---:|
+| 1周到達後 | 1262 | 40,384 | 633,454 | 10,194,132 |
+| 2周到達後 | 2523 | 80,736 | 1,266,413 | 20,379,091 |
+
+周の境界をbatchがまたいだ実数量であり、1周/2周の準備量と同一とは呼ばない。3周の最終量を超えて学習する計画ではない。終端監査用の `verify_chat_first_training.py` は全checkpoint/source/metrics/counters/実CUDA resume証拠を検証する。まだ終端前なので学習完了・会話改善・採用とは扱わない。各stageの完了後に記録を追記する。
 
 今の準備・速度測定は会話品質の証拠ではなく、Base/Chatは未採用。学習・最終結果・全内容採点・停止報告は未完了。
