@@ -8,6 +8,7 @@
 
 - [調査・検証・学習の全体記録](docs/125_project_retrospective.md)：何を試し、何が改善し、何が解決しなかったか。
 - [作り直す前の調査](docs/127_rebuild_investigation.md)：Akebono-10M-chatとの比較、前回の失敗原因と未確定事項、再構築の順序。
+- [SFT後の問題点と改善方法](docs/130_chat_failure_improvement_investigation.md)：流暢でも答えが合わない原因候補、教材・履歴・実装の確認、公開研究、改善の優先順位。追加学習は未開始。
 - [現在のBaseをChat学習して検証する計画](docs/128_chat_first_sft_plan.md)：元10Bから直接SFTを最大3周、学習前後の会話・自生成履歴・Base保持を比較する。[再開後の実行・評価記録](docs/129_chat_first_sft_execution.md)。
 - [詳細な実験台帳](docs/retrospective/README.md)：保存済み報告の数値・設定・失敗・採否と原記録へのリンク。
 - [現在の状態](docs/autonomous_status.md) / [文書一覧](docs/README.md)。

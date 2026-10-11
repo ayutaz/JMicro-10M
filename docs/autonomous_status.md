@@ -1,6 +1,12 @@
 # 現在の状態
 
-最終更新: 2026-10-10 JST。**ユーザーの「5まで進めてください」に基づくChat-first診断の5段階を完了し、不合格で停止。Base/Chatは未完成・未採用。** 元10Bの保全、専用入口・CPU25tests・CUDA19checks、1条件の最大3周SFT、4条件の全876内容採点、paired比較と結果記録まで実施した。[実行・結果129](129_chat_first_sft_execution.md)、[完了監査](../reports/phase7/chat-first-sft-20261010/completion.json)。元UIは元10Bへ復帰し、追加研究/学習は停止した。
+最終更新: 2026-10-12 JST。**問題点と改善方法の調査を完了。学習・GPU診断・教材準備は未再開、Base/Chatは未完成・未採用。** [調査130](130_chat_failure_improvement_investigation.md)、[再集計・出典・確認](../reports/investigation/chat_improvement_20261012/README.md)。直近の学習は2026-10-10の限定Chat-first診断で、5段階を完了し不合格で停止した。[実行・結果129](129_chat_first_sft_execution.md)、[完了監査](../reports/phase7/chat-first-sft-20261010/completion.json)。元UIの復帰記録は当時の観察で、今回の生存確認ではない。
+
+## 最新の問題調査と改善案
+
+保存済み876判断・原packet・metrics・実装と公開一次資料を調査した。3周の文法2の58件中41件は関連性2未満。最終24 IDを対応させると提供履歴の文脈2は5/24、自生成履歴は2/24で、自己生成時の誤りだけが問題ではない。3周prompt最大は固定81/自生成246、履歴削除0。labelのAssistant本文+EOT mask、単一shift、実教師数によるCE平均を確認し、現経路の誤りの証拠はない。
+
+教材は人同士の雑談でAssistantの正確な条件回答を直接認証したものではなく、教材と目標能力のずれが有力な仮説。役割・直接回答・訂正・否定・複数条件を教える教材を最優先、次に誤った自発話からの回復、未使用DEV/human blindによる汎化確認を提案する。教師量約1.9Mと直列30.6Mを区別し、PAD75.45%は独立した効率課題として扱う。教材長変更によるschedule交絡も記録した。新規教材・比較・推論は未実施、改善効果は未実証。詳細は130。学習再開は別の明示指示を待ち、自動pushしない。
 
 ## 最新のChat-first結果
 

@@ -1,8 +1,10 @@
 # JMicro-10M development and training
 
-Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/windows_handoff.md` before continuing. Status records actual evidence; the roadmap and `docs/128_chat_first_sft_plan.md` define the latest proposed Chat-first diagnostic. `docs/124_base_recovery_plan.md` remains the Base recovery plan. Historical progress is in dated reports and archives, not in this instruction file.
+Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/windows_handoff.md` before continuing. Status records actual evidence; `docs/130_chat_failure_improvement_investigation.md` records the latest unexecuted improvement proposals. Plan128 and results129 document the closed Chat-first diagnostic. `docs/124_base_recovery_plan.md` remains the Base recovery plan. Historical progress is in dated reports and archives, not in this instruction file.
 
-## Current scope — 2026-10-10 JST
+## Current scope — 2026-10-12 JST
+
+- Latest request (2026-10-12): investigate remaining Chat failures and improvement methods. Read-only analysis of saved outputs/reviews/metrics and implementation, public primary-source research, and documentation are authorized. Investigation completed in docs/130_chat_failure_improvement_investigation.md and reports/investigation/chat_improvement_20261012/. It does not resume GPU diagnostics, training, dataset preparation or full-corpus scans. Proposed comparisons remain unexecuted; await explicit resumption. Preserve10M size, original quality gates and all raw failures. No automatic push/publication.
 
 - Latest completion (2026-10-10): the explicitly resumed steps1–5 of plan128 finished. One direct SFT condition consumed exactly3 TRAIN passes, 1,899,555 Assistant+EOT teachers, 121,098 responses; all4 matched conditions /876 content judgments and paired comparisons completed. All candidate DEV screens failed; conditional sampling/Base retention/local5 conversations were skipped under128. See docs/129_chat_first_sft_execution.md and reports/phase7/chat-first-sft-20261010/completion.json. Condition closed; Base/Chat unadopted, original10B UI restored. Stop research/training and await explicit resumption. Do not relaunch completed diagnostic jobs or proceed to extra experiments, quantization, deployment or publication.
 - The user requested stopping at a sensible boundary. The cumulative2B teacher-normalized decay experiment and all80 individual reviews finished; the condition was rejected and closed. Base remains unfinished and unadopted.

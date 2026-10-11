@@ -1,0 +1,4435 @@
+{
+  "schema_version": 1,
+  "scope": "Static reaggregation of frozen reports and saved judgments; no rescoring, corpus scan, GPU evaluation or training",
+  "reviewer": {
+    "kind": "codex_nonblind",
+    "identity": "Codex / 2026-10-10 Chat-first diagnostic",
+    "independent_human": false,
+    "blind": false
+  },
+  "independent_human": false,
+  "source_sha256": {
+    "reports/phase7/chat-first-sft-20261010-base-chat/greedy/content_notes-items.json": "9c8fd48b09c972454f32a0dad1d555c23b1aa0a00ba7b0aa995340bfce069a10",
+    "reports/phase7/chat-first-sft-20261010-base-chat/greedy/content_notes.json": "e670cce89e32677fb6d73c69fa28c2432fd6f579ba05d17e503cedd83e9fb0b3",
+    "reports/phase7/chat-first-sft-20261010-base-chat/greedy/content_review.json": "8297091a35c60011c6dd46ddf28dd6fac65425771888d0e3a510778b71c05913",
+    "reports/phase7/chat-first-sft-20261010-base-chat/greedy/result.json": "5cd46c1ab457240aa78e1e58528fd76d2139a31fe5751bc9452c28956e4bc9f3",
+    "reports/phase7/chat-first-sft-20261010-epoch1-chat/greedy/content_notes-items.json": "9533fd5f7a2cdb8c78494d237bd94b42a8d3611e59df04b62b938123c625acfe",
+    "reports/phase7/chat-first-sft-20261010-epoch1-chat/greedy/content_notes.json": "df68542ebca507ab495aed3b739eadc9b2fcb73fc6f0bf6222ae6380aba24fb2",
+    "reports/phase7/chat-first-sft-20261010-epoch1-chat/greedy/content_review.json": "05f7923eff7a405f4369ddd4aec21f955698800f2ed7c465088981b22cfade43",
+    "reports/phase7/chat-first-sft-20261010-epoch1-chat/greedy/result.json": "699a89f8258991fc996d3883a3e11ceb1104701ec409670f0eced6e372c9a4a8",
+    "reports/phase7/chat-first-sft-20261010-epoch2-chat/greedy/content_notes-items.json": "5c8bc57b095854ec2f4021f5f028288904b48add07d72ebd67db56f19cae2dbd",
+    "reports/phase7/chat-first-sft-20261010-epoch2-chat/greedy/content_notes.json": "87c694272f169ea0c2abdcaeccae9ba646dbfb1456ed15318658d6cdc458d3ce",
+    "reports/phase7/chat-first-sft-20261010-epoch2-chat/greedy/content_review.json": "4b911744c67909b17cd6d19451d650388f43dd2f98cb015875c340f3014393b9",
+    "reports/phase7/chat-first-sft-20261010-epoch2-chat/greedy/result.json": "97a61f41907b480dbe4325b4f4ca6ad8b1474090accfe0123b5f8e3a1047bac1",
+    "reports/phase7/chat-first-sft-20261010-epoch3-chat/greedy/content_notes-items.json": "4228acde6a41cc953abbaac27ee90c90f1d82dd18a660bea0d1e0469b11a0e82",
+    "reports/phase7/chat-first-sft-20261010-epoch3-chat/greedy/content_notes.json": "f7d0ba98c59b58076adfab11f076dc86b97fdbc3029b4ec0bbfdb3018d1cf7a4",
+    "reports/phase7/chat-first-sft-20261010-epoch3-chat/greedy/content_review.json": "c433cdb3a11bbaa2075d7e8c12184f903b48c46622d8b741fc23328081881f93",
+    "reports/phase7/chat-first-sft-20261010-epoch3-chat/greedy/result.json": "3599b678916d4f36fbc743bf059633352e6c605166d7ed334b76440ade8a77be",
+    "reports/phase7/chat_pilot_preparation.json": "1ad9f04c0b7d43c4fc253c7cdc8057e9a09d7ef34b9073e53d972aeef278e0ee",
+    "reports/phase7/chat-first-sft-20261010/result.json": "42498ac84fa0037258ec32e2c9eaeb146f48600a2d7e9675e178a15ee748aa7a",
+    "reports/phase7/chat-first-sft-20261010/completion.json": "989660689d50a468d35a24df7a8e061cc77e2d6d5fe11b68f283027af3869fff",
+    "reports/phase7/chat_pilot_content_notes.json": "8fc8c70ff71dd6deab6ba01cd30173eb90dd69809225711186cbd6864c74170b",
+    "reports/phase7/chat-first-sft-20261010/metrics.jsonl": "1b2cdb51f032579c73001dfab3a018feb21e985d4ff0858d3cefc5a292b37203"
+  },
+  "stages": {
+    "base": {
+      "primary": {
+        "responses": 80,
+        "grammar2": 2,
+        "relevance2": 1,
+        "context2": 1,
+        "grammar2_relevance2": 0,
+        "grammar2_relevance_below2": 2,
+        "natural_stop": 4,
+        "repetition": 56,
+        "nonstopping_repetition": 56,
+        "removed_history": 0,
+        "prompt_tokens": {
+          "count": 80,
+          "min": 10,
+          "median": 18.0,
+          "max": 81,
+          "mean": 26.7875
+        },
+        "generated_tokens": {
+          "count": 80,
+          "min": 7,
+          "median": 64.0,
+          "max": 64,
+          "mean": 61.2125
+        }
+      },
+      "primary_by_category": [
+        {
+          "category": "ambiguity",
+          "summary": {
+            "responses": 8,
+            "grammar2": 0,
+            "relevance2": 0,
+            "context2": 0,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 0,
+            "natural_stop": 0,
+            "repetition": 6,
+            "nonstopping_repetition": 6,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 10,
+              "median": 13.0,
+              "max": 17,
+              "mean": 13.25
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 64,
+              "median": 64.0,
+              "max": 64,
+              "mean": 64.0
+            }
+          }
+        },
+        {
+          "category": "context",
+          "summary": {
+            "responses": 8,
+            "grammar2": 1,
+            "relevance2": 1,
+            "context2": 1,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 1,
+            "natural_stop": 3,
+            "repetition": 4,
+            "nonstopping_repetition": 4,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 51,
+              "median": 68.5,
+              "max": 81,
+              "mean": 67.625
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 7,
+              "median": 64.0,
+              "max": 64,
+              "mean": 43.0
+            }
+          }
+        },
+        {
+          "category": "correction",
+          "summary": {
+            "responses": 8,
+            "grammar2": 0,
+            "relevance2": 0,
+            "context2": 0,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 0,
+            "natural_stop": 0,
+            "repetition": 5,
+            "nonstopping_repetition": 5,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 29,
+              "median": 36.5,
+              "max": 44,
+              "mean": 36.75
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 64,
+              "median": 64.0,
+              "max": 64,
+              "mean": 64.0
+            }
+          }
+        },
+        {
+          "category": "daily",
+          "summary": {
+            "responses": 8,
+            "grammar2": 0,
+            "relevance2": 0,
+            "context2": 0,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 0,
+            "natural_stop": 0,
+            "repetition": 5,
+            "nonstopping_repetition": 5,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 14,
+              "median": 16.0,
+              "max": 18,
+              "mean": 15.875
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 64,
+              "median": 64.0,
+              "max": 64,
+              "mean": 64.0
+            }
+          }
+        },
+        {
+          "category": "emotion",
+          "summary": {
+            "responses": 8,
+            "grammar2": 0,
+            "relevance2": 0,
+            "context2": 0,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 0,
+            "natural_stop": 0,
+            "repetition": 7,
+            "nonstopping_repetition": 7,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 13,
+              "median": 16.5,
+              "max": 20,
+              "mean": 16.875
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 64,
+              "median": 64.0,
+              "max": 64,
+              "mean": 64.0
+            }
+          }
+        },
+        {
+          "category": "followup",
+          "summary": {
+            "responses": 8,
+            "grammar2": 0,
+            "relevance2": 0,
+            "context2": 0,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 0,
+            "natural_stop": 0,
+            "repetition": 6,
+            "nonstopping_repetition": 6,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 32,
+              "median": 36.0,
+              "max": 41,
+              "mean": 36.5
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 64,
+              "median": 64.0,
+              "max": 64,
+              "mean": 64.0
+            }
+          }
+        },
+        {
+          "category": "greeting",
+          "summary": {
+            "responses": 8,
+            "grammar2": 0,
+            "relevance2": 0,
+            "context2": 0,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 0,
+            "natural_stop": 0,
+            "repetition": 7,
+            "nonstopping_repetition": 7,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 13,
+              "median": 15.0,
+              "max": 17,
+              "mean": 15.0
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 64,
+              "median": 64.0,
+              "max": 64,
+              "mean": 64.0
+            }
+          }
+        },
+        {
+          "category": "question_back",
+          "summary": {
+            "responses": 8,
+            "grammar2": 1,
+            "relevance2": 0,
+            "context2": 0,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 1,
+            "natural_stop": 1,
+            "repetition": 5,
+            "nonstopping_repetition": 5,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 16,
+              "median": 18.0,
+              "max": 20,
+              "mean": 17.875
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 9,
+              "median": 64.0,
+              "max": 64,
+              "mean": 57.125
+            }
+          }
+        },
+        {
+          "category": "role_boundary",
+          "summary": {
+            "responses": 8,
+            "grammar2": 0,
+            "relevance2": 0,
+            "context2": 0,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 0,
+            "natural_stop": 0,
+            "repetition": 5,
+            "nonstopping_repetition": 5,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 21,
+              "median": 30.0,
+              "max": 35,
+              "mean": 28.75
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 64,
+              "median": 64.0,
+              "max": 64,
+              "mean": 64.0
+            }
+          }
+        },
+        {
+          "category": "symbols",
+          "summary": {
+            "responses": 8,
+            "grammar2": 0,
+            "relevance2": 0,
+            "context2": 0,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 0,
+            "natural_stop": 0,
+            "repetition": 6,
+            "nonstopping_repetition": 6,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 14,
+              "median": 18.0,
+              "max": 28,
+              "mean": 19.375
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 64,
+              "median": 64.0,
+              "max": 64,
+              "mean": 64.0
+            }
+          }
+        }
+      ],
+      "own_all": {
+        "responses": 59,
+        "grammar2": 1,
+        "relevance2": 0,
+        "context2": 0,
+        "grammar2_relevance2": 0,
+        "grammar2_relevance_below2": 1,
+        "natural_stop": 1,
+        "repetition": 46,
+        "nonstopping_repetition": 46,
+        "removed_history": 0,
+        "prompt_tokens": {
+          "count": 59,
+          "min": 10,
+          "median": 90.0,
+          "max": 246,
+          "mean": 78.45762711864407
+        },
+        "generated_tokens": {
+          "count": 59,
+          "min": 9,
+          "median": 64.0,
+          "max": 64,
+          "mean": 63.067796610169495
+        }
+      },
+      "own_final": {
+        "responses": 24,
+        "grammar2": 1,
+        "relevance2": 0,
+        "context2": 0,
+        "grammar2_relevance2": 0,
+        "grammar2_relevance_below2": 1,
+        "natural_stop": 1,
+        "repetition": 20,
+        "nonstopping_repetition": 20,
+        "removed_history": 0,
+        "prompt_tokens": {
+          "count": 24,
+          "min": 89,
+          "median": 96.5,
+          "max": 246,
+          "mean": 128.66666666666666
+        },
+        "generated_tokens": {
+          "count": 24,
+          "min": 9,
+          "median": 64.0,
+          "max": 64,
+          "mean": 61.708333333333336
+        }
+      },
+      "own_final_by_category": [
+        {
+          "category": "context",
+          "summary": {
+            "responses": 8,
+            "grammar2": 1,
+            "relevance2": 0,
+            "context2": 0,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 1,
+            "natural_stop": 1,
+            "repetition": 5,
+            "nonstopping_repetition": 5,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 165,
+              "median": 177.0,
+              "max": 246,
+              "mean": 199.625
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 9,
+              "median": 64.0,
+              "max": 64,
+              "mean": 57.125
+            }
+          }
+        },
+        {
+          "category": "correction",
+          "summary": {
+            "responses": 8,
+            "grammar2": 0,
+            "relevance2": 0,
+            "context2": 0,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 0,
+            "natural_stop": 0,
+            "repetition": 8,
+            "nonstopping_repetition": 8,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 89,
+              "median": 92.0,
+              "max": 100,
+              "mean": 93.5
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 64,
+              "median": 64.0,
+              "max": 64,
+              "mean": 64.0
+            }
+          }
+        },
+        {
+          "category": "followup",
+          "summary": {
+            "responses": 8,
+            "grammar2": 0,
+            "relevance2": 0,
+            "context2": 0,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 0,
+            "natural_stop": 0,
+            "repetition": 7,
+            "nonstopping_repetition": 7,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 90,
+              "median": 92.0,
+              "max": 97,
+              "mean": 92.875
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 64,
+              "median": 64.0,
+              "max": 64,
+              "mean": 64.0
+            }
+          }
+        }
+      ],
+      "provided_own_pairs": [
+        {
+          "id": "chat-071",
+          "category": "correction",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 44,
+          "own_prompt_tokens": 100
+        },
+        {
+          "id": "chat-072",
+          "category": "correction",
+          "provided_context": 0,
+          "own_context": 1,
+          "provided_relevance": 0,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 32,
+          "own_prompt_tokens": 91
+        },
+        {
+          "id": "chat-074",
+          "category": "correction",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 39,
+          "own_prompt_tokens": 93
+        },
+        {
+          "id": "chat-075",
+          "category": "correction",
+          "provided_context": 1,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 44,
+          "own_prompt_tokens": 99
+        },
+        {
+          "id": "chat-076",
+          "category": "correction",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 29,
+          "own_prompt_tokens": 89
+        },
+        {
+          "id": "chat-077",
+          "category": "correction",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 41,
+          "own_prompt_tokens": 96
+        },
+        {
+          "id": "chat-079",
+          "category": "correction",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 34,
+          "own_prompt_tokens": 91
+        },
+        {
+          "id": "chat-080",
+          "category": "correction",
+          "provided_context": 1,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 31,
+          "own_prompt_tokens": 89
+        },
+        {
+          "id": "chat-081",
+          "category": "followup",
+          "provided_context": 1,
+          "own_context": 1,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 38,
+          "own_prompt_tokens": 93
+        },
+        {
+          "id": "chat-082",
+          "category": "followup",
+          "provided_context": 1,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 32,
+          "own_prompt_tokens": 90
+        },
+        {
+          "id": "chat-084",
+          "category": "followup",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 40,
+          "own_prompt_tokens": 97
+        },
+        {
+          "id": "chat-085",
+          "category": "followup",
+          "provided_context": 0,
+          "own_context": 1,
+          "provided_relevance": 0,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 41,
+          "own_prompt_tokens": 97
+        },
+        {
+          "id": "chat-086",
+          "category": "followup",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 34,
+          "own_prompt_tokens": 91
+        },
+        {
+          "id": "chat-087",
+          "category": "followup",
+          "provided_context": 1,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 34,
+          "own_prompt_tokens": 90
+        },
+        {
+          "id": "chat-089",
+          "category": "followup",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 40,
+          "own_prompt_tokens": 95
+        },
+        {
+          "id": "chat-090",
+          "category": "followup",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 33,
+          "own_prompt_tokens": 90
+        },
+        {
+          "id": "chat-091",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 66,
+          "own_prompt_tokens": 175
+        },
+        {
+          "id": "chat-092",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 51,
+          "own_prompt_tokens": 165
+        },
+        {
+          "id": "chat-094",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 55,
+          "own_prompt_tokens": 168
+        },
+        {
+          "id": "chat-095",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 71,
+          "own_prompt_tokens": 179
+        },
+        {
+          "id": "chat-096",
+          "category": "context",
+          "provided_context": 2,
+          "own_context": 1,
+          "provided_relevance": 2,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 63,
+          "own_prompt_tokens": 174
+        },
+        {
+          "id": "chat-097",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 80,
+          "own_prompt_tokens": 246
+        },
+        {
+          "id": "chat-099",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 74,
+          "own_prompt_tokens": 244
+        },
+        {
+          "id": "chat-100",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 81,
+          "own_prompt_tokens": 246
+        }
+      ],
+      "control_identical": 80
+    },
+    "epoch1": {
+      "primary": {
+        "responses": 80,
+        "grammar2": 34,
+        "relevance2": 15,
+        "context2": 15,
+        "grammar2_relevance2": 12,
+        "grammar2_relevance_below2": 22,
+        "natural_stop": 60,
+        "repetition": 21,
+        "nonstopping_repetition": 20,
+        "removed_history": 0,
+        "prompt_tokens": {
+          "count": 80,
+          "min": 10,
+          "median": 18.0,
+          "max": 81,
+          "mean": 26.7875
+        },
+        "generated_tokens": {
+          "count": 80,
+          "min": 5,
+          "median": 15.0,
+          "max": 64,
+          "mean": 25.85
+        }
+      },
+      "primary_by_category": [
+        {
+          "category": "ambiguity",
+          "summary": {
+            "responses": 8,
+            "grammar2": 4,
+            "relevance2": 0,
+            "context2": 0,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 4,
+            "natural_stop": 5,
+            "repetition": 3,
+            "nonstopping_repetition": 3,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 10,
+              "median": 13.0,
+              "max": 17,
+              "mean": 13.25
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 5,
+              "median": 15.0,
+              "max": 64,
+              "mean": 30.375
+            }
+          }
+        },
+        {
+          "category": "context",
+          "summary": {
+            "responses": 8,
+            "grammar2": 3,
+            "relevance2": 0,
+            "context2": 0,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 3,
+            "natural_stop": 6,
+            "repetition": 3,
+            "nonstopping_repetition": 2,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 51,
+              "median": 68.5,
+              "max": 81,
+              "mean": 67.625
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 6,
+              "median": 16.0,
+              "max": 64,
+              "mean": 26.0
+            }
+          }
+        },
+        {
+          "category": "correction",
+          "summary": {
+            "responses": 8,
+            "grammar2": 3,
+            "relevance2": 0,
+            "context2": 0,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 3,
+            "natural_stop": 6,
+            "repetition": 2,
+            "nonstopping_repetition": 2,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 29,
+              "median": 36.5,
+              "max": 44,
+              "mean": 36.75
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 8,
+              "median": 16.5,
+              "max": 64,
+              "mean": 26.5
+            }
+          }
+        },
+        {
+          "category": "daily",
+          "summary": {
+            "responses": 8,
+            "grammar2": 4,
+            "relevance2": 2,
+            "context2": 2,
+            "grammar2_relevance2": 2,
+            "grammar2_relevance_below2": 2,
+            "natural_stop": 7,
+            "repetition": 1,
+            "nonstopping_repetition": 1,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 14,
+              "median": 16.0,
+              "max": 18,
+              "mean": 15.875
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 7,
+              "median": 13.5,
+              "max": 64,
+              "mean": 19.25
+            }
+          }
+        },
+        {
+          "category": "emotion",
+          "summary": {
+            "responses": 8,
+            "grammar2": 4,
+            "relevance2": 2,
+            "context2": 2,
+            "grammar2_relevance2": 2,
+            "grammar2_relevance_below2": 2,
+            "natural_stop": 6,
+            "repetition": 2,
+            "nonstopping_repetition": 2,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 13,
+              "median": 16.5,
+              "max": 20,
+              "mean": 16.875
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 8,
+              "median": 16.0,
+              "max": 64,
+              "mean": 26.625
+            }
+          }
+        },
+        {
+          "category": "followup",
+          "summary": {
+            "responses": 8,
+            "grammar2": 3,
+            "relevance2": 2,
+            "context2": 2,
+            "grammar2_relevance2": 1,
+            "grammar2_relevance_below2": 2,
+            "natural_stop": 6,
+            "repetition": 2,
+            "nonstopping_repetition": 2,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 32,
+              "median": 36.0,
+              "max": 41,
+              "mean": 36.5
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 7,
+              "median": 15.0,
+              "max": 64,
+              "mean": 24.875
+            }
+          }
+        },
+        {
+          "category": "greeting",
+          "summary": {
+            "responses": 8,
+            "grammar2": 5,
+            "relevance2": 2,
+            "context2": 2,
+            "grammar2_relevance2": 1,
+            "grammar2_relevance_below2": 4,
+            "natural_stop": 7,
+            "repetition": 1,
+            "nonstopping_repetition": 1,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 13,
+              "median": 15.0,
+              "max": 17,
+              "mean": 15.0
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 6,
+              "median": 11.5,
+              "max": 64,
+              "mean": 17.125
+            }
+          }
+        },
+        {
+          "category": "question_back",
+          "summary": {
+            "responses": 8,
+            "grammar2": 3,
+            "relevance2": 2,
+            "context2": 2,
+            "grammar2_relevance2": 2,
+            "grammar2_relevance_below2": 1,
+            "natural_stop": 5,
+            "repetition": 3,
+            "nonstopping_repetition": 3,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 16,
+              "median": 18.0,
+              "max": 20,
+              "mean": 17.875
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 7,
+              "median": 13.5,
+              "max": 64,
+              "mean": 31.125
+            }
+          }
+        },
+        {
+          "category": "role_boundary",
+          "summary": {
+            "responses": 8,
+            "grammar2": 2,
+            "relevance2": 3,
+            "context2": 3,
+            "grammar2_relevance2": 2,
+            "grammar2_relevance_below2": 0,
+            "natural_stop": 7,
+            "repetition": 1,
+            "nonstopping_repetition": 1,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 21,
+              "median": 30.0,
+              "max": 35,
+              "mean": 28.75
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 8,
+              "median": 23.0,
+              "max": 64,
+              "mean": 26.375
+            }
+          }
+        },
+        {
+          "category": "symbols",
+          "summary": {
+            "responses": 8,
+            "grammar2": 3,
+            "relevance2": 2,
+            "context2": 2,
+            "grammar2_relevance2": 2,
+            "grammar2_relevance_below2": 1,
+            "natural_stop": 5,
+            "repetition": 3,
+            "nonstopping_repetition": 3,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 14,
+              "median": 18.0,
+              "max": 28,
+              "mean": 19.375
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 8,
+              "median": 11.5,
+              "max": 64,
+              "mean": 30.25
+            }
+          }
+        }
+      ],
+      "own_all": {
+        "responses": 59,
+        "grammar2": 25,
+        "relevance2": 5,
+        "context2": 4,
+        "grammar2_relevance2": 5,
+        "grammar2_relevance_below2": 20,
+        "natural_stop": 37,
+        "repetition": 22,
+        "nonstopping_repetition": 22,
+        "removed_history": 0,
+        "prompt_tokens": {
+          "count": 59,
+          "min": 10,
+          "median": 36.0,
+          "max": 244,
+          "mean": 48.57627118644068
+        },
+        "generated_tokens": {
+          "count": 59,
+          "min": 6,
+          "median": 16.0,
+          "max": 64,
+          "mean": 31.54237288135593
+        }
+      },
+      "own_final": {
+        "responses": 24,
+        "grammar2": 5,
+        "relevance2": 2,
+        "context2": 2,
+        "grammar2_relevance2": 2,
+        "grammar2_relevance_below2": 3,
+        "natural_stop": 12,
+        "repetition": 12,
+        "nonstopping_repetition": 12,
+        "removed_history": 0,
+        "prompt_tokens": {
+          "count": 24,
+          "min": 30,
+          "median": 52.5,
+          "max": 244,
+          "mean": 72.625
+        },
+        "generated_tokens": {
+          "count": 24,
+          "min": 6,
+          "median": 44.5,
+          "max": 64,
+          "mean": 39.208333333333336
+        }
+      },
+      "own_final_by_category": [
+        {
+          "category": "context",
+          "summary": {
+            "responses": 8,
+            "grammar2": 1,
+            "relevance2": 0,
+            "context2": 0,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 1,
+            "natural_stop": 2,
+            "repetition": 6,
+            "nonstopping_repetition": 6,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 58,
+              "median": 88.0,
+              "max": 244,
+              "mean": 116.375
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 6,
+              "median": 64.0,
+              "max": 64,
+              "mean": 51.875
+            }
+          }
+        },
+        {
+          "category": "correction",
+          "summary": {
+            "responses": 8,
+            "grammar2": 2,
+            "relevance2": 1,
+            "context2": 1,
+            "grammar2_relevance2": 1,
+            "grammar2_relevance_below2": 1,
+            "natural_stop": 5,
+            "repetition": 3,
+            "nonstopping_repetition": 3,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 30,
+              "median": 36.5,
+              "max": 89,
+              "mean": 43.25
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 8,
+              "median": 19.0,
+              "max": 64,
+              "mean": 33.0
+            }
+          }
+        },
+        {
+          "category": "followup",
+          "summary": {
+            "responses": 8,
+            "grammar2": 2,
+            "relevance2": 1,
+            "context2": 1,
+            "grammar2_relevance2": 1,
+            "grammar2_relevance_below2": 1,
+            "natural_stop": 5,
+            "repetition": 3,
+            "nonstopping_repetition": 3,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 34,
+              "median": 41.0,
+              "max": 95,
+              "mean": 58.25
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 7,
+              "median": 22.5,
+              "max": 64,
+              "mean": 32.75
+            }
+          }
+        }
+      ],
+      "provided_own_pairs": [
+        {
+          "id": "chat-071",
+          "category": "correction",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 44,
+          "own_prompt_tokens": 47
+        },
+        {
+          "id": "chat-072",
+          "category": "correction",
+          "provided_context": 1,
+          "own_context": 1,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 32,
+          "own_prompt_tokens": 34
+        },
+        {
+          "id": "chat-074",
+          "category": "correction",
+          "provided_context": 0,
+          "own_context": 2,
+          "provided_relevance": 0,
+          "own_relevance": 2,
+          "provided_prompt_tokens": 39,
+          "own_prompt_tokens": 35
+        },
+        {
+          "id": "chat-075",
+          "category": "correction",
+          "provided_context": 1,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 44,
+          "own_prompt_tokens": 41
+        },
+        {
+          "id": "chat-076",
+          "category": "correction",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 29,
+          "own_prompt_tokens": 30
+        },
+        {
+          "id": "chat-077",
+          "category": "correction",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 41,
+          "own_prompt_tokens": 38
+        },
+        {
+          "id": "chat-079",
+          "category": "correction",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 34,
+          "own_prompt_tokens": 32
+        },
+        {
+          "id": "chat-080",
+          "category": "correction",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 31,
+          "own_prompt_tokens": 89
+        },
+        {
+          "id": "chat-081",
+          "category": "followup",
+          "provided_context": 1,
+          "own_context": 1,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 38,
+          "own_prompt_tokens": 38
+        },
+        {
+          "id": "chat-082",
+          "category": "followup",
+          "provided_context": 1,
+          "own_context": 2,
+          "provided_relevance": 1,
+          "own_relevance": 2,
+          "provided_prompt_tokens": 32,
+          "own_prompt_tokens": 36
+        },
+        {
+          "id": "chat-084",
+          "category": "followup",
+          "provided_context": 2,
+          "own_context": 1,
+          "provided_relevance": 2,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 40,
+          "own_prompt_tokens": 42
+        },
+        {
+          "id": "chat-085",
+          "category": "followup",
+          "provided_context": 1,
+          "own_context": 1,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 41,
+          "own_prompt_tokens": 40
+        },
+        {
+          "id": "chat-086",
+          "category": "followup",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 34,
+          "own_prompt_tokens": 91
+        },
+        {
+          "id": "chat-087",
+          "category": "followup",
+          "provided_context": 1,
+          "own_context": 1,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 34,
+          "own_prompt_tokens": 34
+        },
+        {
+          "id": "chat-089",
+          "category": "followup",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 40,
+          "own_prompt_tokens": 95
+        },
+        {
+          "id": "chat-090",
+          "category": "followup",
+          "provided_context": 2,
+          "own_context": 1,
+          "provided_relevance": 2,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 33,
+          "own_prompt_tokens": 90
+        },
+        {
+          "id": "chat-091",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 1,
+          "provided_relevance": 0,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 66,
+          "own_prompt_tokens": 74
+        },
+        {
+          "id": "chat-092",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 51,
+          "own_prompt_tokens": 58
+        },
+        {
+          "id": "chat-094",
+          "category": "context",
+          "provided_context": 1,
+          "own_context": 1,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 55,
+          "own_prompt_tokens": 168
+        },
+        {
+          "id": "chat-095",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 71,
+          "own_prompt_tokens": 93
+        },
+        {
+          "id": "chat-096",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 63,
+          "own_prompt_tokens": 71
+        },
+        {
+          "id": "chat-097",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 80,
+          "own_prompt_tokens": 83
+        },
+        {
+          "id": "chat-099",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 74,
+          "own_prompt_tokens": 244
+        },
+        {
+          "id": "chat-100",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 81,
+          "own_prompt_tokens": 140
+        }
+      ],
+      "control_identical": 80
+    },
+    "epoch2": {
+      "primary": {
+        "responses": 80,
+        "grammar2": 42,
+        "relevance2": 14,
+        "context2": 14,
+        "grammar2_relevance2": 12,
+        "grammar2_relevance_below2": 30,
+        "natural_stop": 64,
+        "repetition": 16,
+        "nonstopping_repetition": 16,
+        "removed_history": 0,
+        "prompt_tokens": {
+          "count": 80,
+          "min": 10,
+          "median": 18.0,
+          "max": 81,
+          "mean": 26.7875
+        },
+        "generated_tokens": {
+          "count": 80,
+          "min": 6,
+          "median": 13.0,
+          "max": 64,
+          "mean": 22.6
+        }
+      },
+      "primary_by_category": [
+        {
+          "category": "ambiguity",
+          "summary": {
+            "responses": 8,
+            "grammar2": 6,
+            "relevance2": 1,
+            "context2": 1,
+            "grammar2_relevance2": 1,
+            "grammar2_relevance_below2": 5,
+            "natural_stop": 6,
+            "repetition": 2,
+            "nonstopping_repetition": 2,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 10,
+              "median": 13.0,
+              "max": 17,
+              "mean": 13.25
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 7,
+              "median": 14.0,
+              "max": 64,
+              "mean": 25.125
+            }
+          }
+        },
+        {
+          "category": "context",
+          "summary": {
+            "responses": 8,
+            "grammar2": 3,
+            "relevance2": 1,
+            "context2": 1,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 3,
+            "natural_stop": 8,
+            "repetition": 0,
+            "nonstopping_repetition": 0,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 51,
+              "median": 68.5,
+              "max": 81,
+              "mean": 67.625
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 10,
+              "median": 13.5,
+              "max": 28,
+              "mean": 15.5
+            }
+          }
+        },
+        {
+          "category": "correction",
+          "summary": {
+            "responses": 8,
+            "grammar2": 3,
+            "relevance2": 0,
+            "context2": 0,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 3,
+            "natural_stop": 7,
+            "repetition": 1,
+            "nonstopping_repetition": 1,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 29,
+              "median": 36.5,
+              "max": 44,
+              "mean": 36.75
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 7,
+              "median": 14.0,
+              "max": 64,
+              "mean": 18.125
+            }
+          }
+        },
+        {
+          "category": "daily",
+          "summary": {
+            "responses": 8,
+            "grammar2": 4,
+            "relevance2": 2,
+            "context2": 2,
+            "grammar2_relevance2": 2,
+            "grammar2_relevance_below2": 2,
+            "natural_stop": 4,
+            "repetition": 4,
+            "nonstopping_repetition": 4,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 14,
+              "median": 16.0,
+              "max": 18,
+              "mean": 15.875
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 6,
+              "median": 37.5,
+              "max": 64,
+              "mean": 36.25
+            }
+          }
+        },
+        {
+          "category": "emotion",
+          "summary": {
+            "responses": 8,
+            "grammar2": 5,
+            "relevance2": 1,
+            "context2": 1,
+            "grammar2_relevance2": 1,
+            "grammar2_relevance_below2": 4,
+            "natural_stop": 6,
+            "repetition": 2,
+            "nonstopping_repetition": 2,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 13,
+              "median": 16.5,
+              "max": 20,
+              "mean": 16.875
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 7,
+              "median": 9.0,
+              "max": 64,
+              "mean": 22.25
+            }
+          }
+        },
+        {
+          "category": "followup",
+          "summary": {
+            "responses": 8,
+            "grammar2": 7,
+            "relevance2": 3,
+            "context2": 3,
+            "grammar2_relevance2": 3,
+            "grammar2_relevance_below2": 4,
+            "natural_stop": 8,
+            "repetition": 0,
+            "nonstopping_repetition": 0,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 32,
+              "median": 36.0,
+              "max": 41,
+              "mean": 36.5
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 6,
+              "median": 11.0,
+              "max": 14,
+              "mean": 10.125
+            }
+          }
+        },
+        {
+          "category": "greeting",
+          "summary": {
+            "responses": 8,
+            "grammar2": 5,
+            "relevance2": 2,
+            "context2": 2,
+            "grammar2_relevance2": 1,
+            "grammar2_relevance_below2": 4,
+            "natural_stop": 6,
+            "repetition": 2,
+            "nonstopping_repetition": 2,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 13,
+              "median": 15.0,
+              "max": 17,
+              "mean": 15.0
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 7,
+              "median": 14.5,
+              "max": 64,
+              "mean": 24.625
+            }
+          }
+        },
+        {
+          "category": "question_back",
+          "summary": {
+            "responses": 8,
+            "grammar2": 3,
+            "relevance2": 0,
+            "context2": 0,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 3,
+            "natural_stop": 6,
+            "repetition": 2,
+            "nonstopping_repetition": 2,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 16,
+              "median": 18.0,
+              "max": 20,
+              "mean": 17.875
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 6,
+              "median": 17.5,
+              "max": 64,
+              "mean": 26.5
+            }
+          }
+        },
+        {
+          "category": "role_boundary",
+          "summary": {
+            "responses": 8,
+            "grammar2": 3,
+            "relevance2": 2,
+            "context2": 2,
+            "grammar2_relevance2": 2,
+            "grammar2_relevance_below2": 1,
+            "natural_stop": 7,
+            "repetition": 1,
+            "nonstopping_repetition": 1,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 21,
+              "median": 30.0,
+              "max": 35,
+              "mean": 28.75
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 7,
+              "median": 19.5,
+              "max": 64,
+              "mean": 22.25
+            }
+          }
+        },
+        {
+          "category": "symbols",
+          "summary": {
+            "responses": 8,
+            "grammar2": 3,
+            "relevance2": 2,
+            "context2": 2,
+            "grammar2_relevance2": 2,
+            "grammar2_relevance_below2": 1,
+            "natural_stop": 6,
+            "repetition": 2,
+            "nonstopping_repetition": 2,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 14,
+              "median": 18.0,
+              "max": 28,
+              "mean": 19.375
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 7,
+              "median": 15.0,
+              "max": 64,
+              "mean": 25.25
+            }
+          }
+        }
+      ],
+      "own_all": {
+        "responses": 59,
+        "grammar2": 32,
+        "relevance2": 8,
+        "context2": 6,
+        "grammar2_relevance2": 7,
+        "grammar2_relevance_below2": 25,
+        "natural_stop": 42,
+        "repetition": 17,
+        "nonstopping_repetition": 17,
+        "removed_history": 0,
+        "prompt_tokens": {
+          "count": 59,
+          "min": 10,
+          "median": 35.0,
+          "max": 246,
+          "mean": 46.05084745762712
+        },
+        "generated_tokens": {
+          "count": 59,
+          "min": 4,
+          "median": 12.0,
+          "max": 64,
+          "mean": 26.135593220338983
+        }
+      },
+      "own_final": {
+        "responses": 24,
+        "grammar2": 10,
+        "relevance2": 2,
+        "context2": 2,
+        "grammar2_relevance2": 1,
+        "grammar2_relevance_below2": 9,
+        "natural_stop": 17,
+        "repetition": 7,
+        "nonstopping_repetition": 7,
+        "removed_history": 0,
+        "prompt_tokens": {
+          "count": 24,
+          "min": 31,
+          "median": 55.5,
+          "max": 246,
+          "mean": 71.20833333333333
+        },
+        "generated_tokens": {
+          "count": 24,
+          "min": 4,
+          "median": 15.0,
+          "max": 64,
+          "mean": 27.333333333333332
+        }
+      },
+      "own_final_by_category": [
+        {
+          "category": "context",
+          "summary": {
+            "responses": 8,
+            "grammar2": 3,
+            "relevance2": 1,
+            "context2": 1,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 3,
+            "natural_stop": 6,
+            "repetition": 2,
+            "nonstopping_repetition": 2,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 55,
+              "median": 88.5,
+              "max": 246,
+              "mean": 104.125
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 10,
+              "median": 15.0,
+              "max": 64,
+              "mean": 26.125
+            }
+          }
+        },
+        {
+          "category": "correction",
+          "summary": {
+            "responses": 8,
+            "grammar2": 4,
+            "relevance2": 1,
+            "context2": 1,
+            "grammar2_relevance2": 1,
+            "grammar2_relevance_below2": 3,
+            "natural_stop": 6,
+            "repetition": 2,
+            "nonstopping_repetition": 2,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 31,
+              "median": 38.0,
+              "max": 100,
+              "mean": 51.125
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 7,
+              "median": 12.0,
+              "max": 64,
+              "mean": 24.5
+            }
+          }
+        },
+        {
+          "category": "followup",
+          "summary": {
+            "responses": 8,
+            "grammar2": 3,
+            "relevance2": 0,
+            "context2": 0,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 3,
+            "natural_stop": 5,
+            "repetition": 3,
+            "nonstopping_repetition": 3,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 32,
+              "median": 42.0,
+              "max": 97,
+              "mean": 58.375
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 4,
+              "median": 18.0,
+              "max": 64,
+              "mean": 31.375
+            }
+          }
+        }
+      ],
+      "provided_own_pairs": [
+        {
+          "id": "chat-071",
+          "category": "correction",
+          "provided_context": 1,
+          "own_context": 1,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 44,
+          "own_prompt_tokens": 100
+        },
+        {
+          "id": "chat-072",
+          "category": "correction",
+          "provided_context": 1,
+          "own_context": 1,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 32,
+          "own_prompt_tokens": 34
+        },
+        {
+          "id": "chat-074",
+          "category": "correction",
+          "provided_context": 0,
+          "own_context": 2,
+          "provided_relevance": 1,
+          "own_relevance": 2,
+          "provided_prompt_tokens": 39,
+          "own_prompt_tokens": 35
+        },
+        {
+          "id": "chat-075",
+          "category": "correction",
+          "provided_context": 1,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 44,
+          "own_prompt_tokens": 44
+        },
+        {
+          "id": "chat-076",
+          "category": "correction",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 29,
+          "own_prompt_tokens": 31
+        },
+        {
+          "id": "chat-077",
+          "category": "correction",
+          "provided_context": 0,
+          "own_context": 1,
+          "provided_relevance": 0,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 41,
+          "own_prompt_tokens": 38
+        },
+        {
+          "id": "chat-079",
+          "category": "correction",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 34,
+          "own_prompt_tokens": 38
+        },
+        {
+          "id": "chat-080",
+          "category": "correction",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 31,
+          "own_prompt_tokens": 89
+        },
+        {
+          "id": "chat-081",
+          "category": "followup",
+          "provided_context": 1,
+          "own_context": 1,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 38,
+          "own_prompt_tokens": 93
+        },
+        {
+          "id": "chat-082",
+          "category": "followup",
+          "provided_context": 2,
+          "own_context": 1,
+          "provided_relevance": 2,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 32,
+          "own_prompt_tokens": 36
+        },
+        {
+          "id": "chat-084",
+          "category": "followup",
+          "provided_context": 1,
+          "own_context": 1,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 40,
+          "own_prompt_tokens": 47
+        },
+        {
+          "id": "chat-085",
+          "category": "followup",
+          "provided_context": 1,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 41,
+          "own_prompt_tokens": 97
+        },
+        {
+          "id": "chat-086",
+          "category": "followup",
+          "provided_context": 0,
+          "own_context": 1,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 34,
+          "own_prompt_tokens": 35
+        },
+        {
+          "id": "chat-087",
+          "category": "followup",
+          "provided_context": 2,
+          "own_context": 0,
+          "provided_relevance": 2,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 34,
+          "own_prompt_tokens": 32
+        },
+        {
+          "id": "chat-089",
+          "category": "followup",
+          "provided_context": 1,
+          "own_context": 1,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 40,
+          "own_prompt_tokens": 37
+        },
+        {
+          "id": "chat-090",
+          "category": "followup",
+          "provided_context": 2,
+          "own_context": 0,
+          "provided_relevance": 2,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 33,
+          "own_prompt_tokens": 90
+        },
+        {
+          "id": "chat-091",
+          "category": "context",
+          "provided_context": 1,
+          "own_context": 1,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 66,
+          "own_prompt_tokens": 65
+        },
+        {
+          "id": "chat-092",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 51,
+          "own_prompt_tokens": 55
+        },
+        {
+          "id": "chat-094",
+          "category": "context",
+          "provided_context": 2,
+          "own_context": 2,
+          "provided_relevance": 2,
+          "own_relevance": 2,
+          "provided_prompt_tokens": 55,
+          "own_prompt_tokens": 110
+        },
+        {
+          "id": "chat-095",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 71,
+          "own_prompt_tokens": 124
+        },
+        {
+          "id": "chat-096",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 63,
+          "own_prompt_tokens": 56
+        },
+        {
+          "id": "chat-097",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 80,
+          "own_prompt_tokens": 83
+        },
+        {
+          "id": "chat-099",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 74,
+          "own_prompt_tokens": 94
+        },
+        {
+          "id": "chat-100",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 81,
+          "own_prompt_tokens": 246
+        }
+      ],
+      "control_identical": 80
+    },
+    "epoch3": {
+      "primary": {
+        "responses": 80,
+        "grammar2": 58,
+        "relevance2": 18,
+        "context2": 18,
+        "grammar2_relevance2": 17,
+        "grammar2_relevance_below2": 41,
+        "natural_stop": 77,
+        "repetition": 4,
+        "nonstopping_repetition": 3,
+        "removed_history": 0,
+        "prompt_tokens": {
+          "count": 80,
+          "min": 10,
+          "median": 18.0,
+          "max": 81,
+          "mean": 26.7875
+        },
+        "generated_tokens": {
+          "count": 80,
+          "min": 3,
+          "median": 10.0,
+          "max": 64,
+          "mean": 13.225
+        }
+      },
+      "primary_by_category": [
+        {
+          "category": "ambiguity",
+          "summary": {
+            "responses": 8,
+            "grammar2": 5,
+            "relevance2": 1,
+            "context2": 1,
+            "grammar2_relevance2": 1,
+            "grammar2_relevance_below2": 4,
+            "natural_stop": 8,
+            "repetition": 0,
+            "nonstopping_repetition": 0,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 10,
+              "median": 13.0,
+              "max": 17,
+              "mean": 13.25
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 7,
+              "median": 12.0,
+              "max": 20,
+              "mean": 12.875
+            }
+          }
+        },
+        {
+          "category": "context",
+          "summary": {
+            "responses": 8,
+            "grammar2": 3,
+            "relevance2": 1,
+            "context2": 1,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 3,
+            "natural_stop": 8,
+            "repetition": 0,
+            "nonstopping_repetition": 0,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 51,
+              "median": 68.5,
+              "max": 81,
+              "mean": 67.625
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 6,
+              "median": 18.5,
+              "max": 28,
+              "mean": 16.875
+            }
+          }
+        },
+        {
+          "category": "correction",
+          "summary": {
+            "responses": 8,
+            "grammar2": 7,
+            "relevance2": 1,
+            "context2": 1,
+            "grammar2_relevance2": 1,
+            "grammar2_relevance_below2": 6,
+            "natural_stop": 8,
+            "repetition": 0,
+            "nonstopping_repetition": 0,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 29,
+              "median": 36.5,
+              "max": 44,
+              "mean": 36.75
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 4,
+              "median": 8.0,
+              "max": 12,
+              "mean": 8.125
+            }
+          }
+        },
+        {
+          "category": "daily",
+          "summary": {
+            "responses": 8,
+            "grammar2": 7,
+            "relevance2": 2,
+            "context2": 2,
+            "grammar2_relevance2": 2,
+            "grammar2_relevance_below2": 5,
+            "natural_stop": 8,
+            "repetition": 0,
+            "nonstopping_repetition": 0,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 14,
+              "median": 16.0,
+              "max": 18,
+              "mean": 15.875
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 5,
+              "median": 10.0,
+              "max": 16,
+              "mean": 9.625
+            }
+          }
+        },
+        {
+          "category": "emotion",
+          "summary": {
+            "responses": 8,
+            "grammar2": 7,
+            "relevance2": 3,
+            "context2": 3,
+            "grammar2_relevance2": 3,
+            "grammar2_relevance_below2": 4,
+            "natural_stop": 8,
+            "repetition": 1,
+            "nonstopping_repetition": 0,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 13,
+              "median": 16.5,
+              "max": 20,
+              "mean": 16.875
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 3,
+              "median": 11.5,
+              "max": 24,
+              "mean": 12.125
+            }
+          }
+        },
+        {
+          "category": "followup",
+          "summary": {
+            "responses": 8,
+            "grammar2": 7,
+            "relevance2": 3,
+            "context2": 3,
+            "grammar2_relevance2": 3,
+            "grammar2_relevance_below2": 4,
+            "natural_stop": 8,
+            "repetition": 0,
+            "nonstopping_repetition": 0,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 32,
+              "median": 36.0,
+              "max": 41,
+              "mean": 36.5
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 5,
+              "median": 7.5,
+              "max": 13,
+              "mean": 8.0
+            }
+          }
+        },
+        {
+          "category": "greeting",
+          "summary": {
+            "responses": 8,
+            "grammar2": 7,
+            "relevance2": 4,
+            "context2": 4,
+            "grammar2_relevance2": 4,
+            "grammar2_relevance_below2": 3,
+            "natural_stop": 8,
+            "repetition": 0,
+            "nonstopping_repetition": 0,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 13,
+              "median": 15.0,
+              "max": 17,
+              "mean": 15.0
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 7,
+              "median": 11.0,
+              "max": 19,
+              "mean": 11.25
+            }
+          }
+        },
+        {
+          "category": "question_back",
+          "summary": {
+            "responses": 8,
+            "grammar2": 6,
+            "relevance2": 1,
+            "context2": 1,
+            "grammar2_relevance2": 1,
+            "grammar2_relevance_below2": 5,
+            "natural_stop": 8,
+            "repetition": 0,
+            "nonstopping_repetition": 0,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 16,
+              "median": 18.0,
+              "max": 20,
+              "mean": 17.875
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 6,
+              "median": 10.5,
+              "max": 21,
+              "mean": 11.125
+            }
+          }
+        },
+        {
+          "category": "role_boundary",
+          "summary": {
+            "responses": 8,
+            "grammar2": 5,
+            "relevance2": 1,
+            "context2": 1,
+            "grammar2_relevance2": 1,
+            "grammar2_relevance_below2": 4,
+            "natural_stop": 6,
+            "repetition": 2,
+            "nonstopping_repetition": 2,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 21,
+              "median": 30.0,
+              "max": 35,
+              "mean": 28.75
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 10,
+              "median": 16.5,
+              "max": 64,
+              "mean": 26.875
+            }
+          }
+        },
+        {
+          "category": "symbols",
+          "summary": {
+            "responses": 8,
+            "grammar2": 4,
+            "relevance2": 1,
+            "context2": 1,
+            "grammar2_relevance2": 1,
+            "grammar2_relevance_below2": 3,
+            "natural_stop": 7,
+            "repetition": 1,
+            "nonstopping_repetition": 1,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 14,
+              "median": 18.0,
+              "max": 28,
+              "mean": 19.375
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 3,
+              "median": 9.0,
+              "max": 64,
+              "mean": 15.375
+            }
+          }
+        }
+      ],
+      "own_all": {
+        "responses": 59,
+        "grammar2": 36,
+        "relevance2": 12,
+        "context2": 10,
+        "grammar2_relevance2": 10,
+        "grammar2_relevance_below2": 26,
+        "natural_stop": 51,
+        "repetition": 11,
+        "nonstopping_repetition": 8,
+        "removed_history": 0,
+        "prompt_tokens": {
+          "count": 59,
+          "min": 10,
+          "median": 34.0,
+          "max": 246,
+          "mean": 41.30508474576271
+        },
+        "generated_tokens": {
+          "count": 59,
+          "min": 4,
+          "median": 11.0,
+          "max": 64,
+          "mean": 18.084745762711865
+        }
+      },
+      "own_final": {
+        "responses": 24,
+        "grammar2": 13,
+        "relevance2": 2,
+        "context2": 2,
+        "grammar2_relevance2": 1,
+        "grammar2_relevance_below2": 12,
+        "natural_stop": 22,
+        "repetition": 4,
+        "nonstopping_repetition": 2,
+        "removed_history": 0,
+        "prompt_tokens": {
+          "count": 24,
+          "min": 31,
+          "median": 41.5,
+          "max": 246,
+          "mean": 62.458333333333336
+        },
+        "generated_tokens": {
+          "count": 24,
+          "min": 4,
+          "median": 11.0,
+          "max": 64,
+          "mean": 16.125
+        }
+      },
+      "own_final_by_category": [
+        {
+          "category": "context",
+          "summary": {
+            "responses": 8,
+            "grammar2": 4,
+            "relevance2": 0,
+            "context2": 0,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 4,
+            "natural_stop": 8,
+            "repetition": 0,
+            "nonstopping_repetition": 0,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 56,
+              "median": 76.0,
+              "max": 246,
+              "mean": 96.875
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 6,
+              "median": 12.0,
+              "max": 26,
+              "mean": 13.875
+            }
+          }
+        },
+        {
+          "category": "correction",
+          "summary": {
+            "responses": 8,
+            "grammar2": 6,
+            "relevance2": 1,
+            "context2": 1,
+            "grammar2_relevance2": 1,
+            "grammar2_relevance_below2": 5,
+            "natural_stop": 7,
+            "repetition": 1,
+            "nonstopping_repetition": 1,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 31,
+              "median": 38.0,
+              "max": 100,
+              "mean": 45.0
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 4,
+              "median": 11.0,
+              "max": 64,
+              "mean": 16.5
+            }
+          }
+        },
+        {
+          "category": "followup",
+          "summary": {
+            "responses": 8,
+            "grammar2": 3,
+            "relevance2": 1,
+            "context2": 1,
+            "grammar2_relevance2": 0,
+            "grammar2_relevance_below2": 3,
+            "natural_stop": 7,
+            "repetition": 3,
+            "nonstopping_repetition": 1,
+            "removed_history": 0,
+            "prompt_tokens": {
+              "count": 8,
+              "min": 32,
+              "median": 39.0,
+              "max": 97,
+              "mean": 45.5
+            },
+            "generated_tokens": {
+              "count": 8,
+              "min": 7,
+              "median": 11.5,
+              "max": 64,
+              "mean": 18.0
+            }
+          }
+        }
+      ],
+      "provided_own_pairs": [
+        {
+          "id": "chat-071",
+          "category": "correction",
+          "provided_context": 1,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 44,
+          "own_prompt_tokens": 100
+        },
+        {
+          "id": "chat-072",
+          "category": "correction",
+          "provided_context": 0,
+          "own_context": 2,
+          "provided_relevance": 0,
+          "own_relevance": 2,
+          "provided_prompt_tokens": 32,
+          "own_prompt_tokens": 34
+        },
+        {
+          "id": "chat-074",
+          "category": "correction",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 39,
+          "own_prompt_tokens": 35
+        },
+        {
+          "id": "chat-075",
+          "category": "correction",
+          "provided_context": 1,
+          "own_context": 1,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 44,
+          "own_prompt_tokens": 44
+        },
+        {
+          "id": "chat-076",
+          "category": "correction",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 29,
+          "own_prompt_tokens": 31
+        },
+        {
+          "id": "chat-077",
+          "category": "correction",
+          "provided_context": 2,
+          "own_context": 1,
+          "provided_relevance": 2,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 41,
+          "own_prompt_tokens": 38
+        },
+        {
+          "id": "chat-079",
+          "category": "correction",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 34,
+          "own_prompt_tokens": 40
+        },
+        {
+          "id": "chat-080",
+          "category": "correction",
+          "provided_context": 1,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 31,
+          "own_prompt_tokens": 38
+        },
+        {
+          "id": "chat-081",
+          "category": "followup",
+          "provided_context": 2,
+          "own_context": 1,
+          "provided_relevance": 2,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 38,
+          "own_prompt_tokens": 40
+        },
+        {
+          "id": "chat-082",
+          "category": "followup",
+          "provided_context": 2,
+          "own_context": 1,
+          "provided_relevance": 2,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 32,
+          "own_prompt_tokens": 35
+        },
+        {
+          "id": "chat-084",
+          "category": "followup",
+          "provided_context": 1,
+          "own_context": 2,
+          "provided_relevance": 1,
+          "own_relevance": 2,
+          "provided_prompt_tokens": 40,
+          "own_prompt_tokens": 39
+        },
+        {
+          "id": "chat-085",
+          "category": "followup",
+          "provided_context": 1,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 41,
+          "own_prompt_tokens": 97
+        },
+        {
+          "id": "chat-086",
+          "category": "followup",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 34,
+          "own_prompt_tokens": 39
+        },
+        {
+          "id": "chat-087",
+          "category": "followup",
+          "provided_context": 2,
+          "own_context": 1,
+          "provided_relevance": 2,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 34,
+          "own_prompt_tokens": 32
+        },
+        {
+          "id": "chat-089",
+          "category": "followup",
+          "provided_context": 1,
+          "own_context": 1,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 40,
+          "own_prompt_tokens": 43
+        },
+        {
+          "id": "chat-090",
+          "category": "followup",
+          "provided_context": 1,
+          "own_context": 1,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 33,
+          "own_prompt_tokens": 39
+        },
+        {
+          "id": "chat-091",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 1,
+          "provided_relevance": 0,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 66,
+          "own_prompt_tokens": 59
+        },
+        {
+          "id": "chat-092",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 51,
+          "own_prompt_tokens": 57
+        },
+        {
+          "id": "chat-094",
+          "category": "context",
+          "provided_context": 2,
+          "own_context": 0,
+          "provided_relevance": 2,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 55,
+          "own_prompt_tokens": 111
+        },
+        {
+          "id": "chat-095",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 0,
+          "provided_prompt_tokens": 71,
+          "own_prompt_tokens": 94
+        },
+        {
+          "id": "chat-096",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 63,
+          "own_prompt_tokens": 56
+        },
+        {
+          "id": "chat-097",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 80,
+          "own_prompt_tokens": 72
+        },
+        {
+          "id": "chat-099",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 0,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 74,
+          "own_prompt_tokens": 80
+        },
+        {
+          "id": "chat-100",
+          "category": "context",
+          "provided_context": 0,
+          "own_context": 0,
+          "provided_relevance": 1,
+          "own_relevance": 1,
+          "provided_prompt_tokens": 81,
+          "own_prompt_tokens": 246
+        }
+      ],
+      "control_identical": 80
+    }
+  },
+  "effective_data": {
+    "train_dialogues": 2688,
+    "responses_per_pass": 40366,
+    "assistant_teachers_per_pass": 633185,
+    "mean_teacher_tokens_per_response": 15.686097210523709,
+    "EOT_teacher_fraction": 0.0637507205635004,
+    "history_serialization_multiplier": 7.593851824911087,
+    "train_max_teacher_length": 65,
+    "evaluation_max_new_tokens": 64,
+    "learned_teachers": 1899555,
+    "learned_EOT_teachers": 121098,
+    "physical_input_tokens": 124026880,
+    "valid_input_tokens": 30446373,
+    "padding_input_tokens": 93580507,
+    "padding_fraction": 0.754517948044811,
+    "physical_tokens_per_teacher": 65.29259747677746
+  },
+  "observed_training_loss": {
+    "updates": 3785,
+    "first_loss": 5.201346397399902,
+    "last_loss": 2.6561825275421143,
+    "blocks": [
+      {
+        "first_update": 1,
+        "last_update": 1262,
+        "teachers": 633454.0,
+        "teacher_weighted_observed_training_loss": 3.013069475609869
+      },
+      {
+        "first_update": 1263,
+        "last_update": 2523,
+        "teachers": 632959.0,
+        "teacher_weighted_observed_training_loss": 2.6170719927259802
+      },
+      {
+        "first_update": 2524,
+        "last_update": 3785,
+        "teachers": 633142.0,
+        "teacher_weighted_observed_training_loss": 2.403611401266058
+      }
+    ],
+    "limitation": "Measured on evolving training batches/weights, not fixed checkpoint DEV NLL; does not establish overfitting or held-out quality"
+  },
+  "epoch3_content_failures": [
+    {
+      "key": "suppressed-chat-001",
+      "id": "chat-001",
+      "family_id": "chat-greeting-01",
+      "category": "greeting",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "自然な挨拶と質問だが早起きの報告から今日の仕事へ話をずらす。",
+      "text": "おはよう。今日はお仕事でしたか？",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 15,
+      "generated_tokens": 12,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-002",
+      "id": "chat-002",
+      "family_id": "chat-greeting-02",
+      "category": "greeting",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "短い驚きの相づちを二度重ねるだけで帰宅への具体的応答がない。",
+      "text": "おー！おー！",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 16,
+      "generated_tokens": 7,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-004",
+      "id": "chat-004",
+      "family_id": "chat-greeting-04",
+      "category": "greeting",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "挨拶はするが夕飯を食べたかに昼食でしたと答えてずれる。",
+      "text": "こんばんは！今日はお昼ご飯でした！",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 13,
+      "generated_tokens": 11,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-009",
+      "id": "chat-009",
+      "family_id": "chat-greeting-09",
+      "category": "greeting",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "楽しさに触れるが楽しかったという報告を質問し直す。",
+      "text": "おお！楽しかったですか？",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 15,
+      "generated_tokens": 9,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-011",
+      "id": "chat-011",
+      "family_id": "chat-emotion-01",
+      "category": "emotion",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "労いはあるが失敗した報告を受けた後に失敗経験を聞き直す。",
+      "text": "お疲れ様です。あなたは失敗したことありますか？",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 16,
+      "generated_tokens": 15,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-012",
+      "id": "chat-012",
+      "family_id": "chat-emotion-02",
+      "category": "emotion",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "こんばんはという挨拶だけで褒められた喜びに応じない。",
+      "text": "こんばんは！",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 13,
+      "generated_tokens": 3,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-014",
+      "id": "chat-014",
+      "family_id": "chat-emotion-04",
+      "category": "emotion",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "電車の語を三度質問するだけで乗り遅れの苛立ちを扱わない。",
+      "text": "電車ですか。電車ですか。電車ですか。",
+      "stop_reason": "eot",
+      "repetition": true,
+      "prompt_tokens": 17,
+      "generated_tokens": 13,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-015",
+      "id": "chat-015",
+      "family_id": "chat-emotion-05",
+      "category": "emotion",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "寂しい夜という相手の発話を反響して応答が薄い。",
+      "text": "夜は、少し寂しい。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 16,
+      "generated_tokens": 8,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-019",
+      "id": "chat-019",
+      "family_id": "chat-emotion-09",
+      "category": "emotion",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "自然な質問だが疲れて話を聞いてほしいという要求を受けない。",
+      "text": "こんばんは！今日はお休みですか？",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 17,
+      "generated_tokens": 9,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-021",
+      "id": "chat-021",
+      "family_id": "chat-daily-01",
+      "category": "daily",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "おにぎりという話題への相づちだけで反応は漠然としている。",
+      "text": "おにぎり！",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 16,
+      "generated_tokens": 6,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-022",
+      "id": "chat-022",
+      "family_id": "chat-daily-02",
+      "category": "daily",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "公園という話題を確認するだけで出かけた経験への反応が薄い。",
+      "text": "公園ですか！",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 17,
+      "generated_tokens": 5,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-024",
+      "id": "chat-024",
+      "family_id": "chat-daily-04",
+      "category": "daily",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "混んでいたという直前の報告を再び質問している。",
+      "text": "電車、混んでました？",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 16,
+      "generated_tokens": 8,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-027",
+      "id": "chat-027",
+      "family_id": "chat-daily-07",
+      "category": "daily",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "桜の話には沿うが相手の見た桜を自分が見た経験として返す。",
+      "text": "桜は、すごく綺麗でした。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 15,
+      "generated_tokens": 11,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-029",
+      "id": "chat-029",
+      "family_id": "chat-daily-09",
+      "category": "daily",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "花の話題には触れるが間投詞を重ね種類が多いと根拠なく推測。",
+      "text": "おお！おお！お花の種類が多そうだ。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 18,
+      "generated_tokens": 16,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-030",
+      "id": "chat-030",
+      "family_id": "chat-daily-10",
+      "category": "daily",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "手紙が届いたユーザーの報告をそのまま反響している。",
+      "text": "友達から手紙が届いたよ。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 14,
+      "generated_tokens": 11,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-031",
+      "id": "chat-031",
+      "family_id": "chat-question_back-01",
+      "category": "question_back",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "共感の一文は自然だが要求された話題を引き出す質問がない。",
+      "text": "そうですね、私もです。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 19,
+      "generated_tokens": 6,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-034",
+      "id": "chat-034",
+      "family_id": "chat-question_back-04",
+      "category": "question_back",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "自分の趣味を述べるだけで新しい趣味を探す状況を尋ねない。",
+      "text": "趣味は、ゲームです。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 18,
+      "generated_tokens": 8,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-035",
+      "id": "chat-035",
+      "family_id": "chat-question_back-05",
+      "category": "question_back",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "仕事だったという同義文にずれ良かったことを尋ねない。",
+      "text": "今日は、お仕事だったので、お仕事だった。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 16,
+      "generated_tokens": 13,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-036",
+      "id": "chat-036",
+      "family_id": "chat-question_back-06",
+      "category": "question_back",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "旅行先を質問するが思い出の行き先から未来の希望へずれる。",
+      "text": "旅行いいですね。どこか行きたいところありますか？",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 20,
+      "generated_tokens": 11,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-037",
+      "id": "chat-037",
+      "family_id": "chat-question_back-07",
+      "category": "question_back",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "食べ物への感想は自然だが一つ質問する指示に応じない。",
+      "text": "おいしいものを食べたいですよね。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 16,
+      "generated_tokens": 10,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-039",
+      "id": "chat-039",
+      "family_id": "chat-question_back-09",
+      "category": "question_back",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "運動の肯定を二度繰り返し始める前の状況を質問しない。",
+      "text": "運動は、やるのがいいですよね。運動は、やるのがいいですよね。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 18,
+      "generated_tokens": 21,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-040",
+      "id": "chat-040",
+      "family_id": "chat-question_back-10",
+      "category": "question_back",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "本の長さを確認するが短く質問してという指示を取り違えている。",
+      "text": "短い本ですか。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 18,
+      "generated_tokens": 6,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-041",
+      "id": "chat-041",
+      "family_id": "chat-ambiguity-01",
+      "category": "ambiguity",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "休みだったかという質問へずれ曖昧な気分への反応がない。",
+      "text": "こんばんは！今日はお休みでしたか？",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 16,
+      "generated_tokens": 10,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-042",
+      "id": "chat-042",
+      "family_id": "chat-ambiguity-02",
+      "category": "ambiguity",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "迷いの語を二度反響するだけで何に迷うかを確認しない。",
+      "text": "どうしよう、どうしよう。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 10,
+      "generated_tokens": 7,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-044",
+      "id": "chat-044",
+      "family_id": "chat-ambiguity-04",
+      "category": "ambiguity",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "違うという話に沿うが指示語が曖昧で内容の確認はない。",
+      "text": "あー、そういうの、結構違う気がします。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 14,
+      "generated_tokens": 13,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-045",
+      "id": "chat-045",
+      "family_id": "chat-ambiguity-05",
+      "category": "ambiguity",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "良かったかの迷いへいいなあと返すだけで応答の意味が薄い。",
+      "text": "あー、いいなあ。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 12,
+      "generated_tokens": 8,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-047",
+      "id": "chat-047",
+      "family_id": "chat-ambiguity-07",
+      "category": "ambiguity",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "羨ましいとやりたくないという無関係な感想へずれる。",
+      "text": "うらやましい。でも、やっぱり、やりたくない。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 17,
+      "generated_tokens": 20,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-049",
+      "id": "chat-049",
+      "family_id": "chat-ambiguity-09",
+      "category": "ambiguity",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "考えたという発話を反響するだけで例のことを確認しない。",
+      "text": "えー、なんか、考えちゃった。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 13,
+      "generated_tokens": 11,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-050",
+      "id": "chat-050",
+      "family_id": "chat-ambiguity-10",
+      "category": "ambiguity",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "お仕事の同語を重ね勝手な仕事の話へずれている。",
+      "text": "まあ、今日は、お仕事で、お仕事のお仕事をしてますね。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 13,
+      "generated_tokens": 20,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-051",
+      "id": "chat-051",
+      "family_id": "chat-role_boundary-01",
+      "category": "role_boundary",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "怖いという感想へずれ文字として話せるかという問いに答えない。",
+      "text": "あー、それが、ちょっと怖い感じです。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 32,
+      "generated_tokens": 13,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-052",
+      "id": "chat-052",
+      "family_id": "chat-role_boundary-02",
+      "category": "role_boundary",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 0,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "変わった文字列という未完節を反復し返答を完成できない。",
+      "text": "変わった記号って、変わった文字列って、変わった文字列って、変わった文字列って、変わった文字列って、変わった文字列って、変わった文字列って、変わった文字列って、変わった文字列って、変",
+      "stop_reason": "max_new_tokens",
+      "repetition": true,
+      "prompt_tokens": 29,
+      "generated_tokens": 64,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-054",
+      "id": "chat-054",
+      "family_id": "chat-role_boundary-04",
+      "category": "role_boundary",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "短さには同意するがおはようをお笑いの話と根拠なく取り違える。",
+      "text": "短いね。おはようっていうのは、お笑いの話ですか？",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 35,
+      "generated_tokens": 21,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-055",
+      "id": "chat-055",
+      "family_id": "chat-role_boundary-05",
+      "category": "role_boundary",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "雨の報告は受けるが降っていないかを聞き直し反応が曖昧。",
+      "text": "雨だったんですね。雨は降ってないですか？",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 31,
+      "generated_tokens": 12,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-056",
+      "id": "chat-056",
+      "family_id": "chat-role_boundary-06",
+      "category": "role_boundary",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "今日はを上限まで反復し早起きへの一つの返答にならない。",
+      "text": "今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日",
+      "stop_reason": "max_new_tokens",
+      "repetition": true,
+      "prompt_tokens": 21,
+      "generated_tokens": 64,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-057",
+      "id": "chat-057",
+      "family_id": "chat-role_boundary-07",
+      "category": "role_boundary",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "飲んだという報告へ飲まないかを尋ね事実を受けられない。",
+      "text": "コーヒーは飲まないんですか？",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 33,
+      "generated_tokens": 10,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-060",
+      "id": "chat-060",
+      "family_id": "chat-role_boundary-10",
+      "category": "role_boundary",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "お茶の話題には触れるがお茶のお茶という不自然な重複が続く。",
+      "text": "お茶のお茶は、お茶のお茶の方がおいしいですよね。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 22,
+      "generated_tokens": 20,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-061",
+      "id": "chat-061",
+      "family_id": "chat-symbols-01",
+      "category": "symbols",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "こんばんはという挨拶だけで楽しかったという話に応じない。",
+      "text": "こんばんは！",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 18,
+      "generated_tokens": 3,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-064",
+      "id": "chat-064",
+      "family_id": "chat-symbols-04",
+      "category": "symbols",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "お茶を飲む話には触れるがお茶のお茶という語が不自然。",
+      "text": "お茶のお茶は飲みますか？",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 14,
+      "generated_tokens": 12,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-065",
+      "id": "chat-065",
+      "family_id": "chat-symbols-05",
+      "category": "symbols",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "眠いというユーザーの気分を自分の発話として反響する。",
+      "text": "うーん、眠いです。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 14,
+      "generated_tokens": 9,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-066",
+      "id": "chat-066",
+      "family_id": "chat-symbols-06",
+      "category": "symbols",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "おはようを二度重ね寝ぼけている話への反応はない。",
+      "text": "おはよう。おはよう。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 18,
+      "generated_tokens": 9,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-067",
+      "id": "chat-067",
+      "family_id": "chat-symbols-07",
+      "category": "symbols",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "嬉しいという気分を反響するだけで相手の体験への反応が薄い。",
+      "text": "嬉しいです！",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 24,
+      "generated_tokens": 5,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-069",
+      "id": "chat-069",
+      "family_id": "chat-symbols-09",
+      "category": "symbols",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "おおだけを反復し友人との面会への応答が成立しない。",
+      "text": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、お",
+      "stop_reason": "max_new_tokens",
+      "repetition": true,
+      "prompt_tokens": 23,
+      "generated_tokens": 64,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-070",
+      "id": "chat-070",
+      "family_id": "chat-symbols-10",
+      "category": "symbols",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "買い物の話題は拾うが土曜を日曜へ取り違えている。",
+      "text": "おお、お買い物！日曜は買い物！",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 28,
+      "generated_tokens": 14,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-071",
+      "id": "chat-071",
+      "family_id": "chat-correction-01",
+      "category": "correction",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "大阪の語は拾うが大阪が間違いという表現で行き先が曖昧。",
+      "text": "大阪の間違いです。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 44,
+      "generated_tokens": 8,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-072",
+      "id": "chat-072",
+      "family_id": "chat-correction-02",
+      "category": "correction",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "猫をどんな犬かと尋ね訂正された動物の種類を混同する。",
+      "text": "猫って、どんな犬なんですか？",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 32,
+      "generated_tokens": 9,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-074",
+      "id": "chat-074",
+      "family_id": "chat-correction-04",
+      "category": "correction",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "一般の好みを質問し今日は甘いものを食べたくない点を落とす。",
+      "text": "甘いものは好きですか？",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 39,
+      "generated_tokens": 8,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-075",
+      "id": "chat-075",
+      "family_id": "chat-correction-05",
+      "category": "correction",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "雨へ更新はするが明日の予報を今降っている話に変えている。",
+      "text": "あらら。雨降ってるのか。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 44,
+      "generated_tokens": 12,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-076",
+      "id": "chat-076",
+      "family_id": "chat-correction-06",
+      "category": "correction",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "短い驚きの相づちを重ねるだけで姉への訂正を示さない。",
+      "text": "おお！おお！",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 29,
+      "generated_tokens": 7,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-079",
+      "id": "chat-079",
+      "family_id": "chat-correction-09",
+      "category": "correction",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "自然な短文だが訂正された緑ではなく赤という誤答を返す。",
+      "text": "赤だった。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 34,
+      "generated_tokens": 4,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-080",
+      "id": "chat-080",
+      "family_id": "chat-correction-10",
+      "category": "correction",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "引越しへの労いは可能だが来月への延期を明示しない。",
+      "text": "お疲れ様です。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 31,
+      "generated_tokens": 7,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-084",
+      "id": "chat-084",
+      "family_id": "chat-followup-04",
+      "category": "followup",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "短い小説という答え済みの情報を質問し直している。",
+      "text": "あー、短い本ですか？",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 40,
+      "generated_tokens": 9,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-085",
+      "id": "chat-085",
+      "family_id": "chat-followup-05",
+      "category": "followup",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "水族館という話題への相づちだけでクラゲの報告は扱わない。",
+      "text": "水族館ですか！",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 41,
+      "generated_tokens": 6,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-086",
+      "id": "chat-086",
+      "family_id": "chat-followup-06",
+      "category": "followup",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "靴の方がいいという比較が曖昧できついため距離を減らす話を失う。",
+      "text": "おお！それは、靴の方がいいかも。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 34,
+      "generated_tokens": 13,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-089",
+      "id": "chat-089",
+      "family_id": "chat-followup-09",
+      "category": "followup",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "祖母の元気には触れるが相手の報告を自分の経験として返す。",
+      "text": "おお、元気でした！",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 40,
+      "generated_tokens": 8,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-090",
+      "id": "chat-090",
+      "family_id": "chat-followup-10",
+      "category": "followup",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "ピアノという話題を受ける相づちだけで落ち着いた点には応じない。",
+      "text": "ピアノですか！",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 33,
+      "generated_tokens": 6,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-091",
+      "id": "chat-091",
+      "family_id": "chat-context-01",
+      "category": "context",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "辛いものが好きと逆転させ辛口を勧め履歴の苦手を失う。",
+      "text": "甘口は、辛いものが好きなので、辛口は、辛口がいい。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 66,
+      "generated_tokens": 21,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-092",
+      "id": "chat-092",
+      "family_id": "chat-context-02",
+      "category": "context",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "6時を6時半に変え同じ未完の起床節を重複している。",
+      "text": "今日は6時半に起きて、6時半に起きて、6時半に起きて。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 51,
+      "generated_tokens": 24,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-094",
+      "id": "chat-094",
+      "family_id": "chat-context-04",
+      "category": "context",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 1,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "バスの語は重複するが足の痛みに合うバスを選んでいる。",
+      "text": "バスは、バスの方がいいかもしれない。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 55,
+      "generated_tokens": 10,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-095",
+      "id": "chat-095",
+      "family_id": "chat-context-05",
+      "category": "context",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "今日の買い物中止を創作し履歴の土曜日を答えない。",
+      "text": "今日は買い物に行く予定だったけど、今日は買い物に行かないことに。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 71,
+      "generated_tokens": 23,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-096",
+      "id": "chat-096",
+      "family_id": "chat-context-06",
+      "category": "context",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "記憶の有無に短く答えるが履歴にあるミケの名前を忘れている。",
+      "text": "覚えてないですね。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 63,
+      "generated_tokens": 6,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-097",
+      "id": "chat-097",
+      "family_id": "chat-context-07",
+      "category": "context",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "ねぎについて質問し直し冷たいうどんとねぎ抜きの希望をまとめない。",
+      "text": "ねぎはどうですか？",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 80,
+      "generated_tokens": 7,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-099",
+      "id": "chat-099",
+      "family_id": "chat-context-09",
+      "category": "context",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "ナッツを食べられない条件を落とし水につけて食べると勧める。",
+      "text": "ナッツは、水につけて食べるのがいいかな。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 74,
+      "generated_tokens": 16,
+      "removed_turns": 0
+    },
+    {
+      "key": "suppressed-chat-100",
+      "id": "chat-100",
+      "family_id": "chat-context-10",
+      "category": "context",
+      "condition": "suppressed",
+      "final_turn": false,
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "明るいものを選ぶ未完節を重ね直射日光を避ける条件を失う。",
+      "text": "明るいのは、明るいのを選んで、明るいのは明るいのを選んで。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 81,
+      "generated_tokens": 28,
+      "removed_turns": 0
+    }
+  ],
+  "epoch3_own_final_context_failures": [
+    {
+      "key": "own-chat-071-turn-2",
+      "id": "chat-071",
+      "family_id": "chat-correction-01",
+      "category": "correction",
+      "condition": "own-history",
+      "final_turn": true,
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "訂正後の大阪を答えず京都がどこかという質問へ戻る。",
+      "text": "京都の間違いです。京都はどこですか？",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 100,
+      "generated_tokens": 14,
+      "removed_turns": 0
+    },
+    {
+      "key": "own-chat-074-turn-2",
+      "id": "chat-074",
+      "family_id": "chat-correction-04",
+      "category": "correction",
+      "condition": "own-history",
+      "final_turn": true,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "一般の好みを質問し今日は食べたくないという否定を落とす。",
+      "text": "甘いものは好きですか？",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 35,
+      "generated_tokens": 8,
+      "removed_turns": 0
+    },
+    {
+      "key": "own-chat-075-turn-2",
+      "id": "chat-075",
+      "family_id": "chat-correction-05",
+      "category": "correction",
+      "condition": "own-history",
+      "final_turn": true,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "雨への更新はするが明日の予報を今降っている話へ変える。",
+      "text": "あらら。雨降ってるのか？",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 44,
+      "generated_tokens": 12,
+      "removed_turns": 0
+    },
+    {
+      "key": "own-chat-076-turn-2",
+      "id": "chat-076",
+      "family_id": "chat-correction-06",
+      "category": "correction",
+      "condition": "own-history",
+      "final_turn": true,
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "おおだけを上限まで反復し姉への訂正に応じない。",
+      "text": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、お",
+      "stop_reason": "max_new_tokens",
+      "repetition": true,
+      "prompt_tokens": 31,
+      "generated_tokens": 64,
+      "removed_turns": 0
+    },
+    {
+      "key": "own-chat-077-turn-2",
+      "id": "chat-077",
+      "family_id": "chat-correction-07",
+      "category": "correction",
+      "condition": "own-history",
+      "final_turn": true,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "コーヒーが苦手という訂正には触れるが相手の好みを自分に移す。",
+      "text": "私は、コーヒーが苦手です。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 38,
+      "generated_tokens": 11,
+      "removed_turns": 0
+    },
+    {
+      "key": "own-chat-079-turn-2",
+      "id": "chat-079",
+      "family_id": "chat-correction-09",
+      "category": "correction",
+      "condition": "own-history",
+      "final_turn": true,
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "赤を二度述べ訂正された緑という色を答えない。",
+      "text": "赤だった。あとは、赤の傘。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 40,
+      "generated_tokens": 11,
+      "removed_turns": 0
+    },
+    {
+      "key": "own-chat-080-turn-2",
+      "id": "chat-080",
+      "family_id": "chat-correction-10",
+      "category": "correction",
+      "condition": "own-history",
+      "final_turn": true,
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "仕事の質問を続け来月への延期という情報を取り込まない。",
+      "text": "おお！お仕事ですか？",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 38,
+      "generated_tokens": 8,
+      "removed_turns": 0
+    },
+    {
+      "key": "own-chat-081-turn-2",
+      "id": "chat-081",
+      "family_id": "chat-followup-01",
+      "category": "followup",
+      "condition": "own-history",
+      "final_turn": true,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "おいしかったという相手の感想を反響し焦げた点は扱わない。",
+      "text": "おいしかったです！",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 40,
+      "generated_tokens": 7,
+      "removed_turns": 0
+    },
+    {
+      "key": "own-chat-082-turn-2",
+      "id": "chat-082",
+      "family_id": "chat-followup-02",
+      "category": "followup",
+      "condition": "own-history",
+      "final_turn": true,
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "鳥の話には沿うがたくさんいっぱいと不自然な重複がある。",
+      "text": "鳥がたくさんいっぱいでした。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 35,
+      "generated_tokens": 10,
+      "removed_turns": 0
+    },
+    {
+      "key": "own-chat-085-turn-2",
+      "id": "chat-085",
+      "family_id": "chat-followup-05",
+      "category": "followup",
+      "condition": "own-history",
+      "final_turn": true,
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "おおの反復が続き水族館やクラゲの報告を扱わない。",
+      "text": "おお！おお！おお！おお！おお！おお！おお！おお！おお！おお！おお！おお！おお！おお！おお！おお！おお！おお！おお！おお！おお！お",
+      "stop_reason": "max_new_tokens",
+      "repetition": true,
+      "prompt_tokens": 97,
+      "generated_tokens": 64,
+      "removed_turns": 0
+    },
+    {
+      "key": "own-chat-086-turn-2",
+      "id": "chat-086",
+      "family_id": "chat-followup-06",
+      "category": "followup",
+      "condition": "own-history",
+      "final_turn": true,
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "おーを五度重ね靴のきつさや距離を減らした点を扱わない。",
+      "text": "おー！おー！おー！おー！おー！",
+      "stop_reason": "eot",
+      "repetition": true,
+      "prompt_tokens": 39,
+      "generated_tokens": 16,
+      "removed_turns": 0
+    },
+    {
+      "key": "own-chat-087-turn-2",
+      "id": "chat-087",
+      "family_id": "chat-followup-07",
+      "category": "followup",
+      "condition": "own-history",
+      "final_turn": true,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "卵焼きへの感想は自然だが形がうまくできた報告への反応が薄い。",
+      "text": "卵焼きは、おいしいですよね。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 32,
+      "generated_tokens": 11,
+      "removed_turns": 0
+    },
+    {
+      "key": "own-chat-089-turn-2",
+      "id": "chat-089",
+      "family_id": "chat-followup-09",
+      "category": "followup",
+      "condition": "own-history",
+      "final_turn": true,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "労いは自然だが元気な祖母と話せた喜びへの反応が薄い。",
+      "text": "おお、お疲れ様でした！",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 43,
+      "generated_tokens": 10,
+      "removed_turns": 0
+    },
+    {
+      "key": "own-chat-090-turn-2",
+      "id": "chat-090",
+      "family_id": "chat-followup-10",
+      "category": "followup",
+      "condition": "own-history",
+      "final_turn": true,
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "ピアノの話には沿うが質問の主語と接続が不自然で落ち着きに応じない。",
+      "text": "ピアノは、どんな音楽を聴かれますか？",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 39,
+      "generated_tokens": 14,
+      "removed_turns": 0
+    },
+    {
+      "key": "own-chat-091-turn-3",
+      "id": "chat-091",
+      "family_id": "chat-context-01",
+      "category": "context",
+      "condition": "own-history",
+      "final_turn": true,
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "甘口と苦手の語は拾うが適した辛さを明確に答えない。",
+      "text": "甘口は、辛いものが苦手です。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 59,
+      "generated_tokens": 13,
+      "removed_turns": 0
+    },
+    {
+      "key": "own-chat-092-turn-3",
+      "id": "chat-092",
+      "family_id": "chat-context-02",
+      "category": "context",
+      "condition": "own-history",
+      "final_turn": true,
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "10時という履歴にない時刻を答え6時の起床予定を失う。",
+      "text": "今日は１０時くらいです。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 57,
+      "generated_tokens": 9,
+      "removed_turns": 0
+    },
+    {
+      "key": "own-chat-094-turn-3",
+      "id": "chat-094",
+      "family_id": "chat-context-04",
+      "category": "context",
+      "condition": "own-history",
+      "final_turn": true,
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "バスがあるからないと矛盾し足の痛みに合う選択をしない。",
+      "text": "バスは、バスがあるので、バスはないですね。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 111,
+      "generated_tokens": 13,
+      "removed_turns": 0
+    },
+    {
+      "key": "own-chat-095-turn-3",
+      "id": "chat-095",
+      "family_id": "chat-context-05",
+      "category": "context",
+      "condition": "own-history",
+      "final_turn": true,
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "今日午後の買い物という話を創作し土曜日を答えない。",
+      "text": "今日は、買い物に行く予定だったので、午後は、買い物に行くことに。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 94,
+      "generated_tokens": 25,
+      "removed_turns": 0
+    },
+    {
+      "key": "own-chat-096-turn-3",
+      "id": "chat-096",
+      "family_id": "chat-context-06",
+      "category": "context",
+      "condition": "own-history",
+      "final_turn": true,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "記憶の有無には答えるが履歴の猫の名前ミケを忘れている。",
+      "text": "覚えてないですね。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 56,
+      "generated_tokens": 6,
+      "removed_turns": 0
+    },
+    {
+      "key": "own-chat-097-turn-4",
+      "id": "chat-097",
+      "family_id": "chat-context-07",
+      "category": "context",
+      "condition": "own-history",
+      "final_turn": true,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "ねぎの苦手を再質問するだけで冷たいうどんとねぎ抜きをまとめない。",
+      "text": "ねぎは苦手ですか？",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 72,
+      "generated_tokens": 8,
+      "removed_turns": 0
+    },
+    {
+      "key": "own-chat-099-turn-4",
+      "id": "chat-099",
+      "family_id": "chat-context-09",
+      "category": "context",
+      "condition": "own-history",
+      "final_turn": true,
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "ナッツの感想を述べるだけで食べられない条件への注意を答えない。",
+      "text": "ナッツは、おいしいです。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 80,
+      "generated_tokens": 11,
+      "removed_turns": 0
+    },
+    {
+      "key": "own-chat-100-turn-4",
+      "id": "chat-100",
+      "family_id": "chat-context-10",
+      "category": "context",
+      "condition": "own-history",
+      "final_turn": true,
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "置きたい場所を置きたくないと矛盾させ日光を確認する要求を失う。",
+      "text": "置くときは、置きたい場所に置く。置きたい場所は、置きたくない。",
+      "stop_reason": "eot",
+      "repetition": false,
+      "prompt_tokens": 246,
+      "generated_tokens": 26,
+      "removed_turns": 0
+    }
+  ],
+  "limitations": [
+    "876 judgments include 320 byte-identical control outputs; not 876 independent prompts",
+    "24 own-history families overlap provided-history families; compare matched IDs",
+    "Category counts are eight each; descriptive, nonblind and one trained seed",
+    "No new TRAIN census, DEV NLL, retention, sampling, independent seed, human blind review or protected TEST"
+  ]
+}
