@@ -1,0 +1,2344 @@
+{
+  "evaluation_sha256": "8e46d51af62b707bf72527b6f2550fb7d32a8653709ae4395632eb582f8d5a10",
+  "rubric": {
+    "grammar": "0: unreadable/broken; 1: understandable with awkward or incomplete clauses; 2: natural complete Japanese. Score language separately from factual correctness.",
+    "relevance": "0: unrelated/contradicts the request; 1: partly relevant or vague; 2: directly responds to the final User in the actual history. Do not require literal gold wording.",
+    "context": "0: loses or contradicts required conditions; 1: partial/ambiguous retention; 2: retains all relevant conditions and corrections in the actual history. For own-history use generated replies, never supplied gold Assistant messages.",
+    "rationale": "At least 12 characters explaining the particular response. Keep fantasy, alternate natural answers, numeric correctness, grammar, and stopping distinct."
+  },
+  "reviewer": {
+    "kind": "codex_nonblind",
+    "identity": "Codex plan133 reviewer",
+    "independent_human": false,
+    "blind": false
+  },
+  "judgments": [
+    {
+      "key": "suppressed-generalization-greeting-01",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "話す許可を求める挨拶に理由なく拒否し、読点で文が終わっている。"
+    },
+    {
+      "key": "suppressed-generalization-greeting-02",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "戻ったという状況に応じて自然に迎えており、挨拶として成立する。"
+    },
+    {
+      "key": "suppressed-generalization-greeting-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "Userの初利用をAssistantの一人称で繰り返し、挨拶を返さない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-greeting-03"
+        },
+        "fingerprint": "61fee8036c58819cab49385afd6f835acf353918370e6e3d6a9d28d891e9dc63"
+      }
+    },
+    {
+      "key": "suppressed-generalization-greeting-04",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "こんばんはと返し、会話に応じる自然な挨拶になっている。"
+    },
+    {
+      "key": "suppressed-generalization-greeting-05",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "今日は終了するという確定した発言を、終了したか尋ねる質問へ変えている。"
+    },
+    {
+      "key": "suppressed-generalization-greeting-06",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "すでに開いた状況を、雑談後に開けるという別の順序へ変えている。"
+    },
+    {
+      "key": "suppressed-generalization-greeting-07",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "朝の挨拶とよろしくという発言へ自然に対応している。"
+    },
+    {
+      "key": "suppressed-generalization-greeting-08",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "返事の確認には応じるが、ひとことの指定に対して追加の質問まで続ける。"
+    },
+    {
+      "key": "suppressed-generalization-daily-01",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "家事が終わった報告をねぎらう自然で適切な短い返答である。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-daily-01"
+        },
+        "fingerprint": "8c5529fa7799615b5a69f53927d9de1f5178987145782bdd85de2a22c420df5c"
+      }
+    },
+    {
+      "key": "suppressed-generalization-daily-02",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "気分が変わったことを受け止め、追加の気分転換を自然に提案する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-daily-02"
+        },
+        "fingerprint": "7b1bb98a384735735868ec4a8d86ae35fc0ade684c429c89a424049cb332e620"
+      }
+    },
+    {
+      "key": "suppressed-generalization-daily-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "残り物の昼食の話に、提示されていない画材を返している。"
+    },
+    {
+      "key": "suppressed-generalization-daily-04",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "整理という語を繰り返した未完の節で、見つかったメモに応じていない。"
+    },
+    {
+      "key": "suppressed-generalization-daily-05",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "午後は静かに過ごせるという話を、午後の用事を進める話へ変えている。"
+    },
+    {
+      "key": "suppressed-generalization-daily-06",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "混雑による道の変更に、売り切りという根拠のない理由を接続している。"
+    },
+    {
+      "key": "suppressed-generalization-daily-07",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "読書に関する続きとは言うが、明日に残すという内容への応答が弱い。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-daily-07"
+        },
+        "fingerprint": "b7adc7df86e11aab404afb72cb63a2130f583485bbc86eb9368f7b65b2ab97a8"
+      }
+    },
+    {
+      "key": "suppressed-generalization-daily-08",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "財布がかばんにあるという報告への短い了承として自然に成立する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-daily-08"
+        },
+        "fingerprint": "39407b2c338ceca4b29c68af3d2cb3adb500647bdc1685f862a8c5fa903372ce"
+      }
+    },
+    {
+      "key": "suppressed-generalization-emotion-01",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "発表には触れるが、準備済みと緊張を受け止めず考えるかと返す。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-emotion-01"
+        },
+        "fingerprint": "29a49cb3c5c5f0edd7f3f5ef4d396c401f078ad9f3f7a07172f70830a1a98709"
+      }
+    },
+    {
+      "key": "suppressed-generalization-emotion-02",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "受領の返事にはなるが、早く終わって嬉しいという感情への応答が薄い。"
+    },
+    {
+      "key": "suppressed-generalization-emotion-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "約束延期を残念に感じる発言に楽しみだと答え、感情を逆にしている。"
+    },
+    {
+      "key": "suppressed-generalization-emotion-04",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "楽しみという部分には応じるが、一人で行く不安への配慮を落としている。"
+    },
+    {
+      "key": "suppressed-generalization-emotion-05",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "理解できて安心した発言に困ると返し、感情の条件を逆にしている。"
+    },
+    {
+      "key": "suppressed-generalization-emotion-06",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "労いは部分的に対応するが、失敗が重なる話から一区切りという事実を作る。"
+    },
+    {
+      "key": "suppressed-generalization-emotion-07",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "友友という誤字があり、笑顔になった発言を思わずに済むという別の内容へ変える。"
+    },
+    {
+      "key": "suppressed-generalization-emotion-08",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "提出後の書き忘れと焦りに対して、使った時という提示されていない状況を返す。"
+    },
+    {
+      "key": "suppressed-generalization-question_back-01",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "片付けの話には沿うが、何から始めるかという助言を同じ質問で返すだけ。"
+    },
+    {
+      "key": "suppressed-generalization-question_back-02",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "買う牛乳は保つが、もう一つのパンを回答から欠いている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t3/new/greedy/notes.json",
+          "sha256": "f6ff0545a3e42bf237a565ecdc575222c7bc4e41665845f360a3f466f36ba062",
+          "key": "suppressed-generalization-question_back-02"
+        },
+        "fingerprint": "336d20adddb789f3d410a19eb3bd4b34b57cee95b91fc9fc3f3218048a8e50d9"
+      }
+    },
+    {
+      "key": "suppressed-generalization-question_back-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "皿の場所は引き出しと明示されているのに、開けたい方を聞き直している。"
+    },
+    {
+      "key": "suppressed-generalization-question_back-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "直前の動作を尋ねたのに封筒という対象名だけを返し、紙を入れる作業を示さない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t1/new/greedy/notes.json",
+          "sha256": "34fca6607c8de9b70db590017fc5cd33fe5845b09c7503384072527e91eda05a",
+          "key": "suppressed-generalization-question_back-04"
+        },
+        "fingerprint": "7429ac3e0930af56c6b21d2bfce77f431e219185b466621de60353d1cd5eda7b"
+      }
+    },
+    {
+      "key": "suppressed-generalization-question_back-05",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "公園を選び駅を否定した条件に反して、駅を行き先と答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-question_back-05"
+        },
+        "fingerprint": "6ba823139c7f7c9537708c211081f42c350e32d922d578b1829ab529c387e214"
+      }
+    },
+    {
+      "key": "suppressed-generalization-question_back-06",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "タオルという語は合うが、中身を答える主体がタオルという不自然な意味になる。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-question_back-06"
+        },
+        "fingerprint": "7de99009853211c343eb0353916b687f50cae4e7d56f04afc9ebb0f4956c8893"
+      }
+    },
+    {
+      "key": "suppressed-generalization-question_back-07",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "私ではなく姉という否定条件を無視して、あなたが担当だと答えている。"
+    },
+    {
+      "key": "suppressed-generalization-question_back-08",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "傘の返却日として明示された今日を正しく直接回答している。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t1/new/greedy/notes.json",
+          "sha256": "34fca6607c8de9b70db590017fc5cd33fe5845b09c7503384072527e91eda05a",
+          "key": "suppressed-generalization-question_back-08"
+        },
+        "fingerprint": "53f463aef9ced619040f3b62b4e174cfee1b768d19a7bea33368ecf7fa9f6ade"
+      }
+    },
+    {
+      "key": "suppressed-generalization-ambiguity-01",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "事情を聞く部分はあるが、対象不明の決定相談に無関係な会話終了と予定を足す。"
+    },
+    {
+      "key": "suppressed-generalization-ambiguity-02",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "了解だけで二つの候補を確認せず、未提示の指示対象を明確にしていない。"
+    },
+    {
+      "key": "suppressed-generalization-ambiguity-03",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "時刻変更の相談をゆっくり過ごす希望へ替え、現在時刻や制約を聞かない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t3/new/greedy/notes.json",
+          "sha256": "f6ff0545a3e42bf237a565ecdc575222c7bc4e41665845f360a3f466f36ba062",
+          "key": "suppressed-generalization-ambiguity-03"
+        },
+        "fingerprint": "704f8a6c079a94cbb40961df8d0db922096a8c8f5a2120fe380b58cd9ab2b421"
+      }
+    },
+    {
+      "key": "suppressed-generalization-ambiguity-04",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "分かったとの受領だけで、何が作れるかを判断するための材料確認がない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/new/greedy/notes.json",
+          "sha256": "c00685b8c1ce6f1e5b8f2ea97a361bfef697a589efacf0dd487843babf29e35a",
+          "key": "suppressed-generalization-ambiguity-04"
+        },
+        "fingerprint": "14a20e3def0258b0366e9568315126c85465e014e0bfdf01b571b8beb0c5347a"
+      }
+    },
+    {
+      "key": "suppressed-generalization-ambiguity-05",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "近い候補の選択依頼を拒否し、あなたの仕事という根拠のない理由を返す。"
+    },
+    {
+      "key": "suppressed-generalization-ambiguity-06",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "受領の返事だけで、減らす持ち物の候補や必要性を確認していない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/new/greedy/notes.json",
+          "sha256": "c00685b8c1ce6f1e5b8f2ea97a361bfef697a589efacf0dd487843babf29e35a",
+          "key": "suppressed-generalization-ambiguity-06"
+        },
+        "fingerprint": "a76b6f5f387c3562dbba9b156cd008f6fca584de7a12ddbc9b6f83896be69437"
+      }
+    },
+    {
+      "key": "suppressed-generalization-ambiguity-07",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "返事先を尋ねる方向は部分的に適切だが、まとめる内容の不足を確認していない。"
+    },
+    {
+      "key": "suppressed-generalization-ambiguity-08",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "戻した予定に戻すという不自然な重複があり、未提示の予定を安全に戻せると断言する。"
+    },
+    {
+      "key": "suppressed-generalization-role_boundary-01",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "人であるあなたを場所と答え、誰が映画を見たかを区別できない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-role_boundary-01"
+        },
+        "fingerprint": "a65f6cce594225c1d562abd65982046eafef2d356de3ee515e53cdcf696cf6e2"
+      }
+    },
+    {
+      "key": "suppressed-generalization-role_boundary-02",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "赤い箱を選んだ弟を、根拠のない白人さんへ置き換えている。"
+    },
+    {
+      "key": "suppressed-generalization-role_boundary-03",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "あなた側の予定という帰属は拾うが、予定はノートという不自然な答えで誰かを明示しない。"
+    },
+    {
+      "key": "suppressed-generalization-role_boundary-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "自分の植物の経験を求める問いに相手の体験を聞き返し、自身の立場も説明しない。"
+    },
+    {
+      "key": "suppressed-generalization-role_boundary-05",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "現地で見たかにいいえと答える部分はあるが、駅前という断片が残り説明が不完全。"
+    },
+    {
+      "key": "suppressed-generalization-role_boundary-06",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "未決定を否定する方向は拾うが、提案したくないのは誰という壊れた節を加える。"
+    },
+    {
+      "key": "suppressed-generalization-role_boundary-07",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "お茶を飲む母を問われているのに、水という飲み物だけを答えている。"
+    },
+    {
+      "key": "suppressed-generalization-role_boundary-08",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "いいえで確定を否定するが、まだあなたという後半で仮定の条件を説明できない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/new/greedy/notes.json",
+          "sha256": "c00685b8c1ce6f1e5b8f2ea97a361bfef697a589efacf0dd487843babf29e35a",
+          "key": "suppressed-generalization-role_boundary-08"
+        },
+        "fingerprint": "460340267e0f69401e14acf4a28a276da9dbe95ac91f9deea97606212e4078f1"
+      }
+    },
+    {
+      "key": "suppressed-generalization-symbols-01",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "題名の引用を求める指示に、準備という一部の語だけを別の説明で返す。"
+    },
+    {
+      "key": "suppressed-generalization-symbols-02",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "使う印の三角という変更条件を落とし、プリントと鉛筆を新しく答えている。"
+    },
+    {
+      "key": "suppressed-generalization-symbols-03",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "順序に言及するだけで、指定のAからCからBという並びと矢印を返していない。"
+    },
+    {
+      "key": "suppressed-generalization-symbols-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "了解するだけで、指定の合言葉と中点を出力していない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/new/greedy/notes.json",
+          "sha256": "c00685b8c1ce6f1e5b8f2ea97a361bfef697a589efacf0dd487843babf29e35a",
+          "key": "suppressed-generalization-symbols-04"
+        },
+        "fingerprint": "e7e989603fa2d63eec0e82e8555377277afe3faf63b610e04579a77d99777973"
+      }
+    },
+    {
+      "key": "suppressed-generalization-symbols-05",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "何をせず返すのか欠けた短い断片で、小文字abの指定を再現していない。"
+    },
+    {
+      "key": "suppressed-generalization-symbols-06",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "返ってくるという無関係な文で、朝と昼の空白と斜線を再現していない。"
+    },
+    {
+      "key": "suppressed-generalization-symbols-07",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "最後はつけるという不自然な断片で、疑問符だけを返す指定を満たさない。"
+    },
+    {
+      "key": "suppressed-generalization-symbols-08",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "指定されたnote-2という呼び名を、提示されていない21へ置き換えている。"
+    },
+    {
+      "key": "suppressed-generalization-correction-01",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "集合場所の南口への変更を答えず、北口が終わった作業の労いへ変えている。"
+    },
+    {
+      "key": "suppressed-generalization-correction-02",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "九枚への明示訂正を使わず、最初の六枚を現在の枚数として返している。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t1/new/greedy/notes.json",
+          "sha256": "34fca6607c8de9b70db590017fc5cd33fe5845b09c7503384072527e91eda05a",
+          "key": "suppressed-generalization-correction-02"
+        },
+        "fingerprint": "0007f8731d9b1424173dedd7b77983e1e7d83e02dfe80c88ad6daa36b030df32"
+      }
+    },
+    {
+      "key": "suppressed-generalization-correction-03",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "叔の一字で終わり、叔母から叔父への訂正を区別できる完全な回答になっていない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/new/greedy/notes.json",
+          "sha256": "c00685b8c1ce6f1e5b8f2ea97a361bfef697a589efacf0dd487843babf29e35a",
+          "key": "suppressed-generalization-correction-03"
+        },
+        "fingerprint": "b89744959defe0960029c369e1d3e2e0cfdf3f782487445cf91746ddffa567a7"
+      }
+    },
+    {
+      "key": "suppressed-generalization-correction-04",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "午前十時から午後二時への訂正を保ち、実際の予約時刻を正しく確認する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/new/greedy/notes.json",
+          "sha256": "c00685b8c1ce6f1e5b8f2ea97a361bfef697a589efacf0dd487843babf29e35a",
+          "key": "suppressed-generalization-correction-04"
+        },
+        "fingerprint": "ba888c1826185894b6504bcfe4aae81609d45043d1368d4eba32448f58402846"
+      }
+    },
+    {
+      "key": "suppressed-generalization-correction-05",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "白と青を経た最新の黄色を、黄という自然な同義表現で答えている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-correction-05"
+        },
+        "fingerprint": "e6a23b24e1881694f79a3da1b02dfa13e50c805f45bd7d635923495d353f5f87"
+      }
+    },
+    {
+      "key": "suppressed-generalization-correction-06",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "日曜日への最終訂正を失い、最初の火曜日へ戻って誤答している。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t3/new/greedy/notes.json",
+          "sha256": "f6ff0545a3e42bf237a565ecdc575222c7bc4e41665845f360a3f466f36ba062",
+          "key": "suppressed-generalization-correction-06"
+        },
+        "fingerprint": "31e341a6e2b22ef8103f2746b869400a7a808a61cd5186c559a1397dbc20960d"
+      }
+    },
+    {
+      "key": "suppressed-generalization-correction-07",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "最新の梨と水という組合せに対し、飲み物という分類名だけを返している。"
+    },
+    {
+      "key": "suppressed-generalization-correction-08",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "公民館へ冊子という最新条件を失い、提示されていない48館を作っている。"
+    },
+    {
+      "key": "suppressed-generalization-followup-01",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 1,
+      "rationale": "週末の買い物は保持するが、問われた同行者の父を回答しない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-followup-01"
+        },
+        "fingerprint": "2d523e2d1ae9dabf537f643c6f2386d5141e43cc482541ea0492d89ef6b62978"
+      }
+    },
+    {
+      "key": "suppressed-generalization-followup-02",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "かばんに入れた上着を、提示されていないはさみへ置き換えている。"
+    },
+    {
+      "key": "suppressed-generalization-followup-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "午後は読書という条件を、午前に行う掃除へ取り違えている。"
+    },
+    {
+      "key": "suppressed-generalization-followup-04",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "おさんという人物名の欠けた形で、相手がお姉さんであることを明確に保てない。"
+    },
+    {
+      "key": "suppressed-generalization-followup-05",
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "引用の開きと文の構造が壊れており、小さな橋という題名を返していない。"
+    },
+    {
+      "key": "suppressed-generalization-followup-06",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 1,
+      "rationale": "駅前という場所は保持するが、最新の相手は誰という問いへ妹を答えていない。"
+    },
+    {
+      "key": "suppressed-generalization-followup-07",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "二つの持ち物のうち手帳だけを保ち、変わらない鍵を欠いている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t2/new/greedy/notes.json",
+          "sha256": "eae5e1c52ad7e606f905d4a0374632eca81c558dced1fec036a4a5789d55ea8f",
+          "key": "suppressed-generalization-followup-07"
+        },
+        "fingerprint": "195dd67330e5244607bdf47197ba393c029790c41dd23d2f722cc5032dec6eed"
+      }
+    },
+    {
+      "key": "suppressed-generalization-followup-08",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "水やりに関係する水は出るが、作業を水と呼んで動作を答えていない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-followup-08"
+        },
+        "fingerprint": "3fd39e9021d1f94b4cddfd5f8f1ace4706e25b3da5701b1579031461c6f3ee52"
+      }
+    },
+    {
+      "key": "suppressed-generalization-context-01",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "次にするという前置きはあるが、弟の箱が緑という要求された色を正しく返す。"
+    },
+    {
+      "key": "suppressed-generalization-context-02",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "夜は閉めるという条件を使わず、窓という対象名だけを返している。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-context-02"
+        },
+        "fingerprint": "8ea4f9c03ea88a29c0bc499e514b196300e665748df5820b6cb1e17e5ebf61dc"
+      }
+    },
+    {
+      "key": "suppressed-generalization-context-03",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "読点で止まった未完の文で、手紙は机という置き場所を棚へ取り違える。"
+    },
+    {
+      "key": "suppressed-generalization-context-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "今日の片付けを問われているのに、明日の公園を今日の予定へ移している。"
+    },
+    {
+      "key": "suppressed-generalization-context-05",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "辞書を借り地図を返す履歴から、返す物だけを地図と正しく答えている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-context-05"
+        },
+        "fingerprint": "619d8d57d0806f4ffb2f143aba16eed9188be914a4f4816ece70fadfd125db04"
+      }
+    },
+    {
+      "key": "suppressed-generalization-context-06",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "兄が箱を運びユーザーが手紙を書く役割を区別して、あなたと答えている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t1/new/greedy/notes.json",
+          "sha256": "34fca6607c8de9b70db590017fc5cd33fe5845b09c7503384072527e91eda05a",
+          "key": "suppressed-generalization-context-06"
+        },
+        "fingerprint": "e72533455d884a0b2826cc93efc521321029e0c2e88ab28ef85f9ca3ecb10cbc"
+      }
+    },
+    {
+      "key": "suppressed-generalization-context-07",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 1,
+      "rationale": "切符一枚という条件は保つが、その前の本返却という必要な用事を答えていない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t1/new/greedy/notes.json",
+          "sha256": "34fca6607c8de9b70db590017fc5cd33fe5845b09c7503384072527e91eda05a",
+          "key": "suppressed-generalization-context-07"
+        },
+        "fingerprint": "f8012e89a5fd595a7eb81dcc3fc55c4f627c3f212248579f6c1f64d23486913f"
+      }
+    },
+    {
+      "key": "suppressed-generalization-context-08",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "白という色は正しいが、色と相手をともに白とする不自然な答えで弟を落とす。"
+    },
+    {
+      "key": "unsuppressed-generalization-greeting-01",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "話す許可を求める挨拶に理由なく拒否し、読点で文が終わっている。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-greeting-01",
+        "fingerprint": "e7cf951f013928e847b9c33ec66670d0c71dba732ab6163e94740ac3dfcbb11b"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-greeting-02",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "戻ったという状況に応じて自然に迎えており、挨拶として成立する。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-greeting-02",
+        "fingerprint": "b912484095f95c94a2280cdba19ede453a3bf725232d24cde057abb5469cc860"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-greeting-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "Userの初利用をAssistantの一人称で繰り返し、挨拶を返さない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-greeting-03"
+        },
+        "fingerprint": "61fee8036c58819cab49385afd6f835acf353918370e6e3d6a9d28d891e9dc63"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-greeting-04",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "こんばんはと返し、会話に応じる自然な挨拶になっている。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-greeting-04",
+        "fingerprint": "a73eef4a941d4fffe445172517c1a34e6c1dac4faba98cde00c2acc38d7f9b8c"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-greeting-05",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "今日は終了するという確定した発言を、終了したか尋ねる質問へ変えている。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-greeting-05",
+        "fingerprint": "8f367abc2bbef34721485e63dab18ba08f0889cdd137914711a59f39bb45d606"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-greeting-06",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "すでに開いた状況を、雑談後に開けるという別の順序へ変えている。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-greeting-06",
+        "fingerprint": "095ea962cd2c96867b6ab9c79a1a6728dc1e0e1ea33e1997b3d2c9a872e0da2a"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-greeting-07",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "朝の挨拶とよろしくという発言へ自然に対応している。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-greeting-07",
+        "fingerprint": "36c714331e35ac052a5b320f5631129615bb4ee3733be2b953f187edb6d34e86"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-greeting-08",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "返事の確認には応じるが、ひとことの指定に対して追加の質問まで続ける。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-greeting-08",
+        "fingerprint": "082b0f478e5106479bd45c681706bd775a19ea53092f9c4614ce51329bf1f206"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-daily-01",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "家事が終わった報告をねぎらう自然で適切な短い返答である。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-daily-01"
+        },
+        "fingerprint": "8c5529fa7799615b5a69f53927d9de1f5178987145782bdd85de2a22c420df5c"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-daily-02",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "気分が変わったことを受け止め、追加の気分転換を自然に提案する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-daily-02"
+        },
+        "fingerprint": "7b1bb98a384735735868ec4a8d86ae35fc0ade684c429c89a424049cb332e620"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-daily-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "残り物の昼食の話に、提示されていない画材を返している。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-daily-03",
+        "fingerprint": "a318dea33e13cd274a31ba75e9b11472c9b2aaed6baec4c2d8f3720fb8aaf390"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-daily-04",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "整理という語を繰り返した未完の節で、見つかったメモに応じていない。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-daily-04",
+        "fingerprint": "3b52b8284cd5b3e620ceb7f67496b3c8369b7f896e077ba74e3ae051f7220a48"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-daily-05",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "午後は静かに過ごせるという話を、午後の用事を進める話へ変えている。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-daily-05",
+        "fingerprint": "08d42ef3aa4611a5a2b31c4342d8b740a1a2a0c8299b17ad35f82275cb8e1270"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-daily-06",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "混雑による道の変更に、売り切りという根拠のない理由を接続している。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-daily-06",
+        "fingerprint": "cbb4f60f57534e6708d5042bf24d547c5b12452453637194e92ab71134790e80"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-daily-07",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "読書に関する続きとは言うが、明日に残すという内容への応答が弱い。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-daily-07"
+        },
+        "fingerprint": "b7adc7df86e11aab404afb72cb63a2130f583485bbc86eb9368f7b65b2ab97a8"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-daily-08",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "財布がかばんにあるという報告への短い了承として自然に成立する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-daily-08"
+        },
+        "fingerprint": "39407b2c338ceca4b29c68af3d2cb3adb500647bdc1685f862a8c5fa903372ce"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-emotion-01",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "発表には触れるが、準備済みと緊張を受け止めず考えるかと返す。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-emotion-01"
+        },
+        "fingerprint": "29a49cb3c5c5f0edd7f3f5ef4d396c401f078ad9f3f7a07172f70830a1a98709"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-emotion-02",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "受領の返事にはなるが、早く終わって嬉しいという感情への応答が薄い。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-emotion-02",
+        "fingerprint": "ef60812d3aa3e6cf9e116a6bebab2c104972b3e9105785972fd8621d7db27297"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-emotion-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "約束延期を残念に感じる発言に楽しみだと答え、感情を逆にしている。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-emotion-03",
+        "fingerprint": "2bfcbb41966b5436527cd1a3240caae8d1099735e4615d584e6c3db4368c03d7"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-emotion-04",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "楽しみという部分には応じるが、一人で行く不安への配慮を落としている。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-emotion-04",
+        "fingerprint": "2d838316479ee184cd9ad047d398545deedbdddd850ede5aebe7d647a392392a"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-emotion-05",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "理解できて安心した発言に困ると返し、感情の条件を逆にしている。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-emotion-05",
+        "fingerprint": "4edf991bc27dcb3202cb22b17214e28bfb3594658edb099d01c537dd244abf53"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-emotion-06",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "労いは部分的に対応するが、失敗が重なる話から一区切りという事実を作る。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-emotion-06",
+        "fingerprint": "4bff20ce89c37b70fa2cf34fd1ca275c4c9dc4d535ee4560a4f64e689b66d4e0"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-emotion-07",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "友友という誤字があり、笑顔になった発言を思わずに済むという別の内容へ変える。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-emotion-07",
+        "fingerprint": "acff2203dcfbe6e6bbc895ea279abdb6664d97ea7b052e39be822ca0d5da1f20"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-emotion-08",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "提出後の書き忘れと焦りに対して、使った時という提示されていない状況を返す。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-emotion-08",
+        "fingerprint": "f7c76a411a56494861e2849bb6320ce76f76088b1b1c2cf9022e05eda02887f4"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-question_back-01",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "片付けの話には沿うが、何から始めるかという助言を同じ質問で返すだけ。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-question_back-01",
+        "fingerprint": "4e10c36fed2b0ed8b3c704055cea849ffac8ffc29d8f2c1ec97766a2e1ff9a6f"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-question_back-02",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "買う牛乳は保つが、もう一つのパンを回答から欠いている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t3/new/greedy/notes.json",
+          "sha256": "f6ff0545a3e42bf237a565ecdc575222c7bc4e41665845f360a3f466f36ba062",
+          "key": "suppressed-generalization-question_back-02"
+        },
+        "fingerprint": "336d20adddb789f3d410a19eb3bd4b34b57cee95b91fc9fc3f3218048a8e50d9"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-question_back-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "皿の場所は引き出しと明示されているのに、開けたい方を聞き直している。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-question_back-03",
+        "fingerprint": "426f5bd2eb9cd4a94778434cd5e18e52d2f317da3302a8768c43ad39ff459a12"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-question_back-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "直前の動作を尋ねたのに封筒という対象名だけを返し、紙を入れる作業を示さない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t1/new/greedy/notes.json",
+          "sha256": "34fca6607c8de9b70db590017fc5cd33fe5845b09c7503384072527e91eda05a",
+          "key": "suppressed-generalization-question_back-04"
+        },
+        "fingerprint": "7429ac3e0930af56c6b21d2bfce77f431e219185b466621de60353d1cd5eda7b"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-question_back-05",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "公園を選び駅を否定した条件に反して、駅を行き先と答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-question_back-05"
+        },
+        "fingerprint": "6ba823139c7f7c9537708c211081f42c350e32d922d578b1829ab529c387e214"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-question_back-06",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "タオルという語は合うが、中身を答える主体がタオルという不自然な意味になる。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-question_back-06"
+        },
+        "fingerprint": "7de99009853211c343eb0353916b687f50cae4e7d56f04afc9ebb0f4956c8893"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-question_back-07",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "私ではなく姉という否定条件を無視して、あなたが担当だと答えている。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-question_back-07",
+        "fingerprint": "9e8d0c7353c6fa1ad86a6faa94cc3eb0c573cf7bfb01ea2df1e7f3cc0f969b07"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-question_back-08",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "傘の返却日として明示された今日を正しく直接回答している。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t1/new/greedy/notes.json",
+          "sha256": "34fca6607c8de9b70db590017fc5cd33fe5845b09c7503384072527e91eda05a",
+          "key": "suppressed-generalization-question_back-08"
+        },
+        "fingerprint": "53f463aef9ced619040f3b62b4e174cfee1b768d19a7bea33368ecf7fa9f6ade"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-ambiguity-01",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "事情を聞く部分はあるが、対象不明の決定相談に無関係な会話終了と予定を足す。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-ambiguity-01",
+        "fingerprint": "2bd03fa5958ae96ccebd730aa0e2bd76b7ddd41b2a89536b1ff8321e988f7ace"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-ambiguity-02",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "了解だけで二つの候補を確認せず、未提示の指示対象を明確にしていない。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-ambiguity-02",
+        "fingerprint": "c383276420b457870b7297837c9638bfeb8b4d903959864290b988f322fc2cc7"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-ambiguity-03",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "時刻変更の相談をゆっくり過ごす希望へ替え、現在時刻や制約を聞かない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t3/new/greedy/notes.json",
+          "sha256": "f6ff0545a3e42bf237a565ecdc575222c7bc4e41665845f360a3f466f36ba062",
+          "key": "suppressed-generalization-ambiguity-03"
+        },
+        "fingerprint": "704f8a6c079a94cbb40961df8d0db922096a8c8f5a2120fe380b58cd9ab2b421"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-ambiguity-04",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "分かったとの受領だけで、何が作れるかを判断するための材料確認がない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/new/greedy/notes.json",
+          "sha256": "c00685b8c1ce6f1e5b8f2ea97a361bfef697a589efacf0dd487843babf29e35a",
+          "key": "suppressed-generalization-ambiguity-04"
+        },
+        "fingerprint": "14a20e3def0258b0366e9568315126c85465e014e0bfdf01b571b8beb0c5347a"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-ambiguity-05",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "近い候補の選択依頼を拒否し、あなたの仕事という根拠のない理由を返す。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-ambiguity-05",
+        "fingerprint": "6d9d97ced817e92aa137c276acfac3a7870382b82cd783ee76e212f19b7c3fd0"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-ambiguity-06",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "受領の返事だけで、減らす持ち物の候補や必要性を確認していない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/new/greedy/notes.json",
+          "sha256": "c00685b8c1ce6f1e5b8f2ea97a361bfef697a589efacf0dd487843babf29e35a",
+          "key": "suppressed-generalization-ambiguity-06"
+        },
+        "fingerprint": "a76b6f5f387c3562dbba9b156cd008f6fca584de7a12ddbc9b6f83896be69437"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-ambiguity-07",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "返事先を尋ねる方向は部分的に適切だが、まとめる内容の不足を確認していない。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-ambiguity-07",
+        "fingerprint": "e65db319944447aa9db747a997fd73fb740a59c31b734ad7f69c505412e02c8e"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-ambiguity-08",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "戻した予定に戻すという不自然な重複があり、未提示の予定を安全に戻せると断言する。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-ambiguity-08",
+        "fingerprint": "b429f1c41b0c888763b116db59a121baa4c961a6a4a2798c73ef67b940dc7566"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-role_boundary-01",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "人であるあなたを場所と答え、誰が映画を見たかを区別できない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-role_boundary-01"
+        },
+        "fingerprint": "a65f6cce594225c1d562abd65982046eafef2d356de3ee515e53cdcf696cf6e2"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-role_boundary-02",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "赤い箱を選んだ弟を、根拠のない白人さんへ置き換えている。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-role_boundary-02",
+        "fingerprint": "2eac1d2454353546655922de7d9ca0254c18a94c066d0b505a526f5a95864e57"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-role_boundary-03",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "あなた側の予定という帰属は拾うが、予定はノートという不自然な答えで誰かを明示しない。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-role_boundary-03",
+        "fingerprint": "0f116a241762cc902b9f0610f7852115630e03f359a67084856a505c761ad87a"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-role_boundary-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "自分の植物の経験を求める問いに相手の体験を聞き返し、自身の立場も説明しない。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-role_boundary-04",
+        "fingerprint": "303b1c69c0ee91403d001d41de23134bef31bad3ef6a9b7ed9613d087132b9b6"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-role_boundary-05",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "現地で見たかにいいえと答える部分はあるが、駅前という断片が残り説明が不完全。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-role_boundary-05",
+        "fingerprint": "9f5d07e10e394d8880b2bc9258100a53e124f6044762ee7034c677a999545714"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-role_boundary-06",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "未決定を否定する方向は拾うが、提案したくないのは誰という壊れた節を加える。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-role_boundary-06",
+        "fingerprint": "4b36b30a7c638263f7985a8218cb36a626793128153cd22d8d699707d8b64f67"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-role_boundary-07",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "お茶を飲む母を問われているのに、水という飲み物だけを答えている。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-role_boundary-07",
+        "fingerprint": "417ccf7170b03173b2b6b162bb78411372fcfd038cfb45c8fbb723f2f7da2e8d"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-role_boundary-08",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "いいえで確定を否定するが、まだあなたという後半で仮定の条件を説明できない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/new/greedy/notes.json",
+          "sha256": "c00685b8c1ce6f1e5b8f2ea97a361bfef697a589efacf0dd487843babf29e35a",
+          "key": "suppressed-generalization-role_boundary-08"
+        },
+        "fingerprint": "460340267e0f69401e14acf4a28a276da9dbe95ac91f9deea97606212e4078f1"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-symbols-01",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "題名の引用を求める指示に、準備という一部の語だけを別の説明で返す。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-symbols-01",
+        "fingerprint": "b93e7e15cd8f1253b831f75d5e6483816c6d9be20fac63011b48642cc078231c"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-symbols-02",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "使う印の三角という変更条件を落とし、プリントと鉛筆を新しく答えている。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-symbols-02",
+        "fingerprint": "655439bdf697b0f1215b8c6f5a061b1da1f5618ae4dc606e03da5d5bac268abb"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-symbols-03",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "順序に言及するだけで、指定のAからCからBという並びと矢印を返していない。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-symbols-03",
+        "fingerprint": "71555dbc0c6db90c7b717202e87114340266f6b80715f742413fa557849258d8"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-symbols-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "了解するだけで、指定の合言葉と中点を出力していない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/new/greedy/notes.json",
+          "sha256": "c00685b8c1ce6f1e5b8f2ea97a361bfef697a589efacf0dd487843babf29e35a",
+          "key": "suppressed-generalization-symbols-04"
+        },
+        "fingerprint": "e7e989603fa2d63eec0e82e8555377277afe3faf63b610e04579a77d99777973"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-symbols-05",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "何をせず返すのか欠けた短い断片で、小文字abの指定を再現していない。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-symbols-05",
+        "fingerprint": "9871a07c95a6abd135ee0e155e7b7e156afac57a29c092fb8d0a186d3ed0633f"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-symbols-06",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "返ってくるという無関係な文で、朝と昼の空白と斜線を再現していない。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-symbols-06",
+        "fingerprint": "0799118194bcacff7db8351bb274c759cf80e75cc0a73d6ab1e50e6c78060201"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-symbols-07",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "最後はつけるという不自然な断片で、疑問符だけを返す指定を満たさない。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-symbols-07",
+        "fingerprint": "dcc2ba8a3777f0289235c13b7cfdce28aa098cf87e343ecafb0e4d0a5dbdbfbc"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-symbols-08",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "指定されたnote-2という呼び名を、提示されていない21へ置き換えている。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-symbols-08",
+        "fingerprint": "85a763f934b3430987d825bb5c3eb324f10cee5f1d9003977b912e79598d4f14"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-correction-01",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "集合場所の南口への変更を答えず、北口が終わった作業の労いへ変えている。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-correction-01",
+        "fingerprint": "baa23acba2327c2b9e051e259b07a5c10bb529b0306508b3edb44f0681a7f54d"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-correction-02",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "九枚への明示訂正を使わず、最初の六枚を現在の枚数として返している。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t1/new/greedy/notes.json",
+          "sha256": "34fca6607c8de9b70db590017fc5cd33fe5845b09c7503384072527e91eda05a",
+          "key": "suppressed-generalization-correction-02"
+        },
+        "fingerprint": "0007f8731d9b1424173dedd7b77983e1e7d83e02dfe80c88ad6daa36b030df32"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-correction-03",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "叔の一字で終わり、叔母から叔父への訂正を区別できる完全な回答になっていない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/new/greedy/notes.json",
+          "sha256": "c00685b8c1ce6f1e5b8f2ea97a361bfef697a589efacf0dd487843babf29e35a",
+          "key": "suppressed-generalization-correction-03"
+        },
+        "fingerprint": "b89744959defe0960029c369e1d3e2e0cfdf3f782487445cf91746ddffa567a7"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-correction-04",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "午前十時から午後二時への訂正を保ち、実際の予約時刻を正しく確認する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/new/greedy/notes.json",
+          "sha256": "c00685b8c1ce6f1e5b8f2ea97a361bfef697a589efacf0dd487843babf29e35a",
+          "key": "suppressed-generalization-correction-04"
+        },
+        "fingerprint": "ba888c1826185894b6504bcfe4aae81609d45043d1368d4eba32448f58402846"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-correction-05",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "白と青を経た最新の黄色を、黄という自然な同義表現で答えている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-correction-05"
+        },
+        "fingerprint": "e6a23b24e1881694f79a3da1b02dfa13e50c805f45bd7d635923495d353f5f87"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-correction-06",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "日曜日への最終訂正を失い、最初の火曜日へ戻って誤答している。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t3/new/greedy/notes.json",
+          "sha256": "f6ff0545a3e42bf237a565ecdc575222c7bc4e41665845f360a3f466f36ba062",
+          "key": "suppressed-generalization-correction-06"
+        },
+        "fingerprint": "31e341a6e2b22ef8103f2746b869400a7a808a61cd5186c559a1397dbc20960d"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-correction-07",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "最新の梨と水という組合せに対し、飲み物という分類名だけを返している。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-correction-07",
+        "fingerprint": "a5fb464309a6268e26adb33a48fd98cf2b7223481c83e9523f28e8462a017a38"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-correction-08",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "公民館へ冊子という最新条件を失い、提示されていない48館を作っている。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-correction-08",
+        "fingerprint": "7faf3d842095b6d9b2f95cf313bb73a99bd8b91a89bd6235e4e383aa543f1f29"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-followup-01",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 1,
+      "rationale": "週末の買い物は保持するが、問われた同行者の父を回答しない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-followup-01"
+        },
+        "fingerprint": "2d523e2d1ae9dabf537f643c6f2386d5141e43cc482541ea0492d89ef6b62978"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-followup-02",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "かばんに入れた上着を、提示されていないはさみへ置き換えている。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-followup-02",
+        "fingerprint": "fcc1b1b7badb0dbc2cb658281d8e03cebdf30e2f789881e38947d10a117fb075"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-followup-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "午後は読書という条件を、午前に行う掃除へ取り違えている。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-followup-03",
+        "fingerprint": "98890f04ecc158ca176f706970c306f6f7eb753aa5e5cbd25b40ae2da75b9957"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-followup-04",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "おさんという人物名の欠けた形で、相手がお姉さんであることを明確に保てない。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-followup-04",
+        "fingerprint": "c87696259899778e4a8da81289802753035bc2d13fa2339e4194ee73e8c03350"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-followup-05",
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "引用の開きと文の構造が壊れており、小さな橋という題名を返していない。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-followup-05",
+        "fingerprint": "c7dae52fb971046913c261a24c24318e0f0c6d4540a0d85e4917041abb1d27a7"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-followup-06",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 1,
+      "rationale": "駅前という場所は保持するが、最新の相手は誰という問いへ妹を答えていない。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-followup-06",
+        "fingerprint": "bc40eb5195abe6305b31309c0cc227d9254fa2e61547fff7c3661f0b44db6013"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-followup-07",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "二つの持ち物のうち手帳だけを保ち、変わらない鍵を欠いている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t2/new/greedy/notes.json",
+          "sha256": "eae5e1c52ad7e606f905d4a0374632eca81c558dced1fec036a4a5789d55ea8f",
+          "key": "suppressed-generalization-followup-07"
+        },
+        "fingerprint": "195dd67330e5244607bdf47197ba393c029790c41dd23d2f722cc5032dec6eed"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-followup-08",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "水やりに関係する水は出るが、作業を水と呼んで動作を答えていない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-followup-08"
+        },
+        "fingerprint": "3fd39e9021d1f94b4cddfd5f8f1ace4706e25b3da5701b1579031461c6f3ee52"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-context-01",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "次にするという前置きはあるが、弟の箱が緑という要求された色を正しく返す。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-context-01",
+        "fingerprint": "2c5f2dab0b2aef02690f616f9e6fd800a815de8afeb1fff6c8a91a83396055e5"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-context-02",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "夜は閉めるという条件を使わず、窓という対象名だけを返している。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-context-02"
+        },
+        "fingerprint": "8ea4f9c03ea88a29c0bc499e514b196300e665748df5820b6cb1e17e5ebf61dc"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-context-03",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "読点で止まった未完の文で、手紙は机という置き場所を棚へ取り違える。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-context-03",
+        "fingerprint": "86da26529ae21ae9756973b4f2b05022fec67e4a33c618cb81a939f30d2462fc"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-context-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "今日の片付けを問われているのに、明日の公園を今日の予定へ移している。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-context-04",
+        "fingerprint": "e1fb51d4971ba2e4d7eea5dd6286d3461a3ef501dfccde0d5341b3ae6c23590f"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-context-05",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "辞書を借り地図を返す履歴から、返す物だけを地図と正しく答えている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "suppressed-generalization-context-05"
+        },
+        "fingerprint": "619d8d57d0806f4ffb2f143aba16eed9188be914a4f4816ece70fadfd125db04"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-context-06",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "兄が箱を運びユーザーが手紙を書く役割を区別して、あなたと答えている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t1/new/greedy/notes.json",
+          "sha256": "34fca6607c8de9b70db590017fc5cd33fe5845b09c7503384072527e91eda05a",
+          "key": "suppressed-generalization-context-06"
+        },
+        "fingerprint": "e72533455d884a0b2826cc93efc521321029e0c2e88ab28ef85f9ca3ecb10cbc"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-context-07",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 1,
+      "rationale": "切符一枚という条件は保つが、その前の本返却という必要な用事を答えていない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t1/new/greedy/notes.json",
+          "sha256": "34fca6607c8de9b70db590017fc5cd33fe5845b09c7503384072527e91eda05a",
+          "key": "suppressed-generalization-context-07"
+        },
+        "fingerprint": "f8012e89a5fd595a7eb81dcc3fc55c4f627c3f212248579f6c1f64d23486913f"
+      }
+    },
+    {
+      "key": "unsuppressed-generalization-context-08",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "白という色は正しいが、色と相手をともに白とする不自然な答えで弟を落とす。",
+      "reuse": {
+        "packet_key": "suppressed-generalization-context-08",
+        "fingerprint": "8b54518e1edecf888d3b5008f5197c2dc5e97a81d35e3576504dcaec91fd7b42"
+      }
+    },
+    {
+      "key": "own-generalization-correction-01-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "最初のユーザーが決めた集合場所の北口を自然な文で確認している。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "own-generalization-correction-01-turn-1"
+        },
+        "fingerprint": "829b543e573c0e8a6e92f1e1aca3ab3ac7089c8f9129623cfcbd599ce8358450"
+      }
+    },
+    {
+      "key": "own-generalization-correction-01-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "南口への変更と新しい方を使うという説明で、現在の集合先を正しく保持する。"
+    },
+    {
+      "key": "own-generalization-correction-02-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "了解だけで六枚という確認対象を示さず、数量の保持を確認できない。"
+    },
+    {
+      "key": "own-generalization-correction-02-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "九枚への訂正を無視して、以前の六枚を重ねて返している。"
+    },
+    {
+      "key": "own-generalization-correction-03-turn-1",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "届ける相手という語を重ね、叔母の代わりに根拠のない正人さんを混入する。"
+    },
+    {
+      "key": "own-generalization-correction-03-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "Userが叔父へ訂正したのに、自分の先行誤答に出た正人さんを引き継ぐ。"
+    },
+    {
+      "key": "own-generalization-correction-04-turn-1",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "午前十時というユーザーの認識を確認せず、時刻を改めて聞いている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "own-generalization-correction-04-turn-1"
+        },
+        "fingerprint": "44a634b2c78760e22d3db9bdbfc6e51846797b37895023c963465f3672608bb0"
+      }
+    },
+    {
+      "key": "own-generalization-correction-04-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 1,
+      "rationale": "訂正された二時は返すが、午後の指定を省いて午前午後の区別が曖昧に残る。"
+    },
+    {
+      "key": "own-generalization-correction-05-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "確認したという宣言だけで、指定された白い封筒の色を具体的に示していない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/new/greedy/notes.json",
+          "sha256": "c00685b8c1ce6f1e5b8f2ea97a361bfef697a589efacf0dd487843babf29e35a",
+          "key": "own-generalization-correction-05-turn-1"
+        },
+        "fingerprint": "a9825e209bea8b51a69d54e3a0485a9dedc333329cc5cf9b97f12c6991d59966"
+      }
+    },
+    {
+      "key": "own-generalization-correction-05-turn-2",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "青への変更は部分的に拾うが、白を待ち合わせるという意味の合わない節を足す。"
+    },
+    {
+      "key": "own-generalization-correction-05-turn-3",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "黄という自然な色名で、最後に確定した黄色を正しく答えている。"
+    },
+    {
+      "key": "own-generalization-correction-06-turn-1",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "火曜日と書いた内容の確認をせず、曜日の再提示を求めている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "own-generalization-correction-06-turn-1"
+        },
+        "fingerprint": "83269a3f0c9d7785d1d862b335145235d1928f189bbf0c367d89d4338932d91d"
+      }
+    },
+    {
+      "key": "own-generalization-correction-06-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "金曜日への変更を無視し、初期の火曜日へ戻っている。"
+    },
+    {
+      "key": "own-generalization-correction-06-turn-3",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "日曜日への最終確定を無視し、自分の前の誤答と初期火曜日を保持している。"
+    },
+    {
+      "key": "own-generalization-correction-07-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "了解の返事だけで、りんごとお茶の二条件の確認がない。"
+    },
+    {
+      "key": "own-generalization-correction-07-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "訂正された梨は保持するが、変更しないお茶を組合せから落としている。"
+    },
+    {
+      "key": "own-generalization-correction-07-turn-3",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "梨と水という最新組合せを失い、提示されていないはさみを返す。"
+    },
+    {
+      "key": "own-generalization-correction-08-turn-1",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "学校へ手紙という届け先と物を、根拠のない四つという個数へ変えている。"
+    },
+    {
+      "key": "own-generalization-correction-08-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "図書館への変更後も自分の誤った四つを繰り返し、場所を答えていない。"
+    },
+    {
+      "key": "own-generalization-correction-08-turn-3",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "冊子へ変えた届ける物を問われても、四つという先行誤答を反復する。"
+    },
+    {
+      "key": "own-generalization-correction-08-turn-4",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "公民館へ冊子という最終の二条件を落とし、四つの届け先とだけ答える。"
+    },
+    {
+      "key": "own-generalization-followup-01-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "買い物という予定の一部は保つが、週末と父という条件を確認していない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t1/new/greedy/notes.json",
+          "sha256": "34fca6607c8de9b70db590017fc5cd33fe5845b09c7503384072527e91eda05a",
+          "key": "own-generalization-followup-01-turn-1"
+        },
+        "fingerprint": "acec44fab581b93146c474fc48f94254c9f08934362159ea26004aed3dc61be4"
+      }
+    },
+    {
+      "key": "own-generalization-followup-01-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 1,
+      "rationale": "買い物という事実だけを反復し、同行者である父を答えていない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t1/new/greedy/notes.json",
+          "sha256": "34fca6607c8de9b70db590017fc5cd33fe5845b09c7503384072527e91eda05a",
+          "key": "own-generalization-followup-01-turn-2"
+        },
+        "fingerprint": "036324694ea1f764272a97cf3de30d636f8cdbbb9fb533fea71008e35a989beb"
+      }
+    },
+    {
+      "key": "own-generalization-followup-02-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "かばんの中身が上着というUserの事実を自然に確認している。"
+    },
+    {
+      "key": "own-generalization-followup-02-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "上着は保持するが、かばんを箱へ変えて入力と異なる入れ物を作っている。"
+    },
+    {
+      "key": "own-generalization-followup-03-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "午後の読書は保持するが、予定確認で午前の掃除を落としている。"
+    },
+    {
+      "key": "own-generalization-followup-03-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "自分も午後読書と答えた履歴があるのに、午後を掃除へ取り違える。"
+    },
+    {
+      "key": "own-generalization-followup-04-turn-1",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "渡す相手の姉を品物のお弁当に取り違えている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/new/greedy/notes.json",
+          "sha256": "c00685b8c1ce6f1e5b8f2ea97a361bfef697a589efacf0dd487843babf29e35a",
+          "key": "own-generalization-followup-04-turn-1"
+        },
+        "fingerprint": "351b40a76096052037ae9229a64fbfe7cd11df02eb3fc3aafd3f0015d4da2615"
+      }
+    },
+    {
+      "key": "own-generalization-followup-04-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "ユーザーが誰かと聞き直しても、自分の前の誤答のお弁当を相手として反復する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/new/greedy/notes.json",
+          "sha256": "c00685b8c1ce6f1e5b8f2ea97a361bfef697a589efacf0dd487843babf29e35a",
+          "key": "own-generalization-followup-04-turn-2"
+        },
+        "fingerprint": "1293515fb1ff4b290217e6ea6d660dedb278a01a4f02c649c0b307d683987c30"
+      }
+    },
+    {
+      "key": "own-generalization-followup-05-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "了解だけで小さな橋という題名を確認していない。"
+    },
+    {
+      "key": "own-generalization-followup-05-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "すでに示された題名を再回答せず、新しい読書を教えてという別の依頼へ変える。"
+    },
+    {
+      "key": "own-generalization-followup-06-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "了解だけで明日の駅前と妹という予定の具体条件を確認しない。"
+    },
+    {
+      "key": "own-generalization-followup-06-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 1,
+      "rationale": "承知という受領だけで、問われた会う場所の駅前を返していない。"
+    },
+    {
+      "key": "own-generalization-followup-06-turn-3",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "誰でしたという不自然な断片で、妹という既知の相手を返せない。"
+    },
+    {
+      "key": "own-generalization-followup-07-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "確認依頼を受領するだけで、手帳と鍵の二つを明示していない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/new/greedy/notes.json",
+          "sha256": "c00685b8c1ce6f1e5b8f2ea97a361bfef697a589efacf0dd487843babf29e35a",
+          "key": "own-generalization-followup-07-turn-1"
+        },
+        "fingerprint": "aa3d48850065a8afbace40e2cbf197e15f063992f7503e1dc4fa2745d5299d43"
+      }
+    },
+    {
+      "key": "own-generalization-followup-07-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "手帳は保持するが、変わらない持ち物の鍵を落としている。"
+    },
+    {
+      "key": "own-generalization-followup-07-turn-3",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "二つを尋ねられても手帳のみを返し、鍵を回答から落としている。"
+    },
+    {
+      "key": "own-generalization-followup-08-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "水やりの水は拾うが、作業と順番を説明せず後の夕食作りを落とす。"
+    },
+    {
+      "key": "own-generalization-followup-08-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "後で選ぶ道具の話に水と水という根拠のない重複を答え、作業順も保持しない。"
+    },
+    {
+      "key": "own-generalization-followup-08-turn-3",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "水という語から水やりをうかがえるが、最初の作業を明確な動作として答えない。"
+    },
+    {
+      "key": "own-generalization-context-01-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "了解だけで姉の黄色と弟の緑という分け方を確認できない。"
+    },
+    {
+      "key": "own-generalization-context-01-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 1,
+      "rationale": "承知という返事だけで、弟が使う緑の箱の色を答えない。"
+    },
+    {
+      "key": "own-generalization-context-02-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "窓の対象は拾うが、朝開け夜閉めるという条件を落としている。"
+    },
+    {
+      "key": "own-generalization-context-02-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 1,
+      "rationale": "夜は閉めるという問いに窓という対象を繰り返すだけで動作を答えない。"
+    },
+    {
+      "key": "own-generalization-context-03-turn-1",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "ノートは棚で手紙は机という置き場所を使わず、場所をノートと誤って答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "own-generalization-context-03-turn-1"
+        },
+        "fingerprint": "53adcd268840b7a098ab934cb37c06b23c0867e5396e0b665fd9cae4d1ef43b4"
+      }
+    },
+    {
+      "key": "own-generalization-context-03-turn-2",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "どこを選んだですかという不自然な聞き返しで、机という既知の場所を答えない。"
+    },
+    {
+      "key": "own-generalization-context-04-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "準備という曖昧な作業に変え、今日の片付けと明日の公園を確認しない。"
+    },
+    {
+      "key": "own-generalization-context-04-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "今日の作業へ準備と答えるだけで、家の片付けという具体的な予定を落とす。"
+    },
+    {
+      "key": "own-generalization-context-05-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "返す地図は正しいが、もう一方の借りる辞書を用事の確認から欠いている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/new/greedy/notes.json",
+          "sha256": "c00685b8c1ce6f1e5b8f2ea97a361bfef697a589efacf0dd487843babf29e35a",
+          "key": "own-generalization-context-05-turn-1"
+        },
+        "fingerprint": "6bb88b2173169b4c61c9ee66e1092da288438b96f74e6212f826054df5edddf7"
+      }
+    },
+    {
+      "key": "own-generalization-context-05-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "返す対象の地図を保持し、最新の質問に正しく答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/new/greedy/notes.json",
+          "sha256": "c00685b8c1ce6f1e5b8f2ea97a361bfef697a589efacf0dd487843babf29e35a",
+          "key": "own-generalization-context-05-turn-2"
+        },
+        "fingerprint": "d7d78cfb5750d9b73770682425511c121370df20b141bc624fa9e2c1bf0e9585"
+      }
+    },
+    {
+      "key": "own-generalization-context-06-turn-1",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "箱を運ぶ兄をあなたへ置き換え、二人の役割の確認に失敗する。"
+    },
+    {
+      "key": "own-generalization-context-06-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "あなたという人物は拾うが、手紙を書く役を運ぶ役へ変えている。"
+    },
+    {
+      "key": "own-generalization-context-07-turn-1",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "本返却と切符購入の順番確認をせず、準備の進み具合という別の質問をしている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "own-generalization-context-07-turn-1"
+        },
+        "fingerprint": "2649267c36d6e2d026e04daba9884e8cdfcdea60209a47fbc739e1e6b56bfd39"
+      }
+    },
+    {
+      "key": "own-generalization-context-07-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "切符一枚の枚数確認に対し、切符は切符という対象名だけを返している。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/new/greedy/notes.json",
+          "sha256": "4499c1246eee994f51e22dc84eb52df17832eb9764a4091b41f5a55a311fc136",
+          "key": "own-generalization-context-07-turn-2"
+        },
+        "fingerprint": "94262da71d81aa066a140ad5ae2e677b8b80a10f37ec1bda4e81c2668017c79b"
+      }
+    },
+    {
+      "key": "own-generalization-context-07-turn-3",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "切符を買う前の本返却を答えず、買う予定は切符という循環した説明を返す。"
+    },
+    {
+      "key": "own-generalization-context-08-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "受領だけで、姉と青・弟と白という封筒の分け方を具体的に確認しない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/new/greedy/notes.json",
+          "sha256": "c00685b8c1ce6f1e5b8f2ea97a361bfef697a589efacf0dd487843babf29e35a",
+          "key": "own-generalization-context-08-turn-1"
+        },
+        "fingerprint": "6827ffd93b53a943d587c24f2032ce8ee8d8194f82d4e760db2974bab6ee04ed"
+      }
+    },
+    {
+      "key": "own-generalization-context-08-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "承知だけで姉は明日と弟は今日という日付の対応を確認しない。"
+    },
+    {
+      "key": "own-generalization-context-08-turn-3",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "二つとも机という明示条件に対して置き場所が違うと逆の事実を答える。"
+    },
+    {
+      "key": "own-generalization-context-08-turn-4",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "色と相手は置き場所が違うという意味の合わない文で、白と弟を答えていない。"
+    }
+  ],
+  "pending_all_content_judgments": false,
+  "authored_score_file": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t3/new/greedy/scores.tsv",
+    "sha256": "c6266438c016e476013608bad74b0e06f5b8c04a89b1efbea3d7a558df7c6fe7"
+  },
+  "reviewed_at": "2026-10-12T20:28:13.221676Z"
+}

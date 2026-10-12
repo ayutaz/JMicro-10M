@@ -1,5 +1,7 @@
 # 文書一覧
 
+2026-10-13 JST 最終結果: [136](136_chat_generalization_results.md)で『4まで』の教材改訂・全比較・原条件の回復分岐・別padding検証と完了監査を報告した。全14suite/3,066判断/NLL7点を確認し、D0/D1とも不合格・閉鎖。回復は条件不成立、paddingは数値不一致で不採用。Base/Chat未完成・未採用、追加実験は停止。以下は各時点の履歴。
+
 2026-10-13 JST 継続実行: ユーザーの『4まで進めてください』に従い、教材改訂・同条件比較・条件付き回復・別padding検証を進めている。[実行記録134](134_chat_generalization_execution.md)。D1 TRAIN40,126/660,065教師、280sample内容確認、CPU消費、新DEV80/自己生成24会話59turn、対照の歴史的再利用と実行config固定まで完了。D0は旧C1の一致した保存stateを再利用し新学習0、D1は未学習。共有GPU6時間内に回復/効率の枠も登録した。CUDA gate・学習・全内容評価・品質は未完了、Base/Chat未採用。旧job・TEST・採用・量子化・公開/pushへ進まない。
 
 2026-10-13 JST 計画更新: 最新の課題解決方法と計画を[計画135](135_chat_problem_solution_plan.md)に整理した。教材の汎化改善を第一比較、正しい履歴での改善後に誤履歴回復、paddingを別の効率比較とする。既存D1準備の小記録はTRAIN40,126 target・固定280sample問題0・CPU消費チェック合格を示すが、独立人間確認・新DEV・CUDA gate・学習・品質は未確認。今回の依頼では計画と記録のみを更新し、新しい教材生成・GPU実験・学習は開始しない。Base/Chat未完成・未採用、10Mと元の品質基準を維持する。
@@ -144,4 +146,7 @@
 | [130_chat_failure_improvement_investigation.md](130_chat_failure_improvement_investigation.md) | SFT後の失敗・実装・教材・一次研究から整理した改善の優先順位と比較案 |
 | [131_chat_improvement_execution_plan.md](131_chat_improvement_execution_plan.md) | 課題ごとの対策、教材2条件比較、教師量学習契約、新旧評価・停止・後続段階 |
 | [132_chat_improvement_execution.md](132_chat_improvement_execution.md) | 教材2条件・全学習/評価・不採用結果と完了監査 |
-| [133_chat_generalization_followup_plan.md](133_chat_generalization_followup_plan.md) | 比較132を受けた教材汎化・直接回答・訂正の改善計画。未実行 |
+| [133_chat_generalization_followup_plan.md](133_chat_generalization_followup_plan.md) | 教材汎化・直接回答・訂正の事前計画。実行は134、最終不採用は136 |
+| [134_chat_generalization_execution.md](134_chat_generalization_execution.md) | 教材改訂・同条件比較・条件付き回復・paddingの実行履歴 |
+| [135_chat_problem_solution_plan.md](135_chat_problem_solution_plan.md) | 問題ごとの解決方法と検証計画、各時点の証拠と後続候補 |
+| [136_chat_generalization_results.md](136_chat_generalization_results.md) | 全3,066内容判断・NLL7点・回復分岐・padding・完了監査と不採用結果 |

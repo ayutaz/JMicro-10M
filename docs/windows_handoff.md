@@ -1,5 +1,7 @@
 # Windows / WSL 引継ぎ
 
+2026-10-13 JST 最終引継ぎ: [結果136](136_chat_generalization_results.md)、[完了監査](../reports/phase7/chat-generalization-20261013/completion.json)。『4まで』の4項目を完了・不採用で閉じ、追加研究/教材準備/診断/学習は停止。D1 t3実state/教師列と全14suite/3,066判断/NLL7点、選定/原分岐/padding24確認/予算/元UIまで監査済み。checkpointはSHA `aa84a1dc3fbbf1c264ebd9327ecc7183bf3d88c606e01bd0f82bb5351945aed6`、3,641更新/1,899,562教師。回復・保持・samplingは条件不成立で未実行・未確認。元10B UIの監査時実PID235826/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start_ticks47993707、HTTP busy=false。現在/将来の生存は再確認が必要。終了jobを再起動せず、TEST/採用/量子化/公開へ進まない。以下は履歴。
+
 2026-10-13 JST 最新依頼は計画・文書更新のみ。[135](135_chat_problem_solution_plan.md)と[観察記録](../reports/investigation/chat_solution_plan_20261013_t2_final_record/observations.json)。保存済みD1 result/job/checkpointsはt3学習終了（3,641更新・1,899,562教師、SHA `aa84a1dc3fbbf1c264ebd9327ecc7183bf3d88c606e01bd0f82bb5351945aed6`）、launcherはexit0/UI復帰exit0。今回、実重み/state監査やUI/process生存の確認はしていない。明示再開後は実process/lock/台帳確認→最終state監査→D1 t3新旧438判断/NLL→採否/原分岐。終了済み学習を再起動しない。最新の依頼から新規教材・診断・学習・評価を開始せず、未達のまま保存する。下の実行中/PIDは当時の観察。
 
 2026-10-13 JST 実行継続: [134](134_chat_generalization_execution.md)。D1 t2状態監査と全内容/NLL、D0 t2/t3新DEVを完了。D1最終Bのdurable worker20436、WSL PID228316/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start_ticks47910161を実観測した。新しいjobを重複起動せず、`reports/phase7/chat-generalization-20261013-launcher/train-D1-3-t0/` の終端と実process・台帳を確認してから次へ進む。次はfinal実state/消費監査、新旧各219内容判断/NLL、選定/分岐/全体監査。現在の[進捗監査](../reports/phase7/chat-generalization-20261013/progress_audit.json)は12suite・2,628判断・NLL6点でoverall_goal_complete=false。観測PIDを将来の生存証拠にしない。

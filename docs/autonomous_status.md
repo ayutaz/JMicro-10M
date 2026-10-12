@@ -1,5 +1,7 @@
 # 現在の状態
 
+2026-10-13 JST 最終状態: goal『4まで』の教材改訂・同条件比較・条件付き回復・別paddingを実行/監査して閉鎖。[結果136](136_chat_generalization_results.md)、[完了監査](../reports/phase7/chat-generalization-20261013/completion.json)。D1実学習3,641更新・1,899,562教師、全14suite・3,066内容判断・NLL7点完了。最終D0/D1新内容16/12・旧18/15、自己生成文脈新5/3・旧4/1で両条件不合格。回復は原predicate不成立、保持/samplingは合格候補なしで未実行・未確認。padding24GPU確認更新は数値gate不合格で不採用。20件CPU gate確認合格、GPU累積35.293分/6時間、元UI実生存/HTTP/lock確認。Base/Chat未完成・未採用。追加研究・教材準備・GPU診断・学習を停止し明示再開待ち。下の計画・実行中/PIDは当時の履歴。
+
 2026-10-13 JST 最新依頼は解決方法と計画の更新。[計画135](135_chat_problem_solution_plan.md)をt2評価と最終学習metadataに合わせて更新した。今回、新規教材・診断・学習・評価・再採点は実行せず、実行は明示再開待ち。保存済み監査は12/14セット・2,628/3,066判断・NLL6/7点。その後のD1記録はt3学習終了（3,641更新・1,899,562教師、launcher exit0/UI復帰exit0）を示すが、最終実state監査・品質・比較/分岐は未確認。次の実行計画は再学習ではなく最終state確認と残り438判断/NLL1点から。padding不採用、Base/Chat未完成・未採用。[今回の観察](../reports/investigation/chat_solution_plan_20261013_t2_final_record/observations.json)。下の実行継続/PIDは各時点の履歴で、現在の生存証拠・開始指示ではない。
 
 2026-10-13 JST goal実行継続: [実行記録134](134_chat_generalization_execution.md)。t2実state/教師列監査、D1 t2新旧とD0 t2/t3新DEVの生成・全内容・NLLを完了。全保存点の[監査](../reports/phase7/chat-generalization-20261013/progress_audit.json)は12/14suite・2,628/3,066判断・NLL6/7点を確認し、残作業をpendingのまま記録した。D1 t2内容は新14/旧6、自己生成文脈4/0で不合格。D1は有効t2から同じ条件で最終Bへ学習中（実PID228316/3,000更新・1,565,062教師を観測）。次は実終端確認→最終state監査・新旧全内容/NLL→選定・分岐・全体監査。padding不採用、Base/Chat未採用。直前の計画のみという記述はその依頼時の履歴で、最新のgoal継続により実作業へ戻っている。
@@ -76,10 +78,10 @@ native重み・Tokenizer・数値学習state・実装・設定・文書・評価
 | モデル | 10,001,152 parameters。10Mは重みの数 |
 | Phase0〜5 | 完了。[Phase4](21_phase4_completion.md)、[Phase5](23_phase5_completion.md)の証拠を保持 |
 | Phase6 Base | 元10B学習と追加比較は実施済み。品質・最終確認は未達 |
-| 最新の学習 | 計画131のC0/C1各1,899,555教師、3,647/3,636更新まで完了 |
-| 最新の採否 | 全14suite・3,066内容レビューとNLL7点完了。最終C0/C1とも不合格・閉鎖 |
+| 最新の学習 | 133のD1は3,641更新・1,899,562教師まで完了。D0は一致する旧C1の3,636更新・1,899,555教師を再利用、新学習0 |
+| 最新の採否 | 全14suite・3,066内容レビューとNLL7点完了。D0/D1不合格・閉鎖、回復not_triggered、padding数値不一致で不採用。136とcompletionが最終証拠 |
 | 次の実行 | 明示的な再開指示を待つ。計画の更新は実行の再開ではない |
-| Chat / SFT / 量子化 | 128と131の限定SFT比較は実行・不合格終了。次は未実行計画133、量子化は範囲外 |
+| Chat / SFT / 量子化 | 128/131/133の限定比較は実行・不合格終了。次の教材案は135から最大1件、明示再開待ち。正式Chat採用・量子化は範囲外 |
 | Git | 科学結果・停止保存は `a26194c`、文書整理は `7ab2c07`、10M維持の固定は `88d4363`。今回の文書更新commitは `git log -1` で確認。自動pushなし |
 
 [最新結果123](123_base_teacher_decay_2b_results.md)、[Chat-first計画128](128_chat_first_sft_plan.md)、[Base復旧計画124](124_base_recovery_plan.md)、[ロードマップ](15_project_roadmap.md)、[引継ぎ](windows_handoff.md)を参照する。限定Chat診断はその結果報告で停止。Base復旧を選ぶ場合は必要な証拠を満たした時点で通知・停止し、後続段階へ自動移行しない。

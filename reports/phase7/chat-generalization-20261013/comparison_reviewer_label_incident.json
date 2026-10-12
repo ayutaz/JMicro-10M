@@ -1,0 +1,9 @@
+{
+  "observed_at_utc": "2026-10-12T19:49:43.0654206Z",
+  "failed_command": "uv run --frozen --extra hub --extra data --extra ml --extra export scripts/compare_chat_generalization.py --point t1",
+  "exception": "AssertionError: Keep the reviewer/protocol matched",
+  "scope": "CPU derived comparison; no training or GPU failure",
+  "evidence": "D0 historical old suite uses Codex plan131 reviewer, new notes use Codex plan133 reviewer; same RUBRIC and codex_nonblind/independent_human=false/blind=false",
+  "remedy": "Separate provenance observer accepts exactly these two Codex phase labels and keeps original labels/notes hashes; original frozen comparator, sources, config, raw and scores unchanged",
+  "limitation": "Historical nonblind judgments are not a new blind or independent review"
+}
