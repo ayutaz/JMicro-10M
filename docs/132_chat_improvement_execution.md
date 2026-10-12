@@ -40,4 +40,14 @@ native CUDA probe18更新を完了。[probe](../reports/phase7/chat-improvement-
 
 native CUDA保存再開4条件（C0/C1×通常/epoch境界・最終部分更新）も通過。[gate](../reports/phase7/chat-improvement-20261012/native_resume_gate.json)。各条件のmodel/optimizer/scheduler/RNG/sampler/counters/digest/lineage/specと損失・勾配・LR履歴が全てbit一致。合計32検証更新は主比較学習に含めない。probe実計上27.12秒、resumeはledgerの実時間を参照する。
 
-凍結configは[実行recipe](../configs/phase7/chat-improvement-20261012.json)、source snapshotはreport内sourceに保存。全保存点のgreedy・固定NLLと合格時のsamplingを含む保守的時間見込みを次に確認する。本比較学習0、品質改善/段階5完了/採用は未確認。TRAINは今後も再生成しない。
+凍結configは[実行recipe](../configs/phase7/chat-improvement-20261012.json)、source snapshotはreport内sourceに保存。TRAINは今後も再生成しない。
+
+## 時間見込みと本比較の開始
+
+最初の評価forecastは11,418秒で10,800秒を超え、本学習を止めた。初回の推論初期化時間を全応答に掛ける式だった。[不合格見積もり](../reports/phase7/chat-improvement-20261012/evaluation_forecast_failed_cold_per_response.json)。本学習前に、初回/継続の分離計測と初期化のstageごとの加算へ変更する手続きを固定した。[測定方式変更](../reports/phase7/chat-improvement-20261012/forecast_method_revision.json)。評価件数4,380の最悪64token、係数1.5、保存/起動等600秒、GPU枠は維持する。TRAIN・native training・decoding・絶対品質gateは変更しない。
+
+11回の生成と固定32×1024 NLLの初回/継続計測で、評価の保守見積もり7,740.84秒となり枠内に収まった。[再測定](../reports/phase7/chat-improvement-20261012/evaluation_forecast.json)。これは実測に基づく見込みで、実GPU台帳の上限を解除しない。元親/旧suiteの219件は親/Tokenizer/suite/generation core source・全履歴/IDs/bytesと旧notesを検証し再利用した。[再利用根拠](../reports/phase7/chat-improvement-20261012/parent_old_reuse.json)。新しい独立評価やGPU再生成として数えない。
+
+実消費順序からC1のfamily比も再構成し、最大1.4202%・最大target3回を確認した。[実family量](../reports/phase7/chat-improvement-20261012/actual_family_consumption.json)。CPU dry-runの終端cursorとseed42 epoch順を使った数量の監査で、品質証拠ではない。
+
+両条件のB/3到達まで本学習を開始した。完了更新を250更新ごと/到達点で全state保存する。まず両条件の同じ到達点で新DEVと共通NLLを確認し、その後の判断を記録する。本学習進行中、全予算の品質評価/段階5完了/採用は未確認。

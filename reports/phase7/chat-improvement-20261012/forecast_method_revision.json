@@ -1,0 +1,25 @@
+{
+  "frozen_before_measurement": "2026-10-12T01:22:47.215012Z",
+  "source": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/measure_chat_improvement_forecast.py",
+    "sha256": "aa71c2fb877009f75861f38e66bd91e3e8a07500b82d2c0abdd20a31626f613d"
+  },
+  "config_sha256": "f18554e4ee8ed2c53ac41ae40d3b1f0db8d09c1cfe14ae47c2985676479169e3",
+  "failed_forecast": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-improvement-20261012/evaluation_forecast.json",
+    "sha256": "70632288c77229dd1d29f43fd258b801e3ce8350cdab9f0345d8cdce9f9332a3"
+  },
+  "change": "Separate cold startup from steady generation throughput; cold charged per invocation, not per token of every response",
+  "unchanged": {
+    "maximum_required_responses": 4380,
+    "maximum_tokens": 64,
+    "safety_factor": 1.5,
+    "total_limit": 21600,
+    "evaluation_limit": 10800
+  },
+  "frames": "largest four provided prompts, worst-length own history; each steady frame measured twice after one cold warmup",
+  "NLL": "one cold plus three steady fixed physical32x1024 batches; all2554 targets at7 checkpoints",
+  "startup_IO_cleanup_reserve_seconds": 600,
+  "planned_maximum_model_invocations": 21,
+  "quality_evidence": false
+}
