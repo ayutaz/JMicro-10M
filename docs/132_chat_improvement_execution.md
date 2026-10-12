@@ -28,4 +28,16 @@ v6の7分類×40=280targetをCodex非blindで確認し、7件を修正対象と�
 
 CPU sampler dry-runでは実消費量の教師比、EOT、長さ、更新数差5%以内、累積AdamW decay係数差0.1%以内、最大target出現3回を確認する。候補ごとの旧dry-runは別名で保持し、最終TRAINに対する結果を[consumption_dry_run](../reports/phase7/chat-improvement-20261012/consumption_dry_run.json)へ保存する。これは順序/counter/scheduleの確認であり、GPUの速度見込み/有限BF16/保存再開gateはまだ未実施。
 
-次は凍結済みTRAINを変更せず、新DEV80/自生成24family59応答を独立に作成し、TRAIN/DEV NLL固定subset、比較contract、専用runner/評価入口を完成させる。native CUDAの技術gateと予算見込みを通った後にC0/C1を開始する。現時点の本比較GPU学習0、品質改善/段階5完了/採用はいずれも未確認。
+## TRAIN凍結後のDEVと実行入口
+
+TRAINを凍結後、新しい80family（10分類×8）を作成した。訂正/後続/文脈の24familyは自生成履歴でも評価し、2turn15・3turn7・4turn2で59応答。TRAINと具体的な質問/構造/組合せを変えた独立著作で、全script/goldをCodex作者が非blindで確認した。独立人間認証ではない。[DEV準備](../reports/phase7/chat-improvement-20261012/dev_preparation.json)、[監査](../reports/phase7/chat-improvement-20261012/dev_audit.json)。全履歴と最悪64token/turnでもcontext内。最終質問の完全一致0、文字3gramの表層flag0、最大Jaccard0.353。表層検査は意味の独立性の保証ではなく、親のWeb corpusも再走査していない。
+
+固定NLLをC0 TRAIN112・C1 TRAIN112（7分類×16）・新DEV80・RPC DEV2250、合計2554targetとして保存した。[NLL準備](../reports/phase7/chat-improvement-20261012/nll_preparation.json)。同じ対象を両条件/全保存点で測り、本文/EOTを分離する。異なる教材分布間のloss大小で品質を順位付けしない。新DEVのgold履歴NLLは自生成履歴の成立とは別。
+
+専用runner、評価入口、6時間の共有GPU ledger、全state再開、hidden durable Windows worker、実process/lock/UI busy/容量のlaunch gateを実装した。凍結前CPU preflightのpath型不一致と、元UIが生存中にGPU lockを保持する正規動作の扱いを修正し、不採用configを別名で保存した。UIによるlockは実PID/boot/start・HTTP親SHA/busy・kernel lock holderが一致した場合だけ停止対象とする。本学習前にprobe/完全再開gate/全評価の時間見込みを必須とした。
+
+native CUDA probe18更新を完了。[probe](../reports/phase7/chat-improvement-20261012/native_probe.json)。両条件の本学習の保守見積もりはC0約2,190秒/C1約1,871秒で各3,600秒以内。最大割当約16.22GB、実消費予定の全更新が1/2microbatchで、probeも両方を確認。budget1の最終1応答・EOTと空PAD行もfinite。検証教師8,458、本比較学習教師0。
+
+native CUDA保存再開4条件（C0/C1×通常/epoch境界・最終部分更新）も通過。[gate](../reports/phase7/chat-improvement-20261012/native_resume_gate.json)。各条件のmodel/optimizer/scheduler/RNG/sampler/counters/digest/lineage/specと損失・勾配・LR履歴が全てbit一致。合計32検証更新は主比較学習に含めない。probe実計上27.12秒、resumeはledgerの実時間を参照する。
+
+凍結configは[実行recipe](../configs/phase7/chat-improvement-20261012.json)、source snapshotはreport内sourceに保存。全保存点のgreedy・固定NLLと合格時のsamplingを含む保守的時間見込みを次に確認する。本比較学習0、品質改善/段階5完了/採用は未確認。TRAINは今後も再生成しない。

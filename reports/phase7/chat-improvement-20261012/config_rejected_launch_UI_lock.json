@@ -1,0 +1,135 @@
+{
+  "format": "teacher-chat-improvement-v1",
+  "purpose": "direct_SFT_diagnostic_from_unadopted_original10B",
+  "created_at": "2026-10-12T01:18:35.050831Z",
+  "teacher_budget": 1899555,
+  "GPU_limits_seconds": {
+    "probe": 600.0,
+    "resume": 600.0,
+    "train_C0": 3600.0,
+    "train_C1": 3600.0,
+    "evaluation": 10800.0,
+    "retention": 2400.0
+  },
+  "GPU_total_limit_seconds": 21600,
+  "parameter_count": 10001152,
+  "stop_after_stage": 5,
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "tokenizer": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/phase2/4096/tokenizer.model",
+    "sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+  },
+  "new_DEV": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-improvement-20261012/dev.jsonl",
+    "sha256": "9e1c207fe8e07b732c4f3aafad9f5dd151bf65f3e661cafe6fc18902ca655961"
+  },
+  "old_suite": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/eval/chat.jsonl",
+    "sha256": "86ed01af44926370bbe2b863d6984dd00358dbb88b21a02cf124e7c388b67a86"
+  },
+  "fixed_NLL": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-improvement-20261012/nll_fixed.jsonl",
+    "sha256": "75c619439b1b16c789f3fe81f6617354657df7143b50d324efa660aaf1b4089d"
+  },
+  "source_sha256": {
+    "src/jmicro/teacher_chat_training.py": "2f3aeebaeea27005192490810837e300326abc9fa046db31981bcbaac4bed8f6",
+    "src/jmicro/assistant_sampler.py": "a774998a14f4adfdc6598cf23ae82630e3b22220641c3f83fa29a38f79d9022c",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "src/jmicro/chat_evaluation.py": "81282674705292a82e7689588d8b3061a5eb773cd04f5a286ddf7950e9af96fa",
+    "src/jmicro/chat_review.py": "53eabf79edea8a9205dc9b0f606866c07fa10a3f64fee33dd043549b7816af88",
+    "src/jmicro/japanese_evaluation.py": "8693e2a54e63c1b085b617b207cc5db618ae80af1eb7cb54133ba8b254da6801",
+    "scripts/chat_improvement_contract.py": "b9f43f3a4cbbbebd1d01576a139773cc5da4eb7ea2dc73b8cd5f488c82ab0746",
+    "scripts/run_chat_improvement.py": "be8f6d76ef4b724e5fe4364607387075df3aab2244a410dc79083780e6b6045f",
+    "scripts/run_chat_improvement.ps1": "9aa651f965a41eadf1b4b8729770f3b5c839ae45a601ef3d16f58eb725844894",
+    "scripts/evaluate_chat_improvement.py": "f1dd2f6fb2c6b8061e6f47821630215e616287ebb4c0661e78389fc6cd147d5a",
+    "scripts/check_chat_improvement_launch.py": "962c71732208648bfe406417a632cd6c7af5844d231e884c217b7aab20894002",
+    "scripts/freeze_chat_improvement_config.py": "0ba2a8fcd8ce80585aa4c68403ca94c7b8869262529b865537cba48f9289e523",
+    "scripts/chat_first_contract.py": "460d365e4c8db2476fde6ecb89d0f887335e22a89eebea5fcdaf77fb268ccb88",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f",
+    "scripts/run_eos_short_pilot.py": "7a381414bdea5b24bbbbf7532f04db743cff948fa47f60e95f65019af2d3ec3d",
+    "scripts/prepare_chat_improvement_dev.py": "074fb546e86da590dc4f1ad79664b0ca71da07af02c2530179d26a2fe8178575",
+    "scripts/prepare_chat_improvement_nll.py": "25e69fcbbfdfc737126f6ca49de49ed0104439a7c8c6f71ad0acf7a2b37194fc",
+    "scripts/audit_chat_improvement_dev.py": "5751e2ea30913252bcde57689074a42db5c2c2fc83092596ec64d504f7d828a0"
+  },
+  "preparation_evidence": {
+    "consumption": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-improvement-20261012/consumption_dry_run.json",
+      "sha256": "3ec1722a3acf044b3337424a06c58c15bd2252c6d699b872bbff4d24f492215c"
+    },
+    "review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-improvement-20261012/train_content_review_final.json",
+      "sha256": "e3eebc58b5c70165269604de756491363aaa10fdda03e430cc86f4985ef15831"
+    },
+    "DEV_audit": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-improvement-20261012/dev_audit.json",
+      "sha256": "84eb10e1742165e8db908235ddf82d84d200d0a7a3aeaaba0f85f20bdd290897"
+    },
+    "NLL": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-improvement-20261012/nll_preparation.json",
+      "sha256": "ec00cd14c74b3972713f525e2219b32f17c32662a37d9a158c8aa8cf704f338a"
+    },
+    "DEV": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-improvement-20261012/dev_preparation.json",
+      "sha256": "743cd31db15e49382a16aa6aa3ccc80b7f5da690617d151a614ee2ba3e4db042"
+    },
+    "TRAIN": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-improvement-20261012/train_preparation.json",
+      "sha256": "877df15df176aecd641cbac21a05415ed007e56de1c5c9f7f57b6a7704497350"
+    }
+  },
+  "spec": {
+    "seed": 42,
+    "context": 1024,
+    "batch": 32,
+    "accumulation": 1,
+    "lr": 0.0001,
+    "weight_decay": 0.01,
+    "warmup": 0,
+    "schedule_updates": 100000,
+    "dtype": "bf16",
+    "compile": false,
+    "backend": "math",
+    "scheduler": "wsd",
+    "sampler": "document",
+    "training_fast_path": false,
+    "update_teachers": 512
+  },
+  "arms": {
+    "C0": {
+      "data_directory": "/home/aihub_ubuntu/jmicro-data/phase7/real-persona-pilot-20261006",
+      "records": {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase7/real-persona-pilot-20261006/train.jsonl",
+        "sha256": "4b062f827e5d33e178959720f927e42f6606ff6412cbe1ec46b6e8740b255d60"
+      },
+      "manifest": {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase7/real-persona-pilot-20261006/manifest.json",
+        "sha256": "1ad9f04c0b7d43c4fc253c7cdc8057e9a09d7ef34b9073e53d972aeef278e0ee"
+      },
+      "sampler_binding": "d5676756d9f72e5c4278528bbb4f9e98eec2c3f0d05cc665a0935369501fd549"
+    },
+    "C1": {
+      "data_directory": "/home/aihub_ubuntu/jmicro-data/phase7/chat-improvement-20261012",
+      "records": {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-improvement-20261012/train.jsonl",
+        "sha256": "8eff5223949829922558f51b99b59cad2b52a4a0bc7ef7f03cd7d6fe586d2b82"
+      },
+      "manifest": {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-improvement-20261012/manifest.json",
+        "sha256": "8928c93c3b07b8908a48d16a273f2478ad2bcd3d7ef0a712f5c19f54dda5d0f7"
+      },
+      "sampler_binding": "affdb51470f5695c368d6286a2851d77aea84c113a65b782eb6f455efcbe87de"
+    }
+  },
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "protected_TEST_used": false
+}
