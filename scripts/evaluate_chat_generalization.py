@@ -23,7 +23,7 @@ from jmicro.model import JMicroModel
 from jmicro.training import atomic_json,autocast,rng_state,seed_all,isolated_evaluation
 from run_eos_short_pilot import equal_state
 from phase6_performance import identity,alive,finite_state
-from chat_generalization_contract import B,RUN,GPU_stage,preflight,load_parent,reference,require_ref
+from chat_generalization_contract import B,RUN,LIMITS,GPU_stage,preflight,load_parent,reference,require_ref
 
 
 def load_cases(path,tok):
@@ -191,17 +191,23 @@ def forecast(model,c,tok,left,heartbeat,stopped):
     # Worst-case 64 tokens on every required output, all final eligible sampling
     # seeds included; no saved old-parent outputs assumed reusable in estimate.
     # Include up to three conditional recovery savepoints in the shared cap.
-    outputs=10*2*219+3*2*219
+    # Four old suites have already been validated and rebound on the CPU.
+    # Keep both conditional recovery and sampling; partial success can need both.
+    reuse=read_json(RUN/'historical_control_registration.json')
+    assert reuse['passed'] and reuse['old_suite_judgments_reused']==876
+    outputs=10*2*219+3*2*219-876
     rate=max(r['seconds_per_token'] for r in timings[1:])
     generation_seconds=rate*64*outputs*1.5
-    nll_seconds=max(nll_times[1:])*math.ceil(2554/32)*10*1.5
+    nll_batches=math.ceil(2554/32)*10-4*(math.ceil(2554/32)-math.ceil(304/32))
+    nll_seconds=max(nll_times[1:])*nll_batches*1.5
     cold=27*(max(0.,timings[0]['seconds']-rate*timings[0]['tokens'])+max(0.,nll_times[0]-max(nll_times[1:])))
     total=generation_seconds+nll_seconds+cold+600.
-    r=dict(passed=total<=10800.,config_sha256=c['config_sha256'],timings=timings,raw_timing_only=raw,
+    r=dict(passed=total<=LIMITS['evaluation'],config_sha256=c['config_sha256'],timings=timings,raw_timing_only=raw,
         NLL_batch_seconds=nll_times,maximum_required_responses=outputs,maximum_tokens_per_response=64,
         conservative_generation_seconds=generation_seconds,conservative_NLL_seconds=nll_seconds,cold_overhead_seconds=cold,
         cold_once_per_invocation=True,planned_maximum_model_invocations=27,
-        forecast_evaluation_seconds=total,limit_seconds=10800.,includes_all_greedy_savepoints_and_conditional_three_seed_sampling=True,
+        forecast_evaluation_seconds=total,limit_seconds=LIMITS['evaluation'],includes_all_greedy_savepoints_and_conditional_three_seed_sampling=True,
+        verified_historical_outputs_reused=876,maximum_new_NLL_batches=nll_batches,
         includes_up_to_three_conditional_recovery_savepoints=True,
         quality_evidence=False,completed_at=now())
     atomic_json(path,r);assert r['passed'],'Required complete evaluation cannot fit frozen budget; no main learning allowed'

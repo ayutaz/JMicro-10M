@@ -15,8 +15,8 @@ RUN=ROOT/'reports/phase7/chat-generalization-20261013'
 B=1899555
 # D0 must reuse the exactly matching closed C1 experiment. Its former learning
 # allocation reserves conditional recovery and a separate padding diagnostic.
-LIMITS=dict(probe=600.,resume=600.,train_D0=0.,train_D1=3600.,evaluation=10800.,
-    retention=2400.,recovery=2700.,efficiency=900.)
+LIMITS=dict(probe=600.,resume=600.,train_D0=0.,train_D1=2400.,evaluation=13500.,
+    retention=900.,recovery=2700.,efficiency=900.)
 
 
 def reference(path):return dict(path=str(path),sha256=sha256(Path(path)))

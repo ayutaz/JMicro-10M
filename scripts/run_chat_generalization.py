@@ -16,7 +16,7 @@ from jmicro.training import atomic_json,seed_all
 from jmicro.experiment import now,read_json,sha256
 from phase6_performance import identity,alive,finite_state
 from run_eos_short_pilot import equal_state
-from chat_generalization_contract import B,RUN,GPU_stage,load_parent,preflight,remaining
+from chat_generalization_contract import B,RUN,LIMITS,GPU_stage,load_parent,preflight,remaining
 
 
 def trainer(parent,c,tok,rows,name,budget=B):
@@ -48,7 +48,7 @@ def cuda_probe(parent,c,tok,arms):
             forecast=max(rates)*1.35*dry['microbatches']+60.
             report[name]=dict(history=history,peak_allocated_bytes=torch.cuda.max_memory_allocated(),
                 max_steady_seconds_per_microbatch=max(rates),forecast_training_seconds=forecast,
-                forecast_limit_seconds=3600.,within_limit=forecast<=3600.,
+                forecast_limit_seconds=LIMITS['train_D1'],within_limit=forecast<=LIMITS['train_D1'],
                 observed_microbatch_counts=sorted({r['microbatches'] for r in history}),
                 actual_complete_update_bound=True,finite=True)
             verification+=t.supervised_tokens

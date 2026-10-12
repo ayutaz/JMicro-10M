@@ -33,6 +33,7 @@ def main():
         recovery_predicate=dict(final_point='t3',both_suites_joint_at_least=56,
             both_suites_matched_provided_context_at_least=15,all_primary_mechanical_gates=True,
             new_joint_improvement_over_D0_required=True,own_history_failure_required=True,
+            own_history_failure_definition='At least one final own-history context score below2 in either suite, even if the overall15/24 screen passes',
             policy='Only if every predicate holds; otherwise record not triggered, never relax gates'),
         efficiency_separate=True,all_requested_GPU_stages_total_cap_seconds=21600,
         parent=reference(ROOT/'reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt'),

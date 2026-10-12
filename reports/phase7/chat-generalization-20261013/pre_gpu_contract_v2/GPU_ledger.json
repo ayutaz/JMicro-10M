@@ -1,0 +1,70 @@
+{
+  "created_at": "2026-10-12T19:09:07.819066Z",
+  "limits": {
+    "probe": 600.0,
+    "resume": 600.0,
+    "train_D0": 0.0,
+    "train_D1": 3600.0,
+    "evaluation": 10800.0,
+    "retention": 2400.0,
+    "recovery": 2700.0,
+    "efficiency": 900.0
+  },
+  "total_limit": 21600.0,
+  "entries": [
+    {
+      "pid": 211475,
+      "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+      "start_ticks": "47531090",
+      "category": "probe",
+      "name": "native_changed_teacher_batch",
+      "config_sha256": "5037a8e5c98dfbfed5926c39eb53a57679a698e5988c1cddd3cc660892f65df1",
+      "status": "complete",
+      "started_at": "2026-10-12T19:09:12.056449Z",
+      "charged_seconds": 10.428389211010654,
+      "available_seconds": 600.0,
+      "heartbeat_at": "2026-10-12T19:09:18.860581Z",
+      "arm": "D1",
+      "completed_updates": 8,
+      "ended_at": "2026-10-12T19:09:22.484751Z"
+    },
+    {
+      "pid": 211726,
+      "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+      "start_ticks": "47535283",
+      "category": "resume",
+      "name": "exact_native_all_state",
+      "config_sha256": "5037a8e5c98dfbfed5926c39eb53a57679a698e5988c1cddd3cc660892f65df1",
+      "status": "complete",
+      "started_at": "2026-10-12T19:09:53.439624Z",
+      "charged_seconds": 18.41089857101906,
+      "available_seconds": 600.0,
+      "heartbeat_at": "2026-10-12T19:10:11.849815Z",
+      "completed": [
+        "D0-full-contract",
+        "D0-epoch-and-terminal",
+        "D1-full-contract",
+        "D1-epoch-and-terminal"
+      ],
+      "ended_at": "2026-10-12T19:10:11.850451Z"
+    },
+    {
+      "pid": 211986,
+      "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+      "start_ticks": "47543500",
+      "category": "evaluation",
+      "name": "forecast-parent",
+      "config_sha256": "5037a8e5c98dfbfed5926c39eb53a57679a698e5988c1cddd3cc660892f65df1",
+      "status": "failed_or_stopped",
+      "started_at": "2026-10-12T19:11:15.420219Z",
+      "charged_seconds": 12.10760892397957,
+      "available_seconds": 10800.0,
+      "heartbeat_at": "2026-10-12T19:11:25.275444Z",
+      "stage": "forecast-generation",
+      "completed": 11,
+      "error": "AssertionError('Required complete evaluation cannot fit frozen budget; no main learning allowed')",
+      "ended_at": "2026-10-12T19:11:27.527754Z"
+    }
+  ],
+  "total_charged_seconds": 40.946896706009284
+}

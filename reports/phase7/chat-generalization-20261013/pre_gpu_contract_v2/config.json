@@ -1,0 +1,164 @@
+{
+  "format": "teacher-chat-generalization-v1",
+  "purpose": "direct_SFT_diagnostic_from_unadopted_original10B",
+  "created_at": "2026-10-12T19:06:26.727380Z",
+  "teacher_budget": 1899555,
+  "GPU_limits_seconds": {
+    "probe": 600.0,
+    "resume": 600.0,
+    "train_D0": 0.0,
+    "train_D1": 3600.0,
+    "evaluation": 10800.0,
+    "retention": 2400.0,
+    "recovery": 2700.0,
+    "efficiency": 900.0
+  },
+  "GPU_total_limit_seconds": 21600,
+  "parameter_count": 10001152,
+  "stop_after_stage": 4,
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "historical_control_evidence": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/historical_control_preparation.json",
+    "sha256": "2eea446086daed8041135c7ef86989d389d7446aaa6150d81914d0b77d74c629"
+  },
+  "recovery_predicate": {
+    "final_point": "t3",
+    "both_suites_joint_at_least": 56,
+    "both_suites_matched_provided_context_at_least": 15,
+    "all_primary_mechanical_gates": true,
+    "new_joint_improvement_over_D0_required": true,
+    "own_history_failure_required": true,
+    "policy": "Only if every predicate holds; otherwise record not triggered, never relax gates"
+  },
+  "efficiency_separate": true,
+  "all_requested_GPU_stages_total_cap_seconds": 21600,
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "tokenizer": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/phase2/4096/tokenizer.model",
+    "sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+  },
+  "new_DEV": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-generalization-20261013/dev.jsonl",
+    "sha256": "bfaa433d89d61f5da1fd7300c668db7bfd0306c916decf6afeafdf70841fb8eb"
+  },
+  "old_suite": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/eval/chat.jsonl",
+    "sha256": "86ed01af44926370bbe2b863d6984dd00358dbb88b21a02cf124e7c388b67a86"
+  },
+  "fixed_NLL": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-generalization-20261013/nll_fixed.jsonl",
+    "sha256": "ab017aeb48dfaf1a63811007ba89d9e19a8c1ec96e114162c4ab044003b8fe7a"
+  },
+  "source_sha256": {
+    "src/jmicro/teacher_chat_training.py": "2f3aeebaeea27005192490810837e300326abc9fa046db31981bcbaac4bed8f6",
+    "src/jmicro/assistant_sampler.py": "a774998a14f4adfdc6598cf23ae82630e3b22220641c3f83fa29a38f79d9022c",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "src/jmicro/chat_evaluation.py": "81282674705292a82e7689588d8b3061a5eb773cd04f5a286ddf7950e9af96fa",
+    "src/jmicro/chat_review.py": "53eabf79edea8a9205dc9b0f606866c07fa10a3f64fee33dd043549b7816af88",
+    "src/jmicro/japanese_evaluation.py": "8693e2a54e63c1b085b617b207cc5db618ae80af1eb7cb54133ba8b254da6801",
+    "scripts/chat_generalization_contract.py": "6f02e957ef308668491994aacd3f592469be10cb17739bc6badb4e3279d398c6",
+    "scripts/run_chat_generalization.py": "eb7ae5367148df5ece34541162d30c90ad4938ae1f68cece5f6b0d917fe68375",
+    "scripts/run_chat_generalization.ps1": "b3b35c3189a5612cba03e2bbce574ad55f66b5f808f7347df2b95288d68801bc",
+    "scripts/evaluate_chat_generalization.py": "7e84da88b866359b4751061887f151871ff6e6775f1e5137ee8e8d87dabd6a1d",
+    "scripts/check_chat_generalization_launch.py": "198e150c6938d8e77b0c717233041a9cca61e37ea97fc4f7f53132883bd735bd",
+    "scripts/freeze_chat_generalization_config.py": "6825c84af2cd3088625d0ef29d7d7056967b3c91a8db0105f3870ad4578e9137",
+    "scripts/chat_first_contract.py": "460d365e4c8db2476fde6ecb89d0f887335e22a89eebea5fcdaf77fb268ccb88",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f",
+    "scripts/run_eos_short_pilot.py": "7a381414bdea5b24bbbbf7532f04db743cff948fa47f60e95f65019af2d3ec3d",
+    "scripts/prepare_chat_generalization_dev.py": "8396fcf762f5bfee69fb03d3937a67fb396b07b9b1730dd2ee5224a44d5d3854",
+    "scripts/prepare_chat_generalization_nll.py": "980d54fcad4a346e9c1b8a81b45db03e1db23f65e00d9fcab80e2b30bfd1629f",
+    "scripts/audit_chat_generalization_dev.py": "4aec4c29dba9e52f14257a791be0351912b91524d663133577a7167f1e383d27",
+    "src/jmicro/chat_generalization_curriculum.py": "d9071e560c202268a46ad8c94449a5cb0751c89c1a5201989cb69d9f120a712d",
+    "scripts/prepare_chat_generalization_train.py": "556aa963c0bd5f732e83942b22b948623503f45506d6238bd1dbfd309c7865a5",
+    "scripts/finalize_chat_generalization_train.py": "51c822f39f951a5a7035f0e5d43ff880d991b4ddf88db7ec063ff8c662b12af6",
+    "scripts/dry_run_chat_generalization.py": "a0faaaa660566957c56a582cbf73b7a67a6d03c9384ab74e813cf07c7e796b14",
+    "scripts/prepare_chat_improvement_train.py": "b871685f09850f55ebdd984363b25cbfd2a9cd39f8f3729bea44c6749c7438fa",
+    "scripts/dry_run_chat_improvement.py": "5248e0fb5eea4cecb2cf9103c60b677d76ac2a6ea0e29205ea441ec812a796b7",
+    "scripts/review_chat_generalization_train.py": "83e6f8a2c528da614555991b58a69c7c66d61438d4a260cb1a881fe28e98cba0",
+    "scripts/prepare_chat_generalization_reuse.py": "a300ce02cd4fead2f5cc6666824e9fb95bef3a5a379bbeb7894ae2a0ad0ab1ed",
+    "scripts/review_chat_generalization.py": "0e9c656b0b805b2f2b1da66ecd5d82a553d23560ceb8d920ec5eff32293c8270",
+    "scripts/audit_chat_generalization_training.py": "402f167149087e5cbfe8169e2cf05f53f9e1005eeb2fcae65968c831cbeee9c5",
+    "scripts/compare_chat_generalization.py": "154eca77165fc0819a15daa37c0568cc7b195f2dd6085fa12959fdbb648dcab2",
+    "scripts/analyze_chat_generalization_results.py": "dd430722630bbe882a3743ec37eda3ba434483d1765a41cc19b720fedded36b4"
+  },
+  "preparation_evidence": {
+    "consumption": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/consumption_dry_run.json",
+      "sha256": "93f25a071bf39f7b6962ab3c136c567b864eb2f76868f2aa1b2395479130a896"
+    },
+    "review": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/train_content_review_final.json",
+      "sha256": "444e4e8590e31513eec71e3973ee6dff44ddc35dccab8094f20182da0a670884"
+    },
+    "DEV_audit": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/dev_audit.json",
+      "sha256": "dce6dc46086d9004089745b8005e4c058a01341d580e187b713df875e161683d"
+    },
+    "NLL": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/nll_preparation.json",
+      "sha256": "b9893d787fc7796d4bd26d9972b1396a79a34494b9a997c8d7cf592ce2194326"
+    },
+    "DEV": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/dev_preparation.json",
+      "sha256": "808fc4d9c8d05a06ca7add2bb5949a4419576ee3945e4cb3dd8328b871a55bf6"
+    },
+    "TRAIN": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/train_preparation.json",
+      "sha256": "d59bd1e274178e1c98bfb0684f0eb5cadb6e413ffd4406e3aa52e88ea0a24443"
+    }
+  },
+  "spec": {
+    "seed": 42,
+    "context": 1024,
+    "batch": 32,
+    "accumulation": 1,
+    "lr": 0.0001,
+    "weight_decay": 0.01,
+    "warmup": 0,
+    "schedule_updates": 100000,
+    "dtype": "bf16",
+    "compile": false,
+    "backend": "math",
+    "scheduler": "wsd",
+    "sampler": "document",
+    "training_fast_path": false,
+    "update_teachers": 512
+  },
+  "arms": {
+    "D0": {
+      "data_directory": "/home/aihub_ubuntu/jmicro-data/phase7/chat-improvement-20261012",
+      "records": {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-improvement-20261012/train.jsonl",
+        "sha256": "8eff5223949829922558f51b99b59cad2b52a4a0bc7ef7f03cd7d6fe586d2b82"
+      },
+      "manifest": {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-improvement-20261012/manifest.json",
+        "sha256": "8928c93c3b07b8908a48d16a273f2478ad2bcd3d7ef0a712f5c19f54dda5d0f7"
+      },
+      "sampler_binding": "affdb51470f5695c368d6286a2851d77aea84c113a65b782eb6f455efcbe87de"
+    },
+    "D1": {
+      "data_directory": "/home/aihub_ubuntu/jmicro-data/phase7/chat-generalization-20261013",
+      "records": {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-generalization-20261013/train.jsonl",
+        "sha256": "7b230fc7d8ead3a1a61f04ff547b3e0d664bbfa5387dbf6959b6ac51ae057e21"
+      },
+      "manifest": {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-generalization-20261013/manifest.json",
+        "sha256": "0f967a2936b950e52617188ebad29433f07c0f7e4217e1d5b60d8b43830e09ca"
+      },
+      "sampler_binding": "13a5ab397a23cfb36c1d965955262493d77f6b1393d7696249f40dc729db0cf6"
+    }
+  },
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "protected_TEST_used": false
+}
