@@ -1,6 +1,6 @@
 # 現在の状態
 
-2026-10-12 実行状況: 新DEV80/自生成24会話59応答と共通NLL2554targetをTRAIN凍結後に準備。実行configを凍結し、native CUDA probeと4条件の全state保存再開gateを通過。生成/NLLの全評価時間を実測中。本比較学習0、品質/段階5は未完了。最新の証拠はdocs/132_chat_improvement_execution.mdを参照。
+2026-10-12 実行状況: ユーザーの「5まで進めてください」で計画131の段階0–5を再開。native CUDA/全state再開gateを通過し、C0/C1のB/3で新旧DEV各219応答を全確認、共通NLL2554targetを取得した。新DEVの文法・関連性同時2はC0 5/80、C1 15/80、自生成最終文脈2は2/24、4/24で全screen未達。改善信号と汎化不足を記録し、凍結TRAIN・同じ親/教師予算/recipeで両条件を最終Bまで続行中。最終全品質評価/段階5は未完了、Base/Chat未採用。[実行記録132](132_chat_improvement_execution.md)を参照。TRAINを再生成しない。以下の計画のみ/停止中の記述はそれぞれの作成時点の履歴であり、この限定再開の現在状態を表さない。
 
 最終更新: 2026-10-12 JST。**問題調査130と対策・段階計画131を作成完了。学習・GPU診断・教材準備は未再開、Base/Chatは未完成・未採用。** [計画131](131_chat_improvement_execution_plan.md)、[調査130](130_chat_failure_improvement_investigation.md)、[調査の証拠](../reports/investigation/chat_improvement_20261012/README.md)。直近の学習は2026-10-10の限定Chat-first診断で、5段階を完了し不合格で停止した。[実行・結果129](129_chat_first_sft_execution.md)、[完了監査](../reports/phase7/chat-first-sft-20261010/completion.json)。元UIの復帰記録は当時の観察で、今回の生存確認ではない。
 

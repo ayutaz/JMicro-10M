@@ -51,3 +51,28 @@ native CUDA保存再開4条件（C0/C1×通常/epoch境界・最終部分更新�
 実消費順序からC1のfamily比も再構成し、最大1.4202%・最大target3回を確認した。[実family量](../reports/phase7/chat-improvement-20261012/actual_family_consumption.json)。CPU dry-runの終端cursorとseed42 epoch順を使った数量の監査で、品質証拠ではない。
 
 両条件のB/3到達まで本学習を開始した。完了更新を250更新ごと/到達点で全state保存する。まず両条件の同じ到達点で新DEVと共通NLLを確認し、その後の判断を記録する。本学習進行中、全予算の品質評価/段階5完了/採用は未確認。
+
+## B/3の実評価と続行判断
+
+両条件は同じB=1,899,555でfresh開始し、C0は1,216更新/633,290教師、C1は1,211更新/633,216教師で最初の到達点を保存した。完全応答/EOTを保つ更新単位による74教師の差で、epoch回数の比較ではない。各条件の新旧suite219ずつ、親の新suite219もraw全履歴・IDs・bytesを検証し、内容をCodex非blindで採点した。抑制/無抑制の同じrawと全文履歴は明示的なfingerprintで採点を再利用し、異なる自発話の履歴は別に確認した。
+
+| B/3の内容 | C0既存雑談 | C1条件回答教材 | 必要 |
+|---|---:|---:|---:|
+| 新DEV 文法・関連性ともに2 | 5/80 | 15/80 | 56/80 |
+| 新DEV 自生成最終文脈2 | 2/24 | 4/24 | 15/24 |
+| 旧DEV 文法・関連性ともに2 | 10/80 | 11/80 | 56/80 |
+| 旧DEV 自生成最終文脈2 | 4/24 | 1/24 | 15/24 |
+
+全4screen不合格。新DEV jointのC1−C0は+12.5percentage points、family paired95%CI[+2.5,+22.5]。新最終文脈の差のCIも含めた全比較は[中間比較](../reports/phase7/chat-improvement-20261012/intermediate_screen.json)に保存する。この信号は非blind探索で、内容/文脈の両方が合格したとは扱わない。
+
+共通NLL2554targetをC0/C1/親で全取得した。同じC1 TRAIN112targetの本文平均NLLはC1で0.000423とほぼ暗記した一方、新DEVでは3.34577。自然会話RPC DEVの同じ155,582bytesの本文BPBは親1.35126、C0 0.90007、C1 1.72513。新DEV本文BPBは親1.16824、C0 0.74287、C1 1.08683。分布の異なる教材間のlossで順位をつけず、同一対象文で比較する。C1の教材適合と汎化不足、自然会話の分布への悪化を記録し、全予算での結果は未確認とした。
+
+C1には名前のない「さん」、教材の説明文型の流用、旧条件への回帰、場所/個数/人物の型を取り違える応答が残った。例: Userの画用紙を写真と誤って答え、その自発話を次turnでも引き継いだ。逆に自生成で最新11枚へ更新できた例もあった。旧suiteにはC1のraw UTF8失敗1件があり、表示修復やdecoding変更で消していない。[続行判断](../reports/phase7/chat-improvement-20261012/intermediate_decision.json)で、改善信号の最終測定に価値があるとして両条件を凍結Bまで続行した。TRAIN・gate・architectureを変更せず、t3だけを最終候補条件に使う。
+
+親の旧suiteを再利用する際、binding内部に追加した来歴/歴史的fieldとfrozen evaluatorの完全一致assertが合わず、親の新suite219生成後に停止した。実GPU時間は失敗stageにも計上し、raw/notesの元版を保全した上で、再利用の来歴をbindingの外に保持して正規化した。[正規化検証](../reports/phase7/chat-improvement-20261012/parent_reuse_binding_normalization.json)。全raw/実履歴/採点の不変をCPUで確認し、再実行では生成を繰り返さず不足NLLだけ取得した。追加CPU比較ではJSON保存による文字数histogramの数値key→文字列key変換を正規化して照合する。frozen trainer/evaluator/reviewer本体は変更していない。
+
+現在はt1の全stateからt3へ両条件を続行中。段階3–5、最終全レビュー、採否・条件付き保持/sampling、完了監査はまだ完了していない。
+
+中間監査では6suite×219=1,314の全判断と3checkpoint×2,554の同一NLL対象をraw/hash/実履歴/再利用元に結び付けて確認した。[中間監査](../reports/phase7/chat-improvement-20261012/intermediate_review_audit.json)。新DEVのC1文法2は61件、そのうち関連性2未満は46件。24の同じfamilyで提供履歴/自生成最終の文脈2はC1 7/4、C0 4/2で、両方の不足が残る。[採点済み記録の再集計](../reports/phase7/chat-improvement-20261012/intermediate_analysis.json)。正解語からの自動採点ではない。
+
+実行source snapshotをWindowsからWSLへ戻す際、旧Tokenizer実装の混在改行をLFへ揃えると凍結hashが変わることをCPU監査で検出した。凍結実行sourceとWindows保存snapshotは原hashのままで、変わったのはWSLの保存コピーだけだった。保存コピーをbyteのまま戻し、18source hashを再確認した。report/source・raw・configはGitのtext正規化対象から外し、過去の凍結sourceを編集せずにそのbyteを保存する。

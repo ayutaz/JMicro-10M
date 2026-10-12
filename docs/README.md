@@ -1,6 +1,8 @@
 # 文書一覧
 
-最新計画: [課題への対策と段階計画131](131_chat_improvement_execution_plan.md)。問題と対策、段階0–5、2条件・約1.9M教師/条件、GPU6時間案、新旧DEVの原gate、結果報告での停止と後続分岐を具体化しました。教材準備・実装・実験は未開始。[計画の静的確認](../reports/investigation/chat_improvement_plan_20261012/verification.json)。
+最新実行: [計画131の実行記録132](132_chat_improvement_execution.md)。ユーザーの段階0–5再開で教材・未使用DEV・専用runner・native技術gateを準備し、C0/C1 B/3新旧DEV全応答と共通NLLを確認しました。全screen未達ですが改善信号を記録し、同じ凍結条件で両方の最終Bまで続行中。最終全評価/段階5は未完了、Base/Chat未採用です。以下の未開始/停止の記述は作成当時の記録です。
+
+最新計画: [課題への対策と段階計画131](131_chat_improvement_execution_plan.md)。問題と対策、段階0–5、2条件・約1.9M教師/条件、GPU6時間案、新旧DEVの原gate、結果報告での停止と後続分岐を具体化しました。[計画作成時の静的確認](../reports/investigation/chat_improvement_plan_20261012/verification.json)。
 
 2026-10-12最新調査: [Chat-first SFTの問題点と改善方法130](130_chat_failure_improvement_investigation.md)。保存済みの失敗・実装・公開研究を調べ、教材改善、自生成履歴回復、未使用評価の順で提案した。[再集計と出典](../reports/investigation/chat_improvement_20261012/README.md)。新しい学習・GPU診断・教材準備は未開始。
 

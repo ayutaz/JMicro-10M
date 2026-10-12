@@ -1,6 +1,6 @@
 # JMicro-10M フェーズ別実行計画
 
-2026-10-12 実行状況: 新DEV80/自生成24会話59応答と共通NLL2554targetをTRAIN凍結後に準備。実行configを凍結し、native CUDA probeと4条件の全state保存再開gateを通過。生成/NLLの全評価時間を実測中。本比較学習0、品質/段階5は未完了。最新の証拠はdocs/132_chat_improvement_execution.mdを参照。
+2026-10-12 現在: ユーザーの「5まで進めてください」で計画131の段階0–5を再開し、教材・新DEV・専用runnerとnative CUDA/全state再開gateまで完了。C0/C1のB/3新旧DEV全応答とNLLを取得したが、全screen未達。新DEV同時2は5/80対15/80、自生成最終文脈2は2/24対4/24。改善信号と汎化不足を記録し、同条件で両方の最終Bまで続行中。[実行132](132_chat_improvement_execution.md)。最終全評価/採否/段階5は未完了、Base/Chat未採用。以下の計画のみ/停止の記述は作成時点の履歴。この限定比較以外のC2・効率・独立seed・採用・量子化・公開へ進まない。
 
 2026-10-12 対策計画作成: [計画131](131_chat_improvement_execution_plan.md)に問題ごとの対策と段階0–5を具体化した。最初は元親から雑談対照/条件回答教材の2条件、各約1.9M Assistant教師、教師量schedule、未使用DEVと旧回帰、累積GPU6時間案。報告で止め、回復教材・効率・再現/最終採用は別の後続段階。新規教材/runner/config/実験は未開始、明示再開待ち。
 

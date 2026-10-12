@@ -1,5 +1,6 @@
 """CPU final-point paired comparison/selection; all saved points stay visible."""
 import argparse
+import json
 from pathlib import Path
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'src'))
@@ -14,7 +15,7 @@ def reviewed(arm,point,suite):
     path=RUN/'evaluation'/arm/point/suite/'greedy/result.json'
     evaluation,items=get_items(path);notes=read_json(path.with_name('notes.json'))
     review=content_review(evaluation,sha256(path),notes,items)
-    assert review==read_json(path.with_name('review.json'))
+    assert json.loads(json.dumps(review))==read_json(path.with_name('review.json'))
     return evaluation,items,review
 
 

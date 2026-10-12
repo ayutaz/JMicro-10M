@@ -1,0 +1,42 @@
+{
+  "config_sha256": "f18554e4ee8ed2c53ac41ae40d3b1f0db8d09c1cfe14ae47c2985676479169e3",
+  "incidents": [
+    {
+      "kind": "parent_old_reuse_binding_assertion",
+      "observed_source": "Original launcher result and stderr inspected before corrected retry; failed GPU entry retained in GPU_ledger.json",
+      "windows_worker_pid": 31332,
+      "started_at": "2026-10-12T01:50:01.9256086Z",
+      "ended_at": "2026-10-12T01:54:00.6536208Z",
+      "exit_code": 1,
+      "original_UI_restore_exit_code": 0,
+      "exact_native_error": "evaluate_chat_improvement.py line 129: result=read_json(result_path); assert result['binding']==binding; return; AssertionError",
+      "cause": "Verified prior raw binding inherited historical fields and nested reuse provenance; exact frozen skip contract rejects extra fields",
+      "new_parent_suite_outputs_retained": 219,
+      "fix": "CPU normalization with original files archived and unchanged raw/history/judgments verified; provenance remains outside exact binding",
+      "verification": "parent_reuse_binding_normalization.json and intermediate_review_audit.json",
+      "retry_result": "complete, exit0, original_UI_restore_exit0; generation retained, missing NLL only obtained",
+      "limitation": "Launcher retry reused its log filenames; this incident is a transcription of inspected original output, not an independently preserved full original stderr file",
+      "failed_GPU_time_charged": true,
+      "frozen_execution_source_modified": false
+    },
+    {
+      "kind": "CPU_snapshot_newline_hash_mismatch",
+      "cause": "Mixed newlines in frozen Tokenizer source were normalized while copying archival snapshot back to WSL",
+      "affected_path": "reports/phase7/chat-improvement-20261012/source/src/jmicro/tokenizer.py",
+      "expected_sha256": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+      "normalized_wrong_sha256": "a437038f3c403b3473e662092205d036a4b18a9d0e2d26d9737f2a460b2443d5",
+      "fix": "Byte copy from unchanged Windows snapshot; preserve report source bytes in Git with -text attributes",
+      "actual_frozen_execution_source_unchanged": true,
+      "restored_snapshot_sha256": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+      "all18_source_snapshot_audit_passed": true,
+      "GPU_work_or_quality_evidence": false
+    },
+    {
+      "kind": "CPU_JSON_histogram_key_representation",
+      "cause": "Rebuilt review has integer histogram keys; stored JSON has string keys",
+      "fix": "Canonical JSON representation before equality checks in extra CPU audit/comparison helpers",
+      "frozen_raw_reviewer_and_rubric_modified": false,
+      "judgments_modified": false
+    }
+  ]
+}

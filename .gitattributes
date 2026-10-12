@@ -1,4 +1,10 @@
 # Preserve the byte hashes of the fixed evaluation suites on Windows.
+# Keep plan131 raw evidence and immutable source snapshots byte-exact.
+reports/phase7/chat-improvement-20261012/** -text whitespace=cr-at-eol
+reports/phase7/chat-improvement-20261012-launcher/** -text whitespace=cr-at-eol
+configs/phase7/chat-improvement-20261012.json -text whitespace=cr-at-eol
+scripts/*chat_improvement* text eol=lf
+src/jmicro/teacher_chat_training.py text eol=lf
 # Freeze the explicitly resumed Chat-first diagnostic and its source/hash bindings.
 scripts/*chat_first* -text whitespace=cr-at-eol
 tests/test_chat_first_sft.py -text

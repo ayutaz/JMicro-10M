@@ -1,6 +1,6 @@
 # Windows / WSL 引継ぎ
 
-2026-10-12 実行状況: 新DEV80/自生成24会話59応答と共通NLL2554targetをTRAIN凍結後に準備。実行configを凍結し、native CUDA probeと4条件の全state保存再開gateを通過。生成/NLLの全評価時間を実測中。本比較学習0、品質/段階5は未完了。最新の証拠はdocs/132_chat_improvement_execution.mdを参照。
+2026-10-12 現在: 「5まで進めてください」の限定再開で、計画131のC0/C1 B/3新旧DEV各219の全採点と共通NLLまで完了。全screen未達のまま改善信号・汎化不足を記録し、同じTRAIN/親/教師予算で両条件をBまで続行中。Windows hidden worker29220、WSL PID195614/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start41369737は2026-10-12T02:03Zの観察で、将来の生存証拠ではない。`reports/phase7/chat-improvement-20261012-launcher/train-both-3-t0/`、WSLの各arm job/metricsとGPU_ledgerを実確認し、重複起動しない。GPU phase終端でwrapperが元UIを復帰する。[実行132](132_chat_improvement_execution.md)。最終全評価/段階5/採用は未完了。以下の停止/未開始の記述は歴史的記録。
 
 最新の対策計画: [131](131_chat_improvement_execution_plan.md)。段階0–5の第一比較は2条件・各約1.9M Assistant教師、教師量schedule、累積GPU6時間上限案、未使用DEVと旧回帰で原gate確認、報告停止。新しいcontract/runner/評価入口が必要で、旧3周runを再利用して起動しない。計画JSONは文書検証用で実行configではない。計画作成依頼では教材準備/GPU実行を再開していない。回復教材・padding・最終採用確認は別の後続段階。
 

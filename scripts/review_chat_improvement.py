@@ -51,10 +51,14 @@ def reuse_index():
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('mode',choices=('packet','finish'));p.add_argument('evaluation',type=Path)
-    p.add_argument('--scores',type=Path);args=p.parse_args();path=args.evaluation.resolve()
+    p.add_argument('--scores',type=Path);p.add_argument('--start',type=int,default=0);p.add_argument('--count',type=int,default=40)
+    args=p.parse_args();path=args.evaluation.resolve()
     assert path.is_relative_to(RUN/'evaluation')
     evaluation,items=get_items(path);out=path.parent
-    if args.mode=='packet':
+    assert not (out/'notes.json').exists(),'Completed review retained; do not overwrite its source provenance'
+    if args.mode=='packet' and (out/'packet.json').exists():
+        packet=read_json(out/'packet.json');assert packet['evaluation_sha256']==sha256(path)
+    elif args.mode=='packet':
         prior=reuse_index();pending=[];reused={};seen={}
         for key,item in items.items():
             fp=fingerprint(item)
@@ -68,13 +72,22 @@ def main():
         packet=dict(evaluation_sha256=sha256(path),rubric=RUBRIC,pending=pending,reused=reused,
             total_judgments=219,manual_pending=len(pending),reuse_only_identical_actual_history_and_raw_output=True)
         atomic_json(out/'packet.json',packet)
-        print(json.dumps(dict(total=219,pending=len(pending),reused=len(reused))))
-        for r in pending:
-            print(json.dumps({k:r[k] for k in ('key','messages','response','stop','UTF8')},ensure_ascii=False))
+    if args.mode=='packet':
+        print(json.dumps(dict(total=219,pending=len(packet['pending']),reused=len(packet['reused']),start=args.start,count=args.count)))
+        assert args.start>=0 and args.count>0
+        for index,r in enumerate(packet['pending'][args.start:args.start+args.count],args.start):
+            print(json.dumps(dict(index=index,**{k:r[k] for k in ('key','messages','response','stop','UTF8')}),ensure_ascii=False))
     else:
         assert args.scores is not None
         packet=read_json(out/'packet.json');assert packet['evaluation_sha256']==sha256(path)
-        authored=read_json(args.scores);scores={r['key']:r for r in authored}
+        if args.scores.suffix=='.tsv':
+            authored=[]
+            for line in args.scores.read_text().splitlines():
+                if not line.strip():continue
+                key,g,r,c,reason=line.split('\t',4)
+                authored.append(dict(key=key,grammar=int(g),relevance=int(r),context=int(c),rationale=reason))
+        else:authored=read_json(args.scores)
+        scores={r['key']:r for r in authored}
         assert len(authored)==len(scores)==len(packet['pending']) and set(scores)=={r['key'] for r in packet['pending']}
         for key,row in packet['reused'].items():
             if 'same_packet_key' in row:
