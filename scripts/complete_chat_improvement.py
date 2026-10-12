@@ -62,7 +62,7 @@ def verify_review(path,config,ref,suite):
             source=next(r for r in source_notes['judgments'] if r['key']==reuse['original_key'])
         assert all(row[k]==source[k] for k in ('grammar','relevance','context','rationale'))
     return dict(raw=reference(path),notes=reference(notes_path),review=reference(path.with_name('review.json')),
-        judgment_count=len(items),content=review['summaries'],mechanical={k:evaluation[k] for k in (
+        judgment_count=len(items),content=canonical(review['summaries']),mechanical={k:evaluation[k] for k in (
             'primary','role_control','own_history_final24','own_history_all_turns')},
         absolute_checks=absolute_checks(evaluation,review),dev_screen_passed=review['dev_screen_passed'],
         reused_historical_GPU_generation='reuse_provenance' in evaluation)

@@ -76,3 +76,19 @@ C1には名前のない「さん」、教材の説明文型の流用、旧条件
 中間監査では6suite×219=1,314の全判断と3checkpoint×2,554の同一NLL対象をraw/hash/実履歴/再利用元に結び付けて確認した。[中間監査](../reports/phase7/chat-improvement-20261012/intermediate_review_audit.json)。新DEVのC1文法2は61件、そのうち関連性2未満は46件。24の同じfamilyで提供履歴/自生成最終の文脈2はC1 7/4、C0 4/2で、両方の不足が残る。[採点済み記録の再集計](../reports/phase7/chat-improvement-20261012/intermediate_analysis.json)。正解語からの自動採点ではない。
 
 実行source snapshotをWindowsからWSLへ戻す際、旧Tokenizer実装の混在改行をLFへ揃えると凍結hashが変わることをCPU監査で検出した。凍結実行sourceとWindows保存snapshotは原hashのままで、変わったのはWSLの保存コピーだけだった。保存コピーをbyteのまま戻し、18source hashを再確認した。report/source・raw・configはGitのtext正規化対象から外し、過去の凍結sourceを編集せずにそのbyteを保存する。
+
+### 教材構造から分かった追加の仮説
+
+凍結済み[教材生成のrender](../src/jmicro/chat_curriculum.py)を静的に確認した。自作daily/direct/negation/clarification/speakerには、名前を名乗るUserと「はい。どうぞ」等の正しいAssistantの前置きが付く。correction/contextにも正しいAssistantの確認文を含む。全自作targetは最後のAssistantだけを教師にし、これらの先行Assistantは条件入力のみで、予測対象ではない。これはmaskのバグではなく教材設計の選択だが、前置きなしで新しい話題を投げられる最初の応答や、誤った自発話からの回復を十分に教えたとは言えない。
+
+説明を求めるdirectの正解には「お話で『答え』と説明されているためです」が共通で付く。DEVで根拠のない同じ説明だけが返る例や名前のない敬称が出たことと整合する。ただしこの構造だけが原因と確定した比較ではない。最終TRAINの意味/役割の正解を確認した280sample passは、前置き・文型・語彙への汎化を保証しない。
+
+次の教材比較を計画する場合は、会話の最初から教師にするtarget、名前未提示の会話、異なる自然な言い回しを設計に含める。与えられた条件が同じでも余分な説明を付けない短い正解、答えの種類（人/場所/時間/数）の区別、自然会話の多様性を優先する。現在の新DEVの文面や誤答をそのまま教材へコピーせず、別の未使用DEVと別familyで検証する。これらは後続の仮説・計画で、現在の凍結TRAINへ変更を加えていない。[構造の確認記録](../reports/phase7/chat-improvement-20261012/curriculum_structure_inspection.json)。
+
+## 最終教師予算への到達
+
+C0は2026-10-12T02:19:56ZにBまでの学習を完了した。3,647更新、Assistant教師1,899,555、EOT121,098、非PAD入力30,446,373、physical入力189,890,560。最後は193教師の完全応答groupで、超過0。最終state SHA256 `165523836f212fb59be32b7d0f42276b2eed968cb4c896b82b01a84a73540734`、WSL `C0/checkpoint-00003647.pt`。これは学習の完了で、最終品質の合格ではない。
+
+同じnative workerはC1のt1全stateを読み込んでBまで続行中。root PIDは共有するので、C0のjobがlearning_completeでも全worker終了前に別GPU評価を起動しない。追加のWindows durable chainが既存学習workerの実PID/startと正常終了/元UI復帰を待ち、両条件のCPU全state/数量監査を通過後、frozen wrapperでC0→C1の全保存点評価を順に行う。chain sourceは起動時SHAに結び付けた。生成完了も全内容採点の完了とは分ける。
+
+全state監査はversion2、model/optimizer/scheduler、Python/NumPy/Torch/CUDA RNG、sampler/counters/digest、lineage/spec/manifestを確認し、各parameterのAdam step数、scheduler更新とLR、完了更新の消費量を実metrics/CPU dry-runと照合する。CPUでcheckpointを検証し、監査に失敗した場合はその後のGPU評価を開始しない。元のfrozen training/evaluation sourceを変更する修理ではない。

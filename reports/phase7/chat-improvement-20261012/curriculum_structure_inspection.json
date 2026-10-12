@@ -1,0 +1,39 @@
+{
+  "kind": "read_only_static_inspection_after_intermediate_DEV",
+  "config_sha256": "f18554e4ee8ed2c53ac41ae40d3b1f0db8d09c1cfe14ae47c2985676479169e3",
+  "source": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/src/jmicro/chat_curriculum.py",
+    "sha256": "d6db452a5a74fe6da0009ce494565512d919e20799a903eeddd11db02bbddb55",
+    "matches_design_freeze": true
+  },
+  "observations": [
+    "Authored daily/direct/negation/clarification/speaker prepend a user name and gold assistant acknowledgment",
+    "Authored correction/context include earlier gold assistant acknowledgments",
+    "All authored target_message_indices select final Assistant only; prior Assistant bodies are input, not supervision",
+    "Direct explanation variant appends shared explanation that the answer was stated in the conversation",
+    "Held-out first-turn inputs and own-generated erroneous prior responses are structurally different from these prepared gold contexts"
+  ],
+  "actual_intermediate_signals": {
+    "C1_new_grammar2": 61,
+    "C1_new_fluent_but_relevance_below2": 46,
+    "C1_new_matched24_provided_context2": 7,
+    "C1_new_matched24_own_context2": 4,
+    "examples": ["Missing names before honorific", "Unprompted shared explanation", "User drawing paper becomes photo and own history repeats error"]
+  },
+  "hypotheses": [
+    "Dependence on gold preambles instead of learning initial-turn responses",
+    "Template and lexical distribution shift",
+    "Incorrect self-history propagation"
+  ],
+  "causal_attribution_confirmed": false,
+  "following_plan_only": [
+    "Separate future curriculum comparison with first-turn targets, unnamed users and natural paraphrases",
+    "Distinct unseen DEV; do not copy observed DEV or incorrect outputs into TRAIN",
+    "Hold teacher budget, optimization, native 10M architecture and quality gates fixed",
+    "Only after adequate provided-history behavior, compare validated recovery examples separately"
+  ],
+  "TRAIN_modified": false,
+  "new_corpus_scan_or_data_build": false,
+  "new_GPU_experiment": false,
+  "quality_or_adoption_complete": false
+}
