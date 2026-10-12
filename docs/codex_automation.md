@@ -1,5 +1,9 @@
 # Codexによる環境整備・学習・改善の自動化
 
+現在の運用範囲（2026-10-13 JST）: [結果136](136_chat_generalization_results.md)で4項目の実行・全評価・監査を完了し、不採用で閉鎖。Base/Chat未完成・未採用、追加研究・教材準備・診断・学習は停止中。最新の依頼は文書と計画の更新のみ。[status](autonomous_status.md)、[AGENTS](../AGENTS.md)、[次の未実行計画135](135_chat_problem_solution_plan.md)を優先する。今回、継続runnerやGPU jobを起動しない。
+
+下のCLI・profile・runnerコマンドと製品設定は当時の運用資料で、現在の再開許可ではない。別の明示再開後も選んだ範囲だけを実行し、閉じた128/131/133やpaddingを再起動しない。今回、製品の設定・CLIの挙動を再確認・変更していない。
+
 現在地（2026-10-05 JST）: 結果63後の四項目は別train32でselector v2を改修/凍結し、同source各20M/未確認全80を診断。弱例対照12/候補14で準備失敗分岐の判断・報告・元UI確認まで完了して停止した。[結果65](65_condition_selector_v2_preparation_results.md)、[status](autonomous_status.md)、AGENTS.mdの停止境界を先に読む。新100M/全文は未起動。次案を自動開始しない。
 
 実行権限と作業範囲を区別する。actual job/boot/start ticks/lock/checkpointを確認し、完成したrunを起動し直さない。completeは依頼された範囲や明記された失敗分岐の証拠付き完了で、Base/Chat品質達成とは異なる。原計画61と実行64の条件を保持。結果65の次案は新しい実行依頼なしにrunnerから開始しない。

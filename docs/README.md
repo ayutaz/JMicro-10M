@@ -1,43 +1,21 @@
 # 文書一覧
 
-2026-10-13 JST 最終結果: [136](136_chat_generalization_results.md)で『4まで』の教材改訂・全比較・原条件の回復分岐・別padding検証と完了監査を報告した。全14suite/3,066判断/NLL7点を確認し、D0/D1とも不合格・閉鎖。回復は条件不成立、paddingは数値不一致で不採用。Base/Chat未完成・未採用、追加実験は停止。以下は各時点の履歴。
+最終更新: 2026-10-13 JST。**最新の比較は136で完了・不採用、次の提案は135で未実行。Base/Chat未完成・未採用、追加実験は停止中。** 文書の更新は学習の再開ではない。
 
-2026-10-13 JST 継続実行: ユーザーの『4まで進めてください』に従い、教材改訂・同条件比較・条件付き回復・別padding検証を進めている。[実行記録134](134_chat_generalization_execution.md)。D1 TRAIN40,126/660,065教師、280sample内容確認、CPU消費、新DEV80/自己生成24会話59turn、対照の歴史的再利用と実行config固定まで完了。D0は旧C1の一致した保存stateを再利用し新学習0、D1は未学習。共有GPU6時間内に回復/効率の枠も登録した。CUDA gate・学習・全内容評価・品質は未完了、Base/Chat未採用。旧job・TEST・採用・量子化・公開/pushへ進まない。
-
-2026-10-13 JST 計画更新: 最新の課題解決方法と計画を[計画135](135_chat_problem_solution_plan.md)に整理した。教材の汎化改善を第一比較、正しい履歴での改善後に誤履歴回復、paddingを別の効率比較とする。既存D1準備の小記録はTRAIN40,126 target・固定280sample問題0・CPU消費チェック合格を示すが、独立人間確認・新DEV・CUDA gate・学習・品質は未確認。今回の依頼では計画と記録のみを更新し、新しい教材生成・GPU実験・学習は開始しない。Base/Chat未完成・未採用、10Mと元の品質基準を維持する。
-
-2026-10-12 最終状態: 計画131の段階0–5の学習・全評価・結果報告を終え、C0/C1とも不合格で閉鎖。各1,899,555 Assistant本文+EOT教師、全14suite・3,066内容判断、固定NLL7点を確認した。最終新DEVの文法・関連性同時2はC0 11/80、C1 15/80（必要56）、自己生成最終文脈2は4/24、2/24（必要15）。GPU累積70.794分/6時間上限。合格候補がなく保持/samplingは条件付き省略・品質未確認。Base/Chat未完成・未採用。元10B UIを復帰。追加実験は停止し、[結果132](132_chat_improvement_execution.md)と[次の未実行計画133](133_chat_generalization_followup_plan.md)を参照する。
-
-[完了監査](../reports/phase7/chat-improvement-20261012/completion.json)。以下の調査・事前計画・過去実験の記述は各時点の履歴で、現在の開始指示ではない。
-
-## 過去の計画と経緯
-
-最新計画: [課題への対策と段階計画131](131_chat_improvement_execution_plan.md)。問題と対策、段階0–5、2条件・約1.9M教師/条件、GPU6時間案、新旧DEVの原gate、結果報告での停止と後続分岐を具体化しました。[計画作成時の静的確認](../reports/investigation/chat_improvement_plan_20261012/verification.json)。
-
-2026-10-12最新調査: [Chat-first SFTの問題点と改善方法130](130_chat_failure_improvement_investigation.md)。保存済みの失敗・実装・公開研究を調べ、教材改善、自生成履歴回復、未使用評価の順で提案した。[再集計と出典](../reports/investigation/chat_improvement_20261012/README.md)。新しい学習・GPU診断・教材準備は未開始。
-
-2026-10-10の実行完了記録: ユーザーの「5まで進めてください」に基づく[Chat-first計画128](128_chat_first_sft_plan.md)の限定実行を完了しました。1条件のSFT3周と全4条件876内容確認・paired比較まで実施し、全候補不合格で停止しています。[実行・結果129](129_chat_first_sft_execution.md)、[完了監査](../reports/phase7/chat-first-sft-20261010/completion.json)。Base/Chatは未完成・未採用。sampling/保持/手動5会話は合格候補なしの事前条件により省略しました。
-
-10M維持（現10,001,152 parameters、9.5M〜10.1M予算）、元UI・Tokenizer・重み・旧証拠を保全します。追加学習、比較、量子化、公開は未再開。[調査127](127_rebuild_investigation.md)、[Base復旧計画124](124_base_recovery_plan.md)、[モデル保存126](126_model_archive.md)も保持します。
 ## 読む順序
 
-最初に[最新結果132](132_chat_improvement_execution.md)と[次の未実行計画133](133_chat_generalization_followup_plan.md)を読む。以下の128/129/130/131は、その結果に至る経緯と事前登録。
+1. [現在の状態](autonomous_status.md)：実績、未達、停止範囲、保存先。
+2. [最新の最終結果136](136_chat_generalization_results.md)：D0/D1の全比較、NLL、回復条件、padding不採用、完了監査。
+3. [最新の改善計画135](135_chat_problem_solution_plan.md)：次の教材recipe比較案、QA・評価・予算・進行/停止条件。現在は未実行。
+4. [ロードマップ](15_project_roadmap.md) / [現在のチェックリスト](10_next_steps.md)：Phaseと証拠の到達点。
+5. [Windows/WSL引継ぎ](windows_handoff.md)：Git外の重み/data、元UI、必要時の復元と再開。
+6. [Base復旧計画124](124_base_recovery_plan.md)：Baseを先に復旧する代替経路。完成時に通知・停止。
 
+経緯は[全体記録125](125_project_retrospective.md)、個々の原数値は[固定revisionの詳細台帳](retrospective/README.md)。[調査127](127_rebuild_investigation.md)→[SFT計画128](128_chat_first_sft_plan.md)/[結果129](129_chat_first_sft_execution.md)→[課題調査130](130_chat_failure_improvement_investigation.md)→[教材計画131](131_chat_improvement_execution_plan.md)/[結果132](132_chat_improvement_execution.md)→[汎化計画133](133_chat_generalization_followup_plan.md)/[実行履歴134](134_chat_generalization_execution.md)/[最終結果136](136_chat_generalization_results.md)が終了済みの流れ。
 
-最新の[Chat-first SFT計画128](128_chat_first_sft_plan.md): 親モデル、準備済み会話の正確な量、Assistant本文+EOT、専用診断入口、学習前後/自生成履歴/保持の評価、時間上限と停止。従来のBase-first順序に対する限定診断の計画で、Base/Chat採用とは区別します。
+番号付き文書は原則として作成時点の計画・調査・実行記録。133の「未実行」、134の「学習中」等は履歴で、現在の指示はstatus/AGENTS、最終採否は各runのcompletionを参照する。135と124は現行提案として更新する。準備コード、CPU checks、学習終了、品質改善、採用を区別する。
 
-2026-10-10の[作り直す前の調査127](127_rebuild_investigation.md): 参考Akebonoの公開実装・評価、前回の失敗原因の確度、再利用する基盤と再構築順序。公開資料と既存結果の調査で、新しい学習や推論評価は行っていません。
-
-経緯をまとめて読む場合は[調査・検証・学習の全体記録125](125_project_retrospective.md)から始め、数値・失敗・採否を調べる場合は[詳細台帳](retrospective/README.md)を参照してください。
-
-1. [現在の状態](autonomous_status.md): 実際の成果、未達、停止境界、processと保存先。
-2. [最新結果123](123_base_teacher_decay_2b_results.md): 同native2B比較、全80、BPB改善と文章品質未改善、採否。
-3. [今後の計画124](124_base_recovery_plan.md): 再開後の目的・ゴール・進行/停止条件・予算。
-4. [ロードマップ](15_project_roadmap.md): Phase0〜10の現在地と元品質条件。
-5. [Windows/WSL引継ぎ](windows_handoff.md): uv、Git外の重み/data、元UI、復元と再開。
-6. [チェックリスト](10_next_steps.md)、[評価契約](evaluation_protocol.md)、[実験の探し方](base_experiment_lookup.md)。
-
-番号付き文書は原則として作成時点の計画・結果です。古い「次回」「未開始」「実行中」は現在の状態や新しい開始指示ではありません。最新の実状態はstatus、各runの採否は原completionを参照します。準備コード、CPU tests、学習終了、Base採用を区別します。
+今回整理前の14文書は[保存一覧](../reports/investigation/documentation_plan_refresh_20261013/baseline.json)にbyte一致で保存した。履歴内の相対リンクは元workspaceに対する記述で、履歴のPID・restart commandを現在の開始指示へ使わない。
 
 ## 運用文書と履歴
 
@@ -46,7 +24,7 @@
 - [2026-10-05履歴](autonomous_history_20261005.md)、[2026-10-04履歴](autonomous_history_20261004.md)、[2026-10-03履歴](autonomous_history_20261003.md)。
 - [data](../data/README.md)、[eval](../eval/README.md)、[reports](../reports/README.md)。
 
-旧運用文書は今回の整理前のbytesをそのまま保存しています。凍結report/source/raw、Phase0〜3の証拠は変更していません。native seedの[準備122](122_base_native_seed_confirmation_preparation.md)はCPU準備のみで、候補の後続不採用は結果123を参照します。
+20261008の旧運用文書と今回整理前の14文書は、それぞれ元bytesを保全しています。凍結report/source/raw、Phase0〜3の証拠は変更していません。native seedの[準備122](122_base_native_seed_confirmation_preparation.md)はCPU準備のみで、候補の後続不採用は結果123を参照します。
 
 ## 番号付きの計画・結果
 
@@ -148,5 +126,5 @@
 | [132_chat_improvement_execution.md](132_chat_improvement_execution.md) | 教材2条件・全学習/評価・不採用結果と完了監査 |
 | [133_chat_generalization_followup_plan.md](133_chat_generalization_followup_plan.md) | 教材汎化・直接回答・訂正の事前計画。実行は134、最終不採用は136 |
 | [134_chat_generalization_execution.md](134_chat_generalization_execution.md) | 教材改訂・同条件比較・条件付き回復・paddingの実行履歴 |
-| [135_chat_problem_solution_plan.md](135_chat_problem_solution_plan.md) | 問題ごとの解決方法と検証計画、各時点の証拠と後続候補 |
+| [135_chat_problem_solution_plan.md](135_chat_problem_solution_plan.md) | 最終136を踏まえた現行提案。意味構造を広げる教材1件、未使用DEVと既知2回帰、進行/停止条件 |
 | [136_chat_generalization_results.md](136_chat_generalization_results.md) | 全3,066内容判断・NLL7点・回復分岐・padding・完了監査と不採用結果 |

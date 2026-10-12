@@ -1,8 +1,8 @@
 # Base改善の今後の計画
 
-2026-10-10追記: 最新のユーザー方針は、まず現Baseから直接SFTして会話を検証する[計画128](128_chat_first_sft_plan.md)。現在は計画作成のみで実行再開していない。以下はBase復旧が必要と判断した場合の計画として保持し、128の限定診断を禁止する最新指示とは扱わない。
+最終更新: 2026-10-13 JST。Base復旧を選ぶ場合の**未実行の代替経路**。128/131/133のChat-first診断・教材比較は[結果136](136_chat_generalization_results.md)まで実行・不合格終了したが、Chatの失敗からBase単独原因は確定していない。最新の教材比較案は[135](135_chat_problem_solution_plan.md)。どちらも今回の文書・計画更新から実行を再開しない。
 
-最終更新: 2026-10-09 JST。[結果123](123_base_teacher_decay_2b_results.md)までを踏まえた計画。**今回は文書更新だけを行い、学習・研究実行の一時停止を維持する。** 以下は明示的な再開後の進め方で、実行済みの成果や凍結済みの新実験設定ではない。
+Baseの元品質条件・10M制約・下記の段階0〜5と停止境界を維持する。既存Chat比較の最終監査/評価は完了しているため、Base復旧の前提作業として再実行しない。次のBase介入は未選定・未凍結で、教材版作成やGPU診断も未開始。[最新状態](autonomous_status.md)、[Base結果123](123_base_teacher_decay_2b_results.md)。
 
 ## 目指す状態と現在の判断
 
@@ -91,3 +91,5 @@
 Python3.12.7はすべてuv経由、学習はWSL/Linux disk/RTX4090。実processとGPU lockを確認し、長期jobはPID/boot/start、ledger、logs、全state checkpointを永続化する。元UIは必要なGPU実験中だけ停止し、終端で元10Bへ戻す。関係のない全suiteや旧corpus照合を繰り返さない。
 
 本計画は[ロードマップ](15_project_roadmap.md)のPhase6に対応する。Phase7〜10は長期の構想として保持するが、Base完成後もユーザーが再開するまで着手しない。
+
+今回の見出し更新前の全文は[履歴保存一覧](../reports/investigation/documentation_plan_refresh_20261013/baseline.json)に保存した。本文の2B時間実測は当該Base比較の歴史値で、最新Chat比較の所要時間ではない。

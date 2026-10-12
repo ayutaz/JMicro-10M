@@ -1,5 +1,9 @@
 # Baseの実験結果を探す
 
+2026-10-13更新: Baseの最新不採用は[123](123_base_teacher_decay_2b_results.md)、後続Chat比較の最終不採用は[136](136_chat_generalization_results.md)。次の教材提案は[135](135_chat_problem_solution_plan.md)、Base復旧の代替経路は[124](124_base_recovery_plan.md)で、現在は文書更新のみ・追加実験停止中。下の20261008索引は当時のBase検索補助で、後続Chatを含む最新全件一覧ではない。
+
+文書更新では保存済み小reportを参照し、下の索引生成commandやGPU/data診断を新たに実行しない。既存の[全体記録125](125_project_retrospective.md)と固定revision詳細台帳、最新status/各completionを用途に応じて区別する。
+
 現在の実状態は `autonomous_status.md` の先頭と、対象jobの実PID/boot/startを確認する。旧計画の「次は…」を、新しい実行指示と解釈しない。
 
 過去の条件を再提案する前に、WSL native repoで `uv run --frozen --extra hub --extra data --extra ml --extra export scripts/index_base_experiments.py --query キーワード` を実行する。例: `larger_material`、`initialization`、`wikipedia`。日時付き索引 `reports/phase6/base_experiment_index_20261008.json` は小さいproposal/completion/review/active_job報告のパス、原SHA、status、閉鎖等のフラグ、要約だけを保存する。

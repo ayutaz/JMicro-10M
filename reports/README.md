@@ -1,12 +1,26 @@
 # 実験台帳と検証結果
 
+## 最新の保存結果（2026-10-13）
+
+計画133の4項目は実行・監査完了、不採用で閉鎖。[結果136](../docs/136_chat_generalization_results.md)、[最新状態](../docs/autonomous_status.md)、[次の未実行計画135](../docs/135_chat_problem_solution_plan.md)。新しい教材・診断・GPU学習は停止中。
+
+| 記録 | 内容 |
+|---|---|
+| [completion](phase7/chat-generalization-20261013/completion.json) | 4項目完了と品質未達を区別。14セット/3,066判断/NLL7点、実state、分岐、padding、予算、当時の元UIまで監査 |
+| [selection](phase7/chat-generalization-20261013/selection.json) / [analysis](phase7/chat-generalization-20261013/final_analysis.json) | 最終D0/D1新旧gate・paired CI、NLL、失敗分類。両条件不合格 |
+| [branches](phase7/chat-generalization-20261013/conditional_branches.json) / [padding](phase7/chat-generalization-20261013/padding/result.json) | 回復not_triggered、保持/sampling未確認。padding24確認は数値不一致で不採用 |
+| [final_archive](phase7/chat-generalization-20261013/final_archive.json) / [delivery checks](phase7/chat-generalization-20261013/final_delivery_checks.json) | 354fileのbyte保存、リンク/凍結source確認。重みと教材実体をGitへ含めない |
+| [今回の文書更新baseline](investigation/documentation_plan_refresh_20261013/baseline.json) | 整理前14文書のbyte履歴、15固定証拠のhash。追加実験ではない |
+
+既存の[固定revision詳細台帳](../docs/retrospective/README.md)は整理時点の記録で、後続Chat報告を含む全件台帳ではない。以下の「最新」は各報告当時の履歴として読む。
+
 調査から最新の不採用までの経緯は[全体記録125](../docs/125_project_retrospective.md)、保存報告の分野別指標・採否は[詳細台帳](../docs/retrospective/README.md)から参照できます。台帳は整理前revisionを固定したもので、後続のモデル公開は以下のpublication reportに記録しています。
 
 ## モデル保存・公開（2026-10-09）
 
-[publication report](publication/model_archive_20261009.json)に、主要3系列のpublic / manual gated保存、全1,544ファイルのサイズ・hash照合、匿名重み取得HTTP401、元checkpoint・学習量を記録した。[保存先](https://huggingface.co/japanese-data-analyze/JMicro-10M-research-archive)、[内容・読み込み手順126](../docs/126_model_archive.md)。データセットを含まず、新学習/GPU評価/量子化は0。現在の科学結果は[結果123](../docs/123_base_teacher_decay_2b_results.md)と[status](../docs/autonomous_status.md)を参照し、以下の「最新」は各記録当時の記述として読む。
+[publication report](publication/model_archive_20261009.json)に、主要3系列のpublic / manual gated保存、全1,544ファイルのサイズ・hash照合、匿名重み取得HTTP401、元checkpoint・学習量を記録した。[保存先](https://huggingface.co/japanese-data-analyze/JMicro-10M-research-archive)、[内容・読み込み手順126](../docs/126_model_archive.md)。当時の保存作業はデータセットを含まず、新学習/GPU評価/量子化は0。Base結果は[123](../docs/123_base_teacher_decay_2b_results.md)、最新Chat結果は[136](../docs/136_chat_generalization_results.md)、現在の状態は[status](../docs/autonomous_status.md)を参照する。
 
-## 最新の保存結果（2026-10-05）
+## 保存結果の履歴（2026-10-05）
 
 最新は[selector v2準備結果65](../docs/65_condition_selector_v2_preparation_results.md)。別train32の[開発比較](phase6/condition_v2_calibration_review.json)後に凍結し、同source各20M/未確認全80を診断したが弱例対照12/候補14で両内容gate未達。新GPUなし、準備失敗分岐完了で停止。[全80原文付きdata review](phase6/condition_v2_data_review.json)、[notes](phase6/condition_v2_source_notes.json)、[ready](phase6/condition_v2_ready.json)、[prepare job](phase6/condition_v2_prepare_job.json)、[judgment](phase6/condition_v2_judgment.json)、[completion/UI](phase6/condition_v2_completion.json)、[CPU5tests](phase6/condition_v2_selector_tests.xml)を保存。旧結果63とcondition_preservation証拠は保持。
 

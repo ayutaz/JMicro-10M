@@ -1,5 +1,7 @@
 # JMicro-10M 調査・検証・学習の全体記録
 
+2026-10-13追記: 下の全体台帳は2026-10-09までの固定revision記録。後続のChat診断・教材比較は[結果129](129_chat_first_sft_execution.md)、[結果132](132_chat_improvement_execution.md)、[最新結果136](136_chat_generalization_results.md)で実行・全評価を終え、いずれも不採用。現在は文書・計画のみの更新で追加実験は停止中。[最新計画135](135_chat_problem_solution_plan.md)、[現在の状態](autonomous_status.md)。詳細台帳の原revision・報告数を後続実験を含む全件数へ読み替えない。
+
 記録日: 2026-10-09 JST。約10Mの日本語モデルを作る過程で、何を調べ、何を実装し、どの条件を学習・評価し、何が改善せず、何を残したかをまとめる。**Baseの品質目標は未達で、学習・研究実行は一時停止している。今回の保存作業は学習再開ではない。**
 
 この文書は経緯と判断を読むための説明である。全保存報告の原キー・数値・失敗・採否は[詳細台帳](retrospective/README.md)、当時の計画と説明は[原文書一覧](retrospective/document_map.md)、現在の事実は[status](autonomous_status.md)を参照する。代表結果だけを全実験の代わりにせず、原記録へ戻れる形で残す。
@@ -298,3 +300,19 @@ Gitにはcode/config/schema/lock/eval/小report/notes/この説明と台帳が�
 再開時はWindows最新local/remote commit、AGENTS、status、計画124、引継ぎ、対象reportのhashと実processを確認する。完了したpilot/2B/10Bを再起動せず、Tokenizerや全corpusを無条件で再処理しない。Pythonは必ずuv管理3.12.7。過去の閾値と失敗を保持したまま再利用する。[保存先・復元コマンド](windows_handoff.md)。
 
 旧状態・ロードマップ・引継ぎ・AGENTSの全原文は[状態履歴](autonomous_status_history_20261008.md)、[ロードマップ履歴](project_roadmap_history_20261008.md)、[引継ぎ履歴](windows_handoff_history_20261008.md)、[AGENTS履歴](agents_history_20261008.md)へ保持する。Phase0〜3の報告・原snapshot・実験条件を今回の説明のために変更していない。
+
+## 24. 後続のChat診断・教材比較（2026-10-10〜13）
+
+元WebUI10Bを未採用Baseとして識別したうえで、ユーザーの明示再開により限定Chat-first SFT128、条件回答教材比較131、first-turn/直接回答を増やす汎化比較133を実行した。Base-firstの通常順序に対する診断例外で、Base採用条件は変更していない。
+
+| 実験 | 実行と結果 | 最終記録 |
+|---|---|---|
+| 128: 既存雑談の直接SFT | 3周、1,899,555 Assistant教師、全4条件876判断。停止/文法を改善したが内容17/80、文脈2/24で未達 | [129](129_chat_first_sft_execution.md)、[completion](../reports/phase7/chat-first-sft-20261010/completion.json) |
+| 131: 雑談C0/条件回答C1 | 各1,899,555教師、14セット3,066判断、固定NLL7点。最終新内容11/15、文脈4/2で両方不合格 | [132](132_chat_improvement_execution.md)、[completion](../reports/phase7/chat-improvement-20261012/completion.json) |
+| 133: 改訂教材D1/旧C1対照D0 | D0は一致する旧stateを再利用、新学習0。D1は1,899,562教師。14セット3,066判断/NLL7点、最終新内容16/12・文脈5/3で両方不合格 | [136](136_chat_generalization_results.md)、[completion](../reports/phase7/chat-generalization-20261013/completion.json) |
+
+最新D1の固定TRAIN本文NLL0.001136に対し新DEV4.818918で、教材適合と未知入力への汎化が離れた。回復分岐は提供履歴・内容改善の原条件を満たさず未実行・効果未確認。保持/samplingも合格候補がなく未確認。別padding24確認は速度改善を実測したが数値gate不一致で不採用。非blind Codex判断や同じfamilyの保存点を独立確認に数えず、全raw/理由/失敗/予算を保全した。
+
+最新133の累積GPUは失敗込み35.293分/6時間。科学completionは元10B UIの復帰と実生存を当時確認したが、今回の文書更新で再測定していない。後続Chat重みはWSLに保全し、新しく公開していない。全プロジェクトのGPU/教師量をこの表から合算する認証は行わない。
+
+次の提案は[135](135_chat_problem_solution_plan.md)の意味構造を広げる教材recipe比較を最大1件。今回の範囲は文書・計画のみ、Base/Chat未完成・未採用で停止中。Base復旧を選ぶ場合の[124](124_base_recovery_plan.md)も未再開。容量限界、Base単独原因、学習量不足を断定せず、新条件は別の明示再開と契約を要する。

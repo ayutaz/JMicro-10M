@@ -1,5 +1,9 @@
 # 固定評価データ v1
 
+2026-10-13更新: 下の利用状況は各記録当時の履歴。後続Chat-first診断・教材比較は[129](../docs/129_chat_first_sft_execution.md)、[132](../docs/132_chat_improvement_execution.md)、[最新136](../docs/136_chat_generalization_results.md)まで実行・全内容評価済みで、すべて不合格。最新133は14セット・3,066判断・固定NLL7点を完了した。Codex非blindで、独立した人間の採点ではない。既存固定TESTを今回の文書更新で開封・採点せず、選定や教材へ使わない。
+
+新しい評価・再採点は停止中。次の[未実行計画135](../docs/135_chat_problem_solution_plan.md)はTRAIN凍結後の新未使用DEVと既知2suite回帰を提案する。旧v1/原split/原raw/採点を上書きしない。実状態は[status](../docs/autonomous_status.md)、正式採用条件は[評価契約](../docs/evaluation_protocol.md)を参照する。
+
 2026-10-04の棚卸し: Base dev80の`checks`は全件共通の説明文で、v1の自動意味採点には未接続。10Bの保存400出力は80入力×5条件、human_scoresは全null。固定testはモデル採点・選定に使っていない。[日本語Base評価の不足と追加案](../docs/44_japanese_base_evaluation_audit.md)。その後v2を追加し、v1と過去の結果を保持した。[v2.1実測結果](../docs/46_japanese_base_evaluation_v2_results.md)。
 
 追加診断は[japanese_semantics_v2_1.jsonl](japanese_semantics_v2_1.jsonl)。否定・数量・時間・比較・照応・因果の120 family/240 context、dev96 family/192件とtest24 family/48件。family内で同じ二候補の正解を反転させる。学習には使わず、testは採点しない。同型templateの合成診断で、専門家検証やtemplate汎化の保証はない。`japanese_semantics_v2.jsonl`は初回の語彙family重複を含むsuperseded版として保存し、採用成績には使わない。公開評価データはversion/hash固定のLinux専用cache。Codex内容採点は別reportに保存し、v1のhuman_scoresや人手目標を上書きしない。

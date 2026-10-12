@@ -1,42 +1,45 @@
 # 現在のチェックリスト
 
-最終更新: 2026-10-09 JST。[状態](autonomous_status.md)、[結果123](123_base_teacher_decay_2b_results.md)、[計画124](124_base_recovery_plan.md)を正とする。チェック印は保存証拠の案内であり、それ自体を科学的な証拠とはしない。
+最終更新: 2026-10-13 JST。[状態](autonomous_status.md)、[最新結果136](136_chat_generalization_results.md)、[現行提案135](135_chat_problem_solution_plan.md)を正とする。チェック印は証拠への案内で、品質合格の独立証拠ではない。現在は文書・計画のみを更新し、研究・教材準備・GPU診断・学習は停止中。
 
 ## 固定方針
 
-10Mのサイズ維持を最優先に、現10,001,152 parameters・既存9.5M〜10.1Mの予算内で改善する。大型化、品質基準の緩和、対象の無断縮小を解決策にしない。現在の低品質を10Mの容量限界と断定しない。学習・研究実行は再開待ち。
+10,001,152 parameters、既存9.5M〜10.1M予算と日本語Base目標を維持する。大型化、対象の無断縮小、原品質基準の緩和を改善の既定手段にしない。Base/Chatは未完成・未採用、10M容量限界は未確定。
 
-## 直近の完了
+## 最新の閉じた比較133
 
-- [x] 同じnativeモデル・同じstreamの累積2B教師比較を完了。最終212095更新。
-- [x] 実CUDA連続/保存再開15checksを通過。検証8更新/71464教師と科学学習を別計数。
-- [x] 固定DEV256本文BPB、日本語評価、全80生成を保存。
-- [x] 全80を個別に読み、raw SHA付き非blindレビューを保存。
-- [x] BPB改善と文章品質未改善を分け、元基準で不採用・固定条件closedと記録。
-- [x] 実science終了、Windows worker exit0、GPU ledger closed、元10B UI復帰を確認。
-- [x] 重み・全stateはWSLに保全。小評価/レビュー/完了記録はGitに保存（科学結果commit `a26194c`）。
-- [x] ユーザー指示で学習・研究実行を一時停止。
+- [x] D1 TRAIN40,126応答/660,065教師/周の凍結と280sample QA、新DEV80/自己生成24会話59turnを固定。全TRAIN/独立人間の認証とは別。
+- [x] CUDA有限性・全state保存再開・同条件対照D0の歴史的再利用を確認。
+- [x] D1を3,641更新/1,899,562教師まで実学習し、最終全state・実教師列・消費を監査。
+- [x] 親＋D0/D1の全14評価セット、3,066理由付き内容判断、固定NLL7点を完了。
+- [x] 最終新旧gateとpaired CIを判定。D0/D1とも不合格、不採用で閉鎖。
+- [x] 回復predicateを原条件で監査しnot_triggered。保持/samplingも候補なしで未実行・品質未確認と記録。
+- [x] 別padding24GPU確認更新を完了。動的内再開は一致、固定との数値不一致で不採用。
+- [x] 失敗を含むGPU台帳2,117.569秒/21,600秒、終端process、元10B UI復帰を完了監査時に確認。
+- [x] 重み/全state/教材はWSL、評価metadata/raw/全notes/文書をGitに保存。結果commit `ed3aa29`、追加実行停止。
 
-証拠: [completion](../reports/phase6/base_teacher_decay_2b_completion.json)、[全80notes](../reports/phase6/base_teacher_decay_2b_candidate_notes.json)、[science result](../reports/phase6/base-teacher-decay-2b-20261008/result.json)、[終端・停止記録](../reports/phase6/base_teacher_decay_2b_active_job.json)。
+証拠: [completion](../reports/phase7/chat-generalization-20261013/completion.json)、[selection](../reports/phase7/chat-generalization-20261013/selection.json)、[branches](../reports/phase7/chat-generalization-20261013/conditional_branches.json)、[保存一覧](../reports/phase7/chat-generalization-20261013/final_archive.json)。過去の未完了チェックや学習中PIDを現在の残作業へ戻さない。
 
-## 今回の文書更新
+## 今回の文書更新で確認するもの
 
-- [x] README・文書一覧・状態・ロードマップ・引継ぎ・AGENTSを最新結果と停止境界へ統一。
-- [x] 旧運用文書の全原文を20261008履歴へ保存し、現在の指示と分離。
-- [x] 次の比較の選定からBase採用まで、目的・成果物・進行/停止条件・予算の扱いを計画124へ記載。
-- [x] 次の介入条件は未選定・新GPU/data/診断は未開始と明記。
-- [x] 10M維持・限界判断の留保・再開後の検討順と次案の必須記載事項を関係文書へ反映。
+状態・ロードマップ・引継ぎ・AGENTS・README・文書一覧・計画135/124を最終結果と停止範囲へ統一する。旧14文書をbyte一致で保存し、最終数値・未確認分岐・提案/実績の区別、ローカルリンク、WSL文書同期、凍結証拠/実装非変更、Git保存を検証する。[履歴baseline](../reports/investigation/documentation_plan_refresh_20261013/baseline.json)。検証結果は同directoryのverificationに保存する。文書確認はGPU/model品質確認ではない。
 
-## 明示的な実行再開後
+## 明示再開後だけ行う次比較案135
 
-- [ ] 計画124の検討順で既存結果と失敗条件を対応付け、10M内の比較を最大1件選ぶ。主要失敗・既存との差・固定量・全guard・予算・終了条件を記載。根拠不足なら理由を報告して停止。
-- [ ] 必要な診断だけを定義・実装し、事前screenで採否を決める。既存診断の再実行を既定にしない。
-- [ ] 同教師pilotを実装・凍結し、実CUDA再開gate後に実行する。
-- [ ] 全80の生成品質・保持guardで判定し、BPBだけの改善を進行条件にしない。
-- [ ] 有望条件のみ実測予算を固定して本比較。失敗時は閉鎖し、一巡の結果を報告して停止。
-- [ ] 合格レシピのfresh学習seed43とnative runner/reviewer接続を完成・実行する。
-- [ ] fullDEVと全400＋長文40を評価し、全内容を確認する。
-- [ ] 選定封印後にprotectedTESTを実行し全100内容と元基準を確認する。
-- [ ] Base採用・復旧・成果物がそろったらユーザーへ通知して停止する。
+- [ ] 対照D1と候補1件、意味構造の多様性という変更、同親・seed42・B=1,899,555教師、原guard、新runと予算の契約を具体化。
+- [ ] 新TRAINの意味family/正解根拠QA・凍結後、新未使用DEV80/自己生成24を固定。既知DEV2suiteを回帰に残す。
+- [ ] 変更経路/対照再利用/技術gate/専用runnerと全必要評価時間を確認してから本学習。
+- [ ] 親と両条件3保存点の21セット/4,599内容判断と共通固定NLLを全確認。これは次比較の予定量で、実施済みではない。
+- [ ] 最終Bの新未使用内容改善・全原gate・回帰・反復を判定。有資格候補だけ登録保持/sampling、不成立は未実行・未確認。
+- [ ] 比較の採否・raw失敗・予算・元UI復帰を保存し、報告して停止。新条件や追加周回へ自動移行しない。
 
-独立人間blind・独立全corpus監査・旧数値7失敗の未完了を隠さない。Chat/SFT/量子化・20B/50B・push/公開へ自動移行しない。旧selector等のチェックリストはGit履歴と当時の結果文書で参照する。
+回復と新効率方式は別契約・別予算。Base復旧を選ぶなら[124](124_base_recovery_plan.md)の段階0〜5へ分岐し、Base完成で通知・停止する。
+
+## 正式完成まで未確認のもの
+
+- [ ] 独立fresh学習seed43。生成seedを変えるだけでは不可。
+- [ ] 独立した人間blind評価、独立corpus監査。
+- [ ] native形式の必要なrunner/reviewer接続、fullDEVと全400生成＋長文40、最終継続suite。
+- [ ] 選定封印後のprotectedTEST、原品質/保持条件と正式採否、再現・復旧記録。
+
+既存CPU準備、学習終了、非blind判断を上記の完了へ読み替えない。量子化・20B/50B・push/公開は別の明示判断で、今回の範囲外。
