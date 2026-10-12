@@ -1,6 +1,6 @@
 # 計画131・教材改善比較の証拠
 
-ユーザーの段階0–5再開で実行した限定比較。実際の状態は[記録132](../../../docs/132_chat_improvement_execution.md)と[status](../../../docs/autonomous_status.md)を先に参照する。このREADMEの作成時点では最終評価は未完了で、Base/Chatは未採用。
+ユーザーの段階0–5再開で実行した限定比較。実際の状態は[記録132](../../../docs/132_chat_improvement_execution.md)と[status](../../../docs/autonomous_status.md)を先に参照する。全14suite・3,066内容判断、共通NLL7点と両条件の最終学習state監査を完了。最終候補はなく、不合格で閉鎖。Base/Chatは未完成・未採用。
 
 - [実行config](../../../configs/phase7/chat-improvement-20261012.json): 元10B親、Tokenizer、native10,001,152 parameters、各1,899,555教師、同一の教師量schedule、6時間GPU上限、18sourceを凍結。
 - [教材準備](train_preparation.json)、[全280sample確認](train_content_review_final.json)、[元挨拶対確認](natural_source_content_review.json): 自作教材を中心としたrecipe。全TRAINの独立人間認証ではない。
@@ -16,4 +16,4 @@
 
 `NLL/{arm}/{point}.json`には同じ2554targetの本文/EOT損失と本文bytesを保持する。比較は同じ文章ごとに行い、教材源間のlossの大小で品質を順位付けしない。
 
-学習済み全state/checkpointとデータセットはWSL/data環境に残し、Gitには入れない。最終全状態/数量監査と完了監査は、必要な実評価がそろってから実行する。C2回復、効率、独立学習seed43、人間blind、fullDEV、protectedTEST、採用、量子化、公開へ自動移行しない。
+学習済み全state/checkpointとデータセットはWSL/data環境に残し、Gitには入れない。[最終state C0](C0/training_audit.json)・[C1](C1/training_audit.json)、[最終採否](selection.json)、[全点再集計](final_analysis.json)、[完了監査](completion.json)、[Git bytes照合](final_git_verification.json)で根拠を追える。合格候補なしのため保持/samplingは省略・未確認。GPU累積4,247.635852秒（70.794分）/6時間。元UIは実process/HTTPで再確認。次は[未実行計画133](../../../docs/133_chat_generalization_followup_plan.md)で、追加実験は明示再開待ち。C2回復、効率、独立学習seed43、人間blind、fullDEV、protectedTEST、採用、量子化、公開へ自動移行しない。

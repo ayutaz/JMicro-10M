@@ -1,6 +1,10 @@
 # 現在の状態
 
-2026-10-12 実行状況: ユーザーの「5まで進めてください」で計画131の段階0–5を再開。native CUDA/全state再開gateを通過し、C0/C1のB/3で新旧DEV各219応答を全確認、共通NLL2554targetを取得した。新DEVの文法・関連性同時2はC0 5/80、C1 15/80、自生成最終文脈2は2/24、4/24で全screen未達。改善信号と汎化不足を記録し、凍結TRAIN・同じ親/教師予算/recipeで両条件を最終Bまで続行中。最終全品質評価/段階5は未完了、Base/Chat未採用。[実行記録132](132_chat_improvement_execution.md)を参照。TRAINを再生成しない。以下の計画のみ/停止中の記述はそれぞれの作成時点の履歴であり、この限定再開の現在状態を表さない。
+2026-10-12 最終状態: 計画131の段階0–5の学習・全評価・結果報告を終え、C0/C1とも不合格で閉鎖。各1,899,555 Assistant本文+EOT教師、全14suite・3,066内容判断、固定NLL7点を確認した。最終新DEVの文法・関連性同時2はC0 11/80、C1 15/80（必要56）、自己生成最終文脈2は4/24、2/24（必要15）。GPU累積70.794分/6時間上限。合格候補がなく保持/samplingは条件付き省略・品質未確認。Base/Chat未完成・未採用。元10B UIを復帰。追加実験は停止し、[結果132](132_chat_improvement_execution.md)と[次の未実行計画133](133_chat_generalization_followup_plan.md)を参照する。
+
+[完了監査](../reports/phase7/chat-improvement-20261012/completion.json)。以下の調査・事前計画・過去実験の記述は各時点の履歴で、現在の開始指示ではない。
+
+## 過去の計画と経緯
 
 最終更新: 2026-10-12 JST。**問題調査130と対策・段階計画131を作成完了。学習・GPU診断・教材準備は未再開、Base/Chatは未完成・未採用。** [計画131](131_chat_improvement_execution_plan.md)、[調査130](130_chat_failure_improvement_investigation.md)、[調査の証拠](../reports/investigation/chat_improvement_20261012/README.md)。直近の学習は2026-10-10の限定Chat-first診断で、5段階を完了し不合格で停止した。[実行・結果129](129_chat_first_sft_execution.md)、[完了監査](../reports/phase7/chat-first-sft-20261010/completion.json)。元UIの復帰記録は当時の観察で、今回の生存確認ではない。
 
@@ -58,10 +62,10 @@ native重み・Tokenizer・数値学習state・実装・設定・文書・評価
 | モデル | 10,001,152 parameters。10Mは重みの数 |
 | Phase0〜5 | 完了。[Phase4](21_phase4_completion.md)、[Phase5](23_phase5_completion.md)の証拠を保持 |
 | Phase6 Base | 元10B学習と追加比較は実施済み。品質・最終確認は未達 |
-| 最新の学習 | 元WebUI10Bから直接SFT3周、Assistant+EOT 1,899,555教師、3,785更新まで完了 |
-| 最新の採否 | 全4条件・876内容レビュー完了。全DEV screen不合格、固定条件を閉鎖 |
+| 最新の学習 | 計画131のC0/C1各1,899,555教師、3,647/3,636更新まで完了 |
+| 最新の採否 | 全14suite・3,066内容レビューとNLL7点完了。最終C0/C1とも不合格・閉鎖 |
 | 次の実行 | 明示的な再開指示を待つ。計画の更新は実行の再開ではない |
-| Chat / SFT / 量子化 | 128の限定SFT診断を実行・不合格終了。Base/Chat未採用、量子化は範囲外 |
+| Chat / SFT / 量子化 | 128と131の限定SFT比較は実行・不合格終了。次は未実行計画133、量子化は範囲外 |
 | Git | 科学結果・停止保存は `a26194c`、文書整理は `7ab2c07`、10M維持の固定は `88d4363`。今回の文書更新commitは `git log -1` で確認。自動pushなし |
 
 [最新結果123](123_base_teacher_decay_2b_results.md)、[Chat-first計画128](128_chat_first_sft_plan.md)、[Base復旧計画124](124_base_recovery_plan.md)、[ロードマップ](15_project_roadmap.md)、[引継ぎ](windows_handoff.md)を参照する。限定Chat診断はその結果報告で停止。Base復旧を選ぶ場合は必要な証拠を満たした時点で通知・停止し、後続段階へ自動移行しない。

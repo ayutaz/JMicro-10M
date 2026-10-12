@@ -1,6 +1,10 @@
 # 文書一覧
 
-最新実行: [計画131の実行記録132](132_chat_improvement_execution.md)。ユーザーの段階0–5再開で教材・未使用DEV・専用runner・native技術gateを準備し、C0/C1 B/3新旧DEV全応答と共通NLLを確認しました。全screen未達ですが改善信号を記録し、同じ凍結条件で両方の最終Bまで続行中。最終全評価/段階5は未完了、Base/Chat未採用です。以下の未開始/停止の記述は作成当時の記録です。
+2026-10-12 最終状態: 計画131の段階0–5の学習・全評価・結果報告を終え、C0/C1とも不合格で閉鎖。各1,899,555 Assistant本文+EOT教師、全14suite・3,066内容判断、固定NLL7点を確認した。最終新DEVの文法・関連性同時2はC0 11/80、C1 15/80（必要56）、自己生成最終文脈2は4/24、2/24（必要15）。GPU累積70.794分/6時間上限。合格候補がなく保持/samplingは条件付き省略・品質未確認。Base/Chat未完成・未採用。元10B UIを復帰。追加実験は停止し、[結果132](132_chat_improvement_execution.md)と[次の未実行計画133](133_chat_generalization_followup_plan.md)を参照する。
+
+[完了監査](../reports/phase7/chat-improvement-20261012/completion.json)。以下の調査・事前計画・過去実験の記述は各時点の履歴で、現在の開始指示ではない。
+
+## 過去の計画と経緯
 
 最新計画: [課題への対策と段階計画131](131_chat_improvement_execution_plan.md)。問題と対策、段階0–5、2条件・約1.9M教師/条件、GPU6時間案、新旧DEVの原gate、結果報告での停止と後続分岐を具体化しました。[計画作成時の静的確認](../reports/investigation/chat_improvement_plan_20261012/verification.json)。
 
@@ -10,6 +14,9 @@
 
 10M維持（現10,001,152 parameters、9.5M〜10.1M予算）、元UI・Tokenizer・重み・旧証拠を保全します。追加学習、比較、量子化、公開は未再開。[調査127](127_rebuild_investigation.md)、[Base復旧計画124](124_base_recovery_plan.md)、[モデル保存126](126_model_archive.md)も保持します。
 ## 読む順序
+
+最初に[最新結果132](132_chat_improvement_execution.md)と[次の未実行計画133](133_chat_generalization_followup_plan.md)を読む。以下の128/129/130/131は、その結果に至る経緯と事前登録。
+
 
 最新の[Chat-first SFT計画128](128_chat_first_sft_plan.md): 親モデル、準備済み会話の正確な量、Assistant本文+EOT、専用診断入口、学習前後/自生成履歴/保持の評価、時間上限と停止。従来のBase-first順序に対する限定診断の計画で、Base/Chat採用とは区別します。
 
@@ -132,3 +139,5 @@
 | [129_chat_first_sft_execution.md](129_chat_first_sft_execution.md) | 明示再開後の保全・SFT入口・CUDA gate・学習/会話評価の実行記録 |
 | [130_chat_failure_improvement_investigation.md](130_chat_failure_improvement_investigation.md) | SFT後の失敗・実装・教材・一次研究から整理した改善の優先順位と比較案 |
 | [131_chat_improvement_execution_plan.md](131_chat_improvement_execution_plan.md) | 課題ごとの対策、教材2条件比較、教師量学習契約、新旧評価・停止・後続段階 |
+| [132_chat_improvement_execution.md](132_chat_improvement_execution.md) | 教材2条件・全学習/評価・不採用結果と完了監査 |
+| [133_chat_generalization_followup_plan.md](133_chat_generalization_followup_plan.md) | 比較132を受けた教材汎化・直接回答・訂正の改善計画。未実行 |

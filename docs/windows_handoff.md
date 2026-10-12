@@ -1,6 +1,10 @@
 # Windows / WSL 引継ぎ
 
-2026-10-12 現在: 「5まで進めてください」の限定再開で、計画131のC0/C1 B/3新旧DEV各219の全採点と共通NLLまで完了。全screen未達のまま改善信号・汎化不足を記録し、同じTRAIN/親/教師予算で両条件をBまで続行中。Windows hidden worker29220、WSL PID195614/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start41369737は2026-10-12T02:03Zの観察で、将来の生存証拠ではない。`reports/phase7/chat-improvement-20261012-launcher/train-both-3-t0/`、WSLの各arm job/metricsとGPU_ledgerを実確認し、重複起動しない。GPU phase終端でwrapperが元UIを復帰する。[実行132](132_chat_improvement_execution.md)。最終全評価/段階5/採用は未完了。以下の停止/未開始の記述は歴史的記録。
+2026-10-12 最終状態: 計画131の段階0–5の学習・全評価・結果報告を終え、C0/C1とも不合格で閉鎖。各1,899,555 Assistant本文+EOT教師、全14suite・3,066内容判断、固定NLL7点を確認した。最終新DEVの文法・関連性同時2はC0 11/80、C1 15/80（必要56）、自己生成最終文脈2は4/24、2/24（必要15）。GPU累積70.794分/6時間上限。合格候補がなく保持/samplingは条件付き省略・品質未確認。Base/Chat未完成・未採用。元10B UIを復帰。追加実験は停止し、[結果132](132_chat_improvement_execution.md)と[次の未実行計画133](133_chat_generalization_followup_plan.md)を参照する。
+
+[完了監査](../reports/phase7/chat-improvement-20261012/completion.json)。以下の調査・事前計画・過去実験の記述は各時点の履歴で、現在の開始指示ではない。
+
+## 過去の計画と経緯
 
 最新の対策計画: [131](131_chat_improvement_execution_plan.md)。段階0–5の第一比較は2条件・各約1.9M Assistant教師、教師量schedule、累積GPU6時間上限案、未使用DEVと旧回帰で原gate確認、報告停止。新しいcontract/runner/評価入口が必要で、旧3周runを再利用して起動しない。計画JSONは文書検証用で実行configではない。計画作成依頼では教材準備/GPU実行を再開していない。回復教材・padding・最終採用確認は別の後続段階。
 
