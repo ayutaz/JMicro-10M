@@ -1,10 +1,12 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-12 対策計画作成: [計画131](131_chat_improvement_execution_plan.md)に問題ごとの対策と段階0–5を具体化した。最初は元親から雑談対照/条件回答教材の2条件、各約1.9M Assistant教師、教師量schedule、未使用DEVと旧回帰、累積GPU6時間案。報告で止め、回復教材・効率・再現/最終採用は別の後続段階。新規教材/runner/config/実験は未開始、明示再開待ち。
+
 2026-10-12 調査完了: 保存済みChat失敗・実装・公開研究から、教材の役割/条件回答を最優先とする改善案を[調査130](130_chat_failure_improvement_investigation.md)に整理した。自生成履歴の回復、未使用評価、教師量とscheduleの公平な比較を次候補とする。新規教材/GPU診断/追加学習は未実施・明示再開待ち。原品質基準と10M制約を維持する。
 
 2026-10-10 完了・停止: ユーザーの「5まで進めてください」で128の限定診断を実装・GPU gate・3周学習・全4条件876内容評価・paired比較・結果記録まで完了した。全DEV screen不合格で条件を閉じ、追加研究/学習を停止。[結果129](129_chat_first_sft_execution.md)。Base/Chat未採用、追加比較/量子化/公開は範囲外。
 
-最終更新: 2026-10-12 JST。現在の事実は[状態](autonomous_status.md)、直近の学習結果は[結果129](129_chat_first_sft_execution.md)、改善候補は[調査130](130_chat_failure_improvement_investigation.md)。[Chat-first計画128](128_chat_first_sft_plan.md)は終了済み診断の事前計画。Base復旧が必要な場合は[計画124](124_base_recovery_plan.md)を参照する。**限定診断を実行・不合格終了し、現在は学習・GPU診断・データ準備を停止。**
+最終更新: 2026-10-12 JST。現在の事実は[状態](autonomous_status.md)、直近の学習結果は[結果129](129_chat_first_sft_execution.md)、改善の根拠は[調査130](130_chat_failure_improvement_investigation.md)、最新の提案は[計画131](131_chat_improvement_execution_plan.md)。[Chat-first計画128](128_chat_first_sft_plan.md)は終了済み診断の事前計画。Base復旧が必要な場合は[計画124](124_base_recovery_plan.md)を参照する。**限定診断を実行・不合格終了し、現在は学習・GPU診断・データ準備を停止。**
 
 [作り直す前の調査127](127_rebuild_investigation.md)にAkebonoとの構成・用途・評価の違い、前回の原因候補と反証を整理した。その後、ユーザーの方針で「現在のBaseから直接SFTして先に会話を確認する」限定診断を128に計画した。参考の低い会話成立率や未公開recipeから改善を保証せず、実行configは再開後の実測で凍結する。127/128は調査と事前計画で、後続の明示再開・実行結果は129。実行完了は品質達成の証拠ではない。
 

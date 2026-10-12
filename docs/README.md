@@ -1,5 +1,7 @@
 # 文書一覧
 
+最新計画: [課題への対策と段階計画131](131_chat_improvement_execution_plan.md)。問題と対策、段階0–5、2条件・約1.9M教師/条件、GPU6時間案、新旧DEVの原gate、結果報告での停止と後続分岐を具体化しました。教材準備・実装・実験は未開始。[計画の静的確認](../reports/investigation/chat_improvement_plan_20261012/verification.json)。
+
 2026-10-12最新調査: [Chat-first SFTの問題点と改善方法130](130_chat_failure_improvement_investigation.md)。保存済みの失敗・実装・公開研究を調べ、教材改善、自生成履歴回復、未使用評価の順で提案した。[再集計と出典](../reports/investigation/chat_improvement_20261012/README.md)。新しい学習・GPU診断・教材準備は未開始。
 
 2026-10-10の実行完了記録: ユーザーの「5まで進めてください」に基づく[Chat-first計画128](128_chat_first_sft_plan.md)の限定実行を完了しました。1条件のSFT3周と全4条件876内容確認・paired比較まで実施し、全候補不合格で停止しています。[実行・結果129](129_chat_first_sft_execution.md)、[完了監査](../reports/phase7/chat-first-sft-20261010/completion.json)。Base/Chatは未完成・未採用。sampling/保持/手動5会話は合格候補なしの事前条件により省略しました。
@@ -127,3 +129,4 @@
 | [128_chat_first_sft_plan.md](128_chat_first_sft_plan.md) | 元10B Baseから小規模な直接SFTで会話を先に検証する計画 |
 | [129_chat_first_sft_execution.md](129_chat_first_sft_execution.md) | 明示再開後の保全・SFT入口・CUDA gate・学習/会話評価の実行記録 |
 | [130_chat_failure_improvement_investigation.md](130_chat_failure_improvement_investigation.md) | SFT後の失敗・実装・教材・一次研究から整理した改善の優先順位と比較案 |
+| [131_chat_improvement_execution_plan.md](131_chat_improvement_execution_plan.md) | 課題ごとの対策、教材2条件比較、教師量学習契約、新旧評価・停止・後続段階 |

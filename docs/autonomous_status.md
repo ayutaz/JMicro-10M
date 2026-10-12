@@ -1,6 +1,12 @@
 # 現在の状態
 
-最終更新: 2026-10-12 JST。**問題点と改善方法の調査を完了。学習・GPU診断・教材準備は未再開、Base/Chatは未完成・未採用。** [調査130](130_chat_failure_improvement_investigation.md)、[再集計・出典・確認](../reports/investigation/chat_improvement_20261012/README.md)。直近の学習は2026-10-10の限定Chat-first診断で、5段階を完了し不合格で停止した。[実行・結果129](129_chat_first_sft_execution.md)、[完了監査](../reports/phase7/chat-first-sft-20261010/completion.json)。元UIの復帰記録は当時の観察で、今回の生存確認ではない。
+最終更新: 2026-10-12 JST。**問題調査130と対策・段階計画131を作成完了。学習・GPU診断・教材準備は未再開、Base/Chatは未完成・未採用。** [計画131](131_chat_improvement_execution_plan.md)、[調査130](130_chat_failure_improvement_investigation.md)、[調査の証拠](../reports/investigation/chat_improvement_20261012/README.md)。直近の学習は2026-10-10の限定Chat-first診断で、5段階を完了し不合格で停止した。[実行・結果129](129_chat_first_sft_execution.md)、[完了監査](../reports/phase7/chat-first-sft-20261010/completion.json)。元UIの復帰記録は当時の観察で、今回の生存確認ではない。
+
+## 最新の対策計画
+
+ユーザーの課題解決方法と計画の依頼に基づき131を作成した。最初は同じ元10B親からC0既存雑談/C1条件回答教材の2条件、各1,899,555 Assistant教師、教師量基準schedule、累積GPU6時間上限の案。日常30%/直接回答20%/訂正15%/否定制約15%/複数turn10%/聞き返し5%/話者5%の教師量比を提案し、品質・split・長さの確認後に凍結する。新80/自生成24family59turnと旧回帰の両方で原gateを維持し、最終点比較・条件付き保持/sampling・結果報告で止める。新しいrunnerが必要で、旧runを再開しない。計画JSONは実行configではない。[静的確認](../reports/investigation/chat_improvement_plan_20261012/verification.json)。
+
+正しい履歴での改善を確認後に自発話の誤りからの回復、paddingの別比較、独立学習seed43/人間blind/fullDEV/TESTを後続に置く。第一比較の6時間案へ自動追加しない。新規教材/実行config/runner/GPU実行は未開始。計画作成完了と改善達成は別で、次の実行は明示再開待ち。
 
 ## 最新の問題調査と改善案
 

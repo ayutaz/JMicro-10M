@@ -1,5 +1,7 @@
 # Windows / WSL 引継ぎ
 
+最新の対策計画: [131](131_chat_improvement_execution_plan.md)。段階0–5の第一比較は2条件・各約1.9M Assistant教師、教師量schedule、累積GPU6時間上限案、未使用DEVと旧回帰で原gate確認、報告停止。新しいcontract/runner/評価入口が必要で、旧3周runを再利用して起動しない。計画JSONは文書検証用で実行configではない。計画作成依頼では教材準備/GPU実行を再開していない。回復教材・padding・最終採用確認は別の後続段階。
+
 最終更新: 2026-10-12 JST。**問題点と改善方法の調査130を完了。計画128の限定Chat-first診断は不合格終了、学習・GPU診断・教材準備は停止中、Base/Chat未採用。** [状態](autonomous_status.md)、[調査130](130_chat_failure_improvement_investigation.md)、[実行・結果129](129_chat_first_sft_execution.md)、[完了監査](../reports/phase7/chat-first-sft-20261010/completion.json)を先に読む。Base復旧を選ぶ場合の[計画124](124_base_recovery_plan.md)は未再開。
 
 今回の調査は保存済み小reportの再集計・静的コード確認・公開一次資料調査のみ。[証拠](../reports/investigation/chat_improvement_20261012/README.md)。教材変更の同教師量比較を第一候補とし、履歴長でLR scheduleが変わる交絡を先に解消する。新教材/比較configは未作成。再集計は `pwsh -NoProfile -File scripts/analyze_chat_first_failures.ps1`。Python/GPU/教材走査は不要。今回変更したscriptはWindowsの報告分析用で、WSLの学習sourceを変更・同期しない。元UIの現在の生存は今回未確認。追加実行やpushの許可とは扱わない。
