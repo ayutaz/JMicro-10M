@@ -1,5 +1,9 @@
 # Windows / WSL 引継ぎ
 
+2026-10-13 JST 最新依頼は計画・文書更新のみ。[135](135_chat_problem_solution_plan.md)と[観察記録](../reports/investigation/chat_solution_plan_20261013_t2_final_record/observations.json)。保存済みD1 result/job/checkpointsはt3学習終了（3,641更新・1,899,562教師、SHA `aa84a1dc3fbbf1c264ebd9327ecc7183bf3d88c606e01bd0f82bb5351945aed6`）、launcherはexit0/UI復帰exit0。今回、実重み/state監査やUI/process生存の確認はしていない。明示再開後は実process/lock/台帳確認→最終state監査→D1 t3新旧438判断/NLL→採否/原分岐。終了済み学習を再起動しない。最新の依頼から新規教材・診断・学習・評価を開始せず、未達のまま保存する。下の実行中/PIDは当時の観察。
+
+2026-10-13 JST 実行継続: [134](134_chat_generalization_execution.md)。D1 t2状態監査と全内容/NLL、D0 t2/t3新DEVを完了。D1最終Bのdurable worker20436、WSL PID228316/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start_ticks47910161を実観測した。新しいjobを重複起動せず、`reports/phase7/chat-generalization-20261013-launcher/train-D1-3-t0/` の終端と実process・台帳を確認してから次へ進む。次はfinal実state/消費監査、新旧各219内容判断/NLL、選定/分岐/全体監査。現在の[進捗監査](../reports/phase7/chat-generalization-20261013/progress_audit.json)は12suite・2,628判断・NLL6点でoverall_goal_complete=false。観測PIDを将来の生存証拠にしない。
+
 2026-10-13 JST 最新の計画更新: [課題解決計画135](135_chat_problem_solution_plan.md)と[観察記録](../reports/investigation/chat_solution_plan_20261013_latest/observations.json)に、t1全内容判断・NLL、D1 t2保存終了、padding不採用を反映した。今回、新しいjob・学習・診断・教材・評価は実行していない。再開する場合の最初の作業は実process/lock/台帳とt2有効stateの確認・監査で、完了jobを再起動しない。t2保存metadataとlauncher exit0を確認したが、保存状態監査や現在のUI/process生存を確認したものではない。最終比較と必要な分岐は未完了。以下の実行記述は各時点の履歴で、今回の開始指示ではない。
 
 2026-10-13 JST 実行継続: goal『4まで』に従い実作業を進めている。[実行記録134](134_chat_generalization_execution.md)。親とD0/D1 t1の新旧6suite・1,314内容判断とNLL3点を完了。t1内容はD0/D1新14/18、旧11/6（各80）、自己生成文脈は新6/4・旧1/2（各24）で不合格。D1を同じ有効stateからt2へ継続中。別paddingはGPU24確認更新・再開一致・速度測定まで完了したが、事前の数値一致gateを満たさず不採用。最終B比較・条件付き分岐・全体完了監査は未完了。10M、凍結条件、累積GPU6時間、元品質gateを維持する。以下の日付段落は各時点の履歴。
