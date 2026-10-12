@@ -1,5 +1,7 @@
 # 現在の状態
 
+2026-10-12 JST 明示再開: ユーザーgoal「5まで進めてください」で計画131の段階0–5を開始。[実行132](132_chat_improvement_execution.md)が現在の実状態。前回の計画のみの停止はこの限定比較について解除された。親/Tokenizer/既存splitのhash、GPU/空き容量、元UIの現在の生存を確認。専用教師量runnerのCPUテスト3件、教材の固定sample280件再確認、追加source49件の確認を実施し、C1 TRAIN 39,655target/1周660,080教師を凍結した。ほぼ自作会話で、元source由来は48挨拶/230教師だけという偏りを記録。最終TRAINのCPU実消費gateも通過。次は新DEV/固定NLL対象/専用GPU・評価入口を準備する。本比較GPU学習0、native CUDA gate/品質/段階5は未完了、Base/Chat未採用。下記の未再開記述は計画作成時点の履歴。
+
 最終更新: 2026-10-12 JST。**問題調査130と対策・段階計画131を作成完了。学習・GPU診断・教材準備は未再開、Base/Chatは未完成・未採用。** [計画131](131_chat_improvement_execution_plan.md)、[調査130](130_chat_failure_improvement_investigation.md)、[調査の証拠](../reports/investigation/chat_improvement_20261012/README.md)。直近の学習は2026-10-10の限定Chat-first診断で、5段階を完了し不合格で停止した。[実行・結果129](129_chat_first_sft_execution.md)、[完了監査](../reports/phase7/chat-first-sft-20261010/completion.json)。元UIの復帰記録は当時の観察で、今回の生存確認ではない。
 
 ## 最新の対策計画

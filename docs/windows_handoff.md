@@ -1,5 +1,7 @@
 # Windows / WSL 引継ぎ
 
+2026-10-12 明示再開: ユーザーgoal「5まで進めてください」で計画131の段階0–5が有効。[実行132](132_chat_improvement_execution.md)を先に読む。専用教師量runnerのCPU確認3件、最終TRAIN 39,655target/660,080教師、固定280内容レビューと実消費dry-runまで通過。C1はほぼ自作会話という限界を132に記録した。教材を再生成しない。新DEV/固定NLL対象/専用GPU入口を次に準備する。GPU学習0、native CUDA gate/品質/段階5は未完了。元UIは今回の実PID/boot/start・HTTP親SHAを確認した。古い未再開記述や保存済みPIDだけを現在の状態と解釈しない。旧runを再起動しない。比較終了時は元UI復帰、全証拠/状態のlocal commitまでで停止し、自動pushしない。
+
 最新の対策計画: [131](131_chat_improvement_execution_plan.md)。段階0–5の第一比較は2条件・各約1.9M Assistant教師、教師量schedule、累積GPU6時間上限案、未使用DEVと旧回帰で原gate確認、報告停止。新しいcontract/runner/評価入口が必要で、旧3周runを再利用して起動しない。計画JSONは文書検証用で実行configではない。計画作成依頼では教材準備/GPU実行を再開していない。回復教材・padding・最終採用確認は別の後続段階。
 
 最終更新: 2026-10-12 JST。**問題点と改善方法の調査130を完了。計画128の限定Chat-first診断は不合格終了、学習・GPU診断・教材準備は停止中、Base/Chat未採用。** [状態](autonomous_status.md)、[調査130](130_chat_failure_improvement_investigation.md)、[実行・結果129](129_chat_first_sft_execution.md)、[完了監査](../reports/phase7/chat-first-sft-20261010/completion.json)を先に読む。Base復旧を選ぶ場合の[計画124](124_base_recovery_plan.md)は未再開。
