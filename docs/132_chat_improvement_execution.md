@@ -4,6 +4,20 @@
 
 ## 現在の実状態
 
+2026-10-12T02:45Z更新: **両条件の学習、全予定greedy生成と共通NLL、全state/実消費量監査が完了**。C0は3,647更新、C1は3,636更新、どちらもAssistant本文+EOT教師1,899,555、超過0。最終checkpoint SHAはC0 `165523836f212fb59be32b7d0f42276b2eed968cb4c896b82b01a84a73540734`、C1 `fbdd68d23e4fbf9d0990f84fb6b36886ecef52fb87ff508d07d165055e3e6ce9`。全14suiteの内容レビューのうち11suiteを完了し、残りはC1 t2旧・t3新旧の3suite。段階5、最終paired比較、採否の完了監査は未完了。開始時点・学習中の記述は以下の履歴として保持する。
+
+| 完了した追加内容レビュー | 新/旧 | 固定文法2 | 固定文法・関連性同時2 /80 | 自生成最終文脈2 /24 |
+|---|---|---:|---:|---:|
+| C0 t2（2B/3） | 新 | 32 | 8 | 2 |
+| C0 t2 | 旧 | 42 | 13 | 4 |
+| C0 t3（B） | 新 | 44 | 11 | 4 |
+| C0 t3 | 旧 | 52 | 20 | 5 |
+| C1 t2 | 新 | 54 | 11 | 5 |
+
+この5suiteは全219応答のraw/実履歴を検証し、必要な新規採点をすべてCodex非blindで記入した。実履歴・checks・raw IDs/bytes/text等の全fingerprintが一致する既存判断と同suiteの無抑制controlだけを出典付きで再利用し、未確認の内容を自動採点していない。C0最終新旧も絶対screen未達。C1 t2新の内容はt1の15/80から11/80へ低下しており、追加学習による単調な改善は認められない。人名・挨拶の反復や自発話の誤りの継続を保存する。最終C1の採否は残る内容レビュー完了後に決める。
+
+GPU台帳の全14entryが終端状態になり、失敗分を含めた累積課金対象時間は **4,247.635851961秒（70.794分）/6時間上限**。内訳はprobe27.120089203秒、resume48.474963176秒、C0学習1,590.072084565秒、C1学習1,354.728570122秒、評価1,227.240144895秒。学習state監査はAdam全param step、教師量schedule、Python/NumPy/Torch/CUDA RNG、samplerの最終cursor、全checkpoint hashと消費列を確認してpassed、品質判定は含まない。`remainder-chain/result.json`はGPU完了・内容レビュー待ちを示す。元UIはHTTPで親10B SHA、10,001,152parameters、共通Tokenizer SHA、busy=falseを再確認した。記録PIDを将来の生存証拠にはしない。
+
 段階0を開始。Windows Git HEAD `f78646185db3f818792e5cb87e2331ef6028e06f`は開始時clean。WSL2 Ubuntuが稼働し、RTX4090 24,564MiB、使用975MiB、utilization1%、Linux data環境の空き880GBを確認した。元UIは実PID142855、HTTP親SHA `410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290`、10,001,152parameters、busy=falseで現在稼働を確認。science/trainingの重複processはない。
 
 `nvidia-smi`はWSLの既定PATH外で、`/usr/lib/wsl/lib/nvidia-smi`を用いる。WSLにrgはなく、この確認だけgrepへfallbackした。uvは既存0.9.0。環境を再構築したりpackageを追加したりしない。

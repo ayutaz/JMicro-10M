@@ -166,6 +166,7 @@ def main():
     ui=read_json(ROOT/'reports/local/webui/server.json');assert ui['status']=='running' and alive(ui)
     with urllib.request.urlopen('http://127.0.0.1:7860/api/model',timeout=5) as response:http=json.load(response)
     assert http['checkpoint_sha256']==config['parent']['sha256'] and not http['busy']
+    assert http['parameters']==10001152 and http['tokenizer_sha256']==config['tokenizer']['sha256']
     # The original idle UI may hold the shared lock. Verify current ownership;
     # no experiment process is allowed to remain after stages0-5.
     import check_chat_improvement_launch
