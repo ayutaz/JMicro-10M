@@ -1,0 +1,29 @@
+{
+  "created_at": "2026-10-12T18:36:52.010174Z",
+  "sources": {
+    "src/jmicro/chat_generalization_curriculum.py": "46c5f97841c38cb4b83c9e02a303fada2e2d2fd9044cb36bcb92281db21e6ebf",
+    "scripts/prepare_chat_generalization_train.py": "1af4687c1b129db1a2a43827d64497216d35914722b5fa97ce5831c3464b7427"
+  },
+  "mixture": {
+    "daily": 0.3,
+    "direct": 0.2,
+    "correction": 0.15,
+    "negation": 0.15,
+    "context": 0.1,
+    "clarification": 0.05,
+    "speaker": 0.05
+  },
+  "minimum_teachers": 650000,
+  "target_teachers": 660000,
+  "maximum_family_fraction": 0.05,
+  "no_new_DEV_read": true,
+  "no_old_DEV_copied": true,
+  "changes": [
+    "mostly first-turn questions without identity preamble",
+    "first/middle factual Assistant targets supervised as separate prefixes",
+    "broader slot vocabulary and bounded paraphrases",
+    "remove common explanation boilerplate; grounded direct bodies"
+  ],
+  "comparison": "whole data recipe, not an identified single causal factor",
+  "independent_human_review": false
+}
