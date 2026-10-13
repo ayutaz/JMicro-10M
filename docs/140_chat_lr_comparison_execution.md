@@ -24,3 +24,9 @@ accepted TRAIN41,529 targetと280sample QA最終誤り0をhash付き再利用。
 全評価予測は10,732.271秒/14,400秒で通過した。親新DEVの生成/NLLは15:38:31Zに終端し元UI復帰を確認。全219判断を完了し、親の内容1/80・実履歴文脈1/24。13/28suite・2,847判断・NLL1/7点を監査した。15:39ZにS1の全B学習をdurable workerで開始。15:43:54ZにLinux PID304617/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start54912399の実生存と600更新/312,871教師を確認した。残る学習/15レビュー/NLL6点/最終採否/分岐/完了監査/納品が必要でgoalを維持する。
 
 比較CPU入口のpaired API引数順序の不具合を実行前のsource確認で発見し、凍結sourceを保持したcompare_chat_lr_observed.pyで元APIのitems/レビュー順に接続した。原3suiteの実paired数値/CIを再計算して元selectionと全一致を確認。元rubric・絶対gate・数値学習sourceは変更していない。
+
+## t1/t2保存点の実入力・全state確認
+
+t1は1,215更新/633,206教師、checkpoint SHA d3442088cfcd38ec5bc6abd5bc862357a969cefd00efe835f0c43755cf6ce996。t2は2,430更新/1,266,627教師、SHA 2ea8adbd2ae80d8c0644eca61e95bb31bf1ff666f88db598b6409d809f96ab9b。両保存点の全state有限性、fresh親/spec、実teacher/LR/microbatch列、すべての入力/教師digestの歴史対照との一致、最初の閾値到達更新をCPU監査して通過した。t1 observerのscheduler1group想定失敗を保存し、実checkpointのdecay0.01/0の2group両方へ元のLR一致条件を適用して修正。学習・原品質gateを変えていない。
+
+15:57:11Zに同じLinux PID304617/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start54912399の実生存と2,500更新/1,303,091教師を確認。Windows worker35312も保存birth ticks639275027582533570と完全一致して生存。PS7がISO時刻をDateTimeへ変換するため、observerは文字列比較でなくUTC ticksで照合する。新しいjobを起動せず同じ学習を継続する。t3の到達、全学習監査、対照新DEV3点と候補全12suite/NLL6点、全採否/条件付き独立確認の判定と納品が残り、goalはactive。
