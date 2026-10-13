@@ -73,10 +73,10 @@ def main():
         progress = read_json(RUN / 'progress_audit.json')
         verify_selection(selection, progress, config)
         for name, mutate in (
-            ('selection_fabricated_passing_count', lambda r: r['summary']['S1']['new']['content']['primary'].update(joint_grammar_relevance_score2=56)),
+            ('selection_fabricated_passing_count', lambda r: r['summary']['S1']['new']['content']['primary'].update(joint_grammar_relevance_score2=r['summary']['S1']['new']['content']['primary']['joint_grammar_relevance_score2'] + 1)),
             ('selection_false_candidate', lambda r: r.update(eligible_candidate='S0')),
             ('selection_middle_point', lambda r: r.update(point='t2')),
-            ('selection_false_improvement', lambda r: r.update(new_joint_CI_lower=1.)),
+            ('selection_false_improvement', lambda r: r.update(new_joint_CI_lower=r['new_joint_CI_lower'] + .125)),
             ('selection_dropped_regression', lambda r: r['summary']['S1'].pop('previous')),
         ):
             rejected(name, lambda r: verify_selection(r, progress, config), selection, mutate)
@@ -89,7 +89,7 @@ def main():
             ('NLL_byte_denominator', lambda r: r['targets'][0].update(body_bytes=r['targets'][0]['body_bytes'] + 1)),
             ('NLL_teacher_denominator', lambda r: r['targets'][0].update(body_teachers=r['targets'][0]['body_teachers'] + 1)),
             ('NLL_nonfinite', lambda r: r['targets'][0].update(body_NLL=float('nan'))),
-            ('NLL_fabricated_mean', lambda r: r['summaries']['new_DEV'].update(body_mean_NLL=0.)),
+            ('NLL_fabricated_mean', lambda r: r['summaries']['new_DEV'].update(body_mean_NLL=r['summaries']['new_DEV']['body_mean_NLL'] + 1.)),
         ):
             rejected(name, lambda r: validate_nll(r, config, checkpoint, fixed), nll, mutate)
         output.update(actual_selection=reference(RUN / 'selection.json'),

@@ -216,6 +216,20 @@ def main():
     training = verify_training(config)
     for row in progress['reviews'].values():
         verify_terminal_raw(row)
+    from evaluate_chat_semantic import nll_windows
+    from prepare_chat_semantic_reuse import reusable_nll
+    windows = nll_windows(config, tok)
+    control = read_json(require_ref(config['historical_control_evidence']))['checkpoints']
+    candidate = read_json(RUN / 'S1/checkpoints.json')
+    for name, evidence in progress['fixed_NLL'].items():
+        arm, point = name.split('-')
+        checkpoint = config['parent'] if arm == 'parent' else (control if arm == 'S0' else candidate)[point]
+        result = read_json(require_ref(evidence['reference']))
+        reused, provenance = reusable_nll(config, arm, point, checkpoint, windows)
+        assert result['historical_exact_NLL_reuse'] == provenance
+        assert result['new_GPU_NLL_targets'] == 2554 - len(reused)
+        indexed = {row['id']: row for row in result['targets']}
+        assert all(indexed[key] == row for key, row in reused.items())
     registered = read_json(RUN / 'historical_control_registration.json')
     assert registered['passed'] and registered['config_sha256'] == config['config_sha256']
     assert registered['suites_reused'] == 8 and registered['known_suite_judgments_reused'] == 1752
