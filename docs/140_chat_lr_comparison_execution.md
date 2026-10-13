@@ -30,3 +30,12 @@ accepted TRAIN41,529 targetと280sample QA最終誤り0をhash付き再利用。
 t1は1,215更新/633,206教師、checkpoint SHA d3442088cfcd38ec5bc6abd5bc862357a969cefd00efe835f0c43755cf6ce996。t2は2,430更新/1,266,627教師、SHA 2ea8adbd2ae80d8c0644eca61e95bb31bf1ff666f88db598b6409d809f96ab9b。両保存点の全state有限性、fresh親/spec、実teacher/LR/microbatch列、すべての入力/教師digestの歴史対照との一致、最初の閾値到達更新をCPU監査して通過した。t1 observerのscheduler1group想定失敗を保存し、実checkpointのdecay0.01/0の2group両方へ元のLR一致条件を適用して修正。学習・原品質gateを変えていない。
 
 15:57:11Zに同じLinux PID304617/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start54912399の実生存と2,500更新/1,303,091教師を確認。Windows worker35312も保存birth ticks639275027582533570と完全一致して生存。PS7がISO時刻をDateTimeへ変換するため、observerは文字列比較でなくUTC ticksで照合する。新しいjobを起動せず同じ学習を継続する。t3の到達、全学習監査、対照新DEV3点と候補全12suite/NLL6点、全採否/条件付き独立確認の判定と納品が残り、goalはactive。
+## 全学習・全評価・最終分岐の科学監査
+
+2026-10-14 JST。S1は3,646更新/1,899,557教師で2026-10-13T16:04:47Zに学習終端。全3checkpointと全updateの実入力/label digest・LR/教師量・全stateを監査して通過。S0新DEV3点と候補全12suiteの生成/NLLも終了し、16:39Zの実process観測で全7GPU段階のhandleが終了済みと確認した。新規学習や再起動は0。
+
+全28セット・6,132内容判断・固定NLL7点/2,634targetが完了。S1最終の新/138/133/元旧内容20/18/19/15 of80、自己生成文脈5/5/5/1 of24。新内容差+8.75ポイント、95%CI −1.25〜+18.75。全4絶対gate・主指標CI・反復非退行が成立せず、有資格候補なし。新実履歴に不正UTF8が1件あり次turnへの文字破損の継承も原出力に保存した。t1/t2も原gate未達だが、中間点救済には使っていない。
+
+16:54:20Zの科学監査で全state/原raw判断/対照再利用/NLL ID・窓・教師・bytes/台帳・採否を照合し通過。GPU2,658.673158秒/33,600秒。Base保持/sampling/独立学習seed43/人間blind/fullDEV/封印TEST/採用の全7分岐を候補なしの未実行・passed=false・品質未確認として保存した。20件の採否/CI/NLLの改変拒否確認も通過。元UI PID309447/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start55170810、HTTP親/Tokenizer/10M・busy=false・kernel lock・競合なしを確認した。時点の観測であり将来の生存保証ではない。
+
+[結果141](141_chat_lr_comparison_results.md)へ全保存点・原失敗・事故・制約を整理した。科学比較と3段階分岐は完了、文書の最終整合・保存一覧・Windows/WSL照合・ローカルcommit/納品監査が残りgoalはactive。追加研究・学習は開始しない。

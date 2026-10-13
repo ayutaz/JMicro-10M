@@ -1,5 +1,7 @@
 # Windows / WSL 引継ぎ
 
+2026-10-14 現行: [結果141](141_chat_lr_comparison_results.md)で低LR候補を不合格・不採用と判定。全28セット・6,132判断・NLL7点、学習3,646更新/1,899,557教師、全state/予算と7条件分岐の科学監査は完了。独立確認は未実行・品質未確認。文書整合・小report保存一覧・Windows/WSL byte照合・ローカルcommitと納品確認が残りgoalはactive。追加GPU/新条件/教材準備は開始しない。最新科学監査2026-10-13T16:54:20Zで全job終端、元UI PID309447/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start55170810、HTTP親/Tokenizer/10M・busy=false・kernel lock一致。現在の生存は必要時に再照合し終了workerを再起動しない。候補全stateはWSL reports/phase7/chat-lr-20261014/S1、最終SHA f7e8bb8b1569cb45ac399108455a66c5922f64d7898e8ab6b4931ba13c856018。以下は途中と旧比較の引継ぎ履歴。
+
 2026-10-14 明示再開: goal「3まで進めてください」は直前回答の介入1件選定→10M/原品質で比較→有望条件だけ独立確認を再開する。[計画139](139_chat_lr_comparison_plan.md)。SFTのpeak LR1e-4→3e-5だけを変更し、同TRAIN/同親/教師量、新DEV＋既知3回帰を登録する。Base/Chat未採用、旧135の完了と不採用を保持。以下の停止状態は今回再開前の履歴。
 
 最新実績（2026-10-14 JST）: [139](139_chat_lr_comparison_plan.md)/[実行140](140_chat_lr_comparison_execution.md)でLR3e-5候補のCUDA25検証更新と全評価予測10,732.271秒/14,400秒が通過。本学習をdurable workerで開始し、15:43:54Zに実PID304617/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start54912399の生存と600更新/312,871教師を観測。全レビューは13/28セット・2,847/6,132判断・NLL1/7点。元親新DEVは全219理由付き判断を確認。最終採否・3段階の完了は未確認。準備時の元Chat TEST20行解析事故は保存・訂正済みで、有資格時は新しい封印Chat TESTが必要。

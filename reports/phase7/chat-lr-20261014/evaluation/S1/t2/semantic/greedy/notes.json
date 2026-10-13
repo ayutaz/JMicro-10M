@@ -1,0 +1,2468 @@
+{
+  "evaluation_sha256": "bf5e075ed03d2e2c67b8ce23671f3a96575d422a980fdc88c70acb2e27e5916a",
+  "rubric": {
+    "grammar": "0: unreadable/broken; 1: understandable with awkward or incomplete clauses; 2: natural complete Japanese. Score language separately from factual correctness.",
+    "relevance": "0: unrelated/contradicts the request; 1: partly relevant or vague; 2: directly responds to the final User in the actual history. Do not require literal gold wording.",
+    "context": "0: loses or contradicts required conditions; 1: partial/ambiguous retention; 2: retains all relevant conditions and corrections in the actual history. For own-history use generated replies, never supplied gold Assistant messages.",
+    "rationale": "At least 12 characters explaining the particular response. Keep fantasy, alternate natural answers, numeric correctness, grammar, and stopping distinct."
+  },
+  "reviewer": {
+    "kind": "codex_nonblind",
+    "identity": "Codex plan135 reviewer",
+    "independent_human": false,
+    "blind": false
+  },
+  "judgments": [
+    {
+      "key": "suppressed-semantic-unseen-greeting-01",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "雑談への申し出を受け入れ話してくれたことへ自然に謝意を返す。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-greeting-02",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "朝の挨拶を延々と繰り返し支度が済んだ話への応答がない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "suppressed-semantic-unseen-greeting-02"
+        },
+        "fingerprint": "bce024155a53332145d219b06540bfb1129211aca3d7242d8b0d43160217d08f"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-greeting-03",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "会話を促す点は適切だが夜のこんばんはを昼のこんにちはへ変える。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-greeting-04",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "説明への謝意にどういたしましてと返し自然に会話を促す。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-greeting-05",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "会話を終える希望にこれから始めると返し意図を逆転する。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-greeting-06",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "何を聞かれるかという曖昧な受身の問いで匿名相談の可否を答えない。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-greeting-07",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "話してくれた謝意はあるが未提示の感謝にどういたしましてと返し再訪の挨拶がずれる。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-greeting-08",
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "おやすみゅうさんという壊れた語で就寝の挨拶を自然に返せない。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-daily-01",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "洗い物後に休みたい希望を反復するだけで何から始めるか提案しない。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-daily-02",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "午後の予定がない点は拾うが片付けを過ごすという不自然な動作を作る。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-daily-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "覚えている品を忘れている品へ逆転しメモ作りの方針を取り違える。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-daily-04",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "冒頭は家で漫画を読む希望を受け止めるが家で読むなどを循環して終わらない。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-daily-05",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "使わない道具を置く意向を自分の予定として反復し鞄を軽くする話への応答が弱い。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-daily-06",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "片付けには触れるが、机から始める意図を落とし片付けのための片付けという説明にする。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t2/semantic/greedy/notes.json",
+          "sha256": "58f7ef6fa15d4464fc12ebf12bab8b9adcd4e55ed3bde9a2fc86cc5ffd54a197",
+          "key": "suppressed-semantic-unseen-daily-06"
+        },
+        "fingerprint": "6f6704b308afdba3e53b830ccb6b197a10778d4457aa4e17ea1bf3c4a24edd9f"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-daily-07",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "提案する宣言だけで実際の短い気分転換の案を示していない。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-daily-08",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "二つに絞る主体は正しいが待ち時間の使い方への応答が弱い。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-emotion-01",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "労いと休息を促すだけで抽選の落選と悔しさへの具体的な共感がない。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-emotion-02",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "引っ張ることや新しい物へ変更する別の話を作り支度の喜びを無視する。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-emotion-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "似た人を連れて話す別の状況を作り人前の発表への緊張を無視する。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-emotion-04",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "引用ととのことを用いて友人の連絡による明るい気持ちを正しく確認する。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-emotion-05",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "申し訳ないという発言を自分の経験として反復しユーザーへの共感が不明確。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "suppressed-semantic-unseen-emotion-05"
+        },
+        "fingerprint": "436992d3c466763663b80b81429637ff23aa998ce491f08dfddfc8d766f263d7"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-emotion-06",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "喜びへの共感からどんなところが落ち着くという不自然な文を循環する。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-emotion-07",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "休みたい希望を同じ語で理由にするだけで忙しさを具体的に受け止めない。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-emotion-08",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "応援していた人を否定する未完の接続で励まされた気持ちを別の話へ変える。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-question_back-01",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "玲さんの二枚と区別し、Userの分を一枚と自然に直接回答する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-question_back-01"
+        },
+        "fingerprint": "2bf1f80630cf025f891ca262b949ce4af00b186b222dd929600d9ee5984f5b82"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-question_back-02",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "出口の案内係栗原さんを正しく選んで答える。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-question_back-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "先に磨く靴を後の鞄へ取り違えて順序を逆に答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-question_back-03"
+        },
+        "fingerprint": "17a285176f411a4ba7ee950462bf431963a896ed1130584d6ac8bc026245b5b1"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-question_back-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "十二枚から予備二枚を除く十枚ではなく二枚と答えている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "suppressed-semantic-unseen-question_back-04"
+        },
+        "fingerprint": "b90377ef39fc3d6274d4078989ee142262c2679b87a499a8da6fca12dcc3ce7c"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-question_back-05",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "入場時刻の十八時半を十八時へ変え、必要な半時間を落として答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-question_back-05"
+        },
+        "fingerprint": "78f7754450dbbf5d374e73491e4ea9ce84472f3a4cc535f1298d8ad3886cfbf0"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-question_back-06",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "借りられなくてもよいと述べ借りられる長い傘を選ばない。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-question_back-07",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "受取人のユーザーと区別して支払いをする父を答えている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "suppressed-semantic-unseen-question_back-07"
+        },
+        "fingerprint": "3f5982d908b1aa823fa6efc5122b984cc7b91d58c390ac4349c5dfae193d7061"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-question_back-08",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "箱のある棚を尋ねられて箱と答え大きい棚を特定できていない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "suppressed-semantic-unseen-question_back-08"
+        },
+        "fingerprint": "1bb267582b141d8ed42988698bf239d15bdd0961d3c28469c1c6fef20d694db2"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-ambiguity-01",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "候補名が未提示とは言うが、必要な候補を確認せず同じ情報を返す。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-ambiguity-01"
+        },
+        "fingerprint": "b29823969e1bf633c88013f3a61edf9058c5ee10dd6917eba58c840337ac39f0"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-ambiguity-02",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "どこへ行くのはという構文の崩れで行先の不足を確認せず楽しみに変える。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-ambiguity-03",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "送ますという語形の崩れがあり未提示の文章を待つ依頼ではなく自分が送る話へ変える。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-ambiguity-04",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "先に運ぶ依頼は写すが、二つのどちらかという不足情報を確認しない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-ambiguity-04"
+        },
+        "fingerprint": "0ac677b2d865eacf26b8b44cb489f17d2c69bfae53280adc579e7a8cc8e03e7a"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-ambiguity-05",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "予定を尋ねる意図はあるが未説明を説明済みとしどんなところか不自然に聞く。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-ambiguity-06",
+      "grammar": 1,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "必要人数を確認する内容は適切だが、どんな人数を用意するという表現が不自然。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t3/semantic/greedy/notes.json",
+          "sha256": "5288209242d82422ab17df5e7ff91917b96fe29d9fe0e5636b0f489ac493a3e3",
+          "key": "suppressed-semantic-unseen-ambiguity-06"
+        },
+        "fingerprint": "1c125accddf3ceae4ca8ca63c41a52e820c4e888f857903dc40b45f71a61fa0e"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-ambiguity-07",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "連絡相手が未共有なので、誰に連絡するかを自然に短く確認する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t2/semantic/greedy/notes.json",
+          "sha256": "58f7ef6fa15d4464fc12ebf12bab8b9adcd4e55ed3bde9a2fc86cc5ffd54a197",
+          "key": "suppressed-semantic-unseen-ambiguity-07"
+        },
+        "fingerprint": "13fe19982604f9d924794e6191fbf76dd884bcbf2eaedf549c0979ba6ae3ead5"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-ambiguity-08",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "既に提示された二個を使い、不要な聞き返しをせず必要数を答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-ambiguity-08"
+        },
+        "fingerprint": "3f02f5afe36d3c12a953cca2d60be2b9a805403bdc1079df876c405f19dae8d2"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-role_boundary-01",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "Userの夢を尋ねるが、AI自身が実際に見たことになるかの問いに答えない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-role_boundary-01"
+        },
+        "fingerprint": "8eb69ff908634cb471d4f063dba02c3c68ffa59d20f86d2f4798bed23a2e7a69"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-role_boundary-02",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "小説の人物が名乗る点は拾うが自分の本名ではないと明答しない。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-role_boundary-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "弟が受け取った荷物を自分が受け取ったとして答えると述べ役割を取り違える。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-role_boundary-04",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "予約した場所の質問を重複し提案と実際の予約の違いに答えない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "suppressed-semantic-unseen-role_boundary-04"
+        },
+        "fingerprint": "453c9b5f939ddaa556127dfa16f6a18e97d65d566532cd3c12750c481c3727af"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-role_boundary-05",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "ややこしいという感想だけで可能性と確定の違いを答えない。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-role_boundary-06",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "資料という別の対象を返し自分の実際の出身校の扱いを説明しない。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-role_boundary-07",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "料理を作った主体を友人の彩さんとして自然に直接回答する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-role_boundary-07"
+        },
+        "fingerprint": "a2bd66250d808c36332a35029149f5f5ccc3dcf3db81076cefe0d4ee0f3972b2"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-role_boundary-08",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "説明するという宣言だけで友人の写真を自分の撮影とする誤りを区別しない。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-symbols-01",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "正しいM-7を答えず、Userへ記号を教えるよう逆に依頼する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-symbols-01"
+        },
+        "fingerprint": "a82125a6cbcf494d428fa37bd1bcbc4b5f64bf2c30c9075beb68bc49b8d4bce6"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-symbols-02",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "数字を返すという方針だけで十四時二十分の時刻を再現しない。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-symbols-03",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "正しいxyzは拾うが選んだ列を答える代わりにユーザーへ依頼を返す。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-symbols-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "否定されたmemo_9の数字だけ答え正しい保存名memo_4を失っている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "suppressed-semantic-unseen-symbols-04"
+        },
+        "fingerprint": "fa2059583e7e889f0da55b4d506d79d876cf9ef8f14b1378fcdc88bfd00698e1"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-symbols-05",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "使わない三角を使う記号として答え正しい丸を選べない。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-symbols-06",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "以前のB12を答えて現在のB13への訂正を保持しない。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-symbols-07",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "除く対象を下から上へ逆転し残る札を回答せず依頼文を返している。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "suppressed-semantic-unseen-symbols-07"
+        },
+        "fingerprint": "60ec7d9682ee24a4ebfb9413b43bb8df291687906d920d6627665440be0347fb"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-symbols-08",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "提示された二千を一千と答え数値を変更している。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "suppressed-semantic-unseen-symbols-08"
+        },
+        "fingerprint": "7bbec3ad512cfc59f9996eabe26892e39c7b36e3deff924aa03fb27d9454b309"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-correction-01",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "下段への変更を失って最初の上段を答えている。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-correction-02",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "椅子五脚から三脚への訂正を反映し、最終必要数を正しく答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-correction-02"
+        },
+        "fingerprint": "d3247757513909cd97e95b749bdb180a5f2db838665494643e53a631ab01a98f"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-correction-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "町田さんへの担当変更を反映せず、旧連絡先の平井さんを答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-correction-03"
+        },
+        "fingerprint": "612dd0af7867f34fa8b7bac807a0b34369477dfc9f9ac585496a1fdc3278f94c"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-correction-04",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "土曜から日曜への訂正を反映し、参加予定の日曜を直接答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-correction-04"
+        },
+        "fingerprint": "927f07a9066f5de7becb52fb145abe56717344e586168b5e1fe775eef86ace71"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-correction-05",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "午前十時から十一時への延期を反映して、今の集合時刻を正しく答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-correction-05"
+        },
+        "fingerprint": "468a2a6acb0b7eb86700806a76a82c75f2a64527efca7f11d1f4976ef4b79af2"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-correction-06",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "青から赤への変更を反映し、使うひもを赤いひもと自然に答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-correction-06"
+        },
+        "fingerprint": "f24f6419a8240aaf10a46f903a5a22b460e549d25d25e8d70176de797134d082"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-correction-07",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "牛乳から豆乳への変更を保持して現在の注文を正しく答える。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-correction-08",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "三号室への変更撤回を反映し、元の二号室を送り先として答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-correction-08"
+        },
+        "fingerprint": "8372eee0f8c099698fd50fbdac0ba4c884efbe9e91a21d2cdd2b4e75f0ae3e2d"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-followup-01",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "休憩の長さ四十分を時刻四時に変え、時間の種類を取り違える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-followup-01"
+        },
+        "fingerprint": "5a4402d313d62b217d02823bb54b65d82875baf0653b1430540e55b216b5bd04"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-followup-02",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "袋に入れたスリッパを履歴から正しく再回答する。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-followup-03",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "どちらの味ですという崩れた断定で塩味という好みを答えない。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-followup-04",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "次の電話の発信者を、履歴に示された高橋さんと直接答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-followup-04"
+        },
+        "fingerprint": "dc077a5311cd6dd701220b2ebec572f8e00833d739189fc35a4107b0e19969ac"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-followup-05",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "ユーザーの予約番号二十五番を正しく再回答している。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-followup-06",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "家を出る前に確認する対象を戸締まりと答え、順序と内容を保持する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-followup-06"
+        },
+        "fingerprint": "6da1e669215b7ada60859f7de81c2e7b11f12b0f69e1b05eaf3c7c670ef1d724"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-followup-07",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 1,
+      "rationale": "集合時刻の正午は保つが、問われた場所の港の待合所と取り違えて回答する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-followup-07"
+        },
+        "fingerprint": "48eb238fc34ab791a0579985986ef46d4e281c09b246a1cd3331e4d84dab41d3"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-followup-08",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "自転車の弟の所有をヘルメットのUser所有へ混同して答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-followup-08"
+        },
+        "fingerprint": "a94f5ea9bf61aebb7b995255b24e6275f64eabf785885819282e836be45cab0d"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-context-01",
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "口をたたえばという壊れた動作を返して午後の担当森さんを答えない。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-context-02",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "鉢植えの場所を履歴のベランダではなく庭と答えている。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-context-03",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "変更後の灰色とタオルの両方を正しく保持して答える。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-context-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "変えない南の遊び場を、変更した待ち合わせの東へ混同する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t2/semantic/greedy/notes.json",
+          "sha256": "58f7ef6fa15d4464fc12ebf12bab8b9adcd4e55ed3bde9a2fc86cc5ffd54a197",
+          "key": "suppressed-semantic-unseen-context-04"
+        },
+        "fingerprint": "8ecba63aa9739e35ef6557292c935270e9675e85f93a1f382b0d085d60df7089"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-context-05",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "弟の送迎と区別して提出担当のお姉さんを正しく答えている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "suppressed-semantic-unseen-context-05"
+        },
+        "fingerprint": "eae7a9cd666312054fa89bf04ee95daa8e63e339d92ee66ec2f881ebd70e6dee"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-context-06",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "確認前の袋を開ける手順ではなく最後に袋を畳む手順を答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "suppressed-semantic-unseen-context-06"
+        },
+        "fingerprint": "1928e8131a44b0c8e6c4df86beb02f7231dc597af0d4b4c74de2702217c96ca5"
+      }
+    },
+    {
+      "key": "suppressed-semantic-unseen-context-07",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "映画と買い物を売上金の曜日変更へ置き換え二つの予定を答えない。"
+    },
+    {
+      "key": "suppressed-semantic-unseen-context-08",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "昼食の相手を明示せず、一緒という関係だけを返して伯母への訂正を確認できない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-context-08"
+        },
+        "fingerprint": "f1c8ec6a09cc718f8f4375aad57e89954f3469df616bbea901186d31f65b65bd"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-greeting-01",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "雑談への申し出を受け入れ話してくれたことへ自然に謝意を返す。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-greeting-01",
+        "fingerprint": "52bd7a9764af5a276e3ade99ad6356c76fec39efd1115ee018941e293d5c5cc9"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-greeting-02",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "朝の挨拶を延々と繰り返し支度が済んだ話への応答がない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "suppressed-semantic-unseen-greeting-02"
+        },
+        "fingerprint": "bce024155a53332145d219b06540bfb1129211aca3d7242d8b0d43160217d08f"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-greeting-03",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "会話を促す点は適切だが夜のこんばんはを昼のこんにちはへ変える。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-greeting-03",
+        "fingerprint": "9debd8b6c6b2bb6ce7809cc23c8a15f6f61a2ac77fd752d0346a1978dc47ad5e"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-greeting-04",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "説明への謝意にどういたしましてと返し自然に会話を促す。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-greeting-04",
+        "fingerprint": "1f9a7596aa25061fa8442b55b3bce26a8f8e612dbd67da430ee5db6eca146b07"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-greeting-05",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "会話を終える希望にこれから始めると返し意図を逆転する。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-greeting-05",
+        "fingerprint": "0b4ff917b63a01f2c4cff92e06c1b665c24136f56b9beaadf4eb71afd97e9db9"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-greeting-06",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "何を聞かれるかという曖昧な受身の問いで匿名相談の可否を答えない。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-greeting-06",
+        "fingerprint": "fced4c03cd84513e45a292f133cb8f38b84036106b0d5888dde1086e70a226b7"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-greeting-07",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "話してくれた謝意はあるが未提示の感謝にどういたしましてと返し再訪の挨拶がずれる。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-greeting-07",
+        "fingerprint": "ae48d2a8f62f89237a41075817eaeb06847b9f435e67d0093f49cc7d3668ef71"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-greeting-08",
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "おやすみゅうさんという壊れた語で就寝の挨拶を自然に返せない。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-greeting-08",
+        "fingerprint": "a8c72a40875821e9e0f2ce369461d359e2c4e97b5d9d75cf2ca35004daed2816"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-daily-01",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "洗い物後に休みたい希望を反復するだけで何から始めるか提案しない。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-daily-01",
+        "fingerprint": "82bc1fed23a406e86649346ba09f07a0d6570ce3808338c5085164831262bb7c"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-daily-02",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "午後の予定がない点は拾うが片付けを過ごすという不自然な動作を作る。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-daily-02",
+        "fingerprint": "de27526a3fd89355ab48958ccb92f23cee8878c4c74a62a1738544597e3bd753"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-daily-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "覚えている品を忘れている品へ逆転しメモ作りの方針を取り違える。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-daily-03",
+        "fingerprint": "0f6b3114b147f06926d6b2136a03d22b1d6d932fa89cfbe16991cad9ae0f13f1"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-daily-04",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "冒頭は家で漫画を読む希望を受け止めるが家で読むなどを循環して終わらない。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-daily-04",
+        "fingerprint": "8d59fa965ce58c92c69dcc77374848a32de55eabfa0fed4f72ac5cae3c8460c5"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-daily-05",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "使わない道具を置く意向を自分の予定として反復し鞄を軽くする話への応答が弱い。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-daily-05",
+        "fingerprint": "ffda4009d86502751cfee64220783eff36116caf9289c5df8336fc5b0c6ea4ed"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-daily-06",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "片付けには触れるが、机から始める意図を落とし片付けのための片付けという説明にする。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t2/semantic/greedy/notes.json",
+          "sha256": "58f7ef6fa15d4464fc12ebf12bab8b9adcd4e55ed3bde9a2fc86cc5ffd54a197",
+          "key": "suppressed-semantic-unseen-daily-06"
+        },
+        "fingerprint": "6f6704b308afdba3e53b830ccb6b197a10778d4457aa4e17ea1bf3c4a24edd9f"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-daily-07",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "提案する宣言だけで実際の短い気分転換の案を示していない。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-daily-07",
+        "fingerprint": "fd5109328734b19048f6c39f95be35c28639717c78ac72412e358e78ea33da3c"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-daily-08",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "二つに絞る主体は正しいが待ち時間の使い方への応答が弱い。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-daily-08",
+        "fingerprint": "02ddfaffa4508122b5a5c59418347a2075e42a1baeee5254e11392caf4a7dc05"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-emotion-01",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "労いと休息を促すだけで抽選の落選と悔しさへの具体的な共感がない。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-emotion-01",
+        "fingerprint": "df04d435adf42a2f2d82d55666100ec938c3885fcb99ba959d424f633c5591e8"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-emotion-02",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "引っ張ることや新しい物へ変更する別の話を作り支度の喜びを無視する。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-emotion-02",
+        "fingerprint": "5255f3bd5c9e1d3b85593904d63c0cea99b0a4d07c6952986069823dfa4f3688"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-emotion-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "似た人を連れて話す別の状況を作り人前の発表への緊張を無視する。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-emotion-03",
+        "fingerprint": "03d93a1a977a2915f8c9fc8e165c367ddbac465ed5ae16471ce4eef2281627e8"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-emotion-04",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "引用ととのことを用いて友人の連絡による明るい気持ちを正しく確認する。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-emotion-04",
+        "fingerprint": "96254bf3cfc7698ef16ecdd14becba7602601dd09f24e6c453fa04e6622ff326"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-emotion-05",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "申し訳ないという発言を自分の経験として反復しユーザーへの共感が不明確。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "suppressed-semantic-unseen-emotion-05"
+        },
+        "fingerprint": "436992d3c466763663b80b81429637ff23aa998ce491f08dfddfc8d766f263d7"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-emotion-06",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "喜びへの共感からどんなところが落ち着くという不自然な文を循環する。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-emotion-06",
+        "fingerprint": "e2832e737c67573bf02ef95306ac1b98674d5dc0a024a61fd301fe9ab474d4e4"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-emotion-07",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "休みたい希望を同じ語で理由にするだけで忙しさを具体的に受け止めない。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-emotion-07",
+        "fingerprint": "c433848e581bbbef08bead5282a9734bf8e695948f9ef12c39054114228657df"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-emotion-08",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "応援していた人を否定する未完の接続で励まされた気持ちを別の話へ変える。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-emotion-08",
+        "fingerprint": "6073a5d587939e4dd11c26c413c41fed01ab3b3316954f8d735278a17638049a"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-question_back-01",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "玲さんの二枚と区別し、Userの分を一枚と自然に直接回答する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-question_back-01"
+        },
+        "fingerprint": "2bf1f80630cf025f891ca262b949ce4af00b186b222dd929600d9ee5984f5b82"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-question_back-02",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "出口の案内係栗原さんを正しく選んで答える。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-question_back-02",
+        "fingerprint": "805f9cc0d8b04dfa550375d3f600ddd66801235c1e6e174428e28d9858182c71"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-question_back-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "先に磨く靴を後の鞄へ取り違えて順序を逆に答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-question_back-03"
+        },
+        "fingerprint": "17a285176f411a4ba7ee950462bf431963a896ed1130584d6ac8bc026245b5b1"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-question_back-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "十二枚から予備二枚を除く十枚ではなく二枚と答えている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "suppressed-semantic-unseen-question_back-04"
+        },
+        "fingerprint": "b90377ef39fc3d6274d4078989ee142262c2679b87a499a8da6fca12dcc3ce7c"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-question_back-05",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "入場時刻の十八時半を十八時へ変え、必要な半時間を落として答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-question_back-05"
+        },
+        "fingerprint": "78f7754450dbbf5d374e73491e4ea9ce84472f3a4cc535f1298d8ad3886cfbf0"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-question_back-06",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "借りられなくてもよいと述べ借りられる長い傘を選ばない。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-question_back-06",
+        "fingerprint": "1d347152250d38c3fcd99e0bb0034e22e461c7ba184be3fcadd705eb3273fb34"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-question_back-07",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "受取人のユーザーと区別して支払いをする父を答えている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "suppressed-semantic-unseen-question_back-07"
+        },
+        "fingerprint": "3f5982d908b1aa823fa6efc5122b984cc7b91d58c390ac4349c5dfae193d7061"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-question_back-08",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "箱のある棚を尋ねられて箱と答え大きい棚を特定できていない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "suppressed-semantic-unseen-question_back-08"
+        },
+        "fingerprint": "1bb267582b141d8ed42988698bf239d15bdd0961d3c28469c1c6fef20d694db2"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-ambiguity-01",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "候補名が未提示とは言うが、必要な候補を確認せず同じ情報を返す。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-ambiguity-01"
+        },
+        "fingerprint": "b29823969e1bf633c88013f3a61edf9058c5ee10dd6917eba58c840337ac39f0"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-ambiguity-02",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "どこへ行くのはという構文の崩れで行先の不足を確認せず楽しみに変える。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-ambiguity-02",
+        "fingerprint": "59123db0fe9ba9400f9be8900fed7dbc1f7488136c6833675d8951f7008c94cf"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-ambiguity-03",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "送ますという語形の崩れがあり未提示の文章を待つ依頼ではなく自分が送る話へ変える。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-ambiguity-03",
+        "fingerprint": "c4ef18dc106b0d95744a0046b8ca1ab3a403bb743a5e5d787a0beb9a055a7781"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-ambiguity-04",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "先に運ぶ依頼は写すが、二つのどちらかという不足情報を確認しない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-ambiguity-04"
+        },
+        "fingerprint": "0ac677b2d865eacf26b8b44cb489f17d2c69bfae53280adc579e7a8cc8e03e7a"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-ambiguity-05",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "予定を尋ねる意図はあるが未説明を説明済みとしどんなところか不自然に聞く。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-ambiguity-05",
+        "fingerprint": "47c8767beb12e623e18e559adecc39f4e6246ee1faf13e70c2e45b1002397c7a"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-ambiguity-06",
+      "grammar": 1,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "必要人数を確認する内容は適切だが、どんな人数を用意するという表現が不自然。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t3/semantic/greedy/notes.json",
+          "sha256": "5288209242d82422ab17df5e7ff91917b96fe29d9fe0e5636b0f489ac493a3e3",
+          "key": "suppressed-semantic-unseen-ambiguity-06"
+        },
+        "fingerprint": "1c125accddf3ceae4ca8ca63c41a52e820c4e888f857903dc40b45f71a61fa0e"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-ambiguity-07",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "連絡相手が未共有なので、誰に連絡するかを自然に短く確認する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t2/semantic/greedy/notes.json",
+          "sha256": "58f7ef6fa15d4464fc12ebf12bab8b9adcd4e55ed3bde9a2fc86cc5ffd54a197",
+          "key": "suppressed-semantic-unseen-ambiguity-07"
+        },
+        "fingerprint": "13fe19982604f9d924794e6191fbf76dd884bcbf2eaedf549c0979ba6ae3ead5"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-ambiguity-08",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "既に提示された二個を使い、不要な聞き返しをせず必要数を答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-ambiguity-08"
+        },
+        "fingerprint": "3f02f5afe36d3c12a953cca2d60be2b9a805403bdc1079df876c405f19dae8d2"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-role_boundary-01",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "Userの夢を尋ねるが、AI自身が実際に見たことになるかの問いに答えない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-role_boundary-01"
+        },
+        "fingerprint": "8eb69ff908634cb471d4f063dba02c3c68ffa59d20f86d2f4798bed23a2e7a69"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-role_boundary-02",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "小説の人物が名乗る点は拾うが自分の本名ではないと明答しない。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-role_boundary-02",
+        "fingerprint": "f4fb042574fcabee8e578248163e97d38a528f8bfb37313a6d6ed09be68fc893"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-role_boundary-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "弟が受け取った荷物を自分が受け取ったとして答えると述べ役割を取り違える。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-role_boundary-03",
+        "fingerprint": "47790ce9eee8ee85a77de4a72c24b994b3bf8ac472dcc144a2495f21d70e8ac0"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-role_boundary-04",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "予約した場所の質問を重複し提案と実際の予約の違いに答えない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "suppressed-semantic-unseen-role_boundary-04"
+        },
+        "fingerprint": "453c9b5f939ddaa556127dfa16f6a18e97d65d566532cd3c12750c481c3727af"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-role_boundary-05",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "ややこしいという感想だけで可能性と確定の違いを答えない。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-role_boundary-05",
+        "fingerprint": "d41a9f1d7ae66248ced98add278ad24d582198ce8a84c6676a1d81a24c48b465"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-role_boundary-06",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "資料という別の対象を返し自分の実際の出身校の扱いを説明しない。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-role_boundary-06",
+        "fingerprint": "08b2a8a530c7a3db5f695271a42a772148a3642a0b4ccd54a04636a2f6274171"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-role_boundary-07",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "料理を作った主体を友人の彩さんとして自然に直接回答する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-role_boundary-07"
+        },
+        "fingerprint": "a2bd66250d808c36332a35029149f5f5ccc3dcf3db81076cefe0d4ee0f3972b2"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-role_boundary-08",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "説明するという宣言だけで友人の写真を自分の撮影とする誤りを区別しない。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-role_boundary-08",
+        "fingerprint": "295af7ec1f39676cd1d505f73b3106cb23e7988e560748860a666db3398ade24"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-symbols-01",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "正しいM-7を答えず、Userへ記号を教えるよう逆に依頼する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-symbols-01"
+        },
+        "fingerprint": "a82125a6cbcf494d428fa37bd1bcbc4b5f64bf2c30c9075beb68bc49b8d4bce6"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-symbols-02",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "数字を返すという方針だけで十四時二十分の時刻を再現しない。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-symbols-02",
+        "fingerprint": "6faaf6ac86ea13dff2c6ec6498b471c4ce94a1c80d4da20878ed5b7b86b45514"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-symbols-03",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "正しいxyzは拾うが選んだ列を答える代わりにユーザーへ依頼を返す。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-symbols-03",
+        "fingerprint": "f81ecdd783f5ac966b014d6a0c2592f2ca0db11ed80794f4190cc3b3d49357f6"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-symbols-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "否定されたmemo_9の数字だけ答え正しい保存名memo_4を失っている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "suppressed-semantic-unseen-symbols-04"
+        },
+        "fingerprint": "fa2059583e7e889f0da55b4d506d79d876cf9ef8f14b1378fcdc88bfd00698e1"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-symbols-05",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "使わない三角を使う記号として答え正しい丸を選べない。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-symbols-05",
+        "fingerprint": "1512614b4af5437c08137865feb951e1198d74974dc2022f4659c6fdbe85ce9f"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-symbols-06",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "以前のB12を答えて現在のB13への訂正を保持しない。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-symbols-06",
+        "fingerprint": "0cf3f4f54eb662b30d96df6f2835f41e0d0e800cf4a0af227edd4f50441df868"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-symbols-07",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "除く対象を下から上へ逆転し残る札を回答せず依頼文を返している。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "suppressed-semantic-unseen-symbols-07"
+        },
+        "fingerprint": "60ec7d9682ee24a4ebfb9413b43bb8df291687906d920d6627665440be0347fb"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-symbols-08",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "提示された二千を一千と答え数値を変更している。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "suppressed-semantic-unseen-symbols-08"
+        },
+        "fingerprint": "7bbec3ad512cfc59f9996eabe26892e39c7b36e3deff924aa03fb27d9454b309"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-correction-01",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "下段への変更を失って最初の上段を答えている。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-correction-01",
+        "fingerprint": "c469d79927fe87a6a4de868c196b73a77ff60923861ec171dc8f87add77878b6"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-correction-02",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "椅子五脚から三脚への訂正を反映し、最終必要数を正しく答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-correction-02"
+        },
+        "fingerprint": "d3247757513909cd97e95b749bdb180a5f2db838665494643e53a631ab01a98f"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-correction-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "町田さんへの担当変更を反映せず、旧連絡先の平井さんを答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-correction-03"
+        },
+        "fingerprint": "612dd0af7867f34fa8b7bac807a0b34369477dfc9f9ac585496a1fdc3278f94c"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-correction-04",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "土曜から日曜への訂正を反映し、参加予定の日曜を直接答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-correction-04"
+        },
+        "fingerprint": "927f07a9066f5de7becb52fb145abe56717344e586168b5e1fe775eef86ace71"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-correction-05",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "午前十時から十一時への延期を反映して、今の集合時刻を正しく答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-correction-05"
+        },
+        "fingerprint": "468a2a6acb0b7eb86700806a76a82c75f2a64527efca7f11d1f4976ef4b79af2"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-correction-06",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "青から赤への変更を反映し、使うひもを赤いひもと自然に答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-correction-06"
+        },
+        "fingerprint": "f24f6419a8240aaf10a46f903a5a22b460e549d25d25e8d70176de797134d082"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-correction-07",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "牛乳から豆乳への変更を保持して現在の注文を正しく答える。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-correction-07",
+        "fingerprint": "eeb7376dd85f1d1ada3161c2097568264aa522148f7d83124292df2d92fea31c"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-correction-08",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "三号室への変更撤回を反映し、元の二号室を送り先として答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-correction-08"
+        },
+        "fingerprint": "8372eee0f8c099698fd50fbdac0ba4c884efbe9e91a21d2cdd2b4e75f0ae3e2d"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-followup-01",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "休憩の長さ四十分を時刻四時に変え、時間の種類を取り違える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-followup-01"
+        },
+        "fingerprint": "5a4402d313d62b217d02823bb54b65d82875baf0653b1430540e55b216b5bd04"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-followup-02",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "袋に入れたスリッパを履歴から正しく再回答する。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-followup-02",
+        "fingerprint": "09bdffeddbd5ad33db17ec8f932c3ad3d302b54397a80deb98678b08f556a015"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-followup-03",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "どちらの味ですという崩れた断定で塩味という好みを答えない。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-followup-03",
+        "fingerprint": "1fe8c203c07b0a7de48d89479501a398928a8d50ce66374667b24f5c5f2565e4"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-followup-04",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "次の電話の発信者を、履歴に示された高橋さんと直接答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-followup-04"
+        },
+        "fingerprint": "dc077a5311cd6dd701220b2ebec572f8e00833d739189fc35a4107b0e19969ac"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-followup-05",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "ユーザーの予約番号二十五番を正しく再回答している。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-followup-05",
+        "fingerprint": "3d46e9fde1cfe1543413a4516846f8bc32f20c7e4db08c7a9d6d864088396aed"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-followup-06",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "家を出る前に確認する対象を戸締まりと答え、順序と内容を保持する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-followup-06"
+        },
+        "fingerprint": "6da1e669215b7ada60859f7de81c2e7b11f12b0f69e1b05eaf3c7c670ef1d724"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-followup-07",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 1,
+      "rationale": "集合時刻の正午は保つが、問われた場所の港の待合所と取り違えて回答する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-followup-07"
+        },
+        "fingerprint": "48eb238fc34ab791a0579985986ef46d4e281c09b246a1cd3331e4d84dab41d3"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-followup-08",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "自転車の弟の所有をヘルメットのUser所有へ混同して答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-followup-08"
+        },
+        "fingerprint": "a94f5ea9bf61aebb7b995255b24e6275f64eabf785885819282e836be45cab0d"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-context-01",
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "口をたたえばという壊れた動作を返して午後の担当森さんを答えない。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-context-01",
+        "fingerprint": "3d3cefb288fb22d596625b75ceeefdef25a76de93089b3b324eaa45770ebae04"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-context-02",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "鉢植えの場所を履歴のベランダではなく庭と答えている。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-context-02",
+        "fingerprint": "3a7728eb4801a0cb120aa6b0e715d33aa1a5356f3e4d00178caa44e59bd38256"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-context-03",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "変更後の灰色とタオルの両方を正しく保持して答える。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-context-03",
+        "fingerprint": "cc7b773c8ba6a65dad76da2b80a9930cd63017209a85c1131a40f2a9423b9b15"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-context-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "変えない南の遊び場を、変更した待ち合わせの東へ混同する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t2/semantic/greedy/notes.json",
+          "sha256": "58f7ef6fa15d4464fc12ebf12bab8b9adcd4e55ed3bde9a2fc86cc5ffd54a197",
+          "key": "suppressed-semantic-unseen-context-04"
+        },
+        "fingerprint": "8ecba63aa9739e35ef6557292c935270e9675e85f93a1f382b0d085d60df7089"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-context-05",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "弟の送迎と区別して提出担当のお姉さんを正しく答えている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "suppressed-semantic-unseen-context-05"
+        },
+        "fingerprint": "eae7a9cd666312054fa89bf04ee95daa8e63e339d92ee66ec2f881ebd70e6dee"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-context-06",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "確認前の袋を開ける手順ではなく最後に袋を畳む手順を答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "suppressed-semantic-unseen-context-06"
+        },
+        "fingerprint": "1928e8131a44b0c8e6c4df86beb02f7231dc597af0d4b4c74de2702217c96ca5"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-context-07",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "映画と買い物を売上金の曜日変更へ置き換え二つの予定を答えない。",
+      "reuse": {
+        "packet_key": "suppressed-semantic-unseen-context-07",
+        "fingerprint": "47f4100ed5d58bf253aedc684baecd1de28f5b540607300de42edf14b6b3dab4"
+      }
+    },
+    {
+      "key": "unsuppressed-semantic-unseen-context-08",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "昼食の相手を明示せず、一緒という関係だけを返して伯母への訂正を確認できない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "suppressed-semantic-unseen-context-08"
+        },
+        "fingerprint": "f1c8ec6a09cc718f8f4375aad57e89954f3469df616bbea901186d31f65b65bd"
+      }
+    },
+    {
+      "key": "own-semantic-unseen-correction-01-turn-1",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "上段へ戻すことは保つが、本が落ち着いたらという不自然な未提示条件を足す。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "own-semantic-unseen-correction-01-turn-1"
+        },
+        "fingerprint": "aff12f879a519f7a27616f49eccbb1e0b8b04124010103567a9af3c0a56453b2"
+      }
+    },
+    {
+      "key": "own-semantic-unseen-correction-01-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "旧上段と未提示の落ち着いたらという条件を反復して下段への変更を失う。"
+    },
+    {
+      "key": "own-semantic-unseen-correction-02-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "五脚を反復するだけで借りる椅子の予定という関係を明確に確認しない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "own-semantic-unseen-correction-02-turn-1"
+        },
+        "fingerprint": "db0270048108719382a95614462e1678a930f7663316a302a122716aab936999"
+      }
+    },
+    {
+      "key": "own-semantic-unseen-correction-02-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "自己発話履歴でも最終的な三脚への訂正を正しく答える。"
+    },
+    {
+      "key": "own-semantic-unseen-correction-03-turn-1",
+      "grammar": 1,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "平井さんに連絡する内容は正しいが同じ句を重ねて語順が不自然。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "own-semantic-unseen-correction-03-turn-1"
+        },
+        "fingerprint": "322c000341c29a742e482dd682068b279fc79a6365e47322ddcedaa444cd9b40"
+      }
+    },
+    {
+      "key": "own-semantic-unseen-correction-03-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "実履歴の旧相手平井さんを答え町田さんへの変更を失っている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "own-semantic-unseen-correction-03-turn-2"
+        },
+        "fingerprint": "ce3fd1971cde8020570d652b96dfcabee22912b0bc606dd27a0b23aea172994b"
+      }
+    },
+    {
+      "key": "own-semantic-unseen-correction-04-turn-1",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "土曜に参加する伝達を日曜に伝えたという未提示の時点へ変える。"
+    },
+    {
+      "key": "own-semantic-unseen-correction-04-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "誤った先行自己発話があっても参加日の最新の日曜を正しく答える。"
+    },
+    {
+      "key": "own-semantic-unseen-correction-05-turn-1",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "午前十時の集合を午後十時と誤って確認している。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "own-semantic-unseen-correction-05-turn-1"
+        },
+        "fingerprint": "84cf1a521ae42771b24d6deeff2889c5ceb8f706f300780e663eccef3da90e54"
+      }
+    },
+    {
+      "key": "own-semantic-unseen-correction-05-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "午前十一時への変更を午後三時と答え時刻を保持できない。"
+    },
+    {
+      "key": "own-semantic-unseen-correction-06-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "包装にひもを使うことは保つが、提示された青い色を落として確認する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "own-semantic-unseen-correction-06-turn-1"
+        },
+        "fingerprint": "1836d1cd6570e28a61eeee3785227fdc9123f1d4725acfac55838297a3f70cab"
+      }
+    },
+    {
+      "key": "own-semantic-unseen-correction-06-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "実履歴でも青から赤への変更を正しく保持して答える。"
+    },
+    {
+      "key": "own-semantic-unseen-correction-07-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "牛乳を同語で説明するだけで注文する飲み物の確認が明確でない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "own-semantic-unseen-correction-07-turn-1"
+        },
+        "fingerprint": "7abeb14a9e307910029cb1702829e569b5d436ed797d6b0025b62128f2190c09"
+      }
+    },
+    {
+      "key": "own-semantic-unseen-correction-07-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "実履歴でも牛乳から豆乳への変更を正しく答える。"
+    },
+    {
+      "key": "own-semantic-unseen-correction-08-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "送り先の二号室を自然に確認し、未提示の部屋へ変えていない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "own-semantic-unseen-correction-08-turn-1"
+        },
+        "fingerprint": "18677615b9c44f0fe78def63bbff207f27e78a1f6633e7c0bfd3637ef53e21d2"
+      }
+    },
+    {
+      "key": "own-semantic-unseen-correction-08-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "三号室への変更を反映せず、旧二号室を送り先として返す。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t2/semantic/greedy/notes.json",
+          "sha256": "58f7ef6fa15d4464fc12ebf12bab8b9adcd4e55ed3bde9a2fc86cc5ffd54a197",
+          "key": "own-semantic-unseen-correction-08-turn-2"
+        },
+        "fingerprint": "7a7724e9ecfba628a396f848a791435e3f0ba4b36483ac38e069cc26550ee0ca"
+      }
+    },
+    {
+      "key": "own-semantic-unseen-correction-08-turn-3",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "先行応答の更新失敗は残るが、変更撤回後の元の二号室を正しく答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t2/semantic/greedy/notes.json",
+          "sha256": "58f7ef6fa15d4464fc12ebf12bab8b9adcd4e55ed3bde9a2fc86cc5ffd54a197",
+          "key": "own-semantic-unseen-correction-08-turn-3"
+        },
+        "fingerprint": "79c199f888213d89e72385cfe86d2a310638df0f9d6629908e072094304af9d5"
+      }
+    },
+    {
+      "key": "own-semantic-unseen-followup-01-turn-1",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "四十分の休憩を四時間と答えて量と単位を誤る。"
+    },
+    {
+      "key": "own-semantic-unseen-followup-01-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "誤った自己発話の四時間を反復し元の四十分を回復できない。"
+    },
+    {
+      "key": "own-semantic-unseen-followup-02-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "袋の中身のスリッパを正しく確認し、物と入れ物の関係を変えない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "own-semantic-unseen-followup-02-turn-1"
+        },
+        "fingerprint": "e4400306e4394c0b0d1b94ac5e25c59a4d181d63c8fe409d0cf8bc97b4386933"
+      }
+    },
+    {
+      "key": "own-semantic-unseen-followup-02-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "自己生成履歴の袋とスリッパの関係を保ち、尋ねられた中身を正しく答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "own-semantic-unseen-followup-02-turn-2"
+        },
+        "fingerprint": "2b8463e745b61a90ff53597a4137a5128d5a87b604942a2575b36bb9ce170395"
+      }
+    },
+    {
+      "key": "own-semantic-unseen-followup-03-turn-1",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "菓子は拾うが同語で理由を作り塩味が好きという条件を確認しない。"
+    },
+    {
+      "key": "own-semantic-unseen-followup-03-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "おいしい菓子という同語説明だけで尋ねられた塩味を答えない。"
+    },
+    {
+      "key": "own-semantic-unseen-followup-04-turn-1",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "高橋さんの電話は拾うがさんさんという壊れた名詞で確認文が不自然。"
+    },
+    {
+      "key": "own-semantic-unseen-followup-04-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "崩れた先行自己発話から電話相手の高橋さんを正しく再回答する。"
+    },
+    {
+      "key": "own-semantic-unseen-followup-05-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "Userの予約番号をあなたの二十五番と確認し、話者の所有を正しく保つ。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "own-semantic-unseen-followup-05-turn-1"
+        },
+        "fingerprint": "cab9e75736317cf9b2bc7b38bbd2510bad61037105a81f5fb46f800c22ba5e78"
+      }
+    },
+    {
+      "key": "own-semantic-unseen-followup-05-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "自己生成したUserの予約番号を二十五番と再回答し、所有と数を保持する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "own-semantic-unseen-followup-05-turn-2"
+        },
+        "fingerprint": "e18fbd9535ef5cbc2e11430433be75718971bf4111a7360303e158d4f12f5ca6"
+      }
+    },
+    {
+      "key": "own-semantic-unseen-followup-06-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "家を出る前に戸締まりを確認する予定を正しく確認している。"
+    },
+    {
+      "key": "own-semantic-unseen-followup-06-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "自分の先行発話から出る前の戸締まり確認を正しく答える。"
+    },
+    {
+      "key": "own-semantic-unseen-followup-07-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "明日の待合所は保持するが港という必要な場所の限定を落とす。"
+    },
+    {
+      "key": "own-semantic-unseen-followup-07-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 1,
+      "rationale": "集合の正午を拾うが先行自己発話と同様に待合所の港という限定を落とす。"
+    },
+    {
+      "key": "own-semantic-unseen-followup-07-turn-3",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "待合所は答えるが港の限定を落とし場所だけの要求に時刻も加える。"
+    },
+    {
+      "key": "own-semantic-unseen-followup-08-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "自転車が弟の物という所有関係を自然に正しく確認する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t1/semantic/greedy/notes.json",
+          "sha256": "5500a64687774add605e018ef8ea6f126f2aea8fb6ac83eb1377ef279b0ad55b",
+          "key": "own-semantic-unseen-followup-08-turn-1"
+        },
+        "fingerprint": "1b5256e16b8319ab68cc31ae738b72e6b3ca5e7ebb2435dc0b0f3ada8c40d22f"
+      }
+    },
+    {
+      "key": "own-semantic-unseen-followup-08-turn-2",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "身の子という不自然な語を作りヘルメットのユーザー所有を誤る。"
+    },
+    {
+      "key": "own-semantic-unseen-followup-08-turn-3",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "自分の誤った身の子の発話を反復し自転車の所有者の弟を答えない。"
+    },
+    {
+      "key": "own-semantic-unseen-context-01-turn-1",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "担当名をさんさんという壊れた語にし森さんと岸さんの割当を失う。"
+    },
+    {
+      "key": "own-semantic-unseen-context-01-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "森さんの名前は拾うが担当者を来た人へ変えて声をかける相手として答えない。"
+    },
+    {
+      "key": "own-semantic-unseen-context-02-turn-1",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "客間の切り花を鉢植えに置くと答え物と場所を取り違える。"
+    },
+    {
+      "key": "own-semantic-unseen-context-02-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "場所ベランダは拾うが尋ねられた鉢植えを切り花へ変えて答える。"
+    },
+    {
+      "key": "own-semantic-unseen-context-03-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "白いタオルは拾うが置場や楽しみの未提示の話を加え持参物の確認が弱い。"
+    },
+    {
+      "key": "own-semantic-unseen-context-03-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "灰色は拾うが気になるという感想だけでタオルの変更を明確に確認しない。"
+    },
+    {
+      "key": "own-semantic-unseen-context-03-turn-3",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "自分の灰色の感想を反復し色とタオルの両方を答える要求に一部しか応じない。"
+    },
+    {
+      "key": "own-semantic-unseen-context-04-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "南の公園は保持するが遊具があるという根拠のない説明を追加する。"
+    },
+    {
+      "key": "own-semantic-unseen-context-04-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "東の待合せは拾うが楽しめる公園と説明し変わらない遊ぶ場所の南を落とす。"
+    },
+    {
+      "key": "own-semantic-unseen-context-04-turn-3",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "東の待合せの自己発話を反復し遊ぶ場所の南の公園を答えない。"
+    },
+    {
+      "key": "own-semantic-unseen-context-05-turn-1",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "提出すという語形の崩れがあり提出者を姉からユーザーへ取り違える。"
+    },
+    {
+      "key": "own-semantic-unseen-context-05-turn-2",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "誤った提出者の自己発話を繰り返し弟の送迎という追加情報を無視する。"
+    },
+    {
+      "key": "own-semantic-unseen-context-05-turn-3",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "誤った自己発話を再回答して提出者の姉を特定できない。"
+    },
+    {
+      "key": "own-semantic-unseen-context-06-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "袋を開けて中身を確認する順序を自然に正しく確認している。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t1/semantic/greedy/notes.json",
+          "sha256": "63f9ae3fa691139a92e95beed60c07284259a780eef45cc5f15af3e0a4056b46",
+          "key": "own-semantic-unseen-context-06-turn-1"
+        },
+        "fingerprint": "8bac27af4e37c3beb7978e2d12efd4e558f7b6cedd614ade3698f52c7c28f2d3"
+      }
+    },
+    {
+      "key": "own-semantic-unseen-context-06-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "最初の袋の手順を反復し最後に畳むという新情報を確認しない。"
+    },
+    {
+      "key": "own-semantic-unseen-context-06-turn-3",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "何をしますという崩れた反復で中身を確かめる前の袋を開ける動作を答えない。"
+    },
+    {
+      "key": "own-semantic-unseen-context-07-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "買い物の水曜は保つが、映画の火曜を落として最初の予定確認を返す。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t2/semantic/greedy/notes.json",
+          "sha256": "58f7ef6fa15d4464fc12ebf12bab8b9adcd4e55ed3bde9a2fc86cc5ffd54a197",
+          "key": "own-semantic-unseen-context-07-turn-1"
+        },
+        "fingerprint": "5e0aea6f81da6f77a44253f698f09aa3711fb9750770cad6cf241190f77efecb"
+      }
+    },
+    {
+      "key": "own-semantic-unseen-context-07-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 1,
+      "rationale": "買い物の水曜だけを保ち、最新の映画の木曜への変更に応じない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t2/semantic/greedy/notes.json",
+          "sha256": "58f7ef6fa15d4464fc12ebf12bab8b9adcd4e55ed3bde9a2fc86cc5ffd54a197",
+          "key": "own-semantic-unseen-context-07-turn-2"
+        },
+        "fingerprint": "630bd2dbf679e597cd218eecccaf0f8e4aba1941d85872293051856d915e200b"
+      }
+    },
+    {
+      "key": "own-semantic-unseen-context-07-turn-3",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 1,
+      "rationale": "買い物を変えない最新条件は水曜と確認するが、映画の木曜は示さない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t2/semantic/greedy/notes.json",
+          "sha256": "58f7ef6fa15d4464fc12ebf12bab8b9adcd4e55ed3bde9a2fc86cc5ffd54a197",
+          "key": "own-semantic-unseen-context-07-turn-3"
+        },
+        "fingerprint": "a15cb1c1f724ae0dc9198cb8b2ee4a36c994568c015969320b595f20211b83ab"
+      }
+    },
+    {
+      "key": "own-semantic-unseen-context-07-turn-4",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "買い物の水曜は正しいが、同時に求められた映画の木曜を落として答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S0/t3/semantic/greedy/notes.json",
+          "sha256": "5288209242d82422ab17df5e7ff91917b96fe29d9fe0e5636b0f489ac493a3e3",
+          "key": "own-semantic-unseen-context-07-turn-4"
+        },
+        "fingerprint": "b1a5d4a51ffcb2ef4f870fa9319438af9e7dc6c28b02c15bbaed2bc4e0df929b"
+      }
+    },
+    {
+      "key": "own-semantic-unseen-context-08-turn-1",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "ユーザーの家を重複し弁当準備を捏造して昼食の二人を確認しない。"
+    },
+    {
+      "key": "own-semantic-unseen-context-08-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "家で弁当を用意する誤った自己発話を反復し伯母への訂正を無視する。"
+    },
+    {
+      "key": "own-semantic-unseen-context-08-turn-3",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "家と弁当の句を循環し食堂という最新の場所を保持しない。"
+    },
+    {
+      "key": "own-semantic-unseen-context-08-turn-4",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "家と弁当の自己発話を循環し訂正された昼食相手伯母を答えない。"
+    }
+  ],
+  "pending_all_content_judgments": false,
+  "authored_score_file": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/evaluation/S1/t2/semantic/greedy/authored_scores.tsv",
+    "sha256": "07686511eecbf6a5b8bc945702447984b83685a28e53425dd68a3c6d793937fd"
+  },
+  "reviewed_at": "2026-10-13T16:42:40.516911Z"
+}
