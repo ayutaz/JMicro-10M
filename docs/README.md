@@ -1,6 +1,6 @@
 # 文書一覧
 
-2026-10-14 現行: 先に[結果141](141_chat_lr_comparison_results.md)を読む。低LR候補の全28セット・6,132判断・NLL7点と3段階の科学的分岐判断は完了・不採用。文書整合・保全/納品監査・ローカルcommitが残りgoalはactive。独立確認は合格候補なしで未実行・品質未確認。Base/Chat未完成、追加研究/GPUは停止。以下の途中・旧結果は履歴。
+2026-10-14 現行: 先に[結果141](141_chat_lr_comparison_results.md)を読む。低LR候補の全28セット・6,132判断・NLL7点と3段階の科学的分岐判断は完了・不採用。科学監査と文書/保存一覧/ローカル納品の証拠を区別し、最終commit確認後に停止する。独立確認は合格候補なしで未実行・品質未確認。Base/Chat未完成、追加研究/GPUは停止。以下の途中・旧結果は履歴。
 
 2026-10-14 明示再開: 最新は[計画139](139_chat_lr_comparison_plan.md)/[実行140](140_chat_lr_comparison_execution.md)のLR1件比較。本学習と全評価を進め、3段階完了・最終採否は未確定。以下の停止記録は前回の納品時点。
 
@@ -136,3 +136,4 @@
 | [138_chat_semantic_diversity_results.md](138_chat_semantic_diversity_results.md) | 意味多様性教材の全21評価・採否・NLL・分岐・完了と停止 |
 | [139_chat_lr_comparison_plan.md](139_chat_lr_comparison_plan.md) | 同TRAINでpeak LRだけを変える1候補・全28評価・条件付き独立確認の契約 |
 | [140_chat_lr_comparison_execution.md](140_chat_lr_comparison_execution.md) | 凍結・事故保存/訂正・CUDA gate・実学習・全評価の時点別記録 |
+| [141_chat_lr_comparison_results.md](141_chat_lr_comparison_results.md) | 低LR同TRAIN比較の全28評価・不採用・分岐と科学監査/納品 |

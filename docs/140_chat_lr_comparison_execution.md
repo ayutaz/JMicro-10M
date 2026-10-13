@@ -39,3 +39,5 @@ t1は1,215更新/633,206教師、checkpoint SHA d3442088cfcd38ec5bc6abd5bc862357
 16:54:20Zの科学監査で全state/原raw判断/対照再利用/NLL ID・窓・教師・bytes/台帳・採否を照合し通過。GPU2,658.673158秒/33,600秒。Base保持/sampling/独立学習seed43/人間blind/fullDEV/封印TEST/採用の全7分岐を候補なしの未実行・passed=false・品質未確認として保存した。20件の採否/CI/NLLの改変拒否確認も通過。元UI PID309447/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start55170810、HTTP親/Tokenizer/10M・busy=false・kernel lock・競合なしを確認した。時点の観測であり将来の生存保証ではない。
 
 [結果141](141_chat_lr_comparison_results.md)へ全保存点・原失敗・事故・制約を整理した。科学比較と3段階分岐は完了、文書の最終整合・保存一覧・Windows/WSL照合・ローカルcommit/納品監査が残りgoalはactive。追加研究・学習は開始しない。
+
+納品追記: 文書と全小report/raw/notesをWindowsへ保存しbyte一致を確認。最終保存一覧とcommit照合はfinal_archive/final_delivery_checksで別に証明する。文書更新処理のPowerShell配列flattenによる文字置換は、壊れたdraftをdelivery_incidentsへ保存し直前commit/WSLの原文から復元した。学習・評価・凍結数値sourceへの影響0。最終receipt commit照合後にgoalを完了して停止する。

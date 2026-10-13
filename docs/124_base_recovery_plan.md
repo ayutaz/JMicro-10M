@@ -1,5 +1,7 @@
 # Base改善の今後の計画
 
+2026-10-14 更新: 低LR SFTの1件比較も[結果141](141_chat_lr_comparison_results.md)で原品質未達・不採用。全28セットと条件分岐の科学監査は完了したが、Base単独原因の確定や本Base復旧の実行ではない。以下の段階0〜5・原品質・10M・Base完成で通知停止の境界を維持し、別経路の追加研究は未再開。
+
 最終更新: 2026-10-13 JST。Base復旧を選ぶ場合の**未実行の代替経路**。Chat-first診断と教材比較128/131/133/135は[最新結果138](138_chat_semantic_diversity_results.md)まで実行・不合格終了した。Chat失敗からBase単独原因は確定しない。次介入の選択肢は[135](135_chat_problem_solution_plan.md)末尾に記載し、追加研究・準備・診断・学習は停止する。
 
 Baseの原品質・10M制約・下記段階0〜5と停止境界を維持する。閉じたChat比較を前提作業として再実行しない。Base介入は未選定・未凍結。[状態](autonomous_status.md)、[Base結果123](123_base_teacher_decay_2b_results.md)。

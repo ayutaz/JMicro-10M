@@ -1,6 +1,6 @@
 # Windows / WSL 引継ぎ
 
-2026-10-14 現行: [結果141](141_chat_lr_comparison_results.md)で低LR候補を不合格・不採用と判定。全28セット・6,132判断・NLL7点、学習3,646更新/1,899,557教師、全state/予算と7条件分岐の科学監査は完了。独立確認は未実行・品質未確認。文書整合・小report保存一覧・Windows/WSL byte照合・ローカルcommitと納品確認が残りgoalはactive。追加GPU/新条件/教材準備は開始しない。最新科学監査2026-10-13T16:54:20Zで全job終端、元UI PID309447/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start55170810、HTTP親/Tokenizer/10M・busy=false・kernel lock一致。現在の生存は必要時に再照合し終了workerを再起動しない。候補全stateはWSL reports/phase7/chat-lr-20261014/S1、最終SHA f7e8bb8b1569cb45ac399108455a66c5922f64d7898e8ab6b4931ba13c856018。以下は途中と旧比較の引継ぎ履歴。
+2026-10-14 現行: [結果141](141_chat_lr_comparison_results.md)で低LR候補を不合格・不採用と判定。全28セット・6,132判断・NLL7点、学習3,646更新/1,899,557教師、全state/予算と7条件分岐の科学監査は完了。独立確認は未実行・品質未確認。小report保存一覧final_archiveとWindows/WSL byte・ローカルcommitの納品確認final_delivery_checksをそろえて停止する。最終commitの照合まではgoal完了を宣言しない。追加GPU/新条件/教材準備は開始しない。最新科学監査2026-10-13T16:54:20Zで全job終端、元UI PID309447/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start55170810、HTTP親/Tokenizer/10M・busy=false・kernel lock一致。現在の生存は必要時に再照合し終了workerを再起動しない。候補全stateはWSL reports/phase7/chat-lr-20261014/S1、最終SHA f7e8bb8b1569cb45ac399108455a66c5922f64d7898e8ab6b4931ba13c856018。以下は途中と旧比較の引継ぎ履歴。
 
 2026-10-14 明示再開: goal「3まで進めてください」は直前回答の介入1件選定→10M/原品質で比較→有望条件だけ独立確認を再開する。[計画139](139_chat_lr_comparison_plan.md)。SFTのpeak LR1e-4→3e-5だけを変更し、同TRAIN/同親/教師量、新DEV＋既知3回帰を登録する。Base/Chat未採用、旧135の完了と不採用を保持。以下の停止状態は今回再開前の履歴。
 

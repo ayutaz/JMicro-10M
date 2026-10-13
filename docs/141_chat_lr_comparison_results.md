@@ -104,4 +104,4 @@ S0/S1とも全4セットの絶対品質を満たさない。新DEVの改善CI下
 
 [分岐記録](../reports/phase7/chat-lr-20261014/conditional_branches.json)はBase保持、sampling、fresh学習seed43、人間blind、fullDEV、封印TEST、採用の全てを `skipped_no_eligible_candidate`、executed=false、passed=false、quality_unconfirmed=trueとして保存した。分岐を判断済みであることと、独立確認の実行・品質合格は別。候補不合格をseed選別や中間保存点で救済しない。
 
-科学的な比較と3段階の分岐判断は完了。文書の最終整合、保存一覧、Windows/WSLのbyte一致、ローカルcommitと納品証拠の確認を終えるまでgoalはactive。モデル完成・採用は未達。Base復旧は[124](124_base_recovery_plan.md)の未再開の別経路として残し、証拠を満たすBaseで通知・停止の境界を維持する。
+科学的な比較と3段階の分岐判断は完了。[保存一覧](../reports/phase7/chat-lr-20261014/final_archive.json)と[納品確認](../reports/phase7/chat-lr-20261014/final_delivery_checks.json)で文書・Windows/WSLのbyte一致・ローカル結果commitを証明する。最終receipt commitの照合後にgoalを完了して停止する。モデル完成・採用は未達。Base復旧は[124](124_base_recovery_plan.md)の未再開の別経路として残し、証拠を満たすBaseで通知・停止の境界を維持する。
