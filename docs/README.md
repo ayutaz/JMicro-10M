@@ -1,12 +1,12 @@
 # 文書一覧
 
-最終更新: 2026-10-13 JST。**最新の比較は136で完了・不採用、次の提案は135で未実行。Base/Chat未完成・未採用、追加実験は停止中。** 文書の更新は学習の再開ではない。
+最終更新: 2026-10-13 JST。**前回の比較は136で完了・不採用。ユーザーの「6まで進めてください」により135を具体化した137の比較を再開し、新候補を実学習中。Base/Chatは未完成・未採用。** 新候補の品質・最終採否は未確認。
 
 ## 読む順序
 
 1. [現在の状態](autonomous_status.md)：実績、未達、停止範囲、保存先。
 2. [最新の最終結果136](136_chat_generalization_results.md)：D0/D1の全比較、NLL、回復条件、padding不採用、完了監査。
-3. [最新の改善計画135](135_chat_problem_solution_plan.md)：次の教材recipe比較案、QA・評価・予算・進行/停止条件。現在は未実行。
+3. [改善計画135](135_chat_problem_solution_plan.md) / [実行記録137](137_chat_semantic_diversity_execution.md)：教材recipe比較、TRAIN/DEV凍結、技術gate、実学習と残評価。
 4. [ロードマップ](15_project_roadmap.md) / [現在のチェックリスト](10_next_steps.md)：Phaseと証拠の到達点。
 5. [Windows/WSL引継ぎ](windows_handoff.md)：Git外の重み/data、元UI、必要時の復元と再開。
 6. [Base復旧計画124](124_base_recovery_plan.md)：Baseを先に復旧する代替経路。完成時に通知・停止。

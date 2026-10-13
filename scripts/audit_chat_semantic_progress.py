@@ -16,7 +16,8 @@ from jmicro.training import atomic_json
 from chat_semantic_contract import RUN, LIMITS, preflight, reference, require_ref
 from evaluate_chat_semantic import nll_windows
 from phase6_performance import alive
-from review_chat_semantic import get_items, fingerprint
+from review_chat_semantic import fingerprint
+from review_chat_semantic_observer import get_items
 
 
 def validate_generation_binding(evaluation, config, checkpoint, arm, point, suite):
