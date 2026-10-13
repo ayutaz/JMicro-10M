@@ -1,5 +1,7 @@
 # Windows / WSL 引継ぎ
 
+2026-10-13 明示再開: goal「6まで進めてください」で[137](137_chat_semantic_diversity_execution.md)の新比較を実行する。runは `reports/phase7/chat-semantic-diversity-20261013/`。実process/UI/lock/容量を確認し、新教材候補1件と専用契約・gate・全評価予算をそろえてから学習する。旧133の終了jobを復旧せず、元UIを保持し必要なGPU作業の終端で復帰する。以下の文書のみ/停止は再開前の納品時点の記録。
+
 最終更新: 2026-10-13 JST。**計画133の4項目は完了・不採用で閉鎖。Base/Chat未完成・未採用。現在の依頼は文書と計画の更新だけで、研究・教材準備・診断・評価・学習は停止中。** [最新状態](autonomous_status.md)、[最終結果136](136_chat_generalization_results.md)、[次の未実行計画135](135_chat_problem_solution_plan.md)を先に読む。旧128の入口実装やt3の残評価を再開手順へ戻さない。
 
 ## 正本と保存場所

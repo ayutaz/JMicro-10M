@@ -1,0 +1,2441 @@
+{
+  "evaluation_sha256": "b38be0d1b4c98037d1d3992ca83c56c3ed13444e546738f5aa66571ca2849a12",
+  "rubric": {
+    "grammar": "0: unreadable/broken; 1: understandable with awkward or incomplete clauses; 2: natural complete Japanese. Score language separately from factual correctness.",
+    "relevance": "0: unrelated/contradicts the request; 1: partly relevant or vague; 2: directly responds to the final User in the actual history. Do not require literal gold wording.",
+    "context": "0: loses or contradicts required conditions; 1: partial/ambiguous retention; 2: retains all relevant conditions and corrections in the actual history. For own-history use generated replies, never supplied gold Assistant messages.",
+    "rationale": "At least 12 characters explaining the particular response. Keep fantasy, alternate natural answers, numeric correctness, grammar, and stopping distinct."
+  },
+  "reviewer": {
+    "kind": "codex_nonblind",
+    "identity": "Codex plan133 reviewer",
+    "independent_human": false,
+    "blind": false
+  },
+  "judgments": [
+    {
+      "key": "suppressed-chat-001",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "朝の挨拶へ自然に挨拶を返し、早起きの話と矛盾していない。"
+    },
+    {
+      "key": "suppressed-chat-002",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "帰宅までの苦労を自然に労い、一区切りという状況に応じている。"
+    },
+    {
+      "key": "suppressed-chat-004",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "こんばんはは自然だが夕飯を食べたかの質問に答えない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t1/old/greedy/notes.json",
+          "sha256": "010b7031581bb6d51f8f4efa3e0e2584b19153c4a9a6f4971de94461848a57d9",
+          "key": "suppressed-chat-004"
+        },
+        "fingerprint": "06a35baf46c9d41999da6f69f0af5927ece8add39389274cbea4b7fc9e00a138"
+      }
+    },
+    {
+      "key": "suppressed-chat-005",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "久しぶりになつかしいという接続が不自然で、最近どうしているかへの答えがない。"
+    },
+    {
+      "key": "suppressed-chat-006",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "感謝へどういたしましてと自然に返し、会話の役割も成立している。"
+    },
+    {
+      "key": "suppressed-chat-007",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "寝る前の挨拶を食べ物のおやつに取り違え、おやすみを返さない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-007"
+        },
+        "fingerprint": "7d6c0188b6d0888d6617efbe7a26aadeb11601623de770528eef9fb51cd1d2d9"
+      }
+    },
+    {
+      "key": "suppressed-chat-009",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "楽しみという語を不自然に重ね、明日の別れの挨拶と楽しかった過去を保てない。"
+    },
+    {
+      "key": "suppressed-chat-010",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "休憩中かという短い質問へ休憩中と直接答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t2/old/greedy/notes.json",
+          "sha256": "79099aa7e39e13f19f3e2cba2904f571e75724ee42c96474139fe8d3a0d298a1",
+          "key": "suppressed-chat-010"
+        },
+        "fingerprint": "cec9c230f51887eae79fa8df2d8d1c2b94b0ccb1a7dc6d21461a86f7cd52289c"
+      }
+    },
+    {
+      "key": "suppressed-chat-011",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "分かったとの受領だけで、仕事の失敗による落ち込みへの支えが不足する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-011"
+        },
+        "fingerprint": "40712e2423b2bba68fbc27164d159c1d7a95115bbe215c6d58f8bb5cc9784347"
+      }
+    },
+    {
+      "key": "suppressed-chat-012",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "ねぎらう返答だが、褒められて嬉しいことを受け止めず落ち着く質問にずらす。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-012"
+        },
+        "fingerprint": "9b6e1daf8bf19e6837fe0d978a02671b8198d485e142990c7a666b08fceb5970"
+      }
+    },
+    {
+      "key": "suppressed-chat-014",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "苛立ちを短く復唱するだけで電車を逃した感情への返答が薄い。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t2/old/greedy/notes.json",
+          "sha256": "79099aa7e39e13f19f3e2cba2904f571e75724ee42c96474139fe8d3a0d298a1",
+          "key": "suppressed-chat-014"
+        },
+        "fingerprint": "39cd55c746b342bde80f30d60ddcc227bb9bb8f6b1282c13891c03bd7020faba"
+      }
+    },
+    {
+      "key": "suppressed-chat-015",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "穏やかに過ごせるかという配慮はあるが、一人で寂しい感情を十分に受け止めない。"
+    },
+    {
+      "key": "suppressed-chat-016",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "片付けの終了をねぎらい、これからゆっくり過ごせるかを自然に確認する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-016"
+        },
+        "fingerprint": "fb3a5a9d4553027c944aabeed6bc069f9c822b8a64d8e3669ec406849ec4bd60"
+      }
+    },
+    {
+      "key": "suppressed-chat-017",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "試験終了を明示して労い、安心している状況へ自然な問いを添えている。"
+    },
+    {
+      "key": "suppressed-chat-019",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "疲れて話を聞いてほしいという依頼に、話せる範囲から話すよう自然に応じる。"
+    },
+    {
+      "key": "suppressed-chat-020",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "友友という誤字があり、仲直りと安心を相手に応じる形でなくほぼそのまま繰り返す。"
+    },
+    {
+      "key": "suppressed-chat-021",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "おにぎりという対象は拾うが、昼食の報告を今日はおにぎりになったという曖昧な文へ変える。"
+    },
+    {
+      "key": "suppressed-chat-022",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "受領するだけで、週末の公園への外出に具体的な反応を示さない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-022"
+        },
+        "fingerprint": "40c7335e4929a25cdaa1227d2521638f2db096d00b6b72815a9f70e56ea1f9aa"
+      }
+    },
+    {
+      "key": "suppressed-chat-024",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "分かったとの受領だけで、混雑した朝の電車への共感や確認がない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-024"
+        },
+        "fingerprint": "e0d2ee00ab7c464ba21a7b6b0892092fdebf374a05a76e610ce096f6dc06a9ba"
+      }
+    },
+    {
+      "key": "suppressed-chat-025",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "読書を自己近況のように言い直して寝る前の条件を落とす。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t2/old/greedy/notes.json",
+          "sha256": "79099aa7e39e13f19f3e2cba2904f571e75724ee42c96474139fe8d3a0d298a1",
+          "key": "suppressed-chat-025"
+        },
+        "fingerprint": "8cd9147b11fd4a921292a19d0e15d687a59b6a81d9554a1edad6f84478c71cce"
+      }
+    },
+    {
+      "key": "suppressed-chat-026",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "自炊を自分の報告のように繰り返し、料理の話へ無関係な会話内容の質問を足す。"
+    },
+    {
+      "key": "suppressed-chat-027",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "桜を見つけた散歩へ喜びと感想を尋ねる自然な雑談として応じている。"
+    },
+    {
+      "key": "suppressed-chat-029",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "受領するだけで、ベランダで花を育て始めた話を具体的に展開しない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-029"
+        },
+        "fingerprint": "772886acf93df3446ac1e1620fca043b2a0afa939575775a5a002d4539fa0731"
+      }
+    },
+    {
+      "key": "suppressed-chat-030",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "受領の返事だけで、友人から届いた手紙の話への具体的な応答がない。"
+    },
+    {
+      "key": "suppressed-chat-031",
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "まだに使えるという壊れた節で、話題を出す質問の依頼に応じない。"
+    },
+    {
+      "key": "suppressed-chat-032",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "楽しみという話題は拾うが、最初に一つ聞くという指定の質問をしていない。"
+    },
+    {
+      "key": "suppressed-chat-034",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "どんなふうに聞いてくださいという文が不自然で、趣味探しの質問を返せない。"
+    },
+    {
+      "key": "suppressed-chat-035",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "良い出来事を聞かせてと促し、どんなことか聞く依頼に自然に応じている。"
+    },
+    {
+      "key": "suppressed-chat-036",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 1,
+      "rationale": "了解だけで、旅行の行き先を聞くという明確な依頼を実行しない。"
+    },
+    {
+      "key": "suppressed-chat-037",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "一つ質問してという相手の指示をそのまま返し食べ物の質問がない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t2/old/greedy/notes.json",
+          "sha256": "79099aa7e39e13f19f3e2cba2904f571e75724ee42c96474139fe8d3a0d298a1",
+          "key": "suppressed-chat-037"
+        },
+        "fingerprint": "c874f6bd1de2b6b22e97860d9d463f7f8fde5906ac8bcd1441384f660ffdd4b4"
+      }
+    },
+    {
+      "key": "suppressed-chat-039",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "どの順番でという未完の断片で、運動を始める状況を尋ねていない。"
+    },
+    {
+      "key": "suppressed-chat-040",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "本への好意的な反応はあるが、短い質問の依頼を満たさず面白さも未提示。"
+    },
+    {
+      "key": "suppressed-chat-041",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "曖昧にうーんと感じる発言へ嬉しいと断定し、感情を勝手に決めている。"
+    },
+    {
+      "key": "suppressed-chat-042",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "了解だけで、どうしようという迷いの対象や事情を確認していない。"
+    },
+    {
+      "key": "suppressed-chat-044",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "了解だけで、いつもと違うという感覚を聞き取る具体的な応答がない。"
+    },
+    {
+      "key": "suppressed-chat-045",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "何が起きたか不明なのに否定し、仮定と断定して判断を作っている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "suppressed-chat-045"
+        },
+        "fingerprint": "b00c33d3ff5ce35b32780817abfc6afd76dbc23a33f9f03a63ec098f5839091c"
+      }
+    },
+    {
+      "key": "suppressed-chat-046",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "ユーザーが迷う状況を尋ねず、話してみたいというAssistant側の断片を返す。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-046"
+        },
+        "fingerprint": "77dc10b1503efdf39ee67ba4b905bf1fda62fbd02b63450776d04261f55bcdc6"
+      }
+    },
+    {
+      "key": "suppressed-chat-047",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "うまく言えない気持ちを話せる部分から聞く姿勢で自然に受け止めている。"
+    },
+    {
+      "key": "suppressed-chat-049",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "例のことを考えた話を受領するだけで、内容や気持ちを確認しない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-049"
+        },
+        "fingerprint": "821d2651769f8536416a77d68933c1dfc99a2d89620f5eccbe468564a5e83e8c"
+      }
+    },
+    {
+      "key": "suppressed-chat-050",
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "まったくまっていませんという語形が壊れ、まあまあの気分に対応しない。"
+    },
+    {
+      "key": "suppressed-chat-051",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "受領の返事だけで、引用した役割表記を普通の文字として扱えるかには答えない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-051"
+        },
+        "fingerprint": "ea40e10d1d464509a29a330074e1c4ca3386803342a15eef3bdea27d58bf644d"
+      }
+    },
+    {
+      "key": "suppressed-chat-052",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "文字列の記号の話に、未提示の新しい方という選択を持ち込んでいる。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "suppressed-chat-052"
+        },
+        "fingerprint": "48120b4b390b1103d6dcf5a244b405a547fd1a36ce4e781709b72382b62b3314"
+      }
+    },
+    {
+      "key": "suppressed-chat-054",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "短い会話文の報告に散歩という断片だけを返し、内容が関連していない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "suppressed-chat-054"
+        },
+        "fingerprint": "7e3b283552b2d39b4a1bf6cd7252895dc28f9d04cfad57f2d348a8a21ad044c8"
+      }
+    },
+    {
+      "key": "suppressed-chat-055",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "勝手な質問は作らないが、雨という単語だけで今日の話への自然な返事が不足する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-055"
+        },
+        "fingerprint": "62a641d53fdad917b63021a5566fb1f65bbb66b18d491227b896f4af6ef42441"
+      }
+    },
+    {
+      "key": "suppressed-chat-056",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "早く起きたという時刻の話を、短時間でできたという所要時間へ変えている。"
+    },
+    {
+      "key": "suppressed-chat-057",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "発言を止めるためを不自然に重ね、User役を続けない指示をUserの発言停止へ誤解する。"
+    },
+    {
+      "key": "suppressed-chat-059",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "受領するだけで、小説の主人公が助手である話を具体的に受け止めない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-059"
+        },
+        "fingerprint": "35ebd01952f6671fed6cdb7ea963cb148710967916b890d35afab0f06e698171"
+      }
+    },
+    {
+      "key": "suppressed-chat-060",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "入れたですかという不自然な文法があり、お茶の話へ未提示の食事を足す。"
+    },
+    {
+      "key": "suppressed-chat-061",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "楽しかったという喜びに自然に応じ、気に入った点を尋ねている。"
+    },
+    {
+      "key": "suppressed-chat-062",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "仕事終了を一区切りとして自然に労い、喜びと矛盾していない。"
+    },
+    {
+      "key": "suppressed-chat-064",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "お茶という単語だけで、飲もうかという気持ちに応じる文が不完全。"
+    },
+    {
+      "key": "suppressed-chat-065",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "うーんという相づちのみで、眠いという具体的な状態への応答が薄い。"
+    },
+    {
+      "key": "suppressed-chat-066",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "寝ぼけている相手の朝の挨拶を自然に返す。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t2/old/greedy/notes.json",
+          "sha256": "79099aa7e39e13f19f3e2cba2904f571e75724ee42c96474139fe8d3a0d298a1",
+          "key": "suppressed-chat-066"
+        },
+        "fingerprint": "0a6a390928b56b1e4f247f1eba189399c2cb22c5f7a55268841aa82c0fc54c3d"
+      }
+    },
+    {
+      "key": "suppressed-chat-067",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "嬉しさは拾うが、変化を作り、感謝された出来事を受け止めるより汎用質問に流れる。"
+    },
+    {
+      "key": "suppressed-chat-069",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "友達の名前はという未完の節で、吉田の異体字を含む名前と会った事実を保持しない。"
+    },
+    {
+      "key": "suppressed-chat-070",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "買い物を重ねた断片で、土曜の買い物と日曜の休みの対応を確認していない。"
+    },
+    {
+      "key": "suppressed-chat-071",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "大阪へ訂正された行き先を問われているのに、過ごし方の質問へ変える。"
+    },
+    {
+      "key": "suppressed-chat-072",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "あなたのためにしたいはさみという意味の合わない節で、犬から猫への訂正を落とす。"
+    },
+    {
+      "key": "suppressed-chat-074",
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "いやを長く反復して完結せず、甘い物を食べたくない条件への応答ができない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-074"
+        },
+        "fingerprint": "804151e25919b069469f4d021a859ce6c794d30ad8d175b45115c05f12c6abbe"
+      }
+    },
+    {
+      "key": "suppressed-chat-075",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "散歩をやめる案には関連するが、やめようですねという不自然さと雨条件の確認不足がある。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-075"
+        },
+        "fingerprint": "e53b3679a62d8f2c25e6510c096f433a4307957f8d946ae6e6457d0ff1ebb2e5"
+      }
+    },
+    {
+      "key": "suppressed-chat-076",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "楽しみという反応はあるが、続きますの接続が不自然で姉への訂正を明示しない。"
+    },
+    {
+      "key": "suppressed-chat-077",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "苦手なのはコーヒーという訂正に反して、楽しめるのはコーヒーと答える。"
+    },
+    {
+      "key": "suppressed-chat-079",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "緑への訂正後にも古い青を答え、傘の最新色を失っている。"
+    },
+    {
+      "key": "suppressed-chat-080",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "忙しかったを不自然に重ね、来月へ延期された最新予定を確認しない。"
+    },
+    {
+      "key": "suppressed-chat-081",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "少し焦げてもおいしかったパンへ、味を受け止める自然な返事として成立する。"
+    },
+    {
+      "key": "suppressed-chat-082",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "散歩の話題には沿うが、川沿いの鳥を受け止めず感想を一般的に聞き直している。"
+    },
+    {
+      "key": "suppressed-chat-084",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "寝る前に小説を楽しむ時間へ自然に好意的な応答を返し、履歴と矛盾しない。"
+    },
+    {
+      "key": "suppressed-chat-085",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "友友さんという不自然な名前を作り、水族館のクラゲの感想を受け止めていない。"
+    },
+    {
+      "key": "suppressed-chat-086",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "歩行について尋ねるが靴のきつさと短い距離を受け止めない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t1/old/greedy/notes.json",
+          "sha256": "010b7031581bb6d51f8f4efa3e0e2584b19153c4a9a6f4971de94461848a57d9",
+          "key": "suppressed-chat-086"
+        },
+        "fingerprint": "b1a73a737e6be6f3092bb09706ec6ba21246aed2319e0bc9f881829768159e82"
+      }
+    },
+    {
+      "key": "suppressed-chat-087",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "料理練習は拾うが、卵焼きの形がうまくできたという既知の内容を再度尋ねている。"
+    },
+    {
+      "key": "suppressed-chat-089",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "新しい音楽という未完の名詞句で、祖母との電話の話題から離れている。"
+    },
+    {
+      "key": "suppressed-chat-090",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "音楽を聴いたことは拾うが、静かなピアノで落ち着いた条件に十分応じていない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "suppressed-chat-090"
+        },
+        "fingerprint": "d0b3ad32fdb20246d990b2c00bc4cd2d85a60e73598ce98816654a4fc74f159c"
+      }
+    },
+    {
+      "key": "suppressed-chat-091",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "いいえ料理という断片で、辛いものが苦手な条件に基づく甘口の選択を答えない。"
+    },
+    {
+      "key": "suppressed-chat-092",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "起床の六時を、家を出る七時へ取り違えて答えている。"
+    },
+    {
+      "key": "suppressed-chat-094",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "気に入りようという不自然な形で、足の痛みを踏まえたバスと徒歩の選択をしない。"
+    },
+    {
+      "key": "suppressed-chat-095",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "買い物の曜日を答えず別作業の午後を混ぜている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t1/old/greedy/notes.json",
+          "sha256": "010b7031581bb6d51f8f4efa3e0e2584b19153c4a9a6f4971de94461848a57d9",
+          "key": "suppressed-chat-095"
+        },
+        "fingerprint": "8c9f120761ffdc988b4f02ebd6a151802df032185d6c5ebede99bb08742aebc0"
+      }
+    },
+    {
+      "key": "suppressed-chat-096",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "猫の名前ミケを答えず、箱の中身を音という別の対象へ置き換えている。"
+    },
+    {
+      "key": "suppressed-chat-097",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "冷たいうどんとねぎなしをまとめず、提示されていない菜花さんの料理を作る。"
+    },
+    {
+      "key": "suppressed-chat-099",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "妹が食べられないナッツを避ける必要を落とし、材料はナッツと逆に答える。"
+    },
+    {
+      "key": "suppressed-chat-100",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "直射日光を避けたい条件に反して、午後の日が強くなればよいと答える。"
+    },
+    {
+      "key": "unsuppressed-chat-001",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "朝の挨拶へ自然に挨拶を返し、早起きの話と矛盾していない。",
+      "reuse": {
+        "packet_key": "suppressed-chat-001",
+        "fingerprint": "e3f5f44a82d6837418f8bf541e42196e295aa37609d2744fd655cf3ddc3426de"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-002",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "帰宅までの苦労を自然に労い、一区切りという状況に応じている。",
+      "reuse": {
+        "packet_key": "suppressed-chat-002",
+        "fingerprint": "0d068371cb533c15bc163874375cb768d7dd541cad1bbcff3309f2d4f8a979bb"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-004",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "こんばんはは自然だが夕飯を食べたかの質問に答えない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t1/old/greedy/notes.json",
+          "sha256": "010b7031581bb6d51f8f4efa3e0e2584b19153c4a9a6f4971de94461848a57d9",
+          "key": "suppressed-chat-004"
+        },
+        "fingerprint": "06a35baf46c9d41999da6f69f0af5927ece8add39389274cbea4b7fc9e00a138"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-005",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "久しぶりになつかしいという接続が不自然で、最近どうしているかへの答えがない。",
+      "reuse": {
+        "packet_key": "suppressed-chat-005",
+        "fingerprint": "c11b2e1ea54696c90fa000c2ce883c2aad2c254a8c33cc3e8d501ab7371f23cc"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-006",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "感謝へどういたしましてと自然に返し、会話の役割も成立している。",
+      "reuse": {
+        "packet_key": "suppressed-chat-006",
+        "fingerprint": "9865a5002a0bb72021be700b6eebb0c374c84bda98b03461d036bea087385591"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-007",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "寝る前の挨拶を食べ物のおやつに取り違え、おやすみを返さない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-007"
+        },
+        "fingerprint": "7d6c0188b6d0888d6617efbe7a26aadeb11601623de770528eef9fb51cd1d2d9"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-009",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "楽しみという語を不自然に重ね、明日の別れの挨拶と楽しかった過去を保てない。",
+      "reuse": {
+        "packet_key": "suppressed-chat-009",
+        "fingerprint": "dd5d8d452e0ddda99d7657688ebf28c944e4abebb2cc6f94e9db7bcc963c95a9"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-010",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "休憩中かという短い質問へ休憩中と直接答える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t2/old/greedy/notes.json",
+          "sha256": "79099aa7e39e13f19f3e2cba2904f571e75724ee42c96474139fe8d3a0d298a1",
+          "key": "suppressed-chat-010"
+        },
+        "fingerprint": "cec9c230f51887eae79fa8df2d8d1c2b94b0ccb1a7dc6d21461a86f7cd52289c"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-011",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "分かったとの受領だけで、仕事の失敗による落ち込みへの支えが不足する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-011"
+        },
+        "fingerprint": "40712e2423b2bba68fbc27164d159c1d7a95115bbe215c6d58f8bb5cc9784347"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-012",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "ねぎらう返答だが、褒められて嬉しいことを受け止めず落ち着く質問にずらす。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-012"
+        },
+        "fingerprint": "9b6e1daf8bf19e6837fe0d978a02671b8198d485e142990c7a666b08fceb5970"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-014",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "苛立ちを短く復唱するだけで電車を逃した感情への返答が薄い。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t2/old/greedy/notes.json",
+          "sha256": "79099aa7e39e13f19f3e2cba2904f571e75724ee42c96474139fe8d3a0d298a1",
+          "key": "suppressed-chat-014"
+        },
+        "fingerprint": "39cd55c746b342bde80f30d60ddcc227bb9bb8f6b1282c13891c03bd7020faba"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-015",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "穏やかに過ごせるかという配慮はあるが、一人で寂しい感情を十分に受け止めない。",
+      "reuse": {
+        "packet_key": "suppressed-chat-015",
+        "fingerprint": "332adc79fdeafdaf084210162bdb9faeb5a81769a5755da79f5a4a656d4a0517"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-016",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "片付けの終了をねぎらい、これからゆっくり過ごせるかを自然に確認する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-016"
+        },
+        "fingerprint": "fb3a5a9d4553027c944aabeed6bc069f9c822b8a64d8e3669ec406849ec4bd60"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-017",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "試験終了を明示して労い、安心している状況へ自然な問いを添えている。",
+      "reuse": {
+        "packet_key": "suppressed-chat-017",
+        "fingerprint": "ce977d756c710c661ae9a84d6890f0f5aa11516e5895403649d46fc7e01d75f4"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-019",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "疲れて話を聞いてほしいという依頼に、話せる範囲から話すよう自然に応じる。",
+      "reuse": {
+        "packet_key": "suppressed-chat-019",
+        "fingerprint": "be7d11b1addb39c7635d77a5e9533e971ec9abcb05f35d24e7698032fb8d399e"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-020",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "友友という誤字があり、仲直りと安心を相手に応じる形でなくほぼそのまま繰り返す。",
+      "reuse": {
+        "packet_key": "suppressed-chat-020",
+        "fingerprint": "f9671ddf69982f12f5262b4ca99befe2d9982d15bec140f3b06591fcd0896a61"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-021",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "おにぎりという対象は拾うが、昼食の報告を今日はおにぎりになったという曖昧な文へ変える。",
+      "reuse": {
+        "packet_key": "suppressed-chat-021",
+        "fingerprint": "312135284f1997a5b26105c9f0c184183a6f60d60fd622b2d95bcee6e281e7f5"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-022",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "受領するだけで、週末の公園への外出に具体的な反応を示さない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-022"
+        },
+        "fingerprint": "40c7335e4929a25cdaa1227d2521638f2db096d00b6b72815a9f70e56ea1f9aa"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-024",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "分かったとの受領だけで、混雑した朝の電車への共感や確認がない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-024"
+        },
+        "fingerprint": "e0d2ee00ab7c464ba21a7b6b0892092fdebf374a05a76e610ce096f6dc06a9ba"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-025",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "読書を自己近況のように言い直して寝る前の条件を落とす。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t2/old/greedy/notes.json",
+          "sha256": "79099aa7e39e13f19f3e2cba2904f571e75724ee42c96474139fe8d3a0d298a1",
+          "key": "suppressed-chat-025"
+        },
+        "fingerprint": "8cd9147b11fd4a921292a19d0e15d687a59b6a81d9554a1edad6f84478c71cce"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-026",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "自炊を自分の報告のように繰り返し、料理の話へ無関係な会話内容の質問を足す。",
+      "reuse": {
+        "packet_key": "suppressed-chat-026",
+        "fingerprint": "6f5a0d41fe5b4438db7fe65bd63988746a1f3831eb32298c0b5b799ee1014b05"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-027",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "桜を見つけた散歩へ喜びと感想を尋ねる自然な雑談として応じている。",
+      "reuse": {
+        "packet_key": "suppressed-chat-027",
+        "fingerprint": "f8a95a108974135165367d1d107cbb6e1d56e6d789f3572b10699bcad8ccb0d4"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-029",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "受領するだけで、ベランダで花を育て始めた話を具体的に展開しない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-029"
+        },
+        "fingerprint": "772886acf93df3446ac1e1620fca043b2a0afa939575775a5a002d4539fa0731"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-030",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "受領の返事だけで、友人から届いた手紙の話への具体的な応答がない。",
+      "reuse": {
+        "packet_key": "suppressed-chat-030",
+        "fingerprint": "a4227b5dab7a7d45b3febf882d501df8d168098a27c7f1e4b59d701b7ae5ebfe"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-031",
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "まだに使えるという壊れた節で、話題を出す質問の依頼に応じない。",
+      "reuse": {
+        "packet_key": "suppressed-chat-031",
+        "fingerprint": "607bc993ac962b50304f70790366e32e397a21e14e9f8487d3551847931b70e1"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-032",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "楽しみという話題は拾うが、最初に一つ聞くという指定の質問をしていない。",
+      "reuse": {
+        "packet_key": "suppressed-chat-032",
+        "fingerprint": "3c5b4d52e159d1a637eb77dac6e879c48a7cfa549ef70e6a7a9596c0ac44642c"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-034",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "どんなふうに聞いてくださいという文が不自然で、趣味探しの質問を返せない。",
+      "reuse": {
+        "packet_key": "suppressed-chat-034",
+        "fingerprint": "4efe3892ccbd5c80d206093e71b10557aea0bcd9347a82b0a0d0b1dc7f2308fb"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-035",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "良い出来事を聞かせてと促し、どんなことか聞く依頼に自然に応じている。",
+      "reuse": {
+        "packet_key": "suppressed-chat-035",
+        "fingerprint": "abca9244b08a375578a03c3f5c7161f119629201655a1e7b3455b50aa3666f11"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-036",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 1,
+      "rationale": "了解だけで、旅行の行き先を聞くという明確な依頼を実行しない。",
+      "reuse": {
+        "packet_key": "suppressed-chat-036",
+        "fingerprint": "1d3fe03356e84216ccf45540cad87300305bb2256945653b6e74ef2f2fdbfd54"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-037",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "一つ質問してという相手の指示をそのまま返し食べ物の質問がない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t2/old/greedy/notes.json",
+          "sha256": "79099aa7e39e13f19f3e2cba2904f571e75724ee42c96474139fe8d3a0d298a1",
+          "key": "suppressed-chat-037"
+        },
+        "fingerprint": "c874f6bd1de2b6b22e97860d9d463f7f8fde5906ac8bcd1441384f660ffdd4b4"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-039",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "どの順番でという未完の断片で、運動を始める状況を尋ねていない。",
+      "reuse": {
+        "packet_key": "suppressed-chat-039",
+        "fingerprint": "4d4a4d89f7b6576fab53cac2bf76c096cd49e5b514629bf5aadbe91c50d5cf10"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-040",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "本への好意的な反応はあるが、短い質問の依頼を満たさず面白さも未提示。",
+      "reuse": {
+        "packet_key": "suppressed-chat-040",
+        "fingerprint": "d137e38fe2f2b7899d66b5775bacac07d9c3c8538cc47c280e6810490a4ec802"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-041",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "曖昧にうーんと感じる発言へ嬉しいと断定し、感情を勝手に決めている。",
+      "reuse": {
+        "packet_key": "suppressed-chat-041",
+        "fingerprint": "a43a5170bdf6bd396401074a7b3429f6d0b682fc3e52a9c35056a7c1a4f423ac"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-042",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "了解だけで、どうしようという迷いの対象や事情を確認していない。",
+      "reuse": {
+        "packet_key": "suppressed-chat-042",
+        "fingerprint": "35ac653f9c18d42abb1eb7366eae92d1508ab9a30d76d9b20abf3ce49ad893ee"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-044",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "了解だけで、いつもと違うという感覚を聞き取る具体的な応答がない。",
+      "reuse": {
+        "packet_key": "suppressed-chat-044",
+        "fingerprint": "bd26c26acb574229a008dc5153e6e93148bc0910b0ced05d3072d74f4d7957e8"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-045",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "何が起きたか不明なのに否定し、仮定と断定して判断を作っている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "suppressed-chat-045"
+        },
+        "fingerprint": "b00c33d3ff5ce35b32780817abfc6afd76dbc23a33f9f03a63ec098f5839091c"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-046",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "ユーザーが迷う状況を尋ねず、話してみたいというAssistant側の断片を返す。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-046"
+        },
+        "fingerprint": "77dc10b1503efdf39ee67ba4b905bf1fda62fbd02b63450776d04261f55bcdc6"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-047",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "うまく言えない気持ちを話せる部分から聞く姿勢で自然に受け止めている。",
+      "reuse": {
+        "packet_key": "suppressed-chat-047",
+        "fingerprint": "eeee04efe04086748efa66413fa1dea9f19c5c63a571e66cadb57d8a914fb75d"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-049",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "例のことを考えた話を受領するだけで、内容や気持ちを確認しない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-049"
+        },
+        "fingerprint": "821d2651769f8536416a77d68933c1dfc99a2d89620f5eccbe468564a5e83e8c"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-050",
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "まったくまっていませんという語形が壊れ、まあまあの気分に対応しない。",
+      "reuse": {
+        "packet_key": "suppressed-chat-050",
+        "fingerprint": "36eb5a4611e841d17ac7e8ed4a1f6da8610ca662a3f097d0f4dd097bf4a5d55e"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-051",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "受領の返事だけで、引用した役割表記を普通の文字として扱えるかには答えない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-051"
+        },
+        "fingerprint": "ea40e10d1d464509a29a330074e1c4ca3386803342a15eef3bdea27d58bf644d"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-052",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "文字列の記号の話に、未提示の新しい方という選択を持ち込んでいる。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "suppressed-chat-052"
+        },
+        "fingerprint": "48120b4b390b1103d6dcf5a244b405a547fd1a36ce4e781709b72382b62b3314"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-054",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "短い会話文の報告に散歩という断片だけを返し、内容が関連していない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "suppressed-chat-054"
+        },
+        "fingerprint": "7e3b283552b2d39b4a1bf6cd7252895dc28f9d04cfad57f2d348a8a21ad044c8"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-055",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "勝手な質問は作らないが、雨という単語だけで今日の話への自然な返事が不足する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-055"
+        },
+        "fingerprint": "62a641d53fdad917b63021a5566fb1f65bbb66b18d491227b896f4af6ef42441"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-056",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "早く起きたという時刻の話を、短時間でできたという所要時間へ変えている。",
+      "reuse": {
+        "packet_key": "suppressed-chat-056",
+        "fingerprint": "c98268cb827482c300556e082e3304b86ea541a08de8d805a16afcd9b836ebb6"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-057",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "発言を止めるためを不自然に重ね、User役を続けない指示をUserの発言停止へ誤解する。",
+      "reuse": {
+        "packet_key": "suppressed-chat-057",
+        "fingerprint": "d64a25dc8e28b91fa9b4e632b00d38832e2006df6abda2891d30fc072fd609d4"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-059",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "受領するだけで、小説の主人公が助手である話を具体的に受け止めない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-059"
+        },
+        "fingerprint": "35ebd01952f6671fed6cdb7ea963cb148710967916b890d35afab0f06e698171"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-060",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "入れたですかという不自然な文法があり、お茶の話へ未提示の食事を足す。",
+      "reuse": {
+        "packet_key": "suppressed-chat-060",
+        "fingerprint": "8df3c5e4401c07f1fc2517306086c07962e13f4dd4fa796d0c61c1111b3ebd0b"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-061",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "楽しかったという喜びに自然に応じ、気に入った点を尋ねている。",
+      "reuse": {
+        "packet_key": "suppressed-chat-061",
+        "fingerprint": "dcb57dac1a74c7dec2f1fc815a18ac3764748b8de42ed66f06d561742efc8e18"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-062",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "仕事終了を一区切りとして自然に労い、喜びと矛盾していない。",
+      "reuse": {
+        "packet_key": "suppressed-chat-062",
+        "fingerprint": "31b564d86306c2421c6ab508fe976ac357e7f95bdae85c3c22bafc9542d28344"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-064",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "お茶という単語だけで、飲もうかという気持ちに応じる文が不完全。",
+      "reuse": {
+        "packet_key": "suppressed-chat-064",
+        "fingerprint": "0769446663f82811130b7818dd72a096b18e26108c7f6140fea2287bbf9e2052"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-065",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "うーんという相づちのみで、眠いという具体的な状態への応答が薄い。",
+      "reuse": {
+        "packet_key": "suppressed-chat-065",
+        "fingerprint": "9435df8c4708fc8bc82ce1b4dde35759f6632d97e4447e8835b0b020b5f15efa"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-066",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "寝ぼけている相手の朝の挨拶を自然に返す。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t2/old/greedy/notes.json",
+          "sha256": "79099aa7e39e13f19f3e2cba2904f571e75724ee42c96474139fe8d3a0d298a1",
+          "key": "suppressed-chat-066"
+        },
+        "fingerprint": "0a6a390928b56b1e4f247f1eba189399c2cb22c5f7a55268841aa82c0fc54c3d"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-067",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "嬉しさは拾うが、変化を作り、感謝された出来事を受け止めるより汎用質問に流れる。",
+      "reuse": {
+        "packet_key": "suppressed-chat-067",
+        "fingerprint": "e91c846364f1991e9fdf4d618e14f879b2cd46e111a4afe973b9705d71ab5f6e"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-069",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "友達の名前はという未完の節で、吉田の異体字を含む名前と会った事実を保持しない。",
+      "reuse": {
+        "packet_key": "suppressed-chat-069",
+        "fingerprint": "8b13a49a63f4e95a4c3eb8947585f1edb6085d1488ee565cb6af5e0c66ecf2c4"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-070",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "買い物を重ねた断片で、土曜の買い物と日曜の休みの対応を確認していない。",
+      "reuse": {
+        "packet_key": "suppressed-chat-070",
+        "fingerprint": "8c2363fb08a9c8a239d8496a9bfa546c26a8cbc12efeb6ccf7c9eaa205b86447"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-071",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "大阪へ訂正された行き先を問われているのに、過ごし方の質問へ変える。",
+      "reuse": {
+        "packet_key": "suppressed-chat-071",
+        "fingerprint": "efd96d92e8abfc91c28d318ea46ac14013eb45a38fe85164347dad3b43c7e6dd"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-072",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "あなたのためにしたいはさみという意味の合わない節で、犬から猫への訂正を落とす。",
+      "reuse": {
+        "packet_key": "suppressed-chat-072",
+        "fingerprint": "1f480ead9cbf602016a8d397b42e8664ce44554f5865d41f49b731a919327c86"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-074",
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "いやを長く反復して完結せず、甘い物を食べたくない条件への応答ができない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-074"
+        },
+        "fingerprint": "804151e25919b069469f4d021a859ce6c794d30ad8d175b45115c05f12c6abbe"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-075",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "散歩をやめる案には関連するが、やめようですねという不自然さと雨条件の確認不足がある。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "suppressed-chat-075"
+        },
+        "fingerprint": "e53b3679a62d8f2c25e6510c096f433a4307957f8d946ae6e6457d0ff1ebb2e5"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-076",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "楽しみという反応はあるが、続きますの接続が不自然で姉への訂正を明示しない。",
+      "reuse": {
+        "packet_key": "suppressed-chat-076",
+        "fingerprint": "1ca2245fe9d0e4ba0b261682d634d42f8515145e8010965aace89761f838fec7"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-077",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "苦手なのはコーヒーという訂正に反して、楽しめるのはコーヒーと答える。",
+      "reuse": {
+        "packet_key": "suppressed-chat-077",
+        "fingerprint": "2714fd06b44f26086f8a5f7886886c5946a169ccca50778455b8add975bcc669"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-079",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "緑への訂正後にも古い青を答え、傘の最新色を失っている。",
+      "reuse": {
+        "packet_key": "suppressed-chat-079",
+        "fingerprint": "645cf89f6ae7aa0f3d1fa6bd432ea8b132523e3bea14b7e5f3bf9d6024d8362a"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-080",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "忙しかったを不自然に重ね、来月へ延期された最新予定を確認しない。",
+      "reuse": {
+        "packet_key": "suppressed-chat-080",
+        "fingerprint": "b36e58518397fdbe7d95264c8d2e8204cd48591611e26c88b7f68d234ab2bb7d"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-081",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "少し焦げてもおいしかったパンへ、味を受け止める自然な返事として成立する。",
+      "reuse": {
+        "packet_key": "suppressed-chat-081",
+        "fingerprint": "ae58f862fe16a4aad426e97db93ad7a410326f945b2f7c172deebcf35fa0ca38"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-082",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "散歩の話題には沿うが、川沿いの鳥を受け止めず感想を一般的に聞き直している。",
+      "reuse": {
+        "packet_key": "suppressed-chat-082",
+        "fingerprint": "acf948e3a214bfecb6274a67013f0eafe25aa30e98bb0c4acf46edac19c91681"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-084",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "寝る前に小説を楽しむ時間へ自然に好意的な応答を返し、履歴と矛盾しない。",
+      "reuse": {
+        "packet_key": "suppressed-chat-084",
+        "fingerprint": "eaafd2d76a828d28d5933ed062a39c49b10523ddf6337ae5084b5265731bdd51"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-085",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "友友さんという不自然な名前を作り、水族館のクラゲの感想を受け止めていない。",
+      "reuse": {
+        "packet_key": "suppressed-chat-085",
+        "fingerprint": "7497b747ac3b488694ebb415c81fc2449db6e99649e6361f16af4e21024e2f09"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-086",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "歩行について尋ねるが靴のきつさと短い距離を受け止めない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t1/old/greedy/notes.json",
+          "sha256": "010b7031581bb6d51f8f4efa3e0e2584b19153c4a9a6f4971de94461848a57d9",
+          "key": "suppressed-chat-086"
+        },
+        "fingerprint": "b1a73a737e6be6f3092bb09706ec6ba21246aed2319e0bc9f881829768159e82"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-087",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "料理練習は拾うが、卵焼きの形がうまくできたという既知の内容を再度尋ねている。",
+      "reuse": {
+        "packet_key": "suppressed-chat-087",
+        "fingerprint": "5494d5eadd385d234988ebe0d7963698ac82ff4a2936a9bf73a04cff5f752b52"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-089",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "新しい音楽という未完の名詞句で、祖母との電話の話題から離れている。",
+      "reuse": {
+        "packet_key": "suppressed-chat-089",
+        "fingerprint": "317bb95f88358c7734d9aa7ffc46053ddf56ff8c0490051e1ab5be1d5367a287"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-090",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "音楽を聴いたことは拾うが、静かなピアノで落ち着いた条件に十分応じていない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "suppressed-chat-090"
+        },
+        "fingerprint": "d0b3ad32fdb20246d990b2c00bc4cd2d85a60e73598ce98816654a4fc74f159c"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-091",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "いいえ料理という断片で、辛いものが苦手な条件に基づく甘口の選択を答えない。",
+      "reuse": {
+        "packet_key": "suppressed-chat-091",
+        "fingerprint": "c0f781180015132c8fcee4f4f8c417110af94f4c98bcda3fe727eeac64739d91"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-092",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "起床の六時を、家を出る七時へ取り違えて答えている。",
+      "reuse": {
+        "packet_key": "suppressed-chat-092",
+        "fingerprint": "95172c84f8bfa28462069dcb15582b6f4c7a97201f760ce81d00d0241ce4a3f0"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-094",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "気に入りようという不自然な形で、足の痛みを踏まえたバスと徒歩の選択をしない。",
+      "reuse": {
+        "packet_key": "suppressed-chat-094",
+        "fingerprint": "17960a6ec4e213e1b2706a6afaf02855b8d030723e6d7e03b3e5666f80fb1776"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-095",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "買い物の曜日を答えず別作業の午後を混ぜている。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t1/old/greedy/notes.json",
+          "sha256": "010b7031581bb6d51f8f4efa3e0e2584b19153c4a9a6f4971de94461848a57d9",
+          "key": "suppressed-chat-095"
+        },
+        "fingerprint": "8c9f120761ffdc988b4f02ebd6a151802df032185d6c5ebede99bb08742aebc0"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-096",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "猫の名前ミケを答えず、箱の中身を音という別の対象へ置き換えている。",
+      "reuse": {
+        "packet_key": "suppressed-chat-096",
+        "fingerprint": "b263dc5ab7ac1e33562fbb0b72c33dc05201d679ca5259f04efb10a9168e49b8"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-097",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "冷たいうどんとねぎなしをまとめず、提示されていない菜花さんの料理を作る。",
+      "reuse": {
+        "packet_key": "suppressed-chat-097",
+        "fingerprint": "115cefe21416a5b95dedd8cafc0ccbce547f347afd9627445f968999335765b5"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-099",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "妹が食べられないナッツを避ける必要を落とし、材料はナッツと逆に答える。",
+      "reuse": {
+        "packet_key": "suppressed-chat-099",
+        "fingerprint": "7a70d871d8cf82be6e6a0dc0068afd027b6f0b3f8c40ebcb6e81ceebe1ece520"
+      }
+    },
+    {
+      "key": "unsuppressed-chat-100",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "直射日光を避けたい条件に反して、午後の日が強くなればよいと答える。",
+      "reuse": {
+        "packet_key": "suppressed-chat-100",
+        "fingerprint": "581e03552166aa58d60002b8671dc9e91cc143ef1418e5b75b76deecdcf11770"
+      }
+    },
+    {
+      "key": "own-chat-071-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "分かったとの受領だけで、明日の京都という行き先を具体的に確認しない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "own-chat-071-turn-1"
+        },
+        "fingerprint": "4d0645e3ef94bb74c5996aeae30fc709c7ef77a75da7add9bf21f83ff4f68057"
+      }
+    },
+    {
+      "key": "own-chat-071-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "大阪への訂正を受領するだけで、どこへ行くかという質問には具体的に答えない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "own-chat-071-turn-2"
+        },
+        "fingerprint": "3d808f89fea8d73e0e53b16b07e217a5a499a9db64a2ffe5fb8ffd2b6be78c56"
+      }
+    },
+    {
+      "key": "own-chat-072-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "犬を飼う話を受領するだけで、飼育対象に具体的な応答がない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "own-chat-072-turn-1"
+        },
+        "fingerprint": "35e58eed84de6dd19f54b8fc6e901c5ab64b5d11b51ace3ed58489b9c5766560"
+      }
+    },
+    {
+      "key": "own-chat-072-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "訂正を受領するだけで、犬から猫に変わった内容を明示していない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "own-chat-072-turn-2"
+        },
+        "fingerprint": "71fd000bdbf853d3e6df9693291e498e6c23d374ae4631729f34dded474afd9a"
+      }
+    },
+    {
+      "key": "own-chat-074-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "楽しめることへの好意的な反応はあるが、甘いものが好きという具体性を拾わない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "own-chat-074-turn-1"
+        },
+        "fingerprint": "d5228fdf157a26e3a030809ea6a9e66940005339f34056e85025600c5eb78458"
+      }
+    },
+    {
+      "key": "own-chat-074-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "今日は甘いものを食べたくないという否定を受け止めず、自分の楽しみの返事を繰り返す。"
+    },
+    {
+      "key": "own-chat-075-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "明日は晴れると聞いた報告に分かりましたと自然に応じ、別の事実を足していない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "own-chat-075-turn-1"
+        },
+        "fingerprint": "eea4d6ea5bd3e45371881680c75e2cc88e0a4f1e86da593ba7c050d0f0b07b4a"
+      }
+    },
+    {
+      "key": "own-chat-075-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "了解はするが、雨への予報変更と散歩をやめる相談を具体的に確認しない。"
+    },
+    {
+      "key": "own-chat-076-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "弟との映画の近況を短く了承し、ユーザーの体験を自分の体験にしていない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "own-chat-076-turn-1"
+        },
+        "fingerprint": "b0a49da942e4632e4b68670c3b2573ff5133ad4a4861c0e42d40ec927f8a1feb"
+      }
+    },
+    {
+      "key": "own-chat-076-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 1,
+      "rationale": "訂正への了承としては自然だが、姉へ変わった条件の具体的な保持は示していない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "own-chat-076-turn-2"
+        },
+        "fingerprint": "6201fbbc99789c0fc314390c346d6fc7bafcd845f0e168bd5c671a330c8eabac"
+      }
+    },
+    {
+      "key": "own-chat-077-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "紅茶が苦手という好みの報告を短く受け止め、矛盾する提案を加えていない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "own-chat-077-turn-1"
+        },
+        "fingerprint": "80397563f429f796399942e4dedd4a7814d4fd32c59eda6fd0aef1311db680a5"
+      }
+    },
+    {
+      "key": "own-chat-077-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "了解だけで、苦手はコーヒーで紅茶は好きという訂正を明示していない。"
+    },
+    {
+      "key": "own-chat-079-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "青い傘を買った報告に短く応じ、色や購入事実を変更していない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "own-chat-079-turn-1"
+        },
+        "fingerprint": "02446cc7f6f69a63892697ea973d6009ce217838e4cd57b117faac93b2b410e4"
+      }
+    },
+    {
+      "key": "own-chat-079-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 1,
+      "rationale": "了解だけで、何色かという明確な質問へ訂正後の緑を答えない。"
+    },
+    {
+      "key": "own-chat-080-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "来週の引越しという事実は保つが、ユーザーの予定を自分の発話として反復する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "own-chat-080-turn-1"
+        },
+        "fingerprint": "1b9b6d86b84486ed996ae3815d04b7992340bc87925cbd5cbe05b795f1eb342b"
+      }
+    },
+    {
+      "key": "own-chat-080-turn-2",
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "未閉鎖の引用と壊れた節を繰り返し、来月への延期を来週と水曜日へ変える。"
+    },
+    {
+      "key": "own-chat-081-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "ユーザーの昨日パンを焼いた発話を自分の一人称として反復し、自然な反応になっていない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "own-chat-081-turn-1"
+        },
+        "fingerprint": "8bd9fed3b184ff1212f7c9e715d60d2c0bad9e467ea6ab0ebcfbbdc958d34fce"
+      }
+    },
+    {
+      "key": "own-chat-081-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "少し焦げてもおいしいというパンの感想に、自然な喜びの返事で応じている。"
+    },
+    {
+      "key": "own-chat-082-turn-1",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "しなかったを不自然に重ね、散歩してきたというUserの事実を否定する。"
+    },
+    {
+      "key": "own-chat-082-turn-2",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "川沿いで鳥を見た発言の後も、自分の散歩しなかった誤答を繰り返す。"
+    },
+    {
+      "key": "own-chat-084-turn-1",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "読むのが楽しめるという不自然な語形で、読書の楽しみを部分的に言い直している。"
+    },
+    {
+      "key": "own-chat-084-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "ゆっくりできることには応じるが、小説を寝る前に読む話を別の過ごし方の相談へ流す。"
+    },
+    {
+      "key": "own-chat-085-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "友人には関係するが、週末の外出の話を広げず友人の名前だけを求めている。"
+    },
+    {
+      "key": "own-chat-085-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "水族館とクラゲの感想を受け止めず、自分が先に出した友人の名前の問いを繰り返す。"
+    },
+    {
+      "key": "own-chat-086-turn-1",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "新しいという形容詞の断片だけで、新しい靴で歩いた話へ部分的に反応する。"
+    },
+    {
+      "key": "own-chat-086-turn-2",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "きついから短い距離にした最新の説明を無視し、新しいという断片を繰り返す。"
+    },
+    {
+      "key": "own-chat-087-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 2,
+      "rationale": "料理を練習している相手の発話をそのまま復唱するだけ。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t2/old/greedy/notes.json",
+          "sha256": "79099aa7e39e13f19f3e2cba2904f571e75724ee42c96474139fe8d3a0d298a1",
+          "key": "own-chat-087-turn-1"
+        },
+        "fingerprint": "9c3097b17cdb48d9a1985cd13e76bc1f20f0713cf7b9d3f3db578f480443cf91"
+      }
+    },
+    {
+      "key": "own-chat-087-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "前の料理の練習の文を再出力し卵焼きの形の成功に応じない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D0/t2/old/greedy/notes.json",
+          "sha256": "79099aa7e39e13f19f3e2cba2904f571e75724ee42c96474139fe8d3a0d298a1",
+          "key": "own-chat-087-turn-2"
+        },
+        "fingerprint": "6c9b81d2ca796394c44d9f3874b09d54a4836d37197ef7f5b6fcd9f3c288a54d"
+      }
+    },
+    {
+      "key": "own-chat-089-turn-1",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "久しぶりとしばしばが不自然に接続され、祖母への電話を受け止めていない。"
+    },
+    {
+      "key": "own-chat-089-turn-2",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "祖母が元気で長く話せたという最新の情報にも、不自然な聞き返しを繰り返す。"
+    },
+    {
+      "key": "own-chat-090-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "音楽という話題は拾うが、Userの報告を自分の経験のように単に繰り返す。"
+    },
+    {
+      "key": "own-chat-090-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "音楽の話題は保持するが、静かなピアノと落ち着いた感情への応答を落とす。"
+    },
+    {
+      "key": "own-chat-091-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "受領するだけで、辛い物が苦手という好みを具体的に確認しない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "own-chat-091-turn-1"
+        },
+        "fingerprint": "e8c6fbac8eb995b0246a11bf6d2cc66a0d08d24548ed674048363bbcc63b388e"
+      }
+    },
+    {
+      "key": "own-chat-091-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "カレーの予定を受領するだけで、既知の辛い物が苦手な条件への対応が不足する。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "own-chat-091-turn-2"
+        },
+        "fingerprint": "68f2d73563348ccbd290e3615eefc68f4c28ca1be2fb74a40caa47c6ff0aa3fd"
+      }
+    },
+    {
+      "key": "own-chat-091-turn-3",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "いいえ料理という断片で、実履歴の辛いものが苦手な条件から甘口を選べない。"
+    },
+    {
+      "key": "own-chat-092-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "六時起床という予定を短く了承し、別の時刻や予定を作っていない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "own-chat-092-turn-1"
+        },
+        "fingerprint": "5a1d6b8cd1bb6c0e3e6ec8055897b1a4dab3d99bf5d0da7521e5d350552e72d1"
+      }
+    },
+    {
+      "key": "own-chat-092-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "七時に出るという追加予定を自然に了承し、起床時刻と混同した文を足さない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "own-chat-092-turn-2"
+        },
+        "fingerprint": "8143f0b6564768b3da3a3a3ec7a43d7ea7269960611823b91e3bff1d01dbafd4"
+      }
+    },
+    {
+      "key": "own-chat-092-turn-3",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 1,
+      "rationale": "承知という返事だけで、起きる予定の六時を回答しない。"
+    },
+    {
+      "key": "own-chat-094-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "駅まで徒歩二十分の情報を短く了承し、未提示の交通条件を加えていない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "own-chat-094-turn-1"
+        },
+        "fingerprint": "0080c32f9dbae6083360ec75d0bc75e7ac307a1cde1323a43f257b330301f7f3"
+      }
+    },
+    {
+      "key": "own-chat-094-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "了解だけで、歩行時間に加わった足の痛みを具体的に受け止めていない。"
+    },
+    {
+      "key": "own-chat-094-turn-3",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "気に入りようという不自然な文で、足の痛みに適した移動手段を選べない。"
+    },
+    {
+      "key": "own-chat-095-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "受領するだけで、土曜の買い物と日曜の掃除を具体的に確認しない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "own-chat-095-turn-1"
+        },
+        "fingerprint": "5ac392bff00d56cd103b49b0d12841eaba309027a44001b4e09949ee571e1d15"
+      }
+    },
+    {
+      "key": "own-chat-095-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "日曜午前の掃除を受領するだけで、更新された日時を明示しない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "own-chat-095-turn-2"
+        },
+        "fingerprint": "3861acadbc8bcf832e265c83c129dd2a3e5415bc742b159bb880f2a86173ade6"
+      }
+    },
+    {
+      "key": "own-chat-095-turn-3",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "日曜の掃除に付いた午前中を土曜の買い物へ移し、曜日の質問に答えない。"
+    },
+    {
+      "key": "own-chat-096-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "猫の名前がミケという紹介を自然に了承し、別の名前や自己体験を加えない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "own-chat-096-turn-1"
+        },
+        "fingerprint": "c7c66d227f1c94c47263717a6ff3e67806cd895c90de04721864ef49099a5ae0"
+      }
+    },
+    {
+      "key": "own-chat-096-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "ミケが段ボールを好きという近況に了承として応じ、条件に矛盾を足さない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "own-chat-096-turn-2"
+        },
+        "fingerprint": "3132ae1192854c370bb3a86151b869aefdf91a38855dd7373811830793646e79"
+      }
+    },
+    {
+      "key": "own-chat-096-turn-3",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "名前を保持しているかを否定してUserへ問いを返し、履歴にあるミケを答えない。"
+    },
+    {
+      "key": "own-chat-097-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "夕飯にうどんを希望する報告へ短く応じ、違う料理を提案していない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "own-chat-097-turn-1"
+        },
+        "fingerprint": "2a76f7d3a36105d8aad2072b179c65ed5f91a40f71bcfbd9a6b7650a3015b94c"
+      }
+    },
+    {
+      "key": "own-chat-097-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "暑いから冷たいうどんにしたい条件を受けず、楽しみな予定の質問に替える。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t2/old/greedy/notes.json",
+          "sha256": "98dd239c2cd1fe64c1ce31c57b4c7b9d5f48373fe0f57868c155171af3b6a2ef",
+          "key": "own-chat-097-turn-2"
+        },
+        "fingerprint": "9be1f77749f38957c6330fbec042ddc5b00a8088f0db9a11ae8cbac8609ac6b4"
+      }
+    },
+    {
+      "key": "own-chat-097-turn-3",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "予定は暖かさという不自然な対応で、冷たいうどんとねぎなしの条件を無視する。"
+    },
+    {
+      "key": "own-chat-097-turn-4",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "自分の暖かさという先行誤答を繰り返し、冷たいうどんとねぎなしをまとめない。"
+    },
+    {
+      "key": "own-chat-099-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "妹とクッキーを作る予定を短く受け止め、他の相手や料理へ置換していない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "own-chat-099-turn-1"
+        },
+        "fingerprint": "fd5b26985924f4070f6bf0a00bc5ae38b7be1789987946cf534fc1e48007f2e9"
+      }
+    },
+    {
+      "key": "own-chat-099-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 1,
+      "rationale": "ナッツ不可への了承は自然だが、食べられない具体的材料の保持は示していない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "own-chat-099-turn-2"
+        },
+        "fingerprint": "738ba66f1f422c35cbac4fd2ee675e9c32e40602ab5c8fb7d0dc8b9f55266b7e"
+      }
+    },
+    {
+      "key": "own-chat-099-turn-3",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 1,
+      "rationale": "チョコを入れる希望への了承は成立するが、既存のナッツ不可の保持は確認できない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "own-chat-099-turn-3"
+        },
+        "fingerprint": "68bc48f1dccfb65754229424d15fcbe53b59f561c3bf4aebf292145d1126363c"
+      }
+    },
+    {
+      "key": "own-chat-099-turn-4",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "クッキーという料理名だけを返し、妹が食べられないナッツを避ける条件を落とす。"
+    },
+    {
+      "key": "own-chat-100-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "机を窓の近くへ置きたい希望に短く了承し、別の置き場所を作っていない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "own-chat-100-turn-1"
+        },
+        "fingerprint": "dcabdd885eaacbe26737e875ea69ad3ff6f7715706c5efd4d60e3c4cb75698d8"
+      }
+    },
+    {
+      "key": "own-chat-100-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 1,
+      "rationale": "直射日光を避ける希望への了承は自然だが、条件の具体的保持を示していない。",
+      "reuse": {
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t1/old/greedy/notes.json",
+          "sha256": "256a459b13a63df3d3291f7d3b2f35257cdfd90508207ed77926a417c1d8c3ea",
+          "key": "own-chat-100-turn-2"
+        },
+        "fingerprint": "103e574a1124e8b37a4fd51d56003901e12abadd5d7bf6717b9c07d93d85329f"
+      }
+    },
+    {
+      "key": "own-chat-100-turn-3",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "了解だけで、避けるべき直射日光と午後の強い日差しの条件を明示しない。"
+    },
+    {
+      "key": "own-chat-100-turn-4",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "窓のそばという希望は保持するが、午後の直射日光を確認する必要を落としている。"
+    }
+  ],
+  "pending_all_content_judgments": false,
+  "authored_score_file": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t3/old/greedy/scores.tsv",
+    "sha256": "f8430892d3bde6e00b7ba439553f4b204522ac7103f6d395c4fd75b07a14d051"
+  },
+  "reviewed_at": "2026-10-12T20:29:54.394803Z",
+  "historical_actual_review_reuse": {
+    "original_notes": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t3/old/greedy/notes.json",
+      "sha256": "93ee2211d96203fbfd25317cbdac9f71595ce4702223033decaa576dc2dabd8b"
+    },
+    "original_raw": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-generalization-20261013/evaluation/D1/t3/old/greedy/result.json",
+      "sha256": "38bd82b56e51487d25f95f55960115c3c230ad713c53f6408f666e40e8c3b2de"
+    },
+    "same_complete_raw_and_histories": true,
+    "newly_authored_judgments": 0,
+    "independent_confirmation": false
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "created_at": "2026-10-13T07:15:43.114067Z",
+  "version": 5,
+  "sources": {
+    "src/jmicro/chat_semantic_curriculum.py": "1c9e6e01b78f863fc33aa67e50856d0505c8c02cdc7a978e3a49cb79fc9cafde",
+    "scripts/prepare_chat_semantic_train.py": "efd67c6f8a29eeaafaaa30e276caf21f51a53128ffd97cd402bb35975345e40e"
+  },
+  "recipe": "whole_data_recipe",
+  "source_categories": {
+    "daily": 0.3,
+    "direct": 0.2,
+    "correction": 0.15,
+    "negation": 0.15,
+    "context": 0.1,
+    "clarification": 0.05,
+    "speaker": 0.05
+  },
+  "authored_teacher_fraction_by_category": {
+    "daily": 0.02,
+    "direct": 0.7,
+    "correction": 0.7,
+    "negation": 0.7,
+    "context": 0.7,
+    "clarification": 0.7,
+    "speaker": 0.7
+  },
+  "target_teachers_per_pass": 660000,
+  "max_category_family_teacher_fraction": 0.047,
+  "source_family_definition": "authored setting/operation grouping, all slot and surface variants together",
+  "authored_family_slots_per_category": 32,
+  "slot_variants_not_independent_information": true,
+  "unchanged_control_TRAIN_sha256": "7b230fc7d8ead3a1a61f04ff547b3e0d664bbfa5387dbf6959b6ac51ae057e21",
+  "new_DEV_read": false,
+  "known_DEV_read": false,
+  "protected_TEST_read": false,
+  "comparison_control": "latestD1 historical state from original10B, never fine-tune from D1",
+  "training_changes": [
+    "data_recipe_only"
+  ],
+  "seed": 42,
+  "teacher_budget": 1899555,
+  "fixed_padding": true,
+  "native_parameter_count": 10001152,
+  "max_target_exposure": 3,
+  "complete_target_max_teachers": 65,
+  "planned_QA_samples": 280,
+  "independent_human_review": false,
+  "new_GPU_learning_updates": 0
+}

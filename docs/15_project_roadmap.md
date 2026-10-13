@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-13 明示再開: goal「6まで進めてください」で[135](135_chat_problem_solution_plan.md)の教材比較を具体化・実行する。[137](137_chat_semantic_diversity_execution.md)。新教材候補1件、同親/10M/教師予算/原gate、新DEV＋既知2回帰、全評価・有資格保持と結果報告・停止まで。独立seed43/fullDEV/TEST・正式採用・追加回復/効率・量子化/公開は範囲外。以下の停止中・未実行は再開前の記録。
+
 最終更新: 2026-10-13 JST。最新の実行結果は[136](136_chat_generalization_results.md)、現在の提案は[135](135_chat_problem_solution_plan.md)、実際の状態は[status](autonomous_status.md)。**計画133の4項目は実行・監査完了、不採用で閉鎖。現在は文書・計画の更新のみで、追加研究・教材準備・GPU診断・学習は停止中。**
 
 ## 次に検討する道筋
