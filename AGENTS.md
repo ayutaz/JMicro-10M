@@ -2,6 +2,10 @@
 
 Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/windows_handoff.md` before continuing. Status records actual evidence. `docs/138_chat_semantic_diversity_results.md` is the latest completed comparison. Plan135 is closed for its executed recipe; its final section describes unexecuted next proposals. `docs/124_base_recovery_plan.md` defines the alternative Base-only route.
 
+## Active resumption — 2026-10-14 JST
+
+The user goal "3まで進めてください" resumes the immediately preceding three-item answer: select one evidence-backed intervention, compare under10M and unchanged quality gates, and independently confirm only a qualified recipe. See docs/139_chat_lr_comparison_plan.md. Chosen one-candidate alternative is peak SFT LR1e-4 to3e-5 with the accepted semantic TRAIN unchanged, same original10B parent, teacher budget/seed/schedule/padding; new DEV plus all three known regressions. This overrides the historical pause below only for this registered scope. Keep the goal active through actual comparison and conditional confirmation. No automatic additional LR, data, architecture, Base interventions, quantization, deployment, push or publication. Old closed jobs stay closed.
+
 ## Current scope — 2026-10-13 JST: completed and stopped
 
 - The explicit goal "6まで進めてください" completed all six requested stages for one semantic-diversity comparison: frozen design, TRAIN QA/freeze then unseen DEV plus two regressions, CUDA/resource gates and learning, all21 suites/4599 judgments/7 fixed NLL points, conditional branch decisions, evidence audit/report/archive/local commit and stop. See docs/138_chat_semantic_diversity_results.md and the run completion/delivery records. Scientific completion does not mean Base/Chat adoption.

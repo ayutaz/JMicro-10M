@@ -1,0 +1,286 @@
+{
+  "format": "teacher-chat-lr-only-v1",
+  "created_at": "2026-10-13T15:29:07.968943Z",
+  "purpose": "bounded_LR_only_SFT_from_unadopted_original10B",
+  "spec": {
+    "seed": 42,
+    "context": 1024,
+    "batch": 32,
+    "accumulation": 1,
+    "lr": 3e-05,
+    "weight_decay": 0.01,
+    "warmup": 0,
+    "schedule_updates": 100000,
+    "dtype": "bf16",
+    "compile": false,
+    "backend": "math",
+    "scheduler": "wsd",
+    "sampler": "document",
+    "training_fast_path": false,
+    "update_teachers": 512
+  },
+  "control_spec": {
+    "seed": 42,
+    "context": 1024,
+    "batch": 32,
+    "accumulation": 1,
+    "lr": 0.0001,
+    "weight_decay": 0.01,
+    "warmup": 0,
+    "schedule_updates": 100000,
+    "dtype": "bf16",
+    "compile": false,
+    "backend": "math",
+    "scheduler": "wsd",
+    "sampler": "document",
+    "training_fast_path": false,
+    "update_teachers": 512
+  },
+  "teacher_budget": 1899555,
+  "parameter_count": 10001152,
+  "fixed_padding": true,
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "source_sha256": {
+    "scripts/chat_lr_contract.py": "cfbc47b08e83acabe59b0cb6f4fb06c0ead82c6e0b612855289982fc6bf6f46c",
+    "scripts/prepare_chat_lr.py": "b914e55fb1e745d7616f3fdcdd2202974b5d0aba3f13203eb8232354e47558a9",
+    "scripts/repair_chat_lr_preparation.py": "4a6905d18866a2c72f0ed37f4e6089a2049319d0e1198b554806f1ad96fdf017",
+    "scripts/register_chat_lr.py": "97c6fbc9d00326a8a1cce2ad64408f10253d77903f9c82732d94ce8aa531a9a4",
+    "scripts/run_chat_lr.py": "96c1ec877a3f2cc7841ea89220e224641fb26e6e49513c4e2bd17f8bb79bf755",
+    "scripts/evaluate_chat_lr.py": "5dc4cfc9461587332f086252cbc78b4c3c104c551b7155aca4ae2bc074401072",
+    "scripts/review_chat_lr.py": "245067ce121c5cc15b432d472709636fb6d6c2a2b920989897920dd43439197b",
+    "scripts/compare_chat_lr.py": "a33a6a4d2bcc210b95ded645bcc265ed120d4fece8e28f77a21c32bff389e06e",
+    "scripts/audit_chat_lr.py": "b247bafcd52231f016c5ce912e8ce727c226a68bda3a07b915fe1e5ebf12b913",
+    "scripts/check_chat_lr_gates.py": "50e6d7244ecc393f75aa4d76e9972a9a882546617aac3b97357e94ff3303b3d2",
+    "scripts/inspect_chat_lr_environment.py": "a0efe6d21e0820aebbdae3a9c3034628bb20c7cf9eb69ec6edcb1da4b5ed04f1",
+    "scripts/run_chat_lr.ps1": "6803e4b1a0f6af3b1bd7b51abe5efebb414c9bfa38ee345f70a5c81ecd112a00",
+    "scripts/chat_semantic_contract.py": "62e013ca23683931a3abf60c943a87854169c2a5ab45b2b0620bea0476afe018",
+    "scripts/run_chat_semantic.py": "5daf788f17b32906aebe641c65585024f100db417adfa4132789a783f4f29db5",
+    "scripts/evaluate_chat_semantic.py": "63d207c27bb8259cf34fe1729530e52a65f7be2cfb6b90f87c1a2b7452ad8bc6",
+    "scripts/review_chat_semantic.py": "d91c91d02563832ea4fe5a8966561aa727223df826bc8d254ec270b029458f36",
+    "scripts/review_chat_semantic_observer.py": "eb658525cdfb7455c7e233acc777c2fafb4136a0d7900959ad09ea3bad4a4220",
+    "scripts/inspect_chat_semantic_environment.py": "657914dc5235fdfb11c9efcd30ff6c6b7c1fa74e8c6758472830f8c51480ec21",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f",
+    "scripts/chat_first_contract.py": "460d365e4c8db2476fde6ecb89d0f887335e22a89eebea5fcdaf77fb268ccb88",
+    "scripts/run_eos_short_pilot.py": "7a381414bdea5b24bbbbf7532f04db743cff948fa47f60e95f65019af2d3ec3d",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "src/jmicro/teacher_chat_training.py": "2f3aeebaeea27005192490810837e300326abc9fa046db31981bcbaac4bed8f6",
+    "src/jmicro/assistant_sampler.py": "a774998a14f4adfdc6598cf23ae82630e3b22220641c3f83fa29a38f79d9022c",
+    "src/jmicro/chat_evaluation.py": "81282674705292a82e7689588d8b3061a5eb773cd04f5a286ddf7950e9af96fa",
+    "src/jmicro/chat_review.py": "53eabf79edea8a9205dc9b0f606866c07fa10a3f64fee33dd043549b7816af88",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056"
+  },
+  "GPU_limits_seconds": {
+    "probe": 600.0,
+    "resume": 600.0,
+    "train_S0": 0.0,
+    "train_S1": 3000.0,
+    "evaluation": 14400.0,
+    "retention": 3000.0,
+    "independent_training": 3000.0,
+    "independent_evaluation": 4200.0,
+    "fullDEV": 3600.0,
+    "protectedTEST": 1200.0
+  },
+  "GPU_total_limit_seconds": 33600.0,
+  "absolute_quality_gates": {
+    "joint_minimum": 56,
+    "own_context_minimum": 15,
+    "primary_stop_minimum": 76,
+    "own_stop_minimum": 57,
+    "primary_empty_maximum": 4,
+    "own_empty_maximum": 2,
+    "role_leak_maximum": 0,
+    "raw_unicode_failure_maximum": 0,
+    "history_trim_maximum": 0,
+    "candidate_repetition_must_not_increase": true
+  },
+  "comparison": {
+    "control": "S0_historical_semantic_S1",
+    "candidate": "S1_peak_LR3e-5",
+    "final_point": "t3",
+    "suites": [
+      "new",
+      "semantic",
+      "previous",
+      "old"
+    ],
+    "required_suites": 28,
+    "required_content_judgments": 6132,
+    "required_fixed_NLL_points": 7,
+    "required_fixed_NLL_targets_each": 2634,
+    "new_joint_paired_CI_lower_gt_zero": true
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "tokenizer": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/phase2/4096/tokenizer.model",
+    "sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+  },
+  "old_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase7/chat-semantic-diversity-20261013.json",
+    "sha256": "84c84bf29551aa5ac81ba10bed28cdc4073664362e1528b837dc41c49f066dcd"
+  },
+  "TRAIN": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-semantic-diversity-20261013/train.jsonl",
+    "sha256": "d2ea63df88ba3e36f25eab437cf695355a033aa3495c968d38a86ae70b504da6"
+  },
+  "TRAIN_manifest": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-semantic-diversity-20261013/manifest.json",
+    "sha256": "1cf099c3d69a71b40c3bb03f680e269bbdca5648daa55608603d5f95e6081a09"
+  },
+  "TRAIN_QA": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-semantic-diversity-20261013/train_content_review_final.json",
+    "sha256": "aa2764c9db2e257bba7d977bf5893be3766bfd6738f148e84072435fab7f4d78"
+  },
+  "DEV_audit": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/dev_audit.json",
+    "sha256": "39f2cfe16c57e11f8959fca191ac19da00f90c2ad634592ba8661f2ba2fc8431"
+  },
+  "fixed_NLL": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-lr-20261014/nll_fixed.jsonl",
+    "sha256": "33dd3b7acf3d74365f88e60ff2946afc2a156337586f09dbb6b5340c217038e8"
+  },
+  "historical_consumption": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-semantic-diversity-20261013/S1_dry_run.json",
+    "sha256": "e3b830d8e70479a031f5ab491de5d0c6f01f375c6e15096b745eee1fb5ac9878"
+  },
+  "candidate_consumption": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/S1_dry_run.json",
+    "sha256": "beb7e8be3d274872885c08f76bd92b8caf7ff399f53767de860c41f302dcfb40"
+  },
+  "sampler_binding": "928ddbc8cfaaaf6740dd838f41a6e0b730a7a9c78ccc9366c7d3259adf9ec163",
+  "historical_training_audit": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-semantic-diversity-20261013/S1/training_audit.json",
+    "sha256": "219d0ee81f17a648527e8100b82c3c20a7ad8f993d7582cfaa07fca6ccf66c26"
+  },
+  "historical_control_evidence": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/historical_control_preparation.json",
+    "sha256": "a0cc62ce044b7c8f16f703361515eced4af4dfb085215dbcb676e82e331fbdb7"
+  },
+  "historical_learning_metrics": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-semantic-diversity-20261013/S1/metrics.jsonl",
+    "sha256": "94ec5d9c9f6617dd0cda0dfc2aeeb7b7b5051890654ebea49f93208f8b88f040"
+  },
+  "protected_split_incident": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-lr-20261014/protected_split_incident.json",
+    "sha256": "101609634873cf739932be86bdb4887b01bf24231c4727aa424b47b92527710a"
+  },
+  "original_Chat_TEST_parsed_in_failed_preparation": true,
+  "original_Base_TEST_not_parsed": true,
+  "final_Chat_TEST_requires_fresh_sealed_cases": true,
+  "suites": {
+    "new": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-lr-20261014/dev.jsonl",
+      "sha256": "40a6170e0a44bf8e4416d1ea77d486ac1e96ed17bb9f65e3f9893d7c897eee76"
+    },
+    "semantic": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-semantic-diversity-20261013/dev.jsonl",
+      "sha256": "468d3b9973fc263a18bab5def4f260d4584ace0e35927de72b10effa9f47bc03"
+    },
+    "previous": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-generalization-20261013/dev.jsonl",
+      "sha256": "bfaa433d89d61f5da1fd7300c668db7bfd0306c916decf6afeafdf70841fb8eb"
+    },
+    "old": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/eval/chat.jsonl",
+      "sha256": "86ed01af44926370bbe2b863d6984dd00358dbb88b21a02cf124e7c388b67a86"
+    }
+  },
+  "arms": {
+    "S0": {
+      "data_directory": "/home/aihub_ubuntu/jmicro-data/phase7/chat-semantic-diversity-20261013",
+      "records": {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-semantic-diversity-20261013/train.jsonl",
+        "sha256": "d2ea63df88ba3e36f25eab437cf695355a033aa3495c968d38a86ae70b504da6"
+      },
+      "manifest": {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-semantic-diversity-20261013/manifest.json",
+        "sha256": "1cf099c3d69a71b40c3bb03f680e269bbdca5648daa55608603d5f95e6081a09"
+      },
+      "sampler_binding": "928ddbc8cfaaaf6740dd838f41a6e0b730a7a9c78ccc9366c7d3259adf9ec163"
+    },
+    "S1": {
+      "data_directory": "/home/aihub_ubuntu/jmicro-data/phase7/chat-semantic-diversity-20261013",
+      "records": {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-semantic-diversity-20261013/train.jsonl",
+        "sha256": "d2ea63df88ba3e36f25eab437cf695355a033aa3495c968d38a86ae70b504da6"
+      },
+      "manifest": {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-semantic-diversity-20261013/manifest.json",
+        "sha256": "1cf099c3d69a71b40c3bb03f680e269bbdca5648daa55608603d5f95e6081a09"
+      },
+      "sampler_binding": "928ddbc8cfaaaf6740dd838f41a6e0b730a7a9c78ccc9366c7d3259adf9ec163"
+    }
+  },
+  "historical_reviewer_display_aliases": [
+    "Codex plan135 reviewer"
+  ],
+  "conditional_retention": {
+    "required_if_candidate_qualified": true,
+    "original_Base_is_unadopted": true,
+    "dev_documents": 256,
+    "fixed_Base_prefixes": 80,
+    "protected_TEST_used": false,
+    "reference_config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/amount_learning_comparison.json",
+      "sha256": "f4c32912b250e733bfd78e7d56f66f012484e32b4e4edb12fbca2b8c1e315fb8"
+    },
+    "original_absolute_Base_screen_required": true,
+    "BPB_relative_maximum": 1.01,
+    "no_more_repetition_empty_role_unicode": true
+  },
+  "conditional_sampling": {
+    "required_if_candidate_qualified": true,
+    "point": "t3",
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "suites": [
+      "new",
+      "semantic",
+      "previous",
+      "old"
+    ],
+    "temperature": 0.8,
+    "top_p": 0.9,
+    "top_k": 50,
+    "all_raw_and_content_required": true
+  },
+  "conditional_independent": {
+    "required_only_if_absolute_paired_retention_and_sampling_pass": true,
+    "fresh_learning_seed": 43,
+    "independent_human_blind_required": true,
+    "fullDEV_required": true,
+    "protected_TEST_after_sealed_selection": true,
+    "original_Chat_TEST_not_eligible": true,
+    "new_TEST_required": true,
+    "preserve_original_native_Base_final_gates": true,
+    "implementation_before_dependent_GPU_execution": true,
+    "third_party_messages_authorized": false,
+    "existing_Base_policy": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_parallel_residual_review.json",
+      "sha256": "1d9ff130852499c340f29a6f21f7d6bc723caf17883cdfbe6e148c55112a9aac"
+    },
+    "original_Base_final_runner": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/run_final_base_test.py",
+      "sha256": "0718e3cd4e81f4cc913f12098e34ba005be1430d427c26c9d62e776a78166df6"
+    },
+    "original_Base_final_reviewer": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/review_final_base_test.py",
+      "sha256": "27e5d1ab483e26551fb3a7394ab5e2a56a56e6ed5aceffb32b165dc26a2d8cfe"
+    }
+  },
+  "Base_adopted": false,
+  "Chat_adopted": false,
+  "protected_TEST_used": false
+}

@@ -1,5 +1,9 @@
 # 現在の状態
 
+2026-10-14 明示再開: goal「3まで進めてください」は直前回答の介入1件選定→10M/原品質で比較→有望条件だけ独立確認を再開する。[計画139](139_chat_lr_comparison_plan.md)。SFTのpeak LR1e-4→3e-5だけを変更し、同TRAIN/同親/教師量、新DEV＋既知3回帰を登録する。Base/Chat未採用、旧135の完了と不採用を保持。以下の停止状態は今回再開前の履歴。
+
+最新実績（2026-10-14 JST）: [139](139_chat_lr_comparison_plan.md)/[実行140](140_chat_lr_comparison_execution.md)でLR3e-5候補のCUDA25検証更新と全評価予測10,732.271秒/14,400秒が通過。本学習をdurable workerで開始し、15:43:54Zに実PID304617/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start54912399の生存と600更新/312,871教師を観測。全レビューは13/28セット・2,847/6,132判断・NLL1/7点。元親新DEVは全219理由付き判断を確認。最終採否・3段階の完了は未確認。準備時の元Chat TEST20行解析事故は保存・訂正済みで、有資格時は新しい封印Chat TESTが必要。
+
 最終更新: 2026-10-13 JST。**計画135の6段階を実行・監査し、教材候補S1を不合格・不採用で閉鎖した。Base/Chatは未完成・未採用。追加研究・教材準備・GPU診断・生成評価・学習は停止する。**
 
 [最終結果138](138_chat_semantic_diversity_results.md)、[科学的完了監査](../reports/phase7/chat-semantic-diversity-20261013/completion.json)、[現行計画135](135_chat_problem_solution_plan.md)を先に読む。[実行137](137_chat_semantic_diversity_execution.md)は時点別履歴で、途中の「継続中」やPIDを再開指示に使わない。128/131/133/今回135の終了jobを再起動しない。

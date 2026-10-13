@@ -1,0 +1,22 @@
+{
+  "stage": "Frozen CPU progress audit entrypoint",
+  "error": "ModuleNotFoundError jmicro before src path bootstrap",
+  "fixed_with": "scripts/observe_chat_lr.py inserts explicit src path then calls unchanged frozen audit",
+  "frozen_audit_source_unchanged": true,
+  "GPU_updates": 0,
+  "observed_at": "2026-10-13T15:30:03.8378238Z",
+  "paired_API_adapter": {
+    "finding": "Frozen compare_chat_lr.calculate passed notes and items to the original paired API in the wrong order; found by source inspection before comparisons",
+    "corrected_entrypoint": "scripts/compare_chat_lr_observed.py",
+    "verified_by": "paired_API_check.json reproduces all3 original actual paired metrics and CI exactly",
+    "frozen_sources_changed": false,
+    "quality_gates_changed": false,
+    "GPU_updates": 0
+  },
+  "oneoff_command_incident": {
+    "error": "uv run -c rejected because no command was supplied",
+    "resolution": "Run scripts/check_chat_lr_cpu_imports.py through uv run --frozen; no system Python",
+    "GPU_updates": 0,
+    "scientific_evidence_changed": false
+  }
+}

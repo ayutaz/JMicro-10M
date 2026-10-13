@@ -1,5 +1,7 @@
 # 文書一覧
 
+2026-10-14 明示再開: 最新は[計画139](139_chat_lr_comparison_plan.md)/[実行140](140_chat_lr_comparison_execution.md)のLR1件比較。本学習と全評価を進め、3段階完了・最終採否は未確定。以下の停止記録は前回の納品時点。
+
 最終更新: 2026-10-13 JST。**最新の教材比較135は138で全6段階完了・不採用。Base/Chat未完成・未採用。追加実行停止。**
 
 ## 読む順序
@@ -130,3 +132,5 @@
 | [136_chat_generalization_results.md](136_chat_generalization_results.md) | 全3,066内容判断・NLL7点・回復分岐・padding・完了監査と不採用結果 |
 | [137_chat_semantic_diversity_execution.md](137_chat_semantic_diversity_execution.md) | 意味多様性教材のQA/凍結・学習・全評価・監査・納品の時点別履歴 |
 | [138_chat_semantic_diversity_results.md](138_chat_semantic_diversity_results.md) | 意味多様性教材の全21評価・採否・NLL・分岐・完了と停止 |
+| [139_chat_lr_comparison_plan.md](139_chat_lr_comparison_plan.md) | 同TRAINでpeak LRだけを変える1候補・全28評価・条件付き独立確認の契約 |
+| [140_chat_lr_comparison_execution.md](140_chat_lr_comparison_execution.md) | 凍結・事故保存/訂正・CUDA gate・実学習・全評価の時点別記録 |

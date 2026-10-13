@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-14 明示再開: goal「3まで進めてください」は直前回答の介入1件選定→10M/原品質で比較→有望条件だけ独立確認を再開する。[計画139](139_chat_lr_comparison_plan.md)。SFTのpeak LR1e-4→3e-5だけを変更し、同TRAIN/同親/教師量、新DEV＋既知3回帰を登録する。Base/Chat未採用、旧135の完了と不採用を保持。以下の停止状態は今回再開前の履歴。
+
 最終更新: 2026-10-13 JST。**135の6段階は実行・監査・報告まで完了し、不採用で閉鎖。Base/Chatは未完成・未採用。追加研究・教材準備・診断・評価・学習は停止する。** [最新結果138](138_chat_semantic_diversity_results.md)、[状態](autonomous_status.md)、[現行計画135](135_chat_problem_solution_plan.md)末尾を参照する。
 
 ## 次に検討する道筋
