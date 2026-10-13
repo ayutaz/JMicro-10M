@@ -1,8 +1,8 @@
 # Base改善の今後の計画
 
-最終更新: 2026-10-13 JST。Base復旧を選ぶ場合の**未実行の代替経路**。128/131/133のChat-first診断・教材比較は[結果136](136_chat_generalization_results.md)まで実行・不合格終了したが、Chatの失敗からBase単独原因は確定していない。最新の教材比較案は[135](135_chat_problem_solution_plan.md)。どちらも今回の文書・計画更新から実行を再開しない。
+最終更新: 2026-10-13 JST。Base復旧を選ぶ場合の**未実行の代替経路**。Chat-first診断と教材比較128/131/133/135は[最新結果138](138_chat_semantic_diversity_results.md)まで実行・不合格終了した。Chat失敗からBase単独原因は確定しない。次介入の選択肢は[135](135_chat_problem_solution_plan.md)末尾に記載し、追加研究・準備・診断・学習は停止する。
 
-Baseの元品質条件・10M制約・下記の段階0〜5と停止境界を維持する。既存Chat比較の最終監査/評価は完了しているため、Base復旧の前提作業として再実行しない。次のBase介入は未選定・未凍結で、教材版作成やGPU診断も未開始。[最新状態](autonomous_status.md)、[Base結果123](123_base_teacher_decay_2b_results.md)。
+Baseの原品質・10M制約・下記段階0〜5と停止境界を維持する。閉じたChat比較を前提作業として再実行しない。Base介入は未選定・未凍結。[状態](autonomous_status.md)、[Base結果123](123_base_teacher_decay_2b_results.md)。
 
 ## 目指す状態と現在の判断
 

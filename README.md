@@ -2,27 +2,25 @@
 
 約1,000万パラメータで、日本語の短い文章を自然に続け、その後に短い会話を行うモデルを目指す研究プロジェクトです。Tokenizer、モデル、学習・評価基盤をスクラッチで構築しました。**10Mの小ささを維持し、元の品質目標も維持します。**
 
-2026-10-13 JST現在、Base/Chatは未完成・未採用です。前回の教材汎化比較は不採用で閉鎖しました。ユーザーの「6まで進めてください」により新しい意味構造の教材候補1件を比較し、3,646更新・1,899,557 Assistant教師の本学習と全state/消費列の監査を完了しました。全評価は13/21セットまで確認し、残り8セットと最終採否を継続中です。[実行記録137](docs/137_chat_semantic_diversity_execution.md)。
+2026-10-13 JST現在、Base/Chatは未完成・未採用です。意味構造と自然な質問を広げた教材候補1件の比較を、全21セット・4,599内容判断・固定NLL7点まで完了しました。候補は不合格・不採用で閉鎖し、追加研究・学習は停止しています。[最終結果138](docs/138_chat_semantic_diversity_results.md)。
 
 ## 最新の結果と次の計画
 
-同じ元10B親、native10,001,152 parameters、Tokenizer、学習seed、Assistant教師量scheduleで、旧教材D0とfirst-turn/直接回答を増やしたD1を比較しました。D0は一致する歴史checkpointを再利用し、D1は1,899,562 Assistant本文+EOT教師まで実学習しました。親と3保存点の新旧全14セット・3,066内容判断・固定NLL7点を確認しています。
+最新D1を対照S0として歴史checkpointを再利用し、新教材S1を同じ元10B親から学習しました。native10,001,152 parameters、Tokenizer、seed42、教師量と学習条件を維持し、S1は3,646更新・1,899,557 Assistant本文+EOT教師で終了しました。全保存点の学習状態・実教師列・最終採否と予算の監査も完了しています。
 
-| 最終品質 | D0 新 | D1 新 | D0 旧 | D1 旧 | 必要な条件 |
-|---|---:|---:|---:|---:|---|
-| 文法・関連性をともに満たす返答 | 16/80 | 12/80 | 18/80 | 15/80 | 各56/80以上 |
-| 自分の返答を含む会話の最終文脈保持 | 5/24 | 3/24 | 4/24 | 1/24 | 各15/24以上 |
+| 最終品質 | S0 新 | S1 新 | S0 前回 | S1 前回 | S0 元旧 | S1 元旧 | 必要な条件 |
+|---|---:|---:|---:|---:|---:|---:|---|
+| 文法・関連性をともに満たす返答 /80 | 16 | 19 | 12 | 21 | 15 | 11 | 各56以上 |
+| 自分の返答を含む会話の最終文脈保持 /24 | 3 | 3 | 3 | 6 | 1 | 1 | 各15以上 |
 
-両条件とも不合格です。D1は自然停止と反復の基準を通りましたが、未知の質問への正答と条件保持が不足しました。判断はCodex非blindで、独立した人間の評価ではありません。比較の差と95%CIから改善は実証できず、10Mの容量限界やBaseだけが原因とも断定していません。
+新DEVの内容差は+3.75ポイント、95%CI −8.75〜+16.25で、登録した改善条件も未達です。新候補のTRAIN標本NLLは0.008183まで下がりましたが、新DEVへの応答能力は不足しています。新自己生成反復と元旧固定反復も増え、元旧で不正UTF8が1件ありました。判断はCodex非blindで、独立人間の評価ではありません。Base単独原因や10M容量限界は確定していません。
 
-誤履歴回復は開始条件不成立で未実行・効果未確認。保持とsamplingも合格候補がなく未確認です。動的paddingは短期実測で約5.57倍高速でしたが、固定paddingとの数値一致基準に不合格のため採用していません。元10B WebUIの復帰は終了時に確認済みで、その記録は将来の生存保証ではありません。
+保持・samplingは合格候補がないため未実行・品質未確認です。今回の6段階の比較と報告を終えて停止し、追加教材・LR探索・別seedへ自動移行しません。次の方針は計画135末尾の提案を参照してください。Base復旧を選ぶ場合は124の原品質条件を維持し、証拠を満たすBaseで通知・停止します。
 
-現在の比較は、意味構造と自然な質問の多様性を広げた教材を最新D1と比較する候補1件です。同親・10M・教師量・学習条件を維持し、新DEVと既知2セットの全21評価・4,599判断、固定NLL7点、有資格候補だけの保持・sampling、結果報告と停止まで進めます。独立学習seed43、最終TEST、正式採用、量子化・公開は今回の範囲外です。以下の表と136は前回の確定結果で、新候補の結果ではありません。
-
-- [最終結果136](docs/136_chat_generalization_results.md)：品質、失敗例、NLL、分岐、効率、完了監査。
-- [最新の改善計画135](docs/135_chat_problem_solution_plan.md)：次の仮説、教材仕様、同条件比較、進行・停止条件。
+- [最終結果138](docs/138_chat_semantic_diversity_results.md)：品質、全保存点、失敗、NLL、分岐、GPU予算と監査。
+- [計画135と次の判断](docs/135_chat_problem_solution_plan.md) / [時点別実行137](docs/137_chat_semantic_diversity_execution.md)。
 - [現在の状態](docs/autonomous_status.md) / [ロードマップ](docs/15_project_roadmap.md) / [文書一覧](docs/README.md)。
-- [Base復旧計画124](docs/124_base_recovery_plan.md)：Base復旧を選ぶ場合の別経路。Base完成で通知・停止。
+- [Base復旧計画124](docs/124_base_recovery_plan.md)：未再開の別経路。
 
 ## 成立した基盤と残る課題
 
@@ -30,7 +28,7 @@
 
 Baseのteacher-decay2B比較はBPB1.1064→1.0903でも、一貫性3/80のまま、適切完結7→5/80で不採用でした。[Base結果123](docs/123_base_teacher_decay_2b_results.md)。元UI10B、別staged約10.6B、teacher-decay2B、後続SFTは異なる重みです。10B・2Bは学習量であり、モデルのパラメータ数ではありません。
 
-直接SFT128は停止や文法を改善しましたが、内容・文脈は未達でした。その後の教材比較131、汎化比較133も不合格で閉じています。[最初のSFT結果129](docs/129_chat_first_sft_execution.md)、[前の教材比較132](docs/132_chat_improvement_execution.md)、[最新結果136](docs/136_chat_generalization_results.md)。独立学習seed43、人間blind、fullDEV、protectedTESTと正式採用は未確認です。
+直接SFT128は停止や文法を改善しましたが、内容・文脈は未達でした。その後の教材比較131、汎化比較133、意味多様性比較135も不合格で閉じています。[最初のSFT結果129](docs/129_chat_first_sft_execution.md)、[前の教材比較132](docs/132_chat_improvement_execution.md)、[前回結果136](docs/136_chat_generalization_results.md)、[最新結果138](docs/138_chat_semantic_diversity_results.md)。独立学習seed43、人間blind、fullDEV、protectedTESTと正式採用は未確認です。
 
 調査・失敗・採否は[全体記録125](docs/125_project_retrospective.md)、[固定revisionの詳細台帳](docs/retrospective/README.md)、[作り直す前の調査127](docs/127_rebuild_investigation.md)、[課題調査130](docs/130_chat_failure_improvement_investigation.md)に保存しています。旧READMEや運用文書の全文は[今回の履歴保存一覧](reports/investigation/documentation_plan_refresh_20261013/baseline.json)へ保全しました。
 

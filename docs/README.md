@@ -1,21 +1,21 @@
 # 文書一覧
 
-最終更新: 2026-10-13 JST。**前回の比較は136で完了・不採用。135を具体化した137の新候補は本学習と全state監査が終了し、全評価は13/21セットまで確認。Base/Chatは未完成・未採用。** 新候補の最終採否は未確認。
+最終更新: 2026-10-13 JST。**最新の教材比較135は138で全6段階完了・不採用。Base/Chat未完成・未採用。追加実行停止。**
 
 ## 読む順序
 
-1. [現在の状態](autonomous_status.md)：実績、未達、停止範囲、保存先。
-2. [最新の最終結果136](136_chat_generalization_results.md)：D0/D1の全比較、NLL、回復条件、padding不採用、完了監査。
-3. [改善計画135](135_chat_problem_solution_plan.md) / [実行記録137](137_chat_semantic_diversity_execution.md)：教材recipe比較、TRAIN/DEV凍結、技術gate、実学習と残評価。
-4. [ロードマップ](15_project_roadmap.md) / [現在のチェックリスト](10_next_steps.md)：Phaseと証拠の到達点。
-5. [Windows/WSL引継ぎ](windows_handoff.md)：Git外の重み/data、元UI、必要時の復元と再開。
-6. [Base復旧計画124](124_base_recovery_plan.md)：Baseを先に復旧する代替経路。完成時に通知・停止。
+1. [状態](autonomous_status.md)：実績、採否、停止、保存先。
+2. [最終結果138](138_chat_semantic_diversity_results.md)：全21suite/4,599判断/NLL7点、失敗、資源、分岐、完了監査。
+3. [計画135](135_chat_problem_solution_plan.md)：閉じた比較の条件と末尾の未再開提案。[実行137](137_chat_semantic_diversity_execution.md)：時点別履歴。
+4. [ロードマップ](15_project_roadmap.md) / [チェックリスト](10_next_steps.md)：Phaseと未確認の証拠。
+5. [Windows/WSL引継ぎ](windows_handoff.md)：全state/data、元UI、欠損時の復元。
+6. [Base復旧124](124_base_recovery_plan.md)：未再開の代替経路。証拠を満たすBaseで通知・停止。
 
-経緯は[全体記録125](125_project_retrospective.md)、個々の原数値は[固定revisionの詳細台帳](retrospective/README.md)。[調査127](127_rebuild_investigation.md)→[SFT計画128](128_chat_first_sft_plan.md)/[結果129](129_chat_first_sft_execution.md)→[課題調査130](130_chat_failure_improvement_investigation.md)→[教材計画131](131_chat_improvement_execution_plan.md)/[結果132](132_chat_improvement_execution.md)→[汎化計画133](133_chat_generalization_followup_plan.md)/[実行履歴134](134_chat_generalization_execution.md)/[最終結果136](136_chat_generalization_results.md)が終了済みの流れ。
+経緯は[全体125](125_project_retrospective.md)、[固定revision台帳](retrospective/README.md)。[調査127](127_rebuild_investigation.md)→[SFT128](128_chat_first_sft_plan.md)/[129](129_chat_first_sft_execution.md)→[調査130](130_chat_failure_improvement_investigation.md)→[教材131](131_chat_improvement_execution_plan.md)/[132](132_chat_improvement_execution.md)→[汎化133](133_chat_generalization_followup_plan.md)/[134](134_chat_generalization_execution.md)/[136](136_chat_generalization_results.md)→[135](135_chat_problem_solution_plan.md)/[137](137_chat_semantic_diversity_execution.md)/[138](138_chat_semantic_diversity_results.md)が閉じた比較の流れ。
 
-番号付き文書は原則として作成時点の計画・調査・実行記録。133の「未実行」、134の「学習中」等は履歴で、現在の指示はstatus/AGENTS、最終採否は各runのcompletionを参照する。135と124は現行提案として更新する。準備コード、CPU checks、学習終了、品質改善、採用を区別する。
+番号付き文書は原則作成時の計画・調査・実行履歴。途中の「未実行」「学習中」やPIDは現行の開始指示ではない。135末尾と124は未実行の提案、原採否は各runのcompletion/selection、現在の範囲はstatus/AGENTSに従う。
 
-今回整理前の14文書は[保存一覧](../reports/investigation/documentation_plan_refresh_20261013/baseline.json)にbyte一致で保存した。履歴内の相対リンクは元workspaceに対する記述で、履歴のPID・restart commandを現在の開始指示へ使わない。
+今回更新前の全運用文書は[履歴baseline](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/baseline.json)へbyte一致で保全した。以前の14文書は[以前の保存一覧](../reports/investigation/documentation_plan_refresh_20261013/baseline.json)。履歴のリンクは元workspace相対で、履歴のrestart/PIDを現在の開始指示に使わない。
 
 ## 運用文書と履歴
 
@@ -126,5 +126,7 @@
 | [132_chat_improvement_execution.md](132_chat_improvement_execution.md) | 教材2条件・全学習/評価・不採用結果と完了監査 |
 | [133_chat_generalization_followup_plan.md](133_chat_generalization_followup_plan.md) | 教材汎化・直接回答・訂正の事前計画。実行は134、最終不採用は136 |
 | [134_chat_generalization_execution.md](134_chat_generalization_execution.md) | 教材改訂・同条件比較・条件付き回復・paddingの実行履歴 |
-| [135_chat_problem_solution_plan.md](135_chat_problem_solution_plan.md) | 最終136を踏まえた現行提案。意味構造を広げる教材1件、未使用DEVと既知2回帰、進行/停止条件 |
+| [135_chat_problem_solution_plan.md](135_chat_problem_solution_plan.md) | 実行済み教材比較の条件と138を踏まえた次介入の未再開提案 |
 | [136_chat_generalization_results.md](136_chat_generalization_results.md) | 全3,066内容判断・NLL7点・回復分岐・padding・完了監査と不採用結果 |
+| [137_chat_semantic_diversity_execution.md](137_chat_semantic_diversity_execution.md) | 意味多様性教材のQA/凍結・学習・全評価・監査・納品の時点別履歴 |
+| [138_chat_semantic_diversity_results.md](138_chat_semantic_diversity_results.md) | 意味多様性教材の全21評価・採否・NLL・分岐・完了と停止 |

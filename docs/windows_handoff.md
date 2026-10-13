@@ -1,8 +1,6 @@
 # Windows / WSL 引継ぎ
 
-2026-10-13 明示再開: goal「6まで進めてください」で[137](137_chat_semantic_diversity_execution.md)の新比較を実行する。runは `reports/phase7/chat-semantic-diversity-20261013/`。実process/UI/lock/容量を確認し、新教材候補1件と専用契約・gate・全評価予算をそろえてから学習する。旧133の終了jobを復旧せず、元UIを保持し必要なGPU作業の終端で復帰する。以下の文書のみ/停止は再開前の納品時点の記録。
-
-最終更新: 2026-10-13 JST。**計画133の4項目は完了・不採用で閉鎖。Base/Chat未完成・未採用。現在の依頼は文書と計画の更新だけで、研究・教材準備・診断・評価・学習は停止中。** [最新状態](autonomous_status.md)、[最終結果136](136_chat_generalization_results.md)、[次の未実行計画135](135_chat_problem_solution_plan.md)を先に読む。旧128の入口実装やt3の残評価を再開手順へ戻さない。
+最終更新: 2026-10-13 JST。**最新の教材比較135は全6段階を完了し、138で不採用として閉鎖。Base/Chatは未完成・未採用。追加研究・準備・診断・評価・学習は停止する。** [状態](autonomous_status.md)、[最終結果138](138_chat_semantic_diversity_results.md)、[計画135](135_chat_problem_solution_plan.md)末尾を先に読む。旧runや今回の終了jobを再開手順に戻さない。
 
 ## 正本と保存場所
 
@@ -14,17 +12,17 @@
 | 固定環境 | WSL package3.0.1 / Ubuntu WSL2 / RTX4090 / 記録時driver616.92 / Python3.12.7 / PyTorch2.14.1+cu130 / BF16。今回のruntime再測定ではない |
 | Tokenizer | `artifacts/phase2/4096/tokenizer.model`、SHA `a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318` |
 | nativeモデル | 10,001,152 parameters、既存9.5M〜10.1M内。`src/jmicro/model.py` SHA `298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83` |
-| 最新結果保存 | local commit `ed3aa29`、[354file保存一覧](../reports/phase7/chat-generalization-20261013/final_archive.json)。今回の文書commitは `git log -1` |
+| 最新結果保存 | [今回保存一覧](../reports/phase7/chat-semantic-diversity-20261013/final_archive.json)と[納品確認](../reports/phase7/chat-semantic-diversity-20261013/final_delivery_checks.json)。最新local commitは `git log -1` |
 
 現在の環境変更は不要。Windows driverがWSL CUDAにも関係し、WSLへLinux display driverを追加しない。文書更新だけのときにdriver更新、uv依存変更、data再構築や全benchmarkを開始しない。
 
 ## 閉じた最新runとUI
 
-`reports/phase7/chat-generalization-20261013/` は全14suite・3,066内容判断・固定NLL7点、D1最終全state/実教師列、選定・登録分岐・padding・予算の[監査](../reports/phase7/chat-generalization-20261013/completion.json)まで完了。D1は3,641更新・1,899,562教師、D0は旧C1歴史stateを再利用して新学習0。両条件の内容・文脈gateが未達で閉鎖済み。学習・評価・paddingを再起動せず、回復・保持・samplingを合格や必須残作業として扱わない。
+`reports/phase7/chat-semantic-diversity-20261013/` は全21suite/4,599内容判断/固定NLL7点×2,554 target、S1全3state/実教師列、原採否・分岐・台帳の[科学監査](../reports/phase7/chat-semantic-diversity-20261013/completion.json)を完了した。S1は3,646更新/1,899,557教師、S0は最新D1の歴史stateで新学習0。両条件の内容/文脈は未達。保持/samplingは候補なしで未実行・品質未確認。追加学習・評価を起動しない。
 
-元10B [WebUI](http://127.0.0.1:7860)は終了時に復帰。completionの最終実観測は2026-10-12T20:32:10Z、PID235826、boot `4052bfc5-3850-44e4-9123-d34a9e19f36e`、start_ticks47993707。HTTPは元親SHA `410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290`、Tokenizer一致、10,001,152 parameters、busy=false。**今回の文書更新ではprocess/HTTPの現在の生存を確認していない。**
+元10B [WebUI](http://127.0.0.1:7860)は最終科学監査2026-10-13T09:44:20Zで実PID292581/boot `4052bfc5-3850-44e4-9123-d34a9e19f36e`/start_ticks52504723、HTTP親SHA `410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290`、Tokenizer/10M一致、busy=false、kernel GPU lock一致、競合jobなしを確認した。これは当時の観測で、将来の生存保証ではない。
 
-UI操作や実行を明示再開するときは `reports/local/webui/server.json` と実PID/boot/start、HTTP、GPU lockを照合する。保存PIDだけで生存や終了を断定しない。必要時のWindows操作:
+UI操作や明示実行再開時だけ、`reports/local/webui/server.json` と実PID/boot/start、HTTP、kernel lockを照合する。稼働中なら重複起動しない。必要時のWindows操作:
 
 ```powershell
 Invoke-RestMethod http://127.0.0.1:7860/api/model
@@ -32,11 +30,11 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start_webui.ps1
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/stop_webui.ps1
 ```
 
-[操作43](43_local_webui.md)。既存UIが動いていれば重複起動しない。学習停止中はUIを保持し、明示再開されたGPU作業に必要な場合だけidleを確認して停止し、終端で元10Bへ復帰する。
+[操作43](43_local_webui.md)。次の研究は新しい明示再開と別契約から始め、終了済みの元比較や拒否paddingを再起動しない。
 
 ## Git外で保全する重みと教材
 
-以下はWSL repo相対、`data:` は大容量data root相対。今回は所在を原記録から案内し、全重み・全corpusの再hashは行わない。
+最新S1は `reports/phase7/chat-semantic-diversity-20261013/S1/checkpoint-00003646.pt`、SHA `6ca25064fa4ccb6784a05fa5ade43bfdaa87aeb55f11458a233eaf32664fd2ea`。同directoryに全3state/metrics/jobを保持し、data rootの `phase7/chat-semantic-diversity-20261013/` に教材・manifest・DEV・固定NLL targetを保持する。Gitには重みとdataset実体を含めない。以下の旧系列も保全する。以下はWSL repo相対、`data:` は大容量data root相対。今回は所在を原記録から案内し、全重み・全corpusの再hashは行わない。
 
 | 場所 | 保全する内容 |
 |---|---|

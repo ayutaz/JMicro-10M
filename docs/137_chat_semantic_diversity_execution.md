@@ -48,3 +48,13 @@ S1 t2/t3の残6suite＋NLL2点をdurable workerで生成評価中。08:54:50Zの
 08:58:07ZにS1残生成・NLLのworkerが正常終了した。`generation_audit.json` で全21 rawセット・4,599応答のtoken/bytes/prompt/実履歴/凍結binding・実終端と、全7 NLL点×2,554targetの数学的分母を確認して通過した。内容レビューは13セット・2,847判断までで、残8セット・1,752判断を未完了として残す。全raw生成がそろったことを全内容確認や6段階完了へ読み替えない。
 
 09:01:39Zの実process/HTTP/kernel lock観察で競合jobなし、元10B UI PID292581/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start52504723・親/Tokenizer/10M一致・busy=falseの復帰を確認した。GPUの新学習は完了し、次の主作業はCPUで残8レビューを理由付きで読み切ること。最終選定・有資格分岐・最終解析・完了監査と納品は未完了で、goalは継続する。
+
+## 最終全内容確認・科学監査・納品
+
+全21セット・4,599判断・共通固定NLL7点×2,554 targetの確認を完了した。S0/S1 t2は両条件不合格、最終t3も候補なし。S1新/前回/元旧の内容19/21/11 of80、自己生成文脈3/6/1 of24。新主指標のS1−S0差+3.75ポイント、95%CI−8.75〜+16.25で改善条件不成立。新自己生成反復と元旧固定反復の増加、元旧raw Unicode失敗1件も不採用理由として残る。全判断はCodex非blind、完全一致したraw/実履歴/checksだけ再利用した。
+
+20件のCPU gate改変拒否確認を通過し、2026-10-13T09:44:20Zに6段階の科学監査を完了した。初期chargeを含むGPU台帳2,443.006571秒/21,600秒、全状態/実教師列/元品質条件/CI/NLL分母/終端を照合した。元10B UI PID292581/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start52504723・HTTP親/Tokenizer/10M・busy=false・実kernel lockを確認し、競合jobなし。これは当時の生存観測。
+
+保持/samplingは候補なしでskipped_no_eligible_candidate、executed=false、passed=false、quality_unconfirmed=true。回復/効率/独立学習seed/fullDEV/TEST/採用/量子化/公開は加えていない。途中の残評価や実PIDを再開指示へ戻さない。
+
+[結果138](138_chat_semantic_diversity_results.md)へ全保存点、失敗、NLL、資源と未確認の境界を整理し、状態・ロードマップ・引継ぎ・AGENTS・README・135末尾を閉鎖と停止へ更新した。更新前文書は今回runのdocumentation_historyに原bytesを保全。重み/全state/教材はWSL、全小report/raw/notesと文書はWindowsローカルGitに保存し、push/公開せず停止する。[科学監査](../reports/phase7/chat-semantic-diversity-20261013/completion.json)と[納品確認](../reports/phase7/chat-semantic-diversity-20261013/final_delivery_checks.json)が完了の証拠。比較完了はBase/Chat完成を意味しない。
