@@ -44,3 +44,7 @@ TRAIN凍結後に新DEV80件と自己生成24会話59turnを固定した。TRAIN
 08:48ZにS0の新DEV3保存点と新しい固定NLL3点の生成評価が終了。S0 t1新DEVの全219判断を追加して、13/21セット・2,847判断・固定NLL5/7点を監査した。t1の未知内容はS0 23/80対S1 24/80、自己生成文脈6/24対7/24。全3suiteの原絶対gateは両条件とも不合格で、登録paired CIの改善条件も不成立。これは途中比較で、最終t3の採否ではない。
 
 S1 t2/t3の残6suite＋NLL2点をdurable workerで生成評価中。08:54:50Zの実観察でLinux PID290244/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start_ticks52470897の生存を確認した。次はそのworkerの実終端/UI復帰を確認し、S0 t2/t3新DEVとS1 t2/t3全6suiteの理由付き全判断を完了する。その後t2比較、t3最終選定、final analysis、登録条件に応じた保持/sampling、CPU拒否checks、全6段階の監査、結果文書・保全・commitで停止する。新しいTRAIN、追加学習、救済seedを加えない。
+
+08:58:07ZにS1残生成・NLLのworkerが正常終了した。`generation_audit.json` で全21 rawセット・4,599応答のtoken/bytes/prompt/実履歴/凍結binding・実終端と、全7 NLL点×2,554targetの数学的分母を確認して通過した。内容レビューは13セット・2,847判断までで、残8セット・1,752判断を未完了として残す。全raw生成がそろったことを全内容確認や6段階完了へ読み替えない。
+
+09:01:39Zの実process/HTTP/kernel lock観察で競合jobなし、元10B UI PID292581/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start52504723・親/Tokenizer/10M一致・busy=falseの復帰を確認した。GPUの新学習は完了し、次の主作業はCPUで残8レビューを理由付きで読み切ること。最終選定・有資格分岐・最終解析・完了監査と納品は未完了で、goalは継続する。
