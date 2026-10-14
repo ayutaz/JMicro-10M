@@ -1,0 +1,104 @@
+{
+  "status": "explicit_architecture_proposal_before_implementation_or_GPU",
+  "created_at": "2026-10-14T21:48:30.6990992Z",
+  "question": "Can a signed cross-KV attention-map path, initially zero and trained only by unchanged original next-token CE, improve coherent Japanese continuation within the existing approximately10M budget?",
+  "evidence": {
+    "reports/phase6/pseudo-repetition-science-20261015/completion.json": "f68e5f1c8ce3a8e93b11d2150e546b576e6ac35608c3ef65186ed74ae31c4dec",
+    "reports/phase6/pseudo-repetition-science-20261015/notes.json": "a872ff304c350a3e5bac66d45d479ac330788dbf31b5e0b84b9b88141c6e9f92",
+    "reports/phase6/base_headwise_gate_proposal.json": "15a06e61ef89b52dbfad517bdc849579d4ba83610f10efd6a45222871dd7a67e",
+    "reports/phase6/base_headwise_gate_comparison_completion.json": "2a2286904d41c9f7c6c6b195e74f7d578827ebcdff2d73b77c82d031e2745a08",
+    "scripts/base_headwise_gate_model.py": "d775d826a440296b4666a962db60e5ee6eafa322dc17a606389d885338c130df",
+    "reports/phase6/base_kv_allocation_proposal.json": "50a1a07e82ffe17b6046374b2cb9e00f5a0a03cfdd72b5d5b76cbb08b6149f2f",
+    "reports/phase6/base_kv_allocation_probe_completion.json": "3c5bdaf0f6918eaeef7409396e5773a35efe2836c7a4a78eaa11180bd3a3f57e",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83"
+  },
+  "observations": "Previous sentence-copy loss reduced raw repeats45to31 but coherence stayed2/80 and lexical corruption appeared. Closed headwise query sigmoid output gates had coherence1/80; extra tokenwise output selection did not qualify. These results motivate a distinct context-routing question but do not diagnose attention noise, GQA conflicts or capacity limits.",
+  "architecture_policy": {
+    "kind": "cross_GQA_attention_map_signed_tanh_v1",
+    "base": "Frozen NoQKNorm native13L hidden256 FFN640 Q4/KV2/head64 vocab4096 context1024",
+    "head_mapping": [
+      2,
+      3,
+      0,
+      1
+    ],
+    "main": "A_h=softmax(original_scaled_Q_h*K_group(h)^T+same_causal_padding_mask)",
+    "cross": "B_h=softmax(original_scaled_Q_perm(h)*K_group(perm(h))^T+same_mask)",
+    "output": "(A_h - tanh(raw_lambda_h)*B_h) applied to ORIGINAL V_group(h), then unchanged original o_proj",
+    "raw_lambda_initial": 0,
+    "raw_lambda_granularity": "one trainable scalar per query head per layer",
+    "coefficient_range": "(-1,1), no forced positivity or posthoc clamp",
+    "norm": "No new head norm or output-projection rescale; all original RMSNorm/RoPE unchanged",
+    "cache": "Same original post-RoPE K and unrotated V two-head cache; no second K/V store",
+    "parameters": {
+      "added": 52,
+      "native": 10001152,
+      "candidate": 10001204,
+      "permitted_range": [
+        9500000,
+        10100000
+      ]
+    },
+    "extra_projection_parameters": 0,
+    "original_native_source_sha256": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83"
+  },
+  "algebraic_precondition": "Within-KV sibling map subtraction would merely mix existing head outputs and can be folded into o_proj; exclude it. Cross-KV map applied to the current V is different from subtracting the other head OUTPUT, whose V belongs to the other group. Require a counterexample with all original head outputs zero but cross-map-on-current-V nonzero; this distinguishes fixed-readout reparameterization, not a universal expressivity theorem.",
+  "primary_sources": [
+    {
+      "scope": "Section2.1 subtracts two softmax attention maps before applying V; paper also uses per-head normalization and a different lambda parameterization. Large-scale/fresh results are not Japanese10M evidence.",
+      "url": "https://arxiv.org/html/2410.05258v2",
+      "title": "Differential Transformer"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/microsoft/unilm/master/Diff-Transformer/multihead_diffattn.py",
+      "scope": "Author implementation inspected for map subtraction, grouped KV and head normalization. No external code or weights imported/executed."
+    }
+  ],
+  "not_reproduction": "This is an own cross-GQA reuse variant: full original Q/K maps permuted across groups, tanh per-head scalar at zero, original V per head, no added group norm. Paper independent paired maps/head layout/initialization differ. No assertion that paper results transfer or that zero-initialized adaptation will work.",
+  "different_from_closed_gate": "Old query-dependent sigmoid multiplies each original SDPA head OUTPUT, doubles o_proj at conversion and needs a new static matched arm. Here no original weight is rescaled, no output sigmoid/query projection is added; a different KV group map is applied to current-group values before the original readout. Existing parameter coordinates and initial function are retained, with52 explicitly new scalars.",
+  "different_from_closed_KV_allocation": "No K/V head-count/FFN redistribution, fresh MHA comparison, batch or budget rescue of the closed300M allocation protocol. Original GQA caches and Q/K/V/O dimensions retained. Prior gradient cancellation does not prove this route useful.",
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "goals": {
+    "web": 75000000,
+    "textbook": 20000000,
+    "story": 5000000
+  },
+  "tokenizer": "artifacts/phase2/4096/tokenizer.model",
+  "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+  "batch": 48,
+  "seed": 42,
+  "main_teacher_goal": 100000000,
+  "optimizer": "Fresh all-parameter AdamW LR1e-5 WD0.1 betas0.9/0.999 eps1e-8, clip1, constant schedule. Original learned10B weights plus zero new scalars; never rejected or technical verification weights.",
+  "control": "Reuse stored original native CE100M as declared baseline10,001,152 versus candidate10,001,204. Same original base weights/initial function/CE data/teachers/source/schedule and existing-parameter optimizer coordinates. No claim of identical inference architecture or exactly equal physical parameter count. Static-zero variant is a technical parity check, not a new completed science arm.",
+  "main_objective": "Only unchanged original hard CE body+EOS; no auxiliary targets, synthesized context, altered labels, teacher, inference constraint or decoder tuning.",
+  "CPU_preconditions": "Separate tagged model/source; independent manual signed attention reference, rejection of same-KV readout-only degeneration, zero-coefficient parent logits/weights/RNG/count, active coefficient gradients, future-token causality, padded/chunk cache parity, strict typed load/export refusal; one bounded actual native-parent CPU parity using existing technical input with no corpus/DEV/TEST.",
+  "CPU_actual_parent_cap_seconds": 30,
+  "next": "Only after those checks implement typed native trainer with all source/state clocks and exact continuous/resume proof; then one owned CUDA<=180s finite48x1024/memory/full-state/32timing gate. Safe persistent science/evaluator/reviewer and exact architecture pairing guards must precede freeze/learning.",
+  "owned_CUDA_cap_seconds": 180,
+  "total_new_GPU_cap_seconds": 4800,
+  "science_budget": "Prospective total4800s. Measure candidate unchanged17698 main updates: ceil(17698*mean32 actual step seconds*1.3+600) plus all technical costs must fit. No cap/batch/teacher rescue after failure.",
+  "quality": "Preserve ALL original absolute/paired/strong/historical guard and raw EOS/repetition/UTF8 failures. Only declared model difference may change matching schema: exact original base config/all original source/scheduler/teacher/physical checks plus declared tagged policy/count/initial parent function. No quality gate relaxed. all80 content reviewed; paired coherence gain>=8 and CI lower>0, grammar>=56/coherence>=27/appropriate>=27/EOS>=37/repetition<=18, failures0, matched BPB nonworsening and every prior retention comparison.",
+  "failure": "One fixed declared cross-group mapping/tanh-zero/parameter allocation/parent/source/batch/LR/seed/budget. Close if algebraic/numeric/cache/stream/budget/quality gates fail. No map/permutation/normalization/lambda/head/parent/decoder/cap rescue or extension.",
+  "later": "Only qualified condition advances truly fresh whole-pipeline independent training/fullDEV/all440/new sealedTEST/adoption. Base-only stop boundary; no Chat/SFT/quantization/larger models/publication.",
+  "model_implemented": false,
+  "GPU_seconds": 0,
+  "scientific_teachers": 0,
+  "new_dataset_prepared": false,
+  "TEST_opened": false,
+  "scientific_contract_frozen": false,
+  "Base_adopted": false,
+  "full_four_item_goal_complete": false
+}
