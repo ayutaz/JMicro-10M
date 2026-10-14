@@ -1,0 +1,90 @@
+{
+  "status": "prospective_natural_equal_length_context_likelihood_candidate_selected_no_science",
+  "question": "Does directly contrasting native conditional suffix likelihood under its original versus another length-matched observed context improve free Base coherence without losing Web quality?",
+  "observed_reason": "Prior representation contrast improved retrieval but did not improve ordinary suffix likelihood or free generation. Natural correct versus cyclic contexts already showed measurable likelihood separation; reuse those diagnostics, do not rerun them",
+  "references": {
+    "reports/phase6/natural_context_contrast_comparison_completion.json": "a07acf8bb9ebfbe120af9ea903aae65477b535c5992bad4176d246a71c2c608f",
+    "reports/phase6/natural_context_contrast_likelihood_transfer_completion.json": "2f9d08f99d4aebe8545abe301d5c6e0c91847dfcb2b04b4b97d1d8722ae1d8a1",
+    "reports/phase6/natural_context_contrast_projection_comparison_completion.json": "3166f10c64ef3d2851ed634861c519fb09e319a8855881a60cad6f7aa4090985",
+    "reports/phase6/context_outcome_ranking_proposal.json": "23753e2207f3f3a38cde331c0e0d395a99741a00e5884173768b0559aa4bfa69",
+    "reports/phase6/anchored_context_outcome_comparison_completion.json": "c3256b77a030760a88e48e1da0105094073d105d167928bd2cf0e0d27137c509"
+  },
+  "novelty": "Native vocabulary-path likelihood, same exact suffix across contexts, same prefix token count, and observed natural source relations. Previous natural InfoNCE worked on separate last-valid hidden representations; previous outcome ranking used fixed synthetic opposite-label continuations and Web KL. This is not a coefficient, head, seed or parent rescue of either closed mechanism",
+  "literature": [
+    {
+      "support": "Sentence-level conditional likelihood supervision improved some cloze estimation results in an RNN; no Japanese10M free-generation claim. This context-swap logistic objective is an exploratory variant, not an exact reproduction",
+      "title": "Learning a Word-Level Language Model with Sentence-Level Noise Contrastive Estimation for Contextual Sentence Probability Estimation",
+      "url": "https://arxiv.org/html/2103.07875v1"
+    },
+    {
+      "support": "Conditional ranking-based noise estimation has a theoretical analysis under stated assumptions. Do not transfer consistency guarantees to this finite deterministic FIFO without proving its assumptions",
+      "url": "https://aclanthology.org/D18-1405/"
+    }
+  ],
+  "native_parameters": 10001152,
+  "extra_parameters": 0,
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+  "accepted_source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "main_CE": {
+    "windows": "document-local1024 stride512, original body/EOS/quota masks",
+    "sampler": "unchanged frozen OriginalTrainCorpusSampler including actual successor-record mapping",
+    "targets": 100000000,
+    "matched_control": "reuse exact stored native CE100M source/config/checkpoint/evaluation/notes after input/state verification",
+    "seed": 42,
+    "goals": {
+      "web": 75000000,
+      "textbook": 20000000,
+      "story": 5000000
+    },
+    "optimizer": "same fresh AdamW lr1e-5 wd0.1 constant scheduler clip1",
+    "batch": 48
+  },
+  "auxiliary": {
+    "coefficient": 0.1,
+    "loss": "mean softplus(sum_logp_same_suffix_wrong_context minus sum_logp_same_suffix_original_context)",
+    "anchors": "first complete original body+EOS<=512 row, fully selected main CE quota, observed sentence/LF split, original joint-token suffix",
+    "accounting": "100M main CE targets plus separately reported repeated auxiliary likelihood-target evaluations, valid/physical forwards and GPU time; no new gold identities",
+    "context": "prior successful updates only; FIFO128 native prefix token sequences, oldest same-genre and exact same-prefix-token-count distinct-family/body/prefix/suffix context",
+    "commit": "FIFO only after completed Adam update; persist actual FIFO with full numerical/RNG/sampler state",
+    "distractors": "document-matching noise, not certified false factual continuations",
+    "teachers": "identical original suffix body IDs and masks in both likelihood forwards, no auxiliary EOS or markers"
+  },
+  "CPU_gate": {
+    "wall_seconds": 30,
+    "batch": 48,
+    "minimum_active_batches": 16,
+    "minimum_pairs": 64,
+    "batches": 32
+  },
+  "prospective_GPU_cap_seconds": 4800,
+  "owned_technical_GPU_cap_seconds": 180,
+  "scientific_budget": "not measured or frozen; derive training/evaluation/save allowance from new owned technical measurements before science",
+  "evaluation": "isolated Base DEV256/all80 plus isolated Japanese192/331/1119 and saved2M unigram; no mixed reader or TEST",
+  "advancement": "all original matched/strong/cached/absolute/historical-Web quality guards with raw all80 content, not loss/retrieval alone",
+  "final_scope": "genuinely fresh whole-recipe seed43, fullDEV and all440 continuations, then new sealedTEST and Base adoption; goal remains unachieved",
+  "failure": "close fixed condition; no capacity, length-bin, coefficient, source, seed, parent, decoder or budget rescue",
+  "required_implementation": [
+    "objective-bearing native trainer and completed-update FIFO checkpoint validation",
+    "CPU actual CE-only equality and continuous versus resumed numerical state",
+    "owned finite CUDA/batch/memory/save-resume/timing probe",
+    "persistent scientific runner and safe checkpoint-bound evaluator/reviewer"
+  ],
+  "new_GPU_seconds": 0,
+  "new_scientific_teachers": 0,
+  "science_frozen": false,
+  "Base_qualified": false,
+  "Base_adopted": false
+}

@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-15次案選定: [natural same-suffix/equal-prefix-length native likelihood contrast](../reports/phase6/context-likelihood-preparation-20261015/proposal.json)をprospective選定。原10M/元10B親/元CE100M・48・42・Adam条件を維持し、既に学習した別文脈をFIFO128に保持、同suffix語彙尤度差を直接softplusで学習する。新parameter0。旧表現InfoNCE/template rankingの救済ではなく、同suffix prior/位置数を固定した別機構。pure12＋trainer11 CPU checksと[32x48 TRAIN feasibility](../reports/phase6/context-likelihood-preparation-20261015/CPU_feasibility.json)551pair/31 activeがpassed。科学/GPU0、品質未確認。次は新owned CUDA180秒以内の全state/resident/速度測定から、総4800秒提案内の科学予算・safe評価/採否CLIを凍結する。元の全品質・独立fresh seed/fullDEV/全440・新封印TEST/採用条件は未達のまま維持。
+
 2026-10-15最新準備: [safe Japanese scoring回帰](../reports/phase6/isolated-japanese-scoring-20261015/CPU_regression.json)で隔離DEV-role inputs1642例/6641choiceの元codec境界・保存2M TRAIN counts・全score/tie規則がexact一致。新adapter16 CPU checks passed、実回帰0.165426秒/GPU0。本文の「safe scorer接続」はadapter単体まで完了、次prospective runnerへのcheckpoint binding/永続評価は未接続。新学習や品質改善ではなく、独立seed/fullDEV/新TEST/採用は未達。別の根拠ある比較選定を継続。
 
 2026-10-15追補: [TRAIN index-byte監査](../reports/phase6/sampling-boundary-20261015/sampling_audit.json)で包含行skip/次行選択と直前行byte重みをCPU11 checks・固定256 metadata drawsで確認。旧「record-byte weighted」の説明は自身の長さによる重みと解釈できない。観測された条件内分布差は小さく、品質失敗原因や新学習の根拠にはしない。過去の対照・候補の同抽出pairingは保全。stream/DEV/TEST/GPU/学習0。次はsafe Japanese scorerの必要接続と別比較選定で、独立学習/fullDEV/新TEST/採用は未達。
