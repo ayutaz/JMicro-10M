@@ -1,0 +1,204 @@
+{
+  "kind": "frozen_native_original100M_causal_qkv_contiguous_science_v1",
+  "created_at": "2026-10-14T23:51:00.833568Z",
+  "proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/causal-qkv-contiguous-preparation-20261015/proposal.json",
+    "sha256": "5a695341a2fe665bfd8a3b66295f8d471280b2e0972939fea3ed7880efb40549"
+  },
+  "probe_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/causal_qkv_contiguous_probe_20261015.json",
+    "sha256": "142064fb13bab22c792e4a9b28c4cca17c54391d8a37338da8ad0537ffa56778"
+  },
+  "probe_result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/causal-qkv-contiguous-probe-20261015/result.json",
+    "sha256": "cd2b342afec8181fec6f794fda772f0523060da1c81eb34bd3313a3f358a7e3b"
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "tokenizer": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/phase2/4096/tokenizer.model",
+    "sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "goals": {
+    "web": 75000000,
+    "textbook": 20000000,
+    "story": 5000000
+  },
+  "batch": 48,
+  "seed": 42,
+  "main_teacher_goal": 100000000,
+  "recipe": {
+    "kind": "residual_depthwise_QKV_previous2_v1",
+    "current_coefficient": 1.0,
+    "previous_lags": [
+      1,
+      2
+    ],
+    "coefficient": "direct_signed_per_projected_channel",
+    "initial_previous_coefficients": 0.0,
+    "norm_RoPE_order": "project_lag_norm_RoPE",
+    "padding": "preceding_valid_tokens_only",
+    "cache": "last2_raw_QKV_and_validity",
+    "new_biases": 0,
+    "original_FFN_unchanged": true
+  },
+  "initial_weights_sha256": "242394f227cbd94316aa4630016fb064c3b2c6f0afe31e8451339f0823eca385",
+  "scientific_GPU_cap_seconds": 4291,
+  "technical_GPU_seconds": 34.850105189019814,
+  "prior_reference_technical_GPU_seconds": 19.769017330021597,
+  "optimized_technical_GPU_seconds": 15.081087858998217,
+  "original_combined_technical_GPU_cap_seconds": 180,
+  "runtime_implementation": "same_math_causal_full_prefix_contiguous_shift_v1",
+  "total_GPU_cap_seconds": 4800,
+  "worst_measured_peak_bytes": 11411260416,
+  "native_reference_parameters": 10001152,
+  "candidate_parameters": 10014464,
+  "architecture_comparison": "Original native CE baseline versus tagged causal QKV contiguous lags model with13312 new zero-initialized scalars. Same original base config/weights/function, source and main CE; not identical inference architectures or equal physical parameter counts.",
+  "control_checkpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/CE/checkpoint-00017698.pt",
+    "sha256": "f691a7587c03c51293a2e77889307da0efa18d2349c13e4f77439fd339586967"
+  },
+  "control_training": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/CE/train-result.json",
+    "sha256": "dc3eae3f5b34bc7c09165ad34cb0f3dac1da9c6ff88c451fc2f9590980383ae2"
+  },
+  "references": {
+    "strong_result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/compare-result.json",
+      "sha256": "cbca7936ebf395b1d5ccd45022ee4cb85de704a636c8bdae48ff2c24a8adc303"
+    },
+    "strong_notes": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source_order_condition_notes.json",
+      "sha256": "6b143e08096a1ee2365a643c008d5c009d2c2ff48dd1d42a9749ac5301766d2d"
+    },
+    "original_config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/textbook_quantity_comparison.json",
+      "sha256": "f1baece77f9e85d6086f1ac5d1e624a59d19910a90af2202a104fb125c379d98"
+    },
+    "historical_Web": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/evaluation/result/web/evaluation/result.json",
+      "sha256": "5e0f346d1c657b2f8f1a35d9e8079ce896abab3451e34dc697792394a0df6796"
+    },
+    "cached_control_result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/result.json",
+      "sha256": "508990562990d2259fec5e1a330cf1ff77c053360b6678e751f6a02cb2b2394e"
+    },
+    "cached_control_notes": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural_context_contrast_CE_notes.json",
+      "sha256": "5a36aa6d4914260d1975974ae0fbee6c1e0024d900ea8103da970fdbc4ee9369"
+    },
+    "cached_control_raw": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/evaluation/CE/evaluation/generation.json",
+      "sha256": "73a952a4e08ca8cfffa229fdb8c8f497d0373ff0646ca4b4f5cecd90a27e644b"
+    }
+  },
+  "strong_summary": {
+    "BPB": 1.1336128657420816,
+    "rates": {
+      "outputs": 80,
+      "eos": 76,
+      "repetition": 2,
+      "unicode_failure": 0,
+      "role_leak": 0,
+      "empty": 0
+    },
+    "grammar2": 65,
+    "relevance2": 39,
+    "coherent": 23,
+    "appropriate": 26,
+    "notes_sha256": "6b143e08096a1ee2365a643c008d5c009d2c2ff48dd1d42a9749ac5301766d2d",
+    "generation_sha256": "d5b5a7c6b5d971de9bc46c77f52ac5ea19132cab7b97f034c274974cdbe2620e",
+    "Japanese": {
+      "semantics": 0.5625,
+      "jblimp": 0.7824773413897281,
+      "jcqa": 0.26541554959785524
+    }
+  },
+  "DEV_manifest": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/eval/isolated-base-dev-v1/base.dev.manifest.json",
+    "sha256": "6198b43df8f4cf389e9de74c038e2e93d18665413477b27359ab352a02f69fa7"
+  },
+  "DEV_shards": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/expanded-v2/shards",
+    "manifest_sha256": "75c7420a1434cf8a97797218b163c694a13ed838f389f09327dcc86f7164c12c"
+  },
+  "Japanese_manifest": {
+    "path": "/home/aihub_ubuntu/jmicro-data/evaluation-isolated-japanese-v1/japanese.dev.manifest.json",
+    "sha256": "06fcf2c18f086ee57c4f615e5ae765f568024912148bf94be891b1581e7edadd"
+  },
+  "unigram": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/japanese-base-v2-20261004-r1/pilot/unigram.json",
+    "sha256": "80708c01ae19d6049785dd31d1e48651e1f246122870355a9ab5ad662081d0a5"
+  },
+  "sources": {
+    "scripts/probe_causal_qkv.py": "6475ecff1d6f56142f282f305688b36c41ea34c7bdc6dbeb50a2ee6bde046551",
+    "scripts/probe_causal_qkv.ps1": "ff52ef31017bcb4b8ec2b0f55017f7ac9f41677550fe8ab699367e4a5d8b1276",
+    "scripts/causal_qkv_trainer.py": "025e74d2a238d2f016f6e734ff206a85bf90f577b11498992372e325770a5413",
+    "src/jmicro/causal_qkv.py": "812158ecdb63c44385c77dc4f4099a4525b7eb6a6eb1306a7db735f89e73ad10",
+    "scripts/context_likelihood_trainer.py": "392824e360dca7474d3b6227d19236d0d748c5238b03067dd80aba9d497dfaa5",
+    "src/jmicro/context_likelihood.py": "a08597c78b4a39f358214730d507037f15679a3f83650009445c65b6898eaafd",
+    "scripts/probe_context_likelihood.py": "b76ebc5aba00d7754b9909dcaca85cddbb81ad03c64e2061ff7925b65cbf3cd6",
+    "scripts/probe_base_kv_allocation.py": "b803c8238cca10b76baed061ceb944bf090f320b762562da40944b9dc529b5e3",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "scripts/natural_context_contrast_memory.py": "85735b203e1a6f845078046379c6463b51cdc61068a463a379d93c79368f62e2",
+    "scripts/base_fim_trainer.py": "31fb0a86561014221ba5096cf83ffa17914e9c946b214dc0e407e1abbb1398c4",
+    "scripts/base_fim_sampler.py": "ca5eeea9c47e8c78ccd6843cd6287cd7eaaeee3cccf7a948349f773ac6e64e79",
+    "scripts/base_kv_allocation_trainer.py": "49cbf6a2e6163e16577e385860345e542c3282a9f8e752c164b53a66ac43e7e1",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "tests/test_causal_qkv_probe.py": "4b313e515cabdf9a5dc99ebf4f87a9295ed86a87283ca2968ec7e069bb7ee0a5",
+    "tests/test_causal_qkv_training.py": "0b8c566f824f2e609d26c31c3b8e66e21628e6abdaaebed48066eb1dc9231a4a",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca",
+    "scripts/probe_causal_qkv_contiguous.py": "cfc6ddbddbe523a7b6395b0ced9bb38990abf0521052f3211c73fac6f86dccac",
+    "scripts/probe_causal_qkv_contiguous.ps1": "bfdf55988de6003cec6ef2cd517de7faf1593d703f890199458820c1e12a5cdb",
+    "scripts/causal_qkv_contiguous_trainer.py": "2bcd803661754113a6eecc5ff83100db96d168a0714c1e6ca6315993a4801fc5",
+    "src/jmicro/causal_qkv_contiguous.py": "b18b68ed968100aa3080442009b00a9eb35796aec3c90041fe9f7ca19ffbdbfc",
+    "tests/test_causal_qkv_contiguous.py": "59afd096634e370e43ae120efd9a686ef829a108c19a13df79079c2e95e7f191",
+    "tests/test_causal_qkv_contiguous_training.py": "fa9355575d71f2b04e1cf3dd1e14c04d77cb0b9dc4a541fb2de7e661bae85a40",
+    "tests/test_causal_qkv_contiguous_probe.py": "2359c7cf038a8beae4a3b5adc29268a954b33c226987403e81f17e2657e9a48d",
+    "scripts/run_causal_qkv_contiguous.py": "4f538c30581aa9ddef5538ef7cb6a2e498b7fabf084110c9501f64e38a35cc52",
+    "scripts/run_causal_qkv_contiguous.ps1": "2de9d222514e3c656570735f3ca8fe289ac692ac3a93f173442482b453cdd31e",
+    "scripts/review_causal_qkv_contiguous.py": "feb615b26959c4a4297f09d77d37ec2bc79d2a6d4b8ef73983016d831daf7d37",
+    "scripts/evaluate_context_likelihood.py": "fa439d0dac298bfba1bdaaf41e3f759e83d95c7b8e5226028fcb5039bddc5f11",
+    "scripts/causal_qkv_contiguous_science_protocol.py": "661ce6e15dde8a7a5e17926407419b0b7cb89d508f05c2f126c5e5ad6996dfde",
+    "tests/test_causal_qkv_contiguous_science.py": "99a4885d9d948c9fc8132d3a9fb54939b8f11881439cad1cff9a8d62caa50dd9",
+    "src/jmicro/isolated_japanese_scoring.py": "92fe253d5ddc2e0a1d3267ce97edfe91180788784274a3c214967543688e78c7",
+    "src/jmicro/evaluation_choice_boundary.py": "6e2ea2dc0c0ef288dbb7d64c535fc483c3c30d9c19aa6bb6d20d3c61ac390a8d",
+    "src/jmicro/evaluation_boundary.py": "e67d86ea26645d9a27d6597d0241716e66a9cc64666bbc2b2b91fab86e2d2f6e",
+    "src/jmicro/evaluation_memory.py": "ba22fb7ca7ddb6633a308c2b1a32a59147ecb38e568d9f838ab032300147c6b4",
+    "src/jmicro/japanese_evaluation.py": "8693e2a54e63c1b085b617b207cc5db618ae80af1eb7cb54133ba8b254da6801",
+    "src/jmicro/readiness.py": "69a92251f4a697b551b9c3cfef9e2b992e776e2047c0331f7c43ba2331d172ea",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "scripts/isolated_base_evaluation.py": "b5ccce8df7a0bc294dc85a255b9fa67bc865675c06d40a6e976f4876fb3be300",
+    "scripts/base_fim_pilot_protocol.py": "44d99a88023a38682a8583a730f2ac41d9c8333cb091e0fb2619dee0e0421a22",
+    "scripts/review_matched_story_study.py": "439c990c4d2781937573927df08bdaef860041c78fd05f0d6afde4458351f315",
+    "scripts/run_eos_complete_100m.py": "62232fd440efbe32d65f25a3fffe8ec9fd7d7a96c74db329ddc3cc3443871a9d"
+  },
+  "CPU_workflow_tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/causal-qkv-contiguous-preparation-20261015/science_CPU_tests.xml",
+    "sha256": "66b472e9a11284ed996f0a8cbc4b384b0ef0fb3bbc34e08b6a56239bd40c15b4"
+  },
+  "checkpoints_every_updates": 500,
+  "heartbeat_every_updates": 20,
+  "scope": "Base only. Qualified recipe precedes genuinely fresh whole-recipe seed43/fullDEV/all440/new sealedTEST/adoption.",
+  "failure": "Fixed condition closes on data/numeric/state/budget/quality failure; no parameter/source/seed/parent/decoder/cap rescue.",
+  "quality_criteria_unchanged": true,
+  "TEST_prepared": false,
+  "Base_qualified": false,
+  "Base_adopted": false
+}
