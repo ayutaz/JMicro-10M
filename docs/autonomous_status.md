@@ -1,10 +1,12 @@
 # 現在の状態
 
-更新: 2026-10-14 JST。現在の依頼は全現行文書の最新化と今後の計画作成。Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は再開していない。
+更新: 2026-10-15 JST。文書更新は結果32b8f58/receipt d44b8a0で完了し、ユーザーが目標を解除。その後「4まで進めてください」で直前の4項目（評価分離修理→新同10M比較→合格候補の独立学習/全文DEV→新封印TEST/採用）が明示再開された。Base/Chatは未完成・未採用。Chat/SFT・量子化・大型化・公開は範囲外。
+
+[評価分離修理147](147_evaluation_boundary_repair.md)でDEV専用manifest/readerと新生成/review境界を実装。CPU21 checks passed、既に保存したDEV80から入力のみをexportし実read-setを3ファイルに限定した。元混在suite/TESTは開いていない。生成答えの教材化0・実モデル評価/GPU0・品質改善の証拠0。旧frozen sources/事故/全結果は保全。次は既存証拠から新介入と対照/予算/必要CLIを定義し、隔離済み経路で比較する。独立学習/全文DEV/TESTは候補資格が成立してから。
 
 [最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
 
-前の「6まで」は未達でblockedとなり、ユーザーが解除した。今回の新しい目標は文書/計画のみで、学習再開ではない。
+前の「6まで」は未達でblockedとなり、ユーザーが解除。その後の文書/計画目標は完了し、現在は別の「4まで」の再開目標。以前のblocked countや再開質問を新目標へ引き継がない。
 
 最新の[文書長重み比較144](144_base_document_balance_results.md)は17,698更新・正確100M教師・全80理由付き内容・共通DEV256/Japanese192/331/1119・全state/元文書重み/対照全samplerとdigestを確認して**不採用で閉鎖**。文法44→23、一貫性2→1、適切完結2→2、EOS19→20、反復45→50（各80）。BPB0.998487→1.000710、一貫性差CI−3.75〜0ポイントで原品質・保持未達。
 

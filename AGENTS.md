@@ -2,7 +2,15 @@
 
 Read docs/autonomous_status.md, docs/15_project_roadmap.md and docs/windows_handoff.md before continuing. Actual latest Base evidence is result144; next plan is docs/145_post_rejection_next_plan.md; document coverage and delivery are in docs/146_documentation_followup.md and docs/document_catalog.md. Plans are not execution authorization.
 
-## Current scope — 2026-10-14 JST: documentation and planning only
+## Current scope — 2026-10-15 JST: four-item Base resumption
+
+The user cleared the completed documentation goal and explicitly requested "4まで進めてください", referring to the immediately preceding four-item plan: repair DEV/TEST reading separation; define and run a new same10M comparison; independently train and verify a qualified candidate/fullDEV; new sealedTEST and Base adoption. Necessary implementation, bounded diagnostics/data preparation and local GPU work are resumed for those stages. Keep the full requested final state; a reader repair or rejected comparison is not goal completion. Chat/SFT, quantization, larger models, publication/push and paid cloud remain outside scope. Select one prospective evidence-grounded intervention at a time, define measured frozen budgets before learning, preserve every closed recipe and all original gates. No new TEST preparation/use before qualified recipe and final selection seal.
+
+Current progress is docs/147_evaluation_boundary_repair.md: new pinned DEV-only reader, generation/review interfaces;21 CPU fixture checks passed; actual DEV80 exported from the previously audited DEV-only generation with enforced three-file read-set. No mixed suite/TEST read, no generated answers exported, no real-model/GPU work or quality improvement claimed. Legacy frozen mixed readers remain unchanged and must not be called from new DEV workflows. Next implement the new comparison contract/CLI with this boundary, not an old-command relaunch. Keep src/jmicro/model.py and every frozen historical source hash intact.
+
+The prior goal6 blocked-audit count belongs to that cleared goal and does not carry into this new goal. Do not repeat its superseded approval question. Preserve pending qualification/fresh whole-pipeline seed43/fullDEV/finalTEST as pending; never substitute sampler43 or generation RNG for fresh independent Base learning. Original10B UI must remain available; revalidate actual processes/lock before future GPU launch and restore after bounded work.
+
+## Previous documentation-only scope
 
 The user cleared the blocked, unachieved "6まで進めてください" goal and requested updating all documentation and planning the next work. Inventory every Markdown/RST including provenance copies, update all living explanations, preserve frozen/dated evidence and original bytes, verify local links/Windows-WSL/Git delivery, and commit locally. No research implementation, diagnostics, data/TEST preparation, inference/evaluation, GPU training, old-job restart, dependency/environment work, push/publication or quantization is resumed. Do not repeat the superseded research-resumption question during this documentation goal.
 

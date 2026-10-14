@@ -1,6 +1,6 @@
 # Windows / WSL 引継ぎ
 
-更新: 2026-10-14 JST。現在の依頼は全現行文書の最新化と今後の計画作成。Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は再開していない。
+更新: 2026-10-15 JST。「4まで」で評価分離修理からBase最終判定までが明示再開。[修理147](147_evaluation_boundary_repair.md)の新DEV reader/生成/reviewとCPU21 checks・実DEV80入力監査を完了。新契約は`eval/isolated-base-dev-v1/base.dev.manifest.json` SHA6198b43df8f4cf389e9de74c038e2e93d18665413477b27359ab352a02f69fa7をpinする。旧混在readerを新比較へ呼ばず、frozen過去source/結果を変更しない。実GPU新学習0・新介入未選定。起動前の実process/lock確認が必要で、過去PIDを現在保証にしない。
 
 [最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
 
