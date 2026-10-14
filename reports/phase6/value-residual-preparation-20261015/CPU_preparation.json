@@ -1,0 +1,68 @@
+{
+  "kind": "value_residual_model_CPU_preparation_v1",
+  "created_at": "2026-10-14T22:45:38.9821313Z",
+  "status": "model_CPU_checks_passed_trainer_actual_parent_parity_and_GPU_pending",
+  "source_and_evidence_sha256": {
+    "src/jmicro/value_residual.py": "5d9d1e1b217ba6ca4ea581b718350442cb903c63615b608b8b3a9c82bab331b6",
+    "tests/test_value_residual.py": "81e6626101b64d8077ff1aafcc321b36c6be158c95265f32b5f1e9b6068f716e",
+    "reports/phase6/value-residual-preparation-20261015/proposal.json": "e44b6f432e15f2c917b94aa115f624d79ab0e8291564bcf5e8d4ab0ad768f904",
+    "reports/phase6/value-residual-preparation-20261015/model_CPU_tests_initial.xml": "0625bc18a04917bccdffd9cbe1ab191ff09c7a4fa9ce6fbe2ddf7db91e2ee13e",
+    "reports/phase6/value-residual-preparation-20261015/model_CPU_tests_v2.xml": "2e12680671ab36f1cbec6baf1e086042eae5e503d81a06565b742db493f852a6",
+    "reports/phase6/value-residual-preparation-20261015/learned_clip_CPU_test.xml": "8dd7a6fb3e2406e54feaf2f3d3015533c9eeadba2b4a27fd43aa75521dee7d8f"
+  },
+  "primary_source": "https://arxiv.org/html/2410.17897v5",
+  "source_formula": "Section3.2 Eq5; own additive alpha0/current coefficient1 variant, not reproduction",
+  "actual_production_parameter_count_meta": 10001164,
+  "native_reference_parameters": 10001152,
+  "extra_trainable_scalars": 12,
+  "actual_10M_parent_weights_read": false,
+  "actual_10M_parent_function_parity_completed": false,
+  "CPU_tests": [
+    {
+      "preserved": true,
+      "report": "model_CPU_tests_initial.xml",
+      "failed": 1,
+      "passed": 17
+    },
+    {
+      "scope": "Complete model suite before adding independent learned-clip assertion",
+      "report": "model_CPU_tests_v2.xml",
+      "failed": 0,
+      "passed": 18
+    },
+    {
+      "scope": "Additional scientific clipping check only; existing18 unchanged",
+      "report": "learned_clip_CPU_test.xml",
+      "deselected": 18,
+      "failed": 0,
+      "passed": 1
+    }
+  ],
+  "checks": [
+    "Independent whole-model explicit attention-matrix formula with positive/negative coefficients",
+    "Zero conversion original weights/logits/loss/old gradients and RNG exact; tie preserved",
+    "Signed scalar gradient and first-value gradient without detach; current-V-zero counterexample",
+    "Active and static full/chunk/padded cache/logical-position agreement; GQA2 retained",
+    "Future token perturbation does not change earlier logits",
+    "Fast/right-padded-hidden/labels match full valid output",
+    "Original native hidden helper fails explicitly rather than silently omitting first-V path",
+    "Static3-step AdamW original pre/postclip gradients/norm/weights/name-mapped Adam exact",
+    "Scientific global clipping includes original plus new scalar coordinates",
+    "Actual native13-layer config yields10,001,164 on meta; no actual parent weights loaded",
+    "Strict typed config/state/count/tie/nonfinite/malformed static state rejected before mutation",
+    "Active typed roundtrip exact; native/HF export and directory load refuse"
+  ],
+  "initial_failure_and_repair": "Static technical arm included additional zero-gradient scalars in FP32 clip-norm reduction and old-coordinate updates were not exact. Preserve failed XML. Explicit static clipping uses original parameter reduction list; learned arm clips every coordinate. Repaired test checks pre/postclip gradients, exact norm and3-step old weights/name-mapped Adam without relaxed tolerances. Separate learned test verifies3/4 gradient norm5 and scaling of both coordinates.",
+  "read_scope": "Source/config/local small stored reports and synthetic CPU fixtures only; no Corpus/DEV/TEST/actual model checkpoint or Tokenizer read by new tests",
+  "GPU_seconds": 0,
+  "scientific_teacher_tokens": 0,
+  "new_dataset": 0,
+  "trained_weights_exported": 0,
+  "independent_learning_completed": false,
+  "fullDEV_completed": false,
+  "all440_completed": false,
+  "new_sealedTEST_completed": false,
+  "Base_adopted": false,
+  "full_four_item_goal_complete": false,
+  "next_action": "Prepare one bounded actual-parent CPU parity using pinned existing technical spans, then separate typed trainer with exact original CE disabled control and full numerical save-resume. Original helper cannot be reused unchanged; dedicated explicit first-value traversal required. GPU/science CLI/contracts not ready; do not launch."
+}

@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-15次案CPU準備: [first-layer V shortcut](../reports/phase6/value-residual-preparation-20261015/CPU_preparation.json)は先行proposal後に別modelを実装。追加12scalarの10,001,164、元Q/K/map/RoPE/O/逐次blockを保持し、最初のVを後段Vへ零係数から加える。model18＋追加learned-clip1 CPU checks passed、static norm reductionの初回失敗も保存してexact修理。実元親parity/専用trainer/全state resume/owned GPU/科学契約は未完で、元native hidden helperは経路省略を明示拒否する。次は実元親の限定CPU parityと専用trainer。新data/DEV/TEST/GPU/科学学習0、最終4項目の品質は未達。
+
 2026-10-15最新終端: [cross-GQA signed-map100M](../reports/phase6/cross-gqa-map-science-20261015/completion.json)は全17,698更新のstate/元CE対照と宣言した構造差・全80個別内容まで確認し、不採用で閉鎖。文法44→60だが一貫性2→2・適切完結2→2・EOS19→18・反復45→47・BPB0.998487→0.998503・CI[0,0]で原gate未達。科学1673.349337＋技術10.287119秒、元UI実PID50207/start66037939へ復帰確認。次は別の根拠ある同10M比較1件の選定。固定map/係数/normalization/親/seed/decoder/予算の救済をしない。独立fresh全pipeline/fullDEV/全440/新封印TEST/採用と4項目goalは未達。以下のrunning記述は当時の履歴。
 
 2026-10-15最新実行: [cross-GQA map100M契約](../configs/phase6/cross_gqa_map_science_20261015.json)を凍結・起動。実PID48654/start65870189・worker33840・760更新/4289851教師を確認。同元base configと52scalarだけの宣言済み差（candidate10,001,204、reference10,001,152）、元CE全stream/schedule/全品質gateを保持。owned CUDA10.287119秒で全state/history resume exact、48x1024有限gradient、FP32 cache事前許容差内、18 science CPU checksを通した。科学3743秒/技術込み4800秒、500保存/20heartbeat。次は同job終端と全80採否で、独立fresh全pipeline/fullDEV/全440/新TEST/採用は未達。

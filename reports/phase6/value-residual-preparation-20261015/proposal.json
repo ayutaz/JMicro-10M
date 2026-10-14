@@ -1,0 +1,82 @@
+{
+  "kind": "prospective_first_layer_value_residual_zero_init_v1",
+  "created_at": "2026-10-14T22:42:10.7609393Z",
+  "status": "selected_for_separate_CPU_implementation_not_scientific_contract",
+  "primary_sources": [
+    {
+      "title": "Value Residual Learning",
+      "url": "https://aclanthology.org/2025.acl-long.1375/",
+      "venue": "ACL2025"
+    },
+    {
+      "url": "https://arxiv.org/html/2410.17897v5",
+      "version": "v5",
+      "locations": "Section3.2 Eq5 and Table4 zero/one initialization"
+    }
+  ],
+  "source_summary": "ResFormer mixes first-layer values into later-layer values before the CURRENT layer attention. The paper includes a zero/one initialization ablation. Its English pretraining/larger-model validation losses do not establish Japanese10M continuation quality.",
+  "motivation": "Latest comparison passes grammar threshold but has2 coherent/2 appropriate of80. Test an earlier-token-information path across layers rather than another attention-map, decoding, data or auxiliary-objective adjustment. No local causal diagnosis of value loss or attention concentration is claimed.",
+  "architecture": {
+    "kind": "first_layer_value_additive_learned_scalar_v1",
+    "formula": "layer0 V unchanged; for layers1..12 mixed_V_l = native_V_l + alpha_l * native_V_0; original Q_l/K_l attention acts on mixed_V_l",
+    "native_reference_parameters": 10001152,
+    "added_parameters": 12,
+    "expected_candidate_parameters": 10001164,
+    "initial_alpha": 0.0,
+    "alpha_parameterization": "direct signed trainable scalar; no tanh/sigmoid/clamp",
+    "native_value_coefficient": 1.0,
+    "first_layer_scalar": false,
+    "detach_first_values": false,
+    "first_value_source": "original layer0 input RMSNorm then original layer0 v_proj; pre-GQA-repeat and unrotated",
+    "new_projection_parameters": 0,
+    "Q_K_norm_projection_RoPE_and_O_changed": false,
+    "past_value_cache": "cache each layer mixed V; first layer caches original V; mix only current new-token values before appending past",
+    "export": "separate tagged full research checkpoint; native/HF export must refuse until explicit adapter exists"
+  },
+  "difference_from_paper": "Own adaptation: first layer has no redundant scalar, current-V coefficient fixed1, only later-layer additive coefficients learned from0. Retains native RMSNorm/GQA. Not exact ResFormer reproduction or cache-compression SVFormer.",
+  "difference_from_closed": {
+    "cross_GQA": "No cross-head map subtraction or second attention map; changes V across layers under the original map.",
+    "headwise_gate": "No input-dependent query-head sigmoid/output gating or O rescaling.",
+    "parallel_residual": "Original attention-then-MLP block order preserved; adds first-layer V path, not parallel hidden residual.",
+    "objectives": "Only unchanged original body+EOS CE; no pseudo repetition/context likelihood loss."
+  },
+  "checked_original_evidence_sha256": {
+    "reports/phase6/cross-gqa-map-science-20261015/completion.json": "e71002bf511877cc08a3e23453e87333b304b3f02a9938fea98155d7b4ce4cb5",
+    "reports/phase6/context-likelihood-science-20261015/completion.json": "a8d4bc46ea89fe664879ec71b28e0c8311c1743de8a273734ad84d8f6ea037dd",
+    "reports/phase6/pseudo-repetition-science-20261015/completion.json": "f68e5f1c8ce3a8e93b11d2150e546b576e6ac35608c3ef65186ed74ae31c4dec",
+    "reports/phase6/base_parallel_residual_comparison_completion.json": "427561834d6d8549646f9c91c946a6019813f70d08431079472e16d097a627f6",
+    "reports/phase6/base_headwise_gate_comparison_completion.json": "2a2286904d41c9f7c6c6b195e74f7d578827ebcdff2d73b77c82d031e2745a08",
+    "reports/phase6/base_attention_saturation_completion.json": "78a8c02ec4a8a5740b7ee4eb049d5a859ef68d93374932819dd91217534c41ed",
+    "src/jmicro/cross_gqa_map.py": "e5c5760aedf2d67aee2c8a5f14fa185e8fb6a8a4d010279183e4a7f3e72be081",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83"
+  },
+  "lookup_limits": "Existing dated index query value returned0. Targeted current code/config/report/docs search found no value residual mechanism. Original closed proposal/runtime/result sources were checked for the listed distinctions; text-search absence is not proof of exhaustive novelty.",
+  "prospective_science": {
+    "parent": "original10B native parent, never closed comparison/probe weights",
+    "main_teachers": 100000000,
+    "source": "existing accepted original TRAIN stream",
+    "batch": 48,
+    "seed": 42,
+    "optimizer": "fresh original AdamW LR1e-5 WD0.1 constant; extra zero scalar coordinates explicitly declared",
+    "all_original_quality_gates_unchanged": true,
+    "technical_GPU_cap_seconds": 180,
+    "total_new_GPU_cap_seconds": 4800,
+    "science_cap": "not frozen; must be justified by owned CUDA32 timings and full evaluation/save allowance"
+  },
+  "required_CPU_checks": [
+    "Independent matrix formula and meaningful new first-value information",
+    "Zero-init original logits/old gradients/weights/RNG/tied vocabulary exact",
+    "Nonzero signed coefficient and first-value gradients without detach",
+    "Active full/chunk/padded cache agreement and causal future exclusion",
+    "Fast training and labels equivalence",
+    "Strict tagged state/count/malformed-state rejection/native-export refusal",
+    "Separate trainer disabled exact original CE and full numerical save-resume before GPU"
+  ],
+  "additional_learning": 0,
+  "GPU_seconds": 0,
+  "new_dataset": 0,
+  "DEV_TEST_read": 0,
+  "Base_adopted": false,
+  "full_four_item_goal_complete": false,
+  "stop": "No GPU/scientific launch before CPU trainer/resume, owned technical gate and frozen safe science/evaluation/review contracts. Close failed fixed condition without coefficient/layer subset/normalization/parent/seed/budget rescue."
+}
