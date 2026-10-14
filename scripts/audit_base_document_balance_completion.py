@@ -144,7 +144,10 @@ def main():
         native_parameters=10001152, original_body_and_EOS_supervision_preserved=True,
         frozen_scientific_and_review_sources_checked=True,history=history,
         GPU_seconds=result['GPU_occupancy_seconds'],probe_GPU_seconds=c['probe_GPU_seconds'],
-        own_GPU_work=0,protectedTEST_read=False,content_review_complete=False,
+        own_GPU_work=0,protectedTEST_read_by_this_audit=False,
+        original_TEST_prompt_CPU_exposure_in_study=True,
+        TEST_used_for_learning=False,TEST_used_for_GPU_scoring=False,
+        content_review_complete=False,
         Base_complete=False,Base_adopted=False,Chat_started=False,quantization_started=False,
         next_action='Individually read and score all80 raw outputs; apply unchanged policy. Qualified-only main comparison/independent seed/fullDEV/protectedTEST remain gated.')
     destination=RUN/'numeric_completion_audit.json'

@@ -1,14 +1,14 @@
 # 文書一覧
 
-更新: 2026-10-14 JST。Base/Chat未完成・未採用、研究・学習は停止中。最新比較139は全28セット・6,132判断・NLL7点と採否・7分岐・納品まで完了し不採用。[最新結果141](141_chat_lr_comparison_results.md)。現依頼は[全ドキュメント更新142](142_documentation_refresh.md)。
+更新: 2026-10-14 JST。Base/Chat未完成・未採用。[最新Base結果144](144_base_document_balance_results.md)は文書長重み100M/全80/数値監査・条件分岐を終え不採用。[計画143](143_base_document_balance_plan.md)の不合格時の停止条件で閉鎖し、独立学習/fullDEV/封印TEST/採用は未実行。元Base TEST promptのCPU解析も訂正した。前回Chatは[141](141_chat_lr_comparison_results.md)、文書納品は[142](142_documentation_refresh.md)。
 
 ## 読む順序
 
 1. [現在の状態](autonomous_status.md)：実績・採否・停止・現在の依頼。
-2. [最新結果141](141_chat_lr_comparison_results.md)：全保存点・原失敗・NLL・資源・事故・限界。
+2. [最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md)：品質・採否・資源・事故・未実施。
 3. [ロードマップ](15_project_roadmap.md) / [チェックリスト](10_next_steps.md)：Phaseと正式完成までの不足。
 4. [Windows/WSL引継ぎ](windows_handoff.md)：元UI・全state/data・欠損時の復元。
-5. [Base復旧124](124_base_recovery_plan.md)：未再開の別経路。合格Baseで通知・停止。
+5. [Base復旧124](124_base_recovery_plan.md) / [今回比較143](143_base_document_balance_plan.md)：原品質・10M・合格/不合格の停止境界。
 6. [全文書カタログ](document_catalog.md)：311既存文書と今回追加2文書の全件区分。
 
 ## 現行仕様と履歴

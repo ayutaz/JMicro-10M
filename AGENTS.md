@@ -2,7 +2,15 @@
 
 Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/windows_handoff.md` before continuing. Current evidence is in result141; document coverage and update evidence are in docs/142_documentation_refresh.md and docs/document_catalog.md. Plans124 and future proposals are not execution authorization.
 
-## Current scope — 2026-10-14 JST: Base-only six-stage resumption
+## Current scope — 2026-10-14 JST: rejected Base comparison closeout
+
+The authorized six-stage plan selected one original-document-length CE weighting study. It completed exact100M/17698 updates, all80 individually reasoned DEV outputs, common-byte/Japanese evaluations, complete-update/full-state/source/sampler/budget audits and required conditional decisions. Results in docs/144_base_document_balance_results.md reject the recipe. Native10M and all original quality gates remain unchanged. No eligible recipe exists: main extension, genuinely fresh trainedseed43, fullDEV/400+40, sealedTEST and adoption are not executed, passed=false and quality-unconfirmed. Six actual executions and Base completion are not achieved. Finish preservation/local commit verification, report the rejection and stop at the plan124/143 failure boundary. No new interventions, rescue runs, Chat, quantization or publication.
+
+Executed legacy greedy80 and content readers JSON-parsed mixed eval/base.jsonl before DEV filtering, exposing original Base TEST20 prompts on CPU. No TEST learning/GPU scoring and no TEST shard opening occurred. Preserve this separate Base incident and its explicit correction; old protected_test_used/scored=false is not CPU-unopened proof. Any future qualified Base final validation requires a separate DEV/TEST reader and fresh sealed TEST. Do not prepare/evaluate replacements with no eligible recipe. See the original_TEST_prompt_exposure.json in the new native run.
+
+Scientific PID337424/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start60325743 exited. Original10B WebUI restored as PID338403/start60473641; verify actual current identity/HTTP/lock at delivery. Preserve the full native checkpoints/samplers/metrics in WSL. No old or rejected jobs may be relaunched.
+
+## Prior resumption and historical scope
 
 The user explicitly requested "6まで進めてください" after the six-stage Base plan. This resumes the necessary Base hypothesis selection, bounded diagnostics, implementation, matched pilot/main comparison, qualified independent seed/fullDEV and protectedTEST/adoption decisions. Finish an evidence-qualified Base, notify and stop. Keep10M, original quality gates and frozen historical evidence. No Chat/SFT, quantization, larger models, push/publication or paid cloud. The first prospective intervention is documented in docs/143_base_document_balance_plan.md; it is not yet a quality result. Failed stages close that fixed condition and conditional downstream branches remain unexecuted. Do not mark Base complete on rejection or CPU preparation.
 

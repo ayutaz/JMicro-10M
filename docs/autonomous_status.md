@@ -2,11 +2,17 @@
 
 更新: 2026-10-14 JST。**Base/Chatは未完成・未採用。** 文書更新はcommit70aa002で納品検証まで完了。その後「6まで進めてください」により、提示した6段階のBase改善から最終判定までが明示再開された。[実行計画143](143_base_document_balance_plan.md)。Chat/SFT・量子化・大型化・公開は範囲外。
 
-次の介入は元文書長によるCE重み配分。CPU trainer11＋runner10 checks全passed、有限192 TRAIN window診断は重み比11.85/CV0.50でscreen合格。実CUDA probeは47技術更新・273,521教師、最大48×1024 forward/backward・全state連続/再開・同streamを確認しGPU8.721357秒でpassed。技術更新は科学学習や品質に数えない。
+最新の[文書長重み比較144](144_base_document_balance_results.md)は17,698更新・正確100M教師・全80理由付き内容・共通DEV256/Japanese192/331/1119・全state/元文書重み/対照全samplerとdigestを確認して**不採用で閉鎖**。文法44→23、一貫性2→1、適切完結2→2、EOS19→20、反復45→50（各80）。BPB0.998487→1.000710、一貫性差CI−3.75〜0ポイントで原品質・保持未達。
 
-2026-10-14T06:41:35Zに正確100M教師の本比較を永続開始。WSL PID337424/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start60325743、Windows launcher PID37808。WSL `reports/phase6/base-document-balance-comparison-20261014/job.json`、`document_balance/`の全state/checkpoints/metricsを使用。実process・学習counter増加・checkpoint作成を確認済み。GPU上限3,855秒（probe込み合計4800秒以内）と[採否policy](../configs/phase6/base_document_balance_review.json)を凍結済み。全80内容と採否は未確定、独立seed/fullDEV/TEST未実行。元UIは学習中だけ停止しwrapperがfinallyで元10Bへ戻す。前回runは再開していない。
+CPU21 checks、有限192 TRAIN診断、実CUDA47技術更新/273,521教師は別証拠。新GPUは科学1,474.808693＋技術8.721357＝1,483.530050秒、科学上限3,855/技術込み上限4,800以内。[数値監査](../reports/phase6/base-document-balance-comparison-20261014/numeric_completion_audit.json)、[全採否](../reports/phase6/base_document_balance_comparison_review.json)、[閉鎖・条件分岐](../reports/phase6/base_document_balance_comparison_completion.json)。
 
-## 最新の完了結果
+本比較延長・fresh独立学習seed43・fullDEV/400＋40・封印TEST・採用は有資格候補なしで未実行・passed=false・品質未確認。6段階すべての実施、Base完成とは記載しない。計画143/124の不合格時の報告停止条件でこの1比較を終了。追加の研究・学習を自動起動しない。
+
+元Base TEST20 promptも既存greedy80がDEV抽出前にCPU構文解析していたことを確認。学習・GPU TEST採点0、TEST shard未開封だが、元TEST promptを未参照とは呼べない。[問題と訂正](../reports/phase6/base-document-balance-comparison-20261014/original_TEST_prompt_exposure.json)。将来の有資格Base最終確認は別artifactのDEV/TEST readerと新しい封印TESTが必要。今回は候補なしで代替TEST未準備・未採点。
+
+科学PID337424/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start60325743は終了。元10B UIはPID338403/start60473641で復帰、HTTP元親/Tokenizer/10M/idleを確認。最新Base候補はWSL `reports/phase6/base-document-balance-comparison-20261014/document_balance/checkpoint-00017698.pt`、SHA `d89caf23bd7d2d8d81f298cb6f1fcbfe5fbd581105f91be1c3cfc18cefc9f86b`。重み・全sampler・全metricsはWSL保全。ローカル納品検証を終えたら報告停止する。
+
+## 前回Chatの完了結果
 
 [低学習率比較141](141_chat_lr_comparison_results.md)で、計画139の介入選定・同10M比較・有資格候補だけの独立確認への分岐を完了し、候補S1を不採用で閉鎖した。元10B親、同accepted TRAIN/Tokenizer/seed42/教師量/schedule/paddingでpeak LR1e-4→3e-5を比較。S0は138のS1の歴史state、新学習0。
 
@@ -41,7 +47,7 @@
 
 ## 次の判断と停止境界
 
-今回の明示再開に基づき[Base復旧124](124_base_recovery_plan.md)と[新比較143](143_base_document_balance_plan.md)を進める。原品質・10M・独立確認を維持し、有資格Baseで通知・停止。不合格条件は閉じて後続を未実行と記録する。Chat・量子化・公開へ自動移行しない。
+[比較143/結果144](144_base_document_balance_results.md)は不採用で閉鎖。今回の比較・必要な条件分岐・保存結果を報告して停止する。原品質・10M・独立確認を維持し、閉じた条件の係数/seed/親/予算延長で救済しない。Chat・量子化・公開へ自動移行しない。Base/Chatと全体projectは未完成。
 
 ## UI・保存先・履歴
 

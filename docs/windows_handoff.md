@@ -2,7 +2,9 @@
 
 更新: 2026-10-14 JST。[結果141](141_chat_lr_comparison_results.md)は不採用で閉鎖、[全ドキュメント更新142](142_documentation_refresh.md)はcommit70aa002で納品済み。「6まで進めてください」により6段階のBase改善・最終判定が明示再開された。[新比較143](143_base_document_balance_plan.md)。Base/Chatは未完成・未採用。新比較だけを進め、終了済みのrunを再起動しない。以下の文書更新時の停止・観測は歴史記録で、実GPU起動前には現process/lockを照合する。
 
-元Chat TEST20行の準備解析事故は[141](141_chat_lr_comparison_results.md)へ保存した。未参照とは呼ばず、将来有資格Chat確認には新しい封印TESTが必要。元Base TESTはこの事故では解析していない。
+最新Baseは[結果144](144_base_document_balance_results.md)で正確100M/全80/全state監査を終え不採用で閉鎖。科学PID337424/start60325743終了、元10B UI PID338403/start60473641へ復帰。最終候補はWSL `reports/phase6/base-document-balance-comparison-20261014/document_balance/checkpoint-00017698.pt`、SHA `d89caf23bd7d2d8d81f298cb6f1fcbfe5fbd581105f91be1c3cfc18cefc9f86b`。重み・全sampler・metricsはWSL保全、候補なしで独立seed/fullDEV/封印TEST/採用未実行。終了runを再開しない。
+
+元Chat TEST20行の準備解析事故は[141](141_chat_lr_comparison_results.md)へ保存した。未参照とは呼ばず、将来有資格Chat確認には新しい封印TESTが必要。元Base TESTはそのChat事故では解析していないが、今回144の既存mixed-suite readerで元Base TEST20 promptもCPU構文解析された。学習/GPU採点0・TEST shard未開封とCPU未解析は別。将来有資格Baseにも新しい封印TESTとreader分離が必要。今回は代替TESTを準備しない。
 
 ## 正本と保存場所
 

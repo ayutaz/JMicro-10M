@@ -2,7 +2,9 @@
 
 更新: 2026-10-14 JST。[結果141](141_chat_lr_comparison_results.md)は不採用で閉鎖、[文書更新142](142_documentation_refresh.md)はcommit70aa002で納品済み。その後「6まで進めてください」で6段階のBase改善・最終判定が明示再開された。[新比較143](143_base_document_balance_plan.md)。**Base/Chat未完成・未採用。** 原10M・品質を維持し合格Baseで通知停止。以下の前回停止時の判断表は履歴であり、新比較の実状態は143とstatusを参照する。
 
-## 次に検討する道筋
+最新Baseの[結果144](144_base_document_balance_results.md)は文書長重み100M/全80/数値監査・条件分岐を終え不採用。Base未完成・未採用、本比較延長・独立seed/fullDEV/封印TEST/採用は候補なしで未実行。今回の1比較を閉じ、報告停止する。元Base TEST20 promptのCPU解析問題を訂正し、将来の有資格最終確認には新しい封印TESTとreader分離が必要。
+
+## 前回停止時の道筋（歴史記録）
 
 | 経路 | 現在の判断 | 次に必要なもの |
 |---|---|---|
