@@ -1,6 +1,6 @@
 # Windows / WSL 引継ぎ
 
-更新: 2026-10-14 JST。[最新結果141](141_chat_lr_comparison_results.md)の低LR比較・条件分岐とローカル納品は完了、不採用。Base/Chat未完成・未採用、研究・教材準備・診断・評価・GPU学習は停止中。現在は[全ドキュメント更新142](142_documentation_refresh.md)のみ。歴史的PIDや途中の進捗を再開指示にしない。
+更新: 2026-10-14 JST。[結果141](141_chat_lr_comparison_results.md)は不採用で閉鎖、[全ドキュメント更新142](142_documentation_refresh.md)はcommit70aa002で納品済み。「6まで進めてください」により6段階のBase改善・最終判定が明示再開された。[新比較143](143_base_document_balance_plan.md)。Base/Chatは未完成・未採用。新比較だけを進め、終了済みのrunを再起動しない。以下の文書更新時の停止・観測は歴史記録で、実GPU起動前には現process/lockを照合する。
 
 元Chat TEST20行の準備解析事故は[141](141_chat_lr_comparison_results.md)へ保存した。未参照とは呼ばず、将来有資格Chat確認には新しい封印TESTが必要。元Base TESTはこの事故では解析していない。
 

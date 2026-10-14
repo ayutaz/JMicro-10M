@@ -1,6 +1,8 @@
 # 現在の状態
 
-更新: 2026-10-14 JST。**Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は停止中。** 現在の依頼は全ドキュメントの更新・整合確認とローカル保存。[更新142](142_documentation_refresh.md)、[全文書カタログ](document_catalog.md)。
+更新: 2026-10-14 JST。**Base/Chatは未完成・未採用。** 文書更新はcommit70aa002で納品検証まで完了。その後「6まで進めてください」により、提示した6段階のBase改善から最終判定までが明示再開された。[実行計画143](143_base_document_balance_plan.md)。Chat/SFT・量子化・大型化・公開は範囲外。
+
+次の介入は元文書長によるCE重み配分。新trainerと11件のCPU checks（解析勾配・mask・window・同stream・全state保存再開・異常拒否）は実行済みで11 passed。CPU checksは品質証拠ではない。既存accepted TRAINの有限192window診断と専用GPU contract/runnerを準備中。科学学習0、新GPU0、protectedTEST未使用。前回runは再開しない。
 
 ## 最新の完了結果
 
@@ -37,7 +39,7 @@
 
 ## 次の判断と停止境界
 
-文書更新を終えて通知・停止する。新介入・別LR/seed・教材・評価・学習は明示再開待ち。[Base復旧124](124_base_recovery_plan.md)を選ぶ場合は原品質・10M・独立確認を維持し、合格Baseで通知・停止。Chat・量子化・公開へ自動移行しない。
+今回の明示再開に基づき[Base復旧124](124_base_recovery_plan.md)と[新比較143](143_base_document_balance_plan.md)を進める。原品質・10M・独立確認を維持し、有資格Baseで通知・停止。不合格条件は閉じて後続を未実行と記録する。Chat・量子化・公開へ自動移行しない。
 
 ## UI・保存先・履歴
 

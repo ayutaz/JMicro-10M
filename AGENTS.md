@@ -2,7 +2,11 @@
 
 Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/windows_handoff.md` before continuing. Current evidence is in result141; document coverage and update evidence are in docs/142_documentation_refresh.md and docs/document_catalog.md. Plans124 and future proposals are not execution authorization.
 
-## Current scope — 2026-10-14 JST: documentation only
+## Current scope — 2026-10-14 JST: Base-only six-stage resumption
+
+The user explicitly requested "6まで進めてください" after the six-stage Base plan. This resumes the necessary Base hypothesis selection, bounded diagnostics, implementation, matched pilot/main comparison, qualified independent seed/fullDEV and protectedTEST/adoption decisions. Finish an evidence-qualified Base, notify and stop. Keep10M, original quality gates and frozen historical evidence. No Chat/SFT, quantization, larger models, push/publication or paid cloud. The first prospective intervention is documented in docs/143_base_document_balance_plan.md; it is not yet a quality result. Failed stages close that fixed condition and conditional downstream branches remain unexecuted. Do not mark Base complete on rejection or CPU preparation.
+
+Documentation-only delivery completed and verified in local commit70aa002. The following paragraphs record the preceding scope/results; their prior pause is superseded only for the explicitly resumed Base work above. Prior operative documents are preserved in reports/phase6/base-document-balance-preparation-20261014/previous_docs.json.
 
 The user requested "ドキュメントをすべて最新にして". Update all current documentation, inventory every document, preserve dated reports/frozen histories and scientific evidence, verify references and Windows/WSL copies, and commit the documentation delivery locally. This does not resume research, diagnostics, data preparation, evaluation, GPU training or old jobs. No automatic push, publication, quantization or deployment.
 

@@ -1,6 +1,6 @@
 # JMicro-10M フェーズ別実行計画
 
-更新: 2026-10-14 JST。[最新結果141](141_chat_lr_comparison_results.md)の低LR比較は全28セット・6,132判断・NLL7点、学習/採否/予算・条件分岐・納品まで完了し不採用。**Base/Chat未完成・未採用。追加研究・学習停止。** 現依頼は[文書更新142](142_documentation_refresh.md)のみ。
+更新: 2026-10-14 JST。[結果141](141_chat_lr_comparison_results.md)は不採用で閉鎖、[文書更新142](142_documentation_refresh.md)はcommit70aa002で納品済み。その後「6まで進めてください」で6段階のBase改善・最終判定が明示再開された。[新比較143](143_base_document_balance_plan.md)。**Base/Chat未完成・未採用。** 原10M・品質を維持し合格Baseで通知停止。以下の前回停止時の判断表は履歴であり、新比較の実状態は143とstatusを参照する。
 
 ## 次に検討する道筋
 

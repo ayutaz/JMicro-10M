@@ -1,0 +1,56 @@
+{
+  "created_at": "2026-10-14T06:37:34.194751Z",
+  "user_resumption": "6まで進めてください",
+  "question": "Does inverse-original-document-length CE improve generation with the same original100M teachers?",
+  "recipe": {
+    "loss": "sum_CE_over_original_supervised_positions_divided_by_original_document_teachers_then_normalize_weight_sum",
+    "denominator": "original_body_tokens_plus_one_original_EOS",
+    "normalization": "current_update_sum_of_selected_inverse_length_weights",
+    "clipping": null,
+    "annealing": false,
+    "auxiliary_loss": false,
+    "original_gold_and_stream_unchanged": true,
+    "new_parameters": 0,
+    "optimizer": "fresh_AdamW_lr1e-5_wd0.1_constant",
+    "final_clip_norm": 1.0,
+    "inference": "unchanged_full_native_depth_greedy"
+  },
+  "references": {
+    "base_teacher_decay_2b_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_teacher_decay_2b_completion.json",
+      "sha256": "f2e9878652d76f13e59bedc12e52ca7db9eb784b19a49a3355f2a634f334291e"
+    },
+    "base_residual_train_dev_history_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_residual_train_dev_history_completion.json",
+      "sha256": "dc429db88a26fc4801b5ede3fa713201fe996fdc6a4d877b1b13403e06e7178f"
+    },
+    "base_residual_consumed_unit_provenance.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_residual_consumed_unit_provenance.json",
+      "sha256": "fb94d12c397b7884d21a500a7796a064e7ea69b9389411e0f03eeca6f271870d"
+    },
+    "base_confidence_penalty_comparison_completion.json": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_confidence_penalty_comparison_completion.json",
+      "sha256": "9b60041cb33f9d1ee1c84e16d66e7a8bae0727868cbe73460778247834692d6d"
+    }
+  },
+  "length_diagnostic": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_document_balance_length_diagnostic.json",
+    "sha256": "4cc57d621bd7abc92455ccc03e50656bd0d62f0d315ce0a9066b5eb11b50bbfa"
+  },
+  "CPU_checks": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_document_balance_CPU_tests.xml",
+    "sha256": "de4f310f10fde36cfd440f8d0bc27b4c23846c361e140e9465259361cc48dd1b"
+  },
+  "native_parameters": 10001152,
+  "extra_parameters": 0,
+  "original_teachers": 100000000,
+  "novelty": "Full original unit weights include body and EOS equally; distinct from EOS-only weighting, genre quotas, label smoothing, confidence KL and auxiliary objectives. Mechanistic source inspection establishes token average in old trainer, not global absence of every related method.",
+  "limitations": "Not a proven cause; index-byte draw is not uniform documents; short noisy units can gain weight; no external performance claim.",
+  "acceptance": "Exact same stream/counters/full sampler, own CUDA finite maximum shape and full-state resume, measured frozen budget, all80 content and all unchanged matched/strong/absolute/historical gates before qualified-only independent seed/fullDEV/protectedTEST/adoption.",
+  "failure": "Close fixed condition on data, numeric, state, budget or quality failure; no exponent, clipping, LR, parent, source, budget or seed rescue.",
+  "GPU_cap_seconds": 4800,
+  "Base_complete": false,
+  "Base_adopted": false,
+  "Chat_started": false,
+  "quantization_started": false
+}
