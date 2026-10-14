@@ -27,4 +27,14 @@
 
 ## 現在の実行状態
 
-提案と新trainer/CPU checksを作成中。科学学習0、GPU検証0、protectedTEST未使用、Base/Chat未採用。動作した事実と品質を分ける。実行証拠は別の新run/configに保存し、旧報告を上書きしない。
+新trainerのCPU11 checks、runner予算・counter/digest/samplerのCPU10 checksは全件passed。[192window診断](../reports/phase6/base_document_balance_length_diagnostic.json)は重み比11.85185、選択goldの重みCV0.50065で事前screen合格。
+
+GPU起動前の既存capacity payload schema照合で、元本文長が`window`ではなく`original_record.body_tokens`に保存されていることを確認し修正した。初版contractを保持して実行v2へ分け、同recipe・同shape・同予算の修正を[記録](../reports/phase6/base-document-balance-preparation-20261014/prototype_amendment.json)。記録保存先がWSLに未作成だった中断も、作成済みcontractを照合してreceiptのみ回復した。GPU前の準備修理であり、失敗科学条件の再試行ではない。
+
+[実CUDA probe](../reports/phase6/base-document-balance-probe-20261014/result.json)は47技術更新/273,521教師、最大shapeの24,576教師forward/backward（optimizer更新0）を実行。GPU8.721357秒、最大allocator約10.71GB。モデル/Adam/scheduler/RNG/sampler/counters/全history一致と原同streamを確認した。probe重みは本学習へ使っていない。
+
+[本比較contract](../configs/phase6/base_document_balance_comparison.json)は正確100M教師、既存同100M CE対照の再利用、実測上限3,855秒、probe込み合計4800秒以内。[採否policy](../configs/phase6/base_document_balance_review.json)は科学結果を読む前に凍結した。
+
+2026-10-14T06:41:35Zに永続runnerを開始。WSL PID337424/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start60325743、Windows launcher PID37808。実jobはWSL `reports/phase6/base-document-balance-comparison-20261014/job.json`、metrics/checkpointsはその`document_balance/`。開始後の実process・更新・教師消費・checkpoint作成を確認済み。現在の終了・進捗は同handle/identityと最新jobで確認する。観測timeoutだけで終了と扱わない。
+
+元UIはGPU比較中だけ停止し、wrapperのfinallyで元10Bへ戻す。新科学比較の結果・全80内容・採否は未確定、protectedTEST未使用、Base/Chat未採用。合格候補ができるまでは独立学習・fullDEV・protectedTESTへ進めない。真に独立したBase学習seed43はfresh初期化・学習RNG/material RNG・同recipeの証拠が必要で、同seed42親から別生成seedや別samplerだけで続きを作ることでは代用しない。

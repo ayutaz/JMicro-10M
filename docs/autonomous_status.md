@@ -2,7 +2,9 @@
 
 更新: 2026-10-14 JST。**Base/Chatは未完成・未採用。** 文書更新はcommit70aa002で納品検証まで完了。その後「6まで進めてください」により、提示した6段階のBase改善から最終判定までが明示再開された。[実行計画143](143_base_document_balance_plan.md)。Chat/SFT・量子化・大型化・公開は範囲外。
 
-次の介入は元文書長によるCE重み配分。新trainerと11件のCPU checks（解析勾配・mask・window・同stream・全state保存再開・異常拒否）は実行済みで11 passed。CPU checksは品質証拠ではない。既存accepted TRAINの有限192window診断と専用GPU contract/runnerを準備中。科学学習0、新GPU0、protectedTEST未使用。前回runは再開しない。
+次の介入は元文書長によるCE重み配分。CPU trainer11＋runner10 checks全passed、有限192 TRAIN window診断は重み比11.85/CV0.50でscreen合格。実CUDA probeは47技術更新・273,521教師、最大48×1024 forward/backward・全state連続/再開・同streamを確認しGPU8.721357秒でpassed。技術更新は科学学習や品質に数えない。
+
+2026-10-14T06:41:35Zに正確100M教師の本比較を永続開始。WSL PID337424/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start60325743、Windows launcher PID37808。WSL `reports/phase6/base-document-balance-comparison-20261014/job.json`、`document_balance/`の全state/checkpoints/metricsを使用。実process・学習counter増加・checkpoint作成を確認済み。GPU上限3,855秒（probe込み合計4800秒以内）と[採否policy](../configs/phase6/base_document_balance_review.json)を凍結済み。全80内容と採否は未確定、独立seed/fullDEV/TEST未実行。元UIは学習中だけ停止しwrapperがfinallyで元10Bへ戻す。前回runは再開していない。
 
 ## 最新の完了結果
 
