@@ -1,5 +1,7 @@
 # Baseの実験結果を探す
 
+2026-10-15最新閉鎖: [first-layer value residual100M](../reports/phase6/value-residual-science-20261015/completion.json)は元CE全stream/base config＋宣言12scalarの層間V0経路差・全state/history・全80個別notesまで確認し不採用。native10,001,152対候補10,001,164、文法58/80、一貫性1/80、完結1/80、EOS23/80、反復47/80、BPB0.998524。論文の一般的な全variantや10M規模の限界の結論に広げず、今回のV0係数/層subset/normalization/親/seed/decoder/予算を閉鎖し救済しない。次案は索引だけでなく原proposal/trainer/resultで実差分を確認する。独立fresh全pipeline/fullDEV/全440/新TEST/採用と4項目goal未達。以下は当時の履歴。
+
 2026-10-15進行: [first-layer value residual科学契約](../configs/phase6/value_residual_science_20261015.json)を実親CPU parity/model21/trainer12/probe10/科学18 checksとowned GPU9.812882秒後に凍結・起動。元親/原TRAIN100M/48/42・12scalar差の10,001,164、全元quality gates保持。実PID52873/start66148908は途中値、全80内容採否前。完了GPU probeを再実行せず同science終端を観測する。下のCPU準備は当時の記録で品質合格ではない。独立fresh全pipeline/fullDEV/全440/新TEST/採用と4項目goalは未達。
 
 2026-10-15次案: [first-layer value residual](../reports/phase6/value-residual-preparation-20261015/proposal.json)は現在層Vへ最初の層Vを零初期化scalarで加え、元mapで読む独自variant。cross-GQA map差引き、query-headwise出力gate、attentionとMLPのparallel residualの原source/resultとは変更する経路が異なる。旧index query valueは0件だが網羅性の証明にはしない。一次論文Eq5/Table4と原closed sourceを確認、先行proposal後に18＋1 CPU checksまで。実元親/trainer/GPU/品質未確認で未採用。完了CPU assayは再実行せず、全4項目goalを準備へ縮めない。

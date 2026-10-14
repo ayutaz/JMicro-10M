@@ -1,5 +1,13 @@
 # 現在の状態
 
+2026-10-15最新終端: **first-layer value residual100Mは不採用で閉鎖**。[completion](../reports/phase6/value-residual-science-20261015/completion.json) / [全80採否](../reports/phase6/value-residual-science-20261015/review.json) / [個別notes](../reports/phase6/value-residual-science-20261015/notes.json)。実17,698更新・正確100M教師、全typed model/Adam/scheduler/RNG/sampler/counters/history、原CE全stream/schedule/教師/EOS/bytes/main physical・元base config＋宣言した12scalar/V0経路差だけを凍結reviewerで照合。追加V要素積569608576512は教師やmain physicalへ加算しない。native10,001,152対candidate10,001,164で、同一architecture/厳密同parameter数とは呼ばない。
+
+全80のcurrent prefix/raw/stop/repetitionを個別に読み、53件の前候補と完全同一の本文にはprefix/text/stop/flag一致を明示確認して同じrubricを維持、27変更例には新しい個別理由を保存した。Codex非blindで独立人間blindではなく、cached controlの採点は変更していない。文法44→58、一貫性2→1、適切完結2→1、EOS19→23、反復45→47（各80）、BPB0.9984871625→0.9985242356、matched一貫性差95%CI[-.0375,0]。元絶対・相対・strong・historical保持は未達。文法とEOSの一部改善をBase完成に読み替えない。
+
+科学GPU1504.763362秒＋技術9.812882秒＝1514.576243秒、科学3568/総4800内。実PID52873不存在・Windows worker23232終了・ledger closedを確認。元10B UIはPID54129/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start66299802とHTTP元親/Tokenizer/10M/idleへ復帰確認。最終checkpoint SHA54b9365648ba214450662606a24948e261c848dc0a1295d821898edc873b967e、全数値state/metricsはWSLのみ、7小metadata/raw/notesをWindowsへ同hash保存。既存reviewerの終端全数値検証を重複する別auditorは追加していない。
+
+固定V0係数/層subset/normalization/親/seed/decoder/予算を救済・再launch・延長しない。次は原proposal/runtime/resultから別の根拠ある同10M比較を1件選定する。この結果だけでvalue drainや10M規模が根因とは断定しない。独立fresh全pipeline/fullDEV/全440/新封印TEST/採用は候補資格なしで未実施、4項目goalはactive/未達。以下のrunning等は当時の履歴。
+
 2026-10-15最新実job: **first-layer value residual100M科学比較が稼働中**。[実起動観測](../reports/phase6/value-residual-preparation-20261015/science_launch_observation.json)はWSL PID52873/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start66148908、Windows worker23232、GPU lock同ownerを確認。40更新/233183教師/4.301489秒は途中値。[科学契約](../configs/phase6/value_residual_science_20261015.json) SHA93c68fd84406b2f32d5cbe850d518f14266328443623400006c66a01ce141fa9は元10B親/TRAIN/48/42/main CE100M、native10,001,152対12scalar追加10,001,164。元base config/weights/初期関数と原CE全streamを保持する宣言済み構造差であり、同一architecture/厳密同parameter数とは呼ばない。専用明示V0 traversalのtrainerと永続runner/safe DEV256・80・Japanese/reviewer、18 CPU workflow checksを凍結。元全品質・BPB・保持gate不変、500更新全state保存/20heartbeat。
 
 [CPU readiness](../reports/phase6/value-residual-preparation-20261015/CPU_readiness.json)で実元親CPU parity0.298222秒/30、全元weights/logits/cache/RNG差0、model21/trainer12 checksを確認。元native helperを変更せず明示V0経路の選択logits/body+EOS CEを接続した。static技術対照は4更新ごとの元weights/名前対応Adam/schedule/RNG/全sampler/CE/draw trace exact、learnedは追加scalarもclip・元全stream維持。6対3+save+3全typed state/history exact、壊れたstate8種の変更前拒否、Adam中断後save/retry拒否と正常復旧を確認。非finite勾配をoptimizer前に拒否する変更に対応してmodel21を検証し、旧18＋1証拠を上書きしていない。
