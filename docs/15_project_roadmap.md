@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-15final準備の追補: [DEV400/long40の安全入力・生成adapter](../reports/phase6/isolated-continuations-preparation-20261015/completion.json)を追加、8+4 CPU checksと元DEV80/codecの440入力context前検査を完了。旧5 modes/seed/temperature/top-p/6-ID suppression/128512長文順序とraw失敗を維持。実モデルや未知TESTを使わず、旧400/long40結果とfixtureで一致。独立学習/実fullDEV/全440内容/採用や永続runnerの代替ではない。現在のPID6927は44246925/100M教師で稼働、凍結scienceへ変更を加えず全80終端採否を待つ。
+
 2026-10-15保存状態の追補: [同更新CE対照を使うcheckpoint2000 CPU監査](../reports/phase6/context-likelihood-preparation-20261015/checkpoint2000_CPU_audit.json)で11297746 main教師、原stream/sampler/実schedule/EOS/bytes/physicalと全numerical/FIFO/metrics prefix整合を確認。追加学習/GPU/評価0、品質の証拠ではない。同science PID6927は4180更新/23632643教師の途中で稼働確認。次は100M終端と全80内容採否、全4項目の最終品質は未達。
 
 2026-10-15最新: [凍結context likelihood100M科学比較](../configs/phase6/context_likelihood_science_20261015.json)を開始。[観測](../reports/phase6/context-likelihood-preparation-20261015/science_launch_observation.json)は実PID6927/start64923858、840更新/4744814教師の途中。owned CUDA44技術更新/全state6対3+3/max CE48x1024/aux96x512はpassed、GPU9.415508秒/180内、最大11.0GiB。実32timingsから科学3656秒/技術含む総4800秒を凍結、専用永続runner/isolated evaluation/reviewerと13 CPU checksを完成。次は同processの終端、元CE対照の全stream/state会計照合、DEV256/Japanese/all80個別内容・元全quality guardsの採否。未達なら固定条件閉鎖、有資格時だけfresh whole-pipeline seed43/fullDEV/all440/新封印TEST/採用。4項目goal未達、Chat/量子化へ進まない。以下は先行準備の履歴。
