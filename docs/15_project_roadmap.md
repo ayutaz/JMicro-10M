@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-15追補: [TRAIN index-byte監査](../reports/phase6/sampling-boundary-20261015/sampling_audit.json)で包含行skip/次行選択と直前行byte重みをCPU11 checks・固定256 metadata drawsで確認。旧「record-byte weighted」の説明は自身の長さによる重みと解釈できない。観測された条件内分布差は小さく、品質失敗原因や新学習の根拠にはしない。過去の対照・候補の同抽出pairingは保全。stream/DEV/TEST/GPU/学習0。次はsafe Japanese scorerの必要接続と別比較選定で、独立学習/fullDEV/新TEST/採用は未達。
+
 2026-10-15最新終端: [fresh FIM pilot completion](../reports/phase6/base-fim-pilot-20261015/completion.json)は10000更新/正確94160195教師・DEV256/全80個別review・全state/元stream/全更新監査を完了し不採用。文法28→31、一貫性2→2、適切3→2、EOS13→14、反復49→51、BPB1.290203→1.292414、主差CI[-.0375,.0375]。科学1527.822100＋技術9.153452＝1536.975552秒で科学2519/総3600内。元UI復帰。固定FIM条件を閉鎖し救済・延長をしない。独立学習/fullDEV/新TEST/採用は候補資格なしで未実施、Baseと4項目目標は未達。次はactiveなBase-only範囲で別の根拠ある比較を選定する。以降の稼働・準備記述は過去の観測で、現在のjob生存や品質完成ではない。
 
 稼働中のCPU補足は[保存状態監査](../reports/phase6/fim-feasibility-20261015/checkpoint2000_CPU_audit.json)と[日本語fixed diagnosticsの入力分離](../reports/phase6/fim-feasibility-20261015/Japanese_diagnostic_export.json)。将来の本比較の安全な診断入力として192/331/1119の元inputs/goldのみを保存済みDEV結果から投影、新reader13 checks passed。payloadをGit/学習へ移さず、元混在suiteやTESTを開かない。既知DEV/fixed benchmarkで未知評価・独立監査・品質改善ではない。現在のpilotを変更・再起動しない。
