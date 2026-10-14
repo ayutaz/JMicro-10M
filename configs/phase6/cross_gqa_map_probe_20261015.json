@@ -1,0 +1,92 @@
+{
+  "kind": "owned_native_cross_GQA_map_CUDA_technical_v1",
+  "batch": 48,
+  "seed": 42,
+  "GPU_ceiling_seconds": 180,
+  "timed_updates": 32,
+  "continuous_updates": 6,
+  "split_updates": [
+    3,
+    3
+  ],
+  "capacity_shape": [
+    48,
+    1024
+  ],
+  "candidate_parameters": 10001204,
+  "main_teacher_goal": 100000000,
+  "maximum_new_GPU_seconds": 4800,
+  "scientific_teacher_positions": 0,
+  "Base_adopted": false,
+  "TEST_prepared": false,
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/cross-gqa-map-preparation-20261015/proposal.json",
+    "sha256": "39935ff75a4a189eb9c7ff78d6547d476efed1611805a8eee77fe345ed6b15a6"
+  },
+  "preparation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/cross-gqa-map-preparation-20261015/CPU_preparation.json",
+    "sha256": "2ec011394a8805d61d4a053aedd5c5a06af4e9d3bbd0967538091461637e8108"
+  },
+  "parent_CPU_parity": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/cross-gqa-map-preparation-20261015/actual_parent_CPU_parity.json",
+    "sha256": "b8e64e950544b413caabfc754a4b5e1049570b16a3fff1ed164f4b3aa37921bb"
+  },
+  "accepted_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/natural_context_contrast_comparison.json",
+    "sha256": "70b87bf762f3225fd83f40d3bde301c13e5a4b4243372e541af1a1e38e88bc29"
+  },
+  "CPU_tests": [
+    {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/cross-gqa-map-preparation-20261015/model_CPU_tests.xml",
+      "sha256": "d9e6d4e0d1e82205073423203c5e4ef1bbb91dc2a2724d4982f189e70240c762",
+      "expected_tests": 18
+    },
+    {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/cross-gqa-map-preparation-20261015/trainer_CPU_tests.xml",
+      "sha256": "19e21fcf20f53b2e15e1ddd3b1344bbb2ddfd1661d2c448e8b8afb24561ae877",
+      "expected_tests": 12
+    },
+    {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/cross-gqa-map-preparation-20261015/probe_CPU_tests.xml",
+      "sha256": "c6ec21f9eba37e999bff7d009fb0ee30ec0e7a5bf8c8512edbc612dfd149089e",
+      "expected_tests": 10
+    }
+  ],
+  "tokenizer": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/phase2/4096/tokenizer.model",
+    "sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+  },
+  "sources": {
+    "scripts/probe_cross_gqa_map.py": "f436a0141bb0cf856ee86d10fc1913fe0cd1c74ee4431a98e6b85b18e1dec707",
+    "scripts/probe_cross_gqa_map.ps1": "66ad59bff8c32b12a6bd2f8ebbc3b7ca86927aa43292ab8f4f752c7c91eb9288",
+    "scripts/cross_gqa_map_trainer.py": "bb258727f8bf3f774b8b5c6c4d691de95ab8ae0b9799cb93a3f64391918caf95",
+    "src/jmicro/cross_gqa_map.py": "e5c5760aedf2d67aee2c8a5f14fa185e8fb6a8a4d010279183e4a7f3e72be081",
+    "scripts/context_likelihood_trainer.py": "392824e360dca7474d3b6227d19236d0d748c5238b03067dd80aba9d497dfaa5",
+    "src/jmicro/context_likelihood.py": "a08597c78b4a39f358214730d507037f15679a3f83650009445c65b6898eaafd",
+    "scripts/probe_context_likelihood.py": "b76ebc5aba00d7754b9909dcaca85cddbb81ad03c64e2061ff7925b65cbf3cd6",
+    "scripts/probe_base_kv_allocation.py": "b803c8238cca10b76baed061ceb944bf090f320b762562da40944b9dc529b5e3",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "scripts/natural_context_contrast_memory.py": "85735b203e1a6f845078046379c6463b51cdc61068a463a379d93c79368f62e2",
+    "scripts/base_fim_trainer.py": "31fb0a86561014221ba5096cf83ffa17914e9c946b214dc0e407e1abbb1398c4",
+    "scripts/base_fim_sampler.py": "ca5eeea9c47e8c78ccd6843cd6287cd7eaaeee3cccf7a948349f773ac6e64e79",
+    "scripts/base_kv_allocation_trainer.py": "49cbf6a2e6163e16577e385860345e542c3282a9f8e752c164b53a66ac43e7e1",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "tests/test_cross_gqa_map_probe.py": "be633ff3b29e6077f841f0e38005600fb7f017d34f036fa072490c6816e27358",
+    "tests/test_cross_gqa_map_training.py": "2b1228ef5074d1f10e7d4665d6fc03f0c4bdef488fbad80251c74b617f251f5b",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca"
+  },
+  "capacity_payload": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/cross-gqa-map-probe-20261015/verification_shape_input.pt",
+    "sha256": "1c03592887d756c278a802bcb278e7c499bdbd9f545c692cf8faf5e41460fb6a"
+  },
+  "initial_weights_sha256": "e3d3f388b09c98b6fffcfdd0d3498b828adb7ed8b6c26ab808046db82c37eea0",
+  "CPU_wall_seconds": 0.925857738009654
+}

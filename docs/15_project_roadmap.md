@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-15最新実行: [cross-GQA map100M契約](../configs/phase6/cross_gqa_map_science_20261015.json)を凍結・起動。実PID48654/start65870189・worker33840・760更新/4289851教師を確認。同元base configと52scalarだけの宣言済み差（candidate10,001,204、reference10,001,152）、元CE全stream/schedule/全品質gateを保持。owned CUDA10.287119秒で全state/history resume exact、48x1024有限gradient、FP32 cache事前許容差内、18 science CPU checksを通した。科学3743秒/技術込み4800秒、500保存/20heartbeat。次は同job終端と全80採否で、独立fresh全pipeline/fullDEV/全440/新TEST/採用は未達。
+
 2026-10-15次案CPU準備: [cross-GQA signed mapの明示構造proposal](../reports/phase6/cross-gqa-map-preparation-20261015/proposal.json)を保存し、native本体を変更せずmodel18/trainer12 CPU checksと実元10B親CPU parityを完了。元重み・初期関数を保持し、52scalar追加の10,001,204 params。注意mapは別KV groupのものを現在Vへ適用し、旧output gate/同KV内の線形head混合と区別した。原CE全教師/streamを維持、全state resume exact。GPU/科学比較0、次は専用owned CUDA180秒・総4800秒提案内の実測とsafe typed science接続。CPU準備を品質合格・独立学習/fullDEV/新TEST/採用へ読み替えない。
 
 2026-10-15最新終端: [sentence-copy確率減衰100M](../reports/phase6/pseudo-repetition-science-20261015/completion.json)は全17,698更新state/元CE対照一致・全80個別内容まで完了し、不採用に閉鎖。文法44→53、一貫性2→2、適切完結2→3、EOS19→22、反復45→31、BPB0.998487→0.999679、CI[0,0]で原gate未達。科学2544.969800＋技術12.190336秒、元UI実PID44053/start65703471へ復帰確認。次は別介入の選定で、固定条件の救済をしない。独立fresh全pipeline/fullDEV/全440/新封印TEST/採用と4項目goalは未達。以下のrunning記述は当時の履歴。

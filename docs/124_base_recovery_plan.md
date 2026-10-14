@@ -1,5 +1,7 @@
 # Base改善の今後の計画
 
+2026-10-15実行追補: cross-GQA構造案はowned CUDA10.287119秒で全state/history resume exact・48x1024有限gradient・事前精度内のcache比較を通し、[科学100M契約](../configs/phase6/cross_gqa_map_science_20261015.json)を凍結して開始した。元base config一致＋宣言52scalar差のguardと全品質条件を維持、科学3743/総4800秒。現在PID48654/start65870189の同job終端と全80内容採否を待つ。下のGPU/CLI未実装記述は当時の履歴で、独立学習/fullDEV/新TEST/採用は依然未達。
+
 2026-10-15別構造案: [cross-GQA signed-map proposal](../reports/phase6/cross-gqa-map-preparation-20261015/proposal.json)を明示してからCPU実装・検証した。元nativeを置き換えず、原関数を保つ初期0の52scalar追加（10,001,204）で、他KV groupのmapを現在Vへ適用する。旧query-dependent output gate/同KV内の線形混合/閉鎖MHA allocationと区別し、model18/trainer12 checksと実元親parityを完了した。次は専用owned CUDA/typed保存再開/明示的architecture対照/隔離評価・reviewerの接続と実測予算を先に完成する。CPU成功や論文を品質改善の証拠にせず、元全gateと独立全pipeline/fullDEV/全440/新封印TESTを維持する。
 
 2026-10-15終端追補: [sentence-copy確率減衰100M](../reports/phase6/pseudo-repetition-science-20261015/completion.json)を実行し、全state/元CE対照/全80内容を確認して不採用に閉鎖した。反復45→31は減ったが、一貫性2→2・適切完結2→3・BPB0.998487→0.999679で元品質・保持は未達。反復対策だけで意味の進行と完結が成立するとは確認できなかった。固定条件を救済せず、次は別の根拠ある未回答仮説を1件選定する。4項目goalはactiveで、独立fresh全pipeline/fullDEV/全440/新封印TEST/採用は有資格候補なしの未実施。下のCPU準備・科学未凍結記述は当時の履歴。
