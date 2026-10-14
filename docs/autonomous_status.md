@@ -1,5 +1,7 @@
 # 現在の状態
 
+2026-10-15最新CPU準備: `src/jmicro/isolated_japanese_scoring.py`のsafe fixed-diagnostic adapterを実装。[回帰照合](../reports/phase6/isolated-japanese-scoring-20261015/CPU_regression.json)は隔離済みinputsのsemantics192/JBLiMP331/JCQA1119、計1642例/6641選択肢について元token境界・保存済み2M TRAIN unigram・raw sum/SLOR/secondary/credit/tiesを全件exact確認。CPU16 checks passed（実旧scorerとのfixture全row/summary一致、5許可fileだけの実adapterfixture、壊れたTEST fixture非読取り、期限切れ/欠落choice/不正counts/非finite拒否）。実回帰CPU0.165426秒、9種類の既知診断/元Tokenizer/保存countsをreadし、TRAIN token stream/混在suite/TEST/モデル推論/GPU/学習/新dataset0。元countsを再作成せず旧式の採点規則を維持した。現時点で科学recipe未選定、有資格Base/独立学習/fullDEV/新封印TEST/採用は未達。adapterはcheckpoint資格や永続runnerを代替せず、次の別凍結比較へ接続する準備まで。次は既存失敗から別の根拠ある介入を選定する。4項目goalはactive/未達。
+
 2026-10-15の次案調査: [TRAIN索引の境界監査](../reports/phase6/sampling-boundary-20261015/sampling_audit.json)は新しい固定256 byte drawsとCPU11 checksを完了。実frozen samplerは包含行をskipして次行を選ぶため、正確には対象行自身ではなく直前行の索引byte数による重み（先頭/第2行/EOFの例外あり）。256/256で次行、source横断0。条件内分布差の有限標本近似はWeb0.00531、textbook0.02021、story0.000408（storyは7drawのみ）。CPU0.161030秒、openは既存TRAIN manifest/ready/indexの3種類だけ、token stream/モデル/DEV/TEST/GPU/学習0。過去の同selector pairingと結果は保持。原因や大きな生成改善の根拠にはならず、この小さなpolicy mismatchだけを理由に科学学習を開始しない。次は本比較用fixed Japanese diagnosticsのsafe scorer接続を整備し、別の根拠ある比較選定を継続。独立学習/fullDEV/新TEST/採用は未達、4項目goalを完了にしない。
 
 更新: 2026-10-15 JST。文書更新は結果32b8f58/receipt d44b8a0で完了し、ユーザーが目標を解除。その後「4まで進めてください」で直前の4項目（評価分離修理→新同10M比較→合格候補の独立学習/全文DEV→新封印TEST/採用）が明示再開された。Base/Chatは未完成・未採用。Chat/SFT・量子化・大型化・公開は範囲外。
