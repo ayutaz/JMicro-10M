@@ -2,6 +2,8 @@
 
 更新: 2026-10-15 JST。「4まで」で評価分離修理からBase最終判定までが明示再開。[修理147](147_evaluation_boundary_repair.md)の新DEV reader/生成/reviewとCPU21 checks・実DEV80入力監査を完了。新契約は`eval/isolated-base-dev-v1/base.dev.manifest.json` SHA6198b43df8f4cf389e9de74c038e2e93d18665413477b27359ab352a02f69fa7をpinする。旧混在readerを新比較へ呼ばず、frozen過去source/結果を変更しない。実GPU新学習0・新介入未選定。起動前の実process/lock確認が必要で、過去PIDを現在保証にしない。
 
+`scripts/audit_fim_compatibility.py` は新しい固定CPU診断で、FIM trainerではない。契約`configs/phase6/fim_CPU_feasibility_20261015.json`と[receipt](../reports/phase6/fim-feasibility-20261015/actual_TRAIN_serialization_audit.json)を保存済み。各genre8の計24 TRAIN文書・serializer20 CPU checks、原token/bytes/EOS保存、24/24がcontext1024内、ordinary marker35token/追加入力標本比26.2746%。完了診断を再実行しない。原TRAIN index/cache identityとTokenizerを再利用し、本文・dataset・重みをGitへexportしていない。GPU/科学学習/DEV/TEST0、成熟親100M FIMを選定していない。fresh比較の価値と実行契約は[選定メモ](../reports/phase6/fim-feasibility-20261015/selection_assessment.json)の未解決項目から判断する。
+
 [最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
 
 最新Baseの文書長重み100Mは不採用で閉鎖。一貫性1/80・反復50/80、独立fresh学習seed43/fullDEV/封印TEST/採用は有資格候補なしで未実行。比較・文書の完了はモデルの品質完成ではない。

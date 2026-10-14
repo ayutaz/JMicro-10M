@@ -2,6 +2,8 @@
 
 更新: 2026-10-15 JST。文書更新は結果32b8f58/receipt d44b8a0で完了し、ユーザーが目標を解除。その後「4まで進めてください」で直前の4項目（評価分離修理→新同10M比較→合格候補の独立学習/全文DEV→新封印TEST/採用）が明示再開された。Base/Chatは未完成・未採用。Chat/SFT・量子化・大型化・公開は範囲外。
 
+次案調査で[FIMの固定24 TRAIN CPU監査](../reports/phase6/fim-feasibility-20261015/actual_TRAIN_serialization_audit.json)を完了。新serializerのCPU20 checks passed、既存accepted TRAINから各genre8文書を固定抽出し、元token/bytesとEOS identityを保存、全24がcontext1024内。原4096 codecでordinary markerは計35token、標本の元教師位置に対する追加入力26.2746%。新教材作成・元本文export・実model生成・科学学習・GPU・DEV/TEST読取り0。literal markerは原論文special sentinelと異なり、EOSは復元middleの終端になる。[選定メモ](../reports/phase6/fim-feasibility-20261015/selection_assessment.json)で成熟親100M FIMの自動開始を見送り、fresh比較の通常Baseへの転移根拠、marker教師/mask、長文処理、対照、horizonと実測予算を未確定として残す。新科学recipeは未選定で、独立学習/全文DEV/新TEST/採用も未達。CPU実装可能性を品質改善や全目標完了に読み替えない。
+
 [評価分離修理147](147_evaluation_boundary_repair.md)でDEV専用manifest/readerと新生成/review境界を実装。CPU21 checks passed、既に保存したDEV80から入力のみをexportし実read-setを3ファイルに限定した。元混在suite/TESTは開いていない。生成答えの教材化0・実モデル評価/GPU0・品質改善の証拠0。旧frozen sources/事故/全結果は保全。次は既存証拠から新介入と対照/予算/必要CLIを定義し、隔離済み経路で比較する。独立学習/全文DEV/TESTは候補資格が成立してから。
 
 [最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。

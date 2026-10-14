@@ -1,0 +1,68 @@
+{
+  "status": "FIM_feasibility_resolved_scientific_selection_still_pending",
+  "created_at": "2026-10-14T16:07:17.6588826Z",
+  "original_goal": "four-item Base recovery through independent training/fullDEV and fresh sealedTEST/adoption",
+  "prior_goal_turn_classification": "no_progress: user-facing plan explanation only, no new execution or evidence",
+  "this_turn_classification": "progress: new serializer, 20 meaningful CPU checks and fixed24 accepted TRAIN feasibility evidence",
+  "actual_audit": {
+    "path": "reports/phase6/fim-feasibility-20261015/actual_TRAIN_serialization_audit.json",
+    "sha256": "abd117ba8a2b3cd23c4398d75c082926dc0e3cbf277f661578e82040cd827b9a"
+  },
+  "fixed_draws": 24,
+  "distinct_documents": 24,
+  "ordinary_body_marker_tokens": 35,
+  "marker_input_overhead_ratio": 0.2627463246793869,
+  "complete_units_fitting_1024": 24,
+  "original_body_and_EOS_identity_conservation": true,
+  "raw_body_exported": false,
+  "interpretation": "Serialization with the unchanged4096 codec is feasible on these24 draws, with material marker overhead. Neither source-wide feasibility nor ordinary Base quality improvement is established. All draws included; no short-document replacement/reroll.",
+  "primary_source": {
+    "evidence_limits": "The tested smallest model is50M; full training100B. This project uses10M and a fixed4096 codec; literal ordinary markers are not the paper special tokens.",
+    "sections": [
+      "3",
+      "4.1",
+      "4.4",
+      "4.5",
+      "5",
+      "6",
+      "Appendix C"
+    ],
+    "relevant_facts": "FIM uses context rearrangement and sentinel tokens. It preserves AR capability in tested pretraining, but this is not proof of better Japanese10M coherence. Finetuning is reported less efficient. Context-level augmentation performs better than document-level on the code infilling evaluation.",
+    "url": "https://arxiv.org/html/2207.14255v1"
+  },
+  "local_evidence": {
+    "reports/phase6/conditional_prefix_mask_proposal.json": "623c059d986b585df5bd51114eeab73473a285f6f0b7856edff967b47f45e54d",
+    "reports/phase6/conditional_prefix_mask_review.json": "f6abb4d5ebc9f78a36c7b6e34e9f478fb2f527593f5740018cc05651eabcd574",
+    "scripts/conditional_prefix_mask_trainer.py": "a59df61633c3dce09a14254ac4fcbf4729abece17c714ac8e70353ae9fad1c42",
+    "reports/phase6/interleaved_outcome_order_proposal.json": "e5f62364090c63fdb3b8589be77cd253a9436d2c4fb4d832283cf27250071713",
+    "reports/phase6/interleaved_outcome_review.json": "93d031d41c2af61457cd8ee7271b7b9fc757a484f8bb747a45d8fc56e5a37597",
+    "scripts/run_interleaved_outcome_order.py": "5d26782c53c833367bdaa1615a9659efe44139127c043c6e07db68106f3d07bd",
+    "scripts/base_context_mixing_trainer.py": "80244da524bb369a28fed40e251c1f56e1640914f4c646e19f0d6a2c70d0f6a2",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "reports/phase6/base_document_balance_comparison_review.json": "6cbeb4e1b6fdf10936259703e59d30fd80176294d2951a4255f95a24e3d7b84f",
+    "reports/phase6/base_teacher_decay_2b_completion.json": "f2e9878652d76f13e59bedc12e52ca7db9eb784b19a49a3355f2a634f334291e"
+  },
+  "local_conclusions": [
+    "Conditional prefix masking improved coherence23to35 but failed historical Web BPB; masked interleaving retained Web BPB but failed generation. These are observed tradeoffs, not a confirmed single cause.",
+    "Inspected prefix-mask/context-substitution/InfoNCE/source-order implementations do not perform generative prefix-suffix-middle reordering. This is bounded mechanism inspection, not proof all research history lacks FIM.",
+    "The24 draws resolve structural byte conservation and immediate context cost only. They do not establish sufficient training horizon or an AR-quality gain."
+  ],
+  "decision": "Do not launch mature-parent100M FIM on paper/keyword absence/serialization feasibility alone. A fresh-learning comparison remains a prospective candidate, not a selected or frozen scientific run.",
+  "next_required": [
+    "Define an ordinary-continuation transfer hypothesis tied to actual failure examples, with an unchanged loss/BPB/strong/historical quality endpoint.",
+    "Specify FIM versus AR teacher/EOS/marker supervision and long-document handling; do not silently select short-domain data.",
+    "Establish a fresh matched control, full initialization/data RNG lineage and a meaningful teacher horizon from existing learning evidence.",
+    "Implement connected trainer/CLI/reviewer only under a concrete prospective contract; actual CUDA finite/resume/stable-batch and measured full cost before scientific freeze."
+  ],
+  "CPU_checks_passed": 20,
+  "new_scientific_teacher_positions": 0,
+  "new_optimizer_updates": 0,
+  "new_GPU_seconds": 0,
+  "new_dataset_prepared": false,
+  "independent_learning_completed": false,
+  "fullDEV_completed": false,
+  "fresh_TEST_prepared": false,
+  "Base_adopted": false,
+  "full_goal_complete": false,
+  "goal_blocked": false
+}

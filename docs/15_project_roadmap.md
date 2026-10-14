@@ -2,6 +2,8 @@
 
 更新: 2026-10-15 JST。文書/計画納品d44b8a0の後、「4まで」で評価分離修理からBase最終判定までが明示再開。[修理147](147_evaluation_boundary_repair.md)は新DEV reader/生成/review・CPU21 checks・実DEV80入力のread-set監査まで進んだ。実モデル/GPU学習・新介入/予算の凍結はまだ0。Base/Chat未完成・未採用、原10M/品質を維持し、Chat/量子化へ自動移行しない。
 
+後続の[FIM CPU feasibility](../reports/phase6/fim-feasibility-20261015/selection_assessment.json)はserializer20 checksと固定24 TRAIN文書のtoken/bytes/EOS保存・context1024適合を確認。固定4096 ordinary marker35tokenの追加入力は標本比26.2746%。科学教師/GPU0で、FIMの通常Base改善・source全体への適合は未実証。成熟親100Mを自動選定せず、fresh対照/意味のあるhorizon/marker教師と長文処理/予算を定義してから比較の採否を決める。新recipe未選定、後半の独立学習・全文DEV・封印TEST・採用を省略しない。
+
 [最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
 
 最新Baseの文書長重み100Mは不採用で閉鎖。一貫性1/80・反復50/80、独立fresh学習seed43/fullDEV/封印TEST/採用は有資格候補なしで未実行。比較・文書の完了はモデルの品質完成ではない。
