@@ -1,5 +1,7 @@
 # Base改善の今後の計画
 
+2026-10-15進行: [first-layer value residual100M契約](../configs/phase6/value_residual_science_20261015.json)を実元親CPU parity/専用trainerと全state resume/owned GPU9.812882秒・最大48x1024/18科学workflow checks後に凍結・起動した。science3568/技術込み4800秒、元親/原CE100M/48/42と全元品質gateを保持。実PID52873/start66148908は40更新/233183教師の途中で、品質未判定。次は同job終端の原対照全state/stream＋宣言12scalar差と全80個別内容採否。未達なら固定条件閉鎖、有資格時だけ独立fresh全pipeline/fullDEV/全440/新封印TEST/採用。全4項目goalはactive/未達、下の未実装/科学0記録は履歴。
+
 2026-10-15次案選定: [first-layer V residual proposal](../reports/phase6/value-residual-preparation-20261015/proposal.json)を実装前に保存し、別modelの[18＋1 CPU checks](../reports/phase6/value-residual-preparation-20261015/CPU_preparation.json)を完了。元Vに最初のVを零係数から足す12 scalar/10,001,164で、閉鎖したcross-map/output gate/parallel residualとは情報経路が異なる。ただし局所の原因診断・品質改善ではない。実元親CPU parityと専用typed trainer/全state resumeが次で、元native hidden helperは流用不可。owned CUDA/科学CLI/科学契約は未完、予算は実測後に凍結し元全gateを維持する。科学学習/GPU/new data/DEV/TEST0、独立fresh全pipeline/fullDEV/全440/新TEST/採用は未達。
 
 2026-10-15最新判断: [cross-GQA signed-map100M](../reports/phase6/cross-gqa-map-science-20261015/completion.json)も全state/元CE stream・宣言した構造差と全80個別内容を確認し不採用に閉鎖した。文法44→60に対し一貫性2→2・適切完結2→2・EOS19→18・反復45→47・BPB0.998487→0.998503。文法と意味の進行・完結は別に評価する。今回だけでGQAや10M規模が根因とは断定せず、固定条件のmap/係数/normalization/親/seed/decoder/予算を救済しない。次は原proposal/trainer/resultから別の未回答仮説1件を選定し、対照・元gate・実測予算を事前固定する。独立fresh全pipeline/fullDEV/全440/新封印TEST/採用は有資格候補なしで未実施。全4項目goalはactive/未達、下のrunning/準備記録は当時の履歴。

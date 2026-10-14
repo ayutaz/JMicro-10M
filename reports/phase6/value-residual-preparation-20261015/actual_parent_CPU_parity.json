@@ -1,0 +1,106 @@
+{
+  "status": "actual_native10M_first_value_conversion_CPU_parity_complete",
+  "observed_at": "2026-10-14T22:47:29.717007+00:00",
+  "contract_sha256": "314c3d862da028cb998d63e2792bdaa83403ee2ccb15c032f2475985455df491",
+  "proposal": {
+    "sha256": "e44b6f432e15f2c917b94aa115f624d79ab0e8291564bcf5e8d4ab0ad768f904",
+    "path": "reports/phase6/value-residual-preparation-20261015/proposal.json"
+  },
+  "sources": {
+    "scripts/prepare_value_residual.py": "850985abea783f8d450a6dda22623620dc275e341e6ea96386bbb6bf989642b5",
+    "src/jmicro/value_residual.py": "737d9e83587c65d0ea719d88472129c24c7c702cf07ee80fa32c50ee85985388",
+    "tests/test_value_residual.py": "6ecf6808e53c047836b3fb9813da7a52cd1179e7e3fa1452629b59aff95c2014",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca"
+  },
+  "checks": {
+    "original_unique_parameters": true,
+    "candidate_unique_parameters": true,
+    "only12_new_scalars": true,
+    "every_original_weight_unchanged": true,
+    "new_scalars_zero": true,
+    "original_base_config_unchanged": true,
+    "tied_vocabulary": true,
+    "conversion_RNG_unchanged": true,
+    "all_logits_bitwise_parent_equal": true,
+    "cached_logits_bitwise_parent_equal": true,
+    "cached_KV_bitwise_parent_equal": true,
+    "same_logical_cache_positions": true
+  },
+  "original_parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "parent_identity_policy": "Reuse previously hash-verified exact parent with frozen size/mtime guard; no new full weight rehash claimed.",
+  "parent_size": 120181763,
+  "parent_mtime_ns": 1791114231712428007,
+  "actual_native_parameters": 10001152,
+  "actual_candidate_parameters": 10001164,
+  "model_config": {
+    "schema_version": 1,
+    "architecture": "decoder_only_transformer",
+    "hidden_size": 256,
+    "num_attention_heads": 4,
+    "num_key_value_heads": 2,
+    "head_dim": 64,
+    "activation": "swiglu",
+    "norm": "rmsnorm",
+    "rms_norm_eps": 1e-06,
+    "qk_norm_type": "none",
+    "qk_norm_before_rope": true,
+    "attention_scale": 0.125,
+    "rope_theta": 10000,
+    "rope_layout": "half_split",
+    "rotary_dim": 64,
+    "max_position_embeddings": 1024,
+    "tie_word_embeddings": true,
+    "attention_bias": false,
+    "mlp_bias": false,
+    "dropout": 0.0,
+    "initializer_std": 0.02,
+    "norm_initial_gain": 1.0,
+    "status": "phase5_ablation",
+    "name": "JMicro-10M-T4K-NoQKNorm",
+    "vocab_size": 4096,
+    "num_hidden_layers": 13,
+    "intermediate_size": 640,
+    "expected_parameter_count": 10001164,
+    "first_layer_value_residual_research": {
+      "policy": {
+        "kind": "first_layer_value_additive_learned_scalar_v1",
+        "first_layer_unchanged": true,
+        "current_value_coefficient": 1.0,
+        "initial_alpha": 0.0,
+        "coefficient": "direct_signed_per_later_layer",
+        "first_value_detached": false,
+        "first_value": "original_unrotated_pre_repeat_V0",
+        "cache": "mixed_current_values_then_append_past",
+        "additional_projections": 0
+      },
+      "arm": "value_learned",
+      "native_expected_parameter_count": 10001152
+    }
+  },
+  "input_shape": [
+    2,
+    64
+  ],
+  "input_scope": "Borrowed accepted technical token spans; not new documents, training or generation quality.",
+  "checkpoint_and_payload_read_paths": [
+    "/home/aihub_ubuntu/jmicro-data/phase6/natural-context-contrast-capacity-20261007/maximum-original-window.json",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt"
+  ],
+  "maximum_logit_difference": 0.0,
+  "CPU_wall_seconds": 0.29822213388979435,
+  "optimizer_updates": 0,
+  "new_GPU_seconds": 0,
+  "DEV_opened": false,
+  "TEST_opened": false,
+  "new_dataset_prepared": false,
+  "model_weights_saved": false,
+  "scientific_contract_frozen": false,
+  "Base_qualified": false,
+  "Base_adopted": false,
+  "full_four_item_goal_complete": false,
+  "limitations": "Zero-coefficient actual-parent parity only; active cache/gradient paths were tested on CPU fixtures. No trained10M model, CUDA, Japanese quality, independent seed, fullDEV or new sealedTEST evidence."
+}

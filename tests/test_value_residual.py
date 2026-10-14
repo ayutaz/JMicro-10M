@@ -170,6 +170,15 @@ def test_scientific_learned_clip_includes_extra_scalar_coordinates():
     assert alpha.grad.item()==pytest.approx(3.*factor,abs=1e-7)
 
 
+@pytest.mark.parametrize('arm',['value_learned','static_identity'])
+def test_clip_refuses_nonfinite_gradients_before_optimizer(arm):
+    model=ValueResidualModel.from_native(native(),arm)
+    parameter=model.model.layers[0].self_attn.v_proj.weight
+    parameter.grad=torch.full_like(parameter,float('nan'))
+    with pytest.raises(RuntimeError,match='non-finite'):
+        model.clip_grad_norm(1.)
+
+
 @pytest.mark.parametrize('bad',['missing','nan','shape','dtype','tie','static_nonzero'])
 def test_bad_state_rejected_before_mutation(bad):
     model=ValueResidualModel.from_native(native(),'static_identity' if bad=='static_nonzero' else 'value_learned')

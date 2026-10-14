@@ -147,13 +147,14 @@ class ValueResidualModel(JMicroModel):
         positions = torch.arange(ids.shape[1], device=ids.device)[None].expand(ids.shape[0], -1)
         return self._blocks(ids, positions, None, causal=True)[0]
 
-    def clip_grad_norm(self, max_norm):
+    def clip_grad_norm(self, max_norm, *, error_if_nonfinite=True):
         # Technical identity control must preserve the original reduction list:
         # appending zero-gradient scalars can change FP32 norm rounding. The
         # scientific learned arm includes ALL original and extra coordinates.
         parameters = (p for n, p in self.named_parameters()
             if self.config[TAG]['arm'] != 'static_identity' or not n.endswith('.value_alpha'))
-        return torch.nn.utils.clip_grad_norm_(list(parameters), max_norm)
+        return torch.nn.utils.clip_grad_norm_(list(parameters), max_norm,
+                                              error_if_nonfinite=error_if_nonfinite)
 
     def forward(self, input_ids, attention_mask=None, cache=None, use_cache=False,
                 labels=None, training_fast_path=False):
