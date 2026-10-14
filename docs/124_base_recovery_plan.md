@@ -1,5 +1,7 @@
 # Base改善の今後の計画
 
+2026-10-15終端追補: [sentence-copy確率減衰100M](../reports/phase6/pseudo-repetition-science-20261015/completion.json)を実行し、全state/元CE対照/全80内容を確認して不採用に閉鎖した。反復45→31は減ったが、一貫性2→2・適切完結2→3・BPB0.998487→0.999679で元品質・保持は未達。反復対策だけで意味の進行と完結が成立するとは確認できなかった。固定条件を救済せず、次は別の根拠ある未回答仮説を1件選定する。4項目goalはactiveで、独立fresh全pipeline/fullDEV/全440/新封印TEST/採用は有資格候補なしの未実施。下のCPU準備・科学未凍結記述は当時の履歴。
+
 2026-10-15次条件選定: [TRAIN全句copy確率減衰のprospective案](../reports/phase6/pseudo-repetition-preparation-20261015/proposal.json)を選び、原source比較/pure14 checks/一回限り元TRAIN32x48 CPU feasibilityを完了した。原CE/10Mを保持するDITTO系variantで、旧rollout4gram ULとは負例生成と正のdetach確率目標が異なる。次は専用trainer・全state resume/disabled CE equality、その後だけowned CUDA180秒と総4800秒提案内の実測・safe science接続・凍結。教材/モデル/学習/DEV/TEST/GPU0の準備までで、品質改善や最終資格ではない。固定scopeと原品質条件は維持する。
 
 2026-10-15進行追補: 「4まで」の再開範囲で評価reader分離と新同10M比較を実施した。最新[context likelihood100M](../reports/phase6/context-likelihood-science-20261015/completion.json)は全80内容と全state/対照照合まで完了し、不採用に閉鎖。一貫性1/80・適切完結1/80・反復50/80、全保持条件未達。次は既存結果から別の未回答介入を1件選定し、対照/原gate/実測予算を事前固定する。独立fresh全pipeline学習/fullDEV/全440/新封印TEST/採用は有資格候補ができてからで、まだ未達。Base完成までの4項目goalを比較閉鎖へ縮めない。以下の2026-10-14文書限定scope・未選定記述は当時の履歴で、後の明示再開を上書きしない。
