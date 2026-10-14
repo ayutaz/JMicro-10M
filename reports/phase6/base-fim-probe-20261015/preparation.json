@@ -1,0 +1,73 @@
+{
+  "status": "actual_native10M_CPU_zero_and32_original_source_batches_verified",
+  "proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/fim-feasibility-20261015/fresh_FIM_pilot_proposal.json",
+    "sha256": "4ef0c9bae3c5f86d6428e2462b6df82fa4f92cabfe37ead68eb1f378d7c56901"
+  },
+  "control_checkpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-parallel-residual-comparison-20261007/sequential/checkpoint-00010000.pt",
+    "sha256": "2f86279178709d4e75d3cacdc530b9cb52ae47c37a620ed37c813d293c5ae29c"
+  },
+  "initial_weights_sha256": "da29973969a970f1ddd95605f7da8d2811699372b49682c775fb757c9337302b",
+  "initial_native_weights_Adam_scheduler_training_RNG_equal": true,
+  "original_source_batches": 32,
+  "original_source_rows": 2560,
+  "original_material_RNG_equal": true,
+  "source_read_events": "Two deterministic matching samplers;2560 rows each, not5120 distinct rows",
+  "capacity_payload_provenance": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/natural-context-contrast-capacity-20261007/maximum-original-window.json",
+    "sha256": "518b7158e824a6504e71404864b57d7072d592cd6f200869844e96670c1c5fee"
+  },
+  "original_stream_digest": "3f9b6be85f71b6b31ad2c457c7ca41000f82991a19b3f40c823ad5ac9c64ecbc",
+  "FIM_counters": {
+    "rows": 2560,
+    "eligible_rows": 2524,
+    "applied_rows": 1271,
+    "marker_inputs": 44485,
+    "selected_original_teachers": 150561,
+    "native_stream_digest": "3f9b6be85f71b6b31ad2c457c7ca41000f82991a19b3f40c823ad5ac9c64ecbc"
+  },
+  "CPU_wall_seconds": 4.4256872340338305,
+  "CPU_tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/fim-feasibility-20261015/CPU_training_tests.xml",
+    "sha256": "26d5cec21599306833071156203f6ff4bed2794a9350cca399dbb3dfa3c2fa86"
+  },
+  "CPU_workflow_tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/fim-feasibility-20261015/CPU_probe_workflow_tests.xml",
+    "sha256": "164cd9136d8d9f89b1fef06f02273b0c403dbe7f7ec05146969aca95f2d8e3de"
+  },
+  "input_payload": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-fim-probe-20261015/verification_input.pt",
+    "sha256": "e93ee2a827fe063f25d35c12212274669a7d3f5de59a9df29a7412eb575d46a4"
+  },
+  "input_payload_export_to_Git": false,
+  "native_parameters": 10001152,
+  "source_sha256": {
+    "scripts/base_fim_sampler.py": "ca5eeea9c47e8c78ccd6843cd6287cd7eaaeee3cccf7a948349f773ac6e64e79",
+    "scripts/base_fim_trainer.py": "31fb0a86561014221ba5096cf83ffa17914e9c946b214dc0e407e1abbb1398c4",
+    "scripts/probe_base_fim.py": "a45c650058a45755c06b4c99a7f0ab34fa9005277647d7eae200ef752cb9cbee",
+    "src/jmicro/fim_compatibility.py": "436acdd4bf0362f0a4bf099acbd516d5b0e5c1b455648f0559a8a6368f9f3866",
+    "tests/test_base_fim_training.py": "26a3041ba3ba984abeb437e03259c3ae573b80eb28676170db9ec04c75983f84",
+    "tests/test_base_fim_probe.py": "4e9de245525c01156bc8f3e94fc9eff19fea3590bd78141f6eae1db68f248f58",
+    "tests/test_fim_compatibility.py": "becea3672b825a645b352373316fe592cd331a0260271fc117f093ba7a92f343",
+    "scripts/base_kv_allocation_trainer.py": "49cbf6a2e6163e16577e385860345e542c3282a9f8e752c164b53a66ac43e7e1",
+    "scripts/base_parallel_residual_trainer.py": "d090c91089eb4216e03e153bb60b051dcf1721e87c0bf302ff1d3ffacafc6290",
+    "scripts/base_parallel_residual_model.py": "0dc0c78eab175dcd58f876d5c408a846b1ad7f2ca182a69d3e01f3296aa97180",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "scripts/natural_context_contrast_memory.py": "85735b203e1a6f845078046379c6463b51cdc61068a463a379d93c79368f62e2",
+    "scripts/probe_base_kv_allocation.py": "b803c8238cca10b76baed061ceb944bf090f320b762562da40944b9dc529b5e3",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca"
+  },
+  "model_learning_updates": 0,
+  "new_scientific_teacher_positions": 0,
+  "new_GPU_seconds": 0,
+  "DEV_opened": false,
+  "TEST_opened": false,
+  "quality_improvement_evidence": false,
+  "Base_adopted": false
+}

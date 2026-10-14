@@ -1,8 +1,10 @@
 # JMicro-10M フェーズ別実行計画
 
-更新: 2026-10-15 JST。文書/計画納品d44b8a0の後、「4まで」で評価分離修理からBase最終判定までが明示再開。[修理147](147_evaluation_boundary_repair.md)は新DEV reader/生成/review・CPU21 checks・実DEV80入力のread-set監査まで進んだ。実モデル/GPU学習・新介入/予算の凍結はまだ0。Base/Chat未完成・未採用、原10M/品質を維持し、Chat/量子化へ自動移行しない。
+更新: 2026-10-15 JST。文書/計画納品d44b8a0の後、「4まで」で評価分離修理からBase最終判定までが明示再開。[修理147](147_evaluation_boundary_repair.md)は新DEV reader/生成/review・CPU21 checks・実DEV80入力のread-set監査まで進んだ。後続は下のfresh FIM prospective選定と専用技術検証。科学学習/品質評価0・科学契約未凍結。Base/Chat未完成・未採用、原10M/品質を維持し、Chat/量子化へ自動移行しない。
 
-後続の[FIM CPU feasibility](../reports/phase6/fim-feasibility-20261015/selection_assessment.json)はserializer20 checksと固定24 TRAIN文書のtoken/bytes/EOS保存・context1024適合を確認。固定4096 ordinary marker35tokenの追加入力は標本比26.2746%。科学教師/GPU0で、FIMの通常Base改善・source全体への適合は未実証。成熟親100Mを自動選定せず、fresh対照/意味のあるhorizon/marker教師と長文処理/予算を定義してから比較の採否を決める。新recipe未選定、後半の独立学習・全文DEV・封印TEST・採用を省略しない。
+[最新準備](../reports/phase6/fim-feasibility-20261015/protocol_readiness.json)は、同native10M・元2B schedule/TRAIN/batch80/seed42と既存対照10000更新/94160195教師を使うfresh FIM PSM pilotをprospective選定。新sampler/trainer16＋workflow9 CPU checks、実10M zero/元source各2560行を照合し、専用CUDA40技術更新/383190教師・全state4対2+2・80x1024/32 timingsがpassed。GPU9.153451952966861秒、pilot予測2519秒/提案総上限3600秒。次はscience永続CLI・隔離DEV256/80評価・notes/reviewerを完成して凍結する。pilotの相対screenを正式Base資格へ置き換えず、独立fresh学習・全文DEV/全440・新封印TEST・採用を維持する。技術probeを再起動しない。
+
+選定前の[FIM CPU feasibility](../reports/phase6/fim-feasibility-20261015/selection_assessment.json)はserializer20 checksと固定24 TRAIN文書のtoken/bytes/EOS保存・context1024適合を確認。固定4096 ordinary marker35tokenの追加入力は標本比26.2746%。科学教師/GPU0で、FIMの通常Base改善・source全体への適合は未実証。成熟親100Mを自動選定せず、fresh対照/意味のあるhorizon/marker教師と長文処理/予算を定義してから比較の採否を決める。新recipe未選定、後半の独立学習・全文DEV・封印TEST・採用を省略しない。
 
 [最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
 

@@ -1,0 +1,153 @@
+{
+  "status": "prospective_fresh_FIM_PSM_pilot_selected_CPU_implementation_allowed_science_not_frozen",
+  "created_at": "2026-10-14T16:19:24.5073360Z",
+  "question": "Does original-TRAIN middle reconstruction from both observed ends improve ordinary unrestricted Japanese continuation, while retaining AR loss, at the unchanged native10M budget?",
+  "selection_reason": "Existing conditional masking attained coherence35/80 but lost Web retention; original masked interleaving retained Web but failed generation. Original-unit FIM offers a distinct observed-context generative training signal without new synthetic templates. This motivates a transfer test, not a proven cause or expected pass.",
+  "primary_source": "https://arxiv.org/html/2207.14255v1",
+  "source_limit": "Paper reports preserved AR capability and learned infilling during fresh50M-to6.9B pretraining, not Japanese10M ordinary coherence improvement. Literal body markers, ignored marker targets and original-token interior cuts differ from its sentinels/supervision/splitting; no claim of strict reproduction or FIM-for-free.",
+  "existing_mechanism_difference": "PrefixMask retains native token order; ContextMixing substitutes predictions; NaturalContextContrast adds representation InfoNCE; interleaving changes source order. This protocol permutes the original prefix/suffix/middle within original complete units, with CE only on the same original gold labels.",
+  "native_model": {
+    "schema_version": 1,
+    "architecture": "decoder_only_transformer",
+    "hidden_size": 256,
+    "num_attention_heads": 4,
+    "num_key_value_heads": 2,
+    "head_dim": 64,
+    "activation": "swiglu",
+    "norm": "rmsnorm",
+    "rms_norm_eps": 1E-06,
+    "qk_norm_type": "none",
+    "qk_norm_before_rope": true,
+    "attention_scale": 0.125,
+    "rope_theta": 10000,
+    "rope_layout": "half_split",
+    "rotary_dim": 64,
+    "max_position_embeddings": 1024,
+    "tie_word_embeddings": true,
+    "attention_bias": false,
+    "mlp_bias": false,
+    "dropout": 0.0,
+    "initializer_std": 0.02,
+    "norm_initial_gain": 1.0,
+    "status": "phase5_ablation",
+    "name": "JMicro-10M-T4K-NoQKNorm",
+    "vocab_size": 4096,
+    "num_hidden_layers": 13,
+    "intermediate_size": 640,
+    "expected_parameter_count": 10001152
+  },
+  "actual_parameter_requirement": 10001152,
+  "tokenizer": {
+    "sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+    "path": "artifacts/phase2/4096/tokenizer.model"
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "full_recipe_teacher_goals": {
+    "web": 1500000000,
+    "textbook": 400000000,
+    "story": 100000000
+  },
+  "optimizer": {
+    "kind": "fresh_AdamW",
+    "peak_lr": 0.002,
+    "final_lr": 1E-05,
+    "warmup_gold": 5000000,
+    "schedule": "completed-update teacher-position warmup then cosine",
+    "weight_decay": 0.1,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1E-08,
+    "gradient_clip": 1.0,
+    "seed": 42,
+    "batch": 80
+  },
+  "weights": "fresh_native_seed42; no learned-parent/probe weight or Adam/RNG inheritance",
+  "matched_control": {
+    "checkpoint": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-parallel-residual-comparison-20261007/sequential/checkpoint-00010000.pt",
+      "sha256": "2f86279178709d4e75d3cacdc530b9cb52ae47c37a620ed37c813d293c5ae29c"
+    },
+    "notes": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base_gradient_accumulation_control_notes.json",
+      "sha256": "fff81c2b64803d15523e802868979cd91f08542a0dd9cdd3a24c49506b471e43"
+    },
+    "status": "completed historical fresh native sequential; reuse only after full state/stream/initialization/spec equivalence, never relaunch",
+    "quality": "BPB1.2902028921801718, grammar28, coherence2, appropriate3, EOS13, repetition49 of80; not a qualified Base",
+    "evaluation": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-gradient-accumulation-pilot-20261008/control-evaluation.json",
+      "sha256": "aac002cebbd7c25f8cc482f42280233f27673253abcbd6f3bc18d42d4954fea3"
+    }
+  },
+  "pilot": {
+    "schedule_horizon_reason": "Use the SAME already-frozen2B native schedule and its saved10000-update point. Pilot is a generation-transfer screen on an immature model, not evidence2B/10B is sufficient or a changed-horizon control.",
+    "schedule_total_teachers": 2000000000,
+    "required_measured_steady_updates": 32,
+    "maximum_new_GPU_seconds_including_probe": 3600,
+    "science_forecast": "ceil(10000/32*sum(actual32_step_seconds)*1.3 + evaluation_and_save_reserve600); add all probe/failed occupancy; must fit3600 before freeze",
+    "probe_GPU_ceiling_seconds": 120,
+    "permit2B_learning": "Not automatically authorized by this prospective pilot contract. Only successful pilot plus separate measured frozen main contract under the active four-item goal.",
+    "updates": 10000,
+    "screening": {
+      "EOS_no_worse": true,
+      "repetition_no_worse": true,
+      "empty_role_Unicode_marker_failures": 0,
+      "appropriate_no_worse": true,
+      "paired_CI_lower_above": 0,
+      "maximum_matched_BPB_ratio": 1.01,
+      "coherence_gain_at_least": 8,
+      "grammar_no_worse": true
+    },
+    "original_teacher_positions": 94160195
+  },
+  "FIM_rule": {
+    "probability": 0.5,
+    "teacher_accounting": "Same original hard body+EOS teachers/bytes per source and per update; new marker/physical inputs and selected FIM teachers separately recorded",
+    "RNG": "Dedicated seed xor0xF1A0 augmentation RNG, separate from unchanged original material RNG and model initialization/training RNG",
+    "marker_labels": "-100; input embeddings still learn through original gold; no synthetic marker teachers",
+    "EOS": "Same original3 identity/count; ends reconstructed middle on augmented rows, not an unchanged semantic task",
+    "cuts": "Uniform distinct interior codec-stable original token boundaries; both observed ends nonempty",
+    "markers": [
+      "[FIM_PREFIX]",
+      "[FIM_SUFFIX]",
+      "[FIM_MIDDLE]"
+    ],
+    "quota": "Mask native original targets BEFORE permutation; preserve original selected token identities including partial genre quota tails",
+    "eligible": "original body+EOS<=512 and one complete native window; all other original units/windows remain AR, none discarded"
+  },
+  "required_before_science": [
+    "Meaningful CPU gold/quota/long-unit/RNG/full-save-resume tests",
+    "Native initialization and actual fullstream/control-state equivalence, including same updates/labels by original identity",
+    "New isolated evaluation/individual-review CLI; no legacy mixed reader",
+    "Actual CUDA BF16 finite forward/backward and continuous4 versus2+save+2 with FIM active",
+    "Same batch80 stable shape plus32 measured actual steady updates and science cost freeze",
+    "Persistent identity/locks/ledger/fullstate logs/checkpoint and original UI handling"
+  ],
+  "full_adoption": "All original absolute/matched/strong/cached/historical guards unchanged, fresh independent training/fullDEV/400+40/fresh sealedTEST and adoption still required. Pilot gates are not Base qualification.",
+  "failure": "Close this exact protocol on correctness/cost/quality failure. No FIM rate/markers/cuts/eligibility/mask/parent/source/LR/batch/horizon/decoder/budget rescue; preserve failures and full goal unfinished.",
+  "references": {
+    "reports/phase6/base_gradient_accumulation_control_notes.json": "fff81c2b64803d15523e802868979cd91f08542a0dd9cdd3a24c49506b471e43",
+    "reports/phase6/base_teacher_decay_pilot_completion.json": "4d40b8ca019cb25e9af01958603b12b7122f4b1752fd22c5b85bf7efa149d728",
+    "reports/phase6/base_parallel_residual_comparison_review.json": "40d66a70bdf80dd03c8afb93092eb54b8f395598dcc82aa94e2894744345c2da",
+    "reports/phase6/conditional_prefix_mask_review.json": "f6abb4d5ebc9f78a36c7b6e34e9f478fb2f527593f5740018cc05651eabcd574",
+    "reports/phase6/interleaved_outcome_review.json": "93d031d41c2af61457cd8ee7271b7b9fc757a484f8bb747a45d8fc56e5a37597",
+    "reports/phase6/fim-feasibility-20261015/actual_TRAIN_serialization_audit.json": "abd117ba8a2b3cd23c4398d75c082926dc0e3cbf277f661578e82040cd827b9a",
+    "reports/phase6/fim-feasibility-20261015/selection_assessment.json": "a964d04fede1d9c2d5aa7245c28f8ffc39fcef4ca42cf75ec2ec2b74dbe469f4"
+  },
+  "new_scientific_teacher_positions": 0,
+  "new_GPU_seconds": 0,
+  "quality_criteria_unchanged": true,
+  "Base_adopted": false,
+  "scientific_budget_frozen": false,
+  "TEST_prepared": false
+}
