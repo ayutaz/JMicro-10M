@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-15最新: [凍結fresh FIM pilot](../configs/phase6/base_fim_pilot_20261015.json)と永続実行/DEV-only評価/採点CLI、13 CPU checksが完成し科学学習を開始。[観測](../reports/phase6/fim-feasibility-20261015/science_launch_observation.json)は実PID1343/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start64143474、675更新/6352596教師。終端目標10000更新/94160195教師、science2519秒/技術含む総3600秒。v2 launcherのUI解放待ち修理は科学条件を変更せず、初回開始前失敗を保全。次は同じ実processを観測し、終了後の全80 raw-bound内容/全stateと元stream/採否を確認する。pilot screenをBase採用に読み替えず、独立fresh学習・全文DEV/全440・新封印TEST・採用までの4項目を保持する。以下の準備のみの記述は科学開始前の履歴。
+
 更新: 2026-10-15 JST。文書/計画納品d44b8a0の後、「4まで」で評価分離修理からBase最終判定までが明示再開。[修理147](147_evaluation_boundary_repair.md)は新DEV reader/生成/review・CPU21 checks・実DEV80入力のread-set監査まで進んだ。後続は下のfresh FIM prospective選定と専用技術検証。科学学習/品質評価0・科学契約未凍結。Base/Chat未完成・未採用、原10M/品質を維持し、Chat/量子化へ自動移行しない。
 
 [最新準備](../reports/phase6/fim-feasibility-20261015/protocol_readiness.json)は、同native10M・元2B schedule/TRAIN/batch80/seed42と既存対照10000更新/94160195教師を使うfresh FIM PSM pilotをprospective選定。新sampler/trainer16＋workflow9 CPU checks、実10M zero/元source各2560行を照合し、専用CUDA40技術更新/383190教師・全state4対2+2・80x1024/32 timingsがpassed。GPU9.153451952966861秒、pilot予測2519秒/提案総上限3600秒。次はscience永続CLI・隔離DEV256/80評価・notes/reviewerを完成して凍結する。pilotの相対screenを正式Base資格へ置き換えず、独立fresh学習・全文DEV/全440・新封印TEST・採用を維持する。技術probeを再起動しない。
