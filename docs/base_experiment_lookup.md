@@ -1,5 +1,7 @@
 # Baseの実験結果を探す
 
+2026-10-15最新閉鎖: [cross-GQA signed-map100M](../reports/phase6/cross-gqa-map-science-20261015/completion.json)は元CE全stream/base config＋宣言した52scalar構造差・全state/history・全80個別notesまで確認し不採用。元native10,001,152対候補10,001,204、文法60/80でも一貫性2/80・完結2/80・EOS18/80・反復47/80で元gate未達。旧query-headwise output gateとは別機構だが今回の固定map/係数/normalization/親/seed/decoder/予算は閉鎖し救済しない。次案は索引だけでなく原proposal/trainer/resultで既存条件との実差分を確認する。独立fresh全pipeline/fullDEV/全440/新封印TEST/採用と4項目goalは未達。以下は当時の履歴。
+
 2026-10-15最新閉鎖: [sentence-copy確率減衰100M](../reports/phase6/pseudo-repetition-science-20261015/completion.json)は全17,698更新/全state/対照一致・全80内容reviewまで完了し不採用。原rollout4gram ULとは正のdetach確率目標と合成全句copy入力が異なるが、今回の固定variantは反復31/80・一貫性2/80・適切完結3/80で未達。係数/decay/copy/文境界/親/seed/decoder/予算を変更して再試行しない。前のcontext likelihood/FIMも閉鎖のまま。索引の語句検索だけで新規性を判断せず、原proposal/trainer/resultsと照合して別案を1件選定する。4項目goalの独立学習/fullDEV/新TEST/採用はまだ未達。
 
 2026-10-15追補: 最新の閉じた条件は[context likelihood100M](../reports/phase6/context-likelihood-science-20261015/completion.json)。全80 raw-bound notes・数値監査を含め不採用で、独立学習/fullDEV/新TEST/採用の資格なし。直前のfresh FIMも[不採用閉鎖](../reports/phase6/base-fim-pilot-20261015/completion.json)。どちらも固定条件の係数/親/seed/予算/decoder救済をしない。20261008索引はこの後続比較を含まない検索補助であり、原proposal/trainer/resultとの照合が必要。4項目Base goalはactiveで次の別介入を選定する。以下は文書限定だった時点の履歴。

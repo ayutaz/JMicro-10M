@@ -1,0 +1,204 @@
+{
+  "status": "complete",
+  "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/cross-gqa-map-science-20261015/checkpoint-00017698.pt",
+  "checkpoint_sha256": "7c7b59a6f52252666260bd71ce64a26d3debe93ee9c2a8869a826dd7192b3a3e",
+  "binding": {
+    "config_sha256": "21cd269df80f743747813fe590eb0c365cca343943f41f87d808499379e68a33",
+    "parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+    },
+    "source_binding": {
+      "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+      "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+      "index_size": 12861257655,
+      "index_mtime_ns": 1791234945567297288,
+      "stream_size": 4000002624,
+      "stream_mtime_ns": 1791234945514053852,
+      "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+      "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+    },
+    "training_seed": 42,
+    "weights_role": "scientific_cross_GQA_map",
+    "probe_weights_used": false
+  },
+  "counters": {
+    "update": 17698,
+    "supervised_tokens": 100000000,
+    "CE_input_tokens": 102655467,
+    "auxiliary_input_tokens": 0,
+    "auxiliary_pairs": 0,
+    "physical_input_tokens": 370838917,
+    "original_body_bytes": 405882136,
+    "token_digest": "a1ab017092f823d69e033d96868136ebeb0a55f13e2cb1cfd039e3c7d920a1c9",
+    "source_teachers": {
+      "web": 75000000,
+      "textbook": 20000000,
+      "story": 5000000
+    },
+    "source_EOS": {
+      "web": 657450,
+      "textbook": 148625,
+      "story": 38222
+    },
+    "auxiliary_digest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "attention_map_query_head_positions": 38567247368
+  },
+  "original_CE_match": {
+    "update": true,
+    "token_digest": true,
+    "supervised_tokens": true,
+    "source_teachers": true,
+    "source_EOS": true,
+    "CE_input_tokens": true,
+    "original_body_bytes": true,
+    "full_original_sampler": true,
+    "actual_original_scheduler": true,
+    "unchanged_original_base_config": true,
+    "only_declared_model_difference": true,
+    "original_main_physical_inputs": true
+  },
+  "physical_rollup": {
+    "CE_physical_inputs": 370838917,
+    "auxiliary_physical_inputs": 0
+  },
+  "auxiliary_digest": "0000000000000000000000000000000000000000000000000000000000000000",
+  "model_config": {
+    "schema_version": 1,
+    "architecture": "decoder_only_transformer",
+    "hidden_size": 256,
+    "num_attention_heads": 4,
+    "num_key_value_heads": 2,
+    "head_dim": 64,
+    "activation": "swiglu",
+    "norm": "rmsnorm",
+    "rms_norm_eps": 1e-06,
+    "qk_norm_type": "none",
+    "qk_norm_before_rope": true,
+    "attention_scale": 0.125,
+    "rope_theta": 10000,
+    "rope_layout": "half_split",
+    "rotary_dim": 64,
+    "max_position_embeddings": 1024,
+    "tie_word_embeddings": true,
+    "attention_bias": false,
+    "mlp_bias": false,
+    "dropout": 0.0,
+    "initializer_std": 0.02,
+    "norm_initial_gain": 1.0,
+    "status": "phase5_ablation",
+    "name": "JMicro-10M-T4K-NoQKNorm",
+    "vocab_size": 4096,
+    "num_hidden_layers": 13,
+    "intermediate_size": 640,
+    "expected_parameter_count": 10001204,
+    "cross_GQA_signed_map_research": {
+      "policy": {
+        "kind": "cross_GQA_attention_map_signed_tanh_v1",
+        "head_mapping": [
+          2,
+          3,
+          0,
+          1
+        ],
+        "input_query_heads": 4,
+        "input_KV_heads": 2,
+        "output": "original_map_minus_tanh_scalar_times_other_group_map_on_current_values",
+        "coefficient_granularity": "query_head_per_layer",
+        "initial_raw_coefficient": 0.0,
+        "extra_projection_parameters": 0,
+        "new_head_norm": false,
+        "original_weight_rescaling": false,
+        "original_cache_layout": true
+      },
+      "arm": "cross_learned",
+      "native_expected_parameter_count": 10001152
+    }
+  },
+  "spec": {
+    "kind": "native_original_CE_cross_GQA_signed_map_v1",
+    "batch": 48,
+    "contrast": false,
+    "seed": 42,
+    "lr": 1e-05,
+    "weight_decay": 0.1,
+    "temperature": 0.1,
+    "coefficient": 0.1,
+    "dtype": "bf16",
+    "backend": "flash",
+    "optimizer_policy": "fresh_equal_AdamW_both_arms",
+    "scheduler": "constant",
+    "original_whole_body_plus_EOS": true,
+    "no_split_EOS": true,
+    "CE_policy": "document_local1024_context512_target_stride_original_EOS_once",
+    "head_policy": "only_supervised_valid_hidden_states_no_PAD_or_overlap_logits",
+    "auxiliary_policy": "first_window_observed_pair_once_per_draw_deduplicate_family_and_body_in_batch",
+    "goals": {
+      "web": 75000000,
+      "textbook": 20000000,
+      "story": 5000000
+    },
+    "actual_unique_parameters": 10001204,
+    "cross_policy": {
+      "kind": "cross_GQA_attention_map_signed_tanh_v1",
+      "head_mapping": [
+        2,
+        3,
+        0,
+        1
+      ],
+      "input_query_heads": 4,
+      "input_KV_heads": 2,
+      "output": "original_map_minus_tanh_scalar_times_other_group_map_on_current_values",
+      "coefficient_granularity": "query_head_per_layer",
+      "initial_raw_coefficient": 0.0,
+      "extra_projection_parameters": 0,
+      "new_head_norm": false,
+      "original_weight_rescaling": false,
+      "original_cache_layout": true
+    },
+    "cross_arm": "cross_learned",
+    "original_model_config": {
+      "schema_version": 1,
+      "architecture": "decoder_only_transformer",
+      "hidden_size": 256,
+      "num_attention_heads": 4,
+      "num_key_value_heads": 2,
+      "head_dim": 64,
+      "activation": "swiglu",
+      "norm": "rmsnorm",
+      "rms_norm_eps": 1e-06,
+      "qk_norm_type": "none",
+      "qk_norm_before_rope": true,
+      "attention_scale": 0.125,
+      "rope_theta": 10000,
+      "rope_layout": "half_split",
+      "rotary_dim": 64,
+      "max_position_embeddings": 1024,
+      "tie_word_embeddings": true,
+      "attention_bias": false,
+      "mlp_bias": false,
+      "dropout": 0.0,
+      "initializer_std": 0.02,
+      "norm_initial_gain": 1.0,
+      "status": "phase5_ablation",
+      "name": "JMicro-10M-T4K-NoQKNorm",
+      "vocab_size": 4096,
+      "num_hidden_layers": 13,
+      "intermediate_size": 640,
+      "expected_parameter_count": 10001152
+    }
+  },
+  "lineage": {
+    "parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+    },
+    "parent_update": 305176,
+    "parent_tokens": 10000007168,
+    "parent_supervised_tokens": 9978838479,
+    "optimizer_policy": "fresh_AdamW_original_coordinates_plus_cross_scalars",
+    "kind": "native_original_CE_cross_GQA_signed_map_v1",
+    "weights_role": "scientific_cross_GQA_map"
+  }
+}
