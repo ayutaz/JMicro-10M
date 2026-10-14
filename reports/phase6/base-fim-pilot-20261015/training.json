@@ -1,0 +1,146 @@
+{
+  "status": "complete",
+  "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-fim-pilot-20261015/checkpoint-00010000.pt",
+  "checkpoint_sha256": "5328bca46dbbbd88b1756c3cf7d177c0539c72a25c76ba66caadb9bd1dc7034d",
+  "binding": {
+    "config_sha256": "c514ac4a944e7ca5974879585d902f0276a7ab544bf4ad9f226d971f48a61198",
+    "proposal_sha256": "4ef0c9bae3c5f86d6428e2462b6df82fa4f92cabfe37ead68eb1f378d7c56901",
+    "source_binding": {
+      "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+      "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+      "index_size": 12861257655,
+      "index_mtime_ns": 1791234945567297288,
+      "stream_size": 4000002624,
+      "stream_mtime_ns": 1791234945514053852,
+      "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+      "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+    },
+    "weights_role": "scientific_fresh_FIM_pilot",
+    "training_seed": 42,
+    "learned_parent_weights_used": false,
+    "probe_weights_used": false
+  },
+  "counters": {
+    "update": 10000,
+    "supervised_tokens": 94160195,
+    "CE_input_tokens": 110496509,
+    "auxiliary_input_tokens": 0,
+    "auxiliary_pairs": 0,
+    "physical_input_tokens": 413966720,
+    "original_body_bytes": 382169159,
+    "token_digest": "4b9dbb036124d0b4675b94dcdd19e22a409e1d9aed3b264e9d81941abab32f09",
+    "source_teachers": {
+      "web": 70620030,
+      "textbook": 18832118,
+      "story": 4708047
+    },
+    "source_EOS": {
+      "web": 619232,
+      "textbook": 139904,
+      "story": 35998
+    }
+  },
+  "FIM_counters": {
+    "rows": 800000,
+    "eligible_rows": 790275,
+    "applied_rows": 395467,
+    "marker_inputs": 13841345,
+    "selected_original_teachers": 45529816,
+    "native_stream_digest": "26b260437b751cb63b2e2922659bbac6b6e90adc983cd578626cdb0baf9a3dc4"
+  },
+  "matched_checks": {
+    "update": true,
+    "supervised_tokens": true,
+    "source_teachers": true,
+    "source_EOS": true,
+    "original_body_bytes": true,
+    "full_original_sampler": true,
+    "original_input_and_gold_stream_digest": true,
+    "same_actual_scheduler": true,
+    "native_model_config": true,
+    "actual_FIM_active": true
+  },
+  "model_config": {
+    "schema_version": 1,
+    "architecture": "decoder_only_transformer",
+    "hidden_size": 256,
+    "num_attention_heads": 4,
+    "num_key_value_heads": 2,
+    "head_dim": 64,
+    "activation": "swiglu",
+    "norm": "rmsnorm",
+    "rms_norm_eps": 1e-06,
+    "qk_norm_type": "none",
+    "qk_norm_before_rope": true,
+    "attention_scale": 0.125,
+    "rope_theta": 10000,
+    "rope_layout": "half_split",
+    "rotary_dim": 64,
+    "max_position_embeddings": 1024,
+    "tie_word_embeddings": true,
+    "attention_bias": false,
+    "mlp_bias": false,
+    "dropout": 0.0,
+    "initializer_std": 0.02,
+    "norm_initial_gain": 1.0,
+    "status": "phase5_ablation",
+    "name": "JMicro-10M-T4K-NoQKNorm",
+    "vocab_size": 4096,
+    "num_hidden_layers": 13,
+    "intermediate_size": 640,
+    "expected_parameter_count": 10001152
+  },
+  "spec": {
+    "kind": "fresh_native_original_gold_FIM_PSM_v1",
+    "batch": 80,
+    "seed": 42,
+    "optimizer": "fresh_AdamW",
+    "weight_decay": 0.1,
+    "gradient_clip": 1.0,
+    "dtype": "bf16",
+    "backend": "flash",
+    "actual_unique_parameters": 10001152,
+    "goals": {
+      "web": 1500000000,
+      "textbook": 400000000,
+      "story": 100000000
+    },
+    "scheduler": {
+      "kind": "original_teacher_end_position_warmup_cosine_v1",
+      "total": 2000000000,
+      "warmup": 5000000,
+      "peak": 0.002,
+      "final": 1e-05
+    },
+    "head_policy": "only_original_supervised_states",
+    "CE_policy": "same_original_gold_post_quota_permutation_marker_targets_ignored",
+    "contrast": false,
+    "FIM_policy": {
+      "kind": "original_TRAIN_post_quota_FIM_PSM_single_window_v1",
+      "probability": 0.5,
+      "markers": [
+        "[FIM_PREFIX]",
+        "[FIM_SUFFIX]",
+        "[FIM_MIDDLE]"
+      ],
+      "marker_targets": "ignore_-100",
+      "span": "two_uniform_distinct_interior_codec_stable_original_token_boundaries",
+      "eligible": "complete_original_document_body_plus_EOS_at_most512",
+      "long_units": "unchanged_native_AR_all_windows",
+      "original_gold": "identities_and_quota_mask_preserved",
+      "context": 1024,
+      "data_rng": "unchanged_native_seed",
+      "augmentation_rng": "separate_seed_xor_0xF1A0",
+      "EOS_semantics": "original_EOS_identity_ends_middle_reconstruction_in_augmented_rows"
+    }
+  },
+  "lineage": {
+    "kind": "fresh_native_original_gold_FIM_PSM_v1",
+    "initialization": "fresh_native_seed",
+    "seed": 42,
+    "parent": null,
+    "learned_parent_weights_used": false,
+    "probe_weights_used": false,
+    "weights_role": "scientific_fresh_FIM_pilot"
+  }
+}

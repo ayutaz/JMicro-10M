@@ -34,8 +34,9 @@ def audit(checkpoint,pin,metrics,output):
                 raise ValueError('Contiguous completed-update prefix required')
             teachers+=row['CE_targets_this_update']
             s=state['scheduler'];position=teachers
+            phase=(position-s['warmup'])/(s['total']-s['warmup'])
             expected=s['peak']*position/s['warmup'] if position<=s['warmup'] else (
-                s['final']+(s['peak']-s['final'])*(1+math.cos(math.pi*(position-s['warmup'])/(s['total']-s['warmup'])))/2)
+                s['final']+(s['peak']-s['final'])*(1+math.cos(math.pi*phase))/2)
             if (row['supervised_tokens']!=teachers or row['lr']!=expected
                     or any(not math.isfinite(row[k]) for k in ('CE_loss','gradient_norm','lr','seconds'))
                     or row['gradient_norm']<=0 or row['CE_targets_this_update']<=0):

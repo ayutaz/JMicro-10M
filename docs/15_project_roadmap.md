@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-15最新終端: [fresh FIM pilot completion](../reports/phase6/base-fim-pilot-20261015/completion.json)は10000更新/正確94160195教師・DEV256/全80個別review・全state/元stream/全更新監査を完了し不採用。文法28→31、一貫性2→2、適切3→2、EOS13→14、反復49→51、BPB1.290203→1.292414、主差CI[-.0375,.0375]。科学1527.822100＋技術9.153452＝1536.975552秒で科学2519/総3600内。元UI復帰。固定FIM条件を閉鎖し救済・延長をしない。独立学習/fullDEV/新TEST/採用は候補資格なしで未実施、Baseと4項目目標は未達。次はactiveなBase-only範囲で別の根拠ある比較を選定する。以降の稼働・準備記述は過去の観測で、現在のjob生存や品質完成ではない。
+
 稼働中のCPU補足は[保存状態監査](../reports/phase6/fim-feasibility-20261015/checkpoint2000_CPU_audit.json)と[日本語fixed diagnosticsの入力分離](../reports/phase6/fim-feasibility-20261015/Japanese_diagnostic_export.json)。将来の本比較の安全な診断入力として192/331/1119の元inputs/goldのみを保存済みDEV結果から投影、新reader13 checks passed。payloadをGit/学習へ移さず、元混在suiteやTESTを開かない。既知DEV/fixed benchmarkで未知評価・独立監査・品質改善ではない。現在のpilotを変更・再起動しない。
 
 2026-10-15最新: [凍結fresh FIM pilot](../configs/phase6/base_fim_pilot_20261015.json)と永続実行/DEV-only評価/採点CLI、13 CPU checksが完成し科学学習を開始。[観測](../reports/phase6/fim-feasibility-20261015/science_launch_observation.json)は実PID1343/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start64143474、675更新/6352596教師。終端目標10000更新/94160195教師、science2519秒/技術含む総3600秒。v2 launcherのUI解放待ち修理は科学条件を変更せず、初回開始前失敗を保全。次は同じ実processを観測し、終了後の全80 raw-bound内容/全stateと元stream/採否を確認する。pilot screenをBase採用に読み替えず、独立fresh学習・全文DEV/全440・新封印TEST・採用までの4項目を保持する。以下の準備のみの記述は科学開始前の履歴。
