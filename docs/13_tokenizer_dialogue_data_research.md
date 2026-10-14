@@ -1,8 +1,16 @@
 # Tokenizer・日本語会話データ・SFTの追加調査
 
-更新: 2026-10-14 JST。最新の判断は[結果141](141_chat_lr_comparison_results.md)と[状態](autonomous_status.md)。Base/Chat未完成・未採用、追加研究・学習は停止中。現在は[全ドキュメント更新142](142_documentation_refresh.md)のみ。 固定4096 Tokenizer・特殊ID0〜7を維持し、会話bodyは個別encode、role/EOTを構造IDで挿入する。Assistant本文+EOTのみの教師mask、document sampler、教師量正規化のscheduleと全state保存再開は実装・SFT実行済み。最新はaccepted TRAIN41,529 target・660,109教師/周と280sample QAの再利用。SFT実消費1,899,557教師と新規教材量を区別する。
+更新: 2026-10-14 JST。現在の依頼は全現行文書の最新化と今後の計画作成。Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は再開していない。
 
-最新のTRAIN適合と未知NLL/内容不足は[141](141_chat_lr_comparison_results.md)。50〜100B供給や10M/30M/100M SFT量の初期案は自動的な実行量ではない。元Chat TEST準備解析事故を保存し、将来有資格Chat確認には新しい封印TESTが必要。評価本文をTRAINへ移さず、raw Unicode失敗をdecode修正で免除しない。下のsource候補・研究・規模は調査当時の記録。
+[最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
+
+Tokenizer4096、構造tokenの挿入、Assistant本文+EOTのみの教師mask/document samplerを維持。SFTは141まで実行・不採用で、今回は追加教材・mid-training・SFTを始めない。ChatのTEST20行解析とBaseのTEST20 prompt解析は別の事故で、将来両方の有資格確認には新しい封印TESTが必要。dataset量の初期案を実準備済み量や開始指示にしない。
+
+最新Baseの文書長重み100Mは不採用で閉鎖。一貫性1/80・反復50/80、独立fresh学習seed43/fullDEV/封印TEST/採用は有資格候補なしで未実行。比較・文書の完了はモデルの品質完成ではない。
+
+元Base TEST20 promptと元Chat TEST20行は別のCPU解析問題を保存した。学習・GPU TEST採点に使っていないこととCPU未解析は別。将来の有資格最終確認にはreader分離と新しい封印TESTが必要。今回data/TESTを開封・再処理しない。
+
+次は評価の読取り分離を修理し、既存結果から未回答の比較1件を定義する計画。介入・教材量・GPU予算は未選定/未凍結。真にfreshな独立Baseの全pipelineとnative runnerの接続、fullDEV/全440生成、新しい封印TESTを省略しない。
 
 ## 当時の資料・保存手順
 

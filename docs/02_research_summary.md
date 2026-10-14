@@ -1,10 +1,16 @@
 # 調査要約
 
-更新: 2026-10-14 JST。[現在の状態](autonomous_status.md)、[最新結果141](141_chat_lr_comparison_results.md)、[ロードマップ](15_project_roadmap.md)が現在の判断の正本。研究・教材準備・診断・生成評価・学習は停止中。 外部研究は当時の資料で、今回全件の外部再調査はしていない。
+更新: 2026-10-14 JST。現在の依頼は全現行文書の最新化と今後の計画作成。Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は再開していない。
 
-現参照はnative10,001,152、Tokenizer4096、NoQK-Norm/SwiGLU/context1024。元10B Baseと後続SFTを実行したが品質未達。Layer Sharingの固定比較は実施・不採用、ReLU²の固定比較は予算gate不成立で本比較未開始・終了。これらを単なる未実装の次案へ戻さない。
+[最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
 
-最新低LR候補は新DEV内容20/80・自己文脈5/24、CI下限−1.25ポイント、反復と文字失敗が残り不採用。SFT TRAIN適合やBPB改善だけでは内容・文脈の達成を示さない。Base単独原因・10M容量限界は未確定。技術採否と後続実績は[全体記録125](125_project_retrospective.md)で追える。
+現参照はnative10,001,152、Tokenizer4096、NoQK-Norm/SwiGLU/13層/context1024。Layer Sharingの固定比較は不採用、ReLU²は予算gate不成立で本比較未開始のまま閉鎖。過去案を未検証の次候補へ戻さない。SFT低LR141も不採用で、追加SFT・Base単独原因・10M容量限界はいずれも解決の証明がない。外部研究は当時の記録で最新revisionを再調査していない。
+
+最新Baseの文書長重み100Mは不採用で閉鎖。一貫性1/80・反復50/80、独立fresh学習seed43/fullDEV/封印TEST/採用は有資格候補なしで未実行。比較・文書の完了はモデルの品質完成ではない。
+
+元Base TEST20 promptと元Chat TEST20行は別のCPU解析問題を保存した。学習・GPU TEST採点に使っていないこととCPU未解析は別。将来の有資格最終確認にはreader分離と新しい封印TESTが必要。今回data/TESTを開封・再処理しない。
+
+次は評価の読取り分離を修理し、既存結果から未回答の比較1件を定義する計画。介入・教材量・GPU予算は未選定/未凍結。真にfreshな独立Baseの全pipelineとnative runnerの接続、fullDEV/全440生成、新しい封印TESTを省略しない。
 
 ## 作成時点の資料・契約
 

@@ -1,12 +1,16 @@
 # Tokenizer設計
 
-更新: 2026-10-14 JST。[現在の状態](autonomous_status.md)、[最新結果141](141_chat_lr_comparison_results.md)、[ロードマップ](15_project_roadmap.md)が現在の判断の正本。研究・教材準備・診断・生成評価・学習は停止中。
+更新: 2026-10-14 JST。現在の依頼は全現行文書の最新化と今後の計画作成。Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は再開していない。
 
-現系列は固定4096語彙のSentencePiece Unigram + byte fallbackを使用。SHA256 `a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318`。8192版は初期比較として保全し、同bytes/BPBとモデル配分の条件を区別する。再学習・語彙追加・embedding resizeは不要。
+[最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
 
-特殊IDはPAD0/UNK1/BOS2/EOS3/System4/User5/Assistant6/EOT7。会話本文を個別encodeしrole/EOTは構造IDで挿入する。CRLF/CR→LFとNUL除去以外のUnicodeを保持し、改行・タブ・literal ▁・<の表現は共通wrapperの契約に従う。raw不正UTF8を表示修正で成功扱いにしない。
+固定4096 Tokenizerと特殊ID0〜7を維持。4k/8kの既存比較・Phase3変換は基盤の証拠で、再学習や再exportを今回繰り返さない。モデル実験は同Tokenizerとcommon-byte BPBを使う。raw不正UTF8はモデル失敗として保全し、置換表示や制約decodeで免除しない。
 
-[Phase2契約](18_phase2_completion.md)・[固定config](../configs/tokenizer/contract.json)・[復元](huggingface_handoff.md)を参照。下は初期方針と当時の候補で、既に完了した学習の再実行指示ではない。
+最新Baseの文書長重み100Mは不採用で閉鎖。一貫性1/80・反復50/80、独立fresh学習seed43/fullDEV/封印TEST/採用は有資格候補なしで未実行。比較・文書の完了はモデルの品質完成ではない。
+
+元Base TEST20 promptと元Chat TEST20行は別のCPU解析問題を保存した。学習・GPU TEST採点に使っていないこととCPU未解析は別。将来の有資格最終確認にはreader分離と新しい封印TESTが必要。今回data/TESTを開封・再処理しない。
+
+次は評価の読取り分離を修理し、既存結果から未回答の比較1件を定義する計画。介入・教材量・GPU予算は未選定/未凍結。真にfreshな独立Baseの全pipelineとnative runnerの接続、fullDEV/全440生成、新しい封印TESTを省略しない。
 
 ## 作成時点の資料・契約
 

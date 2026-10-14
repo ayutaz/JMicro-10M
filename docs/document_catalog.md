@@ -1,337 +1,1006 @@
-# 全文書カタログ
+# 全ドキュメント・保存原文の一覧
 
-更新: 2026-10-14 JST。全追跡文書を棚卸しし、現在の説明と当時の計画・証拠を区別する。
+更新: 2026-10-14 JST。今回の依頼は全現行文書の最新化と今後の計画の作成。研究・教材準備・診断・生成評価・GPU学習は再開しない。
 
-[現在の状態](autonomous_status.md)・[最新結果141](141_chat_lr_comparison_results.md)・[今回の更新142](142_documentation_refresh.md)を先に読む。研究・学習は停止中。Base/Chatは未完成・未採用。
+更新前の全Git管理Markdown/RST **626パス**を棚卸し。現行33、日付付き/固定履歴282、既存原文copy311。
 
-日付付き計画・結果と固定台帳の原文は変更しない。「次回」「継続中」「未実施」は作成時点の記録であり現在の実行許可ではない。固定台帳の対象revisionと後続実験を混同しない。
+元bytesを347件の内容hash別copyに保全した。同じ内容の複数パスもbaselineで個別に追跡する。追加文書は[計画145](145_post_rejection_next_plan.md)と[更新記録146](146_documentation_followup.md)。
 
-棚卸し対象は既存311文書と今回追加2文書。全件の原byte/hashと区分は[baseline](../reports/investigation/documentation-refresh-20261014/baseline.json)に保存した。
+[今回baseline](../reports/investigation/documentation-followup-20261014/baseline.json) / [今回の更新原文copy](../reports/investigation/documentation-followup-20261014/originals/)。過去copyは当時の文書で、コピー先のrelative linkを現在の実行指示として使わない。
 
-## 現行の説明・運用（34文書）
-
-| 文書 | 扱い |
-|---|---|
-| [AGENTS.md](../AGENTS.md) | 本文・現在の判断を更新 |
-| [README.md](../README.md) | 本文・現在の判断を更新 |
-| [data/README.md](../data/README.md) | 本文・現在の判断を更新 |
-| [docs/01_project_goal.md](../docs/01_project_goal.md) | 本文・現在の判断を更新 |
-| [docs/02_research_summary.md](../docs/02_research_summary.md) | 本文・現在の判断を更新 |
-| [docs/03_architecture.md](../docs/03_architecture.md) | 本文・現在の判断を更新 |
-| [docs/04_tokenizer.md](../docs/04_tokenizer.md) | 本文・現在の判断を更新 |
-| [docs/05_dataset.md](../docs/05_dataset.md) | 本文・現在の判断を更新 |
-| [docs/06_training_plan.md](../docs/06_training_plan.md) | 本文・現在の判断を更新 |
-| [docs/07_environment.md](../docs/07_environment.md) | 本文・現在の判断を更新 |
-| [docs/08_evaluation.md](../docs/08_evaluation.md) | 本文・現在の判断を更新 |
-| [docs/09_prior_art_and_baselines.md](../docs/09_prior_art_and_baselines.md) | 本文・現在の判断を更新 |
-| [docs/10_next_steps.md](../docs/10_next_steps.md) | 本文・現在の判断を更新 |
-| [docs/11_technical_research_gaps.md](../docs/11_technical_research_gaps.md) | 本文・現在の判断を更新 |
-| [docs/124_base_recovery_plan.md](../docs/124_base_recovery_plan.md) | 本文・現在の判断を更新 |
-| [docs/125_project_retrospective.md](../docs/125_project_retrospective.md) | 本文・現在の判断を更新 |
-| [docs/126_model_archive.md](../docs/126_model_archive.md) | 本文・現在の判断を更新 |
-| [docs/12_training_implementation_research.md](../docs/12_training_implementation_research.md) | 本文・現在の判断を更新 |
-| [docs/13_tokenizer_dialogue_data_research.md](../docs/13_tokenizer_dialogue_data_research.md) | 本文・現在の判断を更新 |
-| [docs/142_documentation_refresh.md](../docs/142_documentation_refresh.md) | 本文・現在の判断を更新 |
-| [docs/14_evaluation_deployment_research.md](../docs/14_evaluation_deployment_research.md) | 本文・現在の判断を更新 |
-| [docs/15_project_roadmap.md](../docs/15_project_roadmap.md) | 本文・現在の判断を更新 |
-| [docs/43_local_webui.md](../docs/43_local_webui.md) | 本文・現在の判断を更新 |
-| [docs/README.md](../docs/README.md) | 本文・現在の判断を更新 |
-| [docs/autonomous_status.md](../docs/autonomous_status.md) | 本文・現在の判断を更新 |
-| [docs/base_experiment_lookup.md](../docs/base_experiment_lookup.md) | 本文・現在の判断を更新 |
-| [docs/codex_automation.md](../docs/codex_automation.md) | 本文・現在の判断を更新 |
-| [docs/document_catalog.md](../docs/document_catalog.md) | 本文・現在の判断を更新 |
-| [docs/evaluation_protocol.md](../docs/evaluation_protocol.md) | 本文・現在の判断を更新 |
-| [docs/huggingface_handoff.md](../docs/huggingface_handoff.md) | 本文・現在の判断を更新 |
-| [docs/retrospective/README.md](../docs/retrospective/README.md) | 本文・現在の判断を更新 |
-| [docs/windows_handoff.md](../docs/windows_handoff.md) | 本文・現在の判断を更新 |
-| [eval/README.md](../eval/README.md) | 本文・現在の判断を更新 |
-| [reports/README.md](../reports/README.md) | 本文・現在の判断を更新 |
-
-## 作成時点の計画・調査・結果（88文書）
+## 現行文書・計画
 
 | 文書 | 扱い |
 |---|---|
-| [docs/116_base_gradient_accumulation_pilot_results.md](../docs/116_base_gradient_accumulation_pilot_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/117_base_residual_initialization_pilot.md](../docs/117_base_residual_initialization_pilot.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/118_base_residual_initialization_results.md](../docs/118_base_residual_initialization_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/119_base_teacher_decay_pilot.md](../docs/119_base_teacher_decay_pilot.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/120_base_teacher_decay_pilot_results.md](../docs/120_base_teacher_decay_pilot_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/121_base_teacher_decay_2b_continuation.md](../docs/121_base_teacher_decay_2b_continuation.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/122_base_native_seed_confirmation_preparation.md](../docs/122_base_native_seed_confirmation_preparation.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/123_base_teacher_decay_2b_results.md](../docs/123_base_teacher_decay_2b_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/127_rebuild_investigation.md](../docs/127_rebuild_investigation.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/128_chat_first_sft_plan.md](../docs/128_chat_first_sft_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/129_chat_first_sft_execution.md](../docs/129_chat_first_sft_execution.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/130_chat_failure_improvement_investigation.md](../docs/130_chat_failure_improvement_investigation.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/131_chat_improvement_execution_plan.md](../docs/131_chat_improvement_execution_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/132_chat_improvement_execution.md](../docs/132_chat_improvement_execution.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/133_chat_generalization_followup_plan.md](../docs/133_chat_generalization_followup_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/134_chat_generalization_execution.md](../docs/134_chat_generalization_execution.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/135_chat_problem_solution_plan.md](../docs/135_chat_problem_solution_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/136_chat_generalization_results.md](../docs/136_chat_generalization_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/137_chat_semantic_diversity_execution.md](../docs/137_chat_semantic_diversity_execution.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/138_chat_semantic_diversity_results.md](../docs/138_chat_semantic_diversity_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/139_chat_lr_comparison_plan.md](../docs/139_chat_lr_comparison_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/140_chat_lr_comparison_execution.md](../docs/140_chat_lr_comparison_execution.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/141_chat_lr_comparison_results.md](../docs/141_chat_lr_comparison_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/16_phase0_completion.md](../docs/16_phase0_completion.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/17_phase1_completion.md](../docs/17_phase1_completion.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/18_phase2_completion.md](../docs/18_phase2_completion.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/19_phase3_completion.md](../docs/19_phase3_completion.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/20_publication_review.md](../docs/20_publication_review.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/21_phase4_completion.md](../docs/21_phase4_completion.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/22_phase5_plan.md](../docs/22_phase5_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/23_phase5_completion.md](../docs/23_phase5_completion.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/24_phase6_plan.md](../docs/24_phase6_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/25_phase6_preparation.md](../docs/25_phase6_preparation.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/26_phase6_preparation_completion.md](../docs/26_phase6_preparation_completion.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/27_phase6_remaining_plan.md](../docs/27_phase6_remaining_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/28_phase6_performance.md](../docs/28_phase6_performance.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/29_phase6_performance_completion.md](../docs/29_phase6_performance_completion.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/30_phase6_readiness_execution.md](../docs/30_phase6_readiness_execution.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/32_local_10b_corpus.md](../docs/32_local_10b_corpus.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/35_base_5b_execution.md](../docs/35_base_5b_execution.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/36_base_5b_comparison.md](../docs/36_base_5b_comparison.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/37_eos_repetition_utf8_improvement_plan.md](../docs/37_eos_repetition_utf8_improvement_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/38_eos_5b_finish_results.md](../docs/38_eos_5b_finish_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/39_learning_scale_and_generation_plan.md](../docs/39_learning_scale_and_generation_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/40_base_10b_preparation.md](../docs/40_base_10b_preparation.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/41_base_10b_training.md](../docs/41_base_10b_training.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/42_base_10b_quality_evaluation.md](../docs/42_base_10b_quality_evaluation.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/44_japanese_base_evaluation_audit.md](../docs/44_japanese_base_evaluation_audit.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/45_japanese_base_evaluation_v2.md](../docs/45_japanese_base_evaluation_v2.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/46_japanese_base_evaluation_v2_results.md](../docs/46_japanese_base_evaluation_v2_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/47_post_evaluation_training_plan.md](../docs/47_post_evaluation_training_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/48_complete_text_10b_comparison.md](../docs/48_complete_text_10b_comparison.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/49_next_mixture_and_training_budget_plan.md](../docs/49_next_mixture_and_training_budget_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/50_story10_and_budget_execution.md](../docs/50_story10_and_budget_execution.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/51_story10_judgment_and_next_proposal.md](../docs/51_story10_judgment_and_next_proposal.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/52_story20_low_lr_execution.md](../docs/52_story20_low_lr_execution.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/53_story20_low_lr_judgment.md](../docs/53_story20_low_lr_judgment.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/54_complete_document_500m_execution.md](../docs/54_complete_document_500m_execution.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/55_complete_document_500m_results.md](../docs/55_complete_document_500m_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/56_matched_story_and_learning_budget_plan.md](../docs/56_matched_story_and_learning_budget_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/57_matched_story_and_learning_budget_results.md](../docs/57_matched_story_and_learning_budget_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/58_dataset_expansion_proposal.md](../docs/58_dataset_expansion_proposal.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/59_dataset_expansion_execution.md](../docs/59_dataset_expansion_execution.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/60_dataset_expansion_results.md](../docs/60_dataset_expansion_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/61_condition_preservation_next_plan.md](../docs/61_condition_preservation_next_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/62_condition_preservation_execution.md](../docs/62_condition_preservation_execution.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/63_condition_preservation_preparation_results.md](../docs/63_condition_preservation_preparation_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/64_condition_selector_v2_execution.md](../docs/64_condition_selector_v2_execution.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/65_condition_selector_v2_preparation_results.md](../docs/65_condition_selector_v2_preparation_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/66_condition_learning_diagnostic_plan.md](../docs/66_condition_learning_diagnostic_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/67_condition_learning_diagnostic_results.md](../docs/67_condition_learning_diagnostic_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/68_packing_learning_execution.md](../docs/68_packing_learning_execution.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/69_packing_learning_results.md](../docs/69_packing_learning_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/70_root_cause_investigation_plan.md](../docs/70_root_cause_investigation_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/71_root_cause_diagnostic_execution.md](../docs/71_root_cause_diagnostic_execution.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/72_root_cause_diagnostic_results.md](../docs/72_root_cause_diagnostic_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/73_natural_learning_execution.md](../docs/73_natural_learning_execution.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/74_natural_learning_results.md](../docs/74_natural_learning_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/75_diverse_learning_execution.md](../docs/75_diverse_learning_execution.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/76_diverse_preparation_repair.md](../docs/76_diverse_preparation_repair.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/77_narrative_diversity_execution.md](../docs/77_narrative_diversity_execution.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/78_narrative_supply_execution.md](../docs/78_narrative_supply_execution.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/79_narrative_diversity_results.md](../docs/79_narrative_diversity_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/80_generation_transfer_plan.md](../docs/80_generation_transfer_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/base_ademamix_100m_results.md](../docs/base_ademamix_100m_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/base_headwise_gate_100m_results.md](../docs/base_headwise_gate_100m_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/base_headwise_gate_plan.md](../docs/base_headwise_gate_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/base_output_mixture_100m_results.md](../docs/base_output_mixture_100m_results.md) | 原文不変。現在の状態・採否は141と状態へ |
+| [AGENTS.md](../AGENTS.md) | 今回最新化 |
+| [README.md](../README.md) | 今回最新化 |
+| [data/README.md](../data/README.md) | 今回最新化 |
+| [docs/01_project_goal.md](01_project_goal.md) | 今回最新化 |
+| [docs/02_research_summary.md](02_research_summary.md) | 今回最新化 |
+| [docs/03_architecture.md](03_architecture.md) | 今回最新化 |
+| [docs/04_tokenizer.md](04_tokenizer.md) | 今回最新化 |
+| [docs/05_dataset.md](05_dataset.md) | 今回最新化 |
+| [docs/06_training_plan.md](06_training_plan.md) | 今回最新化 |
+| [docs/07_environment.md](07_environment.md) | 今回最新化 |
+| [docs/08_evaluation.md](08_evaluation.md) | 今回最新化 |
+| [docs/09_prior_art_and_baselines.md](09_prior_art_and_baselines.md) | 今回最新化 |
+| [docs/10_next_steps.md](10_next_steps.md) | 今回最新化 |
+| [docs/11_technical_research_gaps.md](11_technical_research_gaps.md) | 今回最新化 |
+| [docs/124_base_recovery_plan.md](124_base_recovery_plan.md) | 今回最新化 |
+| [docs/125_project_retrospective.md](125_project_retrospective.md) | 今回最新化 |
+| [docs/126_model_archive.md](126_model_archive.md) | 今回最新化 |
+| [docs/12_training_implementation_research.md](12_training_implementation_research.md) | 今回最新化 |
+| [docs/13_tokenizer_dialogue_data_research.md](13_tokenizer_dialogue_data_research.md) | 今回最新化 |
+| [docs/145_post_rejection_next_plan.md](145_post_rejection_next_plan.md) | 今回最新化 |
+| [docs/14_evaluation_deployment_research.md](14_evaluation_deployment_research.md) | 今回最新化 |
+| [docs/15_project_roadmap.md](15_project_roadmap.md) | 今回最新化 |
+| [docs/43_local_webui.md](43_local_webui.md) | 今回最新化 |
+| [docs/README.md](README.md) | 今回最新化 |
+| [docs/autonomous_status.md](autonomous_status.md) | 今回最新化 |
+| [docs/base_experiment_lookup.md](base_experiment_lookup.md) | 今回最新化 |
+| [docs/codex_automation.md](codex_automation.md) | 今回最新化 |
+| [docs/document_catalog.md](document_catalog.md) | 今回最新化 |
+| [docs/evaluation_protocol.md](evaluation_protocol.md) | 今回最新化 |
+| [docs/huggingface_handoff.md](huggingface_handoff.md) | 今回最新化 |
+| [docs/retrospective/README.md](retrospective/README.md) | 今回最新化 |
+| [docs/windows_handoff.md](windows_handoff.md) | 今回最新化 |
+| [eval/README.md](../eval/README.md) | 今回最新化 |
+| [reports/README.md](../reports/README.md) | 今回最新化 |
 
-## 原文を保持する固定台帳・保存証拠（191文書）
+## 日付付き結果・固定履歴
 
 | 文書 | 扱い |
 |---|---|
-| [docs/agents_history_20261008.md](../docs/agents_history_20261008.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/autonomous_history_20261003.md](../docs/autonomous_history_20261003.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/autonomous_history_20261004.md](../docs/autonomous_history_20261004.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/autonomous_history_20261005.md](../docs/autonomous_history_20261005.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/autonomous_status_history_20261008.md](../docs/autonomous_status_history_20261008.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/autonomous_status_phase5_20261003.md](../docs/autonomous_status_phase5_20261003.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/project_roadmap_history_20261008.md](../docs/project_roadmap_history_20261008.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/01_foundations.md](../docs/retrospective/01_foundations.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/01_foundations_001.md](../docs/retrospective/01_foundations_001.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/01_foundations_002.md](../docs/retrospective/01_foundations_002.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/01_foundations_003.md](../docs/retrospective/01_foundations_003.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/01_foundations_004.md](../docs/retrospective/01_foundations_004.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/01_foundations_005.md](../docs/retrospective/01_foundations_005.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/01_foundations_006.md](../docs/retrospective/01_foundations_006.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/01_foundations_007.md](../docs/retrospective/01_foundations_007.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/01_foundations_008.md](../docs/retrospective/01_foundations_008.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/01_foundations_009.md](../docs/retrospective/01_foundations_009.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/01_foundations_010.md](../docs/retrospective/01_foundations_010.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/01_foundations_011.md](../docs/retrospective/01_foundations_011.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/02_material.md](../docs/retrospective/02_material.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/02_material_001.md](../docs/retrospective/02_material_001.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/02_material_002.md](../docs/retrospective/02_material_002.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/02_material_003.md](../docs/retrospective/02_material_003.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/02_material_004.md](../docs/retrospective/02_material_004.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/02_material_005.md](../docs/retrospective/02_material_005.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/02_material_006.md](../docs/retrospective/02_material_006.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/02_material_007.md](../docs/retrospective/02_material_007.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/02_material_008.md](../docs/retrospective/02_material_008.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/02_material_009.md](../docs/retrospective/02_material_009.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/02_material_010.md](../docs/retrospective/02_material_010.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/02_material_011.md](../docs/retrospective/02_material_011.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/02_material_012.md](../docs/retrospective/02_material_012.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/02_material_013.md](../docs/retrospective/02_material_013.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/02_material_014.md](../docs/retrospective/02_material_014.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/03_learning.md](../docs/retrospective/03_learning.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/03_learning_001.md](../docs/retrospective/03_learning_001.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/03_learning_002.md](../docs/retrospective/03_learning_002.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/03_learning_003.md](../docs/retrospective/03_learning_003.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/03_learning_004.md](../docs/retrospective/03_learning_004.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/03_learning_005.md](../docs/retrospective/03_learning_005.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/03_learning_006.md](../docs/retrospective/03_learning_006.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/04_objectives.md](../docs/retrospective/04_objectives.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/04_objectives_001.md](../docs/retrospective/04_objectives_001.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/04_objectives_002.md](../docs/retrospective/04_objectives_002.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/04_objectives_003.md](../docs/retrospective/04_objectives_003.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/04_objectives_004.md](../docs/retrospective/04_objectives_004.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/04_objectives_005.md](../docs/retrospective/04_objectives_005.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/04_objectives_006.md](../docs/retrospective/04_objectives_006.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/04_objectives_007.md](../docs/retrospective/04_objectives_007.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/04_objectives_008.md](../docs/retrospective/04_objectives_008.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/04_objectives_009.md](../docs/retrospective/04_objectives_009.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/04_objectives_010.md](../docs/retrospective/04_objectives_010.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/04_objectives_011.md](../docs/retrospective/04_objectives_011.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/04_objectives_012.md](../docs/retrospective/04_objectives_012.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/04_objectives_013.md](../docs/retrospective/04_objectives_013.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/04_objectives_014.md](../docs/retrospective/04_objectives_014.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/04_objectives_015.md](../docs/retrospective/04_objectives_015.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/04_objectives_016.md](../docs/retrospective/04_objectives_016.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/04_objectives_017.md](../docs/retrospective/04_objectives_017.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/05_architecture.md](../docs/retrospective/05_architecture.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/05_architecture_001.md](../docs/retrospective/05_architecture_001.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/05_architecture_002.md](../docs/retrospective/05_architecture_002.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/05_architecture_003.md](../docs/retrospective/05_architecture_003.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/05_architecture_004.md](../docs/retrospective/05_architecture_004.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/05_architecture_005.md](../docs/retrospective/05_architecture_005.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/05_architecture_006.md](../docs/retrospective/05_architecture_006.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/05_architecture_007.md](../docs/retrospective/05_architecture_007.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation.md](../docs/retrospective/06_evaluation.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_001.md](../docs/retrospective/06_evaluation_001.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_002.md](../docs/retrospective/06_evaluation_002.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_003.md](../docs/retrospective/06_evaluation_003.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_004.md](../docs/retrospective/06_evaluation_004.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_005.md](../docs/retrospective/06_evaluation_005.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_006.md](../docs/retrospective/06_evaluation_006.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_007.md](../docs/retrospective/06_evaluation_007.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_008.md](../docs/retrospective/06_evaluation_008.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_009.md](../docs/retrospective/06_evaluation_009.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_010.md](../docs/retrospective/06_evaluation_010.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_011.md](../docs/retrospective/06_evaluation_011.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_012.md](../docs/retrospective/06_evaluation_012.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_013.md](../docs/retrospective/06_evaluation_013.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_014.md](../docs/retrospective/06_evaluation_014.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_015.md](../docs/retrospective/06_evaluation_015.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_016.md](../docs/retrospective/06_evaluation_016.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_017.md](../docs/retrospective/06_evaluation_017.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_018.md](../docs/retrospective/06_evaluation_018.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_019.md](../docs/retrospective/06_evaluation_019.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_020.md](../docs/retrospective/06_evaluation_020.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_021.md](../docs/retrospective/06_evaluation_021.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_022.md](../docs/retrospective/06_evaluation_022.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/06_evaluation_023.md](../docs/retrospective/06_evaluation_023.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations.md](../docs/retrospective/07_operations.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_001.md](../docs/retrospective/07_operations_001.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_002.md](../docs/retrospective/07_operations_002.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_003.md](../docs/retrospective/07_operations_003.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_004.md](../docs/retrospective/07_operations_004.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_005.md](../docs/retrospective/07_operations_005.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_006.md](../docs/retrospective/07_operations_006.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_007.md](../docs/retrospective/07_operations_007.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_008.md](../docs/retrospective/07_operations_008.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_009.md](../docs/retrospective/07_operations_009.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_010.md](../docs/retrospective/07_operations_010.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_011.md](../docs/retrospective/07_operations_011.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_012.md](../docs/retrospective/07_operations_012.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_013.md](../docs/retrospective/07_operations_013.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_014.md](../docs/retrospective/07_operations_014.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_015.md](../docs/retrospective/07_operations_015.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_016.md](../docs/retrospective/07_operations_016.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_017.md](../docs/retrospective/07_operations_017.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_018.md](../docs/retrospective/07_operations_018.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_019.md](../docs/retrospective/07_operations_019.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_020.md](../docs/retrospective/07_operations_020.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_021.md](../docs/retrospective/07_operations_021.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_022.md](../docs/retrospective/07_operations_022.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_023.md](../docs/retrospective/07_operations_023.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_024.md](../docs/retrospective/07_operations_024.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_025.md](../docs/retrospective/07_operations_025.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/07_operations_026.md](../docs/retrospective/07_operations_026.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/decisions.md](../docs/retrospective/decisions.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/document_map.md](../docs/retrospective/document_map.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/retrospective/verification_ledger.md](../docs/retrospective/verification_ledger.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [docs/windows_handoff_history_20261008.md](../docs/windows_handoff_history_20261008.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/chat_improvement_20261012/README.md](../reports/investigation/chat_improvement_20261012/README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/chat_improvement_plan_20261012/README.md](../reports/investigation/chat_improvement_plan_20261012/README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/chat_solution_plan_20261013_latest/README.md](../reports/investigation/chat_solution_plan_20261013_latest/README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/chat_solution_plan_20261013_t2_final_record/README.md](../reports/investigation/chat_solution_plan_20261013_t2_final_record/README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/documentation_plan_refresh_20261013/README.md](../reports/investigation/documentation_plan_refresh_20261013/README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/documentation_plan_refresh_20261013/history/AGENTS.md](../reports/investigation/documentation_plan_refresh_20261013/history/AGENTS.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/documentation_plan_refresh_20261013/history/README.md](../reports/investigation/documentation_plan_refresh_20261013/history/README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/documentation_plan_refresh_20261013/history/docs/10_next_steps.md](../reports/investigation/documentation_plan_refresh_20261013/history/docs/10_next_steps.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/documentation_plan_refresh_20261013/history/docs/124_base_recovery_plan.md](../reports/investigation/documentation_plan_refresh_20261013/history/docs/124_base_recovery_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/documentation_plan_refresh_20261013/history/docs/125_project_retrospective.md](../reports/investigation/documentation_plan_refresh_20261013/history/docs/125_project_retrospective.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/documentation_plan_refresh_20261013/history/docs/135_chat_problem_solution_plan.md](../reports/investigation/documentation_plan_refresh_20261013/history/docs/135_chat_problem_solution_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/documentation_plan_refresh_20261013/history/docs/15_project_roadmap.md](../reports/investigation/documentation_plan_refresh_20261013/history/docs/15_project_roadmap.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/documentation_plan_refresh_20261013/history/docs/README.md](../reports/investigation/documentation_plan_refresh_20261013/history/docs/README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/documentation_plan_refresh_20261013/history/docs/autonomous_status.md](../reports/investigation/documentation_plan_refresh_20261013/history/docs/autonomous_status.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/documentation_plan_refresh_20261013/history/docs/base_experiment_lookup.md](../reports/investigation/documentation_plan_refresh_20261013/history/docs/base_experiment_lookup.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/documentation_plan_refresh_20261013/history/docs/codex_automation.md](../reports/investigation/documentation_plan_refresh_20261013/history/docs/codex_automation.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/documentation_plan_refresh_20261013/history/docs/windows_handoff.md](../reports/investigation/documentation_plan_refresh_20261013/history/docs/windows_handoff.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/documentation_plan_refresh_20261013/history/eval/README.md](../reports/investigation/documentation_plan_refresh_20261013/history/eval/README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/documentation_plan_refresh_20261013/history/reports/README.md](../reports/investigation/documentation_plan_refresh_20261013/history/reports/README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/rebuild_20261010/README.md](../reports/investigation/rebuild_20261010/README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/rebuild_20261010/reference/LICENSE_STATUS.md](../reports/investigation/rebuild_20261010/reference/LICENSE_STATUS.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/rebuild_20261010/reference/README.md](../reports/investigation/rebuild_20261010/reference/README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/rebuild_20261010/reference_space/MODEL_CARD.md](../reports/investigation/rebuild_20261010/reference_space/MODEL_CARD.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/rebuild_20261010/reference_space/README.md](../reports/investigation/rebuild_20261010/reference_space/README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/investigation/rebuild_20261010/reference_space/THIRD_PARTY_NOTICES.md](../reports/investigation/rebuild_20261010/reference_space/THIRD_PARTY_NOTICES.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase4/resource_budget.md](../reports/phase4/resource_budget.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase5/candidate_selection.md](../reports/phase5/candidate_selection.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase5/candidate_selection_review.md](../reports/phase5/candidate_selection_review.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase5/performance_status.md](../reports/phase5/performance_status.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase6/base-hq-feasibility-20261007/README.md](../reports/phase6/base-hq-feasibility-20261007/README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase6/base_500m_review.md](../reports/phase6/base_500m_review.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase6/batch_choice.md](../reports/phase6/batch_choice.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase6/public-prose-registry-20261006/0-README.md](../reports/phase6/public-prose-registry-20261006/0-README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase6/public-prose-registry-20261006/1-README.md](../reports/phase6/public-prose-registry-20261006/1-README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase6/public-prose-registry-20261006/2-README.md](../reports/phase6/public-prose-registry-20261006/2-README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase6/public-prose-registry-20261006/3-README.md](../reports/phase6/public-prose-registry-20261006/3-README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase6/repetition_diagnosis_review.md](../reports/phase6/repetition_diagnosis_review.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-improvement-20261012/README.md](../reports/phase7/chat-improvement-20261012/README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/10_next_steps.md](../reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/10_next_steps.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/139_chat_lr_comparison_plan.md](../reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/139_chat_lr_comparison_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/15_project_roadmap.md](../reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/15_project_roadmap.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/README.md](../reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/autonomous_status.md](../reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/autonomous_status.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/windows_handoff.md](../reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/windows_handoff.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-lr-20261014/documentation_history/AGENTS.md](../reports/phase7/chat-lr-20261014/documentation_history/AGENTS.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-lr-20261014/documentation_history/README.md](../reports/phase7/chat-lr-20261014/documentation_history/README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-lr-20261014/documentation_history/docs/10_next_steps.md](../reports/phase7/chat-lr-20261014/documentation_history/docs/10_next_steps.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-lr-20261014/documentation_history/docs/124_base_recovery_plan.md](../reports/phase7/chat-lr-20261014/documentation_history/docs/124_base_recovery_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-lr-20261014/documentation_history/docs/139_chat_lr_comparison_plan.md](../reports/phase7/chat-lr-20261014/documentation_history/docs/139_chat_lr_comparison_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-lr-20261014/documentation_history/docs/140_chat_lr_comparison_execution.md](../reports/phase7/chat-lr-20261014/documentation_history/docs/140_chat_lr_comparison_execution.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-lr-20261014/documentation_history/docs/15_project_roadmap.md](../reports/phase7/chat-lr-20261014/documentation_history/docs/15_project_roadmap.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-lr-20261014/documentation_history/docs/README.md](../reports/phase7/chat-lr-20261014/documentation_history/docs/README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-lr-20261014/documentation_history/docs/autonomous_status.md](../reports/phase7/chat-lr-20261014/documentation_history/docs/autonomous_status.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-lr-20261014/documentation_history/docs/windows_handoff.md](../reports/phase7/chat-lr-20261014/documentation_history/docs/windows_handoff.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-lr-20261014/selection_evidence/docs/123_base_teacher_decay_2b_results.md](../reports/phase7/chat-lr-20261014/selection_evidence/docs/123_base_teacher_decay_2b_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-lr-20261014/selection_evidence/docs/124_base_recovery_plan.md](../reports/phase7/chat-lr-20261014/selection_evidence/docs/124_base_recovery_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-lr-20261014/selection_evidence/docs/138_chat_semantic_diversity_results.md](../reports/phase7/chat-lr-20261014/selection_evidence/docs/138_chat_semantic_diversity_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-lr-20261014/selection_evidence/docs/53_story20_low_lr_judgment.md](../reports/phase7/chat-lr-20261014/selection_evidence/docs/53_story20_low_lr_judgment.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-lr-20261014/selection_evidence/docs/base_ademamix_100m_results.md](../reports/phase7/chat-lr-20261014/selection_evidence/docs/base_ademamix_100m_results.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-semantic-diversity-20261013/documentation_history/AGENTS.md](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/AGENTS.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-semantic-diversity-20261013/documentation_history/README.md](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/10_next_steps.md](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/10_next_steps.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/124_base_recovery_plan.md](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/124_base_recovery_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/135_chat_problem_solution_plan.md](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/135_chat_problem_solution_plan.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/137_chat_semantic_diversity_execution.md](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/137_chat_semantic_diversity_execution.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/15_project_roadmap.md](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/15_project_roadmap.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/README.md](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/README.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/autonomous_status.md](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/autonomous_status.md) | 原文不変。現在の状態・採否は141と状態へ |
-| [reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/windows_handoff.md](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/windows_handoff.md) | 原文不変。現在の状態・採否は141と状態へ |
+| [docs/116_base_gradient_accumulation_pilot_results.md](116_base_gradient_accumulation_pilot_results.md) | 原文保全 |
+| [docs/117_base_residual_initialization_pilot.md](117_base_residual_initialization_pilot.md) | 原文保全 |
+| [docs/118_base_residual_initialization_results.md](118_base_residual_initialization_results.md) | 原文保全 |
+| [docs/119_base_teacher_decay_pilot.md](119_base_teacher_decay_pilot.md) | 原文保全 |
+| [docs/120_base_teacher_decay_pilot_results.md](120_base_teacher_decay_pilot_results.md) | 原文保全 |
+| [docs/121_base_teacher_decay_2b_continuation.md](121_base_teacher_decay_2b_continuation.md) | 原文保全 |
+| [docs/122_base_native_seed_confirmation_preparation.md](122_base_native_seed_confirmation_preparation.md) | 原文保全 |
+| [docs/123_base_teacher_decay_2b_results.md](123_base_teacher_decay_2b_results.md) | 原文保全 |
+| [docs/127_rebuild_investigation.md](127_rebuild_investigation.md) | 原文保全 |
+| [docs/128_chat_first_sft_plan.md](128_chat_first_sft_plan.md) | 原文保全 |
+| [docs/129_chat_first_sft_execution.md](129_chat_first_sft_execution.md) | 原文保全 |
+| [docs/130_chat_failure_improvement_investigation.md](130_chat_failure_improvement_investigation.md) | 原文保全 |
+| [docs/131_chat_improvement_execution_plan.md](131_chat_improvement_execution_plan.md) | 原文保全 |
+| [docs/132_chat_improvement_execution.md](132_chat_improvement_execution.md) | 原文保全 |
+| [docs/133_chat_generalization_followup_plan.md](133_chat_generalization_followup_plan.md) | 原文保全 |
+| [docs/134_chat_generalization_execution.md](134_chat_generalization_execution.md) | 原文保全 |
+| [docs/135_chat_problem_solution_plan.md](135_chat_problem_solution_plan.md) | 原文保全 |
+| [docs/136_chat_generalization_results.md](136_chat_generalization_results.md) | 原文保全 |
+| [docs/137_chat_semantic_diversity_execution.md](137_chat_semantic_diversity_execution.md) | 原文保全 |
+| [docs/138_chat_semantic_diversity_results.md](138_chat_semantic_diversity_results.md) | 原文保全 |
+| [docs/139_chat_lr_comparison_plan.md](139_chat_lr_comparison_plan.md) | 原文保全 |
+| [docs/140_chat_lr_comparison_execution.md](140_chat_lr_comparison_execution.md) | 原文保全 |
+| [docs/141_chat_lr_comparison_results.md](141_chat_lr_comparison_results.md) | 原文保全 |
+| [docs/142_documentation_refresh.md](142_documentation_refresh.md) | 原文保全 |
+| [docs/143_base_document_balance_plan.md](143_base_document_balance_plan.md) | 原文保全 |
+| [docs/144_base_document_balance_results.md](144_base_document_balance_results.md) | 原文保全 |
+| [docs/146_documentation_followup.md](146_documentation_followup.md) | 原文保全 |
+| [docs/16_phase0_completion.md](16_phase0_completion.md) | 原文保全 |
+| [docs/17_phase1_completion.md](17_phase1_completion.md) | 原文保全 |
+| [docs/18_phase2_completion.md](18_phase2_completion.md) | 原文保全 |
+| [docs/19_phase3_completion.md](19_phase3_completion.md) | 原文保全 |
+| [docs/20_publication_review.md](20_publication_review.md) | 原文保全 |
+| [docs/21_phase4_completion.md](21_phase4_completion.md) | 原文保全 |
+| [docs/22_phase5_plan.md](22_phase5_plan.md) | 原文保全 |
+| [docs/23_phase5_completion.md](23_phase5_completion.md) | 原文保全 |
+| [docs/24_phase6_plan.md](24_phase6_plan.md) | 原文保全 |
+| [docs/25_phase6_preparation.md](25_phase6_preparation.md) | 原文保全 |
+| [docs/26_phase6_preparation_completion.md](26_phase6_preparation_completion.md) | 原文保全 |
+| [docs/27_phase6_remaining_plan.md](27_phase6_remaining_plan.md) | 原文保全 |
+| [docs/28_phase6_performance.md](28_phase6_performance.md) | 原文保全 |
+| [docs/29_phase6_performance_completion.md](29_phase6_performance_completion.md) | 原文保全 |
+| [docs/30_phase6_readiness_execution.md](30_phase6_readiness_execution.md) | 原文保全 |
+| [docs/32_local_10b_corpus.md](32_local_10b_corpus.md) | 原文保全 |
+| [docs/35_base_5b_execution.md](35_base_5b_execution.md) | 原文保全 |
+| [docs/36_base_5b_comparison.md](36_base_5b_comparison.md) | 原文保全 |
+| [docs/37_eos_repetition_utf8_improvement_plan.md](37_eos_repetition_utf8_improvement_plan.md) | 原文保全 |
+| [docs/38_eos_5b_finish_results.md](38_eos_5b_finish_results.md) | 原文保全 |
+| [docs/39_learning_scale_and_generation_plan.md](39_learning_scale_and_generation_plan.md) | 原文保全 |
+| [docs/40_base_10b_preparation.md](40_base_10b_preparation.md) | 原文保全 |
+| [docs/41_base_10b_training.md](41_base_10b_training.md) | 原文保全 |
+| [docs/42_base_10b_quality_evaluation.md](42_base_10b_quality_evaluation.md) | 原文保全 |
+| [docs/44_japanese_base_evaluation_audit.md](44_japanese_base_evaluation_audit.md) | 原文保全 |
+| [docs/45_japanese_base_evaluation_v2.md](45_japanese_base_evaluation_v2.md) | 原文保全 |
+| [docs/46_japanese_base_evaluation_v2_results.md](46_japanese_base_evaluation_v2_results.md) | 原文保全 |
+| [docs/47_post_evaluation_training_plan.md](47_post_evaluation_training_plan.md) | 原文保全 |
+| [docs/48_complete_text_10b_comparison.md](48_complete_text_10b_comparison.md) | 原文保全 |
+| [docs/49_next_mixture_and_training_budget_plan.md](49_next_mixture_and_training_budget_plan.md) | 原文保全 |
+| [docs/50_story10_and_budget_execution.md](50_story10_and_budget_execution.md) | 原文保全 |
+| [docs/51_story10_judgment_and_next_proposal.md](51_story10_judgment_and_next_proposal.md) | 原文保全 |
+| [docs/52_story20_low_lr_execution.md](52_story20_low_lr_execution.md) | 原文保全 |
+| [docs/53_story20_low_lr_judgment.md](53_story20_low_lr_judgment.md) | 原文保全 |
+| [docs/54_complete_document_500m_execution.md](54_complete_document_500m_execution.md) | 原文保全 |
+| [docs/55_complete_document_500m_results.md](55_complete_document_500m_results.md) | 原文保全 |
+| [docs/56_matched_story_and_learning_budget_plan.md](56_matched_story_and_learning_budget_plan.md) | 原文保全 |
+| [docs/57_matched_story_and_learning_budget_results.md](57_matched_story_and_learning_budget_results.md) | 原文保全 |
+| [docs/58_dataset_expansion_proposal.md](58_dataset_expansion_proposal.md) | 原文保全 |
+| [docs/59_dataset_expansion_execution.md](59_dataset_expansion_execution.md) | 原文保全 |
+| [docs/60_dataset_expansion_results.md](60_dataset_expansion_results.md) | 原文保全 |
+| [docs/61_condition_preservation_next_plan.md](61_condition_preservation_next_plan.md) | 原文保全 |
+| [docs/62_condition_preservation_execution.md](62_condition_preservation_execution.md) | 原文保全 |
+| [docs/63_condition_preservation_preparation_results.md](63_condition_preservation_preparation_results.md) | 原文保全 |
+| [docs/64_condition_selector_v2_execution.md](64_condition_selector_v2_execution.md) | 原文保全 |
+| [docs/65_condition_selector_v2_preparation_results.md](65_condition_selector_v2_preparation_results.md) | 原文保全 |
+| [docs/66_condition_learning_diagnostic_plan.md](66_condition_learning_diagnostic_plan.md) | 原文保全 |
+| [docs/67_condition_learning_diagnostic_results.md](67_condition_learning_diagnostic_results.md) | 原文保全 |
+| [docs/68_packing_learning_execution.md](68_packing_learning_execution.md) | 原文保全 |
+| [docs/69_packing_learning_results.md](69_packing_learning_results.md) | 原文保全 |
+| [docs/70_root_cause_investigation_plan.md](70_root_cause_investigation_plan.md) | 原文保全 |
+| [docs/71_root_cause_diagnostic_execution.md](71_root_cause_diagnostic_execution.md) | 原文保全 |
+| [docs/72_root_cause_diagnostic_results.md](72_root_cause_diagnostic_results.md) | 原文保全 |
+| [docs/73_natural_learning_execution.md](73_natural_learning_execution.md) | 原文保全 |
+| [docs/74_natural_learning_results.md](74_natural_learning_results.md) | 原文保全 |
+| [docs/75_diverse_learning_execution.md](75_diverse_learning_execution.md) | 原文保全 |
+| [docs/76_diverse_preparation_repair.md](76_diverse_preparation_repair.md) | 原文保全 |
+| [docs/77_narrative_diversity_execution.md](77_narrative_diversity_execution.md) | 原文保全 |
+| [docs/78_narrative_supply_execution.md](78_narrative_supply_execution.md) | 原文保全 |
+| [docs/79_narrative_diversity_results.md](79_narrative_diversity_results.md) | 原文保全 |
+| [docs/80_generation_transfer_plan.md](80_generation_transfer_plan.md) | 原文保全 |
+| [docs/agents_history_20261008.md](agents_history_20261008.md) | 原文保全 |
+| [docs/autonomous_history_20261003.md](autonomous_history_20261003.md) | 原文保全 |
+| [docs/autonomous_history_20261004.md](autonomous_history_20261004.md) | 原文保全 |
+| [docs/autonomous_history_20261005.md](autonomous_history_20261005.md) | 原文保全 |
+| [docs/autonomous_status_history_20261008.md](autonomous_status_history_20261008.md) | 原文保全 |
+| [docs/autonomous_status_phase5_20261003.md](autonomous_status_phase5_20261003.md) | 原文保全 |
+| [docs/base_ademamix_100m_results.md](base_ademamix_100m_results.md) | 原文保全 |
+| [docs/base_headwise_gate_100m_results.md](base_headwise_gate_100m_results.md) | 原文保全 |
+| [docs/base_headwise_gate_plan.md](base_headwise_gate_plan.md) | 原文保全 |
+| [docs/base_output_mixture_100m_results.md](base_output_mixture_100m_results.md) | 原文保全 |
+| [docs/project_roadmap_history_20261008.md](project_roadmap_history_20261008.md) | 原文保全 |
+| [docs/retrospective/01_foundations.md](retrospective/01_foundations.md) | 原文保全 |
+| [docs/retrospective/01_foundations_001.md](retrospective/01_foundations_001.md) | 原文保全 |
+| [docs/retrospective/01_foundations_002.md](retrospective/01_foundations_002.md) | 原文保全 |
+| [docs/retrospective/01_foundations_003.md](retrospective/01_foundations_003.md) | 原文保全 |
+| [docs/retrospective/01_foundations_004.md](retrospective/01_foundations_004.md) | 原文保全 |
+| [docs/retrospective/01_foundations_005.md](retrospective/01_foundations_005.md) | 原文保全 |
+| [docs/retrospective/01_foundations_006.md](retrospective/01_foundations_006.md) | 原文保全 |
+| [docs/retrospective/01_foundations_007.md](retrospective/01_foundations_007.md) | 原文保全 |
+| [docs/retrospective/01_foundations_008.md](retrospective/01_foundations_008.md) | 原文保全 |
+| [docs/retrospective/01_foundations_009.md](retrospective/01_foundations_009.md) | 原文保全 |
+| [docs/retrospective/01_foundations_010.md](retrospective/01_foundations_010.md) | 原文保全 |
+| [docs/retrospective/01_foundations_011.md](retrospective/01_foundations_011.md) | 原文保全 |
+| [docs/retrospective/02_material.md](retrospective/02_material.md) | 原文保全 |
+| [docs/retrospective/02_material_001.md](retrospective/02_material_001.md) | 原文保全 |
+| [docs/retrospective/02_material_002.md](retrospective/02_material_002.md) | 原文保全 |
+| [docs/retrospective/02_material_003.md](retrospective/02_material_003.md) | 原文保全 |
+| [docs/retrospective/02_material_004.md](retrospective/02_material_004.md) | 原文保全 |
+| [docs/retrospective/02_material_005.md](retrospective/02_material_005.md) | 原文保全 |
+| [docs/retrospective/02_material_006.md](retrospective/02_material_006.md) | 原文保全 |
+| [docs/retrospective/02_material_007.md](retrospective/02_material_007.md) | 原文保全 |
+| [docs/retrospective/02_material_008.md](retrospective/02_material_008.md) | 原文保全 |
+| [docs/retrospective/02_material_009.md](retrospective/02_material_009.md) | 原文保全 |
+| [docs/retrospective/02_material_010.md](retrospective/02_material_010.md) | 原文保全 |
+| [docs/retrospective/02_material_011.md](retrospective/02_material_011.md) | 原文保全 |
+| [docs/retrospective/02_material_012.md](retrospective/02_material_012.md) | 原文保全 |
+| [docs/retrospective/02_material_013.md](retrospective/02_material_013.md) | 原文保全 |
+| [docs/retrospective/02_material_014.md](retrospective/02_material_014.md) | 原文保全 |
+| [docs/retrospective/03_learning.md](retrospective/03_learning.md) | 原文保全 |
+| [docs/retrospective/03_learning_001.md](retrospective/03_learning_001.md) | 原文保全 |
+| [docs/retrospective/03_learning_002.md](retrospective/03_learning_002.md) | 原文保全 |
+| [docs/retrospective/03_learning_003.md](retrospective/03_learning_003.md) | 原文保全 |
+| [docs/retrospective/03_learning_004.md](retrospective/03_learning_004.md) | 原文保全 |
+| [docs/retrospective/03_learning_005.md](retrospective/03_learning_005.md) | 原文保全 |
+| [docs/retrospective/03_learning_006.md](retrospective/03_learning_006.md) | 原文保全 |
+| [docs/retrospective/04_objectives.md](retrospective/04_objectives.md) | 原文保全 |
+| [docs/retrospective/04_objectives_001.md](retrospective/04_objectives_001.md) | 原文保全 |
+| [docs/retrospective/04_objectives_002.md](retrospective/04_objectives_002.md) | 原文保全 |
+| [docs/retrospective/04_objectives_003.md](retrospective/04_objectives_003.md) | 原文保全 |
+| [docs/retrospective/04_objectives_004.md](retrospective/04_objectives_004.md) | 原文保全 |
+| [docs/retrospective/04_objectives_005.md](retrospective/04_objectives_005.md) | 原文保全 |
+| [docs/retrospective/04_objectives_006.md](retrospective/04_objectives_006.md) | 原文保全 |
+| [docs/retrospective/04_objectives_007.md](retrospective/04_objectives_007.md) | 原文保全 |
+| [docs/retrospective/04_objectives_008.md](retrospective/04_objectives_008.md) | 原文保全 |
+| [docs/retrospective/04_objectives_009.md](retrospective/04_objectives_009.md) | 原文保全 |
+| [docs/retrospective/04_objectives_010.md](retrospective/04_objectives_010.md) | 原文保全 |
+| [docs/retrospective/04_objectives_011.md](retrospective/04_objectives_011.md) | 原文保全 |
+| [docs/retrospective/04_objectives_012.md](retrospective/04_objectives_012.md) | 原文保全 |
+| [docs/retrospective/04_objectives_013.md](retrospective/04_objectives_013.md) | 原文保全 |
+| [docs/retrospective/04_objectives_014.md](retrospective/04_objectives_014.md) | 原文保全 |
+| [docs/retrospective/04_objectives_015.md](retrospective/04_objectives_015.md) | 原文保全 |
+| [docs/retrospective/04_objectives_016.md](retrospective/04_objectives_016.md) | 原文保全 |
+| [docs/retrospective/04_objectives_017.md](retrospective/04_objectives_017.md) | 原文保全 |
+| [docs/retrospective/05_architecture.md](retrospective/05_architecture.md) | 原文保全 |
+| [docs/retrospective/05_architecture_001.md](retrospective/05_architecture_001.md) | 原文保全 |
+| [docs/retrospective/05_architecture_002.md](retrospective/05_architecture_002.md) | 原文保全 |
+| [docs/retrospective/05_architecture_003.md](retrospective/05_architecture_003.md) | 原文保全 |
+| [docs/retrospective/05_architecture_004.md](retrospective/05_architecture_004.md) | 原文保全 |
+| [docs/retrospective/05_architecture_005.md](retrospective/05_architecture_005.md) | 原文保全 |
+| [docs/retrospective/05_architecture_006.md](retrospective/05_architecture_006.md) | 原文保全 |
+| [docs/retrospective/05_architecture_007.md](retrospective/05_architecture_007.md) | 原文保全 |
+| [docs/retrospective/06_evaluation.md](retrospective/06_evaluation.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_001.md](retrospective/06_evaluation_001.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_002.md](retrospective/06_evaluation_002.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_003.md](retrospective/06_evaluation_003.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_004.md](retrospective/06_evaluation_004.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_005.md](retrospective/06_evaluation_005.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_006.md](retrospective/06_evaluation_006.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_007.md](retrospective/06_evaluation_007.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_008.md](retrospective/06_evaluation_008.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_009.md](retrospective/06_evaluation_009.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_010.md](retrospective/06_evaluation_010.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_011.md](retrospective/06_evaluation_011.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_012.md](retrospective/06_evaluation_012.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_013.md](retrospective/06_evaluation_013.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_014.md](retrospective/06_evaluation_014.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_015.md](retrospective/06_evaluation_015.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_016.md](retrospective/06_evaluation_016.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_017.md](retrospective/06_evaluation_017.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_018.md](retrospective/06_evaluation_018.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_019.md](retrospective/06_evaluation_019.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_020.md](retrospective/06_evaluation_020.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_021.md](retrospective/06_evaluation_021.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_022.md](retrospective/06_evaluation_022.md) | 原文保全 |
+| [docs/retrospective/06_evaluation_023.md](retrospective/06_evaluation_023.md) | 原文保全 |
+| [docs/retrospective/07_operations.md](retrospective/07_operations.md) | 原文保全 |
+| [docs/retrospective/07_operations_001.md](retrospective/07_operations_001.md) | 原文保全 |
+| [docs/retrospective/07_operations_002.md](retrospective/07_operations_002.md) | 原文保全 |
+| [docs/retrospective/07_operations_003.md](retrospective/07_operations_003.md) | 原文保全 |
+| [docs/retrospective/07_operations_004.md](retrospective/07_operations_004.md) | 原文保全 |
+| [docs/retrospective/07_operations_005.md](retrospective/07_operations_005.md) | 原文保全 |
+| [docs/retrospective/07_operations_006.md](retrospective/07_operations_006.md) | 原文保全 |
+| [docs/retrospective/07_operations_007.md](retrospective/07_operations_007.md) | 原文保全 |
+| [docs/retrospective/07_operations_008.md](retrospective/07_operations_008.md) | 原文保全 |
+| [docs/retrospective/07_operations_009.md](retrospective/07_operations_009.md) | 原文保全 |
+| [docs/retrospective/07_operations_010.md](retrospective/07_operations_010.md) | 原文保全 |
+| [docs/retrospective/07_operations_011.md](retrospective/07_operations_011.md) | 原文保全 |
+| [docs/retrospective/07_operations_012.md](retrospective/07_operations_012.md) | 原文保全 |
+| [docs/retrospective/07_operations_013.md](retrospective/07_operations_013.md) | 原文保全 |
+| [docs/retrospective/07_operations_014.md](retrospective/07_operations_014.md) | 原文保全 |
+| [docs/retrospective/07_operations_015.md](retrospective/07_operations_015.md) | 原文保全 |
+| [docs/retrospective/07_operations_016.md](retrospective/07_operations_016.md) | 原文保全 |
+| [docs/retrospective/07_operations_017.md](retrospective/07_operations_017.md) | 原文保全 |
+| [docs/retrospective/07_operations_018.md](retrospective/07_operations_018.md) | 原文保全 |
+| [docs/retrospective/07_operations_019.md](retrospective/07_operations_019.md) | 原文保全 |
+| [docs/retrospective/07_operations_020.md](retrospective/07_operations_020.md) | 原文保全 |
+| [docs/retrospective/07_operations_021.md](retrospective/07_operations_021.md) | 原文保全 |
+| [docs/retrospective/07_operations_022.md](retrospective/07_operations_022.md) | 原文保全 |
+| [docs/retrospective/07_operations_023.md](retrospective/07_operations_023.md) | 原文保全 |
+| [docs/retrospective/07_operations_024.md](retrospective/07_operations_024.md) | 原文保全 |
+| [docs/retrospective/07_operations_025.md](retrospective/07_operations_025.md) | 原文保全 |
+| [docs/retrospective/07_operations_026.md](retrospective/07_operations_026.md) | 原文保全 |
+| [docs/retrospective/decisions.md](retrospective/decisions.md) | 原文保全 |
+| [docs/retrospective/document_map.md](retrospective/document_map.md) | 原文保全 |
+| [docs/retrospective/verification_ledger.md](retrospective/verification_ledger.md) | 原文保全 |
+| [docs/windows_handoff_history_20261008.md](windows_handoff_history_20261008.md) | 原文保全 |
+| [reports/investigation/chat_improvement_20261012/README.md](../reports/investigation/chat_improvement_20261012/README.md) | 原文保全 |
+| [reports/investigation/chat_improvement_plan_20261012/README.md](../reports/investigation/chat_improvement_plan_20261012/README.md) | 原文保全 |
+| [reports/investigation/chat_solution_plan_20261013_latest/README.md](../reports/investigation/chat_solution_plan_20261013_latest/README.md) | 原文保全 |
+| [reports/investigation/chat_solution_plan_20261013_t2_final_record/README.md](../reports/investigation/chat_solution_plan_20261013_t2_final_record/README.md) | 原文保全 |
+| [reports/investigation/documentation_plan_refresh_20261013/README.md](../reports/investigation/documentation_plan_refresh_20261013/README.md) | 原文保全 |
+| [reports/investigation/documentation_plan_refresh_20261013/history/AGENTS.md](../reports/investigation/documentation_plan_refresh_20261013/history/AGENTS.md) | 原文保全 |
+| [reports/investigation/documentation_plan_refresh_20261013/history/README.md](../reports/investigation/documentation_plan_refresh_20261013/history/README.md) | 原文保全 |
+| [reports/investigation/documentation_plan_refresh_20261013/history/docs/10_next_steps.md](../reports/investigation/documentation_plan_refresh_20261013/history/docs/10_next_steps.md) | 原文保全 |
+| [reports/investigation/documentation_plan_refresh_20261013/history/docs/124_base_recovery_plan.md](../reports/investigation/documentation_plan_refresh_20261013/history/docs/124_base_recovery_plan.md) | 原文保全 |
+| [reports/investigation/documentation_plan_refresh_20261013/history/docs/125_project_retrospective.md](../reports/investigation/documentation_plan_refresh_20261013/history/docs/125_project_retrospective.md) | 原文保全 |
+| [reports/investigation/documentation_plan_refresh_20261013/history/docs/135_chat_problem_solution_plan.md](../reports/investigation/documentation_plan_refresh_20261013/history/docs/135_chat_problem_solution_plan.md) | 原文保全 |
+| [reports/investigation/documentation_plan_refresh_20261013/history/docs/15_project_roadmap.md](../reports/investigation/documentation_plan_refresh_20261013/history/docs/15_project_roadmap.md) | 原文保全 |
+| [reports/investigation/documentation_plan_refresh_20261013/history/docs/README.md](../reports/investigation/documentation_plan_refresh_20261013/history/docs/README.md) | 原文保全 |
+| [reports/investigation/documentation_plan_refresh_20261013/history/docs/autonomous_status.md](../reports/investigation/documentation_plan_refresh_20261013/history/docs/autonomous_status.md) | 原文保全 |
+| [reports/investigation/documentation_plan_refresh_20261013/history/docs/base_experiment_lookup.md](../reports/investigation/documentation_plan_refresh_20261013/history/docs/base_experiment_lookup.md) | 原文保全 |
+| [reports/investigation/documentation_plan_refresh_20261013/history/docs/codex_automation.md](../reports/investigation/documentation_plan_refresh_20261013/history/docs/codex_automation.md) | 原文保全 |
+| [reports/investigation/documentation_plan_refresh_20261013/history/docs/windows_handoff.md](../reports/investigation/documentation_plan_refresh_20261013/history/docs/windows_handoff.md) | 原文保全 |
+| [reports/investigation/documentation_plan_refresh_20261013/history/eval/README.md](../reports/investigation/documentation_plan_refresh_20261013/history/eval/README.md) | 原文保全 |
+| [reports/investigation/documentation_plan_refresh_20261013/history/reports/README.md](../reports/investigation/documentation_plan_refresh_20261013/history/reports/README.md) | 原文保全 |
+| [reports/investigation/rebuild_20261010/README.md](../reports/investigation/rebuild_20261010/README.md) | 原文保全 |
+| [reports/investigation/rebuild_20261010/reference/LICENSE_STATUS.md](../reports/investigation/rebuild_20261010/reference/LICENSE_STATUS.md) | 原文保全 |
+| [reports/investigation/rebuild_20261010/reference/README.md](../reports/investigation/rebuild_20261010/reference/README.md) | 原文保全 |
+| [reports/investigation/rebuild_20261010/reference_space/MODEL_CARD.md](../reports/investigation/rebuild_20261010/reference_space/MODEL_CARD.md) | 原文保全 |
+| [reports/investigation/rebuild_20261010/reference_space/README.md](../reports/investigation/rebuild_20261010/reference_space/README.md) | 原文保全 |
+| [reports/investigation/rebuild_20261010/reference_space/THIRD_PARTY_NOTICES.md](../reports/investigation/rebuild_20261010/reference_space/THIRD_PARTY_NOTICES.md) | 原文保全 |
+| [reports/phase4/resource_budget.md](../reports/phase4/resource_budget.md) | 原文保全 |
+| [reports/phase5/candidate_selection.md](../reports/phase5/candidate_selection.md) | 原文保全 |
+| [reports/phase5/candidate_selection_review.md](../reports/phase5/candidate_selection_review.md) | 原文保全 |
+| [reports/phase5/performance_status.md](../reports/phase5/performance_status.md) | 原文保全 |
+| [reports/phase6/base-hq-feasibility-20261007/README.md](../reports/phase6/base-hq-feasibility-20261007/README.md) | 原文保全 |
+| [reports/phase6/base_500m_review.md](../reports/phase6/base_500m_review.md) | 原文保全 |
+| [reports/phase6/batch_choice.md](../reports/phase6/batch_choice.md) | 原文保全 |
+| [reports/phase6/public-prose-registry-20261006/0-README.md](../reports/phase6/public-prose-registry-20261006/0-README.md) | 原文保全 |
+| [reports/phase6/public-prose-registry-20261006/1-README.md](../reports/phase6/public-prose-registry-20261006/1-README.md) | 原文保全 |
+| [reports/phase6/public-prose-registry-20261006/2-README.md](../reports/phase6/public-prose-registry-20261006/2-README.md) | 原文保全 |
+| [reports/phase6/public-prose-registry-20261006/3-README.md](../reports/phase6/public-prose-registry-20261006/3-README.md) | 原文保全 |
+| [reports/phase6/repetition_diagnosis_review.md](../reports/phase6/repetition_diagnosis_review.md) | 原文保全 |
+| [reports/phase7/chat-improvement-20261012/README.md](../reports/phase7/chat-improvement-20261012/README.md) | 原文保全 |
+| [reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/10_next_steps.md](../reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/10_next_steps.md) | 原文保全 |
+| [reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/139_chat_lr_comparison_plan.md](../reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/139_chat_lr_comparison_plan.md) | 原文保全 |
+| [reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/15_project_roadmap.md](../reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/15_project_roadmap.md) | 原文保全 |
+| [reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/README.md](../reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/README.md) | 原文保全 |
+| [reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/autonomous_status.md](../reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/autonomous_status.md) | 原文保全 |
+| [reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/windows_handoff.md](../reports/phase7/chat-lr-20261014/delivery_incidents/ps_array_flatten/docs/windows_handoff.md) | 原文保全 |
+| [reports/phase7/chat-lr-20261014/documentation_history/AGENTS.md](../reports/phase7/chat-lr-20261014/documentation_history/AGENTS.md) | 原文保全 |
+| [reports/phase7/chat-lr-20261014/documentation_history/README.md](../reports/phase7/chat-lr-20261014/documentation_history/README.md) | 原文保全 |
+| [reports/phase7/chat-lr-20261014/documentation_history/docs/10_next_steps.md](../reports/phase7/chat-lr-20261014/documentation_history/docs/10_next_steps.md) | 原文保全 |
+| [reports/phase7/chat-lr-20261014/documentation_history/docs/124_base_recovery_plan.md](../reports/phase7/chat-lr-20261014/documentation_history/docs/124_base_recovery_plan.md) | 原文保全 |
+| [reports/phase7/chat-lr-20261014/documentation_history/docs/139_chat_lr_comparison_plan.md](../reports/phase7/chat-lr-20261014/documentation_history/docs/139_chat_lr_comparison_plan.md) | 原文保全 |
+| [reports/phase7/chat-lr-20261014/documentation_history/docs/140_chat_lr_comparison_execution.md](../reports/phase7/chat-lr-20261014/documentation_history/docs/140_chat_lr_comparison_execution.md) | 原文保全 |
+| [reports/phase7/chat-lr-20261014/documentation_history/docs/15_project_roadmap.md](../reports/phase7/chat-lr-20261014/documentation_history/docs/15_project_roadmap.md) | 原文保全 |
+| [reports/phase7/chat-lr-20261014/documentation_history/docs/README.md](../reports/phase7/chat-lr-20261014/documentation_history/docs/README.md) | 原文保全 |
+| [reports/phase7/chat-lr-20261014/documentation_history/docs/autonomous_status.md](../reports/phase7/chat-lr-20261014/documentation_history/docs/autonomous_status.md) | 原文保全 |
+| [reports/phase7/chat-lr-20261014/documentation_history/docs/windows_handoff.md](../reports/phase7/chat-lr-20261014/documentation_history/docs/windows_handoff.md) | 原文保全 |
+| [reports/phase7/chat-lr-20261014/selection_evidence/docs/123_base_teacher_decay_2b_results.md](../reports/phase7/chat-lr-20261014/selection_evidence/docs/123_base_teacher_decay_2b_results.md) | 原文保全 |
+| [reports/phase7/chat-lr-20261014/selection_evidence/docs/124_base_recovery_plan.md](../reports/phase7/chat-lr-20261014/selection_evidence/docs/124_base_recovery_plan.md) | 原文保全 |
+| [reports/phase7/chat-lr-20261014/selection_evidence/docs/138_chat_semantic_diversity_results.md](../reports/phase7/chat-lr-20261014/selection_evidence/docs/138_chat_semantic_diversity_results.md) | 原文保全 |
+| [reports/phase7/chat-lr-20261014/selection_evidence/docs/53_story20_low_lr_judgment.md](../reports/phase7/chat-lr-20261014/selection_evidence/docs/53_story20_low_lr_judgment.md) | 原文保全 |
+| [reports/phase7/chat-lr-20261014/selection_evidence/docs/base_ademamix_100m_results.md](../reports/phase7/chat-lr-20261014/selection_evidence/docs/base_ademamix_100m_results.md) | 原文保全 |
+| [reports/phase7/chat-semantic-diversity-20261013/documentation_history/AGENTS.md](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/AGENTS.md) | 原文保全 |
+| [reports/phase7/chat-semantic-diversity-20261013/documentation_history/README.md](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/README.md) | 原文保全 |
+| [reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/10_next_steps.md](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/10_next_steps.md) | 原文保全 |
+| [reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/124_base_recovery_plan.md](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/124_base_recovery_plan.md) | 原文保全 |
+| [reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/135_chat_problem_solution_plan.md](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/135_chat_problem_solution_plan.md) | 原文保全 |
+| [reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/137_chat_semantic_diversity_execution.md](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/137_chat_semantic_diversity_execution.md) | 原文保全 |
+| [reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/15_project_roadmap.md](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/15_project_roadmap.md) | 原文保全 |
+| [reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/README.md](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/README.md) | 原文保全 |
+| [reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/autonomous_status.md](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/autonomous_status.md) | 原文保全 |
+| [reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/windows_handoff.md](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/docs/windows_handoff.md) | 原文保全 |
+
+## 以前から保全した原文copy
+
+| 文書 | 扱い |
+|---|---|
+| [reports/investigation/documentation-refresh-20261014/originals/0051f600c0c355ee1207a0288abde64d46c87ba6abdb05a81853ceda777822da.md](../reports/investigation/documentation-refresh-20261014/originals/0051f600c0c355ee1207a0288abde64d46c87ba6abdb05a81853ceda777822da.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/007eb90c370b3a31f3fce6bd6ddd25c336a4b69ddea9b972c9b69873e8c221e1.md](../reports/investigation/documentation-refresh-20261014/originals/007eb90c370b3a31f3fce6bd6ddd25c336a4b69ddea9b972c9b69873e8c221e1.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/00a0790cf499a8667337584a9dfbdf036824ed99db3f888f224cc0220ed38908.md](../reports/investigation/documentation-refresh-20261014/originals/00a0790cf499a8667337584a9dfbdf036824ed99db3f888f224cc0220ed38908.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/00b2cae3892ef784a3a9996ee02ca6102fdc1a9978b283230dde6baffec43522.md](../reports/investigation/documentation-refresh-20261014/originals/00b2cae3892ef784a3a9996ee02ca6102fdc1a9978b283230dde6baffec43522.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/00ebd02b55392187238ffa78e7a8b9b9000fb065e24475f4347ed93317b1b000.md](../reports/investigation/documentation-refresh-20261014/originals/00ebd02b55392187238ffa78e7a8b9b9000fb065e24475f4347ed93317b1b000.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/011c4e019a02306fa8d3e889bfc3ee45c3e26d5fd55c3e69c7e648c67e39edc6.md](../reports/investigation/documentation-refresh-20261014/originals/011c4e019a02306fa8d3e889bfc3ee45c3e26d5fd55c3e69c7e648c67e39edc6.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/01ea1b64e0b589a1990d39e28d24901b88874335d9ad6672487db2aad0b04be9.md](../reports/investigation/documentation-refresh-20261014/originals/01ea1b64e0b589a1990d39e28d24901b88874335d9ad6672487db2aad0b04be9.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/01ec774d3e5cd32eb427ebbe11417cfa8a5a1d915680f939abc5a3bad3eff943.md](../reports/investigation/documentation-refresh-20261014/originals/01ec774d3e5cd32eb427ebbe11417cfa8a5a1d915680f939abc5a3bad3eff943.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/0200cc482df66d1a7a053118e483013528c12987ee174f35ce80aa369d9bae4c.md](../reports/investigation/documentation-refresh-20261014/originals/0200cc482df66d1a7a053118e483013528c12987ee174f35ce80aa369d9bae4c.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/02bf26f334425da323b6376ac96ac82e0ba6b108972179a356516ea2f05619dc.md](../reports/investigation/documentation-refresh-20261014/originals/02bf26f334425da323b6376ac96ac82e0ba6b108972179a356516ea2f05619dc.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/03424781e0ae0be94bdcadba11f68d2c3af03864ed496b859af4bd3f906da4a3.md](../reports/investigation/documentation-refresh-20261014/originals/03424781e0ae0be94bdcadba11f68d2c3af03864ed496b859af4bd3f906da4a3.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/052329db584d2b6abb37d9760c7e5f23649eea4ce309038f19b1b821438edb8e.md](../reports/investigation/documentation-refresh-20261014/originals/052329db584d2b6abb37d9760c7e5f23649eea4ce309038f19b1b821438edb8e.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/05250a8e7ffb5b52dcaedbd2a655adb27821210b3e832f49059420603c4bba53.md](../reports/investigation/documentation-refresh-20261014/originals/05250a8e7ffb5b52dcaedbd2a655adb27821210b3e832f49059420603c4bba53.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/05b7d0522fece78a05b855b9ecc400cfd37234dfe5c0d654f192343ffb6ebd16.md](../reports/investigation/documentation-refresh-20261014/originals/05b7d0522fece78a05b855b9ecc400cfd37234dfe5c0d654f192343ffb6ebd16.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/06e781f95bc38b588f4e191ef8e7769954bfad9c9640cd02a2f2ba621f652f09.md](../reports/investigation/documentation-refresh-20261014/originals/06e781f95bc38b588f4e191ef8e7769954bfad9c9640cd02a2f2ba621f652f09.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/0724b44e38684320587b8dad09ec937a66ce51bd55c873119da78260ee85423f.md](../reports/investigation/documentation-refresh-20261014/originals/0724b44e38684320587b8dad09ec937a66ce51bd55c873119da78260ee85423f.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/0a43eb16173a871edbb44957a5d25583c9fce8e1db32277bd7795b2f84a6ef65.md](../reports/investigation/documentation-refresh-20261014/originals/0a43eb16173a871edbb44957a5d25583c9fce8e1db32277bd7795b2f84a6ef65.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/0f48bdfead034ee778e63b269719300b16be6520d004cd43b0687ab42a53bd3f.md](../reports/investigation/documentation-refresh-20261014/originals/0f48bdfead034ee778e63b269719300b16be6520d004cd43b0687ab42a53bd3f.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/0fe45cce3031bfd5f56a27ea33dac7b33422a2d3329b5fb4a9d8d60cc3368990.md](../reports/investigation/documentation-refresh-20261014/originals/0fe45cce3031bfd5f56a27ea33dac7b33422a2d3329b5fb4a9d8d60cc3368990.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/1097d7bbd99855f29be5762755e8f58a0bae81dfe34b3f6321155e20cc2a1610.md](../reports/investigation/documentation-refresh-20261014/originals/1097d7bbd99855f29be5762755e8f58a0bae81dfe34b3f6321155e20cc2a1610.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/11619329bcb0aed85a642ee87bfc60479353d4647c81fb2fe787c925b2bb2dbe.md](../reports/investigation/documentation-refresh-20261014/originals/11619329bcb0aed85a642ee87bfc60479353d4647c81fb2fe787c925b2bb2dbe.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/13823951f67839b65a2cd981b3ffd7dadf37f4947bd82e6451778e3beba41eba.md](../reports/investigation/documentation-refresh-20261014/originals/13823951f67839b65a2cd981b3ffd7dadf37f4947bd82e6451778e3beba41eba.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/14788c292f318fc29499761faeae5c99470b168ef670c057454886c829c6ff88.md](../reports/investigation/documentation-refresh-20261014/originals/14788c292f318fc29499761faeae5c99470b168ef670c057454886c829c6ff88.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/1591f9a01543e5ac2076faa549e2093d1111cbbc1b0b527de30823ca1d9384ad.md](../reports/investigation/documentation-refresh-20261014/originals/1591f9a01543e5ac2076faa549e2093d1111cbbc1b0b527de30823ca1d9384ad.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/159cd4a8cccc766d5979633eabec62cd2890d211641f5fd8cf72156f399e66f7.md](../reports/investigation/documentation-refresh-20261014/originals/159cd4a8cccc766d5979633eabec62cd2890d211641f5fd8cf72156f399e66f7.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/1656910b6b951f19d5d07f467f6c7602f90dd7d753d90a9c0a7fe1cb40e93289.md](../reports/investigation/documentation-refresh-20261014/originals/1656910b6b951f19d5d07f467f6c7602f90dd7d753d90a9c0a7fe1cb40e93289.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/166b0b78fe9db603c8a3677ff6a3b21c7492ba80758e8ad912f915ff2a59c968.md](../reports/investigation/documentation-refresh-20261014/originals/166b0b78fe9db603c8a3677ff6a3b21c7492ba80758e8ad912f915ff2a59c968.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/16ba5bcdf9bee63802b1716641d34bbe9e094ab41816a859bfc6055ce2d281eb.md](../reports/investigation/documentation-refresh-20261014/originals/16ba5bcdf9bee63802b1716641d34bbe9e094ab41816a859bfc6055ce2d281eb.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/16d575dd134eb6170ef46004f4b04989ad8e3d947858d1ae4123d16c8a397d34.md](../reports/investigation/documentation-refresh-20261014/originals/16d575dd134eb6170ef46004f4b04989ad8e3d947858d1ae4123d16c8a397d34.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/17022ea6599e4723910f49ee26416cc017379d6d775b8d3efe5ef03803255a29.md](../reports/investigation/documentation-refresh-20261014/originals/17022ea6599e4723910f49ee26416cc017379d6d775b8d3efe5ef03803255a29.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/1713c773cfe0bd0e00be757e5ab98f55a194cec289563a3a6b3aa16128be0178.md](../reports/investigation/documentation-refresh-20261014/originals/1713c773cfe0bd0e00be757e5ab98f55a194cec289563a3a6b3aa16128be0178.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/1726963980d652cafc39f1932dfff4a3a3ff2d489b21d646a3ed6203916a42b6.md](../reports/investigation/documentation-refresh-20261014/originals/1726963980d652cafc39f1932dfff4a3a3ff2d489b21d646a3ed6203916a42b6.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/17444e1e2ef86daa3312c5fb8accac1f04a3a8d69c3aea665e5dffb8da0e951f.md](../reports/investigation/documentation-refresh-20261014/originals/17444e1e2ef86daa3312c5fb8accac1f04a3a8d69c3aea665e5dffb8da0e951f.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/17858c84558d50016490a367a1d1c35eb2007051b2260891f9e7e6cfdbc6eff2.md](../reports/investigation/documentation-refresh-20261014/originals/17858c84558d50016490a367a1d1c35eb2007051b2260891f9e7e6cfdbc6eff2.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/17d362982ac4f87efc0778564fcad6f14e94af29fd47c8ff9d75d2c693168ce4.md](../reports/investigation/documentation-refresh-20261014/originals/17d362982ac4f87efc0778564fcad6f14e94af29fd47c8ff9d75d2c693168ce4.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/18f6baec5958b77d9efb56171d6190bbeb2a1e643d9127a84bc919a5b0c59168.md](../reports/investigation/documentation-refresh-20261014/originals/18f6baec5958b77d9efb56171d6190bbeb2a1e643d9127a84bc919a5b0c59168.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/1b0c2edaa9ec892e079b840f53d561100afdb1c2fef8eb196129d243849db9c4.md](../reports/investigation/documentation-refresh-20261014/originals/1b0c2edaa9ec892e079b840f53d561100afdb1c2fef8eb196129d243849db9c4.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/1d21766a211c9da4b80efea3c2dfe58a020d11ef0d5abe0aebeedea5e7398149.md](../reports/investigation/documentation-refresh-20261014/originals/1d21766a211c9da4b80efea3c2dfe58a020d11ef0d5abe0aebeedea5e7398149.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/1d9bcd30318ac417c3a0afa9e2a98d005a10322d7c712811dbc736e5e473f47f.md](../reports/investigation/documentation-refresh-20261014/originals/1d9bcd30318ac417c3a0afa9e2a98d005a10322d7c712811dbc736e5e473f47f.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/1e08ebfefd383ff177030c8a29acdeb60e82dd02d0ca359b5953dae9660b0d64.md](../reports/investigation/documentation-refresh-20261014/originals/1e08ebfefd383ff177030c8a29acdeb60e82dd02d0ca359b5953dae9660b0d64.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/1f3913f0f4f09dea057453c62d2fd85751a5008e599bfdedea38ec12774f33c6.md](../reports/investigation/documentation-refresh-20261014/originals/1f3913f0f4f09dea057453c62d2fd85751a5008e599bfdedea38ec12774f33c6.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/1f5e0c6fdcabf59d1d3964d4e2f3d28142aa29846e42daaf6acdc6fabd6d20e0.md](../reports/investigation/documentation-refresh-20261014/originals/1f5e0c6fdcabf59d1d3964d4e2f3d28142aa29846e42daaf6acdc6fabd6d20e0.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/21ddb0857fb507ee1d6b72f5a1b45915f24851ab981e22de6aa3b36ab34fd0c4.md](../reports/investigation/documentation-refresh-20261014/originals/21ddb0857fb507ee1d6b72f5a1b45915f24851ab981e22de6aa3b36ab34fd0c4.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/228bb74443a270b451685e3f3f83a17b71c46d7c7a9e18de4c03e8e8ba7cd792.md](../reports/investigation/documentation-refresh-20261014/originals/228bb74443a270b451685e3f3f83a17b71c46d7c7a9e18de4c03e8e8ba7cd792.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/22f0a614db5554594e1edb576b9f59a29c4be06b70e54c6563cadcfc9ebfe8e0.md](../reports/investigation/documentation-refresh-20261014/originals/22f0a614db5554594e1edb576b9f59a29c4be06b70e54c6563cadcfc9ebfe8e0.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/2483907c404ac0ba651753181415f6047ad5a7401ab3cb59fafa4cefb05693d8.md](../reports/investigation/documentation-refresh-20261014/originals/2483907c404ac0ba651753181415f6047ad5a7401ab3cb59fafa4cefb05693d8.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/2489f9887b19723bcd05b282ada7438c58680b514eab6824edb7ca2ce750fb9d.md](../reports/investigation/documentation-refresh-20261014/originals/2489f9887b19723bcd05b282ada7438c58680b514eab6824edb7ca2ce750fb9d.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/26baa8acd6a469af8f807481b468484f51e2c4c412996978f23ff02169989a33.md](../reports/investigation/documentation-refresh-20261014/originals/26baa8acd6a469af8f807481b468484f51e2c4c412996978f23ff02169989a33.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/28f5fdbf3a867d204b6aadf987db51f6e3429cd68dc66a680694a7c938487446.md](../reports/investigation/documentation-refresh-20261014/originals/28f5fdbf3a867d204b6aadf987db51f6e3429cd68dc66a680694a7c938487446.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/29423341bd2f34c9178fa66808aa311575df116c5601f7e4a2feaf74196baefb.md](../reports/investigation/documentation-refresh-20261014/originals/29423341bd2f34c9178fa66808aa311575df116c5601f7e4a2feaf74196baefb.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/29cd3b76d070d6c1307278767be38bdfac0519cce7b9126c9c1e5c39e600008b.md](../reports/investigation/documentation-refresh-20261014/originals/29cd3b76d070d6c1307278767be38bdfac0519cce7b9126c9c1e5c39e600008b.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/2ba709380fb9aebee502e5c6e6c9fb21f83bf242288e1e11c0fe5cfc9e0fcfe2.md](../reports/investigation/documentation-refresh-20261014/originals/2ba709380fb9aebee502e5c6e6c9fb21f83bf242288e1e11c0fe5cfc9e0fcfe2.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/2c74663da52c87531ba3e84f75dc75b547dc937e7233609ee706f13b1cfd9208.md](../reports/investigation/documentation-refresh-20261014/originals/2c74663da52c87531ba3e84f75dc75b547dc937e7233609ee706f13b1cfd9208.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/2d9480bafc1df101b5b606ebf82ae3229fc4f522604d49651110f915af6fb253.md](../reports/investigation/documentation-refresh-20261014/originals/2d9480bafc1df101b5b606ebf82ae3229fc4f522604d49651110f915af6fb253.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/2e8a5b59dc4ce4a097a832d708bbea644930e915832fc22293ee676c51784186.md](../reports/investigation/documentation-refresh-20261014/originals/2e8a5b59dc4ce4a097a832d708bbea644930e915832fc22293ee676c51784186.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/2ee2837a88d0d3f44841fea4982d3fd6425193887868a7fb6743e484f8ecbfe8.md](../reports/investigation/documentation-refresh-20261014/originals/2ee2837a88d0d3f44841fea4982d3fd6425193887868a7fb6743e484f8ecbfe8.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/306e7ae5500d5d1e483c1e647996a9f645c09edc9f73adc7b44e435cb4c4f926.md](../reports/investigation/documentation-refresh-20261014/originals/306e7ae5500d5d1e483c1e647996a9f645c09edc9f73adc7b44e435cb4c4f926.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/311befae53ad8eca65b3deb1f110d15ee0277716923ad4b11f1823b9b86efb13.md](../reports/investigation/documentation-refresh-20261014/originals/311befae53ad8eca65b3deb1f110d15ee0277716923ad4b11f1823b9b86efb13.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/314cf8338c4b6a94b8e9eb4ffdf37ea790f23b7d7739d16500beea9d238f9eca.md](../reports/investigation/documentation-refresh-20261014/originals/314cf8338c4b6a94b8e9eb4ffdf37ea790f23b7d7739d16500beea9d238f9eca.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/31a3c62a767ec2a42f42c1f3a02aad3b30a17f5cda5f4aea7fa526ecdbbd09d5.md](../reports/investigation/documentation-refresh-20261014/originals/31a3c62a767ec2a42f42c1f3a02aad3b30a17f5cda5f4aea7fa526ecdbbd09d5.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/3382e62ff31050348de8a1cd5f1f09a643419aa8d8d70334e9d6fa80ff59b157.md](../reports/investigation/documentation-refresh-20261014/originals/3382e62ff31050348de8a1cd5f1f09a643419aa8d8d70334e9d6fa80ff59b157.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/3a2567002d210961e6742c78255bb4cba4483cd58fe69e3fa11392ff212ec5f1.md](../reports/investigation/documentation-refresh-20261014/originals/3a2567002d210961e6742c78255bb4cba4483cd58fe69e3fa11392ff212ec5f1.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/3a8b1438eb157aa1f17046dcf0de0d8c359081a73da5f6c831147e6c2a177a65.md](../reports/investigation/documentation-refresh-20261014/originals/3a8b1438eb157aa1f17046dcf0de0d8c359081a73da5f6c831147e6c2a177a65.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/3aa373c1621818d88723311b75aa6636b5adbd12815e25a751418990a7f02a67.md](../reports/investigation/documentation-refresh-20261014/originals/3aa373c1621818d88723311b75aa6636b5adbd12815e25a751418990a7f02a67.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/3b925bad4afac67df73149f5f75495f482b94771034c24a705ca054af1b424b4.md](../reports/investigation/documentation-refresh-20261014/originals/3b925bad4afac67df73149f5f75495f482b94771034c24a705ca054af1b424b4.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/3bba5ec98a47b6cdbb8a47cbdb56c8f0f18a75f7ff02943fb7c141dec545eb24.md](../reports/investigation/documentation-refresh-20261014/originals/3bba5ec98a47b6cdbb8a47cbdb56c8f0f18a75f7ff02943fb7c141dec545eb24.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/3c3bccc0e37533e9a656c45d5dee800ed78d62ab6f1c5322e228001260bbb0fc.md](../reports/investigation/documentation-refresh-20261014/originals/3c3bccc0e37533e9a656c45d5dee800ed78d62ab6f1c5322e228001260bbb0fc.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/3c6eb0457ed7fe136d687425de290b879de66baf4b823ca82d8cc462a03df80b.md](../reports/investigation/documentation-refresh-20261014/originals/3c6eb0457ed7fe136d687425de290b879de66baf4b823ca82d8cc462a03df80b.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/3d083c2fbe07bbd2ed5aef20a01043b8567a1f80f95240f45f89b1714255da8f.md](../reports/investigation/documentation-refresh-20261014/originals/3d083c2fbe07bbd2ed5aef20a01043b8567a1f80f95240f45f89b1714255da8f.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/3dbdd45994c88597f20559e80dd67728bf2dd686b26e297504bbb34ca3db8273.md](../reports/investigation/documentation-refresh-20261014/originals/3dbdd45994c88597f20559e80dd67728bf2dd686b26e297504bbb34ca3db8273.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/3e4de1368eb3bf51c1640a2ca090be8c2470759ffe11315ab632cb74ab85a529.md](../reports/investigation/documentation-refresh-20261014/originals/3e4de1368eb3bf51c1640a2ca090be8c2470759ffe11315ab632cb74ab85a529.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/3fc0b486fa45dbc51d32848677641c5268b5d3c8e9f4f4d72d8eb3650783873f.md](../reports/investigation/documentation-refresh-20261014/originals/3fc0b486fa45dbc51d32848677641c5268b5d3c8e9f4f4d72d8eb3650783873f.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/403b658611adec16f3b0ccde7237bb5c556f5030568295eb988f763e84afa34a.md](../reports/investigation/documentation-refresh-20261014/originals/403b658611adec16f3b0ccde7237bb5c556f5030568295eb988f763e84afa34a.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/40678729bf07611a04772486d0d5c0594a02a6311738d47659abaadd64c483ce.md](../reports/investigation/documentation-refresh-20261014/originals/40678729bf07611a04772486d0d5c0594a02a6311738d47659abaadd64c483ce.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/409090b17657814f64508c94cb14905382c497797bffe0033a92d26137a821af.md](../reports/investigation/documentation-refresh-20261014/originals/409090b17657814f64508c94cb14905382c497797bffe0033a92d26137a821af.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/4106175996701808b066f261256f92bc4f1720018e12065cae546f5159e14f84.md](../reports/investigation/documentation-refresh-20261014/originals/4106175996701808b066f261256f92bc4f1720018e12065cae546f5159e14f84.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/421ed66b8bbae39fb13aabe4c23f55888094231209c37ceb6abf50d7f5e28d60.md](../reports/investigation/documentation-refresh-20261014/originals/421ed66b8bbae39fb13aabe4c23f55888094231209c37ceb6abf50d7f5e28d60.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/431a91d9fb03970811bd1315d40fc81d8e3334fe745711337ba25555215c5da8.md](../reports/investigation/documentation-refresh-20261014/originals/431a91d9fb03970811bd1315d40fc81d8e3334fe745711337ba25555215c5da8.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/43c70802e30d35ca5abffaf5040f6e64f79d134cd2d4bcce6be476b3b505adf5.md](../reports/investigation/documentation-refresh-20261014/originals/43c70802e30d35ca5abffaf5040f6e64f79d134cd2d4bcce6be476b3b505adf5.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/4400e108bed12c0adabdd51b71b549cf53b31b16cfbc76cfeed850d5a54eb223.md](../reports/investigation/documentation-refresh-20261014/originals/4400e108bed12c0adabdd51b71b549cf53b31b16cfbc76cfeed850d5a54eb223.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/44d372683766d3e0813f8efc6cbb4d7cdf4f4c6c06b2449195afce41597b93a1.md](../reports/investigation/documentation-refresh-20261014/originals/44d372683766d3e0813f8efc6cbb4d7cdf4f4c6c06b2449195afce41597b93a1.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/460283699542bab724f7b9c24bb1be29396f7ed5e804ba480705310703b7ce80.md](../reports/investigation/documentation-refresh-20261014/originals/460283699542bab724f7b9c24bb1be29396f7ed5e804ba480705310703b7ce80.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/47e9b4674d5766fbe6ff1fb94ac847fe94a1246967e5d710bddb26e1c700b3d8.md](../reports/investigation/documentation-refresh-20261014/originals/47e9b4674d5766fbe6ff1fb94ac847fe94a1246967e5d710bddb26e1c700b3d8.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/4bd8eebcf51d14ef2828e29bb39258bc43bd371d4032f6f5fe2b3095cb8344d3.md](../reports/investigation/documentation-refresh-20261014/originals/4bd8eebcf51d14ef2828e29bb39258bc43bd371d4032f6f5fe2b3095cb8344d3.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/4c49e2f92d938c1df88b90a62ff354e12da52a47efe2819f7e8aa3832a31970a.md](../reports/investigation/documentation-refresh-20261014/originals/4c49e2f92d938c1df88b90a62ff354e12da52a47efe2819f7e8aa3832a31970a.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/4cad9ea6c8a02a07dcfe8993b46b94cf1beb0e7eb4d811641b9140b4528426ce.md](../reports/investigation/documentation-refresh-20261014/originals/4cad9ea6c8a02a07dcfe8993b46b94cf1beb0e7eb4d811641b9140b4528426ce.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/4cb6d81c4cb50c485dc0a44ea34bc3d87b05e69d3a25a5a276d23bb97453d3da.md](../reports/investigation/documentation-refresh-20261014/originals/4cb6d81c4cb50c485dc0a44ea34bc3d87b05e69d3a25a5a276d23bb97453d3da.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/4da7ab28034491829420612e715c5ef4a740978dc59daa21eff2d30b9b85d1a4.md](../reports/investigation/documentation-refresh-20261014/originals/4da7ab28034491829420612e715c5ef4a740978dc59daa21eff2d30b9b85d1a4.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/4df7ebd767a357943707e3965d1a5b2a98dba1bc5b176b85ba08a0325b71474d.md](../reports/investigation/documentation-refresh-20261014/originals/4df7ebd767a357943707e3965d1a5b2a98dba1bc5b176b85ba08a0325b71474d.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/4eb5c609607328d571195d1c26eea38237addc82f45b51027fca233e56fd84b2.md](../reports/investigation/documentation-refresh-20261014/originals/4eb5c609607328d571195d1c26eea38237addc82f45b51027fca233e56fd84b2.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/4fbb4db1075570f87a661782939db2cf672fc6fd2c7ce0195e9939ac310bcf04.md](../reports/investigation/documentation-refresh-20261014/originals/4fbb4db1075570f87a661782939db2cf672fc6fd2c7ce0195e9939ac310bcf04.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/4fe968a6b0b8855b12d34a924cf4177d26c28d09a384c915792548738e6be4b0.md](../reports/investigation/documentation-refresh-20261014/originals/4fe968a6b0b8855b12d34a924cf4177d26c28d09a384c915792548738e6be4b0.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/4ff703e138b5dee4e77a9b95bff494a4650bcd26643cf56eb3e15878bcf938d2.md](../reports/investigation/documentation-refresh-20261014/originals/4ff703e138b5dee4e77a9b95bff494a4650bcd26643cf56eb3e15878bcf938d2.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/4fffc41df0a85e89c8742127d0bc3bb97713cb4114ffc0be5661619d3e869866.md](../reports/investigation/documentation-refresh-20261014/originals/4fffc41df0a85e89c8742127d0bc3bb97713cb4114ffc0be5661619d3e869866.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/509765289042af129a0b519015152d478562774473e11bc0ddbb1c7d65391be7.md](../reports/investigation/documentation-refresh-20261014/originals/509765289042af129a0b519015152d478562774473e11bc0ddbb1c7d65391be7.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/523f2b1b9225019e47ef551a5241671dc7c3bf157339a18a096be0b4ca1ff989.md](../reports/investigation/documentation-refresh-20261014/originals/523f2b1b9225019e47ef551a5241671dc7c3bf157339a18a096be0b4ca1ff989.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/52f0d2630c264446d74642cb2c28df1cc64573d5af3ee5b36413ef49a86a822d.md](../reports/investigation/documentation-refresh-20261014/originals/52f0d2630c264446d74642cb2c28df1cc64573d5af3ee5b36413ef49a86a822d.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/52f883bcd1e9717cad09e595484c8c5be0c84c80aa0ae840e24e9c0fe4727297.md](../reports/investigation/documentation-refresh-20261014/originals/52f883bcd1e9717cad09e595484c8c5be0c84c80aa0ae840e24e9c0fe4727297.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/531613bd7d2a15b67bdfab420e88b34d478adbf75503e36a82b9eb8eb4cd1998.md](../reports/investigation/documentation-refresh-20261014/originals/531613bd7d2a15b67bdfab420e88b34d478adbf75503e36a82b9eb8eb4cd1998.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/542c379af5dd3b5243c0db46aa4f703d17359a7a0b4287239880dee8ece81838.md](../reports/investigation/documentation-refresh-20261014/originals/542c379af5dd3b5243c0db46aa4f703d17359a7a0b4287239880dee8ece81838.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/54e85676bcbaa12ce0a98ac9c2371d968299a590831e6872cc20a61adbba8f71.md](../reports/investigation/documentation-refresh-20261014/originals/54e85676bcbaa12ce0a98ac9c2371d968299a590831e6872cc20a61adbba8f71.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/55e3b0a5270c3846b9fcbfa6bcb3980aa7449f9bf4d9bf50a8c365597e634b48.md](../reports/investigation/documentation-refresh-20261014/originals/55e3b0a5270c3846b9fcbfa6bcb3980aa7449f9bf4d9bf50a8c365597e634b48.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/56071af8e7b16fd34f5641a6a6fff7cf14812da6b3a9b83a72d4d7fb2db64749.md](../reports/investigation/documentation-refresh-20261014/originals/56071af8e7b16fd34f5641a6a6fff7cf14812da6b3a9b83a72d4d7fb2db64749.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/56249bfe9a5f1e0f53f7f6aa2aeec6bd83eeee3799fdc2a1229c617d1c4c990c.md](../reports/investigation/documentation-refresh-20261014/originals/56249bfe9a5f1e0f53f7f6aa2aeec6bd83eeee3799fdc2a1229c617d1c4c990c.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/5772944b3f7ccdf7316cd7cf40fcbdda7f1c8f4f337355a910de69d1ced10772.md](../reports/investigation/documentation-refresh-20261014/originals/5772944b3f7ccdf7316cd7cf40fcbdda7f1c8f4f337355a910de69d1ced10772.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/5806b3070a1d33afc643a517f3a160d0e2a80ece4d64cfc7f63ee9aca50df135.md](../reports/investigation/documentation-refresh-20261014/originals/5806b3070a1d33afc643a517f3a160d0e2a80ece4d64cfc7f63ee9aca50df135.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/5823e881c2041f802ade1d63768729033740aa7d5ff17a4a4332c64ef54d1ba2.md](../reports/investigation/documentation-refresh-20261014/originals/5823e881c2041f802ade1d63768729033740aa7d5ff17a4a4332c64ef54d1ba2.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/58bd73bb71a665882dd646c67dd52b9e85a9b0d65ceed6801a33ea3a3224b0d1.md](../reports/investigation/documentation-refresh-20261014/originals/58bd73bb71a665882dd646c67dd52b9e85a9b0d65ceed6801a33ea3a3224b0d1.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/59b0e8a6a284308e1b997c9e4561a8c5d08e047f20c78f1a4cee8ee98aeb898a.md](../reports/investigation/documentation-refresh-20261014/originals/59b0e8a6a284308e1b997c9e4561a8c5d08e047f20c78f1a4cee8ee98aeb898a.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/59d44104851f2a1837f1518baf83da7b904fa76e8b93346fb3a44194a21634da.md](../reports/investigation/documentation-refresh-20261014/originals/59d44104851f2a1837f1518baf83da7b904fa76e8b93346fb3a44194a21634da.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/5a86ef9e2fc924499f9605b238d71f56fdbdb4c823284982dc50fa72f20b5317.md](../reports/investigation/documentation-refresh-20261014/originals/5a86ef9e2fc924499f9605b238d71f56fdbdb4c823284982dc50fa72f20b5317.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/5a8e6dbbc8bb3df0cdd2e6afee1e0a30fd8710234e19a16962f5afba7e1c8e0b.md](../reports/investigation/documentation-refresh-20261014/originals/5a8e6dbbc8bb3df0cdd2e6afee1e0a30fd8710234e19a16962f5afba7e1c8e0b.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/5ab44763f160cce9c38b59b1b836a00678cc6b15b56866d2a9f69ded5b8462db.md](../reports/investigation/documentation-refresh-20261014/originals/5ab44763f160cce9c38b59b1b836a00678cc6b15b56866d2a9f69ded5b8462db.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/5af046252d4fe76e8b4d353b828950e043eee4051cee703a14443713347a71a1.md](../reports/investigation/documentation-refresh-20261014/originals/5af046252d4fe76e8b4d353b828950e043eee4051cee703a14443713347a71a1.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/5f72af4250da23cf00e20692c9966d4a17b1b7733a3e826c4b9b55652f43c296.md](../reports/investigation/documentation-refresh-20261014/originals/5f72af4250da23cf00e20692c9966d4a17b1b7733a3e826c4b9b55652f43c296.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/5f97337527f1e4715b52e5de1461f9e613224b16b1f3ab7e436d70ab9be1769d.md](../reports/investigation/documentation-refresh-20261014/originals/5f97337527f1e4715b52e5de1461f9e613224b16b1f3ab7e436d70ab9be1769d.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/601c5a0154102701ec04a0219607d8095dcf4419113a89c64636518a7237ed00.md](../reports/investigation/documentation-refresh-20261014/originals/601c5a0154102701ec04a0219607d8095dcf4419113a89c64636518a7237ed00.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/60698d118e18ee1ef7c15bef1a5270fbc65bc56fee660e5dd1c07e02d3229b20.md](../reports/investigation/documentation-refresh-20261014/originals/60698d118e18ee1ef7c15bef1a5270fbc65bc56fee660e5dd1c07e02d3229b20.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/611f45c85e90f6e4aaf48b525cfaa454f5315bba9f9fa55b8bbf974b4c9e1196.md](../reports/investigation/documentation-refresh-20261014/originals/611f45c85e90f6e4aaf48b525cfaa454f5315bba9f9fa55b8bbf974b4c9e1196.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/6130e0928811e5ddf8ac42473c302f755ce69444dbaff96929cf32fd724e5e33.md](../reports/investigation/documentation-refresh-20261014/originals/6130e0928811e5ddf8ac42473c302f755ce69444dbaff96929cf32fd724e5e33.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/621fa9e4a6810a35f6f73e1942a741d15bf27aec4986cb297cafd178ef0133a5.md](../reports/investigation/documentation-refresh-20261014/originals/621fa9e4a6810a35f6f73e1942a741d15bf27aec4986cb297cafd178ef0133a5.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/6302b7a0adf5a6931f204300aa20cd17faaecb039e2a84dcfceccd3b7ec4a790.md](../reports/investigation/documentation-refresh-20261014/originals/6302b7a0adf5a6931f204300aa20cd17faaecb039e2a84dcfceccd3b7ec4a790.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/630dcc49bc63013be303047aec711ca4fea26d83c92490efcbf781816f3fd7d4.md](../reports/investigation/documentation-refresh-20261014/originals/630dcc49bc63013be303047aec711ca4fea26d83c92490efcbf781816f3fd7d4.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/634bc110725cdc0bc5500a9e4e43693dd3b1787bd0d1838dda579d89af3cfc72.md](../reports/investigation/documentation-refresh-20261014/originals/634bc110725cdc0bc5500a9e4e43693dd3b1787bd0d1838dda579d89af3cfc72.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/64d72406910c921658cd1916266d501877184d1a9f3d78ee0749b7458fe0b0a1.md](../reports/investigation/documentation-refresh-20261014/originals/64d72406910c921658cd1916266d501877184d1a9f3d78ee0749b7458fe0b0a1.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/661a56bfd4028c0e158f8b11cb2abd95fde1643fc567601a3bd5280aa509c723.md](../reports/investigation/documentation-refresh-20261014/originals/661a56bfd4028c0e158f8b11cb2abd95fde1643fc567601a3bd5280aa509c723.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/666048a982e5bafea7e599f5ea194dc0592f118af4b3f71e5a3ba3403a52a5e6.md](../reports/investigation/documentation-refresh-20261014/originals/666048a982e5bafea7e599f5ea194dc0592f118af4b3f71e5a3ba3403a52a5e6.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/6923acbb40d783f95d5e367c10ffc6a3636b474cb3eaeed9c9e20d4a6597595a.md](../reports/investigation/documentation-refresh-20261014/originals/6923acbb40d783f95d5e367c10ffc6a3636b474cb3eaeed9c9e20d4a6597595a.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/69447ad104fadf7c25fcbd81394289d30274c3e1af55d1b9496d8cffbafbd926.md](../reports/investigation/documentation-refresh-20261014/originals/69447ad104fadf7c25fcbd81394289d30274c3e1af55d1b9496d8cffbafbd926.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/69eca1688873447a7e28c5a5a98df36e3233ebf5ab4961b0640d67a519d723a5.md](../reports/investigation/documentation-refresh-20261014/originals/69eca1688873447a7e28c5a5a98df36e3233ebf5ab4961b0640d67a519d723a5.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/6a0c6f34292054fb50abb7fa3ca1279864ca43fdf13586f6471cc79b999d5f47.md](../reports/investigation/documentation-refresh-20261014/originals/6a0c6f34292054fb50abb7fa3ca1279864ca43fdf13586f6471cc79b999d5f47.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/6a568cc11cd7f0f174de098d27fe1bbd818006ba1ae2ee13fbc471659049aaf8.md](../reports/investigation/documentation-refresh-20261014/originals/6a568cc11cd7f0f174de098d27fe1bbd818006ba1ae2ee13fbc471659049aaf8.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/6a7a18f3dca0e210e396b68e6a47af2f0b343ea431acd1715f75b617947be692.md](../reports/investigation/documentation-refresh-20261014/originals/6a7a18f3dca0e210e396b68e6a47af2f0b343ea431acd1715f75b617947be692.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/6bc83d791ed20b470633ef7170feff3cf94ca79e99d0d3a408a5e3da9ed8c612.md](../reports/investigation/documentation-refresh-20261014/originals/6bc83d791ed20b470633ef7170feff3cf94ca79e99d0d3a408a5e3da9ed8c612.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/6dff14158be5c1d9f2cc2288fb22f733d895fbe575b80fd6513c77f369583b2e.md](../reports/investigation/documentation-refresh-20261014/originals/6dff14158be5c1d9f2cc2288fb22f733d895fbe575b80fd6513c77f369583b2e.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/6e12f1334a0629f8ff246119574b27b3e56f460fc48ce956616e24b42d391ae2.md](../reports/investigation/documentation-refresh-20261014/originals/6e12f1334a0629f8ff246119574b27b3e56f460fc48ce956616e24b42d391ae2.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/6e196f42a805f56dd81cfea4c5b2ed35ecc3620fc58c4caecf9bd441f2723acc.md](../reports/investigation/documentation-refresh-20261014/originals/6e196f42a805f56dd81cfea4c5b2ed35ecc3620fc58c4caecf9bd441f2723acc.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/6ff4d93573dd92909e2052443f627e19ad442ac097ccd0cf3844b6b7652fe620.md](../reports/investigation/documentation-refresh-20261014/originals/6ff4d93573dd92909e2052443f627e19ad442ac097ccd0cf3844b6b7652fe620.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/70897dcfb235115dd360b239416746f6d0457890c606d5e6f2ecce381b59f90f.md](../reports/investigation/documentation-refresh-20261014/originals/70897dcfb235115dd360b239416746f6d0457890c606d5e6f2ecce381b59f90f.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/7101e2a287c4eab747708bc89b2edb88d987a34577360bb2d6f89ed356ef89fd.md](../reports/investigation/documentation-refresh-20261014/originals/7101e2a287c4eab747708bc89b2edb88d987a34577360bb2d6f89ed356ef89fd.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/7111d1ba3fe05774da89d989eb8e9356de19d10e9fc2205b94d8818b9ceb255b.md](../reports/investigation/documentation-refresh-20261014/originals/7111d1ba3fe05774da89d989eb8e9356de19d10e9fc2205b94d8818b9ceb255b.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/7285b79decd667767569f2e6c7b768a38336cfc1fc68f52c0e474ef7568cd5bf.md](../reports/investigation/documentation-refresh-20261014/originals/7285b79decd667767569f2e6c7b768a38336cfc1fc68f52c0e474ef7568cd5bf.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/7344b9043aed30348595aaf1bd27091633855a00519c19c6d1ce9232539dbce0.md](../reports/investigation/documentation-refresh-20261014/originals/7344b9043aed30348595aaf1bd27091633855a00519c19c6d1ce9232539dbce0.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/75b352ef2002c9c59c7ca8f5642b01c8acb65e4bb9b45c96845d5a027ede567a.md](../reports/investigation/documentation-refresh-20261014/originals/75b352ef2002c9c59c7ca8f5642b01c8acb65e4bb9b45c96845d5a027ede567a.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/7603f5bc95910d58465616d8939bb84f7d054769bd94abef3e28582b9bf4c612.md](../reports/investigation/documentation-refresh-20261014/originals/7603f5bc95910d58465616d8939bb84f7d054769bd94abef3e28582b9bf4c612.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/76d77be8062d6f357be25bbef521519dad1e194dec82f633dbe3927cfcffc24c.md](../reports/investigation/documentation-refresh-20261014/originals/76d77be8062d6f357be25bbef521519dad1e194dec82f633dbe3927cfcffc24c.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/777b57965e2fc359e2b7db8984155a53e3902f061e0ab1c69cda66985c1a780f.md](../reports/investigation/documentation-refresh-20261014/originals/777b57965e2fc359e2b7db8984155a53e3902f061e0ab1c69cda66985c1a780f.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/79912e2bd1f0609dae2750e10818c79d838f26c2ee5be97c953d47fe86c4a875.md](../reports/investigation/documentation-refresh-20261014/originals/79912e2bd1f0609dae2750e10818c79d838f26c2ee5be97c953d47fe86c4a875.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/7b0739438da9bfa8372b1ec36fc38f8f1dbee3b8af6c86ec32314e4588d6e189.md](../reports/investigation/documentation-refresh-20261014/originals/7b0739438da9bfa8372b1ec36fc38f8f1dbee3b8af6c86ec32314e4588d6e189.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/7b3f19888744109bb4f90e24ad53236d7cf5ac649319e45a4c912e240303118d.md](../reports/investigation/documentation-refresh-20261014/originals/7b3f19888744109bb4f90e24ad53236d7cf5ac649319e45a4c912e240303118d.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/7bafdd2a49d7e80ab853ae55acfb7081264af1d5a0fce138e3d9d72ce697f458.md](../reports/investigation/documentation-refresh-20261014/originals/7bafdd2a49d7e80ab853ae55acfb7081264af1d5a0fce138e3d9d72ce697f458.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/7cbf0741e70429dffab8a1746ae1dd72c54642ff0232e96bafc90cc51aa82de2.md](../reports/investigation/documentation-refresh-20261014/originals/7cbf0741e70429dffab8a1746ae1dd72c54642ff0232e96bafc90cc51aa82de2.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/7cce886aab2460876b0f6e5d26bf1a68bb0bc25cda1dce3a619ce3bb81c0eda9.md](../reports/investigation/documentation-refresh-20261014/originals/7cce886aab2460876b0f6e5d26bf1a68bb0bc25cda1dce3a619ce3bb81c0eda9.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/7d011577d74db9265c5aa2d2cad73f3dc97cbb62222ac0ee13715ec1db7b65e2.md](../reports/investigation/documentation-refresh-20261014/originals/7d011577d74db9265c5aa2d2cad73f3dc97cbb62222ac0ee13715ec1db7b65e2.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/7e41c1535026d474088b1486e0fb46e873e8e64d4c0af1baa4e886a89d8023ba.md](../reports/investigation/documentation-refresh-20261014/originals/7e41c1535026d474088b1486e0fb46e873e8e64d4c0af1baa4e886a89d8023ba.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/7e8902251a9c7cfbc3b639ae00b70101770433f7acbd0fa57ea0687ffd42da3b.md](../reports/investigation/documentation-refresh-20261014/originals/7e8902251a9c7cfbc3b639ae00b70101770433f7acbd0fa57ea0687ffd42da3b.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/7e8b30ee9703a42b88dd4efa4084b7f4e2a9afbd3a5d29c9253c816084092235.md](../reports/investigation/documentation-refresh-20261014/originals/7e8b30ee9703a42b88dd4efa4084b7f4e2a9afbd3a5d29c9253c816084092235.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/7f0273f912bf26112c5db62d54dc9c5edbdd95aea75f23eb02613bbda2e74f93.md](../reports/investigation/documentation-refresh-20261014/originals/7f0273f912bf26112c5db62d54dc9c5edbdd95aea75f23eb02613bbda2e74f93.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/7f11d921537386e2a20a1c510024ab29edaa917677dd216f1b73dc6354a84cfc.md](../reports/investigation/documentation-refresh-20261014/originals/7f11d921537386e2a20a1c510024ab29edaa917677dd216f1b73dc6354a84cfc.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/7fd6c570d2e06a42a60c737141d1edf8cb6e6ca4c21b7df2ace49c97dd0b7bab.md](../reports/investigation/documentation-refresh-20261014/originals/7fd6c570d2e06a42a60c737141d1edf8cb6e6ca4c21b7df2ace49c97dd0b7bab.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/80c77127bbfdb9cff3349c7f325ba19360492152c3be884f8f50cf86205fc713.md](../reports/investigation/documentation-refresh-20261014/originals/80c77127bbfdb9cff3349c7f325ba19360492152c3be884f8f50cf86205fc713.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/8143108126e90144af7ebb3cb028060a03bae881e47b8a7116c01064f2695178.md](../reports/investigation/documentation-refresh-20261014/originals/8143108126e90144af7ebb3cb028060a03bae881e47b8a7116c01064f2695178.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/81eed8e5c93d1fbfaccc01cb9eba73eff25b97deaf08223128e45e4f42480239.md](../reports/investigation/documentation-refresh-20261014/originals/81eed8e5c93d1fbfaccc01cb9eba73eff25b97deaf08223128e45e4f42480239.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/82d4b31e66528d49d78fc0835f5b2161fe557f6c1d8f431bd344d8f7742907b8.md](../reports/investigation/documentation-refresh-20261014/originals/82d4b31e66528d49d78fc0835f5b2161fe557f6c1d8f431bd344d8f7742907b8.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/83d9eb82acb0adc1a4deb661b672891661433907752eea85a410b0190c89da93.md](../reports/investigation/documentation-refresh-20261014/originals/83d9eb82acb0adc1a4deb661b672891661433907752eea85a410b0190c89da93.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/840f60ebdd2ce69fff5725f15bd2019f5b30d3d9f2f1a717374dac5fd68fdf26.md](../reports/investigation/documentation-refresh-20261014/originals/840f60ebdd2ce69fff5725f15bd2019f5b30d3d9f2f1a717374dac5fd68fdf26.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/8417cea1287f0e94fdbbdc57ffc7f44d6d1fc1a3d779338f5ab43778a0f305fc.md](../reports/investigation/documentation-refresh-20261014/originals/8417cea1287f0e94fdbbdc57ffc7f44d6d1fc1a3d779338f5ab43778a0f305fc.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/84f74eadb6ac71d0852f46136da2fbdc143dd4efc3604f00db05999c1510a39d.md](../reports/investigation/documentation-refresh-20261014/originals/84f74eadb6ac71d0852f46136da2fbdc143dd4efc3604f00db05999c1510a39d.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/85a9b087731fadffd8e6249a563b1097c6ba57cda1d7afb1c10962f8c4f6d56d.md](../reports/investigation/documentation-refresh-20261014/originals/85a9b087731fadffd8e6249a563b1097c6ba57cda1d7afb1c10962f8c4f6d56d.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/85ca627cf33622a5ceb9443c6751b073667b01dae7e65c73bd892a42491e46b7.md](../reports/investigation/documentation-refresh-20261014/originals/85ca627cf33622a5ceb9443c6751b073667b01dae7e65c73bd892a42491e46b7.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/877cbe412bcfb298dc7b143d749c34021cafd202c4a8938a1c2ccea1ac2ae089.md](../reports/investigation/documentation-refresh-20261014/originals/877cbe412bcfb298dc7b143d749c34021cafd202c4a8938a1c2ccea1ac2ae089.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/88b16526b261fef4fe187235462e3098324bf62add42f71a6ea776780a70dbc3.md](../reports/investigation/documentation-refresh-20261014/originals/88b16526b261fef4fe187235462e3098324bf62add42f71a6ea776780a70dbc3.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/8904a3a4e3c5887b965150b3c898172adc9faa80aa60032c233d5998e12dd30e.md](../reports/investigation/documentation-refresh-20261014/originals/8904a3a4e3c5887b965150b3c898172adc9faa80aa60032c233d5998e12dd30e.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/8b1234a4b2d63a7924156b012f6e4711ef7a29be1b448555f150b6598faad908.md](../reports/investigation/documentation-refresh-20261014/originals/8b1234a4b2d63a7924156b012f6e4711ef7a29be1b448555f150b6598faad908.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/8b28f2eb836e79a2c56bf713c72b782f5afe20605995685f1e55301ee0e20525.md](../reports/investigation/documentation-refresh-20261014/originals/8b28f2eb836e79a2c56bf713c72b782f5afe20605995685f1e55301ee0e20525.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/8c6ede62d533561180ad115885d96bae46c7f0cce30cd988d0f973b2f6a82ec8.md](../reports/investigation/documentation-refresh-20261014/originals/8c6ede62d533561180ad115885d96bae46c7f0cce30cd988d0f973b2f6a82ec8.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/8e36e3c8d7e968f7831727d7660f17a83893607a3789c0d71055dd94bbd4a2e2.md](../reports/investigation/documentation-refresh-20261014/originals/8e36e3c8d7e968f7831727d7660f17a83893607a3789c0d71055dd94bbd4a2e2.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/8ec60b1ee7a98408cd6bd9c15b14c085db2c4ec3230d86aff72fa268c3a3d8ca.md](../reports/investigation/documentation-refresh-20261014/originals/8ec60b1ee7a98408cd6bd9c15b14c085db2c4ec3230d86aff72fa268c3a3d8ca.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/8f145925afda302ec97203e1cb630d25b32d3470dc2da57851b8e695694ee068.md](../reports/investigation/documentation-refresh-20261014/originals/8f145925afda302ec97203e1cb630d25b32d3470dc2da57851b8e695694ee068.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/90134467f0365adc293eab12ad7d7c52176d0d98874f0a5635bf9addd4929d8f.md](../reports/investigation/documentation-refresh-20261014/originals/90134467f0365adc293eab12ad7d7c52176d0d98874f0a5635bf9addd4929d8f.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/9161485a68dd63153d6a831dd0a1992ddacb6a057c47b2e06404eca201e50412.md](../reports/investigation/documentation-refresh-20261014/originals/9161485a68dd63153d6a831dd0a1992ddacb6a057c47b2e06404eca201e50412.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/916b410d6b0c834def3b6f8d46db9a4cb608675b952b5a41e4ab9a8bc5fb4155.md](../reports/investigation/documentation-refresh-20261014/originals/916b410d6b0c834def3b6f8d46db9a4cb608675b952b5a41e4ab9a8bc5fb4155.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/92471a05c016fa3e9ac298b220714c885321f4830ded8a0ad75efe0d9ba7449d.md](../reports/investigation/documentation-refresh-20261014/originals/92471a05c016fa3e9ac298b220714c885321f4830ded8a0ad75efe0d9ba7449d.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/92ab718575bfc38c618fcce722a0e8e96994dbb53f17c657ad49872ff0ebd440.md](../reports/investigation/documentation-refresh-20261014/originals/92ab718575bfc38c618fcce722a0e8e96994dbb53f17c657ad49872ff0ebd440.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/92c533c1f7e8728a89f0ca699d705791eb7cb5d9be8eb118b49fd82fa36fe062.md](../reports/investigation/documentation-refresh-20261014/originals/92c533c1f7e8728a89f0ca699d705791eb7cb5d9be8eb118b49fd82fa36fe062.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/9392fbc1752afec1ef4d574e867d98bc9005da9362c09df7d75dfac9a37b1990.md](../reports/investigation/documentation-refresh-20261014/originals/9392fbc1752afec1ef4d574e867d98bc9005da9362c09df7d75dfac9a37b1990.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/9467ed7c589baf779d17a57829ec4f6d4732929be9b547cc51e097604fab9d3e.md](../reports/investigation/documentation-refresh-20261014/originals/9467ed7c589baf779d17a57829ec4f6d4732929be9b547cc51e097604fab9d3e.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/958e76d5d5bad69acde0474872f59e320f807e5198bde81754af61f2adff796d.md](../reports/investigation/documentation-refresh-20261014/originals/958e76d5d5bad69acde0474872f59e320f807e5198bde81754af61f2adff796d.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/95a7225f5f4a8c85de74af0ef1e2b0f3dd8dbb1a0b7a4876ef0f021a5568b787.md](../reports/investigation/documentation-refresh-20261014/originals/95a7225f5f4a8c85de74af0ef1e2b0f3dd8dbb1a0b7a4876ef0f021a5568b787.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/960f96bfaa2fcacf79917cf6b59513178246f9ea09c212368f5d76a2990a685b.md](../reports/investigation/documentation-refresh-20261014/originals/960f96bfaa2fcacf79917cf6b59513178246f9ea09c212368f5d76a2990a685b.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/96990037146e5976ed6789ee315292953b1fa0ddf593116e7bf762da79ea9c7f.md](../reports/investigation/documentation-refresh-20261014/originals/96990037146e5976ed6789ee315292953b1fa0ddf593116e7bf762da79ea9c7f.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/96c7560d627d8d13813e63e2ea217abec77c55c766da42bb6f0c690fc8b0c2a1.md](../reports/investigation/documentation-refresh-20261014/originals/96c7560d627d8d13813e63e2ea217abec77c55c766da42bb6f0c690fc8b0c2a1.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/971f89ced4fbf44ba2979c5d85f4a1587cca998a30596cc590a28f249d54195b.md](../reports/investigation/documentation-refresh-20261014/originals/971f89ced4fbf44ba2979c5d85f4a1587cca998a30596cc590a28f249d54195b.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/98c9ad88e8bdbd13fff444c46c4663be50c9f3a2e528bbd29374b8f3a0a0d3c9.md](../reports/investigation/documentation-refresh-20261014/originals/98c9ad88e8bdbd13fff444c46c4663be50c9f3a2e528bbd29374b8f3a0a0d3c9.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/9973c5dacbb366927426b45c3c5ae6f1090e1d7a2094c3d1cf200806cd0e5722.md](../reports/investigation/documentation-refresh-20261014/originals/9973c5dacbb366927426b45c3c5ae6f1090e1d7a2094c3d1cf200806cd0e5722.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/99cba8fe0df5f3d178b0f57c4547ea4af68602a131c7fd929ae2b43d228deab1.md](../reports/investigation/documentation-refresh-20261014/originals/99cba8fe0df5f3d178b0f57c4547ea4af68602a131c7fd929ae2b43d228deab1.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/99df4b402d972319ded47e06bd8980b2973aae828a1fb14235f3204bc61c8a19.md](../reports/investigation/documentation-refresh-20261014/originals/99df4b402d972319ded47e06bd8980b2973aae828a1fb14235f3204bc61c8a19.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/9c09ddca6bbeb7fd1b1a5ad6750b1b1bb2e84ac65849bfa57c0b70eacce5789b.md](../reports/investigation/documentation-refresh-20261014/originals/9c09ddca6bbeb7fd1b1a5ad6750b1b1bb2e84ac65849bfa57c0b70eacce5789b.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/9c95cfdf1b3a41266333906cdf14f1fe9a287b0c350c42d44f93d354b0474bf8.md](../reports/investigation/documentation-refresh-20261014/originals/9c95cfdf1b3a41266333906cdf14f1fe9a287b0c350c42d44f93d354b0474bf8.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/9e512a24ec3f0b80baee638ba712a134a5d2c45343e841730a2c5f166e75ff20.md](../reports/investigation/documentation-refresh-20261014/originals/9e512a24ec3f0b80baee638ba712a134a5d2c45343e841730a2c5f166e75ff20.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/9e95213dab6f695da4182ff307aa77132d342cd77b5bc7bf7ccc96292c7d0887.md](../reports/investigation/documentation-refresh-20261014/originals/9e95213dab6f695da4182ff307aa77132d342cd77b5bc7bf7ccc96292c7d0887.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/a0804ba9991731e83686a9a23b05d343a167bfe97e44a165715258d0882729a2.md](../reports/investigation/documentation-refresh-20261014/originals/a0804ba9991731e83686a9a23b05d343a167bfe97e44a165715258d0882729a2.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/a1161869b569fac68e664cabb8514e8421e729fc836d23fcfb576379f0a6e240.md](../reports/investigation/documentation-refresh-20261014/originals/a1161869b569fac68e664cabb8514e8421e729fc836d23fcfb576379f0a6e240.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/a126617be00d89d60272b9eccb496967fa8157c7bd3704a3a2ff6e0e9ab2ed36.md](../reports/investigation/documentation-refresh-20261014/originals/a126617be00d89d60272b9eccb496967fa8157c7bd3704a3a2ff6e0e9ab2ed36.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/a17b97e055a7243c02dc4a88b5b44a225a836d196b86a56fe3ad7c5003c036f1.md](../reports/investigation/documentation-refresh-20261014/originals/a17b97e055a7243c02dc4a88b5b44a225a836d196b86a56fe3ad7c5003c036f1.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/a1e2c0536274f9c1248f50052a3d30c736733d0fcfdd3c8c061df426ae106921.md](../reports/investigation/documentation-refresh-20261014/originals/a1e2c0536274f9c1248f50052a3d30c736733d0fcfdd3c8c061df426ae106921.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/a2b1193dc70f04bc558a04bc3fc1e72169ee9b3ce4d167bdee89bef40f50024c.md](../reports/investigation/documentation-refresh-20261014/originals/a2b1193dc70f04bc558a04bc3fc1e72169ee9b3ce4d167bdee89bef40f50024c.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/a36db8fe4bb072e1c5b6822e5d9b8db1e906e42f44d6ee152e3ea85022b091f9.md](../reports/investigation/documentation-refresh-20261014/originals/a36db8fe4bb072e1c5b6822e5d9b8db1e906e42f44d6ee152e3ea85022b091f9.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/a4954bd2b925b894706e50cf1ca15a1b322b10ada3cffac4eae15ae97a6f2e67.md](../reports/investigation/documentation-refresh-20261014/originals/a4954bd2b925b894706e50cf1ca15a1b322b10ada3cffac4eae15ae97a6f2e67.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/a588e5c8ee08cab9b9ce567be7397dae41f239f7f8d772647ad5b23d0ccea723.md](../reports/investigation/documentation-refresh-20261014/originals/a588e5c8ee08cab9b9ce567be7397dae41f239f7f8d772647ad5b23d0ccea723.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/a72e18e0e20d78601bc4c3fb14c104a7070269777e56ee1c5eadeb1e6b83c0a0.md](../reports/investigation/documentation-refresh-20261014/originals/a72e18e0e20d78601bc4c3fb14c104a7070269777e56ee1c5eadeb1e6b83c0a0.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/a88b1651c4ef9a4c5f5b1585be20c2d9d4eb2565e2568ddedc8dcd9a8d9d147d.md](../reports/investigation/documentation-refresh-20261014/originals/a88b1651c4ef9a4c5f5b1585be20c2d9d4eb2565e2568ddedc8dcd9a8d9d147d.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/a930544b3595a3595f91351a03b259f1814022d798402e23fe1e0985dca0fd90.md](../reports/investigation/documentation-refresh-20261014/originals/a930544b3595a3595f91351a03b259f1814022d798402e23fe1e0985dca0fd90.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/a94155ffe5163ae03efe9a47d11c87346e10a350f123743473be8316b1f73370.md](../reports/investigation/documentation-refresh-20261014/originals/a94155ffe5163ae03efe9a47d11c87346e10a350f123743473be8316b1f73370.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/a9a8f62a9c29312bdddfd7e6c5fdf6c7b6042bb8f1efff70e83ccfe160bacdb7.md](../reports/investigation/documentation-refresh-20261014/originals/a9a8f62a9c29312bdddfd7e6c5fdf6c7b6042bb8f1efff70e83ccfe160bacdb7.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/a9ee516496eff4385dbcf7d72e9d888cb70c1772fddf1a3fe9d47c132d7c10bc.md](../reports/investigation/documentation-refresh-20261014/originals/a9ee516496eff4385dbcf7d72e9d888cb70c1772fddf1a3fe9d47c132d7c10bc.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/aa0d28984ecf532ae317bf346c5de4fae0e6ff7aa8a5a471954dee4ad82c2e13.md](../reports/investigation/documentation-refresh-20261014/originals/aa0d28984ecf532ae317bf346c5de4fae0e6ff7aa8a5a471954dee4ad82c2e13.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/aa50deece1993cffa308892b4035047ba4d19ed8bb5100f2d2f05d7e7c0cf272.md](../reports/investigation/documentation-refresh-20261014/originals/aa50deece1993cffa308892b4035047ba4d19ed8bb5100f2d2f05d7e7c0cf272.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/acc5335a399d8f7f638d22bf2e3f7757ac72c1200aa75a7e7bb88c484aab350e.md](../reports/investigation/documentation-refresh-20261014/originals/acc5335a399d8f7f638d22bf2e3f7757ac72c1200aa75a7e7bb88c484aab350e.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/adb4f43c23dca9aff0edb0881933aa4483ab36f67b7653244c9322bb415b37db.md](../reports/investigation/documentation-refresh-20261014/originals/adb4f43c23dca9aff0edb0881933aa4483ab36f67b7653244c9322bb415b37db.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/ae64451fd903dd505c4a26fccb745b64f6c0dd8744b645c988c505d55456aede.md](../reports/investigation/documentation-refresh-20261014/originals/ae64451fd903dd505c4a26fccb745b64f6c0dd8744b645c988c505d55456aede.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/aeb626317df1d8cd3b1565b0b4d72b5fecebe83d9b95c73da492cf52ecddaa49.md](../reports/investigation/documentation-refresh-20261014/originals/aeb626317df1d8cd3b1565b0b4d72b5fecebe83d9b95c73da492cf52ecddaa49.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/af1052be50ef10e52762740de15ba583f0914a329d8ea14f85a3a996f9ab2a5b.md](../reports/investigation/documentation-refresh-20261014/originals/af1052be50ef10e52762740de15ba583f0914a329d8ea14f85a3a996f9ab2a5b.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/b0858a5069d89aa672960054a58fe1e01999bb7c7ffe490fb0d37896eba53e9a.md](../reports/investigation/documentation-refresh-20261014/originals/b0858a5069d89aa672960054a58fe1e01999bb7c7ffe490fb0d37896eba53e9a.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/b0b9caeb053d3b9eb0b908979b2da713b79fb1b40fbfb24ff1888ab72e5aadd7.md](../reports/investigation/documentation-refresh-20261014/originals/b0b9caeb053d3b9eb0b908979b2da713b79fb1b40fbfb24ff1888ab72e5aadd7.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/b0c4861dfc9a124a6037ca9162190e680a801b9a471c50cb7559701dfc87c979.md](../reports/investigation/documentation-refresh-20261014/originals/b0c4861dfc9a124a6037ca9162190e680a801b9a471c50cb7559701dfc87c979.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/b3458a951160ebfad35ec86341704e488223fd41f202d94394da3d842665ab60.md](../reports/investigation/documentation-refresh-20261014/originals/b3458a951160ebfad35ec86341704e488223fd41f202d94394da3d842665ab60.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/b356c40772f14a39922a590d8e4fd6f01a325108b0c1ae870fca563a9e6488bf.md](../reports/investigation/documentation-refresh-20261014/originals/b356c40772f14a39922a590d8e4fd6f01a325108b0c1ae870fca563a9e6488bf.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/b3994318a0e13c4cb411c5650448aca8c394a68d026f5a3bbd3703927663d398.md](../reports/investigation/documentation-refresh-20261014/originals/b3994318a0e13c4cb411c5650448aca8c394a68d026f5a3bbd3703927663d398.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/b5a00601494f42284d4bfabb85b02dd7ea13f63856f9c4ed714a720e1c36d8c4.md](../reports/investigation/documentation-refresh-20261014/originals/b5a00601494f42284d4bfabb85b02dd7ea13f63856f9c4ed714a720e1c36d8c4.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/b5bb2554242b78267fca94db76cc9188a37563a459e4e5cf20da537245a13ff9.md](../reports/investigation/documentation-refresh-20261014/originals/b5bb2554242b78267fca94db76cc9188a37563a459e4e5cf20da537245a13ff9.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/b5f86233343f58b6c30eee8d6356cfa0227b97c1f77d62c00a3dbeb8b9b9f5b3.md](../reports/investigation/documentation-refresh-20261014/originals/b5f86233343f58b6c30eee8d6356cfa0227b97c1f77d62c00a3dbeb8b9b9f5b3.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/b6a483ca52b8bc670ae68a44c08d5a9d9912ce58c1f729918990a514467ce7a1.md](../reports/investigation/documentation-refresh-20261014/originals/b6a483ca52b8bc670ae68a44c08d5a9d9912ce58c1f729918990a514467ce7a1.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/b8d30f8120d8836a5e9e9845e80f2b8ed305bde129311b7104d1e68bf6b20083.md](../reports/investigation/documentation-refresh-20261014/originals/b8d30f8120d8836a5e9e9845e80f2b8ed305bde129311b7104d1e68bf6b20083.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/b912c3e5e84850d14617b4fbd00db7c25e7c2ffb86597d9b81d4145c654ef357.md](../reports/investigation/documentation-refresh-20261014/originals/b912c3e5e84850d14617b4fbd00db7c25e7c2ffb86597d9b81d4145c654ef357.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/b94393c41937445b2755b763a89430f90c0b6a94fa27f78de9bd20e1b21fe99d.md](../reports/investigation/documentation-refresh-20261014/originals/b94393c41937445b2755b763a89430f90c0b6a94fa27f78de9bd20e1b21fe99d.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/ba21d29b9f4249edac442ed17ae65e490c684b77d6ea11e63659f3e28b9d349c.md](../reports/investigation/documentation-refresh-20261014/originals/ba21d29b9f4249edac442ed17ae65e490c684b77d6ea11e63659f3e28b9d349c.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/bcf1cab9cfdd6b48ac16116a91c6948af9d7d144d9a6ec2cb90442f1d9eab994.md](../reports/investigation/documentation-refresh-20261014/originals/bcf1cab9cfdd6b48ac16116a91c6948af9d7d144d9a6ec2cb90442f1d9eab994.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/bdbe99c4e1170e22d50c15f350ac8808cc7b03070beff6fc9c3920054980d06a.md](../reports/investigation/documentation-refresh-20261014/originals/bdbe99c4e1170e22d50c15f350ac8808cc7b03070beff6fc9c3920054980d06a.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/c08c4626afeb1c735151eec69f7e76f23bfc0efafb1a42ff54811acc2c5cf1fd.md](../reports/investigation/documentation-refresh-20261014/originals/c08c4626afeb1c735151eec69f7e76f23bfc0efafb1a42ff54811acc2c5cf1fd.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/c092866b1ef9b231a30c1cd81585357b8df8fa0f2d2ddecdc53b3a8123dde3ef.md](../reports/investigation/documentation-refresh-20261014/originals/c092866b1ef9b231a30c1cd81585357b8df8fa0f2d2ddecdc53b3a8123dde3ef.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/c0abd83e83901ab57846f77192dd9caece7e5755d197868b4d476645f0984d73.md](../reports/investigation/documentation-refresh-20261014/originals/c0abd83e83901ab57846f77192dd9caece7e5755d197868b4d476645f0984d73.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/c2ed0d24b08f3587bfbd97c25f3bdcf42976db1d33357e015724c8bfcf126e32.md](../reports/investigation/documentation-refresh-20261014/originals/c2ed0d24b08f3587bfbd97c25f3bdcf42976db1d33357e015724c8bfcf126e32.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/c4251ba0c01cf84f041db3e9ced783fc6662ad06c97fa25b8cdce1176f6e2e99.md](../reports/investigation/documentation-refresh-20261014/originals/c4251ba0c01cf84f041db3e9ced783fc6662ad06c97fa25b8cdce1176f6e2e99.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/c47a3404c9bd9d2e90e60452d14e7ecc3c3a8ef4c6b336f835703b6a315928be.md](../reports/investigation/documentation-refresh-20261014/originals/c47a3404c9bd9d2e90e60452d14e7ecc3c3a8ef4c6b336f835703b6a315928be.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/c4ac03f6d4db730884a8bef3a75d9be8aee29ae7894ac1cb418ff06f3e6e1700.md](../reports/investigation/documentation-refresh-20261014/originals/c4ac03f6d4db730884a8bef3a75d9be8aee29ae7894ac1cb418ff06f3e6e1700.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/c4b6dca21d9af1b9e9f3e69f8d8f202ddb3782b82d5f4d4a452c2cc3af591da1.md](../reports/investigation/documentation-refresh-20261014/originals/c4b6dca21d9af1b9e9f3e69f8d8f202ddb3782b82d5f4d4a452c2cc3af591da1.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/c5bc55c48fa894736f6b216ddaece47cbccd189612081bc5b614d8d338a8e840.md](../reports/investigation/documentation-refresh-20261014/originals/c5bc55c48fa894736f6b216ddaece47cbccd189612081bc5b614d8d338a8e840.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/c6310aaca7d33d21e273b3313a152f2d6cb5b1cf03f8fcd9cff5191337478822.md](../reports/investigation/documentation-refresh-20261014/originals/c6310aaca7d33d21e273b3313a152f2d6cb5b1cf03f8fcd9cff5191337478822.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/c82f61696d6ad07706bbbaf564d536ecd63a547d514c91954ca5783b5f8949da.md](../reports/investigation/documentation-refresh-20261014/originals/c82f61696d6ad07706bbbaf564d536ecd63a547d514c91954ca5783b5f8949da.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/c93191ee8d8704b12b1c43c6dc8c8d0ffa1d641d8d6ccd7168fe81ff149a385e.md](../reports/investigation/documentation-refresh-20261014/originals/c93191ee8d8704b12b1c43c6dc8c8d0ffa1d641d8d6ccd7168fe81ff149a385e.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/c989c7dcf69ea71d75c3cce3f6bec9b700be876fe977cd0a413c43470492b6c2.md](../reports/investigation/documentation-refresh-20261014/originals/c989c7dcf69ea71d75c3cce3f6bec9b700be876fe977cd0a413c43470492b6c2.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/cad4b747c769207527c05d661fe155d362a3e330e03fecb84f1f8385d75549cb.md](../reports/investigation/documentation-refresh-20261014/originals/cad4b747c769207527c05d661fe155d362a3e330e03fecb84f1f8385d75549cb.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/cadfce6114130ec40d57ed7d180998808a2ae0df8ce3d45a9f84b07ba0c88fda.md](../reports/investigation/documentation-refresh-20261014/originals/cadfce6114130ec40d57ed7d180998808a2ae0df8ce3d45a9f84b07ba0c88fda.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/caeb0e585848987cb15e31cf4bc16a3b1fe81ac2161eaffc732ec509f14e4a23.md](../reports/investigation/documentation-refresh-20261014/originals/caeb0e585848987cb15e31cf4bc16a3b1fe81ac2161eaffc732ec509f14e4a23.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/cb12c0d26c876a24cdb5a5b3c944383cad0e4eaea75b8cf1dbde8f3fd6655c06.md](../reports/investigation/documentation-refresh-20261014/originals/cb12c0d26c876a24cdb5a5b3c944383cad0e4eaea75b8cf1dbde8f3fd6655c06.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/cc5c84dce8eaadaca4ebe8a70b28f8b80c7fec06724f714fad3f88326b0114c4.md](../reports/investigation/documentation-refresh-20261014/originals/cc5c84dce8eaadaca4ebe8a70b28f8b80c7fec06724f714fad3f88326b0114c4.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/cd0b197a139f24292be3a54c4239255e1a18cc9e1cddcb4b86656382eddce8e4.md](../reports/investigation/documentation-refresh-20261014/originals/cd0b197a139f24292be3a54c4239255e1a18cc9e1cddcb4b86656382eddce8e4.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/cdb688f06f30dc39da0236660af26657c3c7b786406de521c0414411813558b0.md](../reports/investigation/documentation-refresh-20261014/originals/cdb688f06f30dc39da0236660af26657c3c7b786406de521c0414411813558b0.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/d08825790c79fafa28711c03a438b763e9e6dd709ec893662dc964cf629fdbe8.md](../reports/investigation/documentation-refresh-20261014/originals/d08825790c79fafa28711c03a438b763e9e6dd709ec893662dc964cf629fdbe8.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/d088270a6a16b0e9bec93a3312cc1b0151e2245c8c7ace4c2ed5b5ee0528815b.md](../reports/investigation/documentation-refresh-20261014/originals/d088270a6a16b0e9bec93a3312cc1b0151e2245c8c7ace4c2ed5b5ee0528815b.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/d2dc7f38628522e5a4d27bee87cdc9114512ab8441846343fdfe385873ddb50c.md](../reports/investigation/documentation-refresh-20261014/originals/d2dc7f38628522e5a4d27bee87cdc9114512ab8441846343fdfe385873ddb50c.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/d35c69d0bdc38121881c6d1f9ba71cb434534395047e2d11e18caff522e4d4ca.md](../reports/investigation/documentation-refresh-20261014/originals/d35c69d0bdc38121881c6d1f9ba71cb434534395047e2d11e18caff522e4d4ca.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/d3ced97203df4fa65be69f769c49d618ef8f7fac9470b14a0e3dcba41e727222.md](../reports/investigation/documentation-refresh-20261014/originals/d3ced97203df4fa65be69f769c49d618ef8f7fac9470b14a0e3dcba41e727222.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/d40cc6e7a110b48ee650246bda81b9636fba0f4536e7fa2fe9999169d449a789.md](../reports/investigation/documentation-refresh-20261014/originals/d40cc6e7a110b48ee650246bda81b9636fba0f4536e7fa2fe9999169d449a789.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/d4eb9a7dd82a31fd36ce3419b1695894819b1b3904e0c0e2ed85058562b036a0.md](../reports/investigation/documentation-refresh-20261014/originals/d4eb9a7dd82a31fd36ce3419b1695894819b1b3904e0c0e2ed85058562b036a0.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/d502e01faf5cf9afde8d72b2fa159e54f821db2b36ec1c1816f47cae0d3241d0.md](../reports/investigation/documentation-refresh-20261014/originals/d502e01faf5cf9afde8d72b2fa159e54f821db2b36ec1c1816f47cae0d3241d0.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/d6d50b2b2300a089b78d1bb3bc34bd6da76013a1ca811398ba7ccafeda6c10af.md](../reports/investigation/documentation-refresh-20261014/originals/d6d50b2b2300a089b78d1bb3bc34bd6da76013a1ca811398ba7ccafeda6c10af.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/d6f2132158e926e1633035f06ae7fe8b61ca3631fd8fcf73344fd1129a3a4c66.md](../reports/investigation/documentation-refresh-20261014/originals/d6f2132158e926e1633035f06ae7fe8b61ca3631fd8fcf73344fd1129a3a4c66.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/d71c69a72f5a95be644ba4b62c8f09d4af2acc7c6e50e7c4217216e5bd914c33.md](../reports/investigation/documentation-refresh-20261014/originals/d71c69a72f5a95be644ba4b62c8f09d4af2acc7c6e50e7c4217216e5bd914c33.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/d7e676964c3adefb353630c3a94e80c92603f2c0c66e0c48b0fb48987279d4a0.md](../reports/investigation/documentation-refresh-20261014/originals/d7e676964c3adefb353630c3a94e80c92603f2c0c66e0c48b0fb48987279d4a0.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/d8324a362770ee8513ec7abeff5b00463fa6eea4a80a9f901d65d91f04775700.md](../reports/investigation/documentation-refresh-20261014/originals/d8324a362770ee8513ec7abeff5b00463fa6eea4a80a9f901d65d91f04775700.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/db6fc7dbb8f1831aee7d885c2018e2f74e25fcb91940105cab0a71b863eb460f.md](../reports/investigation/documentation-refresh-20261014/originals/db6fc7dbb8f1831aee7d885c2018e2f74e25fcb91940105cab0a71b863eb460f.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/dba2c8d3195924b0cf0a3ac98acb14595f4c2d655aae5c64e8cfcb8043d306d7.md](../reports/investigation/documentation-refresh-20261014/originals/dba2c8d3195924b0cf0a3ac98acb14595f4c2d655aae5c64e8cfcb8043d306d7.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/dc1a1b45a1e2a67869f523c8455d0af506112403e3a201b1f60c4c59ba01bc8e.md](../reports/investigation/documentation-refresh-20261014/originals/dc1a1b45a1e2a67869f523c8455d0af506112403e3a201b1f60c4c59ba01bc8e.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/dcc775269159f45cc9694cc69ca3dc9971d1ed005b6d5e8cecdfd93e43b33980.md](../reports/investigation/documentation-refresh-20261014/originals/dcc775269159f45cc9694cc69ca3dc9971d1ed005b6d5e8cecdfd93e43b33980.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/dcebd377780d4955a0e5ea61ecfdd88dac6f6d4b0b06d2e2da5bbda476ef19f0.md](../reports/investigation/documentation-refresh-20261014/originals/dcebd377780d4955a0e5ea61ecfdd88dac6f6d4b0b06d2e2da5bbda476ef19f0.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/dee154a1751a367c014cc3f01d75fcc44701a750c1ca31fa14e9699b41ddd00c.md](../reports/investigation/documentation-refresh-20261014/originals/dee154a1751a367c014cc3f01d75fcc44701a750c1ca31fa14e9699b41ddd00c.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/df0096290090b14944bc090e935a524b159267be4b6f2c62328c7b69e29b4336.md](../reports/investigation/documentation-refresh-20261014/originals/df0096290090b14944bc090e935a524b159267be4b6f2c62328c7b69e29b4336.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/e0a48f76f356592d7b3fe738215958a8235e9e0fe7ce11e38b36d2e23e2de5eb.md](../reports/investigation/documentation-refresh-20261014/originals/e0a48f76f356592d7b3fe738215958a8235e9e0fe7ce11e38b36d2e23e2de5eb.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/e16e9a6d306f413cf06e245e47873d606c437435291c2a32f2fe99459a2b4186.md](../reports/investigation/documentation-refresh-20261014/originals/e16e9a6d306f413cf06e245e47873d606c437435291c2a32f2fe99459a2b4186.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/e20fa715e26d71f9def449bf39ad36acbcfe7408c2a56098f52093fea859be77.md](../reports/investigation/documentation-refresh-20261014/originals/e20fa715e26d71f9def449bf39ad36acbcfe7408c2a56098f52093fea859be77.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/e30a83a8f24dd0f52e9614be873768df3f9fc9bc789101fa93a5d429819aff41.md](../reports/investigation/documentation-refresh-20261014/originals/e30a83a8f24dd0f52e9614be873768df3f9fc9bc789101fa93a5d429819aff41.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/e47f1e7df18bd820800cee542704a0a2a20c91e719606317499a9bd3ec037e13.md](../reports/investigation/documentation-refresh-20261014/originals/e47f1e7df18bd820800cee542704a0a2a20c91e719606317499a9bd3ec037e13.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/e80ede62331c6019bb8d52bb7f3fef754f5d9434d9a882ce42c6bd3b0c2408b5.md](../reports/investigation/documentation-refresh-20261014/originals/e80ede62331c6019bb8d52bb7f3fef754f5d9434d9a882ce42c6bd3b0c2408b5.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/e8582d44ec663d1fd585739432dd52470e999f7bba93348cb2c52097185b4ac9.md](../reports/investigation/documentation-refresh-20261014/originals/e8582d44ec663d1fd585739432dd52470e999f7bba93348cb2c52097185b4ac9.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/e8637f6756e3ac4a0101ef3744dedceec747cb61b37f2acaacf3ae37f63341ec.md](../reports/investigation/documentation-refresh-20261014/originals/e8637f6756e3ac4a0101ef3744dedceec747cb61b37f2acaacf3ae37f63341ec.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/ea1829c6c48f948c7b981f767105163e67569df81098d1d5e07746c734f1f1c0.md](../reports/investigation/documentation-refresh-20261014/originals/ea1829c6c48f948c7b981f767105163e67569df81098d1d5e07746c734f1f1c0.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/ec37cc6e5b9590b2a884cacd679a2e845def0a8f5008760dda13faead5e91f37.md](../reports/investigation/documentation-refresh-20261014/originals/ec37cc6e5b9590b2a884cacd679a2e845def0a8f5008760dda13faead5e91f37.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/ed73576b765093c1ee6dfa92e23de4e0d368eaa443c94c9eb6111157c93e02fe.md](../reports/investigation/documentation-refresh-20261014/originals/ed73576b765093c1ee6dfa92e23de4e0d368eaa443c94c9eb6111157c93e02fe.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/ed7dbb3c2bdaed7f2f0835fb51dd509bd0b82ea7f043c15f6260ed01cdd1b412.md](../reports/investigation/documentation-refresh-20261014/originals/ed7dbb3c2bdaed7f2f0835fb51dd509bd0b82ea7f043c15f6260ed01cdd1b412.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/ed811dd3ff47975ce46fc5965f85a18783b476f4967dd2d16f5fa5b5a9104c89.md](../reports/investigation/documentation-refresh-20261014/originals/ed811dd3ff47975ce46fc5965f85a18783b476f4967dd2d16f5fa5b5a9104c89.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/edc1038414eb1e1237cdb4230647fe1d1774f071f0dff4c725df81ead0b6a25b.md](../reports/investigation/documentation-refresh-20261014/originals/edc1038414eb1e1237cdb4230647fe1d1774f071f0dff4c725df81ead0b6a25b.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/f0effa4e398c974a3f95aa3469b98b32f7eb24bb948cde4cc52d4ae9d346f149.md](../reports/investigation/documentation-refresh-20261014/originals/f0effa4e398c974a3f95aa3469b98b32f7eb24bb948cde4cc52d4ae9d346f149.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/f2f7680eca9fba881a51f0ec94711f2c5206271549ce3c55ef8961de31109a85.md](../reports/investigation/documentation-refresh-20261014/originals/f2f7680eca9fba881a51f0ec94711f2c5206271549ce3c55ef8961de31109a85.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/f556fc4592331a7c0b8cb281a9f27905a045d8ba99f9a59c3742a083cd5d31d6.md](../reports/investigation/documentation-refresh-20261014/originals/f556fc4592331a7c0b8cb281a9f27905a045d8ba99f9a59c3742a083cd5d31d6.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/f5e1f87082c019b1489a504456ac2117e089071960c4d1a08e228f2a6a4becfd.md](../reports/investigation/documentation-refresh-20261014/originals/f5e1f87082c019b1489a504456ac2117e089071960c4d1a08e228f2a6a4becfd.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/f7a90843985c08673c9b2b6a0027a4ae94ef5adb4d92aea829cc54faa18d7d18.md](../reports/investigation/documentation-refresh-20261014/originals/f7a90843985c08673c9b2b6a0027a4ae94ef5adb4d92aea829cc54faa18d7d18.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/f8103b3e779da0c45da951ccc36dca576cf9f7358867698475d1f1022f08d201.md](../reports/investigation/documentation-refresh-20261014/originals/f8103b3e779da0c45da951ccc36dca576cf9f7358867698475d1f1022f08d201.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/f915c97994cf7e1c47774a155c25314b86621344e72f2f121e8c72a476f142eb.md](../reports/investigation/documentation-refresh-20261014/originals/f915c97994cf7e1c47774a155c25314b86621344e72f2f121e8c72a476f142eb.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/fbd39c76d979a19b68572fb6901ab66e0e585562151f6e11e64ab00b5114d171.md](../reports/investigation/documentation-refresh-20261014/originals/fbd39c76d979a19b68572fb6901ab66e0e585562151f6e11e64ab00b5114d171.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/fc256049e97d365828b9e613370eacbb0c77cdf295cd3e126eab7a6bdd2f0aca.md](../reports/investigation/documentation-refresh-20261014/originals/fc256049e97d365828b9e613370eacbb0c77cdf295cd3e126eab7a6bdd2f0aca.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/fd4d9a91530fdfd0aa1e959e5dc494159c73108d5b4dd0a7de68c3f7445526c1.md](../reports/investigation/documentation-refresh-20261014/originals/fd4d9a91530fdfd0aa1e959e5dc494159c73108d5b4dd0a7de68c3f7445526c1.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/fdb8ad2019531e9f89ec0f69c11b23a41d8da12e64b50f9fb4cd0a7c72b84bfa.md](../reports/investigation/documentation-refresh-20261014/originals/fdb8ad2019531e9f89ec0f69c11b23a41d8da12e64b50f9fb4cd0a7c72b84bfa.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/ff5c2f920683235d4e061b566ed8f9538bc3c4ddf45fb60b4efb8515d909ef00.md](../reports/investigation/documentation-refresh-20261014/originals/ff5c2f920683235d4e061b566ed8f9538bc3c4ddf45fb60b4efb8515d909ef00.md) | 原文保全 |
+| [reports/investigation/documentation-refresh-20261014/originals/ff751de0f081677fc240466daafc61b982a729297c37940c8e502f88184d48a0.md](../reports/investigation/documentation-refresh-20261014/originals/ff751de0f081677fc240466daafc61b982a729297c37940c8e502f88184d48a0.md) | 原文保全 |
+| [reports/phase6/base-document-balance-preparation-20261014/previous_docs/AGENTS.md](../reports/phase6/base-document-balance-preparation-20261014/previous_docs/AGENTS.md) | 原文保全 |
+| [reports/phase6/base-document-balance-preparation-20261014/previous_docs/docs_124_base_recovery_plan.md](../reports/phase6/base-document-balance-preparation-20261014/previous_docs/docs_124_base_recovery_plan.md) | 原文保全 |
+| [reports/phase6/base-document-balance-preparation-20261014/previous_docs/docs_15_project_roadmap.md](../reports/phase6/base-document-balance-preparation-20261014/previous_docs/docs_15_project_roadmap.md) | 原文保全 |
+| [reports/phase6/base-document-balance-preparation-20261014/previous_docs/docs_autonomous_status.md](../reports/phase6/base-document-balance-preparation-20261014/previous_docs/docs_autonomous_status.md) | 原文保全 |
+| [reports/phase6/base-document-balance-preparation-20261014/previous_docs/docs_windows_handoff.md](../reports/phase6/base-document-balance-preparation-20261014/previous_docs/docs_windows_handoff.md) | 原文保全 |
+
+## 今回追加した内容hash別の原文copy
+
+baselineのsnapshot列は各元パスを以下のcopyへ対応付ける。これらは研究文書を増やした件数ではなく、更新前bytesの保全。
+
+| 内容hash別copy |
+|---|
+| [0051f600c0c355ee1207a0288abde64d46c87ba6abdb05a81853ceda777822da.md](../reports/investigation/documentation-followup-20261014/originals/0051f600c0c355ee1207a0288abde64d46c87ba6abdb05a81853ceda777822da.md) |
+| [007eb90c370b3a31f3fce6bd6ddd25c336a4b69ddea9b972c9b69873e8c221e1.md](../reports/investigation/documentation-followup-20261014/originals/007eb90c370b3a31f3fce6bd6ddd25c336a4b69ddea9b972c9b69873e8c221e1.md) |
+| [00a0790cf499a8667337584a9dfbdf036824ed99db3f888f224cc0220ed38908.md](../reports/investigation/documentation-followup-20261014/originals/00a0790cf499a8667337584a9dfbdf036824ed99db3f888f224cc0220ed38908.md) |
+| [00b2cae3892ef784a3a9996ee02ca6102fdc1a9978b283230dde6baffec43522.md](../reports/investigation/documentation-followup-20261014/originals/00b2cae3892ef784a3a9996ee02ca6102fdc1a9978b283230dde6baffec43522.md) |
+| [00ebd02b55392187238ffa78e7a8b9b9000fb065e24475f4347ed93317b1b000.md](../reports/investigation/documentation-followup-20261014/originals/00ebd02b55392187238ffa78e7a8b9b9000fb065e24475f4347ed93317b1b000.md) |
+| [011c4e019a02306fa8d3e889bfc3ee45c3e26d5fd55c3e69c7e648c67e39edc6.md](../reports/investigation/documentation-followup-20261014/originals/011c4e019a02306fa8d3e889bfc3ee45c3e26d5fd55c3e69c7e648c67e39edc6.md) |
+| [01ea1b64e0b589a1990d39e28d24901b88874335d9ad6672487db2aad0b04be9.md](../reports/investigation/documentation-followup-20261014/originals/01ea1b64e0b589a1990d39e28d24901b88874335d9ad6672487db2aad0b04be9.md) |
+| [01ec774d3e5cd32eb427ebbe11417cfa8a5a1d915680f939abc5a3bad3eff943.md](../reports/investigation/documentation-followup-20261014/originals/01ec774d3e5cd32eb427ebbe11417cfa8a5a1d915680f939abc5a3bad3eff943.md) |
+| [0200cc482df66d1a7a053118e483013528c12987ee174f35ce80aa369d9bae4c.md](../reports/investigation/documentation-followup-20261014/originals/0200cc482df66d1a7a053118e483013528c12987ee174f35ce80aa369d9bae4c.md) |
+| [02bf26f334425da323b6376ac96ac82e0ba6b108972179a356516ea2f05619dc.md](../reports/investigation/documentation-followup-20261014/originals/02bf26f334425da323b6376ac96ac82e0ba6b108972179a356516ea2f05619dc.md) |
+| [02e70af183168cebd1d17d132f12cde21b611f2de5db0df314838eb21ed72ccc.md](../reports/investigation/documentation-followup-20261014/originals/02e70af183168cebd1d17d132f12cde21b611f2de5db0df314838eb21ed72ccc.md) |
+| [03424781e0ae0be94bdcadba11f68d2c3af03864ed496b859af4bd3f906da4a3.md](../reports/investigation/documentation-followup-20261014/originals/03424781e0ae0be94bdcadba11f68d2c3af03864ed496b859af4bd3f906da4a3.md) |
+| [052329db584d2b6abb37d9760c7e5f23649eea4ce309038f19b1b821438edb8e.md](../reports/investigation/documentation-followup-20261014/originals/052329db584d2b6abb37d9760c7e5f23649eea4ce309038f19b1b821438edb8e.md) |
+| [05250a8e7ffb5b52dcaedbd2a655adb27821210b3e832f49059420603c4bba53.md](../reports/investigation/documentation-followup-20261014/originals/05250a8e7ffb5b52dcaedbd2a655adb27821210b3e832f49059420603c4bba53.md) |
+| [05b7d0522fece78a05b855b9ecc400cfd37234dfe5c0d654f192343ffb6ebd16.md](../reports/investigation/documentation-followup-20261014/originals/05b7d0522fece78a05b855b9ecc400cfd37234dfe5c0d654f192343ffb6ebd16.md) |
+| [06e781f95bc38b588f4e191ef8e7769954bfad9c9640cd02a2f2ba621f652f09.md](../reports/investigation/documentation-followup-20261014/originals/06e781f95bc38b588f4e191ef8e7769954bfad9c9640cd02a2f2ba621f652f09.md) |
+| [0724b44e38684320587b8dad09ec937a66ce51bd55c873119da78260ee85423f.md](../reports/investigation/documentation-followup-20261014/originals/0724b44e38684320587b8dad09ec937a66ce51bd55c873119da78260ee85423f.md) |
+| [0a43eb16173a871edbb44957a5d25583c9fce8e1db32277bd7795b2f84a6ef65.md](../reports/investigation/documentation-followup-20261014/originals/0a43eb16173a871edbb44957a5d25583c9fce8e1db32277bd7795b2f84a6ef65.md) |
+| [0f48bdfead034ee778e63b269719300b16be6520d004cd43b0687ab42a53bd3f.md](../reports/investigation/documentation-followup-20261014/originals/0f48bdfead034ee778e63b269719300b16be6520d004cd43b0687ab42a53bd3f.md) |
+| [0fe45cce3031bfd5f56a27ea33dac7b33422a2d3329b5fb4a9d8d60cc3368990.md](../reports/investigation/documentation-followup-20261014/originals/0fe45cce3031bfd5f56a27ea33dac7b33422a2d3329b5fb4a9d8d60cc3368990.md) |
+| [1097d7bbd99855f29be5762755e8f58a0bae81dfe34b3f6321155e20cc2a1610.md](../reports/investigation/documentation-followup-20261014/originals/1097d7bbd99855f29be5762755e8f58a0bae81dfe34b3f6321155e20cc2a1610.md) |
+| [11619329bcb0aed85a642ee87bfc60479353d4647c81fb2fe787c925b2bb2dbe.md](../reports/investigation/documentation-followup-20261014/originals/11619329bcb0aed85a642ee87bfc60479353d4647c81fb2fe787c925b2bb2dbe.md) |
+| [13823951f67839b65a2cd981b3ffd7dadf37f4947bd82e6451778e3beba41eba.md](../reports/investigation/documentation-followup-20261014/originals/13823951f67839b65a2cd981b3ffd7dadf37f4947bd82e6451778e3beba41eba.md) |
+| [14788c292f318fc29499761faeae5c99470b168ef670c057454886c829c6ff88.md](../reports/investigation/documentation-followup-20261014/originals/14788c292f318fc29499761faeae5c99470b168ef670c057454886c829c6ff88.md) |
+| [157876f3da0653450771125bcef13c5156bc1693eca4ad0cd391e713ab6f2f54.md](../reports/investigation/documentation-followup-20261014/originals/157876f3da0653450771125bcef13c5156bc1693eca4ad0cd391e713ab6f2f54.md) |
+| [1591f9a01543e5ac2076faa549e2093d1111cbbc1b0b527de30823ca1d9384ad.md](../reports/investigation/documentation-followup-20261014/originals/1591f9a01543e5ac2076faa549e2093d1111cbbc1b0b527de30823ca1d9384ad.md) |
+| [159cd4a8cccc766d5979633eabec62cd2890d211641f5fd8cf72156f399e66f7.md](../reports/investigation/documentation-followup-20261014/originals/159cd4a8cccc766d5979633eabec62cd2890d211641f5fd8cf72156f399e66f7.md) |
+| [1656910b6b951f19d5d07f467f6c7602f90dd7d753d90a9c0a7fe1cb40e93289.md](../reports/investigation/documentation-followup-20261014/originals/1656910b6b951f19d5d07f467f6c7602f90dd7d753d90a9c0a7fe1cb40e93289.md) |
+| [166b0b78fe9db603c8a3677ff6a3b21c7492ba80758e8ad912f915ff2a59c968.md](../reports/investigation/documentation-followup-20261014/originals/166b0b78fe9db603c8a3677ff6a3b21c7492ba80758e8ad912f915ff2a59c968.md) |
+| [16ba5bcdf9bee63802b1716641d34bbe9e094ab41816a859bfc6055ce2d281eb.md](../reports/investigation/documentation-followup-20261014/originals/16ba5bcdf9bee63802b1716641d34bbe9e094ab41816a859bfc6055ce2d281eb.md) |
+| [16d575dd134eb6170ef46004f4b04989ad8e3d947858d1ae4123d16c8a397d34.md](../reports/investigation/documentation-followup-20261014/originals/16d575dd134eb6170ef46004f4b04989ad8e3d947858d1ae4123d16c8a397d34.md) |
+| [17022ea6599e4723910f49ee26416cc017379d6d775b8d3efe5ef03803255a29.md](../reports/investigation/documentation-followup-20261014/originals/17022ea6599e4723910f49ee26416cc017379d6d775b8d3efe5ef03803255a29.md) |
+| [170a0ed307dbb6199ea90727d8ab13806f879066ef435fab74940e6898d29fcc.md](../reports/investigation/documentation-followup-20261014/originals/170a0ed307dbb6199ea90727d8ab13806f879066ef435fab74940e6898d29fcc.md) |
+| [1713c773cfe0bd0e00be757e5ab98f55a194cec289563a3a6b3aa16128be0178.md](../reports/investigation/documentation-followup-20261014/originals/1713c773cfe0bd0e00be757e5ab98f55a194cec289563a3a6b3aa16128be0178.md) |
+| [1726963980d652cafc39f1932dfff4a3a3ff2d489b21d646a3ed6203916a42b6.md](../reports/investigation/documentation-followup-20261014/originals/1726963980d652cafc39f1932dfff4a3a3ff2d489b21d646a3ed6203916a42b6.md) |
+| [173bb0dfb2efb17f11a13e426be3d2003d3db3501761ce3c57c16a3f8eca636f.md](../reports/investigation/documentation-followup-20261014/originals/173bb0dfb2efb17f11a13e426be3d2003d3db3501761ce3c57c16a3f8eca636f.md) |
+| [17444e1e2ef86daa3312c5fb8accac1f04a3a8d69c3aea665e5dffb8da0e951f.md](../reports/investigation/documentation-followup-20261014/originals/17444e1e2ef86daa3312c5fb8accac1f04a3a8d69c3aea665e5dffb8da0e951f.md) |
+| [17858c84558d50016490a367a1d1c35eb2007051b2260891f9e7e6cfdbc6eff2.md](../reports/investigation/documentation-followup-20261014/originals/17858c84558d50016490a367a1d1c35eb2007051b2260891f9e7e6cfdbc6eff2.md) |
+| [17d362982ac4f87efc0778564fcad6f14e94af29fd47c8ff9d75d2c693168ce4.md](../reports/investigation/documentation-followup-20261014/originals/17d362982ac4f87efc0778564fcad6f14e94af29fd47c8ff9d75d2c693168ce4.md) |
+| [18f6baec5958b77d9efb56171d6190bbeb2a1e643d9127a84bc919a5b0c59168.md](../reports/investigation/documentation-followup-20261014/originals/18f6baec5958b77d9efb56171d6190bbeb2a1e643d9127a84bc919a5b0c59168.md) |
+| [1b0c2edaa9ec892e079b840f53d561100afdb1c2fef8eb196129d243849db9c4.md](../reports/investigation/documentation-followup-20261014/originals/1b0c2edaa9ec892e079b840f53d561100afdb1c2fef8eb196129d243849db9c4.md) |
+| [1c5ece4893200268f547ac3d8edc86fb056ae52f2549ee0f372267fcb6eda4c7.md](../reports/investigation/documentation-followup-20261014/originals/1c5ece4893200268f547ac3d8edc86fb056ae52f2549ee0f372267fcb6eda4c7.md) |
+| [1d21766a211c9da4b80efea3c2dfe58a020d11ef0d5abe0aebeedea5e7398149.md](../reports/investigation/documentation-followup-20261014/originals/1d21766a211c9da4b80efea3c2dfe58a020d11ef0d5abe0aebeedea5e7398149.md) |
+| [1d369284630861af5dd69a736768012bb3d7e263a5a731ed7a67adcc7a3f3255.md](../reports/investigation/documentation-followup-20261014/originals/1d369284630861af5dd69a736768012bb3d7e263a5a731ed7a67adcc7a3f3255.md) |
+| [1d9bcd30318ac417c3a0afa9e2a98d005a10322d7c712811dbc736e5e473f47f.md](../reports/investigation/documentation-followup-20261014/originals/1d9bcd30318ac417c3a0afa9e2a98d005a10322d7c712811dbc736e5e473f47f.md) |
+| [1e08ebfefd383ff177030c8a29acdeb60e82dd02d0ca359b5953dae9660b0d64.md](../reports/investigation/documentation-followup-20261014/originals/1e08ebfefd383ff177030c8a29acdeb60e82dd02d0ca359b5953dae9660b0d64.md) |
+| [1f3913f0f4f09dea057453c62d2fd85751a5008e599bfdedea38ec12774f33c6.md](../reports/investigation/documentation-followup-20261014/originals/1f3913f0f4f09dea057453c62d2fd85751a5008e599bfdedea38ec12774f33c6.md) |
+| [1f5e0c6fdcabf59d1d3964d4e2f3d28142aa29846e42daaf6acdc6fabd6d20e0.md](../reports/investigation/documentation-followup-20261014/originals/1f5e0c6fdcabf59d1d3964d4e2f3d28142aa29846e42daaf6acdc6fabd6d20e0.md) |
+| [21ddb0857fb507ee1d6b72f5a1b45915f24851ab981e22de6aa3b36ab34fd0c4.md](../reports/investigation/documentation-followup-20261014/originals/21ddb0857fb507ee1d6b72f5a1b45915f24851ab981e22de6aa3b36ab34fd0c4.md) |
+| [228bb74443a270b451685e3f3f83a17b71c46d7c7a9e18de4c03e8e8ba7cd792.md](../reports/investigation/documentation-followup-20261014/originals/228bb74443a270b451685e3f3f83a17b71c46d7c7a9e18de4c03e8e8ba7cd792.md) |
+| [229a5997d3c0bbc720441d9c7830a5891cc9648e4b895586837c6ee981adf7e9.md](../reports/investigation/documentation-followup-20261014/originals/229a5997d3c0bbc720441d9c7830a5891cc9648e4b895586837c6ee981adf7e9.md) |
+| [22ad880d18f24dd1f39d4ba140b42dc956b8d9e488408fa173923cddb99c268b.md](../reports/investigation/documentation-followup-20261014/originals/22ad880d18f24dd1f39d4ba140b42dc956b8d9e488408fa173923cddb99c268b.md) |
+| [22f0a614db5554594e1edb576b9f59a29c4be06b70e54c6563cadcfc9ebfe8e0.md](../reports/investigation/documentation-followup-20261014/originals/22f0a614db5554594e1edb576b9f59a29c4be06b70e54c6563cadcfc9ebfe8e0.md) |
+| [23c19d0e8cb84dd323b54ac087643ea17f39baa8eb9abc027da2176b72779175.md](../reports/investigation/documentation-followup-20261014/originals/23c19d0e8cb84dd323b54ac087643ea17f39baa8eb9abc027da2176b72779175.md) |
+| [2483907c404ac0ba651753181415f6047ad5a7401ab3cb59fafa4cefb05693d8.md](../reports/investigation/documentation-followup-20261014/originals/2483907c404ac0ba651753181415f6047ad5a7401ab3cb59fafa4cefb05693d8.md) |
+| [2489f9887b19723bcd05b282ada7438c58680b514eab6824edb7ca2ce750fb9d.md](../reports/investigation/documentation-followup-20261014/originals/2489f9887b19723bcd05b282ada7438c58680b514eab6824edb7ca2ce750fb9d.md) |
+| [26baa8acd6a469af8f807481b468484f51e2c4c412996978f23ff02169989a33.md](../reports/investigation/documentation-followup-20261014/originals/26baa8acd6a469af8f807481b468484f51e2c4c412996978f23ff02169989a33.md) |
+| [28f5fdbf3a867d204b6aadf987db51f6e3429cd68dc66a680694a7c938487446.md](../reports/investigation/documentation-followup-20261014/originals/28f5fdbf3a867d204b6aadf987db51f6e3429cd68dc66a680694a7c938487446.md) |
+| [29423341bd2f34c9178fa66808aa311575df116c5601f7e4a2feaf74196baefb.md](../reports/investigation/documentation-followup-20261014/originals/29423341bd2f34c9178fa66808aa311575df116c5601f7e4a2feaf74196baefb.md) |
+| [29cd3b76d070d6c1307278767be38bdfac0519cce7b9126c9c1e5c39e600008b.md](../reports/investigation/documentation-followup-20261014/originals/29cd3b76d070d6c1307278767be38bdfac0519cce7b9126c9c1e5c39e600008b.md) |
+| [2ba709380fb9aebee502e5c6e6c9fb21f83bf242288e1e11c0fe5cfc9e0fcfe2.md](../reports/investigation/documentation-followup-20261014/originals/2ba709380fb9aebee502e5c6e6c9fb21f83bf242288e1e11c0fe5cfc9e0fcfe2.md) |
+| [2c74663da52c87531ba3e84f75dc75b547dc937e7233609ee706f13b1cfd9208.md](../reports/investigation/documentation-followup-20261014/originals/2c74663da52c87531ba3e84f75dc75b547dc937e7233609ee706f13b1cfd9208.md) |
+| [2d9480bafc1df101b5b606ebf82ae3229fc4f522604d49651110f915af6fb253.md](../reports/investigation/documentation-followup-20261014/originals/2d9480bafc1df101b5b606ebf82ae3229fc4f522604d49651110f915af6fb253.md) |
+| [2e8a5b59dc4ce4a097a832d708bbea644930e915832fc22293ee676c51784186.md](../reports/investigation/documentation-followup-20261014/originals/2e8a5b59dc4ce4a097a832d708bbea644930e915832fc22293ee676c51784186.md) |
+| [2ee2837a88d0d3f44841fea4982d3fd6425193887868a7fb6743e484f8ecbfe8.md](../reports/investigation/documentation-followup-20261014/originals/2ee2837a88d0d3f44841fea4982d3fd6425193887868a7fb6743e484f8ecbfe8.md) |
+| [306e7ae5500d5d1e483c1e647996a9f645c09edc9f73adc7b44e435cb4c4f926.md](../reports/investigation/documentation-followup-20261014/originals/306e7ae5500d5d1e483c1e647996a9f645c09edc9f73adc7b44e435cb4c4f926.md) |
+| [311befae53ad8eca65b3deb1f110d15ee0277716923ad4b11f1823b9b86efb13.md](../reports/investigation/documentation-followup-20261014/originals/311befae53ad8eca65b3deb1f110d15ee0277716923ad4b11f1823b9b86efb13.md) |
+| [314cf8338c4b6a94b8e9eb4ffdf37ea790f23b7d7739d16500beea9d238f9eca.md](../reports/investigation/documentation-followup-20261014/originals/314cf8338c4b6a94b8e9eb4ffdf37ea790f23b7d7739d16500beea9d238f9eca.md) |
+| [31a3c62a767ec2a42f42c1f3a02aad3b30a17f5cda5f4aea7fa526ecdbbd09d5.md](../reports/investigation/documentation-followup-20261014/originals/31a3c62a767ec2a42f42c1f3a02aad3b30a17f5cda5f4aea7fa526ecdbbd09d5.md) |
+| [3382e62ff31050348de8a1cd5f1f09a643419aa8d8d70334e9d6fa80ff59b157.md](../reports/investigation/documentation-followup-20261014/originals/3382e62ff31050348de8a1cd5f1f09a643419aa8d8d70334e9d6fa80ff59b157.md) |
+| [33900e927f2c613b7f20c79a42169828679e5f5d1ba406ccf634e803ae1a8922.md](../reports/investigation/documentation-followup-20261014/originals/33900e927f2c613b7f20c79a42169828679e5f5d1ba406ccf634e803ae1a8922.md) |
+| [3631e09e46c7b75539eb139fe5e688a52b503ded58ba985501f958ddde5ef858.md](../reports/investigation/documentation-followup-20261014/originals/3631e09e46c7b75539eb139fe5e688a52b503ded58ba985501f958ddde5ef858.md) |
+| [36b65f7da07e72a451a0cda80017ba50612149426c8d3f683bf7a27467d4b855.md](../reports/investigation/documentation-followup-20261014/originals/36b65f7da07e72a451a0cda80017ba50612149426c8d3f683bf7a27467d4b855.md) |
+| [3a2567002d210961e6742c78255bb4cba4483cd58fe69e3fa11392ff212ec5f1.md](../reports/investigation/documentation-followup-20261014/originals/3a2567002d210961e6742c78255bb4cba4483cd58fe69e3fa11392ff212ec5f1.md) |
+| [3a42663a9f7e67a997ddf3ab9b1875b0f7eabcbe4bc09d2a0fca4cd759f71c04.md](../reports/investigation/documentation-followup-20261014/originals/3a42663a9f7e67a997ddf3ab9b1875b0f7eabcbe4bc09d2a0fca4cd759f71c04.md) |
+| [3a8b1438eb157aa1f17046dcf0de0d8c359081a73da5f6c831147e6c2a177a65.md](../reports/investigation/documentation-followup-20261014/originals/3a8b1438eb157aa1f17046dcf0de0d8c359081a73da5f6c831147e6c2a177a65.md) |
+| [3aa373c1621818d88723311b75aa6636b5adbd12815e25a751418990a7f02a67.md](../reports/investigation/documentation-followup-20261014/originals/3aa373c1621818d88723311b75aa6636b5adbd12815e25a751418990a7f02a67.md) |
+| [3b925bad4afac67df73149f5f75495f482b94771034c24a705ca054af1b424b4.md](../reports/investigation/documentation-followup-20261014/originals/3b925bad4afac67df73149f5f75495f482b94771034c24a705ca054af1b424b4.md) |
+| [3bba5ec98a47b6cdbb8a47cbdb56c8f0f18a75f7ff02943fb7c141dec545eb24.md](../reports/investigation/documentation-followup-20261014/originals/3bba5ec98a47b6cdbb8a47cbdb56c8f0f18a75f7ff02943fb7c141dec545eb24.md) |
+| [3c3bccc0e37533e9a656c45d5dee800ed78d62ab6f1c5322e228001260bbb0fc.md](../reports/investigation/documentation-followup-20261014/originals/3c3bccc0e37533e9a656c45d5dee800ed78d62ab6f1c5322e228001260bbb0fc.md) |
+| [3c6eb0457ed7fe136d687425de290b879de66baf4b823ca82d8cc462a03df80b.md](../reports/investigation/documentation-followup-20261014/originals/3c6eb0457ed7fe136d687425de290b879de66baf4b823ca82d8cc462a03df80b.md) |
+| [3d083c2fbe07bbd2ed5aef20a01043b8567a1f80f95240f45f89b1714255da8f.md](../reports/investigation/documentation-followup-20261014/originals/3d083c2fbe07bbd2ed5aef20a01043b8567a1f80f95240f45f89b1714255da8f.md) |
+| [3d0aae6d5e2cc6bf1e8a5fc5d47e03d4155e3bcf47afe90d8bc1420e6013b662.md](../reports/investigation/documentation-followup-20261014/originals/3d0aae6d5e2cc6bf1e8a5fc5d47e03d4155e3bcf47afe90d8bc1420e6013b662.md) |
+| [3dbdd45994c88597f20559e80dd67728bf2dd686b26e297504bbb34ca3db8273.md](../reports/investigation/documentation-followup-20261014/originals/3dbdd45994c88597f20559e80dd67728bf2dd686b26e297504bbb34ca3db8273.md) |
+| [3e4de1368eb3bf51c1640a2ca090be8c2470759ffe11315ab632cb74ab85a529.md](../reports/investigation/documentation-followup-20261014/originals/3e4de1368eb3bf51c1640a2ca090be8c2470759ffe11315ab632cb74ab85a529.md) |
+| [3f30c060d6901421d89d0f5df43ccd825ef33c2bd8af9a411658b8286ec489e5.md](../reports/investigation/documentation-followup-20261014/originals/3f30c060d6901421d89d0f5df43ccd825ef33c2bd8af9a411658b8286ec489e5.md) |
+| [3fc0b486fa45dbc51d32848677641c5268b5d3c8e9f4f4d72d8eb3650783873f.md](../reports/investigation/documentation-followup-20261014/originals/3fc0b486fa45dbc51d32848677641c5268b5d3c8e9f4f4d72d8eb3650783873f.md) |
+| [403b658611adec16f3b0ccde7237bb5c556f5030568295eb988f763e84afa34a.md](../reports/investigation/documentation-followup-20261014/originals/403b658611adec16f3b0ccde7237bb5c556f5030568295eb988f763e84afa34a.md) |
+| [40678729bf07611a04772486d0d5c0594a02a6311738d47659abaadd64c483ce.md](../reports/investigation/documentation-followup-20261014/originals/40678729bf07611a04772486d0d5c0594a02a6311738d47659abaadd64c483ce.md) |
+| [409090b17657814f64508c94cb14905382c497797bffe0033a92d26137a821af.md](../reports/investigation/documentation-followup-20261014/originals/409090b17657814f64508c94cb14905382c497797bffe0033a92d26137a821af.md) |
+| [4106175996701808b066f261256f92bc4f1720018e12065cae546f5159e14f84.md](../reports/investigation/documentation-followup-20261014/originals/4106175996701808b066f261256f92bc4f1720018e12065cae546f5159e14f84.md) |
+| [421ed66b8bbae39fb13aabe4c23f55888094231209c37ceb6abf50d7f5e28d60.md](../reports/investigation/documentation-followup-20261014/originals/421ed66b8bbae39fb13aabe4c23f55888094231209c37ceb6abf50d7f5e28d60.md) |
+| [4233a5bbc2335c284c76e8ca45b3a874a72a116d971eec82c1ab063cff1f47c9.md](../reports/investigation/documentation-followup-20261014/originals/4233a5bbc2335c284c76e8ca45b3a874a72a116d971eec82c1ab063cff1f47c9.md) |
+| [431a91d9fb03970811bd1315d40fc81d8e3334fe745711337ba25555215c5da8.md](../reports/investigation/documentation-followup-20261014/originals/431a91d9fb03970811bd1315d40fc81d8e3334fe745711337ba25555215c5da8.md) |
+| [43c70802e30d35ca5abffaf5040f6e64f79d134cd2d4bcce6be476b3b505adf5.md](../reports/investigation/documentation-followup-20261014/originals/43c70802e30d35ca5abffaf5040f6e64f79d134cd2d4bcce6be476b3b505adf5.md) |
+| [4400e108bed12c0adabdd51b71b549cf53b31b16cfbc76cfeed850d5a54eb223.md](../reports/investigation/documentation-followup-20261014/originals/4400e108bed12c0adabdd51b71b549cf53b31b16cfbc76cfeed850d5a54eb223.md) |
+| [44d372683766d3e0813f8efc6cbb4d7cdf4f4c6c06b2449195afce41597b93a1.md](../reports/investigation/documentation-followup-20261014/originals/44d372683766d3e0813f8efc6cbb4d7cdf4f4c6c06b2449195afce41597b93a1.md) |
+| [45bcffaf7be9ebfd81526d77bc3bbcbff631dfaad5a5b1e83b32c85919ce0061.md](../reports/investigation/documentation-followup-20261014/originals/45bcffaf7be9ebfd81526d77bc3bbcbff631dfaad5a5b1e83b32c85919ce0061.md) |
+| [460283699542bab724f7b9c24bb1be29396f7ed5e804ba480705310703b7ce80.md](../reports/investigation/documentation-followup-20261014/originals/460283699542bab724f7b9c24bb1be29396f7ed5e804ba480705310703b7ce80.md) |
+| [462715d5016253192421ff2bf638559e1de0aa3c378c2579464ca93a5b66aac1.md](../reports/investigation/documentation-followup-20261014/originals/462715d5016253192421ff2bf638559e1de0aa3c378c2579464ca93a5b66aac1.md) |
+| [47e9b4674d5766fbe6ff1fb94ac847fe94a1246967e5d710bddb26e1c700b3d8.md](../reports/investigation/documentation-followup-20261014/originals/47e9b4674d5766fbe6ff1fb94ac847fe94a1246967e5d710bddb26e1c700b3d8.md) |
+| [4bd8eebcf51d14ef2828e29bb39258bc43bd371d4032f6f5fe2b3095cb8344d3.md](../reports/investigation/documentation-followup-20261014/originals/4bd8eebcf51d14ef2828e29bb39258bc43bd371d4032f6f5fe2b3095cb8344d3.md) |
+| [4c49e2f92d938c1df88b90a62ff354e12da52a47efe2819f7e8aa3832a31970a.md](../reports/investigation/documentation-followup-20261014/originals/4c49e2f92d938c1df88b90a62ff354e12da52a47efe2819f7e8aa3832a31970a.md) |
+| [4cad9ea6c8a02a07dcfe8993b46b94cf1beb0e7eb4d811641b9140b4528426ce.md](../reports/investigation/documentation-followup-20261014/originals/4cad9ea6c8a02a07dcfe8993b46b94cf1beb0e7eb4d811641b9140b4528426ce.md) |
+| [4cb6d81c4cb50c485dc0a44ea34bc3d87b05e69d3a25a5a276d23bb97453d3da.md](../reports/investigation/documentation-followup-20261014/originals/4cb6d81c4cb50c485dc0a44ea34bc3d87b05e69d3a25a5a276d23bb97453d3da.md) |
+| [4da7ab28034491829420612e715c5ef4a740978dc59daa21eff2d30b9b85d1a4.md](../reports/investigation/documentation-followup-20261014/originals/4da7ab28034491829420612e715c5ef4a740978dc59daa21eff2d30b9b85d1a4.md) |
+| [4df7ebd767a357943707e3965d1a5b2a98dba1bc5b176b85ba08a0325b71474d.md](../reports/investigation/documentation-followup-20261014/originals/4df7ebd767a357943707e3965d1a5b2a98dba1bc5b176b85ba08a0325b71474d.md) |
+| [4eb5c609607328d571195d1c26eea38237addc82f45b51027fca233e56fd84b2.md](../reports/investigation/documentation-followup-20261014/originals/4eb5c609607328d571195d1c26eea38237addc82f45b51027fca233e56fd84b2.md) |
+| [4fbb4db1075570f87a661782939db2cf672fc6fd2c7ce0195e9939ac310bcf04.md](../reports/investigation/documentation-followup-20261014/originals/4fbb4db1075570f87a661782939db2cf672fc6fd2c7ce0195e9939ac310bcf04.md) |
+| [4fe968a6b0b8855b12d34a924cf4177d26c28d09a384c915792548738e6be4b0.md](../reports/investigation/documentation-followup-20261014/originals/4fe968a6b0b8855b12d34a924cf4177d26c28d09a384c915792548738e6be4b0.md) |
+| [4ff703e138b5dee4e77a9b95bff494a4650bcd26643cf56eb3e15878bcf938d2.md](../reports/investigation/documentation-followup-20261014/originals/4ff703e138b5dee4e77a9b95bff494a4650bcd26643cf56eb3e15878bcf938d2.md) |
+| [4fffc41df0a85e89c8742127d0bc3bb97713cb4114ffc0be5661619d3e869866.md](../reports/investigation/documentation-followup-20261014/originals/4fffc41df0a85e89c8742127d0bc3bb97713cb4114ffc0be5661619d3e869866.md) |
+| [507da23cf68bedff4179b1c67a3aa1dca4df0f1cb86ab0800e81b3f3901238ab.md](../reports/investigation/documentation-followup-20261014/originals/507da23cf68bedff4179b1c67a3aa1dca4df0f1cb86ab0800e81b3f3901238ab.md) |
+| [509765289042af129a0b519015152d478562774473e11bc0ddbb1c7d65391be7.md](../reports/investigation/documentation-followup-20261014/originals/509765289042af129a0b519015152d478562774473e11bc0ddbb1c7d65391be7.md) |
+| [523f2b1b9225019e47ef551a5241671dc7c3bf157339a18a096be0b4ca1ff989.md](../reports/investigation/documentation-followup-20261014/originals/523f2b1b9225019e47ef551a5241671dc7c3bf157339a18a096be0b4ca1ff989.md) |
+| [52f0d2630c264446d74642cb2c28df1cc64573d5af3ee5b36413ef49a86a822d.md](../reports/investigation/documentation-followup-20261014/originals/52f0d2630c264446d74642cb2c28df1cc64573d5af3ee5b36413ef49a86a822d.md) |
+| [52f883bcd1e9717cad09e595484c8c5be0c84c80aa0ae840e24e9c0fe4727297.md](../reports/investigation/documentation-followup-20261014/originals/52f883bcd1e9717cad09e595484c8c5be0c84c80aa0ae840e24e9c0fe4727297.md) |
+| [531613bd7d2a15b67bdfab420e88b34d478adbf75503e36a82b9eb8eb4cd1998.md](../reports/investigation/documentation-followup-20261014/originals/531613bd7d2a15b67bdfab420e88b34d478adbf75503e36a82b9eb8eb4cd1998.md) |
+| [542c379af5dd3b5243c0db46aa4f703d17359a7a0b4287239880dee8ece81838.md](../reports/investigation/documentation-followup-20261014/originals/542c379af5dd3b5243c0db46aa4f703d17359a7a0b4287239880dee8ece81838.md) |
+| [54e85676bcbaa12ce0a98ac9c2371d968299a590831e6872cc20a61adbba8f71.md](../reports/investigation/documentation-followup-20261014/originals/54e85676bcbaa12ce0a98ac9c2371d968299a590831e6872cc20a61adbba8f71.md) |
+| [55e3b0a5270c3846b9fcbfa6bcb3980aa7449f9bf4d9bf50a8c365597e634b48.md](../reports/investigation/documentation-followup-20261014/originals/55e3b0a5270c3846b9fcbfa6bcb3980aa7449f9bf4d9bf50a8c365597e634b48.md) |
+| [56071af8e7b16fd34f5641a6a6fff7cf14812da6b3a9b83a72d4d7fb2db64749.md](../reports/investigation/documentation-followup-20261014/originals/56071af8e7b16fd34f5641a6a6fff7cf14812da6b3a9b83a72d4d7fb2db64749.md) |
+| [56249bfe9a5f1e0f53f7f6aa2aeec6bd83eeee3799fdc2a1229c617d1c4c990c.md](../reports/investigation/documentation-followup-20261014/originals/56249bfe9a5f1e0f53f7f6aa2aeec6bd83eeee3799fdc2a1229c617d1c4c990c.md) |
+| [5772944b3f7ccdf7316cd7cf40fcbdda7f1c8f4f337355a910de69d1ced10772.md](../reports/investigation/documentation-followup-20261014/originals/5772944b3f7ccdf7316cd7cf40fcbdda7f1c8f4f337355a910de69d1ced10772.md) |
+| [5806b3070a1d33afc643a517f3a160d0e2a80ece4d64cfc7f63ee9aca50df135.md](../reports/investigation/documentation-followup-20261014/originals/5806b3070a1d33afc643a517f3a160d0e2a80ece4d64cfc7f63ee9aca50df135.md) |
+| [5823e881c2041f802ade1d63768729033740aa7d5ff17a4a4332c64ef54d1ba2.md](../reports/investigation/documentation-followup-20261014/originals/5823e881c2041f802ade1d63768729033740aa7d5ff17a4a4332c64ef54d1ba2.md) |
+| [58bd73bb71a665882dd646c67dd52b9e85a9b0d65ceed6801a33ea3a3224b0d1.md](../reports/investigation/documentation-followup-20261014/originals/58bd73bb71a665882dd646c67dd52b9e85a9b0d65ceed6801a33ea3a3224b0d1.md) |
+| [59b0e8a6a284308e1b997c9e4561a8c5d08e047f20c78f1a4cee8ee98aeb898a.md](../reports/investigation/documentation-followup-20261014/originals/59b0e8a6a284308e1b997c9e4561a8c5d08e047f20c78f1a4cee8ee98aeb898a.md) |
+| [59d44104851f2a1837f1518baf83da7b904fa76e8b93346fb3a44194a21634da.md](../reports/investigation/documentation-followup-20261014/originals/59d44104851f2a1837f1518baf83da7b904fa76e8b93346fb3a44194a21634da.md) |
+| [5a86ef9e2fc924499f9605b238d71f56fdbdb4c823284982dc50fa72f20b5317.md](../reports/investigation/documentation-followup-20261014/originals/5a86ef9e2fc924499f9605b238d71f56fdbdb4c823284982dc50fa72f20b5317.md) |
+| [5a8e6dbbc8bb3df0cdd2e6afee1e0a30fd8710234e19a16962f5afba7e1c8e0b.md](../reports/investigation/documentation-followup-20261014/originals/5a8e6dbbc8bb3df0cdd2e6afee1e0a30fd8710234e19a16962f5afba7e1c8e0b.md) |
+| [5ab44763f160cce9c38b59b1b836a00678cc6b15b56866d2a9f69ded5b8462db.md](../reports/investigation/documentation-followup-20261014/originals/5ab44763f160cce9c38b59b1b836a00678cc6b15b56866d2a9f69ded5b8462db.md) |
+| [5af046252d4fe76e8b4d353b828950e043eee4051cee703a14443713347a71a1.md](../reports/investigation/documentation-followup-20261014/originals/5af046252d4fe76e8b4d353b828950e043eee4051cee703a14443713347a71a1.md) |
+| [5f72af4250da23cf00e20692c9966d4a17b1b7733a3e826c4b9b55652f43c296.md](../reports/investigation/documentation-followup-20261014/originals/5f72af4250da23cf00e20692c9966d4a17b1b7733a3e826c4b9b55652f43c296.md) |
+| [5f97337527f1e4715b52e5de1461f9e613224b16b1f3ab7e436d70ab9be1769d.md](../reports/investigation/documentation-followup-20261014/originals/5f97337527f1e4715b52e5de1461f9e613224b16b1f3ab7e436d70ab9be1769d.md) |
+| [601c5a0154102701ec04a0219607d8095dcf4419113a89c64636518a7237ed00.md](../reports/investigation/documentation-followup-20261014/originals/601c5a0154102701ec04a0219607d8095dcf4419113a89c64636518a7237ed00.md) |
+| [60698d118e18ee1ef7c15bef1a5270fbc65bc56fee660e5dd1c07e02d3229b20.md](../reports/investigation/documentation-followup-20261014/originals/60698d118e18ee1ef7c15bef1a5270fbc65bc56fee660e5dd1c07e02d3229b20.md) |
+| [611f45c85e90f6e4aaf48b525cfaa454f5315bba9f9fa55b8bbf974b4c9e1196.md](../reports/investigation/documentation-followup-20261014/originals/611f45c85e90f6e4aaf48b525cfaa454f5315bba9f9fa55b8bbf974b4c9e1196.md) |
+| [6130e0928811e5ddf8ac42473c302f755ce69444dbaff96929cf32fd724e5e33.md](../reports/investigation/documentation-followup-20261014/originals/6130e0928811e5ddf8ac42473c302f755ce69444dbaff96929cf32fd724e5e33.md) |
+| [621fa9e4a6810a35f6f73e1942a741d15bf27aec4986cb297cafd178ef0133a5.md](../reports/investigation/documentation-followup-20261014/originals/621fa9e4a6810a35f6f73e1942a741d15bf27aec4986cb297cafd178ef0133a5.md) |
+| [6302b7a0adf5a6931f204300aa20cd17faaecb039e2a84dcfceccd3b7ec4a790.md](../reports/investigation/documentation-followup-20261014/originals/6302b7a0adf5a6931f204300aa20cd17faaecb039e2a84dcfceccd3b7ec4a790.md) |
+| [630dcc49bc63013be303047aec711ca4fea26d83c92490efcbf781816f3fd7d4.md](../reports/investigation/documentation-followup-20261014/originals/630dcc49bc63013be303047aec711ca4fea26d83c92490efcbf781816f3fd7d4.md) |
+| [634bc110725cdc0bc5500a9e4e43693dd3b1787bd0d1838dda579d89af3cfc72.md](../reports/investigation/documentation-followup-20261014/originals/634bc110725cdc0bc5500a9e4e43693dd3b1787bd0d1838dda579d89af3cfc72.md) |
+| [64d72406910c921658cd1916266d501877184d1a9f3d78ee0749b7458fe0b0a1.md](../reports/investigation/documentation-followup-20261014/originals/64d72406910c921658cd1916266d501877184d1a9f3d78ee0749b7458fe0b0a1.md) |
+| [661a56bfd4028c0e158f8b11cb2abd95fde1643fc567601a3bd5280aa509c723.md](../reports/investigation/documentation-followup-20261014/originals/661a56bfd4028c0e158f8b11cb2abd95fde1643fc567601a3bd5280aa509c723.md) |
+| [666048a982e5bafea7e599f5ea194dc0592f118af4b3f71e5a3ba3403a52a5e6.md](../reports/investigation/documentation-followup-20261014/originals/666048a982e5bafea7e599f5ea194dc0592f118af4b3f71e5a3ba3403a52a5e6.md) |
+| [6923acbb40d783f95d5e367c10ffc6a3636b474cb3eaeed9c9e20d4a6597595a.md](../reports/investigation/documentation-followup-20261014/originals/6923acbb40d783f95d5e367c10ffc6a3636b474cb3eaeed9c9e20d4a6597595a.md) |
+| [69447ad104fadf7c25fcbd81394289d30274c3e1af55d1b9496d8cffbafbd926.md](../reports/investigation/documentation-followup-20261014/originals/69447ad104fadf7c25fcbd81394289d30274c3e1af55d1b9496d8cffbafbd926.md) |
+| [69eca1688873447a7e28c5a5a98df36e3233ebf5ab4961b0640d67a519d723a5.md](../reports/investigation/documentation-followup-20261014/originals/69eca1688873447a7e28c5a5a98df36e3233ebf5ab4961b0640d67a519d723a5.md) |
+| [6a0c6f34292054fb50abb7fa3ca1279864ca43fdf13586f6471cc79b999d5f47.md](../reports/investigation/documentation-followup-20261014/originals/6a0c6f34292054fb50abb7fa3ca1279864ca43fdf13586f6471cc79b999d5f47.md) |
+| [6a568cc11cd7f0f174de098d27fe1bbd818006ba1ae2ee13fbc471659049aaf8.md](../reports/investigation/documentation-followup-20261014/originals/6a568cc11cd7f0f174de098d27fe1bbd818006ba1ae2ee13fbc471659049aaf8.md) |
+| [6a7a18f3dca0e210e396b68e6a47af2f0b343ea431acd1715f75b617947be692.md](../reports/investigation/documentation-followup-20261014/originals/6a7a18f3dca0e210e396b68e6a47af2f0b343ea431acd1715f75b617947be692.md) |
+| [6bc83d791ed20b470633ef7170feff3cf94ca79e99d0d3a408a5e3da9ed8c612.md](../reports/investigation/documentation-followup-20261014/originals/6bc83d791ed20b470633ef7170feff3cf94ca79e99d0d3a408a5e3da9ed8c612.md) |
+| [6d56e6c3b3c6236615f56245bf223d5f1ffac72fcce660ece4fd1cba2af830e8.md](../reports/investigation/documentation-followup-20261014/originals/6d56e6c3b3c6236615f56245bf223d5f1ffac72fcce660ece4fd1cba2af830e8.md) |
+| [6dff14158be5c1d9f2cc2288fb22f733d895fbe575b80fd6513c77f369583b2e.md](../reports/investigation/documentation-followup-20261014/originals/6dff14158be5c1d9f2cc2288fb22f733d895fbe575b80fd6513c77f369583b2e.md) |
+| [6e12f1334a0629f8ff246119574b27b3e56f460fc48ce956616e24b42d391ae2.md](../reports/investigation/documentation-followup-20261014/originals/6e12f1334a0629f8ff246119574b27b3e56f460fc48ce956616e24b42d391ae2.md) |
+| [6e196f42a805f56dd81cfea4c5b2ed35ecc3620fc58c4caecf9bd441f2723acc.md](../reports/investigation/documentation-followup-20261014/originals/6e196f42a805f56dd81cfea4c5b2ed35ecc3620fc58c4caecf9bd441f2723acc.md) |
+| [6ff4d93573dd92909e2052443f627e19ad442ac097ccd0cf3844b6b7652fe620.md](../reports/investigation/documentation-followup-20261014/originals/6ff4d93573dd92909e2052443f627e19ad442ac097ccd0cf3844b6b7652fe620.md) |
+| [70897dcfb235115dd360b239416746f6d0457890c606d5e6f2ecce381b59f90f.md](../reports/investigation/documentation-followup-20261014/originals/70897dcfb235115dd360b239416746f6d0457890c606d5e6f2ecce381b59f90f.md) |
+| [7101e2a287c4eab747708bc89b2edb88d987a34577360bb2d6f89ed356ef89fd.md](../reports/investigation/documentation-followup-20261014/originals/7101e2a287c4eab747708bc89b2edb88d987a34577360bb2d6f89ed356ef89fd.md) |
+| [7111d1ba3fe05774da89d989eb8e9356de19d10e9fc2205b94d8818b9ceb255b.md](../reports/investigation/documentation-followup-20261014/originals/7111d1ba3fe05774da89d989eb8e9356de19d10e9fc2205b94d8818b9ceb255b.md) |
+| [7285b79decd667767569f2e6c7b768a38336cfc1fc68f52c0e474ef7568cd5bf.md](../reports/investigation/documentation-followup-20261014/originals/7285b79decd667767569f2e6c7b768a38336cfc1fc68f52c0e474ef7568cd5bf.md) |
+| [7344b9043aed30348595aaf1bd27091633855a00519c19c6d1ce9232539dbce0.md](../reports/investigation/documentation-followup-20261014/originals/7344b9043aed30348595aaf1bd27091633855a00519c19c6d1ce9232539dbce0.md) |
+| [75b352ef2002c9c59c7ca8f5642b01c8acb65e4bb9b45c96845d5a027ede567a.md](../reports/investigation/documentation-followup-20261014/originals/75b352ef2002c9c59c7ca8f5642b01c8acb65e4bb9b45c96845d5a027ede567a.md) |
+| [7603f5bc95910d58465616d8939bb84f7d054769bd94abef3e28582b9bf4c612.md](../reports/investigation/documentation-followup-20261014/originals/7603f5bc95910d58465616d8939bb84f7d054769bd94abef3e28582b9bf4c612.md) |
+| [76d77be8062d6f357be25bbef521519dad1e194dec82f633dbe3927cfcffc24c.md](../reports/investigation/documentation-followup-20261014/originals/76d77be8062d6f357be25bbef521519dad1e194dec82f633dbe3927cfcffc24c.md) |
+| [777b57965e2fc359e2b7db8984155a53e3902f061e0ab1c69cda66985c1a780f.md](../reports/investigation/documentation-followup-20261014/originals/777b57965e2fc359e2b7db8984155a53e3902f061e0ab1c69cda66985c1a780f.md) |
+| [79912e2bd1f0609dae2750e10818c79d838f26c2ee5be97c953d47fe86c4a875.md](../reports/investigation/documentation-followup-20261014/originals/79912e2bd1f0609dae2750e10818c79d838f26c2ee5be97c953d47fe86c4a875.md) |
+| [7b0739438da9bfa8372b1ec36fc38f8f1dbee3b8af6c86ec32314e4588d6e189.md](../reports/investigation/documentation-followup-20261014/originals/7b0739438da9bfa8372b1ec36fc38f8f1dbee3b8af6c86ec32314e4588d6e189.md) |
+| [7b3f19888744109bb4f90e24ad53236d7cf5ac649319e45a4c912e240303118d.md](../reports/investigation/documentation-followup-20261014/originals/7b3f19888744109bb4f90e24ad53236d7cf5ac649319e45a4c912e240303118d.md) |
+| [7bafdd2a49d7e80ab853ae55acfb7081264af1d5a0fce138e3d9d72ce697f458.md](../reports/investigation/documentation-followup-20261014/originals/7bafdd2a49d7e80ab853ae55acfb7081264af1d5a0fce138e3d9d72ce697f458.md) |
+| [7bb3d62e398974ce3e75fe259dc0e4486004e27a56d5ca2835f3e95b79daa41e.md](../reports/investigation/documentation-followup-20261014/originals/7bb3d62e398974ce3e75fe259dc0e4486004e27a56d5ca2835f3e95b79daa41e.md) |
+| [7cbf0741e70429dffab8a1746ae1dd72c54642ff0232e96bafc90cc51aa82de2.md](../reports/investigation/documentation-followup-20261014/originals/7cbf0741e70429dffab8a1746ae1dd72c54642ff0232e96bafc90cc51aa82de2.md) |
+| [7cce886aab2460876b0f6e5d26bf1a68bb0bc25cda1dce3a619ce3bb81c0eda9.md](../reports/investigation/documentation-followup-20261014/originals/7cce886aab2460876b0f6e5d26bf1a68bb0bc25cda1dce3a619ce3bb81c0eda9.md) |
+| [7d011577d74db9265c5aa2d2cad73f3dc97cbb62222ac0ee13715ec1db7b65e2.md](../reports/investigation/documentation-followup-20261014/originals/7d011577d74db9265c5aa2d2cad73f3dc97cbb62222ac0ee13715ec1db7b65e2.md) |
+| [7e41c1535026d474088b1486e0fb46e873e8e64d4c0af1baa4e886a89d8023ba.md](../reports/investigation/documentation-followup-20261014/originals/7e41c1535026d474088b1486e0fb46e873e8e64d4c0af1baa4e886a89d8023ba.md) |
+| [7e8902251a9c7cfbc3b639ae00b70101770433f7acbd0fa57ea0687ffd42da3b.md](../reports/investigation/documentation-followup-20261014/originals/7e8902251a9c7cfbc3b639ae00b70101770433f7acbd0fa57ea0687ffd42da3b.md) |
+| [7e8b30ee9703a42b88dd4efa4084b7f4e2a9afbd3a5d29c9253c816084092235.md](../reports/investigation/documentation-followup-20261014/originals/7e8b30ee9703a42b88dd4efa4084b7f4e2a9afbd3a5d29c9253c816084092235.md) |
+| [7f0273f912bf26112c5db62d54dc9c5edbdd95aea75f23eb02613bbda2e74f93.md](../reports/investigation/documentation-followup-20261014/originals/7f0273f912bf26112c5db62d54dc9c5edbdd95aea75f23eb02613bbda2e74f93.md) |
+| [7f11d921537386e2a20a1c510024ab29edaa917677dd216f1b73dc6354a84cfc.md](../reports/investigation/documentation-followup-20261014/originals/7f11d921537386e2a20a1c510024ab29edaa917677dd216f1b73dc6354a84cfc.md) |
+| [7fd6c570d2e06a42a60c737141d1edf8cb6e6ca4c21b7df2ace49c97dd0b7bab.md](../reports/investigation/documentation-followup-20261014/originals/7fd6c570d2e06a42a60c737141d1edf8cb6e6ca4c21b7df2ace49c97dd0b7bab.md) |
+| [80c77127bbfdb9cff3349c7f325ba19360492152c3be884f8f50cf86205fc713.md](../reports/investigation/documentation-followup-20261014/originals/80c77127bbfdb9cff3349c7f325ba19360492152c3be884f8f50cf86205fc713.md) |
+| [80e8c5434107a324274c668aad5755727600f74d867f8f5ad8b37341345854a1.md](../reports/investigation/documentation-followup-20261014/originals/80e8c5434107a324274c668aad5755727600f74d867f8f5ad8b37341345854a1.md) |
+| [8143108126e90144af7ebb3cb028060a03bae881e47b8a7116c01064f2695178.md](../reports/investigation/documentation-followup-20261014/originals/8143108126e90144af7ebb3cb028060a03bae881e47b8a7116c01064f2695178.md) |
+| [81eed8e5c93d1fbfaccc01cb9eba73eff25b97deaf08223128e45e4f42480239.md](../reports/investigation/documentation-followup-20261014/originals/81eed8e5c93d1fbfaccc01cb9eba73eff25b97deaf08223128e45e4f42480239.md) |
+| [82d4b31e66528d49d78fc0835f5b2161fe557f6c1d8f431bd344d8f7742907b8.md](../reports/investigation/documentation-followup-20261014/originals/82d4b31e66528d49d78fc0835f5b2161fe557f6c1d8f431bd344d8f7742907b8.md) |
+| [83d9eb82acb0adc1a4deb661b672891661433907752eea85a410b0190c89da93.md](../reports/investigation/documentation-followup-20261014/originals/83d9eb82acb0adc1a4deb661b672891661433907752eea85a410b0190c89da93.md) |
+| [840f60ebdd2ce69fff5725f15bd2019f5b30d3d9f2f1a717374dac5fd68fdf26.md](../reports/investigation/documentation-followup-20261014/originals/840f60ebdd2ce69fff5725f15bd2019f5b30d3d9f2f1a717374dac5fd68fdf26.md) |
+| [8417cea1287f0e94fdbbdc57ffc7f44d6d1fc1a3d779338f5ab43778a0f305fc.md](../reports/investigation/documentation-followup-20261014/originals/8417cea1287f0e94fdbbdc57ffc7f44d6d1fc1a3d779338f5ab43778a0f305fc.md) |
+| [84f74eadb6ac71d0852f46136da2fbdc143dd4efc3604f00db05999c1510a39d.md](../reports/investigation/documentation-followup-20261014/originals/84f74eadb6ac71d0852f46136da2fbdc143dd4efc3604f00db05999c1510a39d.md) |
+| [85a9b087731fadffd8e6249a563b1097c6ba57cda1d7afb1c10962f8c4f6d56d.md](../reports/investigation/documentation-followup-20261014/originals/85a9b087731fadffd8e6249a563b1097c6ba57cda1d7afb1c10962f8c4f6d56d.md) |
+| [85ca627cf33622a5ceb9443c6751b073667b01dae7e65c73bd892a42491e46b7.md](../reports/investigation/documentation-followup-20261014/originals/85ca627cf33622a5ceb9443c6751b073667b01dae7e65c73bd892a42491e46b7.md) |
+| [86c4de29845749339c4a537a58b4b03f0b7e6b50734589aeb09f4cbeab894825.md](../reports/investigation/documentation-followup-20261014/originals/86c4de29845749339c4a537a58b4b03f0b7e6b50734589aeb09f4cbeab894825.md) |
+| [877cbe412bcfb298dc7b143d749c34021cafd202c4a8938a1c2ccea1ac2ae089.md](../reports/investigation/documentation-followup-20261014/originals/877cbe412bcfb298dc7b143d749c34021cafd202c4a8938a1c2ccea1ac2ae089.md) |
+| [88b16526b261fef4fe187235462e3098324bf62add42f71a6ea776780a70dbc3.md](../reports/investigation/documentation-followup-20261014/originals/88b16526b261fef4fe187235462e3098324bf62add42f71a6ea776780a70dbc3.md) |
+| [88ecc14788e1f21022bd801a70df0828cddcb2587b09eb5669ac77f5f02dca54.md](../reports/investigation/documentation-followup-20261014/originals/88ecc14788e1f21022bd801a70df0828cddcb2587b09eb5669ac77f5f02dca54.md) |
+| [8904a3a4e3c5887b965150b3c898172adc9faa80aa60032c233d5998e12dd30e.md](../reports/investigation/documentation-followup-20261014/originals/8904a3a4e3c5887b965150b3c898172adc9faa80aa60032c233d5998e12dd30e.md) |
+| [8ae6c7259fd71f2d68de14803db468d75bdafcafc4760a68793004498eeafb9a.md](../reports/investigation/documentation-followup-20261014/originals/8ae6c7259fd71f2d68de14803db468d75bdafcafc4760a68793004498eeafb9a.md) |
+| [8b1234a4b2d63a7924156b012f6e4711ef7a29be1b448555f150b6598faad908.md](../reports/investigation/documentation-followup-20261014/originals/8b1234a4b2d63a7924156b012f6e4711ef7a29be1b448555f150b6598faad908.md) |
+| [8b28f2eb836e79a2c56bf713c72b782f5afe20605995685f1e55301ee0e20525.md](../reports/investigation/documentation-followup-20261014/originals/8b28f2eb836e79a2c56bf713c72b782f5afe20605995685f1e55301ee0e20525.md) |
+| [8c6ede62d533561180ad115885d96bae46c7f0cce30cd988d0f973b2f6a82ec8.md](../reports/investigation/documentation-followup-20261014/originals/8c6ede62d533561180ad115885d96bae46c7f0cce30cd988d0f973b2f6a82ec8.md) |
+| [8e36e3c8d7e968f7831727d7660f17a83893607a3789c0d71055dd94bbd4a2e2.md](../reports/investigation/documentation-followup-20261014/originals/8e36e3c8d7e968f7831727d7660f17a83893607a3789c0d71055dd94bbd4a2e2.md) |
+| [8ec60b1ee7a98408cd6bd9c15b14c085db2c4ec3230d86aff72fa268c3a3d8ca.md](../reports/investigation/documentation-followup-20261014/originals/8ec60b1ee7a98408cd6bd9c15b14c085db2c4ec3230d86aff72fa268c3a3d8ca.md) |
+| [8eea3fb2c1bf0ffde01fd96ddcfee433703e5c7098d5bf1bedeec21d47017270.md](../reports/investigation/documentation-followup-20261014/originals/8eea3fb2c1bf0ffde01fd96ddcfee433703e5c7098d5bf1bedeec21d47017270.md) |
+| [8f145925afda302ec97203e1cb630d25b32d3470dc2da57851b8e695694ee068.md](../reports/investigation/documentation-followup-20261014/originals/8f145925afda302ec97203e1cb630d25b32d3470dc2da57851b8e695694ee068.md) |
+| [8f15c1f7124669a5ef3c7d3bdad582ddc5303241526926946b3432a79e79c7cc.md](../reports/investigation/documentation-followup-20261014/originals/8f15c1f7124669a5ef3c7d3bdad582ddc5303241526926946b3432a79e79c7cc.md) |
+| [90134467f0365adc293eab12ad7d7c52176d0d98874f0a5635bf9addd4929d8f.md](../reports/investigation/documentation-followup-20261014/originals/90134467f0365adc293eab12ad7d7c52176d0d98874f0a5635bf9addd4929d8f.md) |
+| [9161485a68dd63153d6a831dd0a1992ddacb6a057c47b2e06404eca201e50412.md](../reports/investigation/documentation-followup-20261014/originals/9161485a68dd63153d6a831dd0a1992ddacb6a057c47b2e06404eca201e50412.md) |
+| [916b410d6b0c834def3b6f8d46db9a4cb608675b952b5a41e4ab9a8bc5fb4155.md](../reports/investigation/documentation-followup-20261014/originals/916b410d6b0c834def3b6f8d46db9a4cb608675b952b5a41e4ab9a8bc5fb4155.md) |
+| [92471a05c016fa3e9ac298b220714c885321f4830ded8a0ad75efe0d9ba7449d.md](../reports/investigation/documentation-followup-20261014/originals/92471a05c016fa3e9ac298b220714c885321f4830ded8a0ad75efe0d9ba7449d.md) |
+| [92ab718575bfc38c618fcce722a0e8e96994dbb53f17c657ad49872ff0ebd440.md](../reports/investigation/documentation-followup-20261014/originals/92ab718575bfc38c618fcce722a0e8e96994dbb53f17c657ad49872ff0ebd440.md) |
+| [92c533c1f7e8728a89f0ca699d705791eb7cb5d9be8eb118b49fd82fa36fe062.md](../reports/investigation/documentation-followup-20261014/originals/92c533c1f7e8728a89f0ca699d705791eb7cb5d9be8eb118b49fd82fa36fe062.md) |
+| [9392fbc1752afec1ef4d574e867d98bc9005da9362c09df7d75dfac9a37b1990.md](../reports/investigation/documentation-followup-20261014/originals/9392fbc1752afec1ef4d574e867d98bc9005da9362c09df7d75dfac9a37b1990.md) |
+| [9467ed7c589baf779d17a57829ec4f6d4732929be9b547cc51e097604fab9d3e.md](../reports/investigation/documentation-followup-20261014/originals/9467ed7c589baf779d17a57829ec4f6d4732929be9b547cc51e097604fab9d3e.md) |
+| [958e76d5d5bad69acde0474872f59e320f807e5198bde81754af61f2adff796d.md](../reports/investigation/documentation-followup-20261014/originals/958e76d5d5bad69acde0474872f59e320f807e5198bde81754af61f2adff796d.md) |
+| [95a7225f5f4a8c85de74af0ef1e2b0f3dd8dbb1a0b7a4876ef0f021a5568b787.md](../reports/investigation/documentation-followup-20261014/originals/95a7225f5f4a8c85de74af0ef1e2b0f3dd8dbb1a0b7a4876ef0f021a5568b787.md) |
+| [960f96bfaa2fcacf79917cf6b59513178246f9ea09c212368f5d76a2990a685b.md](../reports/investigation/documentation-followup-20261014/originals/960f96bfaa2fcacf79917cf6b59513178246f9ea09c212368f5d76a2990a685b.md) |
+| [96990037146e5976ed6789ee315292953b1fa0ddf593116e7bf762da79ea9c7f.md](../reports/investigation/documentation-followup-20261014/originals/96990037146e5976ed6789ee315292953b1fa0ddf593116e7bf762da79ea9c7f.md) |
+| [96c7560d627d8d13813e63e2ea217abec77c55c766da42bb6f0c690fc8b0c2a1.md](../reports/investigation/documentation-followup-20261014/originals/96c7560d627d8d13813e63e2ea217abec77c55c766da42bb6f0c690fc8b0c2a1.md) |
+| [971f89ced4fbf44ba2979c5d85f4a1587cca998a30596cc590a28f249d54195b.md](../reports/investigation/documentation-followup-20261014/originals/971f89ced4fbf44ba2979c5d85f4a1587cca998a30596cc590a28f249d54195b.md) |
+| [98c9ad88e8bdbd13fff444c46c4663be50c9f3a2e528bbd29374b8f3a0a0d3c9.md](../reports/investigation/documentation-followup-20261014/originals/98c9ad88e8bdbd13fff444c46c4663be50c9f3a2e528bbd29374b8f3a0a0d3c9.md) |
+| [9973c5dacbb366927426b45c3c5ae6f1090e1d7a2094c3d1cf200806cd0e5722.md](../reports/investigation/documentation-followup-20261014/originals/9973c5dacbb366927426b45c3c5ae6f1090e1d7a2094c3d1cf200806cd0e5722.md) |
+| [99cba8fe0df5f3d178b0f57c4547ea4af68602a131c7fd929ae2b43d228deab1.md](../reports/investigation/documentation-followup-20261014/originals/99cba8fe0df5f3d178b0f57c4547ea4af68602a131c7fd929ae2b43d228deab1.md) |
+| [99df4b402d972319ded47e06bd8980b2973aae828a1fb14235f3204bc61c8a19.md](../reports/investigation/documentation-followup-20261014/originals/99df4b402d972319ded47e06bd8980b2973aae828a1fb14235f3204bc61c8a19.md) |
+| [9c09ddca6bbeb7fd1b1a5ad6750b1b1bb2e84ac65849bfa57c0b70eacce5789b.md](../reports/investigation/documentation-followup-20261014/originals/9c09ddca6bbeb7fd1b1a5ad6750b1b1bb2e84ac65849bfa57c0b70eacce5789b.md) |
+| [9c95cfdf1b3a41266333906cdf14f1fe9a287b0c350c42d44f93d354b0474bf8.md](../reports/investigation/documentation-followup-20261014/originals/9c95cfdf1b3a41266333906cdf14f1fe9a287b0c350c42d44f93d354b0474bf8.md) |
+| [9e512a24ec3f0b80baee638ba712a134a5d2c45343e841730a2c5f166e75ff20.md](../reports/investigation/documentation-followup-20261014/originals/9e512a24ec3f0b80baee638ba712a134a5d2c45343e841730a2c5f166e75ff20.md) |
+| [9e95213dab6f695da4182ff307aa77132d342cd77b5bc7bf7ccc96292c7d0887.md](../reports/investigation/documentation-followup-20261014/originals/9e95213dab6f695da4182ff307aa77132d342cd77b5bc7bf7ccc96292c7d0887.md) |
+| [a0804ba9991731e83686a9a23b05d343a167bfe97e44a165715258d0882729a2.md](../reports/investigation/documentation-followup-20261014/originals/a0804ba9991731e83686a9a23b05d343a167bfe97e44a165715258d0882729a2.md) |
+| [a1161869b569fac68e664cabb8514e8421e729fc836d23fcfb576379f0a6e240.md](../reports/investigation/documentation-followup-20261014/originals/a1161869b569fac68e664cabb8514e8421e729fc836d23fcfb576379f0a6e240.md) |
+| [a126617be00d89d60272b9eccb496967fa8157c7bd3704a3a2ff6e0e9ab2ed36.md](../reports/investigation/documentation-followup-20261014/originals/a126617be00d89d60272b9eccb496967fa8157c7bd3704a3a2ff6e0e9ab2ed36.md) |
+| [a17b97e055a7243c02dc4a88b5b44a225a836d196b86a56fe3ad7c5003c036f1.md](../reports/investigation/documentation-followup-20261014/originals/a17b97e055a7243c02dc4a88b5b44a225a836d196b86a56fe3ad7c5003c036f1.md) |
+| [a1e2c0536274f9c1248f50052a3d30c736733d0fcfdd3c8c061df426ae106921.md](../reports/investigation/documentation-followup-20261014/originals/a1e2c0536274f9c1248f50052a3d30c736733d0fcfdd3c8c061df426ae106921.md) |
+| [a2b1193dc70f04bc558a04bc3fc1e72169ee9b3ce4d167bdee89bef40f50024c.md](../reports/investigation/documentation-followup-20261014/originals/a2b1193dc70f04bc558a04bc3fc1e72169ee9b3ce4d167bdee89bef40f50024c.md) |
+| [a36db8fe4bb072e1c5b6822e5d9b8db1e906e42f44d6ee152e3ea85022b091f9.md](../reports/investigation/documentation-followup-20261014/originals/a36db8fe4bb072e1c5b6822e5d9b8db1e906e42f44d6ee152e3ea85022b091f9.md) |
+| [a4954bd2b925b894706e50cf1ca15a1b322b10ada3cffac4eae15ae97a6f2e67.md](../reports/investigation/documentation-followup-20261014/originals/a4954bd2b925b894706e50cf1ca15a1b322b10ada3cffac4eae15ae97a6f2e67.md) |
+| [a588e5c8ee08cab9b9ce567be7397dae41f239f7f8d772647ad5b23d0ccea723.md](../reports/investigation/documentation-followup-20261014/originals/a588e5c8ee08cab9b9ce567be7397dae41f239f7f8d772647ad5b23d0ccea723.md) |
+| [a72e18e0e20d78601bc4c3fb14c104a7070269777e56ee1c5eadeb1e6b83c0a0.md](../reports/investigation/documentation-followup-20261014/originals/a72e18e0e20d78601bc4c3fb14c104a7070269777e56ee1c5eadeb1e6b83c0a0.md) |
+| [a88b1651c4ef9a4c5f5b1585be20c2d9d4eb2565e2568ddedc8dcd9a8d9d147d.md](../reports/investigation/documentation-followup-20261014/originals/a88b1651c4ef9a4c5f5b1585be20c2d9d4eb2565e2568ddedc8dcd9a8d9d147d.md) |
+| [a930544b3595a3595f91351a03b259f1814022d798402e23fe1e0985dca0fd90.md](../reports/investigation/documentation-followup-20261014/originals/a930544b3595a3595f91351a03b259f1814022d798402e23fe1e0985dca0fd90.md) |
+| [a94155ffe5163ae03efe9a47d11c87346e10a350f123743473be8316b1f73370.md](../reports/investigation/documentation-followup-20261014/originals/a94155ffe5163ae03efe9a47d11c87346e10a350f123743473be8316b1f73370.md) |
+| [a9a8f62a9c29312bdddfd7e6c5fdf6c7b6042bb8f1efff70e83ccfe160bacdb7.md](../reports/investigation/documentation-followup-20261014/originals/a9a8f62a9c29312bdddfd7e6c5fdf6c7b6042bb8f1efff70e83ccfe160bacdb7.md) |
+| [a9ee516496eff4385dbcf7d72e9d888cb70c1772fddf1a3fe9d47c132d7c10bc.md](../reports/investigation/documentation-followup-20261014/originals/a9ee516496eff4385dbcf7d72e9d888cb70c1772fddf1a3fe9d47c132d7c10bc.md) |
+| [aa0d28984ecf532ae317bf346c5de4fae0e6ff7aa8a5a471954dee4ad82c2e13.md](../reports/investigation/documentation-followup-20261014/originals/aa0d28984ecf532ae317bf346c5de4fae0e6ff7aa8a5a471954dee4ad82c2e13.md) |
+| [aa50deece1993cffa308892b4035047ba4d19ed8bb5100f2d2f05d7e7c0cf272.md](../reports/investigation/documentation-followup-20261014/originals/aa50deece1993cffa308892b4035047ba4d19ed8bb5100f2d2f05d7e7c0cf272.md) |
+| [acc5335a399d8f7f638d22bf2e3f7757ac72c1200aa75a7e7bb88c484aab350e.md](../reports/investigation/documentation-followup-20261014/originals/acc5335a399d8f7f638d22bf2e3f7757ac72c1200aa75a7e7bb88c484aab350e.md) |
+| [adb4f43c23dca9aff0edb0881933aa4483ab36f67b7653244c9322bb415b37db.md](../reports/investigation/documentation-followup-20261014/originals/adb4f43c23dca9aff0edb0881933aa4483ab36f67b7653244c9322bb415b37db.md) |
+| [ae64451fd903dd505c4a26fccb745b64f6c0dd8744b645c988c505d55456aede.md](../reports/investigation/documentation-followup-20261014/originals/ae64451fd903dd505c4a26fccb745b64f6c0dd8744b645c988c505d55456aede.md) |
+| [ae7d1e8af19cea1dd96ec7647108af009081b5724f8f93c381fe9754bf9127d8.md](../reports/investigation/documentation-followup-20261014/originals/ae7d1e8af19cea1dd96ec7647108af009081b5724f8f93c381fe9754bf9127d8.md) |
+| [aeb626317df1d8cd3b1565b0b4d72b5fecebe83d9b95c73da492cf52ecddaa49.md](../reports/investigation/documentation-followup-20261014/originals/aeb626317df1d8cd3b1565b0b4d72b5fecebe83d9b95c73da492cf52ecddaa49.md) |
+| [af1052be50ef10e52762740de15ba583f0914a329d8ea14f85a3a996f9ab2a5b.md](../reports/investigation/documentation-followup-20261014/originals/af1052be50ef10e52762740de15ba583f0914a329d8ea14f85a3a996f9ab2a5b.md) |
+| [b0858a5069d89aa672960054a58fe1e01999bb7c7ffe490fb0d37896eba53e9a.md](../reports/investigation/documentation-followup-20261014/originals/b0858a5069d89aa672960054a58fe1e01999bb7c7ffe490fb0d37896eba53e9a.md) |
+| [b0b9caeb053d3b9eb0b908979b2da713b79fb1b40fbfb24ff1888ab72e5aadd7.md](../reports/investigation/documentation-followup-20261014/originals/b0b9caeb053d3b9eb0b908979b2da713b79fb1b40fbfb24ff1888ab72e5aadd7.md) |
+| [b0c4861dfc9a124a6037ca9162190e680a801b9a471c50cb7559701dfc87c979.md](../reports/investigation/documentation-followup-20261014/originals/b0c4861dfc9a124a6037ca9162190e680a801b9a471c50cb7559701dfc87c979.md) |
+| [b3458a951160ebfad35ec86341704e488223fd41f202d94394da3d842665ab60.md](../reports/investigation/documentation-followup-20261014/originals/b3458a951160ebfad35ec86341704e488223fd41f202d94394da3d842665ab60.md) |
+| [b356c40772f14a39922a590d8e4fd6f01a325108b0c1ae870fca563a9e6488bf.md](../reports/investigation/documentation-followup-20261014/originals/b356c40772f14a39922a590d8e4fd6f01a325108b0c1ae870fca563a9e6488bf.md) |
+| [b3994318a0e13c4cb411c5650448aca8c394a68d026f5a3bbd3703927663d398.md](../reports/investigation/documentation-followup-20261014/originals/b3994318a0e13c4cb411c5650448aca8c394a68d026f5a3bbd3703927663d398.md) |
+| [b5a00601494f42284d4bfabb85b02dd7ea13f63856f9c4ed714a720e1c36d8c4.md](../reports/investigation/documentation-followup-20261014/originals/b5a00601494f42284d4bfabb85b02dd7ea13f63856f9c4ed714a720e1c36d8c4.md) |
+| [b5bb2554242b78267fca94db76cc9188a37563a459e4e5cf20da537245a13ff9.md](../reports/investigation/documentation-followup-20261014/originals/b5bb2554242b78267fca94db76cc9188a37563a459e4e5cf20da537245a13ff9.md) |
+| [b5f86233343f58b6c30eee8d6356cfa0227b97c1f77d62c00a3dbeb8b9b9f5b3.md](../reports/investigation/documentation-followup-20261014/originals/b5f86233343f58b6c30eee8d6356cfa0227b97c1f77d62c00a3dbeb8b9b9f5b3.md) |
+| [b67a8ca8786b2efa7c161438dbc4aedbfb2522c4ff2481a838c04835aa6e717c.md](../reports/investigation/documentation-followup-20261014/originals/b67a8ca8786b2efa7c161438dbc4aedbfb2522c4ff2481a838c04835aa6e717c.md) |
+| [b6a483ca52b8bc670ae68a44c08d5a9d9912ce58c1f729918990a514467ce7a1.md](../reports/investigation/documentation-followup-20261014/originals/b6a483ca52b8bc670ae68a44c08d5a9d9912ce58c1f729918990a514467ce7a1.md) |
+| [b7e5fb75fef34a2912a3e73e742d6484571fa745f6ad2d94eda3b836fec747bb.md](../reports/investigation/documentation-followup-20261014/originals/b7e5fb75fef34a2912a3e73e742d6484571fa745f6ad2d94eda3b836fec747bb.md) |
+| [b8d30f8120d8836a5e9e9845e80f2b8ed305bde129311b7104d1e68bf6b20083.md](../reports/investigation/documentation-followup-20261014/originals/b8d30f8120d8836a5e9e9845e80f2b8ed305bde129311b7104d1e68bf6b20083.md) |
+| [b912c3e5e84850d14617b4fbd00db7c25e7c2ffb86597d9b81d4145c654ef357.md](../reports/investigation/documentation-followup-20261014/originals/b912c3e5e84850d14617b4fbd00db7c25e7c2ffb86597d9b81d4145c654ef357.md) |
+| [b94393c41937445b2755b763a89430f90c0b6a94fa27f78de9bd20e1b21fe99d.md](../reports/investigation/documentation-followup-20261014/originals/b94393c41937445b2755b763a89430f90c0b6a94fa27f78de9bd20e1b21fe99d.md) |
+| [ba21d29b9f4249edac442ed17ae65e490c684b77d6ea11e63659f3e28b9d349c.md](../reports/investigation/documentation-followup-20261014/originals/ba21d29b9f4249edac442ed17ae65e490c684b77d6ea11e63659f3e28b9d349c.md) |
+| [bcf1cab9cfdd6b48ac16116a91c6948af9d7d144d9a6ec2cb90442f1d9eab994.md](../reports/investigation/documentation-followup-20261014/originals/bcf1cab9cfdd6b48ac16116a91c6948af9d7d144d9a6ec2cb90442f1d9eab994.md) |
+| [bd738b96fe353af74d64071018fe959c823fa4a4827a456464ec43361c486357.md](../reports/investigation/documentation-followup-20261014/originals/bd738b96fe353af74d64071018fe959c823fa4a4827a456464ec43361c486357.md) |
+| [bdbe99c4e1170e22d50c15f350ac8808cc7b03070beff6fc9c3920054980d06a.md](../reports/investigation/documentation-followup-20261014/originals/bdbe99c4e1170e22d50c15f350ac8808cc7b03070beff6fc9c3920054980d06a.md) |
+| [c016067d7444db41a2599cceac13442f3605023e1dd215c0520fb6d87c87263c.md](../reports/investigation/documentation-followup-20261014/originals/c016067d7444db41a2599cceac13442f3605023e1dd215c0520fb6d87c87263c.md) |
+| [c08c4626afeb1c735151eec69f7e76f23bfc0efafb1a42ff54811acc2c5cf1fd.md](../reports/investigation/documentation-followup-20261014/originals/c08c4626afeb1c735151eec69f7e76f23bfc0efafb1a42ff54811acc2c5cf1fd.md) |
+| [c092866b1ef9b231a30c1cd81585357b8df8fa0f2d2ddecdc53b3a8123dde3ef.md](../reports/investigation/documentation-followup-20261014/originals/c092866b1ef9b231a30c1cd81585357b8df8fa0f2d2ddecdc53b3a8123dde3ef.md) |
+| [c0abd83e83901ab57846f77192dd9caece7e5755d197868b4d476645f0984d73.md](../reports/investigation/documentation-followup-20261014/originals/c0abd83e83901ab57846f77192dd9caece7e5755d197868b4d476645f0984d73.md) |
+| [c2ed0d24b08f3587bfbd97c25f3bdcf42976db1d33357e015724c8bfcf126e32.md](../reports/investigation/documentation-followup-20261014/originals/c2ed0d24b08f3587bfbd97c25f3bdcf42976db1d33357e015724c8bfcf126e32.md) |
+| [c3c47be590e1a959b83c9020568cfbeae9d01f36e140474bb7e840e8f21febbd.md](../reports/investigation/documentation-followup-20261014/originals/c3c47be590e1a959b83c9020568cfbeae9d01f36e140474bb7e840e8f21febbd.md) |
+| [c4251ba0c01cf84f041db3e9ced783fc6662ad06c97fa25b8cdce1176f6e2e99.md](../reports/investigation/documentation-followup-20261014/originals/c4251ba0c01cf84f041db3e9ced783fc6662ad06c97fa25b8cdce1176f6e2e99.md) |
+| [c47a3404c9bd9d2e90e60452d14e7ecc3c3a8ef4c6b336f835703b6a315928be.md](../reports/investigation/documentation-followup-20261014/originals/c47a3404c9bd9d2e90e60452d14e7ecc3c3a8ef4c6b336f835703b6a315928be.md) |
+| [c4ac03f6d4db730884a8bef3a75d9be8aee29ae7894ac1cb418ff06f3e6e1700.md](../reports/investigation/documentation-followup-20261014/originals/c4ac03f6d4db730884a8bef3a75d9be8aee29ae7894ac1cb418ff06f3e6e1700.md) |
+| [c4b6dca21d9af1b9e9f3e69f8d8f202ddb3782b82d5f4d4a452c2cc3af591da1.md](../reports/investigation/documentation-followup-20261014/originals/c4b6dca21d9af1b9e9f3e69f8d8f202ddb3782b82d5f4d4a452c2cc3af591da1.md) |
+| [c5bc55c48fa894736f6b216ddaece47cbccd189612081bc5b614d8d338a8e840.md](../reports/investigation/documentation-followup-20261014/originals/c5bc55c48fa894736f6b216ddaece47cbccd189612081bc5b614d8d338a8e840.md) |
+| [c6310aaca7d33d21e273b3313a152f2d6cb5b1cf03f8fcd9cff5191337478822.md](../reports/investigation/documentation-followup-20261014/originals/c6310aaca7d33d21e273b3313a152f2d6cb5b1cf03f8fcd9cff5191337478822.md) |
+| [c82f61696d6ad07706bbbaf564d536ecd63a547d514c91954ca5783b5f8949da.md](../reports/investigation/documentation-followup-20261014/originals/c82f61696d6ad07706bbbaf564d536ecd63a547d514c91954ca5783b5f8949da.md) |
+| [c93191ee8d8704b12b1c43c6dc8c8d0ffa1d641d8d6ccd7168fe81ff149a385e.md](../reports/investigation/documentation-followup-20261014/originals/c93191ee8d8704b12b1c43c6dc8c8d0ffa1d641d8d6ccd7168fe81ff149a385e.md) |
+| [c989c7dcf69ea71d75c3cce3f6bec9b700be876fe977cd0a413c43470492b6c2.md](../reports/investigation/documentation-followup-20261014/originals/c989c7dcf69ea71d75c3cce3f6bec9b700be876fe977cd0a413c43470492b6c2.md) |
+| [cad4b747c769207527c05d661fe155d362a3e330e03fecb84f1f8385d75549cb.md](../reports/investigation/documentation-followup-20261014/originals/cad4b747c769207527c05d661fe155d362a3e330e03fecb84f1f8385d75549cb.md) |
+| [cadfce6114130ec40d57ed7d180998808a2ae0df8ce3d45a9f84b07ba0c88fda.md](../reports/investigation/documentation-followup-20261014/originals/cadfce6114130ec40d57ed7d180998808a2ae0df8ce3d45a9f84b07ba0c88fda.md) |
+| [caeb0e585848987cb15e31cf4bc16a3b1fe81ac2161eaffc732ec509f14e4a23.md](../reports/investigation/documentation-followup-20261014/originals/caeb0e585848987cb15e31cf4bc16a3b1fe81ac2161eaffc732ec509f14e4a23.md) |
+| [cb12c0d26c876a24cdb5a5b3c944383cad0e4eaea75b8cf1dbde8f3fd6655c06.md](../reports/investigation/documentation-followup-20261014/originals/cb12c0d26c876a24cdb5a5b3c944383cad0e4eaea75b8cf1dbde8f3fd6655c06.md) |
+| [cc5c84dce8eaadaca4ebe8a70b28f8b80c7fec06724f714fad3f88326b0114c4.md](../reports/investigation/documentation-followup-20261014/originals/cc5c84dce8eaadaca4ebe8a70b28f8b80c7fec06724f714fad3f88326b0114c4.md) |
+| [cd0b197a139f24292be3a54c4239255e1a18cc9e1cddcb4b86656382eddce8e4.md](../reports/investigation/documentation-followup-20261014/originals/cd0b197a139f24292be3a54c4239255e1a18cc9e1cddcb4b86656382eddce8e4.md) |
+| [cd24cbb9b9d01dbfde3c8587dfa8ec230bcb2969d95f9c42cc5029fc3d4a8dd2.md](../reports/investigation/documentation-followup-20261014/originals/cd24cbb9b9d01dbfde3c8587dfa8ec230bcb2969d95f9c42cc5029fc3d4a8dd2.md) |
+| [cdb688f06f30dc39da0236660af26657c3c7b786406de521c0414411813558b0.md](../reports/investigation/documentation-followup-20261014/originals/cdb688f06f30dc39da0236660af26657c3c7b786406de521c0414411813558b0.md) |
+| [d08825790c79fafa28711c03a438b763e9e6dd709ec893662dc964cf629fdbe8.md](../reports/investigation/documentation-followup-20261014/originals/d08825790c79fafa28711c03a438b763e9e6dd709ec893662dc964cf629fdbe8.md) |
+| [d088270a6a16b0e9bec93a3312cc1b0151e2245c8c7ace4c2ed5b5ee0528815b.md](../reports/investigation/documentation-followup-20261014/originals/d088270a6a16b0e9bec93a3312cc1b0151e2245c8c7ace4c2ed5b5ee0528815b.md) |
+| [d2dc7f38628522e5a4d27bee87cdc9114512ab8441846343fdfe385873ddb50c.md](../reports/investigation/documentation-followup-20261014/originals/d2dc7f38628522e5a4d27bee87cdc9114512ab8441846343fdfe385873ddb50c.md) |
+| [d35c69d0bdc38121881c6d1f9ba71cb434534395047e2d11e18caff522e4d4ca.md](../reports/investigation/documentation-followup-20261014/originals/d35c69d0bdc38121881c6d1f9ba71cb434534395047e2d11e18caff522e4d4ca.md) |
+| [d3ced97203df4fa65be69f769c49d618ef8f7fac9470b14a0e3dcba41e727222.md](../reports/investigation/documentation-followup-20261014/originals/d3ced97203df4fa65be69f769c49d618ef8f7fac9470b14a0e3dcba41e727222.md) |
+| [d40cc6e7a110b48ee650246bda81b9636fba0f4536e7fa2fe9999169d449a789.md](../reports/investigation/documentation-followup-20261014/originals/d40cc6e7a110b48ee650246bda81b9636fba0f4536e7fa2fe9999169d449a789.md) |
+| [d4eb9a7dd82a31fd36ce3419b1695894819b1b3904e0c0e2ed85058562b036a0.md](../reports/investigation/documentation-followup-20261014/originals/d4eb9a7dd82a31fd36ce3419b1695894819b1b3904e0c0e2ed85058562b036a0.md) |
+| [d502e01faf5cf9afde8d72b2fa159e54f821db2b36ec1c1816f47cae0d3241d0.md](../reports/investigation/documentation-followup-20261014/originals/d502e01faf5cf9afde8d72b2fa159e54f821db2b36ec1c1816f47cae0d3241d0.md) |
+| [d6d50b2b2300a089b78d1bb3bc34bd6da76013a1ca811398ba7ccafeda6c10af.md](../reports/investigation/documentation-followup-20261014/originals/d6d50b2b2300a089b78d1bb3bc34bd6da76013a1ca811398ba7ccafeda6c10af.md) |
+| [d6f2132158e926e1633035f06ae7fe8b61ca3631fd8fcf73344fd1129a3a4c66.md](../reports/investigation/documentation-followup-20261014/originals/d6f2132158e926e1633035f06ae7fe8b61ca3631fd8fcf73344fd1129a3a4c66.md) |
+| [d71c69a72f5a95be644ba4b62c8f09d4af2acc7c6e50e7c4217216e5bd914c33.md](../reports/investigation/documentation-followup-20261014/originals/d71c69a72f5a95be644ba4b62c8f09d4af2acc7c6e50e7c4217216e5bd914c33.md) |
+| [d7e676964c3adefb353630c3a94e80c92603f2c0c66e0c48b0fb48987279d4a0.md](../reports/investigation/documentation-followup-20261014/originals/d7e676964c3adefb353630c3a94e80c92603f2c0c66e0c48b0fb48987279d4a0.md) |
+| [d8324a362770ee8513ec7abeff5b00463fa6eea4a80a9f901d65d91f04775700.md](../reports/investigation/documentation-followup-20261014/originals/d8324a362770ee8513ec7abeff5b00463fa6eea4a80a9f901d65d91f04775700.md) |
+| [db6fc7dbb8f1831aee7d885c2018e2f74e25fcb91940105cab0a71b863eb460f.md](../reports/investigation/documentation-followup-20261014/originals/db6fc7dbb8f1831aee7d885c2018e2f74e25fcb91940105cab0a71b863eb460f.md) |
+| [dba2c8d3195924b0cf0a3ac98acb14595f4c2d655aae5c64e8cfcb8043d306d7.md](../reports/investigation/documentation-followup-20261014/originals/dba2c8d3195924b0cf0a3ac98acb14595f4c2d655aae5c64e8cfcb8043d306d7.md) |
+| [dc1a1b45a1e2a67869f523c8455d0af506112403e3a201b1f60c4c59ba01bc8e.md](../reports/investigation/documentation-followup-20261014/originals/dc1a1b45a1e2a67869f523c8455d0af506112403e3a201b1f60c4c59ba01bc8e.md) |
+| [dcc775269159f45cc9694cc69ca3dc9971d1ed005b6d5e8cecdfd93e43b33980.md](../reports/investigation/documentation-followup-20261014/originals/dcc775269159f45cc9694cc69ca3dc9971d1ed005b6d5e8cecdfd93e43b33980.md) |
+| [dcebd377780d4955a0e5ea61ecfdd88dac6f6d4b0b06d2e2da5bbda476ef19f0.md](../reports/investigation/documentation-followup-20261014/originals/dcebd377780d4955a0e5ea61ecfdd88dac6f6d4b0b06d2e2da5bbda476ef19f0.md) |
+| [ddf350b3bde9020e8fb81bba47acae762aef18f04ad31387550367467786ab11.md](../reports/investigation/documentation-followup-20261014/originals/ddf350b3bde9020e8fb81bba47acae762aef18f04ad31387550367467786ab11.md) |
+| [dee154a1751a367c014cc3f01d75fcc44701a750c1ca31fa14e9699b41ddd00c.md](../reports/investigation/documentation-followup-20261014/originals/dee154a1751a367c014cc3f01d75fcc44701a750c1ca31fa14e9699b41ddd00c.md) |
+| [df0096290090b14944bc090e935a524b159267be4b6f2c62328c7b69e29b4336.md](../reports/investigation/documentation-followup-20261014/originals/df0096290090b14944bc090e935a524b159267be4b6f2c62328c7b69e29b4336.md) |
+| [dfc054f1a2f291d35306fd9ea575b233b7d0b59eb134e545175cd00488e3431f.md](../reports/investigation/documentation-followup-20261014/originals/dfc054f1a2f291d35306fd9ea575b233b7d0b59eb134e545175cd00488e3431f.md) |
+| [e0a48f76f356592d7b3fe738215958a8235e9e0fe7ce11e38b36d2e23e2de5eb.md](../reports/investigation/documentation-followup-20261014/originals/e0a48f76f356592d7b3fe738215958a8235e9e0fe7ce11e38b36d2e23e2de5eb.md) |
+| [e16e9a6d306f413cf06e245e47873d606c437435291c2a32f2fe99459a2b4186.md](../reports/investigation/documentation-followup-20261014/originals/e16e9a6d306f413cf06e245e47873d606c437435291c2a32f2fe99459a2b4186.md) |
+| [e170e8d97e6d63842e94b07716629c11bbf159174c930536137f7e86b0d1baf2.md](../reports/investigation/documentation-followup-20261014/originals/e170e8d97e6d63842e94b07716629c11bbf159174c930536137f7e86b0d1baf2.md) |
+| [e20fa715e26d71f9def449bf39ad36acbcfe7408c2a56098f52093fea859be77.md](../reports/investigation/documentation-followup-20261014/originals/e20fa715e26d71f9def449bf39ad36acbcfe7408c2a56098f52093fea859be77.md) |
+| [e30a83a8f24dd0f52e9614be873768df3f9fc9bc789101fa93a5d429819aff41.md](../reports/investigation/documentation-followup-20261014/originals/e30a83a8f24dd0f52e9614be873768df3f9fc9bc789101fa93a5d429819aff41.md) |
+| [e47f1e7df18bd820800cee542704a0a2a20c91e719606317499a9bd3ec037e13.md](../reports/investigation/documentation-followup-20261014/originals/e47f1e7df18bd820800cee542704a0a2a20c91e719606317499a9bd3ec037e13.md) |
+| [e80ede62331c6019bb8d52bb7f3fef754f5d9434d9a882ce42c6bd3b0c2408b5.md](../reports/investigation/documentation-followup-20261014/originals/e80ede62331c6019bb8d52bb7f3fef754f5d9434d9a882ce42c6bd3b0c2408b5.md) |
+| [e8582d44ec663d1fd585739432dd52470e999f7bba93348cb2c52097185b4ac9.md](../reports/investigation/documentation-followup-20261014/originals/e8582d44ec663d1fd585739432dd52470e999f7bba93348cb2c52097185b4ac9.md) |
+| [e8637f6756e3ac4a0101ef3744dedceec747cb61b37f2acaacf3ae37f63341ec.md](../reports/investigation/documentation-followup-20261014/originals/e8637f6756e3ac4a0101ef3744dedceec747cb61b37f2acaacf3ae37f63341ec.md) |
+| [e9c00191c1b1e6fe760497d4ff2ffcfb7ecae259d536929af97389ee947bd410.md](../reports/investigation/documentation-followup-20261014/originals/e9c00191c1b1e6fe760497d4ff2ffcfb7ecae259d536929af97389ee947bd410.md) |
+| [ea1829c6c48f948c7b981f767105163e67569df81098d1d5e07746c734f1f1c0.md](../reports/investigation/documentation-followup-20261014/originals/ea1829c6c48f948c7b981f767105163e67569df81098d1d5e07746c734f1f1c0.md) |
+| [eae92412038f6272c890cf6310f341554f18e3e986b68c396ca5f29d59f1349a.md](../reports/investigation/documentation-followup-20261014/originals/eae92412038f6272c890cf6310f341554f18e3e986b68c396ca5f29d59f1349a.md) |
+| [ec37cc6e5b9590b2a884cacd679a2e845def0a8f5008760dda13faead5e91f37.md](../reports/investigation/documentation-followup-20261014/originals/ec37cc6e5b9590b2a884cacd679a2e845def0a8f5008760dda13faead5e91f37.md) |
+| [ed73576b765093c1ee6dfa92e23de4e0d368eaa443c94c9eb6111157c93e02fe.md](../reports/investigation/documentation-followup-20261014/originals/ed73576b765093c1ee6dfa92e23de4e0d368eaa443c94c9eb6111157c93e02fe.md) |
+| [ed7dbb3c2bdaed7f2f0835fb51dd509bd0b82ea7f043c15f6260ed01cdd1b412.md](../reports/investigation/documentation-followup-20261014/originals/ed7dbb3c2bdaed7f2f0835fb51dd509bd0b82ea7f043c15f6260ed01cdd1b412.md) |
+| [ed811dd3ff47975ce46fc5965f85a18783b476f4967dd2d16f5fa5b5a9104c89.md](../reports/investigation/documentation-followup-20261014/originals/ed811dd3ff47975ce46fc5965f85a18783b476f4967dd2d16f5fa5b5a9104c89.md) |
+| [edc1038414eb1e1237cdb4230647fe1d1774f071f0dff4c725df81ead0b6a25b.md](../reports/investigation/documentation-followup-20261014/originals/edc1038414eb1e1237cdb4230647fe1d1774f071f0dff4c725df81ead0b6a25b.md) |
+| [ee0f03f0118bd75d72f293193d46b2b09215cff3a3d76219af8f1a05d6a835e4.md](../reports/investigation/documentation-followup-20261014/originals/ee0f03f0118bd75d72f293193d46b2b09215cff3a3d76219af8f1a05d6a835e4.md) |
+| [f0effa4e398c974a3f95aa3469b98b32f7eb24bb948cde4cc52d4ae9d346f149.md](../reports/investigation/documentation-followup-20261014/originals/f0effa4e398c974a3f95aa3469b98b32f7eb24bb948cde4cc52d4ae9d346f149.md) |
+| [f2f7680eca9fba881a51f0ec94711f2c5206271549ce3c55ef8961de31109a85.md](../reports/investigation/documentation-followup-20261014/originals/f2f7680eca9fba881a51f0ec94711f2c5206271549ce3c55ef8961de31109a85.md) |
+| [f556fc4592331a7c0b8cb281a9f27905a045d8ba99f9a59c3742a083cd5d31d6.md](../reports/investigation/documentation-followup-20261014/originals/f556fc4592331a7c0b8cb281a9f27905a045d8ba99f9a59c3742a083cd5d31d6.md) |
+| [f5e1f87082c019b1489a504456ac2117e089071960c4d1a08e228f2a6a4becfd.md](../reports/investigation/documentation-followup-20261014/originals/f5e1f87082c019b1489a504456ac2117e089071960c4d1a08e228f2a6a4becfd.md) |
+| [f7a90843985c08673c9b2b6a0027a4ae94ef5adb4d92aea829cc54faa18d7d18.md](../reports/investigation/documentation-followup-20261014/originals/f7a90843985c08673c9b2b6a0027a4ae94ef5adb4d92aea829cc54faa18d7d18.md) |
+| [f8103b3e779da0c45da951ccc36dca576cf9f7358867698475d1f1022f08d201.md](../reports/investigation/documentation-followup-20261014/originals/f8103b3e779da0c45da951ccc36dca576cf9f7358867698475d1f1022f08d201.md) |
+| [f915c97994cf7e1c47774a155c25314b86621344e72f2f121e8c72a476f142eb.md](../reports/investigation/documentation-followup-20261014/originals/f915c97994cf7e1c47774a155c25314b86621344e72f2f121e8c72a476f142eb.md) |
+| [fbd39c76d979a19b68572fb6901ab66e0e585562151f6e11e64ab00b5114d171.md](../reports/investigation/documentation-followup-20261014/originals/fbd39c76d979a19b68572fb6901ab66e0e585562151f6e11e64ab00b5114d171.md) |
+| [fc256049e97d365828b9e613370eacbb0c77cdf295cd3e126eab7a6bdd2f0aca.md](../reports/investigation/documentation-followup-20261014/originals/fc256049e97d365828b9e613370eacbb0c77cdf295cd3e126eab7a6bdd2f0aca.md) |
+| [fd4d9a91530fdfd0aa1e959e5dc494159c73108d5b4dd0a7de68c3f7445526c1.md](../reports/investigation/documentation-followup-20261014/originals/fd4d9a91530fdfd0aa1e959e5dc494159c73108d5b4dd0a7de68c3f7445526c1.md) |
+| [fdb8ad2019531e9f89ec0f69c11b23a41d8da12e64b50f9fb4cd0a7c72b84bfa.md](../reports/investigation/documentation-followup-20261014/originals/fdb8ad2019531e9f89ec0f69c11b23a41d8da12e64b50f9fb4cd0a7c72b84bfa.md) |
+| [fe1ee6619154c9f1ebdd361d8b3c48bf2abb25750aeb0199cadacdb74cedc9b2.md](../reports/investigation/documentation-followup-20261014/originals/fe1ee6619154c9f1ebdd361d8b3c48bf2abb25750aeb0199cadacdb74cedc9b2.md) |
+| [ff5c2f920683235d4e061b566ed8f9538bc3c4ddf45fb60b4efb8515d909ef00.md](../reports/investigation/documentation-followup-20261014/originals/ff5c2f920683235d4e061b566ed8f9538bc3c4ddf45fb60b4efb8515d909ef00.md) |
+| [ff751de0f081677fc240466daafc61b982a729297c37940c8e502f88184d48a0.md](../reports/investigation/documentation-followup-20261014/originals/ff751de0f081677fc240466daafc61b982a729297c37940c8e502f88184d48a0.md) |

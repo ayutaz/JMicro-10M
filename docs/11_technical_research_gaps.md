@@ -1,20 +1,16 @@
 # 未解決の技術課題と追加調査
 
-更新: 2026-10-14 JST。最新の判断は[結果141](141_chat_lr_comparison_results.md)と[状態](autonomous_status.md)。Base/Chat未完成・未採用、追加研究・学習は停止中。現在は[全ドキュメント更新142](142_documentation_refresh.md)のみ。
+更新: 2026-10-14 JST。現在の依頼は全現行文書の最新化と今後の計画作成。Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は再開していない。
 
-## 現在の課題と解決に必要な証拠
+[最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
 
-| 課題 | 最新の証拠 | 改善を判断する方法 |
-|---|---|---|
-| 内容への応答不足 | 141新DEV内容20/80、文法66/80中46件は関連性不足 | 次介入は入力の対象・人物・数量・時点の失敗へ対応する仮説1件を既存証拠から定義。全回帰と原内容gateで判断 |
-| 訂正・自己履歴の保持不足 | 新DEVの提供履歴11/24、自己履歴5/24 | 両履歴を分けた対照が必要。自己履歴だけを単独原因と決めない |
-| 学習後半の汎化悪化 | 候補TRAIN NLL低下に対し新DEV NLL2.275270→2.689941 | 教材適合と未知能力を区別し、主要変更1つ・同教師量・新DEVで比較。追加周回で救済しない |
-| 反復・停止・文字破損 | 141の全回帰とraw failuresが未達 | 原decodeで非退行・全文字失敗0を判定。表示修正・制約decodeは別policy |
-| 独立確認不足 | fresh seed43・人間blind・正式保持/fullDEV/封印TEST未実行 | 有資格recipeと必要runner接続が先。CPU準備/生成seed/非blind採点では代用不可 |
-| Base採用不足 | 123のBPB改善でも生成条件未達、後続SFTも不採用 | 124の原品質・10Mで1介入を選ぶ別の再開判断。大型化や閾値変更を使わない |
+現在の優先課題は、混在DEV/TEST readerの修理、未回答の比較の選定、真にfreshな独立Base全pipeline、native fullDEV/TEST typed接続、全内容レビューの証拠。文書長重みは一貫性2→1/80・反復45→50/80で不採用。データ/目的/最適化の単独原因は未確定。CPU fixturesや準備済みfactoryを品質・独立学習の完了にしない。
 
-Chat trainer、document sampler、SFT全state再開、rollout、固定教師量比較は実装・実GPU実行済み。Phase0〜5基盤、元10B学習、後続の多数比較も完了済み。本学習前・Chat未実装という当時の記述は現在の説明ではない。どの次介入が有効かは未確定で、今回追加の診断・学習は開始しない。
+最新Baseの文書長重み100Mは不採用で閉鎖。一貫性1/80・反復50/80、独立fresh学習seed43/fullDEV/封印TEST/採用は有資格候補なしで未実行。比較・文書の完了はモデルの品質完成ではない。
 
+元Base TEST20 promptと元Chat TEST20行は別のCPU解析問題を保存した。学習・GPU TEST採点に使っていないこととCPU未解析は別。将来の有資格最終確認にはreader分離と新しい封印TESTが必要。今回data/TESTを開封・再処理しない。
+
+次は評価の読取り分離を修理し、既存結果から未回答の比較1件を定義する計画。介入・教材量・GPU予算は未選定/未凍結。真にfreshな独立Baseの全pipelineとnative runnerの接続、fullDEV/全440生成、新しい封印TESTを省略しない。
 
 ## 当時の資料・保存手順
 
@@ -80,3 +76,6 @@ P0: 長期学習の前に解決。P1: 100M探索／Chat準備までに解決。P
 ## 資料の読み方
 
 各詳細文書は「一次資料で確認した事実」「設計から計算した値」「JMicro向け提案」「実測待ち」を明記する。外部URLの`main`／`master`とWeb版仕様は調査時の参照先であり、採用versionを保証しない。実装開始時に使うrelease／commitを固定して再確認する。
+
+<!-- Original heading aliases retained for historical incoming links. -->
+<a id="現在の課題と解決に必要な証拠"></a>

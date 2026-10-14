@@ -1,6 +1,10 @@
 # 現在の状態
 
-更新: 2026-10-14 JST。**Base/Chatは未完成・未採用。** 文書更新はcommit70aa002で納品検証まで完了。その後「6まで進めてください」により、提示した6段階のBase改善から最終判定までが明示再開された。[実行計画143](143_base_document_balance_plan.md)。Chat/SFT・量子化・大型化・公開は範囲外。
+更新: 2026-10-14 JST。現在の依頼は全現行文書の最新化と今後の計画作成。Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は再開していない。
+
+[最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
+
+前の「6まで」は未達でblockedとなり、ユーザーが解除した。今回の新しい目標は文書/計画のみで、学習再開ではない。
 
 最新の[文書長重み比較144](144_base_document_balance_results.md)は17,698更新・正確100M教師・全80理由付き内容・共通DEV256/Japanese192/331/1119・全state/元文書重み/対照全samplerとdigestを確認して**不採用で閉鎖**。文法44→23、一貫性2→1、適切完結2→2、EOS19→20、反復45→50（各80）。BPB0.998487→1.000710、一貫性差CI−3.75〜0ポイントで原品質・保持未達。
 
@@ -10,7 +14,7 @@ CPU21 checks、有限192 TRAIN診断、実CUDA47技術更新/273,521教師は別
 
 元Base TEST20 promptも既存greedy80がDEV抽出前にCPU構文解析していたことを確認。学習・GPU TEST採点0、TEST shard未開封だが、元TEST promptを未参照とは呼べない。[問題と訂正](../reports/phase6/base-document-balance-comparison-20261014/original_TEST_prompt_exposure.json)。将来の有資格Base最終確認は別artifactのDEV/TEST readerと新しい封印TESTが必要。今回は候補なしで代替TEST未準備・未採点。
 
-科学PID337424/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start60325743は終了。元10B UIはPID338403/start60473641で復帰、HTTP元親/Tokenizer/10M/idleを確認。最新Base候補はWSL `reports/phase6/base-document-balance-comparison-20261014/document_balance/checkpoint-00017698.pt`、SHA `d89caf23bd7d2d8d81f298cb6f1fcbfe5fbd581105f91be1c3cfc18cefc9f86b`。重み・全sampler・全metricsはWSL保全。ローカル納品検証を終えたら報告停止する。
+科学PID337424/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start60325743は終了。元10B UIはPID338403/start60473641で復帰、HTTP元親/Tokenizer/10M/idleを確認。最新Base候補はWSL `reports/phase6/base-document-balance-comparison-20261014/document_balance/checkpoint-00017698.pt`、SHA `d89caf23bd7d2d8d81f298cb6f1fcbfe5fbd581105f91be1c3cfc18cefc9f86b`。重み・全sampler・全metricsはWSL保全。結果commit1901564/receipt fc1a3fc、93Git内容・40保全file・232local linksの納品照合は完了。元UI確認は当時の観測で現在保証ではない。
 
 ## 前回Chatの完了結果
 
@@ -47,13 +51,13 @@ CPU21 checks、有限192 TRAIN診断、実CUDA47技術更新/273,521教師は別
 
 ## 次の判断と停止境界
 
-[比較143/結果144](144_base_document_balance_results.md)は不採用で閉鎖。今回の比較・必要な条件分岐・保存結果を報告して停止する。原品質・10M・独立確認を維持し、閉じた条件の係数/seed/親/予算延長で救済しない。Chat・量子化・公開へ自動移行しない。Base/Chatと全体projectは未完成。
+[比較143/結果144](144_base_document_balance_results.md)は不採用で閉鎖。今回の文書・計画・保存検証を完了して通知する。次の研究の順序と終了範囲は計画145を正とし、再開は別の明示指示。原品質・10M・独立確認を維持し、閉じた条件の係数/seed/親/予算延長で救済しない。Chat・量子化・公開へ自動移行しない。Base/Chatと全体projectは未完成。
 
 ## UI・保存先・履歴
 
-最新の保存された科学観測2026-10-13T16:54:20Zでは元[WebUI](http://127.0.0.1:7860) PID309447/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start55170810、元親/Tokenizer/10M・busy=false・kernel GPU lock一致・競合なし。現在の稼働保証ではなく必要時に実processを照合する。終了runは再起動しない。
+最後の納品観測2026-10-14T07:30:16Zは元10B UI PID338403/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start60473641、元親/Tokenizer/10M/idleを確認。現在の生存保証ではない。文書更新では再診断・再起動していない。
 
-最新S1はWSL `reports/phase7/chat-lr-20261014/S1/checkpoint-00003646.pt`、SHA `f7e8bb8b1569cb45ac399108455a66c5922f64d7898e8ab6b4931ba13c856018`。重み・samplerを含む全state・教材はWSL、Git正本はWindows。[引継ぎ](windows_handoff.md)。
+前回Chat S1はWSL `reports/phase7/chat-lr-20261014/S1/checkpoint-00003646.pt`、SHA `f7e8bb8b1569cb45ac399108455a66c5922f64d7898e8ab6b4931ba13c856018`。重み・samplerを含む全state・教材はWSL、Git正本はWindows。[引継ぎ](windows_handoff.md)。
 
 Base結果[123](123_base_teacher_decay_2b_results.md)、教材汎化[136](136_chat_generalization_results.md)、意味多様性[138](138_chat_semantic_diversity_results.md)、最新LR[141](141_chat_lr_comparison_results.md)は別runの閉鎖済み証拠。元UI10B・別staged約10.6B・teacher-decay2B・後続SFTの学習量を合算しない。
 

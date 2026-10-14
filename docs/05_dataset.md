@@ -1,16 +1,16 @@
 # データ設計
 
-更新: 2026-10-14 JST。[現在の状態](autonomous_status.md)、[最新結果141](141_chat_lr_comparison_results.md)、[ロードマップ](15_project_roadmap.md)が現在の判断の正本。研究・教材準備・診断・生成評価・学習は停止中。
+更新: 2026-10-14 JST。現在の依頼は全現行文書の最新化と今後の計画作成。Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は再開していない。
 
-## 受入データの現在の範囲
+[最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
 
-元Web TRAINは12,225,819,077 tokensが準備済み。元10B、別staged約10.6B、accepted混合2Bと後続Chatは別系列で、教師量を合算しない。初期pilotの全件監査と後続全corpusの独立意味監査は別で、未完了の監査を完了にしない。50〜100B master全量は未取得。
+accepted TRAINとDEV/TESTの分離、元source/manifest/Token量・重複/反復の区別を維持。最新Base100Mは既存accepted2B poolの再利用で、新しい100M教材を増やした実験ではない。全件独立corpus auditは未完了。評価readerの混在TEST解析とcorpus split品質は別の課題で、同じ未開封フラグでは代用しない。
 
-最新139は前回138のaccepted TRAIN41,529 target・660,109 Assistant本文+EOT教師/周と280sample QAを再利用した。新教材・新QA0。候補実消費1,899,557教師は繰返し学習を含み新規教材量ではない。新DEV80と既知3回帰をTRAINから分離し、固定NLLは共通2,634 target。
+最新Baseの文書長重み100Mは不採用で閉鎖。一貫性1/80・反復50/80、独立fresh学習seed43/fullDEV/封印TEST/採用は有資格候補なしで未実行。比較・文書の完了はモデルの品質完成ではない。
 
-元Chat TEST20行を準備時に構文解析した事故は[141](141_chat_lr_comparison_results.md)に保存。学習・GPU評価には使用していないが未参照とは呼ばない。将来の有資格確認には新しい封印Chat TESTが必要。元Base TESTは今回の事故では解析していない。
+元Base TEST20 promptと元Chat TEST20行は別のCPU解析問題を保存した。学習・GPU TEST採点に使っていないこととCPU未解析は別。将来の有資格最終確認にはreader分離と新しい封印TESTが必要。今回data/TESTを開封・再処理しない。
 
-所在・manifest・受入済み範囲は[data保存先](../data/README.md)と[引継ぎ](windows_handoff.md)。独立意味監査・新教材準備・再dedupを文書更新に追加しない。外部sourceの規模・条件は下の調査時点の記録であり、取得時は固定revisionを確認する。
+次は評価の読取り分離を修理し、既存結果から未回答の比較1件を定義する計画。介入・教材量・GPU予算は未選定/未凍結。真にfreshな独立Baseの全pipelineとnative runnerの接続、fullDEV/全440生成、新しい封印TESTを省略しない。
 
 ## 作成時点の資料・契約
 
@@ -129,3 +129,6 @@ raw archive
   -> 4k/8k tokenize
   -> uint16 binary shards + manifest
 ```
+
+<!-- Original heading aliases retained for historical incoming links. -->
+<a id="受入データの現在の範囲"></a>

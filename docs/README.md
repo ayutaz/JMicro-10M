@@ -1,6 +1,16 @@
 # 文書一覧
 
-更新: 2026-10-14 JST。Base/Chat未完成・未採用。[最新Base結果144](144_base_document_balance_results.md)は文書長重み100M/全80/数値監査・条件分岐を終え不採用。[計画143](143_base_document_balance_plan.md)の不合格時の停止条件で閉鎖し、独立学習/fullDEV/封印TEST/採用は未実行。元Base TEST promptのCPU解析も訂正した。前回Chatは[141](141_chat_lr_comparison_results.md)、文書納品は[142](142_documentation_refresh.md)。
+更新: 2026-10-14 JST。現在の依頼は全現行文書の最新化と今後の計画作成。Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は再開していない。
+
+[最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
+
+最新Baseの文書長重み100Mは不採用で閉鎖。一貫性1/80・反復50/80、独立fresh学習seed43/fullDEV/封印TEST/採用は有資格候補なしで未実行。比較・文書の完了はモデルの品質完成ではない。
+
+次は評価の読取り分離を修理し、既存結果から未回答の比較1件を定義する計画。介入・教材量・GPU予算は未選定/未凍結。真にfreshな独立Baseの全pipelineとnative runnerの接続、fullDEV/全440生成、新しい封印TESTを省略しない。
+
+## 今回の文書と計画
+
+[145: 次の計画](145_post_rejection_next_plan.md) / [146: 全文書更新記録](146_documentation_followup.md)。旧141/142は前回の結果・更新記録、143/144は最新Baseの凍結計画・結果として保全。
 
 ## 読む順序
 
@@ -9,7 +19,7 @@
 3. [ロードマップ](15_project_roadmap.md) / [チェックリスト](10_next_steps.md)：Phaseと正式完成までの不足。
 4. [Windows/WSL引継ぎ](windows_handoff.md)：元UI・全state/data・欠損時の復元。
 5. [Base復旧124](124_base_recovery_plan.md) / [今回比較143](143_base_document_balance_plan.md)：原品質・10M・合格/不合格の停止境界。
-6. [全文書カタログ](document_catalog.md)：311既存文書と今回追加2文書の全件区分。
+6. [全文書カタログ](document_catalog.md)：更新前626パス・33現行/282履歴/311原文copyと今回追加2文書。
 
 ## 現行仕様と履歴
 

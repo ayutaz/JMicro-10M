@@ -1,8 +1,16 @@
 # 研究モデルのHugging Face保存
 
-更新: 2026-10-14 JST。最新の判断は[結果141](141_chat_lr_comparison_results.md)と[状態](autonomous_status.md)。Base/Chat未完成・未採用、追加研究・学習は停止中。現在は[全ドキュメント更新142](142_documentation_refresh.md)のみ。 公開について下に示すrevision・manual gated・照合件数は2026-10-09の保存作業の実記録。今回Hubの現在設定・依存を再確認したものではない。公開版は主要3Base系列でdatasetとsamplerを含まず、後続Chat重みの公開や厳密ローカル再開の代替ではない。最新低LR全stateは[引継ぎ](windows_handoff.md)にあり、新しいpush/公開を行わない。
+更新: 2026-10-14 JST。現在の依頼は全現行文書の最新化と今後の計画作成。Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は再開していない。
 
-2026-10-09の保存先は[JMicro-10M-research-archive](https://huggingface.co/japanese-data-analyze/JMicro-10M-research-archive)。当時のpublic / gated=manual保存revisionは 853d52d2323653331b610249912fbe25615615fc、1,544files・396,038,805bytesを照合した。[保存report](../reports/publication/model_archive_20261009.json)、[3モデル取得確認](../reports/publication/model_archive_download_20261009.json)が証拠。今回のHub現在状態の再確認ではない。
+[最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
+
+2026-10-09の主要3Base系列・共通Tokenizer・数値学習状態のpublic/manual-gated保存は当時の記録。dataset/sampler除外でnative厳密再開の代替ではない。後続Chatと文書長重み100M候補は未公開。今回はHub照会・設定変更・push/公開なし。1544files/396038805bytes/revision853d52d2323653331b610249912fbe25615615fcという保存契約は維持する。
+
+最新Baseの文書長重み100Mは不採用で閉鎖。一貫性1/80・反復50/80、独立fresh学習seed43/fullDEV/封印TEST/採用は有資格候補なしで未実行。比較・文書の完了はモデルの品質完成ではない。
+
+元Base TEST20 promptと元Chat TEST20行は別のCPU解析問題を保存した。学習・GPU TEST採点に使っていないこととCPU未解析は別。将来の有資格最終確認にはreader分離と新しい封印TESTが必要。今回data/TESTを開封・再処理しない。
+
+次は評価の読取り分離を修理し、既存結果から未回答の比較1件を定義する計画。介入・教材量・GPU予算は未選定/未凍結。真にfreshな独立Baseの全pipelineとnative runnerの接続、fullDEV/全440生成、新しい封印TESTを省略しない。
 
 ## 当時の資料・保存手順
 

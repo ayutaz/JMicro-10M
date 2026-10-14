@@ -1,10 +1,22 @@
 # Windows / WSL 引継ぎ
 
-更新: 2026-10-14 JST。[結果141](141_chat_lr_comparison_results.md)は不採用で閉鎖、[全ドキュメント更新142](142_documentation_refresh.md)はcommit70aa002で納品済み。「6まで進めてください」により6段階のBase改善・最終判定が明示再開された。[新比較143](143_base_document_balance_plan.md)。Base/Chatは未完成・未採用。新比較だけを進め、終了済みのrunを再起動しない。以下の文書更新時の停止・観測は歴史記録で、実GPU起動前には現process/lockを照合する。
+更新: 2026-10-14 JST。現在の依頼は全現行文書の最新化と今後の計画作成。Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は再開していない。
 
-最新Baseは[結果144](144_base_document_balance_results.md)で正確100M/全80/全state監査を終え不採用で閉鎖。科学PID337424/start60325743終了、元10B UI PID338403/start60473641へ復帰。最終候補はWSL `reports/phase6/base-document-balance-comparison-20261014/document_balance/checkpoint-00017698.pt`、SHA `d89caf23bd7d2d8d81f298cb6f1fcbfe5fbd581105f91be1c3cfc18cefc9f86b`。重み・全sampler・metricsはWSL保全、候補なしで独立seed/fullDEV/封印TEST/採用未実行。終了runを再開しない。
+[最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
 
-元Chat TEST20行の準備解析事故は[141](141_chat_lr_comparison_results.md)へ保存した。未参照とは呼ばず、将来有資格Chat確認には新しい封印TESTが必要。元Base TESTはそのChat事故では解析していないが、今回144の既存mixed-suite readerで元Base TEST20 promptもCPU構文解析された。学習/GPU採点0・TEST shard未開封とCPU未解析は別。将来有資格Baseにも新しい封印TESTとreader分離が必要。今回は代替TESTを準備しない。
+最新Baseの文書長重み100Mは不採用で閉鎖。一貫性1/80・反復50/80、独立fresh学習seed43/fullDEV/封印TEST/採用は有資格候補なしで未実行。比較・文書の完了はモデルの品質完成ではない。
+
+次は評価の読取り分離を修理し、既存結果から未回答の比較1件を定義する計画。介入・教材量・GPU予算は未選定/未凍結。真にfreshな独立Baseの全pipelineとnative runnerの接続、fullDEV/全440生成、新しい封印TESTを省略しない。
+
+## 最新Baseと最後の観測
+
+同10M・元10B親・同accepted TRAIN/教師/seed/batch/optimizerで、文書長によるCE寄与だけを変更。実17,698更新・100,000,000教師、全80理由付き判断、共通DEV256/Japanese192/331/1119を確認した。新GPUは科学1,474.808693＋技術8.721357＝1,483.530050秒。技術47更新/273,521教師は品質/本学習へ加算しない。
+
+最終候補はWSL `reports/phase6/base-document-balance-comparison-20261014/document_balance/checkpoint-00017698.pt`、SHA `d89caf23bd7d2d8d81f298cb6f1fcbfe5fbd581105f91be1c3cfc18cefc9f86b`。full state/sampler/metricsはWSL、Windowsはportable viewと40保存file。結果1901564/receipt fc1a3fcの保存確認済み。
+
+最後のUI納品観測2026-10-14T07:30:16ZはPID338403/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start60473641、元親/Tokenizer/10M/idle一致。現在保証ではなく、今回はprocess/HTTP/GPUを再診断していない。
+
+元Base TEST20 promptと元Chat TEST20行は別のCPU解析問題を保存した。学習・GPU TEST採点に使っていないこととCPU未解析は別。将来の有資格最終確認にはreader分離と新しい封印TESTが必要。今回data/TESTを開封・再処理しない。
 
 ## 正本と保存場所
 
@@ -20,7 +32,7 @@
 
 現在の環境変更は不要。Windows driverがWSL CUDAにも関係し、WSLへLinux display driverを追加しない。文書更新だけのときにdriver更新、uv依存変更、data再構築や全benchmarkを開始しない。
 
-## 閉じた最新runとUI
+## 前回Chatの閉じたrunと当時のUI
 
 `reports/phase7/chat-lr-20261014/` は全28セット・6,132内容判断・NLL7点×2,634 target、S1全3state/実入力教師列/予算/採否を監査し不採用で閉鎖。結果commit89275a8と納品commit09f338eを確認した。独立確認の7分岐は候補なしで未実行・品質未確認。
 
@@ -36,7 +48,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/stop_webui.ps1
 
 [操作43](43_local_webui.md)。次の研究は新しい明示再開と別契約から始め、終了済みの元比較や拒否paddingを再起動しない。
 
-## Git外で保全する重みと教材
+## 前回Chatと旧BaseのGit外保全
 
 最新S1は `reports/phase7/chat-lr-20261014/S1/checkpoint-00003646.pt`、SHA `f7e8bb8b1569cb45ac399108455a66c5922f64d7898e8ab6b4931ba13c856018`。t1/t2/t3のmodel/Adam/scheduler/RNG/sampler/counters、metrics/job/resultを同directoryに保持。TRAINは前回semanticのaccepted教材を参照し、新DEV/固定NLLはdata rootの `phase7/chat-lr-20261014/`。Gitには重みとdataset実体を含めない。以下の旧系列も保全する。所在は原記録から案内し全重み・全corpusを今回再hashしない。
 
@@ -97,3 +109,7 @@ uv run --frozen --extra hub --extra data --extra ml --extra export scripts/downl
 本当に未完了の新jobを復旧する場合だけ、同じ凍結条件と累積予算でvalid checkpointから再開する。Base復旧は証拠を満たしたBaseで通知・停止。通常Chat完成、公開、有料cloud、他者連絡へ自動移行しない。
 
 旧引継ぎの全文は[今回の履歴保存一覧](../reports/investigation/documentation_plan_refresh_20261013/baseline.json)と[20261008履歴](windows_handoff_history_20261008.md)へ保全した。原source/report/raw・Phase0〜3を変更していない。
+
+<!-- Original heading aliases retained for historical incoming links. -->
+<a id="git外で保全する重みと教材"></a>
+<a id="閉じた最新runとui"></a>

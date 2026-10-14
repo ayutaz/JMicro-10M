@@ -1,6 +1,18 @@
 # 実験台帳と検証結果
 
-更新: 2026-10-14 JST。最新は[低LR結果141](../docs/141_chat_lr_comparison_results.md)。Base/Chat未完成・未採用、研究・data準備・診断・評価・学習は停止中。現在は[全ドキュメント更新142](../docs/142_documentation_refresh.md)のみ。
+更新: 2026-10-14 JST。現在の依頼は全現行文書の最新化と今後の計画作成。Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は再開していない。
+
+[最新Base結果144](../docs/144_base_document_balance_results.md) / [前回Chat結果141](../docs/141_chat_lr_comparison_results.md) / [次の計画145](../docs/145_post_rejection_next_plan.md) / [今回更新146](../docs/146_documentation_followup.md)。
+
+最新の完了結果はBase143/144。元10B、teacher-decay2B、文書長100M、各SFTは異なるrunで、教師量を合算しない。最終native checkpointはWSLのdocument_balance/checkpoint-00017698.pt。Windowsには40件のmetadata/source/evaluationを保全し、samplerを省いたportable viewと原native bytesを明確に区別した。結果commit1901564/receipt fc1a3fcの93Git内容照合は当時の保存の証拠。
+
+最新Baseの文書長重み100Mは不採用で閉鎖。一貫性1/80・反復50/80、独立fresh学習seed43/fullDEV/封印TEST/採用は有資格候補なしで未実行。比較・文書の完了はモデルの品質完成ではない。
+
+元Base TEST20 promptと元Chat TEST20行は別のCPU解析問題を保存した。学習・GPU TEST採点に使っていないこととCPU未解析は別。将来の有資格最終確認にはreader分離と新しい封印TESTが必要。今回data/TESTを開封・再処理しない。
+
+次は評価の読取り分離を修理し、既存結果から未回答の比較1件を定義する計画。介入・教材量・GPU予算は未選定/未凍結。真にfreshな独立Baseの全pipelineとnative runnerの接続、fullDEV/全440生成、新しい封印TESTを省略しない。
+
+## 更新前の本文・契約（当時の記録）
 
 ## 最新139の保存記録
 

@@ -1,14 +1,26 @@
 # 評価仕様と現行の適用
 
-更新: 2026-10-14 JST。機械可読の正本[protocol.json](../configs/evaluation/protocol.json)のv1 split・閾値・数値契約は変更しない。[最新結果141](141_chat_lr_comparison_results.md)と[状態](autonomous_status.md)は実際の採否。Base/Chat未完成・未採用、今回は文書更新のみ。
+更新: 2026-10-14 JST。現在の依頼は全現行文書の最新化と今後の計画作成。Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は再開していない。
+
+[最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
+
+同10M・元10B親・同accepted TRAIN/教師/seed/batch/optimizerで、文書長によるCE寄与だけを変更。実17,698更新・100,000,000教師、全80理由付き判断、共通DEV256/Japanese192/331/1119を確認した。新GPUは科学1,474.808693＋技術8.721357＝1,483.530050秒。技術47更新/273,521教師は品質/本学習へ加算しない。
+
+元Base TEST20 promptと元Chat TEST20行は別のCPU解析問題を保存した。学習・GPU TEST採点に使っていないこととCPU未解析は別。将来の有資格最終確認にはreader分離と新しい封印TESTが必要。今回data/TESTを開封・再処理しない。
+
+## 現行のBase採否と読取り境界
+
+最新Baseは文法23/80、一貫性1/80、適切完結2/80、EOS20/80、反復50/80で不採用。原DEVの文法56/80・一貫性/適切完結27/80・EOS37/80・反復上限18/80・文字等0、元相対CIと全保持guardを維持する。最終TEST停止95%等の条件はDEV screenで代替しない。
+
+DEV経路で封印TESTファイルを開かない。CPU構文解析・学習使用・GPU採点・人間参照は別の証拠にする。旧混在suite/hashと結果を保存し、新しいfinal TESTは有資格recipeと選定封印後だけ準備する。今回その内容やdataを解析しない。
 
 ## v1契約と後続実験を区別する
 
-最新139は4suite×219応答×7点の28セット/6,132内容判断とNLL7点×2,634 target。各suiteは固定履歴80、抑制なし80、自己生成履歴24会話59turn。原品質を維持し、最終t3の全回帰・内容56/80・自己文脈15/24・停止76/80と57/59・empty上限4/2・role/raw Unicode/履歴削除0、対照比反復非増加、新DEV family paired CI下限>0を判定して不採用。実験別の分母とguardは[凍結139](139_chat_lr_comparison_plan.md)を参照し、v1の文脈30問へ混ぜない。
+前回Chat139は4suite×219応答×7点の28セット/6,132内容判断とNLL7点×2,634 target。各suiteは固定履歴80、抑制なし80、自己生成履歴24会話59turn。原品質を維持し、最終t3の全回帰・内容56/80・自己文脈15/24・停止76/80と57/59・empty上限4/2・role/raw Unicode/履歴削除0、対照比反復非増加、新DEV family paired CI下限>0を判定して不採用。実験別の分母とguardは[凍結139](139_chat_lr_comparison_plan.md)を参照し、v1の文脈30問へ混ぜない。
 
 Chatの全内容判断はCodex非blind。独立人間blind、fresh学習seed43、正式保持、全文DEV・最終suite、選定封印後TESTと正式採用は未確認。既存のhuman_scoresのnullをCodex評価で上書きしない。
 
-元Chat TEST20行は139準備時にCPU構文解析した。学習・GPU評価への使用0だが未参照とは呼ばない。将来の有資格Chat最終確認には新たな封印TESTが必要。元Base TESTはこの事故では解析していない。raw EOT/EOS/反復/不正UTF8/置換文字を維持し、制約decodeと表示policyは別に記録する。
+元Chat TEST20行は139準備時にCPU構文解析した。学習・GPU評価への使用0だが未参照とは呼ばない。将来の有資格Chat最終確認には新たな封印TESTが必要。元Base TESTはそのChat事故では解析していないが、後続144のBase readerでTEST20 promptがCPU解析された。未参照とは呼ばない。raw EOT/EOS/反復/不正UTF8/置換文字を維持し、制約decodeと表示policyは別に記録する。
 
 以下は凍結v1の設計契約・式・rubricと、その時点の基盤検証。途中の利用状況や計画は現在の採否・再開許可ではない。
 

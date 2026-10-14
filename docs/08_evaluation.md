@@ -1,14 +1,16 @@
 # 評価・Checkpoint・検証
 
-更新: 2026-10-14 JST。[現在の状態](autonomous_status.md)、[最新結果141](141_chat_lr_comparison_results.md)、[ロードマップ](15_project_roadmap.md)が現在の判断の正本。研究・教材準備・診断・生成評価・学習は停止中。
+更新: 2026-10-14 JST。現在の依頼は全現行文書の最新化と今後の計画作成。Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は再開していない。
 
-最新139は全28セット・6,132内容判断・共通NLL7点×2,634 targetを監査済み。新DEV80、既知3回帰、各固定履歴80/role抑制なし80/実自己履歴24会話59turnを区別した。内容・文脈・停止・反復・raw Unicodeの原gateを維持し不採用。
+[最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
 
-Chat評価と自己履歴評価は実施済み。独立人間blind、独立学習seed43、正式保持、fullDEV/最終suite、封印TEST、正式採用は未確認。Codex非blind全件判断・機械flag・技術testsを人間blindの合格へ読み替えない。
+最新Baseは全80のprefix/全文をCodex非blindで理由付き採点。文法23、一貫性1、適切完結2、EOS20、反復50（各80）で不採用。原DEV絶対・相対CI・strong/cached/historical保持を維持。Chat141の28セット/6,132判断/NLL7点は別の評価契約。全文DEVとDEV256、独立学習と生成seed、人間blindとCodex判断、TEST CPU解析とGPU採点を区別する。
 
-元Chat TEST20行は準備で解析され、未参照の主張を取り消した。今後の有資格Chat確認は新たな封印TESTが必要。元のsplit/閾値/原失敗を修正しない。[評価契約](evaluation_protocol.md)は凍結v1と実験別の適用を分ける。
+最新Baseの文書長重み100Mは不採用で閉鎖。一貫性1/80・反復50/80、独立fresh学習seed43/fullDEV/封印TEST/採用は有資格候補なしで未実行。比較・文書の完了はモデルの品質完成ではない。
 
-全3checkpointと全update入力/label digest、25CUDA検証更新の連続/保存再開を確認済み。検証更新・CPUチェック・再利用判断は新学習や独立能力確認ではない。
+元Base TEST20 promptと元Chat TEST20行は別のCPU解析問題を保存した。学習・GPU TEST採点に使っていないこととCPU未解析は別。将来の有資格最終確認にはreader分離と新しい封印TESTが必要。今回data/TESTを開封・再処理しない。
+
+次は評価の読取り分離を修理し、既存結果から未回答の比較1件を定義する計画。介入・教材量・GPU予算は未選定/未凍結。真にfreshな独立Baseの全pipelineとnative runnerの接続、fullDEV/全440生成、新しい封印TESTを省略しない。
 
 ## 作成時点の資料・契約
 

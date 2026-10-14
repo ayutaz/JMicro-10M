@@ -1,8 +1,16 @@
 # Hugging Face経由での成果物共有
 
-更新: 2026-10-14 JST。最新の判断は[結果141](141_chat_lr_comparison_results.md)と[状態](autonomous_status.md)。Base/Chat未完成・未採用、追加研究・学習は停止中。現在は[全ドキュメント更新142](142_documentation_refresh.md)のみ。 新PC・欠損時の固定pilot/Tokenizer復元の補足。既存環境の再取得・Tokenizer学習は不要。主要3Base系列の2026-10-09公開保存は[126](126_model_archive.md)を参照し、後続SFT重み・dataset・samplerを公開済みとしない。最新ローカル納品は89275a8/09f338eで、当時のpush許可を今回へ引き継がない。以下のpayload/hash・bundle revisionは不変の保存契約で、今回再download・学習・外部設定の再調査をしていない。
+更新: 2026-10-14 JST。現在の依頼は全現行文書の最新化と今後の計画作成。Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は再開していない。
 
-固定pilot/Tokenizerの2026-10-02公開先は[japanese-tiny-llm-10m-artifacts](https://huggingface.co/datasets/japanese-data-analyze/japanese-tiny-llm-10m-artifacts)、revision 0b1042979bf32899e24da30790e3ae6b239013c3。新PCの取得はこの固定bundleと126の学習済みBase保存を区別する。現在のコード・後続SFT全state/dataは[引継ぎ](windows_handoff.md)を参照。
+[最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
+
+2026-10-09の主要3Base系列の公開保存は126の当時の記録。後続SFTや文書長重み100Mは未公開。dataset/samplerを含まない公開保存はnative完全再開の代替ではない。最新localBase納品は1901564/fc1a3fcで、旧push許可を今回は引き継がない。pinned pilot/Tokenizerのrevision/hash・復元条件は維持する。
+
+最新Baseの文書長重み100Mは不採用で閉鎖。一貫性1/80・反復50/80、独立fresh学習seed43/fullDEV/封印TEST/採用は有資格候補なしで未実行。比較・文書の完了はモデルの品質完成ではない。
+
+元Base TEST20 promptと元Chat TEST20行は別のCPU解析問題を保存した。学習・GPU TEST採点に使っていないこととCPU未解析は別。将来の有資格最終確認にはreader分離と新しい封印TESTが必要。今回data/TESTを開封・再処理しない。
+
+次は評価の読取り分離を修理し、既存結果から未回答の比較1件を定義する計画。介入・教材量・GPU予算は未選定/未凍結。真にfreshな独立Baseの全pipelineとnative runnerの接続、fullDEV/全440生成、新しい封印TESTを省略しない。
 
 ## 当時の資料・保存手順
 

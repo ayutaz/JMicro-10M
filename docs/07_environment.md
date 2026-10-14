@@ -1,12 +1,16 @@
 # 実行環境とデータ配置
 
-更新: 2026-10-14 JST。[現在の状態](autonomous_status.md)、[最新結果141](141_chat_lr_comparison_results.md)、[ロードマップ](15_project_roadmap.md)が現在の判断の正本。研究・教材準備・診断・生成評価・学習は停止中。
+更新: 2026-10-14 JST。現在の依頼は全現行文書の最新化と今後の計画作成。Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は再開していない。
 
-WindowsはGit正本 `C:\Users\AiHUB\Desktop\japanese-tiny-llm-10m`、WSL実行コピー `/home/aihub_ubuntu/src/japanese-tiny-llm-10m`、大容量data `/home/aihub_ubuntu/jmicro-data`。WSL package3.x/WSL2/Linux/RTX4090、Python3.12.7/uvを維持。依存を今回更新・再測定していない。
+[最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
 
-元10B Baseと後続SFTは学習済みだが未採用。最新139はBF16/math・compile=false・batch32/context1024/固定padding。probe peak allocated16,223,183,360bytes、本学習実1,523.890秒、全GPU2,658.673秒。旧Flash/compileの694,521入力tokens/秒をこの教師速度へ読み替えない。過去の空き容量・PID・driver値は観測時点の値で、現在の生存や容量を保証しない。
+WindowsがGit正本、WSLが実行/weights/sampler/dataの保存先。Python3.12.7/uv、WSL2/Linux/RTX4090を維持。最新Base probeは最大48×1024、peak allocated10,705,060,352bytes、CUDA47技術更新の全state再開一致を確認した。実GPU総1,483.530秒はこのrunの値で、旧Flash/compile694,521入力tokens/秒や次のfresh全pipelineの速度へ読み替えない。driver/package/空き容量/PIDは最後の観測で現在の保証ではない。
 
-最新checkpoint/data/元UIは[引継ぎ](windows_handoff.md)。Pythonは一時処理もuv run --frozen。導入uv python install 3.12.7、復元uv sync --frozen、変更uv add。文書のみの更新にdriver変更・benchmarks・GPU再評価を加えない。
+最新Baseの文書長重み100Mは不採用で閉鎖。一貫性1/80・反復50/80、独立fresh学習seed43/fullDEV/封印TEST/採用は有資格候補なしで未実行。比較・文書の完了はモデルの品質完成ではない。
+
+元Base TEST20 promptと元Chat TEST20行は別のCPU解析問題を保存した。学習・GPU TEST採点に使っていないこととCPU未解析は別。将来の有資格最終確認にはreader分離と新しい封印TESTが必要。今回data/TESTを開封・再処理しない。
+
+次は評価の読取り分離を修理し、既存結果から未回答の比較1件を定義する計画。介入・教材量・GPU予算は未選定/未凍結。真にfreshな独立Baseの全pipelineとnative runnerの接続、fullDEV/全440生成、新しい封印TESTを省略しない。
 
 ## 作成時点の資料・契約
 

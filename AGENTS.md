@@ -1,32 +1,20 @@
 # JMicro-10M development and training
 
-Read `docs/autonomous_status.md`, `docs/15_project_roadmap.md`, and `docs/windows_handoff.md` before continuing. Current evidence is in result141; document coverage and update evidence are in docs/142_documentation_refresh.md and docs/document_catalog.md. Plans124 and future proposals are not execution authorization.
+Read docs/autonomous_status.md, docs/15_project_roadmap.md and docs/windows_handoff.md before continuing. Actual latest Base evidence is result144; next plan is docs/145_post_rejection_next_plan.md; document coverage and delivery are in docs/146_documentation_followup.md and docs/document_catalog.md. Plans are not execution authorization.
 
-## Current scope — 2026-10-14 JST: rejected Base comparison closeout
+## Current scope — 2026-10-14 JST: documentation and planning only
 
-The authorized six-stage plan selected one original-document-length CE weighting study. It completed exact100M/17698 updates, all80 individually reasoned DEV outputs, common-byte/Japanese evaluations, complete-update/full-state/source/sampler/budget audits and required conditional decisions. Results in docs/144_base_document_balance_results.md reject the recipe. Native10M and all original quality gates remain unchanged. No eligible recipe exists: main extension, genuinely fresh trainedseed43, fullDEV/400+40, sealedTEST and adoption are not executed, passed=false and quality-unconfirmed. Six actual executions and Base completion are not achieved. Finish preservation/local commit verification, report the rejection and stop at the plan124/143 failure boundary. No new interventions, rescue runs, Chat, quantization or publication.
+The user cleared the blocked, unachieved "6まで進めてください" goal and requested updating all documentation and planning the next work. Inventory every Markdown/RST including provenance copies, update all living explanations, preserve frozen/dated evidence and original bytes, verify local links/Windows-WSL/Git delivery, and commit locally. No research implementation, diagnostics, data/TEST preparation, inference/evaluation, GPU training, old-job restart, dependency/environment work, push/publication or quantization is resumed. Do not repeat the superseded research-resumption question during this documentation goal.
 
-Executed legacy greedy80 and content readers JSON-parsed mixed eval/base.jsonl before DEV filtering, exposing original Base TEST20 prompts on CPU. No TEST learning/GPU scoring and no TEST shard opening occurred. Preserve this separate Base incident and its explicit correction; old protected_test_used/scored=false is not CPU-unopened proof. Any future qualified Base final validation requires a separate DEV/TEST reader and fresh sealed TEST. Do not prepare/evaluate replacements with no eligible recipe. See the original_TEST_prompt_exposure.json in the new native run.
+Latest document-length-weighting Base pilot144 completed exact100M/17698 updates, all80 individually reasoned DEV outputs, common-byte/Japanese evaluations, complete-state/update/weight/source/sampler/budget checks and rejected the recipe. Model quality and the former six-stage goal remain unachieved. Main extension, genuinely fresh trainedseed43, fullDEV/400+40, sealedTEST and adoption are unexecuted, passed=false, quality-unconfirmed. Source result1901564/receipt fc1a3fc were verified; stored records describe those revisions, not current living-document hashes.
 
-Scientific PID337424/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start60325743 exited. Original10B WebUI restored as PID338403/start60473641; verify actual current identity/HTTP/lock at delivery. Preserve the full native checkpoints/samplers/metrics in WSL. No old or rejected jobs may be relaunched.
+Preserve the separate original Base TEST20-prompt CPU parsing exposure and prior Chat TEST20-row preparation exposure. Neither was used for learning or GPU TEST scoring, but cannot be called CPU-unopened. Base TEST shards were not opened here. Future qualified final verification requires isolated DEV/TEST readers and fresh sealed cases; do not prepare/parse replacements during documentation or with no eligible candidate.
 
-## Prior resumption and historical scope
+Original10B WebUI was last verified2026-10-14T07:30:16Z as PID338403/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start60473641, correct parent/Tokenizer/10M/idle. This is recorded evidence, not current liveness. Preserve native full weights/samplers/metrics and all older lineages in WSL; datasets/weights/samplers are not copied into Git. Never relaunch rejected or completed jobs.
 
-The user explicitly requested "6まで進めてください" after the six-stage Base plan. This resumes the necessary Base hypothesis selection, bounded diagnostics, implementation, matched pilot/main comparison, qualified independent seed/fullDEV and protectedTEST/adoption decisions. Finish an evidence-qualified Base, notify and stop. Keep10M, original quality gates and frozen historical evidence. No Chat/SFT, quantization, larger models, push/publication or paid cloud. The first prospective intervention is documented in docs/143_base_document_balance_plan.md; it is not yet a quality result. Failed stages close that fixed condition and conditional downstream branches remain unexecuted. Do not mark Base complete on rejection or CPU preparation.
+Any future Base resumption follows plan145: first repair evaluation reading boundaries, define one evidence-grounded independent comparison and its approved scope/budget. If explicitly authorizing multiple bounded comparisons, continue routine authorized work without renewed approval; otherwise obey the frozen failure boundary. Preserve10M, original quality/domain, independent fresh learning/fullDEV/finalTEST. Finish a qualified Base, notify and stop; Chat/SFT/quantization/publication need separate resumption.
 
-Documentation-only delivery completed and verified in local commit70aa002. The following paragraphs record the preceding scope/results; their prior pause is superseded only for the explicitly resumed Base work above. Prior operative documents are preserved in reports/phase6/base-document-balance-preparation-20261014/previous_docs.json.
-
-The user requested "ドキュメントをすべて最新にして". Update all current documentation, inventory every document, preserve dated reports/frozen histories and scientific evidence, verify references and Windows/WSL copies, and commit the documentation delivery locally. This does not resume research, diagnostics, data preparation, evaluation, GPU training or old jobs. No automatic push, publication, quantization or deployment.
-
-The previous three-step goal was completed with the LR3e-5 candidate rejected:3646 updates/1899557 Assistant teachers, all28 suites/6132 judgments/7 fixed NLL points, full-state/stream/ledger audits and all seven conditional decisions. Final S1 content20/18/19/15 of80 and own context5/5/5/1 of24 fail the original56/80 and15/24 gates; new improvement CI lower−1.25pp, repetition regressions and new own-history Unicode failure also remain. Result commit89275a8 and receipt commit09f338e were verified; this is scientific comparison and delivery completion, not model quality completion.
-
-All qualified-only branches (Base retention, sampling, fresh trained seed43, human blind, fullDEV, sealed TEST, adoption) are unexecuted, passed=false and quality-unconfirmed. Base/Chat remain unfinished and unadopted. No extra LR/seed/budget/data/architecture or Base intervention is authorized. For any later Base-only resumption, finish an evidence-qualified Base, notify the user and stop; do not automatically move to Chat/SFT/quantization.
-
-Preserve the original Chat TEST20-row preparation parsing exposure and its correction. It was not used for learning or GPU selection, but cannot be called untouched. Any future qualified final Chat confirmation requires fresh sealed cases. Original Base TEST was not parsed in that incident.
-
-Keep original10B WebUI available. Latest stored scientific observation2026-10-13T16:54:20Z: PID309447, boot4052bfc5-3850-44e4-9123-d34a9e19f36e, start55170810, HTTP parent/Tokenizer/10M and idle state, kernel lock verified. Recorded identity is not current/future liveness proof. Do not start GPU or relaunch jobs during documentation work.
-
-Frozen scientific reports, manifests and dated histories describe their captured revision. Verify their original Git revision/snapshots when living docs change; do not rewrite old completion/receipt records to make current document hashes appear historical. The original operative texts are preserved byte-for-byte in the documentation-refresh baseline.
+Original operative documents and all current source/provenance paths are preserved in reports/investigation/documentation-followup-20261014/baseline.json. Dated reports and scientific receipts must not be rewritten to make them describe later document changes.
 
 ## Fixed model-size requirement — user clarification, 2026-10-08 JST
 
@@ -53,3 +41,7 @@ The user authorizes autonomous implementation, repair, local GPU work and requir
 For non-interactive runners return the requested JSON. `continue` means useful authorized work remains; `needs_user` means an external action is needed; `complete` requires actual evidence that the requested scope is achieved. Documentation completion does not mean Base or overall project completion.
 
 The previous instruction text and progress history are preserved in `docs/agents_history_20261008.md`. Its old continuation instructions do not override this current scope.
+
+<!-- Original heading aliases retained for historical incoming links. -->
+<a id="current-scope--2026-10-14-jst-rejected-base-comparison-closeout"></a>
+<a id="prior-resumption-and-historical-scope"></a>

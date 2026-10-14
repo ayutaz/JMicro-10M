@@ -1,10 +1,18 @@
 # 元10B BaseモデルのローカルWebUI
 
-更新: 2026-10-14 JST。URLは **http://127.0.0.1:7860**。このUIは10,001,152 parameters・10,000,007,168 tokensの元Baseで文章の続きを生成する。最新の低LR Chat候補へ置き換えていない。後続SFTは[141](141_chat_lr_comparison_results.md)まで実行したが不採用で、UIの元Base自体も品質未採用。[状態](autonomous_status.md)。
+更新: 2026-10-14 JST。現在の依頼は全現行文書の最新化と今後の計画作成。Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は再開していない。
 
-保存された最新科学観測2026-10-13T16:54:20ZはPID309447/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start55170810、親SHA `410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290`、Tokenizer/10M・busy=false・kernel lock一致。これは現在の生存保証ではない。稼働中は重複起動せず、終了jobを再起動しない。
+[最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
 
-以下のUI操作・起動停止はユーザーが利用する時の手順。現在の文書更新ではサーバー起動・生成・GPU評価を行わない。表示補修をraw Unicode失敗の免除や品質合格へ数えない。
+元10B BaseのURLはhttp://127.0.0.1:7860。新しいBase/Chat候補へ置き換えていない。最後の納品観測は2026-10-14T07:30:16Z、PID338403/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start60473641、元親/Tokenizer/10M/idleを確認した。現在の生存保証ではなく、今回の文書作業ではHTTP/GPU診断・生成・再起動をしていない。次の操作時に実identity/HTTP/lockを照合する。
+
+最新Baseの文書長重み100Mは不採用で閉鎖。一貫性1/80・反復50/80、独立fresh学習seed43/fullDEV/封印TEST/採用は有資格候補なしで未実行。比較・文書の完了はモデルの品質完成ではない。
+
+元Base TEST20 promptと元Chat TEST20行は別のCPU解析問題を保存した。学習・GPU TEST採点に使っていないこととCPU未解析は別。将来の有資格最終確認にはreader分離と新しい封印TESTが必要。今回data/TESTを開封・再処理しない。
+
+次は評価の読取り分離を修理し、既存結果から未回答の比較1件を定義する計画。介入・教材量・GPU予算は未選定/未凍結。真にfreshな独立Baseの全pipelineとnative runnerの接続、fullDEV/全440生成、新しい封印TESTを省略しない。
+
+## 更新前の本文・契約（当時の記録）
 
 ## 使い方
 
