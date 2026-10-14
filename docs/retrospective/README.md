@@ -1,5 +1,9 @@
 # 試行錯誤の詳細台帳
 
+更新: 2026-10-14 JST。[最新結果141](../141_chat_lr_comparison_results.md)、[現在の状態](../autonomous_status.md)、[全体記録125](../125_project_retrospective.md)から後続のChat比較を読む。固定台帳本体のrevision・記録数・原キー・採否は変更していない。今回の[全文書カタログ](../document_catalog.md)と[更新142](../142_documentation_refresh.md)は後続文書までの入口であり、原台帳の対象範囲を拡張した再抽出・再採点ではない。
+
+## 当時の資料・保存手順
+
 入力Git revision: `2d48062f5e29f7cb4cc9a1eb4352aa304e44827c`。観測UTC: 2026-10-08T16:21:01.897114+00:00。
 
 [全体の説明](../125_project_retrospective.md)から読むと経緯を追いやすい。以下は原記録のキーと値を確認するための詳細。

@@ -1,62 +1,19 @@
-# Codexによる環境整備・学習・改善の自動化
+# 自律runnerの現在の運用
 
-現在の運用範囲（2026-10-13 JST）: [結果136](136_chat_generalization_results.md)で4項目の実行・全評価・監査を完了し、不採用で閉鎖。Base/Chat未完成・未採用、追加研究・教材準備・診断・学習は停止中。最新の依頼は文書と計画の更新のみ。[status](autonomous_status.md)、[AGENTS](../AGENTS.md)、[次の未実行計画135](135_chat_problem_solution_plan.md)を優先する。今回、継続runnerやGPU jobを起動しない。
+更新: 2026-10-14 JST。[状態](autonomous_status.md)、[AGENTS](../AGENTS.md)、[最新結果141](141_chat_lr_comparison_results.md)を読む。前の3項目の比較・条件分岐・納品は不採用で完了し、現在の目標は[ドキュメント更新142](142_documentation_refresh.md)のみ。研究・data準備・診断・評価・GPU学習は停止中。
 
-下のCLI・profile・runnerコマンドと製品設定は当時の運用資料で、現在の再開許可ではない。別の明示再開後も選んだ範囲だけを実行し、閉じた128/131/133やpaddingを再起動しない。今回、製品の設定・CLIの挙動を再確認・変更していない。
+## 実行範囲と完了を区別する
 
-現在地（2026-10-05 JST）: 結果63後の四項目は別train32でselector v2を改修/凍結し、同source各20M/未確認全80を診断。弱例対照12/候補14で準備失敗分岐の判断・報告・元UI確認まで完了して停止した。[結果65](65_condition_selector_v2_preparation_results.md)、[status](autonomous_status.md)、AGENTS.mdの停止境界を先に読む。新100M/全文は未起動。次案を自動開始しない。
+権限が利用可能でも、現在の依頼で許可された範囲を越えない。文書依頼を研究の再開として扱わず、古いrunning/PID/next_actionを起動指示にしない。通常判断で許可を繰り返し求める必要はないが、OS昇格・restart・credentials・有料cloud・外部送信/公開等はそれぞれの境界に従う。
 
-実行権限と作業範囲を区別する。actual job/boot/start ticks/lock/checkpointを確認し、完成したrunを起動し直さない。completeは依頼された範囲や明記された失敗分岐の証拠付き完了で、Base/Chat品質達成とは異なる。原計画61と実行64の条件を保持。結果65の次案は新しい実行依頼なしにrunnerから開始しない。
+`continue`は許可範囲の有用な作業が残る状態、`needs_user`は外部操作が必要、`complete`は依頼範囲を現在の証拠で完了した状態。比較・文書の完了をBase/Chatの正式採用へ読み替えない。条件付き独立確認は有資格候補なしなら未実行・品質未確認と記録する。
 
-以下のCLI 0.159.3・アプリ設定・公式資料の説明は2026-10-03に確認した履歴で、今回の文書更新では製品設定を再調査・変更していない。旧作業の指示は[保存履歴](autonomous_history_20261004.md)を参照する。
+## 保存と再開
 
-## このアプリで続ける
+プロジェクトのrunnerは[scripts/run_codex_autonomous.py](../scripts/run_codex_autonomous.py)と[profile installer](../scripts/install_codex_autonomous_profile.ps1)。これらの準備・stub試験は実Codex/GPUの成功証拠ではない。runner/CLIの製品versionや設定は今回確認・変更していない。2026-10-03のCLI0.159.3・権限画面・profile例は[更新前原文](../reports/investigation/documentation-refresh-20261014/baseline.json)の歴史資料として保全した。古い「環境から学習まで継続」のpromptを現在の依頼へ適用しない。
 
-初回にモードが表示されない場合はSettings → General → Permissionsで有効化し、その後に入力欄下の権限メニューで選択する。[公式のモード選択](https://learn.chatgpt.com/docs/permission-modes)。入力欄下に選択肢がある場合は**Full access**へ変更する。公式の対応設定は`approval_policy = "never"`と`sandbox_mode = "danger-full-access"`。[OpenAI公式の権限説明](https://learn.chatgpt.com/docs/sandboxing)
+長期jobと無人runnerは別機能。再開する実jobがある場合はPID/boot/start・GPU lock・終端result・valid checkpointを照合し、同凍結条件の完了updateから再開する。観測timeoutだけで終了と扱わず同じhandleを確認し、終了したpilot/128/131/133/135/139は再起動しない。
 
-Workのnetwork設定が提供されている場合は、Settings → Data controls → Work network accessでAllow public internet accessを有効にする。管理対象の環境で選択肢が無効な場合は管理者側のpolicy変更が必要。ユーザー設定は管理policyを上書きできない。変更が反映された実行環境で続きを進める。
+Pythonはrunner・tests・one-offを含め`uv run --frozen`、Python3.12.7、通常WSL extras `--extra hub --extra data --extra ml --extra export`。source/data/config・logs・全state・消費カウンタを保存し、GPU診断・学習を文書更新の確認へ追加しない。
 
-当初の制限された会話ではグローバル設定を変更できなかった。2026-10-03にユーザーのFull access選択が実効policyへ反映され、会話内からWSL・network・CUDAにアクセスできた。グローバルconfigは変更していない。project内の設定fileは実行中セッションの権限を変更しない。
-
-## CLIのプロジェクト用profile
-
-通常のPowerShellでproject rootから実行:
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\install_codex_autonomous_profile.ps1
-codex --profile jmicro_autonomous --cd . "AGENTS.mdとdocs/autonomous_status.mdに従い、環境整備から学習・評価・改善まで継続してください"
-```
-
-installerは既存グローバルconfigを変更せず、`$CODEX_HOME/jmicro_autonomous.config.toml`（未指定時は`%USERPROFILE%\.codex\`）へproject専用profileを作成する。同名profileが異なる場合はbackupを残す。今回確認したCLI 0.159.3の`--profile`は`<name>.config.toml`を重ねる仕様。既存のmodel選択・ログインを引き継ぐ。実際のCLI helpと[公式設定説明](https://learn.chatgpt.com/docs/config-file/config-reference)を再開時にも確認する。
-
-CLIの設定はアプリの既存会話を変更しない。管理policyやWindowsの管理者権限を回避するものでもない。WSL導入/driver更新のOS側昇格、再起動、Linux初回ユーザー作成、初回ログインは外部操作として残る場合がある。
-
-## 無人の継続runner
-
-Codex CLIと保存済みログインを利用する。通常端末で:
-
-```powershell
-uv run --frozen scripts/run_codex_autonomous.py --max-turns 20
-```
-
-WSL内でCLIを利用できる場合はLinuxコピーで:
-
-```sh
-uv run --frozen scripts/run_codex_autonomous.py --max-turns 20
-```
-
-runnerはprofileのinstallなしでも、起動するCodexに`approval_policy=never`と`danger-full-access`を指定する。制限された会話から権限拡張用に起動する手段には使わない。Full accessが反映された環境または通常端末から実行する。表示だけの確認は`--dry-run`。
-
-各回のCodexが実装・学習・検証を行い、`continue`なら次の回を開始する。`complete`、外部操作が必要な`needs_user`、CLIエラー、20回の起動上限で終了する。上限終了はproject完了を意味しない。無制限retryや無制限の改善探索は行わず、同じcommandで状態fileから続けられる。1回の作業時間やCodex accountの利用上限はrunnerが解除できない。[公式non-interactive実行](https://learn.chatgpt.com/docs/non-interactive-mode)
-
-`reports/automation/<UTC-id>/`に各回のprompt、JSONL events、stderr、最終JSON、最新resultを保存する。exit codeは0=要求達成、2=runner/CLIエラー、3=外部操作待ち、4=起動回数上限。`runner.lock`で二重runnerを防ぐ。強制終了後にlockが残った場合は記録されたPIDの終了を確認してから除去する。学習jobの二重起動はagentがcheckpoint/run記録とPIDを確認して避ける。
-
-コードの継続runnerと、長時間GPU学習のcheckpoint/監視/再開は別の機能。GPU側はPhase 4で排他lock、PID/boot ID/start ticks、stage/run記録、atomic checkpointとhashを実装し、hiddenのWindows `wsl.exe` supervisorで検証jobを保持した。スリープ・再起動・ログイン切れで永続実行は保証せず、中断時はcompleted-update checkpointから再開する。
-
-Pythonの実行はrunner・テスト・一時スクリプトを含め`uv run --frozen`経由に統一する。Python 3.12.7が未導入なら`uv python install 3.12.7`で導入し、依存は`uv sync --frozen`で復元する。固定環境を取得できない場合はblockerを記録し、system Pythonへ切り替えない。
-
-## 実施した検証
-
-`uv run --frozen python -m unittest discover -s tests -p test_codex_automation.py -v`で再実行できる5件のstubテストが成功。実Codexを呼ばないローカルstub subprocessで、継続結果の引継ぎ、終了条件、CLI失敗時の診断、二重起動防止を確認した。dry-run/profile previewと各fileの構文も確認。このstub結果だけでは実Codex/GPU成功を証明しない。後続のPhase 4では全64 tests / skip 0と実GPU学習・保存再開・評価・容量測定を完了した。[実機証拠](21_phase4_completion.md)。
-
-初回stub検証はuv統一前の履歴。現在の再実行は`uv run --frozen python -m unittest discover -s tests -p test_codex_automation.py -v`を使う。
+今回の文書更新は[全文書カタログ](document_catalog.md)、原byteの保全、現行説明とリンク、Windows/WSL一致、ローカルcommitの証拠で判断する。Git正本はWindows、identityは`yousan <ka1357amnbpdr@gmail.com>`。push/公開は今回の範囲に含まない。

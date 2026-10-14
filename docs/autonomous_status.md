@@ -1,61 +1,52 @@
 # 現在の状態
 
-2026-10-14 現行: [結果141](141_chat_lr_comparison_results.md)の低学習率比較は全28セット・6,132判断・NLL7点・全3保存状態・採否・予算と条件分岐の科学監査を完了し、不合格・不採用。S1最終内容20/18/19/15 of80、自己文脈5/5/5/1 of24、新内容差+8.75ポイント（95%CI −1.25〜+18.75）、反復退行と新自己生成Unicode失敗1。独立確認の全7分岐は候補なしで未実行・passed=false・品質未確認。Base/Chat未完成・未採用。文書・保全・ローカル納品はfinal_archive/final_delivery_checksで別に証明する。納品の最終commit照合までgoal完了を宣言せず、それを終えて停止する。追加GPU・教材準備・新条件は停止。今回GPU2,658.673158秒/33,600秒。科学監査2026-10-13T16:54:20Zの元UI PID309447/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start55170810、HTTP親/Tokenizer/10M・busy=false・kernel lock一致。以下は再開時から途中までの履歴で、未完了数やPIDは現在の指示ではない。
+更新: 2026-10-14 JST。**Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は停止中。** 現在の依頼は全ドキュメントの更新・整合確認とローカル保存。[更新142](142_documentation_refresh.md)、[全文書カタログ](document_catalog.md)。
 
-2026-10-14 明示再開: goal「3まで進めてください」は直前回答の介入1件選定→10M/原品質で比較→有望条件だけ独立確認を再開する。[計画139](139_chat_lr_comparison_plan.md)。SFTのpeak LR1e-4→3e-5だけを変更し、同TRAIN/同親/教師量、新DEV＋既知3回帰を登録する。Base/Chat未採用、旧135の完了と不採用を保持。以下の停止状態は今回再開前の履歴。
+## 最新の完了結果
 
-最新実績（2026-10-14 JST）: [139](139_chat_lr_comparison_plan.md)/[実行140](140_chat_lr_comparison_execution.md)でLR3e-5候補のCUDA25検証更新と全評価予測10,732.271秒/14,400秒が通過。本学習をdurable workerで開始し、15:43:54Zに実PID304617/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start54912399の生存と600更新/312,871教師を観測。全レビューは13/28セット・2,847/6,132判断・NLL1/7点。元親新DEVは全219理由付き判断を確認。最終採否・3段階の完了は未確認。準備時の元Chat TEST20行解析事故は保存・訂正済みで、有資格時は新しい封印Chat TESTが必要。
-
-保存点監査追記: t1=1,215更新/633,206教師、t2=2,430更新/1,266,627教師の実入力/教師digest・LR列・全stateを確認して通過。15:57:11Zに同学習PID304617の実生存と2,500更新/1,303,091教師を観測。生成品質は未確認、t3/残15suite/NLL6点/採否・分岐・納品を継続する。
-
-最終更新: 2026-10-13 JST。**計画135の6段階を実行・監査し、教材候補S1を不合格・不採用で閉鎖した。Base/Chatは未完成・未採用。追加研究・教材準備・GPU診断・生成評価・学習は停止する。**
-
-[最終結果138](138_chat_semantic_diversity_results.md)、[科学的完了監査](../reports/phase7/chat-semantic-diversity-20261013/completion.json)、[現行計画135](135_chat_problem_solution_plan.md)を先に読む。[実行137](137_chat_semantic_diversity_execution.md)は時点別履歴で、途中の「継続中」やPIDを再開指示に使わない。128/131/133/今回135の終了jobを再起動しない。
-
-## 最新の実績と採否
+[低学習率比較141](141_chat_lr_comparison_results.md)で、計画139の介入選定・同10M比較・有資格候補だけの独立確認への分岐を完了し、候補S1を不採用で閉鎖した。元10B親、同accepted TRAIN/Tokenizer/seed42/教師量/schedule/paddingでpeak LR1e-4→3e-5を比較。S0は138のS1の歴史state、新学習0。
 
 | 項目 | 実際の証拠 |
 |---|---|
-| モデル | native10,001,152 parameters、context1024、Tokenizer4096。9.5M〜10.1M制約を維持 |
-| S0対照 | 最新D1の同親/seed/教師量/schedule/全stateを照合した歴史3checkpoint。新学習0 |
-| S1教材 | TRAIN41,529 target、660,109教師/周、280sample QA最終誤り0。独立人間/全TRAIN認証ではない |
-| S1実学習 | 3,646更新・1,899,557 Assistant本文+EOT教師。登録Bを2超過し許容0〜64内。3保存点全state/実消費列監査通過 |
-| 全評価 | 21セット・4,599理由付き内容判断、共通固定NLL7点×2,554 targetを監査。既知8セット1,752判断は出典付き再利用 |
-| 技術確認 | CUDA probe9更新＋連続/保存再開16更新。検証25更新を本学習や品質証拠へ数えない |
-| 最終採否 | S0/S1とも原品質gate未達。S1の未知内容改善CI下限も負。候補なし、不採用で閉鎖 |
-| 分岐 | 保持/samplingは候補なしで未実行・passed=false・品質未確認。回復/効率は範囲外 |
-| 今回GPU | 2,443.006571秒（40.717分）/21,600秒。S0過去学習/全研究の累計ではない |
-| 保存 | 重み・samplerを含む全state・教材はWSL。小report/raw/全notes/config/実装/文書はローカルGit。自動push/公開なし |
+| 固定参照 | native10,001,152 parameters、Tokenizer4096、context1024。9.5M〜10.1Mを維持 |
+| 教材 | TRAIN41,529 target、660,109教師/周。280sample QAを再利用。新教材・新QA0 |
+| S1学習 | 3,646更新・1,899,557 Assistant本文+EOT教師、許容内超過2。全3state・全update入力/label digest確認 |
+| 全評価 | 28セット・6,132理由付き内容判断・共通NLL7点×2,634 target。既知12セット2,628判断は出典付き再利用 |
+| 技術確認 | CUDA probe9＋連続/保存再開16の25検証更新。品質や本学習へ数えない |
+| 資源 | 新GPU2,658.673158秒/33,600秒。過去の学習やCPUレビュー時間と別 |
+| 保存 | 結果commit89275a8、納品commit09f338eの360ファイル保存・Git内容を確認。push/公開なし |
 
-| 最終品質 | S0 新 | S1 新 | S0 前回 | S1 前回 | S0 元旧 | S1 元旧 | 原条件 |
-|---|---:|---:|---:|---:|---:|---:|---|
-| 内容 /80 | 16 | 19 | 12 | 21 | 15 | 11 | 各56以上 |
-| 自己生成文脈 /24 | 3 | 3 | 3 | 6 | 1 | 1 | 各15以上 |
+| 最終セット | S0内容 /80 | S1内容 /80 | S0自己文脈 /24 | S1自己文脈 /24 |
+|---|---:|---:|---:|---:|
+| 新DEV | 13 | 20 | 3 | 5 |
+| 138 DEV | 19 | 18 | 3 | 5 |
+| 133 DEV | 21 | 19 | 6 | 5 |
+| 元旧DEV | 11 | 15 | 1 | 1 |
 
-主指標のS1−S0差は新+3.75ポイント、95%CI −8.75〜+16.25。前回DEVの差は正のCIだが、主指標/全回帰合格を代用しない。最終S1新の文法2は63/80、そのうち44件は関連性2未満。新自己生成反復0→1、元旧固定反復1→5、元旧Unicode失敗0→1も残る。原rawを修正・制約decodeして成功にしない。
+原条件は全セット内容56/80以上、自己生成文脈15/24以上など。新内容差+8.75ポイント、95%CI −1.25〜+18.75も改善条件未達。反復非退行・停止の条件も不成立、新自己生成Unicode失敗1を保存。低LRでDEV NLLが対照より低くても品質合格ではない。
 
-固定S1 TRAIN本文NLLは親2.841439→0.008183、新DEVは2.664694→3.272796、RPC DEV BPBは1.351262→1.875353。教材適合と未知内容の汎化の隔たりを確認したが、全TRAIN暗記・Base単独原因・10M容量限界は未確定。RPCのChat形式BPBは正式Base保持を代用しない。
+[科学監査](../reports/phase7/chat-lr-20261014/completion.json)、[採否](../reports/phase7/chat-lr-20261014/selection.json)、[納品記録](../reports/phase7/chat-lr-20261014/final_delivery_checks.json)。
 
-## 完了と未確認
+## 完了したことと未確認
 
-ユーザーの「6まで進めてください」は1候補の比較→QA/凍結→新DEV＋既知2回帰→技術/予算gateと学習→全評価/条件付き保持→報告・停止の範囲で完了した。モデル完成・採用の完了ではない。[納品確認](../reports/phase7/chat-semantic-diversity-20261013/final_delivery_checks.json)。
+前の「3まで進めてください」は比較・採否・条件分岐・報告・保全・ローカル納品まで完了した。Base保持、sampling、fresh学習seed43、人間blind、fullDEV、封印TEST、採用の7分岐は候補なしで未実行・passed=false・品質未確認。独立確認を実行した、モデルが完成したとは記載しない。
 
-内容判断はCodex非blind、QAは標本、対照は歴史state。独立学習seed43、人間blind、独立corpus監査、fullDEV/全400生成＋長文40/最終継続suite、選定封印後のprotectedTEST、正式Base/Chat採用は未確認。CPU準備や3生成seedで代用しない。
+判断はCodex非blind、QAは標本、対照は歴史state。独立corpus監査・正式Base/Chat採用も未確認。Base単独原因・10M容量限界は確定していない。
 
-次の研究条件・追加教材・診断・学習は明示再開待ち。[135](135_chat_problem_solution_plan.md)末尾は提案のみで、新しい実行契約ではない。Base復旧を選ぶ場合は[124](124_base_recovery_plan.md)の固定品質とBase完成で通知・停止の境界を維持する。
+元Chat TEST20行を準備時にCPU構文解析した事故を[141](141_chat_lr_comparison_results.md)へ保存。学習・GPU評価への使用0だが、未参照の主張は取り消した。将来の有資格Chat最終確認には新たな封印TESTが必要。元Base TESTは事故では解析していない。
 
-## process・UIと保全
+## 次の判断と停止境界
 
-最終科学監査2026-10-13T09:44:20Zに元[WebUI](http://127.0.0.1:7860)の実PID292581/boot `4052bfc5-3850-44e4-9123-d34a9e19f36e`/start_ticks52504723、HTTP親/Tokenizer/10M一致、busy=false、kernel GPU lock一致、競合jobなしを確認した。これは当時の観測で、現在/将来の生存保証ではない。終了済みのpilot・学習・評価を再起動しない。[引継ぎ](windows_handoff.md)。
+文書更新を終えて通知・停止する。新介入・別LR/seed・教材・評価・学習は明示再開待ち。[Base復旧124](124_base_recovery_plan.md)を選ぶ場合は原品質・10M・独立確認を維持し、合格Baseで通知・停止。Chat・量子化・公開へ自動移行しない。
 
-S1最終checkpointはWSL `reports/phase7/chat-semantic-diversity-20261013/S1/checkpoint-00003646.pt`、SHA `6ca25064fa4ccb6784a05fa5ade43bfdaa87aeb55f11458a233eaf32664fd2ea`。[保存一覧](../reports/phase7/chat-semantic-diversity-20261013/final_archive.json)。Git正本はWindows。最新納品commitは `git log -1`、内容保存commitは納品確認を参照する。
+## UI・保存先・履歴
 
-## 過去の結果・公開履歴
+最新の保存された科学観測2026-10-13T16:54:20Zでは元[WebUI](http://127.0.0.1:7860) PID309447/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start55170810、元親/Tokenizer/10M・busy=false・kernel GPU lock一致・競合なし。現在の稼働保証ではなく必要時に実processを照合する。終了runは再起動しない。
 
-[前回136](136_chat_generalization_results.md)は全14suite/3,066判断/NLL7点・D1 3,641更新/1,899,562教師を完了し不採用。動的padding24検証更新も固定との数値差で不採用。今回と別runの証拠として保持する。
+最新S1はWSL `reports/phase7/chat-lr-20261014/S1/checkpoint-00003646.pt`、SHA `f7e8bb8b1569cb45ac399108455a66c5922f64d7898e8ab6b4931ba13c856018`。重み・samplerを含む全state・教材はWSL、Git正本はWindows。[引継ぎ](windows_handoff.md)。
 
-Base teacher-decay2BはBPB1.106386→1.090316でも一貫性3→3、適切完結7→5、反復27→27、Unicode0→1（各80）で不採用。[結果123](123_base_teacher_decay_2b_results.md)。元UI10B・別staged約10.6B・teacher-decay2B・後続SFTは別系列で、学習量を合算しない。
+Base結果[123](123_base_teacher_decay_2b_results.md)、教材汎化[136](136_chat_generalization_results.md)、意味多様性[138](138_chat_semantic_diversity_results.md)、最新LR[141](141_chat_lr_comparison_results.md)は別runの閉鎖済み証拠。元UI10B・別staged約10.6B・teacher-decay2B・後続SFTの学習量を合算しない。
 
-2026-10-09の[公開保存版126](126_model_archive.md)は主要3系列のpublic/manual gated保存。datasetとsamplerは除外し、厳密再開の代替ではない。後続Chat重みは公開していない。当時のGitHub push許可は当時の納品に限る。
+[公開保存版126](126_model_archive.md)は2026-10-09の主要3系列保存で、dataset/samplerを除外。後続Chat重みは公開していない。当時のpush許可は当時の納品に限る。
 
-更新前の全運用文書は[今回の履歴baseline](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/baseline.json)、以前の全体経緯は[125](125_project_retrospective.md)と[詳細台帳](retrospective/README.md)に保全した。
+旧運用全文と全311文書のhashは[更新前baseline](../reports/investigation/documentation-refresh-20261014/baseline.json)に保全。[全体125](125_project_retrospective.md)と[固定台帳](retrospective/README.md)は当時のrevisionを保持する。

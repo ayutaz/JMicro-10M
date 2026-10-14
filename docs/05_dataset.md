@@ -1,14 +1,18 @@
 # データ設計
 
-現在地（2026-10-03）: 固定pilotは採用22,998件（Web 19,998 / 会話3,000）。Phase 4 Base shardはWebのみのtrain 18,022 / dev 924 / test 1,052文書。dev/testと固定evalは学習から除外し、会話/sharealikeは別系列へ保つ。[復元とshard](../data/README.md)。Phase 5の100Mはこのpilotの反復（T8K約14.53 / T4K約11.91倍のstream-token曝露）であり、unique 100M corpusの実測ではない。50〜100B master corpusは未取得。500M開始用の拡張は①で完了しており、追加取得は[継続判断](27_phase6_remaining_plan.md)と取得上限・既存heldout保護を固定してから行う。以下の外部規模・条件は2026-10-02の候補調査値で、拡張時に固定revisionの原資料を再確認する。
+更新: 2026-10-14 JST。[現在の状態](autonomous_status.md)、[最新結果141](141_chat_lr_comparison_results.md)、[ロードマップ](15_project_roadmap.md)が現在の判断の正本。研究・教材準備・診断・生成評価・学習は停止中。
 
-Phase 6①では同revisionの8 train filesを取得し、train 1,604,292文書 / 756,087,912 stream tokens / 2,946,200,160 body bytes、dev 89,416文書、test 89,485文書の拡張shardを作成した。初期配合はFineWeb2 Edu Japanese 100%、pilotの全Web splitと固定suiteを保護してcluster分割する。独立全件監査は完了した。これは500M開始用の段階拡張で、50〜100B master全量ではない。初回500Mはstream約0.66回分、10Bは約13.23回分となり、後続stageでは追加取得・配合の判断を行う。[凍結条件](25_phase6_preparation.md)、[完了証拠](26_phase6_preparation_completion.md)
+## 受入データの現在の範囲
 
-## 基本方針
+元Web TRAINは12,225,819,077 tokensが準備済み。元10B、別staged約10.6B、accepted混合2Bと後続Chatは別系列で、教師量を合算しない。初期pilotの全件監査と後続全corpusの独立意味監査は別で、未完了の監査を完了にしない。50〜100B master全量は未取得。
 
-**確定**: 収集可能量をそのまま学習量にしない。50〜100B tokens相当のmaster corpus候補を構築し、実学習は100M比較 → 500M → 1B → 2B → 5B → 10B → 20B → 50Bと段階的に進める。
+最新139は前回138のaccepted TRAIN41,529 target・660,109 Assistant本文+EOT教師/周と280sample QAを再利用した。新教材・新QA0。候補実消費1,899,557教師は繰返し学習を含み新規教材量ではない。新DEV80と既知3回帰をTRAINから分離し、固定NLLは共通2,634 target。
 
-10Mモデルでは容量不足が先に来る可能性があるため、雑多なデータ量より、日本語短文生成・対話に寄与する品質とmixtureを重視する。
+元Chat TEST20行を準備時に構文解析した事故は[141](141_chat_lr_comparison_results.md)に保存。学習・GPU評価には使用していないが未参照とは呼ばない。将来の有資格確認には新しい封印Chat TESTが必要。元Base TESTは今回の事故では解析していない。
+
+所在・manifest・受入済み範囲は[data保存先](../data/README.md)と[引継ぎ](windows_handoff.md)。独立意味監査・新教材準備・再dedupを文書更新に追加しない。外部sourceの規模・条件は下の調査時点の記録であり、取得時は固定revisionを確認する。
+
+## 作成時点の資料・契約
 
 ## 中心候補
 

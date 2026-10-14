@@ -1,10 +1,10 @@
 # データ領域
 
-現在地（2026-10-03）: pilot/Tokenizerは固定公開版をhash検証してWSLへ復元済み。通常の再開では下記のraw再取得・再生成を繰り返さない。[初回の復元](../docs/huggingface_handoff.md)を使う。Phase 4のBase shardはWeb train 18,022 / dev 924 / test 1,052文書を分離した。会話3,000件は別bucketで、Chat学習は未開始。Phase 6①の拡張corpusは全件監査済みで、756M unique train stream tokensをWSL外部領域に保存した。通常の再開ではこの取得・構築も繰り返さない。④⑤で本学習入力のmanifest/tokenizer/source hashを[version2](../configs/phase6/base_frozen.json)へ凍結済み。新規Baseはこのtrainだけを使い、dev/testは学習へ混ぜない。
+更新: 2026-10-14 JST。最新は[結果141](../docs/141_chat_lr_comparison_results.md)と[引継ぎ](../docs/windows_handoff.md)。研究・data準備・学習は停止中、[文書更新142](../docs/142_documentation_refresh.md)のみ。Base/Chat未完成・未採用。元Web TRAIN12,225,819,077 tokens、accepted混合2B、後続SFTは別系列。最新139は以前のaccepted TRAIN41,529 target/660,109教師/周/280sample QAを再利用し、新教材0。TRAINはWSL data rootのsemantic系列、新DEV/固定NLLはphase7/chat-lr-20261014。
 
-ここにはPhase 1以降の小sampleとmanifestを置く。本文・shardsはGit管理外。大規模データとcheckpointは学習PCの外部データ領域で管理し、configから場所を指定する。
+教材の実体はGitや公開モデルarchiveに含まない。小metadata・原出力・教師量を教材実体の復元保証へ読み替えない。元Chat TEST20行のCPU準備解析事故を保存し未参照の主張を取り消した。新しい有資格Chat最終確認には封印TESTが必要。本文書更新でdataset/TESTを開封・再処理していない。下の初期pilot/拡張手順は履歴・欠損時の契約で再build指示ではない。
 
-`eval/`の固定評価例は学習用データへ混ぜない。raw/canonical hash、source/subset/revision、利用条件、duplicate cluster、splitを記録してから採用する。
+## 当時の資料・保存手順
 
 ## Phase 1 pilotの再生成
 
@@ -59,7 +59,7 @@ Phase 1のmanifestは作成時の`uv.lock` hashを固定している。Phase 2�
 
 入力は公開`corpus.jsonl`と公開Tokenizer。入口は`scripts/train.py build-shards`、実装は`src/jmicro/shards.py`。WSLの`~/jmicro-data/shards/{t8k-pilot,t4k-pilot}`へ各split一本のlittle-endian uint16 bin、index/token-byte JSON、hash付きmanifestを保存した。T8K train 6,884,183 / dev 345,044 / test 408,733 stream tokens、T4Kは8,398,329 / 420,053 / 497,374。同じ文書とbody bytesで、BOS/EOSはstream countに含む。
 
-固定長blockを文書を跨いでpackし、BOS targetsをmaskする。最終の不完全train blockを落とす。samplerはseed/epoch/block位置とRNGを保存し、再開で同じ消費列を復元する。複数file/source mixtureへの拡張は未実装。rawがなくても固定processed payloadとhashからshardを生成できる。[CLIと制約](../docs/windows_handoff.md#6-実装済みcliと次回の再開)
+固定長blockを文書を跨いでpackし、BOS targetsをmaskする。最終の不完全train blockを落とす。samplerはseed/epoch/block位置とRNGを保存し、再開で同じ消費列を復元する。このpilot段階では複数file/source mixtureへの拡張は未実装だった。rawがなくても固定processed payloadとhashからshardを生成できる。[再開時の制約](../docs/windows_handoff.md#明示的な実行再開後の順序)
 
 ## Phase 6拡張corpusと全件監査
 

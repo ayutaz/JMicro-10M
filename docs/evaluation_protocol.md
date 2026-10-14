@@ -1,12 +1,16 @@
-# 評価仕様 v1
+# 評価仕様と現行の適用
 
-2026-10-04の現行評価棚卸し: [不足と日本語Base評価v2案](44_japanese_base_evaluation_audit.md)。その後[仕様v2.1](45_japanese_base_evaluation_v2.md)/[実測結果](46_japanese_base_evaluation_v2_results.md)を追加した。元の保存400件のhuman_scoresは未入力のまま保持し、Codex内容診断は別reportにした。v1の計算・split・閾値は不変。独立人手の成績へCodex診断を代入しない。以下の過去の実装状況メモを最新10Bの成績と混同しない。
+更新: 2026-10-14 JST。機械可読の正本[protocol.json](../configs/evaluation/protocol.json)のv1 split・閾値・数値契約は変更しない。[最新結果141](141_chat_lr_comparison_results.md)と[状態](autonomous_status.md)は実際の採否。Base/Chat未完成・未採用、今回は文書更新のみ。
 
-実装状況更新: 2026-10-03。機械可読protocolの閾値・split・数値許容値は維持し、品質目標は100M選定前に凍結済み。Base評価、overfit/smoke・100M比較、同一dev文書のpaired bootstrapと生成ID/flag照合は実施済み。Chat品質評価・rollout・文法等の全件blind人手採点は未実施。[Phase 5の品質実測](23_phase5_completion.md)、[Phase 6①②の準備検証](26_phase6_preparation_completion.md)
+## v1契約と後続実験を区別する
 
-④⑤では新dev89,416文書を全文採点してBPB1.2441264716/336.292秒、400生成360.684秒を記録した。greedy EOS0/80・反復48/80で品質未達。NoNormのCPU精度profileは学習済み短/1024・full/cacheの12比較と実CLI/重み149 checksで検証済み。固定protocol・閾値・split・入力は変更していない。[④⑤の実測](30_phase6_readiness_execution.md)。未修正stock FP32の失敗と学習後量子化品質未検証を保持する。
+最新139は4suite×219応答×7点の28セット/6,132内容判断とNLL7点×2,634 target。各suiteは固定履歴80、抑制なし80、自己生成履歴24会話59turn。原品質を維持し、最終t3の全回帰・内容56/80・自己文脈15/24・停止76/80と57/59・empty上限4/2・role/raw Unicode/履歴削除0、対照比反復非増加、新DEV family paired CI下限>0を判定して不採用。実験別の分母とguardは[凍結139](139_chat_lr_comparison_plan.md)を参照し、v1の文脈30問へ混ぜない。
 
-作成: 2026-10-02、Phase 0。機械可読の正本は[protocol.json](../configs/evaluation/protocol.json)、入力は[固定評価データ](../eval/README.md)。設計契約を固定する資料であり、モデル性能の評価結果ではない。
+Chatの全内容判断はCodex非blind。独立人間blind、fresh学習seed43、正式保持、全文DEV・最終suite、選定封印後TESTと正式採用は未確認。既存のhuman_scoresのnullをCodex評価で上書きしない。
+
+元Chat TEST20行は139準備時にCPU構文解析した。学習・GPU評価への使用0だが未参照とは呼ばない。将来の有資格Chat最終確認には新たな封印TESTが必要。元Base TESTはこの事故では解析していない。raw EOT/EOS/反復/不正UTF8/置換文字を維持し、制約decodeと表示policyは別に記録する。
+
+以下は凍結v1の設計契約・式・rubricと、その時点の基盤検証。途中の利用状況や計画は現在の採否・再開許可ではない。
 
 ## 評価対象とsplit
 
@@ -35,7 +39,7 @@ Phase 4でモデルNLL、1024/stride 512採点、本文一度採点、EOS分離�
 - prompt+生成の上限は1024。超過時は古い完了turnから削除して再prefill。最後のUserだけで予算に収まらない入力は除外理由を記録し、黙って意味を切り捨てない。
 - 会話bodyを別encodeし、role/EOTを構造IDとして挿入する。本文中の同じ文字列を構造として扱わない。
 
-Chat固定履歴の30件は2〜4 User turns、うち`context` categoryは3〜4 turns。既存Assistant本文は評価例の固定条件である。これだけで実際に複数turnを続けられるとは判断しない。Phase 7でモデル生成を履歴へ戻すrolloutを追加し、dialogue全体の失敗も測る。
+Chat固定履歴の30件は2〜4 User turns、うち`context` categoryは3〜4 turns。既存Assistant本文は評価例の固定条件である。これだけで実際に複数turnを続けられるとは判断しない。後続の限定SFTではモデル生成を戻す実履歴24会話59turnを評価済み。v1固定履歴と各実験の分母は別に保存する。
 
 ## 人手rubric
 
@@ -59,7 +63,7 @@ Chat固定履歴の30件は2〜4 User turns、うち`context` categoryは3〜4 t
 
 反復flagの初期自動定義は、2文字以上の同じ本文substringが連続3回以上。4文字n-gramの`1 − unique/total`も診断値として保存するが、単独で合否閾値にしない。通常の会話上の反復との誤検知を人手sampleで確認する。文字数、bytes、tokens、返答長p50/p95を併記する。
 
-Base生成runnerは停止・role ID・UTF-8・空応答・反復と生成長を記録する。document paired bootstrapと生成ID/flag照合はPhase 5で実施済み。Chat rubric/rollout、人手による誤検知確認は今後の検証に残る。Phase 4のgreedy EOS停止は両モデル0/80で品質目標は未達。実装のPASSをモデル品質のPASSとして扱わない。
+Base生成runnerは停止・role ID・UTF-8・空応答・反復と生成長を記録する。document paired bootstrapと生成ID/flag照合はPhase 5で実施済み。後続Chatのrubric/実履歴評価は実行済み。独立人間blindと人間による誤検知確認は未確認。Phase 4のgreedy EOS停止は両モデル0/80で品質目標は未達。実装のPASSをモデル品質のPASSとして扱わない。
 
 ## 数値一致・seed・統計
 
@@ -67,7 +71,7 @@ Base生成runnerは停止・role ID・UTF-8・空応答・反復と生成長を�
 
 これらは機械可読protocolへ固定した数値契約。新backendの比較でも失敗runを通す目的で緩めない。同一CUDA/backendでの採用学習経路は全state完全一致を確認する。Phase 4のBF16同一環境resumeは全stateが完全一致し、compile logitsも既定の合成atol/rtolを維持して通過した。同一hardware/version/backend内の再開を対象とし、iMac/CUDA間のbitwise一致は要求しない。
 
-training seed 42、greedy seed 42、sampling seedsとbootstrap seedはconfigへ記録する。training/generation/bootstrapでRNGを分離し、評価が学習RNGを進めないようにする。Python/NumPy/PyTorch/CUDAとpilot block samplerの状態はcheckpointへ保存済み。評価RNG保全も実CUDAで検証した。Phase 6②では拡張shardのWSD stable/decay再開と元枝不変性をCUDA全state完全一致で確認し、4文書のdev評価前後のRNG/model/modeも保全した。全74 tests / skip 0、73 GPU checks。budgetを変える通常resumeは許可せず、decayは独立runでglobal更新数と追加枝tokensを分ける。複数source mixture samplerとstable予算延長forkは未実装。
+training seed 42、greedy seed 42、sampling seedsとbootstrap seedはconfigへ記録する。training/generation/bootstrapでRNGを分離し、評価が学習RNGを進めないようにする。Python/NumPy/PyTorch/CUDAとpilot block samplerの状態はcheckpointへ保存済み。評価RNG保全も実CUDAで検証した。Phase 6②では拡張shardのWSD stable/decay再開と元枝不変性をCUDA全state完全一致で確認し、4文書のdev評価前後のRNG/model/modeも保全した。全74 tests / skip 0、73 GPU checks。budgetを変える通常resumeは許可せず、decayは独立runでglobal更新数と追加枝tokensを分ける。この当時の準備では複数source mixture samplerとstable予算延長forkは未実装だった。後続の明示forkとChat document samplerは別の実装・証拠を持つ。
 
 BPB差は同一document、会話差は同一prompt/dialogueを対応付け、paired bootstrap 2000回、seed 42、95%信頼区間を初期仕様とする。tokenを独立sampleとして扱わない。greedyとsamplingの率、category別結果を別記録する。
 

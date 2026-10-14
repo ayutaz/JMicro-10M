@@ -1,14 +1,16 @@
 # アーキテクチャ設計
 
-現在の実装はQK-Normあり/なしの両方をサポートする。[Phase 5](23_phase5_completion.md)でT4K / NoQK-Norm / LR 0.002を本学習候補に選定した。ReLU²はtwo-projection FFN960を実装し、SwiGLU640と実パラメータ数10,001,152を揃えた。CPU22と両actual CUDA保存再開・batch80/context1024に合格したが、各300M比較の事前4時間予算を予測が超えたため本学習は未開始で、[この固定比較を終了](../reports/phase6/base_relu_squared_probe_completion.json)。hybridは未実装の候補。Layer Sharingは13個のnative blockを各2回使うzero-gated方式を実装・実100M学習・全80評価済みで、[既存採否](../reports/phase6/gated_shared_comparison_review.json)では不採用。下の初期Layer Sharing案を未検証の一般候補と扱わない。[反復計算の重複調査](../reports/phase6/base_recurrent_compute_novelty_review.json)を参照。設定を変える場合はparameter予算・数値一致・GPU容量を別runで検証する。NoNormのHF/Llama・GGUF/Llama adapterは実装済み。[④⑤](30_phase6_readiness_execution.md)で学習済み重みの短/1024・full/cacheの全12比較をCPU精度profileで検証した。未修正stock FP32の失敗は保持する。
+更新: 2026-10-14 JST。[現在の状態](autonomous_status.md)、[最新結果141](141_chat_lr_comparison_results.md)、[ロードマップ](15_project_roadmap.md)が現在の判断の正本。研究・教材準備・診断・生成評価・学習は停止中。
 
-**実装状況（2026-10-03）**: T8K/T4Kを実装し、実parameter数9,772,800／10,002,816、因果性、padding/cache、HF/native float GGUFをCPUで検証済み。[Phase 3完了記録](19_phase3_completion.md)。Phase 4で両モデルのCUDA/BF16学習・再開・評価・容量を検証済み。Phase 5では同一token予算と近い時間予算の結果からT4K NoNormを選定した。近いbytes予算ではT8Kが僅かに良く、モデルfamilyと予算に依存した選択。Base/Chatの品質目標は未達で、以下の派生案は研究候補として残す。
+## 現在の固定参照
 
-## 現在の本学習候補: T4K / NoQK-Norm
+語彙4,096、hidden256、13層、FFN640、4Q/2KV、head dim64、SwiGLU、RMSNorm、RoPE、context1024、tied embedding、biasなし、dropout0、QK-Normなし。実parameter数10,001,152。`src/jmicro/model.py` SHA256は `298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83`。元10B・後続教材比較・最新139はこのnative参照を維持しており、品質は未採用。
 
-語彙4,096、hidden 256、13層、FFN 640、4Q/2KV、head dim 64、SwiGLU、RMSNorm、RoPE、context 1024、tied embedding、biasなし、dropout 0。Q/K head NormをIdentityへ置き換え、gainは持たない。実parameter数 **10,001,152**。[実行configとcheckpoint hash](../reports/phase5/candidate_configs.json)
+QK-Norm有無、T8K/T4K、ReLU²、Layer Sharing等の実装・閉じた比較は下の当時の記録と[全体125](125_project_retrospective.md)を参照する。構成変更は9.5M〜10.1M内の別proposalと比較が必要。元frozen sourceは置き換えない。
 
-主比較のdev BPB 1.221443、共通短文BPB 1.546589。greedy EOS0/80、反復54/80、sampling Unicode2/240という未達がある。採用はPhase 6の比較候補であり、品質目標の達成とは区別する。CPU精度profileと外部SentencePieceの実CLI・変換契約は検証済みで、学習後量子化品質は未検証。[採否理由](../reports/phase5/candidate_selection_review.md)、[次の準備](24_phase6_plan.md)
+HF/GGUFの初期変換確認は基盤の証拠で、現在のSFT重みの量子化品質・配布完成ではない。
+
+## 作成時点の資料・契約
 
 ## 初期baseline: JMicro-10M-T8K
 

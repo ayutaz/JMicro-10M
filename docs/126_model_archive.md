@@ -1,10 +1,10 @@
 # 研究モデルのHugging Face保存
 
-2026-10-09 JST。ユーザーは、将来改善案を思いついたときに確認するため、残っているモデルを`japanese-data-analyze`へpublic / manual gatedで保存するよう依頼した。データセットは保存対象に含めない。これは保存・公開の依頼であり、学習や研究実行の再開ではない。
+更新: 2026-10-14 JST。最新の判断は[結果141](141_chat_lr_comparison_results.md)と[状態](autonomous_status.md)。Base/Chat未完成・未採用、追加研究・学習は停止中。現在は[全ドキュメント更新142](142_documentation_refresh.md)のみ。 公開について下に示すrevision・manual gated・照合件数は2026-10-09の保存作業の実記録。今回Hubの現在設定・依存を再確認したものではない。公開版は主要3Base系列でdatasetとsamplerを含まず、後続Chat重みの公開や厳密ローカル再開の代替ではない。最新低LR全stateは[引継ぎ](windows_handoff.md)にあり、新しいpush/公開を行わない。
 
-保存先は[JMicro-10M-research-archive](https://huggingface.co/japanese-data-analyze/JMicro-10M-research-archive)。**公開・照合完了。public / gated=manual、匿名での重み取得はHTTP401。** Hub revisionは`853d52d2323653331b610249912fbe25615615fc`。1,544ファイル・396,038,805 bytesを保存し、全ファイルのサイズとリモートhashを照合した。[実施report](../reports/publication/model_archive_20261009.json)を正とする。
+2026-10-09の保存先は[JMicro-10M-research-archive](https://huggingface.co/japanese-data-analyze/JMicro-10M-research-archive)。当時のpublic / gated=manual保存revisionは 853d52d2323653331b610249912fbe25615615fc、1,544files・396,038,805bytesを照合した。[保存report](../reports/publication/model_archive_20261009.json)、[3モデル取得確認](../reports/publication/model_archive_download_20261009.json)が証拠。今回のHub現在状態の再確認ではない。
 
-公開後、所有者の認証で3モデルのsafetensorsを同revisionから実際にダウンロードした。すべて元の保存用重みとSHA256が一致し、safetensorsとして読み込めた。[3モデル取得確認](../reports/publication/model_archive_download_20261009.json)。
+## 当時の資料・保存手順
 
 ## 保存する3系列
 

@@ -1,12 +1,10 @@
 # Hugging Face経由での成果物共有
 
-2026-10-09追記: 学習済みの主要3系列は別の[研究モデル保存版](https://huggingface.co/japanese-data-analyze/JMicro-10M-research-archive)へpublic / manual gatedで保存した。[保存内容と取得手順126](126_model_archive.md)。データセット・samplerは含まない。以下の固定pilot/Tokenizer bundleの内容・revisionは変更していない。「Hubに学習済み重みがない」という旧記述は、この固定dataset bundleの範囲についての説明である。
+更新: 2026-10-14 JST。最新の判断は[結果141](141_chat_lr_comparison_results.md)と[状態](autonomous_status.md)。Base/Chat未完成・未採用、追加研究・学習は停止中。現在は[全ドキュメント更新142](142_documentation_refresh.md)のみ。 新PC・欠損時の固定pilot/Tokenizer復元の補足。既存環境の再取得・Tokenizer学習は不要。主要3Base系列の2026-10-09公開保存は[126](126_model_archive.md)を参照し、後続SFT重み・dataset・samplerを公開済みとしない。最新ローカル納品は89275a8/09f338eで、当時のpush許可を今回へ引き継がない。以下のpayload/hash・bundle revisionは不変の保存契約で、今回再download・学習・外部設定の再調査をしていない。
 
-復元状況更新: 2026-10-03。現在のWSLで公開25 payloadをhash検証済み、再確認時のrestored_filesは0。最近のコードコミットはローカル保存で未push。新規PCでは公開bundleに加えて最新コードと必要なLinux checkpointも引き継ぐ。公開版の範囲・revisionは変更していない。
+固定pilot/Tokenizerの2026-10-02公開先は[japanese-tiny-llm-10m-artifacts](https://huggingface.co/datasets/japanese-data-analyze/japanese-tiny-llm-10m-artifacts)、revision 0b1042979bf32899e24da30790e3ae6b239013c3。新PCの取得はこの固定bundleと126の学習済みBase保存を区別する。現在のコード・後続SFT全state/dataは[引継ぎ](windows_handoff.md)を参照。
 
-[japanese-data-analyze/japanese-tiny-llm-10m-artifacts](https://huggingface.co/datasets/japanese-data-analyze/japanese-tiny-llm-10m-artifacts)へpublicで公開済み。GitHubのコードリポジトリは非公開のまま、Tokenizerと前処理済みpilotを共有する。
-
-別PCでの初回clone・WSL/uv環境構築から進める場合は[再開手順](windows_handoff.md)を最初に読む。この文書は公開file・hash・取得処理の詳細を補足する。
+## 当時の資料・保存手順
 
 ## 確認済みの公開状態
 

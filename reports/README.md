@@ -1,24 +1,25 @@
 # 実験台帳と検証結果
 
-## 最新の保存結果（2026-10-13）
+更新: 2026-10-14 JST。最新は[低LR結果141](../docs/141_chat_lr_comparison_results.md)。Base/Chat未完成・未採用、研究・data準備・診断・評価・学習は停止中。現在は[全ドキュメント更新142](../docs/142_documentation_refresh.md)のみ。
 
-計画133の4項目は実行・監査完了、不採用で閉鎖。[結果136](../docs/136_chat_generalization_results.md)、[最新状態](../docs/autonomous_status.md)、[次の未実行計画135](../docs/135_chat_problem_solution_plan.md)。新しい教材・診断・GPU学習は停止中。
+## 最新139の保存記録
 
-| 記録 | 内容 |
+| 記録 | 実際の範囲 |
 |---|---|
-| [completion](phase7/chat-generalization-20261013/completion.json) | 4項目完了と品質未達を区別。14セット/3,066判断/NLL7点、実state、分岐、padding、予算、当時の元UIまで監査 |
-| [selection](phase7/chat-generalization-20261013/selection.json) / [analysis](phase7/chat-generalization-20261013/final_analysis.json) | 最終D0/D1新旧gate・paired CI、NLL、失敗分類。両条件不合格 |
-| [branches](phase7/chat-generalization-20261013/conditional_branches.json) / [padding](phase7/chat-generalization-20261013/padding/result.json) | 回復not_triggered、保持/sampling未確認。padding24確認は数値不一致で不採用 |
-| [final_archive](phase7/chat-generalization-20261013/final_archive.json) / [delivery checks](phase7/chat-generalization-20261013/final_delivery_checks.json) | 354fileのbyte保存、リンク/凍結source確認。重みと教材実体をGitへ含めない |
-| [今回の文書更新baseline](investigation/documentation_plan_refresh_20261013/baseline.json) | 整理前14文書のbyte履歴、15固定証拠のhash。追加実験ではない |
+| [completion](phase7/chat-lr-20261014/completion.json) | 全28セット/6,132判断/NLL7点×2,634、実学習/全state/原採否/資源/元UIの科学監査 |
+| [selection](phase7/chat-lr-20261014/selection.json) / [analysis](phase7/chat-lr-20261014/final_analysis.json) | 全4回帰・主paired CI・全保存点・NLL。候補不合格 |
+| [branches](phase7/chat-lr-20261014/conditional_branches.json) | 7分岐は候補なしで未実行・passed=false・品質未確認 |
+| [TEST準備事故](phase7/chat-lr-20261014/protected_split_incident.json) | 元Chat TEST20行のCPU解析と訂正。未参照という主張を取り消し新封印版が必要 |
+| [保存一覧](phase7/chat-lr-20261014/final_archive.json) / [納品記録](phase7/chat-lr-20261014/final_delivery_checks.json) | 当時360ファイルと結果89275a8/納品09f338eを照合。重み/dataはWSL |
+| [今回の全文書baseline](investigation/documentation-refresh-20261014/baseline.json) | 更新前311文書のbyte/hash・分類。研究再開ではない |
 
-既存の[固定revision詳細台帳](../docs/retrospective/README.md)は整理時点の記録で、後続Chat報告を含む全件台帳ではない。以下の「最新」は各報告当時の履歴として読む。
+以前のmanifest/納品記録は作成時点のGit revision/snapshotの証拠で、現行文書を更新しても原記録へ新しいhashを代入しない。日付付き報告と固定台帳を[全文書カタログ](../docs/document_catalog.md)から区別する。後続の一意な総GPU・教師量を既存report行の単純合算から認証しない。
 
-調査から最新の不採用までの経緯は[全体記録125](../docs/125_project_retrospective.md)、保存報告の分野別指標・採否は[詳細台帳](../docs/retrospective/README.md)から参照できます。台帳は整理前revisionを固定したもので、後続のモデル公開は以下のpublication reportに記録しています。
+過去のChat[136](../docs/136_chat_generalization_results.md)・[138](../docs/138_chat_semantic_diversity_results.md)、Base[123](../docs/123_base_teacher_decay_2b_results.md)、[全体125](../docs/125_project_retrospective.md)・[固定revision台帳](../docs/retrospective/README.md)も保全。以下の「最新」は各節に記載された日付の履歴。
 
 ## モデル保存・公開（2026-10-09）
 
-[publication report](publication/model_archive_20261009.json)に、主要3系列のpublic / manual gated保存、全1,544ファイルのサイズ・hash照合、匿名重み取得HTTP401、元checkpoint・学習量を記録した。[保存先](https://huggingface.co/japanese-data-analyze/JMicro-10M-research-archive)、[内容・読み込み手順126](../docs/126_model_archive.md)。当時の保存作業はデータセットを含まず、新学習/GPU評価/量子化は0。Base結果は[123](../docs/123_base_teacher_decay_2b_results.md)、最新Chat結果は[136](../docs/136_chat_generalization_results.md)、現在の状態は[status](../docs/autonomous_status.md)を参照する。
+[publication report](publication/model_archive_20261009.json)に、主要3系列のpublic / manual gated保存、全1,544ファイルのサイズ・hash照合、匿名重み取得HTTP401、元checkpoint・学習量を記録した。[保存先](https://huggingface.co/japanese-data-analyze/JMicro-10M-research-archive)、[内容・読み込み手順126](../docs/126_model_archive.md)。当時の保存作業はデータセットを含まず、新学習/GPU評価/量子化は0。Base結果は[123](../docs/123_base_teacher_decay_2b_results.md)、2026-10-13当時のChat結果は[136](../docs/136_chat_generalization_results.md)、現在の状態は[status](../docs/autonomous_status.md)を参照する。
 
 ## 保存結果の履歴（2026-10-05）
 

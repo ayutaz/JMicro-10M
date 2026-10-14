@@ -2,7 +2,7 @@
 
 約1,000万パラメータで、日本語の短い文章を自然に続け、その後に短い会話を行うモデルを目指す研究プロジェクトです。Tokenizer、モデル、学習・評価基盤をスクラッチで構築しました。**10Mの小ささと元の品質目標を維持します。**
 
-2026-10-14 JST。Base/Chatは未完成・未採用です。最新の低学習率SFT比較は、全28セット・6,132内容判断・固定NLL7点と学習状態/採否/予算の科学監査まで完了し、不合格・不採用と判定しました。有資格候補がなく独立確認は未実行・品質未確認です。文書・保存一覧・ローカルcommitの納品確認をそろえて停止します。新条件の研究・学習へ自動移行しません。[結果141](docs/141_chat_lr_comparison_results.md)。
+2026-10-14 JST。Base/Chatは未完成・未採用です。最新の低学習率SFT比較は、全28セット・6,132内容判断・固定NLL7点と学習状態/採否/予算の科学監査まで完了し、不合格・不採用と判定しました。有資格候補がなく独立確認は未実行・品質未確認です。結果commit89275a8・納品commit09f338eと360ファイルの保存照合まで完了して停止しました。現在の依頼は全ドキュメントの最新化のみです。新条件の研究・学習へ自動移行しません。[結果141](docs/141_chat_lr_comparison_results.md)。
 
 ## 最新の結果と次の計画
 
@@ -23,7 +23,7 @@
 
 - [結果141](docs/141_chat_lr_comparison_results.md)：全保存点・失敗・NLL・採否・資源・限界。
 - [計画139](docs/139_chat_lr_comparison_plan.md) / [実行140](docs/140_chat_lr_comparison_execution.md)：凍結条件と時点別履歴。
-- [状態](docs/autonomous_status.md) / [ロードマップ](docs/15_project_roadmap.md) / [文書一覧](docs/README.md)。
+- [状態](docs/autonomous_status.md) / [ロードマップ](docs/15_project_roadmap.md) / [文書一覧](docs/README.md) / [全文書カタログ](docs/document_catalog.md) / [更新142](docs/142_documentation_refresh.md)。
 - [保存一覧](reports/phase7/chat-lr-20261014/final_archive.json) / [納品確認](reports/phase7/chat-lr-20261014/final_delivery_checks.json)：科学監査とローカル納品の証拠を区別。
 
 ## 成立した基盤と残る課題
@@ -32,7 +32,7 @@
 
 Baseのteacher-decay2B比較はBPB1.1064→1.0903でも、一貫性3/80のまま、適切完結7→5/80で不採用でした。[Base結果123](docs/123_base_teacher_decay_2b_results.md)。元UI10B、別staged約10.6B、teacher-decay2B、後続SFTは異なる重みです。10B・2Bは学習量であり、モデルのパラメータ数ではありません。
 
-直接SFT128は停止や文法を改善しましたが、内容・文脈は未達でした。その後の教材比較131、汎化比較133、意味多様性比較135も不合格で閉じています。[最初のSFT結果129](docs/129_chat_first_sft_execution.md)、[前の教材比較132](docs/132_chat_improvement_execution.md)、[前回結果136](docs/136_chat_generalization_results.md)、[最新結果138](docs/138_chat_semantic_diversity_results.md)。独立学習seed43、人間blind、fullDEV、protectedTESTと正式採用は未確認です。
+直接SFT128は停止や文法を改善しましたが、内容・文脈は未達でした。その後の教材比較131、汎化比較133、意味多様性比較135も不合格で閉じています。[最初のSFT結果129](docs/129_chat_first_sft_execution.md)、[前の教材比較132](docs/132_chat_improvement_execution.md)、[前回結果136](docs/136_chat_generalization_results.md)、[前回教材結果138](docs/138_chat_semantic_diversity_results.md)。独立学習seed43、人間blind、fullDEV、protectedTESTと正式採用は未確認です。
 
 調査・失敗・採否は[全体記録125](docs/125_project_retrospective.md)、[固定revisionの詳細台帳](docs/retrospective/README.md)、[作り直す前の調査127](docs/127_rebuild_investigation.md)、[課題調査130](docs/130_chat_failure_improvement_investigation.md)に保存しています。旧READMEや運用文書の全文は[今回の履歴保存一覧](reports/investigation/documentation_plan_refresh_20261013/baseline.json)へ保全しました。
 

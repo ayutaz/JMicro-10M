@@ -1,6 +1,23 @@
 # JMicro-10M 調査・検証・学習の全体記録
 
-2026-10-13追記: 下の全体台帳は2026-10-09までの固定revision記録。後続のChat診断・教材比較は[結果129](129_chat_first_sft_execution.md)、[結果132](132_chat_improvement_execution.md)、[最新結果136](136_chat_generalization_results.md)で実行・全評価を終え、いずれも不採用。現在は文書・計画のみの更新で追加実験は停止中。[最新計画135](135_chat_problem_solution_plan.md)、[現在の状態](autonomous_status.md)。詳細台帳の原revision・報告数を後続実験を含む全件数へ読み替えない。
+更新: 2026-10-14 JST。最新は[低LR結果141](141_chat_lr_comparison_results.md)。Base/Chat未完成・未採用、追加研究・学習は停止中。現在は[全文書更新142](142_documentation_refresh.md)のみ。
+
+## 固定revision後の比較と判断
+
+| 後続比較 | 実際の証拠 | 判断 |
+|---|---|---|
+| Chat-first128 / 教材131 | [129](129_chat_first_sft_execution.md) / [132](132_chat_improvement_execution.md) | 実学習・評価を完了、品質未達で不採用 |
+| 教材汎化133 | [136](136_chat_generalization_results.md)、14セット/3,066判断/NLL7点 | 不採用。動的padding24検証更新も数値差で拒否 |
+| 意味教材135 | [138](138_chat_semantic_diversity_results.md)、21セット/4,599判断/NLL7点 | 不採用、条件付き保持/sampling未実行 |
+| 低LR139 | [141](141_chat_lr_comparison_results.md)、28セット/6,132判断/NLL7点、3,646更新/1,899,557教師 | 新内容差+8.75ポイント、CI−1.25〜+18.75。全原gate・反復/文字も未達、不採用 |
+
+低LR候補の新/138/133/元旧内容20/18/19/15 of80、自己文脈5/5/5/1 of24。7条件分岐は候補なしで未実行・passed=false・品質未確認。結果commit89275a8・納品commit09f338eの保存とGit内容を確認した。各比較の教師量/GPU時間を独立実験数として足さない。
+
+教材適合が強く未知内容・提供/自己履歴の利用が不足すること、反復/停止/Unicodeの原失敗が残ることを確認した。Base単独原因・10M容量限界は未確定。元Chat TEST20行のCPU準備解析事故と訂正を保存し、有資格Chat最終確認には新たな封印TESTが必要。独立seed・人間blind・fullDEV・正式採用は未確認。
+
+## 2026-10-09までの固定台帳
+
+以下はrevision `2d48062f5e29f7cb4cc9a1eb4352aa304e44827c`を対象にした原記録の説明。11,289file・4,947JSON等の数を後続の全件数へ書き換えない。[全文書カタログ](document_catalog.md)から現在の説明・日付付き報告・固定台帳を区別できる。
 
 記録日: 2026-10-09 JST。約10Mの日本語モデルを作る過程で、何を調べ、何を実装し、どの条件を学習・評価し、何が改善せず、何を残したかをまとめる。**Baseの品質目標は未達で、学習・研究実行は一時停止している。今回の保存作業は学習再開ではない。**
 

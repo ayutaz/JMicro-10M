@@ -1,26 +1,22 @@
 # 未解決の技術課題と追加調査
 
-調査日: 2026-10-02。対象は[プロジェクト目的](01_project_goal.md)を実現するため、既存の01〜10では実装判断まで落とせていなかった課題。
+更新: 2026-10-14 JST。最新の判断は[結果141](141_chat_lr_comparison_results.md)と[状態](autonomous_status.md)。Base/Chat未完成・未採用、追加研究・学習は停止中。現在は[全ドキュメント更新142](142_documentation_refresh.md)のみ。
 
-## 実装後の現在地（2026-10-03）
+## 現在の課題と解決に必要な証拠
 
-調査後にPhase 0〜5とPhase 6①〜⑤の準備を完了した。次の表は現在の状態、後半の調査表・検証順は2026-10-02の提案として区別する。
-
-| 課題 | 現在の状態 | 証拠・次の判断 |
+| 課題 | 最新の証拠 | 改善を判断する方法 |
 |---|---|---|
-| 独自4k/8k、文字保存、特殊ID、会話教師mask | 実装・学習・検証済み | [Phase 2](18_phase2_completion.md) |
-| 10M予算、QK-Norm、因果性、prefill/cache | 両モデルでCPU検証済み | [Phase 3](19_phase3_completion.md) |
-| HF/native float GGUF、量子化型・容量・停止 | 検証済み。内蔵Tokenizerは不一致、外部SentencePieceを採用 | [export report](../reports/phase3/export_parity_report.json) |
-| GPU学習器、保存再開、最大batch/実速度、BPB runner | 実装・実GPU検証済み、全64 tests / skip 0 | [Phase 4完了証拠](21_phase4_completion.md) |
-| 4k/8k・Norm・LRの100M、overfit/smoke、統計比較 | 実施・独立監査済み、全68 tests / skip 0。T4K NoNorm / LR 0.002を1候補に選定 | [Phase 5](23_phase5_completion.md) |
-| 拡張corpus・WSD再開/分岐 | 756M unique train stream、全corpus監査、CUDA全state完全一致、74 tests / skip 0・73 GPU checks | [Phase 6①②完了証拠](26_phase6_preparation_completion.md) |
-| 採用NoNorm/math・compiled/math/Flashの最大batch・速度 | 実GPU測定・厳密/cold再開完了。最速Flash＋compile batch 32=694,521 tokens/s、最大111/112 OOM | [③完了証拠](29_phase6_performance_completion.md) |
-| stable予算延長・追加corpusのheldout継承 | 未実装。通常resumeのbudget/source/data変更は不可、decay forkは実装済み | [⑤と後続拡張の条件](27_phase6_remaining_plan.md) |
-| 学習済みNoNorm HF/Llama・GGUF/Llama | CPU精度profileで全12比較・実CLI/重み149 checks成功。stock FP32の失敗は保持 | [④⑤の検証](30_phase6_readiness_execution.md) |
-| 本学習LR/WSD・評価/保存/容量 | 3 LR候補・厳密/cold再開からLR0.002/batch32を採用しversion2へ凍結 | [本設定](../configs/phase6/base_frozen.json) |
-| 日本語短文・雑談、学習後量子化 | 品質目標未達、Base/Chat本学習と学習後量子化品質は未実施 | Phase 6〜8の実学習・固定評価 |
+| 内容への応答不足 | 141新DEV内容20/80、文法66/80中46件は関連性不足 | 次介入は入力の対象・人物・数量・時点の失敗へ対応する仮説1件を既存証拠から定義。全回帰と原内容gateで判断 |
+| 訂正・自己履歴の保持不足 | 新DEVの提供履歴11/24、自己履歴5/24 | 両履歴を分けた対照が必要。自己履歴だけを単独原因と決めない |
+| 学習後半の汎化悪化 | 候補TRAIN NLL低下に対し新DEV NLL2.275270→2.689941 | 教材適合と未知能力を区別し、主要変更1つ・同教師量・新DEVで比較。追加周回で救済しない |
+| 反復・停止・文字破損 | 141の全回帰とraw failuresが未達 | 原decodeで非退行・全文字失敗0を判定。表示修正・制約decodeは別policy |
+| 独立確認不足 | fresh seed43・人間blind・正式保持/fullDEV/封印TEST未実行 | 有資格recipeと必要runner接続が先。CPU準備/生成seed/非blind採点では代用不可 |
+| Base採用不足 | 123のBPB改善でも生成条件未達、後続SFTも不採用 | 124の原品質・10Mで1介入を選ぶ別の再開判断。大型化や閾値変更を使わない |
 
-完成までの時間短縮を優先し、Windows/WSL＋RTX 4090への移行とPhase 4は完了した。Phase 5の候補選定も完了し、ユーザー指定のPhase 6①〜⑤の準備を完了し、本学習前で停止中。③は`a7d26e1`、④⑤は`93c7d1d`へcommit済み。再開後は500Mの新規Base学習から進める。
+Chat trainer、document sampler、SFT全state再開、rollout、固定教師量比較は実装・実GPU実行済み。Phase0〜5基盤、元10B学習、後続の多数比較も完了済み。本学習前・Chat未実装という当時の記述は現在の説明ではない。どの次介入が有効かは未確定で、今回追加の診断・学習は開始しない。
+
+
+## 当時の資料・保存手順
 
 ## 結論
 

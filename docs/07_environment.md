@@ -1,8 +1,14 @@
 # 実行環境とデータ配置
 
-Phase 6①〜⑤の準備検証を完了し、`93c7d1d`へcommit済み（2026-10-03）。400生成・全文dev評価、学習済みNoNormのCPU推論精度profileによる全12変換比較、実CLI/重み監査149 checks、全90 testsが成功。本学習設定version2を凍結し、500M以上のBase本学習を開始せず停止中。
+更新: 2026-10-14 JST。[現在の状態](autonomous_status.md)、[最新結果141](141_chat_lr_comparison_results.md)、[ロードマップ](15_project_roadmap.md)が現在の判断の正本。研究・教材準備・診断・生成評価・学習は停止中。
 
-最終更新: 2026-10-03。[Phase 4監査](../reports/phase4/handoff_report.json)で確認した実機環境を記載する。Phase 5も完了し、Phase 6①〜⑤の準備完了で停止中（本学習未開始）。
+WindowsはGit正本 `C:\Users\AiHUB\Desktop\japanese-tiny-llm-10m`、WSL実行コピー `/home/aihub_ubuntu/src/japanese-tiny-llm-10m`、大容量data `/home/aihub_ubuntu/jmicro-data`。WSL package3.x/WSL2/Linux/RTX4090、Python3.12.7/uvを維持。依存を今回更新・再測定していない。
+
+元10B Baseと後続SFTは学習済みだが未採用。最新139はBF16/math・compile=false・batch32/context1024/固定padding。probe peak allocated16,223,183,360bytes、本学習実1,523.890秒、全GPU2,658.673秒。旧Flash/compileの694,521入力tokens/秒をこの教師速度へ読み替えない。過去の空き容量・PID・driver値は観測時点の値で、現在の生存や容量を保証しない。
+
+最新checkpoint/data/元UIは[引継ぎ](windows_handoff.md)。Pythonは一時処理もuv run --frozen。導入uv python install 3.12.7、復元uv sync --frozen、変更uv add。文書のみの更新にdriver変更・benchmarks・GPU再評価を加えない。
+
+## 作成時点の資料・契約
 
 ## 実機環境
 

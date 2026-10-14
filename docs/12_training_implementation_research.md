@@ -1,10 +1,10 @@
 # モデル実装・段階学習・実行環境の追加調査
 
-実装状況更新: 2026-10-03。以下の提案と現在の実装を区別する。model.pyは推論/padding/cacheで明示boolean mask＋is_causal=Falseを使う。③で固定長・PADなしの学習専用maskなしis_causal=True経路を実装し、Flash＋compile reduce-overheadを採用した。fused AdamW、共有embeddingを含む行列へのdecay、FP32 parameters/BF16 autocast、単一split binの決定的sampler、完了updateでのatomic保存とsource/data/config拘束は実装済み。Phase 5のT8K/T4K/文書overfit/NoNormの200 vs 100+100もmathで全stateが完全一致。compile/defaultとeager/defaultはPhase 5の厳密resumeに失敗して採用せず、失敗を保持した。下記の仮速度表は算術例。現在の純学習算術予算は③の694,521 tokens/sから更新した。[③完了証拠](29_phase6_performance_completion.md)、[本学習のgate・予算](24_phase6_plan.md)を使う。
+更新: 2026-10-14 JST。最新の判断は[結果141](141_chat_lr_comparison_results.md)と[状態](autonomous_status.md)。Base/Chat未完成・未採用、追加研究・学習は停止中。現在は[全ドキュメント更新142](142_documentation_refresh.md)のみ。 現行nativeはNoQK-Norm/SwiGLU/13層/10,001,152。BaseのWSD stable/decay・StableExtensionTrainerと、Assistant教師量を管理するTeacherChatTrainer/document samplerは実装・実行済み。最新139はbatch32/context1024/BF16/math/compile=false/固定paddingで、同条件25CUDA検証更新と全state再開一致を確認した。
 
-**実装状況**: 以下は調査時点の仕様・候補。モデル/cacheのCPU実装・実parameter数・参照モデルとの一致は[Phase 3](19_phase3_completion.md)で検証済み。GPU学習器・保存再開・4090 benchmarkは[Phase 4](21_phase4_completion.md)で実測済み。AdamW＋warmup/cosineとNoQK-Normは実装済み。MuonはPhase 5で追加不要と判断し、WSD stable/decayは実装し、拡張実shardのCUDA全state再開一致を検証済み。
+全state・実消費列の不変条件は[学習計画06](06_training_plan.md)。旧Flash/compileの入力tokens/秒・LR0.002・500M開始案を、現在のSFT教師速度・採用recipe・開始指示にしない。ReLU²、共有block、KD等の閉じた条件は[全体125](125_project_retrospective.md)から原reportへ戻る。下の公式資料の引用と算術例は当時の研究記録。
 
-調査日: 2026-10-02。既存[アーキテクチャ](03_architecture.md)、[学習計画](06_training_plan.md)、[環境](07_environment.md)を実装するための補足。以下の推奨設定は**提案**であり、実験済みの最適値ではない。
+## 当時の資料・保存手順
 
 ## 1. QK-Normの仕様を固定する
 

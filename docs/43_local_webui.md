@@ -1,8 +1,10 @@
-# 学習済み10BモデルのローカルWeb UI
+# 元10B BaseモデルのローカルWebUI
 
-2026-10-04、ユーザーの依頼で現在の学習済みモデルを試すWeb UIを作成・起動した。ブラウザは **http://127.0.0.1:7860** を開く。Windowsのlocalhost/IPv6ではPowerShellの接続確認がtimeoutしたため、確認済みIPv4アドレスを使う。
+更新: 2026-10-14 JST。URLは **http://127.0.0.1:7860**。このUIは10,001,152 parameters・10,000,007,168 tokensの元Baseで文章の続きを生成する。最新の低LR Chat候補へ置き換えていない。後続SFTは[141](141_chat_lr_comparison_results.md)まで実行したが不採用で、UIの元Base自体も品質未採用。[状態](autonomous_status.md)。
 
-モデルは10,001,152 parameters、総10,000,007,168 tokens学習のfinal checkpoint。文章の書き出しから続きを生成するBaseモデルであり、対話用の学習は未実施。反復・意味の誤り・EOS停止の課題は[品質評価](42_base_10b_quality_evaluation.md)の通り残る。
+保存された最新科学観測2026-10-13T16:54:20ZはPID309447/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start55170810、親SHA `410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290`、Tokenizer/10M・busy=false・kernel lock一致。これは現在の生存保証ではない。稼働中は重複起動せず、終了jobを再起動しない。
+
+以下のUI操作・起動停止はユーザーが利用する時の手順。現在の文書更新ではサーバー起動・生成・GPU評価を行わない。表示補修をraw Unicode失敗の免除や品質合格へ数えない。
 
 ## 使い方
 
@@ -38,6 +40,6 @@ GPUはWSL2のRTX4090、FP32の学習済み重み＋BF16 autocast/math attention�
 - WSL `reports/local/webui/server.json` にactual Linux PID/boot/start ticks、モデルhash、URL、実状態。
 - [動作確認記録](../reports/phase6/local_webui_review.json)に実モデルAPI、ブラウザ、関連11 testsの結果。
 - Edgeでdesktop1280×1040/mobile390×844を表示し、生成と停止を操作した。横方向のoverflowなし。画像はWindows `reports/local/webui/{desktop,mobile}.png`。
-- 実モデルの同じseedで生成IDが一致。Greedy64 tokensは採用済み10B評価のbase-001とID完全一致。生成切断後のlock解放と次の生成成功、start/stop scriptsの動作を確認。
+- 実モデルの同じseedで生成IDが一致。Greedy64 tokensは当時の保存10B評価のbase-001とID完全一致。生成切断後のlock解放と次の生成成功、start/stop scriptsの動作を確認。
 
 UIの起動依頼を完了し、サーバーはユーザーが試せるよう稼働したままにする。追加学習tokensは0。品質目標の達成、後続EOS実験やChat学習の開始とは扱わない。

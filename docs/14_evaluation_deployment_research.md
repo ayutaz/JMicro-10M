@@ -1,12 +1,10 @@
 # 比較評価・量子化・ローカル推論の追加調査
 
-状況更新: 2026-10-03。下記の式・候補のうちBPB本文一度採点（1024/stride 512）、EOS分離、共通短文32 window、固定dev 80×5条件、評価RNG保全は[Phase 4](21_phase4_completion.md)で実装・検証した。Phase 5ではbatched本文採点、100件overfit、4本の100Mと近似予算、document paired bootstrap、全生成ID/flagの独立照合も実施した。Phase 6②では新dev 4文書のCUDA採点前後のRNG/model/modeを保全し、④では拡張dev全文を採点した。pilotとは別母集団として扱う。[準備検証](26_phase6_preparation_completion.md)。Chat評価、rollout、文法等の全件blind人手採点は未実施。外部コードのmain/masterリンクは2026-10-02の参照で、実装採用versionは各run reportの固定値を使う。
+更新: 2026-10-14 JST。最新の判断は[結果141](141_chat_lr_comparison_results.md)と[状態](autonomous_status.md)。Base/Chat未完成・未採用、追加研究・学習は停止中。現在は[全ドキュメント更新142](142_documentation_refresh.md)のみ。 Base/Chatの生成・内容評価・自己履歴評価・保存再開は実施済みだが正式品質は未採用。最新141は28セット/6,132判断/NLL7点、全回帰・停止・反復・raw文字の原gateを適用した。独立人間blind・独立学習seed43・全文/封印TESTは未確認。
 
-④⑤では新dev89,416文書を全文採点してBPB1.2441264716/336.292秒、400生成360.684秒を記録した。greedy EOS0/80・反復48/80で品質未達。NoNormのCPU精度profileは学習済み短/1024・full/cacheの12比較と実CLI/重み149 checksで検証済み。固定protocol・閾値・split・入力は変更していない。[④⑤の実測](30_phase6_readiness_execution.md)。未修正stock FP32の失敗と学習後量子化品質未検証を保持する。
+Phase3のHF/native float GGUF・量子化型の容量や、初期NoNorm CPU profileの変換確認は基盤の証拠。最新SFT重みのexport/量子化・RSS/CPU速度・独立環境・配布完成へ読み替えない。5〜10MB級は将来目標で、量子化は採用floatモデルとの許容退行を事前固定してから別の実行判断。下の当初の候補・gate・計算例は採用済み能力ではない。
 
-**実装状況**: 以下は調査時点のgate・候補。調査後に[Phase 3](19_phase3_completion.md)で両モデルのHF/native float GGUF、Q8/Q4、停止、実容量・fallbackを検証済み。内蔵Tokenizerの不一致を測定し、外部SentencePiece経路を採用した。Phase 4でGPU検証checkpointの本文NLL/BPB・共通bytes/window・Base dev生成を実測した。Phase 5ではT4K NoNormを候補に選定し、当時のsampling Unicode退行とNoNorm adapter未実装は[採否理由](../reports/phase5/candidate_selection_review.md)へ保持した。現在はNoNorm HF/GGUF adapterとCPU精度profileの変換契約を検証済み。実用品質、学習後の量子化品質、RSS・CPU応答時間分布は未達・未測定。
-
-調査日: 2026-10-02。目標は「4k/8kを選べる」「数turnの短い日本語応答を測れる」「5〜10MB級の配布候補を作れる」。評価式・gate・閾値は**提案**であり、実測結果ではない。
+## 当時の資料・保存手順
 
 ## 1. BPBの定義と原文の固定
 

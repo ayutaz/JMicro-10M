@@ -1,6 +1,8 @@
 # 先行例とベースライン
 
-資料確認: 2026-10-02。文書整合性確認: 2026-10-03。以下は当時のmodel card/configと会話資料の調査一覧で、最新モデル全件の再監査ではない。外部baselineを実比較に採用する時はrevision・条件を再確認する。JMicroのPhase 5小予算比較も完了し、T4K NoNormを選定した。日本語短文/雑談の品質目標と外部baselineとの実比較は未達・未実施。[現在の結果](23_phase5_completion.md)
+更新: 2026-10-14 JST。最新の判断は[結果141](141_chat_lr_comparison_results.md)と[状態](autonomous_status.md)。Base/Chat未完成・未採用、追加研究・学習は停止中。現在は[全ドキュメント更新142](142_documentation_refresh.md)のみ。 外部model card・論文は2026-10-02調査時点の記録で、今回最新revision・規模・利用条件を再調査したものではない。外部baselineを実比較へ採用する場合は別の比較契約で確認する。JMicroは外部baselineとの同条件品質比較・正式採用が未達。T4K NoNormの選定やSFT実行を日本語会話の成功へ読み替えない。
+
+## 当時の資料・保存手順
 
 ## 添付された25M / 100M Llama系config
 

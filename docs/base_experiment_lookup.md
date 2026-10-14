@@ -1,8 +1,8 @@
 # Baseの実験結果を探す
 
-2026-10-13更新: Baseの最新不採用は[123](123_base_teacher_decay_2b_results.md)、後続Chat比較の最終不採用は[136](136_chat_generalization_results.md)。次の教材提案は[135](135_chat_problem_solution_plan.md)、Base復旧の代替経路は[124](124_base_recovery_plan.md)で、現在は文書更新のみ・追加実験停止中。下の20261008索引は当時のBase検索補助で、後続Chatを含む最新全件一覧ではない。
+更新: 2026-10-14 JST。最新の判断は[結果141](141_chat_lr_comparison_results.md)と[状態](autonomous_status.md)。Base/Chat未完成・未採用、追加研究・学習は停止中。現在は[全ドキュメント更新142](142_documentation_refresh.md)のみ。 Baseの最新固定不採用は[123](123_base_teacher_decay_2b_results.md)。後続Chatは[136](136_chat_generalization_results.md)→[138](138_chat_semantic_diversity_results.md)→[141](141_chat_lr_comparison_results.md)で閉鎖した。[全文書カタログ](document_catalog.md)と[全体125](125_project_retrospective.md)を入口にし、下の20261008索引を後続Chatまでの最新全件監査と扱わない。文書更新では索引再生成・GPU/data診断を実行しない。
 
-文書更新では保存済み小reportを参照し、下の索引生成commandやGPU/data診断を新たに実行しない。既存の[全体記録125](125_project_retrospective.md)と固定revision詳細台帳、最新status/各completionを用途に応じて区別する。
+## 当時の資料・保存手順
 
 現在の実状態は `autonomous_status.md` の先頭と、対象jobの実PID/boot/startを確認する。旧計画の「次は…」を、新しい実行指示と解釈しない。
 

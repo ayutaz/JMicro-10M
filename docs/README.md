@@ -1,34 +1,25 @@
 # 文書一覧
 
-2026-10-14 現行: 先に[結果141](141_chat_lr_comparison_results.md)を読む。低LR候補の全28セット・6,132判断・NLL7点と3段階の科学的分岐判断は完了・不採用。科学監査と文書/保存一覧/ローカル納品の証拠を区別し、最終commit確認後に停止する。独立確認は合格候補なしで未実行・品質未確認。Base/Chat未完成、追加研究/GPUは停止。以下の途中・旧結果は履歴。
-
-2026-10-14 明示再開: 最新は[計画139](139_chat_lr_comparison_plan.md)/[実行140](140_chat_lr_comparison_execution.md)のLR1件比較。本学習と全評価を進め、3段階完了・最終採否は未確定。以下の停止記録は前回の納品時点。
-
-最終更新: 2026-10-13 JST。**最新の教材比較135は138で全6段階完了・不採用。Base/Chat未完成・未採用。追加実行停止。**
+更新: 2026-10-14 JST。Base/Chat未完成・未採用、研究・学習は停止中。最新比較139は全28セット・6,132判断・NLL7点と採否・7分岐・納品まで完了し不採用。[最新結果141](141_chat_lr_comparison_results.md)。現依頼は[全ドキュメント更新142](142_documentation_refresh.md)。
 
 ## 読む順序
 
-1. [状態](autonomous_status.md)：実績、採否、停止、保存先。
-2. [最終結果138](138_chat_semantic_diversity_results.md)：全21suite/4,599判断/NLL7点、失敗、資源、分岐、完了監査。
-3. [計画135](135_chat_problem_solution_plan.md)：閉じた比較の条件と末尾の未再開提案。[実行137](137_chat_semantic_diversity_execution.md)：時点別履歴。
-4. [ロードマップ](15_project_roadmap.md) / [チェックリスト](10_next_steps.md)：Phaseと未確認の証拠。
-5. [Windows/WSL引継ぎ](windows_handoff.md)：全state/data、元UI、欠損時の復元。
-6. [Base復旧124](124_base_recovery_plan.md)：未再開の代替経路。証拠を満たすBaseで通知・停止。
+1. [現在の状態](autonomous_status.md)：実績・採否・停止・現在の依頼。
+2. [最新結果141](141_chat_lr_comparison_results.md)：全保存点・原失敗・NLL・資源・事故・限界。
+3. [ロードマップ](15_project_roadmap.md) / [チェックリスト](10_next_steps.md)：Phaseと正式完成までの不足。
+4. [Windows/WSL引継ぎ](windows_handoff.md)：元UI・全state/data・欠損時の復元。
+5. [Base復旧124](124_base_recovery_plan.md)：未再開の別経路。合格Baseで通知・停止。
+6. [全文書カタログ](document_catalog.md)：311既存文書と今回追加2文書の全件区分。
 
-経緯は[全体125](125_project_retrospective.md)、[固定revision台帳](retrospective/README.md)。[調査127](127_rebuild_investigation.md)→[SFT128](128_chat_first_sft_plan.md)/[129](129_chat_first_sft_execution.md)→[調査130](130_chat_failure_improvement_investigation.md)→[教材131](131_chat_improvement_execution_plan.md)/[132](132_chat_improvement_execution.md)→[汎化133](133_chat_generalization_followup_plan.md)/[134](134_chat_generalization_execution.md)/[136](136_chat_generalization_results.md)→[135](135_chat_problem_solution_plan.md)/[137](137_chat_semantic_diversity_execution.md)/[138](138_chat_semantic_diversity_results.md)が閉じた比較の流れ。
+## 現行仕様と履歴
 
-番号付き文書は原則作成時の計画・調査・実行履歴。途中の「未実行」「学習中」やPIDは現行の開始指示ではない。135末尾と124は未実行の提案、原採否は各runのcompletion/selection、現在の範囲はstatus/AGENTSに従う。
+目的・構成・Tokenizer・データ・学習・環境・評価は[01](01_project_goal.md)〜[08](08_evaluation.md)。凍結評価基準は[評価契約](evaluation_protocol.md)、実績を探す入口は[実験検索](base_experiment_lookup.md)・[全体記録125](125_project_retrospective.md)。
 
-今回更新前の全運用文書は[履歴baseline](../reports/phase7/chat-semantic-diversity-20261013/documentation_history/baseline.json)へbyte一致で保全した。以前の14文書は[以前の保存一覧](../reports/investigation/documentation_plan_refresh_20261013/baseline.json)。履歴のリンクは元workspace相対で、履歴のrestart/PIDを現在の開始指示に使わない。
+日付付き計画・結果と[固定revision台帳](retrospective/README.md)は原文を維持する。途中の「学習中」「次は」「未実施」やPIDは現在の実行許可ではない。原採否と条件は各runのcompletion/configが正本。以前のmanifest/納品証拠は当時のGit revisionとsnapshotに対する証拠で、今回のliving文書更新へ書き換えない。
 
-## 運用文書と履歴
+閉じたChat比較の順序は128/129→131/132→133/134/136→135/137/138→139/140/141。最新の再開・採否を以前の未実行案へ戻さない。Phase0〜3、全日付付き報告、固定台帳の証拠を保全する。
 
-- [作業ルール](../AGENTS.md)、[自律runner](codex_automation.md)、[固定pilot/Tokenizer復元](huggingface_handoff.md)。
-- [旧状態の全原文](autonomous_status_history_20261008.md)、[旧ロードマップの全原文](project_roadmap_history_20261008.md)、[旧引継ぎの全原文](windows_handoff_history_20261008.md)、[旧AGENTSの全原文](agents_history_20261008.md)。
-- [2026-10-05履歴](autonomous_history_20261005.md)、[2026-10-04履歴](autonomous_history_20261004.md)、[2026-10-03履歴](autonomous_history_20261003.md)。
-- [data](../data/README.md)、[eval](../eval/README.md)、[reports](../reports/README.md)。
-
-20261008の旧運用文書と今回整理前の14文書は、それぞれ元bytesを保全しています。凍結report/source/raw、Phase0〜3の証拠は変更していません。native seedの[準備122](122_base_native_seed_confirmation_preparation.md)はCPU準備のみで、候補の後続不採用は結果123を参照します。
+[全311文書の更新前byte/hash](../reports/investigation/documentation-refresh-20261014/baseline.json)・[今回更新142](142_documentation_refresh.md)から現在の更新と原文を追える。[data](../data/README.md)、[eval](../eval/README.md)、[reports](../reports/README.md)の入口も最新化した。
 
 ## 番号付きの計画・結果
 
@@ -137,3 +128,5 @@
 | [139_chat_lr_comparison_plan.md](139_chat_lr_comparison_plan.md) | 同TRAINでpeak LRだけを変える1候補・全28評価・条件付き独立確認の契約 |
 | [140_chat_lr_comparison_execution.md](140_chat_lr_comparison_execution.md) | 凍結・事故保存/訂正・CUDA gate・実学習・全評価の時点別記録 |
 | [141_chat_lr_comparison_results.md](141_chat_lr_comparison_results.md) | 低LR同TRAIN比較の全28評価・不採用・分岐と科学監査/納品 |
+
+| [142_documentation_refresh.md](142_documentation_refresh.md) | 全ドキュメントの棚卸し・現行説明更新・原証拠保全・検証 |

@@ -1,14 +1,16 @@
-# 固定評価データ v1
+# 固定評価データと現在の利用状況
 
-2026-10-13更新: 下の利用状況は各記録当時の履歴。後続Chat-first診断・教材比較は[129](../docs/129_chat_first_sft_execution.md)、[132](../docs/132_chat_improvement_execution.md)、[最新136](../docs/136_chat_generalization_results.md)まで実行・全内容評価済みで、すべて不合格。最新133は14セット・3,066判断・固定NLL7点を完了した。Codex非blindで、独立した人間の採点ではない。既存固定TESTを今回の文書更新で開封・採点せず、選定や教材へ使わない。
+更新: 2026-10-14 JST。[最新結果141](../docs/141_chat_lr_comparison_results.md)は全28セット・6,132判断・NLL7点、全原gateで不採用。Base/Chat未完成・未採用、再採点・生成評価・TEST利用は停止中。現在は[文書更新142](../docs/142_documentation_refresh.md)のみ。
 
-新しい評価・再採点は停止中。次の[未実行計画135](../docs/135_chat_problem_solution_plan.md)はTRAIN凍結後の新未使用DEVと既知2suite回帰を提案する。旧v1/原split/原raw/採点を上書きしない。実状態は[status](../docs/autonomous_status.md)、正式採用条件は[評価契約](../docs/evaluation_protocol.md)を参照する。
+## 未参照と利用済みを区別する
 
-2026-10-04の棚卸し: Base dev80の`checks`は全件共通の説明文で、v1の自動意味採点には未接続。10Bの保存400出力は80入力×5条件、human_scoresは全null。固定testはモデル採点・選定に使っていない。[日本語Base評価の不足と追加案](../docs/44_japanese_base_evaluation_audit.md)。その後v2を追加し、v1と過去の結果を保持した。[v2.1実測結果](../docs/46_japanese_base_evaluation_v2_results.md)。
+元v1のBase/Chat各DEV80/TEST20とsplit/hashは不変。Chat DEVは後続SFTで利用済み。元Chat TEST20行も139のCPU準備で構文解析した事故があり、未参照とは呼ばない。学習・GPU評価には使用していない。将来有資格Chat確認には新たな封印TESTが必要。元Base TESTはこの事故では解析していない。今回の文書更新でもdataset/TESTを解析・採点しない。
 
-追加診断は[japanese_semantics_v2_1.jsonl](japanese_semantics_v2_1.jsonl)。否定・数量・時間・比較・照応・因果の120 family/240 context、dev96 family/192件とtest24 family/48件。family内で同じ二候補の正解を反転させる。学習には使わず、testは採点しない。同型templateの合成診断で、専門家検証やtemplate汎化の保証はない。`japanese_semantics_v2.jsonl`は初回の語彙family重複を含むsuperseded版として保存し、採用成績には使わない。公開評価データはversion/hash固定のLinux専用cache。Codex内容採点は別reportに保存し、v1のhuman_scoresや人手目標を上書きしない。
+最新139は新DEVと138/133/元旧DEVの4suite。各固定履歴80・role抑制なし80・実自己履歴24会話59turnを別に保存した。既知12セット2,628判断の再利用は原prompt/履歴/token/bytes/checksまで同一の場合だけ。Codex非blindで、独立人間の成績ではない。
 
-利用状況（2026-10-03）: Phase 4に続きPhase 5のsmoke/100M候補でもBase dev 80件×5条件（抑制あり/なしgreedy、sampling seeds 42/43/44）の400出力を取得し、生成ID/flagを独立照合した。選定NoNormのgreedy EOS 0/80・反復54/80、sampling Unicode 2/240で品質目標は未達。[Phase 5完了記録](../docs/23_phase5_completion.md)。固定testとChat suiteはモデル評価に未使用。Phase 6①では固定suiteの検出された混入clusterを学習corpusから除外し、②の4 dev文書採点はcorpus側の状態保全確認で、固定生成suiteの新しい品質実験ではない。[準備完了証拠](../docs/26_phase6_preparation_completion.md)。④の現在sourceでは400生成360.684秒、Unicode0/400、greedy EOS0/80・反復48/80で未達を記録した。新dev89,416文書のBPB1.2441264716と採点336.292秒、⑤のdev256文書LR3候補比較は別の母集団・予算として管理する。[④⑤の証拠](../docs/30_phase6_readiness_execution.md)。停止fixtureの実argmax成功はcontroller検証で、学習済みモデルのEOS到達品質に数えない。
+v1のhuman_scoresのnull、v2.1の[診断結果](../docs/46_japanese_base_evaluation_v2_results.md)、原raw・notes・停止/反復/Unicode失敗を保持。提供履歴と実自己発話履歴、DEV256/固定NLLと正式fullDEV、生成seedとfresh学習seedを混同しない。[現行適用と凍結評価契約](../docs/evaluation_protocol.md)。
+
+## v1固定入力の契約
 
 この評価例はプロジェクト用に独自作成したもので、学習データではない。Base 100件・Chat 100件をそれぞれ10 categoryに分け、categoryごとにdev 8件/test 2件、合計dev 80件/test 20件とした。ID・file hash・split membershipは[split_manifest.json](split_manifest.json)へ固定する。
 
@@ -19,7 +21,7 @@
 
 `family_id`で関連例のsplitを管理する。現v1はケースごとに別familyを付与し、全入力のexact重複は自動検査済み。意味的なnear-duplicateの完全排除は保証しない。今後同じcaseの言い換えを増やす場合は同じfamilyにし、splitを跨がせない。
 
-Chatの履歴は最後がUser、途中はUser/Assistant交互。70件は1発話の入力、30件は2〜4 User turnsの固定履歴。固定履歴での最終応答評価と、モデルの出力を履歴に戻して複数turnを続けるrolloutは別の条件とし、後者はPhase 7で加える。
+Chatの履歴は最後がUser、途中はUser/Assistant交互。70件は1発話の入力、30件は2〜4 User turnsの固定履歴。固定履歴での最終応答評価と、モデルの出力を履歴に戻して複数turnを続けるrolloutは別の条件とし、後続SFTの実自己履歴24会話59turnは実施済みで、実験別reportに別の分母を保持する。
 
 `checks`は意味上の確認事項で、唯一の正答文字列ではない。関連した短い表現を許容し、長さを得点へ自動加点しない。devを設定選定へ使い、testは最終確認用とする。testを見て調整した次版には新しい未使用testを用意する。
 

@@ -1,10 +1,10 @@
 # Tokenizer・日本語会話データ・SFTの追加調査
 
-実装状況更新: 2026-10-03。弱い正規化・protected-byte wrapper・構造ID・会話window/教師maskと教師token計数はPhase 2で検証済み。固定公開TokenizerをWSLへ復元し、Phase 4〜5ではWebのみのBase学習経路と100M候補比較を検証し、T4K NoNormを選定した。Phase 6①では固定revisionの8 filesから756M unique train stream tokensのWeb corpusを作成し、全raw/cluster/token/index/文字往復を監査した。[完了証拠](26_phase6_preparation_completion.md)。SFT/Chat trainer・複数source mixture・複数turn rollout・蒸留は未実装。以下の候補と外部資料は2026-10-02の調査記録で、採用時にrevisionと条件を再確認する。
+更新: 2026-10-14 JST。最新の判断は[結果141](141_chat_lr_comparison_results.md)と[状態](autonomous_status.md)。Base/Chat未完成・未採用、追加研究・学習は停止中。現在は[全ドキュメント更新142](142_documentation_refresh.md)のみ。 固定4096 Tokenizer・特殊ID0〜7を維持し、会話bodyは個別encode、role/EOTを構造IDで挿入する。Assistant本文+EOTのみの教師mask、document sampler、教師量正規化のscheduleと全state保存再開は実装・SFT実行済み。最新はaccepted TRAIN41,529 target・660,109教師/周と280sample QAの再利用。SFT実消費1,899,557教師と新規教材量を区別する。
 
-**実装状況**: 以下は調査時点の提案。調査後に[Phase 1のデータ取得・pilot](17_phase1_completion.md)、[Phase 2のTokenizer学習・文字復元・会話教師token計数](18_phase2_completion.md)を実施済み。後続のSFT学習・品質比較は未実施。
+最新のTRAIN適合と未知NLL/内容不足は[141](141_chat_lr_comparison_results.md)。50〜100B供給や10M/30M/100M SFT量の初期案は自動的な実行量ではない。元Chat TEST準備解析事故を保存し、将来有資格Chat確認には新しい封印TESTが必要。評価本文をTRAINへ移さず、raw Unicode失敗をdecode修正で免除しない。下のsource候補・研究・規模は調査当時の記録。
 
-調査日: 2026-10-02。[Tokenizer](04_tokenizer.md)と[データ設計](05_dataset.md)に残っていた、入出力仕様と短い雑談向けデータの不足を扱う。件数・ライセンスは参照先の表示、配合・閾値はJMicro向けの**提案**。この2026-10-02の文献調査自体ではデータ全件の取得・集計を行っていない。後続のpilot取得・計数は上記Phase 1〜2の実測を参照する。
+## 当時の資料・保存手順
 
 ## 1. 弱い正規化を設定で実現する
 

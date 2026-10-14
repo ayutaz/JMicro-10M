@@ -1,8 +1,16 @@
-# 評価・Checkpoint・TDD
+# 評価・Checkpoint・検証
 
-最終更新: 2026-10-03。Base本文NLL/BPB・生成評価とcheckpoint再開は実装・実GPU検証済み。[評価契約report](../reports/phase4/base_evaluation_contract_report.json)。Phase 4〜5のpilot devは924文書 / 共通1,633,458 canonical bytesで、モデル評価でtestは未使用。Phase 5で100件overfit、10M smoke、4本の100M、4補助checkpoint、document paired bootstrapを実施し独立監査した。[実測証拠](23_phase5_completion.md)。Chat、rollout、文法等の全件blind人手採点は未実施。以下のmetric/TDDは要件一覧で、未実施metricを達成済みとしない。
+更新: 2026-10-14 JST。[現在の状態](autonomous_status.md)、[最新結果141](141_chat_lr_comparison_results.md)、[ロードマップ](15_project_roadmap.md)が現在の判断の正本。研究・教材準備・診断・生成評価・学習は停止中。
 
-Phase 6①の新devは89,416文書 / 164,344,743 body bytes、testは89,485文書。全splitの構造・本文/token往復を監査したが、testをモデル評価・選定へ使っていない。②のCUDA dev採点は4文書の状態保全確認で、新dev全文の品質評価ではない。新devのBPBをpilot BPBの数値差として比較せず、④で全文採点336.292秒/BPB1.2441264716、固定400生成360.684秒を別計測済み。[結果](30_phase6_readiness_execution.md)。[準備の証拠](26_phase6_preparation_completion.md)、[次の評価](27_phase6_remaining_plan.md)
+最新139は全28セット・6,132内容判断・共通NLL7点×2,634 targetを監査済み。新DEV80、既知3回帰、各固定履歴80/role抑制なし80/実自己履歴24会話59turnを区別した。内容・文脈・停止・反復・raw Unicodeの原gateを維持し不採用。
+
+Chat評価と自己履歴評価は実施済み。独立人間blind、独立学習seed43、正式保持、fullDEV/最終suite、封印TEST、正式採用は未確認。Codex非blind全件判断・機械flag・技術testsを人間blindの合格へ読み替えない。
+
+元Chat TEST20行は準備で解析され、未参照の主張を取り消した。今後の有資格Chat確認は新たな封印TESTが必要。元のsplit/閾値/原失敗を修正しない。[評価契約](evaluation_protocol.md)は凍結v1と実験別の適用を分ける。
+
+全3checkpointと全update入力/label digest、25CUDA検証更新の連続/保存再開を確認済み。検証更新・CPUチェック・再利用判断は新学習や独立能力確認ではない。
+
+## 作成時点の資料・契約
 
 ## 評価原則
 
@@ -29,9 +37,9 @@ Phase 6①の新devは89,416文書 / 164,344,743 body bytes、testは89,485文�
 
 評価corpusはtrainingとdocument単位で分離し、Tokenizer比較では全く同じraw textを使う。
 
-## 固定生成suite
+## v1固定suiteの契約と当時の利用
 
-**固定済み**: Base/Chat各100件、各dev 80/test 20をversion管理する。Phase 4に続きPhase 5のsmoke/100MでもBase dev 80×5 decoding条件を各モデルで評価し、生成IDからflagsを独立照合した。testとChatは未使用。
+**固定済み**: Base/Chat各100件、各dev 80/test 20をversion管理する。Phase 4に続きPhase 5のsmoke/100MでもBase dev 80×5 decoding条件を各モデルで評価し、生成IDからflagsを独立照合した。このPhase4〜5時点ではtestとChatは未使用だった。
 
 - 文章completion
 - 日常的な日本語文法
@@ -43,7 +51,7 @@ Phase 6①の新devは89,416文書 / 164,344,743 body bytes、testは89,485文�
 
 temperatureやseedを固定したdeterministic setと、複数seedで分布を見るsampling setを分ける。
 
-## Dialogue評価
+## Dialogue評価の観点
 
 SFT後は以下のcategoryを固定する。
 

@@ -1,8 +1,14 @@
 # Tokenizer設計
 
-更新: 2026-10-03。WSLでは[固定公開版](huggingface_handoff.md#tokenizer-hashと過去のexport)をhash検証して使用し、Phase 4〜5とPhase 6①〜⑤のshard/checkpoint/検証exportへbindした。旧Mac版との違いは保存先metadataのみ。Tokenizer再学習は不要。Phase 5で両Tokenizer/model familyの100M・近似bytes/time比較を終え、T4K NoNormを本学習候補に選んだ。近いbytes予算ではT8Kが良く、Tokenizer単独の普遍的優位とはしない。[実測と限界](23_phase5_completion.md)。①の拡張全retained 1,783,193文書では固定T4Kの全token/index・文字往復を独立照合した。[準備完了証拠](26_phase6_preparation_completion.md)
+更新: 2026-10-14 JST。[現在の状態](autonomous_status.md)、[最新結果141](141_chat_lr_comparison_results.md)、[ロードマップ](15_project_roadmap.md)が現在の判断の正本。研究・教材準備・診断・生成評価・学習は停止中。
 
-**実装状況（2026-10-02）**: 4096/8192語彙のSentencePiece Unigram + byte fallbackを同一train sampleで学習済み。coverageは両方0.9995、特殊IDは0〜7。CRLF/CR→LF、NUL除去以外のUnicodeを保持し、改行・タブ・literal `▁`・`<`は共通wrapperでUTF-8 byte piecesへ表現する。以下の前処理候補をすべて採用したわけではなく、現在の正式な契約・実測は[Phase 2完了記録](18_phase2_completion.md)と[config](../configs/tokenizer/contract.json)を参照する。
+現系列は固定4096語彙のSentencePiece Unigram + byte fallbackを使用。SHA256 `a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318`。8192版は初期比較として保全し、同bytes/BPBとモデル配分の条件を区別する。再学習・語彙追加・embedding resizeは不要。
+
+特殊IDはPAD0/UNK1/BOS2/EOS3/System4/User5/Assistant6/EOT7。会話本文を個別encodeしrole/EOTは構造IDで挿入する。CRLF/CR→LFとNUL除去以外のUnicodeを保持し、改行・タブ・literal ▁・<の表現は共通wrapperの契約に従う。raw不正UTF8を表示修正で成功扱いにしない。
+
+[Phase2契約](18_phase2_completion.md)・[固定config](../configs/tokenizer/contract.json)・[復元](huggingface_handoff.md)を参照。下は初期方針と当時の候補で、既に完了した学習の再実行指示ではない。
+
+## 作成時点の資料・契約
 
 ## 方針
 
