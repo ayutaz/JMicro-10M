@@ -308,9 +308,9 @@ def verify(commit=None,receipt_commit=None):
     for name in ('scope','intervention','progress','selection','analysis','conditional_branches','technical','training','GPU_ledger','source'):
         ref=scientific[name]
         assert digest(Path(ref['path']))==ref['sha256'], name
-    receipt_commit='09f338e3312f884dab84ba20a8467ff5e2011a9e'
+    previous_receipt_commit='09f338e3312f884dab84ba20a8467ff5e2011a9e'
     receipt_win=WIN_ROOT+'\\'+delivery_path.replace('/','\\')
-    assert git('rev-parse',receipt_commit+':'+delivery_path)==git('hash-object','--path='+delivery_path,receipt_win)
+    assert git('rev-parse',previous_receipt_commit+':'+delivery_path)==git('hash-object','--path='+delivery_path,receipt_win)
     changed = git('diff',baseline['baseline_commit'],'--name-only').splitlines()
     permitted = OPERATIVE | NEW_DOCS | {'scripts/refresh_project_documents.py','.gitattributes'}
     assert all(n in permitted or n.startswith('reports/investigation/documentation-refresh-20261014/') for n in changed), changed
@@ -328,7 +328,7 @@ def verify(commit=None,receipt_commit=None):
         research_resumed=False, dataset_or_TEST_parsed=False, GPU_work=False,
         Base_adopted=False, Chat_adopted=False, push_executed=False, source_sha256=digest(Path(__file__)),
         original_scientific_evidence_and_previous_receipt_verified=True,
-        previous_result_commit=old_delivery['result_commit'],previous_receipt_commit=receipt_commit,
+        previous_result_commit=old_delivery['result_commit'],previous_receipt_commit=previous_receipt_commit,
         current_numerical_claims_match_original_selection=True,
         backup_copy_paths_verified=len(baseline['files']))
     if commit:
