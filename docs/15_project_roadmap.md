@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-15最新: [sentence-copy確率減衰100M](../configs/phase6/pseudo_repetition_science_20261015.json)を凍結・起動。[実観測](../reports/phase6/pseudo-repetition-preparation-20261015/science_launch_observation.json)はPID41491/start65448557・300更新/1694544教師、科学4746/技術込み4800秒。native trainer14/科学workflow13 CPU checks、owned CUDA12.190336秒・全state/history resume・48x1024/8x512有限gradientを通した。次は同jobの終端・全80採否。準備/途中値をBase品質合格にしない。独立fresh全pipeline/fullDEV/全440/新封印TEST/採用と4項目goalは未達。下の未実装・未凍結記述は当時の履歴。
+
 2026-10-15次案準備: [TRAIN全句copy確率減衰](../reports/phase6/pseudo-repetition-preparation-20261015/proposal.json)をprospective選定。旧生成4gram ULと異なる正のdetach目標0.5×前copyを使い、元全CEを保持する同10M比較。pure14 checksと32x48元TRAINの一回限りCPU feasibility256row/94405比較/2.702730秒が完了。新model/GPU/学習/DEV/TEST/教材export0。次は専用trainerの全stateとCE equality、owned CUDA180秒・総4800秒提案内の実測、永続safe science接続と凍結。準備を品質・独立学習/fullDEV/新TEST/採用に読み替えない。
 
 2026-10-15最新終端: [context likelihood100M](../reports/phase6/context-likelihood-science-20261015/completion.json)は全17,698更新の数値監査・同CE stream照合・全80個別内容reviewまで完了し不採用。一貫性2→1、適切完結2→1、EOS19→22、反復45→50、BPB0.998487→0.998524で資格なし。科学2410.335961＋技術9.415508秒、元10B UI実PID38043/start65165302へ復帰確認。次は別介入の選定で、独立fresh全pipeline学習/fullDEV/全440/新封印TEST/採用は未達。固定条件を救済しない。4項目Base goalはactive/未完了、下の稼働/停止記述は各記録日時の履歴。

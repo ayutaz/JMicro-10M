@@ -732,3 +732,9 @@ scripts/prepare_pseudo_repetition.py text eol=lf
 tests/test_pseudo_repetition.py text eol=lf
 configs/phase6/pseudo_repetition_feasibility_20261015.json -text whitespace=cr-at-eol
 reports/phase6/pseudo-repetition-preparation-20261015/** -text whitespace=cr-at-eol
+scripts/*pseudo_repetition* -text whitespace=cr-at-eol
+tests/test_pseudo_repetition* text eol=lf
+configs/phase6/pseudo_repetition* -text whitespace=cr-at-eol
+reports/phase6/pseudo-repetition*/** -text whitespace=cr-at-eol
+# Preserve the first launcher's exact failure transcript, including final spaces.
+reports/phase6/pseudo-repetition-probe-launcher-20261015/stderr.log -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol

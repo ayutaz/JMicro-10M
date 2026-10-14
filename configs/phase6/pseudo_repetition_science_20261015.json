@@ -1,0 +1,198 @@
+{
+  "kind": "frozen_native_original100M_pseudo_repetition_science_v1",
+  "created_at": "2026-10-14T20:55:06.063888Z",
+  "proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/pseudo-repetition-preparation-20261015/proposal.json",
+    "sha256": "c475f870988aafcd206807988b03924ea75c1af29c31d668ecb337690d738160"
+  },
+  "probe_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/pseudo_repetition_probe_20261015.json",
+    "sha256": "eba82492e4c3b714c5307f108ceaad018d0311f37681cffcdc7202009f36b36d"
+  },
+  "probe_result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/pseudo-repetition-probe-20261015/result.json",
+    "sha256": "0a1693769c1dc64b2bd6642104570f332a7861d46d965cf1aa69f24c28dcb8a0"
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "tokenizer": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/phase2/4096/tokenizer.model",
+    "sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "goals": {
+    "web": 75000000,
+    "textbook": 20000000,
+    "story": 5000000
+  },
+  "batch": 48,
+  "seed": 42,
+  "main_teacher_goal": 100000000,
+  "recipe": {
+    "coefficient": 0.1,
+    "decay": 0.5,
+    "maximum_inputs": 512,
+    "maximum_copies": 16,
+    "minimum_copies": 4,
+    "maximum_rows": 8,
+    "sentence_tokens": [
+      8,
+      128
+    ],
+    "preceding_context_tokens": [
+      8,
+      256
+    ],
+    "selection": "first_eligible_complete_original_rows_distinct_family_body_no_new_draws",
+    "boundary": "original_joint_body_token_UTF8_punctuation_no_fragment_reencoding",
+    "loss": "mean_negative_log_one_minus_abs_current_probability_minus_detached_decayed_previous_copy",
+    "main_CE": "unchanged_original_body_EOS",
+    "auxiliary_EOS": false,
+    "extra_parameters": 0,
+    "additional_RNG": false
+  },
+  "initial_weights_sha256": "381bd100ad76ea5dbdf9c453e1131dbe1436b6de81c56a2e0f47982a25ce7290",
+  "scientific_GPU_cap_seconds": 4746,
+  "technical_GPU_seconds": 12.190336407045834,
+  "total_GPU_cap_seconds": 4800,
+  "worst_measured_peak_bytes": 10755451392,
+  "control_checkpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/CE/checkpoint-00017698.pt",
+    "sha256": "f691a7587c03c51293a2e77889307da0efa18d2349c13e4f77439fd339586967"
+  },
+  "control_training": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/CE/train-result.json",
+    "sha256": "dc3eae3f5b34bc7c09165ad34cb0f3dac1da9c6ff88c451fc2f9590980383ae2"
+  },
+  "references": {
+    "strong_result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/compare-result.json",
+      "sha256": "cbca7936ebf395b1d5ccd45022ee4cb85de704a636c8bdae48ff2c24a8adc303"
+    },
+    "strong_notes": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source_order_condition_notes.json",
+      "sha256": "6b143e08096a1ee2365a643c008d5c009d2c2ff48dd1d42a9749ac5301766d2d"
+    },
+    "original_config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/textbook_quantity_comparison.json",
+      "sha256": "f1baece77f9e85d6086f1ac5d1e624a59d19910a90af2202a104fb125c379d98"
+    },
+    "historical_Web": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/evaluation/result/web/evaluation/result.json",
+      "sha256": "5e0f346d1c657b2f8f1a35d9e8079ce896abab3451e34dc697792394a0df6796"
+    },
+    "cached_control_result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/result.json",
+      "sha256": "508990562990d2259fec5e1a330cf1ff77c053360b6678e751f6a02cb2b2394e"
+    },
+    "cached_control_notes": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural_context_contrast_CE_notes.json",
+      "sha256": "5a36aa6d4914260d1975974ae0fbee6c1e0024d900ea8103da970fdbc4ee9369"
+    },
+    "cached_control_raw": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/evaluation/CE/evaluation/generation.json",
+      "sha256": "73a952a4e08ca8cfffa229fdb8c8f497d0373ff0646ca4b4f5cecd90a27e644b"
+    }
+  },
+  "strong_summary": {
+    "BPB": 1.1336128657420816,
+    "rates": {
+      "outputs": 80,
+      "eos": 76,
+      "repetition": 2,
+      "unicode_failure": 0,
+      "role_leak": 0,
+      "empty": 0
+    },
+    "grammar2": 65,
+    "relevance2": 39,
+    "coherent": 23,
+    "appropriate": 26,
+    "notes_sha256": "6b143e08096a1ee2365a643c008d5c009d2c2ff48dd1d42a9749ac5301766d2d",
+    "generation_sha256": "d5b5a7c6b5d971de9bc46c77f52ac5ea19132cab7b97f034c274974cdbe2620e",
+    "Japanese": {
+      "semantics": 0.5625,
+      "jblimp": 0.7824773413897281,
+      "jcqa": 0.26541554959785524
+    }
+  },
+  "DEV_manifest": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/eval/isolated-base-dev-v1/base.dev.manifest.json",
+    "sha256": "6198b43df8f4cf389e9de74c038e2e93d18665413477b27359ab352a02f69fa7"
+  },
+  "DEV_shards": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/expanded-v2/shards",
+    "manifest_sha256": "75c7420a1434cf8a97797218b163c694a13ed838f389f09327dcc86f7164c12c"
+  },
+  "Japanese_manifest": {
+    "path": "/home/aihub_ubuntu/jmicro-data/evaluation-isolated-japanese-v1/japanese.dev.manifest.json",
+    "sha256": "06fcf2c18f086ee57c4f615e5ae765f568024912148bf94be891b1581e7edadd"
+  },
+  "unigram": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/japanese-base-v2-20261004-r1/pilot/unigram.json",
+    "sha256": "80708c01ae19d6049785dd31d1e48651e1f246122870355a9ab5ad662081d0a5"
+  },
+  "sources": {
+    "scripts/probe_pseudo_repetition.py": "8537d2ba810882a507e0eafa9d479d2092203a703b31f7db81bc6b9fe74ed7da",
+    "scripts/probe_pseudo_repetition.ps1": "285940eb7820a5f6543546c8ebd899b7481fcd960981a4e8009b43122050a981",
+    "scripts/pseudo_repetition_trainer.py": "fe7f790fc460e9519b17291326ba33edaa33f6082fbf494ba8c25dbc90eeaebc",
+    "src/jmicro/pseudo_repetition.py": "14d864cd64adf9b3667fbba7a43ab2afb8d879ae0ba1b9857c0de2958b51f0b3",
+    "scripts/context_likelihood_trainer.py": "392824e360dca7474d3b6227d19236d0d748c5238b03067dd80aba9d497dfaa5",
+    "src/jmicro/context_likelihood.py": "a08597c78b4a39f358214730d507037f15679a3f83650009445c65b6898eaafd",
+    "scripts/probe_context_likelihood.py": "b76ebc5aba00d7754b9909dcaca85cddbb81ad03c64e2061ff7925b65cbf3cd6",
+    "scripts/probe_base_kv_allocation.py": "b803c8238cca10b76baed061ceb944bf090f320b762562da40944b9dc529b5e3",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "scripts/natural_context_contrast_memory.py": "85735b203e1a6f845078046379c6463b51cdc61068a463a379d93c79368f62e2",
+    "scripts/base_fim_trainer.py": "31fb0a86561014221ba5096cf83ffa17914e9c946b214dc0e407e1abbb1398c4",
+    "scripts/base_fim_sampler.py": "ca5eeea9c47e8c78ccd6843cd6287cd7eaaeee3cccf7a948349f773ac6e64e79",
+    "scripts/base_kv_allocation_trainer.py": "49cbf6a2e6163e16577e385860345e542c3282a9f8e752c164b53a66ac43e7e1",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "tests/test_pseudo_repetition_probe.py": "3a1e3aa46872c643e107ce4ffdbc333f303b357c2c324897cafc669148984683",
+    "tests/test_pseudo_repetition_training.py": "7131d15f6f98079a4d0e31c7ddc7f40d9e372543e33f54e0057b0134859c18a7",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca",
+    "scripts/run_pseudo_repetition.py": "689c43f8de991f595a04b195199e366e6f29565d2e45fb3c303d9b8468026552",
+    "scripts/run_pseudo_repetition.ps1": "383213eb16ca061108a1c7e47ab3d2ec51e23fd522131fca409c0b9128601f22",
+    "scripts/review_pseudo_repetition.py": "1898280fb6457caac249386898573c151e453706fbe76d8379c6af6158a75fb4",
+    "scripts/evaluate_context_likelihood.py": "fa439d0dac298bfba1bdaaf41e3f759e83d95c7b8e5226028fcb5039bddc5f11",
+    "scripts/pseudo_repetition_science_protocol.py": "65e4bdcaeefebdccc78fd7cdc5f12ce4adbfa63567e972f6d45f12d2432fa5ad",
+    "tests/test_pseudo_repetition_science.py": "dccd22e78201cdc1636ea4edd2afe663d28dbd9df28ff98c6c59c4b122aa50ae",
+    "src/jmicro/isolated_japanese_scoring.py": "92fe253d5ddc2e0a1d3267ce97edfe91180788784274a3c214967543688e78c7",
+    "src/jmicro/evaluation_choice_boundary.py": "6e2ea2dc0c0ef288dbb7d64c535fc483c3c30d9c19aa6bb6d20d3c61ac390a8d",
+    "src/jmicro/evaluation_boundary.py": "e67d86ea26645d9a27d6597d0241716e66a9cc64666bbc2b2b91fab86e2d2f6e",
+    "src/jmicro/evaluation_memory.py": "ba22fb7ca7ddb6633a308c2b1a32a59147ecb38e568d9f838ab032300147c6b4",
+    "src/jmicro/japanese_evaluation.py": "8693e2a54e63c1b085b617b207cc5db618ae80af1eb7cb54133ba8b254da6801",
+    "src/jmicro/readiness.py": "69a92251f4a697b551b9c3cfef9e2b992e776e2047c0331f7c43ba2331d172ea",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "scripts/isolated_base_evaluation.py": "b5ccce8df7a0bc294dc85a255b9fa67bc865675c06d40a6e976f4876fb3be300",
+    "scripts/base_fim_pilot_protocol.py": "44d99a88023a38682a8583a730f2ac41d9c8333cb091e0fb2619dee0e0421a22",
+    "scripts/review_matched_story_study.py": "439c990c4d2781937573927df08bdaef860041c78fd05f0d6afde4458351f315",
+    "scripts/run_eos_complete_100m.py": "62232fd440efbe32d65f25a3fffe8ec9fd7d7a96c74db329ddc3cc3443871a9d"
+  },
+  "CPU_workflow_tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/pseudo-repetition-preparation-20261015/science_CPU_tests.xml",
+    "sha256": "91afcf0388b59d1827c56a6c564732224a7dfccd5c5593f908f59f5a1a0e8791"
+  },
+  "checkpoints_every_updates": 500,
+  "heartbeat_every_updates": 20,
+  "scope": "Base only. Qualified recipe precedes genuinely fresh whole-recipe seed43/fullDEV/all440/new sealedTEST/adoption.",
+  "failure": "Fixed condition closes on data/numeric/state/budget/quality failure; no parameter/source/seed/parent/decoder/cap rescue.",
+  "quality_criteria_unchanged": true,
+  "TEST_prepared": false,
+  "Base_qualified": false,
+  "Base_adopted": false
+}
