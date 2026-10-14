@@ -1,0 +1,91 @@
+{
+  "kind": "owned_native_context_likelihood_CUDA_technical_v1",
+  "batch": 48,
+  "seed": 42,
+  "GPU_ceiling_seconds": 180,
+  "timed_updates": 32,
+  "continuous_updates": 6,
+  "split_updates": [
+    3,
+    3
+  ],
+  "capacity_shape": [
+    48,
+    1024
+  ],
+  "auxiliary_capacity_shape": [
+    96,
+    512
+  ],
+  "main_teacher_goal": 100000000,
+  "maximum_new_GPU_seconds": 4800,
+  "scientific_teacher_positions": 0,
+  "Base_adopted": false,
+  "TEST_prepared": false,
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context-likelihood-preparation-20261015/proposal.json",
+    "sha256": "b0da77b1a17329696101980cc2d83be8f6a280e0e457a7930edec0973d3a12be"
+  },
+  "preparation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context-likelihood-preparation-20261015/CPU_preparation.json",
+    "sha256": "57f27878b2296688d442d637c798f45ff37e193f3943fa88c616da7a64b6a57b"
+  },
+  "feasibility": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context-likelihood-preparation-20261015/CPU_feasibility.json",
+    "sha256": "844c98eb0d1945dd5f88dcccd0e02f06606b8dead4e4fac5d0a24c18e82f274c"
+  },
+  "accepted_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/natural_context_contrast_comparison.json",
+    "sha256": "70b87bf762f3225fd83f40d3bde301c13e5a4b4243372e541af1a1e38e88bc29"
+  },
+  "CPU_tests": [
+    {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context-likelihood-preparation-20261015/CPU_tests.xml",
+      "sha256": "a72d9a0c5b347305e487674333ac041becd5c4bc095607e5f3a755d53fcc4d8d",
+      "expected_tests": 12
+    },
+    {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context-likelihood-preparation-20261015/trainer_CPU_tests.xml",
+      "sha256": "5b7ec32c466e6a5ce93bc2d09b38c210228fa1d51dd7f687f40f0c6297e6fcd6",
+      "expected_tests": 11
+    },
+    {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context-likelihood-preparation-20261015/probe_CPU_tests.xml",
+      "sha256": "5262b71c1ac7f0c1f0fd7f488f03b17771fbf3d86ae84cf55edcfa8cbba034b8",
+      "expected_tests": 8
+    }
+  ],
+  "tokenizer": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/phase2/4096/tokenizer.model",
+    "sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+  },
+  "sources": {
+    "scripts/probe_context_likelihood.py": "b76ebc5aba00d7754b9909dcaca85cddbb81ad03c64e2061ff7925b65cbf3cd6",
+    "scripts/probe_context_likelihood.ps1": "e569c3efa2070a7ed23c451033350be0e9b7ce61a3c9bbf5b4ae2d6b17a88c8c",
+    "scripts/context_likelihood_trainer.py": "392824e360dca7474d3b6227d19236d0d748c5238b03067dd80aba9d497dfaa5",
+    "src/jmicro/context_likelihood.py": "a08597c78b4a39f358214730d507037f15679a3f83650009445c65b6898eaafd",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "scripts/natural_context_contrast_memory.py": "85735b203e1a6f845078046379c6463b51cdc61068a463a379d93c79368f62e2",
+    "scripts/probe_base_kv_allocation.py": "b803c8238cca10b76baed061ceb944bf090f320b762562da40944b9dc529b5e3",
+    "scripts/base_fim_trainer.py": "31fb0a86561014221ba5096cf83ffa17914e9c946b214dc0e407e1abbb1398c4",
+    "scripts/base_fim_sampler.py": "ca5eeea9c47e8c78ccd6843cd6287cd7eaaeee3cccf7a948349f773ac6e64e79",
+    "scripts/base_kv_allocation_trainer.py": "49cbf6a2e6163e16577e385860345e542c3282a9f8e752c164b53a66ac43e7e1",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "tests/test_context_likelihood_probe.py": "1f7dc41111039b13e871af76ca08b4b5ba76049c4568be469ae4b412735d7a16",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca"
+  },
+  "capacity_payload": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/context-likelihood-probe-20261015/verification_shape_input.pt",
+    "sha256": "8f7bc761aa70a70ed9c636dcd9a7adc59a034e8cde21d72df0c5e7c71ec02092"
+  },
+  "initial_weights_sha256": "381bd100ad76ea5dbdf9c453e1131dbe1436b6de81c56a2e0f47982a25ce7290",
+  "CPU_wall_seconds": 0.9413241479778662
+}
