@@ -1,5 +1,7 @@
 # Baseの実験結果を探す
 
+2026-10-15追補: 最新の閉じた条件は[context likelihood100M](../reports/phase6/context-likelihood-science-20261015/completion.json)。全80 raw-bound notes・数値監査を含め不採用で、独立学習/fullDEV/新TEST/採用の資格なし。直前のfresh FIMも[不採用閉鎖](../reports/phase6/base-fim-pilot-20261015/completion.json)。どちらも固定条件の係数/親/seed/予算/decoder救済をしない。20261008索引はこの後続比較を含まない検索補助であり、原proposal/trainer/resultとの照合が必要。4項目Base goalはactiveで次の別介入を選定する。以下は文書限定だった時点の履歴。
+
 更新: 2026-10-14 JST。現在の依頼は全現行文書の最新化と今後の計画作成。Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は再開していない。
 
 [最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。

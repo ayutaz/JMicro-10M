@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-15最新終端: [context likelihood100M](../reports/phase6/context-likelihood-science-20261015/completion.json)は全17,698更新の数値監査・同CE stream照合・全80個別内容reviewまで完了し不採用。一貫性2→1、適切完結2→1、EOS19→22、反復45→50、BPB0.998487→0.998524で資格なし。科学2410.335961＋技術9.415508秒、元10B UI実PID38043/start65165302へ復帰確認。次は別介入の選定で、独立fresh全pipeline学習/fullDEV/全440/新封印TEST/採用は未達。固定条件を救済しない。4項目Base goalはactive/未完了、下の稼働/停止記述は各記録日時の履歴。
+
 2026-10-15final準備の追補: [DEV400/long40の安全入力・生成adapter](../reports/phase6/isolated-continuations-preparation-20261015/completion.json)を追加、8+4 CPU checksと元DEV80/codecの440入力context前検査を完了。旧5 modes/seed/temperature/top-p/6-ID suppression/128512長文順序とraw失敗を維持。実モデルや未知TESTを使わず、旧400/long40結果とfixtureで一致。独立学習/実fullDEV/全440内容/採用や永続runnerの代替ではない。現在のPID6927は44246925/100M教師で稼働、凍結scienceへ変更を加えず全80終端採否を待つ。
 
 2026-10-15保存状態の追補: [同更新CE対照を使うcheckpoint2000 CPU監査](../reports/phase6/context-likelihood-preparation-20261015/checkpoint2000_CPU_audit.json)で11297746 main教師、原stream/sampler/実schedule/EOS/bytes/physicalと全numerical/FIFO/metrics prefix整合を確認。追加学習/GPU/評価0、品質の証拠ではない。同science PID6927は4180更新/23632643教師の途中で稼働確認。次は100M終端と全80内容採否、全4項目の最終品質は未達。

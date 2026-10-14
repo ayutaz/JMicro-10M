@@ -1,5 +1,7 @@
 # Base改善の今後の計画
 
+2026-10-15進行追補: 「4まで」の再開範囲で評価reader分離と新同10M比較を実施した。最新[context likelihood100M](../reports/phase6/context-likelihood-science-20261015/completion.json)は全80内容と全state/対照照合まで完了し、不採用に閉鎖。一貫性1/80・適切完結1/80・反復50/80、全保持条件未達。次は既存結果から別の未回答介入を1件選定し、対照/原gate/実測予算を事前固定する。独立fresh全pipeline学習/fullDEV/全440/新封印TEST/採用は有資格候補ができてからで、まだ未達。Base完成までの4項目goalを比較閉鎖へ縮めない。以下の2026-10-14文書限定scope・未選定記述は当時の履歴で、後の明示再開を上書きしない。
+
 更新: 2026-10-14 JST。現在の依頼は全現行文書の最新化と今後の計画作成。Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は再開していない。
 
 [最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
