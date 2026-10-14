@@ -1,5 +1,7 @@
 # Base改善の今後の計画
 
+2026-10-15新案の技術段階: 前2有効tokenのprojected Q/K/Vを加える10,014,464 modelはCPU/実親parityとGPU数値/cache/保存再開を通過したが、[reference実測](../reports/phase6/causal-qkv-probe-20261015/completion.json)の科学予測8581秒が総4800秒を超え、科学0でreference条件閉鎖。[別の同数式contiguous実装](../reports/phase6/causal-qkv-contiguous-preparation-20261015/CPU_equivalence.json)は共有joined tensorの値/勾配/3更新Adam exactをCPU11項目で確認。初回失敗も保全し、元構造/教師/品質/precision/backendを変更せずGPU同値性・速度はこれから検証する。次の新CUDA gateは既消費19.769017秒を元technical180/総4800へ継承する。予算/教師/tapの救済やreference再実行では進めない。独立fresh全pipeline/fullDEV/全440/新TEST/採用と4項目goalは未達。
+
 2026-10-15最新判断: [first-layer value residual100M](../reports/phase6/value-residual-science-20261015/completion.json)も全state/元CE対照・宣言12scalar差・全80個別内容を確認して不採用に閉鎖。文法44→58/EOS19→23に対し一貫性2→1・適切完結2→1・反復45→47・BPB0.998487→0.998524。初期関数を保存した層間V0経路の追加だけでは今回の生成品質改善は成立しない。固定V0係数/層subset/normalization/親/seed/decoder/予算を救済せず、次は既存の原proposal/runtime/resultから別の未回答仮説1件を選定する。独立fresh全pipeline/fullDEV/全440/新封印TEST/採用は有資格候補なしで未実施。4項目goalはactive/未達、以下のrunning等は当時の履歴。
 
 2026-10-15進行: [first-layer value residual100M契約](../configs/phase6/value_residual_science_20261015.json)を実元親CPU parity/専用trainerと全state resume/owned GPU9.812882秒・最大48x1024/18科学workflow checks後に凍結・起動した。science3568/技術込み4800秒、元親/原CE100M/48/42と全元品質gateを保持。実PID52873/start66148908は40更新/233183教師の途中で、品質未判定。次は同job終端の原対照全state/stream＋宣言12scalar差と全80個別内容採否。未達なら固定条件閉鎖、有資格時だけ独立fresh全pipeline/fullDEV/全440/新封印TEST/採用。全4項目goalはactive/未達、下の未実装/科学0記録は履歴。

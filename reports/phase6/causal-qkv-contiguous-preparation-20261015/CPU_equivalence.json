@@ -1,0 +1,51 @@
+{
+  "status": "contiguous_CPU_equivalence_passed_GPU_identity_and_speed_pending",
+  "observed_at": "2026-10-14T23:39:40.0144776Z",
+  "source_and_evidence_sha256": {
+    "src/jmicro/causal_qkv_contiguous.py": "b18b68ed968100aa3080442009b00a9eb35796aec3c90041fe9f7ca19ffbdbfc",
+    "tests/test_causal_qkv_contiguous.py": "59afd096634e370e43ae120efd9a686ef829a108c19a13df79079c2e95e7f191",
+    "src/jmicro/causal_qkv.py": "812158ecdb63c44385c77dc4f4099a4525b7eb6a6eb1306a7db735f89e73ad10",
+    "tests/test_causal_qkv.py": "b21b396b1d0036550fec5c5730a9ca81544cf05d7792c24f033d32a1d8383eca",
+    "tests/test_value_residual.py": "6ecf6808e53c047836b3fb9813da7a52cd1179e7e3fa1452629b59aff95c2014",
+    "scripts/causal_qkv_trainer.py": "025e74d2a238d2f016f6e734ff206a85bf90f577b11498992372e325770a5413",
+    "reports/phase6/causal-qkv-contiguous-preparation-20261015/proposal.json": "5a695341a2fe665bfd8a3b66295f8d471280b2e0972939fea3ed7880efb40549",
+    "reports/phase6/causal-qkv-contiguous-preparation-20261015/CPU_equivalence_tests_initial.xml": "314822d97dfb4b1b3e7e552d0aed0b3e4357c72413d65f4c96bc695a9777a544",
+    "reports/phase6/causal-qkv-contiguous-preparation-20261015/CPU_equivalence_tests_v2.xml": "c5e5860e19799c2a6dae9d4ada2609bc45bac480cddd39e43e5c35525ea3ad05"
+  },
+  "initial_tests": {
+    "preserved": true,
+    "report": "CPU_equivalence_tests_initial.xml",
+    "diagnosis": "Independent pad branches changed gradient addition grouping. Forward values matched, but several FP32/FP64 input gradients and full-model gradients failed the exact gate.",
+    "passed": 6,
+    "failed": 5
+  },
+  "current_tests": {
+    "report": "CPU_equivalence_tests_v2.xml",
+    "repair": "Share the same joined zero-history/current tensor across both lag slices, preserving reference backward accumulation grouping. No tolerance or test relaxation.",
+    "passed": 11,
+    "failed": 0
+  },
+  "verified_scope": [
+    "Float32/float64 lengths1/2/3/64: all mixed values/raw tails/validity AND input/lag gradients exact",
+    "Signed active whole-model causal forward, old+new gradients, clipped norm,3-step weights and full Adam state exact",
+    "Masked/chunked inference uses unchanged reference path: logits, KV and raw-QKV histories exactly equal",
+    "Zero-native conversion preserves full reference state/name order/count/tied vocabulary/RNG and native output"
+  ],
+  "CPU_fixture_Adam_updates": 6,
+  "actual_trained10M_parent_or_verification_weights_loaded": false,
+  "actual_GPU_reference_vs_contiguous_comparison_completed": false,
+  "measured_GPU_speedup": false,
+  "previous_reference_GPU_seconds": 19.769017330021597,
+  "remaining_original_technical_GPU_seconds": 160.2309826699784,
+  "original_total_new_GPU_cap_seconds": 4800,
+  "reference_forecast_seconds": 8581,
+  "scientific_contract_frozen": false,
+  "scientific_teacher_positions": 0,
+  "new_GPU_seconds": 0,
+  "new_dataset": 0,
+  "DEV_TEST_opened": false,
+  "Base_adopted": false,
+  "full_four_item_goal_complete": false,
+  "next_action": "Implement explicit typed same-architecture runtime binding and a NEW owned CUDA reference-versus-contiguous exact numerical/update/history gate plus measured resume/capacity/cache/32timings, using only remaining original technical budget. Never relaunch reference probe or claim CPU identity proves GPU equivalence or speed.",
+  "limits": "Exact CPU identity only in tested scopes; no actual10M/GPU or Japanese quality/adoption evidence. Reference model/trainer/probe sources and its budget-failed result remain frozen."
+}

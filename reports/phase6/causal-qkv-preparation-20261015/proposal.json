@@ -1,0 +1,93 @@
+{
+  "kind": "prospective_residual_causal_depthwise_QKV_lag_v1",
+  "created_at": "2026-10-14T23:25:41.2598747Z",
+  "status": "selected_for_CPU_model_implementation_not_scientific_contract",
+  "primary_source": {
+    "sections": "3 MDHA and A.7 insertion/ablation",
+    "url": "https://arxiv.org/html/2109.08668v2",
+    "summary": "Primer inserts per-channel depthwise temporal convolution after Q/K/V projections. This motivates testing an isolated local information path; its combined architecture and larger English results do not establish Japanese10M benefit."
+  },
+  "architecture": {
+    "kind": "residual_depthwise_QKV_previous2_v1",
+    "formula": "For each original projected Q/K/V channel: mixed_p[t]=p[t]+a1*p[previous_valid_token]+a2*p[second_previous_valid_token]",
+    "fixed_current_coefficient": 1,
+    "previous_lags": [
+      1,
+      2
+    ],
+    "coefficient_granularity": "each original projected channel in each layer, independent Q/K/V",
+    "coefficient_initialization": 0.0,
+    "coefficient_parameterization": "direct signed, no gate/clamp/tanh",
+    "new_biases": 0,
+    "native_reference_parameters": 10001152,
+    "added_parameters": 13312,
+    "expected_candidate_parameters": 10014464,
+    "count_formula": "2*(Q4+K2+V2)*head64*13layers",
+    "norm_and_position_order": "project, causal lag mixing, original Q/K norm, original RoPE, original GQA SDPA and O",
+    "original_FFN": "unchanged SwiGLU640 and sequential attention/MLP",
+    "padding": "lags count valid tokens, not physical padding; missing history zero; never cross document/sequence rows",
+    "cache": "separate tagged KV cache: original post-RoPE K/mixed V plus last two valid RAW pre-mixing Q/K/V per layer and validity",
+    "native_directory_or_HF_export": "explicit refusal until separate inference/export adapter exists"
+  },
+  "difference_from_paper": "Own residual adaptation: current tap fixed1, two previous taps learned from0, original GQA/NoQKNorm/RoPE/SwiGLU retained. Not full Primer, not exact MDHA implementation, no squared-ReLU combination or speedup claim.",
+  "original_evidence_sha256": {
+    "reports/phase6/value-residual-science-20261015/completion.json": "a026e309e435a3e52b8b6e496f7de4368be6f198d2ae09d54d1e278ee0127bfc",
+    "reports/phase6/cross-gqa-map-science-20261015/completion.json": "e71002bf511877cc08a3e23453e87333b304b3f02a9938fea98155d7b4ce4cb5",
+    "reports/phase6/base_relu_squared_proposal.json": "329fc5e41e8150e6187f9b0172d765345cfbfed23d5210fa133d67d60c69a10d",
+    "scripts/base_relu_squared_model.py": "633ec7389272c584b3b509384639f5552ede47350e719550c4252e635c7cabad",
+    "scripts/base_context_mixing_trainer.py": "80244da524bb369a28fed40e251c1f56e1640914f4c646e19f0d6a2c70d0f6a2",
+    "reports/phase6/architecture_comparison_review.json": "58ce8d6b877798d0bacefc6f5980ef0f653fb16c1c582009a4b45a6ae49e3869",
+    "configs/phase6/architecture_comparison.json": "33876ad915db583e02b12f53fbd4602f050f4ac55b2907a841b43bd28d85eef3",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83"
+  },
+  "alternatives": [
+    {
+      "decision": "not selected: original architecture_comparison already trained the proposed fewer-layer/wider variants; do not infer novelty from standalone early proposal",
+      "name": "depth/width/FFN allocation"
+    },
+    {
+      "decision": "not selected now: entropy/label/link objectives already have negative evidence; no new observed numerical instability or defined generalization advantage",
+      "name": "confidence/normalizer regularization"
+    },
+    {
+      "decision": "selected: different information path before attention maps, preserves exact original function at zero initialization and approximately10M budget; CPU causality/cache/count/gradient evidence required before GPU",
+      "name": "causal projected QKV lags"
+    }
+  ],
+  "distinction_from_closed": {
+    "context_mixing": "No token replacement, sampled model prediction or clean/mixed extra forward; original gold inputs unchanged",
+    "squared_ReLU": "Original SwiGLU topology/activation preserved; no rescue or combination of the closed squared-ReLU comparison",
+    "cross_GQA": "No other-head map subtraction, no GQA allocation change",
+    "headwise_output_gate": "Changes temporal inputs to Q/K/V before SDPA, not input-dependent sigmoid after SDPA",
+    "first_value_residual": "Within-layer preceding-token projected features, not cross-layer first-V skip or layer-subset rescue"
+  },
+  "lookup_limits": "Dated index query convolution returned0; current targeted mechanisms and original closed sources inspected. Search absence is not exhaustive novelty proof. Original old corpora/evaluations were not rerun.",
+  "prospective_science": {
+    "batch": 48,
+    "optimizer": "fresh original AdamW1e-5 WD.1 constant; zero lag coordinates explicitly declared",
+    "original_quality_gates_unchanged": true,
+    "science_cap": "not frozen; owned measurements including maxshape/save/resume/cache32timings and full evaluation reserve required",
+    "technical_GPU_cap_seconds": 180,
+    "parent": "original10B native parent, no closed comparison/probe weights",
+    "seed": 42,
+    "source": "existing accepted original TRAIN stream and native4096 Tokenizer",
+    "total_new_GPU_cap_seconds": 4800,
+    "main_teachers": 100000000
+  },
+  "required_CPU_checks": [
+    "Independent lag formula on padding holes and across chunks",
+    "Counterexample: same current projection with different preceding token yields different mixed projection",
+    "Zero conversion old weights/logits/old gradients/RNG/tie and actual13-layer parameter count",
+    "All added lag coordinates receive actual gradients; technical identity has zero extra gradients and exact original clipping list",
+    "Active full/chunk/left+right+hole padded caches and prior raw history; no future influence or cross-row/document state",
+    "Native right-padded hidden traversal equals valid full model outputs",
+    "Strict tagged config/state/cache, native/HF export refusal"
+  ],
+  "GPU_seconds": 0,
+  "scientific_teacher_tokens": 0,
+  "new_dataset": 0,
+  "DEV_TEST_opened": false,
+  "Base_adopted": false,
+  "full_four_item_goal_complete": false,
+  "stop": "No GPU/science before separate trainer/full numerical resume, owned technical gate and frozen safe scientific contract. If fixed condition fails, close without lag width/tap/subset/activation/parent/seed/decoder/cap rescue."
+}

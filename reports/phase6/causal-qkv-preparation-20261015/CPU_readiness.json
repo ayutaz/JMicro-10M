@@ -1,0 +1,75 @@
+{
+  "status": "causal_projected_QKV_lag_CPU_ready_owned_GPU_pending",
+  "created_at": "2026-10-14T23:31:19.6717453Z",
+  "proposal": {
+    "path": "reports/phase6/causal-qkv-preparation-20261015/proposal.json",
+    "sha256": "fb4df6a4073db3af942680889af08352c7824651bb569ede47c18419bad5c034"
+  },
+  "source_sha256": {
+    "src/jmicro/causal_qkv.py": "812158ecdb63c44385c77dc4f4099a4525b7eb6a6eb1306a7db735f89e73ad10",
+    "tests/test_causal_qkv.py": "b21b396b1d0036550fec5c5730a9ca81544cf05d7792c24f033d32a1d8383eca",
+    "scripts/causal_qkv_trainer.py": "025e74d2a238d2f016f6e734ff206a85bf90f577b11498992372e325770a5413",
+    "tests/test_causal_qkv_training.py": "0b8c566f824f2e609d26c31c3b8e66e21628e6abdaaebed48066eb1dc9231a4a",
+    "scripts/prepare_causal_qkv.py": "4c8700c7ba64c487014392a00b6f8e944e9f958002b1339ba8d63d341198a27a",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca"
+  },
+  "model_tests": {
+    "path": "reports/phase6/causal-qkv-preparation-20261015/model_CPU_tests_v2.xml",
+    "passed": 24,
+    "history": "Initial20 passed; added raw-cache shape validation and4 further behavioral tests, then current24 passed. Original20 report retained.",
+    "sha256": "76a5194a4f8752cfb288467a796b8dbfb33c6231d5d00630dd6b6485215a3b0c"
+  },
+  "trainer_tests": {
+    "path": "reports/phase6/causal-qkv-preparation-20261015/trainer_CPU_tests.xml",
+    "passed": 12,
+    "sha256": "7841b3f5c8b7ecbca580d5d7f1756290a60c11c7070cca3edfb9e60d059e1c05"
+  },
+  "actual_parent_parity": {
+    "path": "reports/phase6/causal-qkv-preparation-20261015/actual_parent_CPU_parity.json",
+    "checks": {
+      "original_unique_parameters": true,
+      "candidate_unique_parameters": true,
+      "only13312_new_lag_coordinates": true,
+      "every_original_weight_unchanged": true,
+      "new_lag_coordinates_zero": true,
+      "original_base_config_unchanged": true,
+      "tied_vocabulary": true,
+      "conversion_RNG_unchanged": true,
+      "all_logits_bitwise_parent_equal": true,
+      "cached_logits_bitwise_parent_equal": true,
+      "cached_KV_bitwise_parent_equal": true,
+      "same_logical_cache_positions": true
+    },
+    "CPU_seconds": 0.3081155919935554,
+    "maximum_logit_difference": 0.0,
+    "sha256": "9c222668d7184ed087a8739127e2ea095de27b27820cac84d4b0b02ae765e1a5"
+  },
+  "native_parameters": 10001152,
+  "candidate_parameters": 10014464,
+  "extra_parameters": 13312,
+  "cache_policy": "Tagged TemporalKVCache carries original K/V plus last2 VALID raw Q/K/V projections per layer and validity; never apply lag mixing to already cached mixed projections.",
+  "CPU_checks": [
+    "Independent Python per-valid-token lag reference versus vectorized gather with holes and chunks; signed gradients",
+    "Identical current projection/different previous token counterexample distinguishes pointwise output transform",
+    "Whole decoder independent matrix attention reference verifies lag mixing before original RoPE",
+    "Zero conversion old weights/logits/loss/gradients/RNG/ties exact; actual native13-layer meta count",
+    "Active cached/full, every single-token decode, left/right/holes/allPAD chunk; no future/other-row/PAD-ID influence",
+    "Native right_padded_hidden and explicit helper preserve valid active logits",
+    "Static3-step original clip/gradients/weights/name-mapped Adam exact; learned clip includes lag coordinates and rejects nonfinite",
+    "Strict tagged config/state/cache and native/HF export refusal; valid active model roundtrip",
+    "Original-corpus static4-step old coordinates/schedule/RNG/fullsampler/CE/source/EOS/bytes/draw trace exact",
+    "Active lags learn without changing original teachers/main physical stream; extra lag elements separately counted",
+    "Continuous6 vs3+save3 complete typed state/history exact; malformed8 variants rejected before mutation; after-Adam interruption save/retry refused and valid restore works"
+  ],
+  "read_scope": "Synthetic CPU fixtures and pinned existing metadata/actual original parent/accepted2x64 technical spans only; no new corpus/DEV/TEST/Tokenizer read by new model/trainer tests or parent parity.",
+  "GPU_seconds": 0,
+  "scientific_teacher_tokens": 0,
+  "new_dataset_prepared": false,
+  "model_weights_exported": false,
+  "Base_adopted": false,
+  "full_four_item_goal_complete": false,
+  "next_action": "Dedicated owned CUDA<=180s, full numerical/history resume, max48x1024 finite backward/resident guard, active raw-QKV cache check and32 timings. Only measured total<=4800 can qualify a later frozen science/evaluation/review contract."
+}

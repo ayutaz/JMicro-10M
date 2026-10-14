@@ -1,0 +1,48 @@
+{
+  "kind": "prospective_same_math_contiguous_causal_QKV_implementation_v1",
+  "created_at": "2026-10-14T23:35:45.0867357Z",
+  "status": "CPU_equivalence_only_no_GPU_relaunch_authorized_by_this_receipt",
+  "reference_evidence_sha256": {
+    "src/jmicro/causal_qkv.py": "812158ecdb63c44385c77dc4f4099a4525b7eb6a6eb1306a7db735f89e73ad10",
+    "scripts/causal_qkv_trainer.py": "025e74d2a238d2f016f6e734ff206a85bf90f577b11498992372e325770a5413",
+    "scripts/probe_causal_qkv.py": "6475ecff1d6f56142f282f305688b36c41ea34c7bdc6dbeb50a2ee6bde046551",
+    "reports/phase6/causal-qkv-preparation-20261015/proposal.json": "fb4df6a4073db3af942680889af08352c7824651bb569ede47c18419bad5c034",
+    "configs/phase6/causal_qkv_probe_20261015.json": "2584e1fb51547cde8ca2ae77891c367288da8b62419e34f276467e9b21d8d70a",
+    "reports/phase6/causal-qkv-probe-20261015/result.json": "5799813ce901a245e61c6aed3fb110492cf071672604ea02d9fae790c370556d",
+    "reports/phase6/causal-qkv-probe-20261015/completion.json": "7154ecdd1a6dbcf85160e421fe7a7e0793a2ea3f1609b36fa3746082752ee4b1"
+  },
+  "question": "Can the already declared valid-token lag operation use direct padded slices for causal full-prefix training where the reference implementation itself sets every physical slot valid?",
+  "code_evidence": "CausalQKVAttention.forward with causal=True/past=None/history=None constructs an all-True valid mask. mix_lags still constructs indices, cummax, gathers and validates the known empty history on device. For this precondition only, previous1/previous2 are exact shifts with zero left padding. This is code-path evidence, not an actual runtime profile or proven speedup.",
+  "unchanged": [
+    "Research architecture/config/state names/count10014464 and original NoQKNorm/GQA/SwiGLU",
+    "Exact original parent,TRAIN,Tokenizer,source draw,labels,teacher quotas and counts",
+    "AdamW LR1e-5 WD.1/schedule/clip/batch48/seed42/CUDA_BF16/Flash backend",
+    "Original every quality/BPB/retention/final-stage gate",
+    "Generic masked/chunked inference keeps the original raw-QKV cache path"
+  ],
+  "implementation": "Separate module/model/attention subclass. Dispatch only when causal=True and original past/raw history/validity are absent. Direct slices with zero left padding; otherwise unchanged reference forward. No replacement of the reference frozen source.",
+  "CPU_requirements": [
+    "Pure values AND gradients exact against generic gather for lengths1,2,3,64 and signed nonzero coefficients",
+    "Whole model logits, old+new gradients and every optimizer state after multiple updates exact",
+    "Zero-native conversion/count/RNG/ties preserved",
+    "Generic masked/chunked full/raw cache path unchanged",
+    "CPU execution does not prove GPU bitwise identity, speed or training quality"
+  ],
+  "GPU_requirements_not_yet_implemented": [
+    "Before another gate, real CUDA reference-versus-contiguous numerical/update/history comparison from the same verification state and original clocks",
+    "Dedicated new persistent probe and all-state resume/capacity/cache/32timings only if CPU identity passes",
+    "Include already spent19.769017330021597s in both technical180 and total4800 ceilings; do not relaunch old probe or expand budget"
+  ],
+  "previous_GPU_seconds": 19.769017330021597,
+  "remaining_original_technical_GPU_seconds": 160.2309826699784,
+  "original_total_new_GPU_cap_seconds": 4800,
+  "reference_forecast_seconds": 8581,
+  "science_budget_eligible": false,
+  "GPU_seconds": 0,
+  "scientific_teacher_positions": 0,
+  "new_dataset": 0,
+  "DEV_TEST_opened": false,
+  "Base_adopted": false,
+  "full_four_item_goal_complete": false,
+  "stop": "If exact-equivalence evidence or unchanged original cumulative caps fail, close this implementation path. No tolerance relaxation, lag/architecture/source/seed/decoder/teacher/batch/backend/cap rescue."
+}

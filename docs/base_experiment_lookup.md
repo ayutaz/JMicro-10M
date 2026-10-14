@@ -1,5 +1,7 @@
 # Baseの実験結果を探す
 
+2026-10-15技術のみ: [causal-QKV reference](../reports/phase6/causal-qkv-probe-20261015/completion.json)は前2tokenの各projected Q/K/Vを13,312零座標で加える別機構。元SwiGLUを保持しclosed squared-ReLU/first-V/cross-map/context-token-mixingの救済ではない。層数/FFN再配分は原architecture_comparisonで既に学習済みと確認し再提案しなかった。referenceは技術合格だが科学予測8581>総4800で科学0・予算未達閉鎖。別contiguous実装は[CPU11 exact checks](../reports/phase6/causal-qkv-contiguous-preparation-20261015/CPU_equivalence.json)までで、GPU同値性・速度・品質未確認。元referenceを上書き/再launchせず、次の別CUDA gateも既消費19.769017秒を元technical180/総4800へ継承する。4項目goalの最終品質は未達。
+
 2026-10-15最新閉鎖: [first-layer value residual100M](../reports/phase6/value-residual-science-20261015/completion.json)は元CE全stream/base config＋宣言12scalarの層間V0経路差・全state/history・全80個別notesまで確認し不採用。native10,001,152対候補10,001,164、文法58/80、一貫性1/80、完結1/80、EOS23/80、反復47/80、BPB0.998524。論文の一般的な全variantや10M規模の限界の結論に広げず、今回のV0係数/層subset/normalization/親/seed/decoder/予算を閉鎖し救済しない。次案は索引だけでなく原proposal/trainer/resultで実差分を確認する。独立fresh全pipeline/fullDEV/全440/新TEST/採用と4項目goal未達。以下は当時の履歴。
 
 2026-10-15進行: [first-layer value residual科学契約](../configs/phase6/value_residual_science_20261015.json)を実親CPU parity/model21/trainer12/probe10/科学18 checksとowned GPU9.812882秒後に凍結・起動。元親/原TRAIN100M/48/42・12scalar差の10,001,164、全元quality gates保持。実PID52873/start66148908は途中値、全80内容採否前。完了GPU probeを再実行せず同science終端を観測する。下のCPU準備は当時の記録で品質合格ではない。独立fresh全pipeline/fullDEV/全440/新TEST/採用と4項目goalは未達。
