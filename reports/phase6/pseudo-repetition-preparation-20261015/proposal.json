@@ -1,0 +1,82 @@
+{
+  "status": "prospective_distinct_sentence_probability_decay_CPU_preparation_not_scientific_learning",
+  "created_at": "2026-10-14T20:45:58.5635806Z",
+  "question": "Can learning a positive decaying token-probability target on synthetic whole-sentence repetitions improve natural Japanese continuation and completion while all original gold CE and retention guards remain?",
+  "evidence": {
+    "reports/phase6/context-likelihood-science-20261015/completion.json": "a8d4bc46ea89fe664879ec71b28e0c8311c1743de8a273734ad84d8f6ea037dd",
+    "reports/phase6/context-likelihood-science-20261015/notes.json": "23ce6a7e68b896212e6376ded28d795a588b4b75995ed27902554d9e64af1481",
+    "reports/phase6/sequence_objective_comparison_completion.json": "6ee3b18eb81343fe4a055ca543175c95dfff0a866cc7ac28cf53e890330901fa",
+    "reports/phase6/sequence_objective_low_alpha_review.json": "7e22e03ae51e402c65cbf8c769596be93c51c356039cd904f05d5515c1285257",
+    "src/jmicro/sequence_unlikelihood.py": "3d54c3544e4e59f086459ce6053e342aa3133c39b990dae48ea1131f084e6cf3",
+    "scripts/sequence_objective_trainer.py": "035b08caf9c5f96885ae9599802e9e777ebfc79a3473614085a9dfafebee58ce",
+    "reports/phase6/base_context_mixing_proposal.json": "f7943aba7de09b0f249d09bc315e6d0624e41b1b0cf201279ae810e6b24a80f8",
+    "reports/phase6/base_on_policy_teacher_proposal.json": "f89dbdd945bd9bd8cab8a6b4c1c41fd88fd573a263a260cf3178b3ffb844ea42"
+  },
+  "observations": "Latest same-suffix context likelihood left long clause/sentence loops: base-011,026,045,056,066,089,096 repeat full statements; base-057 initially gives the correct count then loops. These known DEV examples motivate the question but their text/answers never become TRAIN. Main all80 coherence1 and appropriate1 fail; the cause is not established.",
+  "different_from_closed_UL": "Inspected original sequence_unlikelihood.py and sequence_objective_trainer.py: decoded TRAIN-prefix greedy continuations, later token4gram mask, -log(1-p) toward zero at generated negatives. New method constructs whole original TRAIN sentence copies without rollouts; target is .5 times detached probability at the corresponding previous copy. If current probability is below this positive target it increases instead of being universally suppressed. Not an alpha/ngram/decoder rescue of that closed condition.",
+  "different_from_other_closed_conditions": "Context mixing replaces main conditioning tokens while retaining hard gold; on-policy KD queries a frozen teacher on generated trajectories; confidence loss regularizes entropy; recent contrast matches suffix likelihood across distinct observed contexts. This intervention preserves every original main CE row and adds current-model adjacent-copy probability matching only.",
+  "primary_sources": [
+    {
+      "summary": "DITTO builds repeated TRAIN sentences and matches each later token probability to a detached decayed probability at its preceding copy. The paper uses factor0.5 and alternating repetition/MLE updates. Its word-level750M English and summarization results do not establish Japanese10M improvement.",
+      "sections": "3 and4.1",
+      "title": "Learning to Break the Loop: Analyzing and Mitigating Repetitions for Neural Text Generation",
+      "url": "https://arxiv.org/html/2206.02369v2"
+    }
+  ],
+  "literature_limit": "A prospective DITTO-inspired variant, not an exact paper reproduction. Here original gold CE is unchanged and auxiliary loss is simultaneous mean loss times0.1, deterministic first8 rows, at most16 copies/512 inputs, native4096 byte codec. No causal claim that self-reinforcement is the sole failure or that sentence penalization fixes phrase loops, arithmetic, relevance or EOS.",
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "goals": {
+    "web": 75000000,
+    "textbook": 20000000,
+    "story": 5000000
+  },
+  "batch": 48,
+  "seed": 42,
+  "native_parameters": 10001152,
+  "extra_parameters": 0,
+  "tokenizer": "artifacts/phase2/4096/tokenizer.model",
+  "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+  "main_teacher_goal": 100000000,
+  "optimizer": "Same original10B weights and fresh AdamW LR1e-5 WD0.1 betas0.9/0.999 eps1e-8, constant schedule and clip1; never use rejected or technical probe weights.",
+  "recipe": {
+    "kind": "original_CE_plus_TRAIN_sentence_copy_probability_decay_v1",
+    "main_CE": "All original body+EOS positions/masks unchanged; same source quota, fullsampler, digest, LR clock and main physical inputs as cached CE100M.",
+    "selection": "Fully main-supervised original first-window complete body+EOS<=512. Earliest subsequent punctuation-ended sentence with original token/UTF8 boundaries,8..128 sentence tokens and8..256 preceding tokens. First8 distinct family/body eligible rows in original batch order, no reroll, loss filter or new draw.",
+    "construction": "Original joint-body IDs, original preceding context and BOS once; repeat the full selected sentence4..16 copies fitting512 input predictions. No synthetic EOS/roles/markers. Preserve all skipped rows in main CE. No saved synthetic dataset.",
+    "loss": "Mean -log(1-abs(p_current -0.5*stopgrad(p_corresponding_previous_copy))) at later plain-body copies. Original context and first copy do not receive auxiliary supervision. Stable logit/complement formula, no probability clipping.",
+    "coefficient": 0.1,
+    "decay": 0.5,
+    "additional_RNG": "none",
+    "additional_learned_parameters": 0,
+    "inference": "Unchanged native greedy64 and raw flags; no repetition blocking or forcedEOS.",
+    "accounting": "Synthetic input positions and probability comparisons are separate from original CE teachers, unique data and model parameters."
+  },
+  "CPU_scope": "14 analytic/saturated-gradient/detachment/boundary/preservation checks and one pinned32x48 TRAIN feasibility audit within30s; no model instantiation, forward, optimizer, DEV/TEST or GPU.",
+  "technical_gate": "Implement dedicated native trainer with disabled-aux equality to original CE, full-state continuous vs resumed CPU fixtures, malformed-state rejection and interrupted-update protection. One owned CUDA<=180s: finite48x1024 CE and8x512 auxiliary backward, real fullstate resume including auxiliary,32 postwarmup timings and original stream parity. Verification weights stay WSL and never seed science.",
+  "total_new_GPU_cap_seconds": 4800,
+  "CUDA_probe_cap_seconds": 180,
+  "science_forecast": "Use exact17698 updates times measured mean full update duration,1.3 margin plus600s evaluation/save reserve; measured science cap plus all technical costs must fit4800s. No budget increase or batch rescue after failure.",
+  "science_prerequisites": "Native trainer, typed fullstate runner, safe isolated DEV256/80/Japanese evaluator, all80 reviewer, durable launcher, exact frozen sources/recipe and measured closed GPU ledger; no use of old mixed reader.",
+  "quality": "Preserve every original matched/strong/absolute/historical guard: all80 grammar>=56/coherence>=27/appropriate>=27/EOS>=37/repetition<=18 and Unicode/role/empty0, paired coherence gain>=8 with CI lower>0 and matched BPB nonworsening. Improvements in synthetic probabilities or repetition alone never qualify the Base.",
+  "failure": "Close this fixed prospective condition on technical/stream/budget/quality failure. No decay/coefficient/copies/row count/sentence-boundary/parent/LR/seed/decoder/cap rescue, no automatic extension. Distinct next questions require their own prospective justification.",
+  "later": "Only qualified recipe proceeds genuine fresh whole-pipeline independent learning, fullDEV/all440 individual content, final recipe seal, new sealedTEST and Base adoption. Chat/SFT/quantization/larger models/publication excluded.",
+  "GPU_seconds": 0,
+  "scientific_teachers": 0,
+  "scientific_contract_frozen": false,
+  "Base_qualified": false,
+  "Base_adopted": false,
+  "full_four_item_goal_complete": false
+}

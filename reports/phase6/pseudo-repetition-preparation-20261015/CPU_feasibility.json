@@ -1,0 +1,3151 @@
+{
+  "status": "changed_TRAIN_sentence_decay_CPU_feasibility_completed",
+  "observed_at": "2026-10-14T20:46:17.143418+00:00",
+  "contract_sha256": "e022bd3f89c63bba40c58a9669b3ea0366c19dc191d0037d9b3d4146b342a41e",
+  "sources": {
+    "src/jmicro/pseudo_repetition.py": "14d864cd64adf9b3667fbba7a43ab2afb8d879ae0ba1b9857c0de2958b51f0b3",
+    "tests/test_pseudo_repetition.py": "bfd7331f90082410828308aad2486acb82ed3219a9dc9bb7bb711e7303d5242d",
+    "scripts/prepare_pseudo_repetition.py": "c4f352a8dceacd6bd53bf1376ec6776be2af182f558de25ca55f33066c8d5bb7",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca"
+  },
+  "proposal": {
+    "sha256": "c475f870988aafcd206807988b03924ea75c1af29c31d668ecb337690d738160",
+    "path": "reports/phase6/pseudo-repetition-preparation-20261015/proposal.json"
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "batches": [
+    {
+      "batch": 0,
+      "original_windows": 48,
+      "original_CPU_label_positions": 5016,
+      "selected_rows": 8,
+      "sources": {
+        "web": 5,
+        "textbook": 2,
+        "story": 1
+      },
+      "pseudo_target_comparisons": 3049,
+      "pseudo_physical_input_positions": 3597,
+      "maximum_pseudo_input_positions": 506,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "web",
+          "source_family": "web:baee9dcca19db0575b88c066c5290669a5597b89114d6c587449ab1e557752af",
+          "original_body_sha256": "f8294243aeb0d5aabc21551a8d00454ddd4cb2426693f148199ace3ed290c8bc",
+          "sentence_sha256": "16a222f77b6029af995eed29e1c4601d75ce6d756fd197437df415d5d00814f9",
+          "prefix_tokens": 16,
+          "sentence_tokens": 81,
+          "copies": 6,
+          "pseudo_target_comparisons": 405
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:3ca003cbd64cdc8b5630c193ccc331904ff05a926822f8b9a5a3fe60b69e1660",
+          "original_body_sha256": "7a0dec6b346ae029644e904ef9f8f61dcb09ef26b72ce508680040b55fa8661c",
+          "sentence_sha256": "6e12592b51adeccf6335114cfd8ba7bdf6946ab10a35040ff9f3b16044d122b0",
+          "prefix_tokens": 25,
+          "sentence_tokens": 32,
+          "copies": 15,
+          "pseudo_target_comparisons": 448
+        },
+        {
+          "source": "story",
+          "source_family": "story:4f5184abd9ac0ecc1c547e229ca56bb94d2f18da27c1874ff6f711894f82d314",
+          "original_body_sha256": "c336b8d3db42ed1510a40cd9a54b8e5e48d9f3a987a5ff07f8fb8300e03dffdc",
+          "sentence_sha256": "ca9b2632c79eb8999fe72ccfc5f0d8dbb65154374842dd422188f8b07d398142",
+          "prefix_tokens": 20,
+          "sentence_tokens": 18,
+          "copies": 16,
+          "pseudo_target_comparisons": 270
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:5e9d46071ce4490699ea0e4a1373004d82e00b857e99cf80573c9528f45270dc",
+          "original_body_sha256": "6b44a206bb3a2b9be5e9cebc247c5ccc4c815bdb5efbbff5056ab559a15dcc76",
+          "sentence_sha256": "05743820ff3436f8a685274a0865ef42e7cd18e1734d018e22f8b32f682c495a",
+          "prefix_tokens": 21,
+          "sentence_tokens": 36,
+          "copies": 13,
+          "pseudo_target_comparisons": 432
+        },
+        {
+          "source": "web",
+          "source_family": "web:fc70e54d8c153f9e22ba210c7a147ed920c62f1d13ca661256c0b02434eebef1",
+          "original_body_sha256": "287fd7a8648bfe92f786493d26125b7da4ebbf3ac3ae0a0c8e55bc58258ac3a2",
+          "sentence_sha256": "32ee2f6d46f5a1b5c774736f3bb96a06021362e00ea0a6b7e796a046df5afc05",
+          "prefix_tokens": 41,
+          "sentence_tokens": 25,
+          "copies": 16,
+          "pseudo_target_comparisons": 375
+        },
+        {
+          "source": "web",
+          "source_family": "web:f126d960fcf23ee62eb72222bcb443a27fa979af4aa19acf74f8b6b6d8679bca",
+          "original_body_sha256": "d52e52a30c83f5acdd9eeeab1cecf163193d4bd6487de52007a856d20945fa5b",
+          "sentence_sha256": "82d7d60a82df9f91db43fe50e8eb58b1bc50c4f959d0f08943aeff7fec283d88",
+          "prefix_tokens": 64,
+          "sentence_tokens": 19,
+          "copies": 16,
+          "pseudo_target_comparisons": 285
+        },
+        {
+          "source": "web",
+          "source_family": "web:09202fe6cd94a8a8cb03ac98ed5a3319ec7dde358cbf40f7d0f5753298212125",
+          "original_body_sha256": "653e9b6c2b5f80f579d95d037f66bb60f4902b2f2a4627ed2efb4b8d866bf96f",
+          "sentence_sha256": "a181dccf3ad6f57a516465801589566cfb8d2c86de837213bc5287760264b20e",
+          "prefix_tokens": 30,
+          "sentence_tokens": 34,
+          "copies": 14,
+          "pseudo_target_comparisons": 442
+        },
+        {
+          "source": "web",
+          "source_family": "web:6d9a2629309ca6b36e900e828f6a81a235f08a1fd0faa6aa4dd4daf41af93019",
+          "original_body_sha256": "0a809a7d54dfe72347f2e9212372541fd119074d48323926ab7b3f4ad0c7ac27",
+          "sentence_sha256": "3a3e3f8beadbb0770e626832ad9936775136ed20147a41213e5b962e38248316",
+          "prefix_tokens": 37,
+          "sentence_tokens": 49,
+          "copies": 9,
+          "pseudo_target_comparisons": 392
+        }
+      ]
+    },
+    {
+      "batch": 1,
+      "original_windows": 48,
+      "original_CPU_label_positions": 5702,
+      "selected_rows": 8,
+      "sources": {
+        "web": 6,
+        "textbook": 2
+      },
+      "pseudo_target_comparisons": 2868,
+      "pseudo_physical_input_positions": 3461,
+      "maximum_pseudo_input_positions": 505,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "web",
+          "source_family": "web:f26178cc051839a5fa14144197cc6ca238e002f963fcb298c1a657edc8347c8e",
+          "original_body_sha256": "26c516587dfd0b064617d47d05c1e8c663ec65938ab1987cb80407b66b48ea58",
+          "sentence_sha256": "887ebd59c50f0f206c65824de18d1f777c2a918341010a5f6dfc45376d4cd575",
+          "prefix_tokens": 34,
+          "sentence_tokens": 65,
+          "copies": 7,
+          "pseudo_target_comparisons": 390
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:bfebeabe054a6dbc9a3a88806d9bc7775b605d537c64777a2c547c957038d1d9",
+          "original_body_sha256": "932bbedf39efd02faa4874fd32a3017f97b05865576318e3e15e2207ae5ee0ec",
+          "sentence_sha256": "366daac27ceda9238d67a895bcf8657916cef1892cb2ed572a9682c54e350dfc",
+          "prefix_tokens": 19,
+          "sentence_tokens": 12,
+          "copies": 16,
+          "pseudo_target_comparisons": 180
+        },
+        {
+          "source": "web",
+          "source_family": "web:773dfc075a9d6d396afecd3af9c1b502554951560ccef6b5beb9ae6920e70a71",
+          "original_body_sha256": "31c36748dbbd203608a27a4bbdab240c0029123c444468fb8a0ef6866193fdc6",
+          "sentence_sha256": "99af23297f0fda245e085ad6e714433ca035e23b788780568adaec93789c32d1",
+          "prefix_tokens": 24,
+          "sentence_tokens": 37,
+          "copies": 13,
+          "pseudo_target_comparisons": 444
+        },
+        {
+          "source": "web",
+          "source_family": "web:db70742cd03d99deb7487597dd8aa7ba52afcdb1e07cfd1b5e1f3fef3e15e616",
+          "original_body_sha256": "054ed3965ab4e0ed54df711a792b133997cbd2add14365ee63f7ff71f1a84850",
+          "sentence_sha256": "9cfc76ce4c07f71b21ffc1e2a69b41c51e912d119c81d231abcd42c9db90a73b",
+          "prefix_tokens": 48,
+          "sentence_tokens": 24,
+          "copies": 16,
+          "pseudo_target_comparisons": 360
+        },
+        {
+          "source": "web",
+          "source_family": "web:343dd875bccd4fa58dd3bb3a9b8dddb15a0a6b5e26fc454be78ab6f596e40366",
+          "original_body_sha256": "111a8bb572890c20390fd289e597459de9d0649a68626fefe932e627678b4cf5",
+          "sentence_sha256": "8ba31935630d1d7f732817a32ac1ac3c3fc3037554a202b6e09c3749b28f59e1",
+          "prefix_tokens": 69,
+          "sentence_tokens": 42,
+          "copies": 10,
+          "pseudo_target_comparisons": 378
+        },
+        {
+          "source": "web",
+          "source_family": "web:afcf9cef111edba50b9a2edf9faff5566edc3bb114c5deba9359b16bdf9ed0ed",
+          "original_body_sha256": "d7f2bb0fc19d4f5cbe230791ce482a52d5296d032354ff4ec434e079d9411bfa",
+          "sentence_sha256": "828ad33312539e55fdb4ed856e21355da93970ecc2ba4a7fd775dc37a05fb40f",
+          "prefix_tokens": 15,
+          "sentence_tokens": 20,
+          "copies": 16,
+          "pseudo_target_comparisons": 300
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:e558829ccc3c172c204af697691ee82bf57a6ab328e4bdc6f5996075072e8acf",
+          "original_body_sha256": "239f5dada0b64136881e52b8784ef8d96975dde944077690302b57c003614f66",
+          "sentence_sha256": "5ded6bcca3121f09a5b0bd230234489bcc5dc55db0aab119a2f8872289a1e2c1",
+          "prefix_tokens": 57,
+          "sentence_tokens": 28,
+          "copies": 16,
+          "pseudo_target_comparisons": 420
+        },
+        {
+          "source": "web",
+          "source_family": "web:db14de6205c130f1e96d6306f5f29abf5876cceb3e0d46f21a177c3edf58a28b",
+          "original_body_sha256": "f9d8ec7f41b09fd73e8b0455f2edd55c90aea4c673f747a6f712236faf703326",
+          "sentence_sha256": "93ccf97b07ab5cd0852e608d0ed2600cf50618fb751b4c7ff20722ce47577ce9",
+          "prefix_tokens": 63,
+          "sentence_tokens": 36,
+          "copies": 12,
+          "pseudo_target_comparisons": 396
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "original_windows": 48,
+      "original_CPU_label_positions": 6660,
+      "selected_rows": 8,
+      "sources": {
+        "story": 1,
+        "textbook": 3,
+        "web": 4
+      },
+      "pseudo_target_comparisons": 2849,
+      "pseudo_physical_input_positions": 3393,
+      "maximum_pseudo_input_positions": 508,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "story",
+          "source_family": "story:2d46144726b32086ed71b0dacd88f1082dbeb827d7633fabcfb4276d17563276",
+          "original_body_sha256": "16ad703a97c4b1f8a3c490a0b2b8c8b955f77616170dc09d15b9f49e0aa8cf02",
+          "sentence_sha256": "ae97579ec258fb179ecee3b7673cc3e173752fb023f148987a038eb6e33134f0",
+          "prefix_tokens": 19,
+          "sentence_tokens": 11,
+          "copies": 16,
+          "pseudo_target_comparisons": 165
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:098512d64aca068008b00cc3b1c5d3e296a170b87bc068e09e820290a3c8278d",
+          "original_body_sha256": "474aea65ccee333805e8503619ff9805b8175fce4b6aa950bc91acfad7d9c514",
+          "sentence_sha256": "7335a2070b65c7552c8f8918696c5e3ae21aa44b64fcc264952a5d452b468724",
+          "prefix_tokens": 26,
+          "sentence_tokens": 50,
+          "copies": 9,
+          "pseudo_target_comparisons": 400
+        },
+        {
+          "source": "web",
+          "source_family": "web:c917595fe8a74b866c8aa0d392f84c0ef34014bc95748c37c6ca7907dc63d286",
+          "original_body_sha256": "bd700493d789215b9abaa0c24adac1bb8551e96080c54218346a43a87b71ab87",
+          "sentence_sha256": "c7a959d000ba3809822fa9dd60e6fbec44ccec8e6d96d101965443ee757371b9",
+          "prefix_tokens": 53,
+          "sentence_tokens": 18,
+          "copies": 16,
+          "pseudo_target_comparisons": 270
+        },
+        {
+          "source": "web",
+          "source_family": "web:c0080feccd4b0756af7b3643981f9665ea0ca41f08c49b236167330b78e11118",
+          "original_body_sha256": "65c76bc6891e2054190caa068e1b009cbe0411733c017865daffad87428f4461",
+          "sentence_sha256": "8491c6449bb1071bf127d14217009047ae91915eded908432bb0826ece76d1f4",
+          "prefix_tokens": 23,
+          "sentence_tokens": 48,
+          "copies": 10,
+          "pseudo_target_comparisons": 432
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:3307aea46095264d3dedfc36ef9dc75c38463b095973d9ef4683df6d9f86737b",
+          "original_body_sha256": "65672685e350ab5f6804dc6e826d9785038c5e3e62bf9c39cbe8b3c25db842ec",
+          "sentence_sha256": "88d6e6e619ba0b525502b76e3b694e4b503c846b9f1b7381f56e13c932271f71",
+          "prefix_tokens": 25,
+          "sentence_tokens": 27,
+          "copies": 16,
+          "pseudo_target_comparisons": 405
+        },
+        {
+          "source": "web",
+          "source_family": "web:d991238bcf0dc3dd6eb0e0bf00b7912e509035abdd2a47e63d6726b53e655e6c",
+          "original_body_sha256": "5cc28881330878cce48868304a0e3e773bddf3bd7279ce2ffa1568728aa0effa",
+          "sentence_sha256": "f7665ce5a8b0c256fe2bfbab18f9271c1a88e6e2d41552ca89d93e98820aca4d",
+          "prefix_tokens": 44,
+          "sentence_tokens": 58,
+          "copies": 8,
+          "pseudo_target_comparisons": 406
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:1c53b08106a83f2437db1d53ee4de2186573e41ea4c84872cb553fd3a19c960a",
+          "original_body_sha256": "2c24bdb1964ae43c0688f979be017e297548b3a1148f56f4ea15ed129420cd48",
+          "sentence_sha256": "96889e3ab3672429d4b216f3cb969872c2879be5ea888e23b2dcdf5b4529b16f",
+          "prefix_tokens": 36,
+          "sentence_tokens": 25,
+          "copies": 16,
+          "pseudo_target_comparisons": 375
+        },
+        {
+          "source": "web",
+          "source_family": "web:839bd9fe2ec7126625c7eeb509177dd8b72aa6c972866fb0f739d49921671c3a",
+          "original_body_sha256": "21162efce7e4663441d6b46dcfd7ec4f375ded8e9dc398aaa1486725270843cf",
+          "sentence_sha256": "5a806ce1638a60826605739fac3d56851c2bbdb7083400c872b196ef56acd2ab",
+          "prefix_tokens": 45,
+          "sentence_tokens": 36,
+          "copies": 12,
+          "pseudo_target_comparisons": 396
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "original_windows": 48,
+      "original_CPU_label_positions": 5830,
+      "selected_rows": 8,
+      "sources": {
+        "textbook": 3,
+        "web": 5
+      },
+      "pseudo_target_comparisons": 3304,
+      "pseudo_physical_input_positions": 3826,
+      "maximum_pseudo_input_positions": 504,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "textbook",
+          "source_family": "textbook:940577036c7cb92f11992a223e9bb79a571799e36ac99e44ef757933a8dae8df",
+          "original_body_sha256": "53a3f1ef816a04fc12020adfd4239ae9c4e3002450ba518d7f01df76704c6585",
+          "sentence_sha256": "9201fbf5a12caf1f5d0cc1d01c7bc829efa34cd201f770701ae796deb9325fb7",
+          "prefix_tokens": 18,
+          "sentence_tokens": 33,
+          "copies": 14,
+          "pseudo_target_comparisons": 429
+        },
+        {
+          "source": "web",
+          "source_family": "web:475ccda702e124ea38c2ce9dcb41b15ddbfc24911d17632ef2306737bd5dad40",
+          "original_body_sha256": "f9a3a36e3d6c2a92bb22181addf804699ebbe3525667ad317d7bf086915f1f25",
+          "sentence_sha256": "973d1f35a84ee2aa821754d79ceeac57bff32e5b73407533729a1d70f5a5b11f",
+          "prefix_tokens": 58,
+          "sentence_tokens": 36,
+          "copies": 12,
+          "pseudo_target_comparisons": 396
+        },
+        {
+          "source": "web",
+          "source_family": "web:a98e5845db604280921a6b99be4a26313faeeddc64a28c369f482f27aa17419a",
+          "original_body_sha256": "2bfc4be0b842c288d6a6bf9903904255e02e63501c732935abd6d4898899d6d4",
+          "sentence_sha256": "0cf9e73a28b3f5855cf414dfd79c807dc2dde3942e623014271a9f074b085933",
+          "prefix_tokens": 33,
+          "sentence_tokens": 30,
+          "copies": 15,
+          "pseudo_target_comparisons": 420
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:3a12b8d92fa39a7b41a6cf18cebc78678872efd4119e502c340eadaebe4c02e5",
+          "original_body_sha256": "3b2078c0508917f6dbff31255af20cbb3ee1409a0f4b3f68d1f1034a7a9127aa",
+          "sentence_sha256": "f1fa7ed1c42ab116632c8cf5d045fa1e78710ede86a9b7e4531591c3b8689b85",
+          "prefix_tokens": 12,
+          "sentence_tokens": 24,
+          "copies": 16,
+          "pseudo_target_comparisons": 360
+        },
+        {
+          "source": "web",
+          "source_family": "web:50a4ee466b73f52fb1c1e84667b28cb7555699246274b30e547a5f62aa353424",
+          "original_body_sha256": "96733538a0723b66e4c03d921a841dc8c3820da158772e75308386aa1494a970",
+          "sentence_sha256": "2cae31fdc8671fae31ac0972795410ad89127062f81a579e9d550c88dfafa8e2",
+          "prefix_tokens": 30,
+          "sentence_tokens": 35,
+          "copies": 13,
+          "pseudo_target_comparisons": 420
+        },
+        {
+          "source": "web",
+          "source_family": "web:4bea73b3ebe0719e69c382354b3ea7bcfdc5f1f848b3782c12f43f8b99cbd7c7",
+          "original_body_sha256": "8afd7d131351f4e0b3a21e88f353fbfdde010f5a410a70a425ead4678e12980e",
+          "sentence_sha256": "f7d8dc09682d9e61550ef854a8e785da4bde8b24dcdd58698c9c7b79f635a445",
+          "prefix_tokens": 22,
+          "sentence_tokens": 43,
+          "copies": 11,
+          "pseudo_target_comparisons": 430
+        },
+        {
+          "source": "web",
+          "source_family": "web:0df4f2ff87d6f5c94b5f4ba01cb149eee16fdaec2d242d67ec3172707426a518",
+          "original_body_sha256": "f733e4587f6a0d8c66c919074955a19a50e848bc94589f225b79784156123998",
+          "sentence_sha256": "14855320bc952d6e265736c0f0f93696e9f031e10878f309b7ce5d98b61650a3",
+          "prefix_tokens": 63,
+          "sentence_tokens": 43,
+          "copies": 10,
+          "pseudo_target_comparisons": 387
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:f775019d4739fbb32e89ad4cd271101c16433526d50e64d2bb360937b15bc4f2",
+          "original_body_sha256": "b7f8ce45c27e808844e5a385d83fb549e17da6944457647a7a105cdfc3279383",
+          "sentence_sha256": "66418a174051f30b747648b07a2fb90770dd7b346776799834693c3f64d202d5",
+          "prefix_tokens": 9,
+          "sentence_tokens": 33,
+          "copies": 15,
+          "pseudo_target_comparisons": 462
+        }
+      ]
+    },
+    {
+      "batch": 4,
+      "original_windows": 48,
+      "original_CPU_label_positions": 5657,
+      "selected_rows": 8,
+      "sources": {
+        "textbook": 2,
+        "web": 5,
+        "story": 1
+      },
+      "pseudo_target_comparisons": 3168,
+      "pseudo_physical_input_positions": 3782,
+      "maximum_pseudo_input_positions": 509,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "textbook",
+          "source_family": "textbook:7c439cdcd8a9f95aaba51ac6fc0ac01e93f5ee1add0431dc5fe089e3e6e8be93",
+          "original_body_sha256": "b1adad134f99a230a375d73e3703ec0ce452f298ffbe5852886a492a880a3e7e",
+          "sentence_sha256": "ae7b3cbc058812fc7520ce54df83b432860789080a15e39156fa8520d568a27f",
+          "prefix_tokens": 38,
+          "sentence_tokens": 29,
+          "copies": 16,
+          "pseudo_target_comparisons": 435
+        },
+        {
+          "source": "web",
+          "source_family": "web:2cb1b6386cda1f3d1f4ecabfa11e5e26bd975430e2ae37ea80084a0611fcda9c",
+          "original_body_sha256": "1c5880c0d654ae1a4f561ea73c83126806345df86e3de79b516e809d000a3854",
+          "sentence_sha256": "ac6aab8d0dcdf44402de7f58eed345abf2e2e1b5f99f451beb3733ddc4519a9a",
+          "prefix_tokens": 62,
+          "sentence_tokens": 27,
+          "copies": 16,
+          "pseudo_target_comparisons": 405
+        },
+        {
+          "source": "web",
+          "source_family": "web:8be75cad287b4aefb0e7e3d0a808e7ae04714e385d589193e439500fa21d96c1",
+          "original_body_sha256": "215ea45af43c64c7c367e86b60bc189310f18b650251dba5fbff3843683144e4",
+          "sentence_sha256": "5fe24bc66792ef65ada2af1fd98e96564b275eb2b8b5b50b116406b05859a66c",
+          "prefix_tokens": 24,
+          "sentence_tokens": 41,
+          "copies": 11,
+          "pseudo_target_comparisons": 410
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:554b4f3ce0c11288ac8632c728c3dfeea9ccac470c495e17665872f095f8e264",
+          "original_body_sha256": "c78d8c4ca9260b8794790f845dfff238f1fdff5a9b1a85f8eb60a5e669679930",
+          "sentence_sha256": "3191bfee1400e69fbe6c2849f3a5423ad50950e9d3721084436bbe84a56f38b3",
+          "prefix_tokens": 31,
+          "sentence_tokens": 50,
+          "copies": 9,
+          "pseudo_target_comparisons": 400
+        },
+        {
+          "source": "web",
+          "source_family": "web:3a60907ddfa73e0daa6646db6b4af3c404a44a93e3fc3d2fd7cd4d345c970c48",
+          "original_body_sha256": "df19dc6f92dbc9f4ca5d41847d6fdfee4e9a8e7648c38d3cb318998822bf3cd8",
+          "sentence_sha256": "2eeff9515b28d5baba7d54ff4a1ed7bde6036ac6ee9be9b757f798587a0f678f",
+          "prefix_tokens": 68,
+          "sentence_tokens": 49,
+          "copies": 9,
+          "pseudo_target_comparisons": 392
+        },
+        {
+          "source": "web",
+          "source_family": "web:d227ca24be4caf5508df58aad9a3751882736a4f4c349501f92d5874cdd5c9d7",
+          "original_body_sha256": "e75b345af16a74a787c1f1f20c430931095b6e42bef0db4ec99ef902ae397f78",
+          "sentence_sha256": "edcf3e502a58c327c3cd51dd3ab28e339a0bb8a38de9cb188f75199c2bef9a6c",
+          "prefix_tokens": 20,
+          "sentence_tokens": 58,
+          "copies": 8,
+          "pseudo_target_comparisons": 406
+        },
+        {
+          "source": "story",
+          "source_family": "story:f9ca10abdccfc675960297794ac0780d12e0db087a3e4fc202aa2922a335ab14",
+          "original_body_sha256": "b4b81f35f091ffa9a42095c842a16c97e769afcc5217f0fd678321bdbc7c3892",
+          "sentence_sha256": "ac2a0480e9a12fc4bc01306d010d03e8774b2dfc9a39606b532539cb6b178b33",
+          "prefix_tokens": 24,
+          "sentence_tokens": 19,
+          "copies": 16,
+          "pseudo_target_comparisons": 285
+        },
+        {
+          "source": "web",
+          "source_family": "web:e5e9c58e59679b916909464d09d5f34a4006eba483353b6bf9d517ad9860db43",
+          "original_body_sha256": "97afe514a07d3152f4731004a9da682ec87bacc0f887caf87de6b57b0802876e",
+          "sentence_sha256": "7d1ac28c2b697b3786844405355c0d503e4058de1b2ec69e9a9d73fda7dfd1ca",
+          "prefix_tokens": 45,
+          "sentence_tokens": 29,
+          "copies": 16,
+          "pseudo_target_comparisons": 435
+        }
+      ]
+    },
+    {
+      "batch": 5,
+      "original_windows": 48,
+      "original_CPU_label_positions": 4835,
+      "selected_rows": 8,
+      "sources": {
+        "web": 6,
+        "textbook": 2
+      },
+      "pseudo_target_comparisons": 2988,
+      "pseudo_physical_input_positions": 3588,
+      "maximum_pseudo_input_positions": 512,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "web",
+          "source_family": "web:acd4d1bd7ab67225e784875336d51d154283c63be050ef640b1e9fb81a93750c",
+          "original_body_sha256": "7168aeb0f20deb12a9bf7d3f1f997ca581bff2ac9edc4fb54719b22e8230af23",
+          "sentence_sha256": "95743e46e837c918e8aa288c4e16a2bdbdd381258936d5603427a4bbd77232fc",
+          "prefix_tokens": 31,
+          "sentence_tokens": 51,
+          "copies": 9,
+          "pseudo_target_comparisons": 408
+        },
+        {
+          "source": "web",
+          "source_family": "web:a103f73868a9d25308448c908afc6013d62468c234dde5e65d725720f6644cb3",
+          "original_body_sha256": "84e344c9fc5c56f45fd068e2e260e2fc2d1460b3ed34c72c7fa26003c0abfdb8",
+          "sentence_sha256": "fc2a8c5372d5bf4ff63abc0d17afeee39d6d1cda2fc7c7117f273ac7a50a87ee",
+          "prefix_tokens": 29,
+          "sentence_tokens": 22,
+          "copies": 16,
+          "pseudo_target_comparisons": 330
+        },
+        {
+          "source": "web",
+          "source_family": "web:6b073596a762bbcde8661e865b892988ae77d159ddaae305e7131e9b7deb0c17",
+          "original_body_sha256": "f3cbc8f33e724aa46c681bad57ebaa5a1d49efbbe97f0bb2d8254aac68165108",
+          "sentence_sha256": "86105fe155e4776b8e0d26b2d403c091ac4d5e78d8de6db0275e6c18990f609d",
+          "prefix_tokens": 40,
+          "sentence_tokens": 28,
+          "copies": 16,
+          "pseudo_target_comparisons": 420
+        },
+        {
+          "source": "web",
+          "source_family": "web:52b4c321bab832b17a6854bfc663e9a02051324e94fef89824faebcb2e0d1aeb",
+          "original_body_sha256": "bd02d3e170628568722ed928bb9c1104971bae94bcff2d7b7f86c13a4e247f60",
+          "sentence_sha256": "0bea558658155609185d7d20bae8cd86c568d0ba2412ede20740d32b3a11b2bb",
+          "prefix_tokens": 56,
+          "sentence_tokens": 39,
+          "copies": 11,
+          "pseudo_target_comparisons": 390
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:bbbc0072dfe01ded8fc049cc0dd55e1133593ed7ada693add26dc70788d00821",
+          "original_body_sha256": "31b9a3d95f17082fa27842e70bb26f1653ecf8ec3892bf6261321824ab020bd7",
+          "sentence_sha256": "e29903d45b7eb83c5a4270e4e186625d2df9a737b7aeab7035e427926a660fa7",
+          "prefix_tokens": 36,
+          "sentence_tokens": 36,
+          "copies": 13,
+          "pseudo_target_comparisons": 432
+        },
+        {
+          "source": "web",
+          "source_family": "web:2c729c3353a36eb4279b95d1e40c35d00986241fe8e3fa86ece41dbe2698b434",
+          "original_body_sha256": "d1a36592f4d6d25d1f4186aea0d952938426c059c3cbb8f4a448893f9436610f",
+          "sentence_sha256": "e38e988f9e7638a179677c587bdcc1cb109268002d64922128ee17e7381681ca",
+          "prefix_tokens": 25,
+          "sentence_tokens": 14,
+          "copies": 16,
+          "pseudo_target_comparisons": 210
+        },
+        {
+          "source": "web",
+          "source_family": "web:2818490eabb669bb80fa7a6094f9c06d70ffd5072995fa8360581701714fc5cb",
+          "original_body_sha256": "66a267799457e0b6e3c80b604a77be1f5ac6941739cefa17c5c8f7acc6ed4acb",
+          "sentence_sha256": "9ea996847077abb5d4f0e6dd26dd49d6e75a2460d58d96349f8c0b1c6a7c1e99",
+          "prefix_tokens": 32,
+          "sentence_tokens": 48,
+          "copies": 10,
+          "pseudo_target_comparisons": 432
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:66991bb5099741f6e259671563af5b38e59ce573bb3d503c67c346012369e23b",
+          "original_body_sha256": "622a9b077658afc279fd9d568cc30e698bddd358f5c313961d4a68378e04f529",
+          "sentence_sha256": "089776df8b8e340b0bfa46f5fda45c39efe58c4e2e40f34cf04bdf73d31035c3",
+          "prefix_tokens": 52,
+          "sentence_tokens": 61,
+          "copies": 7,
+          "pseudo_target_comparisons": 366
+        }
+      ]
+    },
+    {
+      "batch": 6,
+      "original_windows": 48,
+      "original_CPU_label_positions": 6273,
+      "selected_rows": 8,
+      "sources": {
+        "web": 6,
+        "story": 1,
+        "textbook": 1
+      },
+      "pseudo_target_comparisons": 2984,
+      "pseudo_physical_input_positions": 3481,
+      "maximum_pseudo_input_positions": 510,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "web",
+          "source_family": "web:db7a2e3ae8282e31f6b02b167602cf55086a3a8464915c130919d49938d3fff7",
+          "original_body_sha256": "ed499acd09086d4b5c8552909c9184c276ca1493f5dbe290a7f11ce98f3b7f4b",
+          "sentence_sha256": "b90140206fc35d10c7b24ac9d00d27788775c8a5f7482bb3ddd2d692f1d205e6",
+          "prefix_tokens": 25,
+          "sentence_tokens": 21,
+          "copies": 16,
+          "pseudo_target_comparisons": 315
+        },
+        {
+          "source": "web",
+          "source_family": "web:fe2bdbeedaa83e06c9b4dd192db23495c838cd32575fa43007515266614c24c4",
+          "original_body_sha256": "92234bd92775b621723eeda506597be7b3e3dd27d9f3b1a3eee0ca50a5537bad",
+          "sentence_sha256": "8f20f3983b310c6fb1c88901043083e1bf5bc5425942cb8c726c2dbe2f89ab17",
+          "prefix_tokens": 20,
+          "sentence_tokens": 33,
+          "copies": 14,
+          "pseudo_target_comparisons": 429
+        },
+        {
+          "source": "story",
+          "source_family": "story:9c1c6ad5f1345dcdc76442beb72799abfca466ead63324eff0b2522230ac44d1",
+          "original_body_sha256": "29a77624e5a6dad308ed677b7e962fdbee65594507b29a0b2a7d34efa00c5e87",
+          "sentence_sha256": "a978e5d17822311d08a7bbe8b8a0986696420bd5902e85b094d6b6a78ea5e9bf",
+          "prefix_tokens": 18,
+          "sentence_tokens": 15,
+          "copies": 16,
+          "pseudo_target_comparisons": 225
+        },
+        {
+          "source": "web",
+          "source_family": "web:bc32d75d7804fce9cad7ea0536e6ae47057ac54812cbf9c34903176306ed10f7",
+          "original_body_sha256": "7278d89b6c0b419aa2dd6d593ef4d845dc85a7f9e681ec18497900d5a374de6e",
+          "sentence_sha256": "5ccd81cfd0b250cdc6a4bbb5b6710792b8ed1ae1e3cbe7c2b4821a9b01e5682f",
+          "prefix_tokens": 29,
+          "sentence_tokens": 37,
+          "copies": 13,
+          "pseudo_target_comparisons": 444
+        },
+        {
+          "source": "web",
+          "source_family": "web:094e45e8b13c5f68eeff40becb35e30b6728bef2a5a98a83342d1c6379a72cce",
+          "original_body_sha256": "923e75541749c2ceaefb5841f8ff68d4b4d00c559d065edbcf49577da52f0ac1",
+          "sentence_sha256": "cb989d606dd60974f0fc7891ceba5e4afdaecf3a1c7cadec73d058fa6f1b16fc",
+          "prefix_tokens": 43,
+          "sentence_tokens": 41,
+          "copies": 11,
+          "pseudo_target_comparisons": 410
+        },
+        {
+          "source": "web",
+          "source_family": "web:959367d07ff28441db9bcea88456223b3c6698fbaf90171c52d819eaa9d22e85",
+          "original_body_sha256": "18ac33a977f4d8ff2b8a38014c84d2ffe26c726094a15c678afcae6fd21d878d",
+          "sentence_sha256": "e1b86f2292ca4f0188488f337aa7a9bc4db3ac4ebd12955900fecc61359f32c7",
+          "prefix_tokens": 55,
+          "sentence_tokens": 36,
+          "copies": 12,
+          "pseudo_target_comparisons": 396
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:1db3858a4d2151e048f3c3fa1f2df539f4c8f72523f26a8b12dee3986730e69d",
+          "original_body_sha256": "c3d5549d124f22d960c2af222621b56c3964dbbf35df14b17f29d68f749cef05",
+          "sentence_sha256": "2e3a66e1e8ab11b49a55ed862ceff8967cd341dd8fd6e917ac5bcb17de6e39fd",
+          "prefix_tokens": 36,
+          "sentence_tokens": 22,
+          "copies": 16,
+          "pseudo_target_comparisons": 330
+        },
+        {
+          "source": "web",
+          "source_family": "web:7baa906b4741590a4bc79a15c0bf463b247a60276b415aaa955dd837b9062363",
+          "original_body_sha256": "2db781e871f498c086c120d04bf3b55f38567f49222258b77c3b800e7b61bff1",
+          "sentence_sha256": "a0c4bb992f907a172f327fdfac7d591a1d641798809d06c353f82491a29d5336",
+          "prefix_tokens": 37,
+          "sentence_tokens": 29,
+          "copies": 16,
+          "pseudo_target_comparisons": 435
+        }
+      ]
+    },
+    {
+      "batch": 7,
+      "original_windows": 48,
+      "original_CPU_label_positions": 5879,
+      "selected_rows": 8,
+      "sources": {
+        "textbook": 2,
+        "web": 5,
+        "story": 1
+      },
+      "pseudo_target_comparisons": 3084,
+      "pseudo_physical_input_positions": 3690,
+      "maximum_pseudo_input_positions": 502,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "textbook",
+          "source_family": "textbook:e51463d916c45599c15285256fc2ca87c0cacaa37f9dad0b211104ed18fb2011",
+          "original_body_sha256": "b090c3cffba10c4b9ba3a5ad40bce5a89a8e20c674f1595fafeaa9ab8dbd8d9f",
+          "sentence_sha256": "5a0d0a9ea67c6929b205ed6f0feef5eaf077b82311a3d8dc962d015d8f5fa551",
+          "prefix_tokens": 21,
+          "sentence_tokens": 42,
+          "copies": 11,
+          "pseudo_target_comparisons": 420
+        },
+        {
+          "source": "web",
+          "source_family": "web:9684ce54e3664163e88d9f2f20545fc45b3c3f53049409ca3e6a005ce13331cb",
+          "original_body_sha256": "b8dd9b61809ef6123d48c1272543658ef6d85a43e5d5484c920fc9a011a5c20c",
+          "sentence_sha256": "38303140efd97b82ea93d13c19218f493c48f5c139b66267bf0e0d207f283413",
+          "prefix_tokens": 37,
+          "sentence_tokens": 33,
+          "copies": 14,
+          "pseudo_target_comparisons": 429
+        },
+        {
+          "source": "web",
+          "source_family": "web:0eeee25cec8acdfdba540561c2da7f6b5acac88fa0eec30f7e96c178cca46f9f",
+          "original_body_sha256": "b4bfc82e213de45352d5edacf73eab8ecaa752da9c5ccb0c67d698258ed5ab46",
+          "sentence_sha256": "c9d93de91f731c9c802f95458ff28ddf708d1b67160f622f985b524efb50291d",
+          "prefix_tokens": 58,
+          "sentence_tokens": 54,
+          "copies": 8,
+          "pseudo_target_comparisons": 378
+        },
+        {
+          "source": "story",
+          "source_family": "story:ab0b477434e2b4beb2a4fbd9f69e531bdc8c3d12376fc8cb84fd3534e05e4bee",
+          "original_body_sha256": "89720c5a1ea5086380e50fcef00d7e95f0018367d3027ce6643364123202eacf",
+          "sentence_sha256": "67d486fd002dbca02f63dcc6a13de2dce497ef57efa9123580065adea1128432",
+          "prefix_tokens": 10,
+          "sentence_tokens": 24,
+          "copies": 16,
+          "pseudo_target_comparisons": 360
+        },
+        {
+          "source": "web",
+          "source_family": "web:f1af90321116f0a0d7e0ebfb36a8d87e98d4ad3cc9c4255f69639d094db4ca24",
+          "original_body_sha256": "2256690aa51bd7cd5921109920f31a95f50d8986c9621cb68bb3b6d4a939d0d7",
+          "sentence_sha256": "6ec554ea066957a8d6163ab4ad6a4fc0b8b3a45e862fc4d696dfaa30c6b9341e",
+          "prefix_tokens": 54,
+          "sentence_tokens": 27,
+          "copies": 16,
+          "pseudo_target_comparisons": 405
+        },
+        {
+          "source": "web",
+          "source_family": "web:4d2c1dc6b1d9e3989fa6b106943a1079b0faaf50bfb5f3942621b4ec5897e97b",
+          "original_body_sha256": "560553f9b98aadebc5e26546ec8c793c0c444d03d236127dabfc4babe9c166ef",
+          "sentence_sha256": "4c94f9e52dec55a51ecd606b362e12c809f902a2bd02cade32dc311ba9b5e7aa",
+          "prefix_tokens": 62,
+          "sentence_tokens": 55,
+          "copies": 8,
+          "pseudo_target_comparisons": 385
+        },
+        {
+          "source": "web",
+          "source_family": "web:7271a445ee02c4e61347d35c1c2107e864815deb4fbdd7c1e958898d46bf6cf6",
+          "original_body_sha256": "cf5748a57a8c8195ddd6d30d305ee262e3188ff98df508f5d416a5f734ab0ff7",
+          "sentence_sha256": "5f2a3c7e44e856694aa39a39584e4f8e93de579c146d8c54f8972d50725c6209",
+          "prefix_tokens": 26,
+          "sentence_tokens": 21,
+          "copies": 16,
+          "pseudo_target_comparisons": 315
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:dd184c0ec1aac0e4223e0102e6e1e8c81e2405d4dcbd47d12398b0cb63e61a7b",
+          "original_body_sha256": "7975590a99a65e77aa3924cb3ba6cf2514c41348c5b47d47784af549f5da6271",
+          "sentence_sha256": "eba483ad76d2fe87bd7926257f953ba352fb68ba378ad82a287440d6decbc7a2",
+          "prefix_tokens": 33,
+          "sentence_tokens": 49,
+          "copies": 9,
+          "pseudo_target_comparisons": 392
+        }
+      ]
+    },
+    {
+      "batch": 8,
+      "original_windows": 48,
+      "original_CPU_label_positions": 6651,
+      "selected_rows": 8,
+      "sources": {
+        "web": 5,
+        "textbook": 3
+      },
+      "pseudo_target_comparisons": 3143,
+      "pseudo_physical_input_positions": 3568,
+      "maximum_pseudo_input_positions": 511,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "web",
+          "source_family": "web:69f1f2ad6986edbe91e1589725838c270f7c1a823f3d943a739b92d309e1bb84",
+          "original_body_sha256": "eb975b9473a20d88a4649874e24f2719c96cd5e6b8dad8ef63391729be44c4ed",
+          "sentence_sha256": "83df161f5bdd27450004f5d8b31a434e21e0385d829f082def3d72cb14c64b89",
+          "prefix_tokens": 29,
+          "sentence_tokens": 14,
+          "copies": 16,
+          "pseudo_target_comparisons": 210
+        },
+        {
+          "source": "web",
+          "source_family": "web:059984db2581d8c4fffa5a5fa88da45ffc2333983bf734131665247950aca389",
+          "original_body_sha256": "82a4fcb29d074a8469c271aba835c7d6284e4ff79a960808d4cdd443d07e5b55",
+          "sentence_sha256": "2ad24562bd4ead18fccdd8877136507b3edc6a70cf14993a075d0f5c036327e6",
+          "prefix_tokens": 29,
+          "sentence_tokens": 49,
+          "copies": 9,
+          "pseudo_target_comparisons": 392
+        },
+        {
+          "source": "web",
+          "source_family": "web:c462331bd9e4009d32fd5741948b13f0243161433588be2ad1aa864677d6b9c5",
+          "original_body_sha256": "7eb1e065530cac8f485e875aaefcc65c0c1cfd3fcac8b7818f710fdc75e538a8",
+          "sentence_sha256": "13e9ac9e9ef698ca5f639c8e0b2ce46a467c2e51b759428d0ef2ba052ee788e6",
+          "prefix_tokens": 16,
+          "sentence_tokens": 23,
+          "copies": 16,
+          "pseudo_target_comparisons": 345
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:fffe33e8999937f21fc027668775992f62533d25281edfc24d18b6adf4cf8dab",
+          "original_body_sha256": "820196ec22be63385e2bdebe982163cf61a71a2c46280140e714e6f3dfee0844",
+          "sentence_sha256": "05fdd647194e095e8623b44268f1ac97621f96508811565f2dde338379961e4f",
+          "prefix_tokens": 13,
+          "sentence_tokens": 43,
+          "copies": 11,
+          "pseudo_target_comparisons": 430
+        },
+        {
+          "source": "web",
+          "source_family": "web:2d08c3bcc5980e8976164dd4f9ea9ec4eb6f6b8b5e49fd26022923a06c1d1802",
+          "original_body_sha256": "8c4f3b7932a20b5aebc32cbf9df909a51bd34a4218c0133e1bf0785764b7e281",
+          "sentence_sha256": "5c21138b99f1799cd5580ce8f80a14fc951c3aec5fef4970a18e62f71b2231f7",
+          "prefix_tokens": 17,
+          "sentence_tokens": 31,
+          "copies": 15,
+          "pseudo_target_comparisons": 434
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:3a85f2b1d8ea162b90292dccf0372b42c7df170dd4676f6c4b839ca84d88abdf",
+          "original_body_sha256": "de4198ed2b399388bcbd4f0501245becfd1112cd376892e3850263f26a2dce36",
+          "sentence_sha256": "2d98824d6728150175e987d3b4fab4ec34e62ede30bf54374949af36e16ae938",
+          "prefix_tokens": 25,
+          "sentence_tokens": 30,
+          "copies": 16,
+          "pseudo_target_comparisons": 450
+        },
+        {
+          "source": "web",
+          "source_family": "web:6e2af65dd2c7677897cc61dd2fd85b263dc89d6c1858c31e3f8a798beeecf56c",
+          "original_body_sha256": "ff5017056cafce97e7e6e6f69b7599f110be765a2d09b950a34d7b68bd5cb28f",
+          "sentence_sha256": "3b0916e78a80e7e3facaffac916ae7a391dbe2f6706f6125c73634d72fd92b64",
+          "prefix_tokens": 29,
+          "sentence_tokens": 28,
+          "copies": 16,
+          "pseudo_target_comparisons": 420
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:ad2b261c8c14c175cee6ef572d0de048474ab15363446699ec17dfea40cbcdad",
+          "original_body_sha256": "27410400c1754897888f464a1f15b239814d71a8766f52aad10623b348ca17d6",
+          "sentence_sha256": "27c53222cc856b978ad90ac253500e1f09fdff162ccd26224c377aeb99587fb8",
+          "prefix_tokens": 16,
+          "sentence_tokens": 33,
+          "copies": 15,
+          "pseudo_target_comparisons": 462
+        }
+      ]
+    },
+    {
+      "batch": 9,
+      "original_windows": 48,
+      "original_CPU_label_positions": 6293,
+      "selected_rows": 8,
+      "sources": {
+        "web": 5,
+        "textbook": 3
+      },
+      "pseudo_target_comparisons": 2604,
+      "pseudo_physical_input_positions": 3096,
+      "maximum_pseudo_input_positions": 509,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "web",
+          "source_family": "web:761b9d75b24042b33e589fd77c3b2b8412d7d3275d490e1a68d747b6218bc38b",
+          "original_body_sha256": "99a6ccae03b8c980d404924fbacb416452257e97e918bbedd820d5e107343b7f",
+          "sentence_sha256": "e4a502146f10460410a16e6bf08605fc8ee0c7c3c2187d69f5100794b0304aae",
+          "prefix_tokens": 37,
+          "sentence_tokens": 35,
+          "copies": 13,
+          "pseudo_target_comparisons": 420
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:2f8339cd42ccf1f7fd67c2731d113c20edce6ba7e081e3f889a0d5ef36aace2a",
+          "original_body_sha256": "72ea9df2c84fc4476fcae3b84dd9c3cc3e9b5c3dc2d80073308bf734a4eb9295",
+          "sentence_sha256": "092c675fd47ced7d317e0864071aa0120afd97f3d5d05e02f56069eea3aa8071",
+          "prefix_tokens": 21,
+          "sentence_tokens": 17,
+          "copies": 16,
+          "pseudo_target_comparisons": 255
+        },
+        {
+          "source": "web",
+          "source_family": "web:2e49bd2a69e0105441b4e5fe2b7c000901853fba095907a48bb3fdc0156bc129",
+          "original_body_sha256": "3189149513244bfe6aa4ae1049b0ce4ef9794a2b477a32e861ddcd3d899fea9f",
+          "sentence_sha256": "a2dd1965e0b83a065ac50052d534faffc4f596fa491bdded41b33f714f237350",
+          "prefix_tokens": 77,
+          "sentence_tokens": 48,
+          "copies": 9,
+          "pseudo_target_comparisons": 384
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:9ee69a4c6c0a776e6c67d7a12b18b8afe5ddb93c36e043b4317ee6b58347e325",
+          "original_body_sha256": "a9d9321f715afb69e8b1abdbbd81d820e6ef83f47b6c12e890932708590575aa",
+          "sentence_sha256": "173f79a733e0ea7d1279e4337a4085c7b84a0e562c5b83a9cd546b93629682a2",
+          "prefix_tokens": 28,
+          "sentence_tokens": 20,
+          "copies": 16,
+          "pseudo_target_comparisons": 300
+        },
+        {
+          "source": "web",
+          "source_family": "web:148a9f8d318cb07d9d3ff411a24e8b75defb0a342c720e6563127dbd5147cdb9",
+          "original_body_sha256": "2356a70cf8e086c5806a8a1b1bb16b8d34f7ddb4ea70c1f79946f3f13ef47f73",
+          "sentence_sha256": "c3a1a9f3ad1678e676cc880f7b3db3c08e4ccfedebd24eb2df2d1b64f457a95e",
+          "prefix_tokens": 19,
+          "sentence_tokens": 19,
+          "copies": 16,
+          "pseudo_target_comparisons": 285
+        },
+        {
+          "source": "web",
+          "source_family": "web:845fcfee388ef1b7316a2d1b93edc3361cb92f19d8f75af23cefa16e2f5455e1",
+          "original_body_sha256": "719b5dc7a6d2750335ca04936e7e33bfbc0ca3b304c02a59586a1a1348c788a1",
+          "sentence_sha256": "24749a724005518e3aec09699a3e08347c8471aeeb17c96f27beef78570322c6",
+          "prefix_tokens": 51,
+          "sentence_tokens": 18,
+          "copies": 16,
+          "pseudo_target_comparisons": 270
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:b0f0ae75ecbfcc4f3c710a5893c9300994505d232653927465f4cd19d1ec4711",
+          "original_body_sha256": "c4485a8d3b5d5e59e2bb0282822c906f43b97948f20507859b069c187921a41c",
+          "sentence_sha256": "96543246116dd853cf1ce4722b92a7ca9fea7ad4936f90f3b9df38470aef1f52",
+          "prefix_tokens": 16,
+          "sentence_tokens": 22,
+          "copies": 16,
+          "pseudo_target_comparisons": 330
+        },
+        {
+          "source": "web",
+          "source_family": "web:3573c743c9f0f4efbfc66d9e687b3d9540e0ac2fa7067c1a969ca76accbaac48",
+          "original_body_sha256": "932111753791cc1486023f356ba6fd47e064cf89473b6aba7f92705b61f1ab60",
+          "sentence_sha256": "af4e7d29622250fee554eb963d9f2048e990d13d10bc8e0cd80055877281bd4c",
+          "prefix_tokens": 40,
+          "sentence_tokens": 24,
+          "copies": 16,
+          "pseudo_target_comparisons": 360
+        }
+      ]
+    },
+    {
+      "batch": 10,
+      "original_windows": 48,
+      "original_CPU_label_positions": 5517,
+      "selected_rows": 8,
+      "sources": {
+        "textbook": 2,
+        "web": 6
+      },
+      "pseudo_target_comparisons": 3092,
+      "pseudo_physical_input_positions": 3635,
+      "maximum_pseudo_input_positions": 506,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "textbook",
+          "source_family": "textbook:217e087eef61c8f06a2b7c86b2e343a384558f05086ae3d5ae9d9a3bebe01e21",
+          "original_body_sha256": "1ef25926385c5abc94b56d3e9fa1625557c706c2e50e3046683419ab5226beb7",
+          "sentence_sha256": "26d14f82c3e478998afe3e53ed7e53a40c5e3349475a20d5626bb87677415879",
+          "prefix_tokens": 29,
+          "sentence_tokens": 26,
+          "copies": 16,
+          "pseudo_target_comparisons": 390
+        },
+        {
+          "source": "web",
+          "source_family": "web:add540b5a511aac4053db7911881bb669ba0d2242885c7ad28e28a57c1a9332d",
+          "original_body_sha256": "a32d74fbef08193293d4a74e642d4b99037cbd275c36e88fd92e6502d7754210",
+          "sentence_sha256": "b40ee8c00ebdaa5ab7e883714daa2adac125eafe07552be528c26076753e336f",
+          "prefix_tokens": 90,
+          "sentence_tokens": 26,
+          "copies": 16,
+          "pseudo_target_comparisons": 390
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:b61eda64b1e8a1e09508fbb828ffe0222d3d586c189b51077f30308441e29452",
+          "original_body_sha256": "9001c26b1e08fbceb4435fd16a90e111107c44ba2e513d7171aaf9d98de51215",
+          "sentence_sha256": "b0d26391b2dc94f737f0f5bb1cb34b0bf014ba25bade4035afc48a611acc4201",
+          "prefix_tokens": 37,
+          "sentence_tokens": 39,
+          "copies": 12,
+          "pseudo_target_comparisons": 429
+        },
+        {
+          "source": "web",
+          "source_family": "web:5aa6ff8465541eaabceb6e36c5083d45fe985b5a88890d82356fcec071d11260",
+          "original_body_sha256": "0fb1008d2e0b93d9ef859fdd78c49b58237877338433bea812757c36b94a68ef",
+          "sentence_sha256": "9ebfcf3bf864bdcf2088e1afa1f2adce2ce507f12d2972b8bc8159f3266ab70d",
+          "prefix_tokens": 10,
+          "sentence_tokens": 47,
+          "copies": 10,
+          "pseudo_target_comparisons": 423
+        },
+        {
+          "source": "web",
+          "source_family": "web:69def7bbb837bd4cadc554b0c42d57c3f0ee3428caf27030670f10a881226926",
+          "original_body_sha256": "3de07b385f382fcd81740f306b666fb207c00cd9f22bca8ebc8bc99d5f81d91d",
+          "sentence_sha256": "e434da89ab92f6c0a60460bb3a3a5176611c1ef8a75b16547293de08cd1a092c",
+          "prefix_tokens": 23,
+          "sentence_tokens": 73,
+          "copies": 6,
+          "pseudo_target_comparisons": 365
+        },
+        {
+          "source": "web",
+          "source_family": "web:c154fafe2f44609aa23b5ef242cf6c026e0a8ca33fb7ba18a83722b4da731205",
+          "original_body_sha256": "9567d3e9e61b5b728a7c82524b81e4e3a3358e23d8a85ac7a2ae1d49838aefae",
+          "sentence_sha256": "e609977137b4783ceda0ba6b2402dbf751e7efc995625bb19f6ff1c77a7ffd3d",
+          "prefix_tokens": 13,
+          "sentence_tokens": 30,
+          "copies": 16,
+          "pseudo_target_comparisons": 450
+        },
+        {
+          "source": "web",
+          "source_family": "web:a29b5817eea8d2af68f529d8fb3dba8f4a6a2bdf56413477d581ce151a8635cc",
+          "original_body_sha256": "a3cb3bdbddcaeacf3af443a49249d9c8b6ced4500749d7d8010b94e2c160f4ae",
+          "sentence_sha256": "f5ad62e7e8d1b3d71e8b4ffff087f1b4b45d6c90b566b1be89812be5dc75f3e7",
+          "prefix_tokens": 43,
+          "sentence_tokens": 18,
+          "copies": 16,
+          "pseudo_target_comparisons": 270
+        },
+        {
+          "source": "web",
+          "source_family": "web:10c239c95623ec03d428865636bc7e2599ce320184118590a80d39cdfa5cd659",
+          "original_body_sha256": "10edebc6038b49d7023801c8e2a7d4595af4518f3126f0c5afcfcc9686d44d7e",
+          "sentence_sha256": "b59aa0f190620f5cf12dafecca6cf1a8b846587cdf047c4909526413a8706a23",
+          "prefix_tokens": 14,
+          "sentence_tokens": 25,
+          "copies": 16,
+          "pseudo_target_comparisons": 375
+        }
+      ]
+    },
+    {
+      "batch": 11,
+      "original_windows": 48,
+      "original_CPU_label_positions": 5726,
+      "selected_rows": 8,
+      "sources": {
+        "web": 7,
+        "textbook": 1
+      },
+      "pseudo_target_comparisons": 2876,
+      "pseudo_physical_input_positions": 3588,
+      "maximum_pseudo_input_positions": 506,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "web",
+          "source_family": "web:4308cec44d5e6b037c44d190f766ca4e08c9ae29e14037f835e591e09a838e18",
+          "original_body_sha256": "01b776bc352c19d49386a546601ed58e2f744b3196a23d8178f7ab109cbdddd0",
+          "sentence_sha256": "44862900229e3bd0aec93cabdf5a957fce5b6231c452689fa548d7a23f0a9335",
+          "prefix_tokens": 45,
+          "sentence_tokens": 54,
+          "copies": 8,
+          "pseudo_target_comparisons": 378
+        },
+        {
+          "source": "web",
+          "source_family": "web:071ce540afa3156d517fefd8a22d58c84f4d57e0faacae5a275629735df60984",
+          "original_body_sha256": "e1a937ec72cbdbf5b7c2aa3a377d7eedfce0ad6c38c4aa4252623c28d2784e82",
+          "sentence_sha256": "113c7c792fc06db561cf8eeb1178cedad8bb9ec0e3476ddddb0380ff42b97648",
+          "prefix_tokens": 16,
+          "sentence_tokens": 47,
+          "copies": 10,
+          "pseudo_target_comparisons": 423
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:754036a62570d71cbacc000fb1fdb2ba7916f4eca88b6f2c5378a3b9015a55d0",
+          "original_body_sha256": "0cfe65ab2bc729b08a7d71b4663e6624a9cb9e1201c83fd7324ae024bfd8339b",
+          "sentence_sha256": "8a6198344a4b38e9db8cfe1c3e0ca6e2d09590e764b474874c5cfd3b6475840f",
+          "prefix_tokens": 51,
+          "sentence_tokens": 26,
+          "copies": 16,
+          "pseudo_target_comparisons": 390
+        },
+        {
+          "source": "web",
+          "source_family": "web:7caea5ddcd5c8701f0405777945591def838c90bfc4ce38213026c204964c243",
+          "original_body_sha256": "a13d44c2a354c80e59f98f30815d7a6e4b0d411cd1205c27c440763a31fe388d",
+          "sentence_sha256": "e04307187ef4119213729ab98a8b0f8a2170471e40257297a87b0cfd35b4ee78",
+          "prefix_tokens": 54,
+          "sentence_tokens": 14,
+          "copies": 16,
+          "pseudo_target_comparisons": 210
+        },
+        {
+          "source": "web",
+          "source_family": "web:872df905d0ee8196343267e54fa92717f485a61ef3119f30519a61b930cca3d5",
+          "original_body_sha256": "99e4bfdaa4007eb68ba7fd9485aa4a9c6517a803059b85cabe94845efc0cb599",
+          "sentence_sha256": "50d7548b9f5a2f5d1fba2417f36b976ce35cb7acb84130a6733f7181ec83c737",
+          "prefix_tokens": 35,
+          "sentence_tokens": 21,
+          "copies": 16,
+          "pseudo_target_comparisons": 315
+        },
+        {
+          "source": "web",
+          "source_family": "web:4985178112f3971cddcdadf17caa03935d862945184447146f101f6149cda952",
+          "original_body_sha256": "955dadb48ad7874b62c8bfb88b37cb5ca11f81062f7e8cedce9a5319fb398029",
+          "sentence_sha256": "ea953f8d9d016a5c2cc3f28ace4b5bf5862ab5d361650272eae9f98b39471dc7",
+          "prefix_tokens": 35,
+          "sentence_tokens": 47,
+          "copies": 10,
+          "pseudo_target_comparisons": 423
+        },
+        {
+          "source": "web",
+          "source_family": "web:37150bb2d7a8f49f0ac6b066edfa5c1e7b4d00ca65f8a3f68c357be99e739d48",
+          "original_body_sha256": "2d790e139576c50f75d94b77c9d9140a75af3f7ae019b9e677794bf11428aa5a",
+          "sentence_sha256": "1078c30abe890329dbc5dbbf970850b0293845ee91baae0b92fd453a0a7f35a6",
+          "prefix_tokens": 16,
+          "sentence_tokens": 49,
+          "copies": 10,
+          "pseudo_target_comparisons": 441
+        },
+        {
+          "source": "web",
+          "source_family": "web:bc963d25a3820aa09b775c1c218acfb09d0929c6e5ff54e9bae07cda830d9b3b",
+          "original_body_sha256": "d0d67eb3a24b19523b061131d964d2740f2265af93b3ea2d876eb2c4748db5e0",
+          "sentence_sha256": "dfb1cce9bc88e7cf3135d8f5c97757e9a46c672219d7e9ab702fa490053fcd50",
+          "prefix_tokens": 128,
+          "sentence_tokens": 74,
+          "copies": 5,
+          "pseudo_target_comparisons": 296
+        }
+      ]
+    },
+    {
+      "batch": 12,
+      "original_windows": 48,
+      "original_CPU_label_positions": 6330,
+      "selected_rows": 8,
+      "sources": {
+        "web": 5,
+        "textbook": 2,
+        "story": 1
+      },
+      "pseudo_target_comparisons": 2869,
+      "pseudo_physical_input_positions": 3635,
+      "maximum_pseudo_input_positions": 509,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "web",
+          "source_family": "web:14e994dc6bb557eed5ad02890b96b34cc49e822d3badd49314b190b4be3582b6",
+          "original_body_sha256": "bbc8f36db7c60b3c872015d36d521ac0aa14298d2af89b184cfbaff39ac502b3",
+          "sentence_sha256": "3035a573a285556f0ae21a4f6889b826c0968d156d34d6d9dce96518a15e43b6",
+          "prefix_tokens": 100,
+          "sentence_tokens": 72,
+          "copies": 5,
+          "pseudo_target_comparisons": 288
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:3bc97f9f6a7e80a52a6846532f0d962d066e62b5e8a3cfacb926770b99cc98ba",
+          "original_body_sha256": "52a3922b5c2aefaf4330a2148c0de1701a7e957926c4874f123fbfa2c48064b0",
+          "sentence_sha256": "5fa64e9a84513c9b7fbac42573c8e6d070715c2792066171639beb3c51de6d55",
+          "prefix_tokens": 25,
+          "sentence_tokens": 45,
+          "copies": 10,
+          "pseudo_target_comparisons": 405
+        },
+        {
+          "source": "web",
+          "source_family": "web:0be0752824bba32d3950f02850f68d5b28b01d18bbcde9fac98519369e7d9bce",
+          "original_body_sha256": "99d31d1c3153cb817066db7e875ea90c8c0f13c57c30fad166e2c294bf80ae69",
+          "sentence_sha256": "a19da304f01674d06c0536dba471b31333cfb5d3323c6fa4f01385a634b72115",
+          "prefix_tokens": 61,
+          "sentence_tokens": 36,
+          "copies": 12,
+          "pseudo_target_comparisons": 396
+        },
+        {
+          "source": "web",
+          "source_family": "web:fa4423adec9a3853b8fb04854c799bf1e1eb1849b8c82705ebc9b014042be21f",
+          "original_body_sha256": "064a71688e132c40c251b5cb546e292f48c86bb47c9654121d44afda99b8a04e",
+          "sentence_sha256": "ab00d3a2cd4210014b76069cbe6e2ac8483c79054c5a2241ef0265364cfe5a5e",
+          "prefix_tokens": 30,
+          "sentence_tokens": 13,
+          "copies": 16,
+          "pseudo_target_comparisons": 195
+        },
+        {
+          "source": "web",
+          "source_family": "web:835f311b0b14ea0230c198fd1ae11c21f84442ed33c2b0ac822f2345d549c044",
+          "original_body_sha256": "99e1250e89caf983b2b91ff104680098582b1ce1f90d076d89c97e885426c3d4",
+          "sentence_sha256": "60e162a74941e1c5ced9194eba5d4a9239cedd7e3a9c358ea4815ad8f344b61e",
+          "prefix_tokens": 49,
+          "sentence_tokens": 44,
+          "copies": 10,
+          "pseudo_target_comparisons": 396
+        },
+        {
+          "source": "story",
+          "source_family": "story:479916c3dfa4b8a79c69ed64e2cd4508543a7f885c424972eb5f3b1fbfb2fcb2",
+          "original_body_sha256": "6716f4a4ba21c544041b354fc7187041468bf5ebcf42240ade1ca1881436d687",
+          "sentence_sha256": "6b33e0f8a8ea556b97b11aea3b1ec8292b806af383d785517288b70b136738fa",
+          "prefix_tokens": 29,
+          "sentence_tokens": 32,
+          "copies": 15,
+          "pseudo_target_comparisons": 448
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:1f5b6d070a112a0d45431b6a3e111d37fd2fae5d3e30540746cdc4f9cbb52def",
+          "original_body_sha256": "7f12af921d07bfcbe343acba9b97867477601c642a71bd61e4307a54fa127d46",
+          "sentence_sha256": "ad502a2b73e2d515fcd8789f01839b905acb0202e32617899844c22a7a5a18e4",
+          "prefix_tokens": 42,
+          "sentence_tokens": 40,
+          "copies": 11,
+          "pseudo_target_comparisons": 400
+        },
+        {
+          "source": "web",
+          "source_family": "web:11c268ff06a3e81ea162b9bce3f9524d4b252511da8b8d2780a426900cc3a96c",
+          "original_body_sha256": "992d93c4c064856995a2256586e3a2a803059d2d8b6316bc3c39658325d25663",
+          "sentence_sha256": "677f6345f56522a47947b9b0137cbb22be77a0a926fcd7d7eb64e79e4e1c1a90",
+          "prefix_tokens": 117,
+          "sentence_tokens": 31,
+          "copies": 12,
+          "pseudo_target_comparisons": 341
+        }
+      ]
+    },
+    {
+      "batch": 13,
+      "original_windows": 48,
+      "original_CPU_label_positions": 5799,
+      "selected_rows": 8,
+      "sources": {
+        "web": 5,
+        "textbook": 2,
+        "story": 1
+      },
+      "pseudo_target_comparisons": 3013,
+      "pseudo_physical_input_positions": 3613,
+      "maximum_pseudo_input_positions": 510,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "web",
+          "source_family": "web:e9b0fbbd972c1ef134510e07e70fff9bdae87e30a279478f5c0d2e5ba7ff6981",
+          "original_body_sha256": "dc5882a5961c50acc3907306978c01d99fb408de79d79232420e960ed8a11ed1",
+          "sentence_sha256": "dcb23ccb71f47c2d570326b4b1865cef070404ead56f83179a190c9df70bcae0",
+          "prefix_tokens": 32,
+          "sentence_tokens": 44,
+          "copies": 10,
+          "pseudo_target_comparisons": 396
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:97a2cfe8c6e359ad2b80cb23b021f45264498dc6e025fb212c42f1163714b272",
+          "original_body_sha256": "5f36c4d8484a31bec5adf5631dfe67b5418c8133d4cae8b5271d0c341352aecf",
+          "sentence_sha256": "a5e91ae7babb3acd24d8ddf20c0af92d7d773a75914490b6cd150b36ac806474",
+          "prefix_tokens": 32,
+          "sentence_tokens": 38,
+          "copies": 12,
+          "pseudo_target_comparisons": 418
+        },
+        {
+          "source": "web",
+          "source_family": "web:c584787e5806e229a6db7605189e07fb83163425fed6e60eac5705271c1c168f",
+          "original_body_sha256": "c5fad73704320209994501fbccb72b340a583ad13efc24d76bacfb12ba74f238",
+          "sentence_sha256": "02e75860a44d292ff4f3bc331ba26dd39993789b771c1ceb5eea3654c0562f50",
+          "prefix_tokens": 53,
+          "sentence_tokens": 23,
+          "copies": 16,
+          "pseudo_target_comparisons": 345
+        },
+        {
+          "source": "web",
+          "source_family": "web:bf9f9e229f835c5e198a68d74c4365ff5016d685d00ea88ebce84321bcdb91c6",
+          "original_body_sha256": "e74c574b1ae1d24a632c9dab7ad88a5c79c8aa10d1c18f1ff3ab9772f3c131a0",
+          "sentence_sha256": "d69f418e9dc58172647db3dbf728023d74cfd26b3237db3087704827400620ef",
+          "prefix_tokens": 40,
+          "sentence_tokens": 47,
+          "copies": 10,
+          "pseudo_target_comparisons": 423
+        },
+        {
+          "source": "story",
+          "source_family": "story:0ef906d4f19892856b5998f6aec922ac14a9f4fd14901fd70a6afd84618be01b",
+          "original_body_sha256": "466c08e39addb7592b719c9f16ff03d2c19bf21a7c24dc149ca409ccbc08d8fa",
+          "sentence_sha256": "2dd7049c3615ba8275c708260624729d4779df0c205ff68ea3e00ad651aa08ca",
+          "prefix_tokens": 18,
+          "sentence_tokens": 16,
+          "copies": 16,
+          "pseudo_target_comparisons": 240
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:7c2ded2686b633fb34c83a21ed5a78cc0428f1f67c3a68da70d2d26d286345d9",
+          "original_body_sha256": "68c2132eeea3c520437ebd13655a7fc2253d58aa9dd3e7983bc6f4a743db5d03",
+          "sentence_sha256": "602ff8166ad231920724d4952cd7b872c9d0d7e7a3592964bc8879f04531b342",
+          "prefix_tokens": 30,
+          "sentence_tokens": 27,
+          "copies": 16,
+          "pseudo_target_comparisons": 405
+        },
+        {
+          "source": "web",
+          "source_family": "web:cb57839de19bc7fad9ccbbcbc84d2440ad2070e6c661726c586ff9eff5b39039",
+          "original_body_sha256": "578775112922f4c96ec986959c9ed87f185d7c4d7a74b320976fa6ffb3620d37",
+          "sentence_sha256": "9bea714b5da2d6f6272127f1adabab941d59d615db3004b059f3444893563282",
+          "prefix_tokens": 82,
+          "sentence_tokens": 61,
+          "copies": 7,
+          "pseudo_target_comparisons": 366
+        },
+        {
+          "source": "web",
+          "source_family": "web:c4ca7c33a11f7233949097a9878e0c288c9e27d6b44e9e52eb11b64135bf30d1",
+          "original_body_sha256": "b70f3ec113fb8b28cd6285bf85951e607177714e89a359782cd814279416244d",
+          "sentence_sha256": "3f2b737204b1131381b734d96a5f3b417722450cbd53cf2712bc925a52ccc531",
+          "prefix_tokens": 15,
+          "sentence_tokens": 42,
+          "copies": 11,
+          "pseudo_target_comparisons": 420
+        }
+      ]
+    },
+    {
+      "batch": 14,
+      "original_windows": 48,
+      "original_CPU_label_positions": 4744,
+      "selected_rows": 8,
+      "sources": {
+        "textbook": 2,
+        "web": 5,
+        "story": 1
+      },
+      "pseudo_target_comparisons": 3103,
+      "pseudo_physical_input_positions": 3690,
+      "maximum_pseudo_input_positions": 510,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "textbook",
+          "source_family": "textbook:8ab6344f2c1a7a669d2667dfdd0d115cd3837084e7f9f18731d7531a0f50b5a6",
+          "original_body_sha256": "e2c5322935d552345d52b09c358ac8a4c67cbd71a69a812c85724169b2fcc38d",
+          "sentence_sha256": "19363cc272405302369d0092e55fd62c9528461a6e39a0c13624fff26bce4153",
+          "prefix_tokens": 35,
+          "sentence_tokens": 35,
+          "copies": 13,
+          "pseudo_target_comparisons": 420
+        },
+        {
+          "source": "web",
+          "source_family": "web:654abaf6688b1887aedb92746c96cfeab96aeb7360220a0e6d2751dc5619dbfe",
+          "original_body_sha256": "32f552ce68e1498f12796e39fa5d7ea5b9123239632a5bb7a580db68f0ebf2b7",
+          "sentence_sha256": "0181e2bfa941bce603d5eae2f1df0bf63508596722d0288002065b5fe39c3289",
+          "prefix_tokens": 76,
+          "sentence_tokens": 43,
+          "copies": 10,
+          "pseudo_target_comparisons": 387
+        },
+        {
+          "source": "story",
+          "source_family": "story:bea76d7cd0308e83d0d53cd119370d721dec59ab0c19b59d38a16c270f1f366d",
+          "original_body_sha256": "43566289e23cea025ee8d6fc3d156e367a183d1e4236e6dd1f4599764229a60e",
+          "sentence_sha256": "2d86eb5c70c849c102583b9cf855046afaea5f4b4ac8b4c47dd20f2f86860266",
+          "prefix_tokens": 21,
+          "sentence_tokens": 13,
+          "copies": 16,
+          "pseudo_target_comparisons": 195
+        },
+        {
+          "source": "web",
+          "source_family": "web:c18abae3e36b9fada4ceb323daf3e7d37ef03cbed07014a2607faef75e7e817e",
+          "original_body_sha256": "0de2bec7acf19fd6f1f36ea4ab4e7675f424a074ffce92356ceaba4701ce2a2a",
+          "sentence_sha256": "5dd2d635a30bdaf93694fd8402f660407d1b95af91b740875ebca0ed1c847b5f",
+          "prefix_tokens": 34,
+          "sentence_tokens": 29,
+          "copies": 16,
+          "pseudo_target_comparisons": 435
+        },
+        {
+          "source": "web",
+          "source_family": "web:fdfc2794ab6124e7d251ce5b81d83b006b300841d40b5a91b5d0cb90ef98c71c",
+          "original_body_sha256": "d5973feaad4a71ca13400a67f34e140537a386566427aedc0abe364b0c826e3d",
+          "sentence_sha256": "8c8315ee242edae2729890d4e5e409118e38ee630b37721e5cb95bf7aacc7f7d",
+          "prefix_tokens": 69,
+          "sentence_tokens": 28,
+          "copies": 15,
+          "pseudo_target_comparisons": 392
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:b99f42285a1528b601926f9f142dbd1a4a50ed17f1a3232e6582f05c5a64d2d9",
+          "original_body_sha256": "9e4b49dc57290550fb0e159b1c1f6ebcea7c2cfa1267408e35313d7b1996fbad",
+          "sentence_sha256": "841d5ad94c55f09944e8cf05a97fac1c70b75d68ae65059b6f5e2722219bc037",
+          "prefix_tokens": 15,
+          "sentence_tokens": 33,
+          "copies": 15,
+          "pseudo_target_comparisons": 462
+        },
+        {
+          "source": "web",
+          "source_family": "web:34cc6b92e3068201164d3ecf04f59671843b2e6a730c56da233f9eb54546f03f",
+          "original_body_sha256": "a837aba6ac68ff5607016a9c08418596ab17c43d734c7f7b71a4bd5d67b077c2",
+          "sentence_sha256": "c72766aa1f21e2b231bf21754e5670e149f7d1ef359ba4d5325bfc03c5d44e97",
+          "prefix_tokens": 50,
+          "sentence_tokens": 32,
+          "copies": 14,
+          "pseudo_target_comparisons": 416
+        },
+        {
+          "source": "web",
+          "source_family": "web:734f13a445efdbf146b34437ea680193b0b2d286f390308075767d101a2957da",
+          "original_body_sha256": "33bf162a74db3d3bff00efa1d9894481ab1d3afe2f40de6a2ad8f0e38e142e7a",
+          "sentence_sha256": "a0fcbc979867811fbcd39e2ff85f2f4c0b13c0e91b3259248ce2fda9fb4b5d02",
+          "prefix_tokens": 30,
+          "sentence_tokens": 44,
+          "copies": 10,
+          "pseudo_target_comparisons": 396
+        }
+      ]
+    },
+    {
+      "batch": 15,
+      "original_windows": 48,
+      "original_CPU_label_positions": 5647,
+      "selected_rows": 8,
+      "sources": {
+        "textbook": 3,
+        "web": 5
+      },
+      "pseudo_target_comparisons": 3265,
+      "pseudo_physical_input_positions": 3849,
+      "maximum_pseudo_input_positions": 508,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "textbook",
+          "source_family": "textbook:3327e443066d1cf0b541796ae8e99965f057a618a149ecc33dd3cc420968f55e",
+          "original_body_sha256": "872d267dc71c423a38ce130b893b4f6fc149855c478b637de3f9d7d7896384ef",
+          "sentence_sha256": "9af016ed73d5d4f24781c792991aae066bacba1ec5894cf160e4869f5b3e20f6",
+          "prefix_tokens": 17,
+          "sentence_tokens": 26,
+          "copies": 16,
+          "pseudo_target_comparisons": 390
+        },
+        {
+          "source": "web",
+          "source_family": "web:7a2dcf3e7501812426695ddd3d527c05593e504033ba7b2eb30a6b07d0c15844",
+          "original_body_sha256": "862df1141351c3449f02ea5a93c9a36decf6009b78cb8de1fd87adf591131069",
+          "sentence_sha256": "8b88b882711feb64802d96e23abf234f609291d873630f20d6407e337d55121a",
+          "prefix_tokens": 35,
+          "sentence_tokens": 29,
+          "copies": 16,
+          "pseudo_target_comparisons": 435
+        },
+        {
+          "source": "web",
+          "source_family": "web:92f234d561797a83f7b75fdabe399a7b4cfdc8d4b98a64b61e76308c7f491923",
+          "original_body_sha256": "3964da373f399f048a235fcca6d343732195f83b23697326e89c14c8b2cce53e",
+          "sentence_sha256": "179348df9ec7386fb5830fb9b9e6d6fda0c127d88fcf997e4bfd6c94d42c372f",
+          "prefix_tokens": 67,
+          "sentence_tokens": 45,
+          "copies": 9,
+          "pseudo_target_comparisons": 360
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:86a7633e61547ca6b492e7283b28a4a277cc580074876337861b9acd97445ee9",
+          "original_body_sha256": "2e378cf3db0dd5a404e43ae8d6dd8f77c47d3dc4b031ae2835b20c4a057cffc8",
+          "sentence_sha256": "497aa305a31f376d7f1c358efb49f9fef348862ecbadd55d8f2f24ebbdc34dd3",
+          "prefix_tokens": 14,
+          "sentence_tokens": 37,
+          "copies": 13,
+          "pseudo_target_comparisons": 444
+        },
+        {
+          "source": "web",
+          "source_family": "web:4c36adac26b5445ef768c1bb8f45a5dd3734d5f3c159c6f132d2bc5ffc9680c0",
+          "original_body_sha256": "276ee2daa44d5fa592564396bd1c193e09d01715dc68e56ab21f3a43ce015433",
+          "sentence_sha256": "fd6319628e008e267f5feec948323104ff90ed157b5a5eb6b62a5949c9b6266d",
+          "prefix_tokens": 44,
+          "sentence_tokens": 47,
+          "copies": 9,
+          "pseudo_target_comparisons": 376
+        },
+        {
+          "source": "web",
+          "source_family": "web:46183163003b2367539297c03d11edc8947cb17d742c73b698fd718882d1e00a",
+          "original_body_sha256": "0c4fedd34997a4bc350d03113b053369bd0c44f45affade6b5db0b87ea634889",
+          "sentence_sha256": "33981764ecbde48dba662146d62f9dcf955340a3fee62e70779dca1a5edf1fad",
+          "prefix_tokens": 28,
+          "sentence_tokens": 30,
+          "copies": 16,
+          "pseudo_target_comparisons": 450
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:ecb35cf68671096799b417f43a6b12c94a0ff5cb63eebdbfe9646ccfea69d98a",
+          "original_body_sha256": "4c5ea50fec1b13d40e43b7639cf67b345aa18fe6282c399e8614378422e9658f",
+          "sentence_sha256": "513b99336c2740c307992cd5aad761bc11dc09f5a1148b7f46b26c4ed7817ec8",
+          "prefix_tokens": 46,
+          "sentence_tokens": 38,
+          "copies": 12,
+          "pseudo_target_comparisons": 418
+        },
+        {
+          "source": "web",
+          "source_family": "web:b19582eefe7b639ec7195b27c0bf2e66063c1005e9b039ee25d76bfc8b62dedb",
+          "original_body_sha256": "89b06e2cd48f6867a002dfca95f3aa33b146374268cba405baff7a9a938cb38c",
+          "sentence_sha256": "463828150494995fb42fd15ff8c7c13d76bad33d4c2e961aff6d41775876db56",
+          "prefix_tokens": 25,
+          "sentence_tokens": 56,
+          "copies": 8,
+          "pseudo_target_comparisons": 392
+        }
+      ]
+    },
+    {
+      "batch": 16,
+      "original_windows": 48,
+      "original_CPU_label_positions": 5526,
+      "selected_rows": 8,
+      "sources": {
+        "web": 6,
+        "story": 1,
+        "textbook": 1
+      },
+      "pseudo_target_comparisons": 2762,
+      "pseudo_physical_input_positions": 3178,
+      "maximum_pseudo_input_positions": 496,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "web",
+          "source_family": "web:7180bbd4ad2a73871da76382aae9da527e032d24dae2e80f117c65a972394198",
+          "original_body_sha256": "bbc2312d50aeeb1dc76821f4cf86421c49dc99693c2598a627236ed2340c9a1d",
+          "sentence_sha256": "429bea9b464e2cc17ae19ede24fe85cf1413a23a3b3de7afbfb9d80d05c163bb",
+          "prefix_tokens": 15,
+          "sentence_tokens": 19,
+          "copies": 16,
+          "pseudo_target_comparisons": 285
+        },
+        {
+          "source": "web",
+          "source_family": "web:18358e04657646ac7fcae28233ad0d7a42ba3910611cea0f9de26b82f018bf1f",
+          "original_body_sha256": "b5c7591b99824b627c5cd4749efc8e1e449a620eb03bb5c9c247dc9f36e931d0",
+          "sentence_sha256": "6a8e54f2ee7a7bad8e9a8d563f161a9346898ae6b26c9ec38a56fd5c3993a1f2",
+          "prefix_tokens": 26,
+          "sentence_tokens": 38,
+          "copies": 12,
+          "pseudo_target_comparisons": 418
+        },
+        {
+          "source": "story",
+          "source_family": "story:a5e7707139b811860d3e0544708c529916d4cc7ca8e1742259bf4f9c4880e4fa",
+          "original_body_sha256": "852193540f02a018db3de57908dd529107e0e5783037f79599e5aedad085844f",
+          "sentence_sha256": "43c69b75dead50b1d667e600645e5ca3d1c37e422c0868bcd02f94036d30e618",
+          "prefix_tokens": 22,
+          "sentence_tokens": 12,
+          "copies": 16,
+          "pseudo_target_comparisons": 180
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:50ffcf376f34a6572e3c49df4469201fed091b9c18a3e37e16ae85dedfdd88d1",
+          "original_body_sha256": "69425906612763a68d4af0a0046192a6a3135c375774ba03807142aacc0e2d4c",
+          "sentence_sha256": "cf078d2af39edd9fec74fc4184d5956f3c0d33d1b8dbfe0712b10f6061f798ee",
+          "prefix_tokens": 15,
+          "sentence_tokens": 37,
+          "copies": 13,
+          "pseudo_target_comparisons": 444
+        },
+        {
+          "source": "web",
+          "source_family": "web:4cd28f1cf3f255e50cc8ce1a229ef8d013ef22004bb4cf9b5312e8cd397f2832",
+          "original_body_sha256": "a1139731091eed066cfeec13a41cf50dd7bfdeb25a256be1cbc2d6d8f8266434",
+          "sentence_sha256": "6f064535dd42402529904173daf22587d6150e83ba47bb644852157ad2ae8cab",
+          "prefix_tokens": 51,
+          "sentence_tokens": 14,
+          "copies": 16,
+          "pseudo_target_comparisons": 210
+        },
+        {
+          "source": "web",
+          "source_family": "web:b3e73fab39bf42795e146914bc97285e3e8c3b6b6cd35aacf1448013849cc17d",
+          "original_body_sha256": "c7cc35b9f668e7550422deba55f226d56954576f1ec502fd1332f978c071e318",
+          "sentence_sha256": "a68519a52444d97bcd77f69c637e8702ed5e02731068c7b569f1afd35d4979a2",
+          "prefix_tokens": 18,
+          "sentence_tokens": 25,
+          "copies": 16,
+          "pseudo_target_comparisons": 375
+        },
+        {
+          "source": "web",
+          "source_family": "web:4906ebd7b33ccba89a7666628c5de4176a6b39f3ac976df31188a12699f6b87e",
+          "original_body_sha256": "3772509c82b6fa1e1f599ffa808ea7ed35b0754ba764e1bc5b9a8a5980906c76",
+          "sentence_sha256": "73ab1b923bae84e684ef25f6b94daaacc92db1bd93def47fda0dd6288feed7bf",
+          "prefix_tokens": 16,
+          "sentence_tokens": 67,
+          "copies": 7,
+          "pseudo_target_comparisons": 402
+        },
+        {
+          "source": "web",
+          "source_family": "web:6f5a8ec17bf4759dc3f6c3c5356e6df680687ec32b99f82da7dd8a00ad0b08c4",
+          "original_body_sha256": "7256f9aa803402bf054f5b8bf40568a7aba699067b61baf84786870e5178f5e0",
+          "sentence_sha256": "c71225ce0e9b29ae8b46c02bea866c814ff5d4fac853fedb516e8aeac4007f78",
+          "prefix_tokens": 9,
+          "sentence_tokens": 32,
+          "copies": 15,
+          "pseudo_target_comparisons": 448
+        }
+      ]
+    },
+    {
+      "batch": 17,
+      "original_windows": 48,
+      "original_CPU_label_positions": 5817,
+      "selected_rows": 8,
+      "sources": {
+        "web": 5,
+        "textbook": 2,
+        "story": 1
+      },
+      "pseudo_target_comparisons": 3148,
+      "pseudo_physical_input_positions": 3746,
+      "maximum_pseudo_input_positions": 508,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "web",
+          "source_family": "web:80720302fe95a1bcb180be367a7f95ab3db083f87075f1c9336c67c59619edb8",
+          "original_body_sha256": "53061ced246ad33e8e72570826bd56b6a6657ab57c6246d54a823d57ec3eff47",
+          "sentence_sha256": "163c03062c22ac6facc246fdaf94272822471fa023574db66b2058eac13e933c",
+          "prefix_tokens": 43,
+          "sentence_tokens": 33,
+          "copies": 14,
+          "pseudo_target_comparisons": 429
+        },
+        {
+          "source": "web",
+          "source_family": "web:c3e5d5ee276a7489300e7d71a8add98cfe8130f6d2eaf6cc665857f473f4bd42",
+          "original_body_sha256": "daf6a5018b427ddc2d124e14ea9c9599ae4539b26a71fae71c2ce0374a1d73b6",
+          "sentence_sha256": "d7bfeab1691f095a664d9b30e1fed90952b86da91d99ec7548c98de50517739f",
+          "prefix_tokens": 42,
+          "sentence_tokens": 48,
+          "copies": 9,
+          "pseudo_target_comparisons": 384
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:8a648eac41fe0089115ca0b6795386e8b2d0c2c753eb9728210792c58354e6cd",
+          "original_body_sha256": "4afa5a3dc605cc38ee9a374faf4ebd74e401fffc1f40cf1f7e31b2e76d867405",
+          "sentence_sha256": "e0c4e9e87547b4eb7987dac23948d75088b2c4e93492b0d616d7fce4cf60ffc5",
+          "prefix_tokens": 46,
+          "sentence_tokens": 23,
+          "copies": 16,
+          "pseudo_target_comparisons": 345
+        },
+        {
+          "source": "web",
+          "source_family": "web:b8884faec00f3b83a95810336866461a0491432ab226c1ceea00baeec3965e78",
+          "original_body_sha256": "a91b84cb9564bc58f2ca80ae52be1a3b5d0239f6644e45f2972910242132b903",
+          "sentence_sha256": "4ff0871d507a86f38c4ff6934868ffd6ff4f1694928f92cc7ee18b431350240a",
+          "prefix_tokens": 64,
+          "sentence_tokens": 30,
+          "copies": 14,
+          "pseudo_target_comparisons": 390
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:f8cef660d032313138a45c9158399a947fd2f37368bea007ee8401a828a480c3",
+          "original_body_sha256": "0a2e4eca0cc2b801bc856071f0ab0ded541b4acf12ae901cf1b79cef889c8746",
+          "sentence_sha256": "0e53e8fcec27ce489f40fb8cc510f99dda0961f8b3271f141066c4bd7a2106df",
+          "prefix_tokens": 40,
+          "sentence_tokens": 52,
+          "copies": 9,
+          "pseudo_target_comparisons": 416
+        },
+        {
+          "source": "web",
+          "source_family": "web:fa5c700e46d63856dcc6430943805a24b91a35b902970d6d67166fce236a8279",
+          "original_body_sha256": "4b76e607009585c8e9629c4ae4ba338b04a1620891e7bb1c62e1edea7f848070",
+          "sentence_sha256": "cd360cdb949d87260b2d8b306b70942a397c5070e1da74a126ec3c831a4cdbff",
+          "prefix_tokens": 41,
+          "sentence_tokens": 33,
+          "copies": 14,
+          "pseudo_target_comparisons": 429
+        },
+        {
+          "source": "story",
+          "source_family": "story:70e4f5722e9c0e23ceb39ef4ef82fe52a31ae17703a28e923f539640ad908de2",
+          "original_body_sha256": "25be8cfe447df9c4c016523afcd01835c3c562ca9bbccc22c09d82cc40ef122f",
+          "sentence_sha256": "5019b8befa4e64ae6d9ecf7450c681b62ee5300ed8ee0bb94e69e135070f6ceb",
+          "prefix_tokens": 14,
+          "sentence_tokens": 21,
+          "copies": 16,
+          "pseudo_target_comparisons": 315
+        },
+        {
+          "source": "web",
+          "source_family": "web:9d19d111b9f571f7a110a8d3219652ac4a08a2e525b63bc6b99db6140978e50c",
+          "original_body_sha256": "4b59bf7480840fb859c92d5f3d2f403a5d9186537980a740e94aa82ce84068a9",
+          "sentence_sha256": "d22763d92e97e4c89ac364ff66fe76d00f548e91badab8ec16db4fa3dd2dbcfa",
+          "prefix_tokens": 28,
+          "sentence_tokens": 40,
+          "copies": 12,
+          "pseudo_target_comparisons": 440
+        }
+      ]
+    },
+    {
+      "batch": 18,
+      "original_windows": 48,
+      "original_CPU_label_positions": 6014,
+      "selected_rows": 8,
+      "sources": {
+        "web": 7,
+        "textbook": 1
+      },
+      "pseudo_target_comparisons": 2901,
+      "pseudo_physical_input_positions": 3499,
+      "maximum_pseudo_input_positions": 512,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "web",
+          "source_family": "web:7ae9ed945ad0d5fa30da7c505141b702ae776885edd0cb1aa8d491c5d5036765",
+          "original_body_sha256": "18c5dd339aae1168435347f69ee410a57f89b9c0143af3e5d569c59e58e00f45",
+          "sentence_sha256": "5affac6a1a43bb50b3a23bcec4d16f05b20f0074892123440b86f25286cd9d1c",
+          "prefix_tokens": 15,
+          "sentence_tokens": 46,
+          "copies": 10,
+          "pseudo_target_comparisons": 414
+        },
+        {
+          "source": "web",
+          "source_family": "web:36c2fbaa3769e203914df65aa5812121bf08d95f2e6f9c01d117cbb521dbf4fe",
+          "original_body_sha256": "fe1e7d7d19428e8fcedaa2b6f6d18fac18b2627d5a25d8aaee78bf0eaf7e3b6b",
+          "sentence_sha256": "ed34374a9da71837312f9e0ce63989d9489e20907285a3da272a31061c948e71",
+          "prefix_tokens": 97,
+          "sentence_tokens": 29,
+          "copies": 14,
+          "pseudo_target_comparisons": 377
+        },
+        {
+          "source": "web",
+          "source_family": "web:f4b67b1a9c7d853a193f67108703fb9e17de42041d8f4714ec604982b05989db",
+          "original_body_sha256": "85ecadd23a6c5f9ae6d16c808b8f02940c44e693c79b4987a4e4ac21371db7ff",
+          "sentence_sha256": "dd71680cf24a14ad6a2d4d68b7ec4767483fd021dae8c0c007e2d677f7ea459f",
+          "prefix_tokens": 64,
+          "sentence_tokens": 16,
+          "copies": 16,
+          "pseudo_target_comparisons": 240
+        },
+        {
+          "source": "web",
+          "source_family": "web:abfe188d0519977b480657e4feb64a4f349a64415135f8d010c3db5ae28f9370",
+          "original_body_sha256": "cb26e67747017276f7f5885aa199881ec4bc42c9d44cc43478ad389d84ffe784",
+          "sentence_sha256": "d08f89605b78b59e13cdb2a90edf6bec1c5295d6e09066110ac0fab1e2bb064b",
+          "prefix_tokens": 26,
+          "sentence_tokens": 10,
+          "copies": 16,
+          "pseudo_target_comparisons": 150
+        },
+        {
+          "source": "web",
+          "source_family": "web:2f664d1ba0e6484023293bfeb1cadc144f218dbf2be537afa994a4da60faa9a5",
+          "original_body_sha256": "0ff050e1b2c049d13f69ee32dd689c0c2aa814efbfb31f7438dc830250becff8",
+          "sentence_sha256": "9d0ef08e8e82b8af7c6dd8f8f3a69ccbb255c418745016d269f9b45b48edb1d0",
+          "prefix_tokens": 31,
+          "sentence_tokens": 29,
+          "copies": 16,
+          "pseudo_target_comparisons": 435
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:df9fe73ee2bf577372801aa0da0e95c744e35f44fe14ee215a03ef57ddcac84e",
+          "original_body_sha256": "4e9116c2aad88fd84fa2952ae13f40976c7e1a61236cd44a67af6471511ae704",
+          "sentence_sha256": "2cb996c8607ccd53f48d03229823ae72837680a19ffae4f18fde72318509acb8",
+          "prefix_tokens": 34,
+          "sentence_tokens": 59,
+          "copies": 8,
+          "pseudo_target_comparisons": 413
+        },
+        {
+          "source": "web",
+          "source_family": "web:0d73ffb907a4f71915326b52e98a19fa33952cb65dda72475a2c24dbf24be73c",
+          "original_body_sha256": "2b17486176074c5c58cc9eb3cdd20a4c258cb11fcd409cce412a08ec8adadddc",
+          "sentence_sha256": "4ac23839a520cbc39334523953d5001404eca860042b49467eafd014e2e2ceee",
+          "prefix_tokens": 32,
+          "sentence_tokens": 40,
+          "copies": 12,
+          "pseudo_target_comparisons": 440
+        },
+        {
+          "source": "web",
+          "source_family": "web:c89693f3aad88dc2482183d08ec20d085b97701a11c65befab1b6cd5b6bd7ea5",
+          "original_body_sha256": "0cd27e968359303e14af0f9747f99c63368a58d09cf2e5b8292c118888f4df89",
+          "sentence_sha256": "7737cffe5ea92ec67c84c67967d5bbf8af67d366df7a41fe1f1f660c8415075c",
+          "prefix_tokens": 22,
+          "sentence_tokens": 48,
+          "copies": 10,
+          "pseudo_target_comparisons": 432
+        }
+      ]
+    },
+    {
+      "batch": 19,
+      "original_windows": 48,
+      "original_CPU_label_positions": 6437,
+      "selected_rows": 8,
+      "sources": {
+        "web": 6,
+        "textbook": 2
+      },
+      "pseudo_target_comparisons": 3060,
+      "pseudo_physical_input_positions": 3751,
+      "maximum_pseudo_input_positions": 500,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "web",
+          "source_family": "web:b1719157d8a86457e28f6f62a00df8bc4ee53feee631b47ac777a34c6efd2729",
+          "original_body_sha256": "b98263dd4ce2cfd610dd430600b7a421e6a46bba7a29a587ae78fcb05dbbeec7",
+          "sentence_sha256": "fefc42aa2516160912ecfc670eadc0d34399f2672dbacd9d227d174000fb57a3",
+          "prefix_tokens": 68,
+          "sentence_tokens": 36,
+          "copies": 12,
+          "pseudo_target_comparisons": 396
+        },
+        {
+          "source": "web",
+          "source_family": "web:257751f5ce7ef4baa84f2c7e41923bd88a85f3cf487d9bcd5c294fea396d8484",
+          "original_body_sha256": "887169e77143c2850067d60d2f92fb4772c5ad7cb747d7f36d3f196bd47af48b",
+          "sentence_sha256": "614924f0583b1e12a14ed8ea99337f8fc3cf597a23f7d3437f37184a6ccbd138",
+          "prefix_tokens": 37,
+          "sentence_tokens": 37,
+          "copies": 12,
+          "pseudo_target_comparisons": 407
+        },
+        {
+          "source": "web",
+          "source_family": "web:0c892e7d63fd4b36b36301de26f99890a59fce96bc79d1f66f1178a24c016664",
+          "original_body_sha256": "ecc23dfa26c7263421d90ff9b781444024de5f9a77f1f6ce2bc97192a74c3e4d",
+          "sentence_sha256": "c2a9076e9977c74b61553a4387376799630f1d9ea1985775e96190f111f24fe8",
+          "prefix_tokens": 26,
+          "sentence_tokens": 21,
+          "copies": 16,
+          "pseudo_target_comparisons": 315
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:36d6390d3607abf6ef8eebf7500d4b0dfa06a83512ef64d6a8924d1b41782de7",
+          "original_body_sha256": "3e6b8fd36e95b15afc7b6fa905e4ebc6d72d63037fda516266492ada05d97dc5",
+          "sentence_sha256": "4f2f28a08d4d26128ab90f75c294168e1efb820f1964217b5b3c8b6980110795",
+          "prefix_tokens": 46,
+          "sentence_tokens": 52,
+          "copies": 8,
+          "pseudo_target_comparisons": 364
+        },
+        {
+          "source": "web",
+          "source_family": "web:5be054ec5a850b17e43d571bd0daec5bf46a58640b88120c6262b0d6846cb996",
+          "original_body_sha256": "d8de4357db59e16b3d47c9a8e1208a96b49871f9aa3e33eccc8ac9ef3ccb4b15",
+          "sentence_sha256": "abf78ce8131ab29b2b0c5e93cf01bdba534f5b76b76b04b10d163d8ad15d9ad8",
+          "prefix_tokens": 38,
+          "sentence_tokens": 37,
+          "copies": 12,
+          "pseudo_target_comparisons": 407
+        },
+        {
+          "source": "web",
+          "source_family": "web:be5bf9cd727eb3b8a243f6f3378fcd98b76937c4aacb7215ac960614fa093daa",
+          "original_body_sha256": "610e2c50c5226c1453effc97382a26755cc45ae19530b0ec6c2f401e1da09714",
+          "sentence_sha256": "ef335e60f593286d6e651a1ea687d5790ff5e1af22a895de4ae1537999479f53",
+          "prefix_tokens": 98,
+          "sentence_tokens": 64,
+          "copies": 6,
+          "pseudo_target_comparisons": 320
+        },
+        {
+          "source": "web",
+          "source_family": "web:b8bc0147ac399ad57362bc86448e3effb1b20544b438e1c2dd0ee6be255d715e",
+          "original_body_sha256": "8bcc0e94b7d059c4f50901ec851fcf16dceb19a459197b19069bc9ccfdafc86d",
+          "sentence_sha256": "070ccee460a1a510d88eb34313de7debd7c428d971e6c2caa38255e57cf241fa",
+          "prefix_tokens": 27,
+          "sentence_tokens": 29,
+          "copies": 16,
+          "pseudo_target_comparisons": 435
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:5d2c124af90e1d1c99d2e8004ef7cd88618fd861049e4dcc1a9677ec386d2fd7",
+          "original_body_sha256": "f1f113d483029bb5d9a37dc2927c792ec9a1b78e70fef639a06da5284ae1ac5a",
+          "sentence_sha256": "6f62a60099ddc946ef83fb1670931499f0b768f2738044ecec57accfc76acedb",
+          "prefix_tokens": 43,
+          "sentence_tokens": 32,
+          "copies": 14,
+          "pseudo_target_comparisons": 416
+        }
+      ]
+    },
+    {
+      "batch": 20,
+      "original_windows": 48,
+      "original_CPU_label_positions": 5652,
+      "selected_rows": 8,
+      "sources": {
+        "textbook": 2,
+        "web": 6
+      },
+      "pseudo_target_comparisons": 2594,
+      "pseudo_physical_input_positions": 3111,
+      "maximum_pseudo_input_positions": 506,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "textbook",
+          "source_family": "textbook:32fa402f75aa02a3f5b211f858f5ff369a32232fc79b6cbf5e9c961513629c10",
+          "original_body_sha256": "02afe09a42900cc62e20f9d29f84f7663fcd42714df9349563ce77fa497b8118",
+          "sentence_sha256": "4a520fccd1fcb37d0962bad4fa9840858d0cb09475b3c5da5c089bf7b911651b",
+          "prefix_tokens": 48,
+          "sentence_tokens": 12,
+          "copies": 16,
+          "pseudo_target_comparisons": 180
+        },
+        {
+          "source": "web",
+          "source_family": "web:4576d80721d19b1e21906c1039cacc61769c94cf762997ba6ae616ab66257bab",
+          "original_body_sha256": "33ba6f395e6d57104a8be0cf81754d02620c8ecde27faa70509ff9fcdc793fd3",
+          "sentence_sha256": "c7eee7cfa2bda51673e80c75d71e58815d631de320bf8b2ffe10d92483d0f57e",
+          "prefix_tokens": 19,
+          "sentence_tokens": 14,
+          "copies": 16,
+          "pseudo_target_comparisons": 210
+        },
+        {
+          "source": "web",
+          "source_family": "web:18180a7392010d220f0051f22925f4f77acc802fb4127399f1ad47fea302dc14",
+          "original_body_sha256": "a2b2d592dbedd6a2d16d224e02b2a4584c852f9a476e886dcfc6940be9f3953d",
+          "sentence_sha256": "6c001c97f946f5f9fc0298eb24b6e58312d2fa40f3dbcfd33003c6deb111b178",
+          "prefix_tokens": 40,
+          "sentence_tokens": 16,
+          "copies": 16,
+          "pseudo_target_comparisons": 240
+        },
+        {
+          "source": "web",
+          "source_family": "web:3d66feac36f0ef9a364a55f9518fb014766bc4afd1ca31df3df2db72f274d8e3",
+          "original_body_sha256": "f4a37080595522c57d089545336cbd3cac7eefb10438f8fc00c808fa004c3e00",
+          "sentence_sha256": "7782cef6cd1cdd61ec6a3195eaa42c872d332f1448c5f3444d980c3595f6067b",
+          "prefix_tokens": 38,
+          "sentence_tokens": 36,
+          "copies": 13,
+          "pseudo_target_comparisons": 432
+        },
+        {
+          "source": "web",
+          "source_family": "web:5c338c66ad1b39743084c27c55f88ddb282481a03d2f80a60b1bc82408bf205c",
+          "original_body_sha256": "a5769698c586a74a2e0d1fbb87c6b59285e1738d9a7fb319b09ab6e960e6203c",
+          "sentence_sha256": "f9f01ba4416c504cf1df7ef4555448eda612f36c2b4297d921f53f740a9a17a3",
+          "prefix_tokens": 55,
+          "sentence_tokens": 19,
+          "copies": 16,
+          "pseudo_target_comparisons": 285
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:8b047245edd278505d3beed25735fefd875253ecd1b1bcd2c6a7d3c8751754f9",
+          "original_body_sha256": "0c8fe81fa2d0850c2bc491b626fd9c736de9405033f1c112e05679873b2d4301",
+          "sentence_sha256": "d24f5c3ca6efb7f93d6d9038a64c4e774c2007b7ebe1c28650d2d722dcf7fcc2",
+          "prefix_tokens": 35,
+          "sentence_tokens": 31,
+          "copies": 15,
+          "pseudo_target_comparisons": 434
+        },
+        {
+          "source": "web",
+          "source_family": "web:6202dc1104dc1b74cf7e6b3c01d509bb713787550dacf938a947ba7e2735f57d",
+          "original_body_sha256": "f7e10a07819242bdce5cfcc155e6aca0b422a218a279aad062892751d47cb212",
+          "sentence_sha256": "8c4ce3906f9bda310e7ecffd66e040813e4d15f3c0b3f79aa77c0079c1c6ed6d",
+          "prefix_tokens": 27,
+          "sentence_tokens": 47,
+          "copies": 10,
+          "pseudo_target_comparisons": 423
+        },
+        {
+          "source": "web",
+          "source_family": "web:ec65d9b7e88d4ba8ef187dafd866b410489c5fa393c51f9453085c506f61b6f2",
+          "original_body_sha256": "b89df5ded2508136067f3580e91e44aab4cd48ebed954458eebfa015b1649f6f",
+          "sentence_sha256": "af058639befc03696fe200c576b10b83700464a92f472c0e5bbae15a19120fb6",
+          "prefix_tokens": 54,
+          "sentence_tokens": 26,
+          "copies": 16,
+          "pseudo_target_comparisons": 390
+        }
+      ]
+    },
+    {
+      "batch": 21,
+      "original_windows": 48,
+      "original_CPU_label_positions": 6756,
+      "selected_rows": 8,
+      "sources": {
+        "web": 5,
+        "textbook": 2,
+        "story": 1
+      },
+      "pseudo_target_comparisons": 2592,
+      "pseudo_physical_input_positions": 3197,
+      "maximum_pseudo_input_positions": 510,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "web",
+          "source_family": "web:681d06db5d0fd2f09acec4878d0e916ffd7e0d5cf2867e1353ba37b19792e724",
+          "original_body_sha256": "bc2f4183b4bfa8ccd2ef367a31691b758a348de180de9f376a04d18bbed3a870",
+          "sentence_sha256": "a25c04b4bc6afa0abb91296b597bc00b8e9be117d1bd25bf314de2b034e17fc7",
+          "prefix_tokens": 24,
+          "sentence_tokens": 55,
+          "copies": 8,
+          "pseudo_target_comparisons": 385
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:96a7b2600eb471e53600a5e739e0d4880e75617a6ee2ecd4ed887bff7202189f",
+          "original_body_sha256": "91915c093977a867b49e112e2a4e9abd4ccce894be3e477408cf5a28a38f98db",
+          "sentence_sha256": "5066a7373a59be398261190c1fcad0e2de0af3260440daf0eeae06fa3a27d2d5",
+          "prefix_tokens": 44,
+          "sentence_tokens": 67,
+          "copies": 6,
+          "pseudo_target_comparisons": 335
+        },
+        {
+          "source": "web",
+          "source_family": "web:7a596319d0d8998c6ef20919bdd1633d3e00ac653229c1f5bfd982404f61b4f0",
+          "original_body_sha256": "b78bb037eb3ecc545f64f8caa9cbb4fd34c95774d21cfa48c78b75487b0965e5",
+          "sentence_sha256": "0a7fa0f85ea017aa4cc190e7ab96698429f7aaa0dea419cc9b71e15cb8b5e84e",
+          "prefix_tokens": 54,
+          "sentence_tokens": 61,
+          "copies": 7,
+          "pseudo_target_comparisons": 366
+        },
+        {
+          "source": "web",
+          "source_family": "web:ff5f91780933085cae4bf72182262ab5a0c34d82d94a5fc7dede585457de9798",
+          "original_body_sha256": "1e35380f6106494861e6ae52bae6c480492c25eff7da561f18b1ad7dc0b50bcb",
+          "sentence_sha256": "63f367a837d02c8d208ed2173e75900efc4249c8089992d10535bc4ea9324fd2",
+          "prefix_tokens": 49,
+          "sentence_tokens": 32,
+          "copies": 14,
+          "pseudo_target_comparisons": 416
+        },
+        {
+          "source": "web",
+          "source_family": "web:54a4748e59d39664f53e39e8c0cddf32da080b0d3a1dadaaaa06da901bcc0529",
+          "original_body_sha256": "511f66794b90da766614a2bb484d154592bd0f608c26a4399f029adf6dfe7a6c",
+          "sentence_sha256": "5fbdfe78b3c330f35a00ec15c94727161a3c65d60945d32c65efe6f4e524ef89",
+          "prefix_tokens": 90,
+          "sentence_tokens": 35,
+          "copies": 12,
+          "pseudo_target_comparisons": 385
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:ae87f00b2872f83601676bdad0118c208e6690763a4c65fbfe2cd2e6c9f7a019",
+          "original_body_sha256": "99b0208dcdaeeacef5303db0159454f86689a162b01013cc6a26ca067582c40d",
+          "sentence_sha256": "1bc0981bbf8ea7f84bdc203cf95fcf1dfb9ead14332553c5c5c06935d37f1f7c",
+          "prefix_tokens": 15,
+          "sentence_tokens": 20,
+          "copies": 16,
+          "pseudo_target_comparisons": 300
+        },
+        {
+          "source": "web",
+          "source_family": "web:cf67ccaaf004291fd663f3f0b8e4f7fe8a32245850bfbfd9c3e79761fda7b85e",
+          "original_body_sha256": "065110d266289d52d7b799afbaa4d5a703099ac74d030aef5a1318379fd062d2",
+          "sentence_sha256": "00082e4142cff52eb85bd440d735d06524f605114b3ee97fd1b9830f22ade20f",
+          "prefix_tokens": 18,
+          "sentence_tokens": 17,
+          "copies": 16,
+          "pseudo_target_comparisons": 255
+        },
+        {
+          "source": "story",
+          "source_family": "story:e7d7e77785fcaffe92de624aee8e38bb0134be277ad3e5ed4600115f89731966",
+          "original_body_sha256": "e2e719d3d247a1826dbda39d676ccaf796daa3d81fccff222562217d6e6df765",
+          "sentence_sha256": "0bab2809012c844498c8fa411b7a0ea692b186beecb6b56672a0164cdeb7b387",
+          "prefix_tokens": 14,
+          "sentence_tokens": 10,
+          "copies": 16,
+          "pseudo_target_comparisons": 150
+        }
+      ]
+    },
+    {
+      "batch": 22,
+      "original_windows": 48,
+      "original_CPU_label_positions": 4983,
+      "selected_rows": 8,
+      "sources": {
+        "textbook": 2,
+        "web": 6
+      },
+      "pseudo_target_comparisons": 2980,
+      "pseudo_physical_input_positions": 3555,
+      "maximum_pseudo_input_positions": 512,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "textbook",
+          "source_family": "textbook:b6bfa8f96f018dab0576bf907328ee95383a8fbc6bc5d64c0184950fbfc00a6b",
+          "original_body_sha256": "a5441fdafb5f5907314e9382d709432361aece26e4b3219171d24a0bb2758ebc",
+          "sentence_sha256": "26491463341689f9e892b94452acad22adcade03e00287e3bf497620574082cb",
+          "prefix_tokens": 18,
+          "sentence_tokens": 41,
+          "copies": 12,
+          "pseudo_target_comparisons": 451
+        },
+        {
+          "source": "web",
+          "source_family": "web:973730854aa4612ee6990824428c195a980bab22dbccea155f0692eafc600812",
+          "original_body_sha256": "c1bafe40598cbd1aed4cd36b64ef4405af7959d7a642c84f41420cf1e6db806a",
+          "sentence_sha256": "9d2a8d81756deb3e81e0239215ce26d32d3e582acf2875bf86113316c0c6fee5",
+          "prefix_tokens": 32,
+          "sentence_tokens": 21,
+          "copies": 16,
+          "pseudo_target_comparisons": 315
+        },
+        {
+          "source": "web",
+          "source_family": "web:37ba85ef94de0a920b1c0bfee032150a1a42d270064c632872bb67381df8d20e",
+          "original_body_sha256": "dfad4b7b8aa0c489c3a938f2c46de61ba6eb0cdd7497d6996558a68f4f9dc0a5",
+          "sentence_sha256": "372008bff5a4cb77942efff2cb7f55a5b09809fc4562c268103beef506fdf3c7",
+          "prefix_tokens": 32,
+          "sentence_tokens": 60,
+          "copies": 8,
+          "pseudo_target_comparisons": 420
+        },
+        {
+          "source": "web",
+          "source_family": "web:d93af318fd9d472f6f2bc63e741c3fa71006a847cc631ba7a15208057235b648",
+          "original_body_sha256": "4f356159f6915b33f0f69b5a34bf029bbcbea4e085388fa6374f548a9ad222b0",
+          "sentence_sha256": "cc44551155d43d6376e89bcf6d8177d1ee8fc9b950642d5b27b0ee7183297947",
+          "prefix_tokens": 70,
+          "sentence_tokens": 9,
+          "copies": 16,
+          "pseudo_target_comparisons": 135
+        },
+        {
+          "source": "web",
+          "source_family": "web:d2d1125f4a3a2579145b26173c3c1730a13efd905d4740e54c0e0cb580092136",
+          "original_body_sha256": "a55a80b0a4a934f1ff1c0615ef21c09a50a955ccc9a421287ab063106fcce5d9",
+          "sentence_sha256": "64f84ff300947d21e98b46402b0f923c799169c1c038af3ea3abd8b3ba568974",
+          "prefix_tokens": 50,
+          "sentence_tokens": 47,
+          "copies": 9,
+          "pseudo_target_comparisons": 376
+        },
+        {
+          "source": "web",
+          "source_family": "web:31eaea40c747696968c3d0b7164edbc8587a0add79fc1fc9caf8cb2633500bbc",
+          "original_body_sha256": "0280d616651cc95f0a83ba0009b0cc4ad0ac44d5a490dc3d8cbd920771fc9358",
+          "sentence_sha256": "b608166e826538402b12b36e67ff329f29d42fc8e88756e091cb7b43fde04381",
+          "prefix_tokens": 23,
+          "sentence_tokens": 42,
+          "copies": 11,
+          "pseudo_target_comparisons": 420
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:acfd424215607ec2d9b0cb125de67ca0fd5189493980c7d697c6de8fae08758a",
+          "original_body_sha256": "1a77f189ac003b53534fe4d7ee1e82dcca52d98973aa9fcf1c684facf2db9649",
+          "sentence_sha256": "011fc83e86d03d7a9f3f7cf611340e32107db7c3c2ce3fe42fe65adf9c5f809c",
+          "prefix_tokens": 22,
+          "sentence_tokens": 39,
+          "copies": 12,
+          "pseudo_target_comparisons": 429
+        },
+        {
+          "source": "web",
+          "source_family": "web:84258adef01da0a39f384a4096d73c113729e8764164c3a06c1ee57c4ed5e68f",
+          "original_body_sha256": "ddad6d44b701ec30ebd2e676cc58a999da6b573703ee910a9c3e232c536c25d2",
+          "sentence_sha256": "84fc0abb0409ec70d9de2815acb94289962c86a21652f8864fdbf07f374e692c",
+          "prefix_tokens": 38,
+          "sentence_tokens": 31,
+          "copies": 15,
+          "pseudo_target_comparisons": 434
+        }
+      ]
+    },
+    {
+      "batch": 23,
+      "original_windows": 48,
+      "original_CPU_label_positions": 6915,
+      "selected_rows": 8,
+      "sources": {
+        "web": 5,
+        "textbook": 2,
+        "story": 1
+      },
+      "pseudo_target_comparisons": 2881,
+      "pseudo_physical_input_positions": 3524,
+      "maximum_pseudo_input_positions": 512,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "web",
+          "source_family": "web:51b3fd192ea88e224fe1ba734eedce70d9f95c05c653c561dc9bfa833dfdeca9",
+          "original_body_sha256": "a77692893f0a2188d3a00ddf02b9e6832266c027d4e7fff8860f885c2959febc",
+          "sentence_sha256": "23fd47d47b2c3789f922d805165e9a5c22fb46c9ac156f6fb7a542e32f4ace65",
+          "prefix_tokens": 62,
+          "sentence_tokens": 92,
+          "copies": 4,
+          "pseudo_target_comparisons": 276
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:222c130c4e55ec3f3e5f1b2e4119f047e2535159079a7197b68ff2c508962c93",
+          "original_body_sha256": "6097bceb96e716e8f445ea27168d3df242a24001b7b843e95379e5449cfce36b",
+          "sentence_sha256": "728a1c91fadc96e9133ef8ea012ca111865e0a6faaf8dd00ffb9350b3722f1c9",
+          "prefix_tokens": 16,
+          "sentence_tokens": 43,
+          "copies": 11,
+          "pseudo_target_comparisons": 430
+        },
+        {
+          "source": "story",
+          "source_family": "story:ded3937c3de20fa68b227e76c97e86cc1ff6fc4855a8a6ef4a44473b3e55d722",
+          "original_body_sha256": "4be687bd5fad1ece37c0ff623ac3da39c2f97c2883997d213ab1248e5df5ef3b",
+          "sentence_sha256": "c5897780ffa4a504006dcea0e41247bf718a1efb92a34b34d6beb9ef670a1b9d",
+          "prefix_tokens": 20,
+          "sentence_tokens": 16,
+          "copies": 16,
+          "pseudo_target_comparisons": 240
+        },
+        {
+          "source": "web",
+          "source_family": "web:d63028a4cd8236c0b9ac41c0e4a35b970750e6d36da391bafb0941fc220a05aa",
+          "original_body_sha256": "4ff789b99ff8fc3f815e5d98a168320159fe97e476f55a4153fc3810fe16338e",
+          "sentence_sha256": "b1591a4e016619ba00b676ee2623a67551506796c33e34c511bc67f4676977e3",
+          "prefix_tokens": 75,
+          "sentence_tokens": 45,
+          "copies": 9,
+          "pseudo_target_comparisons": 360
+        },
+        {
+          "source": "web",
+          "source_family": "web:cf60c431448ca46491b07bd216508ca0734d48f8ab34073e5616271c22ba26fd",
+          "original_body_sha256": "412f01edf1db3080724015aa38c288c056f71eec21f3ddc3a301e25d7af2279b",
+          "sentence_sha256": "0ba117f5fb8bae4d97436564abe6516c07ae3f4110d653cf01ee114ee8bd97e6",
+          "prefix_tokens": 17,
+          "sentence_tokens": 22,
+          "copies": 16,
+          "pseudo_target_comparisons": 330
+        },
+        {
+          "source": "web",
+          "source_family": "web:eb975028d1f26b79adfb6bdcaa288238f77d444186f0eed2515c7ef5ef5d84ea",
+          "original_body_sha256": "de2f9713c69102d8882808bd1bc5b540742fb90a03e3db1edd276c91c59f01d5",
+          "sentence_sha256": "3d36ef46058f8d1a6587779137976bf538c1d365c94547ad89d8a0cc336a516d",
+          "prefix_tokens": 17,
+          "sentence_tokens": 33,
+          "copies": 15,
+          "pseudo_target_comparisons": 462
+        },
+        {
+          "source": "web",
+          "source_family": "web:14f1389790ec4769e30825b63267018257fcd317705fb9d344fe154d483f0fc1",
+          "original_body_sha256": "245f1065a33d3b344e9f53f2ecbeebaab992890d9cd637e5b1aab030060b2096",
+          "sentence_sha256": "b4119b32ffc7b42198af6752cdf783188b74e7d13059b14a07cc3a392eed14d2",
+          "prefix_tokens": 67,
+          "sentence_tokens": 32,
+          "copies": 13,
+          "pseudo_target_comparisons": 384
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:362d00a57d761e00af76318e7befe4b1cb9f169d3197b098bb9817d2a5a2b53b",
+          "original_body_sha256": "bb4788a6d4db8181a897126d382604831c752168ccdf7bd4ee5690dd802e5f39",
+          "sentence_sha256": "eff10af8a663a3015138d4be901f1a68a9b527c066f9aebb04e1bad78419537a",
+          "prefix_tokens": 29,
+          "sentence_tokens": 57,
+          "copies": 8,
+          "pseudo_target_comparisons": 399
+        }
+      ]
+    },
+    {
+      "batch": 24,
+      "original_windows": 48,
+      "original_CPU_label_positions": 5848,
+      "selected_rows": 8,
+      "sources": {
+        "web": 5,
+        "textbook": 2,
+        "story": 1
+      },
+      "pseudo_target_comparisons": 2557,
+      "pseudo_physical_input_positions": 2972,
+      "maximum_pseudo_input_positions": 512,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "web",
+          "source_family": "web:ed4c4750a8e20960c6c0b007c824ee9771c3924aa4bbb38907e7f65f1a2c5691",
+          "original_body_sha256": "9c9bcfa2932a42e6569d39cd58252d8f416deb2c8724ddc9ed9d2ab6db146a5c",
+          "sentence_sha256": "63525ca5566db4fed5a4fa3ae3d2f78bbe71cbe965eae014388670546211a618",
+          "prefix_tokens": 30,
+          "sentence_tokens": 22,
+          "copies": 16,
+          "pseudo_target_comparisons": 330
+        },
+        {
+          "source": "web",
+          "source_family": "web:685ddef73d9f0334fe036347315535e52818c86194dc301151e311a6db884c86",
+          "original_body_sha256": "2a57212d2ab4dba468e77f3244b23193a6b22042fb5c54d908f7ce00ba6d90cd",
+          "sentence_sha256": "ff184d6220cc253959f0441ea0ae1dc07a3deea3f9c63ebcc56bb88b1861b464",
+          "prefix_tokens": 50,
+          "sentence_tokens": 26,
+          "copies": 16,
+          "pseudo_target_comparisons": 390
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:0f54a7773af9962540478c742a1768b6faefc0ae96f800ba8960053741ddcec5",
+          "original_body_sha256": "17c9aa6aab33eacf5758b5685212c14078301897766b4d9fcafeda3dbcc3d262",
+          "sentence_sha256": "38fc0d47caf1caa18129acd733115d892f83abca8878dda4f8744c270213de18",
+          "prefix_tokens": 21,
+          "sentence_tokens": 22,
+          "copies": 16,
+          "pseudo_target_comparisons": 330
+        },
+        {
+          "source": "web",
+          "source_family": "web:6539b517736e48325120a7c9819c7219eed0a4b45a1c2dff8480ad817be28849",
+          "original_body_sha256": "5ba27fee26057bc35697d417094ef4b675f7ffebcb4818f3648dba620b4dc4a1",
+          "sentence_sha256": "0639378c9544305b809161dda047257b3da43cb3d8812de5420f7f1178542b04",
+          "prefix_tokens": 32,
+          "sentence_tokens": 32,
+          "copies": 15,
+          "pseudo_target_comparisons": 448
+        },
+        {
+          "source": "web",
+          "source_family": "web:f77408248b7993d9c7ef97bf55369d8c3afbb264a074e57aec9e997c767522db",
+          "original_body_sha256": "33d2c71e1218faf3e15781975a14b26d7b62cb526a40e21a76a7c4075b3b0d7d",
+          "sentence_sha256": "8ad4f4d0cfafebe0b483b3d1b13dab177f828065f1a937d529a375ed98fda70e",
+          "prefix_tokens": 44,
+          "sentence_tokens": 13,
+          "copies": 16,
+          "pseudo_target_comparisons": 195
+        },
+        {
+          "source": "story",
+          "source_family": "story:cf8da88f17ab14fc9d0eca2e7522c9e285991e68800675edabe144766658d14b",
+          "original_body_sha256": "a3b2c03ad94cd4b6be26672c6e5a249951cbc5e207feaada0e4489f226345da5",
+          "sentence_sha256": "1181939f4a9aa3b0b9640933fc01521f083d12283524ae22e61ce5e52eb5e594",
+          "prefix_tokens": 17,
+          "sentence_tokens": 12,
+          "copies": 16,
+          "pseudo_target_comparisons": 180
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:4ac0f25daf0d9dc5b1d35ff3ab6bf9acb8871ede8d69ccb7bf545538f7150f6c",
+          "original_body_sha256": "69354397cb7340b2cde7ca7b9a83f819b0bc2eeb25d7bc42ff198e009b29128b",
+          "sentence_sha256": "2efe510d0e27df51fdd08b096302d46368a88246a8eccfa86e4ac7ecacd2ccfb",
+          "prefix_tokens": 21,
+          "sentence_tokens": 37,
+          "copies": 13,
+          "pseudo_target_comparisons": 444
+        },
+        {
+          "source": "web",
+          "source_family": "web:67c466551ae01b024ad449f01ccf8abe1f3125cb97884477c89206dd28d3683b",
+          "original_body_sha256": "c2fdd227ece065b33ce6b9bcd802bdc4cb2a26b87e130bfa4afe569b1e748b45",
+          "sentence_sha256": "9fca8def557822c2eee137cbc2a2f71d847606796b2b99d6c4bb678a50c1cd83",
+          "prefix_tokens": 20,
+          "sentence_tokens": 16,
+          "copies": 16,
+          "pseudo_target_comparisons": 240
+        }
+      ]
+    },
+    {
+      "batch": 25,
+      "original_windows": 48,
+      "original_CPU_label_positions": 5661,
+      "selected_rows": 8,
+      "sources": {
+        "web": 5,
+        "textbook": 2,
+        "story": 1
+      },
+      "pseudo_target_comparisons": 3004,
+      "pseudo_physical_input_positions": 3566,
+      "maximum_pseudo_input_positions": 507,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "web",
+          "source_family": "web:a7f8c7354094ee3e786d65581878d32da50c88289a58f73b95a2625cecd9f2b8",
+          "original_body_sha256": "f002aac44317d04ca62cbcf411bbe80a34924a737c65fe1d70de5476a3049cee",
+          "sentence_sha256": "655cf004c442e81a8bb4f1a1fb8807b540edb0646fb1c701abc94f5e6e4944a3",
+          "prefix_tokens": 36,
+          "sentence_tokens": 51,
+          "copies": 9,
+          "pseudo_target_comparisons": 408
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:1e474510042d6a14fd93ae6fb13d6237692a143a29170124652e88a725d4f205",
+          "original_body_sha256": "d1c0a212ce00e733461e67944d6e4ce2541d1ba254d634a39e09507538dcb5aa",
+          "sentence_sha256": "b906b44dd8eb1253aacf9097fb5e0cda411e25279223577a259029dd079e18c3",
+          "prefix_tokens": 54,
+          "sentence_tokens": 29,
+          "copies": 15,
+          "pseudo_target_comparisons": 406
+        },
+        {
+          "source": "web",
+          "source_family": "web:7871a6967a3bcd484acab7414dec5542f694b6acf8078eb3ea158fbf3921b5a8",
+          "original_body_sha256": "d679b51e9b35189c372d5efeba3a3224ce3bd4f878d0e31be4a13c431f4938d4",
+          "sentence_sha256": "cc374658db0813776803fc45427129a0a5efd7796cfc3c63190d5dbfa72b432b",
+          "prefix_tokens": 21,
+          "sentence_tokens": 94,
+          "copies": 5,
+          "pseudo_target_comparisons": 376
+        },
+        {
+          "source": "web",
+          "source_family": "web:060216a198caf5fe4dab7d50176877c7c263aab4172014f1cebf90d570a16bdf",
+          "original_body_sha256": "ee3ca360887b0b3e3f499a2e6e9bab4015cc4c3c2ae6d5e2517ad970594c3eb7",
+          "sentence_sha256": "3126dacd0f8d69d315b5cd9db3eea06903ae26d25393f3d9937127972eb4ccc1",
+          "prefix_tokens": 26,
+          "sentence_tokens": 22,
+          "copies": 16,
+          "pseudo_target_comparisons": 330
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:0f3f741ce2792cbbfe8226a23b9457b47711950e92ab20b7e6dc4af9463c89ff",
+          "original_body_sha256": "4f6a45e4b7cc21b320d5f0b61b838e3430000f4c0e7570ab0ba9c7ec7d59fc22",
+          "sentence_sha256": "5ab6bbc11c7196c49dfd8cdb7ba3d312a2f989f76af9518d056c481ddb94f059",
+          "prefix_tokens": 27,
+          "sentence_tokens": 40,
+          "copies": 12,
+          "pseudo_target_comparisons": 440
+        },
+        {
+          "source": "web",
+          "source_family": "web:54cd11cabced11904034f25102ee3e94cb5b15c210581c7a78ba65d5416fc0e2",
+          "original_body_sha256": "63fa30cfb20a2a24507243dc207e3a874ff5cee732858df7e3f20bb97c16f1a8",
+          "sentence_sha256": "97136b6accca6250d90146763eaf771874e6d4321982be054406876f62ef3d75",
+          "prefix_tokens": 31,
+          "sentence_tokens": 46,
+          "copies": 10,
+          "pseudo_target_comparisons": 414
+        },
+        {
+          "source": "story",
+          "source_family": "story:7ac0be949e7576b9c5cd47d43b9660a5b8faac85780568a3759d648b1f863691",
+          "original_body_sha256": "cbd2e5bf02f4c1d35d78eb9c4dbb53ac4d47fb960b2821363df6fdc2d0d268c9",
+          "sentence_sha256": "27a2ee2204abdc21ad455589cb2329916575547787a29ad8fcc0b9fb1f582648",
+          "prefix_tokens": 27,
+          "sentence_tokens": 13,
+          "copies": 16,
+          "pseudo_target_comparisons": 195
+        },
+        {
+          "source": "web",
+          "source_family": "web:252eb1a2fb817652ce01e8ee10c02d3759aee6db48cf92064edd2376875d6ab9",
+          "original_body_sha256": "7b76818b7300778bf4d0e07f6a3e36eb6b7e1d1f1908edf6c61e47c7551e771e",
+          "sentence_sha256": "a20ac83d32ab53a390e1557311c13499200d998a3040ff8a4f9b3aca2794ee52",
+          "prefix_tokens": 16,
+          "sentence_tokens": 29,
+          "copies": 16,
+          "pseudo_target_comparisons": 435
+        }
+      ]
+    },
+    {
+      "batch": 26,
+      "original_windows": 48,
+      "original_CPU_label_positions": 6775,
+      "selected_rows": 8,
+      "sources": {
+        "web": 5,
+        "story": 1,
+        "textbook": 2
+      },
+      "pseudo_target_comparisons": 2955,
+      "pseudo_physical_input_positions": 3486,
+      "maximum_pseudo_input_positions": 502,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "web",
+          "source_family": "web:a15fbaacb452fbc978c719347959e229af0ba4a37e92c0f6d3da2794a9b2ebfb",
+          "original_body_sha256": "71ba255970494f6560dcf6c5f06a70fc5d3cc720c0eefffc209c1ae0fee1a883",
+          "sentence_sha256": "fa44f2d2c7cba1768fd77b3e789c3f54575730b5e6352a8ee1ed79b7774b7f07",
+          "prefix_tokens": 37,
+          "sentence_tokens": 60,
+          "copies": 7,
+          "pseudo_target_comparisons": 360
+        },
+        {
+          "source": "web",
+          "source_family": "web:86770c15a9aa277360da1270a675a932b3e890362ee6e40c2c4985c6767ef44a",
+          "original_body_sha256": "ee2793ac06e736f9dae8d7d3a118721b05ba9b5b0d0f743295b2a2f717f6dff1",
+          "sentence_sha256": "91764ce88bfadfc733ce0931278b2abf6c96f78404a83687efca25e5cf17391e",
+          "prefix_tokens": 49,
+          "sentence_tokens": 26,
+          "copies": 16,
+          "pseudo_target_comparisons": 390
+        },
+        {
+          "source": "story",
+          "source_family": "story:204764b0faf321b6bf356994b5c5d1f491e8a4084be1535700bc4fa8b5265c46",
+          "original_body_sha256": "73c1b285fc2e0fb5648d37cd2f8de721ce75fe8350497d0c633b5461dc2300b7",
+          "sentence_sha256": "e73e8c8518fc344da860bc8515296d7edf982ec4b597787300d4f4b42793ddfb",
+          "prefix_tokens": 12,
+          "sentence_tokens": 18,
+          "copies": 16,
+          "pseudo_target_comparisons": 270
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:f1bebf64b4c05bfe414938d287669310ca2c436a24b3cdd8beb1a902bf49c62a",
+          "original_body_sha256": "7db5622fec1d11564bb27065cb79c7a03239232862c2798f46f6db98a1a81380",
+          "sentence_sha256": "93b75217fc8c210044f3daa1838792846d055cf20064f4fad0bbe17bf97c02a6",
+          "prefix_tokens": 24,
+          "sentence_tokens": 28,
+          "copies": 16,
+          "pseudo_target_comparisons": 420
+        },
+        {
+          "source": "web",
+          "source_family": "web:56104fc6dba6d2b3edfbc302b2282408573236431d7b1f059663cd0a8bd2954e",
+          "original_body_sha256": "b363da5693ac59558e7f8ec5bbfa6d04b92cee738f29afd592b5b60814da9a2d",
+          "sentence_sha256": "b4dcfdd53360cf487acea548a299015ae04c043193111dca5d08747ed9723133",
+          "prefix_tokens": 34,
+          "sentence_tokens": 39,
+          "copies": 12,
+          "pseudo_target_comparisons": 429
+        },
+        {
+          "source": "web",
+          "source_family": "web:96ba474a8f7f657cb312b3363560b3ac94004c293104c84cadc57d560f5835c4",
+          "original_body_sha256": "9a1b7b929a61ef750f32c6d8fea812b6b46533ad546c122ef674ba3300de1841",
+          "sentence_sha256": "8f215db313f644e4f43c594c5b3f03b3296ab2af22479bbd3f5dfb4c504eef6b",
+          "prefix_tokens": 39,
+          "sentence_tokens": 22,
+          "copies": 16,
+          "pseudo_target_comparisons": 330
+        },
+        {
+          "source": "web",
+          "source_family": "web:e1cf4ed6972afb25f8f14fa4bf6de71acbc39e10d62d9b6810d3e6e279f32932",
+          "original_body_sha256": "3625e23aad2ea0e5630aab901e44784d259356e1def7be3495a455a928596c31",
+          "sentence_sha256": "1811a0045fad25f4dae686eec9aaa570f44010c152ee8049161269897f4094b8",
+          "prefix_tokens": 28,
+          "sentence_tokens": 24,
+          "copies": 16,
+          "pseudo_target_comparisons": 360
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:66f68f5317b4051e95a25d3965fbb0a28a0e0436cf7c58a980db15ededf9c379",
+          "original_body_sha256": "1eb0d065466ffe268e6010cc5c3a0c2db7768976e94909c1a130bd46e8848446",
+          "sentence_sha256": "b08e264956c51960e9e2654c38be676f9d224707509e40c1df3613550d3e9afd",
+          "prefix_tokens": 47,
+          "sentence_tokens": 44,
+          "copies": 10,
+          "pseudo_target_comparisons": 396
+        }
+      ]
+    },
+    {
+      "batch": 27,
+      "original_windows": 48,
+      "original_CPU_label_positions": 5413,
+      "selected_rows": 8,
+      "sources": {
+        "web": 7,
+        "textbook": 1
+      },
+      "pseudo_target_comparisons": 3324,
+      "pseudo_physical_input_positions": 3867,
+      "maximum_pseudo_input_positions": 512,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "web",
+          "source_family": "web:67ca8e9db1a206c448ed55703e01d8fe23831a98447f3c072129867c38defb15",
+          "original_body_sha256": "a8b1adea107d9090e0ac350eb10872e9dccb31ec52c9cf1a87b6060ae2c02379",
+          "sentence_sha256": "2d024885592a5949c45ee6f367cf8ee1bee4c512ad11a36e81528bddbf1b9095",
+          "prefix_tokens": 27,
+          "sentence_tokens": 38,
+          "copies": 12,
+          "pseudo_target_comparisons": 418
+        },
+        {
+          "source": "web",
+          "source_family": "web:46710866041288197d6e4b41bfeab3008ae1e02c429bf016d94d4124b375750c",
+          "original_body_sha256": "99df5892885869ac335f5fa85df73c63f2547e80011cf41bbd86669c0f250794",
+          "sentence_sha256": "a2999f86944480db48f61f7a8e52a07143fe80ea659f4685e45ab2dd669f09e0",
+          "prefix_tokens": 16,
+          "sentence_tokens": 42,
+          "copies": 11,
+          "pseudo_target_comparisons": 420
+        },
+        {
+          "source": "web",
+          "source_family": "web:0aacce740da5527dfc2de35f6852088a40a4fc20307a03756f783369a44583e9",
+          "original_body_sha256": "63a7722b4a56d1b9a101d517321dcbf0d4c7df0ced42743151c873812a51532e",
+          "sentence_sha256": "772e583c1d5c1daf43619d6ca4139ed6d575111b95eb2db3010d095ef89dfaf9",
+          "prefix_tokens": 16,
+          "sentence_tokens": 31,
+          "copies": 16,
+          "pseudo_target_comparisons": 465
+        },
+        {
+          "source": "web",
+          "source_family": "web:69e71a68d3a7ce6303162b14569f336c9b74b861bdb5a6530f50461ebcadf6a9",
+          "original_body_sha256": "25f7819cf47a8f55b578708e233c7b4c4e3f140909c07e483992ac178b3dbcc9",
+          "sentence_sha256": "0d42ef08fa63f840d5dc47b1f794b5058e85bce0e8fc35c887507141472e8f52",
+          "prefix_tokens": 12,
+          "sentence_tokens": 38,
+          "copies": 13,
+          "pseudo_target_comparisons": 456
+        },
+        {
+          "source": "web",
+          "source_family": "web:669448400e70f14c935c073c490e5e0b4a649d6c1f05ecea79d91967cce92b02",
+          "original_body_sha256": "757436a417b0d837ce55ee2099f9dbc7d5a0dcf4da101842e1fc174dd9536970",
+          "sentence_sha256": "f8152d6af6fab28e60bc63eff7842cc0ce14e8db955853f887a447f052fe4843",
+          "prefix_tokens": 53,
+          "sentence_tokens": 59,
+          "copies": 7,
+          "pseudo_target_comparisons": 354
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:e5fe9834d6b69639dbe91982be26f9df9ee4d0ec826eab587bb5e2ca8ca6f7a9",
+          "original_body_sha256": "2e38d3d39049078ae17b60558f141c1317ac622076531b1e37fc2ffb4364745a",
+          "sentence_sha256": "605bada6f4ac94a328d98badb5ea50bf7ad543fe892fb76091dc35cd9890374e",
+          "prefix_tokens": 40,
+          "sentence_tokens": 26,
+          "copies": 16,
+          "pseudo_target_comparisons": 390
+        },
+        {
+          "source": "web",
+          "source_family": "web:dfb36267f9f46d9187291a4486ee0627b8654b1bd60c4e65a490c077818894e4",
+          "original_body_sha256": "b4e00b5b682da7914cb79aef29e5560d1de24b50257ee08f8c693b9b2d0711e5",
+          "sentence_sha256": "4115ec956c29f0056a1d6ca30f27f5064d083d1211dabcd7fde977c936c7b165",
+          "prefix_tokens": 48,
+          "sentence_tokens": 27,
+          "copies": 16,
+          "pseudo_target_comparisons": 405
+        },
+        {
+          "source": "web",
+          "source_family": "web:6ac38ca7fb2a596f54b4fb47690831848824d8059f2ecc8f43ba59725baaad62",
+          "original_body_sha256": "0d0ce69658f529c7a03e29ab61c0ba72e8c707f64234a3a0ee94a8881e0ae21e",
+          "sentence_sha256": "3ceaa42dc3346ac1f8ea86025d013064757c7096e89d7fc87eaa273d3c3200d3",
+          "prefix_tokens": 18,
+          "sentence_tokens": 52,
+          "copies": 9,
+          "pseudo_target_comparisons": 416
+        }
+      ]
+    },
+    {
+      "batch": 28,
+      "original_windows": 48,
+      "original_CPU_label_positions": 5803,
+      "selected_rows": 8,
+      "sources": {
+        "textbook": 2,
+        "web": 5,
+        "story": 1
+      },
+      "pseudo_target_comparisons": 2681,
+      "pseudo_physical_input_positions": 3283,
+      "maximum_pseudo_input_positions": 506,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "textbook",
+          "source_family": "textbook:b3ca413235fad3f0f5d8d6f80bf4848564c09fd5d0280841ac4b870231f4664f",
+          "original_body_sha256": "49eec63da10ac75fbd40ba130a34116505a20835bcce3c4799f2556d5ae7aaa9",
+          "sentence_sha256": "449e25e781957665992fe1fa37a2455a7a87c2e889d84e839f147d403302c874",
+          "prefix_tokens": 29,
+          "sentence_tokens": 17,
+          "copies": 16,
+          "pseudo_target_comparisons": 255
+        },
+        {
+          "source": "web",
+          "source_family": "web:569d0cfafd6a6406022ca1b8f0e030c22af0c6c74326d00058d9f2a17a7606b3",
+          "original_body_sha256": "6da6a9146ee8e6b469a1dffa251b281ad6c65cfc76971ac87b2e61c537689555",
+          "sentence_sha256": "8693327be295100220e97288c234f08f289a6bd7d82cf06b18166eada67f15a1",
+          "prefix_tokens": 37,
+          "sentence_tokens": 26,
+          "copies": 16,
+          "pseudo_target_comparisons": 390
+        },
+        {
+          "source": "web",
+          "source_family": "web:d02efd982b2b44c8fb9adc6d3cec7cf31c28e30b1c2ba25a72b531d1389e57a1",
+          "original_body_sha256": "c19fe866157ab6ba807357652e21f6e2ac42b2e7122e83d7adbb74a41910ed09",
+          "sentence_sha256": "0d9d4eeb8292b4ce8537ab44d3734ab1ce86a5b7395d2a2eb2a40adc26d22f15",
+          "prefix_tokens": 48,
+          "sentence_tokens": 18,
+          "copies": 16,
+          "pseudo_target_comparisons": 270
+        },
+        {
+          "source": "web",
+          "source_family": "web:6a7eddc6da188bd9df34a208a51acd9b5339befc66f335384ec94d50ff7fea7f",
+          "original_body_sha256": "ae6ceaf08dd5b5f3a90b4c2b65b76b39e7dd5ef5ee7287a53094b0a85f7b2988",
+          "sentence_sha256": "9bdb5b01dc50bedf4664071d824d49356a1d3d5f9646b0035cc4a9298db353bd",
+          "prefix_tokens": 106,
+          "sentence_tokens": 36,
+          "copies": 11,
+          "pseudo_target_comparisons": 360
+        },
+        {
+          "source": "web",
+          "source_family": "web:ad38ce8a71ab8cfbc79edd5dc227a7bf366e43357ee9f37d76f0c13f6673f9d5",
+          "original_body_sha256": "460791cb93ff4e2db9d8f32b2b276b6cc0055d43bba6599ac337f2cc80d30835",
+          "sentence_sha256": "080f080163368f0d1a369fa2cdc514951caa0b276490ae5c735c9da34ce8ce07",
+          "prefix_tokens": 62,
+          "sentence_tokens": 43,
+          "copies": 10,
+          "pseudo_target_comparisons": 387
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:637f209bcd920e7e0e2169b1b67d560fc62a69424f41d800f30e523dca2b49a9",
+          "original_body_sha256": "34bcd3f51c7e797a767c7c0caebe8b16fa9004229f7bc8bf7414e92137e5bc95",
+          "sentence_sha256": "831fd53f95d620bb1620f3450515ee68abd78365844bc8ee4066a9e4b9cb573f",
+          "prefix_tokens": 34,
+          "sentence_tokens": 48,
+          "copies": 9,
+          "pseudo_target_comparisons": 384
+        },
+        {
+          "source": "web",
+          "source_family": "web:7277a67fcb8c5f35906789df44b59e9196ed0ff52b87d264764a0edd7de9e90b",
+          "original_body_sha256": "e0d4e5d1f130465e0765ba198e51f9885a8e3969bff24164d424d58334a42463",
+          "sentence_sha256": "43880ce2dec2009c4e75f7e49ef729a2d99cb258355bf34c2f585f4532942f08",
+          "prefix_tokens": 22,
+          "sentence_tokens": 44,
+          "copies": 11,
+          "pseudo_target_comparisons": 440
+        },
+        {
+          "source": "story",
+          "source_family": "story:5a89bdd3d226966dddad8225ce562ee6c0d57a28f1b2582c549ee1ac69001e1a",
+          "original_body_sha256": "2765a2863a57957a157b27c4775c327fe0919c4d13e357ece41d7d0593620a10",
+          "sentence_sha256": "91822be562b88dd6dc0a61b72e5f265a390b24e699c8ecd0c137d84b869cd659",
+          "prefix_tokens": 19,
+          "sentence_tokens": 13,
+          "copies": 16,
+          "pseudo_target_comparisons": 195
+        }
+      ]
+    },
+    {
+      "batch": 29,
+      "original_windows": 48,
+      "original_CPU_label_positions": 5437,
+      "selected_rows": 8,
+      "sources": {
+        "textbook": 3,
+        "web": 4,
+        "story": 1
+      },
+      "pseudo_target_comparisons": 2874,
+      "pseudo_physical_input_positions": 3462,
+      "maximum_pseudo_input_positions": 500,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "textbook",
+          "source_family": "textbook:608af302c12d593903a23593792c3a8fbfe1f6382f2a6a77091279bcba9b1c01",
+          "original_body_sha256": "78c5ab2ceff750b64f05a856d2346b658efa5665582e057ef8b03801957c845c",
+          "sentence_sha256": "82a403c1397e95b7880227743be6cd531a2591b121c7164320e5da1640b43d62",
+          "prefix_tokens": 20,
+          "sentence_tokens": 23,
+          "copies": 16,
+          "pseudo_target_comparisons": 345
+        },
+        {
+          "source": "web",
+          "source_family": "web:a2b2d293102bfbdd494300d1b7e83462b830c734d0d4c7cd9c4d8b5074222de6",
+          "original_body_sha256": "e29099371efcbe00e7a5c7af54dcb857e91639b231747e6aa348dc373b6dbc6a",
+          "sentence_sha256": "cc6e2dc4e7ff2a6b7228061572bed643bd89427c459676a943e8107cdf1956c0",
+          "prefix_tokens": 52,
+          "sentence_tokens": 21,
+          "copies": 16,
+          "pseudo_target_comparisons": 315
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:ef29311f9d6aaf42cb72b97d1e85fad158747f9f429de2a9098add8912667506",
+          "original_body_sha256": "b091f105acf277be338ae16cdcdfcf808d362c8b07a0fbfe0090d8198a700343",
+          "sentence_sha256": "2a9386cc77f19ce3a5f3d439cbb453ba79ac005a987a841fd1468d03d86faaed",
+          "prefix_tokens": 27,
+          "sentence_tokens": 35,
+          "copies": 13,
+          "pseudo_target_comparisons": 420
+        },
+        {
+          "source": "web",
+          "source_family": "web:628b38faf3a07332840c88613e22fcd2518ea3e6c8a3ea45ad0ee8bc506ec694",
+          "original_body_sha256": "0e039cd9c0cf0cf8c03310cb7ca316aa031a257dccea590baf82225dc58b5b09",
+          "sentence_sha256": "3ed3b217f006e24f8c1f3a53bfcfc5502db9590d37f8089d220c3350f2ff6cc6",
+          "prefix_tokens": 30,
+          "sentence_tokens": 36,
+          "copies": 13,
+          "pseudo_target_comparisons": 432
+        },
+        {
+          "source": "web",
+          "source_family": "web:cf97973d42d55c16a6955352f310f0792711ca03eab6fbef4d292abece7dcf21",
+          "original_body_sha256": "83d0b000b208833c96453f805c39d6d65d748f9a6e73d0662f07386730732d04",
+          "sentence_sha256": "bffc1cfcd3a3ed3e8488c950426eae520ce687ac0a23927874e98a08f380640a",
+          "prefix_tokens": 48,
+          "sentence_tokens": 48,
+          "copies": 9,
+          "pseudo_target_comparisons": 384
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:0621a34e07b96079f0edc89301fcae696b31aff3912a4f18e0a8f5b421ff0c89",
+          "original_body_sha256": "724344a33af48690f2575dc7117535f5984c5e0961a85760c0bf683b20dd4d05",
+          "sentence_sha256": "4e485d43590409a7e9a89071d6d8aee9d2ba0f764cad9dd84b244a9412fba416",
+          "prefix_tokens": 36,
+          "sentence_tokens": 29,
+          "copies": 16,
+          "pseudo_target_comparisons": 435
+        },
+        {
+          "source": "story",
+          "source_family": "story:29b5b6c0fce775b2ac29e4be809e184222965a564e768ce19c387180ee5d3719",
+          "original_body_sha256": "360b90042c40375e1e4652e0e6fafce7b748b2066abbfd5c5103399d351bd6e9",
+          "sentence_sha256": "a2031e324990470cbc016454ecc4aafdde2947c2f743259798dd8f3acbdb1102",
+          "prefix_tokens": 16,
+          "sentence_tokens": 15,
+          "copies": 16,
+          "pseudo_target_comparisons": 225
+        },
+        {
+          "source": "web",
+          "source_family": "web:3f8252b45077e79f8726a503ddba43790d55ebc077bd57c217d423a3490f2ea9",
+          "original_body_sha256": "76e50d8de30ea4dbfd6f05355f52d003736b1e0621e9f3e8196b657f40d8c567",
+          "sentence_sha256": "b5a989fd26515079e132c49e02ee0b5ffacdb616c151a64be861e442e4dfbd3a",
+          "prefix_tokens": 46,
+          "sentence_tokens": 106,
+          "copies": 4,
+          "pseudo_target_comparisons": 318
+        }
+      ]
+    },
+    {
+      "batch": 30,
+      "original_windows": 48,
+      "original_CPU_label_positions": 5633,
+      "selected_rows": 8,
+      "sources": {
+        "textbook": 1,
+        "web": 6,
+        "story": 1
+      },
+      "pseudo_target_comparisons": 2670,
+      "pseudo_physical_input_positions": 3218,
+      "maximum_pseudo_input_positions": 510,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "textbook",
+          "source_family": "textbook:5a483056fedb6cf1aa1870de76884eaa15d81da0e1ae096684e0c12d28213a89",
+          "original_body_sha256": "a6c5061814e251bec70ec32f8a218f1d763c05866fa5d74687f829cab72f5549",
+          "sentence_sha256": "a3edc13e82b03845bebc6d4a1d62b5a382a28660f2a25718e825ed4921000d22",
+          "prefix_tokens": 19,
+          "sentence_tokens": 29,
+          "copies": 16,
+          "pseudo_target_comparisons": 435
+        },
+        {
+          "source": "web",
+          "source_family": "web:f4ce65a0280d90d64fe777f08d495048cc6047a81722371c463521ecbee2356b",
+          "original_body_sha256": "9627beaeee3a17d2b9bc9b153cca7d84ca85624d3e978380d2e26a8e1d3c48c2",
+          "sentence_sha256": "65598ecec781154bd2d11c2127c3d25540eae0633fa2ecfe51619e90bc37ac16",
+          "prefix_tokens": 51,
+          "sentence_tokens": 13,
+          "copies": 16,
+          "pseudo_target_comparisons": 195
+        },
+        {
+          "source": "web",
+          "source_family": "web:357a64049a017eca6738ffff732a076123a1e632086e4af43c3304747448c508",
+          "original_body_sha256": "a0b9d294da147065dad3dbfa7e99e76a3db8a349802547dd850eb08aca7b7725",
+          "sentence_sha256": "ab89144c88d5aa0e40f934ce87e8a47ed4e5d0cb2a4ae52ca84df4349f552693",
+          "prefix_tokens": 54,
+          "sentence_tokens": 57,
+          "copies": 8,
+          "pseudo_target_comparisons": 399
+        },
+        {
+          "source": "web",
+          "source_family": "web:72cfaceba31cac94817f212e666a3ff5515010236d370b32920efbf9f1282e5f",
+          "original_body_sha256": "4d5e6dfde5ebdd4ed250199853ce62d35f4aec597166c172e8813859e5307040",
+          "sentence_sha256": "5f1dbee2b7c466b4de0fa8abe97a4be91ce961cf05fbcd0fe710c5f5fd97d449",
+          "prefix_tokens": 28,
+          "sentence_tokens": 50,
+          "copies": 9,
+          "pseudo_target_comparisons": 400
+        },
+        {
+          "source": "web",
+          "source_family": "web:3dfa1a140284bb5cf0b35929f1fbc007ee5dbd6be5a3d5318b0364c47b14e90a",
+          "original_body_sha256": "5577daa36df827095aa498fc2341799232a1629392b1686718abeb7c2ee4a647",
+          "sentence_sha256": "7ffa0ec45d8ba6d88e6d61d29c6620a11e0db9fc6cdeab947ca8c39aa455fbb0",
+          "prefix_tokens": 24,
+          "sentence_tokens": 56,
+          "copies": 8,
+          "pseudo_target_comparisons": 392
+        },
+        {
+          "source": "web",
+          "source_family": "web:0985abcfe3fa2aa1f51676c66160d192b5bf1f1d3f7c18262837378928a367ed",
+          "original_body_sha256": "be7c2df815f5d56e2c84c309738865f0b23fe4f825c9dbdf9da9fc25d34892c2",
+          "sentence_sha256": "e0a4bedd5a6ba991ecf93c6648e35cdbf50eafab358cd788bf533882d456a728",
+          "prefix_tokens": 57,
+          "sentence_tokens": 19,
+          "copies": 16,
+          "pseudo_target_comparisons": 285
+        },
+        {
+          "source": "story",
+          "source_family": "story:c5ed73016e67122e17d696c220454180573c26b9d8e4b5b0e106a40d851c88bf",
+          "original_body_sha256": "a68402fb7a9aee0396dc76e51fde2a2bafb86f4b45a9a9226d9fe71f0d9bb19d",
+          "sentence_sha256": "7eb390d2152c5d225ad193abfebe25ceffbc2507d6d7fe37e578dd9d0f83f7b0",
+          "prefix_tokens": 10,
+          "sentence_tokens": 9,
+          "copies": 16,
+          "pseudo_target_comparisons": 135
+        },
+        {
+          "source": "web",
+          "source_family": "web:f5f8de9abe1b94ef23a6ab7afa8e65355a367a1e7ca1de13d77c6293cb9536f1",
+          "original_body_sha256": "5428ba29b5d99c8d3db8875e5f4ff4a943620e32ffc8f2f71cab205dfeea0399",
+          "sentence_sha256": "0d91f9a40cca93c80045ba9d5abf87c3c55c2537a96999f4efcde9306f63e435",
+          "prefix_tokens": 39,
+          "sentence_tokens": 33,
+          "copies": 14,
+          "pseudo_target_comparisons": 429
+        }
+      ]
+    },
+    {
+      "batch": 31,
+      "original_windows": 48,
+      "original_CPU_label_positions": 4904,
+      "selected_rows": 8,
+      "sources": {
+        "web": 7,
+        "textbook": 1
+      },
+      "pseudo_target_comparisons": 3163,
+      "pseudo_physical_input_positions": 3817,
+      "maximum_pseudo_input_positions": 509,
+      "original_rows_and_material_state_unchanged": true,
+      "trace": [
+        {
+          "source": "web",
+          "source_family": "web:3623be4e83838b674ae713dd2b9982954fdfe756dcf88015dfa99582974012e9",
+          "original_body_sha256": "93b920e9458f2a0c3e44961044fe8d6c91bed4d86b34df79787c22c21896d17e",
+          "sentence_sha256": "8da22a9c7f97df795d3f2cf844a2f08830f4a9927906c5158e496ea7775f9f65",
+          "prefix_tokens": 51,
+          "sentence_tokens": 24,
+          "copies": 16,
+          "pseudo_target_comparisons": 360
+        },
+        {
+          "source": "web",
+          "source_family": "web:c20bfe80d26b3fff693640307367c11c68dacf3521cb0c14915599c5bd2985f8",
+          "original_body_sha256": "029ca73a99e2da54d71e7e71895c936c035836611c2a27776f686c316509a881",
+          "sentence_sha256": "ce2b88e363f616f1d26e9617062519b46a11877827fcd234c411e3a614581e2e",
+          "prefix_tokens": 43,
+          "sentence_tokens": 32,
+          "copies": 14,
+          "pseudo_target_comparisons": 416
+        },
+        {
+          "source": "web",
+          "source_family": "web:98975d518997c3a11704e3b67ed1e61450ecf61fcb755911147844b967f08ce1",
+          "original_body_sha256": "f115aa43d2e42eaf8296083306987d0df4c13c441a4d632fe0b3a65c751ac42b",
+          "sentence_sha256": "c8708c6332ef5a3a8db4d0e5f53cf3fa398f11a281c60f7402a0eb9510f4f5ee",
+          "prefix_tokens": 96,
+          "sentence_tokens": 42,
+          "copies": 9,
+          "pseudo_target_comparisons": 336
+        },
+        {
+          "source": "textbook",
+          "source_family": "textbook:3160298be384d477c2186f396db59bd1b183ce33276f506fb3d4954344010205",
+          "original_body_sha256": "51663a4adcfe6d6caa50357c7173a52399a559e24097f14f5a0ba4b300d03485",
+          "sentence_sha256": "15e0b8895ee4f22b6a062f010166a4c112873a950adc10a3dcada91002453462",
+          "prefix_tokens": 33,
+          "sentence_tokens": 25,
+          "copies": 16,
+          "pseudo_target_comparisons": 375
+        },
+        {
+          "source": "web",
+          "source_family": "web:8550adcdfba3b3e883f87b38618f4c686d26f1a00dc04bf029c5d2a2faef6bc9",
+          "original_body_sha256": "8a27b93f5a74611e52f0558c8f556e9a54c8e8186459b2ba0eeb32c4f9597033",
+          "sentence_sha256": "befe4dd00c67c31afcb684e3e346a910bbd92096e69a5ad1fdc4e1321ca175dc",
+          "prefix_tokens": 28,
+          "sentence_tokens": 37,
+          "copies": 13,
+          "pseudo_target_comparisons": 444
+        },
+        {
+          "source": "web",
+          "source_family": "web:f3139b0c474d851ea5316be00cd4a747395ab4a4f7b2ada59a684212f8e7a12d",
+          "original_body_sha256": "c4ebf553d15e6b778221daa340de6175843b9b46f28459d7d7e1cf2389470fce",
+          "sentence_sha256": "23bb05d830b00da788e584b917146640c04d087103c194768aad4c88bd51aa12",
+          "prefix_tokens": 61,
+          "sentence_tokens": 29,
+          "copies": 15,
+          "pseudo_target_comparisons": 406
+        },
+        {
+          "source": "web",
+          "source_family": "web:dffd1e8b7e8754809101ef6b7d4d9504e01097adfb7405474cc483c84e5bbfe0",
+          "original_body_sha256": "e03a3351c16511f74778d1c5becc0407471cad10feaf4dd95cd75e76777572fc",
+          "sentence_sha256": "ae5e697d06ddeeb14c02cd5daf60d18e68ea090ebd4be0333cf4e03178357834",
+          "prefix_tokens": 27,
+          "sentence_tokens": 43,
+          "copies": 11,
+          "pseudo_target_comparisons": 430
+        },
+        {
+          "source": "web",
+          "source_family": "web:01933b7746f73b2dea5b528794d2c49258d1e40dc61a4c11a3b73b23a9c0b6cb",
+          "original_body_sha256": "36d0aa831b00f2a35d8cb3f313827ae4935e7ce3f5aa5fd4c8a83178caca93d3",
+          "sentence_sha256": "b64a22ca6d4214c7181ea1f7db0587906599ebc557bc619bec3579e56d59dadf",
+          "prefix_tokens": 17,
+          "sentence_tokens": 66,
+          "copies": 7,
+          "pseudo_target_comparisons": 396
+        }
+      ]
+    }
+  ],
+  "selected_rows": 256,
+  "active_batches": 32,
+  "pseudo_target_comparisons": 94405,
+  "screen": {
+    "at_least64_rows": true,
+    "at_least16_active_batches": true,
+    "original_CE_rows_and_material_state_preserved": true,
+    "all_pseudo_rows_at_most512": true
+  },
+  "eligible_for_native_trainer_implementation": true,
+  "CPU_wall_seconds": 2.7027299280744046,
+  "data_and_Tokenizer_read_paths": [
+    "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large/.compact-index-8cde6396d433644b/ready.json",
+    "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large/manifest.json",
+    "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large/train.bin",
+    "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large/train.index.jsonl",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/phase2/4096/tokenizer.model"
+  ],
+  "model_instantiated": false,
+  "optimizer_updates": 0,
+  "new_GPU_seconds": 0,
+  "new_scientific_teachers": 0,
+  "new_dataset_prepared": false,
+  "DEV_opened": false,
+  "TEST_opened": false,
+  "scientific_contract_frozen": false,
+  "Base_qualified": false,
+  "Base_adopted": false,
+  "full_four_item_goal_complete": false,
+  "limitations": "Only32 fixed batches and synthetic token alignment. No learned self-reinforcement diagnosis, quality evidence, trained independent seed, fullDEV, sealedTEST, or scientific learning. Python open monitoring is not an OS sandbox or a blanket native-library guarantee."
+}

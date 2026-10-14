@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-15次案準備: [TRAIN全句copy確率減衰](../reports/phase6/pseudo-repetition-preparation-20261015/proposal.json)をprospective選定。旧生成4gram ULと異なる正のdetach目標0.5×前copyを使い、元全CEを保持する同10M比較。pure14 checksと32x48元TRAINの一回限りCPU feasibility256row/94405比較/2.702730秒が完了。新model/GPU/学習/DEV/TEST/教材export0。次は専用trainerの全stateとCE equality、owned CUDA180秒・総4800秒提案内の実測、永続safe science接続と凍結。準備を品質・独立学習/fullDEV/新TEST/採用に読み替えない。
+
 2026-10-15最新終端: [context likelihood100M](../reports/phase6/context-likelihood-science-20261015/completion.json)は全17,698更新の数値監査・同CE stream照合・全80個別内容reviewまで完了し不採用。一貫性2→1、適切完結2→1、EOS19→22、反復45→50、BPB0.998487→0.998524で資格なし。科学2410.335961＋技術9.415508秒、元10B UI実PID38043/start65165302へ復帰確認。次は別介入の選定で、独立fresh全pipeline学習/fullDEV/全440/新封印TEST/採用は未達。固定条件を救済しない。4項目Base goalはactive/未完了、下の稼働/停止記述は各記録日時の履歴。
 
 2026-10-15final準備の追補: [DEV400/long40の安全入力・生成adapter](../reports/phase6/isolated-continuations-preparation-20261015/completion.json)を追加、8+4 CPU checksと元DEV80/codecの440入力context前検査を完了。旧5 modes/seed/temperature/top-p/6-ID suppression/128512長文順序とraw失敗を維持。実モデルや未知TESTを使わず、旧400/long40結果とfixtureで一致。独立学習/実fullDEV/全440内容/採用や永続runnerの代替ではない。現在のPID6927は44246925/100M教師で稼働、凍結scienceへ変更を加えず全80終端採否を待つ。
