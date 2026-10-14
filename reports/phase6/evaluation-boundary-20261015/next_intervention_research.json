@@ -1,0 +1,41 @@
+{
+  "new_TRAIN_data_prepared": 0,
+  "primary_source_facts": "The study uses document prefix/suffix/middle rearrangement and sentinel tokens; reports preservation of ordinary autoregressive capability during pretraining, with relatively inefficient finetuning. Its scaling comparisons range from50M to6.9B parameters and use100B training tokens; this is not Japanese10M continuation evidence.",
+  "local_difference": "PrefixMask changes selected gold masks while retaining input order. ContextMixing substitutes model predictions into inputs. NaturalContextContrast uses a prefix/suffix representation auxiliary loss. InterleavedOutcome changes source ordering. These inspected mechanisms are not a prefix/suffix/middle generative permutation; textual nonmatches alone do not establish novelty.",
+  "primary_sources": [
+    "https://arxiv.org/abs/2207.14255",
+    "https://arxiv.org/html/2207.14255v1"
+  ],
+  "unresolved": [
+    "Need an externally supported or locally grounded prospective transfer question; infilling success is not ordinary Base coherence success",
+    "Fixed4096 tokenizer and specialID contract; no illicit role-ID reuse or unproposed larger architecture",
+    "Codec-stable original-byte cut boundaries and unchanged original-gold teacher accounting/EOS semantics",
+    "Context1024 windows and same-source comparator; no closed-prefix-mask rescue",
+    "Fresh versus mature-parent scientific budget and all unchanged quality/retention guards"
+  ],
+  "question": "Does middle-span reconstruction teach useful context conditioning for unrestricted Japanese Base continuation within the unchanged10M budget?",
+  "status": "prospective_FIM_question_reviewed_not_selected_or_launched",
+  "new_scientific_teacher_positions": 0,
+  "decision": "Do not adopt a mature-parent100M FIM intervention from keyword absence or the paper alone. Investigate compatibility and independent evidence before freezing any new comparison. This is not a universal rejection of FIM.",
+  "Base_adopted": false,
+  "recorded_at": "2026-10-14T15:51:28.3375695Z",
+  "local_mechanism_references": [
+    {
+      "sha256": "a59df61633c3dce09a14254ac4fcbf4729abece17c714ac8e70353ae9fad1c42",
+      "path": "scripts/conditional_prefix_mask_trainer.py"
+    },
+    {
+      "sha256": "80244da524bb369a28fed40e251c1f56e1640914f4c646e19f0d6a2c70d0f6a2",
+      "path": "scripts/base_context_mixing_trainer.py"
+    },
+    {
+      "sha256": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+      "path": "scripts/natural_context_contrast_trainer.py"
+    },
+    {
+      "sha256": "5d26782c53c833367bdaa1615a9659efe44139127c043c6e07db68106f3d07bd",
+      "path": "scripts/run_interleaved_outcome_order.py"
+    }
+  ],
+  "new_GPU_seconds": 0
+}
