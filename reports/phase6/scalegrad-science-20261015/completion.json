@@ -1,0 +1,215 @@
+{
+  "status": "ScaleGrad_original25M_ALL80_reviewed_rejected_fixed_condition_closed",
+  "observed_at": "2026-10-15T06:27:32.209137Z",
+  "config_sha256": "565bae138c130f103af4b07913304e15cf04e121748879df06b89d6517cb9b47",
+  "result_sha256": "5f10dc38caeb12c99818e86d832c904c3c6940e5ebe1f37422311ef3436b0052",
+  "review_sha256": "a27d85aaaf60e7c687c09917a9a615ee54196b91eb585726c56af1ea66a83791",
+  "notes_sha256": "2ffbf397ab402249602eeb0429c3a1ba549edb188026a4197df1fd520eaff48c",
+  "actual_terminal_and_UI_proof": {
+    "observed_at": "2026-10-15T06:27:32.065562Z",
+    "scientific_identity": {
+      "pid": 450392,
+      "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+      "start_ticks": "68776772"
+    },
+    "actual_scientific_exited": true,
+    "UI_identity": {
+      "pid": 450807,
+      "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+      "start_ticks": "68828958"
+    },
+    "UI_actual_alive": true,
+    "UI_original_idle_HTTP": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    },
+    "actual_lock_inode": "08:30:171740",
+    "kernel_FLOCK_rows": [
+      "1: FLOCK  ADVISORY  WRITE 450807 08:30:171740 0 EOF"
+    ]
+  },
+  "Windows_worker_identity_proof": {
+    "observed_at": "2026-10-15T06:27:31.2502742Z",
+    "original_pid": 39440,
+    "original_started_at": "2026-10-15T06:10:01.9998789Z",
+    "current_PID_exists": false,
+    "current_PID_started_at": null,
+    "original_worker_identity_alive": false,
+    "identity_rule": "Compare PID AND exact UTC creation ticks; a reused PID is not the original worker"
+  },
+  "actual_Windows_worker_exited": true,
+  "scientific_original_teachers": 25000000,
+  "scientific_updates": 4420,
+  "original_CE_metric_evaluations": 25000000,
+  "modified_learning_CE_evaluations": 25000000,
+  "decoder_passes_per_update": 1,
+  "native_parameters": 10001152,
+  "training_parameters": 10001152,
+  "matched_native25M_summary": {
+    "BPB": 0.9927168290617072,
+    "rates": {
+      "outputs": 80,
+      "eos": 11,
+      "repetition": 53,
+      "unicode_failure": 0,
+      "role_leak": 0,
+      "empty": 0,
+      "FIM_marker_leak": 0
+    },
+    "grammar2": 44,
+    "relevance2": 27,
+    "coherent": 1,
+    "appropriate": 3,
+    "Japanese": {
+      "semantics": 0.609375,
+      "jblimp": 0.770392749244713,
+      "jcqa": 0.33958891867739055
+    }
+  },
+  "candidate_summary": {
+    "BPB": 1.019431680659905,
+    "rates": {
+      "outputs": 80,
+      "eos": 59,
+      "repetition": 6,
+      "unicode_failure": 0,
+      "role_leak": 0,
+      "empty": 0,
+      "FIM_marker_leak": 0
+    },
+    "grammar2": 71,
+    "relevance2": 31,
+    "coherent": 7,
+    "appropriate": 9,
+    "Japanese": {
+      "semantics": 0.59375,
+      "jblimp": 0.7734138972809668,
+      "jcqa": 0.32797140303842715
+    }
+  },
+  "quality": {
+    "matched25M": {
+      "checks": {
+        "coherence_gain_at_least8": false,
+        "paired_CI_lower_above0": true,
+        "EOS_nonworsening": true,
+        "repetition_nonworsening": true,
+        "no_empty_role_unicode": true,
+        "BPB_gate": false,
+        "appropriate_completion_not_punctuation": true
+      },
+      "passed": false,
+      "difference_count": 6,
+      "CI95": [
+        0.025,
+        0.1375
+      ]
+    },
+    "original_all_guards": {
+      "matched": {
+        "checks": {
+          "coherence_gain_at_least8": false,
+          "paired_CI_lower_above0": false,
+          "EOS_nonworsening": true,
+          "repetition_nonworsening": true,
+          "no_empty_role_unicode": true,
+          "BPB_gate": false,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": 5,
+        "CI95": [
+          0.0,
+          0.1375
+        ]
+      },
+      "strong": {
+        "checks": {
+          "coherence_gain_at_least8": false,
+          "paired_CI_lower_above0": false,
+          "EOS_nonworsening": false,
+          "repetition_nonworsening": false,
+          "no_empty_role_unicode": true,
+          "BPB_gate": true,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": -16,
+        "CI95": [
+          -0.3125,
+          -0.0875
+        ]
+      },
+      "absolute": {
+        "grammar_at_least56": true,
+        "coherence_at_least27": false,
+        "appropriate_at_least27": false,
+        "EOS_at_least37": true,
+        "repetition_at_most18": true,
+        "no_empty_role_unicode": true
+      },
+      "historical_Web": {
+        "EOS_at_least8_more": true,
+        "repetition_no_worse": true,
+        "no_empty_role_unicode": true,
+        "BPB_degradation_at_most1percent": false,
+        "no_punctuation_only_stops": true
+      },
+      "eligible": false
+    },
+    "eligible_for_separately_defined_main_comparison": false,
+    "Base_qualified": false,
+    "Base_adopted": false
+  },
+  "all80_individually_read": true,
+  "independent_human_blind": false,
+  "all_terminal_numerical_state_and_ALL_history_reviewed": true,
+  "matched_original_source_state": {
+    "update": true,
+    "token_digest": true,
+    "supervised_tokens": true,
+    "source_teachers": true,
+    "source_EOS": true,
+    "CE_input_tokens": true,
+    "physical_input_tokens": true,
+    "original_body_bytes": true,
+    "full_original_sampler": true,
+    "original_scheduler": true,
+    "original_RNG": true,
+    "native_model_config": true,
+    "same_original_parent": true,
+    "genuine_zero_head_CE_control": true
+  },
+  "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/scalegrad-science-20261015/checkpoint-00004420.pt",
+  "checkpoint_sha256": "4b9c655cf14e2e29e614ae0388c7ec52526a05d337b22f78ebdfa8665dadcf08",
+  "new_science_GPU_seconds": 517.8447075319709,
+  "cumulative_technical_GPU_seconds": 169.2456279549515,
+  "cumulative_completed_science_GPU_seconds": 3464.0070091129746,
+  "cumulative_total_GPU_seconds": 3633.252637067926,
+  "original_technical_cap_seconds": 180,
+  "original_total_GPU_cap_seconds": 4800,
+  "remaining_technical_GPU_seconds": 10.754372045048513,
+  "remaining_total_GPU_seconds": 1166.7473629320739,
+  "cumulative_GPU_ledger_closed": true,
+  "fixed_condition_closed": true,
+  "independent_learning_completed": false,
+  "fullDEV_completed": false,
+  "new_sealedTEST_completed": false,
+  "Base_qualified": false,
+  "Base_adopted": false,
+  "full_four_item_goal_complete": false,
+  "goal_status": "active_unachieved",
+  "TEST_opened": false,
+  "limits": "One fixed visible-prefix gamma.2 mature-parent pilot and repeated nonblind DEV, not independent human or whole-pipeline replication. Prescribed repetition flags fall53to6 but semantic restatement/circularity persists in raw notes. Coherence1to7 is+6 and paired CI lower>0, still below original+8 and absolute27. Native BPB worsens; modified training loss is not BPB. No general ScaleGrad/10M impossibility or sole-cause inference.",
+  "next_action": "Preserve fixed sources/weights/optimizer/RNG/sampler/all histories/raw80/individual notes and every consumed second. No gamma/history/reserve/teachers/seed/parent/decoder/budget rescue or closed-job relaunch. Next select ONE genuinely distinct evidence-grounded unresolved quality question using original results and current remaining measured ledger, or explicitly record insufficient support. Main qualification/genuinely fresh whole-pipeline trained seed43/fullDEV/all440/new sealedTEST/adoption still pending."
+}
