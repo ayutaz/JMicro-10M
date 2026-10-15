@@ -1,5 +1,7 @@
 # Baseの実験結果を探す
 
+2026-10-15最新閉鎖: [tiled owned](../reports/phase6/forgetting-attention-fused-probe-20261015/completion.json)はoperator出力/全勾配・48x1024有限backward/learned全state resumeを通過、update6 FP32 cache guardで失敗。元MATH容量不足は解消したが科学資格には未達。guardのsubcheck/max未保存とstatic/32timings未実施を保存。CPU saved3合格は別endpoint。旧sourceを再実行・救済せず次は別read-only CUDA saved3診断、累計12.881096秒を元180/4800へ継承する。Base全4項目goalはactive/未達。
+
 2026-10-15別[author tiled実装readiness](../reports/phase6/forgetting-attention-fused-preparation-20261015/CPU_readiness.json):CPU26/24/22と実親FP32cache合格。閉鎖MATH sourceを変更せず、新model/cache/trainer/owned configを明示。原kernel/config保持・layoutだけtranspose・license全文/NOTICE保存、依存変更0。CUDA値/全勾配/48x1024/両armresume/cache/timingはこれからで、既消費1.244660秒を元180/4800へ継承する。新科学/GPU0の準備記録、Base未完成。
 
 2026-10-15最新閉鎖: [key-bias MATH owned capacity](../reports/phase6/forgetting-attention-key-bias-probe-20261015/completion.json)は48x1024 CUDA OOM、GPU1.244660秒、Adam/TRAIN stream更新0。科学品質の不採用とは区別し、GPU resume/cache/32timing未実施を保持する。元referenceはCPU精度未達、key-biasはCPU精度合格だが容量未達。元technical180/総4800を全額継承し閉鎖source/形状/backend/allocator/予算を救済しない。次の[fused source assessment](../reports/phase6/forgetting-attention-key-bias-preparation-20261015/fused_kernel_assessment.json)は一次調査のみで、導入/追加GPU/品質証拠0。

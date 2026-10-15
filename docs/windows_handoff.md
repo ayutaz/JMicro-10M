@@ -1,5 +1,7 @@
 # Windows / WSL 引継ぎ
 
+2026-10-15最新[owned tiled終端](../reports/phase6/forgetting-attention-fused-probe-20261015/completion.json): 実64807/start66994256不存在、Windows10000終了。operator全勾配・48x1024 resident backward・learned全state resumeはpassedだが、update6 FP32 cache guard失敗で閉鎖、subcheck/max未保存。新GPU11.636436秒/累計12.881096秒、技術12更新・67400教師、科学0。元UI実64910/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start66995806/HTTP元親/Tokenizer/10M/idleへ復帰。verification_split3.ptはWSLのみ、CPU別観測は合格だがCUDA6再現ではない。旧job/条件を再launch/refreeze・救済せず、次は別read-only CUDA saved3診断。元180/4800の残り167.118904/4787.118904秒を必ず継承する。
+
 2026-10-15別[公式tiled runtime CPU準備](../reports/phase6/forgetting-attention-fused-preparation-20261015/CPU_readiness.json):26/24/22 checks・実親FP32cache合格、vendor元license全文/NOTICEと固定sourceを保持、依存変更0。専用probe/config/永続launcher凍結・preflight済み、新GPU0。前回1.244660秒を元180/4800へ継承し、独立BF16値/勾配→resident48x1024→両armresume/cache/timingの順。元UI63743/start66877161/同boot・HTTP元親/Tokenizer/10M/idleとkernel lockを起動前観測、launcher終端で復帰。verification weightsはWSLのみで科学初期化へ使わない。
 
 2026-10-15最新[owned capacity終端](../reports/phase6/forgetting-attention-key-bias-probe-20261015/completion.json): 実PID63690/start66876649不存在、Windows39152終了、MATH48x1024がOOM、GPU1.244660秒・Adam/TRAIN stream更新0・ledger closed。元UI実63743/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start66877161とHTTP元親/Tokenizer/10M/idleへ復帰。job/result/completionとlauncher小記録のみWindowsへ同hash保存、verification重み0。閉鎖probeを再実行/変更せず、元technical180/総4800の残り178.755340/4798.755340秒を次実装へ継承する。公式kernelは一次source調査だけで導入/追加GPU0、次は別proposal/勾配/runtime/依存確認。Base全4項目goal未達。

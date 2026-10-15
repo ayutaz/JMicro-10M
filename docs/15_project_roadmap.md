@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-15最新終端: [tiled owned gate](../reports/phase6/forgetting-attention-fused-probe-20261015/completion.json)は独立BF16値/全勾配・resident48x1024 full backward（peak11.023GB）・learned全state/history resumeを通過後、update6 FP32 cache guardで失敗し閉鎖。subcheck/max値未保存を推測せず、static/32timings/科学未実施を保持する。新11.636436＋旧1.244660＝累計12.881096秒、技術12更新/67400教師のみ。CPU saved3は元cache基準内だが別endpoint。次は別read-only CUDA saved3診断、旧学習/源条件を再実行・救済しない。元180/4800全額継承、独立全pipeline/fullDEV/全440/新TEST/採用と全4項目goalは未達。
+
 2026-10-15別[author tiled runtime準備](../reports/phase6/forgetting-attention-fused-preparation-20261015/CPU_readiness.json)は依存変更0・26/24/22 CPU checksと実親FP32cache合格。新owned gateは独立BF16値/全勾配→最大48x1024→両arm初期一致/全state resume/active cache/各32timingsを検証する。既消費1.244660秒を元technical180/総4800へ継承し、両科学100Mと各600秒評価reserveを含む実測資格前に科学へ進まない。新GPU0の準備記録、独立全pipeline/fullDEV/全440/新TEST/採用と全4項目goalは未達。
 
 2026-10-15最新判断: [key-bias owned GPU](../reports/phase6/forgetting-attention-key-bias-probe-20261015/completion.json)はcapacity FIRST48x1024のOOMで閉鎖。GPU1.244660秒、学習更新0、CUDA resume/cache/timing/科学未実施、元UI実63743/start66877161へ復帰確認。元technical180/総4800へ全額継承し、形状/allocator/backend等で現契約を救済しない。次は[公式タイル化kernelの一次source assessment](../reports/phase6/forgetting-attention-key-bias-preparation-20261015/fused_kernel_assessment.json)から別実装proposal/勾配・runtime/cache・license/依存条件を判断する。導入/追加GPU0、独立全pipeline/fullDEV/全440/新TEST/採用と全4項目goal未達。

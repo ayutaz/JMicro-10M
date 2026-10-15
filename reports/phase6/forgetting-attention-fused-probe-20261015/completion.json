@@ -1,0 +1,147 @@
+{
+  "status": "owned_tiled_forgetting_active_FP32_cache_guard_failed_condition_closed",
+  "created_at": "2026-10-15T01:18:45.1464323Z",
+  "actual_identity": {
+    "pid": 64807,
+    "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+    "start_ticks": "66994256"
+  },
+  "actual_process_exited": true,
+  "Windows_worker_PID": 10000,
+  "actual_Windows_worker_exited": true,
+  "config_sha256": "9bb6966a0ef827d4a3d46737311470c50cadf20e9d1e361faed418acadcbeeb9",
+  "failed_stage": "learned_forget_active_FP32_cache",
+  "error_type": "ValueError",
+  "error": "Active actual-parent FP32 cached/full gate failed at ORIGINAL tolerances",
+  "independent_BF16_operator_output_and_all_QKV_log_gate_gradients": {
+    "passed": true,
+    "cases": [
+      {
+        "length": 17,
+        "Q_heads": 4,
+        "original_KV_heads": 2,
+        "dimension": 64,
+        "absolute_tolerance": 0.01,
+        "relative_tolerance": 0.0,
+        "maximum_differences": {
+          "output": 0.00390625,
+          "Q": 0.0001220703125,
+          "K_original_KV2": 0.0001220703125,
+          "V_original_KV2": 0.001953125,
+          "gate_logits": 0.00021971995010972023,
+          "FP32_log_gate": 0.00045980513095855713
+        },
+        "passed": true
+      },
+      {
+        "length": 64,
+        "Q_heads": 4,
+        "original_KV_heads": 2,
+        "dimension": 64,
+        "absolute_tolerance": 0.01,
+        "relative_tolerance": 0.0,
+        "maximum_differences": {
+          "output": 0.00390625,
+          "Q": 0.0001220703125,
+          "K_original_KV2": 0.0001220703125,
+          "V_original_KV2": 0.001953125,
+          "gate_logits": 0.00025101378560066223,
+          "FP32_log_gate": 0.0005868077278137207
+        },
+        "passed": true
+      }
+    ],
+    "RNG_restored": true,
+    "scope": "Small independent BF16 attention and ALL gradients only; not FP32 cache/update tolerance"
+  },
+  "capacity": {
+    "passed": true,
+    "shape": [
+      48,
+      1024
+    ],
+    "teachers": 24576,
+    "physical_input_tokens": 49152,
+    "loss": 4.419668674468994,
+    "gradient_norm": 48.18291473388672,
+    "peak_VRAM_bytes": 11023070720,
+    "optimizer_updates": 0,
+    "backend": "pinned_author_Triton",
+    "gate_bias_precision": "FP32",
+    "autocast": "BF16"
+  },
+  "learned_arm_allstate_history6_vs3_save3_exact": true,
+  "static_arm_CUDA_resume_completed": false,
+  "both_arm_initial_CUDA_and_first_CE_comparison_completed": false,
+  "all32_timings_each_arm_completed": false,
+  "verification_optimizer_updates": 12,
+  "verification_main_CE_positions": 67400,
+  "scientific_teacher_positions": 0,
+  "new_GPU_seconds": 11.63643575401511,
+  "prior_GPU_seconds": 1.2446600809926167,
+  "cumulative_technical_GPU_seconds": 12.881095835007727,
+  "original_technical_cap_seconds": 180,
+  "remaining_original_technical_GPU_seconds": 167.11890416499227,
+  "original_total_GPU_cap_seconds": 4800,
+  "remaining_original_total_GPU_seconds": 4787.118904164992,
+  "cumulative_GPU_ledger_closed": true,
+  "failed_guard_atol": 3E-05,
+  "failed_guard_rtol": 2E-05,
+  "failed_CUDA_update6_subcheck_and_maxima": "Not retained by frozen guard. It jointly checked logits/log history/positions/validity/RNG; do not assert which subcheck failed or invent a numerical maximum.",
+  "saved_verification3": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/forgetting-attention-fused-probe-20261015/learned_forget_verification_split.pt",
+    "sha256": "1fbe833dbf5b74f29ea88def8689e42496b1e85b390341dae20a174ee3be457b",
+    "update": 3,
+    "scientific_use_forbidden": true
+  },
+  "separate_CPU_verification3": {
+    "receipt": "reports/phase6/forgetting-attention-fused-preparation-20261015/CPU_active_checkpoint3_cache.json",
+    "sha256": "2dce4c59b5f812ddd5dbca153c81dcdc71ecb5d09ea91375827b172ec47fae2e",
+    "CPU_seconds": 1.6671195339877158,
+    "logits_within_original_tolerance": true,
+    "maximum_logit_difference": 2.288818359375E-05,
+    "outside_tolerance": 0,
+    "log_gate_difference": 5.960464477539063E-08,
+    "new_GPU_seconds": 0,
+    "optimizer_updates": 0,
+    "scope": "CPU update3 only, not the failed CUDA update6; does not reproduce or localize exact failure."
+  },
+  "restored_UI_identity": {
+    "pid": 64910,
+    "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+    "start_ticks": "66995806"
+  },
+  "actual_restored_UI_alive": true,
+  "restored_UI": {
+    "name": "JMicro-10M",
+    "kind": "Base / 文章の続き",
+    "parameters": 10001152,
+    "training_tokens": 10000007168,
+    "update": 305176,
+    "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+    "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+    "device": "NVIDIA GeForce RTX 4090",
+    "precision": "BF16 / math attention",
+    "context": 1024,
+    "busy": false
+  },
+  "portable_sha256": {
+    "job.json": "a512c0cfb990401d9b7acca29d6b9a9911e03d8652149c63ecb7fe3d4c39a840",
+    "result.json": "35d6b83d74c7ff3f70654e6bf9a76205e2f0150c26f0e89138bbe3635315d92c"
+  },
+  "implementation_condition_closed": true,
+  "science_budget_eligible": false,
+  "science_contract_frozen": false,
+  "DEV_opened": false,
+  "TEST_opened": false,
+  "independent_learning_completed": false,
+  "fullDEV_completed": false,
+  "all440_completed": false,
+  "new_sealedTEST_completed": false,
+  "Base_qualified": false,
+  "Base_adopted": false,
+  "full_four_item_goal_complete": false,
+  "goal_status": "active_unachieved",
+  "next_action": "One separately declared read-only CUDA observation of saved verification3 may distinguish device-specific cache subchecks without recreating closed training or claiming update6 reproduction. Then assess a separately proposed stable FP32 inference arithmetic if evidence supports it. Preserve closed sources, original gates/precision/thresholds and carry ALL12.881095835007727s into original180/4800; no relaunch/refreeze, gain/init/seed/decoder/geometry/backend/budget rescue or scientific use of verification weights."
+}

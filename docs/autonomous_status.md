@@ -1,5 +1,13 @@
 # 現在の状態
 
+2026-10-15最新owned終端: [tiled forgetting completion](../reports/phase6/forgetting-attention-fused-probe-20261015/completion.json)は**learned update6のFP32 cache guard未達で実装条件閉鎖**。実PID64807/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start66994256不存在、Windows10000終了、ledger closed。独立BF16 operator17/64の出力/全QKV/log gate/logit gate勾配は事前1e-2/rtol0内、最大出力差.00390625・log gate差.0005868071。resident48x1024有限full backward、peak11023070720bytes、stress Adam0/weights不変。learned arm全state/history6対3+save3 exactも通過した。
+
+次のFP32 guardはlogits/log履歴/positions/validity/RNGを共同検査し失敗したが、**失敗subcheckとmax値は凍結guardが保存していない**ため推測しない。static arm、両arm CUDA初期一致、各32timingsには未到達。技術12 optimizer更新/67400 main教師、科学/DEV/TEST0。新GPU11.63643575401511秒＋旧1.2446600809926167秒＝累計12.881095835007727秒、元technical180/総4800の残り167.11890416499227/4787.118904164992を保持。saved verification split3はWSLのみ、科学初期化に使わない。
+
+別[CPU saved3観測](../reports/phase6/forgetting-attention-fused-preparation-20261015/CPU_active_checkpoint3_cache.json)は1.667120秒、新GPU/optimizer/新TRAIN/DEV/TEST0。元3e-5/2e-5でlogits差2.2888184e-5・log履歴差5.9604645e-8・範囲外0、全26 gate tensor活動を確認。ただしCPU update3であり失敗したCUDA update6の再現/原因確定/修理証拠ではない。同CPU観測を繰り返さず、次はsaved3のread-only CUDA観測を別契約で定義してsubcheckを収集し、学習再現や旧probe再launchをしない。
+
+元UIは実64910/start66995806/同boot・HTTP元親/Tokenizer/10M/idleへ復帰確認。凍結source/条件を保存し、gate/初期化/精度閾値/seed/decoder/形状/backend/予算の救済をしない。新実装検討にも累計全額を継承。科学資格/独立全pipeline/fullDEV/全440/新TEST/採用と全4項目goalはactive/未達。以下のreadiness等は履歴。
+
 2026-10-15別tiled runtime [CPU readiness](../reports/phase6/forgetting-attention-fused-preparation-20261015/CPU_readiness.json)。先行proposal後、公式blobf920086a6dbca9d1e9338a0778e88cf6abbf6002のproduction coreを別vendorへ保存。kernel/configは変更せず、embedded tests除外とeinopsのlayoutだけtransposeへ置換し、逆変換で元coreの全bytes一致を確認。元Apache2.0/FlagAttention表示・Apache/MIT全文・NOTICEを保持、固定torch/tritonのCPU importでCUDA未初期化、依存/uv.lock変更0。
 
 新model/cache/trainer kind/spec/lineageはCUDA BF16のfull-prefix学習だけtiled、FP32/CPU/masked/cacheは既合格key-bias数学経路。native CUDA helperでfusedを黙って省略しない。model26/trainer24/probe22 CPU checks・両arm全state/history6vs3+save3 exact、実元10M親CPU0.293578秒・count10,014,516・元weights/両arm初期logits exact・FP32fallback cache元3e-5/2e-5合格。CUDA数値/勾配/容量/再開/速度/品質の証拠ではない。

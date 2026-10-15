@@ -1,5 +1,7 @@
 # Base改善の今後の計画
 
+2026-10-15最新判断: [tiled owned gate](../reports/phase6/forgetting-attention-fused-probe-20261015/completion.json)は最大容量/独立全勾配/learned全state resumeを通過したが、update6 FP32 cache guardで閉鎖。subcheck/max未保存を推測せず、CPU saved3の合格をCUDA6の修理に読み替えない。次は別read-only CUDA saved3観測で条件を切り分け、旧学習再現・閾値/初期化/形状/backend等の救済をしない。新GPU11.636436＋既消費1.244660＝12.881096秒を元180/4800へ全額継承。技術12更新のみで科学/独立全pipeline/fullDEV/全440/新TEST/採用と全4項目goalは未達。
+
 2026-10-15別tiled実装の[CPU準備](../reports/phase6/forgetting-attention-fused-preparation-20261015/CPU_readiness.json)は元kernel/precision/10M/gate/data/品質を維持し、明示runtimeとlicenseを保存、26/24/22 checksと実親FP32cache合格。次は独立BF16 operatorの値/全勾配、resident48x1024、両arm初期一致/全state resume/active cache/各32timingsを同owned gateで実測する。前回1.244660秒を元technical180/総4800へ継承、両科学100Mと各600秒評価reserveを含む。新GPU0/科学未資格、独立全pipeline/fullDEV/全440/新TEST/採用と全4項目goalは未達。
 
 2026-10-15最新判断: [key-bias数学SDPA owned gate](../reports/phase6/forgetting-attention-key-bias-probe-20261015/completion.json)は最大48x1024の容量不足で閉鎖、GPU1.244660秒・学習更新0。CPU精度合格を実機学習可能と読み替えず、形状/allocator/backend/予算で閉鎖条件を救済しない。次の[公式タイル化kernel一次調査](../reports/phase6/forgetting-attention-key-bias-preparation-20261015/fused_kernel_assessment.json)は未導入・未実機で、別実装proposal/勾配/runtime/cache/全state資格が必要。全消費を元technical180/総4800へ継承し、元10M/品質/独立全pipeline/fullDEV/全440/新TEST/採用の範囲を維持する。全4項目goalはactive/未達。

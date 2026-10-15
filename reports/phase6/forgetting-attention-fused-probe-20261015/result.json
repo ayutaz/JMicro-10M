@@ -1,0 +1,94 @@
+{
+  "status": "failed",
+  "passed": false,
+  "error_type": "ValueError",
+  "error": "Active actual-parent FP32 cached/full gate failed at ORIGINAL tolerances",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/probe_forgetting_attention_fused.py\", line 314, in run\n    cache = cache_gate(resumed.model, window)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/probe_forgetting_attention_fused.py\", line 212, in cache_gate\n    raise ValueError('Active actual-parent FP32 cached/full gate failed at ORIGINAL tolerances')\nValueError: Active actual-parent FP32 cached/full gate failed at ORIGINAL tolerances\n",
+  "failed_stage": "learned_forget_active_FP32_cache",
+  "memory_policy": {
+    "torch_version": "2.14.1+cu130",
+    "device": "NVIDIA GeForce RTX 4090",
+    "visible_device_bytes": 25756696576,
+    "process_fraction": 0.8999999999844701,
+    "allocator_allowance_bytes": 23181026918,
+    "expected_worst_peak_bytes": 0
+  },
+  "independent_operator_equivalence": {
+    "passed": true,
+    "cases": [
+      {
+        "length": 17,
+        "Q_heads": 4,
+        "original_KV_heads": 2,
+        "dimension": 64,
+        "absolute_tolerance": 0.01,
+        "relative_tolerance": 0.0,
+        "maximum_differences": {
+          "output": 0.00390625,
+          "Q": 0.0001220703125,
+          "K_original_KV2": 0.0001220703125,
+          "V_original_KV2": 0.001953125,
+          "gate_logits": 0.00021971995010972023,
+          "FP32_log_gate": 0.00045980513095855713
+        },
+        "passed": true
+      },
+      {
+        "length": 64,
+        "Q_heads": 4,
+        "original_KV_heads": 2,
+        "dimension": 64,
+        "absolute_tolerance": 0.01,
+        "relative_tolerance": 0.0,
+        "maximum_differences": {
+          "output": 0.00390625,
+          "Q": 0.0001220703125,
+          "K_original_KV2": 0.0001220703125,
+          "V_original_KV2": 0.001953125,
+          "gate_logits": 0.00025101378560066223,
+          "FP32_log_gate": 0.0005868077278137207
+        },
+        "passed": true
+      }
+    ],
+    "RNG_restored": true,
+    "scope": "Small independent BF16 attention and ALL gradients only; not FP32 cache/update tolerance"
+  },
+  "capacity": {
+    "passed": true,
+    "shape": [
+      48,
+      1024
+    ],
+    "teachers": 24576,
+    "physical_input_tokens": 49152,
+    "loss": 4.419668674468994,
+    "gradient_norm": 48.18291473388672,
+    "peak_VRAM_bytes": 11023070720,
+    "optimizer_updates": 0,
+    "backend": "pinned_author_Triton",
+    "gate_bias_precision": "FP32",
+    "autocast": "BF16"
+  },
+  "resume_completed_arms": {
+    "learned_forget": true
+  },
+  "peak_VRAM_bytes": 11023070720,
+  "config_sha256": "9bb6966a0ef827d4a3d46737311470c50cadf20e9d1e361faed418acadcbeeb9",
+  "actual_identity": {
+    "pid": 64807,
+    "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+    "start_ticks": "66994256"
+  },
+  "GPU_occupancy_seconds": 11.63643575401511,
+  "technical_GPU_seconds_including_prior": 12.881095835007727,
+  "cumulative_GPU_ledger_closed": true,
+  "verification_optimizer_updates": 12,
+  "verification_main_CE_positions": 67400,
+  "scientific_teacher_positions": 0,
+  "TEST_opened": false,
+  "DEV_opened": false,
+  "Base_qualified": false,
+  "Base_adopted": false,
+  "science_budget_eligible": false
+}
