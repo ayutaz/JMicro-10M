@@ -1,0 +1,28 @@
+{
+  "created_at": "2026-10-15T00:33:20.0499131Z",
+  "status": "prospective_matched_conversion_design_before_model_implementation",
+  "proposal_sha256": "75dcb68adacd57092e92d6a5f726e2a32b946f817769a86e580085aa31cc8c06",
+  "arms": [
+    "learned_forget",
+    "static_half_forget"
+  ],
+  "initialization": "Both copy identical original native10B tensors without changing O or any original coordinate. Additional head-wise gate linear weights AND biases start at0 using RNG-preserving construction; both gates initially0.5. This changes native attention and is NOT native function parity. Both new arms have identical initial function.",
+  "intervention": "learned arm propagates gradients through log_sigmoid(headwise gate projection); static arm multiplies projection logits by0 before log_sigmoid so all added coordinate gradients stay0. Original next-token CE alone; no auxiliary or shifted gold.",
+  "comparison": "Train BOTH matched conversion arms on the same accepted original100M teacher stream, original48/42/fresh AdamW1e-5 WD.1/constant/clip1. The cached original native CE and strong/historical references stay additional required controls; improving only over weak static0.5 decay cannot qualify.",
+  "count": "Both physical/total trainable coordinates estimated10014516; static added13364 have zero gradient by policy. Count must be verified on actual full model. No train-only over-budget heads.",
+  "mathematics": "Original scaled GQA RoPE QK logits plus FP32 cumulative log sigmoid query-minus-key bias. Padding contributes0; all invalid attention rows must remain finite/zero. No negative forget gates, signed anti-decay, output scaling, lag feature mixing, mask pruning or RoPE removal.",
+  "implementation": "Separate explicitly tagged model/attention and typed KV plus log-gate-history cache. Explicit selected-CE hidden traversal and strict state/export boundaries. Retain frozen native and every previous scientific source.",
+  "precision_backend": "CPU reference mathematical SDPA with FP32 log bias; CUDA backend feasibility unresolved. Do not claim existing Flash path supports an arbitrary additive differentiable mask; do not silently quantize cumulative logs into augmented BF16 Q/K. Any new runtime implementation/backend requires explicit binding and numerical/gradient/cache proof in both arms before science.",
+  "proposed_caps": {
+    "technical_GPU_seconds": 180,
+    "total_new_GPU_seconds_including_both_arms_and_evaluation": 4800,
+    "scientific_cap_frozen": false,
+    "measured_eligible": false
+  },
+  "quality": "Retain original absolute, matched/native, strong, historical BPB/retention/content gates; additionally paired candidate versus newly trained static control, all160 new outputs individually read. No final independent learning until a qualified recipe; genuine whole-pipeline fresh seed43/fullDEV/all440/new sealedTEST/adoption remain pending.",
+  "failure": "One initialization/decay mechanism and matched comparison, no gate bias/parent/teacher/LR/decoder/budget rescue; numerical/capacity/forecast failure closes this implementation before scientific learning.",
+  "scientific_learning": 0,
+  "GPU_seconds": 0,
+  "actual_full_model_verified": false,
+  "science_contract_frozen": false
+}

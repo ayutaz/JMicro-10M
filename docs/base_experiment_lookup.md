@@ -1,5 +1,7 @@
 # Baseの実験結果を探す
 
+2026-10-15CPU reference閉鎖: [forgetting attention](../reports/phase6/forgetting-attention-preparation-20261015/CPU_model_trainer_closeout.json)は実count10,014,516・model14/trainer19 passedだが、実親full/chunk精度0.0001010895で元許容差を満たさず科学/GPU0。品質不採用の実験と区別する。initial gate.5の両arm関数はexactだがnativeとは異なる。失敗audit source/hash/diagnostic logを保全し、閾値を緩めず同technical spanで数値差の局在化が次。数学7checksやmodel/trainer未実装は下の履歴。
+
 2026-10-15CPU数学のみ: [forgetting-attention](../reports/phase6/forgetting-attention-preparation-20261015/proposal.json)はpre-softmax累積gate減衰の[7 checks](../reports/phase6/forgetting-attention-preparation-20261015/CPU_math.json)まで。actual model/cache/trainer/count/初期対照設計/GPU品質なし。旧post-SDPA gateは出力scalar、旧QKVはprojected featureのlagで作用位置が異なる。次案の成功や新規性の網羅証明ではない。旧next-two原proposal/config/completionとrecurrent novelty reviewは既閉鎖と再確認し、head/horizon/visit順序の救済を除外した。
 
 2026-10-15最新閉鎖: [causal-QKV contiguous100M](../reports/phase6/causal-qkv-contiguous-science-20261015/completion.json)は全state/history・原CE対照＋宣言13,312lag座標差・全80個別notesまで確認し不採用。native10,001,152対候補10,014,464、文法61/80、一貫性1/80、完結1/80、EOS21/80、反復47/80、BPB0.998450。技術の数値一致・速度改善と文章品質を混同しない。固定lag/tap/層subset/activation/親/seed/decoder/予算を閉鎖し救済せず、次案は原proposal/trainer/resultと照合する。独立fresh全pipeline/fullDEV/全440/新封印TEST/採用と全4項目goalはactive/未達。以下は当時の履歴。
