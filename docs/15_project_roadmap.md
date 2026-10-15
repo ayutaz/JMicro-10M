@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-15最新判断: [key-bias owned GPU](../reports/phase6/forgetting-attention-key-bias-probe-20261015/completion.json)はcapacity FIRST48x1024のOOMで閉鎖。GPU1.244660秒、学習更新0、CUDA resume/cache/timing/科学未実施、元UI実63743/start66877161へ復帰確認。元technical180/総4800へ全額継承し、形状/allocator/backend等で現契約を救済しない。次は[公式タイル化kernelの一次source assessment](../reports/phase6/forgetting-attention-key-bias-preparation-20261015/fused_kernel_assessment.json)から別実装proposal/勾配・runtime/cache・license/依存条件を判断する。導入/追加GPU0、独立全pipeline/fullDEV/全440/新TEST/採用と全4項目goal未達。
+
 2026-10-15別runtimeの[CPU readiness](../reports/phase6/forgetting-attention-key-bias-preparation-20261015/CPU_readiness.json)はmodel17/trainer23/probe16・両arm全state resumeと実元親cache精度を通過。softmax行定数を省く同数式で元FP32/初期化/10M/品質を維持し旧実装は保存。次は専用owned180秒CUDAで48x1024 resident capacityを最初に確認し、通過時だけ両armのresume/cache/32timings・総4800内を実測する。新GPU0/科学未凍結の準備記録で、独立全pipeline/fullDEV/全440/新TEST/採用と全4項目goalは未達。
 
 2026-10-15対象限定CPU診断は[完了](../reports/phase6/forgetting-attention-preparation-20261015/CPU_cache_layer_localization.json)。元nativeは同cache基準内、forgetting referenceは未達、非exactの出始めは双方共通で原因を断定できない。完了診断を反復せず、次は別の同数式安定実装の価値を判断する。閾値/初期化/親/decoder/予算を変更せず、実親cache・勾配・typed stateの資格前に科学/GPUを開始しない。独立全pipeline/fullDEV/全440/新TEST/採用と全4項目goalはactive/未達。

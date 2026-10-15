@@ -1,0 +1,34 @@
+{
+  "status": "failed",
+  "passed": false,
+  "error_type": "OutOfMemoryError",
+  "error": "CUDA out of memory. Tried to allocate 768.00 MiB. GPU 0 has a total capacity of 23.99 GiB of which 1.10 GiB is free. Including non-PyTorch memory, this process has 17179869184.00 GiB memory in use. 21.59 GiB allowed; Of the allocated memory 20.93 GiB is allocated by PyTorch, and 314.77 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/probe_forgetting_attention_key_bias.py\", line 197, in run\n    maximum_shape = capacity(model, window)\n                    ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/probe_forgetting_attention_key_bias.py\", line 113, in capacity\n    hidden = model.right_padded_hidden(ids)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/aihub_ubuntu/src/japanese-tiny-llm-10m/src/jmicro/forgetting_attention.py\", line 166, in right_padded_hidden\n    return self._blocks(ids, positions, None, valid, causal=True)[0]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/aihub_ubuntu/src/japanese-tiny-llm-10m/src/jmicro/forgetting_attention.py\", line 151, in _blocks\n    attention, kv, logs = block.self_attn(block.input_layernorm(x), positions, allowed,\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/aihub_ubuntu/src/japanese-tiny-llm-10m/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1783, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/aihub_ubuntu/src/japanese-tiny-llm-10m/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1794, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/aihub_ubuntu/src/japanese-tiny-llm-10m/src/jmicro/forgetting_attention_key_bias.py\", line 87, in forward\n    attended = F.scaled_dot_product_attention(q, k.repeat_interleave(groups, 1),\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 768.00 MiB. GPU 0 has a total capacity of 23.99 GiB of which 1.10 GiB is free. Including non-PyTorch memory, this process has 17179869184.00 GiB memory in use. 21.59 GiB allowed; Of the allocated memory 20.93 GiB is allocated by PyTorch, and 314.77 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)\n",
+  "failed_stage": "capacity_FIRST48x1024_no_Adam",
+  "memory_policy": {
+    "torch_version": "2.14.1+cu130",
+    "device": "NVIDIA GeForce RTX 4090",
+    "visible_device_bytes": 25756696576,
+    "process_fraction": 0.8999999999844701,
+    "allocator_allowance_bytes": 23181026918,
+    "expected_worst_peak_bytes": 0
+  },
+  "peak_VRAM_bytes": 22478567424,
+  "config_sha256": "d63aee11db3649f5dbfbfbc4ed6c22701dc47f4b10927874f595480b1226067e",
+  "actual_identity": {
+    "pid": 63690,
+    "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+    "start_ticks": "66876649"
+  },
+  "GPU_occupancy_seconds": 1.2446600809926167,
+  "technical_GPU_seconds_including_prior": 1.2446600809926167,
+  "cumulative_GPU_ledger_closed": true,
+  "verification_optimizer_updates": 0,
+  "verification_main_CE_positions": 0,
+  "scientific_teacher_positions": 0,
+  "TEST_opened": false,
+  "DEV_opened": false,
+  "Base_qualified": false,
+  "Base_adopted": false,
+  "science_budget_eligible": false
+}

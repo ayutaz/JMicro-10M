@@ -1,5 +1,7 @@
 # Baseの実験結果を探す
 
+2026-10-15最新閉鎖: [key-bias MATH owned capacity](../reports/phase6/forgetting-attention-key-bias-probe-20261015/completion.json)は48x1024 CUDA OOM、GPU1.244660秒、Adam/TRAIN stream更新0。科学品質の不採用とは区別し、GPU resume/cache/32timing未実施を保持する。元referenceはCPU精度未達、key-biasはCPU精度合格だが容量未達。元technical180/総4800を全額継承し閉鎖source/形状/backend/allocator/予算を救済しない。次の[fused source assessment](../reports/phase6/forgetting-attention-key-bias-preparation-20261015/fused_kernel_assessment.json)は一次調査のみで、導入/追加GPU/品質証拠0。
+
 2026-10-15別runtime [key-bias CPU readiness](../reports/phase6/forgetting-attention-key-bias-preparation-20261015/CPU_readiness.json): softmax行定数を省く同数式、元precision/backend/初期gate/10M/品質を維持。17/23/16 checksと実親cache gate passed、旧runtime cache/state移行拒否。元referenceとのbitwise更新同値ではなく数式同値と元精度合格。次はowned180秒のcapacity FIRST48x1024、両arm実測総4800内資格。新科学/GPU0の準備記録、旧reference失敗は保存。
 
 2026-10-15[実親CPU cache層別localization](../reports/phase6/forgetting-attention-preparation-20261015/CPU_cache_layer_localization.json)完了。native最終差1.4305115e-5は元基準内、forgetting reference0.0001010895は未達。初回非exact箇所は双方共通で、数値差の原因や品質の根因を確定していない。同診断を再実行せず、閉鎖referenceを保持し、次は同数式の別安定実装の価値を検討する。

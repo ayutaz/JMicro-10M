@@ -1,5 +1,7 @@
 # Base改善の今後の計画
 
+2026-10-15最新判断: [key-bias数学SDPA owned gate](../reports/phase6/forgetting-attention-key-bias-probe-20261015/completion.json)は最大48x1024の容量不足で閉鎖、GPU1.244660秒・学習更新0。CPU精度合格を実機学習可能と読み替えず、形状/allocator/backend/予算で閉鎖条件を救済しない。次の[公式タイル化kernel一次調査](../reports/phase6/forgetting-attention-key-bias-preparation-20261015/fused_kernel_assessment.json)は未導入・未実機で、別実装proposal/勾配/runtime/cache/全state資格が必要。全消費を元technical180/総4800へ継承し、元10M/品質/独立全pipeline/fullDEV/全440/新TEST/採用の範囲を維持する。全4項目goalはactive/未達。
+
 2026-10-15[別key-bias実装](../reports/phase6/forgetting-attention-key-bias-preparation-20261015/CPU_readiness.json)は同数式のsoftmax行定数を省き、元精度/初期化/FP32/10M/品質を変えず実親cache gateを通過。17/23/16 CPU checksと両arm全state resumeもpassed。次は専用owned180秒で最大48x1024のresident capacityをAdam前に確認し、通過時だけ両armの学習再開/cache/32timingsと総4800内を実測する。失敗時は閾値・batch・backend等で救済せず閉鎖。科学/独立全pipeline/fullDEV/全440/新TEST/採用は未資格、全4項目goalはactive/未達。
 
 2026-10-15対象限定[実親cache層別診断](../reports/phase6/forgetting-attention-preparation-20261015/CPU_cache_layer_localization.json)は完了。最終差はnative1.4305115e-5で元基準内、forgetting reference0.0001010895で未達、最初の非exact箇所は双方共通で原因は未確定。完了診断の反復や初期gate/親/精度閾値等の救済をせず、同数式の別安定実装の価値と必要証拠を次に判断する。新科学/GPU0、独立全pipeline/fullDEV/全440/新TEST/採用と全4項目goalはactive/未達。

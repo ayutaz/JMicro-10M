@@ -1,5 +1,11 @@
 # 現在の状態
 
+2026-10-15最新owned終端: [key-bias MATH capacity completion](../reports/phase6/forgetting-attention-key-bias-probe-20261015/completion.json)は**最大48x1024のCUDA容量未達で実装条件閉鎖**。実PID63690/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start66876649不存在、Windows39152終了、ledger closed。数学SDPA/CUDA BF16＋FP32 log biasのforward中に768MiB確保がOOMとなり、forward/backward完遂・Adam・実TRAIN stream更新・科学・DEV/TESTは0。GPU1.2446600809926167秒、PyTorch peak22478567424bytes、実allocator allowance23181026918bytes。raw例外の非PyTorch使用量には不可能な値が含まれ、その値から実使用量を推定せず全文を保持する。
+
+元UIはPID63743/start66877161/同bootとHTTP元親/Tokenizer/10M/idleを実確認して復帰。CPU17/23/16・実親cache合格をGPU容量の代替にしない。閉鎖source/契約を再launch/refreeze・batch/context/backend/allocator/予算の救済で変更せず、既消費1.2446600809926167秒を元technical180/総4800へ必ず継承（残り178.75533991900738/4798.755339919007）。GPU全state resume/cache/32timingsは未実施、科学契約なし。
+
+次の[一次source assessment](../reports/phase6/forgetting-attention-key-bias-preparation-20261015/fused_kernel_assessment.json)で著者公式blobf920086a6dbca9d1e9338a0778e88cf6abbf6002のFP32 log gate/勾配returnを確認した。ローカル動作・決定性・VRAM・品質は未検証、導入/依存変更/追加GPU0。将来利用時はfile内Apache2.0/FlagAttention表示を保持し、別の明示実装proposalとsource/license/依存・独立勾配・runtime/cache/全state証拠を準備してから新owned gateを判断する。独立全pipeline/fullDEV/全440/新TEST/採用と全4項目goalはactive/未達。以下のreadiness等は履歴。
+
 2026-10-15別実装readiness: [先行proposal](../reports/phase6/forgetting-attention-key-bias-preparation-20261015/proposal.json)からsoftmaxのquery行定数を省く別runtimeを実装。[CPU readiness](../reports/phase6/forgetting-attention-key-bias-preparation-20261015/CPU_readiness.json)で新model17/trainer23/probe16 checks、両arm全state/history6対3+save3 exact、旧cache/checkpoint移行拒否を確認。実元10M親2x64 CPU0.291956秒で全旧weights/config/tie/RNG保持・両arm初期logits exact、cacheは元**絶対＋相対**3e-5/2e-5を全要素で通過（max4.196167e-5で絶対差だけの合格主張ではない）。同数式でもFP32演算順が変わり旧referenceとbitwise学習同値とは呼ばない。元native初期関数を変える両arm/f.5/10,014,516・元全data/品質/精度/backendを維持。
 
 専用owned CUDA probe/永続launcher/configを凍結・CPU preflight済み、新GPU0の準備記録。元technical180/総4800は両科学100M arm込みの提案上限で実測資格なし。最初にresident allocator guard下の48x1024・MATH/CUDA BF16＋FP32 biasをAdam/実TRAIN更新前に検証し、不合格ならbatch/context/backend/閾値等を救済せず閉鎖。通過時だけ両armの全state resume/active cache/32timingsを同累計上限内で実測する。verification weightsは科学へ使わない。起動前に元UI実60818/start66693747/同boot・HTTP元親/Tokenizer/10M/idle・唯一のGPU/kernel lock ownerを確認、launcherが終端で元UI復帰。科学契約/独立全pipeline/fullDEV/全440/新TEST/採用は未資格、全4項目goalはactive/未達。下のreference失敗は履歴。

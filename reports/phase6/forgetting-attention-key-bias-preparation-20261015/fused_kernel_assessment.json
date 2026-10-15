@@ -1,0 +1,39 @@
+{
+  "status": "primary_source_fused_kernel_assessment_only_not_implementation_or_launch",
+  "created_at": "2026-10-15T00:56:59.3657156Z",
+  "closed_capacity": "reports/phase6/forgetting-attention-key-bias-probe-20261015/completion.json",
+  "closed_capacity_sha256": "af14874918de8bde07ea4c5578d49001a6c8dd4e4b6b68fdb887b2dae474f675",
+  "primary_repository": "https://github.com/zhixuan-lin/forgetting-transformer",
+  "readme": "https://github.com/zhixuan-lin/forgetting-transformer/blob/main/README.md",
+  "tree_observation_sha": "883f260c636e87971339749b0d8310004794a5cc",
+  "kernel_path": "src/forgetting_transformer/ops/forgetting_attention.py",
+  "kernel_git_blob_sha": "f920086a6dbca9d1e9338a0778e88cf6abbf6002",
+  "kernel_blob_API": "https://api.github.com/repos/zhixuan-lin/forgetting-transformer/git/blobs/f920086a6dbca9d1e9338a0778e88cf6abbf6002",
+  "actual_source_observations": [
+    "Official README describes FlashAttention-based kernel with BF16/FP16 QKV and FP32 log_fgate; same-length causal batches only, head_dim64 supported. This is documentation, not this environment evidence.",
+    "Source lines86-87 assert full log_fgate shape and FP32 dtype;127 forms cumulative gate history.",
+    "Source311-400 allocates/logically accumulates gate-gradient history, reverse cumulative transformation and returns gradients for Q,K,V AND log gate. Both projection weight and bias must receive actual gradients in any adapter.",
+    "No atomic_add text was found in inspected file; this does not prove determinism, fullstate resume or kernel correctness.",
+    "Source header preserves BAAI FlagAttention derivation and Apache2.0 license, although repository README advertises MIT. Preserve applicable source notices/license if code is later used."
+  ],
+  "candidate_scope": "Separately declared tiled implementation only; retain10M/GQA mapping/original tensors/gate.5/FP32 log gates/gold stream/quality/geometry and exact new-runtime save-resume. Do not substitute a different backend inside closed math contract or claim bitwise math-runtime update equivalence.",
+  "unresolved": [
+    "License attribution and dependency/import compatibility in pinned uv environment without changing frozen package versions",
+    "Explicit new runtime/model/cache/trainer binding; closed math files untouched",
+    "Q4/KV2 mapping via same existing KV repeats; no output gate, QKNorm, RoPE removal, ACP/pruning or changed gate",
+    "Independent forward AND all Q/K/V/log-gate gradients versus reference before full max geometry",
+    "FP32 masked/hole/cached inference may need the already CPU-qualified math path; this is not permission to skip actual CUDA cache proof",
+    "Actual resident48x1024 finite backward and fullstate/history6 versus3+save3 plus both-arm32timings under cumulative original budgets"
+  ],
+  "source_installed": false,
+  "new_dependencies": 0,
+  "new_GPU_after_closed_probe_seconds": 0,
+  "scientific_learning": 0,
+  "remaining_original_technical_GPU_seconds": 178.75533991900738,
+  "remaining_original_total_GPU_seconds": 4798.755339919007,
+  "prior_GPU_seconds_must_carry": 1.2446600809926167,
+  "GPU_recipe_frozen": false,
+  "Base_qualified": false,
+  "full_four_item_goal_complete": false,
+  "next_action": "Prepare separate explicit implementation proposal and CPU adapter/gradient/binding evidence only after source/license/dependency review. No automatic GPU launch from this assessment."
+}

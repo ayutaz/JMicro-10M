@@ -1,5 +1,7 @@
 # Windows / WSL 引継ぎ
 
+2026-10-15最新[owned capacity終端](../reports/phase6/forgetting-attention-key-bias-probe-20261015/completion.json): 実PID63690/start66876649不存在、Windows39152終了、MATH48x1024がOOM、GPU1.244660秒・Adam/TRAIN stream更新0・ledger closed。元UI実63743/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start66877161とHTTP元親/Tokenizer/10M/idleへ復帰。job/result/completionとlauncher小記録のみWindowsへ同hash保存、verification重み0。閉鎖probeを再実行/変更せず、元technical180/総4800の残り178.755340/4798.755340秒を次実装へ継承する。公式kernelは一次source調査だけで導入/追加GPU0、次は別proposal/勾配/runtime/依存確認。Base全4項目goal未達。
+
 2026-10-15[別key-bias実装CPU準備](../reports/phase6/forgetting-attention-key-bias-preparation-20261015/CPU_readiness.json)は17/23/16 checksと実親cache合格、source/runtime/専用probe/永続launcher/config凍結・preflight済み。owned180秒は最初に48x1024 resident capacityをAdam前に確認し不合格なら閉鎖、通過時だけ両arm実測を行う。新GPU0の準備記録、科学契約/予算資格はまだない。起動前に元UI60818/start66693747/同boot・HTTP元親/Tokenizer/10M/idle・唯一のGPU/kernel lock ownerを実確認した。launcher終端で元UI復帰、verification weightsはWSLのみで科学へ移さない。
 
 2026-10-15対象限定[CPU cache層別診断](../reports/phase6/forgetting-attention-preparation-20261015/CPU_cache_layer_localization.json)完了、CPU0.270529秒・新GPU/学習/Corpus/DEV/TEST0。元nativeはcache基準内、forgetting referenceは未達。完了診断を再実行しない。source/config/結果を同hashで保全し、次は別の同数式安定実装の評価判断。現在GPU起動用の有資格recipeはなく、元UIを今回停止していない。
