@@ -1,0 +1,41 @@
+{
+  "status": "failed",
+  "passed": false,
+  "error_type": "OutOfMemoryError",
+  "error": "CUDA out of memory. Tried to allocate 384.00 MiB. GPU 0 has a total capacity of 23.99 GiB of which 870.12 MiB is free. Including non-PyTorch memory, this process has 17179869184.00 GiB memory in use. 21.59 GiB allowed; Of the allocated memory 21.40 GiB is allocated by PyTorch, and 44.15 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/probe_rdrop.py\", line 261, in run\n    job['capacity'] = capacity(trainer,payload)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/probe_rdrop.py\", line 192, in capacity\n    losses = two_view_objective(first,second,targets[selected])\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/aihub_ubuntu/src/japanese-tiny-llm-10m/src/jmicro/rdrop.py\", line 28, in two_view_objective\n    symmetric = .5*((lp.exp()-lq.exp())*(lp-lq)).sum(-1).mean()\n                                         ~~^~~\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 384.00 MiB. GPU 0 has a total capacity of 23.99 GiB of which 870.12 MiB is free. Including non-PyTorch memory, this process has 17179869184.00 GiB memory in use. 21.59 GiB allowed; Of the allocated memory 21.40 GiB is allocated by PyTorch, and 44.15 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)\n",
+  "failed_stage": "maximum_TWO_retained_graphs_FIRST_before_ANY_Adam",
+  "capacity_requested": {
+    "shape": [
+      48,
+      1024
+    ],
+    "retained_decoder_graphs": 2,
+    "before_any_Adam": true
+  },
+  "capacity": null,
+  "partial_peak_VRAM_bytes": 22976241664,
+  "active_cache": null,
+  "verification6_snapshot": null,
+  "config_sha256": "9b4d11fb07f1ac55d937928ffea01f275a5797b17a2e87ac9465d94f89a905b8",
+  "actual_identity": {
+    "pid": 445044,
+    "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+    "start_ticks": "68362424"
+  },
+  "GPU_occupancy_seconds": 1.4443892299896106,
+  "prior_completed_science_GPU_seconds": 2946.1623015810037,
+  "cumulative_technical_GPU_seconds": 118.38617170206271,
+  "cumulative_total_GPU_seconds": 3064.5484732830664,
+  "cumulative_GPU_ledger_closed": true,
+  "native3_subchecks": [],
+  "cached_zero_head_control3_subchecks": [],
+  "verification_optimizer_updates": 0,
+  "verification_main_CE_positions": 0,
+  "scientific_teacher_positions": 0,
+  "DEV_opened": false,
+  "TEST_opened": false,
+  "Base_qualified": false,
+  "Base_adopted": false,
+  "science_budget_eligible": false
+}
