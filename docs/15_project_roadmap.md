@@ -1,5 +1,10 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-15最新準備: [canonical FP32 readiness](../reports/phase6/forgetting-attention-canonical-preparation-20261015/CPU_readiness.json)は別proposal後に固定64行pointwise/Q64・元context長K workspaceのFP32/MATH実装を追加。実cacheは実tokenのKV/logs/validity/positionsだけを保持し、過去decoder再計算なし。新runtime/model/cache/trainer kind/spec/lineageで旧stateを拒否、元BF16 tiled学習経路/13,364 gate座標/元品質条件は維持。CPU model23/trainer27/probe24、実元10M親0.589500秒/count10,014,516・旧weights/両arm初期logits exact、cache差1.239777e-5で元atol3e-5/rtol2e-5内。GPU preflightのみ合格、科学未資格。
+
+先行[read-only CUDA saved3完了](../reports/phase6/forgetting-attention-fused-cache-diagnostic-20261015/completion.json)は元全subcheck合格、max5.531311e-5・複合許容範囲外0。これは失敗した旧CUDA6の再現/原因確定/修理証拠ではない。新0.885824＋既消費12.881096＝累計13.766920秒を元technical180/総4800へ全額継承。次の新owned gateは旧saved3とのBF16全数値比較、両arm実6snapshot・全cache subcheck保存、全state resume/最大48x1024/各32timingsを検証する。旧probe/診断を再launch・閾値/初期化/形状/予算を救済しない。独立fresh全pipeline/fullDEV/全440/新TEST/採用と全4項目goalはactive/未達。以下の診断準備等は履歴。
+
+
 2026-10-15最新終端: [tiled owned gate](../reports/phase6/forgetting-attention-fused-probe-20261015/completion.json)は独立BF16値/全勾配・resident48x1024 full backward（peak11.023GB）・learned全state/history resumeを通過後、update6 FP32 cache guardで失敗し閉鎖。subcheck/max値未保存を推測せず、static/32timings/科学未実施を保持する。新11.636436＋旧1.244660＝累計12.881096秒、技術12更新/67400教師のみ。CPU saved3は元cache基準内だが別endpoint。次は別read-only CUDA saved3診断、旧学習/源条件を再実行・救済しない。元180/4800全額継承、独立全pipeline/fullDEV/全440/新TEST/採用と全4項目goalは未達。
 
 2026-10-15別[author tiled runtime準備](../reports/phase6/forgetting-attention-fused-preparation-20261015/CPU_readiness.json)は依存変更0・26/24/22 CPU checksと実親FP32cache合格。新owned gateは独立BF16値/全勾配→最大48x1024→両arm初期一致/全state resume/active cache/各32timingsを検証する。既消費1.244660秒を元technical180/総4800へ継承し、両科学100Mと各600秒評価reserveを含む実測資格前に科学へ進まない。新GPU0の準備記録、独立全pipeline/fullDEV/全440/新TEST/採用と全4項目goalは未達。

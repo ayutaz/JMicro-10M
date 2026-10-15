@@ -1,5 +1,8 @@
 # JMicro-10M development and training
 
+Latest separate canonical FP32 preparation: reports/phase6/forgetting-attention-canonical-preparation-20261015/CPU_readiness.json. CPU model23/trainer27/probe24 and actual native10M0.589500s/count10014516/old weights+matched initial logits exact/cache max1.239777e-5 within original3e-5+2e-5 passed. Explicit new runtime/cache/trainer bindings, fixed row64/Q64/Kcontext workspaces, ONLY real-token KV/log/valid/position cache, no past decoder recomputation. Same tiled BF16 training; CUDA still unqualified. Latest read-only CUDA saved3 COMPLETED: all original subchecks pass/max5.531311e-5/outside0; not failed oldCUDA6 reproduction/cause/repair. Carry ALL13.766919628018513s into unchanged technical180/total4800. Next separate owned canonical gate compares original saved3 numerical BF16 state, saves actual6 before cache, retains ALL cache subchecks even on failure, tests BOTH arms/capacity/resume/32timings. Never relaunch closed probes/diagnostics or rescue precision/gate/init/geometry/budget. Full four-item Base goal active/unachieved; scientific qualification, independent whole pipeline/fullDEV/all440/newTEST/adoption pending. Older diagnostic-next/readiness below is history.
+
+
 Read docs/autonomous_status.md, docs/15_project_roadmap.md and docs/windows_handoff.md before continuing. Latest actual Base quality comparison evidence is reports/phase6/causal-qkv-contiguous-science-20261015/completion.json. The active four-item scope and current status govern execution. Result144/plan145 and document coverage146/catalog remain preserved historical context. Plans alone are not execution authorization.
 
 ## Current scope — 2026-10-15 JST: four-item Base resumption

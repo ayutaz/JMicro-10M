@@ -1,5 +1,10 @@
 # Windows / WSL 引継ぎ
 
+2026-10-15最新準備: [canonical FP32 readiness](../reports/phase6/forgetting-attention-canonical-preparation-20261015/CPU_readiness.json)は別proposal後に固定64行pointwise/Q64・元context長K workspaceのFP32/MATH実装を追加。実cacheは実tokenのKV/logs/validity/positionsだけを保持し、過去decoder再計算なし。新runtime/model/cache/trainer kind/spec/lineageで旧stateを拒否、元BF16 tiled学習経路/13,364 gate座標/元品質条件は維持。CPU model23/trainer27/probe24、実元10M親0.589500秒/count10,014,516・旧weights/両arm初期logits exact、cache差1.239777e-5で元atol3e-5/rtol2e-5内。GPU preflightのみ合格、科学未資格。
+
+先行[read-only CUDA saved3完了](../reports/phase6/forgetting-attention-fused-cache-diagnostic-20261015/completion.json)は元全subcheck合格、max5.531311e-5・複合許容範囲外0。これは失敗した旧CUDA6の再現/原因確定/修理証拠ではない。新0.885824＋既消費12.881096＝累計13.766920秒を元technical180/総4800へ全額継承。次の新owned gateは旧saved3とのBF16全数値比較、両arm実6snapshot・全cache subcheck保存、全state resume/最大48x1024/各32timingsを検証する。旧probe/診断を再launch・閾値/初期化/形状/予算を救済しない。独立fresh全pipeline/fullDEV/全440/新TEST/採用と全4項目goalはactive/未達。以下の診断準備等は履歴。
+
+
 2026-10-15最新[owned tiled終端](../reports/phase6/forgetting-attention-fused-probe-20261015/completion.json): 実64807/start66994256不存在、Windows10000終了。operator全勾配・48x1024 resident backward・learned全state resumeはpassedだが、update6 FP32 cache guard失敗で閉鎖、subcheck/max未保存。新GPU11.636436秒/累計12.881096秒、技術12更新・67400教師、科学0。元UI実64910/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start66995806/HTTP元親/Tokenizer/10M/idleへ復帰。verification_split3.ptはWSLのみ、CPU別観測は合格だがCUDA6再現ではない。旧job/条件を再launch/refreeze・救済せず、次は別read-only CUDA saved3診断。元180/4800の残り167.118904/4787.118904秒を必ず継承する。
 
 2026-10-15別[公式tiled runtime CPU準備](../reports/phase6/forgetting-attention-fused-preparation-20261015/CPU_readiness.json):26/24/22 checks・実親FP32cache合格、vendor元license全文/NOTICEと固定sourceを保持、依存変更0。専用probe/config/永続launcher凍結・preflight済み、新GPU0。前回1.244660秒を元180/4800へ継承し、独立BF16値/勾配→resident48x1024→両armresume/cache/timingの順。元UI63743/start66877161/同boot・HTTP元親/Tokenizer/10M/idleとkernel lockを起動前観測、launcher終端で復帰。verification weightsはWSLのみで科学初期化へ使わない。

@@ -1,0 +1,135 @@
+{
+  "kind": "owned_forgetting_canonical_CUDA_technical_v1",
+  "batch": 48,
+  "seed": 42,
+  "GPU_ceiling_seconds": 180,
+  "prior_technical_GPU_seconds": 13.766919628018513,
+  "timed_updates_per_arm": 32,
+  "continuous_updates_per_arm": 6,
+  "split_updates": [
+    3,
+    3
+  ],
+  "capacity_shape": [
+    48,
+    1024
+  ],
+  "candidate_parameters": 10014516,
+  "main_teachers_per_scientific_arm": 100000000,
+  "maximum_new_GPU_seconds": 4800,
+  "scientific_teacher_positions": 0,
+  "native_function_parity_expected": false,
+  "attention_implementation": "same_tiled_BF16_canonical64_pointwise_Q64_Kcontext_MATH_FP32_v1",
+  "capacity_before_any_optimizer_update": true,
+  "Base_adopted": false,
+  "TEST_prepared": false,
+  "operator_lengths": [
+    17,
+    64
+  ],
+  "operator_absolute_tolerance": 0.01,
+  "operator_relative_tolerance": 0.0,
+  "operator_all_QKV_log_gate_gradients": true,
+  "verify_matched_initial_states": true,
+  "sources": {
+    "scripts/probe_forgetting_attention_fused.py": "1bcc9909638395c4d300e7fb80acca74e419019419a7809968f0d297cb14e32d",
+    "scripts/probe_forgetting_attention_fused.ps1": "4ceb38e832f45f5c03cfff7890b60fe4b9408b81721620cfa855d5089de0f164",
+    "scripts/forgetting_attention_fused_trainer.py": "5f33dc494ead4ba462a8fb50423ed170de38270825c06e1e769b425f4cc0cf8b",
+    "src/jmicro/forgetting_attention_fused.py": "7ac065864337b68cfa5e7fd05f71092c2f4cbb8ff749f24c216f3f0142a51121",
+    "src/jmicro/forgetting_attention_key_bias.py": "0b7121c045f78a3669b0d25a59819f9ec66d5804e48225fe8f5ae8c4c0d97168",
+    "src/jmicro/forgetting_attention.py": "83312cfb66243463817eae3809e98a43cf2e1b4ec6f1d910e054e1eb0cb5374f",
+    "scripts/context_likelihood_trainer.py": "392824e360dca7474d3b6227d19236d0d748c5238b03067dd80aba9d497dfaa5",
+    "scripts/probe_context_likelihood.py": "b76ebc5aba00d7754b9909dcaca85cddbb81ad03c64e2061ff7925b65cbf3cd6",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "scripts/natural_context_contrast_memory.py": "85735b203e1a6f845078046379c6463b51cdc61068a463a379d93c79368f62e2",
+    "scripts/base_fim_trainer.py": "31fb0a86561014221ba5096cf83ffa17914e9c946b214dc0e407e1abbb1398c4",
+    "scripts/base_fim_sampler.py": "ca5eeea9c47e8c78ccd6843cd6287cd7eaaeee3cccf7a948349f773ac6e64e79",
+    "scripts/base_kv_allocation_trainer.py": "49cbf6a2e6163e16577e385860345e542c3282a9f8e752c164b53a66ac43e7e1",
+    "scripts/probe_base_kv_allocation.py": "b803c8238cca10b76baed061ceb944bf090f320b762562da40944b9dc529b5e3",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "src/jmicro/phase5.py": "cceae262745d92b1763c9d1263ba9746b8c6441896e97c001d8a3604ccaf2f98",
+    "src/jmicro/experiment.py": "c867b0c30dcbc98eeccc81efc6787ffea514cb10d1c6df7315167ff557df14e6",
+    "tests/test_forgetting_attention_fused_probe.py": "9189cf6574e05efcc44d404c0214bd94a470857893b29d64843e2ca20a72d980",
+    "tests/test_forgetting_attention_fused_training.py": "df75217a35a6b9e70ea7350e13fac6e8a911b6f2d3afc60f065f01d42314f2d8",
+    "tests/test_forgetting_attention_fused.py": "fc4b3f9698c9399d585ba2f81326b4f1dd98c6725852316825345326e57a34c0",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca",
+    "src/jmicro/_vendor/__init__.py": "1f426290914aee084b3a55dbcb2370efb94b47ba21710176081a3db236d5c565",
+    "src/jmicro/_vendor/forgetting_attention_core.py": "cbefae97d3cd28823949186dcc0faaae59defa765f0f81d6748a943c62dc6ff8",
+    "src/jmicro/_vendor/forgetting_attention_LICENSE_APACHE2.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "src/jmicro/_vendor/forgetting_attention_LICENSE_MIT.txt": "38b147eaa30d026b35b25cc14362ac207ccd5a9a1001c48a72f3eb9156a6adca",
+    "src/jmicro/_vendor/forgetting_attention_NOTICE.txt": "f7d9e933393fbb0e73974c09775d370dc1e87d9ceb7fc3b0df311d470489604b",
+    "scripts/probe_forgetting_attention_canonical.py": "9b5dc560125f9b6fa7735eda8dcbb159d983662d79a48307d36f0f99f87fc73e",
+    "scripts/probe_forgetting_attention_canonical.ps1": "9ddca19dd7e4138e3e1733f7bde6e0ea6ee6d95c4598553944bfd51ec6786bb2",
+    "scripts/forgetting_attention_canonical_trainer.py": "40397ba8a90bce96ca453fb084bdedc790a734b5b2ca4ec2edee8e9aab7e7429",
+    "src/jmicro/forgetting_attention_canonical.py": "400b9972eeac016b03d4aec4128b3732f13715d0a69d5ab99c182c76db7f36b2",
+    "tests/test_forgetting_attention_canonical.py": "609b1f3dac1bc1604929811083113dab0c2087b39b246d7b3da338495700c162",
+    "tests/test_forgetting_attention_canonical_training.py": "d89f98a01b5973a753dc3eb9ae32a243beba0ef715c7fe3aa0b3534607d1f689",
+    "tests/test_forgetting_attention_canonical_probe.py": "854a41796233f4b40d1f1ed752795145c5f90a43d7a9f46c787fc062c8ddef5f",
+    "scripts/diagnose_forgetting_fused_cache_cuda.py": "08f5c42c181db1eafecac337b3f66540c66b35f8abca18b281ca62791874fdb7"
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "parent_size": 120181763,
+  "parent_mtime_ns": 1791114231712428007,
+  "capacity_payload": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/natural-context-contrast-capacity-20261007/maximum-original-window.json",
+    "sha256": "518b7158e824a6504e71404864b57d7072d592cd6f200869844e96670c1c5fee"
+  },
+  "proposal": {
+    "sha256": "bc2106daa4e6f6f02be54b1602aa2e07644ba385072950d34ff8372bd4da8364",
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/forgetting-attention-canonical-preparation-20261015/proposal.json"
+  },
+  "actual_CPU": {
+    "sha256": "488c11e90dc366115d4b4695c41a3aa02fda58fbb2c7073af9501a459a86b5df",
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/forgetting-attention-canonical-preparation-20261015/actual_parent_CPU.json"
+  },
+  "accepted_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_confidence_penalty_comparison.json",
+    "sha256": "a9035f846eedbb8355e362d0b944ce24c81410d883290e0fffb42b72ba9df069"
+  },
+  "accepted_shape_recipe": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_parallel_residual_probe.json",
+    "sha256": "d5d8209cb6a71b2c345554b80d81368520d54b43fb62557f07115a7c55112bd7"
+  },
+  "tokenizer": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/phase2/4096/tokenizer.model",
+    "sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+  },
+  "prior_completion": {
+    "sha256": "4f821f14fd8d24b737098c8735107d8ad875f9ad2a6e922087b0e95d5ed6ea0b",
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/forgetting-attention-fused-cache-diagnostic-20261015/completion.json"
+  },
+  "source_preparation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/forgetting-attention-fused-preparation-20261015/source_preparation.json",
+    "sha256": "8bd934bfeb2aeb725c21be30d483fb85a62b3c93adda2a1d90722e7d56670529"
+  },
+  "CPU_tests": [
+    {
+      "expected_tests": 23,
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/forgetting-attention-canonical-preparation-20261015/CPU_model_tests_initial.xml",
+      "sha256": "863652ca9fd08646f30f9d1f70cdd18e0be7fbde746134f518550f6b855d0794"
+    },
+    {
+      "expected_tests": 27,
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/forgetting-attention-canonical-preparation-20261015/CPU_trainer_tests.xml",
+      "sha256": "de3ac459b5120561ebd46fab27188dea89e8d83c5567a6391b6eac84384feee7"
+    },
+    {
+      "expected_tests": 24,
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/forgetting-attention-canonical-preparation-20261015/CPU_probe_tests.xml",
+      "sha256": "aa9ea3375d9ad5f0a6640471a00b3403ae52857805e04ffe84b2dab34f6a355f"
+    }
+  ],
+  "preserve_verification6_before_cache": true,
+  "compare_saved_original3_numeric_state": true,
+  "saved_original3": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/forgetting-attention-fused-probe-20261015/learned_forget_verification_split.pt",
+    "sha256": "1fbe833dbf5b74f29ea88def8689e42496b1e85b390341dae20a174ee3be457b"
+  }
+}

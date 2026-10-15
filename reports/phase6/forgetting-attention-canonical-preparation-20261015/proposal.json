@@ -1,0 +1,41 @@
+{
+  "kind": "prospective_fixed_shape_FP32_inference_same_tiled_training_v1",
+  "created_at": "2026-10-15T01:34:46.7449603Z",
+  "status": "separate_numeric_implementation_proposal_before_code",
+  "source_evidence": {
+    "diagnostic_completion": "reports/phase6/forgetting-attention-fused-cache-diagnostic-20261015/completion.json",
+    "diagnostic_completion_sha256": "4f821f14fd8d24b737098c8735107d8ad875f9ad2a6e922087b0e95d5ed6ea0b",
+    "closed_fused_completion": "reports/phase6/forgetting-attention-fused-probe-20261015/completion.json",
+    "fused_model_sha256": "7ac065864337b68cfa5e7fd05f71092c2f4cbb8ff749f24c216f3f0142a51121"
+  },
+  "question": "Can fixed-shape FP32 pointwise projections/norm/MLP/output and Q64/Kmaxcontext attention reduce full-versus-chunk numerical variation without changing the model or decoding/cache semantics?",
+  "evidence_limits": "Saved3 CPU and CUDA pass combined original thresholds, yet cache raw K/V have small descriptive differences; original6 failure subcheck unknown. Earlier layer localization observed projection/attention differences. Shape-dependent rounding is a hypothesis, NOT established cause.",
+  "mechanism": [
+    "Pack real per-row token chunks into64 positions for original RMSNorm, Q/K/V/gate/O, original SwiGLU and tied vocabulary projection, crop workspace rows afterward. No new parameters or input teacher positions.",
+    "FP32 attention pads query chunks to64 and key workspace to rounded original maxcontext1024 (or physical padded history if longer); masked keys/queries stay excluded. FP32 log sigmoid/cumsum uses same padded key width.",
+    "Cache retains ONLY real original K/V/log histories/validity/positions; each decode computes ONLY current hidden states and reuses prior K/V. No full-prefix recomputation disguised as caching.",
+    "CUDA BF16 model-owned training uses exactly preserved fused kernel/projection route; FP32 arithmetic order changes explicitly. Old scientific/technical sources stay closed."
+  ],
+  "unchanged": [
+    "10014516 total trainable coordinates, original10B tensors/O/RoPE/NoQKNorm/GQA/SwiGLU and zero new gate W/b/f0.5",
+    "Both matched arms, original gold/data/source/batch48/seed42/freshAdamW1e-5 WD.1/constant/clip1",
+    "Same BF16 training and FP32/MATH inference, original combined cache3e-5+2e-5 and all quality/native/strong/historical/final criteria",
+    "No learned-state adoption, scientific initialization uses original native parent only"
+  ],
+  "requirements": [
+    "Independent pack/crop linear values and derivatives; attention product/softmax/causality/padding and full-versus-real-cache across tile edges",
+    "Explicit new runtime/model/cache/trainer kind/spec/lineage and old cache/checkpoint refusal",
+    "Actual native10M CPU and saved verification3 CPU/CUDA observations are technical only; no failed6 reproduction claim",
+    "Before science: whole new owned both-arm CUDA state/resume/cache/operator/capacity/32timing evidence, retain exact6 snapshot and all guard subchecks even on failure",
+    "Any old verification3 metadata rebinding must be explicit verification-only and leave all numerical model/Adam/RNG/sampler/counters untouched; science migration forbidden"
+  ],
+  "prior_technical_GPU_seconds": 13.766919628018513,
+  "original_technical_cap_seconds": 180,
+  "original_total_GPU_cap_seconds": 4800,
+  "new_GPU_seconds": 0,
+  "scientific_teacher_positions": 0,
+  "science_contract_frozen": false,
+  "Base_qualified": false,
+  "full_four_item_goal_complete": false,
+  "stop": "No tolerance/precision/gate/init/parent/seed/decoder/geometry/budget rescue; no old owned relaunch. CPU helpers or saved3 observations cannot qualify the entire pipeline."
+}
