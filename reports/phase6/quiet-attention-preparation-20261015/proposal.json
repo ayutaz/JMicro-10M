@@ -1,0 +1,94 @@
+{
+  "status": "prospective_fixed_zero_KV_abstention_proposal_before_code",
+  "created_at": "2026-10-15T03:20:38.0906126Z",
+  "question": "Does fixed off-by-one attention, with an exact zero K/V option competing in each attention softmax, improve Japanese continuation under unchanged original CE and native parameter coordinates?",
+  "formula": "For visible real logits z_j=q.k_j*original_scale: y=sum(exp(z_j)*v_j)/(1+sum(exp(z_j))). A fixed zero Key and zero Value, not a vocabulary token, not learned, not RoPE-shifted.",
+  "main_change": "One fixed zero-logit zero-value alternative inside attention normalization; no new Q/K/V projections, no coefficient/output projection rescaling, no learned sink/gate or vocabulary/output distribution change.",
+  "rationale": "A different missing-capability hypothesis from signed-map selection: attention can abstain on a query even when all real reads are unhelpful. Existing repeated-output failures motivate testing a distinct mechanism; no local proof that unwanted mixing causes them.",
+  "evidence": {
+    "reports/phase6/independent-map-science-20261015/completion.json": "44765c01c2d9b834798f475aa2a90a950c942d5d4852918a5c39a07978e8f6e6",
+    "reports/phase6/base_headwise_gate_proposal.json": "15a06e61ef89b52dbfad517bdc849579d4ba83610f10efd6a45222871dd7a67e",
+    "reports/phase6/base_headwise_gate_comparison_completion.json": "2a2286904d41c9f7c6c6b195e74f7d578827ebcdff2d73b77c82d031e2745a08",
+    "reports/phase6/base_attention_saturation_completion.json": "78a8c02ec4a8a5740b7ee4eb049d5a859ef68d93374932819dd91217534c41ed",
+    "reports/phase6/base_sigsoftmax_comparison_completion.json": "b30ea93293262f6a232b09251381f165129882bdf03afc12de0ca11e3fb23dd3",
+    "src/jmicro/independent_map.py": "2757849d12e9469e5915f90f30a2133868b82105485aec54f5c9be37547b011a",
+    "scripts/base_headwise_gate_model.py": "d775d826a440296b4666a962db60e5ee6eafa322dc17a606389d885338c130df",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83"
+  },
+  "literature": [
+    {
+      "used": "Original fixed1 denominator/zero K,V construction; opinion proposal, not proof of a software bug or Japanese quality.",
+      "title": "Attention Is Off By One",
+      "date": "2023-07-24",
+      "url": "https://www.evanmiller.org/attention-is-off-by-one.html"
+    },
+    {
+      "limits": "Different data/architecture/fresh training/RTX5090/PyTorch2.11; preprint loss results are not Japanese generation improvement or local4090 runtime proof.",
+      "title": "Abstention and Noise Filtering: Two Missing Primitives of Softmax Attention",
+      "version": "v1,2026-09-18",
+      "used": "Sections3.3/4.2 and AppendixB fixed off-by-one10M FineWeb/TinyStories paired loss results, distinct from learned sink/projection gates.",
+      "url": "https://arxiv.org/html/2609.22005v1"
+    }
+  ],
+  "novelty": {
+    "independent_map": "Closed rank8 condition learns independent Q2/K2 and subtracts a signed second map. Here original Q/K/V only and nonnegative real weights sum below1; no second learned map or rank/branch/bias rescue.",
+    "headwise_gate": "Closed post-SDPA sigmoid(W*x) gate depends on current normalized query representation, doubles O and introduces new coordinates. Here unchanged O/coordinates; attenuation Z/(1+Z) depends jointly on all visible keys and query. Dense counterexample must show same query and native softmax map/output but different quiet output after shifting all real scores.",
+    "forgetting": "No pairwise time-decay/logsigmoid gates, cumulative log history or mask bias. Fixed additional zero alternative has no learned parameters and preserves real relative probabilities.",
+    "sigsoftmax": "Acts only within attention, not the normalized vocabulary distribution. Original output softmax and gold CE unchanged.",
+    "saturation": "Original concentration screen had0 marked layers, not a diagnosed cause. Do not re-run it or claim saturation/outliers explain failures.",
+    "search": "Bounded case-insensitive search of tracked scripts/src/tests and proposal/completion/review metadata for softmax1, quiet attention, off-by-one, attention sink, null attention, register token and related phrases found original mentions but no implemented fixed-zero attention arm; original headwise/independent/saturation/output-link sources inspected. Filename/search absence alone is not exhaustive novelty proof."
+  },
+  "parameters": {
+    "candidate_expected": 10001152,
+    "native": 10001152,
+    "expected_min": 9500000,
+    "expected_max": 10100000,
+    "state": "Separate nontrainable integer runtime/arm contract buffer; not a learned weight or extra target.",
+    "added_trainable": 0,
+    "actual_count_verified": false
+  },
+  "initialization": "Every original weight copied unchanged, tied vocabulary intact, RNG unchanged. Candidate INITIAL FUNCTION CHANGES explicitly; do not claim native function parity for enabled quiet arm.",
+  "control": "Cached original native CE100M is same original weights/parameterization/Adam/stream protocol, while operation differs. No O/weight rescaling or new learned coordinates requiring a converted-static control. A disabled_native verification arm must prove original function, all original gradients/Adam/name partition/CE/stream clocks exact on CPU then owned CUDA before cached-control eligibility. Native initial logits need not equal enabled quiet arm; compare enabled to independent dense oracle.",
+  "frozen_native_sha256": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+  "training": {
+    "parent": "Original10B410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+    "context": 1024,
+    "optimizer": "Fresh AdamW1e-5 WD.1 betas.9/.999 eps1e-8 constant clip1",
+    "seed": 42,
+    "decoder": "Original greedy64 and unchanged suppression/raw failure gates",
+    "main_CE_teachers": 100000000,
+    "stream": "Same accepted original TRAIN/source quotas/targets/row order/Tokenizer; no additional data or auxiliary targets",
+    "batch": 48
+  },
+  "implementation_before_GPU": [
+    "Independent stable float64 dense zero-logit oracle and ALL Q/K/V gradients; shift/negative/all-masked/causal-boundary examples. Never subtract max only from real scores while leaving denominator1 unscaled.",
+    "Separate tagged model/real-only typed cache/owned traversal/checkpoint runtime metadata and old/native/foreign cache/state/export refusal. No frozen source replacement.",
+    "Causal FLASH full-prefix prepends zero Q/K/V only after real RoPE and discards phantom query output, preserving real positions and causal alignment. The phantom is not stored or duplicated in real KV history. Irregular padded/chunk MATH uses explicit null column plus original real mask.",
+    "Full count/tie/RNG/original tensors, disabled-native exact, full/chunk/token cache/holes/allPAD/context/labels and independent whole-model derivative tests.",
+    "Own typed trainer full Adam/scheduler/RNG/sampler/counters/history and CPU6vs3+save3 proof before any GPU."
+  ],
+  "CUDA_requirements": [
+    "Capacity FIRST actual48x1024 finite BF16 full backward before Adam. Preserve every subcheck and actual verification6 snapshot.",
+    "Actual initial weights/RNG and disabled/native3 original function/weights/Adam/CE/stream exact.",
+    "Enabled6vs3+save3 fullstate/history exact; actual6 original FP32 full/chunk cache atol3e-5+rtol2e-5; every subcheck retained.",
+    "ALL32 actual step timings; fixed original100M plus600 evaluation/save reserve and every spent GPU second fit unchanged cumulative limits."
+  ],
+  "budget": {
+    "carried_technical_GPU_seconds": 86.61412945401389,
+    "remaining_total_GPU_seconds": 2736.9683397349436,
+    "original_technical_cap_seconds": 180,
+    "rule": "Do not reset either prior technical or just-completed science for this successor. Measured budget eligibility before any scientific contract; no warm retiming/outlier drop/teacher/geometry/backend/precision/cap rescue.",
+    "original_total_cap_seconds": 4800,
+    "carried_total_GPU_seconds": 2063.0316602650564,
+    "remaining_technical_GPU_seconds": 93.38587054598611,
+    "carried_completed_science_GPU_seconds": 1976.4175308110425
+  },
+  "quality": "ALL original absolute/native matched/strong/historical BPB and generation gates unchanged. All80 raw-bound individually reasoned nonblind review; loss improvement alone insufficient.",
+  "failure": "Close this fixed zero-K/V operation/runtime condition on numerical/state/stream/capacity/forecast/quality failure. No learned sink logit, bias/phantom count/position/zero value/scale/parent/seed/teacher/decoder/geometry/precision/budget rescue or automatic extension.",
+  "new_GPU_seconds": 0,
+  "scientific_teacher_positions": 0,
+  "science_contract_frozen": false,
+  "Base_qualified": false,
+  "full_four_item_goal_complete": false,
+  "pending": "Qualified recipe, genuinely fresh whole-pipeline independent seed43/fullDEV/all440/new sealedTEST/adoption remain required."
+}

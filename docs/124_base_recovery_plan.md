@@ -1,5 +1,9 @@
 # Base改善の今後の計画
 
+2026-10-15次の別仮説: [固定ゼロK/V注意](../reports/phase6/quiet-attention-preparation-20261015/proposal.json)を実装前に定義し、[CPU model37/trainer18＋実親cache](../reports/phase6/quiet-attention-preparation-20261015/CPU_readiness.json)まで完了した。原10,001,152/全原重みを保持しつつ、注意の分母にゼロ値の選択肢を加える。過去のquery-only出力gate・独立Q/K signed map・時間decay・語彙Sigsoftmaxとの差を記録し、同query/同native mapで異なる出力となる数学例と独立全勾配を検証。有効化初期関数が変わることと、CPU成功が品質証拠でないことを保つ。
+
+次は専用owned CUDA検証を実装して範囲を確認してから、元最大形状/disabled-native学習一致/有効化6更新保存再開/実保存点cache/全32計時で判定する。新GPU0、科学workflowは未実装・契約未凍結。今回完了したscienceも含め累計2063.031660秒を元総4800へ継承し、残2736.968340秒内で元100M＋評価保存の実測見積もりが成立することを必須にする。元品質・10M・独立全pipeline/fullDEV/全440/新TEST/採用の到達範囲を変えず、全4項目goalはactive/未達。
+
 2026-10-15最新判断: [independent rank8 QK100M](../reports/phase6/independent-map-science-20261015/completion.json)は全state/history・元CE対照との条件一致と全80の個別内容確認まで完了し、不採用で固定条件を閉じた。文法44→59に対し一貫性2→1・適切完結2→2・EOS19→19・反復45→48・BPB0.998487→0.998526で、元品質・保持基準を満たさない。新しい独立Q/K座標が技術的に更新された事実を、有用な表現や10M全般の根因の証明としない。
 
 次は既存原proposal/resultから、今回や閉鎖済み比較と異なる未回答仮説を1件に絞り、対照・元全品質条件・実測予算を定義する。固定rank/分岐/親/seed/normalization/decoder/教師/形状/予算救済や旧条件再実行で進めない。有資格レシピができた場合だけ独立fresh全pipeline seed43/fullDEV/全440/新封印TEST/採用へ進む。全4項目goalはactive/未達で、比較閉鎖を全体完了にしない。実科学/Windows worker終了・元UI復帰・hash一致portable記録を終了receiptへ保存。以下の稼働中・未選定・準備値は当時の履歴。

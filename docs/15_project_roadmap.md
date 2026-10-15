@@ -1,5 +1,9 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-15次の準備: [固定ゼロK/V attention](../reports/phase6/quiet-attention-preparation-20261015/CPU_readiness.json)は原10,001,152パラメータと原重みを保持し、正規化の中へゼロの選択肢を追加する別仮説。CPU model37/trainer18と実親cache精度、両arm全state保存再開、disabled-native元Adam/stream一致まで完了。有効化時の初期関数は変わる。論文の別10M loss結果やCPU成功を日本語品質の証明にしない。
+
+直近は専用owned CUDA probe/launcherとCPU scope checksの実装が必要で、まだ新GPU0。元最大48x1024の有限backwardをAdam前に確認し、disabled/native3、enabled6対3+save3全state/history、実6保存と元FP32 cache全subcheck、全32計時で資格を判定する。今回の完了科学も含む累計2063.031660秒を元総4800秒へ継承し、残2736.968340秒で固定100M＋評価保存の見積もりが成立しなければ閉じる。新しい予算・教師数・精度・phantom数/値/位置・learned sink等で救済しない。科学runner/evaluator/reviewerの契約は未完成・未凍結であり、CPU準備を比較完了にしない。独立fresh全pipeline/fullDEV/全440/新封印TEST/採用と全4項目goalはactive/未達。
+
 2026-10-15現在: [independent rank8 QK 100M](../reports/phase6/independent-map-science-20261015/completion.json)は全数値状態/全履歴/元CE対照streamと全80個別内容を確認し、**不採用で閉鎖**。文法44→59でも一貫性2→1・適切完結2→2・EOS19→19・反復45→48・BPB0.998487→0.998526で、元の全品質条件は未達。新52tensorの学習活動や技術成功は品質の証明にしない。
 
 次の順序は、既存原proposal/resultから異なる未回答仮説1件を選ぶ→対照/10M/元全品質条件/実測予算を事前固定して必要な実装と技術検証→有資格比較ができた場合のみ真にfreshな全pipeline独立seed43→fullDEVと400生成＋長文40→新封印TESTと採用。現在は有資格レシピがなく後半未実施。固定rank/分岐/親/seed/normalization/decoder/教師/形状/予算の救済、旧job再実行、大型化・品質基準低下で進めない。元4項目goalはactive/未達を維持し、比較終了や文書保存へ縮小しない。

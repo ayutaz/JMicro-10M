@@ -1,5 +1,7 @@
 # Baseの実験結果を探す
 
+2026-10-15最新: [independent rank8 QK100M閉鎖](../reports/phase6/independent-map-science-20261015/completion.json)は全state/history/元CE対照条件と全80個別内容確認で不採用。文法59/一貫性1/適切完結2/EOS19/反復48/BPB0.998526、元品質条件未達。次の[固定ゼロK/V案](../reports/phase6/quiet-attention-preparation-20261015/proposal.json)は原重み・実数10,001,152のまま注意分母に1を加え、旧query-only gate/独立signed map/時間decay/語彙linkとの差を数式・原sourceと照合した。[CPU model37/trainer18・実親cache証拠](../reports/phase6/quiet-attention-preparation-20261015/CPU_readiness.json)だけで新GPU0、実機probe/科学workflow未実装。有効化初期関数は変わり、全消費2063.031660秒を元総4800へ継承する。検索語の不在を網羅的新規性や品質の根拠にしない。全4項目goalはactive/未達で、以下は以前の履歴。
+
 2026-10-15最新閉鎖: [tiled owned](../reports/phase6/forgetting-attention-fused-probe-20261015/completion.json)はoperator出力/全勾配・48x1024有限backward/learned全state resumeを通過、update6 FP32 cache guardで失敗。元MATH容量不足は解消したが科学資格には未達。guardのsubcheck/max未保存とstatic/32timings未実施を保存。CPU saved3合格は別endpoint。旧sourceを再実行・救済せず次は別read-only CUDA saved3診断、累計12.881096秒を元180/4800へ継承する。Base全4項目goalはactive/未達。
 
 2026-10-15別[author tiled実装readiness](../reports/phase6/forgetting-attention-fused-preparation-20261015/CPU_readiness.json):CPU26/24/22と実親FP32cache合格。閉鎖MATH sourceを変更せず、新model/cache/trainer/owned configを明示。原kernel/config保持・layoutだけtranspose・license全文/NOTICE保存、依存変更0。CUDA値/全勾配/48x1024/両armresume/cache/timingはこれからで、既消費1.244660秒を元180/4800へ継承する。新科学/GPU0の準備記録、Base未完成。

@@ -1,5 +1,9 @@
 # 現在の状態
 
+2026-10-15次案の準備: [固定ゼロK/V注意のCPU記録](../reports/phase6/quiet-attention-preparation-20261015/CPU_readiness.json)。[実装前proposal](../reports/phase6/quiet-attention-preparation-20261015/proposal.json)は、注意の中に情報を足さない選択肢を1つ設ける別仮説で、原重み・実10,001,152パラメータ・元出力softmaxを保持する。37モデルchecksと18学習器checksが通り、独立dense値/全勾配、real-only cache、両arm全state6対3+save3、disabled4の元weights/Adam/CE/stream完全一致を確認。実元親CPU0.422509秒、cache最大差1.9073486e-5は元許容内。ただし有効化した初期関数はnativeから変わり、最大logit差9.9326019も保存した。品質証拠ではない。
+
+初回trainer17通過/1失敗のXMLを保持し、新specとsampler material bindingの内部一致検証を補って18通過。旧凍結source変更なし。新GPU/科学教師/教材/DEV/TEST0、owned CUDA probe/launcherとscience workflowは未実装。次は専用実機検証の実装・CPU範囲確認→48x1024容量先行/disabled-native数値一致/有効6更新保存再開と実保存点cache/全32時間計測。今回までの技術86.614129＋完了科学1976.417531＝2063.031660秒を元総4800秒へ全額継承し、残2736.968340秒内で実測見積もりが成立する場合だけ科学契約を準備する。全元品質条件・独立fresh全pipeline/fullDEV/全440/新TEST/採用は未達、全4項目goalはactive。
+
 2026-10-15最新結果: [independent rank8 QK 100Mの終了記録](../reports/phase6/independent-map-science-20261015/completion.json)を保存し、固定条件を**不採用・閉鎖**した。全17,698更新の数値状態・履歴・元CE対照のstream/sampler/scheduler/counters/physical inputsと宣言66,612座標差を確認し、全80件を今回のrawから個別に読み採点理由を記録した。対照→候補は文法44→59、一貫性2→1、適切完結2→2、EOS19→19、反復45→48、BPB0.9984871625→0.9985257293、paired CI95[-0.0375,0]。文法条件以外の主要生成条件と対照BPB保持が未達で、最終確認資格はない。
 
 科学GPU1976.417531秒＋継承済み技術86.614129秒＝2063.031660秒で元4461/180/総4800秒内、台帳は閉じた。実PID435642/start67505127とWindows11280の終了、元10B WebUIの復帰PID437167/start67703206/同boot・HTTPの親/Tokenizer/10M/idleと実gpu.lockのkernel FLOCK所有者を確認した。小さいmetadata/raw/notes/provenance8ファイルはWindows/WSL hash一致、全重み・Adam/RNG/sampler・全metricsはWSLに保存。

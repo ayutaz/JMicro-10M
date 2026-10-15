@@ -1,5 +1,9 @@
 # Windows / WSL 引継ぎ
 
+2026-10-15次案CPU準備: [quiet readiness](../reports/phase6/quiet-attention-preparation-20261015/CPU_readiness.json)を両workspaceに保存。新src/jmicro/quiet_attention.py・scripts/quiet_attention_trainer.py・実親CPU gateとtestsのみで、旧frozen sourceは保持。実数10,001,152、非学習runtime buffer/typed real-only cache・専用traversalを使う。model37/trainer18・実親0.422509秒/cache最大差1.9073486e-5、両arm全state6対3+save3とdisabled4原Adam/stream exactを確認。有効化初期関数はnativeと異なり、最大logit差9.9326019を保持。初回trainer17pass/1failのraw XMLも保全し、新spec内のmaterial binding検証を補って18pass。
+
+新GPU/教材/DEV/TEST0。次は未実装のowned probe/launcher＋CPU scope checksから準備し、元最大48x1024/実disabled-native数値/保存再開/実6snapshotとcache全subcheck/全32timingsを資格にする。技術86.614129秒と既完了science1976.417531秒の計2063.031660秒を元180/総4800へ継承し、残総2736.968340秒。旧条件の再起動や予算reset、phantom/learned sink/親/seed/教師/decoder/形状/precisionの救済をしない。現在のUIの最後の実確認は直下の437167であり、次回はPID/boot/start/HTTP/kernel lockを再確認する。全4項目goalはactive/未達。
+
 2026-10-15最新終端: [independent rank8 QK100M](../reports/phase6/independent-map-science-20261015/completion.json)は17,698更新/正確100M、凍結reviewerによる全state/history・元CE対照sampler/digest/scheduler/counters/physical inputsと宣言追加座標の照合、全80の個別raw内容レビューまで完了し、不採用・固定条件閉鎖。文法44→59/一貫性2→1/適切完結2→2/EOS19→19/反復45→48/BPB0.998487→0.998526。最終確認資格なし、全4項目goalはactive/未達。
 
 実WSL435642/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start67505127とWindows worker11280は終了。科学1976.417531＋継承技術86.614129＝2063.031660秒、元4461/180/総4800秒内で台帳閉鎖。元10B UI437167/start67703206/同bootの実生存、HTTP親/Tokenizer/10M/idle、実gpu.lock inodeのkernel FLOCK所有を今回確認した。これは記録時点の証拠で次回生存の代用にしない。
