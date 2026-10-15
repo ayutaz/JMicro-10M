@@ -1,0 +1,43 @@
+{
+  "kind": "prospective_exact_original_target_CPU_batch_transfer_runtime_v1",
+  "created_at": "2026-10-15T05:37:07.9578966Z",
+  "evidence": "reports/phase6/rdrop-input-pack-profile-20261015/completion.json",
+  "measured_fact": "Exact known update7 target scope contains48 aten::_to_copy calls; input scope2 (length and whole ID batch), not48 input-ID copies",
+  "limits": "One cold instrumented CPU-only profile is not steady throughput or unique bottleneck;24.463ms scoped wall includes instrumentation and is not a promised saving",
+  "hypothesis": "Building the same padded int64 targets once on CPU and transferring once can remove per-row GPU tensor allocation/copy/assignment without changing any mathematical input or stochastic training state",
+  "only_runtime_change": "target_ids -> row lists padded with -100 to existing original input width -> one torch.long CPU tensor -> .to(original device); original input-ID right_pad, all forward/backward/loss/optimizer/counter/history code retained",
+  "new_runtime": "original_gold_targets_CPU_single_tensor_single_device_transfer_v1",
+  "scientific_fixed": {
+    "parent": "original10B",
+    "main_teacher_goal": 25000000,
+    "batch": 48,
+    "source": "same accepted source/windows/labels/75-20-5 quota",
+    "training_parameters": 10001152,
+    "loss_runtime": "FP32_two_logprob_saved_analytic_first_order_RDrop_v1",
+    "policy": "same normalized two-view RDrop, dropout.1 and original sites, BOTH paths receive gradient",
+    "precision": "unchanged BF16 decoder and FP32 objective",
+    "seed": 42,
+    "control": "accepted nativeCE25M, not100M",
+    "native_parameters": 10001152,
+    "context": 1024,
+    "evaluation_save_reserve_seconds": 600
+  },
+  "required_evidence": [
+    "CPU original tensor/mask/shape/dtype/RNG identity including ragged rows/overlap holes/original EOS/quota mask/allmasked",
+    "Explicit new trainer kind/spec/lineage input_runtime; prior runtime checkpoint refused, no relabel/load of historical state",
+    "BOTH arms exact4-update ALL numerical state and non-time history versus frozen analytic trainer, comparison strips ONLY declared kind/input-runtime provenance",
+    "BOTH6vs3+save3 full numeric state/RNG/sampler/history exact; malformed and after-Adam interrupted state rejected",
+    "Before any science: own frozen CUDA capacityFIRST48x1024 two-graph backward, exact native/cached control coordinates, actual reference learning equality, full resume/cache and ALL32 timings",
+    "Original forecast formula ceil25M*sum(seconds)/sum(mainteachers)*1.3+600 plus EVERY carried/new GPU second must fit4800, cumulative technical<=180"
+  ],
+  "carried": {
+    "remaining_original_total_GPU_seconds": 1715.7264445759356,
+    "total_GPU_seconds": 3084.2735554240644,
+    "completed_science_GPU_seconds": 2946.1623015810037,
+    "technical_GPU_seconds": 138.1112538430607,
+    "remaining_original_technical_GPU_seconds": 41.888746156939305
+  },
+  "rejection": "Any numeric/resource/cost/quality failure closes this condition. No warm retime, outlier drop, reduced labels/reserve, precision/geometry/decoder/budget change or old runtime reopening.",
+  "current_work": "CPU implementation/proof only; GPU and scientific workflow must be separately implemented/checked/frozen before execution",
+  "full_goal": "Main recipe qualification, genuinely fresh whole-pipeline trained seed43, fullDEV/all440,new sealedTEST/adoption pending; no Chat/SFT/larger model."
+}
