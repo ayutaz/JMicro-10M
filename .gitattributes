@@ -739,6 +739,14 @@ reports/phase6/pseudo-repetition*/** -text whitespace=cr-at-eol
 # Preserve the first launcher's exact failure transcript, including final spaces.
 reports/phase6/pseudo-repetition-probe-launcher-20261015/stderr.log -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
 src/jmicro/cross_gqa_map.py text eol=lf
+src/jmicro/independent_map.py text eol=lf
+tests/test_independent_map*.py text eol=lf
+scripts/*independent_map*.py -text whitespace=cr-at-eol
+# Retain the verified trainer's final blank line and exact source hash.
+scripts/independent_map_trainer.py -text whitespace=-blank-at-eof,cr-at-eol
+scripts/probe_independent_map.ps1 -text whitespace=cr-at-eol
+configs/phase6/independent_map* -text whitespace=cr-at-eol
+reports/phase6/independent-map*/** -text whitespace=cr-at-eol
 scripts/*cross_gqa_map* -text whitespace=cr-at-eol
 tests/test_cross_gqa_map* text eol=lf
 configs/phase6/cross_gqa_map* -text whitespace=cr-at-eol

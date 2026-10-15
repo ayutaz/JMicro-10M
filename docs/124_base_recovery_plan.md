@@ -1,5 +1,12 @@
 # Base改善の今後の計画
 
+2026-10-15次の独立比較準備: [independent rank8 QK proposal/CPU](../reports/phase6/independent-map-preparation-20261015/CPU_readiness.json)。閉鎖cross-GQAは既存Q/Kのhead置換、headwise gateは出力scalar、ContextMixingはgreedy入力置換であったと原source/resultを照合した。新案は各層に共有down(rank8)＋独立Q2/K2 upを学ぶ新座標を追加し、元Vに対する二つ目の注意分布をtanh(raw)で差し引く。原論文の再現ではなく、NoQKNorm/RoPE/元Q/K/V/O/全backboneを保持した別architecture提案。raw0で元関数を保存し、実count10,067,764（追加66,612）は元9.5M〜10.1M内。元native10,001,152と厳密同parameter数とは呼ばない。
+
+model27/trainer18/probe19 CPU checksは独立dense oracleの全勾配、旧map/出力scaleで得られない反例、real K2 cache/holes/allPAD/過去再計算なし、両arm全state6対3+save3、disabled対native全旧weights/Adam/source/CE一致と新投影全勾配を確認。実元10M親CPU0.377899秒で全旧weights/初期logits/cacheがbitwise一致し、raw.25のactive cacheも元3e-5/2e-5内。科学の対照は元CE100M cachedで、実CUDA原関数/disabled/stream資格を先に確認する。閉鎖forgettingは初期関数が変わるため両新arm必須だったが、新案へその弱いstatic対照を流用しない。全絶対/native/strong/historical/最終品質条件は維持する。
+
+新owned gate/config/永続launcherはCPU preflight合格・新GPU0。元48x1024容量をAdam前に検査し、disabled/native3・新52tensor活動・実6 snapshotと全cache subcheck・全state resume/各32timingsで資格判断。既消費72.56365345604718秒を元technical180/総4800へ継承し、rank/分岐/親/係数/教師/decoder/形状/予算救済をしない。科学/独立fresh全pipeline/fullDEV/全440/新TEST/採用と全4項目goalはactive/未達。以下は履歴。
+
+
 2026-10-15最新限定診断完了: [single operator profile](../reports/phase6/forgetting-attention-operation-profile-20261015/completion.json)は実saved6＋既存48x1024だけのforward/backward1回、optimizer/新TRAIN/DEV/TEST/重み保存0、全勾配有限・重み不変・RNG保持を確認。実434159/start67316608・Windows30428終了、ledger closed。新2.514122＋旧70.049531＝累計72.563653秒を元technical180/総4800へ継承、残り107.436347/4727.436347。元UI434223/start67317300/同boot・HTTP元親/Tokenizer/10M/idleへ復帰実確認。
 
 元collectorのCUDA-event集計には自分のrecord_function範囲1件959578.843usとmemory activityも含まれる。[保存済み結果のoffline解析](../reports/phase6/forgetting-attention-operation-profile-20261015/analysis.json)で既知名称を分け、元総数/総時間との一致を確認した。kernel名activity3065件133467.593usは名称分類で、元scope metadataは未保存。raw3184件1096151.319usをkernel計算時間と呼ばず、包含時間や初回module loading/計測器の時間から定常速度・固有の根因・科学予算を推定しない。collector/sourceは変更せずGPU再計測0。
