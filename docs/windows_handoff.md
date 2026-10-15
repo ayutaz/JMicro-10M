@@ -1,5 +1,10 @@
 # Windows / WSL 引継ぎ
 
+2026-10-15新runtime準備: [shared-RoPE CPU runtime](../reports/phase6/forgetting-attention-shared-rope-preparation-20261015/CPU_runtime_readiness.json)は同inv/phase/cos/sin/castを一呼出し内だけ共有する別model/cache/trainer kind/spec/lineageを実装。元BF16演算・vendor kernel/FP32 canonical推論/real cache/同10,014,516/入力/予算/品質条件を維持し旧state/cacheを拒否。CPU model/trainer43・probe29（既存数学12再利用）、実元10M親0.617724秒・旧weights/両arm初期logits exact・cache差1.239777e-5で元3e-5/2e-5内。初回42pass/1failのpolicyコピー不具合をGPU前に修理し、元XMLとpolicy不変guardを保持。CPUの全6対3+save3と同期prefetch対全数値state/非時間history exactはCUDA shared-tableの証明ではない。
+
+専用新owned gateはaccepted prefetch3/6/38・全32非時間historyと実6 snapshot/cache全subcheckを保持し、両arm初期/最初CE・全state resume・最大48x1024・各32timingsを元基準で判定する。新GPU0・preflight合格の準備記録、既消費51.175101520027965秒を元technical180/総4800へ全額継承。旧probe再launch/warm再計時/閾値/教師/形状/予算救済をしない。科学/独立全pipeline/fullDEV/全440/新TEST/採用と全4項目goalはactive/未達。以下は履歴。
+
+
 2026-10-15最新終端: [prefetch owned completion](../reports/phase6/forgetting-attention-prefetch-probe-20261015/completion.json)は両armのaccepted canonical3/6/38全数値state・全32非時間historyがexact、全state6対3+save3・実6 FP32cache全subcheck差0・最大48x1024・初期一致を通過。待ち時間は各平均約47usだが、両科学100M＋各評価600秒予測6168秒が元4800を超え、科学0で条件閉鎖。新17.898267＋旧33.276834＝累計51.175102秒を元technical180/総4800へ全額継承（残り128.824898/4748.824898）。実249980/start67232241・Windows39404終了、ledger closed、元UI250064/start67234446/同boot・HTTP元親/Tokenizer/10M/idleへ復帰を実確認。旧条件をwarm再計時/outlier除外/教師削減/閾値/形状/予算拡大で救済しない。既存cache/OS状態もあるため速度差の単独因果効果とは呼ばない。
 
 次の[共有RoPE定数案](../reports/phase6/forgetting-attention-shared-rope-preparation-20261015/CPU_readiness.json)は先行proposalと純粋helperを別保存。元model.ropeの同じinv/phase/cos/sin/キャスト順序を共有し、FP32/BF16・長さ1/7/64/65/1024・不規則positions・Q/K全入力勾配がCPU12 checksでexact。helperのみで新model/cache/trainer/owned gateは未実装、CUDA/速度/品質の証拠ではない。次は別typed runtime/全state接続後にaccepted3/6/38・全32非時間history・元cache/容量/予算を検証する。新GPU0、累計51.175102秒を保持。独立fresh全pipeline/fullDEV/全440/新TEST/採用と全4項目goalはactive/未達。以下は履歴。
