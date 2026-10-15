@@ -1,0 +1,18 @@
+{
+  "status": "initial_CPU25_pass1_storage_instrumentation_failure",
+  "observed_at": "2026-10-15T05:10:08.6875527Z",
+  "passed": 25,
+  "failed": 1,
+  "failed_test": "test_saved_unique_dense_storage_strictly_less_than_original_autograd",
+  "actual_observed_pack_call_unique_dense_storages": 4,
+  "asserted_persistent_dense_storages": 2,
+  "measurement_issue": "Initial recorder accumulated every pack call and never removed objects released during forward validation. It measures all historical packs, not actual live saved tensors retained for backward.",
+  "fix": "Track weak references to packed wrapper objects and count their live unique storages AFTER loss construction. Preserve target exactly two loss dense tensors and strict reduction; analytic source/operation order/value/gradient requirements unchanged.",
+  "initial_test_source_sha256": "af6fb0543d650fe9e92a23827dd954f6d62b62b73765b1a2f3d480cc98de6bdf",
+  "initial_loss_source_sha256": "8a987d463695390f5c1ad3d8619b2618db6f337e24a19509e38b522213f824d8",
+  "initial_XML_sha256": "bce185340a2056a81abf494a8eda2d20ae742842b19fa1b548a878702f652a48",
+  "new_GPU_seconds": 0,
+  "new_scientific_teachers": 0,
+  "DEV_opened": false,
+  "TEST_opened": false
+}

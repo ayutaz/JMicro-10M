@@ -1,0 +1,51 @@
+{
+  "status": "prospective_separate_RDrop_loss_storage_analytic_VJP_CPU_feasibility_before_code",
+  "created_at": "2026-10-15T05:07:55.8029787Z",
+  "question": "Can a separate analytic first-derivative loss operator preserve the original normalized RDrop values/ALL logit gradients while saving fewer selected-vocabulary tensors for backward?",
+  "evidence": "Owned48x1024/two retained decoder graph reference failed allocating384MiB lp-lq in symmetricKL with22976241664 allocated bytes. It did not complete backward/Adam or test quality. This is a measured loss-storage failure location, not evidence for changing scientific objective.",
+  "change": "New standalone torch.autograd.Function only for vocabulary loss. Forward keeps original FP32 CE/log_softmax/Jeffreys expression order and stores ONLY logp/logq/targets. Backward uses native pinned nll_loss_backward and log_softmax_backward_data plus explicit pointwise Jeffreys chain rule, temporary buffers owned by this operator. No decoder recomputation, no activation checkpointing, no chunked rows/vocab, no microbatch, no detached teacher. Both decoder graphs and both gradients remain.",
+  "fixed": "Original dropout.1/sites, two views, objective meanCE+.5symmetricKL, full4096 vocabulary, FP32 loss/BF16 decoder, original48x1024, parent/seed/Adam/teacher25M/decoder/eval/gates/budget all unchanged. Original failed source/probe stays frozen and closed; new runtime requires distinct source/kind/spec/lineage and its own proof before GPU.",
+  "scope": "CPU mathematical/storage feasibility FIRST, not a scientific run or implementation adoption. No existing trainer global monkeypatch/source edit, no old probe relaunch, no original-parent/data/Tokenizer/DEV/TEST/GPU in initial fixtures.",
+  "CPU_gate": [
+    "Every reported loss scalar and BOTH full logit gradients must be EXACT equal to frozen autograd reference at fixed declared shapes, values, scales and upstream weights. Also independent probability/analytic gradient oracle; identical views/shift/swap/duplicate/masked invalid input cases.",
+    "Using saved_tensors_hooks, count unique selected-vocabulary dense saved tensor storage and require strictly fewer bytes versus reference. CPU saved tensors are NOT CUDA peak or throughput evidence.",
+    "Prove no input tensor or RNG mutation; reject unsupported higher-order differentiation explicitly. Preserve one failed suite and close this fixed implementation on exactness failure; no precision/tolerance/objective/operation-order sweep.",
+    "Only if initial scalar/logit derivative/storage gates pass, create separate typed trainer and prove full native weights/Adam/dropout RNG/sampler/counters/non-time history equality to original RDrop plus continuous6 vs3+save3. CPU source binding and actual-parent proof precede a new owned GPU gate."
+  ],
+  "future_CUDA_gate": "Only after CPU equality and own frozen source/scope tests: compare reference and new implementation on actual original protocol at ordinary drawn batches, max48x1024 two-graph backward FIRST before optimizer, exact fullstate/dropout RNG resume, original actual6 native cache and ALL32 original timings. Do not relaunch failed maximum reference, do not use verification weights for science, no geometry/precision/teacher/budget rescue.",
+  "budget": {
+    "carried_technical_GPU_seconds": 118.38617170206271,
+    "carried_total_GPU_seconds": 3064.5484732830664,
+    "original_technical_cap_seconds": 180,
+    "remaining_total_GPU_seconds": 1735.4515267169336,
+    "remaining_technical_GPU_seconds": 61.61382829793729,
+    "original_total_GPU_cap_seconds": 4800,
+    "carried_completed_science_GPU_seconds": 2946.1623015810037
+  },
+  "failure": "Exact scalar/gradient/state mismatch closes this fixed analytic runtime on CPU. Fewer saved tensors alone cannot advance. No threshold relaxation, different KL, detach, decoder checkpointing, row/vocab chunking, smaller geometry, lowered precision or budget reset.",
+  "native_parameters": 10001152,
+  "new_parameters": 0,
+  "reference_sources_sha256": {
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/rdrop.py": "5d7a54e593f70ee1d0160776cad40277b11edd870195fa9b148d1c329b92bce5",
+    "reports/phase6/rdrop-preparation-20261015/proposal.json": "a433ce8f22ba4f5e8baf4f9cba68f5b1ca18e4381119b8d72246fb549a592163",
+    "scripts/rdrop_trainer.py": "af98397445604233971776753765325ae51e7cc0d5848100e06b6707e122863b",
+    "configs/phase6/rdrop_probe_20261015.json": "9b4d11fb07f1ac55d937928ffea01f275a5797b17a2e87ac9465d94f89a905b8",
+    "reports/phase6/rdrop-probe-20261015/result.json": "b65a65918ac27b61baf98106ce4996ee068e086ea5feb6428ae409857d57d3a4",
+    "reports/phase6/rdrop-probe-20261015/completion.json": "6e19ee60679e4615cee68670f42202a039d76d5b3dbfff54e39ae54a38c5330e",
+    "scripts/probe_rdrop.py": "76b8f7b44243ee70a93cb568ac6a9a962e21d0bcf4934e3b73ad7f7735d0c149"
+  },
+  "primary_API_documentation": "https://docs.pytorch.org/docs/stable/notes/extending.html",
+  "installed_native_backward_schemas": [
+    "aten::nll_loss_backward(Tensor grad_output, Tensor self, Tensor target, Tensor? weight, int reduction, SymInt ignore_index, Tensor total_weight) -> Tensor",
+    "aten::_log_softmax_backward_data(Tensor grad_output, Tensor output, int dim, ScalarType input_dtype) -> Tensor"
+  ],
+  "new_GPU_seconds": 0,
+  "new_scientific_teachers": 0,
+  "new_data_prepared": false,
+  "DEV_opened": false,
+  "TEST_opened": false,
+  "Base_qualified": false,
+  "Base_adopted": false,
+  "full_four_item_goal_complete": false
+}
