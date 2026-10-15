@@ -1,5 +1,7 @@
 # JMicro-10M
 
+2026-10-15各25Mの対照比較が進行中: [実生存と凍結sourceの確認](reports/phase6/document-progress-science-20261015/live_observation.json)。実442192/start68129284/同boot・Windows34612、唯一のGPU process/実kernel FLOCKを確認。現在native_CE_controlの600更新/3394390教師は途中経過で品質証拠ではない。新規対照/候補各25M、推論10,001,152/学習10,001,408、元親/48/42を固定し、各科学1396/1089秒＋全既消費2093.359313秒を元4800以内で継承する。500更新全state保存/20heartbeat、元UIは同job終端に永続launcherが復帰する。次は同じ実processの終端と全数値状態/全履歴/同教師列・全160件の個別内容採否を確認。凍結source編集・再起動・教師/係数/decoder/precision/形状/親/seed/予算救済なし。本比較資格・独立fresh全pipeline/fullDEV/全440/新封印TEST/採用と全4項目goalはactive/未達。以下は以前の観測。
+
 2026-10-15実機検証合格: [document-progress専用GPU記録](reports/phase6/document-progress-probe-20261015/completion.json)。両条件の最大48x1024をAdam前に検証、通常学習3更新の元重み/Adam/CE/source/RNG一致、両条件6対3+保存3の全state/history、実6の元FP32 cache全7項目、各全32計時が合格。新18.468181秒・技術累計116.941782秒、既科学込み総2093.359313秒。新規対照/候補各25Mの予測1396＋1089秒を足して4578.359313秒で元4800以内。専用科学workflow28 CPU checksと凍結configを準備済みで本学習は未開始。実441218/start68095927とWindows38116の終了、元UI441412/start68098170/正しいidle HTTP/kernel FLOCKを確認。次は凍結した各25Mを元親から新規学習し、全数値状態/履歴/同教師列と計160件の個別内容を検証する。全元品質条件を保持し、pilotだけで資格/完成とはしない。本比較・独立fresh全pipeline seed43/fullDEV/全440/新封印TEST/採用と元4項目goalは未達。以下は履歴。
 
 2026-10-15最新準備: [文章の進行を学習時だけ補助予測する別案](reports/phase6/document-progress-preparation-20261015/CPU_readiness.json)はCPU44項目、通常学習との一致と両条件の保存再開を確認しました。推論は元の10,001,152パラメータ、学習時だけ256重みを追加します。通常学習と候補を各2,500万教師で新しく比較する計画ですが、GPU検証・速度・品質は未確認です。次は専用GPU検証を実装し、両条件の実測と全既消費時間を元予算に含めて実行可否を判定します。小規模比較だけでBase完成とはせず、本比較・独立学習・全文DEV・全440生成・新しい最終TEST・採用は未完了です。以下は履歴です。
