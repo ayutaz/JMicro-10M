@@ -1,0 +1,154 @@
+{
+  "status": "complete",
+  "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/document-progress-science-20261015/native_CE_control/checkpoint-00004420.pt",
+  "checkpoint_sha256": "a5d6d36c6d52a2535bff7c44b1afb5fa796a34eed1380280471442b46ecdc664",
+  "binding": {
+    "config_sha256": "12917f1d57daf57afa90fcdd37d255debc8257d10745511f84373b97970acb71",
+    "parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+    },
+    "source_binding": {
+      "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+      "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+      "index_size": 12861257655,
+      "index_mtime_ns": 1791234945567297288,
+      "stream_size": 4000002624,
+      "stream_mtime_ns": 1791234945514053852,
+      "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+      "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+    },
+    "training_seed": 42,
+    "weights_role": "scientific_document_progress25M",
+    "arm": "native_CE_control",
+    "probe_weights_used": false
+  },
+  "counters": {
+    "update": 4420,
+    "supervised_tokens": 25000000,
+    "CE_input_tokens": 25709002,
+    "auxiliary_input_tokens": 0,
+    "auxiliary_pairs": 0,
+    "physical_input_tokens": 93668640,
+    "original_body_bytes": 101464365,
+    "token_digest": "f377a79d28297bea233d8d9397084535e3b841753111666daeb2d778459c884c",
+    "source_teachers": {
+      "web": 18750000,
+      "textbook": 5000000,
+      "story": 1250000
+    },
+    "source_EOS": {
+      "web": 164075,
+      "textbook": 37097,
+      "story": 9564
+    },
+    "auxiliary_digest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "progress_label_positions": 25000000,
+    "progress_learning_positions": 0,
+    "progress_zero_EOS_labels": 210736,
+    "progress_source_labels": {
+      "web": 18750000,
+      "textbook": 5000000,
+      "story": 1250000
+    },
+    "progress_target_sum": 12500035.854452593,
+    "progress_target_digest": "53b6e3ba33600accf0839ecee8c5b73afd855e123fd603141905c7ef6edaf662"
+  },
+  "physical_rollup": {
+    "main_teachers": 25000000,
+    "scalar_learning_labels": 0,
+    "main_physical_inputs": 93668640
+  },
+  "model_config": {
+    "schema_version": 1,
+    "architecture": "decoder_only_transformer",
+    "hidden_size": 256,
+    "num_attention_heads": 4,
+    "num_key_value_heads": 2,
+    "head_dim": 64,
+    "activation": "swiglu",
+    "norm": "rmsnorm",
+    "rms_norm_eps": 1e-06,
+    "qk_norm_type": "none",
+    "qk_norm_before_rope": true,
+    "attention_scale": 0.125,
+    "rope_theta": 10000,
+    "rope_layout": "half_split",
+    "rotary_dim": 64,
+    "max_position_embeddings": 1024,
+    "tie_word_embeddings": true,
+    "attention_bias": false,
+    "mlp_bias": false,
+    "dropout": 0.0,
+    "initializer_std": 0.02,
+    "norm_initial_gain": 1.0,
+    "status": "phase5_ablation",
+    "name": "JMicro-10M-T4K-NoQKNorm",
+    "vocab_size": 4096,
+    "num_hidden_layers": 13,
+    "intermediate_size": 640,
+    "expected_parameter_count": 10001152
+  },
+  "spec": {
+    "kind": "native_original_CE_document_progress_scalar_L1_v1",
+    "batch": 48,
+    "contrast": false,
+    "seed": 42,
+    "lr": 1e-05,
+    "weight_decay": 0.1,
+    "temperature": 0.1,
+    "coefficient": 0.1,
+    "dtype": "bf16",
+    "backend": "flash",
+    "optimizer_policy": "fresh_equal_AdamW_both_arms",
+    "scheduler": "constant",
+    "original_whole_body_plus_EOS": true,
+    "no_split_EOS": true,
+    "CE_policy": "document_local1024_context512_target_stride_original_EOS_once",
+    "head_policy": "only_supervised_valid_hidden_states_no_PAD_or_overlap_logits",
+    "auxiliary_policy": "first_window_observed_pair_once_per_draw_deduplicate_family_and_body_in_batch",
+    "goals": {
+      "web": 18750000,
+      "textbook": 5000000,
+      "story": 1250000
+    },
+    "progress_arm": "native_CE_control",
+    "progress_policy": {
+      "kind": "original_document_remaining_body_fraction_sigmoid_L1_v1",
+      "target": "(original_body_tokens-input_start-physical_column)/original_body_tokens",
+      "mask": "exact_original_main_CE_unmasked_slots",
+      "coefficient": 0.1,
+      "head": "zero_initialized_FP32_no_bias_scalar_linear_final_native_hidden",
+      "additional_decoder_passes": 0,
+      "inference": "native_model_only_no_head_or_length_hint"
+    },
+    "original_material_binding": {
+      "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+      "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+      "index_size": 12861257655,
+      "index_mtime_ns": 1791234945567297288,
+      "stream_size": 4000002624,
+      "stream_mtime_ns": 1791234945514053852,
+      "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+      "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+    },
+    "native_parameters": 10001152,
+    "train_only_parameters": 256,
+    "total_training_parameters": 10001408,
+    "gradient_clip_policy": "exact_original_coordinate_reduction",
+    "inference_policy": "unchanged_original_native_model_no_progress_head"
+  },
+  "lineage": {
+    "parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+    },
+    "parent_update": 305176,
+    "parent_tokens": 10000007168,
+    "parent_supervised_tokens": 9978838479,
+    "optimizer_policy": "fresh_AdamW_original_coordinates_plus_train_only_scalar_head",
+    "kind": "native_original_CE_document_progress_scalar_L1_v1",
+    "weights_role": "scientific_document_progress25M",
+    "progress_weights_role": "fresh_train_only_never_inference"
+  }
+}
