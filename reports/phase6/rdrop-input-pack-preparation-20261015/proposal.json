@@ -1,0 +1,44 @@
+{
+  "kind": "prospective_single_known_batch_target_transfer_diagnostic_v1",
+  "created_at": "2026-10-15T05:32:02.8430057Z",
+  "question": "Does the unchanged target-label packing perform per-row CPU-to-CUDA copies, and what are its scoped CPU/operator counts and synchronized wall cost in one already measured batch?",
+  "evidence": {
+    "targets": "Each of48 rows creates a device tensor and assigns it to the padded GPU target",
+    "input_ids": "right_pad already CPU-collates input IDs then transfers once; do not claim48 input-ID transfers",
+    "known_batch": "verification6_before_cache.pt exact next sampler.take(48), all32_timings[0], update7/6273 main teachers/48x583",
+    "source": "scripts/rdrop_analytic_trainer.py:131-134",
+    "closed_completion": "reports/phase6/rdrop-analytic-probe-20261015/completion.json"
+  },
+  "scope": {
+    "DEV_opened": false,
+    "prior_technical_GPU_seconds": 136.72787685703952,
+    "next_update": 7,
+    "new_scientific_teachers": 0,
+    "warmup_batches": 0,
+    "prior_science_GPU_seconds": 2946.1623015810037,
+    "profiled_batches": 1,
+    "TEST_opened": false,
+    "raw_text_or_ID_export": false,
+    "weights_saved": false,
+    "original_total_GPU_cap_seconds": 4800,
+    "profiler": "CPU activities only, two explicit scopes; no CUDA activity-time inference",
+    "new_GPU_ceiling_seconds": 5,
+    "model_instantiated": false,
+    "backward_calls": 0,
+    "checkpoint_update": 6,
+    "prior_total_GPU_seconds": 3082.890178438043,
+    "original_technical_cap_seconds": 180,
+    "forward_calls": 0,
+    "optimizer_updates": 0
+  },
+  "method": [
+    "Verify closed prior process and ledger; freeze own source/config/CPU boundary evidence before execution",
+    "CPU-load only saved verification6; restore separate original sampler and decode exactly its next48 windows under accepted binding",
+    "Require full draw_trace, teachers, post-sampler source counts, input shape and stream digest equal existing update7 evidence; never choose a different batch",
+    "Compute independent CPU packing oracle; collect one unchanged original input+target packing with CPU-only profiler and synchronized per-scope wall brackets under owned GPU lock",
+    "Preserve all raw operator rows; verify complete GPU ids/targets/masks equal CPU oracle and torch RNG unchanged; no persistent sampler/model mutation"
+  ],
+  "decision": "A scoped target _to_copy count48 plus exact packing proves per-row transfer operations in this event. It may justify a separate exact-equivalent target batching proposal, never a steady bottleneck/speedup/science forecast. No repeated measurement or old-condition reforecast.",
+  "stop": "One batch only,5s cumulative occupied GPU wall; failure closes diagnostic without unchanged retry. Prior4800/180 ledgers carry every spent second. Closed analytic runtime/forecast stays closed.",
+  "full_goal": "Qualified same10M Base recipe, genuinely fresh whole-pipeline trained seed43, fullDEV/all440, new sealedTEST and adoption remain pending."
+}
