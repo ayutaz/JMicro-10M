@@ -1,0 +1,43 @@
+{
+  "kind": "prospective_explicit_tiled_forgetting_runtime_v1",
+  "created_at": "2026-10-15T01:01:05.2261226Z",
+  "status": "CPU_adapter_and_typed_evidence_proposal_before_code",
+  "references_sha256": {
+    "reports/phase6/forgetting-attention-key-bias-probe-20261015/completion.json": "af14874918de8bde07ea4c5578d49001a6c8dd4e4b6b68fdb887b2dae474f675",
+    "reports/phase6/forgetting-attention-key-bias-preparation-20261015/fused_kernel_assessment.json": "11ab070d44ffc8f7139a3307e505b974e8bceabc8c85dad939729d6f6568b725",
+    "src/jmicro/forgetting_attention.py": "83312cfb66243463817eae3809e98a43cf2e1b4ec6f1d910e054e1eb0cb5374f",
+    "src/jmicro/forgetting_attention_key_bias.py": "0b7121c045f78a3669b0d25a59819f9ec66d5804e48225fe8f5ae8c4c0d97168",
+    "scripts/forgetting_attention_key_bias_trainer.py": "b772cb004382e01971f40c1731f0e658646950d6d39543294121daf8877a5216",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca"
+  },
+  "upstream_kernel_git_blob": "f920086a6dbca9d1e9338a0778e88cf6abbf6002",
+  "upstream_file": "https://github.com/zhixuan-lin/forgetting-transformer/blob/main/src/forgetting_transformer/ops/forgetting_attention.py",
+  "purpose": "Avoid materializing full quadratic differentiable attention matrices using the author tiled implementation. This is a separately bound backend/runtime, not a changed closed MATH contract or proven improvement.",
+  "vendoring": "Preserve original source attribution and Apache2.0 header plus full applicable license texts. Copy only production core before embedded pytest/benchmarks. Replace einops layout-only permutations with exact torch transpose operations; computational kernel/config/gradient code unchanged. No dependency version changes planned; pinned torch2.14.1/triton3.8.0/numpy2.5.3/pytest9.1.1 are CPU-import verified, CUDA not initialized.",
+  "unchanged": [
+    "Original native10B tensors, no O rescaling, both learned/static-half gate arms with zero W/b and initial f0.5",
+    "Same10014516 total trainable coordinates within9.5M-10.1M; no train-only over-budget head",
+    "GQA Q4/KV2 uses same explicit contiguous repeat of each KV head into two query heads; no untie/MHA replacement",
+    "Original RoPE/NoQKNorm/SwiGLU/CE/gold/source/48/42/fresh AdamW1e-5 WD.1/constant/clip1",
+    "CUDA BF16 projected QKV and FP32 log gate/cumsum; no ACP/pruning or masked-data inference in fused kernel",
+    "All original quality/BPB/native/strong/historical/final gates and actual FP32 cache3e-5+2e-5"
+  ],
+  "dispatch": "Explicit full-unmasked causal CUDA BF16 training traversal only, through model-owned right_padded_hidden. CPU, FP32, masked/hole/padded/cached inference use already qualified key-bias mathematical path. Native CUDA helper must refuse rather than silently omit fusion. Every route has new model/cache/trainer runtime markers.",
+  "new_GPU_requirements": [
+    "Dedicated owned operator-level forward AND all Q/K/V/log-gate gradients against independent explicit reference before full geometry",
+    "Small-operator BF16 forward/gradient tolerance predeclared atol1e-2 rtol0 matching upstream own checks, NOT used for FP32 cache or fullstate resume",
+    "Resident48x1024 finite complete backward before any model optimizer updates; same allocator cap, no smaller batch/context fallback",
+    "BOTH arms continuous6 versus3+save3 all typed numerical state/non-time history EXACT, active actual-parent FP32 cached/full ORIGINAL tolerances",
+    "All32 finite measured timings of BOTH arms; combined forecast includes both100M scientific arms and600s evaluation reserve EACH under original4800 total"
+  ],
+  "prior_technical_GPU_seconds": 1.2446600809926167,
+  "original_technical_cap_seconds": 180,
+  "remaining_technical_GPU_seconds": 178.75533991900738,
+  "original_total_GPU_cap_seconds": 4800,
+  "new_technical_GPU_seconds": 0,
+  "science_contract_frozen": false,
+  "scientific_teacher_positions": 0,
+  "Base_qualified": false,
+  "full_four_item_goal_complete": false,
+  "stop": "If import/operator gradients/capacity/deterministic resume/cache/original cumulative forecast fail, preserve evidence and close. No precision threshold/gate/init/data/seed/geometry/allocator/budget rescue or reset. Scientific validation still requires qualified recipe then genuinely fresh whole-pipeline learning/fullDEV/all440/new sealedTEST/adoption."
+}

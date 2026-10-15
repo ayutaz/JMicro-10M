@@ -1,0 +1,18 @@
+Forgetting Attention production kernel
+
+Upstream: https://github.com/zhixuan-lin/forgetting-transformer
+Path: src/forgetting_transformer/ops/forgetting_attention.py
+Git blob: f920086a6dbca9d1e9338a0778e88cf6abbf6002
+
+The source header and BAAI/FlagAttention attribution are preserved verbatim.
+See forgetting_attention_LICENSE_APACHE2.txt and forgetting_attention_LICENSE_MIT.txt.
+The former accompanies the source's FlagAttention-derived Apache-2.0 header;
+the latter preserves the upstream repository's MIT license text.
+
+Local changes: exclude embedded upstream pytest/benchmark entry points;
+replace three einops layout permutations with exact torch.transpose calls;
+add this production-only notice comment. No computational Triton forward,
+backward, gate-gradient, or launch-configuration code is changed.
+
+This copy does not establish local CUDA correctness, numerical equivalence,
+model quality or the completion of any learning/evaluation stage.

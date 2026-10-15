@@ -1,5 +1,11 @@
 # 現在の状態
 
+2026-10-15別tiled runtime [CPU readiness](../reports/phase6/forgetting-attention-fused-preparation-20261015/CPU_readiness.json)。先行proposal後、公式blobf920086a6dbca9d1e9338a0778e88cf6abbf6002のproduction coreを別vendorへ保存。kernel/configは変更せず、embedded tests除外とeinopsのlayoutだけtransposeへ置換し、逆変換で元coreの全bytes一致を確認。元Apache2.0/FlagAttention表示・Apache/MIT全文・NOTICEを保持、固定torch/tritonのCPU importでCUDA未初期化、依存/uv.lock変更0。
+
+新model/cache/trainer kind/spec/lineageはCUDA BF16のfull-prefix学習だけtiled、FP32/CPU/masked/cacheは既合格key-bias数学経路。native CUDA helperでfusedを黙って省略しない。model26/trainer24/probe22 CPU checks・両arm全state/history6vs3+save3 exact、実元10M親CPU0.293578秒・count10,014,516・元weights/両arm初期logits exact・FP32fallback cache元3e-5/2e-5合格。CUDA数値/勾配/容量/再開/速度/品質の証拠ではない。
+
+専用owned probe/永続launcher/config凍結・CPU preflight済み、新GPU0の準備時記録。最初に独立BF16 operatorの値/全QKV/log gate勾配を原著者1e-2/rtol0で確認（FP32 cache/exact resumeへ転用しない）、次にresident48x1024をAdam前に確認、通過後だけ両arm初期数値/最初CE・全state resume・active cache・各32timings。前回1.2446600809926167秒を元technical180/総4800へ必ず全額継承し、両科学100Mと各600秒評価reserveを予測に含む。元UI実63743/start66877161/同boot・HTTP元親/Tokenizer/10M/idleとkernel lockを起動前観測、終端でlauncher復帰。科学契約/独立全pipeline/fullDEV/全440/新TEST/採用は未資格、全4項目goalはactive/未達。下の未導入/reference失敗は履歴。
+
 2026-10-15最新owned終端: [key-bias MATH capacity completion](../reports/phase6/forgetting-attention-key-bias-probe-20261015/completion.json)は**最大48x1024のCUDA容量未達で実装条件閉鎖**。実PID63690/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start66876649不存在、Windows39152終了、ledger closed。数学SDPA/CUDA BF16＋FP32 log biasのforward中に768MiB確保がOOMとなり、forward/backward完遂・Adam・実TRAIN stream更新・科学・DEV/TESTは0。GPU1.2446600809926167秒、PyTorch peak22478567424bytes、実allocator allowance23181026918bytes。raw例外の非PyTorch使用量には不可能な値が含まれ、その値から実使用量を推定せず全文を保持する。
 
 元UIはPID63743/start66877161/同bootとHTTP元親/Tokenizer/10M/idleを実確認して復帰。CPU17/23/16・実親cache合格をGPU容量の代替にしない。閉鎖source/契約を再launch/refreeze・batch/context/backend/allocator/予算の救済で変更せず、既消費1.2446600809926167秒を元technical180/総4800へ必ず継承（残り178.75533991900738/4798.755339919007）。GPU全state resume/cache/32timingsは未実施、科学契約なし。
