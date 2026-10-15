@@ -1,0 +1,31 @@
+{
+  "created_at": "2026-10-15T01:55:28.1955740Z",
+  "question": "Can compute the exact original RoPE constants once per full-prefix model invocation and reuse for Q/K across13 layers, eliminating repeated work without changing values/backward/learning/history?",
+  "kind": "prospective_share_original_RoPE_constant_tables_only_v1",
+  "requirements": [
+    "Independent exact CPU FP32/BF16 Q/K output AND input gradients across physical lengths/irregular positions; no CUDA/global RNG or learned table state.",
+    "Then explicit new runtime/cache/model/trainer kind/spec/lineage and old checkpoint/cache refusal; frozen old sources never edited.",
+    "Actual both-arm GPU saved3/6/38 numeric state + all32 non-time history exact, fullstate resume/cache/capacity/measured timing before science.",
+    "Both scientific100M arms/all160 individual reviews and all native/strong/historical/final quality gates remain mandatory."
+  ],
+  "source_evidence": {
+    "path": "reports/phase6/forgetting-attention-prefetch-probe-20261015/completion.json",
+    "sha256": "985d899b9564dccf9f66a7a8f43916227c2424bda58803fc8befd7b233fb127d"
+  },
+  "new_GPU_seconds": 0,
+  "Base_qualified": false,
+  "prior_technical_GPU_seconds": 51.175101520027965,
+  "original_technical_cap_seconds": 180,
+  "status": "proposal_before_code",
+  "full_four_item_goal_complete": false,
+  "limits": "Code inspection supports redundant constant computation, not measured root cause or guaranteed speed/quality improvement. Do not rerun old gates or relax precision/geometry/teachers/budget.",
+  "changes": [
+    "ONLY share original inverse-frequency/phase/cos/sin table construction with identical operation order, dtype/device/positions/theta. Original rotation, multiplication/addition order unchanged.",
+    "Keep current prefetched input trainer, canonical FP32 inference/real cache, original BF16 tiled vendor kernel/launch policy; original parameters/weights/shape/RNG/data/labels/optimizer unchanged.",
+    "No quantization/torch.compile/fastmath/new kernel, model/data/teacher/decoder/budget changes."
+  ],
+  "scientific_teacher_positions": 0,
+  "source_fact": "Original model.rope computes inv frequency, positions phase, duplicated phase, cos/sin and casts on every Q/K in13 layers. Original common dim64/theta/positions/dtype allow reuse of identical constant outputs. No TRAIN or model parameter depends on table gradients.",
+  "science_contract_frozen": false,
+  "original_total_GPU_cap_seconds": 4800
+}

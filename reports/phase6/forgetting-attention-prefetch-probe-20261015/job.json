@@ -1,0 +1,471 @@
+{
+  "status": "complete",
+  "pid": 249980,
+  "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+  "start_ticks": "67232241",
+  "started_at": "2026-10-15T01:52:41.513789Z",
+  "config_sha256": "6b668862594d606c257bb1fd6eeb69d7476c92aecb883ce4a9526f154c02c8b0",
+  "scientific_teacher_positions": 0,
+  "cumulative_GPU_ledger_closed": true,
+  "prior_technical_GPU_seconds": 33.276834176969714,
+  "memory_policy": {
+    "torch_version": "2.14.1+cu130",
+    "device": "NVIDIA GeForce RTX 4090",
+    "visible_device_bytes": 25756696576,
+    "process_fraction": 0.8999999999844701,
+    "allocator_allowance_bytes": 23181026918,
+    "expected_worst_peak_bytes": 0
+  },
+  "stage": "static_half_forget_steady32",
+  "heartbeat_at": "2026-10-15T01:52:55.878021Z",
+  "GPU_occupancy_seconds": 17.89826734305825,
+  "independent_operator_equivalence": {
+    "passed": true,
+    "cases": [
+      {
+        "length": 17,
+        "Q_heads": 4,
+        "original_KV_heads": 2,
+        "dimension": 64,
+        "absolute_tolerance": 0.01,
+        "relative_tolerance": 0.0,
+        "maximum_differences": {
+          "output": 0.00390625,
+          "Q": 0.0001220703125,
+          "K_original_KV2": 0.0001220703125,
+          "V_original_KV2": 0.001953125,
+          "gate_logits": 0.00021971995010972023,
+          "FP32_log_gate": 0.00045980513095855713
+        },
+        "passed": true
+      },
+      {
+        "length": 64,
+        "Q_heads": 4,
+        "original_KV_heads": 2,
+        "dimension": 64,
+        "absolute_tolerance": 0.01,
+        "relative_tolerance": 0.0,
+        "maximum_differences": {
+          "output": 0.00390625,
+          "Q": 0.0001220703125,
+          "K_original_KV2": 0.0001220703125,
+          "V_original_KV2": 0.001953125,
+          "gate_logits": 0.00025101378560066223,
+          "FP32_log_gate": 0.0005868077278137207
+        },
+        "passed": true
+      }
+    ],
+    "RNG_restored": true,
+    "scope": "Small independent BF16 attention and ALL gradients only; not FP32 cache/update tolerance"
+  },
+  "capacity": {
+    "passed": true,
+    "shape": [
+      48,
+      1024
+    ],
+    "teachers": 24576,
+    "physical_input_tokens": 49152,
+    "loss": 4.419668674468994,
+    "gradient_norm": 48.18291473388672,
+    "peak_VRAM_bytes": 11023070720,
+    "optimizer_updates": 0,
+    "backend": "pinned_author_Triton",
+    "gate_bias_precision": "FP32",
+    "autocast": "BF16"
+  },
+  "accepted_canonical_numeric_states_exact": {
+    "learned_forget": {
+      "3": {
+        "model": true,
+        "optimizer": true,
+        "scheduler": true,
+        "RNG": true,
+        "sampler": true,
+        "counters": true
+      },
+      "6": {
+        "model": true,
+        "optimizer": true,
+        "scheduler": true,
+        "RNG": true,
+        "sampler": true,
+        "counters": true
+      },
+      "38": {
+        "model": true,
+        "optimizer": true,
+        "scheduler": true,
+        "RNG": true,
+        "sampler": true,
+        "counters": true
+      }
+    },
+    "static_half_forget": {
+      "3": {
+        "model": true,
+        "optimizer": true,
+        "scheduler": true,
+        "RNG": true,
+        "sampler": true,
+        "counters": true
+      },
+      "6": {
+        "model": true,
+        "optimizer": true,
+        "scheduler": true,
+        "RNG": true,
+        "sampler": true,
+        "counters": true
+      },
+      "38": {
+        "model": true,
+        "optimizer": true,
+        "scheduler": true,
+        "RNG": true,
+        "sampler": true,
+        "counters": true
+      }
+    }
+  },
+  "saved_original3_numerical_state_exact": {
+    "model": true,
+    "optimizer": true,
+    "scheduler": true,
+    "RNG": true,
+    "sampler": true,
+    "counters": true
+  },
+  "resume_completed_arms": {
+    "learned_forget": true,
+    "static_half_forget": true
+  },
+  "verification6_snapshots": {
+    "learned_forget": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/forgetting-attention-prefetch-probe-20261015/learned_forget_verification6_before_cache.pt",
+      "sha256": "2be7b91e868dd0b5c6e0d1ca8420ba68723758b663cb2bb4f38df3bfa106cac0"
+    },
+    "static_half_forget": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/forgetting-attention-prefetch-probe-20261015/static_half_forget_verification6_before_cache.pt",
+      "sha256": "1b8727de0ebb43f28b06354c18936500ee3fcaa77b9c0e456a4f8c4180626ae7"
+    }
+  },
+  "active_cache_observations": {
+    "learned_forget": {
+      "passed": true,
+      "original_guard_subchecks": {
+        "finite_logits": true,
+        "logits_within_original_tolerance": true,
+        "log_gate_history_within_original_tolerance": true,
+        "positions_exact": true,
+        "validity_exact": true,
+        "RNG_unchanged": true
+      },
+      "all_original_guards_passed": true,
+      "maximum_logit_difference": 0.0,
+      "outside_original_logit_tolerance": 0,
+      "first_eight_outside_logits": [],
+      "layer_log_gate_observations": [
+        {
+          "layer": 0,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 1,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 2,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 3,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 4,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 5,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 6,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 7,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 8,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 9,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 10,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 11,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 12,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        }
+      ],
+      "descriptive_KV_differences_not_additional_gates": [
+        {
+          "layer": 0,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 1,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 2,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 3,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 4,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 5,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 6,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 7,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 8,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 9,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 10,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 11,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 12,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        }
+      ],
+      "absolute_tolerance": 3e-05,
+      "relative_tolerance": 2e-05,
+      "optimizer_updates": 0,
+      "dtype": "FP32",
+      "backend": "math"
+    },
+    "static_half_forget": {
+      "passed": true,
+      "original_guard_subchecks": {
+        "finite_logits": true,
+        "logits_within_original_tolerance": true,
+        "log_gate_history_within_original_tolerance": true,
+        "positions_exact": true,
+        "validity_exact": true,
+        "RNG_unchanged": true
+      },
+      "all_original_guards_passed": true,
+      "maximum_logit_difference": 0.0,
+      "outside_original_logit_tolerance": 0,
+      "first_eight_outside_logits": [],
+      "layer_log_gate_observations": [
+        {
+          "layer": 0,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 1,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 2,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 3,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 4,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 5,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 6,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 7,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 8,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 9,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 10,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 11,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        },
+        {
+          "layer": 12,
+          "maximum_difference": 0.0,
+          "within_original_tolerance": true
+        }
+      ],
+      "descriptive_KV_differences_not_additional_gates": [
+        {
+          "layer": 0,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 1,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 2,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 3,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 4,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 5,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 6,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 7,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 8,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 9,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 10,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 11,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        },
+        {
+          "layer": 12,
+          "K_maximum_difference": 0.0,
+          "V_maximum_difference": 0.0
+        }
+      ],
+      "absolute_tolerance": 3e-05,
+      "relative_tolerance": 2e-05,
+      "optimizer_updates": 0,
+      "dtype": "FP32",
+      "backend": "math"
+    }
+  },
+  "accepted_all32_non_time_histories_exact": {
+    "learned_forget": true,
+    "static_half_forget": true
+  },
+  "ended_at": "2026-10-15T01:52:59.418143Z",
+  "technical_GPU_seconds_including_prior": 51.175101520027965
+}
