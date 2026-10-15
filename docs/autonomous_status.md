@@ -1,5 +1,7 @@
 # 現在の状態
 
+2026-10-15次の限定診断準備: [read-only CUDA saved3](../reports/phase6/forgetting-attention-fused-cache-diagnostic-preparation-20261015/CPU_readiness.json)はCPU4 checksと専用config/永続launcherのpreflightを通過。失敗したCUDA6を再学習せず、pinned verification3＋既存2x64 spanだけから元FP32/MATH・3e-5/2e-5のsubcheck/範囲外件数/値/logs/KV/RNGを収集する。新optimizer/TRAIN stream/DEV/TEST/export0、newGPU0の準備記録。30秒の限定枠かつ既消費12.881095835007727秒を元180/4800へ全額継承、旧owned sourceは変更・再launchしない。観測完了は旧CUDA6再現やBase完成を意味せず、全4項目goalはactive/未達。
+
 2026-10-15最新owned終端: [tiled forgetting completion](../reports/phase6/forgetting-attention-fused-probe-20261015/completion.json)は**learned update6のFP32 cache guard未達で実装条件閉鎖**。実PID64807/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start66994256不存在、Windows10000終了、ledger closed。独立BF16 operator17/64の出力/全QKV/log gate/logit gate勾配は事前1e-2/rtol0内、最大出力差.00390625・log gate差.0005868071。resident48x1024有限full backward、peak11023070720bytes、stress Adam0/weights不変。learned arm全state/history6対3+save3 exactも通過した。
 
 次のFP32 guardはlogits/log履歴/positions/validity/RNGを共同検査し失敗したが、**失敗subcheckとmax値は凍結guardが保存していない**ため推測しない。static arm、両arm CUDA初期一致、各32timingsには未到達。技術12 optimizer更新/67400 main教師、科学/DEV/TEST0。新GPU11.63643575401511秒＋旧1.2446600809926167秒＝累計12.881095835007727秒、元technical180/総4800の残り167.11890416499227/4787.118904164992を保持。saved verification split3はWSLのみ、科学初期化に使わない。
