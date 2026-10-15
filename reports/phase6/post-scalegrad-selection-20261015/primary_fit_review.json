@@ -1,0 +1,53 @@
+{
+  "status": "NEFTune_primary_source_fit_review_not_selected_no_implementation_or_GPU",
+  "observed_at": "2026-10-15T06:51:26.7571716Z",
+  "question": "Could one-pass training-only continuous embedding noise be a supported next native Base comparison under the unchanged quality and resource gates?",
+  "local_source_sha256": {
+    "scripts/base_residual_dropout.py": "52759deab19d97167bbb386f12ea7ed4eebd0327ba364b266d3196908bad7cbb",
+    "reports/phase6/base_residual_dropout_comparison_completion.json": "2b9bc2aa77b9077b478ee025ea476433347fa539bfc177246a3dfe0a3e515c84",
+    "reports/phase6/rdrop-preparation-20261015/proposal.json": "a433ce8f22ba4f5e8baf4f9cba68f5b1ca18e4381119b8d72246fb549a592163",
+    "reports/phase6/post-scalegrad-selection-20261015/decision.json": "a18ed1738eba9460d3e5f56b0bb0c1826fa660a4125cf3c6b8dd4472eb82fd37"
+  },
+  "primary_sources": [
+    {
+      "commit_observation": "git ls-remote HEAD returned this commit; pinned README then opened and checked",
+      "location": "Intro warning; Code; Limitations",
+      "url": "https://github.com/neelsjain/NEFTune/blob/09d4909b57b9f4e50506722e2abf3db7a5650082/README.md",
+      "summary": "Training adds scaled uniform embedding noise. Authors report degradation without repetition penalty and recommend greedy decoding with penalty1.2. Limited instruction-finetuning evidence does not establish our Japanese10M Base effect.",
+      "commit": "09d4909b57b9f4e50506722e2abf3db7a5650082"
+    },
+    {
+      "summary": "Main models are billions of parameters and instruction-finetuned. Generation comparisons use repetition penalty1.2 throughout, including varied decoding settings. Observed conversational improvements cannot be transferred directly to native Japanese10M Base.",
+      "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/4bdeeaeb380b35302bbda1823d328c22-Paper-Conference.pdf",
+      "locations": [
+        "Section2/Algorithm1",
+        "Section3.1",
+        "Section5.2 footnote1, printed p7",
+        "AppendixA.2/Table7, printed p13"
+      ]
+    }
+  ],
+  "comparison_to_prior": "Continuous additive input-embedding noise differs from existing inverted p.1 embedding/residual dropout and two-view RDrop; difference alone is not efficacy or exhaustive novelty evidence. No implementation absence claim from keyword search. Closed dropout100M remains rejected; RDrop remains cost-closed.",
+  "decision": {
+    "inference": "Insufficient fit for this next comparison, not proof NEFTune fails on10M or a permanent prohibition if genuinely new evidence appears.",
+    "selected_for_code_or_GPU": false,
+    "new_recipe_frozen": false,
+    "reason": "Available primary evidence does not adequately support native raw-generation improvement without decoding changes in this project, and no measured new technical/science feasibility exists. Avoid spending the last technical seconds on an unsupported cheaper-looking regularizer."
+  },
+  "preserved": {
+    "parameters": 10001152,
+    "raw_generation_policy_unchanged": true,
+    "no_added_repetition_penalty": true,
+    "quality_gates_unchanged": true,
+    "all_prior_costs_carried": true
+  },
+  "new_model_or_training_code": 0,
+  "new_CPU_model_forward": 0,
+  "new_dataset": 0,
+  "new_GPU_seconds": 0,
+  "actual_DEV_or_TEST_opened": false,
+  "new_quality_scores": 0,
+  "Base_adopted": false,
+  "full_four_item_goal_complete": false,
+  "next_action": "No further automatic regularizer sweep or synthetic scaffolding. Preserve fit rejection and audit the original completion requirements/resource prerequisites. No claim that every possible intervention is ruled out."
+}
