@@ -1,5 +1,10 @@
 # Windows / WSL 引継ぎ
 
+2026-10-15最新終端: [shared-RoPE owned completion](../reports/phase6/forgetting-attention-shared-rope-probe-20261015/completion.json)は両armのaccepted prefetch3/6/38全数値state・全32非時間historyがexact、初期/最初CE・6対3+save3・実6 FP32cache全subcheck差0・最大48x1024を通過。しかし両科学100M＋各評価600秒予測6475秒は元4800を超え、科学0で条件閉鎖。旧6168から速度改善したとは言えない。新18.874430＋旧51.175102＝累計70.049531秒を元technical180/総4800へ全額継承。実433547/start67284552・Windows35640終了、ledger closed、元UI433631/start67286859/同boot・HTTP元親/Tokenizer/10M/idleへ復帰実確認。
+
+次の[一回限定operator profile準備](../reports/phase6/forgetting-attention-operation-profile-preparation-20261015/CPU_readiness.json)はCPU6 checks/preflight合格、新GPU0。saved actual6と既存48x1024技術windowだけで元BF16 forward/backwardを1回計測し、optimizer/新TRAIN/DEV/TEST/重み保存0。CPU operatorと実CUDA eventを分離し、包含時間の二重加算や計測器付き時間の科学予測への転用を拒否する。新上限30秒かつ元180/4800へ累計70.049531秒を継承。旧probeのwarm再計時/救済変更をせず、観測後にだけ次の実装価値を判断する。科学/独立全pipeline/fullDEV/全440/新TEST/採用と全4項目goalはactive/未達。以下は履歴。
+
+
 2026-10-15新runtime準備: [shared-RoPE CPU runtime](../reports/phase6/forgetting-attention-shared-rope-preparation-20261015/CPU_runtime_readiness.json)は同inv/phase/cos/sin/castを一呼出し内だけ共有する別model/cache/trainer kind/spec/lineageを実装。元BF16演算・vendor kernel/FP32 canonical推論/real cache/同10,014,516/入力/予算/品質条件を維持し旧state/cacheを拒否。CPU model/trainer43・probe29（既存数学12再利用）、実元10M親0.617724秒・旧weights/両arm初期logits exact・cache差1.239777e-5で元3e-5/2e-5内。初回42pass/1failのpolicyコピー不具合をGPU前に修理し、元XMLとpolicy不変guardを保持。CPUの全6対3+save3と同期prefetch対全数値state/非時間history exactはCUDA shared-tableの証明ではない。
 
 専用新owned gateはaccepted prefetch3/6/38・全32非時間historyと実6 snapshot/cache全subcheckを保持し、両arm初期/最初CE・全state resume・最大48x1024・各32timingsを元基準で判定する。新GPU0・preflight合格の準備記録、既消費51.175101520027965秒を元technical180/総4800へ全額継承。旧probe再launch/warm再計時/閾値/教師/形状/予算救済をしない。科学/独立全pipeline/fullDEV/全440/新TEST/採用と全4項目goalはactive/未達。以下は履歴。
