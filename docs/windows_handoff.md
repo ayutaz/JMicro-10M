@@ -1,5 +1,12 @@
 # Windows / WSL 引継ぎ
 
+2026-10-15最新限定診断完了: [single operator profile](../reports/phase6/forgetting-attention-operation-profile-20261015/completion.json)は実saved6＋既存48x1024だけのforward/backward1回、optimizer/新TRAIN/DEV/TEST/重み保存0、全勾配有限・重み不変・RNG保持を確認。実434159/start67316608・Windows30428終了、ledger closed。新2.514122＋旧70.049531＝累計72.563653秒を元technical180/総4800へ継承、残り107.436347/4727.436347。元UI434223/start67317300/同boot・HTTP元親/Tokenizer/10M/idleへ復帰実確認。
+
+元collectorのCUDA-event集計には自分のrecord_function範囲1件959578.843usとmemory activityも含まれる。[保存済み結果のoffline解析](../reports/phase6/forgetting-attention-operation-profile-20261015/analysis.json)で既知名称を分け、元総数/総時間との一致を確認した。kernel名activity3065件133467.593usは名称分類で、元scope metadataは未保存。raw3184件1096151.319usをkernel計算時間と呼ばず、包含時間や初回module loading/計測器の時間から定常速度・固有の根因・科学予算を推定しない。collector/sourceは変更せずGPU再計測0。
+
+これ以上の微調整をGPUへ進める根拠は今回の単発計測だけでは不足。[次比較の既存資料audit](../reports/phase6/forgetting-attention-operation-profile-20261015/next_comparison_audit.json)はstrong source-orderが既存の別historical親/継承Adam・LR/4stream/順序比較であると確認し、単なる親切替による閉鎖条件の救済を除外した。次は原proposal/resultから異なる未回答仮説を1件に絞って対照・全gate・実測予算を定義する。新条件は未選定、科学/独立fresh全pipeline/fullDEV/全440/新TEST/採用と全4項目goalはactive/未達。以下は履歴。
+
+
 2026-10-15最新終端: [shared-RoPE owned completion](../reports/phase6/forgetting-attention-shared-rope-probe-20261015/completion.json)は両armのaccepted prefetch3/6/38全数値state・全32非時間historyがexact、初期/最初CE・6対3+save3・実6 FP32cache全subcheck差0・最大48x1024を通過。しかし両科学100M＋各評価600秒予測6475秒は元4800を超え、科学0で条件閉鎖。旧6168から速度改善したとは言えない。新18.874430＋旧51.175102＝累計70.049531秒を元technical180/総4800へ全額継承。実433547/start67284552・Windows35640終了、ledger closed、元UI433631/start67286859/同boot・HTTP元親/Tokenizer/10M/idleへ復帰実確認。
 
 次の[一回限定operator profile準備](../reports/phase6/forgetting-attention-operation-profile-preparation-20261015/CPU_readiness.json)はCPU6 checks/preflight合格、新GPU0。saved actual6と既存48x1024技術windowだけで元BF16 forward/backwardを1回計測し、optimizer/新TRAIN/DEV/TEST/重み保存0。CPU operatorと実CUDA eventを分離し、包含時間の二重加算や計測器付き時間の科学予測への転用を拒否する。新上限30秒かつ元180/4800へ累計70.049531秒を継承。旧probeのwarm再計時/救済変更をせず、観測後にだけ次の実装価値を判断する。科学/独立全pipeline/fullDEV/全440/新TEST/採用と全4項目goalはactive/未達。以下は履歴。

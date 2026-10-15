@@ -1,0 +1,48 @@
+{
+  "status": "finite_readonly_shortcut_audit_no_new_comparison_selected",
+  "full_four_item_goal_complete": false,
+  "new_optimizer_updates": 0,
+  "new_data_prepared": false,
+  "new_GPU_seconds": 0,
+  "created_at": "2026-10-15T02:13:46.4891402Z",
+  "decision": "Not selected. This is an existing historical-parent/source-order family with inherited Adam/LR, a different historical parent and four streams including conditional textbook. Higher saved scores alone do not identify a new intervention or justify rescuing the closed forgetting comparison by switching parent. Do not relaunch/re-evaluate the old condition.",
+  "facts": {
+    "source_quotas": {
+      "web": 75000000,
+      "story": 5000000,
+      "ordinary_textbook": 10000000,
+      "conditional_textbook": 10000000
+    },
+    "optimizer_policy": "inherit",
+    "shapes": {
+      "context": 1024,
+      "batch": 32,
+      "accumulation": 1,
+      "backend": "flash",
+      "compile_mode": "reduce-overhead",
+      "dtype": "bf16"
+    },
+    "historical_parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/web/checkpoint-00320435.pt",
+      "sha256": "d18e3e17b208237fdd5849ddea546ccfc6b6bea5f4325101577de2731bfac3d4"
+    },
+    "sampler_policy": "Same historical10.5B fullstate/actualLR.00001, same exact100M quotas and all four per-source streams/cursors as cached mixed control. Only order is Web then story then ordinary then conditional; no stage reset, no reheat, same all-masked Web terminal padding."
+  },
+  "considered_shortcut": "Start from stored strong source-order10.6B candidate merely because its saved generation scores are higher.",
+  "sources": {
+    "source_order_config": {
+      "sha256": "03b4ad47fa42b9a669c4588e736648e6339c93b9eb0cf3d08aac22a46cf90a88",
+      "path": "configs/phase6/source_order_condition_comparison_v2.json"
+    },
+    "source_order_trainer": {
+      "sha256": "f73b247bcb907ca56af889504b6405ca0ddce0301083a588fc7eed8d8b1e3246",
+      "path": "scripts/source_order_condition_trainer.py"
+    },
+    "source_order_result": {
+      "sha256": "cbca7936ebf395b1d5ccd45022ee4cb85de704a636c8bdae48ff2c24a8adc303",
+      "path": "reports/phase6/source-order-condition-comparison-v2-20261006/compare-result.json"
+    }
+  },
+  "scope": "Existing source-order configuration/trainer and stored, previously observed selection results. No corpus shards/weights, new model evaluation or sealedTEST reader. Cached selection material is not unseen evidence.",
+  "next_action": "Use original experiment proposals/results to define ONE distinct unanswered intervention with valid matched controls and measured budget, or document precisely which evidence is missing; no automatic parent/seed/teacher/decoder rescue and no further unsupported microoptimization."
+}
