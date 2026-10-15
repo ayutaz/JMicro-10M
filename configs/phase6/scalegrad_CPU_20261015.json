@@ -1,0 +1,72 @@
+{
+  "kind": "original10M_visible_prefix_ScaleGrad_CPU_gradient_assay_v1",
+  "CPU_wall_ceiling_seconds": 30,
+  "input_shape": [
+    2,
+    64
+  ],
+  "borrowed_selected_spans": [
+    [
+      512,
+      576
+    ],
+    [
+      576,
+      640
+    ]
+  ],
+  "policy": {
+    "kind": "original_visible_body_prefix_ScaleGrad_logit_shift_0p2_v1",
+    "gamma": 0.2,
+    "history": "same_window_BODY_input_IDs_at_columns_le_current_prediction_column",
+    "special_history": "IDs0to7_never_enter_BODY_history_EOS3_remains_novel",
+    "target": "unchanged_original_selected_hard_body_and_EOS",
+    "normalization": "cross_entropy_of_logits_plus_log_gamma_times_novel_mask",
+    "original_CE": "metric_only_when_active_not_added_twice",
+    "decoder_passes": 1,
+    "dropout": 0.0,
+    "extra_parameters": 0,
+    "inference": "unchanged_native_logits_softmax_cache_and_decoder"
+  },
+  "optimizer_updates": 0,
+  "GPU_seconds": 0,
+  "native_parameters": 10001152,
+  "native_disable_ALL_parameter_gradients_exact_required": true,
+  "sources": {
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/scalegrad.py": "0e936038e7ac6514de4e017f0c59e49d68650f51323e995e21940697edbfb97b",
+    "scripts/scalegrad_trainer.py": "0dfb7cf2ec8e7b70bacdb44d3f7f005b4374444458024b7ea8363492ecc6e7ec",
+    "scripts/prepare_scalegrad.py": "22d2154ba19c1e92f3e8bb5606f24e61da25491b382c6651f3aa340f7a15a9c1",
+    "tests/test_scalegrad.py": "32da856a4a592ac6ea30d2050898d0099f13082dd7497fa2156d977013a1b329",
+    "tests/test_scalegrad_training.py": "5e4987527a0834b5e8d5895a392ad9325db6a760389c635b9707e254bd53cd83",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca"
+  },
+  "output": "reports/phase6/scalegrad-preparation-20261015/actual_parent_CPU.json",
+  "accepted_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/base_confidence_penalty_comparison.json",
+    "sha256": "a9035f846eedbb8355e362d0b944ce24c81410d883290e0fffb42b72ba9df069"
+  },
+  "capacity_payload": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/natural-context-contrast-capacity-20261007/maximum-original-window.json",
+    "sha256": "518b7158e824a6504e71404864b57d7072d592cd6f200869844e96670c1c5fee"
+  },
+  "proposal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/scalegrad-preparation-20261015/proposal.json",
+    "sha256": "69d7075d27db5078f399379874c75c9df790edeb64c62f6744c7d0d9a8a6dfe9"
+  },
+  "CPU_tests": [
+    {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/scalegrad-preparation-20261015/CPU_math_tests.xml",
+      "sha256": "1f1f36914fcc405c5abb7e8eacf97bdfda1f3519304b2e61ea2b977e0b524061",
+      "expected_tests": 25
+    },
+    {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/scalegrad-preparation-20261015/CPU_trainer_tests.xml",
+      "sha256": "2d0a9b6807c7e26865c5af016dc00a99746bd7565252611d116ec8d09638e4f0",
+      "expected_tests": 19
+    }
+  ]
+}

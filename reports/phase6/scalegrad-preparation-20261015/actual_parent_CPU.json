@@ -1,0 +1,54 @@
+{
+  "status": "actual10M_ScaleGrad_CPU_passed_GPU_unqualified",
+  "created_at": "2026-10-15T05:54:39.406795Z",
+  "config_sha256": "19a8069902e578768bf78bf469e0d416d23c5a200c876aa6c0036629334a48b4",
+  "all_checks_passed": true,
+  "checks": {
+    "actual_native_parameter_count": true,
+    "tied_native_vocabulary": true,
+    "original_native_weights_unchanged": true,
+    "native_disable_scalar_exact": true,
+    "native_disable_ALL_parameter_gradients_exact": true,
+    "active_original_CE_metric_exact": true,
+    "active_loss_changes": true,
+    "active_gradients_finite": true,
+    "active_gradient_changes": true,
+    "no_future_target_history": true,
+    "both_novel_and_seen_original_gold_observed": true,
+    "CPU_RNG_unchanged": true,
+    "CUDA_not_initialized": true
+  },
+  "details": {
+    "native_CE_loss": 2.449101448059082,
+    "active_ScaleGrad_loss": 2.5465097427368164,
+    "native_gradient_tensor_count": 119,
+    "native_disable_gradient_mismatches": [],
+    "native_disable_max_gradient_difference": 0.0,
+    "active_max_gradient_difference_from_native": 0.2910868525505066,
+    "original_selected_teachers": 128,
+    "novel_gold_positions": 85,
+    "seen_gold_positions": 43,
+    "novelty_vocabulary_size": 4096,
+    "original_body_only_no_synthetic_EOS": true
+  },
+  "error": null,
+  "CPU_wall_seconds": 0.3749028140446171,
+  "CPU_wall_ceiling_seconds": 30,
+  "input_shape": [
+    2,
+    64
+  ],
+  "model_and_data_read_paths": [
+    "/home/aihub_ubuntu/jmicro-data/phase6/natural-context-contrast-capacity-20261007/maximum-original-window.json",
+    "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt"
+  ],
+  "optimizer_updates": 0,
+  "scientific_teacher_positions": 0,
+  "new_GPU_seconds": 0,
+  "DEV_opened": false,
+  "TEST_opened": false,
+  "Base_qualified": false,
+  "Base_adopted": false,
+  "full_four_item_goal_complete": false,
+  "limits": "Original parent/small borrowed body spans and finite/exact CPU derivatives do not prove CUDA capacity, resume, throughput or Japanese quality. Original inference implementation is unchanged; accepted native cache evidence is reused, not rerun."
+}

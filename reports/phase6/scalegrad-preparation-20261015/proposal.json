@@ -1,0 +1,89 @@
+{
+  "kind": "prospective_original_visible_body_prefix_ScaleGrad25M_v1",
+  "created_at": "2026-10-15T05:48:01.2643165Z",
+  "target_failure": "Original nativeCE25M notes base001/002/005/006 show clause/nominal/action loops and no meaningful progression/completion; repeated-token novelty is a testable training mechanism, not a diagnosed sole cause",
+  "local_evidence": [
+    "reports/phase6/document-progress-science-20261015/native_CE_control/notes.json",
+    "reports/phase6/document-progress-science-20261015/review.json",
+    "reports/phase6/pseudo-repetition-science-20261015/review.json",
+    "reports/phase6/base_confidence_penalty_comparison_completion.json",
+    "reports/phase6/rdrop-target-batch-probe-20261015/completion.json"
+  ],
+  "primary": {
+    "official_source": "https://github.com/shawnlimn/ScaleGrad/blob/b2685f9c8680e731316ca6149c1171fda7af5ead/custom/gpt2/run_gpt2.py",
+    "official_commit": "b2685f9c8680e731316ca6149c1171fda7af5ead",
+    "official_review": "getNovelMask/sg_loss: prior target IDs, flat sequence, probability multiply gamma/renormalize, adds1e-8; README uses gamma.2",
+    "paper": "https://proceedings.mlr.press/v139/lin21b/lin21b.pdf",
+    "limit": "Paper English GPT2/Wikitext-103 is not10M Japanese evidence; Table1 perplexity13.241 MLE vs14.203 gamma.2 while repetition improves. No relaxation of our BPB/nonregression gates.",
+    "sections": "3.2 Eq4-6;4.1/Table1;5.3"
+  },
+  "new_question": "Can a prefix-conditioned normalized probability redistribution, with no rollout/extra decoder/head/data change, improve actual continuation coherence/completion and repetition while retaining original BPB guards?",
+  "not_repetition_of": {
+    "confidence_penalty": "Prior CE+.1 KL(prediction||uniform), independent of observed prefix vocabulary",
+    "label_smoothing": "Prior softened target0.9gold+.1uniform, not hard original target under prefix-conditioned scores",
+    "RDrop": "Prior two stochastic retained decoder graphs and KL; this has one original deterministic decoder pass/dropout0 and no consistency loss",
+    "document_progress": "Prior original remaining-length scalar head/auxL1, no prefix-conditioned prediction redistribution",
+    "sentence_decay": "Prior synthetic repeated full sentences and detached previous-copy probability target, not current original prefix",
+    "sequence_UL": "Prior frozen generated4gram negative mask with separate rollout -log(1-p), not gold-prefix full-vocabulary normalization"
+  },
+  "novelty_scope": "Original source/proposal/result inspections listed above plus bounded scripts/configs/docs textual search and dated index query scalegrad yielded no previous ScaleGrad implementation; not a global novelty or exhaustive absence claim",
+  "recipe": {
+    "limits": "Window-local body history is a declared adaptation from official flat target-prefix convention; earlier truncated original history is not reconstructed. Repeated names/particles may be necessary. Novel EOS and body effects are coupled, no isolated novelty causal claim.",
+    "visible_history": "For target predicted at original input column j, nonnovel iff native BODY ID>=8 appears in input columns0..j of SAME original window. Includes unsupervised overlap context; never future tokens, other rows or previous windows. PAD/BOS/other special IDs0..7 do not enter body history.",
+    "implementation": "First occurrence positions computed deterministically from original CPU row IDs. Gather by selected row/column and compare causal boundary; no quadratic [B,L,L], no CUDA floating scatter, no dense [B,L,V] prefix tensor.",
+    "inference": "Original native full/fast/cache/greedy, no novelty adjustment/penalty/forcedEOS",
+    "kind": "original_visible_body_prefix_ScaleGrad_logit_shift_0p2_v1",
+    "gamma": 0.2,
+    "math": "Logit-space equivalent to paper normalized scaled probabilities WITHOUT official additive1e-8; independent scalar/autograd/analytic derivative tests required, not a bitwise official probability implementation claim",
+    "objective": "Mean CE(logits + log(gamma)*novel_mask, original hard labels) over EXACT original selected body/EOS slots. Gamma1 verification bypass returns exact original CE. Plain original CE measured separately, not added a second time.",
+    "novel_set": "Complement of visible BODY history across full native vocabulary; EOS3 always novel within body-only original input"
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "tokenizer": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/phase2/4096/tokenizer.model",
+    "sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+  },
+  "native_parameters": 10001152,
+  "training_parameters": 10001152,
+  "new_parameters": 0,
+  "main_teacher_goal": 25000000,
+  "goals": {
+    "web": 18750000,
+    "textbook": 5000000,
+    "story": 1250000
+  },
+  "batch": 48,
+  "seed": 42,
+  "optimizer": "Original10B fresh AdamW1e-5/WD.1/betas.9,.999/eps1e-8/constant/clip1",
+  "control": "Stored accepted nativeCE25M from document-progress comparison, provisionally until own disabled/native/zero-head CUDA original-coordinate equality; prior control cost stays charged, no control100M substitution",
+  "counting": "25M unique original selected teachers; one decoder pass. Original-CE metric and modified learning CE are separate same-label evaluations, not new data, extra source budget or two decoder passes.",
+  "technical_plan": "CPU independent values/ALL logits derivatives/causal oracle/padding/selected ordering; typed trainer disabled-native equivalence/full resume/interruption guards; then own GPU capacity48x1024FIRST, native/cached25M coordinates, active6vs3+save3, original saved6 cache and ALL32 timings. Verification weights never initialize science.",
+  "budget": {
+    "original_total_GPU_cap_seconds": 4800,
+    "prior_technical_GPU_seconds": 156.35003981902264,
+    "remaining_total_GPU_seconds": 1697.4876585999737,
+    "prior_total_GPU_seconds": 3102.5123414000263,
+    "evaluation_save_reserve_seconds": 600,
+    "original_technical_cap_seconds": 180,
+    "prior_completed_science_GPU_seconds": 2946.1623015810037,
+    "forecast": "ceil(25M*sum(all32 seconds)/sum(all32 original teachers)*1.3+600), plus EVERY old and new GPU second must fit original4800; no duration guarantee",
+    "remaining_technical_GPU_seconds": 23.64996018097736
+  },
+  "quality": "All original absolute/relative/strong/historical/BPB guards, all80 individual raw content, coherence gain>=8/pairedCI lower>0, grammar>=56/coherence>=27/appropriate>=27/EOS>=37/repetition<=18/rawfail0. Repetition alone or modified training loss cannot qualify.",
+  "failure": "Fixed gamma.2/body-history convention/source/parent/seed/precision/geometry/decoder/25M/reserve/caps are not rescued on failure. No gamma sweep, old conditions reopened or altered original native sources.",
+  "current_scope": "Prospective selection and CPU preparation; own GPU/scientific CLI/config/launcher/reviewer not implemented or frozen yet. No DEV/TEST/data/model/GPU opened for proposal.",
+  "later": "Only qualified recipe proceeds main qualification, genuinely fresh whole-pipeline trained seed43/fullDEV/all440,new sealedTEST/adoption. Full original four-item goal active/unachieved; no Chat/SFT/larger model."
+}
