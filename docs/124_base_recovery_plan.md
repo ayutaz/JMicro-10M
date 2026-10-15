@@ -1,5 +1,12 @@
 # Base改善の今後の計画
 
+2026-10-15現在: **independent rank8 QK 100M科学比較が稼働中**。[実process＋kernel lock観測](../reports/phase6/independent-map-preparation-20261015/science_launch_observation.json)はPID435642/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start67505127、Windows worker11280と同kernel FLOCK ownerを確認。700更新/3,958,069教師/81.973868秒は途中値で、文章品質は未判定。[科学契約](../configs/phase6/independent_map_science_20261015.json) SHA5791ebfbe40ff3a3967639db023066a68cfd0f85d1f44941b7d5fc408449cdd1は元10B親/fresh AdamW/原CE100M/48/42、native10,001,152対新rank8 Q2/K2座標66,612追加10,067,764を明記。同一architectureや厳密同parameter数とは呼ばず、全元品質gateを維持する。
+
+[owned gate完了](../reports/phase6/independent-map-probe-20261015/completion.json)は実435092/start67467767終了・Windows38264終了、50技術更新、原関数/disabled3の全旧weights・Adam・CE・stream exact、新52tensor全活動、全state6対3+save3、最大48x1024と実6のFP32cache全subcheckを通過。新14.050476＋旧72.563653＝技術累計86.614129秒を元technical180/総4800へ継承し、実測科学4461秒で総上限内。科学workflow25 CPU checksも合格。検証重みは科学へ使わず、500更新全state保存/20更新heartbeat、元UIは実験中だけ停止し永続launcherが終端復帰する。
+
+次は同じlive processを観測し、100M終端の全state/全history・原対照stream＋宣言した追加座標と全80 rawの個別内容を確認する。凍結source編集/条件救済/二重起動をせず、真のsignal中断だけvalid completed checkpoint/閉じた残予算で復旧する。独立fresh全pipeline/fullDEV/全440/新封印TEST/採用は資格前で未実施、全4項目goalはactive/未達。以下は履歴。
+
+
 2026-10-15次の独立比較準備: [independent rank8 QK proposal/CPU](../reports/phase6/independent-map-preparation-20261015/CPU_readiness.json)。閉鎖cross-GQAは既存Q/Kのhead置換、headwise gateは出力scalar、ContextMixingはgreedy入力置換であったと原source/resultを照合した。新案は各層に共有down(rank8)＋独立Q2/K2 upを学ぶ新座標を追加し、元Vに対する二つ目の注意分布をtanh(raw)で差し引く。原論文の再現ではなく、NoQKNorm/RoPE/元Q/K/V/O/全backboneを保持した別architecture提案。raw0で元関数を保存し、実count10,067,764（追加66,612）は元9.5M〜10.1M内。元native10,001,152と厳密同parameter数とは呼ばない。
 
 model27/trainer18/probe19 CPU checksは独立dense oracleの全勾配、旧map/出力scaleで得られない反例、real K2 cache/holes/allPAD/過去再計算なし、両arm全state6対3+save3、disabled対native全旧weights/Adam/source/CE一致と新投影全勾配を確認。実元10M親CPU0.377899秒で全旧weights/初期logits/cacheがbitwise一致し、raw.25のactive cacheも元3e-5/2e-5内。科学の対照は元CE100M cachedで、実CUDA原関数/disabled/stream資格を先に確認する。閉鎖forgettingは初期関数が変わるため両新arm必須だったが、新案へその弱いstatic対照を流用しない。全絶対/native/strong/historical/最終品質条件は維持する。
