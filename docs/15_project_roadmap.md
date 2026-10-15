@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-15実機検証合格: [document-progress専用GPU記録](../reports/phase6/document-progress-probe-20261015/completion.json)。両条件の最大48x1024をAdam前に検証、通常学習3更新の元重み/Adam/CE/source/RNG一致、両条件6対3+保存3の全state/history、実6の元FP32 cache全7項目、各全32計時が合格。新18.468181秒・技術累計116.941782秒、既科学込み総2093.359313秒。新規対照/候補各25Mの予測1396＋1089秒を足して4578.359313秒で元4800以内。専用科学workflow28 CPU checksと凍結configを準備済みで本学習は未開始。実441218/start68095927とWindows38116の終了、元UI441412/start68098170/正しいidle HTTP/kernel FLOCKを確認。次は凍結した各25Mを元親から新規学習し、全数値状態/履歴/同教師列と計160件の個別内容を検証する。全元品質条件を保持し、pilotだけで資格/完成とはしない。本比較・独立fresh全pipeline seed43/fullDEV/全440/新封印TEST/採用と元4項目goalは未達。以下は履歴。
+
 2026-10-15次工程: [document-progress CPU準備](../reports/phase6/document-progress-preparation-20261015/CPU_readiness.json)44 checksを確認済み。専用GPU検証/launcherを実装→最大48x1024有限backwardをAdam前に確認→通常学習3更新の一致→両条件の全state保存再開・実6cache・各全32計時→全既消費込み元予算判定→成立時だけ新規対照/候補各25Mと各80件個別review。仮説は原CEを保持する学習時だけの残文書割合scalar L1で、推論10,001,152/学習10,001,408。教師予算を変更した閉鎖100Mの再試行ではなく事前定義した別目的pilotで、cached100Mを同25M対照にしない。元品質条件はすべて維持。残technical81.526398/総2725.108868秒、両forecastは各600秒の評価保存込み。pilot後も本比較の資格、独立fresh全pipeline seed43、fullDEV/全440、新封印TESTと採用が必要で全4項目goalは未達。以下は履歴。
 
 2026-10-15最新判断: [self-rescaled RMS CPU条件](../reports/phase6/self-rescaled-norm-preparation-20261015/CPU_closeout.json)は実装前proposal・独立数式19/専用model22 checksと実数10,014,976まで確認したが、実元親の手動active beta=.01で元full/cache複合精度条件に不合格（max8.05854797e-5）。初期native出力・原tensor/tie/RNG・active K/V/metadataは合格でも科学資格にはならず、固定runtimeをtrainer/GPU前に閉じた。方式全般の品質無効性や一意の数値原因は示していない。
