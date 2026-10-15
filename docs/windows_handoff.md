@@ -1,5 +1,9 @@
 # Windows / WSL 引継ぎ
 
+2026-10-15最新終端: [quiet owned gate](../reports/phase6/quiet-attention-probe-20261015/completion.json)は実439105/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start67839901・Windows33308終了。技術50更新の元最大48x1024、disabled/native3元Adam等、enabled全state6対3+save3、実6snapshotと元cache全7subcheck/最大差1.6212463e-5は合格したが、全32計時の科学3756秒＋累計2074.891132秒が元4800超過で固定runtime閉鎖。科学/DEV/TEST0、new qualityなし。sources/configは凍結し再実行・再予測・計時除外・phantom/learned sink/教師/geometry/precision/予算救済をしない。
+
+新11.859472＋旧技術86.614129＝98.473602秒と、前science1976.417531秒を全額保持。元180/4800の残りは81.526398/2725.108868秒。job/result/completionとCPU37/18/23・prelaunch観測・launcher原logをWindowsへ保存し、verification zero/split/actual6/final等の全重み/Adam/RNG/samplerはWSLに残す。元UI439206/start67841467/同bootの実生存・正しいHTTP/idle・実gpu.lockのkernel FLOCKを今回確認。記録を次回生存の代用にしない。次は別の根拠ある未回答比較の選定で、全4項目goalと独立全pipeline/fullDEV/全440/新TEST/採用はactive/未達。以下の準備状態は履歴。
+
 2026-10-15次案CPU準備: [quiet readiness](../reports/phase6/quiet-attention-preparation-20261015/CPU_readiness.json)を両workspaceに保存。新src/jmicro/quiet_attention.py・scripts/quiet_attention_trainer.py・実親CPU gateとtestsのみで、旧frozen sourceは保持。実数10,001,152、非学習runtime buffer/typed real-only cache・専用traversalを使う。model37/trainer18・実親0.422509秒/cache最大差1.9073486e-5、両arm全state6対3+save3とdisabled4原Adam/stream exactを確認。有効化初期関数はnativeと異なり、最大logit差9.9326019を保持。初回trainer17pass/1failのraw XMLも保全し、新spec内のmaterial binding検証を補って18pass。
 
 新GPU/教材/DEV/TEST0。次は未実装のowned probe/launcher＋CPU scope checksから準備し、元最大48x1024/実disabled-native数値/保存再開/実6snapshotとcache全subcheck/全32timingsを資格にする。技術86.614129秒と既完了science1976.417531秒の計2063.031660秒を元180/総4800へ継承し、残総2736.968340秒。旧条件の再起動や予算reset、phantom/learned sink/親/seed/教師/decoder/形状/precisionの救済をしない。現在のUIの最後の実確認は直下の437167であり、次回はPID/boot/start/HTTP/kernel lockを再確認する。全4項目goalはactive/未達。

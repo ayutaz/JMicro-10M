@@ -1,5 +1,9 @@
 # Base改善の今後の計画
 
+2026-10-15実機判断: [固定ゼロK/V注意](../reports/phase6/quiet-attention-probe-20261015/completion.json)はCPU37/18/23と実機容量・元学習一致・全state再開・実6cache全項目に合格。ただし全32計時の科学3756秒＋既消費2074.891132秒が元総4800秒を超え、科学前に固定条件を閉じた。日本語品質の失敗実験とは扱わず、品質未評価・科学0を残す。
+
+次は既存原proposal/resultから、閉鎖条件と異なる根拠ある未回答比較を1件選定する。元180/4800へ既scienceも含めて全額継承し、残81.526398/2725.108868秒内で実測資格を示すことが必要。warm再予測・計時除外・phantom/learned sink/親/seed/教師/decoder/形状/precision/予算による救済をしない。有資格レシピ後の独立fresh全pipeline/fullDEV/全440/新封印TEST/採用と全4項目goalはactive/未達。以下の次案準備・GPU未実施は履歴。
+
 2026-10-15次の別仮説: [固定ゼロK/V注意](../reports/phase6/quiet-attention-preparation-20261015/proposal.json)を実装前に定義し、[CPU model37/trainer18＋実親cache](../reports/phase6/quiet-attention-preparation-20261015/CPU_readiness.json)まで完了した。原10,001,152/全原重みを保持しつつ、注意の分母にゼロ値の選択肢を加える。過去のquery-only出力gate・独立Q/K signed map・時間decay・語彙Sigsoftmaxとの差を記録し、同query/同native mapで異なる出力となる数学例と独立全勾配を検証。有効化初期関数が変わることと、CPU成功が品質証拠でないことを保つ。
 
 次は専用owned CUDA検証を実装して範囲を確認してから、元最大形状/disabled-native学習一致/有効化6更新保存再開/実保存点cache/全32計時で判定する。新GPU0、科学workflowは未実装・契約未凍結。今回完了したscienceも含め累計2063.031660秒を元総4800へ継承し、残2736.968340秒内で元100M＋評価保存の実測見積もりが成立することを必須にする。元品質・10M・独立全pipeline/fullDEV/全440/新TEST/採用の到達範囲を変えず、全4項目goalはactive/未達。

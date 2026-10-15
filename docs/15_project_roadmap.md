@@ -1,5 +1,9 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-15最新判断: [固定ゼロK/V owned](../reports/phase6/quiet-attention-probe-20261015/completion.json)は実機容量・disabled/native3・全state保存再開・実6cache全7項目を通過したが、全32計時の科学3756秒と累計2074.891132秒を合わせると元4800秒超過で科学前に閉鎖。数値成功と予算資格、文章品質を分ける。この方式の日本語品質は未評価で、採用候補には進めない。
+
+元技術180/総4800を維持し、既完了scienceも含む残総2725.108868秒を次判断へ継承する。warm再測定・計時除外・phantom/learned sink/親/seed/教師/precision/geometry/decoder/予算の救済なし。次は原proposal/resultから別の未回答仮説1件を根拠と対照付きで選定し、残予算内の実測資格を先に確認する。独立fresh全pipeline/fullDEV/全440/新封印TEST/採用は有資格レシピなしで未実施、全4項目goalはactive/未達。実job/Windows worker終了と元UI復帰は終了receiptに保存。以下の未実装・CPUのみは準備時点の履歴。
+
 2026-10-15次の準備: [固定ゼロK/V attention](../reports/phase6/quiet-attention-preparation-20261015/CPU_readiness.json)は原10,001,152パラメータと原重みを保持し、正規化の中へゼロの選択肢を追加する別仮説。CPU model37/trainer18と実親cache精度、両arm全state保存再開、disabled-native元Adam/stream一致まで完了。有効化時の初期関数は変わる。論文の別10M loss結果やCPU成功を日本語品質の証明にしない。
 
 直近は専用owned CUDA probe/launcherとCPU scope checksの実装が必要で、まだ新GPU0。元最大48x1024の有限backwardをAdam前に確認し、disabled/native3、enabled6対3+save3全state/history、実6保存と元FP32 cache全subcheck、全32計時で資格を判定する。今回の完了科学も含む累計2063.031660秒を元総4800秒へ継承し、残2736.968340秒で固定100M＋評価保存の見積もりが成立しなければ閉じる。新しい予算・教師数・精度・phantom数/値/位置・learned sink等で救済しない。科学runner/evaluator/reviewerの契約は未完成・未凍結であり、CPU準備を比較完了にしない。独立fresh全pipeline/fullDEV/全440/新封印TEST/採用と全4項目goalはactive/未達。

@@ -1,5 +1,11 @@
 # 現在の状態
 
+2026-10-15実機終端: [固定ゼロK/V注意のowned検証](../reports/phase6/quiet-attention-probe-20261015/completion.json)は50技術更新、元最大48x1024有限backward、disabled/native3の全元weights/Adam/CE/gradient/stream、enabled6対3+save3全state/history、実6保存と元FP32 cache全7確認（最大差1.6212463e-5）を通過した。しかし全32計時による科学見積もり3756秒＋既消費2074.891132秒＝5830.891132秒が元総4800秒を超え、**科学学習前に固定実装条件を閉鎖**。新しい科学教師/DEV/TEST0で、文章品質の不採用や方式全般の無効性を示す結果ではない。
+
+新技術GPU11.859472秒を前技術86.614129へ足して98.473602秒、前の完了science1976.417531秒も全額継承して総2074.891132秒。残りは技術81.526398秒/総2725.108868秒で、上限reset・計時除外・warm再測定・教師/形状/精度/phantom/learned sink等による救済は行わない。実WSL439105/start67839901とWindows33308終了、元UI439206/start67841467/同boot・HTTP原親/Tokenizer/10M/idle・実gpu.lock kernel FLOCKを復帰確認。小さいjob/result/completionと凍結source/config/CPU37+18+23を保存し、全verification重みはWSLに残す。
+
+次は元proposal/resultから異なる根拠ある未回答比較を1件に絞り、残予算内での実測資格を必須にする。根拠のないruntime微調整や閉鎖条件再実行を既定にしない。最新の実文章品質結果は直下のindependent rank8不採用で、有資格レシピ・独立fresh全pipeline/fullDEV/全440/新封印TEST/採用と全4項目goalはactive/未達。以下のGPU未実施・次案準備は当時の履歴。
+
 2026-10-15次案の準備: [固定ゼロK/V注意のCPU記録](../reports/phase6/quiet-attention-preparation-20261015/CPU_readiness.json)。[実装前proposal](../reports/phase6/quiet-attention-preparation-20261015/proposal.json)は、注意の中に情報を足さない選択肢を1つ設ける別仮説で、原重み・実10,001,152パラメータ・元出力softmaxを保持する。37モデルchecksと18学習器checksが通り、独立dense値/全勾配、real-only cache、両arm全state6対3+save3、disabled4の元weights/Adam/CE/stream完全一致を確認。実元親CPU0.422509秒、cache最大差1.9073486e-5は元許容内。ただし有効化した初期関数はnativeから変わり、最大logit差9.9326019も保存した。品質証拠ではない。
 
 初回trainer17通過/1失敗のXMLを保持し、新specとsampler material bindingの内部一致検証を補って18通過。旧凍結source変更なし。新GPU/科学教師/教材/DEV/TEST0、owned CUDA probe/launcherとscience workflowは未実装。次は専用実機検証の実装・CPU範囲確認→48x1024容量先行/disabled-native数値一致/有効6更新保存再開と実保存点cache/全32時間計測。今回までの技術86.614129＋完了科学1976.417531＝2063.031660秒を元総4800秒へ全額継承し、残2736.968340秒内で実測見積もりが成立する場合だけ科学契約を準備する。全元品質条件・独立fresh全pipeline/fullDEV/全440/新TEST/採用は未達、全4項目goalはactive。
