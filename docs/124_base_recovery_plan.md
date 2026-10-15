@@ -1,5 +1,7 @@
 # Base改善の今後の計画
 
+2026-10-15次案: [原文書の残り割合を補助予測する事前proposal](../reports/phase6/document-progress-preparation-20261015/proposal.json)と[CPU44 checks/一回限り既知192窓](../reports/phase6/document-progress-preparation-20261015/CPU_readiness.json)を保存。原CEを変えずscalar sigmoid/L1係数.1・zero初期256重みを学習時だけ追加し、推論はnative10,001,152。新規対照/候補各25Mの別目的pilotで、cached100Mを同25M対照にしない。GPU/品質は未検証。次は専用probeとscope checks、最大容量FIRST、native学習一致、両条件全state再開/実6cache/各32計時を実装し、全既消費2074.891132秒と両25M＋各600秒評価保存が元4800秒内と実測確認できる場合だけ科学workflowを完成・凍結して実行する。元technical残81.526398/総残2725.108868秒、係数/教師/precision/geometry/予算や品質gateの救済なし。pilot成功は本比較資格やBase完成ではなく、独立fresh全pipeline seed43/fullDEV/全440/新封印TEST/採用まで元4項目goalを維持する。以下は履歴。
+
 2026-10-15最新CPU判断: [入力依存RMS倍率の別仮説](../reports/phase6/self-rescaled-norm-preparation-20261015/proposal.json)は[数式19/専用model22 checks・実親cache判断](../reports/phase6/self-rescaled-norm-preparation-20261015/CPU_closeout.json)まで実行した。実数10,014,976、原全weight/NoQKNorm・初期native関数は保持したが、active beta=.01で元full/cache複合精度条件を超え固定実装をGPU前に閉鎖。K/V・metadataの合格とlogitsの不合格を分け、原因未確定・新科学0を残す。
 
 次は旧source再実行・beta/alpha/箇所/activation/grouping/epsilon/precision/親/seed/教師/decoder/geometry/予算救済や自動localizationではなく、別の根拠ある未回答仮説を原proposal/resultと照合する。累計2074.891132秒・残元81.526398/2725.108868秒は不変。負のgain/saturation/conflict診断は新原因を示さず、既存sampler境界監査の小さな差も新学習の根拠にはしない。独立fresh全pipeline/fullDEV/全440/新封印TEST/採用と全4項目goalはactive/未達。以下は履歴。

@@ -1,5 +1,7 @@
 # 現在の状態
 
+2026-10-15最新準備: [document-progress CPU証拠](../reports/phase6/document-progress-preparation-20261015/CPU_readiness.json)をWindows/WSLの10小artifact hash一致で確認。label/head23＋trainer21項目、通常学習の元重み/名前対応Adam/CE/RNG/sourceと両条件6対3+保存3の全state/historyが一致。原文書の残り割合を学習時だけscalar予測する別仮説で、推論10,001,152/学習10,001,408。既知TRAIN192窓のみCPU0.891661秒、23,208label/真EOS190、全corpus走査・新学習・GPU・DEV/TEST0。新規対照と候補は各25M、cached100Mは同25M対照に流用しない。GPU検証/永続launcher/科学workflowは未実装・未凍結。次は専用検証と実測予算判定。既消費2074.891132秒を全額継承し、元technical180/総4800の残81.526398/2725.108868秒内に両25M＋各評価保存600秒が収まることを必須とする。pilotだけで資格/完成とせず、本比較・独立fresh全pipeline seed43/fullDEV/全440/新封印TEST/採用は未達。全4項目goalはactive/未達、以下は履歴。
+
 2026-10-15最新CPU判断: [入力依存RMS倍率のCPU終了記録](../reports/phase6/self-rescaled-norm-preparation-20261015/CPU_closeout.json)。[実装前proposal](../reports/phase6/self-rescaled-norm-preparation-20261015/proposal.json)はSeeDNormを参考に、原27 RMS箇所へraw入力の内積/tanhによるfeature倍率を追加する別仮説。独立解析勾配など19 checksと専用model/cache22 checksは合格し、実数10,014,976（元＋13,824）・原全重み/NoQKNormを保持。実元親2x64では初期full/fast/cached logitsとK/Vがnativeとbitwise一致した。
 
 しかし手動beta=.01の有効化fixtureでは、全文と32+32 cacheのlogitsが元の**複合atol3e-5＋rtol2e-5条件に不合格**となり、固定実装条件をGPU前に閉じた。最大差8.05854797e-5、K/Vとvalid/positionは合格、CPU0.453935秒。差が最初に生じた層や一意の原因は未確定。beta/alpha/箇所/activation/head grouping/epsilon/precision/親/seed/decoder/教師/形状/予算を救済変更せず、旧sourceと失敗receiptを保つ。自動の層別診断やtrainer/GPU準備へ進めない。

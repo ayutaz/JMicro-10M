@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-15次工程: [document-progress CPU準備](../reports/phase6/document-progress-preparation-20261015/CPU_readiness.json)44 checksを確認済み。専用GPU検証/launcherを実装→最大48x1024有限backwardをAdam前に確認→通常学習3更新の一致→両条件の全state保存再開・実6cache・各全32計時→全既消費込み元予算判定→成立時だけ新規対照/候補各25Mと各80件個別review。仮説は原CEを保持する学習時だけの残文書割合scalar L1で、推論10,001,152/学習10,001,408。教師予算を変更した閉鎖100Mの再試行ではなく事前定義した別目的pilotで、cached100Mを同25M対照にしない。元品質条件はすべて維持。残technical81.526398/総2725.108868秒、両forecastは各600秒の評価保存込み。pilot後も本比較の資格、独立fresh全pipeline seed43、fullDEV/全440、新封印TESTと採用が必要で全4項目goalは未達。以下は履歴。
+
 2026-10-15最新判断: [self-rescaled RMS CPU条件](../reports/phase6/self-rescaled-norm-preparation-20261015/CPU_closeout.json)は実装前proposal・独立数式19/専用model22 checksと実数10,014,976まで確認したが、実元親の手動active beta=.01で元full/cache複合精度条件に不合格（max8.05854797e-5）。初期native出力・原tensor/tie/RNG・active K/V/metadataは合格でも科学資格にはならず、固定runtimeをtrainer/GPU前に閉じた。方式全般の品質無効性や一意の数値原因は示していない。
 
 新GPU0で元予算の残81.526398/2725.108868秒を保持。beta/alpha/箇所/activation/grouping/epsilon/precision/親/seed/教師/decoder/形状/予算の救済や自動localizationをせず、原proposal/resultと一次資料から別の根拠ある未回答仮説を選ぶ。負の既存診断を原因に転用せず、CPU小fixtureの成功を実親精度や品質の代替にしない。全元品質条件と独立fresh全pipeline/fullDEV/全440/新TEST/採用の到達範囲を維持し、全4項目goalはactive/未達。以下は履歴。

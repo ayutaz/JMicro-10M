@@ -1,0 +1,126 @@
+{
+  "status": "prospective_document_progress_paired25M_pilot_before_code",
+  "created_at": "2026-10-15T04:02:03.8767743Z",
+  "question": "Does dense supervision of remaining original-document body fraction improve coherent natural completion, beyond unchanged native next-token CE, without modifying inference?",
+  "scope": "A new independently defined matched25M-per-arm pilot for a distinct TRAIN-only scalar target. Not a change/relaunch/teacher rescue of any closed100M condition. The full four-item goal still requires a qualified main recipe, genuinely fresh whole-pipeline seed43/fullDEV/all440/new sealedTEST/adoption. Pilot completion is never overall success.",
+  "rationale": "Observed raw loops and low appropriate completion remain despite CE/grammar improvements; original-LF counterfactual showed a local boundary cue but did not establish the semantic root cause. A dense progress target is a different auxiliary planning signal. Neither local observation nor external paper proves a benefit.",
+  "recipe": {
+    "auxiliary": "mean abs(sigmoid(w dot final_native_normalized_hidden)-remaining_original_body_fraction) at exactly selected main slots",
+    "inference": "Original native full/fast/cache/vocabulary softmax and fixed greedy policy, no progress-head access/stop rule/length hint/normalization",
+    "coefficient": 0.1,
+    "main": "Original unweighted next-token mean CE, every original selected body/EOS target and context unchanged",
+    "remaining_fraction": "For N original body tokens, current hidden absolute serialized input position j=input_start+physical_column, target=(N-j)/N. BOS j0 gives1; last original body jN predicting original EOS gives0. Overlap/PAD/quota-masked targets excluded; fragment/window end never made a terminal event.",
+    "new_source_data": 0,
+    "extra_input_tokens": 0,
+    "head": "One fresh zero-initialized no-bias FP32 scalar linear head, hidden_size weights, train-only and absent at inference",
+    "decoder_forwards": 1
+  },
+  "arms": [
+    "native_CE_control",
+    "document_progress"
+  ],
+  "teachers": {
+    "each_main": 25000000,
+    "control_auxiliary_learning_labels": 0,
+    "new_paired_main_total": 50000000,
+    "label_scope": "Scalar progress labels are additional supervision, separately counted; not additional vocabulary targets or free teacher compute.",
+    "candidate_auxiliary_scalar_labels": 25000000
+  },
+  "parameters": {
+    "native": 10001152,
+    "each_training_total_expected": 10001408,
+    "inference": 10001152,
+    "auxiliary": 256,
+    "actual_training_count_verified": false,
+    "budget_min": 9500000,
+    "budget_max": 10100000
+  },
+  "initialization": "Both arms copy original10B model and start fresh same AdamW/source seed. Both contain same zero train-only scalar head; head construction uses zeros and does not advance CPU/CUDA RNG. Control computes head loss times0 and clips original coordinate list only to prove native reduction order. Candidate clips all actual trainable coordinates. No original weight reparameterization.",
+  "control": "Train NEW native_CE_control25M under same goals/cursors/row order as NEW candidate25M. Cached native CE100M is a separately labeled reference, never a matched25M control. Compare full source sampler/digest/teacher/EOS/byte/physical clocks between new arms, preserve original absolute/strong/historical/native100M guards.",
+  "training": {
+    "context": 1024,
+    "optimizer": "Fresh AdamW1e-5 WD.1 betas.9/.999 eps1e-8 constant clip1",
+    "seed": 42,
+    "parent_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+    "goals": {
+      "story": 1250000,
+      "web": 18750000,
+      "textbook": 5000000
+    },
+    "material": "Same accepted original TRAIN/Tokenizer/index-byte selector/document windows. No new corpus, synthetic EOS, prefix-suffix reordering or special tokens.",
+    "model_sha256": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "batch": 48
+  },
+  "novelty": {
+    "middle_CE": "Old original-vocabulary current-target CE at middle layer. New scalar non-vocabulary target from final native hidden, no shared early-head supervision.",
+    "FIM": "No FIM transformation, marker or right context; this is explicitly a left-to-right original-document adaptation, not HLP reproduction or reopening a FIM recipe.",
+    "search": "Bounded original source/test/proposal/completion/review searches for HLP, horizon-length, remaining fraction/body/length, countdown, document progress and length prediction found no such trained scalar objective. Original next-two/middle/document-weighting sources inspected; search absence alone is not exhaustive novelty proof.",
+    "document_balance": "Old inverse-document-length weights change existing CE weighting; here every original CE term retains equal weight and a separately counted scalar objective is added.",
+    "negative_evidence": "EOS positional attractors in external analysis caution that teaching progress could harm generalization. Keep all original quality/length suites and do not claim a diagnosed planning deficit.",
+    "EOS_weight": "No EOS/nonEOS relabeling, unigram calibration or stop postprocessing. Labels are dense original remaining fraction, not a direct inference stop decision.",
+    "next_two": "Old train-only contextual Block predicts the next-next vocabulary ID. New scalar head predicts original-document progress over varying horizons from metadata, with no extra Block/norm/decoder invocation. Not a changed horizon/coefficient/head rescue of next-two."
+  },
+  "literature": [
+    {
+      "sections": "3 equations3-5",
+      "title": "Horizon-Length Prediction: Advancing Fill-in-the-Middle Capabilities for Code Generation with Lookahead Planning",
+      "used": "Normalized remaining fraction, sigmoid linear head, L1, lambda.1, train-only head",
+      "limits": "Code FIM with prefix+suffix and1.3B-7B models, not Japanese10M L2R or proof that document length teaches semantic planning. Our BOS-inclusive original-document target and zero head initialization are explicitly an adaptation.",
+      "url": "https://arxiv.org/html/2410.03103v1"
+    },
+    {
+      "title": "When Will the Tokens End? Graph-Based Forecasting for LLMs Output Length",
+      "used": "Hidden-state remaining length is an observable prediction task",
+      "limits": "Frozen-model probing/length scheduling, no proof that end-to-end auxiliary learning improves Japanese generation.",
+      "url": "https://aclanthology.org/2025.acl-srw.61/"
+    },
+    {
+      "title": "The EOS Decision and Length Extrapolation",
+      "used": "Counterevidence: position/length manifolds and attractors can harm length generalization",
+      "limits": "Different synthetic/sequence tasks, does not establish a local10M diagnosis.",
+      "url": "https://aclanthology.org/2020.blackboxnlp-1.26/"
+    }
+  ],
+  "CPU_before_GPU": [
+    "Pure exact absolute-position labels/overlap/long-doc windows/quota masking/originalEOS0 and auxiliary gradient/no-target-input-leak tests.",
+    "Reuse old192-window metadata with at most one frozen CPU replay of exactly those original first192 TRAIN windows to verify label feasibility. No corpus scan, new selection, DEV/TEST or quality judgment.",
+    "Own typed native-plus-head trainer/spec/lineage/full Adam/scheduler/RNG/sampler/counters, BOTH6vs3+save3 complete state/history, control native3 original-coordinate equality and safe head omission from inference."
+  ],
+  "CUDA_before_science": [
+    "Own one-shot frozen probe/launcher and scope checks; max48x1024 finite BF16 backward before Adam, proof native/control3, both-arm fullstate6vs3+save3, actual saved6 raw native FP32 cache original tolerance/all subchecks, ALL32 timings EACH arm.",
+    "Forecast EACH arm as ceil(25M*sum(all32 seconds)/sum(all32 main teachers)*1.3+600 evaluation/save reserve), add both and EVERY prior/new technical and completed science second. No subset timing, warm reforecast or reserve reduction.",
+    "Only after measured fit: implement/freeze own safe paired science/evaluator/reviewer/heartbeat/completed-update recovery before launch. Discard verification weights."
+  ],
+  "budget": {
+    "reset_or_extension": false,
+    "remaining_total_GPU_seconds": 2725.1088676368818,
+    "remaining_technical_GPU_seconds": 81.5263984479243,
+    "carried_technical_GPU_seconds": 98.4736015520757,
+    "carried_total_GPU_seconds": 2074.8911323631182,
+    "original_total_GPU_cap_seconds": 4800,
+    "original_technical_cap_seconds": 180,
+    "carried_completed_science_GPU_seconds": 1976.4175308110425
+  },
+  "quality": "All160 new raw outputs individually read and hash-bound; compare own matched25M control plus cached native100M/strong/historical/absolute original BPB, coherence, completion, EOS, repetition and raw-error criteria, unchanged thresholds. Auxiliary prediction/loss alone cannot advance. Even a positive pilot requires a separately defined qualified main comparison and final independent pipeline; no Base adoption here.",
+  "failure": "Close this fixed25M paired original-document fraction/sigmoid-L1/.1/zero no-bias head/parent/source/batch/seed/LR recipe on label/numeric/state/resource/quality failure. No fraction denominator, target bins/horizon, bias/head/site/coefficient/init, extra passes, teacher/parent/seed/decoder/geometry/precision/budget rescue or automatic extension.",
+  "source_sha256": {
+    "reports/phase6/self-rescaled-norm-preparation-20261015/CPU_closeout.json": "e3a5dfa0c594a888d2afc27628d7eff41015d0de40a68d4099b3d5798dc10e74",
+    "reports/phase6/quiet-attention-probe-20261015/completion.json": "9463d51021c1c04bdb082cf80170968f36c4478609655059bb93453a57afd861",
+    "reports/phase6/base_next_two_token_proposal.json": "2e2f95a581157893c567736b74ce29f866db1d15aec23bdcda0c8fb2e185a98d",
+    "reports/phase6/base_next_two_token_comparison_completion.json": "88f53f937394d1bec453ba658dac25310d8d888ec7959443ba3e7b0692e2e411",
+    "reports/phase6/base_middle_supervision_proposal.json": "277188a0a5e41893df997a68ceb63c4cc63fe8c7674f262eb834796121bf3e70",
+    "reports/phase6/base_document_balance_proposal.json": "654bf474f3ab6add027e60d2da87d28721b3f813cc5a49ae084ea92f99689c6d",
+    "reports/phase6/base_document_balance_length_diagnostic.json": "4cc57d621bd7abc92455ccc03e50656bd0d62f0d315ce0a9066b5eb11b50bbfa",
+    "reports/phase6/base_residual_boundary_counterfactual_completion.json": "74d671fc00bfaf933d045c86bad55b86b596041b7d7db24c16c19775627eea47",
+    "scripts/base_next_two_token_trainer.py": "6a22b3644317b5c2ef3cdb543f25c13c3c9f007e0b208675abbfa97c9a9ca582",
+    "scripts/base_document_balance_trainer.py": "849f7314f4b2a5c51618b786bce69638410c8d7a5962ed16530ac4e0002875f1",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83"
+  },
+  "new_GPU_seconds": 0,
+  "new_scientific_teachers": 0,
+  "science_contract_frozen": false,
+  "Base_qualified": false,
+  "Base_adopted": false,
+  "full_four_item_goal_complete": false
+}

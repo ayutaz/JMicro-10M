@@ -1,5 +1,7 @@
 # Windows / WSL 引継ぎ
 
+2026-10-15最新CPU準備: [document-progress readiness](../reports/phase6/document-progress-preparation-20261015/CPU_readiness.json)と10小artifactがWindows/WSLでhash一致。src/jmicro/document_progress.py、専用trainer/label preparation、tests2件、CPU configと23/21 passed XML・既知192窓receiptを保存。原model SHAは不変、推論10,001,152/学習10,001,408。GPU専用probe/launcher/科学workflowは未実装・契約未凍結、新GPU/科学/DEV/TEST0。次は専用実装から最大容量FIRST・通常学習3更新一致・両arm全state resume/実6 native cache/各32計時と予算判定。元180/4800へ全2074.891132秒を継承し残81.526398/2725.108868秒、各25M＋評価保存600秒ずつを含める。UI最終確認は以前の439206/start67841467の観測で現在生存の代用にしない。次回launch前にPID/boot/start/HTTP/kernel FLOCK/peerを再確認。全4項目goal・本比較/独立全pipeline/fullDEV/全440/新TEST/採用は未達。以下は履歴。
+
 2026-10-15最新CPU終端: [self-rescaled RMS closeout](../reports/phase6/self-rescaled-norm-preparation-20261015/CPU_closeout.json)を保存。src/jmicro/self_rescaled_norm.py/model.py、専用CPU script/config、19＋22 passed XML、実親失敗receiptを両workspaceへ保持。実数10,014,976・初期native full/fast/cached logits/KV bitwise一致・原全tensor/tie/RNGは合格したが、手動active beta=.01のfull対32+32 cache logitsが元複合3e-5/2e-5に不合格、最大8.05854797e-5、K/Vとmetadataは合格。CPU0.453935秒、command exit1で固定条件閉鎖。
 
 新GPU/optimizer/科学/教材/DEV/TEST0、trainer/owned CUDA/science workflow未実装。sources/config/失敗を変更・再実行せず、beta/alpha/箇所/activation/grouping/epsilon/precision/親/seed/教師/decoder/geometry/予算救済や自動localizationをしない。累計98.473602技術＋1976.417531科学＝2074.891132秒、元180/4800の残81.526398/2725.108868秒は不変。UIへの新操作なし、最後の実確認439206/start67841467は直下のquiet終端時点の観測。次の実行前には生存とlockを再確認する。独立全pipeline/fullDEV/全440/新封印TEST/採用と全4項目goalはactive/未達。以下は履歴。
