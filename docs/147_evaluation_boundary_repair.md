@@ -31,3 +31,13 @@ DEV manifest SHA `6198b43df8f4cf389e9de74c038e2e93d18665413477b27359ab352a02f69f
 既存proposal/trainer/全件notes/結果から未回答の失敗を特定し、新しい比較を1件ずつ定義する。旧条件の係数/seed/親/予算だけを救済として変えない。実行前に新source/manifest・対照・教師・指標・時間上限・採否を固定し、実CUDAのfinite/全state再開・安定batchを通す。独立学習/全文DEV/封印TESTは有資格候補ができた場合のみ。
 
 新しい条件の閉鎖と全体のBase到達目標を区別する。実測と根拠で実行契約を定義し、routine判断に再開許可を繰り返し求めない。必要な外部判断・hardware/credentials・範囲や資源の変更が発生した場合は、具体的な証拠と理由を示す。
+
+## 2026-10-15 全文DEV集計と440生成の接続部品
+
+[CPU完了記録](../reports/phase6/isolated-full-dev-preparation-20261015/completion.json)。`src/jmicro/isolated_full_dev.py`はDEV専用manifest/本文shardを固定して全本文を採点し、既存400+長文40の生成adapterを呼ぶ。本文損失は共通の総バイト数でBPBへ換算し、EOS損失は分ける。全件数に加え、元索引の各文書ID・本文token・bytesを照合する。実プロジェクトの全文identityは89416文書/42003934本文token/164344743bytesに固定し、合成fixtureや256件では全文実行を主張できない。
+
+合成2文書と決定的CPUモデルの36 checksが合格。1100token文書で元1024/512窓を越える採点と解析NLL/EOS oracle、全440 raw、同fixtureの固定80照合、偽TEST/train/従来の混在sibling読取りと評価中書込みの拒否、部分集計/重複/改変/失敗隠蔽の拒否、期限/乱数/モード/forward hook復旧を確認した。読取りガードはPythonのopen監査で、native libraryを含むOS sandboxとは主張しない。初回29passとsource/XML、拡充後36passを保全した。
+
+全suiteの六ID抑制と新pilotのEOT7も含む七ID抑制は維持。固定80の違いは失敗情報と全rawを返し、decoderを揃えて一致を作らない。文字不正/UNK/role/停止失敗も保存する。固定80の一致だけで品質合格にはしない。
+
+これはraw評価の部品である。資格と真の独立全pipeline学習を検証する永続native runner、GPU lock/実測予算/保存と内容reviewへの接続は未完成。実model/checkpoint・実DEV本文/cases・TESTを開いた評価、実440生成、独立学習、新TEST/採用は実施していない。新GPU/学習0、元10M/既存生成sources不変、元UIの現在生存はこのCPU作業では確認しない。次のGPU比較は未選定で、元総/技術台帳を引き継ぎ、根拠と実測予算が成立してから別契約を凍結する。元4項目goalは未達である。
