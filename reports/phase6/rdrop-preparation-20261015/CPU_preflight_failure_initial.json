@@ -1,0 +1,18 @@
+{
+  "status": "CPU_argument_preflight_failed_before_parent_or_data_reads",
+  "observed_at": "2026-10-15T04:53:47.1845835Z",
+  "command": "uv run --frozen --extra hub --extra data --extra ml --extra export python scripts/prepare_rdrop.py --config configs/phase6/rdrop_CPU_20261015.json --config-sha256 ...",
+  "error_type": "AttributeError",
+  "error_message": "'str' object has no attribute 'open'",
+  "trace_location": "scripts/prepare_rdrop.py:27 -> jmicro.experiment.sha256:42",
+  "cause": "CLI --config is a string; existing sha256 expects pathlib.Path. Failure at first config hash before config/model/data reads.",
+  "initial_source_sha256": "173aa2b88123bceeecad25e0540470cf56b63c119e5174a9c0cb1706b445ede4",
+  "initial_source_snapshot": "reports/phase6/rdrop-preparation-20261015/prepare_rdrop_preflight_initial.py.txt",
+  "initial_config_sha256": "3573bd968c4b285dd5aa1fd2677e22be4164c7740afaf9871379a0b1324ff383",
+  "planned_fix": "Convert CLI contract to Path before hashing; add CPU-only preflight boundary regressions. Preserve initial source/config/error. No objective/probability/normalization/count/teacher/parent/precision/shape/budget changes.",
+  "actual_parent_assay_executed": false,
+  "new_GPU_seconds": 0,
+  "new_scientific_teachers": 0,
+  "DEV_opened": false,
+  "TEST_opened": false
+}

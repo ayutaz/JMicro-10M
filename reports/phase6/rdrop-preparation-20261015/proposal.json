@@ -1,0 +1,143 @@
+{
+  "status": "prospective_normalized_two_view_RDrop25M_before_code",
+  "created_at": "2026-10-15T04:47:41.0453356Z",
+  "question": "Does consistency between two stochastic dropout vocabulary predictions improve unchanged native Japanese generation beyond an equal original25M CE control?",
+  "rationale": "Existing source-local training fits can improve without generation transfer. Plain fixed dropout100M was rejected (coherence1/80, BPB1.023869), and scalar document-progress25M was rejected. Two-view output consistency is a different untested joint regularization objective, not a diagnosed unique cause or a guarantee.",
+  "recipe": {
+    "objective": "0.5*(mean_CE(view1,gold)+mean_CE(view2,gold)) + 0.25*mean_positions(KL(p1||p2)+KL(p2||p1))",
+    "attention_probability_dropout": 0.0,
+    "temperature": 1.0,
+    "new_parameters": 0,
+    "views": 2,
+    "mask": "Only exactly original unmasked body/EOS selected next-token targets; PAD/overlap/quota-masked slots excluded from BOTH CE and KL",
+    "sites": [
+      "token_embedding",
+      "attention_output_before_residual",
+      "MLP_output_before_residual"
+    ],
+    "symmetric_KL_coefficient": 0.5,
+    "new_source_data": 0,
+    "main_targets_unchanged": true,
+    "RNG": "Independent consecutive training dropout draws in existing checkpointed torch CPU/CUDA RNG",
+    "pass_policy": "two sequential original batch48 forwards, BOTH graphs retained, one joint backward/clip/Adam update, no detach/no frozen teacher/no checkpointing or microbatch rescue",
+    "dropout_probability": 0.1,
+    "inference": "Original native model in eval, same full/fast/cache/softmax/greedy/stop policy. No dropout/auxiliary head/oracle hint at inference"
+  },
+  "normalization": "Paper Eq2-4 and official reg_cross_entropy.py sum two CE views plus alpha1 symmetricKL then use original ntokens denominator. Divide the ENTIRE objective by2 to retain native per-position meanCE scale: resulting symmetricKL coefficient.5. Not a claim to reproduce official unnormalized Adam/clip trajectory. No alpha sweep.",
+  "literature": [
+    {
+      "used": "Section2.1 Eq2-4; Section3.4 alpha1 LM; AppendixA.3 dropout.1",
+      "url": "https://arxiv.org/html/2106.14448v2",
+      "limits": "English WikiText-103, decoder12x768 and16x1024, word-level perplexity; no Japanese10M mature-parent coherent generation proof. Their attention dropout/batching/optimizer differ.",
+      "title": "R-Drop: Regularized Dropout for Neural Networks"
+    },
+    {
+      "used": "Both distributions carry gradient; symmetricKL and doubled hardgold; source also exposes normalization difference.",
+      "commit": "9dcc8302eb9b0f112c38230864bbee807bbe1aa7",
+      "url": "https://github.com/dropreg/R-Drop/blob/9dcc8302eb9b0f112c38230864bbee807bbe1aa7/fairseq_src/examples/language_model_rdrop/language_model_rdrop_src/loss/reg_cross_entropy.py"
+    }
+  ],
+  "novelty": {
+    "KD": "Old native/on-policy KD uses frozen different learned teacher targets/one-way KL and sometimes generated prefixes. Here both outputs are current shared trainable parameters with two dropout masks on identical original gold context; gradients flow through BOTH.",
+    "plain_dropout": "Reuse unchanged old p.1/sites hook function, NEVER rerun or edit the closed one-view dropout100M recipe. New coupled symmetric output-distribution loss and two gold evaluations define a separate regularization recipe. Without a new dropout-only matched25M arm this does NOT isolate benefit of KL alone.",
+    "search": "Bounded original script/config/report metadata and historical index searches found no implemented symmetric two-view dropout distribution-consistency objective. Search absence is not exhaustive novelty proof; original plain dropout/KD/context-mixing source and results were read.",
+    "document_progress": "No original length scalar/head/remaining-fraction target or coefficient rescue",
+    "context_mixing": "No generated/replaced input IDs, gold corruption or rollout"
+  },
+  "parameters": {
+    "maximum": 10100000,
+    "native": 10001152,
+    "minimum": 9500000,
+    "training": 10001152,
+    "inference": 10001152
+  },
+  "training": {
+    "seed": 42,
+    "total_hardgold_loss_evaluations": 50000000,
+    "source_binding": {
+      "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+      "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+      "index_size": 12861257655,
+      "index_mtime_ns": 1791234945567297288,
+      "stream_size": 4000002624,
+      "stream_mtime_ns": 1791234945514053852,
+      "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+      "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+    },
+    "batch": 48,
+    "optimizer": "Fresh AdamW1e-5 WD.1 betas.9/.999 eps1e-8 constant clip1",
+    "main_teacher_goal": 25000000,
+    "new_unique_targets": 25000000,
+    "context": 1024,
+    "symmetric_distribution_pairs": 25000000,
+    "parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+    },
+    "repeated_same_gold_evaluations": 25000000,
+    "goals": {
+      "web": 18750000,
+      "story": 1250000,
+      "textbook": 5000000
+    }
+  },
+  "control": {
+    "training": "reports/phase6/document-progress-science-20261015/native_CE_control/training.json",
+    "policy": "Existing NEW native_CE_control25M from document-progress comparison is only provisionally reusable after new owned original-coordinate CUDA protocol proof. Not a cached100M/25M mismatch and not a newly trained dropout-only control.",
+    "GPU_cost": "Old control520.103700s already included in carried completed science. Do not remove it or charge zero historic cost; no control learning rerun.",
+    "result": "reports/phase6/document-progress-science-20261015/native_CE_control/result.json",
+    "notes": "reports/phase6/document-progress-science-20261015/native_CE_control/notes.json",
+    "zero_auxiliary_head": "Cached control trained zero256-weight head with loss times0 and ORIGINAL coordinate clipping. Require core weights/name-mapped original Adam/source/schedule protocol parity, preserve old typed state; never relabel it as new trainer or initialize science from it."
+  },
+  "CPU_gate": [
+    "Independent probability-value and analytic gradient oracle for BOTH distributions, swap/shift/duplication/mask tests, no detach.",
+    "Exact original dropout hook reuse; inference/RNG/tie/count invariants and stochastic training views.",
+    "Own typed trainer/state/lineage/role/counters; native disabled-control equality and continuous6 vs3+save3 ALL numerical state/history, bad/interrupted checkpoint rejection.",
+    "One bounded actual original10M parent CPU eval/native cache and train-only dropout assay on accepted saved token windows only; no new TRAIN scan/selection/DEV/TEST."
+  ],
+  "CUDA_gate": [
+    "Own one-shot probe/launcher/scope CPU tests. Maximum48x1024 TWO retained dropout graphs+losses/BF16 backward FIRST before Adam. No geometry/precision/checkpointing rescue on OOM.",
+    "Disabled native3 original weights/Adam/CE/source/RNG exact including explicit cached25M protocol compatibility. Active6vs3+save3 ALL native weights/Adam/torch dropout RNG/sampler/counters/history exact.",
+    "Actual saved6 original FP32 native cache ALL original tolerance/subchecks, all32 timings/actual main teachers, two-view activity/gradient/physical counts.",
+    "Forecast candidate as ceil(25M*sum(ALL32 seconds)/sum(ALL32 original main teachers)*1.3+600 evaluation/save). Add EVERY prior3063.104084 seconds and new probe under ORIGINAL4800; technical total<=180. No warm retiming/outlier deletion/control-cost reset/reserve reduction.",
+    "Only measured fit permits implementation/freezing safe persistent science/evaluator/reviewer before scientific launch. Science starts original parent/fresh Adam, never probe or cached endpoint weights."
+  ],
+  "quality": "All80 fresh candidate outputs individually read/hash-bound. Reuse EXACT old native25M outputs/notes only, compare equal main25M/source cursors and separately count doubled CE evaluation/physical work. ALL original matched BPB nonincrease/coherence gain8/CI lower>0/EOS/repetition/raw, absolute56/27/27/37/18, native100M/strong/historical guards unchanged. Positive pilot still needs separately qualified main recipe, genuinely fresh whole-pipeline seed43/fullDEV/all440/new sealedTEST/adoption.",
+  "budget": {
+    "carried_total_GPU_seconds": 3063.104084053077,
+    "carried_technical_GPU_seconds": 116.9417824720731,
+    "remaining_technical_GPU_seconds": 63.0582175279269,
+    "remaining_total_GPU_seconds": 1736.8959159469232,
+    "original_total_GPU_cap_seconds": 4800,
+    "original_technical_cap_seconds": 180,
+    "carried_completed_science_GPU_seconds": 2946.1623015810037
+  },
+  "failure": "Close fixed normalized RDrop25M/.1 sites/two retained graphs/symmetric coefficient.5 on numeric/state/control/resource/quality failure. No dropout probability/site, KL direction/coefficient/temperature/detach/views/normalization/teacher amount/parent/seed/decoder/precision/geometry/budget rescue or rerun.",
+  "source_sha256": {
+    "scripts/base_context_mixing_trainer.py": "80244da524bb369a28fed40e251c1f56e1640914f4c646e19f0d6a2c70d0f6a2",
+    "reports/phase6/document-progress-science-20261015/native_CE_control/training.json": "ede0934745db6c6c8df43921e826041a5996b0b5dde0f9a746e72ff194f0791a",
+    "reports/phase6/document-progress-science-20261015/completion.json": "8815964fca8c2490f0c9440708918d59bcf94f88215a187e5a5e4806c17ea1ce",
+    "reports/phase6/document-progress-science-20261015/review.json": "7742a400b20e67f797df6df920d2f58268514488f8ebb0673d2d92d861d20a23",
+    "reports/phase6/document-progress-science-20261015/native_CE_control/result.json": "365101952e474f755fa43f170b18793f06aa3e34f06b028b33d54292b6562d72",
+    "scripts/base_residual_dropout.py": "52759deab19d97167bbb386f12ea7ed4eebd0327ba364b266d3196908bad7cbb",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "reports/phase6/base_residual_dropout_proposal.json": "782f8179915c876ffdfee42ef2948115e7a5ceb4e0cd77b5c37ca3388311de35",
+    "reports/phase6/condition_trainfit_diagnostic_review.json": "abc2a05db3f159e9984f63c58a74a91cc20dbb75bc2ec15ef24867e82ee4aa29",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "reports/phase6/base_generalization_diagnostic_review.json": "7ce4e0eaaf8840787ad23b113178521ac1036e1b1a43463a07d1c414be52d5b1",
+    "reports/phase6/base_residual_dropout_comparison_completion.json": "2b9bc2aa77b9077b478ee025ea476433347fa539bfc177246a3dfe0a3e515c84",
+    "reports/phase6/document-progress-science-20261015/native_CE_control/notes.json": "3daa3906eebbf1d1b15ea917f5690b5bc338ac7678ce84c93308ecd4840127ae",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "scripts/base_on_policy_teacher_trainer.py": "135edb76f0eaf28b31585c95849dca6365ebe79b3d39fd61fe90913705fd9c5e",
+    "reports/phase6/base_native_teacher_KD_proposal.json": "ef7c87cda64c6eda1be9967d700bacb08ce9e7a758c3140f795fd1af1d0764ec"
+  },
+  "new_GPU_seconds": 0,
+  "new_scientific_teachers": 0,
+  "new_data_prepared": false,
+  "DEV_opened": false,
+  "TEST_opened": false,
+  "science_contract_frozen": false,
+  "Base_qualified": false,
+  "Base_adopted": false,
+  "full_four_item_goal_complete": false
+}
