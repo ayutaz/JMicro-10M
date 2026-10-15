@@ -1,5 +1,7 @@
 # Base改善の今後の計画
 
+2026-10-15[別key-bias実装](../reports/phase6/forgetting-attention-key-bias-preparation-20261015/CPU_readiness.json)は同数式のsoftmax行定数を省き、元精度/初期化/FP32/10M/品質を変えず実親cache gateを通過。17/23/16 CPU checksと両arm全state resumeもpassed。次は専用owned180秒で最大48x1024のresident capacityをAdam前に確認し、通過時だけ両armの学習再開/cache/32timingsと総4800内を実測する。失敗時は閾値・batch・backend等で救済せず閉鎖。科学/独立全pipeline/fullDEV/全440/新TEST/採用は未資格、全4項目goalはactive/未達。
+
 2026-10-15対象限定[実親cache層別診断](../reports/phase6/forgetting-attention-preparation-20261015/CPU_cache_layer_localization.json)は完了。最終差はnative1.4305115e-5で元基準内、forgetting reference0.0001010895で未達、最初の非exact箇所は双方共通で原因は未確定。完了診断の反復や初期gate/親/精度閾値等の救済をせず、同数式の別安定実装の価値と必要証拠を次に判断する。新科学/GPU0、独立全pipeline/fullDEV/全440/新TEST/採用と全4項目goalはactive/未達。
 
 2026-10-15CPU判断: [forgetting attention model/trainer](../reports/phase6/forgetting-attention-preparation-20261015/CPU_model_trainer_closeout.json)は同元重み＋初期forget.5のlearned/static両arm設計を先に保存し、実count10,014,516・model14/trainer19 checksまで完了。しかし実元親cache差が元3e-5/2e-5を超え、reference実装は科学0で閉鎖。小fixtureや全state resume合格を実親精度の代替にしない。次は既存technical span上で数値差を局在化してから別実装の価値を判断し、元cache/10M/品質/対照/実測予算を維持する。新GPU/学習/DEV/TEST0、独立fresh全pipeline/fullDEV/全440/新TEST/採用と全4項目goalは未達。

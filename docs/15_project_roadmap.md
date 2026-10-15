@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-15別runtimeの[CPU readiness](../reports/phase6/forgetting-attention-key-bias-preparation-20261015/CPU_readiness.json)はmodel17/trainer23/probe16・両arm全state resumeと実元親cache精度を通過。softmax行定数を省く同数式で元FP32/初期化/10M/品質を維持し旧実装は保存。次は専用owned180秒CUDAで48x1024 resident capacityを最初に確認し、通過時だけ両armのresume/cache/32timings・総4800内を実測する。新GPU0/科学未凍結の準備記録で、独立全pipeline/fullDEV/全440/新TEST/採用と全4項目goalは未達。
+
 2026-10-15対象限定CPU診断は[完了](../reports/phase6/forgetting-attention-preparation-20261015/CPU_cache_layer_localization.json)。元nativeは同cache基準内、forgetting referenceは未達、非exactの出始めは双方共通で原因を断定できない。完了診断を反復せず、次は別の同数式安定実装の価値を判断する。閾値/初期化/親/decoder/予算を変更せず、実親cache・勾配・typed stateの資格前に科学/GPUを開始しない。独立全pipeline/fullDEV/全440/新TEST/採用と全4項目goalはactive/未達。
 
 2026-10-15最新CPU判断: [forgetting attention model/trainer closeout](../reports/phase6/forgetting-attention-preparation-20261015/CPU_model_trainer_closeout.json)で実count10,014,516、両arm初期関数一致・元weights保持、model14/trainer19 checks（両arm全state/history resume含む）はpassed。ただし実元親full/chunk差0.0001010895が元3e-5/2e-5を超えreference実装閉鎖、科学/GPU0。synthetic成功を代替にせず、次は同accepted technical spanで数値差を局在化する。元cache閾値/10M/品質/対照/実測予算を維持し、別実装の資格確認前にGPUを起動しない。独立fresh全pipeline/fullDEV/全440/新TEST/採用と全4項目goalは未達。以下の数学のみ/未実装は履歴。

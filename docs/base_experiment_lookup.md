@@ -1,5 +1,7 @@
 # Baseの実験結果を探す
 
+2026-10-15別runtime [key-bias CPU readiness](../reports/phase6/forgetting-attention-key-bias-preparation-20261015/CPU_readiness.json): softmax行定数を省く同数式、元precision/backend/初期gate/10M/品質を維持。17/23/16 checksと実親cache gate passed、旧runtime cache/state移行拒否。元referenceとのbitwise更新同値ではなく数式同値と元精度合格。次はowned180秒のcapacity FIRST48x1024、両arm実測総4800内資格。新科学/GPU0の準備記録、旧reference失敗は保存。
+
 2026-10-15[実親CPU cache層別localization](../reports/phase6/forgetting-attention-preparation-20261015/CPU_cache_layer_localization.json)完了。native最終差1.4305115e-5は元基準内、forgetting reference0.0001010895は未達。初回非exact箇所は双方共通で、数値差の原因や品質の根因を確定していない。同診断を再実行せず、閉鎖referenceを保持し、次は同数式の別安定実装の価値を検討する。
 
 2026-10-15CPU reference閉鎖: [forgetting attention](../reports/phase6/forgetting-attention-preparation-20261015/CPU_model_trainer_closeout.json)は実count10,014,516・model14/trainer19 passedだが、実親full/chunk精度0.0001010895で元許容差を満たさず科学/GPU0。品質不採用の実験と区別する。initial gate.5の両arm関数はexactだがnativeとは異なる。失敗audit source/hash/diagnostic logを保全し、閾値を緩めず同technical spanで数値差の局在化が次。数学7checksやmodel/trainer未実装は下の履歴。

@@ -1,0 +1,36 @@
+{
+  "kind": "prospective_same_formula_row_constant_removed_forgetting_attention_v1",
+  "created_at": "2026-10-15T00:46:09.3430805Z",
+  "status": "CPU_only_implementation_proposal_before_code",
+  "references_sha256": {
+    "src/jmicro/forgetting_attention.py": "83312cfb66243463817eae3809e98a43cf2e1b4ec6f1d910e054e1eb0cb5374f",
+    "scripts/forgetting_attention_trainer.py": "8782b3005bd93ad28c99273021b536ec35caf2a3e585f7e8d71d4ad520002468",
+    "reports/phase6/forgetting-attention-preparation-20261015/comparison_design.json": "7013f9847a092f51285ee71ae4f96903da8b926633d11ee680b3125397573e84",
+    "reports/phase6/forgetting-attention-preparation-20261015/CPU_model_trainer_closeout.json": "54b5dd795c1899bc3c92c22252ec773ac4b954507bddc0b0965ce10b92553be6",
+    "reports/phase6/forgetting-attention-preparation-20261015/CPU_cache_layer_localization.json": "da028858e6f49bf2e8905cb148c498b3e2eb91ddf8d2bc74859586a7c4b44901"
+  },
+  "question": "Can removing the mathematically cancelling query-row cumulative log-gate constant satisfy the ORIGINAL actual-parent full/cache tolerance with the same FP32 gates/attention/model/initialization?",
+  "evidence": "Actual failed reference log histories/positions exact; native and forgetting numerical differences begin at the same early operations but forgetting amplifies later. This does not diagnose the row constant as the cause. Softmax invariance provides a separately testable implementation possibility.",
+  "identity": "softmax(s_i,j+c_i-c_j)=softmax(s_i,j-c_j) over the same valid causal keys. c_i is a differentiable row constant whose normalized derivative cancels. Invalid query rows retain the same all-inf mask handling.",
+  "runtime": "Explicit new model runtime marker, attention subclass, typed cache marker, later separate trainer kind/spec/lineage. Closed reference model/trainer/audits remain untouched. Removing row constant changes FP32 operation grouping; do NOT claim bitwise reference weights/Adam/learning equivalence.",
+  "unchanged": [
+    "Both matched learned/static-half arms, zero W/b, initial f0.5 and original native10B tensors/O; native function is still changed",
+    "All data/source/gold/batch48/seed42/fresh AdamW1e-5 WD.1/constant/clip1",
+    "Original RoPE/NoQKNorm/GQA/SwiGLU and10014516 total trainable coordinates",
+    "FP32 log gate/cumsum/bias and mathematical SDPA; no BF16 bias injection, FP64 repair or new precision/backend",
+    "Original actual-parent cache atol3e-5/rtol2e-5 and original quality/native/strong/historical/final gates",
+    "All prior technical GPU0 retained; own180 technical and total4800 across BOTH arms still proposed, no reset/expansion"
+  ],
+  "requirements": [
+    "Independent product oracle forward/all derivatives and reference-relative mathematical tolerance, no exact-update claim",
+    "Actual typed masked/hole/allPAD/chunk cache and old-runtime cache/state refusal",
+    "Actual same10M parent count/old tensors/initial matched function and original precision full/cache proof",
+    "Only if actual CPU gate passes: separate typed trainer/fullstate6 versus3+save3 exact, then owned measured CUDA feasibility before science"
+  ],
+  "new_GPU_seconds": 0,
+  "scientific_teacher_positions": 0,
+  "science_contract_frozen": false,
+  "Base_qualified": false,
+  "full_four_item_goal_complete": false,
+  "stop": "If original actual-parent cache gate fails, close this implementation without widening tolerance, changing f/bias/gate/parent/seed/decoder/budget or launching GPU."
+}
