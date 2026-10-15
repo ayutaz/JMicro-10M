@@ -1,0 +1,94 @@
+{
+  "status": "proposal_before_self_rescaled_norm_code",
+  "created_at": "2026-10-15T03:46:13.8274687Z",
+  "question": "Does input-conditioned feature rescaling at existing pre-attention/pre-FFN/final RMSNorm sites improve coherent Japanese continuation under unchanged original CE, instead of changing attention maps, output gates or static norm gains?",
+  "formula": "u=original_RMS_unit(x); output=original_u_times_gamma + u_times_alpha_times_tanh(dot(raw_x,beta)). gamma is the original learned RMS weight, alpha is a new channel vector initialized1, beta is a new channel vector initialized0. FP32 reduction uses original squared RMS and epsilon; dynamic dot/tanh in explicit FP32 for actual FP32/BF16 runtime.",
+  "difference_from_paper": "SeeDNorm-inspired single-vector adaptation, not a full paper reproduction: copy mature gamma instead of fresh1, preserve original base operation and add a residual dynamic term, only original27 RMS sites and NoQKNorm retained, original AdamW group/precision/teachers. No QueryNorm/KeyNorm/head grouping/dropout, no imported vendor code.",
+  "literature": [
+    {
+      "url": "https://arxiv.org/html/2510.22777v1",
+      "sections": "3,4.1,9 Algorithm1",
+      "used": "Formula has channel vectors alpha/beta and input-derived scalar tanh; beta0, alpha1 for language models. Native squared RMS is authoritative because rendered Eq4/15 omit the square while Eq5/RMSNorm/derivative analysis use it.",
+      "limits": "OLMo2-550M/1B and OLMoE fresh pretraining, different corpus/recipe, not10M Japanese mature-parent or local runtime proof.",
+      "version": "v1",
+      "title": "SeeDNorm: Self-Rescaled Dynamic Normalization"
+    },
+    {
+      "url": "https://arxiv.org/html/2503.10622v1",
+      "decision": "DyT replacement declined for this comparison: reported LLM parity plus width/site-sensitive initialization and fresh200B training do not establish a straightforward improved mature Japanese10M recipe. Do not start a new alpha/site sweep.",
+      "title": "Transformers without Normalization",
+      "sections": "5 LLM,7.2"
+    }
+  ],
+  "source_sha256": {
+    "reports/phase6/quiet-attention-probe-20261015/completion.json": "9463d51021c1c04bdb082cf80170968f36c4478609655059bb93453a57afd861",
+    "reports/phase6/independent-map-science-20261015/completion.json": "44765c01c2d9b834798f475aa2a90a950c942d5d4852918a5c39a07978e8f6e6",
+    "reports/phase6/base_residual_norm_gain_screen.json": "9b413902f380317c59a2fc4e2ee969d5ca772c44c75bf6127a6ebd0e9f1c2730",
+    "reports/phase6/base_headwise_gate_proposal.json": "15a06e61ef89b52dbfad517bdc849579d4ba83610f10efd6a45222871dd7a67e",
+    "reports/phase6/base_headwise_gate_comparison_completion.json": "2a2286904d41c9f7c6c6b195e74f7d578827ebcdff2d73b77c82d031e2745a08",
+    "reports/phase6/base_attention_saturation_completion.json": "78a8c02ec4a8a5740b7ee4eb049d5a859ef68d93374932819dd91217534c41ed",
+    "reports/phase6/base_source_diagnostics_completion.json": "ee93258cf032727dd7679fca84f01de209fc95272534103f45bffd9412ed5c5d",
+    "reports/phase6/sampling-boundary-20261015/sampling_audit.json": "e28299e62f98c004352d40a7f218d31c791c21cddf73d78a7f5e1f16908aec2e",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "scripts/base_headwise_gate_model.py": "d775d826a440296b4666a962db60e5ee6eafa322dc17a606389d885338c130df"
+  },
+  "novelty": {
+    "static_norm_gain": "Old magnitude screen had only4/26 extreme block vectors, below13 required. Do not revive selective norm decay or infer gain collapse. New function has an input-conditioned even component and can change feature direction; gamma-only RMS remains odd. Prove an exact x/-x counterexample with the same positive epsilon, not approximate scale invariance.",
+    "query_output_gate": "Old gate computes one sigmoid scalar from already-normalized query per head AFTER SDPA and doubles O. Here no O rescaling, dynamic channel vector BEFORE original Q/K/V and FFN plus final norm; new computation changes these inputs, not a head-share/elementwise sigmoid/output gain rescue.",
+    "attention_map": "No independent Q2/K2, signed-map subtraction, null alternative, temporal decay or phantom/token change. Original single SDPA/RoPE/GQA untouched.",
+    "negative_screens": "Negative attention saturation/gradient conflict/norm contraction markers are not the rationale, do not repeat them or call them diagnosed causes.",
+    "sampler": "Existing256-draw boundary audit is reused, not repeated; metadata selection mismatch alone was insufficient and is not this intervention. Same original selector and quotas preserved.",
+    "search": "Bounded tracked source/test and proposal/completion/review search for SeeDNorm/self-rescale/dynamic norm/rescale_alpha/rescale_beta/2510.22777 found no implementation. Original static gain/headwise/map/quiet sources read directly. Search absence is not exhaustive novelty proof."
+  },
+  "parameters": {
+    "hidden_size": 256,
+    "native": 10001152,
+    "budget_min": 9500000,
+    "extra_expected": 13824,
+    "candidate_expected": 10014976,
+    "RMS_sites": 27,
+    "actual_factory_count_verified": false,
+    "budget_max": 10100000
+  },
+  "initialization": "Copy EVERY original weight including gamma/tied vocabulary; alpha1,beta0 initialized deterministically without RNG use. Native initial function and all original input/gamma gradients expected exact; alpha initially zero-gradient but beta must be nonzero-gradient, and both new paths must become active after beta moves.",
+  "control": "Original native cached CE100M only after actual CUDA native function/disabled3 original-coordinate Adam/clip/source equality. No original parameter reparameterization. Explicit +13824 trainable-coordinate architecture difference within10M. Disabled arm computes dynamic term multiplied0 but excludes new coordinates from clipping reduction to preserve native ordering.",
+  "training": {
+    "model_sha256": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "original_parent_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+    "seed": 42,
+    "source_quotas": {
+      "story": 5000000,
+      "textbook": 20000000,
+      "web": 75000000
+    },
+    "batch": 48,
+    "context": 1024,
+    "optimizer": "Fresh AdamW1e-5,WD.1,betas.9/.999,eps1e-8,constant,clip1; all original weights trainable, both new vectors same WD",
+    "teachers": 100000000
+  },
+  "before_GPU": [
+    "Independent analytic Jacobian and float64 helper gradient proof, beta0 identity/native original gradients/new beta active; dynamic direction/oddness counterexample and disabled behavior.",
+    "Explicit tagged model/trainer/config/cache/runtime/type boundaries, actual native count/tie/RNG/function and active FP32 real-cache on accepted2x64 technical input only; no new corpus/DEV/TEST.",
+    "BOTH CPU fullstate6vs3+save3 and disabled original Adam/source checks; then own frozen CUDA maximum48x1024 FIRST, disabled/native3, ALL54 new tensors active, enabled6 resume, actual6 saved BEFORE original cache all subchecks, ALL32 timings.",
+    "Only if measured original100M+600s evaluation/save with every prior GPU second fits remaining original cap may own safe science/evaluator/reviewer workflow be completed and frozen."
+  ],
+  "budget": {
+    "original_total_GPU_cap_seconds": 4800,
+    "remaining_technical_GPU_seconds": 81.5263984479243,
+    "carried_completed_science_GPU_seconds": 1976.4175308110425,
+    "original_technical_cap_seconds": 180,
+    "rule": "No reset/extension, warm reforecast, discarded timing rows, shorter teachers, altered geometry/precision, or reuse of verification weights as science.",
+    "carried_technical_GPU_seconds": 98.4736015520757,
+    "carried_total_GPU_seconds": 2074.8911323631182,
+    "remaining_total_GPU_seconds": 2725.1088676368818
+  },
+  "quality": "ALL original absolute/native matched/strong/historical BPB and generation requirements unchanged; all80 individual raw-bound review. Loss/technical checks cannot qualify Base.",
+  "failure": "Close this fixed single-vector tanh/27-site/alpha1-beta0/parent/source/LR/teachers/runtime recipe on gate, resource or quality failure. No alpha init, site subset, vector/head grouping, activation, RMS epsilon, gamma/bias, parent/seed/decoder/precision/geometry/teacher/budget rescue.",
+  "new_GPU_seconds": 0,
+  "new_scientific_teachers": 0,
+  "scientific_contract_frozen": false,
+  "Base_qualified": false,
+  "Base_adopted": false,
+  "full_four_item_goal_complete": false,
+  "pending": "Qualified recipe, genuinely fresh whole-pipeline independent seed43/fullDEV/all440/new sealedTEST/adoption."
+}

@@ -1,5 +1,9 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-15最新判断: [self-rescaled RMS CPU条件](../reports/phase6/self-rescaled-norm-preparation-20261015/CPU_closeout.json)は実装前proposal・独立数式19/専用model22 checksと実数10,014,976まで確認したが、実元親の手動active beta=.01で元full/cache複合精度条件に不合格（max8.05854797e-5）。初期native出力・原tensor/tie/RNG・active K/V/metadataは合格でも科学資格にはならず、固定runtimeをtrainer/GPU前に閉じた。方式全般の品質無効性や一意の数値原因は示していない。
+
+新GPU0で元予算の残81.526398/2725.108868秒を保持。beta/alpha/箇所/activation/grouping/epsilon/precision/親/seed/教師/decoder/形状/予算の救済や自動localizationをせず、原proposal/resultと一次資料から別の根拠ある未回答仮説を選ぶ。負の既存診断を原因に転用せず、CPU小fixtureの成功を実親精度や品質の代替にしない。全元品質条件と独立fresh全pipeline/fullDEV/全440/新TEST/採用の到達範囲を維持し、全4項目goalはactive/未達。以下は履歴。
+
 2026-10-15最新判断: [固定ゼロK/V owned](../reports/phase6/quiet-attention-probe-20261015/completion.json)は実機容量・disabled/native3・全state保存再開・実6cache全7項目を通過したが、全32計時の科学3756秒と累計2074.891132秒を合わせると元4800秒超過で科学前に閉鎖。数値成功と予算資格、文章品質を分ける。この方式の日本語品質は未評価で、採用候補には進めない。
 
 元技術180/総4800を維持し、既完了scienceも含む残総2725.108868秒を次判断へ継承する。warm再測定・計時除外・phantom/learned sink/親/seed/教師/precision/geometry/decoder/予算の救済なし。次は原proposal/resultから別の未回答仮説1件を根拠と対照付きで選定し、残予算内の実測資格を先に確認する。独立fresh全pipeline/fullDEV/全440/新封印TEST/採用は有資格レシピなしで未実施、全4項目goalはactive/未達。実job/Windows worker終了と元UI復帰は終了receiptに保存。以下の未実装・CPUのみは準備時点の履歴。

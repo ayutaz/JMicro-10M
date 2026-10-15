@@ -1,5 +1,9 @@
 # Windows / WSL 引継ぎ
 
+2026-10-15最新CPU終端: [self-rescaled RMS closeout](../reports/phase6/self-rescaled-norm-preparation-20261015/CPU_closeout.json)を保存。src/jmicro/self_rescaled_norm.py/model.py、専用CPU script/config、19＋22 passed XML、実親失敗receiptを両workspaceへ保持。実数10,014,976・初期native full/fast/cached logits/KV bitwise一致・原全tensor/tie/RNGは合格したが、手動active beta=.01のfull対32+32 cache logitsが元複合3e-5/2e-5に不合格、最大8.05854797e-5、K/Vとmetadataは合格。CPU0.453935秒、command exit1で固定条件閉鎖。
+
+新GPU/optimizer/科学/教材/DEV/TEST0、trainer/owned CUDA/science workflow未実装。sources/config/失敗を変更・再実行せず、beta/alpha/箇所/activation/grouping/epsilon/precision/親/seed/教師/decoder/geometry/予算救済や自動localizationをしない。累計98.473602技術＋1976.417531科学＝2074.891132秒、元180/4800の残81.526398/2725.108868秒は不変。UIへの新操作なし、最後の実確認439206/start67841467は直下のquiet終端時点の観測。次の実行前には生存とlockを再確認する。独立全pipeline/fullDEV/全440/新封印TEST/採用と全4項目goalはactive/未達。以下は履歴。
+
 2026-10-15最新終端: [quiet owned gate](../reports/phase6/quiet-attention-probe-20261015/completion.json)は実439105/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start67839901・Windows33308終了。技術50更新の元最大48x1024、disabled/native3元Adam等、enabled全state6対3+save3、実6snapshotと元cache全7subcheck/最大差1.6212463e-5は合格したが、全32計時の科学3756秒＋累計2074.891132秒が元4800超過で固定runtime閉鎖。科学/DEV/TEST0、new qualityなし。sources/configは凍結し再実行・再予測・計時除外・phantom/learned sink/教師/geometry/precision/予算救済をしない。
 
 新11.859472＋旧技術86.614129＝98.473602秒と、前science1976.417531秒を全額保持。元180/4800の残りは81.526398/2725.108868秒。job/result/completionとCPU37/18/23・prelaunch観測・launcher原logをWindowsへ保存し、verification zero/split/actual6/final等の全重み/Adam/RNG/samplerはWSLに残す。元UI439206/start67841467/同bootの実生存・正しいHTTP/idle・実gpu.lockのkernel FLOCKを今回確認。記録を次回生存の代用にしない。次は別の根拠ある未回答比較の選定で、全4項目goalと独立全pipeline/fullDEV/全440/新TEST/採用はactive/未達。以下の準備状態は履歴。

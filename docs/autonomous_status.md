@@ -1,5 +1,11 @@
 # 現在の状態
 
+2026-10-15最新CPU判断: [入力依存RMS倍率のCPU終了記録](../reports/phase6/self-rescaled-norm-preparation-20261015/CPU_closeout.json)。[実装前proposal](../reports/phase6/self-rescaled-norm-preparation-20261015/proposal.json)はSeeDNormを参考に、原27 RMS箇所へraw入力の内積/tanhによるfeature倍率を追加する別仮説。独立解析勾配など19 checksと専用model/cache22 checksは合格し、実数10,014,976（元＋13,824）・原全重み/NoQKNormを保持。実元親2x64では初期full/fast/cached logitsとK/Vがnativeとbitwise一致した。
+
+しかし手動beta=.01の有効化fixtureでは、全文と32+32 cacheのlogitsが元の**複合atol3e-5＋rtol2e-5条件に不合格**となり、固定実装条件をGPU前に閉じた。最大差8.05854797e-5、K/Vとvalid/positionは合格、CPU0.453935秒。差が最初に生じた層や一意の原因は未確定。beta/alpha/箇所/activation/head grouping/epsilon/precision/親/seed/decoder/教師/形状/予算を救済変更せず、旧sourceと失敗receiptを保つ。自動の層別診断やtrainer/GPU準備へ進めない。
+
+新GPU/optimizer/教材/DEV/TEST/科学教師0で累計予算は2074.891132秒のまま（元180/4800、残81.526398/2725.108868秒）。既存の負のgain/saturation/conflict/sampler監査は再利用のみ。DyT一次資料も確認したが、LLMの初期値調整と大規模fresh学習の結果から、改善済み10M移植とは扱わずsweepを始めなかった。次は異なる根拠ある未回答比較を選定する。最新文章品質は依然independent rank8不採用で、全4項目goal・独立fresh全pipeline/fullDEV/全440/新封印TEST/採用はactive/未達。以下は履歴。
+
 2026-10-15実機終端: [固定ゼロK/V注意のowned検証](../reports/phase6/quiet-attention-probe-20261015/completion.json)は50技術更新、元最大48x1024有限backward、disabled/native3の全元weights/Adam/CE/gradient/stream、enabled6対3+save3全state/history、実6保存と元FP32 cache全7確認（最大差1.6212463e-5）を通過した。しかし全32計時による科学見積もり3756秒＋既消費2074.891132秒＝5830.891132秒が元総4800秒を超え、**科学学習前に固定実装条件を閉鎖**。新しい科学教師/DEV/TEST0で、文章品質の不採用や方式全般の無効性を示す結果ではない。
 
 新技術GPU11.859472秒を前技術86.614129へ足して98.473602秒、前の完了science1976.417531秒も全額継承して総2074.891132秒。残りは技術81.526398秒/総2725.108868秒で、上限reset・計時除外・warm再測定・教師/形状/精度/phantom/learned sink等による救済は行わない。実WSL439105/start67839901とWindows33308終了、元UI439206/start67841467/同boot・HTTP原親/Tokenizer/10M/idle・実gpu.lock kernel FLOCKを復帰確認。小さいjob/result/completionと凍結source/config/CPU37+18+23を保存し、全verification重みはWSLに残す。
