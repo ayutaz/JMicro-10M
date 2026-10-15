@@ -1,5 +1,11 @@
 # Windows / WSL 引継ぎ
 
+2026-10-15最新終端: [independent rank8 QK100M](../reports/phase6/independent-map-science-20261015/completion.json)は17,698更新/正確100M、凍結reviewerによる全state/history・元CE対照sampler/digest/scheduler/counters/physical inputsと宣言追加座標の照合、全80の個別raw内容レビューまで完了し、不採用・固定条件閉鎖。文法44→59/一貫性2→1/適切完結2→2/EOS19→19/反復45→48/BPB0.998487→0.998526。最終確認資格なし、全4項目goalはactive/未達。
+
+実WSL435642/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start67505127とWindows worker11280は終了。科学1976.417531＋継承技術86.614129＝2063.031660秒、元4461/180/総4800秒内で台帳閉鎖。元10B UI437167/start67703206/同bootの実生存、HTTP親/Tokenizer/10M/idle、実gpu.lock inodeのkernel FLOCK所有を今回確認した。これは記録時点の証拠で次回生存の代用にしない。
+
+job/latest/result/training/notes/review/raw generation/Japanese provenance8ファイルをWindowsへhash一致copy。全重み・Adam/RNG/sampler・全metricsはWSLに残す。旧jobを再起動せず、rank/分岐/親/seed/normalization/decoder/教師/形状/予算救済も行わない。次は異なる根拠ある未回答仮説1件の選定。有資格レシピ後の独立fresh全pipeline/fullDEV/全440/新封印TEST/採用は未実施。以下のlive/50%等は過去の観測。
+
 2026-10-15現在: **independent rank8 QK 100M科学比較が稼働中**。[50%通過の実process＋kernel lock観測](../reports/phase6/independent-map-preparation-20261015/science_observation_50pct.json)はPID435642/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start67505127、Windows worker11280と同kernel FLOCK ownerを確認。9460更新/53,519,125教師/1024.229221秒（50%通過、保存metadataは9000更新）は途中値で、文章品質は未判定。[科学契約](../configs/phase6/independent_map_science_20261015.json) SHA5791ebfbe40ff3a3967639db023066a68cfd0f85d1f44941b7d5fc408449cdd1は元10B親/fresh AdamW/原CE100M/48/42、native10,001,152対新rank8 Q2/K2座標66,612追加10,067,764を明記。同一architectureや厳密同parameter数とは呼ばず、全元品質gateを維持する。
 
 [owned gate完了](../reports/phase6/independent-map-probe-20261015/completion.json)は実435092/start67467767終了・Windows38264終了、50技術更新、原関数/disabled3の全旧weights・Adam・CE・stream exact、新52tensor全活動、全state6対3+save3、最大48x1024と実6のFP32cache全subcheckを通過。新14.050476＋旧72.563653＝技術累計86.614129秒を元technical180/総4800へ継承し、実測科学4461秒で総上限内。科学workflow25 CPU checksも合格。検証重みは科学へ使わず、500更新全state保存/20更新heartbeat、元UIは実験中だけ停止し永続launcherが終端復帰する。

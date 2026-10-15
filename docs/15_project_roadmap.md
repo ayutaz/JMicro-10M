@@ -1,5 +1,11 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-15現在: [independent rank8 QK 100M](../reports/phase6/independent-map-science-20261015/completion.json)は全数値状態/全履歴/元CE対照streamと全80個別内容を確認し、**不採用で閉鎖**。文法44→59でも一貫性2→1・適切完結2→2・EOS19→19・反復45→48・BPB0.998487→0.998526で、元の全品質条件は未達。新52tensorの学習活動や技術成功は品質の証明にしない。
+
+次の順序は、既存原proposal/resultから異なる未回答仮説1件を選ぶ→対照/10M/元全品質条件/実測予算を事前固定して必要な実装と技術検証→有資格比較ができた場合のみ真にfreshな全pipeline独立seed43→fullDEVと400生成＋長文40→新封印TESTと採用。現在は有資格レシピがなく後半未実施。固定rank/分岐/親/seed/normalization/decoder/教師/形状/予算の救済、旧job再実行、大型化・品質基準低下で進めない。元4項目goalはactive/未達を維持し、比較終了や文書保存へ縮小しない。
+
+実science435642とWindows11280は終了、科学1976.417531＋継承済み技術86.614129＝2063.031660秒で元総4800秒内。元UI437167/start67703206/同boot・正しいHTTP情報/idle/実kernel FLOCKを復帰確認。以下の稼働中・50%・準備のみは日付付き履歴。
+
 2026-10-15現在: **independent rank8 QK 100M科学比較が稼働中**。[50%通過の実process＋kernel lock観測](../reports/phase6/independent-map-preparation-20261015/science_observation_50pct.json)はPID435642/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start67505127、Windows worker11280と同kernel FLOCK ownerを確認。9460更新/53,519,125教師/1024.229221秒（50%通過、保存metadataは9000更新）は途中値で、文章品質は未判定。[科学契約](../configs/phase6/independent_map_science_20261015.json) SHA5791ebfbe40ff3a3967639db023066a68cfd0f85d1f44941b7d5fc408449cdd1は元10B親/fresh AdamW/原CE100M/48/42、native10,001,152対新rank8 Q2/K2座標66,612追加10,067,764を明記。同一architectureや厳密同parameter数とは呼ばず、全元品質gateを維持する。
 
 [owned gate完了](../reports/phase6/independent-map-probe-20261015/completion.json)は実435092/start67467767終了・Windows38264終了、50技術更新、原関数/disabled3の全旧weights・Adam・CE・stream exact、新52tensor全活動、全state6対3+save3、最大48x1024と実6のFP32cache全subcheckを通過。新14.050476＋旧72.563653＝技術累計86.614129秒を元technical180/総4800へ継承し、実測科学4461秒で総上限内。科学workflow25 CPU checksも合格。検証重みは科学へ使わず、500更新全state保存/20更新heartbeat、元UIは実験中だけ停止し永続launcherが終端復帰する。
