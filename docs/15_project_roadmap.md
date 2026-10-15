@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-15次の準備: [forgetting-attention proposal](../reports/phase6/forgetting-attention-preparation-20261015/proposal.json)は正規化前の累積decayのCPU数学だけを選び、[7 checks](../reports/phase6/forgetting-attention-preparation-20261015/CPU_math.json)を完了した。実model/count/cache/trainerは未実装で、新GPU学習0。有限sigmoid gateはnative初期関数を変えるためfresh対照かmatched conversionかを先に解決し、元10M/品質条件・own technical180/総4800提案内の実測を要する。旧next-two/recurrentは原記録から既閉鎖と判断し再実行しない。資格候補後の独立全pipeline/fullDEV/全440/新TEST/採用を省略しない。
+
 2026-10-15最新終端: [causal-QKV contiguous100M](../reports/phase6/causal-qkv-contiguous-science-20261015/completion.json)は正確100M/全17,698更新state/history/原CE対照＋宣言lag差・全80内容を確認し不採用。文法61/80・BPB0.998450に対し一貫性1/80・適切完結1/80・EOS21/80・反復47/80で元品質未達。科学1889.042532＋累計技術34.850105＝1923.892637秒、元UI実PID60818/start66693747へ復帰確認。固定条件を延長・再launch・係数等で救済しない。次は原結果から重複しない根拠ある同10M比較を選定する。独立fresh全pipeline/fullDEV/全440/新封印TEST/採用は候補資格なしで未実施、全4項目goalはactive/未達。以下の進行中等は履歴。
 
 2026-10-15最新実行: [causal-QKV contiguous100M](../configs/phase6/causal_qkv_contiguous_science_20261015.json)を新owned CUDA後に凍結・起動。実PID58473/start66504429・worker35512、240更新/1355486教師の途中を確認。同verification保存点から3更新のreference対contiguous全state/history、保存済みreference0/3/38と32非時間metricsがexact、新runtime自身の全state resumeもexact。旧19.769017＋新15.081088＝累計技術34.850105秒を元technical180/総4800へ継承し、科学予測4291秒で資格を得た。元親/原TRAIN100M/48/42・候補10,014,464/全元quality gates維持、科学workflow22 CPU checks・500保存/20heartbeat。次は同job終端の原対照/全80採否。独立fresh全pipeline/fullDEV/全440/新TEST/採用と4項目goal未達。以下のGPU-pending等は当時の履歴。

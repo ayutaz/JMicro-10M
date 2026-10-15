@@ -1,5 +1,7 @@
 # Base改善の今後の計画
 
+2026-10-15次案: [forgetting-attention proposal](../reports/phase6/forgetting-attention-preparation-20261015/proposal.json)は独立したCPU数学referenceで[7 checks](../reports/phase6/forgetting-attention-preparation-20261015/CPU_math.json)を通した。正規化前の累積decayと旧出力後gateの差を確認しただけで、現在の失敗原因や品質向上は未証明。有限sigmoid gateの初期関数はnativeと異なるため、fresh対照か正当なmatched conversionかを解決してから実model/count/cache/selected CE/trainerと実測予算を準備する。新学習/DEV/TEST/GPU0、実count/科学契約未検証。旧next-two/recurrentは原記録から既閉鎖と確認し小変更で再試行しない。元全品質条件と独立全pipeline/fullDEV/全440/新TEST/採用の到達範囲を維持する。
+
 2026-10-15最新判断: [causal-QKV contiguous100M](../reports/phase6/causal-qkv-contiguous-science-20261015/completion.json)は全state/原CE stream＋宣言lag差・全80個別内容を確認して不採用に閉鎖。文法44→61、BPB0.998487→0.998450でも、一貫性2→1・適切完結2→1・反復45→47で元gate未達。文法・BPBと意味の進行・完結を区別し、固定lag/tap/層subset/activation/親/seed/decoder/予算を救済しない。次は原proposal/runtime/resultから別の未回答仮説1件を選定して元gate・対照・実測予算を固定する。独立fresh全pipeline/fullDEV/全440/新封印TEST/採用は有資格候補なしで未実施、全4項目goalはactive/未達。下の進行中・技術のみは当時の履歴。
 
 2026-10-15進行: [causal-QKV contiguous100M](../configs/phase6/causal_qkv_contiguous_science_20261015.json)を凍結・起動。新GPU実装比較で同verification3から各3更新の全state/history、保存済みreference0/3/38と32非時間metricsがexact、保存再開/48x1024/raw cacheも合格。旧reference19.769017＋新15.081088＝技術累計34.850105秒を元technical180/総4800へ継承し、実測科学4291秒で予算を満たした。モデル/lag/教師/precision/backend/品質を救済変更せず、元親/原CE100M/48/42、明示runtime・候補10,014,464で実PID58473/start66504429が240更新/1355486教師の途中。次は同job終端の原対照全state/stream＋宣言構造差と全80内容採否。資格後だけ独立fresh全pipeline/fullDEV/全440/新封印TEST/採用へ進む。全4項目goalはactive/未達。

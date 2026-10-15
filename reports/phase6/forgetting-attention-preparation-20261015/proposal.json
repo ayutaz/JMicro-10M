@@ -1,0 +1,66 @@
+{
+  "kind": "prospective_forgetting_attention_math_only_v1",
+  "created_at": "2026-10-15T00:29:39.4644000Z",
+  "status": "separate_architecture_proposal_CPU_mathematics_only_not_scientific_recipe",
+  "references_sha256": {
+    "reports/phase6/causal-qkv-contiguous-science-20261015/completion.json": "843f58dbb6b27c7550f07fc3bbfae9c607f2b51772a802b8f8464693cf7f9e76",
+    "scripts/base_headwise_gate_model.py": "d775d826a440296b4666a962db60e5ee6eafa322dc17a606389d885338c130df",
+    "configs/phase6/base_headwise_gate_comparison.json": "3c5a2f4a051b09f02077eb69eab9a0796486f86c2467009c53af29286a04f5e2",
+    "scripts/prepare_base_next_two_token_proposal.py": "4bc6f1c8fdc82885b99b26327916b3c8bc1ddba4d418253990f44505c7765487",
+    "configs/phase6/base_next_two_token_comparison.json": "dcd0247be516eb73e07e9b71aca27493f1d914b88270139651408ef3fae59563",
+    "reports/phase6/base_recurrent_compute_novelty_review.json": "92f60482d9c00878132db5c542a7062b5e0fd99e058f2cb57478759f749a62f0",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83"
+  },
+  "question": "Can a data-dependent cumulative pre-softmax decay provide a distinct attention-routing intervention within the existing10M budget?",
+  "literature": {
+    "paper": "https://arxiv.org/html/2503.02130v1",
+    "sections": "3 equations11-13, B.1, F.3",
+    "official": "https://github.com/zhixuan-lin/forgetting-transformer",
+    "official_model_blob": "300c7a451753efb76811f5fc919f2d32701b5507",
+    "evidence_scope": "Primary paper uses substantially larger models and other data/context; not Japanese10M quality evidence or a diagnosis of the current failure."
+  },
+  "mechanism": {
+    "gate": "f_t,h=sigmoid(w_h^T*x_t+b_h)",
+    "log_bias": "d_i,j,h=sum_{k=j+1..i} log(f_k,h)=c_i,h-c_j,h",
+    "attention": "softmax(original scaled QK^T+d, causal valid keys)*original V",
+    "padding": "Invalid physical slots contribute0 to cumulative log gate and cannot be attended; no batch-row crossover",
+    "cache": "Full and chunked paths must use the same concatenated valid-token log-gate history; no implicit native KVCache compatibility",
+    "original_components": "Keep original GQA Q4/KV2, NoQKNorm, RoPE, SwiGLU and frozen native sources; no Pro output gate, QK norm, KV shift, ACP or RoPE removal."
+  },
+  "novelty": "Actual old output gate multiplies an already-normalized head output and doubles O at conversion. This proposed pairwise pre-softmax decay changes normalized key ratios; not the same operation. Old causal-QKV adds preceding raw features, old first-V transfers layer values, and cross-map subtracts another GQA map. Registered source searches and direct source inspection only, not proof of all historical work or quality.",
+  "declined_routes": {
+    "next_two": "Actual original proposal/trainer/config/completion show next-two auxiliary learning already rejected; head/horizon/coefficient rescue forbidden. Historical train-only688896 also exceeds current total-training10M budget and is not a precedent for new over-budget heads.",
+    "recurrent": "Existing novelty review declined full-stack recurrence as reopening closed sharing; no visit-order/gate/residual rescue."
+  },
+  "parameter_estimate": {
+    "native": 10001152,
+    "added_formula": "13*4*(256+1)",
+    "added": 13364,
+    "total": 10014516,
+    "lower": 9500000,
+    "upper": 10100000,
+    "actual_full_model_instantiation_verified": false
+  },
+  "CPU_only_requirements": [
+    "Independent product-of-gates attention versus cumulative-log form including gradients",
+    "Causal diagonal/no future influence, nonconstant key ratios and a counterexample to post-output gating",
+    "Padding holes/left/right/allPAD and row isolation",
+    "Prefix versus concatenated cache suffix values/gradients and malformed history rejection"
+  ],
+  "unresolved_before_GPU": [
+    "Real model tagged architecture/count/native tensor identity and complete padding/cache/selected CE path",
+    "Choose genuinely fresh matched native-versus-gated learning or a justified matched conversion; finite sigmoid gates are not exact identity so do not claim native-parent parity",
+    "Full typed trainer, main and physical/gate clocks, unchanged original source stream and save/resume",
+    "Own technical180/total4800 proposed ceiling across BOTH newly trained arms if needed, measured GPU timing/capacity before freezing any scientific contract",
+    "Prospective pilot screen distinct from unchanged final absolute/relative/strong/historical gates; real full-recipe independent learning/fullDEV/all440/new sealedTEST remain required"
+  ],
+  "new_GPU_seconds": 0,
+  "new_training_teachers": 0,
+  "new_corpus_reads": 0,
+  "new_DEV_TEST_reads": 0,
+  "science_contract_frozen": false,
+  "Base_qualified": false,
+  "full_four_item_goal_complete": false,
+  "goal_status": "active_unachieved",
+  "stop": "No launch before all missing implementation/protocol/initialization/comparison/budget questions resolve. A CPU algebra check is not actual10M/model/CUDA/quality evidence."
+}
