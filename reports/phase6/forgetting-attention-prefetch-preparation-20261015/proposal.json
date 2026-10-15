@@ -1,0 +1,44 @@
+{
+  "full_four_item_goal_complete": false,
+  "Base_qualified": false,
+  "changes": [
+    "Build original padded ids/targets together on CPU, same int64/padding/shape/order, then exactly two batched device transfers. No pinned/nonblocking tensor arithmetic change.",
+    "One bounded CPU producer advances original TRAIN sampler by at most one batch. Return saved LOGICAL state after consumed current batch; checkpoint/RNG/source clocks never include queued unconsumed rows.",
+    "No CUDA or torch/global RNG use in producer. Producer failure propagates; load/close drain worker and restore completed logical state; final batch cannot overdraw.",
+    "Explicit new trainer kind/spec/lineage/loader policy, old checkpoints refused. Original canonical model/runtime/FP32 cache and original vendor BF16 kernels unchanged."
+  ],
+  "created_at": "2026-10-15T01:47:26.7229343Z",
+  "unchanged": [
+    "Original10B parent,10014516/13364 coordinates, both gate W/b0/f.5, same canonical model/BF16 kernel/FP32 tolerance.",
+    "Same accepted TRAIN/seed42/batch48/context/labels/source quotas/order/freshAdamW1e-5WD.1/clip1/constant.",
+    "Original cumulative technical180 and total4800 including both100M scientific arms+600s evaluation each. Retain all prior timings/failure."
+  ],
+  "new_GPU_seconds": 0,
+  "source_fact": "Current trainer constructs target tensor on CUDA for each row; original sampler.take is synchronous before GPU arithmetic. Timing differences alone do not establish unique bottleneck or forecast of improvement.",
+  "evidence": {
+    "path": "reports/phase6/forgetting-attention-canonical-probe-20261015/completion.json",
+    "sha256": "130d02b690729f836d854361c03497f3bfb932c66102e2ff14d4ad0887fc3592"
+  },
+  "original_total_GPU_cap_seconds": 4800,
+  "required": [
+    "CPU independent ids/targets and logical sampler equality through step/save/load/end/producer failure; no skipped or duplicate rows.",
+    "Both-arm CPU allstate/history resume exact; unchanged numerical model/Adam/RNG/sampler/counters against synchronous canonical trainer.",
+    "Future owned GPU comparisons versus accepted canonical stored3/6/38 and all32 non-time histories, both arms; same original initialization/fullstate/cache/48x1024 criteria.",
+    "No speculative prefetch weights or state initialize science; both new scientific100M arms and all160 content plus all native/strong/historical/final gates required."
+  ],
+  "observations": {
+    "learned_mean_seconds": 0.2085225745322532,
+    "learned_mean_data_wait": 0.05772141323541291,
+    "forecast_seconds": 8137,
+    "static_mean_data_wait": 0.008036790230107727,
+    "static_mean_seconds": 0.09295668693448533
+  },
+  "science_contract_frozen": false,
+  "prior_technical_GPU_seconds": 33.276834176969714,
+  "question": "Can eliminate per-row synchronous CUDA target copies and overlap one exact next CPU batch with current GPU update, preserving complete accepted numerical state/history/physical tensors/sampler cursor?",
+  "original_technical_cap_seconds": 180,
+  "status": "proposal_before_implementation",
+  "stop": "Close if data/numeric/state/precision/capacity/original budget gate fails. No warm rerun, outlier removal, altered arithmetic/model/data/shape/teachers or budget rescue.",
+  "kind": "prospective_same_numeric_training_CPU_staged_targets_one_batch_prefetch_v1",
+  "scientific_teacher_positions": 0
+}
