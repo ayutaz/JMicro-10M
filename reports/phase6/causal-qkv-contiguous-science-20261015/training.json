@@ -1,0 +1,202 @@
+{
+  "status": "complete",
+  "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/causal-qkv-contiguous-science-20261015/checkpoint-00017698.pt",
+  "checkpoint_sha256": "d764d48cc41f33e461fde28bcc0fb4671d352b5c6db821a9be316abd16197f60",
+  "binding": {
+    "config_sha256": "c0605d4812ba972799ae97b925d68ee56672e8a4470d62217a7ecba42e8318cd",
+    "parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+    },
+    "source_binding": {
+      "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+      "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+      "index_size": 12861257655,
+      "index_mtime_ns": 1791234945567297288,
+      "stream_size": 4000002624,
+      "stream_mtime_ns": 1791234945514053852,
+      "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+      "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+    },
+    "training_seed": 42,
+    "weights_role": "scientific_causal_QKV_contiguous",
+    "probe_weights_used": false
+  },
+  "counters": {
+    "update": 17698,
+    "supervised_tokens": 100000000,
+    "CE_input_tokens": 102655467,
+    "auxiliary_input_tokens": 0,
+    "auxiliary_pairs": 0,
+    "physical_input_tokens": 370838917,
+    "original_body_bytes": 405882136,
+    "token_digest": "a1ab017092f823d69e033d96868136ebeb0a55f13e2cb1cfd039e3c7d920a1c9",
+    "source_teachers": {
+      "web": 75000000,
+      "textbook": 20000000,
+      "story": 5000000
+    },
+    "source_EOS": {
+      "web": 657450,
+      "textbook": 148625,
+      "story": 38222
+    },
+    "auxiliary_digest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "causal_QKV_lag_elements": 4936607663104
+  },
+  "original_CE_match": {
+    "update": true,
+    "token_digest": true,
+    "supervised_tokens": true,
+    "source_teachers": true,
+    "source_EOS": true,
+    "CE_input_tokens": true,
+    "original_body_bytes": true,
+    "full_original_sampler": true,
+    "actual_original_scheduler": true,
+    "unchanged_original_base_config": true,
+    "only_declared_model_difference": true,
+    "original_main_physical_inputs": true
+  },
+  "physical_rollup": {
+    "CE_physical_inputs": 370838917,
+    "auxiliary_physical_inputs": 0
+  },
+  "auxiliary_digest": "0000000000000000000000000000000000000000000000000000000000000000",
+  "model_config": {
+    "schema_version": 1,
+    "architecture": "decoder_only_transformer",
+    "hidden_size": 256,
+    "num_attention_heads": 4,
+    "num_key_value_heads": 2,
+    "head_dim": 64,
+    "activation": "swiglu",
+    "norm": "rmsnorm",
+    "rms_norm_eps": 1e-06,
+    "qk_norm_type": "none",
+    "qk_norm_before_rope": true,
+    "attention_scale": 0.125,
+    "rope_theta": 10000,
+    "rope_layout": "half_split",
+    "rotary_dim": 64,
+    "max_position_embeddings": 1024,
+    "tie_word_embeddings": true,
+    "attention_bias": false,
+    "mlp_bias": false,
+    "dropout": 0.0,
+    "initializer_std": 0.02,
+    "norm_initial_gain": 1.0,
+    "status": "phase5_ablation",
+    "name": "JMicro-10M-T4K-NoQKNorm",
+    "vocab_size": 4096,
+    "num_hidden_layers": 13,
+    "intermediate_size": 640,
+    "expected_parameter_count": 10014464,
+    "causal_QKV_lag_research": {
+      "policy": {
+        "kind": "residual_depthwise_QKV_previous2_v1",
+        "current_coefficient": 1.0,
+        "previous_lags": [
+          1,
+          2
+        ],
+        "coefficient": "direct_signed_per_projected_channel",
+        "initial_previous_coefficients": 0.0,
+        "norm_RoPE_order": "project_lag_norm_RoPE",
+        "padding": "preceding_valid_tokens_only",
+        "cache": "last2_raw_QKV_and_validity",
+        "new_biases": 0,
+        "original_FFN_unchanged": true
+      },
+      "arm": "lag_learned",
+      "native_expected_parameter_count": 10001152
+    }
+  },
+  "spec": {
+    "kind": "native_original_CE_causal_QKV_contiguous_v1",
+    "batch": 48,
+    "contrast": false,
+    "seed": 42,
+    "lr": 1e-05,
+    "weight_decay": 0.1,
+    "temperature": 0.1,
+    "coefficient": 0.1,
+    "dtype": "bf16",
+    "backend": "flash",
+    "optimizer_policy": "fresh_equal_AdamW_both_arms",
+    "scheduler": "constant",
+    "original_whole_body_plus_EOS": true,
+    "no_split_EOS": true,
+    "CE_policy": "document_local1024_context512_target_stride_original_EOS_once",
+    "head_policy": "only_supervised_valid_hidden_states_no_PAD_or_overlap_logits",
+    "auxiliary_policy": "first_window_observed_pair_once_per_draw_deduplicate_family_and_body_in_batch",
+    "goals": {
+      "web": 75000000,
+      "textbook": 20000000,
+      "story": 5000000
+    },
+    "runtime_implementation": "same_math_causal_full_prefix_contiguous_shift_v1",
+    "actual_unique_parameters": 10014464,
+    "lag_policy": {
+      "kind": "residual_depthwise_QKV_previous2_v1",
+      "current_coefficient": 1.0,
+      "previous_lags": [
+        1,
+        2
+      ],
+      "coefficient": "direct_signed_per_projected_channel",
+      "initial_previous_coefficients": 0.0,
+      "norm_RoPE_order": "project_lag_norm_RoPE",
+      "padding": "preceding_valid_tokens_only",
+      "cache": "last2_raw_QKV_and_validity",
+      "new_biases": 0,
+      "original_FFN_unchanged": true
+    },
+    "lag_arm": "lag_learned",
+    "original_model_config": {
+      "schema_version": 1,
+      "architecture": "decoder_only_transformer",
+      "hidden_size": 256,
+      "num_attention_heads": 4,
+      "num_key_value_heads": 2,
+      "head_dim": 64,
+      "activation": "swiglu",
+      "norm": "rmsnorm",
+      "rms_norm_eps": 1e-06,
+      "qk_norm_type": "none",
+      "qk_norm_before_rope": true,
+      "attention_scale": 0.125,
+      "rope_theta": 10000,
+      "rope_layout": "half_split",
+      "rotary_dim": 64,
+      "max_position_embeddings": 1024,
+      "tie_word_embeddings": true,
+      "attention_bias": false,
+      "mlp_bias": false,
+      "dropout": 0.0,
+      "initializer_std": 0.02,
+      "norm_initial_gain": 1.0,
+      "status": "phase5_ablation",
+      "name": "JMicro-10M-T4K-NoQKNorm",
+      "vocab_size": 4096,
+      "num_hidden_layers": 13,
+      "intermediate_size": 640,
+      "expected_parameter_count": 10001152
+    },
+    "CE_decoder_traversal": "explicit_original_QKV_previous_valid_lags",
+    "gradient_clip_policy": "all_original_plus_QKV_lag_coordinates"
+  },
+  "lineage": {
+    "parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+    },
+    "parent_update": 305176,
+    "parent_tokens": 10000007168,
+    "parent_supervised_tokens": 9978838479,
+    "optimizer_policy": "fresh_AdamW_original_coordinates_plus_causal_QKV_lags",
+    "kind": "native_original_CE_causal_QKV_contiguous_v1",
+    "weights_role": "scientific_causal_QKV_contiguous",
+    "runtime_implementation": "same_math_causal_full_prefix_contiguous_shift_v1"
+  }
+}
