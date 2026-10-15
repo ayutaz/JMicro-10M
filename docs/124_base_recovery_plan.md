@@ -1,5 +1,7 @@
 # Base改善の今後の計画
 
+2026-10-15対象限定[実親cache層別診断](../reports/phase6/forgetting-attention-preparation-20261015/CPU_cache_layer_localization.json)は完了。最終差はnative1.4305115e-5で元基準内、forgetting reference0.0001010895で未達、最初の非exact箇所は双方共通で原因は未確定。完了診断の反復や初期gate/親/精度閾値等の救済をせず、同数式の別安定実装の価値と必要証拠を次に判断する。新科学/GPU0、独立全pipeline/fullDEV/全440/新TEST/採用と全4項目goalはactive/未達。
+
 2026-10-15CPU判断: [forgetting attention model/trainer](../reports/phase6/forgetting-attention-preparation-20261015/CPU_model_trainer_closeout.json)は同元重み＋初期forget.5のlearned/static両arm設計を先に保存し、実count10,014,516・model14/trainer19 checksまで完了。しかし実元親cache差が元3e-5/2e-5を超え、reference実装は科学0で閉鎖。小fixtureや全state resume合格を実親精度の代替にしない。次は既存technical span上で数値差を局在化してから別実装の価値を判断し、元cache/10M/品質/対照/実測予算を維持する。新GPU/学習/DEV/TEST0、独立fresh全pipeline/fullDEV/全440/新TEST/採用と全4項目goalは未達。
 
 2026-10-15次案: [forgetting-attention proposal](../reports/phase6/forgetting-attention-preparation-20261015/proposal.json)は独立したCPU数学referenceで[7 checks](../reports/phase6/forgetting-attention-preparation-20261015/CPU_math.json)を通した。正規化前の累積decayと旧出力後gateの差を確認しただけで、現在の失敗原因や品質向上は未証明。有限sigmoid gateの初期関数はnativeと異なるため、fresh対照か正当なmatched conversionかを解決してから実model/count/cache/selected CE/trainerと実測予算を準備する。新学習/DEV/TEST/GPU0、実count/科学契約未検証。旧next-two/recurrentは原記録から既閉鎖と確認し小変更で再試行しない。元全品質条件と独立全pipeline/fullDEV/全440/新TEST/採用の到達範囲を維持する。

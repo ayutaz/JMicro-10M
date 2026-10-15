@@ -1,5 +1,7 @@
 # JMicro-10M フェーズ別実行計画
 
+2026-10-15対象限定CPU診断は[完了](../reports/phase6/forgetting-attention-preparation-20261015/CPU_cache_layer_localization.json)。元nativeは同cache基準内、forgetting referenceは未達、非exactの出始めは双方共通で原因を断定できない。完了診断を反復せず、次は別の同数式安定実装の価値を判断する。閾値/初期化/親/decoder/予算を変更せず、実親cache・勾配・typed stateの資格前に科学/GPUを開始しない。独立全pipeline/fullDEV/全440/新TEST/採用と全4項目goalはactive/未達。
+
 2026-10-15最新CPU判断: [forgetting attention model/trainer closeout](../reports/phase6/forgetting-attention-preparation-20261015/CPU_model_trainer_closeout.json)で実count10,014,516、両arm初期関数一致・元weights保持、model14/trainer19 checks（両arm全state/history resume含む）はpassed。ただし実元親full/chunk差0.0001010895が元3e-5/2e-5を超えreference実装閉鎖、科学/GPU0。synthetic成功を代替にせず、次は同accepted technical spanで数値差を局在化する。元cache閾値/10M/品質/対照/実測予算を維持し、別実装の資格確認前にGPUを起動しない。独立fresh全pipeline/fullDEV/全440/新TEST/採用と全4項目goalは未達。以下の数学のみ/未実装は履歴。
 
 2026-10-15次の準備: [forgetting-attention proposal](../reports/phase6/forgetting-attention-preparation-20261015/proposal.json)は正規化前の累積decayのCPU数学だけを選び、[7 checks](../reports/phase6/forgetting-attention-preparation-20261015/CPU_math.json)を完了した。実model/count/cache/trainerは未実装で、新GPU学習0。有限sigmoid gateはnative初期関数を変えるためfresh対照かmatched conversionかを先に解決し、元10M/品質条件・own technical180/総4800提案内の実測を要する。旧next-two/recurrentは原記録から既閉鎖と判断し再実行しない。資格候補後の独立全pipeline/fullDEV/全440/新TEST/採用を省略しない。

@@ -1,6 +1,6 @@
 # JMicro-10M
 
-2026-10-15最新準備: [次案の実モデル・学習器のCPU検証](reports/phase6/forgetting-attention-preparation-20261015/CPU_model_trainer_closeout.json)を進めました。モデルは10,014,516パラメータで、CPUのモデル14項目・保存再開など19項目が通過しました。ただし実際の親モデルでは全文計算とキャッシュ推論の差が事前基準を超えたため、この実装はGPU学習へ進めません。基準を維持して原因を切り分けます。Baseの品質完成と最終評価は未達です。以下の数学検証のみ・未実装の記述は当時の履歴です。
+2026-10-15最新準備: [次案の実モデル・学習器のCPU検証](reports/phase6/forgetting-attention-preparation-20261015/CPU_model_trainer_closeout.json)を進めました。モデルは10,014,516パラメータで、CPUのモデル14項目・保存再開など19項目が通過しました。ただし実際の親モデルでは全文計算とキャッシュ推論の差が事前基準を超えたため、この実装はGPU学習へ進めません。[層ごとの診断](reports/phase6/forgetting-attention-preparation-20261015/CPU_cache_layer_localization.json)でも元モデルは基準内、次案は基準外でした。原因を断定せず、同じ計算式の別実装に改善余地があるかを検討します。Baseの品質完成と最終評価は未達です。以下の数学検証のみ・未実装の記述は当時の履歴です。
 
 次案は[過去位置への注意を減衰させる機構の数式検証](reports/phase6/forgetting-attention-preparation-20261015/CPU_math.json)まで進めています。CPU7項目が通過しましたが、実モデル・学習条件・GPU性能・生成品質は未確認です。既存の10M制約とBaseの品質基準を維持します。
 
