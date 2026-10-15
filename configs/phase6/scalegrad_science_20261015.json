@@ -1,0 +1,248 @@
+{
+  "kind": "frozen_native_original25M_ScaleGrad_science_v1",
+  "created_at": "2026-10-15T06:09:11.732464Z",
+  "proposal": {
+    "sha256": "69d7075d27db5078f399379874c75c9df790edeb64c62f6744c7d0d9a8a6dfe9",
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/scalegrad-preparation-20261015/proposal.json"
+  },
+  "probe_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/scalegrad_probe_20261015.json",
+    "sha256": "209bf9c384a53c8693d7a61c33eddf990fcc54b4112f33f5ef565fde516021e4"
+  },
+  "probe_result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/scalegrad-probe-20261015/result.json",
+    "sha256": "85957edc560d9c335b30b9d31ee436e96057461ff7df891d2bb4795278cbdae7"
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "parent_size": 120181763,
+  "parent_mtime_ns": 1791114231712428007,
+  "tokenizer": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/phase2/4096/tokenizer.model",
+    "sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+  },
+  "source_binding": {
+    "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+    "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+    "index_size": 12861257655,
+    "index_mtime_ns": 1791234945567297288,
+    "stream_size": 4000002624,
+    "stream_mtime_ns": 1791234945514053852,
+    "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+    "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+  },
+  "goals": {
+    "web": 18750000,
+    "textbook": 5000000,
+    "story": 1250000
+  },
+  "batch": 48,
+  "seed": 42,
+  "main_teacher_goal": 25000000,
+  "recipe": {
+    "kind": "original_visible_body_prefix_ScaleGrad_logit_shift_0p2_v1",
+    "gamma": 0.2,
+    "history": "same_window_BODY_input_IDs_at_columns_le_current_prediction_column",
+    "special_history": "IDs0to7_never_enter_BODY_history_EOS3_remains_novel",
+    "target": "unchanged_original_selected_hard_body_and_EOS",
+    "normalization": "cross_entropy_of_logits_plus_log_gamma_times_novel_mask",
+    "original_CE": "metric_only_when_active_not_added_twice",
+    "decoder_passes": 1,
+    "dropout": 0.0,
+    "extra_parameters": 0,
+    "inference": "unchanged_native_logits_softmax_cache_and_decoder"
+  },
+  "native_parameters": 10001152,
+  "training_parameters": 10001152,
+  "train_only_parameters": 0,
+  "initial_weights_sha256": "381bd100ad76ea5dbdf9c453e1131dbe1436b6de81c56a2e0f47982a25ce7290",
+  "scientific_GPU_cap_seconds": 1406,
+  "technical_GPU_seconds": 169.2456279549515,
+  "carried_total_GPU_seconds": 3115.407929535955,
+  "carried_completed_science_GPU_seconds": 2946.1623015810037,
+  "total_GPU_cap_seconds": 4800,
+  "worst_measured_peak_bytes": 11094813184,
+  "control_checkpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/document-progress-science-20261015/native_CE_control/checkpoint-00004420.pt",
+    "sha256": "a5d6d36c6d52a2535bff7c44b1afb5fa796a34eed1380280471442b46ecdc664"
+  },
+  "control_checkpoint_size": 124377125,
+  "control_checkpoint_mtime_ns": 1792038554150513559,
+  "control_training": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/document-progress-science-20261015/native_CE_control/training.json",
+    "sha256": "ede0934745db6c6c8df43921e826041a5996b0b5dde0f9a746e72ff194f0791a"
+  },
+  "control_result": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/document-progress-science-20261015/native_CE_control/result.json",
+    "sha256": "365101952e474f755fa43f170b18793f06aa3e34f06b028b33d54292b6562d72"
+  },
+  "control_metrics": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/document-progress-science-20261015/native_CE_control/metrics.jsonl",
+    "sha256": "9bf3c803b2798abfbe67d7abda350eec66db70b3aff7450333ba0167f15f4766"
+  },
+  "control_raw": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/document-progress-science-20261015/native_CE_control/evaluation/generation.json",
+    "sha256": "a874926724d06ff156b54d361bf7196aab485f77ede009ccdd7aeed50ee59ed9"
+  },
+  "control_notes": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/document-progress-science-20261015/native_CE_control/notes.json",
+    "sha256": "3daa3906eebbf1d1b15ea917f5690b5bc338ac7678ce84c93308ecd4840127ae"
+  },
+  "references": {
+    "strong_result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source-order-condition-comparison-v2-20261006/compare-result.json",
+      "sha256": "cbca7936ebf395b1d5ccd45022ee4cb85de704a636c8bdae48ff2c24a8adc303"
+    },
+    "strong_notes": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/source_order_condition_notes.json",
+      "sha256": "6b143e08096a1ee2365a643c008d5c009d2c2ff48dd1d42a9749ac5301766d2d"
+    },
+    "original_config": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase6/textbook_quantity_comparison.json",
+      "sha256": "f1baece77f9e85d6086f1ac5d1e624a59d19910a90af2202a104fb125c379d98"
+    },
+    "historical_Web": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/story20-low-lr-10b-500m-20261005/evaluation/result/web/evaluation/result.json",
+      "sha256": "5e0f346d1c657b2f8f1a35d9e8079ce896abab3451e34dc697792394a0df6796"
+    },
+    "cached_control_result": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/result.json",
+      "sha256": "508990562990d2259fec5e1a330cf1ff77c053360b6678e751f6a02cb2b2394e"
+    },
+    "cached_control_notes": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural_context_contrast_CE_notes.json",
+      "sha256": "5a36aa6d4914260d1975974ae0fbee6c1e0024d900ea8103da970fdbc4ee9369"
+    },
+    "cached_control_raw": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/natural-context-contrast-comparison-20261007/evaluation/CE/evaluation/generation.json",
+      "sha256": "73a952a4e08ca8cfffa229fdb8c8f497d0373ff0646ca4b4f5cecd90a27e644b"
+    }
+  },
+  "strong_summary": {
+    "BPB": 1.1336128657420816,
+    "rates": {
+      "outputs": 80,
+      "eos": 76,
+      "repetition": 2,
+      "unicode_failure": 0,
+      "role_leak": 0,
+      "empty": 0
+    },
+    "grammar2": 65,
+    "relevance2": 39,
+    "coherent": 23,
+    "appropriate": 26,
+    "notes_sha256": "6b143e08096a1ee2365a643c008d5c009d2c2ff48dd1d42a9749ac5301766d2d",
+    "generation_sha256": "d5b5a7c6b5d971de9bc46c77f52ac5ea19132cab7b97f034c274974cdbe2620e",
+    "Japanese": {
+      "semantics": 0.5625,
+      "jblimp": 0.7824773413897281,
+      "jcqa": 0.26541554959785524
+    }
+  },
+  "DEV_manifest": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/eval/isolated-base-dev-v1/base.dev.manifest.json",
+    "sha256": "6198b43df8f4cf389e9de74c038e2e93d18665413477b27359ab352a02f69fa7"
+  },
+  "DEV_shards": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase6/expanded-v2/shards",
+    "manifest_sha256": "75c7420a1434cf8a97797218b163c694a13ed838f389f09327dcc86f7164c12c"
+  },
+  "Japanese_manifest": {
+    "path": "/home/aihub_ubuntu/jmicro-data/evaluation-isolated-japanese-v1/japanese.dev.manifest.json",
+    "sha256": "06fcf2c18f086ee57c4f615e5ae765f568024912148bf94be891b1581e7edadd"
+  },
+  "unigram": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/japanese-base-v2-20261004-r1/pilot/unigram.json",
+    "sha256": "80708c01ae19d6049785dd31d1e48651e1f246122870355a9ab5ad662081d0a5"
+  },
+  "sources": {
+    "src/jmicro/phase5.py": "cceae262745d92b1763c9d1263ba9746b8c6441896e97c001d8a3604ccaf2f98",
+    "src/jmicro/experiment.py": "c867b0c30dcbc98eeccc81efc6787ffea514cb10d1c6df7315167ff557df14e6",
+    "scripts/natural_context_contrast_memory.py": "85735b203e1a6f845078046379c6463b51cdc61068a463a379d93c79368f62e2",
+    "src/jmicro/independent_map.py": "2757849d12e9469e5915f90f30a2133868b82105485aec54f5c9be37547b011a",
+    "tests/test_independent_map_probe.py": "d2b19e1e61956a434388c6da24f24cb852eb0da3599cee5ce3f47aa3726cd754",
+    "scripts/probe_context_likelihood.py": "b76ebc5aba00d7754b9909dcaca85cddbb81ad03c64e2061ff7925b65cbf3cd6",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "tests/test_independent_map_training.py": "9a64cb2630c6e949708864a3b4d3c99115fc0e2e41ff6e5e9db233b972f1c89b",
+    "scripts/natural_context_contrast_corpus.py": "ffb118799ec4580b3e971c10233a0590d0f6d747200d207c6508433fe98f9a12",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "tests/test_independent_map.py": "2677ee8f6ed788117ccff600fdfebd4af38290f92bcd3d0b825f3cbe9a35e594",
+    "scripts/independent_map_trainer.py": "216d4aa32a24d8fcc1e66c9973d643758b5b1dff0b0da75016b3bb256e127f41",
+    "uv.lock": "f19437302a292a2a10f839bd565b83b978b9d59533310f87e393bf512e5404ca",
+    "scripts/natural_context_contrast_trainer.py": "2a68e5950408e0f499df1897f9bb11c2912ab1c50ca72e5d4a153ec0e37f3e3a",
+    "scripts/context_likelihood_trainer.py": "392824e360dca7474d3b6227d19236d0d748c5238b03067dd80aba9d497dfaa5",
+    "scripts/base_fim_trainer.py": "31fb0a86561014221ba5096cf83ffa17914e9c946b214dc0e407e1abbb1398c4",
+    "scripts/probe_independent_map.ps1": "d1eb9370f3bd4af3bc153225fede8f6eee05b829d7a75c6a3fd8f7dc57f8886a",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f",
+    "scripts/probe_independent_map.py": "69ccabb91afbfef6b3503c8220b4a498e29949a946dc66a7d8f182de12327ad1",
+    "src/jmicro/quiet_attention.py": "3ec9315ac0d5528af0b1fa91e405771342cbef3c668004ea9c938b404ec2d2e1",
+    "scripts/quiet_attention_trainer.py": "0103eb732f2dec4fec163fed674b67fe9cb4435e6fda212ff3f5f1ccf5f10b57",
+    "scripts/probe_quiet_attention.py": "964de0c03c13d95c8fb4c5c538c8fb41d2ad30a478553645b7db8edebe58e9eb",
+    "scripts/probe_quiet_attention.ps1": "89bb1e1e2596ede85542bd1598e272aab8bee1d3532e78450fb2d6346dc65d51",
+    "tests/test_quiet_attention.py": "e42e1f04f628bcbc6e7517ec759e3de8ae2bc5166a6623a5397aa4955928e708",
+    "tests/test_quiet_attention_training.py": "bd00094db816277881b6c2570a18305dd29072cec7c17b1a8a3a055338601d36",
+    "tests/test_quiet_attention_probe.py": "820e0910e3e70bfae453c177bd70250f542e86effe5008c9c97fa9d5ec528e3e",
+    "src/jmicro/document_progress.py": "2f73b195f9d4cce444672ea8fa1aed6ac49804bd206b7ba39b231f7c20d23ebc",
+    "scripts/document_progress_trainer.py": "754453cd3151d38d8712f02ba26d7133dcbe3c382598ee9977e5791d50aada14",
+    "scripts/prepare_document_progress_labels.py": "5e9a19f0a04d5e5e2401e34bc2314abdd57a793c3391ffa3a8408b08bc40e1ff",
+    "scripts/probe_document_progress.py": "ca01ce9da39879c4f134a6d640ffb18b83afc4b361c1a1b72410df8d4dfe26ce",
+    "scripts/probe_document_progress.ps1": "b6e3a0b9107fbe6cd85df9a725617bffd40a058560da05ee966af4fcce9a98c4",
+    "tests/test_document_progress.py": "14bc4d6135d965a975cc7c67d70a502a94661926acc16e0c099641544025b350",
+    "tests/test_document_progress_training.py": "54a025974c4965b93e36dcbb4110622701edc2470ea30e17b43a019e847bd733",
+    "tests/test_document_progress_probe.py": "160bffbff0fcce3a533592242ab33678a92852042d504aa8d5500ebf8b3e0c29",
+    "src/jmicro/rdrop.py": "5d7a54e593f70ee1d0160776cad40277b11edd870195fa9b148d1c329b92bce5",
+    "scripts/rdrop_trainer.py": "af98397445604233971776753765325ae51e7cc0d5848100e06b6707e122863b",
+    "scripts/prepare_rdrop.py": "9b8053e335d620c9ed02f61350e8fd79147378eab6582a01b99357a6704beecd",
+    "scripts/base_residual_dropout.py": "52759deab19d97167bbb386f12ea7ed4eebd0327ba364b266d3196908bad7cbb",
+    "tests/test_rdrop.py": "decbe4081e18c84de57f6f95d3c59e1b461dbb702fb0f3bd34ecfe4e0f1d843a",
+    "tests/test_rdrop_training.py": "a5dbf80cabffd1f3c97a3e09f6b5998452ce9ce94b4cf7d1e0df0a9bb2dbabf7",
+    "tests/test_rdrop_cpu_scope.py": "0787d718b9c4e4416ba91634bd1a344b24953ee15e899831e7491a50d5aa233e",
+    "scripts/probe_rdrop.py": "76b8f7b44243ee70a93cb568ac6a9a962e21d0bcf4934e3b73ad7f7735d0c149",
+    "scripts/probe_rdrop.ps1": "687df7ab1460b9aab1cd2f693564fe34748a810c5db6cf8856a7fb33b73d5abe",
+    "tests/test_rdrop_probe.py": "2acf61f0d0bbae47cf9632b6e4693bad69d2af2f9d846036358f1c70c4de8e4d",
+    "tests/test_rdrop_cached_control.py": "243c529f0df278e2a9a7f1bb825f1af1dd2140ee71d876ac0069399c327ba72b",
+    "src/jmicro/scalegrad.py": "0e936038e7ac6514de4e017f0c59e49d68650f51323e995e21940697edbfb97b",
+    "scripts/scalegrad_trainer.py": "0dfb7cf2ec8e7b70bacdb44d3f7f005b4374444458024b7ea8363492ecc6e7ec",
+    "scripts/prepare_scalegrad.py": "22d2154ba19c1e92f3e8bb5606f24e61da25491b382c6651f3aa340f7a15a9c1",
+    "tests/test_scalegrad.py": "32da856a4a592ac6ea30d2050898d0099f13082dd7497fa2156d977013a1b329",
+    "tests/test_scalegrad_training.py": "5e4987527a0834b5e8d5895a392ad9325db6a760389c635b9707e254bd53cd83",
+    "scripts/probe_scalegrad.py": "3ff7e607c1c2dd81d391831122743886f31961e2a594d3199f9baf805b766ba9",
+    "scripts/probe_scalegrad.ps1": "94daab403425ced70f69dfa5a6d4e6a28e6fbbdcd3251d2174b817d8f75a5c03",
+    "tests/test_scalegrad_probe.py": "52d3c907c4c4c8f04dd7c54b3a66162d418f945fdab938eaf32c28e84d857a4e",
+    "scripts/run_scalegrad.py": "ec7105d3bae8b4b71c96a9c33951592cbb97a24da10b367542ae920efbb54826",
+    "scripts/run_scalegrad.ps1": "de48b8413cdcd9e5593845583120ac98747999de12a031fe3376d6eda0d05d8a",
+    "scripts/review_scalegrad.py": "912178d67a7ecb4e6b9ad80fb019bdc3f48fb83db80a64b8ba038e12715ecb50",
+    "scripts/evaluate_context_likelihood.py": "fa439d0dac298bfba1bdaaf41e3f759e83d95c7b8e5226028fcb5039bddc5f11",
+    "scripts/scalegrad_science_protocol.py": "b6f9a5ef7e21724c4ee3376cd20d197048c9dc705e3adeb59d75edcc1e438f37",
+    "tests/test_scalegrad_science.py": "bc1a6857b7257eacdc275c542387c42c5537ecccd726a49a2f091d5322f2322a",
+    "scripts/pseudo_repetition_science_protocol.py": "65e4bdcaeefebdccc78fd7cdc5f12ce4adbfa63567e972f6d45f12d2432fa5ad",
+    "src/jmicro/isolated_japanese_scoring.py": "92fe253d5ddc2e0a1d3267ce97edfe91180788784274a3c214967543688e78c7",
+    "src/jmicro/evaluation_choice_boundary.py": "6e2ea2dc0c0ef288dbb7d64c535fc483c3c30d9c19aa6bb6d20d3c61ac390a8d",
+    "src/jmicro/evaluation_boundary.py": "e67d86ea26645d9a27d6597d0241716e66a9cc64666bbc2b2b91fab86e2d2f6e",
+    "src/jmicro/evaluation_memory.py": "ba22fb7ca7ddb6633a308c2b1a32a59147ecb38e568d9f838ab032300147c6b4",
+    "src/jmicro/japanese_evaluation.py": "8693e2a54e63c1b085b617b207cc5db618ae80af1eb7cb54133ba8b254da6801",
+    "src/jmicro/readiness.py": "69a92251f4a697b551b9c3cfef9e2b992e776e2047c0331f7c43ba2331d172ea",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "scripts/isolated_base_evaluation.py": "b5ccce8df7a0bc294dc85a255b9fa67bc865675c06d40a6e976f4876fb3be300",
+    "scripts/base_fim_pilot_protocol.py": "44d99a88023a38682a8583a730f2ac41d9c8333cb091e0fb2619dee0e0421a22",
+    "scripts/review_matched_story_study.py": "439c990c4d2781937573927df08bdaef860041c78fd05f0d6afde4458351f315",
+    "scripts/run_eos_complete_100m.py": "62232fd440efbe32d65f25a3fffe8ec9fd7d7a96c74db329ddc3cc3443871a9d"
+  },
+  "CPU_workflow_tests": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/scalegrad-preparation-20261015/science_CPU_tests.xml",
+    "sha256": "e18d7e053d9a068cdce8b97ddf7047574680ac3e5e08868f674cf9e01552d7b1"
+  },
+  "checkpoints_every_updates": 500,
+  "heartbeat_every_updates": 20,
+  "quality_criteria_unchanged": true,
+  "TEST_prepared": false,
+  "Base_qualified": false,
+  "Base_adopted": false,
+  "matched_control": "Accepted nativeCE25M same original parent/fresh Adam/source/teachers/seed; current CUDA original-coordinate protocol proved. Its historical cost remains charged; native100M is separate.",
+  "scope": "Pilot only; main qualification/fresh whole-pipeline seed43/fullDEV/all440/new sealedTEST/adoption pending.",
+  "failure": "Close fixed condition on numerical/resource/quality failure; no gamma/history/teacher/parent/seed/decoder/budget rescue."
+}
