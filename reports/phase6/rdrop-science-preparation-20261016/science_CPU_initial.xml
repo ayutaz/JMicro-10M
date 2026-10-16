@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="35" time="3.129" timestamp="2026-10-16T23:47:13.776679+09:00" hostname="DESKTOP-42CUV0C"><testcase classname="tests.test_rdrop_science" name="test_actual_proof_preserves_old_cost_rejection_and_explicitly_authorized_first_science" time="0.003"><failure message="ValueError: All six ordinary-reference numerical/history comparisons required">def test_actual_proof_preserves_old_cost_rejection_and_explicitly_authorized_first_science():
+        p,a = inputs()
+        assert p['science_budget_eligible'] is False
+&gt;       assert protocol.science_budget(p,a) == 1757
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_rdrop_science.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+p = {'status': 'complete', 'passed': True, 'capacity': {'passed': True, 'checks': {'finite_losses': True, 'finite_nonzero_...ce': 'NVIDIA GeForce RTX 4090', 'visible_device_bytes': 25756696576, 'process_fraction': 0.8999999999844701, ...}, ...}
+authorization = {'kind': 'user_local_GPU_cumulative_time_ceiling_removed_20261016', 'created_at': '2026-10-16T14:44:44.9254363Z', 'use... and each old result; freeze finite per-experiment teacher/timeout/advancement/stop conditions before execution.', ...}
+
+    def science_budget(p,authorization):
+        if (authorization.get('kind') != 'user_local_GPU_cumulative_time_ceiling_removed_20261016'
+                or authorization.get('user_instruction') != '上限はないので無限に使っていいです'
+                or authorization.get('prior_total_GPU_seconds') != 3633.252637067926
+                or authorization.get('prior_technical_GPU_seconds') != 169.2456279549515
+                or authorization.get('prior_completed_science_GPU_seconds') != 3464.0070091129746
+                or authorization.get('old180_4800_are_historical_not_future_global_limits') is not True):
+            raise ValueError('Explicit new user resource authorization and ALL prior cost required')
+        cap,cache = p.get('capacity',{}),p.get('active_cache',{})
+        checks = {'finite_losses','finite_nonzero_joint_gradient','two_stochastic_views',
+            'positive_symmetric_KL','dropout_RNG_advanced','all_weights_unchanged','Adam_zero'}
+        if (p.get('passed') is not True or p.get('cumulative_GPU_ledger_closed') is not True
+                or p.get('science_budget_eligible') is not False
+                or p.get('verification_optimizer_updates') != 59 or p.get('scientific_teacher_positions') != 0
+                or p.get('DEV_opened') is not False or p.get('TEST_opened') is not False
+                or p.get('native_parameters') != 10001152 or p.get('training_parameters') != 10001152
+                or p.get('loss_runtime') != IMPLEMENTATION
+                or p.get('cached25M_original_coordinate_protocol_exact') is not True
+                or p.get('full_state_history_resume_exact') is not True
+                or cap.get('passed') is not True or cap.get('shape') != [48,1024]
+                or cap.get('retained_decoder_graphs') != 2 or cap.get('optimizer_updates') != 0
+                or cap.get('main_teachers') != 24576 or cap.get('total_CE_evaluations') != 49152
+                or cap.get('consistency_pairs') != 24576 or cap.get('total_physical_input_tokens') != 98304
+                or set(cap.get('checks',{})) != checks or not all(cap['checks'].values())
+                or cache.get('passed') is not True or cache.get('absolute_tolerance') != 3e-5
+                or cache.get('relative_tolerance') != 2e-5
+                or set(cache.get('subchecks',{})) != {'finite_logits','logits_within_original_tolerance',
+                    'all_native_KV_within_original_tolerance','real_cache_length','positions_exact','validity_exact','RNG_unchanged'}
+                or not all(cache['subchecks'].values())):
+            raise ValueError('Actual original two-graph capacity/resume/cache proof and old cost rejection required')
+        for name,keys in (('native3_subchecks',NATIVE_CHECKS),('cached_zero_head_control3_subchecks',
+                NATIVE_CHECKS|{'cached_protocol_head_zero_no_learning','cached_protocol_head_Adam_zero'})):
+            rows = p.get(name,[])
+            if len(rows) != 3 or any(set(r) != keys or not all(r.values()) for r in rows):
+                raise ValueError('ALL native/cached25M original-coordinate checks required')
+        reference = p.get('reference6_subchecks',[])
+        if len(reference) != 6 or any(not r or not all(v is True for v in r.values()) for r in reference):
+&gt;           raise ValueError('All six ordinary-reference numerical/history comparisons required')
+E           ValueError: All six ordinary-reference numerical/history comparisons required
+
+scripts/rdrop_science_protocol.py:55: ValueError</failure></testcase><testcase classname="tests.test_rdrop_science" name="test_owned_numerical_proof_historical_cost_and_all32_cannot_be_forged[passed]" time="0.001" /><testcase classname="tests.test_rdrop_science" name="test_owned_numerical_proof_historical_cost_and_all32_cannot_be_forged[ledger]" time="0.001" /><testcase classname="tests.test_rdrop_science" name="test_owned_numerical_proof_historical_cost_and_all32_cannot_be_forged[old_eligible]" time="0.001" /><testcase classname="tests.test_rdrop_science" name="test_owned_numerical_proof_historical_cost_and_all32_cannot_be_forged[updates]" time="0.002" /><testcase classname="tests.test_rdrop_science" name="test_owned_numerical_proof_historical_cost_and_all32_cannot_be_forged[scientific]" time="0.001" /><testcase classname="tests.test_rdrop_science" name="test_owned_numerical_proof_historical_cost_and_all32_cannot_be_forged[DEV]" time="0.001" /><testcase classname="tests.test_rdrop_science" name="test_owned_numerical_proof_historical_cost_and_all32_cannot_be_forged[TEST]" time="0.001" /><testcase classname="tests.test_rdrop_science" name="test_owned_numerical_proof_historical_cost_and_all32_cannot_be_forged[count]" time="0.001" /><testcase classname="tests.test_rdrop_science" name="test_owned_numerical_proof_historical_cost_and_all32_cannot_be_forged[capacity]" time="0.001" /><testcase classname="tests.test_rdrop_science" name="test_owned_numerical_proof_historical_cost_and_all32_cannot_be_forged[capadam]" time="0.001" /><testcase classname="tests.test_rdrop_science" name="test_owned_numerical_proof_historical_cost_and_all32_cannot_be_forged[graphs]" time="0.001" /><testcase classname="tests.test_rdrop_science" name="test_owned_numerical_proof_historical_cost_and_all32_cannot_be_forged[checks]" time="0.001" /><testcase classname="tests.test_rdrop_science" name="test_owned_numerical_proof_historical_cost_and_all32_cannot_be_forged[cache]" time="0.001" /><testcase classname="tests.test_rdrop_science" name="test_owned_numerical_proof_historical_cost_and_all32_cannot_be_forged[tol]" time="0.001" /><testcase classname="tests.test_rdrop_science" name="test_owned_numerical_proof_historical_cost_and_all32_cannot_be_forged[resume]" time="0.001" /><testcase classname="tests.test_rdrop_science" name="test_owned_numerical_proof_historical_cost_and_all32_cannot_be_forged[snapshot]" time="0.001" /><testcase classname="tests.test_rdrop_science" name="test_owned_numerical_proof_historical_cost_and_all32_cannot_be_forged[timings]" time="0.001" /><testcase classname="tests.test_rdrop_science" name="test_owned_numerical_proof_historical_cost_and_all32_cannot_be_forged[forecast]" time="0.001" /><testcase classname="tests.test_rdrop_science" name="test_owned_numerical_proof_historical_cost_and_all32_cannot_be_forged[cost]" time="0.001" /><testcase classname="tests.test_rdrop_science" name="test_owned_numerical_proof_historical_cost_and_all32_cannot_be_forged[native]" time="0.001" /><testcase classname="tests.test_rdrop_science" name="test_real_state_all_history_same_original_stream_and_intended_RNG_difference[native_CE_control]" time="0.612"><failure message="ValueError: Explicit native verification or fixed normalized RDrop required">tmp_path = PosixPath('/tmp/pytest-of-aihub_ubuntu/pytest-65/test_real_state_all_history_sa0')
+arm = 'native_CE_control'
+
+    @pytest.mark.parametrize('arm',['native_CE_control','normalized_rdrop'])
+    def test_real_state_all_history_same_original_stream_and_intended_RNG_difference(tmp_path,arm):
+        parent,build = builders(tmp_path)
+        old = build(legacy=True)
+&gt;       candidate = TargetBatchRDropTrainer(parent,old.sampler,old.binding,batch=6,device='cpu',arm=arm)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_rdrop_science.py:62: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;rdrop_target_batch_trainer.TargetBatchRDropTrainer object at 0x7370c62aff20&gt;
+parent = {'model_config': {'schema_version': 1, 'architecture': 'decoder_only_transformer', 'hidden_size': 32, 'num_attention_h...-02,  1.4743e-02,  3.6194e-03,  3.2753e-02,
+          3.9119e-02, -1.9947e-02]]), ...}, 'update': 5, 'tokens': 90, ...}
+sampler = &lt;natural_context_contrast_corpus.OriginalTrainCorpusSampler object at 0x7370e5862360&gt;
+binding = {'parent': {'sha256': 'fixture-parent'}, 'weights_role': 'verification_only'}
+batch = 6, device = 'cpu', seed = 42, arm = 'native_CE_control'
+
+    def __init__(self,parent,sampler,binding,batch=48,device='cuda',seed=42,arm='normalized_rdrop'):
+        if arm not in ARMS:
+&gt;           raise ValueError('Explicit native verification or fixed normalized RDrop required')
+E           ValueError: Explicit native verification or fixed normalized RDrop required
+
+scripts/rdrop_target_batch_trainer.py:105: ValueError</failure></testcase><testcase classname="tests.test_rdrop_science" name="test_real_state_all_history_same_original_stream_and_intended_RNG_difference[normalized_rdrop]" time="0.284" /><testcase classname="tests.test_rdrop_science" name="test_no_partial_or_corrupted_history_even_with_valid_final_checkpoint[combined]" time="0.166" /><testcase classname="tests.test_rdrop_science" name="test_no_partial_or_corrupted_history_even_with_valid_final_checkpoint[ce]" time="0.170" /><testcase classname="tests.test_rdrop_science" name="test_no_partial_or_corrupted_history_even_with_valid_final_checkpoint[pairs]" time="0.167" /><testcase classname="tests.test_rdrop_science" name="test_no_partial_or_corrupted_history_even_with_valid_final_checkpoint[teachers]" time="0.174" /><testcase classname="tests.test_rdrop_science" name="test_no_partial_or_corrupted_history_even_with_valid_final_checkpoint[physical]" time="0.237" /><testcase classname="tests.test_rdrop_science" name="test_no_partial_or_corrupted_history_even_with_valid_final_checkpoint[nonfinite]" time="0.170" /><testcase classname="tests.test_rdrop_science" name="test_no_partial_or_corrupted_history_even_with_valid_final_checkpoint[earlier_stream]" time="0.166" /><testcase classname="tests.test_rdrop_science" name="test_quality_needs_matched_and_all_original_guards_and_never_adopts" time="0.000" /><testcase classname="tests.test_rdrop_science" name="test_builder_uses_original_parent_not_control_or_probe" time="0.000" /><testcase classname="tests.test_rdrop_science" name="test_missing_new_authorization_or_erased_history_refused[missing]" time="0.002" /><testcase classname="tests.test_rdrop_science" name="test_missing_new_authorization_or_erased_history_refused[carried_cost]" time="0.002" /><testcase classname="tests.test_rdrop_science" name="test_missing_new_authorization_or_erased_history_refused[scope]" time="0.001" /></testsuite></testsuites>

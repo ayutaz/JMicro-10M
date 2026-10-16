@@ -1,0 +1,51 @@
+{
+  "kind": "prospective_first_scientific_original25M_RDrop_under_new_user_resource_authorization",
+  "created_at": "2026-10-16T14:44:44.9444277Z",
+  "authorization_sha256": "992b9bd80dd83fca9d56c6fcb038942d6a163f8bb05f564550ef09a8d5b25fdd",
+  "question": "Can two stochastic prediction distributions on unchanged original gold context improve native Japanese coherence/completion beyond matched nativeCE25M while retaining all original quality/BPB guards?",
+  "rationale": "Earlier one-view dropout100M and progress supervision were quality-rejected. Two-view consistency has passed numerical/maximum-memory/resume/cache gates but has never had scientific Japanese quality evaluated: it was excluded only by the then-fixed cumulative time ceiling.",
+  "prior_cost_decision": "Preserve reports/phase6/rdrop-target-batch-probe-20261015 completion/result/config and original failed cost verdict unchanged. No old GPU job/probe or quality-rejected recipe is relaunched. New scientific scope is explicit under the user removal of cumulative limits.",
+  "recipe": {
+    "parameters": 10001152,
+    "seed": 42,
+    "optimizer": "fresh AdamW1e-5 WD.1 betas.9/.999 eps1e-8 constant clip1",
+    "parent": "original10B",
+    "main_goals": {
+      "story": 1250000,
+      "web": 18750000,
+      "textbook": 5000000
+    },
+    "sites": [
+      "token_embedding",
+      "attention_output_before_residual",
+      "MLP_output_before_residual"
+    ],
+    "gold_evaluations": 50000000,
+    "dropout_probability": 0.1,
+    "decoder_passes_per_update": 2,
+    "batch": 48,
+    "attention_probability_dropout": 0,
+    "native_inference": "unchanged native eval, no dropout/head/decoding penalty",
+    "main_teachers": 25000000,
+    "consistency_pairs": 25000000,
+    "objective": "mean(two original hardgold CE views)+.5*mean symmetricKL, both views retain gradients"
+  },
+  "accepted_technical_evidence": "Original target-batch RDrop maximum48x1024 two-graph finite backward, native/cached25M original coordinates, reference6 all state/history,6 versus3+save3 dropout RNG, actual6 native cache, all32 timings. Reuse proof with exact source pins, no benchmark repeat.",
+  "matched_control": "Accepted document-progress-science-20261015 native_CE_control25M; verify original coordinate/sampler/history parity; never use its trained checkpoint as initializer. Original control cost remains charged.",
+  "comparison_semantics": "Same original parent/fresh optimizer/main stream/teachers/scheduler; candidate physical inputs and CE evaluations double. Candidate dropout training RNG intentionally differs from deterministic control at end; within-arm resume RNG exactness is required, not final cross-arm RNG equality. No dropout-only25M arm, so does not isolate KL alone.",
+  "resources": {
+    "derivation": "Unmodified ALL32 target-batch probe forecast for fixed25M with1.3 margin+600 evaluation/save reserve",
+    "all_prior_GPU_seconds": 3633.252637067926,
+    "new_technical_probe_seconds": 0,
+    "per_run_GPU_seconds": 1757,
+    "global_cumulative_GPU_cap": null
+  },
+  "evaluation": "Existing isolated DEV256 common-byte BPB/greedy80/Japanese diagnostics; ALL80 individually reasoned raw-bound review, original matched/absolute/strong/cached/historical gates unchanged. No TEST or independent stage yet.",
+  "required_implementation": [
+    "New scientific protocol retaining actual owned CUDA evidence and old cost rejection under explicit authorization",
+    "Durable science runner/frozen source config/logs/PID+boot+start/kernel lock, completed-update checkpoints/resume and native UI restore",
+    "Reviewer validating all typed numeric state/all history and original quality gates; CPU tests for doubled physical streams and intended stochastic RNG difference"
+  ],
+  "stop": "Close on finite/capacity/cache/source/state/quality failure or fixed per-run1757s timeout; no silent teacher/coefficient/seed/decoder/threshold/reserve extension.",
+  "original_four_item_goal_still_unachieved": true
+}
