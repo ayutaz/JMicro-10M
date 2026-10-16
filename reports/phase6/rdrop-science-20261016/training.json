@@ -1,0 +1,179 @@
+{
+  "status": "complete",
+  "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/rdrop-science-20261016/checkpoint-00004420.pt",
+  "checkpoint_sha256": "e9154a2d5b8e385c978e597c8b65d3c73dc882680bbf143422d9acb363aa0c73",
+  "binding": {
+    "config_sha256": "92a6993f53371078cb6674d51f7a3f2ffaf0a928b19ca933ae876d4a2ee9a801",
+    "parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+    },
+    "source_binding": {
+      "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+      "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+      "index_size": 12861257655,
+      "index_mtime_ns": 1791234945567297288,
+      "stream_size": 4000002624,
+      "stream_mtime_ns": 1791234945514053852,
+      "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+      "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+    },
+    "training_seed": 42,
+    "weights_role": "scientific_rdrop_target_batch25M",
+    "probe_weights_used": false
+  },
+  "counters": {
+    "update": 4420,
+    "supervised_tokens": 25000000,
+    "CE_input_tokens": 25709002,
+    "auxiliary_input_tokens": 25709002,
+    "auxiliary_pairs": 0,
+    "physical_input_tokens": 187337280,
+    "original_body_bytes": 101464365,
+    "token_digest": "f377a79d28297bea233d8d9397084535e3b841753111666daeb2d778459c884c",
+    "source_teachers": {
+      "web": 18750000,
+      "textbook": 5000000,
+      "story": 1250000
+    },
+    "source_EOS": {
+      "web": 164075,
+      "textbook": 37097,
+      "story": 9564
+    },
+    "auxiliary_digest": "f377a79d28297bea233d8d9397084535e3b841753111666daeb2d778459c884c",
+    "main_physical_input_tokens": 93668640,
+    "second_view_physical_input_tokens": 93668640,
+    "second_view_gold_evaluations": 25000000,
+    "total_CE_teacher_evaluations": 50000000,
+    "consistency_pairs": 25000000,
+    "second_view_EOS_evaluations": 210736
+  },
+  "original_CE_match": {
+    "update": true,
+    "token_digest": true,
+    "supervised_tokens": true,
+    "source_teachers": true,
+    "source_EOS": true,
+    "CE_input_tokens": true,
+    "original_body_bytes": true,
+    "full_original_sampler": true,
+    "original_scheduler": true,
+    "native_model_config": true,
+    "same_original_parent": true,
+    "main_physical_stream": true,
+    "genuine_zero_head_CE_control": true
+  },
+  "physical_rollup": {
+    "main_teachers": 25000000,
+    "main_physical_inputs": 93668640,
+    "gold_evaluations": 50000000,
+    "consistency_pairs": 25000000,
+    "training_RNG": "within-arm exact resume; intentionally not equal to deterministic control"
+  },
+  "auxiliary_digest": "f377a79d28297bea233d8d9397084535e3b841753111666daeb2d778459c884c",
+  "model_config": {
+    "schema_version": 1,
+    "architecture": "decoder_only_transformer",
+    "hidden_size": 256,
+    "num_attention_heads": 4,
+    "num_key_value_heads": 2,
+    "head_dim": 64,
+    "activation": "swiglu",
+    "norm": "rmsnorm",
+    "rms_norm_eps": 1e-06,
+    "qk_norm_type": "none",
+    "qk_norm_before_rope": true,
+    "attention_scale": 0.125,
+    "rope_theta": 10000,
+    "rope_layout": "half_split",
+    "rotary_dim": 64,
+    "max_position_embeddings": 1024,
+    "tie_word_embeddings": true,
+    "attention_bias": false,
+    "mlp_bias": false,
+    "dropout": 0.0,
+    "initializer_std": 0.02,
+    "norm_initial_gain": 1.0,
+    "status": "phase5_ablation",
+    "name": "JMicro-10M-T4K-NoQKNorm",
+    "vocab_size": 4096,
+    "num_hidden_layers": 13,
+    "intermediate_size": 640,
+    "expected_parameter_count": 10001152
+  },
+  "spec": {
+    "kind": "native_original_gold_normalized_RDrop_analytic_target_CPU_batch_v1",
+    "batch": 48,
+    "contrast": false,
+    "seed": 42,
+    "lr": 1e-05,
+    "weight_decay": 0.1,
+    "temperature": 0.1,
+    "coefficient": 0.1,
+    "dtype": "bf16",
+    "backend": "flash",
+    "optimizer_policy": "fresh_equal_AdamW_both_arms",
+    "scheduler": "constant",
+    "original_whole_body_plus_EOS": true,
+    "no_split_EOS": true,
+    "CE_policy": "document_local1024_context512_target_stride_original_EOS_once",
+    "head_policy": "only_supervised_valid_hidden_states_no_PAD_or_overlap_logits",
+    "auxiliary_policy": "first_window_observed_pair_once_per_draw_deduplicate_family_and_body_in_batch",
+    "goals": {
+      "web": 18750000,
+      "textbook": 5000000,
+      "story": 1250000
+    },
+    "rdrop_arm": "normalized_rdrop",
+    "rdrop_policy": {
+      "kind": "normalized_original_gold_two_view_RDrop_v1",
+      "dropout_probability": 0.1,
+      "sites": [
+        "token_embedding",
+        "attention_output_before_residual",
+        "MLP_output_before_residual"
+      ],
+      "attention_probability_dropout": 0.0,
+      "temperature": 1.0,
+      "symmetric_KL_coefficient": 0.5,
+      "objective": "mean_two_view_CE_plus_half_mean_symmetric_KL",
+      "views": 2,
+      "passes": "two_sequential_retained_graphs_one_joint_backward",
+      "mask": "exact_original_selected_body_and_EOS",
+      "both_distributions_have_gradient": true,
+      "inference": "unchanged_native_eval_no_dropout_no_head"
+    },
+    "loss_runtime": "FP32_two_logprob_saved_analytic_first_order_RDrop_v1",
+    "input_runtime": "original_gold_targets_CPU_single_tensor_single_device_transfer_v1",
+    "original_material_binding": {
+      "manifest_sha256": "8cde6396d433644bb93efa27eb862a33d04fec6c6ab1a54b9e03006f3573a133",
+      "index_sha256": "6b6ef7ed1553846852234c70a3d24e2ac2a5d4dfc2f84576a42bd71f16ff48c8",
+      "index_size": 12861257655,
+      "index_mtime_ns": 1791234945567297288,
+      "stream_size": 4000002624,
+      "stream_mtime_ns": 1791234945514053852,
+      "ready_sha256": "ac8de9b50665e8b56c6d24efdf2cc79d75ce31d9dd452c1517186cf6f18d4606",
+      "pool": "/home/aihub_ubuntu/jmicro-data/phase6/textbook-mixture-20261006/large"
+    },
+    "native_parameters": 10001152,
+    "train_only_parameters": 0,
+    "training_parameters": 10001152,
+    "gradient_clip_policy": "exact_original_coordinate_reduction",
+    "inference_policy": "unchanged_original_native_eval_no_dropout_no_head"
+  },
+  "lineage": {
+    "parent": {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+    },
+    "parent_update": 305176,
+    "parent_tokens": 10000007168,
+    "parent_supervised_tokens": 9978838479,
+    "optimizer_policy": "fresh_equal_AdamW_both_arms",
+    "kind": "native_original_gold_normalized_RDrop_analytic_target_CPU_batch_v1",
+    "weights_role": "scientific_rdrop_target_batch25M",
+    "loss_runtime": "FP32_two_logprob_saved_analytic_first_order_RDrop_v1",
+    "input_runtime": "original_gold_targets_CPU_single_tensor_single_device_transfer_v1"
+  }
+}

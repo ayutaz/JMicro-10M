@@ -1,0 +1,191 @@
+{
+  "status": "first_RDrop_original25M_ALL80_reviewed_rejected_fixed_condition_closed",
+  "observed_at": "2026-10-16T15:06:52.7804980Z",
+  "config_sha256": "92a6993f53371078cb6674d51f7a3f2ffaf0a928b19ca933ae876d4a2ee9a801",
+  "result_sha256": "99b695fc52fceffbf0b6335f6b926225d427d45fa205cc4af6c401f286dfd85c",
+  "review_sha256": "94baf3ea86159681e3187372d9c6fdb8b840e070f47ef1a5e97de7c95a25462b",
+  "notes_sha256": "a2ab98ed0cda364a15552c81cd415cf79e20be8640d8d932259ec8c999d25427",
+  "actual_terminal_and_UI_proof": {
+    "scientific_identity": {
+      "pid": 459024,
+      "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+      "start_ticks": "80531912"
+    },
+    "scientific_exited": true,
+    "UI_identity": {
+      "pid": 459564,
+      "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+      "start_ticks": "80610052"
+    },
+    "UI_original_idle_HTTP": {
+      "name": "JMicro-10M",
+      "kind": "Base / 文章の続き",
+      "parameters": 10001152,
+      "training_tokens": 10000007168,
+      "update": 305176,
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+      "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "device": "NVIDIA GeForce RTX 4090",
+      "precision": "BF16 / math attention",
+      "context": 1024,
+      "busy": false
+    },
+    "kernel_FLOCK": [
+      "5: FLOCK  ADVISORY  WRITE 459564 08:30:171740 0 EOF"
+    ]
+  },
+  "actual_Windows_worker_exited": true,
+  "Windows_worker_pid": 32704,
+  "Windows_worker_started_at": "2026-10-16T14:49:13.5052660Z",
+  "exact_scientific_original_teachers": 25000000,
+  "scientific_updates": 4420,
+  "hardgold_CE_evaluations": 50000000,
+  "consistency_pairs": 25000000,
+  "decoder_passes_per_update": 2,
+  "parameters": 10001152,
+  "matched_native25M_summary": {
+    "BPB": 0.9927168290617072,
+    "rates": {
+      "outputs": 80,
+      "eos": 11,
+      "repetition": 53,
+      "unicode_failure": 0,
+      "role_leak": 0,
+      "empty": 0,
+      "FIM_marker_leak": 0
+    },
+    "grammar2": 44,
+    "relevance2": 27,
+    "coherent": 1,
+    "appropriate": 3,
+    "Japanese": {
+      "semantics": 0.609375,
+      "jblimp": 0.770392749244713,
+      "jcqa": 0.33958891867739055
+    }
+  },
+  "candidate_summary": {
+    "BPB": 1.0279654060355414,
+    "rates": {
+      "outputs": 80,
+      "eos": 19,
+      "repetition": 49,
+      "unicode_failure": 0,
+      "role_leak": 0,
+      "empty": 0,
+      "FIM_marker_leak": 0
+    },
+    "grammar2": 47,
+    "relevance2": 24,
+    "coherent": 3,
+    "appropriate": 6,
+    "Japanese": {
+      "semantics": 0.6145833333333334,
+      "jblimp": 0.7824773413897281,
+      "jcqa": 0.3324396782841823
+    }
+  },
+  "quality": {
+    "matched25M": {
+      "checks": {
+        "coherence_gain_at_least8": false,
+        "paired_CI_lower_above0": false,
+        "EOS_nonworsening": true,
+        "repetition_nonworsening": true,
+        "no_empty_role_unicode": true,
+        "BPB_gate": false,
+        "appropriate_completion_not_punctuation": true
+      },
+      "passed": false,
+      "difference_count": 2,
+      "CI95": [
+        0.0,
+        0.0625
+      ]
+    },
+    "original_all_guards": {
+      "matched": {
+        "checks": {
+          "coherence_gain_at_least8": false,
+          "paired_CI_lower_above0": false,
+          "EOS_nonworsening": true,
+          "repetition_nonworsening": false,
+          "no_empty_role_unicode": true,
+          "BPB_gate": false,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": 1,
+        "CI95": [
+          -0.025,
+          0.0625
+        ]
+      },
+      "strong": {
+        "checks": {
+          "coherence_gain_at_least8": false,
+          "paired_CI_lower_above0": false,
+          "EOS_nonworsening": false,
+          "repetition_nonworsening": false,
+          "no_empty_role_unicode": true,
+          "BPB_gate": true,
+          "appropriate_completion_not_punctuation": true
+        },
+        "passed": false,
+        "difference_count": -20,
+        "CI95": [
+          -0.35,
+          -0.15
+        ]
+      },
+      "absolute": {
+        "grammar_at_least56": false,
+        "coherence_at_least27": false,
+        "appropriate_at_least27": false,
+        "EOS_at_least37": false,
+        "repetition_at_most18": false,
+        "no_empty_role_unicode": true
+      },
+      "historical_Web": {
+        "EOS_at_least8_more": true,
+        "repetition_no_worse": true,
+        "no_empty_role_unicode": true,
+        "BPB_degradation_at_most1percent": false,
+        "no_punctuation_only_stops": true
+      },
+      "eligible": false
+    },
+    "eligible_for_separately_defined_main_comparison": false,
+    "Base_qualified": false,
+    "Base_adopted": false
+  },
+  "BPB_worsening_percent": 3.5507181848775993,
+  "all80_individually_read": true,
+  "all_complete_typed_numerical_state_and_ALL_history_verified": true,
+  "all_original_main_stream_rows_match": true,
+  "dropout_training_RNG_intentionally_different_from_control": true,
+  "within_arm_resume_RNG_evidence_reused": true,
+  "independent_human_blind": false,
+  "new_scientific_GPU_seconds": 777.297899876954,
+  "cumulative_technical_GPU_seconds": 169.2456279549515,
+  "cumulative_completed_science_GPU_seconds": 4241.304908989929,
+  "cumulative_total_GPU_seconds": 4410.55053694488,
+  "global_cumulative_GPU_cap": null,
+  "fixed_single_run_cap_seconds": 1757,
+  "fixed_condition_closed": true,
+  "new_technical_probe_GPU_seconds": 0,
+  "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/rdrop-science-20261016/checkpoint-00004420.pt",
+  "checkpoint_sha256": "e9154a2d5b8e385c978e597c8b65d3c73dc882680bbf143422d9acb363aa0c73",
+  "full_checkpoint_Adam_RNG_sampler_ALL_metrics_preserved_in_WSL": true,
+  "independent_learning_completed": false,
+  "fullDEV_completed": false,
+  "new_sealedTEST_completed": false,
+  "TEST_opened": false,
+  "Base_qualified": false,
+  "Base_adopted": false,
+  "full_four_item_goal_complete": false,
+  "user_unlimited_local_GPU_authorization_remains_valid": true,
+  "limits": "One fixed normalized two-view mature-parent25M recipe, nonblind known DEV, not a general RDrop/10M impossibility result. EOS/repetition modestly improve but meaning loops, arithmetic/causal errors and all five absolute content/stop/repetition gates fail; BPB worsens. No dropout-only25M arm, so no isolated KL benefit claim.",
+  "next_action": "Keep all old/new weights, optimizer/RNG/sampler, full histories, raw80/individual reasons and ALL cumulative costs. Do not reopen/rescue coefficient/dropout/sites/teachers/parent/seed/decoder or quality thresholds. Select at most one genuinely distinct supported next Base comparison from original evidence; architecture9x256FFN1040 and6x384FFN832 already had rejected300M studies and must not be treated as absent. Unlimited cumulative time permits necessary prospective new work, not an unsupported sweep. Main qualification/fresh entire seed43/fullDEV/all440/new sealedTEST/adoption remain pending."
+}
