@@ -12,7 +12,11 @@ from review_chat_natural import validate_reply
 
 
 def fingerprint(row):
-    return hashlib.sha256(json.dumps({k:row[k] for k in ('id','category','mode','turn','final','objective','expected','messages','response')},ensure_ascii=False,sort_keys=True).encode()).hexdigest()
+    value={k:row[k] for k in ('id','category','mode','turn','final','objective','expected','messages')}
+    # Execution duration is preserved in raw and is not a content judgment.
+    # Every other response field, including IDs/bytes/prompt/mechanics, must match.
+    value['response']={k:v for k,v in row['response'].items() if k!='seconds'}
+    return hashlib.sha256(json.dumps(value,ensure_ascii=False,sort_keys=True).encode()).hexdigest()
 
 
 def old_index(tok):
@@ -62,7 +66,7 @@ def packet(arm,start,count):
             else:pending[str(i)]=dict(row,fingerprint=fp)
         p=dict(created_at=now(),raw=ref(path),reviewer=ref(__file__),pending=pending,reused=reused,
             rubric='Grammar/relevance/context0/1/2 and factual bool for objective only; all3=2 is task success',
-            reuse='Full actual messages/expected/response dictionary exact; conflicting old grades require fresh review',
+            reuse='Full actual messages/expected/response dictionary except execution seconds exact; conflicting old grades require fresh review',
             no_keyword_semantic_scores=True);save(target,p)
     print(json.dumps(dict(total=200,pending=len(p['pending']),reused=len(p['reused']))))
     for ordinal,(index,row) in enumerate(list(p['pending'].items())[start:start+count],start):
