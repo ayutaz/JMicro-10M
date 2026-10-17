@@ -6,7 +6,7 @@
 
 300件の内容確認では28件を不採用とし、匿名化名・前提のない逸話・読み方の誤り等を除いた。共通の追加除外は両腕に適用した。人間同士のRPCの体験/好みはAssistantの実在属性や正確な知識の保証ではなく、短いMagpieも確認質問へ強く偏っている。全件意味保証・人間独立評価はしていない。[個別QA](../reports/phase7/chat-natural-sft-20261017/TRAIN_QA_review.json) / [C0全消費](../reports/phase7/chat-natural-sft-20261017/C0_dry_run.json) / [C1全消費](../reports/phase7/chat-natural-sft-20261017/C1_dry_run.json)。
 
-TRAIN凍結後に新DEV80と既知4suiteを専用artifactへ固定した。元の混在eval/chat.jsonlは開かず、既存の完了済みDEV rawから元ケースfieldsをそのまま復元した。新旧を含む2,190応答を32tokenの同条件で新規生成し、旧64token結果は比較対照に流用しない。最終100万点が主比較で、25万/50万のNLLと少数診断も保存する。[DEV準備](../reports/phase7/chat-natural-sft-20261017/DEV_preparation.json) / [実行config](../configs/phase7/chat-natural-sft-20261017.json)。
+TRAIN凍結後に新DEV80と既知4suiteを専用artifactへ固定した。評価・export経路では混在eval/chat.jsonlを開かず、既存の完了済みDEV rawから元ケースfieldsをそのまま復元した。調査中には同ファイルの既知DEV先頭1行を手動確認しており、turn全体で「未開封」とは言わない。TEST objectの表示/JSON解析/学習使用は行っていない。[読取り範囲の記録](../reports/phase7/chat-natural-sft-20261017/reader_scope_disclosure.json)。新旧を含む2,190応答を32tokenの同条件で新規生成し、旧64token結果は比較対照に流用しない。最終100万点が主比較で、25万/50万のNLLと少数診断も保存する。[DEV準備](../reports/phase7/chat-natural-sft-20261017/DEV_preparation.json) / [実行config](../configs/phase7/chat-natural-sft-20261017.json)。
 
 CPU入口でPath型の受渡しミスを検出し、未起動config/初回source/エラーを保全して修正した。データ・数値recipeは変更せず、回帰を含む6 checksと凍結preflightに合格。各腕の学習wall上限3,600秒、CUDA技術600秒、最終評価10,800秒を実行前に固定した。GPU実測から余裕があることを確認して学習へ進む。現在はCUDA gateを起動済みで、品質判定と全5段階の完了は未達。
 

@@ -1,0 +1,84 @@
+{
+  "status": "descriptive_audit_complete_data_unchanged",
+  "created_at": "2026-10-17T06:54:44.318592Z",
+  "config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase7/chat-natural-sft-20261017.json",
+    "sha256": "ec0b61b2961ef9294cb840cb86ad6f5ba291ea1c4a0213d0404e9fa87cdb464d"
+  },
+  "arms": {
+    "C0": {
+      "families": 2659,
+      "prepared_targets": 36162,
+      "prepared_teacher_tokens": 568960,
+      "raw_distinct_answer_texts": 35267,
+      "normalized_distinct_answer_texts": 35264,
+      "repeated_normalized_answer_targets": 898,
+      "EOT_per_target": true,
+      "maximum_prepared_teachers_per_family": 381,
+      "human_Assistant_speakers": 221,
+      "speaker_teacher_range": [
+        226,
+        14656
+      ],
+      "human_teacher_top5_share": 0.06254843706406642,
+      "predetermined_consumed_source_teachers": {
+        "RPC": 1000009
+      },
+      "predetermined_teacher_tokens": 1000009,
+      "consumption_replay_matches_frozen_sampler": true,
+      "maximum_consumed_family_teacher_share": 0.0006979937180565375,
+      "shared_initial4_messages_clusters": 0,
+      "shared_initial4_messages_extra_families": 0
+    },
+    "C1": {
+      "families": 12585,
+      "prepared_targets": 63811,
+      "prepared_teacher_tokens": 1004240,
+      "raw_distinct_answer_texts": 61812,
+      "normalized_distinct_answer_texts": 61810,
+      "repeated_normalized_answer_targets": 2001,
+      "EOT_per_target": true,
+      "maximum_prepared_teachers_per_family": 251,
+      "human_Assistant_speakers": 232,
+      "speaker_teacher_range": [
+        67,
+        10613
+      ],
+      "human_teacher_top5_share": 0.05101594076734687,
+      "predetermined_consumed_source_teachers": {
+        "RPC": 984457,
+        "magpie": 15560
+      },
+      "predetermined_teacher_tokens": 1000017,
+      "consumption_replay_matches_frozen_sampler": true,
+      "maximum_consumed_family_teacher_share": 0.0002509957330725378,
+      "shared_initial4_messages_clusters": 0,
+      "shared_initial4_messages_extra_families": 0
+    }
+  },
+  "C1_near_duplicate_audit": {
+    "minimum_document_characters": 80,
+    "char_ngram": 5,
+    "num_perm": 128,
+    "seed": 42,
+    "scheme": "affine32",
+    "LSH_bands": 32,
+    "rows_per_band": 4,
+    "exact_Jaccard_threshold": 0.85,
+    "retrieved_pairs": 251,
+    "verified_near_pairs": 0,
+    "sample_pairs": []
+  },
+  "protected_TEST_payloads_read": 0,
+  "source_RPC_members_read": 11997,
+  "prepared_data_modified": false,
+  "limitations": [
+    "Character-near duplication is not semantic equivalence; LSH can miss pairs",
+    "More conversation families do not imply independent human speakers or novel factual knowledge",
+    "Consumption is derived from the frozen deterministic sampler; terminal training audits establish actual execution"
+  ],
+  "source": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/audit_chat_natural_diversity.py",
+    "sha256": "e9687aa0f3a96c0c90d6d271d585b80d28bb1a692b002d15f32584e64bc33797"
+  }
+}
