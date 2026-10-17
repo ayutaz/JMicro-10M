@@ -1,0 +1,88 @@
+{
+  "status": "TRAIN_records_prepared_CPU_replay_pending",
+  "created_at": "2026-10-17T11:23:00.439211Z",
+  "plan": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/docs/153_answer_curriculum_comparison.md",
+    "sha256": "9f8c349cc74f138802b3eac2fa23c57fda4a501869674e51ee110622d1746421"
+  },
+  "baseline": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-natural-sft-20261017/C1_TRAIN.jsonl",
+    "sha256": "761b7cf55fcd1b4380c2c69ceba2d36a8ad1ebc3b422c7c32bb4efdb06b1691c",
+    "families": 12585,
+    "targets": 63811,
+    "exclusions": {
+      "individual_QA_rejected": 28,
+      "poetry_requires_unavailable_mora_validation": 2,
+      "anonymized_identity_marker_in_context": 2715,
+      "unrelated_story_after_bare_greeting": 19,
+      "unsupported_personal_attribute": 24,
+      "unprovided_name_in_initial_reply_conservative": 6
+    }
+  },
+  "baseline_original_QA": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-natural-sft-20261017/TRAIN_QA_review.json",
+    "sha256": "44b0d30a7b2eccfe439a342cba8f298b0709de501b6e2cb697ccbc647eb7ea33"
+  },
+  "synthetic_inventory": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/curriculum_synthetic_inventory.json",
+    "sha256": "ad29022f5e01ce70ef275b4400157c038c3adc2d97ec35021dbd145c09d581ee"
+  },
+  "synthetic_variant_QA": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/curriculum_variant_QA_review.json",
+    "sha256": "bc0589c2964087940efb33f7239604afbff84adb291a3ca8a6244217970ce286"
+  },
+  "source_QA": [
+    {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/dolly_QA_review.json",
+      "sha256": "49486fb0699038ba6bd273c32cf6e91bfd7b50bf2494a380132527104074c9ef"
+    },
+    {
+      "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/aya_QA_review.json",
+      "sha256": "3c042870b261bd541934cf2c355f2bfc78f8c63f9a7797fb47a71c645df57b0f"
+    }
+  ],
+  "extra_unique": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-answer-learning-20261017/curriculum/supplement_unique_TRAIN.json",
+    "sha256": "3094de7970ef324a429ad402f6b18ec12581234fc2a112dd82d9493d6d22f21c"
+  },
+  "unique_source_targets": {
+    "Authored_grounded_TRAIN": 2048,
+    "Dolly_llmjp": 31,
+    "Aya_Japanese_TRAIN": 50
+  },
+  "unique_source_teachers": {
+    "Authored_grounded_TRAIN": 13417,
+    "Dolly_llmjp": 618,
+    "Aya_Japanese_TRAIN": 550
+  },
+  "accepted_but_too_long": {
+    "dolly": 26,
+    "aya": 9
+  },
+  "alias_copies": 69,
+  "baseline_teachers_per_pass": 1004240,
+  "planned_supplement_teachers_per_pass": 1006365,
+  "alias_is_not_new_semantic_diversity": true,
+  "maximum_teacher_length": 32,
+  "max_new_tokens": 32,
+  "teacher_budget_per_arm": 1000000,
+  "lr": 0.0001,
+  "seed": 42,
+  "new_TEST_created": false,
+  "arms": {
+    "C0": {
+      "records": {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-answer-learning-20261017/curriculum/C0_TRAIN.jsonl",
+        "sha256": "761b7cf55fcd1b4380c2c69ceba2d36a8ad1ebc3b422c7c32bb4efdb06b1691c"
+      },
+      "documents": 12585
+    },
+    "C1": {
+      "records": {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-answer-learning-20261017/curriculum/C1_TRAIN.jsonl",
+        "sha256": "7042597195374b4fb4d40f21ed8ccc25cb7cdcd1473cc136f5132d0e3d697c95"
+      },
+      "documents": 159486
+    }
+  }
+}

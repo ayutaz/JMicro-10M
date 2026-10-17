@@ -1,0 +1,30 @@
+{
+  "created_at": "2026-10-17T11:17:44.700993Z",
+  "source": "CohereLabs/aya_dataset",
+  "revision": "f9ea04583f02a8f86404ff6c58bf75fe637df8a2",
+  "metadata": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/source_discovery/CohereLabs__aya_dataset.json",
+    "sha256": "b41b00123099d848faf02731ef24b26a0bf9ed8c9656f40e2521900e1baa15ed"
+  },
+  "upstream_split": "train",
+  "artifact": "data/train-00000-of-00001.parquet",
+  "acquisition_byte_cap": 350000000,
+  "license": "Apache-2.0 according to official card; preserve attribution",
+  "purpose": "Measure Japanese complete direct-response TRAIN and inspect actual semantic quality before one matched SFT",
+  "scope": "Only upstream TRAIN parquet. No upstream TEST, demographics or user_id column reads.",
+  "reader_disclosure": "All TRAIN language codes read; Arrow may decompress non-Japanese TRAIN body rows within selected row groups. No project DEV is assigned within Aya before this read.",
+  "target_cap_including_EOT": 64,
+  "complete_pair_context_cap": 1025,
+  "generation_cap": 32,
+  "QA_selection": "Up to120: round-robin annotation_type x teacher_length_band; SHA answer-aya-QA42:doc_id order within strata",
+  "identities": "aya_dataset_train:<zero-based original TRAIN row index>",
+  "gates": [
+    "Complete original Japanese prompt and response, no truncation or rewriting",
+    "Old protected metadata-only exact/MinHash checks; report non-exhaustive recall",
+    "Individual semantic QA required; mechanical eligibility is not quality certification"
+  ],
+  "new_project_DEV": "Authored independently only after final TRAIN freeze",
+  "new_TEST_created": false,
+  "main_recipe_not_yet_frozen": true,
+  "new_training_updates": 0
+}

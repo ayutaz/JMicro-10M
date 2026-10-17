@@ -1,5 +1,7 @@
 # 文書一覧
 
+2026-10-17新goal進行中: [計画151](151_answer_learning_execution_plan.md)の1〜3を完了し、4/5の主SFTと未知入力・実会話は未完了。[診断152](152_answer_learning_diagnosis_results.md) / [教材比較の事前方針153](153_answer_curriculum_comparison.md)。前回150の完了とは別の依頼です。
+
 2026-10-17 SFT完了: [結果150](150_chat_natural_sft_results.md)。計画149の全5段階・全2,190内容比較・実UI会話まで完了。新DEV内容5→5/80で改善未実証、候補不採用。短文設定の[試用Chat](http://127.0.0.1:7862)は既定32token、16/32/64選択。以下は各時点の文書更新履歴。
 
 2026-10-17 SFT計画: [149：次のSFT計画](149_chat_sft_next_plan.md)を追加。元の学習済みBaseを用い、新しい公開会話教材と従来教材を各100万Assistant教師で比べる最初の試行案。今回は計画作成のみ。
@@ -141,6 +143,9 @@
 | [148_latest_base_and_documentation.md](148_latest_base_and_documentation.md) | 最新RDrop25Mの採否と全文書更新 |
 | [149_chat_sft_next_plan.md](149_chat_sft_next_plan.md) | 公開会話の幅を広げる次のSFT計画 |
 | [150_chat_natural_sft_results.md](150_chat_natural_sft_results.md) | 短文SFTの全2,190内容比較と5段階完了・候補不採用 |
+| [151_answer_learning_execution_plan.md](151_answer_learning_execution_plan.md) | 参考比較から新しい回答教材SFT・実会話までの新5段階 |
+| [152_answer_learning_diagnosis_results.md](152_answer_learning_diagnosis_results.md) | 実参考80比較・TRAIN120点検・32件学習診断の確定結果 |
+| [153_answer_curriculum_comparison.md](153_answer_curriculum_comparison.md) | 根拠付き対話と確認済み公開回答を補う新対照SFTの事前方針 |
 
 <!-- Historical incoming heading aliases. Original text is preserved in baseline snapshots. -->
 <a id="今回の文書と計画"></a>

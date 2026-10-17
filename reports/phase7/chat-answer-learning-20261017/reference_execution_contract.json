@@ -1,0 +1,95 @@
+{
+  "created_at": "2026-10-17T11:00:11.306708Z",
+  "source": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/compare_answer_reference.py",
+    "sha256": "a01dd27010e29421a17e7c5d02a187cb9bdb94d66393b469a4b932058ae823f3"
+  },
+  "preparation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/reference_preparation.json",
+    "sha256": "7edd1b42d66e9c4eeb612956bc4d0b882b0e6f2ed6e48692285cf9545192e6d1"
+  },
+  "questions": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/reference_questions.json",
+    "sha256": "c5519c77864c899726313c40a6bb9253673b2a672ca8e1111d81c42ba16e7fdb"
+  },
+  "local_models": {
+    "JMicro_first_SFT_cap32": {
+      "name": "JMicro-10M Chat",
+      "kind": "Chat / RealPersonaChat SFT 3周",
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-first-sft-20261010/checkpoint-00003785.pt",
+      "checkpoint_sha256": "1c79692f71efacecf5444a6be250518a4603248ee2b2811b531e566f2cfc2f24",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "parent_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "parameters": 10001152,
+      "SFT_teacher_tokens": 1899555,
+      "SFT_epochs": 3,
+      "device": "CPU",
+      "precision": "FP32 / math attention",
+      "decoding": "greedy",
+      "context": 1024,
+      "max_new_tokens": 32,
+      "max_new_tokens_range": [
+        8,
+        64
+      ],
+      "Base_adopted": false,
+      "Chat_adopted": false,
+      "original_model_source_sha256": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+      "checkpoint_model_source_LF_sha256": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+      "model_source_difference": "CRLF versus LF only; original files unchanged",
+      "busy": false
+    },
+    "JMicro_C1_cap32": {
+      "name": "JMicro-10M C1",
+      "kind": "新しい会話モデル（試験中）",
+      "arm": "C1",
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-natural-sft-20261017/C1/checkpoint-00001921.pt",
+      "checkpoint_sha256": "61a91716be30dcf9fd9753008f0c976e84507da2f02f20af2258d8f2999825af",
+      "config_sha256": "ec0b61b2961ef9294cb840cb86ad6f5ba291ea1c4a0213d0404e9fa87cdb464d",
+      "parent_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "parameters": 10001152,
+      "SFT_teacher_tokens": 1000017,
+      "device": "CPU",
+      "precision": "FP32 / math attention",
+      "decoding": "greedy",
+      "context": 1024,
+      "max_new_tokens": 32,
+      "max_new_tokens_range": [
+        8,
+        64
+      ],
+      "Chat_adopted": false,
+      "Base_adopted": false,
+      "quality_status": "研究用の比較。正式採用は未確定。",
+      "busy": false
+    }
+  },
+  "reference_parameters": 9965824,
+  "reference_original_code_unchanged": true,
+  "reference_original_decoder": {
+    "max_tokens": 128,
+    "character_cap": 160
+  },
+  "controlled_reference_decoder": {
+    "max_tokens": 32,
+    "character_cap": null
+  },
+  "wall_cap_each_condition": 600,
+  "conditions": [
+    "Akebono_official",
+    "Akebono_cap32",
+    "JMicro_first_SFT_cap32",
+    "JMicro_C1_cap32"
+  ],
+  "differences": [
+    "Reference vocabulary12288 vs local4096; token counts are not equal Japanese lengths",
+    "Reference learned system frame vs local native chat prompt",
+    "Reference original no suppression vs local suppress0,1,2,4,5,6",
+    "Reference CPUFP32 and local CPUFP32, different models and training lineages",
+    "Provided Assistant history is re-encoded by each tokenizer; no history removed"
+  ],
+  "protected_TEST_used": false,
+  "GPU_initialized": false,
+  "training_updates": 0
+}

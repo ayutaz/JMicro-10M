@@ -1,5 +1,7 @@
 # 全ドキュメント・保存原文の一覧
 
+2026-10-17新goal追記: [151](151_answer_learning_execution_plan.md)は新5段階の実行計画、[152](152_answer_learning_diagnosis_results.md)は1〜3の実結果、[153](153_answer_curriculum_comparison.md)は改善教材による新対照比較の事前方針。新goalはactiveで、主SFT・未知入力評価・新UI会話は未完了。
+
 2026-10-17追記: [SFT計画149](149_chat_sft_next_plan.md)と[結果150](150_chat_natural_sft_results.md)を追加。初回5段階の実行と全2,190内容比較を完了、候補は改善未実証で不採用。以下の976パス/原文copy数は645b3d09の文書更新時点の棚卸しで、後続の追加を当時のbaselineへ書き戻さない。
 
 更新: 2026-10-17 JST。現在の依頼は「ドキュメントをすべて最新にして」。元の「4まで」の目標は未達のままユーザーが解除した。今回の作業範囲は文書更新・棚卸し・保存検証・ローカルGitコミット。Base/Chatは未完成・未採用。

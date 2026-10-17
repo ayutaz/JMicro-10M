@@ -1,0 +1,113 @@
+{
+  "kind": "TRAIN_only32_memorization_diagnostic",
+  "created_at": "2026-10-17T11:06:40.916073Z",
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "tokenizer": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/phase2/4096/tokenizer.model",
+    "sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+  },
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "parameter_count": 10001152,
+  "spec": {
+    "seed": 42,
+    "context": 1024,
+    "batch": 32,
+    "accumulation": 1,
+    "lr": 0.0001,
+    "weight_decay": 0.01,
+    "warmup": 0,
+    "schedule_updates": 100000,
+    "dtype": "bf16",
+    "compile": false,
+    "backend": "math",
+    "scheduler": "wsd",
+    "sampler": "document",
+    "training_fast_path": false,
+    "update_teachers": 512
+  },
+  "teacher_budget": 250000,
+  "maximum_updates": 1000,
+  "maximum_teacher_length": 32,
+  "max_new_tokens": 32,
+  "seed": 42,
+  "limits_seconds": {
+    "probe": 600.0,
+    "train": 1800.0,
+    "evaluation": 900.0
+  },
+  "records": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-answer-learning-20261017/diagnostic_TRAIN.json",
+    "sha256": "c6058ebd52d9368c69c451808bd12700fc268a692edf187f9d3bafbc26530e63"
+  },
+  "cases": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-answer-learning-20261017/diagnostic_cases.json",
+    "sha256": "d14812d34fe68d9ddee74ee804cbbb9ced4e655207ec994d317f8684450a495a"
+  },
+  "CPU_replay": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/diagnostic_CPU_replay.json",
+    "sha256": "a812834c7e6222c1840ba0d0b57c1d9cba10e2715398b9f088168d23be78a805"
+  },
+  "semantic_review": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/TRAIN_capability_review.json",
+    "sha256": "0274a05fd26798e53434ab68f1fa05d1581d74809d3ed1d741ef276189fd5f62"
+  },
+  "reused_maximum_shape_evidence": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-natural-sft-20261017/native_gate.json",
+    "sha256": "fd74d8325f1fd8834f79870d50e4ac8ae18aa68deb76b8d20cc04378c42cdaee"
+  },
+  "numerical_protocol": "Same frozen TeacherChatTrainer,512 complete teachers/update,32x1024,math,BF16",
+  "source_sha256": {
+    "scripts/answer_diagnostic.py": "ebdc2c395c4523ad06d9de32938f1f0596bfb1c54ca5c464e6aec5b1fc54ff81",
+    "scripts/answer_learning_common.py": "b9ede5258ce0ec2261850b6f6c39284c453f68e1a10745c064cefbbe2de1e570",
+    "scripts/run_answer_diagnostic.ps1": "05b58575a90b51b278b86f2713aef284b81ea02237bba89f75d24d038ca306d1",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "src/jmicro/assistant_sampler.py": "a774998a14f4adfdc6598cf23ae82630e3b22220641c3f83fa29a38f79d9022c",
+    "src/jmicro/teacher_chat_training.py": "2f3aeebaeea27005192490810837e300326abc9fa046db31981bcbaac4bed8f6",
+    "src/jmicro/chat_evaluation.py": "81282674705292a82e7689588d8b3061a5eb773cd04f5a286ddf7950e9af96fa",
+    "scripts/answer_diagnostic_manifest_v2.py": "7057fd959042ed184e6187db64f7fe29c0c7a180fbca3c8e9fe9ed78dea3973c",
+    "scripts/inspect_answer_diagnostic_manifest_v2.py": "de5267feaa6ca29a9c29b64f82153ffadc7aafc8c99667dc835bab52c8f03855",
+    "scripts/run_answer_diagnostic_manifest_v2.ps1": "49f79071920bb3423bfb97e3c7aa08c4f2020cb9ebe4511e134e747ccb128e0e"
+  },
+  "acceptance": {
+    "content_minimum": 26,
+    "direct_answer_minimum": 5,
+    "direct_answer_denominator": 6,
+    "natural_stop_minimum": 29
+  },
+  "no_unseen_quality_claim": true,
+  "Chat_adopted": false,
+  "Base_adopted": false,
+  "protected_TEST_used": false,
+  "rationale": "Determine whether six reviewed direct answers and26 other neutral TRAIN responses can be learned; all32 targets<=32",
+  "LR_rationale": "A deliberately small memorization diagnosis uses1e-4, the existing native teacher trainer default, not the later comparative SFT choice",
+  "execution_runtime": "required_manifest_packaging_v2",
+  "data_manifest": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-answer-learning-20261017/manifest.json",
+    "sha256": "806ef1d31005b0013ebd02e8e87c55a12d2d4b50da5878de68f0a6c53f063efb"
+  },
+  "failed_probe": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/diagnostic/GPU_ledger.json",
+    "sha256": "94a54b888b1797c743833a8118f728b5ec6ac5ad1c82146e134e8bd97def8254"
+  },
+  "previous_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase7/answer-diagnostic-20261017.json",
+    "sha256": "3c3e13c15bdbeb03bcf332a3e0330f6c20c37d926f962a3d75f4a91d8ab61185"
+  },
+  "initial_probe_failure": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/diagnostic/job.json",
+    "sha256": "70695ff9bd918f98204218b11b808e9aeae305409f7aea310f18a5740243cc56"
+  },
+  "inherited_probe_seconds": 2.6154314199229702,
+  "no_condition_or_quality_rescue": true,
+  "failure_scope": "Missing data/manifest.json at first checkpoint save, two in-memory technical steps; science0, saved state0"
+}
