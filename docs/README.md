@@ -1,39 +1,27 @@
 # 文書一覧
 
-更新: 2026-10-14 JST。現在の依頼は全現行文書の最新化と今後の計画作成。Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は再開していない。
+更新: 2026-10-17 JST。現在の依頼は「ドキュメントをすべて最新にして」。元の「4まで」の目標は未達のままユーザーが解除した。今回の作業範囲は文書更新・棚卸し・保存検証・ローカルGitコミット。Base/Chatは未完成・未採用。
 
-[最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
+[最新結果・更新記録148](148_latest_base_and_documentation.md) / [現在の計画145](145_post_rejection_next_plan.md) / [文書一覧](README.md) / [全件カタログ](document_catalog.md)。
 
-最新Baseの文書長重み100Mは不採用で閉鎖。一貫性1/80・反復50/80、独立fresh学習seed43/fullDEV/封印TEST/採用は有資格候補なしで未実行。比較・文書の完了はモデルの品質完成ではない。
+最新のRDrop25M比較は4,420更新・正確25,000,000教師まで完了し、不採用で固定条件を閉鎖した。対照→候補は一貫性1→3/80、適切完結3→6/80、EOS11→19/80、反復53→49/80。BPBは0.9927168291→1.0279654060（3.5507%悪化）。全80件を理由付きで確認したCodex非blind評価で、独立人間blindではない。
 
-次は評価の読取り分離を修理し、既存結果から未回答の比較1件を定義する計画。介入・教材量・GPU予算は未選定/未凍結。真にfreshな独立Baseの全pipelineとnative runnerの接続、fullDEV/全440生成、新しい封印TESTを省略しない。
-
-## 今回の文書と計画
-
-[145: 次の計画](145_post_rejection_next_plan.md) / [146: 全文書更新記録](146_documentation_followup.md)。旧141/142は前回の結果・更新記録、143/144は最新Baseの凍結計画・結果として保全。
+ユーザーの「上限はないので無限に使っていいです」により、ローカルGPUの累積利用時間に上限はない。旧180/4800秒による閉鎖判断は当時の契約として保全する。今後の各比較には実行前の有限な教師量・時間上限・評価保存枠・終了条件が必要。累積上限解除は今回の文書依頼を学習再開へ変えるものではない。
 
 ## 読む順序
 
-1. [現在の状態](autonomous_status.md)：実績・採否・停止・現在の依頼。
-2. [最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md)：品質・採否・資源・事故・未実施。
-3. [ロードマップ](15_project_roadmap.md) / [チェックリスト](10_next_steps.md)：Phaseと正式完成までの不足。
-4. [Windows/WSL引継ぎ](windows_handoff.md)：元UI・全state/data・欠損時の復元。
-5. [Base復旧124](124_base_recovery_plan.md) / [今回比較143](143_base_document_balance_plan.md)：原品質・10M・合格/不合格の停止境界。
-6. [全文書カタログ](document_catalog.md)：更新前626パス・33現行/282履歴/311原文copyと今回追加2文書。
+1. [状態](autonomous_status.md)・[最新結果と文書更新148](148_latest_base_and_documentation.md)。
+2. [計画145](145_post_rejection_next_plan.md)・[ロードマップ](15_project_roadmap.md)・[チェックリスト](10_next_steps.md)。
+3. [評価契約](evaluation_protocol.md)・[読取り分離の当時の修理147](147_evaluation_boundary_repair.md)。
+4. [引継ぎ](windows_handoff.md)・[UI43](43_local_webui.md)・[保存126](126_model_archive.md)。
+5. [実験検索](base_experiment_lookup.md)・[総覧125](125_project_retrospective.md)・[固定台帳](retrospective/README.md)。
+6. [全件カタログ](document_catalog.md)。現行・日付付き/固定履歴・原文copyを区別する。
 
-## 現行仕様と履歴
-
-目的・構成・Tokenizer・データ・学習・環境・評価は[01](01_project_goal.md)〜[08](08_evaluation.md)。凍結評価基準は[評価契約](evaluation_protocol.md)、実績を探す入口は[実験検索](base_experiment_lookup.md)・[全体記録125](125_project_retrospective.md)。
-
-日付付き計画・結果と[固定revision台帳](retrospective/README.md)は原文を維持する。途中の「学習中」「次は」「未実施」やPIDは現在の実行許可ではない。原採否と条件は各runのcompletion/configが正本。以前のmanifest/納品証拠は当時のGit revisionとsnapshotに対する証拠で、今回のliving文書更新へ書き換えない。
-
-閉じたChat比較の順序は128/129→131/132→133/134/136→135/137/138→139/140/141。最新の再開・採否を以前の未実行案へ戻さない。Phase0〜3、全日付付き報告、固定台帳の証拠を保全する。
-
-[全311文書の更新前byte/hash](../reports/investigation/documentation-refresh-20261014/baseline.json)・[今回更新142](142_documentation_refresh.md)から現在の更新と原文を追える。[data](../data/README.md)、[eval](../eval/README.md)、[reports](../reports/README.md)の入口も最新化した。
+旧142/146はそれぞれの日付の文書納品記録。143/144は文書長重みの凍結計画/結果、147は修理当時の実行記録として保全する。固定履歴の「次は/稼働中」は現在の実行許可や状態ではない。
 
 ## 番号付きの計画・結果
 
-| 文書 | 作成時点の主題 |
+| 文書 | 主題 |
 |---|---|
 | [01_project_goal.md](01_project_goal.md) | プロジェクト目的 |
 | [02_research_summary.md](02_research_summary.md) | 調査要約 |
@@ -42,7 +30,7 @@
 | [05_dataset.md](05_dataset.md) | データ設計 |
 | [06_training_plan.md](06_training_plan.md) | 学習計画 |
 | [07_environment.md](07_environment.md) | 実行環境とデータ配置 |
-| [08_evaluation.md](08_evaluation.md) | 評価・Checkpoint・TDD |
+| [08_evaluation.md](08_evaluation.md) | 評価・Checkpoint・検証 |
 | [09_prior_art_and_baselines.md](09_prior_art_and_baselines.md) | 先行例とベースライン |
 | [10_next_steps.md](10_next_steps.md) | 現在のチェックリスト |
 | [11_technical_research_gaps.md](11_technical_research_gaps.md) | 未解決の技術課題と追加調査 |
@@ -74,7 +62,7 @@
 | [40_base_10b_preparation.md](40_base_10b_preparation.md) | 直接10B学習の実行準備完了 |
 | [41_base_10b_training.md](41_base_10b_training.md) | 直接10B学習の完了記録 |
 | [42_base_10b_quality_evaluation.md](42_base_10b_quality_evaluation.md) | 10Bの同条件品質評価 |
-| [43_local_webui.md](43_local_webui.md) | 学習済み10BモデルのローカルWeb UI |
+| [43_local_webui.md](43_local_webui.md) | 元10B BaseモデルのローカルWebUI |
 | [44_japanese_base_evaluation_audit.md](44_japanese_base_evaluation_audit.md) | 日本語Baseモデル評価の棚卸しと改善案 |
 | [45_japanese_base_evaluation_v2.md](45_japanese_base_evaluation_v2.md) | 日本語Base追加評価v2の実施計画 |
 | [46_japanese_base_evaluation_v2_results.md](46_japanese_base_evaluation_v2_results.md) | 日本語Base評価v2.1の結果 |
@@ -121,22 +109,31 @@
 | [122_base_native_seed_confirmation_preparation.md](122_base_native_seed_confirmation_preparation.md) | native学習方式の独立seed確認に向けたCPU準備 |
 | [123_base_teacher_decay_2b_results.md](123_base_teacher_decay_2b_results.md) | 2B teacher-normalized weight-decay comparison: results and user pause |
 | [124_base_recovery_plan.md](124_base_recovery_plan.md) | Base改善の今後の計画 |
-| [125_project_retrospective.md](125_project_retrospective.md) | 調査・検証・学習・失敗・未達・保存先の全体記録と詳細台帳 |
-| [126_model_archive.md](126_model_archive.md) | データセットを含めない主要3系列のHugging Face保存・手動承認・読み込み手順 |
-| [127_rebuild_investigation.md](127_rebuild_investigation.md) | 作り直す前のAkebono比較・前回の原因分析・再利用方針 |
-| [128_chat_first_sft_plan.md](128_chat_first_sft_plan.md) | 元10B Baseから小規模な直接SFTで会話を先に検証する計画 |
-| [129_chat_first_sft_execution.md](129_chat_first_sft_execution.md) | 明示再開後の保全・SFT入口・CUDA gate・学習/会話評価の実行記録 |
-| [130_chat_failure_improvement_investigation.md](130_chat_failure_improvement_investigation.md) | SFT後の失敗・実装・教材・一次研究から整理した改善の優先順位と比較案 |
-| [131_chat_improvement_execution_plan.md](131_chat_improvement_execution_plan.md) | 課題ごとの対策、教材2条件比較、教師量学習契約、新旧評価・停止・後続段階 |
-| [132_chat_improvement_execution.md](132_chat_improvement_execution.md) | 教材2条件・全学習/評価・不採用結果と完了監査 |
-| [133_chat_generalization_followup_plan.md](133_chat_generalization_followup_plan.md) | 教材汎化・直接回答・訂正の事前計画。実行は134、最終不採用は136 |
-| [134_chat_generalization_execution.md](134_chat_generalization_execution.md) | 教材改訂・同条件比較・条件付き回復・paddingの実行履歴 |
-| [135_chat_problem_solution_plan.md](135_chat_problem_solution_plan.md) | 実行済み教材比較の条件と138を踏まえた次介入の未再開提案 |
-| [136_chat_generalization_results.md](136_chat_generalization_results.md) | 全3,066内容判断・NLL7点・回復分岐・padding・完了監査と不採用結果 |
-| [137_chat_semantic_diversity_execution.md](137_chat_semantic_diversity_execution.md) | 意味多様性教材のQA/凍結・学習・全評価・監査・納品の時点別履歴 |
-| [138_chat_semantic_diversity_results.md](138_chat_semantic_diversity_results.md) | 意味多様性教材の全21評価・採否・NLL・分岐・完了と停止 |
-| [139_chat_lr_comparison_plan.md](139_chat_lr_comparison_plan.md) | 同TRAINでpeak LRだけを変える1候補・全28評価・条件付き独立確認の契約 |
-| [140_chat_lr_comparison_execution.md](140_chat_lr_comparison_execution.md) | 凍結・事故保存/訂正・CUDA gate・実学習・全評価の時点別記録 |
-| [141_chat_lr_comparison_results.md](141_chat_lr_comparison_results.md) | 低LR同TRAIN比較の全28評価・不採用・分岐と科学監査/納品 |
+| [125_project_retrospective.md](125_project_retrospective.md) | JMicro-10M 調査・検証・学習の全体記録 |
+| [126_model_archive.md](126_model_archive.md) | 研究モデルのHugging Face保存 |
+| [127_rebuild_investigation.md](127_rebuild_investigation.md) | 作り直す前の調査: Akebono-10M-chatとJMicro-10Mの比較 |
+| [128_chat_first_sft_plan.md](128_chat_first_sft_plan.md) | 現在のBaseを直接SFTして会話を検証する計画 |
+| [129_chat_first_sft_execution.md](129_chat_first_sft_execution.md) | Chat-first SFT診断の実行記録 |
+| [130_chat_failure_improvement_investigation.md](130_chat_failure_improvement_investigation.md) | Chat-first SFTの問題点と改善方法の調査 |
+| [131_chat_improvement_execution_plan.md](131_chat_improvement_execution_plan.md) | Chatの課題を解決するための段階計画 |
+| [132_chat_improvement_execution.md](132_chat_improvement_execution.md) | 計画131・教材改善比較の実行記録 |
+| [133_chat_generalization_followup_plan.md](133_chat_generalization_followup_plan.md) | Chat教材の汎化を改善する次の計画 |
+| [134_chat_generalization_execution.md](134_chat_generalization_execution.md) | 教材汎化の改善比較・実行記録 |
+| [135_chat_problem_solution_plan.md](135_chat_problem_solution_plan.md) | Chatの課題を解決する方法と次の判断 |
+| [136_chat_generalization_results.md](136_chat_generalization_results.md) | 教材汎化・同条件比較・回復分岐・paddingの最終結果 |
+| [137_chat_semantic_diversity_execution.md](137_chat_semantic_diversity_execution.md) | 意味構造を広げる教材比較・実行記録 |
+| [138_chat_semantic_diversity_results.md](138_chat_semantic_diversity_results.md) | 意味構造を広げる教材比較の最終結果（138） |
+| [139_chat_lr_comparison_plan.md](139_chat_lr_comparison_plan.md) | 次介入1件・低学習率SFT比較と条件付き独立確認 |
+| [140_chat_lr_comparison_execution.md](140_chat_lr_comparison_execution.md) | 低学習率SFT比較・実行履歴 |
+| [141_chat_lr_comparison_results.md](141_chat_lr_comparison_results.md) | 低学習率SFT比較の結果（141） |
+| [142_documentation_refresh.md](142_documentation_refresh.md) | 全ドキュメントの最新化（142） |
+| [143_base_document_balance_plan.md](143_base_document_balance_plan.md) | Base再開: 文書長による損失配分の比較 |
+| [144_base_document_balance_results.md](144_base_document_balance_results.md) | 文書長による損失配分の比較結果 |
+| [145_post_rejection_next_plan.md](145_post_rejection_next_plan.md) | 不採用結果を踏まえた次の計画 |
+| [146_documentation_followup.md](146_documentation_followup.md) | 最新Base結果・目標の未達を踏まえた文書更新 |
+| [147_evaluation_boundary_repair.md](147_evaluation_boundary_repair.md) | Base再開: 評価入力の分離修理 |
+| [148_latest_base_and_documentation.md](148_latest_base_and_documentation.md) | 最新RDrop25Mの採否と全文書更新 |
 
-| [142_documentation_refresh.md](142_documentation_refresh.md) | 全ドキュメントの棚卸し・現行説明更新・原証拠保全・検証 |
+<!-- Historical incoming heading aliases. Original text is preserved in baseline snapshots. -->
+<a id="今回の文書と計画"></a>
+<a id="現行仕様と履歴"></a>

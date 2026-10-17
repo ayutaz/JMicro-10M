@@ -1,18 +1,24 @@
 # 評価仕様と現行の適用
 
-更新: 2026-10-14 JST。現在の依頼は全現行文書の最新化と今後の計画作成。Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は再開していない。
+更新: 2026-10-17 JST。現在の依頼は「ドキュメントをすべて最新にして」。元の「4まで」の目標は未達のままユーザーが解除した。今回の作業範囲は文書更新・棚卸し・保存検証・ローカルGitコミット。Base/Chatは未完成・未採用。
 
-[最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
+[最新結果・更新記録148](148_latest_base_and_documentation.md) / [現在の計画145](145_post_rejection_next_plan.md) / [文書一覧](README.md) / [全件カタログ](document_catalog.md)。
 
-同10M・元10B親・同accepted TRAIN/教師/seed/batch/optimizerで、文書長によるCE寄与だけを変更。実17,698更新・100,000,000教師、全80理由付き判断、共通DEV256/Japanese192/331/1119を確認した。新GPUは科学1,474.808693＋技術8.721357＝1,483.530050秒。技術47更新/273,521教師は品質/本学習へ加算しない。
+最新のRDrop25M比較は4,420更新・正確25,000,000教師まで完了し、不採用で固定条件を閉鎖した。対照→候補は一貫性1→3/80、適切完結3→6/80、EOS11→19/80、反復53→49/80。BPBは0.9927168291→1.0279654060（3.5507%悪化）。全80件を理由付きで確認したCodex非blind評価で、独立人間blindではない。
 
-元Base TEST20 promptと元Chat TEST20行は別のCPU解析問題を保存した。学習・GPU TEST採点に使っていないこととCPU未解析は別。将来の有資格最終確認にはreader分離と新しい封印TESTが必要。今回data/TESTを開封・再処理しない。
+DEV80の絶対条件は文法2≥56、一貫性2≥27、適切完結≥27、EOS≥37、規定反復≤18、empty/role/Unicode失敗0。相対一貫性差≥8、paired CI95下限>0、BPB/strong/cached/historical保持も必要。最終TEST停止95%は別条件であり、DEVのEOS37/80で代替しない。総trainable9.5M〜10.1M、参照10,001,152を維持し、日本語領域・元品質を勝手に狭めたり下げたりしない。
 
-## 現行のBase採否と読取り境界
+DEV専用readerと隔離生成・reviewは実装済み。全文DEV集計/440生成の接続部品も36 CPU checksまで完了したが、実モデルの全文評価ではない。Python open監査はnative OS sandboxではなく、資格・独立全pipeline証拠を検証する永続native runner等の接続は未完成。
 
-最新Baseは文法23/80、一貫性1/80、適切完結2/80、EOS20/80、反復50/80で不採用。原DEVの文法56/80・一貫性/適切完結27/80・EOS37/80・反復上限18/80・文字等0、元相対CIと全保持guardを維持する。最終TEST停止95%等の条件はDEV screenで代替しない。
+元Base TEST20 promptと元Chat TEST20行には別々のCPU解析履歴がある。学習・GPU TEST採点への使用0とCPU未開封は区別する。有資格recipeと選定封印後に新しい封印TESTが必要。今回の文書作業ではデータ本文・TEST・重みを読まない。
 
-DEV経路で封印TESTファイルを開かない。CPU構文解析・学習使用・GPU採点・人間参照は別の証拠にする。旧混在suite/hashと結果を保存し、新しいfinal TESTは有資格recipeと選定封印後だけ準備する。今回その内容やdataを解析しない。
+## 最新評価の範囲と制約
+
+同25M nativeCE対照とRDrop候補の元主教師streamを照合済み。二回forwardのphysical streamは倍になり、学習torch RNGはdropoutのため対照と意図的に異なる。腕内の保存再開ではRNGを含む全state一致が必要。全80個別理由はCodex非blindであり、人間blindではない。
+
+全文DEVは89416文書/42003934本文token/164344743bytes、context1024/stride512/batch16/limitNoneを固定し本文一度/EOS別集計。36 CPU checksは合成fixtureで、実全文評価は未実行。標準440 suiteは特殊ID0,1,2,4,5,6を抑制、pilot80は7も抑制。設定差を消して同条件と主張しない。Python open監査をnative OS sandboxと記載しない。
+
+[RDrop完了記録](../reports/phase6/rdrop-science-20261016/completion.json) / [原採点・全guard](../reports/phase6/rdrop-science-20261016/review.json) / [GPU上限解除記録](../reports/phase6/rdrop-science-preparation-20261016/authorization.json)。
 
 ## v1契約と後続実験を区別する
 
@@ -92,3 +98,6 @@ BPB差は同一document、会話差は同一prompt/dialogueを対応付け、pai
 初期目標はBase文法2率70%、Chat文法・関連性とも2の率70%、対象会話の文脈2率60%、停止95%以上、空応答5%以下、role漏出1%以下、固定suiteのUnicode破綻0件。Phase 5の100M結果を見る前に採用基準を凍結済み。量子化の許容退行幅はfloat dev評価後・量子化候補選定前に固定し、現時点では未決定。
 
 sourceは`commercial_strict/commercial_web/sharealike`を分離管理し、条件不明は`excluded`。非商用等の研究限定データを使う場合は別runとして明示し、配布候補へ自動混入させない。Phase 1で固定source/subsetの条件を記録した。Phase 4のBaseはWeb bucketだけを選び、会話/sharealikeを混ぜていない。追加sourceの採用条件は拡張時に確認する。
+
+<!-- Historical incoming heading aliases. Original text is preserved in baseline snapshots. -->
+<a id="現行のbase採否と読取り境界"></a>

@@ -1,18 +1,32 @@
 # JMicro-10M 調査・検証・学習の全体記録
 
-更新: 2026-10-14 JST。現在の依頼は全現行文書の最新化と今後の計画作成。Base/Chatは未完成・未採用。研究・教材準備・診断・生成評価・GPU学習は再開していない。
+更新: 2026-10-17 JST。現在の依頼は「ドキュメントをすべて最新にして」。元の「4まで」の目標は未達のままユーザーが解除した。今回の作業範囲は文書更新・棚卸し・保存検証・ローカルGitコミット。Base/Chatは未完成・未採用。
 
-[最新Base結果144](144_base_document_balance_results.md) / [前回Chat結果141](141_chat_lr_comparison_results.md) / [次の計画145](145_post_rejection_next_plan.md) / [今回更新146](146_documentation_followup.md)。
+[最新結果・更新記録148](148_latest_base_and_documentation.md) / [現在の計画145](145_post_rejection_next_plan.md) / [文書一覧](README.md) / [全件カタログ](document_catalog.md)。
 
-このliving総覧は最新Base144と前回Chat141を入口にする。全体Base/Chatは未完成・未採用。「6まで」は有資格候補なしで未達/blocked後に解除。固定retrospective台帳・dated reports・旧SHA/採否は当時のrevisionを保つ。全文の再集計や科学記録の上書きを今回行わず、新結果のscope・未実施を別に追加する。
+最新のRDrop25M比較は4,420更新・正確25,000,000教師まで完了し、不採用で固定条件を閉鎖した。対照→候補は一貫性1→3/80、適切完結3→6/80、EOS11→19/80、反復53→49/80。BPBは0.9927168291→1.0279654060（3.5507%悪化）。全80件を理由付きで確認したCodex非blind評価で、独立人間blindではない。
 
-最新Baseの文書長重み100Mは不採用で閉鎖。一貫性1/80・反復50/80、独立fresh学習seed43/fullDEV/封印TEST/採用は有資格候補なしで未実行。比較・文書の完了はモデルの品質完成ではない。
+ユーザーの「上限はないので無限に使っていいです」により、ローカルGPUの累積利用時間に上限はない。旧180/4800秒による閉鎖判断は当時の契約として保全する。今後の各比較には実行前の有限な教師量・時間上限・評価保存枠・終了条件が必要。累積上限解除は今回の文書依頼を学習再開へ変えるものではない。
 
-元Base TEST20 promptと元Chat TEST20行は別のCPU解析問題を保存した。学習・GPU TEST採点に使っていないこととCPU未解析は別。将来の有資格最終確認にはreader分離と新しい封印TESTが必要。今回data/TESTを開封・再処理しない。
+## 固定台帳後の追加判断
 
-次は評価の読取り分離を修理し、既存結果から未回答の比較1件を定義する計画。介入・教材量・GPU予算は未選定/未凍結。真にfreshな独立Baseの全pipelineとnative runnerの接続、fullDEV/全440生成、新しい封印TESTを省略しない。
+文書長重み100Mと限定Chat低LR141は不採用。10月15日にDEV読取り隔離を実装し、複数の独立仮説を比較したが資格あるBaseは得られていない。進行長補助は一貫性1→1/80、ScaleGradは1→7/80で原27以上に届かずBPBも悪化。反復flag/EOSの改善を意味の一貫性や適切な完結に置き換えない。
 
-## 更新前の本文・契約（当時の記録）
+RDropは最大shapeのOOM後、数学的に一致する別loss runtimeとtarget転送を検証した。当時の累積時間上限では科学を費用閉鎖した。ユーザーの累積上限解除後、別の前向き科学契約で初めて同25M比較を実施し、今回品質不採用に閉じた。技術合格、旧費用閉鎖、今回品質失敗はそれぞれ別の証拠。
+
+NEFTuneは一次資料の生成制約と対象規模/領域を照合し適合根拠不足で未選定。未知の全手法の否定・10M限界・単独原因の確定ではない。既存の構成配分300M比較を未検証案として繰り返さない。
+
+DEV専用readerと隔離生成・reviewは実装済み。全文DEV集計/440生成の接続部品も36 CPU checksまで完了したが、実モデルの全文評価ではない。Python open監査はnative OS sandboxではなく、資格・独立全pipeline証拠を検証する永続native runner等の接続は未完成。
+
+有資格のBase recipe、親の事前学習からやり直す真にfreshな独立学習seed43、実全文DEV、標準400生成＋長文40の全内容、新しい封印TEST、採用・復旧確認は未達。次の比較は未選定・未凍結。終了した条件の再起動や閾値緩和で進めない。
+
+元Base TEST20 promptと元Chat TEST20行には別々のCPU解析履歴がある。学習・GPU TEST採点への使用0とCPU未開封は区別する。有資格recipeと選定封印後に新しい封印TESTが必要。今回の文書作業ではデータ本文・TEST・重みを読まない。
+
+[RDrop完了記録](../reports/phase6/rdrop-science-20261016/completion.json) / [原採点・全guard](../reports/phase6/rdrop-science-20261016/review.json) / [GPU上限解除記録](../reports/phase6/rdrop-science-preparation-20261016/authorization.json)。
+
+## 設計・手順の保存記録
+
+以下は作成時点の仕様・調査・復元手順。途中の「最新」「次は」「未実施」やPIDはその時点の記録で、現在の状態は本ページ冒頭と148を参照する。外部サービス/依存の最新仕様は今回再照会していない。
 
 ## 固定revision後の比較と判断
 
@@ -345,3 +359,6 @@ Gitにはcode/config/schema/lock/eval/小report/notes/この説明と台帳が�
 最新133の累積GPUは失敗込み35.293分/6時間。科学completionは元10B UIの復帰と実生存を当時確認したが、今回の文書更新で再測定していない。後続Chat重みはWSLに保全し、新しく公開していない。全プロジェクトのGPU/教師量をこの表から合算する認証は行わない。
 
 次の提案は[135](135_chat_problem_solution_plan.md)の意味構造を広げる教材recipe比較を最大1件。今回の範囲は文書・計画のみ、Base/Chat未完成・未採用で停止中。Base復旧を選ぶ場合の[124](124_base_recovery_plan.md)も未再開。容量限界、Base単独原因、学習量不足を断定せず、新条件は別の明示再開と契約を要する。
+
+<!-- Historical incoming heading aliases. Original text is preserved in baseline snapshots. -->
+<a id="更新前の本文契約当時の記録"></a>
