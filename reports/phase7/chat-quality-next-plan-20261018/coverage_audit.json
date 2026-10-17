@@ -1,0 +1,120 @@
+{
+  "created_at": "2026-10-17T15:53:19.761843+00:00",
+  "status": "frozen_TRAIN_and_existing_public_diagnostic_audited_no_model_execution",
+  "inputs": [
+    {
+      "path": "reports\\phase7\\chat-answer-learning-20261017\\curriculum_synthetic_inventory.json",
+      "sha256": "ad29022f5e01ce70ef275b4400157c038c3adc2d97ec35021dbd145c09d581ee"
+    },
+    {
+      "path": "reports\\phase7\\chat-answer-learning-20261017\\curriculum_TRAIN_preparation.json",
+      "sha256": "9cfea8a46ec7bd6230709cfdc66c94489c15a961fb2aca84dd81fee977688a3e"
+    },
+    {
+      "path": "reports\\phase7\\chat-answer-learning-20261017\\curriculum_C1_CPU_replay.json",
+      "sha256": "ab47d3f1d0844aa8aec6c91c5b66468edaffd6367b985c7a6aa438aa4298ce6a"
+    },
+    {
+      "path": "reports\\phase7\\chat-quality-100-20261017\\cases.json",
+      "sha256": "85cfaffa12b87c7dd1707baf693840ea87d286868029442ce705fd46fc796798"
+    },
+    {
+      "path": "reports\\phase7\\chat-quality-100-20261017\\notes.json",
+      "sha256": "0f0114ec034ab622fdfbcf43caccc249dd1ba70c262184e24050a32cf87130e8"
+    },
+    {
+      "path": "reports\\phase7\\chat-quality-100-20261017\\summary.json",
+      "sha256": "e107956710acf4e7a5723408ad9a9dc1c1d7e4be7ea52e4f65436cf7d24925ca"
+    },
+    {
+      "path": "scripts\\prepare_answer_curriculum.py",
+      "sha256": "2158e234c6616f872550c2274b3b5cd4c708013b41f62f33db43b5c828453bcd"
+    },
+    {
+      "path": "scripts\\audit_chat_learning_coverage.py",
+      "sha256": "1fe7c45d14412d068c65939d99fc782706b5358ad075777579ef54d81e18b1da"
+    }
+  ],
+  "TRAIN": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-answer-learning-20261017/curriculum/authored_TRAIN.jsonl",
+    "observed_path": "\\\\wsl.localhost\\Ubuntu\\home\\aihub_ubuntu\\jmicro-data\\phase7\\chat-answer-learning-20261017\\curriculum\\authored_TRAIN.jsonl",
+    "sha256": "711008c722018c67f423a7223cd6ac22c0df190e6de56c4da74bdb693c43040f",
+    "rows": 2048,
+    "families": {
+      "name": 256,
+      "preference": 256,
+      "correction": 256,
+      "quantity": 256,
+      "owner": 256,
+      "literal": 256,
+      "arithmetic": 256,
+      "missing": 256
+    },
+    "prompt_message_counts": {
+      "1": 512,
+      "3": 1280,
+      "5": 256
+    },
+    "final_assistant_only_targets": 2048,
+    "arithmetic": {
+      "addition_targets_independently_recalculated": 256,
+      "subtraction_in_this_family": 0
+    },
+    "literal": {
+      "unique_answers": 32,
+      "ASCII_letter_or_digit_answers": 0
+    },
+    "correction": {
+      "meeting_time_changes": 256
+    },
+    "owner_first_mention_order": [
+      {
+        "order": [
+          "鍵",
+          "地図"
+        ],
+        "rows": 256
+      }
+    ],
+    "quantity_first_mention_order": [
+      {
+        "order": [
+          "青",
+          "赤"
+        ],
+        "rows": 256
+      }
+    ]
+  },
+  "existing_diagnostic": {
+    "arithmetic_final_task": {
+      "addition": {
+        "cases": 5,
+        "task_pass": 0
+      },
+      "subtraction": {
+        "cases": 5,
+        "task_pass": 0
+      }
+    },
+    "own_cases": 20,
+    "own_final_question_turn": 6,
+    "confounded_changes": [
+      "query position and history length",
+      "one versus two requested fields",
+      "extra facts and intervening topics",
+      "actual assistant history content"
+    ]
+  },
+  "interpretation": [
+    "Coverage findings apply to this 2048-row authored subset, not all SFT or Base TRAIN.",
+    "All five addition diagnostic prompts also failed: missing subtraction TRAIN alone cannot explain arithmetic failure.",
+    "Final-only supervision is the saved intended mask, not evidence of a trainer defect.",
+    "Query templates and fixed fact orders limit structural diversity; causal effect is unmeasured.",
+    "The 100-case benchmark cannot isolate history distance from requested field count."
+  ],
+  "new_training_updates": 0,
+  "new_model_responses": 0,
+  "new_GPU_work": 0,
+  "sealed_TEST_reads": 0
+}
