@@ -1,5 +1,7 @@
 # JMicro-10M development and training
 
+2026-10-17 11:50UTC候補25万診断: 同WSL488265/start87977686/同bootがC1=483更新250,385教師へ到達、実process/全frozen source/実FLOCKの生存確認。候補25万の全10rawをstrict32 validator・実履歴で点検し手書きnotesをbinding済み、内容1/10・自然EOT10/10。陶芸の再質問には答えたが、挨拶/机の状態の復唱、番号のみ指示違反、未提供の北海道、書斎と寝室の同一視、左右の未回答が残る。同時点の対照内容0/10との1件差は品質改善の証明ではない。固定補助TRAIN32例のbodyNLL.046571/EOT.002919に対し新DEV80body2.178329/EOT1.033211で、少数学習例の低損失を未知入力の内容成立と混同しない。元100万主点・教材/数値/採点/終了条件を維持し同process観測継続。C1最終/50万診断/全2628評価/新C1実UI/条件付きseed43は未達、新goalACTIVE。
+
 2026-10-17 11:46UTC新SFT進捗: 対照C0は1,921更新/1,000,017教師で完了。CPU dryと全履歴LR/教師batch/終端sampler・119 Adam・RNG等の全typed state有限性をaudit済み、checkpoint SHA55280bf3d14361db1687d0e2471c82f96c6407e4f608c8e6508a2d73effa3a1f。実step829.929116秒、train_C0 stage864.941178秒。新C0 CPU UI http://127.0.0.1:7865 を実起動、実identity/HTTP全asset/既定32・16/32/64/実履歴を確認し5会話10応答を全内容採点・raw binding（内容2/10、EOT10/10、名前の回答や曜日訂正は未成立）。候補C1は同実WSL488265/start87977686/同boot・Windows19704のまま開始、11:46:29Z観測で50更新25,890教師・実生存/全source/実FLOCK/NVML確認。新C1 UI7864は未起動。C1完了・全2628評価/内容・C1実会話/条件付きseed43は未達、新goal ACTIVE。同processを観測し、旧条件再起動や再freezeをしない。
 
 2026-10-17途中観測11:38UTC: 同resource-v2実WSL488265/start87977686/同bootの生存と全source/実FLOCKを11:37:54Zに再確認、C0が50万教師へ到達した。diagnostics/C0/250000・500000の全20rawをstrict32 validatorと実履歴で確認し、手書きnotesをbinding済み（内容0/10→1/10、別の1件は文法不自然でも確認質問の意味を認めた）。復唱/対象・話者/訂正の失敗を保全し、途中点で主比較条件・採点・終了点は変更していない。主SFT両腕最終/全2628/新UI実会話は未完了、同ジョブを観測し続ける。新aux reviewer・UI HTTP観測・最終全要件completion checkerを実装し構文確認済みだが、未生成の本評価/実UI/完了証拠を達成済みと扱わない。analyzeの旧NLL208のTRAINラベルは前回149由来と明記し、現腕名との混同を防いだ（数値/gate不変）。新goalはACTIVE。
