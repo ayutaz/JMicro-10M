@@ -37,3 +37,11 @@ C0は1,929更新・正確1,000,000教師で完了した。全1,929実履歴がCP
 新対照CPU UI http://127.0.0.1:7867 を実起動し、専用のheadless実ブラウザーで3会話×6応答を実施した。全18の送信履歴1/3/5/7/9/11件、actual Assistant本文、会話reset、DOM/API同一、既定32と16/32/64選択を確認した。全18をstrict raw/実履歴と個別理由で確認し、内容成立1/18、自然停止17/18だった。訂正群では「時刻は午後三時です。」が6回続き、午後四時半への訂正を保持できなかった。画面の記録とCDP通信を保存し、PNGも直接確認した。[実ブラウザー原結果](../reports/phase7/chat-recovery-20261018/input-structure-main/practical/C0/browser.json) / [全理由](../reports/phase7/chat-recovery-20261018/input-structure-main/practical/C0/notes.json)。
 
 同じ実科学processはC1の新学習へ進んだ。C1の完了・実会話18応答・全主3,466応答とCI/回帰・採否はこの時点では未完了で、goalはACTIVEのまま。
+
+## 両腕学習・全36実ブラウザー・途中40の確認完了
+
+C1も1,929更新・正確1,000,000教師で完了した。実step1,065.322642秒、stage1,125.322494秒。全履歴・119 Adam step・全state有限性・RNG・終端samplerを照合し、両腕の正答教師列・順序・LR・source実配合・EOT105,392は一致、実入力はC0=11,303,918/C1=15,008,894で別記した。[候補の学習監査](../reports/phase7/chat-recovery-20261018/input-structure-main/C1/training_audit.json)。全40途中応答も個別理由付きnotesを完了、25万/50万の内容はC0=1/2、C1=1/1各10であり、主100万へ差し替えない。
+
+新候補CPU UI http://127.0.0.1:7866 を実起動し、同じ実ブラウザーの3×6応答を実行した。全履歴/reset/DOM=API/既定32/PNGを照合し、全18個別notesを完了した。内容成立はC0=1/18→C1=3/18、自然停止17→18/18。ただし本の題名を麦茶と取り違え、訂正の初め5応答では古い午後三時が固定され、最後も新聞で確認するという未提示の行動へ移った。会話全体の安定性の改善や正式採用ではない。[候補の全18理由](../reports/phase7/chat-recovery-20261018/input-structure-main/practical/C1/notes.json)。この実会話はCPU FP32で、本比較のGPU BF16/mathと合算しない。
+
+C0/newの全219は内容19/80・最終文脈7/24。C0/curriculum・previous_new・lrの全657は、旧rawを元configで厳密に検証した同一実履歴/ID/bytes等の理由付きnotesで全件照合した。計876/3,466の主内容確認が完了した時点で、C0の残3suite・公開100と全C1主評価は未完了。元同実科学processは全rawを生成中で、元Base UI復帰と終端の実確認もまだ必要。goalはACTIVE、採否は未確定。

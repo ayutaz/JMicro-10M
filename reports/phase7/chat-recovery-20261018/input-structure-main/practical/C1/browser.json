@@ -1,0 +1,3743 @@
+{
+  "observed_at": "2026-10-17T17:43:58.4544150Z",
+  "url": "http://127.0.0.1:7866",
+  "arm": "C1",
+  "model": {
+    "name": "JMicro-10M 情報配置 C1",
+    "kind": "情報配置の会話モデル（研究用・未採用）",
+    "arm": "C1",
+    "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/C1/checkpoint-00001929.pt",
+    "checkpoint_sha256": "f8a2311def82e26e8ad963e15f3fbb876e2ae7ef920d047ee0cd8ebfd16a66eb",
+    "config_sha256": "29a5fa2541f321a8de26f4f54ee98879bfc2245f232ebfe5246d09069d65f075",
+    "parent_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+    "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+    "parameters": 10001152,
+    "SFT_teacher_tokens": 1000000,
+    "device": "CPU",
+    "precision": "FP32 / math attention",
+    "decoding": "greedy",
+    "context": 1024,
+    "max_new_tokens": 32,
+    "max_new_tokens_range": [
+      8,
+      64
+    ],
+    "Chat_adopted": false,
+    "Base_adopted": false,
+    "quality_status": "全評価と実会話で判定する研究用モデル。正式採用は別判定。",
+    "busy": false
+  },
+  "browser": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+  "helper_pid": 19720,
+  "helper_start": "2026-10-17T17:43:58.4491865Z",
+  "status": "all18_actual_browser_responses_pending_literal_review",
+  "fixed_cases": [
+    {
+      "users": [
+        "私は週末に読む本として「雲の駅」を選びました。",
+        "飲み物は麦茶を用意します。",
+        "さっき選んだ本の題名を教えて。",
+        "今日は机周りを掃除しました。",
+        "飲み物は変更しません。",
+        "読む本の題名と飲み物を二つとも答えて。"
+      ],
+      "name": "memory"
+    },
+    {
+      "users": [
+        "集まる場所は東の広場、時刻は午後三時です。",
+        "場所だけ西の広場へ変更します。",
+        "現在の集合場所を教えて。",
+        "時刻は午後四時半に訂正します。",
+        "場所はもう変えません。",
+        "最後の場所と時刻を確認したい。両方教えて。"
+      ],
+      "name": "correction"
+    },
+    {
+      "users": [
+        "こんにちは。今日は少し疲れています。",
+        "部屋の片付けをして疲れました。",
+        "少し座って休むことにしました。",
+        "明日の準備を一つだけ済ませたいです。簡単なものは？",
+        "持ち物を鞄にまとめておきます。",
+        "ありがとう。今日はここで終わりにします。"
+      ],
+      "name": "daily"
+    }
+  ],
+  "conversations": [
+    {
+      "reset": {
+        "messages": 0,
+        "input": ""
+      },
+      "name": "memory",
+      "turns": [
+        {
+          "user": "私は週末に読む本として「雲の駅」を選びました。",
+          "UI": {
+            "messages": [
+              {
+                "role": "user",
+                "text": "私は週末に読む本として「雲の駅」を選びました。"
+              },
+              {
+                "role": "assistant",
+                "text": "雲の駅は、1989年に始まりました。"
+              }
+            ],
+            "status": "返答を終了 · 0.1秒",
+            "error": false
+          }
+        },
+        {
+          "user": "飲み物は麦茶を用意します。",
+          "UI": {
+            "messages": [
+              {
+                "role": "user",
+                "text": "私は週末に読む本として「雲の駅」を選びました。"
+              },
+              {
+                "role": "assistant",
+                "text": "雲の駅は、1989年に始まりました。"
+              },
+              {
+                "role": "user",
+                "text": "飲み物は麦茶を用意します。"
+              },
+              {
+                "role": "assistant",
+                "text": "麦茶は、麦茶の香りが強く、おいしいです。"
+              }
+            ],
+            "status": "返答を終了 · 0.1秒",
+            "error": false
+          }
+        },
+        {
+          "user": "さっき選んだ本の題名を教えて。",
+          "UI": {
+            "messages": [
+              {
+                "role": "user",
+                "text": "私は週末に読む本として「雲の駅」を選びました。"
+              },
+              {
+                "role": "assistant",
+                "text": "雲の駅は、1989年に始まりました。"
+              },
+              {
+                "role": "user",
+                "text": "飲み物は麦茶を用意します。"
+              },
+              {
+                "role": "assistant",
+                "text": "麦茶は、麦茶の香りが強く、おいしいです。"
+              },
+              {
+                "role": "user",
+                "text": "さっき選んだ本の題名を教えて。"
+              },
+              {
+                "role": "assistant",
+                "text": "麦茶です。"
+              }
+            ],
+            "status": "返答を終了 · 0.0秒",
+            "error": false
+          }
+        },
+        {
+          "user": "今日は机周りを掃除しました。",
+          "UI": {
+            "messages": [
+              {
+                "role": "user",
+                "text": "私は週末に読む本として「雲の駅」を選びました。"
+              },
+              {
+                "role": "assistant",
+                "text": "雲の駅は、1989年に始まりました。"
+              },
+              {
+                "role": "user",
+                "text": "飲み物は麦茶を用意します。"
+              },
+              {
+                "role": "assistant",
+                "text": "麦茶は、麦茶の香りが強く、おいしいです。"
+              },
+              {
+                "role": "user",
+                "text": "さっき選んだ本の題名を教えて。"
+              },
+              {
+                "role": "assistant",
+                "text": "麦茶です。"
+              },
+              {
+                "role": "user",
+                "text": "今日は机周りを掃除しました。"
+              },
+              {
+                "role": "assistant",
+                "text": "麦茶は、おいしいです。"
+              }
+            ],
+            "status": "返答を終了 · 0.0秒",
+            "error": false
+          }
+        },
+        {
+          "user": "飲み物は変更しません。",
+          "UI": {
+            "messages": [
+              {
+                "role": "user",
+                "text": "私は週末に読む本として「雲の駅」を選びました。"
+              },
+              {
+                "role": "assistant",
+                "text": "雲の駅は、1989年に始まりました。"
+              },
+              {
+                "role": "user",
+                "text": "飲み物は麦茶を用意します。"
+              },
+              {
+                "role": "assistant",
+                "text": "麦茶は、麦茶の香りが強く、おいしいです。"
+              },
+              {
+                "role": "user",
+                "text": "さっき選んだ本の題名を教えて。"
+              },
+              {
+                "role": "assistant",
+                "text": "麦茶です。"
+              },
+              {
+                "role": "user",
+                "text": "今日は机周りを掃除しました。"
+              },
+              {
+                "role": "assistant",
+                "text": "麦茶は、おいしいです。"
+              },
+              {
+                "role": "user",
+                "text": "飲み物は変更しません。"
+              },
+              {
+                "role": "assistant",
+                "text": "麦茶は、おいしいです。"
+              }
+            ],
+            "status": "返答を終了 · 0.1秒",
+            "error": false
+          }
+        },
+        {
+          "user": "読む本の題名と飲み物を二つとも答えて。",
+          "UI": {
+            "messages": [
+              {
+                "role": "user",
+                "text": "私は週末に読む本として「雲の駅」を選びました。"
+              },
+              {
+                "role": "assistant",
+                "text": "雲の駅は、1989年に始まりました。"
+              },
+              {
+                "role": "user",
+                "text": "飲み物は麦茶を用意します。"
+              },
+              {
+                "role": "assistant",
+                "text": "麦茶は、麦茶の香りが強く、おいしいです。"
+              },
+              {
+                "role": "user",
+                "text": "さっき選んだ本の題名を教えて。"
+              },
+              {
+                "role": "assistant",
+                "text": "麦茶です。"
+              },
+              {
+                "role": "user",
+                "text": "今日は机周りを掃除しました。"
+              },
+              {
+                "role": "assistant",
+                "text": "麦茶は、おいしいです。"
+              },
+              {
+                "role": "user",
+                "text": "飲み物は変更しません。"
+              },
+              {
+                "role": "assistant",
+                "text": "麦茶は、おいしいです。"
+              },
+              {
+                "role": "user",
+                "text": "読む本の題名と飲み物を二つとも答えて。"
+              },
+              {
+                "role": "assistant",
+                "text": "麦茶です。"
+              }
+            ],
+            "status": "返答を終了 · 0.0秒",
+            "error": false
+          }
+        }
+      ]
+    },
+    {
+      "reset": {
+        "messages": 0,
+        "input": ""
+      },
+      "name": "correction",
+      "turns": [
+        {
+          "user": "集まる場所は東の広場、時刻は午後三時です。",
+          "UI": {
+            "messages": [
+              {
+                "role": "user",
+                "text": "集まる場所は東の広場、時刻は午後三時です。"
+              },
+              {
+                "role": "assistant",
+                "text": "時刻は午後三時です。"
+              }
+            ],
+            "status": "返答を終了 · 0.0秒",
+            "error": false
+          }
+        },
+        {
+          "user": "場所だけ西の広場へ変更します。",
+          "UI": {
+            "messages": [
+              {
+                "role": "user",
+                "text": "集まる場所は東の広場、時刻は午後三時です。"
+              },
+              {
+                "role": "assistant",
+                "text": "時刻は午後三時です。"
+              },
+              {
+                "role": "user",
+                "text": "場所だけ西の広場へ変更します。"
+              },
+              {
+                "role": "assistant",
+                "text": "時刻は午後三時です。"
+              }
+            ],
+            "status": "返答を終了 · 0.0秒",
+            "error": false
+          }
+        },
+        {
+          "user": "現在の集合場所を教えて。",
+          "UI": {
+            "messages": [
+              {
+                "role": "user",
+                "text": "集まる場所は東の広場、時刻は午後三時です。"
+              },
+              {
+                "role": "assistant",
+                "text": "時刻は午後三時です。"
+              },
+              {
+                "role": "user",
+                "text": "場所だけ西の広場へ変更します。"
+              },
+              {
+                "role": "assistant",
+                "text": "時刻は午後三時です。"
+              },
+              {
+                "role": "user",
+                "text": "現在の集合場所を教えて。"
+              },
+              {
+                "role": "assistant",
+                "text": "時刻は午後三時です。"
+              }
+            ],
+            "status": "返答を終了 · 0.0秒",
+            "error": false
+          }
+        },
+        {
+          "user": "時刻は午後四時半に訂正します。",
+          "UI": {
+            "messages": [
+              {
+                "role": "user",
+                "text": "集まる場所は東の広場、時刻は午後三時です。"
+              },
+              {
+                "role": "assistant",
+                "text": "時刻は午後三時です。"
+              },
+              {
+                "role": "user",
+                "text": "場所だけ西の広場へ変更します。"
+              },
+              {
+                "role": "assistant",
+                "text": "時刻は午後三時です。"
+              },
+              {
+                "role": "user",
+                "text": "現在の集合場所を教えて。"
+              },
+              {
+                "role": "assistant",
+                "text": "時刻は午後三時です。"
+              },
+              {
+                "role": "user",
+                "text": "時刻は午後四時半に訂正します。"
+              },
+              {
+                "role": "assistant",
+                "text": "時刻は午後三時です。"
+              }
+            ],
+            "status": "返答を終了 · 0.0秒",
+            "error": false
+          }
+        },
+        {
+          "user": "場所はもう変えません。",
+          "UI": {
+            "messages": [
+              {
+                "role": "user",
+                "text": "集まる場所は東の広場、時刻は午後三時です。"
+              },
+              {
+                "role": "assistant",
+                "text": "時刻は午後三時です。"
+              },
+              {
+                "role": "user",
+                "text": "場所だけ西の広場へ変更します。"
+              },
+              {
+                "role": "assistant",
+                "text": "時刻は午後三時です。"
+              },
+              {
+                "role": "user",
+                "text": "現在の集合場所を教えて。"
+              },
+              {
+                "role": "assistant",
+                "text": "時刻は午後三時です。"
+              },
+              {
+                "role": "user",
+                "text": "時刻は午後四時半に訂正します。"
+              },
+              {
+                "role": "assistant",
+                "text": "時刻は午後三時です。"
+              },
+              {
+                "role": "user",
+                "text": "場所はもう変えません。"
+              },
+              {
+                "role": "assistant",
+                "text": "時刻は午後三時です。"
+              }
+            ],
+            "status": "返答を終了 · 0.0秒",
+            "error": false
+          }
+        },
+        {
+          "user": "最後の場所と時刻を確認したい。両方教えて。",
+          "UI": {
+            "messages": [
+              {
+                "role": "user",
+                "text": "集まる場所は東の広場、時刻は午後三時です。"
+              },
+              {
+                "role": "assistant",
+                "text": "時刻は午後三時です。"
+              },
+              {
+                "role": "user",
+                "text": "場所だけ西の広場へ変更します。"
+              },
+              {
+                "role": "assistant",
+                "text": "時刻は午後三時です。"
+              },
+              {
+                "role": "user",
+                "text": "現在の集合場所を教えて。"
+              },
+              {
+                "role": "assistant",
+                "text": "時刻は午後三時です。"
+              },
+              {
+                "role": "user",
+                "text": "時刻は午後四時半に訂正します。"
+              },
+              {
+                "role": "assistant",
+                "text": "時刻は午後三時です。"
+              },
+              {
+                "role": "user",
+                "text": "場所はもう変えません。"
+              },
+              {
+                "role": "assistant",
+                "text": "時刻は午後三時です。"
+              },
+              {
+                "role": "user",
+                "text": "最後の場所と時刻を確認したい。両方教えて。"
+              },
+              {
+                "role": "assistant",
+                "text": "時刻は朝日新聞にて確認します。"
+              }
+            ],
+            "status": "返答を終了 · 0.1秒",
+            "error": false
+          }
+        }
+      ]
+    },
+    {
+      "reset": {
+        "messages": 0,
+        "input": ""
+      },
+      "name": "daily",
+      "turns": [
+        {
+          "user": "こんにちは。今日は少し疲れています。",
+          "UI": {
+            "messages": [
+              {
+                "role": "user",
+                "text": "こんにちは。今日は少し疲れています。"
+              },
+              {
+                "role": "assistant",
+                "text": "こんにちは。今日は少し疲れました。"
+              }
+            ],
+            "status": "返答を終了 · 0.0秒",
+            "error": false
+          }
+        },
+        {
+          "user": "部屋の片付けをして疲れました。",
+          "UI": {
+            "messages": [
+              {
+                "role": "user",
+                "text": "こんにちは。今日は少し疲れています。"
+              },
+              {
+                "role": "assistant",
+                "text": "こんにちは。今日は少し疲れました。"
+              },
+              {
+                "role": "user",
+                "text": "部屋の片付けをして疲れました。"
+              },
+              {
+                "role": "assistant",
+                "text": "わかります。片付けは大変ですね。"
+              }
+            ],
+            "status": "返答を終了 · 0.0秒",
+            "error": false
+          }
+        },
+        {
+          "user": "少し座って休むことにしました。",
+          "UI": {
+            "messages": [
+              {
+                "role": "user",
+                "text": "こんにちは。今日は少し疲れています。"
+              },
+              {
+                "role": "assistant",
+                "text": "こんにちは。今日は少し疲れました。"
+              },
+              {
+                "role": "user",
+                "text": "部屋の片付けをして疲れました。"
+              },
+              {
+                "role": "assistant",
+                "text": "わかります。片付けは大変ですね。"
+              },
+              {
+                "role": "user",
+                "text": "少し座って休むことにしました。"
+              },
+              {
+                "role": "assistant",
+                "text": "はい。今日は寝るのが大変でした。"
+              }
+            ],
+            "status": "返答を終了 · 0.1秒",
+            "error": false
+          }
+        },
+        {
+          "user": "明日の準備を一つだけ済ませたいです。簡単なものは？",
+          "UI": {
+            "messages": [
+              {
+                "role": "user",
+                "text": "こんにちは。今日は少し疲れています。"
+              },
+              {
+                "role": "assistant",
+                "text": "こんにちは。今日は少し疲れました。"
+              },
+              {
+                "role": "user",
+                "text": "部屋の片付けをして疲れました。"
+              },
+              {
+                "role": "assistant",
+                "text": "わかります。片付けは大変ですね。"
+              },
+              {
+                "role": "user",
+                "text": "少し座って休むことにしました。"
+              },
+              {
+                "role": "assistant",
+                "text": "はい。今日は寝るのが大変でした。"
+              },
+              {
+                "role": "user",
+                "text": "明日の準備を一つだけ済ませたいです。簡単なものは？"
+              },
+              {
+                "role": "assistant",
+                "text": "はい。今日は寝るのが大変でした。"
+              }
+            ],
+            "status": "返答を終了 · 0.1秒",
+            "error": false
+          }
+        },
+        {
+          "user": "持ち物を鞄にまとめておきます。",
+          "UI": {
+            "messages": [
+              {
+                "role": "user",
+                "text": "こんにちは。今日は少し疲れています。"
+              },
+              {
+                "role": "assistant",
+                "text": "こんにちは。今日は少し疲れました。"
+              },
+              {
+                "role": "user",
+                "text": "部屋の片付けをして疲れました。"
+              },
+              {
+                "role": "assistant",
+                "text": "わかります。片付けは大変ですね。"
+              },
+              {
+                "role": "user",
+                "text": "少し座って休むことにしました。"
+              },
+              {
+                "role": "assistant",
+                "text": "はい。今日は寝るのが大変でした。"
+              },
+              {
+                "role": "user",
+                "text": "明日の準備を一つだけ済ませたいです。簡単なものは？"
+              },
+              {
+                "role": "assistant",
+                "text": "はい。今日は寝るのが大変でした。"
+              },
+              {
+                "role": "user",
+                "text": "持ち物を鞄にまとめておきます。"
+              },
+              {
+                "role": "assistant",
+                "text": "はい。私は、寝るのが大変でした。"
+              }
+            ],
+            "status": "返答を終了 · 0.1秒",
+            "error": false
+          }
+        },
+        {
+          "user": "ありがとう。今日はここで終わりにします。",
+          "UI": {
+            "messages": [
+              {
+                "role": "user",
+                "text": "こんにちは。今日は少し疲れています。"
+              },
+              {
+                "role": "assistant",
+                "text": "こんにちは。今日は少し疲れました。"
+              },
+              {
+                "role": "user",
+                "text": "部屋の片付けをして疲れました。"
+              },
+              {
+                "role": "assistant",
+                "text": "わかります。片付けは大変ですね。"
+              },
+              {
+                "role": "user",
+                "text": "少し座って休むことにしました。"
+              },
+              {
+                "role": "assistant",
+                "text": "はい。今日は寝るのが大変でした。"
+              },
+              {
+                "role": "user",
+                "text": "明日の準備を一つだけ済ませたいです。簡単なものは？"
+              },
+              {
+                "role": "assistant",
+                "text": "はい。今日は寝るのが大変でした。"
+              },
+              {
+                "role": "user",
+                "text": "持ち物を鞄にまとめておきます。"
+              },
+              {
+                "role": "assistant",
+                "text": "はい。私は、寝るのが大変でした。"
+              },
+              {
+                "role": "user",
+                "text": "ありがとう。今日はここで終わりにします。"
+              },
+              {
+                "role": "assistant",
+                "text": "はい。今日は何をする予定ですか？"
+              }
+            ],
+            "status": "返答を終了 · 0.1秒",
+            "error": false
+          }
+        }
+      ]
+    }
+  ],
+  "mocked_requests": false,
+  "max_new_tokens": 32,
+  "source_sha256": "294c9d9595148479f93fd4304d6c9d7597d73299d023cfbff75f209681013451",
+  "page": {
+    "title": "JMicro-10M Chat",
+    "model": "JMicro-10M 情報配置 C1 · 10.00M · CPU",
+    "footer": "情報配置の会話モデル（研究用・未採用）。会話品質の採用基準には達していません。返答や会話履歴の取り違え、同じ返答の繰り返しが残ります。Baseの文章生成を開く",
+    "options": [
+      16,
+      32,
+      64
+    ],
+    "selected": 32
+  },
+  "in_progress_conversation": null,
+  "network": [
+    {
+      "response": {
+        "response": {
+          "text": "雲の駅は、1989年に始まりました。",
+          "valid_utf8": true,
+          "raw_bytes_hex": "e99bb2e381aee9a785e381afe3808131393839e5b9b4e381abe5a78be381bee3828ae381bee38197e3819fe38082",
+          "decode_error": null,
+          "generated_ids": [
+            3966,
+            264,
+            1592,
+            270,
+            265,
+            738,
+            443,
+            466,
+            1121,
+            1782,
+            1492,
+            391,
+            266,
+            7
+          ],
+          "generated_tokens": 14,
+          "stop_reason": "eot",
+          "role_leak": false,
+          "unexpected_special": false,
+          "empty_response": false,
+          "suppressed": true,
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "decoding": "greedy",
+          "prompt_ids": [
+            2,
+            5,
+            846,
+            1999,
+            1364,
+            269,
+            957,
+            613,
+            389,
+            343,
+            285,
+            3966,
+            264,
+            1592,
+            281,
+            267,
+            1627,
+            391,
+            266,
+            7,
+            6
+          ],
+          "prompt_tokens": 21,
+          "removed_turns": 0,
+          "full_history_retained": true,
+          "user_turns": 1,
+          "max_new_tokens": 32,
+          "repetition": false,
+          "repeat_metrics": {
+            "char_4gram_repeat": 0.0,
+            "token_4gram_repeat": 0.0,
+            "same_sentence_reappears": false,
+            "first_adjacent_triple_repeat_char": null
+          },
+          "seconds": 0.05638559802901
+        },
+        "model": "JMicro-10M 情報配置 C1"
+      },
+      "request": {
+        "messages": [
+          {
+            "role": "user",
+            "content": "私は週末に読む本として「雲の駅」を選びました。"
+          }
+        ],
+        "max_new_tokens": 32
+      }
+    },
+    {
+      "response": {
+        "response": {
+          "text": "麦茶は、麦茶の香りが強く、おいしいです。",
+          "valid_utf8": true,
+          "raw_bytes_hex": "e9baa6e88cb6e381afe38081e9baa6e88cb6e381aee9a699e3828ae3818ce5bcb7e3818fe38081e3818ae38184e38197e38184e381a7e38199e38082",
+          "decode_error": null,
+          "generated_ids": [
+            2826,
+            1067,
+            270,
+            265,
+            2826,
+            1067,
+            264,
+            2326,
+            290,
+            268,
+            749,
+            299,
+            265,
+            291,
+            276,
+            659,
+            275,
+            266,
+            7
+          ],
+          "generated_tokens": 19,
+          "stop_reason": "eot",
+          "role_leak": false,
+          "unexpected_special": false,
+          "empty_response": false,
+          "suppressed": true,
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "decoding": "greedy",
+          "prompt_ids": [
+            2,
+            5,
+            846,
+            1999,
+            1364,
+            269,
+            957,
+            613,
+            389,
+            343,
+            285,
+            3966,
+            264,
+            1592,
+            281,
+            267,
+            1627,
+            391,
+            266,
+            7,
+            6,
+            3966,
+            264,
+            1592,
+            270,
+            265,
+            738,
+            443,
+            466,
+            1121,
+            1782,
+            1492,
+            391,
+            266,
+            7,
+            5,
+            1731,
+            326,
+            411,
+            270,
+            2826,
+            1067,
+            267,
+            1725,
+            364,
+            266,
+            7,
+            6
+          ],
+          "prompt_tokens": 48,
+          "removed_turns": 0,
+          "full_history_retained": true,
+          "user_turns": 2,
+          "max_new_tokens": 32,
+          "repetition": false,
+          "repeat_metrics": {
+            "char_4gram_repeat": 0.0,
+            "token_4gram_repeat": 0.0,
+            "same_sentence_reappears": false,
+            "first_adjacent_triple_repeat_char": null
+          },
+          "seconds": 0.07016614393796772
+        },
+        "model": "JMicro-10M 情報配置 C1"
+      },
+      "request": {
+        "messages": [
+          {
+            "role": "user",
+            "content": "私は週末に読む本として「雲の駅」を選びました。"
+          },
+          {
+            "role": "assistant",
+            "content": "雲の駅は、1989年に始まりました。"
+          },
+          {
+            "role": "user",
+            "content": "飲み物は麦茶を用意します。"
+          }
+        ],
+        "max_new_tokens": 32
+      }
+    },
+    {
+      "response": {
+        "response": {
+          "text": "麦茶です。",
+          "valid_utf8": true,
+          "raw_bytes_hex": "e9baa6e88cb6e381a7e38199e38082",
+          "decode_error": null,
+          "generated_ids": [
+            2826,
+            1067,
+            275,
+            266,
+            7
+          ],
+          "generated_tokens": 5,
+          "stop_reason": "eot",
+          "role_leak": false,
+          "unexpected_special": false,
+          "empty_response": false,
+          "suppressed": true,
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "decoding": "greedy",
+          "prompt_ids": [
+            2,
+            5,
+            846,
+            1999,
+            1364,
+            269,
+            957,
+            613,
+            389,
+            343,
+            285,
+            3966,
+            264,
+            1592,
+            281,
+            267,
+            1627,
+            391,
+            266,
+            7,
+            6,
+            3966,
+            264,
+            1592,
+            270,
+            265,
+            738,
+            443,
+            466,
+            1121,
+            1782,
+            1492,
+            391,
+            266,
+            7,
+            5,
+            1731,
+            326,
+            411,
+            270,
+            2826,
+            1067,
+            267,
+            1725,
+            364,
+            266,
+            7,
+            6,
+            2826,
+            1067,
+            270,
+            265,
+            2826,
+            1067,
+            264,
+            2326,
+            290,
+            268,
+            749,
+            299,
+            265,
+            291,
+            276,
+            659,
+            275,
+            266,
+            7,
+            5,
+            338,
+            399,
+            315,
+            912,
+            688,
+            389,
+            264,
+            2424,
+            549,
+            267,
+            2127,
+            296,
+            266,
+            7,
+            6
+          ],
+          "prompt_tokens": 83,
+          "removed_turns": 0,
+          "full_history_retained": true,
+          "user_turns": 3,
+          "max_new_tokens": 32,
+          "repetition": false,
+          "repeat_metrics": {
+            "char_4gram_repeat": 0.0,
+            "token_4gram_repeat": 0.0,
+            "same_sentence_reappears": false,
+            "first_adjacent_triple_repeat_char": null
+          },
+          "seconds": 0.028962346026673913
+        },
+        "model": "JMicro-10M 情報配置 C1"
+      },
+      "request": {
+        "messages": [
+          {
+            "role": "user",
+            "content": "私は週末に読む本として「雲の駅」を選びました。"
+          },
+          {
+            "role": "assistant",
+            "content": "雲の駅は、1989年に始まりました。"
+          },
+          {
+            "role": "user",
+            "content": "飲み物は麦茶を用意します。"
+          },
+          {
+            "role": "assistant",
+            "content": "麦茶は、麦茶の香りが強く、おいしいです。"
+          },
+          {
+            "role": "user",
+            "content": "さっき選んだ本の題名を教えて。"
+          }
+        ],
+        "max_new_tokens": 32
+      }
+    },
+    {
+      "response": {
+        "response": {
+          "text": "麦茶は、おいしいです。",
+          "valid_utf8": true,
+          "raw_bytes_hex": "e9baa6e88cb6e381afe38081e3818ae38184e38197e38184e381a7e38199e38082",
+          "decode_error": null,
+          "generated_ids": [
+            2826,
+            1067,
+            270,
+            265,
+            291,
+            276,
+            659,
+            275,
+            266,
+            7
+          ],
+          "generated_tokens": 10,
+          "stop_reason": "eot",
+          "role_leak": false,
+          "unexpected_special": false,
+          "empty_response": false,
+          "suppressed": true,
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "decoding": "greedy",
+          "prompt_ids": [
+            2,
+            5,
+            846,
+            1999,
+            1364,
+            269,
+            957,
+            613,
+            389,
+            343,
+            285,
+            3966,
+            264,
+            1592,
+            281,
+            267,
+            1627,
+            391,
+            266,
+            7,
+            6,
+            3966,
+            264,
+            1592,
+            270,
+            265,
+            738,
+            443,
+            466,
+            1121,
+            1782,
+            1492,
+            391,
+            266,
+            7,
+            5,
+            1731,
+            326,
+            411,
+            270,
+            2826,
+            1067,
+            267,
+            1725,
+            364,
+            266,
+            7,
+            6,
+            2826,
+            1067,
+            270,
+            265,
+            2826,
+            1067,
+            264,
+            2326,
+            290,
+            268,
+            749,
+            299,
+            265,
+            291,
+            276,
+            659,
+            275,
+            266,
+            7,
+            5,
+            338,
+            399,
+            315,
+            912,
+            688,
+            389,
+            264,
+            2424,
+            549,
+            267,
+            2127,
+            296,
+            266,
+            7,
+            6,
+            2826,
+            1067,
+            275,
+            266,
+            7,
+            5,
+            1214,
+            270,
+            3086,
+            1129,
+            290,
+            267,
+            2441,
+            1124,
+            649,
+            266,
+            7,
+            6
+          ],
+          "prompt_tokens": 101,
+          "removed_turns": 0,
+          "full_history_retained": true,
+          "user_turns": 4,
+          "max_new_tokens": 32,
+          "repetition": false,
+          "repeat_metrics": {
+            "char_4gram_repeat": 0.0,
+            "token_4gram_repeat": 0.0,
+            "same_sentence_reappears": false,
+            "first_adjacent_triple_repeat_char": null
+          },
+          "seconds": 0.04694602405652404
+        },
+        "model": "JMicro-10M 情報配置 C1"
+      },
+      "request": {
+        "messages": [
+          {
+            "role": "user",
+            "content": "私は週末に読む本として「雲の駅」を選びました。"
+          },
+          {
+            "role": "assistant",
+            "content": "雲の駅は、1989年に始まりました。"
+          },
+          {
+            "role": "user",
+            "content": "飲み物は麦茶を用意します。"
+          },
+          {
+            "role": "assistant",
+            "content": "麦茶は、麦茶の香りが強く、おいしいです。"
+          },
+          {
+            "role": "user",
+            "content": "さっき選んだ本の題名を教えて。"
+          },
+          {
+            "role": "assistant",
+            "content": "麦茶です。"
+          },
+          {
+            "role": "user",
+            "content": "今日は机周りを掃除しました。"
+          }
+        ],
+        "max_new_tokens": 32
+      }
+    },
+    {
+      "response": {
+        "response": {
+          "text": "麦茶は、おいしいです。",
+          "valid_utf8": true,
+          "raw_bytes_hex": "e9baa6e88cb6e381afe38081e3818ae38184e38197e38184e381a7e38199e38082",
+          "decode_error": null,
+          "generated_ids": [
+            2826,
+            1067,
+            270,
+            265,
+            291,
+            276,
+            659,
+            275,
+            266,
+            7
+          ],
+          "generated_tokens": 10,
+          "stop_reason": "eot",
+          "role_leak": false,
+          "unexpected_special": false,
+          "empty_response": false,
+          "suppressed": true,
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "decoding": "greedy",
+          "prompt_ids": [
+            2,
+            5,
+            846,
+            1999,
+            1364,
+            269,
+            957,
+            613,
+            389,
+            343,
+            285,
+            3966,
+            264,
+            1592,
+            281,
+            267,
+            1627,
+            391,
+            266,
+            7,
+            6,
+            3966,
+            264,
+            1592,
+            270,
+            265,
+            738,
+            443,
+            466,
+            1121,
+            1782,
+            1492,
+            391,
+            266,
+            7,
+            5,
+            1731,
+            326,
+            411,
+            270,
+            2826,
+            1067,
+            267,
+            1725,
+            364,
+            266,
+            7,
+            6,
+            2826,
+            1067,
+            270,
+            265,
+            2826,
+            1067,
+            264,
+            2326,
+            290,
+            268,
+            749,
+            299,
+            265,
+            291,
+            276,
+            659,
+            275,
+            266,
+            7,
+            5,
+            338,
+            399,
+            315,
+            912,
+            688,
+            389,
+            264,
+            2424,
+            549,
+            267,
+            2127,
+            296,
+            266,
+            7,
+            6,
+            2826,
+            1067,
+            275,
+            266,
+            7,
+            5,
+            1214,
+            270,
+            3086,
+            1129,
+            290,
+            267,
+            2441,
+            1124,
+            649,
+            266,
+            7,
+            6,
+            2826,
+            1067,
+            270,
+            265,
+            291,
+            276,
+            659,
+            275,
+            266,
+            7,
+            5,
+            1731,
+            326,
+            411,
+            270,
+            1344,
+            282,
+            500,
+            266,
+            7,
+            6
+          ],
+          "prompt_tokens": 122,
+          "removed_turns": 0,
+          "full_history_retained": true,
+          "user_turns": 5,
+          "max_new_tokens": 32,
+          "repetition": false,
+          "repeat_metrics": {
+            "char_4gram_repeat": 0.0,
+            "token_4gram_repeat": 0.0,
+            "same_sentence_reappears": false,
+            "first_adjacent_triple_repeat_char": null
+          },
+          "seconds": 0.09940020192880183
+        },
+        "model": "JMicro-10M 情報配置 C1"
+      },
+      "request": {
+        "messages": [
+          {
+            "role": "user",
+            "content": "私は週末に読む本として「雲の駅」を選びました。"
+          },
+          {
+            "role": "assistant",
+            "content": "雲の駅は、1989年に始まりました。"
+          },
+          {
+            "role": "user",
+            "content": "飲み物は麦茶を用意します。"
+          },
+          {
+            "role": "assistant",
+            "content": "麦茶は、麦茶の香りが強く、おいしいです。"
+          },
+          {
+            "role": "user",
+            "content": "さっき選んだ本の題名を教えて。"
+          },
+          {
+            "role": "assistant",
+            "content": "麦茶です。"
+          },
+          {
+            "role": "user",
+            "content": "今日は机周りを掃除しました。"
+          },
+          {
+            "role": "assistant",
+            "content": "麦茶は、おいしいです。"
+          },
+          {
+            "role": "user",
+            "content": "飲み物は変更しません。"
+          }
+        ],
+        "max_new_tokens": 32
+      }
+    },
+    {
+      "response": {
+        "response": {
+          "text": "麦茶です。",
+          "valid_utf8": true,
+          "raw_bytes_hex": "e9baa6e88cb6e381a7e38199e38082",
+          "decode_error": null,
+          "generated_ids": [
+            2826,
+            1067,
+            275,
+            266,
+            7
+          ],
+          "generated_tokens": 5,
+          "stop_reason": "eot",
+          "role_leak": false,
+          "unexpected_special": false,
+          "empty_response": false,
+          "suppressed": true,
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "decoding": "greedy",
+          "prompt_ids": [
+            2,
+            5,
+            846,
+            1999,
+            1364,
+            269,
+            957,
+            613,
+            389,
+            343,
+            285,
+            3966,
+            264,
+            1592,
+            281,
+            267,
+            1627,
+            391,
+            266,
+            7,
+            6,
+            3966,
+            264,
+            1592,
+            270,
+            265,
+            738,
+            443,
+            466,
+            1121,
+            1782,
+            1492,
+            391,
+            266,
+            7,
+            5,
+            1731,
+            326,
+            411,
+            270,
+            2826,
+            1067,
+            267,
+            1725,
+            364,
+            266,
+            7,
+            6,
+            2826,
+            1067,
+            270,
+            265,
+            2826,
+            1067,
+            264,
+            2326,
+            290,
+            268,
+            749,
+            299,
+            265,
+            291,
+            276,
+            659,
+            275,
+            266,
+            7,
+            5,
+            338,
+            399,
+            315,
+            912,
+            688,
+            389,
+            264,
+            2424,
+            549,
+            267,
+            2127,
+            296,
+            266,
+            7,
+            6,
+            2826,
+            1067,
+            275,
+            266,
+            7,
+            5,
+            1214,
+            270,
+            3086,
+            1129,
+            290,
+            267,
+            2441,
+            1124,
+            649,
+            266,
+            7,
+            6,
+            2826,
+            1067,
+            270,
+            265,
+            291,
+            276,
+            659,
+            275,
+            266,
+            7,
+            5,
+            1731,
+            326,
+            411,
+            270,
+            1344,
+            282,
+            500,
+            266,
+            7,
+            6,
+            2826,
+            1067,
+            270,
+            265,
+            291,
+            276,
+            659,
+            275,
+            266,
+            7,
+            5,
+            957,
+            613,
+            389,
+            264,
+            2424,
+            549,
+            272,
+            1731,
+            326,
+            411,
+            267,
+            761,
+            313,
+            824,
+            2716,
+            1009,
+            266,
+            7,
+            6
+          ],
+          "prompt_tokens": 152,
+          "removed_turns": 0,
+          "full_history_retained": true,
+          "user_turns": 6,
+          "max_new_tokens": 32,
+          "repetition": false,
+          "repeat_metrics": {
+            "char_4gram_repeat": 0.0,
+            "token_4gram_repeat": 0.0,
+            "same_sentence_reappears": false,
+            "first_adjacent_triple_repeat_char": null
+          },
+          "seconds": 0.034848929033614695
+        },
+        "model": "JMicro-10M 情報配置 C1"
+      },
+      "request": {
+        "messages": [
+          {
+            "role": "user",
+            "content": "私は週末に読む本として「雲の駅」を選びました。"
+          },
+          {
+            "role": "assistant",
+            "content": "雲の駅は、1989年に始まりました。"
+          },
+          {
+            "role": "user",
+            "content": "飲み物は麦茶を用意します。"
+          },
+          {
+            "role": "assistant",
+            "content": "麦茶は、麦茶の香りが強く、おいしいです。"
+          },
+          {
+            "role": "user",
+            "content": "さっき選んだ本の題名を教えて。"
+          },
+          {
+            "role": "assistant",
+            "content": "麦茶です。"
+          },
+          {
+            "role": "user",
+            "content": "今日は机周りを掃除しました。"
+          },
+          {
+            "role": "assistant",
+            "content": "麦茶は、おいしいです。"
+          },
+          {
+            "role": "user",
+            "content": "飲み物は変更しません。"
+          },
+          {
+            "role": "assistant",
+            "content": "麦茶は、おいしいです。"
+          },
+          {
+            "role": "user",
+            "content": "読む本の題名と飲み物を二つとも答えて。"
+          }
+        ],
+        "max_new_tokens": 32
+      }
+    },
+    {
+      "response": {
+        "response": {
+          "text": "時刻は午後三時です。",
+          "valid_utf8": true,
+          "raw_bytes_hex": "e69982e588bbe381afe58d88e5be8ce4b889e69982e381a7e38199e38082",
+          "decode_error": null,
+          "generated_ids": [
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7
+          ],
+          "generated_tokens": 10,
+          "stop_reason": "eot",
+          "role_leak": false,
+          "unexpected_special": false,
+          "empty_response": false,
+          "suppressed": true,
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "decoding": "greedy",
+          "prompt_ids": [
+            2,
+            5,
+            758,
+            1294,
+            831,
+            270,
+            891,
+            264,
+            807,
+            540,
+            265,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7,
+            6
+          ],
+          "prompt_tokens": 22,
+          "removed_turns": 0,
+          "full_history_retained": true,
+          "user_turns": 1,
+          "max_new_tokens": 32,
+          "repetition": false,
+          "repeat_metrics": {
+            "char_4gram_repeat": 0.0,
+            "token_4gram_repeat": 0.0,
+            "same_sentence_reappears": false,
+            "first_adjacent_triple_repeat_char": null
+          },
+          "seconds": 0.03985228401143104
+        },
+        "model": "JMicro-10M 情報配置 C1"
+      },
+      "request": {
+        "messages": [
+          {
+            "role": "user",
+            "content": "集まる場所は東の広場、時刻は午後三時です。"
+          }
+        ],
+        "max_new_tokens": 32
+      }
+    },
+    {
+      "response": {
+        "response": {
+          "text": "時刻は午後三時です。",
+          "valid_utf8": true,
+          "raw_bytes_hex": "e69982e588bbe381afe58d88e5be8ce4b889e69982e381a7e38199e38082",
+          "decode_error": null,
+          "generated_ids": [
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7
+          ],
+          "generated_tokens": 10,
+          "stop_reason": "eot",
+          "role_leak": false,
+          "unexpected_special": false,
+          "empty_response": false,
+          "suppressed": true,
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "decoding": "greedy",
+          "prompt_ids": [
+            2,
+            5,
+            758,
+            1294,
+            831,
+            270,
+            891,
+            264,
+            807,
+            540,
+            265,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7,
+            6,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7,
+            5,
+            831,
+            480,
+            1577,
+            264,
+            807,
+            540,
+            562,
+            1344,
+            364,
+            266,
+            7,
+            6
+          ],
+          "prompt_tokens": 45,
+          "removed_turns": 0,
+          "full_history_retained": true,
+          "user_turns": 2,
+          "max_new_tokens": 32,
+          "repetition": false,
+          "repeat_metrics": {
+            "char_4gram_repeat": 0.0,
+            "token_4gram_repeat": 0.0,
+            "same_sentence_reappears": false,
+            "first_adjacent_triple_repeat_char": null
+          },
+          "seconds": 0.038830103003419936
+        },
+        "model": "JMicro-10M 情報配置 C1"
+      },
+      "request": {
+        "messages": [
+          {
+            "role": "user",
+            "content": "集まる場所は東の広場、時刻は午後三時です。"
+          },
+          {
+            "role": "assistant",
+            "content": "時刻は午後三時です。"
+          },
+          {
+            "role": "user",
+            "content": "場所だけ西の広場へ変更します。"
+          }
+        ],
+        "max_new_tokens": 32
+      }
+    },
+    {
+      "response": {
+        "response": {
+          "text": "時刻は午後三時です。",
+          "valid_utf8": true,
+          "raw_bytes_hex": "e69982e588bbe381afe58d88e5be8ce4b889e69982e381a7e38199e38082",
+          "decode_error": null,
+          "generated_ids": [
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7
+          ],
+          "generated_tokens": 10,
+          "stop_reason": "eot",
+          "role_leak": false,
+          "unexpected_special": false,
+          "empty_response": false,
+          "suppressed": true,
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "decoding": "greedy",
+          "prompt_ids": [
+            2,
+            5,
+            758,
+            1294,
+            831,
+            270,
+            891,
+            264,
+            807,
+            540,
+            265,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7,
+            6,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7,
+            5,
+            831,
+            480,
+            1577,
+            264,
+            807,
+            540,
+            562,
+            1344,
+            364,
+            266,
+            7,
+            6,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7,
+            5,
+            707,
+            264,
+            758,
+            437,
+            831,
+            267,
+            2127,
+            296,
+            266,
+            7,
+            6
+          ],
+          "prompt_tokens": 67,
+          "removed_turns": 0,
+          "full_history_retained": true,
+          "user_turns": 3,
+          "max_new_tokens": 32,
+          "repetition": false,
+          "repeat_metrics": {
+            "char_4gram_repeat": 0.0,
+            "token_4gram_repeat": 0.0,
+            "same_sentence_reappears": false,
+            "first_adjacent_triple_repeat_char": null
+          },
+          "seconds": 0.04318713897373527
+        },
+        "model": "JMicro-10M 情報配置 C1"
+      },
+      "request": {
+        "messages": [
+          {
+            "role": "user",
+            "content": "集まる場所は東の広場、時刻は午後三時です。"
+          },
+          {
+            "role": "assistant",
+            "content": "時刻は午後三時です。"
+          },
+          {
+            "role": "user",
+            "content": "場所だけ西の広場へ変更します。"
+          },
+          {
+            "role": "assistant",
+            "content": "時刻は午後三時です。"
+          },
+          {
+            "role": "user",
+            "content": "現在の集合場所を教えて。"
+          }
+        ],
+        "max_new_tokens": 32
+      }
+    },
+    {
+      "response": {
+        "response": {
+          "text": "時刻は午後三時です。",
+          "valid_utf8": true,
+          "raw_bytes_hex": "e69982e588bbe381afe58d88e5be8ce4b889e69982e381a7e38199e38082",
+          "decode_error": null,
+          "generated_ids": [
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7
+          ],
+          "generated_tokens": 10,
+          "stop_reason": "eot",
+          "role_leak": false,
+          "unexpected_special": false,
+          "empty_response": false,
+          "suppressed": true,
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "decoding": "greedy",
+          "prompt_ids": [
+            2,
+            5,
+            758,
+            1294,
+            831,
+            270,
+            891,
+            264,
+            807,
+            540,
+            265,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7,
+            6,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7,
+            5,
+            831,
+            480,
+            1577,
+            264,
+            807,
+            540,
+            562,
+            1344,
+            364,
+            266,
+            7,
+            6,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7,
+            5,
+            707,
+            264,
+            758,
+            437,
+            831,
+            267,
+            2127,
+            296,
+            266,
+            7,
+            6,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7,
+            5,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            1933,
+            428,
+            898,
+            269,
+            3923,
+            616,
+            364,
+            266,
+            7,
+            6
+          ],
+          "prompt_tokens": 93,
+          "removed_turns": 0,
+          "full_history_retained": true,
+          "user_turns": 4,
+          "max_new_tokens": 32,
+          "repetition": false,
+          "repeat_metrics": {
+            "char_4gram_repeat": 0.0,
+            "token_4gram_repeat": 0.0,
+            "same_sentence_reappears": false,
+            "first_adjacent_triple_repeat_char": null
+          },
+          "seconds": 0.04607827903237194
+        },
+        "model": "JMicro-10M 情報配置 C1"
+      },
+      "request": {
+        "messages": [
+          {
+            "role": "user",
+            "content": "集まる場所は東の広場、時刻は午後三時です。"
+          },
+          {
+            "role": "assistant",
+            "content": "時刻は午後三時です。"
+          },
+          {
+            "role": "user",
+            "content": "場所だけ西の広場へ変更します。"
+          },
+          {
+            "role": "assistant",
+            "content": "時刻は午後三時です。"
+          },
+          {
+            "role": "user",
+            "content": "現在の集合場所を教えて。"
+          },
+          {
+            "role": "assistant",
+            "content": "時刻は午後三時です。"
+          },
+          {
+            "role": "user",
+            "content": "時刻は午後四時半に訂正します。"
+          }
+        ],
+        "max_new_tokens": 32
+      }
+    },
+    {
+      "response": {
+        "response": {
+          "text": "時刻は午後三時です。",
+          "valid_utf8": true,
+          "raw_bytes_hex": "e69982e588bbe381afe58d88e5be8ce4b889e69982e381a7e38199e38082",
+          "decode_error": null,
+          "generated_ids": [
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7
+          ],
+          "generated_tokens": 10,
+          "stop_reason": "eot",
+          "role_leak": false,
+          "unexpected_special": false,
+          "empty_response": false,
+          "suppressed": true,
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "decoding": "greedy",
+          "prompt_ids": [
+            2,
+            5,
+            758,
+            1294,
+            831,
+            270,
+            891,
+            264,
+            807,
+            540,
+            265,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7,
+            6,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7,
+            5,
+            831,
+            480,
+            1577,
+            264,
+            807,
+            540,
+            562,
+            1344,
+            364,
+            266,
+            7,
+            6,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7,
+            5,
+            707,
+            264,
+            758,
+            437,
+            831,
+            267,
+            2127,
+            296,
+            266,
+            7,
+            6,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7,
+            5,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            1933,
+            428,
+            898,
+            269,
+            3923,
+            616,
+            364,
+            266,
+            7,
+            6,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7,
+            5,
+            831,
+            270,
+            968,
+            1077,
+            351,
+            500,
+            266,
+            7,
+            6
+          ],
+          "prompt_tokens": 113,
+          "removed_turns": 0,
+          "full_history_retained": true,
+          "user_turns": 5,
+          "max_new_tokens": 32,
+          "repetition": false,
+          "repeat_metrics": {
+            "char_4gram_repeat": 0.0,
+            "token_4gram_repeat": 0.0,
+            "same_sentence_reappears": false,
+            "first_adjacent_triple_repeat_char": null
+          },
+          "seconds": 0.049439021036960185
+        },
+        "model": "JMicro-10M 情報配置 C1"
+      },
+      "request": {
+        "messages": [
+          {
+            "role": "user",
+            "content": "集まる場所は東の広場、時刻は午後三時です。"
+          },
+          {
+            "role": "assistant",
+            "content": "時刻は午後三時です。"
+          },
+          {
+            "role": "user",
+            "content": "場所だけ西の広場へ変更します。"
+          },
+          {
+            "role": "assistant",
+            "content": "時刻は午後三時です。"
+          },
+          {
+            "role": "user",
+            "content": "現在の集合場所を教えて。"
+          },
+          {
+            "role": "assistant",
+            "content": "時刻は午後三時です。"
+          },
+          {
+            "role": "user",
+            "content": "時刻は午後四時半に訂正します。"
+          },
+          {
+            "role": "assistant",
+            "content": "時刻は午後三時です。"
+          },
+          {
+            "role": "user",
+            "content": "場所はもう変えません。"
+          }
+        ],
+        "max_new_tokens": 32
+      }
+    },
+    {
+      "response": {
+        "response": {
+          "text": "時刻は朝日新聞にて確認します。",
+          "valid_utf8": true,
+          "raw_bytes_hex": "e69982e588bbe381afe69c9de697a5e696b0e8819ee381abe381a6e7a2bae8aa8de38197e381bee38199e38082",
+          "decode_error": null,
+          "generated_ids": [
+            428,
+            2419,
+            270,
+            995,
+            308,
+            558,
+            1349,
+            269,
+            296,
+            844,
+            364,
+            266,
+            7
+          ],
+          "generated_tokens": 13,
+          "stop_reason": "eot",
+          "role_leak": false,
+          "unexpected_special": false,
+          "empty_response": false,
+          "suppressed": true,
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "decoding": "greedy",
+          "prompt_ids": [
+            2,
+            5,
+            758,
+            1294,
+            831,
+            270,
+            891,
+            264,
+            807,
+            540,
+            265,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7,
+            6,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7,
+            5,
+            831,
+            480,
+            1577,
+            264,
+            807,
+            540,
+            562,
+            1344,
+            364,
+            266,
+            7,
+            6,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7,
+            5,
+            707,
+            264,
+            758,
+            437,
+            831,
+            267,
+            2127,
+            296,
+            266,
+            7,
+            6,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7,
+            5,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            1933,
+            428,
+            898,
+            269,
+            3923,
+            616,
+            364,
+            266,
+            7,
+            6,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7,
+            5,
+            831,
+            270,
+            968,
+            1077,
+            351,
+            500,
+            266,
+            7,
+            6,
+            428,
+            2419,
+            270,
+            2460,
+            426,
+            928,
+            428,
+            275,
+            266,
+            7,
+            5,
+            721,
+            426,
+            264,
+            831,
+            272,
+            428,
+            2419,
+            267,
+            844,
+            751,
+            266,
+            1159,
+            348,
+            2127,
+            296,
+            266,
+            7,
+            6
+          ],
+          "prompt_tokens": 142,
+          "removed_turns": 0,
+          "full_history_retained": true,
+          "user_turns": 6,
+          "max_new_tokens": 32,
+          "repetition": false,
+          "repeat_metrics": {
+            "char_4gram_repeat": 0.0,
+            "token_4gram_repeat": 0.0,
+            "same_sentence_reappears": false,
+            "first_adjacent_triple_repeat_char": null
+          },
+          "seconds": 0.07262847595848143
+        },
+        "model": "JMicro-10M 情報配置 C1"
+      },
+      "request": {
+        "messages": [
+          {
+            "role": "user",
+            "content": "集まる場所は東の広場、時刻は午後三時です。"
+          },
+          {
+            "role": "assistant",
+            "content": "時刻は午後三時です。"
+          },
+          {
+            "role": "user",
+            "content": "場所だけ西の広場へ変更します。"
+          },
+          {
+            "role": "assistant",
+            "content": "時刻は午後三時です。"
+          },
+          {
+            "role": "user",
+            "content": "現在の集合場所を教えて。"
+          },
+          {
+            "role": "assistant",
+            "content": "時刻は午後三時です。"
+          },
+          {
+            "role": "user",
+            "content": "時刻は午後四時半に訂正します。"
+          },
+          {
+            "role": "assistant",
+            "content": "時刻は午後三時です。"
+          },
+          {
+            "role": "user",
+            "content": "場所はもう変えません。"
+          },
+          {
+            "role": "assistant",
+            "content": "時刻は午後三時です。"
+          },
+          {
+            "role": "user",
+            "content": "最後の場所と時刻を確認したい。両方教えて。"
+          }
+        ],
+        "max_new_tokens": 32
+      }
+    },
+    {
+      "response": {
+        "response": {
+          "text": "こんにちは。今日は少し疲れました。",
+          "valid_utf8": true,
+          "raw_bytes_hex": "e38193e38293e381abe381a1e381afe38082e4bb8ae697a5e381afe5b091e38197e796b2e3828ce381bee38197e3819fe38082",
+          "decode_error": null,
+          "generated_ids": [
+            1021,
+            266,
+            1214,
+            270,
+            926,
+            4046,
+            415,
+            391,
+            266,
+            7
+          ],
+          "generated_tokens": 10,
+          "stop_reason": "eot",
+          "role_leak": false,
+          "unexpected_special": false,
+          "empty_response": false,
+          "suppressed": true,
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "decoding": "greedy",
+          "prompt_ids": [
+            2,
+            5,
+            1021,
+            266,
+            1214,
+            270,
+            926,
+            4046,
+            415,
+            581,
+            266,
+            7,
+            6
+          ],
+          "prompt_tokens": 13,
+          "removed_turns": 0,
+          "full_history_retained": true,
+          "user_turns": 1,
+          "max_new_tokens": 32,
+          "repetition": false,
+          "repeat_metrics": {
+            "char_4gram_repeat": 0.0,
+            "token_4gram_repeat": 0.0,
+            "same_sentence_reappears": false,
+            "first_adjacent_triple_repeat_char": null
+          },
+          "seconds": 0.03955596697051078
+        },
+        "model": "JMicro-10M 情報配置 C1"
+      },
+      "request": {
+        "messages": [
+          {
+            "role": "user",
+            "content": "こんにちは。今日は少し疲れています。"
+          }
+        ],
+        "max_new_tokens": 32
+      }
+    },
+    {
+      "response": {
+        "response": {
+          "text": "わかります。片付けは大変ですね。",
+          "valid_utf8": true,
+          "raw_bytes_hex": "e3828fe3818be3828ae381bee38199e38082e78987e4bb98e38191e381afe5a4a7e5a489e381a7e38199e381ade38082",
+          "decode_error": null,
+          "generated_ids": [
+            2071,
+            266,
+            2599,
+            814,
+            270,
+            1350,
+            379,
+            266,
+            7
+          ],
+          "generated_tokens": 9,
+          "stop_reason": "eot",
+          "role_leak": false,
+          "unexpected_special": false,
+          "empty_response": false,
+          "suppressed": true,
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "decoding": "greedy",
+          "prompt_ids": [
+            2,
+            5,
+            1021,
+            266,
+            1214,
+            270,
+            926,
+            4046,
+            415,
+            581,
+            266,
+            7,
+            6,
+            1021,
+            266,
+            1214,
+            270,
+            926,
+            4046,
+            415,
+            391,
+            266,
+            7,
+            5,
+            2200,
+            264,
+            2599,
+            814,
+            267,
+            294,
+            4046,
+            415,
+            391,
+            266,
+            7,
+            6
+          ],
+          "prompt_tokens": 36,
+          "removed_turns": 0,
+          "full_history_retained": true,
+          "user_turns": 2,
+          "max_new_tokens": 32,
+          "repetition": false,
+          "repeat_metrics": {
+            "char_4gram_repeat": 0.0,
+            "token_4gram_repeat": 0.0,
+            "same_sentence_reappears": false,
+            "first_adjacent_triple_repeat_char": null
+          },
+          "seconds": 0.03990603401325643
+        },
+        "model": "JMicro-10M 情報配置 C1"
+      },
+      "request": {
+        "messages": [
+          {
+            "role": "user",
+            "content": "こんにちは。今日は少し疲れています。"
+          },
+          {
+            "role": "assistant",
+            "content": "こんにちは。今日は少し疲れました。"
+          },
+          {
+            "role": "user",
+            "content": "部屋の片付けをして疲れました。"
+          }
+        ],
+        "max_new_tokens": 32
+      }
+    },
+    {
+      "response": {
+        "response": {
+          "text": "はい。今日は寝るのが大変でした。",
+          "valid_utf8": true,
+          "raw_bytes_hex": "e381afe38184e38082e4bb8ae697a5e381afe5af9de3828be381aee3818ce5a4a7e5a489e381a7e38197e3819fe38082",
+          "decode_error": null,
+          "generated_ids": [
+            866,
+            266,
+            1214,
+            270,
+            1946,
+            283,
+            264,
+            268,
+            1350,
+            607,
+            266,
+            7
+          ],
+          "generated_tokens": 12,
+          "stop_reason": "eot",
+          "role_leak": false,
+          "unexpected_special": false,
+          "empty_response": false,
+          "suppressed": true,
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "decoding": "greedy",
+          "prompt_ids": [
+            2,
+            5,
+            1021,
+            266,
+            1214,
+            270,
+            926,
+            4046,
+            415,
+            581,
+            266,
+            7,
+            6,
+            1021,
+            266,
+            1214,
+            270,
+            926,
+            4046,
+            415,
+            391,
+            266,
+            7,
+            5,
+            2200,
+            264,
+            2599,
+            814,
+            267,
+            294,
+            4046,
+            415,
+            391,
+            266,
+            7,
+            6,
+            2071,
+            266,
+            2599,
+            814,
+            270,
+            1350,
+            379,
+            266,
+            7,
+            5,
+            926,
+            1526,
+            300,
+            1572,
+            613,
+            349,
+            269,
+            649,
+            266,
+            7,
+            6
+          ],
+          "prompt_tokens": 57,
+          "removed_turns": 0,
+          "full_history_retained": true,
+          "user_turns": 3,
+          "max_new_tokens": 32,
+          "repetition": false,
+          "repeat_metrics": {
+            "char_4gram_repeat": 0.0,
+            "token_4gram_repeat": 0.0,
+            "same_sentence_reappears": false,
+            "first_adjacent_triple_repeat_char": null
+          },
+          "seconds": 0.054041909985244274
+        },
+        "model": "JMicro-10M 情報配置 C1"
+      },
+      "request": {
+        "messages": [
+          {
+            "role": "user",
+            "content": "こんにちは。今日は少し疲れています。"
+          },
+          {
+            "role": "assistant",
+            "content": "こんにちは。今日は少し疲れました。"
+          },
+          {
+            "role": "user",
+            "content": "部屋の片付けをして疲れました。"
+          },
+          {
+            "role": "assistant",
+            "content": "わかります。片付けは大変ですね。"
+          },
+          {
+            "role": "user",
+            "content": "少し座って休むことにしました。"
+          }
+        ],
+        "max_new_tokens": 32
+      }
+    },
+    {
+      "response": {
+        "response": {
+          "text": "はい。今日は寝るのが大変でした。",
+          "valid_utf8": true,
+          "raw_bytes_hex": "e381afe38184e38082e4bb8ae697a5e381afe5af9de3828be381aee3818ce5a4a7e5a489e381a7e38197e3819fe38082",
+          "decode_error": null,
+          "generated_ids": [
+            866,
+            266,
+            1214,
+            270,
+            1946,
+            283,
+            264,
+            268,
+            1350,
+            607,
+            266,
+            7
+          ],
+          "generated_tokens": 12,
+          "stop_reason": "eot",
+          "role_leak": false,
+          "unexpected_special": false,
+          "empty_response": false,
+          "suppressed": true,
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "decoding": "greedy",
+          "prompt_ids": [
+            2,
+            5,
+            1021,
+            266,
+            1214,
+            270,
+            926,
+            4046,
+            415,
+            581,
+            266,
+            7,
+            6,
+            1021,
+            266,
+            1214,
+            270,
+            926,
+            4046,
+            415,
+            391,
+            266,
+            7,
+            5,
+            2200,
+            264,
+            2599,
+            814,
+            267,
+            294,
+            4046,
+            415,
+            391,
+            266,
+            7,
+            6,
+            2071,
+            266,
+            2599,
+            814,
+            270,
+            1350,
+            379,
+            266,
+            7,
+            5,
+            926,
+            1526,
+            300,
+            1572,
+            613,
+            349,
+            269,
+            649,
+            266,
+            7,
+            6,
+            866,
+            266,
+            1214,
+            270,
+            1946,
+            283,
+            264,
+            268,
+            1350,
+            607,
+            266,
+            7,
+            5,
+            539,
+            308,
+            264,
+            1880,
+            267,
+            1284,
+            480,
+            1232,
+            327,
+            471,
+            502,
+            275,
+            266,
+            4083,
+            696,
+            280,
+            346,
+            270,
+            323,
+            7,
+            6
+          ],
+          "prompt_tokens": 91,
+          "removed_turns": 0,
+          "full_history_retained": true,
+          "user_turns": 4,
+          "max_new_tokens": 32,
+          "repetition": false,
+          "repeat_metrics": {
+            "char_4gram_repeat": 0.0,
+            "token_4gram_repeat": 0.0,
+            "same_sentence_reappears": false,
+            "first_adjacent_triple_repeat_char": null
+          },
+          "seconds": 0.05304019001778215
+        },
+        "model": "JMicro-10M 情報配置 C1"
+      },
+      "request": {
+        "messages": [
+          {
+            "role": "user",
+            "content": "こんにちは。今日は少し疲れています。"
+          },
+          {
+            "role": "assistant",
+            "content": "こんにちは。今日は少し疲れました。"
+          },
+          {
+            "role": "user",
+            "content": "部屋の片付けをして疲れました。"
+          },
+          {
+            "role": "assistant",
+            "content": "わかります。片付けは大変ですね。"
+          },
+          {
+            "role": "user",
+            "content": "少し座って休むことにしました。"
+          },
+          {
+            "role": "assistant",
+            "content": "はい。今日は寝るのが大変でした。"
+          },
+          {
+            "role": "user",
+            "content": "明日の準備を一つだけ済ませたいです。簡単なものは？"
+          }
+        ],
+        "max_new_tokens": 32
+      }
+    },
+    {
+      "response": {
+        "response": {
+          "text": "はい。私は、寝るのが大変でした。",
+          "valid_utf8": true,
+          "raw_bytes_hex": "e381afe38184e38082e7a781e381afe38081e5af9de3828be381aee3818ce5a4a7e5a489e381a7e38197e3819fe38082",
+          "decode_error": null,
+          "generated_ids": [
+            866,
+            266,
+            846,
+            265,
+            1946,
+            283,
+            264,
+            268,
+            1350,
+            607,
+            266,
+            7
+          ],
+          "generated_tokens": 12,
+          "stop_reason": "eot",
+          "role_leak": false,
+          "unexpected_special": false,
+          "empty_response": false,
+          "suppressed": true,
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "decoding": "greedy",
+          "prompt_ids": [
+            2,
+            5,
+            1021,
+            266,
+            1214,
+            270,
+            926,
+            4046,
+            415,
+            581,
+            266,
+            7,
+            6,
+            1021,
+            266,
+            1214,
+            270,
+            926,
+            4046,
+            415,
+            391,
+            266,
+            7,
+            5,
+            2200,
+            264,
+            2599,
+            814,
+            267,
+            294,
+            4046,
+            415,
+            391,
+            266,
+            7,
+            6,
+            2071,
+            266,
+            2599,
+            814,
+            270,
+            1350,
+            379,
+            266,
+            7,
+            5,
+            926,
+            1526,
+            300,
+            1572,
+            613,
+            349,
+            269,
+            649,
+            266,
+            7,
+            6,
+            866,
+            266,
+            1214,
+            270,
+            1946,
+            283,
+            264,
+            268,
+            1350,
+            607,
+            266,
+            7,
+            5,
+            539,
+            308,
+            264,
+            1880,
+            267,
+            1284,
+            480,
+            1232,
+            327,
+            471,
+            502,
+            275,
+            266,
+            4083,
+            696,
+            280,
+            346,
+            270,
+            323,
+            7,
+            6,
+            866,
+            266,
+            1214,
+            270,
+            1946,
+            283,
+            264,
+            268,
+            1350,
+            607,
+            266,
+            7,
+            5,
+            1450,
+            411,
+            267,
+            241,
+            166,
+            140,
+            269,
+            1661,
+            296,
+            291,
+            673,
+            266,
+            7,
+            6
+          ],
+          "prompt_tokens": 118,
+          "removed_turns": 0,
+          "full_history_retained": true,
+          "user_turns": 5,
+          "max_new_tokens": 32,
+          "repetition": false,
+          "repeat_metrics": {
+            "char_4gram_repeat": 0.0,
+            "token_4gram_repeat": 0.0,
+            "same_sentence_reappears": false,
+            "first_adjacent_triple_repeat_char": null
+          },
+          "seconds": 0.059249009005725384
+        },
+        "model": "JMicro-10M 情報配置 C1"
+      },
+      "request": {
+        "messages": [
+          {
+            "role": "user",
+            "content": "こんにちは。今日は少し疲れています。"
+          },
+          {
+            "role": "assistant",
+            "content": "こんにちは。今日は少し疲れました。"
+          },
+          {
+            "role": "user",
+            "content": "部屋の片付けをして疲れました。"
+          },
+          {
+            "role": "assistant",
+            "content": "わかります。片付けは大変ですね。"
+          },
+          {
+            "role": "user",
+            "content": "少し座って休むことにしました。"
+          },
+          {
+            "role": "assistant",
+            "content": "はい。今日は寝るのが大変でした。"
+          },
+          {
+            "role": "user",
+            "content": "明日の準備を一つだけ済ませたいです。簡単なものは？"
+          },
+          {
+            "role": "assistant",
+            "content": "はい。今日は寝るのが大変でした。"
+          },
+          {
+            "role": "user",
+            "content": "持ち物を鞄にまとめておきます。"
+          }
+        ],
+        "max_new_tokens": 32
+      }
+    },
+    {
+      "response": {
+        "response": {
+          "text": "はい。今日は何をする予定ですか？",
+          "valid_utf8": true,
+          "raw_bytes_hex": "e381afe38184e38082e4bb8ae697a5e381afe4bd95e38292e38199e3828be4ba88e5ae9ae381a7e38199e3818befbc9f",
+          "decode_error": null,
+          "generated_ids": [
+            866,
+            266,
+            1214,
+            270,
+            488,
+            267,
+            279,
+            1197,
+            527,
+            323,
+            7
+          ],
+          "generated_tokens": 11,
+          "stop_reason": "eot",
+          "role_leak": false,
+          "unexpected_special": false,
+          "empty_response": false,
+          "suppressed": true,
+          "suppressed_ids": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "decoding": "greedy",
+          "prompt_ids": [
+            2,
+            5,
+            1021,
+            266,
+            1214,
+            270,
+            926,
+            4046,
+            415,
+            581,
+            266,
+            7,
+            6,
+            1021,
+            266,
+            1214,
+            270,
+            926,
+            4046,
+            415,
+            391,
+            266,
+            7,
+            5,
+            2200,
+            264,
+            2599,
+            814,
+            267,
+            294,
+            4046,
+            415,
+            391,
+            266,
+            7,
+            6,
+            2071,
+            266,
+            2599,
+            814,
+            270,
+            1350,
+            379,
+            266,
+            7,
+            5,
+            926,
+            1526,
+            300,
+            1572,
+            613,
+            349,
+            269,
+            649,
+            266,
+            7,
+            6,
+            866,
+            266,
+            1214,
+            270,
+            1946,
+            283,
+            264,
+            268,
+            1350,
+            607,
+            266,
+            7,
+            5,
+            539,
+            308,
+            264,
+            1880,
+            267,
+            1284,
+            480,
+            1232,
+            327,
+            471,
+            502,
+            275,
+            266,
+            4083,
+            696,
+            280,
+            346,
+            270,
+            323,
+            7,
+            6,
+            866,
+            266,
+            1214,
+            270,
+            1946,
+            283,
+            264,
+            268,
+            1350,
+            607,
+            266,
+            7,
+            5,
+            1450,
+            411,
+            267,
+            241,
+            166,
+            140,
+            269,
+            1661,
+            296,
+            291,
+            673,
+            266,
+            7,
+            6,
+            866,
+            266,
+            846,
+            265,
+            1946,
+            283,
+            264,
+            268,
+            1350,
+            607,
+            266,
+            7,
+            5,
+            1329,
+            268,
+            272,
+            345,
+            266,
+            1214,
+            270,
+            893,
+            271,
+            1429,
+            336,
+            290,
+            269,
+            364,
+            266,
+            7,
+            6
+          ],
+          "prompt_tokens": 148,
+          "removed_turns": 0,
+          "full_history_retained": true,
+          "user_turns": 6,
+          "max_new_tokens": 32,
+          "repetition": false,
+          "repeat_metrics": {
+            "char_4gram_repeat": 0.0,
+            "token_4gram_repeat": 0.0,
+            "same_sentence_reappears": false,
+            "first_adjacent_triple_repeat_char": null
+          },
+          "seconds": 0.055842709029093385
+        },
+        "model": "JMicro-10M 情報配置 C1"
+      },
+      "request": {
+        "messages": [
+          {
+            "role": "user",
+            "content": "こんにちは。今日は少し疲れています。"
+          },
+          {
+            "role": "assistant",
+            "content": "こんにちは。今日は少し疲れました。"
+          },
+          {
+            "role": "user",
+            "content": "部屋の片付けをして疲れました。"
+          },
+          {
+            "role": "assistant",
+            "content": "わかります。片付けは大変ですね。"
+          },
+          {
+            "role": "user",
+            "content": "少し座って休むことにしました。"
+          },
+          {
+            "role": "assistant",
+            "content": "はい。今日は寝るのが大変でした。"
+          },
+          {
+            "role": "user",
+            "content": "明日の準備を一つだけ済ませたいです。簡単なものは？"
+          },
+          {
+            "role": "assistant",
+            "content": "はい。今日は寝るのが大変でした。"
+          },
+          {
+            "role": "user",
+            "content": "持ち物を鞄にまとめておきます。"
+          },
+          {
+            "role": "assistant",
+            "content": "はい。私は、寝るのが大変でした。"
+          },
+          {
+            "role": "user",
+            "content": "ありがとう。今日はここで終わりにします。"
+          }
+        ],
+        "max_new_tokens": 32
+      }
+    }
+  ],
+  "actual_history_reset_and_DOM_API_verified": true,
+  "ended_at": "2026-10-17T17:44:01.5726230Z"
+}
