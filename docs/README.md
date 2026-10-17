@@ -1,5 +1,7 @@
 # 文書一覧
 
+2026-10-18主SFT準備: [事前方針160](160_chat_input_structure_sft_comparison.md) / [実行状況161](161_chat_input_structure_execution_status.md)。同じ正答・教師列の入力配置比較、両腕CPU全1M一致、新DEV・全3466応答契約と12CPU workflow checksを準備済み。GPU学習・最終判定は未完了。
+
 2026-10-18実行中: [159：対照モデルと履歴条件の診断結果](159_chat_recovery_diagnosis_results.md)。全800新規応答と尤度640候補を確認。次は根拠ある入力構造の変更を一つ選び、新対照SFTと未知入力・実会話の判定まで実行する。新goalはACTIVE。
 
 2026-10-18追加: [158：失敗原因の調査と次の改善計画](158_chat_quality_investigation_and_next_plan.md)。著作TRAIN2,048件の全件監査、原因として未分離の要因、対照100case→履歴条件診断→根拠に基づく新SFT→全品質判定の段階計画。実行量・時間枠・終了条件を明記した。追加生成・学習0。
@@ -162,6 +164,8 @@
 | [157_chat_quality_100_results.md](157_chat_quality_100_results.md) | 現行Chatの100ケース・全200応答の品質、正答、継続会話の失敗 |
 | [158_chat_quality_investigation_and_next_plan.md](158_chat_quality_investigation_and_next_plan.md) | 著作TRAIN全件調査と、原因の切り分けから次の対照SFTへ進む計画 |
 | [159_chat_recovery_diagnosis_results.md](159_chat_recovery_diagnosis_results.md) | 対照100ケース・履歴要因・Base通常文・samplingの全800応答診断 |
+| [160_chat_input_structure_sft_comparison.md](160_chat_input_structure_sft_comparison.md) | 正答・配合・教師量を保った入力配置変更の対照SFT事前方針 |
+| [161_chat_input_structure_execution_status.md](161_chat_input_structure_execution_status.md) | 新対照SFTの教材QA・全消費一致・実行契約と進捗 |
 
 <!-- Historical incoming heading aliases. Original text is preserved in baseline snapshots. -->
 <a id="今回の文書と計画"></a>
