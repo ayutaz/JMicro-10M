@@ -8,14 +8,14 @@ from answer_learning_common import ROOT,RUN as PARENT_RUN,save,ref,bound,read_js
 from run_answer_curriculum_resource_v2 import CONFIG,RUN,contract
 from phase6_performance import alive,identity,finite_state
 from jmicro.phase5 import equal_state
-from review_answer_curriculum import wire
+from review_answer_curriculum import wire,historical_index
 import review_chat_natural as reviewer
 from jmicro.chat_review import content_review
 
 
 def main():
     target=RUN/'completion.json';assert not target.exists(),'Keep completed evidence immutable'
-    c,tok,_=contract.preflight(load_records=False);wire()
+    c,tok,_=contract.preflight(load_records=False);wire();historical=historical_index()
     final=read_json(RUN/'final_analysis.json');assert final['config']==ref(CONFIG) and final['judgments']==2628
     job=read_json(RUN/'pipeline.json')
     assert job['status']=='complete_raw_pending_all_content_and_UI' and not alive(job)
@@ -59,6 +59,20 @@ def main():
             notes=read_json(path.with_name('notes.json'));review=content_review(view,ref(path)['sha256'],notes,items)
             assert json.loads(json.dumps(review))==read_json(path.with_name('review.json'))
             assert len(notes['judgments'])==219
+            ratings={note['key']:note for note in notes['judgments']}
+            for note in notes['judgments']:
+                if 'reuse' not in note:continue
+                reuse=note['reuse'];fp=reviewer.fingerprint(items[note['key']]);assert fp==reuse['fingerprint']
+                if 'same_packet_key' in reuse:
+                    prior=ratings[reuse['same_packet_key']]
+                    assert reviewer.fingerprint(items[prior['key']])==fp
+                else:
+                    source=read_json(bound(reuse['source_notes']))
+                    prior=next(n for n in source['judgments'] if n['key']==reuse['source_notes']['key'])
+                    old_root=ROOT/'reports/phase7/chat-natural-sft-20261017/evaluation'
+                    if Path(reuse['source_notes']['path']).is_relative_to(old_root):
+                        assert fp in historical and all(note[k]==historical[fp][k] for k in ('grammar','relevance','context'))
+                assert all(note[k]==prior[k] for k in ('grammar','relevance','context','rationale'))
             packet=read_json(path.with_name('packet.json'));assert packet['evaluation_sha256']==ref(path)['sha256']
             manual+=len(packet['pending']);reused+=len(packet['reused'])
             for name in ('raw','notes','review'):bound(final['summaries'][suite][arm][name])

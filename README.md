@@ -1,5 +1,7 @@
 # JMicro-10M
 
+2026-10-17 12:12 UTC: 新しい対照・候補のSFTと保存状態照合、各10応答の実チャット確認を完了しました。[候補Chat7864](http://127.0.0.1:7864) / [対照7865](http://127.0.0.1:7865)。全2,628応答の内容比較は進行中で、正式品質の改善・採用は未判定です。[実行状況155](docs/155_answer_curriculum_execution_status.md)。以下は以前の経過です。
+
 2026-10-17 11:32 UTC: [回答教材SFT155](docs/155_answer_curriculum_execution_status.md)は40技術更新と全state保存再開に合格し、新対照モデルの本学習を開始しました。旧時間枠の不足は[154](docs/154_curriculum_resource_replan.md)に失敗と明示訂正を保存しています。新しい5段階goalはactiveで、候補学習・全2,628内容比較・新UI会話は未完了。以下の「準備中」は以前の経過です。
 
 2026-10-17現在: 新しい[回答学習計画151](docs/151_answer_learning_execution_plan.md)は段階1〜3を完了、改善教材のSFTと未知入力・実会話確認（4/5）は実行準備中です。[診断結果152](docs/152_answer_learning_diagnosis_results.md) / [次比較153](docs/153_answer_curriculum_comparison.md)。32件のTRAIN応答は再現できましたが、未知入力の改善や正式採用はまだ示していません。以下の旧計画149・最初のSFTの記述は各時点の履歴です。
