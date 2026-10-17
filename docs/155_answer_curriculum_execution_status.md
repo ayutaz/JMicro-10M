@@ -1,0 +1,40 @@
+# 回答教材SFTの実行状況
+
+2026-10-17 11:32 UTC観測。新しい計画151の段階1〜3は[152](152_answer_learning_diagnosis_results.md)の通り完了し、段階4の主SFTを実行中。段階5の全内容・実UI比較は未実施。新goalはactive。
+
+## 教材と比較条件
+
+元10B Base/fresh Adam、native10,001,152、seed42、共通LR1e-4、各1M教師、完全教師2〜32、生成32。対照は前回C1の固定TRAINをそのまま用いた新学習で、過去のC1重みからの継続ではない。候補は同じ教材と、直接回答・会話内の根拠を使う補助教材を混ぜる。
+
+Aya upstream TRAINだけを137,195,800bytes、SHA `51baa85043b569ba117f41516b32d1b0e4e2647fb203a08933f98a556fb1fb06` で取得。日本語6,259件、完全64以内4,936件・49,162教師。120件を全内容点検して59件を採用候補とした。長い専門的雑学・語彙説明の前置きだけ・本文外人物の持ち込み等があり、全量は使わない。旧保護splitはmetadataだけで照合し、Aya upstream TEST・demographics・user_id列は読んでいない。Arrowは日本語を含むrow group内の他言語TRAIN本文列もdecodeした（全202,362行のrow group）。物理的に日本語本文だけを読んだとは扱わない。
+
+候補の補助教材は、全32言い回しを直接点検し全2,048行の答えを入力から再計算した著作TRAIN、原文を個別確認したDolly31件・Aya50件。合計2,129種類。追加の反復alias69組は新しい独立例と数えない。合成は8課題群と有限テンプレートの教材であり、未知入力の意味評価をこれで代替しない。
+
+| CPU全消費 | 新対照C0 | 新候補C1 |
+|---|---:|---:|
+| 予定更新 | 1,921 | 1,929 |
+| 実教師量 | 1,000,017 | 1,000,000 |
+| 物理microbatch | 3,048 | 3,901 |
+| RPC教師比率 | 98.4440% | 48.8062% |
+| Magpie教師比率 | 1.5560% | 0.8285% |
+| 根拠付き著作対話 | 0 | 46.3739% |
+| 確認済みAya | 0 | 1.9082% |
+| 確認済みDolly | 0 | 2.0832% |
+
+候補の補助教材合計50.3653%。1passのサンプル比を消費比と読み替えず、全教師量・mask・完結・履歴保持・source比・反復回数をCPUでreplayした。最終TRAINを確定した後で新DEV80を著作し、既知5suite全てを残した。最終は6suite×219応答×2＝2,628応答、各保存点のNLLは旧208＋新DEV80＋補助TRAIN32＝320対象。
+
+## 時間計画の失敗と明示訂正
+
+最初の主SFT技術wrapper `35c14f6f` はC0技術16更新後の予測4,882.053283秒が自身の3,600秒枠を超え、科学0で停止した。旧jobはfailedのまま閉鎖し、原config/source/予測/5.505592秒を保全。原timing個別履歴はassert前に保存していなかったため欠けている。
+
+[154の事前訂正](154_curriculum_resource_replan.md)で、累積ローカルGPU無上限という既存ユーザー指示に基づいて時間計画を各7,200秒へ改めた。新しいresource-v2の別config/runtimeを作り、学習数値・データ・評価・品質閾値はすべて同一。旧3,600秒枠が成立したとは宣言しない。旧予測から候補の3,901microbatchへ外挿した約6,164.37秒を含む有限割当である。新しい技術履歴は全step返却直後に保存する。
+
+## 実機確認と現在の実process
+
+config `e9172f65215fe44f2a94f5c0e9f1429175a27917b3d32b3e09c848cb318e9e46`。40技術更新（両腕16計時＋連続2対1保存1）、checkpoint全field・全非時間履歴の厳密一致に合格。元native最大32×1024逆伝播の同source/runtime証拠を再利用した。新probe27.021988秒＋持越5.505592＝技術32.527580秒。新しい実測予測はC0=4,071.996353秒、C1=2,312.263432秒、全評価2,909.241769秒だが、旧失敗予測は消さない。
+
+実WSL PID488265 / boot4052bfc5-3850-44e4-9123-d34a9e19f36e / start87977686、Windows worker19704 / 11:30:11.6304495Z。11:31:03Z時点で実process生存、全frozen source一致、実kernel FLOCKのholderが同PID、NVMLに同PIDを確認した。C0本学習に入り、後続11:32頃のmetricsは102更新・53,152教師。途中値であり品質判定ではない。Base GPU UIはこの学習中だけ停止、終端で同launcherが復帰させる。既存CPU UI群は保持している。
+
+次は**同じprocess**のC0→C1→全raw生成を観測し、完了した腕の全state/全履歴をCPU予定と照合、全2,628応答を理由付きで判定する。新CPU UIは候補7864・対照7865を使う実装を準備したが、まだ起動していない。有望な改善の場合だけseed43を別契約で再現する。新TEST・正式採用は今回未実施で、品質screenは維持する。
+
+[実機gate](../reports/phase7/chat-answer-learning-20261017/curriculum-main-resource-v2/native_gate.json) / [時間訂正の原記録](../reports/phase7/chat-answer-learning-20261017/curriculum_resource_replan.json) / [全CPU消費C0](../reports/phase7/chat-answer-learning-20261017/curriculum_C0_CPU_replay.json) / [全CPU消費C1](../reports/phase7/chat-answer-learning-20261017/curriculum_C1_CPU_replay.json)。全重み・Adam・RNG・samplerはWSL、portable証拠はWindows Gitへ保存する。

@@ -1,5 +1,7 @@
 # 現在の状態
 
+2026-10-17 11:32 UTC更新: [回答教材SFT155](155_answer_curriculum_execution_status.md)を実行中。resource-v2 config e9172f65、実WSL488265/start87977686/同boot・Windows19704。全40技術更新と全state保存再開に合格し、対照C0本学習は102更新53,152教師を観測。次は同processのC0→C1→全2,628応答生成を観測し、全内容比較・新UI会話へ進む。時間計画は[154](154_curriculum_resource_replan.md)で元自己設定3600から各7200秒へ本学習前に明示訂正し、旧failed条件・全費用・欠けた原timingも保全。新goalはactive、4/5未完了。以下の「準備中/未起動」は以前の経過。
+
 2026-10-17新goal: [計画151](151_answer_learning_execution_plan.md)の5までを実行中。1〜3の参考比較・教材監査・少数学習診断は完了し、4/5は未完了。[診断152](152_answer_learning_diagnosis_results.md)ではTRAIN32件の教師本文を全件再現したが、未知入力の改善は未確認。Dolly/Ayaを各120件内容点検し、完全32教師以内の確認済み31/50件と、根拠付き著作TRAIN2,048件を準備した。[比較153](153_answer_curriculum_comparison.md)の同元Base・新対照/候補各1M教師へ向け、明示alias反復の配合と全消費をCPUで計測中。今回の主SFT・新DEV80・全2,628応答・新UI会話は未実施。以下の旧計画149の完了は新goalの完了ではない。
 
 2026-10-17確定: [計画149](149_chat_sft_next_plan.md)の教材準備→条件固定→SFT→全比較→実会話の5段階を完了した。[結果150](150_chat_natural_sft_results.md) / [全要件の完了監査](../reports/phase7/chat-natural-sft-20261017/completion.json)。両腕100万教師・各1,921更新、全2,190内容判定、7点NLL、途中40応答、UI各5会話10応答の証拠を保存した。

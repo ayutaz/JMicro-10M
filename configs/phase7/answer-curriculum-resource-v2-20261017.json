@@ -1,0 +1,253 @@
+{
+  "format": "answer-curriculum-v1",
+  "created_at": "2026-10-17T11:29:57.527855Z",
+  "plan": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/docs/153_answer_curriculum_comparison.md",
+    "sha256": "9f8c349cc74f138802b3eac2fa23c57fda4a501869674e51ee110622d1746421"
+  },
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "tokenizer": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/phase2/4096/tokenizer.model",
+    "sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+  },
+  "parameter_count": 10001152,
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "source_sha256": {
+    "scripts/answer_curriculum_contract.py": "ab672698749eaec491e1dc5ac07a2620fef61cfe8ddc3fcd4e68a347e27888d5",
+    "scripts/run_answer_curriculum.py": "6de9e5c96db228dfe10f8363fa87eabf4d8dc8dda65fce1703b3a8979f338fad",
+    "scripts/run_answer_curriculum.ps1": "55688382364d8ab3232194f9439d81e6179a68ab11e4722586ef4dec38e197c8",
+    "scripts/inspect_answer_curriculum.py": "87245c99e8b56a750400cbb8279551199770b0f8cbcbcb99ba8490c8ca458157",
+    "scripts/run_chat_natural.py": "7e207cc8a4b736e7b700382e1345f60dbfbff4f2ffb124d79aacbd9a231a34dc",
+    "scripts/evaluate_chat_natural.py": "aece4f15dc0149f1c001110d252457984f0bf71771ec42c25c019d66d0a14057",
+    "scripts/chat_natural_contract.py": "78837fb77e57afa59e86039522b4ecfb083250a8fec96d24eb6f2bd5ee2ae401",
+    "scripts/phase6_performance.py": "748fee1f539fb7571c001a4ea1857f0361517889cded51bfc452f03ea9a7d36f",
+    "scripts/answer_learning_common.py": "b9ede5258ce0ec2261850b6f6c39284c453f68e1a10745c064cefbbe2de1e570",
+    "scripts/prepare_answer_curriculum.py": "2158e234c6616f872550c2274b3b5cd4c708013b41f62f33db43b5c828453bcd",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "src/jmicro/assistant_sampler.py": "a774998a14f4adfdc6598cf23ae82630e3b22220641c3f83fa29a38f79d9022c",
+    "src/jmicro/teacher_chat_training.py": "2f3aeebaeea27005192490810837e300326abc9fa046db31981bcbaac4bed8f6",
+    "src/jmicro/chat_evaluation.py": "81282674705292a82e7689588d8b3061a5eb773cd04f5a286ddf7950e9af96fa",
+    "scripts/start_webui.ps1": "c1c2e491a9c809d31d936ae5a22f84da6718441c6a0d8ca58d73749a2804596a",
+    "scripts/stop_webui.ps1": "323fb3266032ab71a991ece07474ee7b59e991064f6708eb8de5582f6c989bba",
+    "scripts/run_answer_curriculum_resource_v2.py": "6baec82e943b4a19e8a33fb187e0adffd0380eb473aa814220d4b317d8cda421",
+    "scripts/inspect_answer_curriculum_resource_v2.py": "88f88154aee004299b6008d9a4b7e5d857fe93e70186502089cb3042c7582cbc",
+    "scripts/run_answer_curriculum_resource_v2.ps1": "cb56b01924199000dee1b46e62d5cd0c64e9a6e3aacf6fc7892336a964edafaa"
+  },
+  "spec": {
+    "seed": 42,
+    "context": 1024,
+    "batch": 32,
+    "accumulation": 1,
+    "lr": 0.0001,
+    "weight_decay": 0.01,
+    "warmup": 0,
+    "schedule_updates": 100000,
+    "dtype": "bf16",
+    "compile": false,
+    "backend": "math",
+    "scheduler": "wsd",
+    "sampler": "document",
+    "training_fast_path": false,
+    "update_teachers": 512
+  },
+  "teacher_budget": 1000000,
+  "limits_seconds": {
+    "probe": 600.0,
+    "train_C0": 7200.0,
+    "train_C1": 7200.0,
+    "evaluation": 10800.0
+  },
+  "maximum_teacher_length": 32,
+  "final_overshoot_maximum": 31,
+  "max_new_tokens": 32,
+  "quality_gates": {
+    "content_minimum": 56,
+    "own_context_minimum": 15,
+    "primary_stop_minimum": 76,
+    "own_stop_minimum": 57,
+    "primary_empty_maximum": 4,
+    "own_empty_maximum": 2,
+    "role_leak_maximum": 0,
+    "raw_unicode_failure_maximum": 0,
+    "history_trim_maximum": 0,
+    "candidate_repetition_must_not_increase": true
+  },
+  "TRAIN_manifest": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-answer-learning-20261017/curriculum/manifest.json",
+    "sha256": "cb19592ca32a92849c038d16c128ba399d6c52d7145fe41b62cdf126a3cc1567"
+  },
+  "DEV_preparation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/curriculum_DEV_preparation.json",
+    "sha256": "2a0f5cdc198db5e9c27a159bb638f3f23e34ac309719e2d3af418b0a467f6e43"
+  },
+  "NLL": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-answer-learning-20261017/curriculum/nll_fixed.jsonl",
+    "sha256": "2825037fc285d4fb224336b59e5454bf8e5ea6f00660a08d71f65f5041090636"
+  },
+  "NLL_targets": 320,
+  "suites": {
+    "new": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-answer-learning-20261017/curriculum/dev_suites/new.jsonl",
+      "sha256": "f44d2a23fcd7ae547c6dd42efd2c76769abd900305454e8821b1ff9233248e6f"
+    },
+    "previous_new": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-answer-learning-20261017/curriculum/dev_suites/previous_new.jsonl",
+      "sha256": "98419deb58a5b8e5f069636a9b56f92dc2a6eda81c90f9c3f20cbc587d1ff27f"
+    },
+    "lr": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-answer-learning-20261017/curriculum/dev_suites/lr.jsonl",
+      "sha256": "40a6170e0a44bf8e4416d1ea77d486ac1e96ed17bb9f65e3f9893d7c897eee76"
+    },
+    "semantic": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-answer-learning-20261017/curriculum/dev_suites/semantic.jsonl",
+      "sha256": "f0b603bbda10c89da7253250f80026c5f5e6132de9881b12044d1d881ab106aa"
+    },
+    "generalization": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-answer-learning-20261017/curriculum/dev_suites/generalization.jsonl",
+      "sha256": "a9d4f1e54c747329afc6f12cf1466b80c64bfc60ae979b87369a9016776ec207"
+    },
+    "original": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-answer-learning-20261017/curriculum/dev_suites/original.jsonl",
+      "sha256": "211c99f568936dcc96cef4621f00c4621a592a10aed543f53b19e4094dea9180"
+    }
+  },
+  "arms": {
+    "C0": {
+      "records": {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-answer-learning-20261017/curriculum/C0_TRAIN.jsonl",
+        "sha256": "761b7cf55fcd1b4380c2c69ceba2d36a8ad1ebc3b422c7c32bb4efdb06b1691c"
+      },
+      "dry_run": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/curriculum_C0_CPU_replay.json",
+        "sha256": "c9d6b42c56c021d45d1272794c4b584149faf1d61baf4965134e3f072be9bfdc"
+      },
+      "sampler_binding": "7ab75eec4b9a588df2820fa7bb44e8ece5295b6f55ebdb0e9d2a43b2bf868371",
+      "prepared_targets": 63811,
+      "unique_semantic_targets": 63811,
+      "teachers_per_pass": 1004240,
+      "updates": 1921,
+      "actual_teachers": 1000017,
+      "physical_microbatches": 3048,
+      "actual_consumed_source_fractions": {
+        "RPC": 0.9844402645155033,
+        "magpie": 0.015559735484496764
+      },
+      "actual_supplement_fraction": 0.0,
+      "maximum_semantic_target_exposures": 1
+    },
+    "C1": {
+      "records": {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-answer-learning-20261017/curriculum/C1_TRAIN.jsonl",
+        "sha256": "7042597195374b4fb4d40f21ed8ccc25cb7cdcd1473cc136f5132d0e3d697c95"
+      },
+      "dry_run": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/curriculum_C1_CPU_replay.json",
+        "sha256": "ab47d3f1d0844aa8aec6c91c5b66468edaffd6367b985c7a6aa438aa4298ce6a"
+      },
+      "sampler_binding": "e21f1d46df1888b22c5dbab47797414d82ad0778a1ac41917efec05c6e307c73",
+      "prepared_targets": 210712,
+      "unique_semantic_targets": 65940,
+      "teachers_per_pass": 2010605,
+      "updates": 1929,
+      "actual_teachers": 1000000,
+      "physical_microbatches": 3901,
+      "actual_consumed_source_fractions": {
+        "RPC": 0.488062,
+        "Authored_grounded_TRAIN": 0.463739,
+        "Aya_Japanese_TRAIN": 0.019082,
+        "Dolly_llmjp": 0.020832,
+        "magpie": 0.008285
+      },
+      "actual_supplement_fraction": 0.503653,
+      "maximum_semantic_target_exposures": 47
+    }
+  },
+  "baseline_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase7/chat-natural-sft-20261017.json",
+    "sha256": "ec0b61b2961ef9294cb840cb86ad6f5ba291ea1c4a0213d0404e9fa87cdb464d"
+  },
+  "reused_maximum_shape": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-natural-sft-20261017/native_gate.json",
+    "sha256": "fd74d8325f1fd8834f79870d50e4ac8ae18aa68deb76b8d20cc04378c42cdaee"
+  },
+  "supplement": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-answer-learning-20261017/curriculum/supplement_unique_TRAIN.json",
+    "sha256": "3094de7970ef324a429ad402f6b18ec12581234fc2a112dd82d9493d6d22f21c"
+  },
+  "preparation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/curriculum_TRAIN_preparation.json",
+    "sha256": "9cfea8a46ec7bd6230709cfdc66c94489c15a961fb2aca84dd81fee977688a3e"
+  },
+  "probe": {
+    "timing_updates_per_arm": 16,
+    "resume_updates_per_branch": 2,
+    "branches": 2,
+    "all_numeric_fields_compared": true
+  },
+  "comparison": {
+    "primary_point": 1000000,
+    "savepoints": [
+      250000,
+      500000,
+      1000000
+    ],
+    "final_suites": 12,
+    "final_content_judgments": 2628,
+    "intermediate_diagnostic_responses": 40,
+    "paired_family_CI_bootstrap_seed": 42,
+    "bootstrap_replicates": 2000,
+    "improved_new_content_CI_lower_gt": 0,
+    "matched": "New same-Base1e-4 control versus new50percent-answer-curriculum1e-4 candidate",
+    "historical3e_5_not_matched": true,
+    "alias_not_new_semantic_diversity": true,
+    "source_objective_individual_causal_effect_not_identified": true
+  },
+  "formal_Base_retention_pending": true,
+  "protected_TEST_used": false,
+  "new_TEST_created": false,
+  "Chat_adopted": false,
+  "Base_adopted": false,
+  "resource_replan": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/docs/154_curriculum_resource_replan.md",
+    "sha256": "e388d6edf51d5e12193bf0dad081b7b9bfd6ed17af69195b8db84d472b3f98a0"
+  },
+  "previous_closed_config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase7/answer-curriculum-20261017.json",
+    "sha256": "35c14f6f3e79f92c3e84971f6562b60c7b1c423f6d0936d2630353cd8fc0adeb"
+  },
+  "previous_failed_job": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/curriculum-main/pipeline.json",
+    "sha256": "1cf3133bd9074d6d73e75bee4cd9776cbc62dbe27a4e49d140c3a06a493dc88d"
+  },
+  "previous_GPU_ledger": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/curriculum-main/GPU_ledger.json",
+    "sha256": "f5e69433d7580d2ee3ea63b4087805a94895e934dce2334bc4ae505198e8b514"
+  },
+  "inherited_probe_seconds": 5.505592479952611,
+  "previous_C0_forecast_seconds": 4882.053283151938,
+  "previous_3600_condition_stays_failed": true,
+  "resource_rationale": "Existing user unlimited cumulative local GPU authorization; correct self-imposed time planning before science, keep finite7200 per arm",
+  "preserved_numerical_and_quality_fields": [
+    "spec",
+    "teacher_budget",
+    "parent",
+    "tokenizer",
+    "arms",
+    "TRAIN_manifest",
+    "DEV_preparation",
+    "NLL",
+    "suites",
+    "quality_gates"
+  ],
+  "all_technical_step_history_written_before_forecast": true
+}
