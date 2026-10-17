@@ -81,6 +81,7 @@ def main():
             nll[arm][point]=dict(source=ref(path),summaries=row['summaries'])
     result=dict(status='all2190_content_reviews_and_matched_comparison_complete',created_at=now(),config=ref(CONFIG),
         judgments=raw_judgments,summaries=summaries,comparisons=comparisons,regressions=regressions,NLL=nll,
+        source_diversity_audit=ref(RUN/'TRAIN_diversity_audit.json'),reader_scope_disclosure=ref(RUN/'reader_scope_disclosure.json'),
         new_content_CI_positive=ci_positive,no_count_regression_across_five_suites=no_known_regression,
         candidate_improvement_demonstrated=ci_positive and no_known_regression,
         candidate_all_absolute_DEV_screens_pass=absolute,formal_quality_gates=GATES,

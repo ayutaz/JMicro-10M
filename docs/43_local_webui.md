@@ -4,6 +4,8 @@
 
 ## Chatを試す
 
+新しい比較モデルも試用可能になった。候補C1は[http://127.0.0.1:7862](http://127.0.0.1:7862)、対照C0は[http://127.0.0.1:7863](http://127.0.0.1:7863)。両方とも元10B親から各100万Assistant教師でSFTした10Mモデルで、CPU FP32・既定32token。画面で16/32/64を選べる。各10応答の実確認は済んだが、復唱・訂正失敗は残り、全体比較と採用判断は未完了。[C1実応答](../reports/phase7/chat-natural-sft-20261017/practical/C1/raw.json) / [C1個別notes](../reports/phase7/chat-natural-sft-20261017/practical/C1/notes.json)。再起動は `./scripts/start_natural_chat_demo.ps1 -Arm C1` または `-Arm C0`。学習を起動するコマンドではない。
+
 **[http://127.0.0.1:7861](http://127.0.0.1:7861)** を開く。元10B親からRealPersonaChatで3周SFTしたモデル（checkpoint-00003785、1,899,555 Assistant教師、10,001,152 parameters）を使う。「新しい会話」で履歴を消し、Enterで送信・Shift+Enterで改行する。文脈に収まらない場合は古い発言を自動削除せず、新しい会話を案内する。
 
 CPU FP32/greedy、既定32生成token、画面で16/32/64を選べる。EOT7/EOS3または指定上限で停止し、上限による打切りを自然な完結とは数えない。短くする設定は反映済みだが、長文で内容が崩れる原因や学習済み能力の改善は未検証。元のSFT評価はCUDA BF16/64tokenだったため、今回のCPU返答を以前のDEV件数へ足さない。サーバーは会話本文を保存せず、履歴はブラウザーのメモリに保持する。

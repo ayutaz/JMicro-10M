@@ -1,5 +1,7 @@
 # JMicro-10M development and training
 
+最新SFT状態2026-10-17: 両腕が1921更新で完了（C0=1,000,009教師/C1=1,000,017教師）、全119 Adam state/モデル/RNG/sampler/全履歴とCPU全消費一致をaudit済み。C0 step wall820.822968秒、C1=833.486154秒。新CPU UI C1 http://127.0.0.1:7862 / C0 http://127.0.0.1:7863 を実起動し各5会話10応答をraw+個別notesへ保存、既定32・16/32/64選択。既存first SFT7861は保持。SFT学習完了と品質採用は別で、全5段階goalはACTIVE/未達、残りはステップ4の全2,190内容比較・最終判断/記録。GPU pipelineは同WSL468008/start86194546/boot4052bfc5-3850-44e4-9123-d34a9e19f36e・Windows31644で評価中、重複起動せず観測。07:08:57ZでC0全5suiteのraw完了、C1/new生成中。全10suiteのうちC0/newだけ219全notes完了（139手書き＋同一actual history/IDs/bytesの80再利用、内容5/80・own文脈0/24）。残り9suiteをreview_chat_natural.py packet/finishで逐次全件判定、最後にanalyze_chat_natural.py。C1は実会話でソラの名前を返せた一方、訂正反復など失敗があり、改善・正式採用は未確定。25万/50万の全40応答も個別notes保存済み。TRAIN_diversity_auditはC0話者221/C1=232・top5教師比6.25/5.10%・LSHで得たC1候補の近似pair0（全近似不在の証明ではない）。読取scopeはreader_scope_disclosure.jsonを参照: 評価経路は混在fileを開かないが、手動で既知DEV先頭1行の確認はした。元Base UIはGPU評価終了時launcherが復帰し、実identity/HTTP/FLOCKの再確認はまだ必要。全重みはWSL保全、各小記録とsourceはWindows Gitへcommit。新GPU学習/旧条件再開/新TESTを追加しない。
+
 更新: 2026-10-17 JST。ユーザーが「5まで進めてください」をactive goalとして設定し、直前SFT計画149の教材準備→条件固定→同10M SFT→比較評価→Chat実動作確認までを実行再開した。通常の必要実装・資料取得・CPU/CUDA検証・永続学習・全評価・画面接続・ローカルcommitは許可範囲。Baseの正式合格をSFTの前提にせず、旧条件・元重み/教材/採点は保全。完了判定は5段階の実証で行い、準備/fixture/UI修正だけでgoal完了としない。
 
 追加指示: ユーザーは短い応答を希望し、長い生成で文章が壊れるためレスポンス設定の変更を明示許可。Chat画面の既定上限32token、16/32/64選択を用意し、新比較も短い応答を前提に事前契約化する。上限停止を自然なEOTと数えず、旧64token評価と条件差を保存する。学習データ上限・配合は実採用量を確認してから前向きに凍結し、改善したように見せるため原評価や失敗を隠さない。
