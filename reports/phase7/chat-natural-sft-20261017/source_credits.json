@@ -1,0 +1,24 @@
+{
+  "purpose": "Local SFT preparation; no dataset, weights or site published",
+  "sources": [
+    {
+      "name": "RealPersonaChat",
+      "credit": "nu-dialogue / RealPersonaChat contributors (Yamashita et al.)",
+      "url": "https://github.com/nu-dialogue/real-persona-chat",
+      "revision": "28d0b6b3865b29cabc26c230a2db37cdf315e937",
+      "license": "CC-BY-SA-4.0",
+      "changes": "TRAIN identity allowlist, role mapping, short complete-target selection, shared quality exclusions; no rewritten target text"
+    },
+    {
+      "name": "llm-jp/magpie-sft-v1.0",
+      "credit": "LLM-jp / llm-jp dataset contributors",
+      "url": "https://huggingface.co/datasets/llm-jp/magpie-sft-v1.0",
+      "revision": "4f949e18cfa01d99abe6f92e5629157d69737e6d",
+      "license": "Apache-2.0 (dataset card)",
+      "changes": "Project DEV identities reserved before payload parsing; whole short-target selection and quality exclusions; no rewritten target text",
+      "limitation": "Synthetic and heavily clarification-biased in the short subset; not independently verified factual QA"
+    }
+  ],
+  "artifact_hashes": "acquisition.json",
+  "TEST_payloads_used": false
+}

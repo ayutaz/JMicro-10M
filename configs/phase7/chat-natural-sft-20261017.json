@@ -1,0 +1,179 @@
+{
+  "format": "natural-short-chat-v1",
+  "created_at": "2026-10-17T06:29:33.752789Z",
+  "spec": {
+    "seed": 42,
+    "context": 1024,
+    "batch": 32,
+    "accumulation": 1,
+    "lr": 3e-05,
+    "weight_decay": 0.01,
+    "warmup": 0,
+    "schedule_updates": 100000,
+    "dtype": "bf16",
+    "compile": false,
+    "backend": "math",
+    "scheduler": "wsd",
+    "sampler": "document",
+    "training_fast_path": false,
+    "update_teachers": 512
+  },
+  "teacher_budget": 1000000,
+  "parameter_count": 10001152,
+  "limits_seconds": {
+    "probe": 600.0,
+    "train_C0": 3600.0,
+    "train_C1": 3600.0,
+    "evaluation": 10800.0
+  },
+  "quality_gates": {
+    "content_minimum": 56,
+    "own_context_minimum": 15,
+    "primary_stop_minimum": 76,
+    "own_stop_minimum": 57,
+    "primary_empty_maximum": 4,
+    "own_empty_maximum": 2,
+    "role_leak_maximum": 0,
+    "raw_unicode_failure_maximum": 0,
+    "history_trim_maximum": 0,
+    "candidate_repetition_must_not_increase": true
+  },
+  "implementation": {
+    "src/jmicro/model.py": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+    "src/jmicro/shards.py": "9544c5a0c385f817f93510eaae6375e8c044286822fd86e333d2f07123b63e4c",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "uv.lock": "29821397f48485dfa3317319da5248cb260c3963b6db4aad18276ed3ab9ce298"
+  },
+  "source_sha256": {
+    "scripts/chat_natural_contract.py": "78837fb77e57afa59e86039522b4ecfb083250a8fec96d24eb6f2bd5ee2ae401",
+    "scripts/run_chat_natural.py": "7e207cc8a4b736e7b700382e1345f60dbfbff4f2ffb124d79aacbd9a231a34dc",
+    "scripts/evaluate_chat_natural.py": "aece4f15dc0149f1c001110d252457984f0bf71771ec42c25c019d66d0a14057",
+    "scripts/run_chat_natural.ps1": "d8952766eb08f54569658d265d3b0c8f78eb779d20c607095d64d9ae3d9b264d",
+    "scripts/inspect_chat_natural_environment.py": "e9131e315c505cac6ea09d773ca43fcee167e715269ccb93a8e8b4cbca7f2a48",
+    "scripts/start_webui.ps1": "c1c2e491a9c809d31d936ae5a22f84da6718441c6a0d8ca58d73749a2804596a",
+    "scripts/stop_webui.ps1": "323fb3266032ab71a991ece07474ee7b59e991064f6708eb8de5582f6c989bba",
+    "src/jmicro/model.py": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+    "src/jmicro/training.py": "d898b9ba7d15d7e24c497c5981f3fc090894833d08f202d44ef881d0bb6f5086",
+    "src/jmicro/tokenizer.py": "4198fd626bab96f9a613083b8f6cd175992f217fabed6202f4e600d24c3ad056",
+    "src/jmicro/assistant_sampler.py": "a774998a14f4adfdc6598cf23ae82630e3b22220641c3f83fa29a38f79d9022c",
+    "src/jmicro/teacher_chat_training.py": "2f3aeebaeea27005192490810837e300326abc9fa046db31981bcbaac4bed8f6",
+    "src/jmicro/chat_evaluation.py": "81282674705292a82e7689588d8b3061a5eb773cd04f5a286ddf7950e9af96fa"
+  },
+  "maximum_teacher_length": 32,
+  "final_overshoot_maximum": 31,
+  "max_new_tokens": 32,
+  "parent": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+    "sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290"
+  },
+  "tokenizer": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/artifacts/phase2/4096/tokenizer.model",
+    "sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318"
+  },
+  "TRAIN_manifest": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-natural-sft-20261017/manifest.json",
+    "sha256": "4db1a7ea51094d6f953e84a885d79eeeaeb370403a96f8d22f7479d555148a18"
+  },
+  "TRAIN_QA": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-natural-sft-20261017/TRAIN_QA_review.json",
+    "sha256": "44b0d30a7b2eccfe439a342cba8f298b0709de501b6e2cb697ccbc647eb7ea33"
+  },
+  "DEV_preparation": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-natural-sft-20261017/DEV_preparation.json",
+    "sha256": "001e46c2e3499abc5ac380672974ce28197a7630645086a17c4e23eb12997266"
+  },
+  "NLL": {
+    "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-natural-sft-20261017/nll_fixed.jsonl",
+    "sha256": "b0f7a8c59c9d2d5144110459c2e38791b0c023315fc5f7b244614616bd313e5b",
+    "targets": 208
+  },
+  "suites": {
+    "new": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-natural-sft-20261017/dev_suites/new.jsonl",
+      "sha256": "98419deb58a5b8e5f069636a9b56f92dc2a6eda81c90f9c3f20cbc587d1ff27f"
+    },
+    "lr": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-natural-sft-20261017/dev_suites/lr.jsonl",
+      "sha256": "40a6170e0a44bf8e4416d1ea77d486ac1e96ed17bb9f65e3f9893d7c897eee76"
+    },
+    "semantic": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-natural-sft-20261017/dev_suites/semantic.jsonl",
+      "sha256": "f0b603bbda10c89da7253250f80026c5f5e6132de9881b12044d1d881ab106aa"
+    },
+    "generalization": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-natural-sft-20261017/dev_suites/generalization.jsonl",
+      "sha256": "a9d4f1e54c747329afc6f12cf1466b80c64bfc60ae979b87369a9016776ec207"
+    },
+    "original": {
+      "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-natural-sft-20261017/dev_suites/original.jsonl",
+      "sha256": "211c99f568936dcc96cef4621f00c4621a592a10aed543f53b19e4094dea9180"
+    }
+  },
+  "arms": {
+    "C0": {
+      "records": {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-natural-sft-20261017/C0_TRAIN.jsonl",
+        "sha256": "bf933845ea453987c05930dd99f05c60a66c45980d4a0c8f5d5a3488d72956aa",
+        "families": 2659,
+        "targets": 36162,
+        "exclusions": {
+          "anonymized_identity_marker_in_context": 1549,
+          "unsupported_personal_attribute": 11,
+          "unrelated_story_after_bare_greeting": 15,
+          "unprovided_name_in_initial_reply_conservative": 3,
+          "individual_QA_rejected": 4,
+          "poetry_requires_unavailable_mora_validation": 1
+        }
+      },
+      "dry_run": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-natural-sft-20261017/C0_dry_run.json",
+        "sha256": "86797f2bb569eb949f694c4670072cd8602d388d867c2c119c80ba884263625c"
+      },
+      "sampler_binding": "f081e0ebd218b5b89d89325a2d8f8ff37e86ff00fd3ed8325b9980b3a815b8c9"
+    },
+    "C1": {
+      "records": {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-natural-sft-20261017/C1_TRAIN.jsonl",
+        "sha256": "761b7cf55fcd1b4380c2c69ceba2d36a8ad1ebc3b422c7c32bb4efdb06b1691c",
+        "families": 12585,
+        "targets": 63811,
+        "exclusions": {
+          "individual_QA_rejected": 28,
+          "poetry_requires_unavailable_mora_validation": 2,
+          "anonymized_identity_marker_in_context": 2715,
+          "unrelated_story_after_bare_greeting": 19,
+          "unsupported_personal_attribute": 24,
+          "unprovided_name_in_initial_reply_conservative": 6
+        }
+      },
+      "dry_run": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-natural-sft-20261017/C1_dry_run.json",
+        "sha256": "6fcfd89cb3c8eabd165fcb606136d88dcee402b4d46627b16ab7a57ebc2651f3"
+      },
+      "sampler_binding": "7ab75eec4b9a588df2820fa7bb44e8ece5295b6f55ebdb0e9d2a43b2bf868371"
+    }
+  },
+  "comparison": {
+    "control": "New matched original-pilot TRAIN, common filters",
+    "candidate": "Broader real conversation recipe, actual short Magpie1.556percent teachers",
+    "primary_point": 1000000,
+    "savepoints": [
+      250000,
+      500000,
+      1000000
+    ],
+    "final_suites": 10,
+    "final_content_judgments": 2190,
+    "intermediate_diagnostic_responses": 40,
+    "paired_family_CI_bootstrap_seed": 42,
+    "bootstrap_replicates": 2000,
+    "improved_new_content_CI_lower_gt": 0,
+    "formal_Base_retention_pending": true
+  },
+  "old64_token_results_unchanged": true,
+  "maximum_token_stop_is_not_natural_stop": true,
+  "authorized_scope": "Plan149 stages1-5; short responses requested before contract freeze",
+  "protected_TEST_used": false,
+  "Chat_adopted": false,
+  "Base_adopted": false
+}
