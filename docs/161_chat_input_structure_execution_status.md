@@ -17,3 +17,15 @@ TRAIN manifest確定後に新DEV80問を著作し、実会話24組は6応答2組
 CPUではread境界・split/重複拒否・中断済み出力の再開・failed条件再起動拒否などの12workflow checksが合格した。fixtureの結果であり、GPU・数値学習・日本語品質の合格ではない。現在の元Base7860と既存C1/C0のHTTPはidleで正しいcheckpointだった。GPU owner・実FLOCK等の確認は専用launcherが開始直前に行う。
 
 新しい学習を終えた後も、全状態・全履歴・全出力・実生成履歴と実ブラウザーを確認してから、改善と悪化の両方を判定する。目標の完了と候補の品質採用は区別し、現在の候補の不採用や正式Baseの残課題は保持する。
+
+## 実機検証と本学習（2026-10-18）
+
+新しい実CUDA検証が合格した。両腕16更新ずつの全計時と、連続2更新対1更新＋保存再開＋1更新の全state/非時間履歴を保存し、両腕36項目が一致した。全40技術更新のstage wallは35.203221秒。固定の全計時による学習予測はC0=3,836.123125秒、C1=2,317.316727秒、評価予測=3,719.765984秒で、事前上限以内だった。[実機gate](../reports/phase7/chat-recovery-20261018/input-structure-main/native_gate.json)。最大shapeの元証拠の再利用と新データ経路の実検証を区別する。
+
+同じ実WSL PID515188/boot4052bfc5-3850-44e4-9123-d34a9e19f36e/start89989737、Windows worker18640/17:05:30.2377944Zで両腕の新学習を進めている。17:14:44Zの実観測ではC0=850更新・440,801教師。現在の生存・全凍結source一致・実kernel FLOCKを確認した。NVMLのraw観測は保存し、世界全体の唯一GPU peerの証明とはしない。C1学習・最終評価はこの時点では未着手。
+
+起動親でPowerShellのWorker switchとworker変数の大小文字衝突が発生した。子は既に起動していたため、実Windows commandline/開始時刻とWSLの同一実processを検証して欠けたlauncher記録だけ復元した。重複起動・凍結source修正はしていない。[復元記録](../reports/phase7/chat-recovery-20261018/launcher/launcher.json)。この欠陥は保全し、閉鎖後の別launcherで修理する。
+
+C0の25万教師時点の全10応答を厳密な32token raw/実履歴と個別理由で確認した。内容成立は1/10（必要な五枚）で、日時の紐付け・二属性・訂正・厳密表記の失敗が残る。主点は100万のまま。[途中notes](../reports/phase7/chat-recovery-20261018/input-structure-main/diagnostics/C0/250000_notes.json)。
+
+最終採点は旧rawを各々の元configで検証し、実messages/checks/ID/bytes/stop等が全て同一の応答だけ既存理由付きnotesを再利用する。異なる履歴や競合する採点は新たに全文確認する。実ブラウザーは新CPUポート7866/7867で各3会話×6応答、計36応答を確認する準備を済ませたが、未実施である。全3,466主応答・40途中・36実ブラウザー・全履歴/全state・最終採否が残っており、goalはACTIVE。

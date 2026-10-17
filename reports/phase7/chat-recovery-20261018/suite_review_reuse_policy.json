@@ -1,0 +1,32 @@
+{
+  "created_at": "2026-10-17T17:12:04.249175Z",
+  "config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase7/chat-input-structure-20261018.json",
+    "sha256": "29a5fa2541f321a8de26f4f54ee98879bfc2245f232ebfe5246d09069d65f075"
+  },
+  "source": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/review_chat_recovery_sft.py",
+    "sha256": "5b58c2e226ff5c33e130f8c397e54eefa5a53cb2af1743110766490db786970e"
+  },
+  "historical": [
+    {
+      "kind": "natural",
+      "config": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase7/chat-natural-sft-20261017.json",
+        "sha256": "ec0b61b2961ef9294cb840cb86ad6f5ba291ea1c4a0213d0404e9fa87cdb464d"
+      },
+      "run": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-natural-sft-20261017"
+    },
+    {
+      "kind": "curriculum",
+      "config": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase7/answer-curriculum-resource-v2-20261017.json",
+        "sha256": "e9172f65215fe44f2a94f5c0e9f1429175a27917b3d32b3e09c848cb318e9e46"
+      },
+      "run": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/curriculum-main-resource-v2"
+    }
+  ],
+  "policy": "Validate historical raw under its own config and DEV reader; reuse only identical actual messages/checks/category/condition/IDs/bytes/text/stop/prompt/mechanics. Conflicting grades require fresh review. No model-quality score from keywords.",
+  "rubric_changed": false,
+  "TEST_reads": false
+}
