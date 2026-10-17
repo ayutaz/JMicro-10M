@@ -1,5 +1,7 @@
 # 文書一覧
 
+2026-10-18実行中: [159：対照モデルと履歴条件の診断結果](159_chat_recovery_diagnosis_results.md)。全800新規応答と尤度640候補を確認。次は根拠ある入力構造の変更を一つ選び、新対照SFTと未知入力・実会話の判定まで実行する。新goalはACTIVE。
+
 2026-10-18追加: [158：失敗原因の調査と次の改善計画](158_chat_quality_investigation_and_next_plan.md)。著作TRAIN2,048件の全件監査、原因として未分離の要因、対照100case→履歴条件診断→根拠に基づく新SFT→全品質判定の段階計画。実行量・時間枠・終了条件を明記した。追加生成・学習0。
 
 2026-10-17追加: [157：現行Chatの100ケース品質診断](157_chat_quality_100_results.md)。実API200応答を全件確認。最終100の総合成立22、計算・厳密形式0/10、実会話6応答目0/20。同文固定は11/20会話で再現。全CSV・raw・理由付き判定を保存した。
@@ -159,6 +161,7 @@
 | [156_answer_curriculum_results.md](156_answer_curriculum_results.md) | 回答学習5段階の完了・全2,628内容比較・改善未実証の結果 |
 | [157_chat_quality_100_results.md](157_chat_quality_100_results.md) | 現行Chatの100ケース・全200応答の品質、正答、継続会話の失敗 |
 | [158_chat_quality_investigation_and_next_plan.md](158_chat_quality_investigation_and_next_plan.md) | 著作TRAIN全件調査と、原因の切り分けから次の対照SFTへ進む計画 |
+| [159_chat_recovery_diagnosis_results.md](159_chat_recovery_diagnosis_results.md) | 対照100ケース・履歴要因・Base通常文・samplingの全800応答診断 |
 
 <!-- Historical incoming heading aliases. Original text is preserved in baseline snapshots. -->
 <a id="今回の文書と計画"></a>

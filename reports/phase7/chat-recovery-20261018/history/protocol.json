@@ -1,0 +1,75 @@
+{
+  "created_at": "2026-10-17T16:40:51.152791+00:00",
+  "source_sha256": "2150f3aad105993b3e11f8811c67410cc4fdc755d9a92dccaba3d3089f4dddbc",
+  "families_sha256": "3bdd3559f7fd920e24c5440261deb138ebf6d7bb1b7123e6ecc1e3e149bb3b24",
+  "models": {
+    "C0": {
+      "name": "JMicro-10M 回答学習 C0",
+      "kind": "比較用の会話モデル（試験中）",
+      "arm": "C0",
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/curriculum-main-resource-v2/C0/checkpoint-00001921.pt",
+      "checkpoint_sha256": "55280bf3d14361db1687d0e2471c82f96c6407e4f608c8e6508a2d73effa3a1f",
+      "config_sha256": "e9172f65215fe44f2a94f5c0e9f1429175a27917b3d32b3e09c848cb318e9e46",
+      "parent_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "parameters": 10001152,
+      "SFT_teacher_tokens": 1000017,
+      "device": "CPU",
+      "precision": "FP32 / math attention",
+      "decoding": "greedy",
+      "context": 1024,
+      "max_new_tokens": 32,
+      "max_new_tokens_range": [
+        8,
+        64
+      ],
+      "Chat_adopted": false,
+      "Base_adopted": false,
+      "quality_status": "研究用の比較。正式採用は未確定。",
+      "busy": false
+    },
+    "C1": {
+      "name": "JMicro-10M 回答学習 C1",
+      "kind": "改善教材の会話モデル（試験中）",
+      "arm": "C1",
+      "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/curriculum-main-resource-v2/C1/checkpoint-00001929.pt",
+      "checkpoint_sha256": "b5cb947c2d580e8ec4a080cfa71571a5e59baa2d24272c4229634799c913bc61",
+      "config_sha256": "e9172f65215fe44f2a94f5c0e9f1429175a27917b3d32b3e09c848cb318e9e46",
+      "parent_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+      "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+      "parameters": 10001152,
+      "SFT_teacher_tokens": 1000000,
+      "device": "CPU",
+      "precision": "FP32 / math attention",
+      "decoding": "greedy",
+      "context": 1024,
+      "max_new_tokens": 32,
+      "max_new_tokens_range": [
+        8,
+        64
+      ],
+      "Chat_adopted": false,
+      "Base_adopted": false,
+      "quality_status": "研究用の比較。正式採用は未確定。",
+      "busy": false
+    }
+  },
+  "max_new_tokens": 32,
+  "CPU_wall_limit": 7200,
+  "request_timeout": 60,
+  "prefix_count": 100,
+  "final_input_count": 160,
+  "final_response_count": 320,
+  "conditional_answer_scores": 640,
+  "factors": [
+    "query_user_turn_3_or_6",
+    "one_or_two_requested_fields",
+    "gold_or_frozen_actual_C1_history"
+  ],
+  "all_prefix_users_and_values_fixed_before_generation": true,
+  "review": "Every actual reply read with literal reasons, Codex nonblind; no keyword semantic grading",
+  "statistics": "paired family bootstrap 2000 draws seed42; fixed exploratory diagnosis, not adoption",
+  "limitation": "history replacement changes answer cues and length too; report tokens, do not identify exposure bias uniquely",
+  "no_training": true,
+  "no_sealed_TEST": true
+}

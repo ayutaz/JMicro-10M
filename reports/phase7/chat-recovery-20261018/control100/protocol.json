@@ -1,0 +1,29 @@
+{
+  "created_at": "2026-10-17T16:39:42.282969+00:00",
+  "cases_sha256": "85cfaffa12b87c7dd1707baf693840ea87d286868029442ce705fd46fc796798",
+  "checkpoint_sha256": "55280bf3d14361db1687d0e2471c82f96c6407e4f608c8e6508a2d73effa3a1f",
+  "URL": "http://127.0.0.1:7865",
+  "max_new_tokens": 32,
+  "decoding": "greedy",
+  "device": "CPU",
+  "precision": "FP32/math",
+  "max_CPU_wall_seconds": 1800,
+  "request_timeout_seconds": 60,
+  "history": "all actual decoded Assistant replies; each case starts fresh",
+  "no_learning": true,
+  "no_TEST_or_corpus_reads": true,
+  "rubric": {
+    "grammar": "0 broken;1 awkward;2 natural",
+    "relevance": "0 irrelevant/wrong;1 partial;2 directly and completely responds",
+    "context": "0 contradiction/lost facts;1 partial;2 all relevant facts/instructions retained",
+    "factual_correct": "bool only for marked objective probes; judge requested facts independently of surface grammar",
+    "task_pass": "grammar=relevance=context=2; numerical accuracy and format compliance separately discussed"
+  },
+  "scoring": "Every response receives a literal human-readable rationale from Codex nonblind; no keyword-based semantic scoring",
+  "primary": "100 case-final outputs; also report all200 and the20 own-history probe3/final6 separately",
+  "restrictions": "No checkpoint/decoder selection or run extension from these outcomes; no adoption claim",
+  "source_sha256": "0e8ddff4ce55168092296b63cda13141d51807e7490121bbb460260eea559324",
+  "original_C1_protocol_sha256": "3c48a6797965b280af634c82178d3b243353078c22f675db1a13ffcbc469f518",
+  "wrapper_sha256": "97bff14a586cb9e39390ab82d880215b2870ab891b9a973275f8b85de04b6e5b",
+  "scope": "New C0 diagnostic only; preserve the completed original C1 condition"
+}
