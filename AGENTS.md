@@ -1,12 +1,14 @@
 # JMicro-10M development and training
 
-更新: 2026-10-17 JST。現在の依頼は「ドキュメントをすべて最新にして」。元の「4まで」の目標は未達のままユーザーが解除した。今回の作業範囲は文書更新・棚卸し・保存検証・ローカルGitコミット。Base/Chatは未完成・未採用。
+更新: 2026-10-17 JST。ユーザーがBase完成待ちから、チャットデータによるSFT・動作確認へ方針を変更した。事前学習は終了済みであり、Baseの正式品質未達だけをSFT/動作確認の禁止理由にしない。最初に、既存RealPersonaChat SFT3周checkpointをCPUのローカルChat画面へ接続し、実際の短い会話とrawを確認する。同じ閉じたSFTを無根拠に再学習せず、以前の採否・基準は保存する。Base/Chatの正式採用は未達。
+
+The documentation-only goal was completed at 645b3d09. The latest user instruction authorizes Chat/SFT exploration and practical chat verification; it overrides the previous documentation-only scope below. Immediate work serves the existing first SFT model on CPU at a separate loopback port, with bounded actual conversation checks. Preserve original Base UI, all frozen training records and native sources; do not relaunch an old scientific condition. No paid cloud, external publication, model-size increase or TEST preparation is authorized. Do not ask again whether to resume chat verification.
 
 [最新結果・更新記録148](docs/148_latest_base_and_documentation.md) / [現在の計画145](docs/145_post_rejection_next_plan.md) / [文書一覧](docs/README.md) / [全件カタログ](docs/document_catalog.md)。
 
 最新のRDrop25M比較は4,420更新・正確25,000,000教師まで完了し、不採用で固定条件を閉鎖した。対照→候補は一貫性1→3/80、適切完結3→6/80、EOS11→19/80、反復53→49/80。BPBは0.9927168291→1.0279654060（3.5507%悪化）。全80件を理由付きで確認したCodex非blind評価で、独立人間blindではない。
 
-ユーザーの「上限はないので無限に使っていいです」により、ローカルGPUの累積利用時間に上限はない。旧180/4800秒による閉鎖判断は当時の契約として保全する。今後の各比較には実行前の有限な教師量・時間上限・評価保存枠・終了条件が必要。累積上限解除は今回の文書依頼を学習再開へ変えるものではない。
+ユーザーの「上限はないので無限に使っていいです」により、ローカルGPUの累積利用時間に上限はない。旧180/4800秒による閉鎖判断は当時の契約として保全する。今後の各比較には実行前の有限な教師量・時間上限・評価保存枠・終了条件が必要。今回のチャット動作確認は、新しいユーザー指示に基づく。
 
 有資格のBase recipe、親の事前学習からやり直す真にfreshな独立学習seed43、実全文DEV、標準400生成＋長文40の全内容、新しい封印TEST、採用・復旧確認は未達。次の比較は未選定・未凍結。終了した条件の再起動や閾値緩和で進めない。
 
@@ -16,7 +18,7 @@ DEV専用readerと隔離生成・reviewは実装済み。全文DEV集計/440生�
 
 [RDrop完了記録](reports/phase6/rdrop-science-20261016/completion.json) / [原採点・全guard](reports/phase6/rdrop-science-20261016/review.json) / [GPU上限解除記録](reports/phase6/rdrop-science-preparation-20261016/authorization.json)。
 
-## Current documentation-only scope — 2026-10-17 JST
+## Previous documentation-only scope — completed 2026-10-17 JST
 
 Inventory all Markdown/RST, including source snapshots and provenance copies. Update all living descriptions and plans, preserve dated/frozen scientific evidence and pre-edit bytes, verify links and Windows/WSL/Git delivery, then commit locally. The user cleared the unachieved four-item Base goal; do not mark it achieved or active. Documentation completion is separate from Base/Chat completion.
 

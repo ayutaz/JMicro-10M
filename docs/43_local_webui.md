@@ -1,6 +1,36 @@
 # 元10B BaseモデルのローカルWebUI
 
-更新: 2026-10-17 JST。現在の依頼は「ドキュメントをすべて最新にして」。元の「4まで」の目標は未達のままユーザーが解除した。今回の作業範囲は文書更新・棚卸し・保存検証・ローカルGitコミット。Base/Chatは未完成・未採用。
+更新: 2026-10-17 JST。ユーザーのチャット動作確認依頼を受け、SFT済みChat用の画面を追加した。Base事前学習と最初のRealPersonaChat SFTは終了済み。品質の正式採用条件は未達だが、短い会話を試せる。
+
+## Chatを試す
+
+**[http://127.0.0.1:7861](http://127.0.0.1:7861)** を開く。元10B親からRealPersonaChatで3周SFTしたモデル（checkpoint-00003785、1,899,555 Assistant教師、10,001,152 parameters）を使う。「新しい会話」で履歴を消し、Enterで送信・Shift+Enterで改行する。文脈に収まらない場合は古い発言を自動削除せず、新しい会話を案内する。
+
+CPU FP32/greedy、最大64生成token、EOT7/EOS3で停止する。学習済み重みは元のまま、定型応答への置換や反復penaltyは使わない。元のSFT評価はCUDA BF16だったため、今回のCPU返答をそのまま以前のDEV件数へ足さない。サーバーは会話本文を保存せず、履歴はブラウザーのメモリに保持する。
+
+停止中に起動する場合、Windowsのproject rootから実行する。
+
+```powershell
+.\scripts\start_chat_demo.ps1
+```
+
+新しいGPU学習は起動せず、元のBase画面7860もそのまま利用できる。Chatの起動記録はWSL reports/local/chat-webui/server.json、Windows launcherはreports/local/chat-webui/launcher.json。Chat既存processがある場合は同checkpointを確認して再利用する。
+
+## 今回の実例
+
+5会話10応答すべてを記録した。全応答がEOT終了、有効UTF8、履歴削除なし。[全raw](../reports/phase7/chat-demo-20261017/raw.json)・[個別notes](../reports/phase7/chat-demo-20261017/notes.json)。
+
+| 入力 | 実際の返答 |
+|---|---|
+| こんにちは。 | こんにちは！ |
+| 好きな食べ物は何？ | カレーが好きですね。 |
+| 甘いものは好き？ | 甘いもの大好きです。 |
+| 名前はモモだよ。 | モモ！かわいいですよね。 |
+| うちの猫の名前、覚えてる？ | 覚えてないですね。 |
+
+短い雑談ができる部分と、履歴を内容に使えない部分がある。以前の不採用は正式な品質条件の未達であり、応答そのものが一切できないという意味ではない。今回の操作確認で正式採否や過去の評価基準を変更していない。
+
+## Baseの文章生成画面
 
 [最新結果・更新記録148](148_latest_base_and_documentation.md) / [現在の計画145](145_post_rejection_next_plan.md) / [文書一覧](README.md) / [全件カタログ](document_catalog.md)。
 

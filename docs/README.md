@@ -1,5 +1,7 @@
 # 文書一覧
 
+2026-10-17追記: 文書更新は645b3d09で完了後、ユーザーの指示でChatの動作確認へ移行。[SFT済みChatを試す](http://127.0.0.1:7861) / [操作43](43_local_webui.md) / [現在の状態](autonomous_status.md)。以下の文書更新説明はその納品時点の記録。
+
 更新: 2026-10-17 JST。現在の依頼は「ドキュメントをすべて最新にして」。元の「4まで」の目標は未達のままユーザーが解除した。今回の作業範囲は文書更新・棚卸し・保存検証・ローカルGitコミット。Base/Chatは未完成・未採用。
 
 [最新結果・更新記録148](148_latest_base_and_documentation.md) / [現在の計画145](145_post_rejection_next_plan.md) / [文書一覧](README.md) / [全件カタログ](document_catalog.md)。
