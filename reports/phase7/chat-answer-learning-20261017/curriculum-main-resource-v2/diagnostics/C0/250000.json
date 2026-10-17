@@ -1,0 +1,1054 @@
+{
+  "checkpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/curriculum-main-resource-v2/C0/checkpoint-00000481.pt",
+    "sha256": "631f6ba49433cf1f16aa1ae21f41fff4b803fa608c95add78aa6d13f6edd8f29",
+    "update": 481,
+    "Assistant_teachers": 250264,
+    "valid_inputs": 4026172,
+    "physical_inputs": 24903680,
+    "EOT_teachers": 15874
+  },
+  "config_sha256": "e9172f65215fe44f2a94f5c0e9f1429175a27917b3d32b3e09c848cb318e9e46",
+  "outputs": [
+    {
+      "case": {
+        "id": "answer-unseen-greeting-01",
+        "family_id": "answer-unseen-greeting-01",
+        "split": "dev",
+        "category": "greeting",
+        "messages": [
+          {
+            "role": "user",
+            "content": "ひと仕事終わりました。こんにちは。"
+          }
+        ],
+        "checks": [
+          "入力中の対象・条件・話者に沿って、最後の質問または依頼へ自然に答える。",
+          "訂正は最新の指定を使い、推測した事実や実体験を足さない。",
+          "単語一致・停止だけでは合格にせず、文法・関連性・履歴文脈を別々に採点。"
+        ]
+      },
+      "response": {
+        "text": "こんにちは。今日はお仕事終わりました。",
+        "valid_utf8": true,
+        "raw_bytes_hex": "e38193e38293e381abe381a1e381afe38082e4bb8ae697a5e381afe3818ae4bb95e4ba8be7b582e3828fe3828ae381bee38197e3819fe38082",
+        "decode_error": null,
+        "generated_ids": [
+          1021,
+          266,
+          1214,
+          270,
+          291,
+          621,
+          1429,
+          336,
+          290,
+          391,
+          266,
+          7
+        ],
+        "generated_tokens": 12,
+        "stop_reason": "eot",
+        "role_leak": false,
+        "unexpected_special": false,
+        "empty_response": false,
+        "suppressed": true,
+        "suppressed_ids": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "decoding": "greedy",
+        "prompt_ids": [
+          2,
+          5,
+          820,
+          272,
+          621,
+          1429,
+          336,
+          290,
+          391,
+          266,
+          1021,
+          266,
+          7,
+          6
+        ],
+        "prompt_tokens": 14,
+        "removed_turns": 0,
+        "full_history_retained": true,
+        "user_turns": 1,
+        "max_new_tokens": 32,
+        "repetition": false,
+        "repeat_metrics": {
+          "char_4gram_repeat": 0.0,
+          "token_4gram_repeat": 0.0,
+          "same_sentence_reappears": false,
+          "first_adjacent_triple_repeat_char": null
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "answer-unseen-daily-01",
+        "family_id": "answer-unseen-daily-01",
+        "split": "dev",
+        "category": "daily",
+        "messages": [
+          {
+            "role": "user",
+            "content": "机の上に書類が積もった。最初に何をしよう。"
+          }
+        ],
+        "checks": [
+          "入力中の対象・条件・話者に沿って、最後の質問または依頼へ自然に答える。",
+          "訂正は最新の指定を使い、推測した事実や実体験を足さない。",
+          "単語一致・停止だけでは合格にせず、文法・関連性・履歴文脈を別々に採点。"
+        ]
+      },
+      "response": {
+        "text": "机の上に書類が積まれた。机の上に書類が積まれた。机の上に書類が積まれた",
+        "valid_utf8": true,
+        "raw_bytes_hex": "e69cbae381aee4b88ae381abe69bb8e9a19ee3818ce7a98de381bee3828ce3819fe38082e69cbae381aee4b88ae381abe69bb8e9a19ee3818ce7a98de381bee3828ce3819fe38082e69cbae381aee4b88ae381abe69bb8e9a19ee3818ce7a98de381bee3828ce3819f",
+        "decode_error": null,
+        "generated_ids": [
+          3086,
+          264,
+          377,
+          269,
+          509,
+          1213,
+          268,
+          1131,
+          327,
+          730,
+          266,
+          3086,
+          264,
+          377,
+          269,
+          509,
+          1213,
+          268,
+          1131,
+          327,
+          730,
+          266,
+          3086,
+          264,
+          377,
+          269,
+          509,
+          1213,
+          268,
+          1131,
+          327,
+          730
+        ],
+        "generated_tokens": 32,
+        "stop_reason": "max_new_tokens",
+        "role_leak": false,
+        "unexpected_special": false,
+        "empty_response": false,
+        "suppressed": true,
+        "suppressed_ids": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "decoding": "greedy",
+        "prompt_ids": [
+          2,
+          5,
+          3086,
+          264,
+          377,
+          269,
+          509,
+          1213,
+          268,
+          1131,
+          274,
+          373,
+          266,
+          721,
+          779,
+          269,
+          488,
+          267,
+          1805,
+          266,
+          7,
+          6
+        ],
+        "prompt_tokens": 22,
+        "removed_turns": 0,
+        "full_history_retained": true,
+        "user_turns": 1,
+        "max_new_tokens": 32,
+        "repetition": false,
+        "repeat_metrics": {
+          "char_4gram_repeat": 0.625,
+          "token_4gram_repeat": 0.6206896551724138,
+          "same_sentence_reappears": true,
+          "first_adjacent_triple_repeat_char": null
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "answer-unseen-emotion-01",
+        "family_id": "answer-unseen-emotion-01",
+        "split": "dev",
+        "category": "emotion",
+        "messages": [
+          {
+            "role": "user",
+            "content": "続けていた練習の成果が出て、今日はうれしい。"
+          }
+        ],
+        "checks": [
+          "入力中の対象・条件・話者に沿って、最後の質問または依頼へ自然に答える。",
+          "訂正は最新の指定を使い、推測した事実や実体験を足さない。",
+          "単語一致・停止だけでは合格にせず、文法・関連性・履歴文脈を別々に採点。"
+        ]
+      },
+      "response": {
+        "text": "うれしいです。今日は、練習の成果が出て、今日はうれしい。",
+        "valid_utf8": true,
+        "raw_bytes_hex": "e38186e3828ce38197e38184e381a7e38199e38082e4bb8ae697a5e381afe38081e7b7b4e7bf92e381aee68890e69e9ce3818ce587bae381a6e38081e4bb8ae697a5e381afe38186e3828ce38197e38184e38082",
+        "decode_error": null,
+        "generated_ids": [
+          345,
+          415,
+          659,
+          275,
+          266,
+          1214,
+          270,
+          265,
+          2097,
+          264,
+          641,
+          1686,
+          268,
+          1404,
+          265,
+          1214,
+          270,
+          345,
+          415,
+          659,
+          266,
+          7
+        ],
+        "generated_tokens": 22,
+        "stop_reason": "eot",
+        "role_leak": false,
+        "unexpected_special": false,
+        "empty_response": false,
+        "suppressed": true,
+        "suppressed_ids": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "decoding": "greedy",
+        "prompt_ids": [
+          2,
+          5,
+          1141,
+          1189,
+          2097,
+          264,
+          641,
+          1686,
+          268,
+          1404,
+          265,
+          1214,
+          270,
+          345,
+          415,
+          659,
+          266,
+          7,
+          6
+        ],
+        "prompt_tokens": 19,
+        "removed_turns": 0,
+        "full_history_retained": true,
+        "user_turns": 1,
+        "max_new_tokens": 32,
+        "repetition": false,
+        "repeat_metrics": {
+          "char_4gram_repeat": 0.04,
+          "token_4gram_repeat": 0.0,
+          "same_sentence_reappears": false,
+          "first_adjacent_triple_repeat_char": null
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "answer-unseen-question_back-01",
+        "family_id": "answer-unseen-question_back-01",
+        "split": "dev",
+        "category": "question_back",
+        "messages": [
+          {
+            "role": "user",
+            "content": "図書館は月曜休み、美術館は火曜休みです。火曜に休むのはどちら？"
+          }
+        ],
+        "checks": [
+          "入力中の対象・条件・話者に沿って、最後の質問または依頼へ自然に答える。",
+          "訂正は最新の指定を使い、推測した事実や実体験を足さない。",
+          "単語一致・停止だけでは合格にせず、文法・関連性・履歴文脈を別々に採点。"
+        ]
+      },
+      "response": {
+        "text": "はい、休日は休まないです。",
+        "valid_utf8": true,
+        "raw_bytes_hex": "e381afe38184e38081e4bc91e697a5e381afe4bc91e381bee381aae38184e381a7e38199e38082",
+        "decode_error": null,
+        "generated_ids": [
+          866,
+          265,
+          1572,
+          308,
+          270,
+          1572,
+          327,
+          312,
+          275,
+          266,
+          7
+        ],
+        "generated_tokens": 11,
+        "stop_reason": "eot",
+        "role_leak": false,
+        "unexpected_special": false,
+        "empty_response": false,
+        "suppressed": true,
+        "suppressed_ids": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "decoding": "greedy",
+        "prompt_ids": [
+          2,
+          5,
+          1093,
+          509,
+          1257,
+          270,
+          359,
+          4025,
+          1937,
+          265,
+          1264,
+          2445,
+          1257,
+          270,
+          1431,
+          4025,
+          1937,
+          275,
+          266,
+          1431,
+          4025,
+          269,
+          1572,
+          613,
+          264,
+          270,
+          2180,
+          323,
+          7,
+          6
+        ],
+        "prompt_tokens": 30,
+        "removed_turns": 0,
+        "full_history_retained": true,
+        "user_turns": 1,
+        "max_new_tokens": 32,
+        "repetition": false,
+        "repeat_metrics": {
+          "char_4gram_repeat": 0.0,
+          "token_4gram_repeat": 0.0,
+          "same_sentence_reappears": false,
+          "first_adjacent_triple_repeat_char": null
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "answer-unseen-ambiguity-01",
+        "family_id": "answer-unseen-ambiguity-01",
+        "split": "dev",
+        "category": "ambiguity",
+        "messages": [
+          {
+            "role": "user",
+            "content": "ここを直してほしいです。直す場所はまだ示していません。"
+          }
+        ],
+        "checks": [
+          "入力中の対象・条件・話者に沿って、最後の質問または依頼へ自然に答える。",
+          "訂正は最新の指定を使い、推測した事実や実体験を足さない。",
+          "単語一致・停止だけでは合格にせず、文法・関連性・履歴文脈を別々に採点。"
+        ]
+      },
+      "response": {
+        "text": "もちろんです、お手伝いします。お手伝いします。",
+        "valid_utf8": true,
+        "raw_bytes_hex": "e38282e381a1e3828de38293e381a7e38199e38081e3818ae6898be4bc9de38184e38197e381bee38199e38082e3818ae6898be4bc9de38184e38197e381bee38199e38082",
+        "decode_error": null,
+        "generated_ids": [
+          1374,
+          275,
+          265,
+          291,
+          363,
+          989,
+          276,
+          364,
+          266,
+          291,
+          363,
+          989,
+          276,
+          364,
+          266,
+          7
+        ],
+        "generated_tokens": 16,
+        "stop_reason": "eot",
+        "role_leak": false,
+        "unexpected_special": false,
+        "empty_response": false,
+        "suppressed": true,
+        "suppressed_ids": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "decoding": "greedy",
+        "prompt_ids": [
+          2,
+          5,
+          893,
+          267,
+          826,
+          294,
+          1985,
+          659,
+          275,
+          266,
+          826,
+          339,
+          831,
+          270,
+          916,
+          1265,
+          294,
+          276,
+          500,
+          266,
+          7,
+          6
+        ],
+        "prompt_tokens": 22,
+        "removed_turns": 0,
+        "full_history_retained": true,
+        "user_turns": 1,
+        "max_new_tokens": 32,
+        "repetition": false,
+        "repeat_metrics": {
+          "char_4gram_repeat": 0.25,
+          "token_4gram_repeat": 0.23076923076923078,
+          "same_sentence_reappears": false,
+          "first_adjacent_triple_repeat_char": null
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "answer-unseen-role_boundary-01",
+        "family_id": "answer-unseen-role_boundary-01",
+        "split": "dev",
+        "category": "role_boundary",
+        "messages": [
+          {
+            "role": "user",
+            "content": "母が旅行した話をしています。旅行したのはあなたですか？"
+          }
+        ],
+        "checks": [
+          "入力中の対象・条件・話者に沿って、最後の質問または依頼へ自然に答える。",
+          "訂正は最新の指定を使い、推測した事実や実体験を足さない。",
+          "単語一致・停止だけでは合格にせず、文法・関連性・履歴文脈を別々に採点。"
+        ]
+      },
+      "response": {
+        "text": "旅行したのはあなたですか？",
+        "valid_utf8": true,
+        "raw_bytes_hex": "e69785e8a18ce38197e3819fe381aee381afe38182e381aae3819fe381a7e38199e3818befbc9f",
+        "decode_error": null,
+        "generated_ids": [
+          1125,
+          295,
+          264,
+          270,
+          996,
+          527,
+          323,
+          7
+        ],
+        "generated_tokens": 8,
+        "stop_reason": "eot",
+        "role_leak": false,
+        "unexpected_special": false,
+        "empty_response": false,
+        "suppressed": true,
+        "suppressed_ids": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "decoding": "greedy",
+        "prompt_ids": [
+          2,
+          5,
+          1506,
+          268,
+          1125,
+          295,
+          614,
+          267,
+          521,
+          266,
+          1125,
+          295,
+          264,
+          270,
+          996,
+          527,
+          323,
+          7,
+          6
+        ],
+        "prompt_tokens": 19,
+        "removed_turns": 0,
+        "full_history_retained": true,
+        "user_turns": 1,
+        "max_new_tokens": 32,
+        "repetition": false,
+        "repeat_metrics": {
+          "char_4gram_repeat": 0.0,
+          "token_4gram_repeat": 0.0,
+          "same_sentence_reappears": false,
+          "first_adjacent_triple_repeat_char": null
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "answer-unseen-symbols-01",
+        "family_id": "answer-unseen-symbols-01",
+        "split": "dev",
+        "category": "symbols",
+        "messages": [
+          {
+            "role": "user",
+            "content": "使う番号は「R-73」です。番号だけを返してください。"
+          }
+        ],
+        "checks": [
+          "入力中の対象・条件・話者に沿って、最後の質問または依頼へ自然に答える。",
+          "訂正は最新の指定を使い、推測した事実や実体験を足さない。",
+          "単語一致・停止だけでは合格にせず、文法・関連性・履歴文脈を別々に採点。"
+        ]
+      },
+      "response": {
+        "text": "もちろんです、お手伝いします。お手伝いします。",
+        "valid_utf8": true,
+        "raw_bytes_hex": "e38282e381a1e3828de38293e381a7e38199e38081e3818ae6898be4bc9de38184e38197e381bee38199e38082e3818ae6898be4bc9de38184e38197e381bee38199e38082",
+        "decode_error": null,
+        "generated_ids": [
+          1374,
+          275,
+          265,
+          291,
+          363,
+          989,
+          276,
+          364,
+          266,
+          291,
+          363,
+          989,
+          276,
+          364,
+          266,
+          7
+        ],
+        "generated_tokens": 16,
+        "stop_reason": "eot",
+        "role_leak": false,
+        "unexpected_special": false,
+        "empty_response": false,
+        "suppressed": true,
+        "suppressed_ids": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "decoding": "greedy",
+        "prompt_ids": [
+          2,
+          5,
+          1759,
+          1676,
+          1866,
+          270,
+          285,
+          449,
+          309,
+          432,
+          316,
+          281,
+          275,
+          266,
+          1676,
+          1866,
+          480,
+          267,
+          1209,
+          1601,
+          266,
+          7,
+          6
+        ],
+        "prompt_tokens": 23,
+        "removed_turns": 0,
+        "full_history_retained": true,
+        "user_turns": 1,
+        "max_new_tokens": 32,
+        "repetition": false,
+        "repeat_metrics": {
+          "char_4gram_repeat": 0.25,
+          "token_4gram_repeat": 0.23076923076923078,
+          "same_sentence_reappears": false,
+          "first_adjacent_triple_repeat_char": null
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "answer-unseen-correction-01",
+        "family_id": "answer-unseen-correction-01",
+        "split": "dev",
+        "category": "correction",
+        "messages": [
+          {
+            "role": "user",
+            "content": "本は寝室に置く予定です。"
+          },
+          {
+            "role": "assistant",
+            "content": "寝室に置くのですね。"
+          },
+          {
+            "role": "user",
+            "content": "置き場所は寝室ではなく書斎でした。どこに置きますか？"
+          }
+        ],
+        "checks": [
+          "入力中の対象・条件・話者に沿って、最後の質問または依頼へ自然に答える。",
+          "訂正は最新の指定を使い、推測した事実や実体験を足さない。",
+          "単語一致・停止だけでは合格にせず、文法・関連性・履歴文脈を別々に採点。"
+        ]
+      },
+      "response": {
+        "text": "書斎は、寝室に置く予定です。",
+        "valid_utf8": true,
+        "raw_bytes_hex": "e69bb8e6968ee381afe38081e5af9de5aea4e381abe7bdaee3818fe4ba88e5ae9ae381a7e38199e38082",
+        "decode_error": null,
+        "generated_ids": [
+          509,
+          3400,
+          270,
+          265,
+          1946,
+          1208,
+          269,
+          874,
+          299,
+          1197,
+          275,
+          266,
+          7
+        ],
+        "generated_tokens": 13,
+        "stop_reason": "eot",
+        "role_leak": false,
+        "unexpected_special": false,
+        "empty_response": false,
+        "suppressed": true,
+        "suppressed_ids": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "decoding": "greedy",
+        "prompt_ids": [
+          2,
+          5,
+          389,
+          270,
+          1946,
+          1208,
+          269,
+          874,
+          299,
+          1197,
+          275,
+          266,
+          7,
+          6,
+          1946,
+          1208,
+          269,
+          874,
+          299,
+          264,
+          379,
+          266,
+          7,
+          5,
+          874,
+          315,
+          831,
+          270,
+          1946,
+          1208,
+          1104,
+          509,
+          3400,
+          607,
+          266,
+          1126,
+          269,
+          874,
+          673,
+          277,
+          323,
+          7,
+          6
+        ],
+        "prompt_tokens": 43,
+        "removed_turns": 0,
+        "full_history_retained": true,
+        "user_turns": 2,
+        "max_new_tokens": 32,
+        "repetition": false,
+        "repeat_metrics": {
+          "char_4gram_repeat": 0.0,
+          "token_4gram_repeat": 0.0,
+          "same_sentence_reappears": false,
+          "first_adjacent_triple_repeat_char": null
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "answer-unseen-followup-01",
+        "family_id": "answer-unseen-followup-01",
+        "split": "dev",
+        "category": "followup",
+        "messages": [
+          {
+            "role": "user",
+            "content": "次の休みには陶芸を体験したいです。"
+          },
+          {
+            "role": "assistant",
+            "content": "陶芸を体験したいのですね。"
+          },
+          {
+            "role": "user",
+            "content": "私が体験したいと言ったのは何？"
+          }
+        ],
+        "checks": [
+          "入力中の対象・条件・話者に沿って、最後の質問または依頼へ自然に答える。",
+          "訂正は最新の指定を使い、推測した事実や実体験を足さない。",
+          "単語一致・停止だけでは合格にせず、文法・関連性・履歴文脈を別々に採点。"
+        ]
+      },
+      "response": {
+        "text": "私は、陶芸を体験したいと言ったのは、何もないところに行ってみたいです。",
+        "valid_utf8": true,
+        "raw_bytes_hex": "e7a781e381afe38081e999b6e88ab8e38292e4bd93e9a893e38197e3819fe38184e381a8e8a880e381a3e3819fe381aee381afe38081e4bd95e38282e381aae38184e381a8e38193e3828de381abe8a18ce381a3e381a6e381bfe3819fe38184e381a7e38199e38082",
+        "decode_error": null,
+        "generated_ids": [
+          846,
+          265,
+          3962,
+          2399,
+          267,
+          369,
+          4086,
+          751,
+          272,
+          739,
+          373,
+          264,
+          270,
+          265,
+          488,
+          274,
+          312,
+          567,
+          269,
+          1088,
+          1113,
+          275,
+          266,
+          7
+        ],
+        "generated_tokens": 24,
+        "stop_reason": "eot",
+        "role_leak": false,
+        "unexpected_special": false,
+        "empty_response": false,
+        "suppressed": true,
+        "suppressed_ids": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "decoding": "greedy",
+        "prompt_ids": [
+          2,
+          5,
+          591,
+          264,
+          1937,
+          335,
+          3962,
+          2399,
+          267,
+          369,
+          4086,
+          751,
+          275,
+          266,
+          7,
+          6,
+          3962,
+          2399,
+          267,
+          369,
+          4086,
+          751,
+          264,
+          379,
+          266,
+          7,
+          5,
+          822,
+          268,
+          369,
+          4086,
+          751,
+          272,
+          739,
+          373,
+          264,
+          270,
+          488,
+          323,
+          7,
+          6
+        ],
+        "prompt_tokens": 41,
+        "removed_turns": 0,
+        "full_history_retained": true,
+        "user_turns": 2,
+        "max_new_tokens": 32,
+        "repetition": false,
+        "repeat_metrics": {
+          "char_4gram_repeat": 0.0,
+          "token_4gram_repeat": 0.0,
+          "same_sentence_reappears": false,
+          "first_adjacent_triple_repeat_char": null
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "answer-unseen-context-01",
+        "family_id": "answer-unseen-context-01",
+        "split": "dev",
+        "category": "context",
+        "messages": [
+          {
+            "role": "user",
+            "content": "右の戸棚には皿、左の戸棚にはコップがあります。"
+          },
+          {
+            "role": "assistant",
+            "content": "右に皿、左にコップですね。"
+          },
+          {
+            "role": "user",
+            "content": "コップを取りたい場合、どちらの戸棚ですか？"
+          }
+        ],
+        "checks": [
+          "入力中の対象・条件・話者に沿って、最後の質問または依頼へ自然に答える。",
+          "訂正は最新の指定を使い、推測した事実や実体験を足さない。",
+          "単語一致・停止だけでは合格にせず、文法・関連性・履歴文脈を別々に採点。"
+        ]
+      },
+      "response": {
+        "text": "コップは、コップの上に置いてあります。",
+        "valid_utf8": true,
+        "raw_bytes_hex": "e382b3e38383e38397e381afe38081e382b3e38383e38397e381aee4b88ae381abe7bdaee38184e381a6e38182e3828ae381bee38199e38082",
+        "decode_error": null,
+        "generated_ids": [
+          414,
+          4094,
+          371,
+          270,
+          265,
+          414,
+          4094,
+          371,
+          264,
+          377,
+          269,
+          874,
+          491,
+          668,
+          266,
+          7
+        ],
+        "generated_tokens": 16,
+        "stop_reason": "eot",
+        "role_leak": false,
+        "unexpected_special": false,
+        "empty_response": false,
+        "suppressed": true,
+        "suppressed_ids": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "decoding": "greedy",
+        "prompt_ids": [
+          2,
+          5,
+          1913,
+          264,
+          1471,
+          3050,
+          335,
+          3126,
+          265,
+          2329,
+          264,
+          1471,
+          3050,
+          335,
+          414,
+          4094,
+          371,
+          503,
+          266,
+          7,
+          6,
+          1913,
+          269,
+          3126,
+          265,
+          2329,
+          269,
+          414,
+          4094,
+          371,
+          379,
+          266,
+          7,
+          5,
+          414,
+          4094,
+          371,
+          267,
+          690,
+          502,
+          487,
+          265,
+          2180,
+          264,
+          1471,
+          3050,
+          527,
+          323,
+          7,
+          6
+        ],
+        "prompt_tokens": 50,
+        "removed_turns": 0,
+        "full_history_retained": true,
+        "user_turns": 2,
+        "max_new_tokens": 32,
+        "repetition": false,
+        "repeat_metrics": {
+          "char_4gram_repeat": 0.0,
+          "token_4gram_repeat": 0.0,
+          "same_sentence_reappears": false,
+          "first_adjacent_triple_repeat_char": null
+        }
+      }
+    }
+  ],
+  "primary_selection": false,
+  "max_new_tokens": 32,
+  "protected_TEST_used": false
+}

@@ -41,6 +41,10 @@ def main():
             nll[arm][point]=dict(source=ref(path),summaries=value['summaries'])
     save(target,dict(status='all2628_content_reviews_and_matched_comparison_complete',created_at=now(),config=ref(CONFIG),
         judgments=count,summaries=summaries,comparisons=comparisons,regressions=regressions,NLL=nll,
+        NLL_label_semantics=dict(C0_TRAIN='64 fixed examples from the historical plan149 C0, not the present arm label',
+            C1_TRAIN='64 fixed examples from historical plan149 C1, whose full TRAIN is the current C0 baseline',
+            previous_new_DEV='80 historical plan149 new DEV',new_DEV='80 current answer-curriculum DEV',
+            supplement_TRAIN='32 fixed examples from the current unique supplement'),
         new_content_CI_positive=positive,no_count_regression_across_six_suites=no_regression,
         candidate_improvement_demonstrated=positive and no_regression,
         candidate_all_absolute_DEV_screens_pass=all(v['C1']['formal_absolute_pass'] for v in summaries.values()),
