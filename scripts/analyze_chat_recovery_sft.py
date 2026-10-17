@@ -20,10 +20,11 @@ def public_comparison():
     assert [(n['id'],n['turn']) for n in a]==[(n['id'],n['turn']) for n in b]
     finals=[i for i,n in enumerate(a) if n['final']];assert len(finals)==100
     differences=np.asarray([int(b[i]['task_pass'])-int(a[i]['task_pass']) for i in finals])
-    rng=np.random.default_rng(42);bootstrap=differences[rng.integers(0,100,size=(10000,100))].mean(1)
+    draws=read_json(CONFIG)['comparison']['bootstrap_replicates']
+    rng=np.random.default_rng(42);bootstrap=differences[rng.integers(0,100,size=(draws,100))].mean(1)
     return dict(summaries={arm:v[2] for arm,v in evidence.items()},
         final100_task_pass_difference=float(differences.mean()),paired_case_bootstrap_ci95=np.quantile(bootstrap,[.025,.975]).tolist(),
-        bootstrap_seed=42,bootstrap_draws=10000,unit='case; final reply only',not_primary_DEV=True)
+        bootstrap_seed=42,bootstrap_draws=draws,unit='case; final reply only',not_primary_DEV=True)
 
 
 def main():
@@ -35,7 +36,12 @@ def main():
     for suite in SUITES:
         left=original.evidence('C0',suite,c);right=original.evidence('C1',suite,c)
         paired=paired_chat_comparison(left[0],right[0],left[1],right[1],left[2],right[2])
-        summaries[suite]=dict(C0=left[3],C1=right[3]);comparisons[suite]=dict(paired=paired['paired'],statistical_note=paired['statistical_note'],
+        summaries[suite]=dict(C0=left[3],C1=right[3])
+        for label,evidence in (('C0',left),('C1',right)):
+            summaries[suite][label]['categories']=evidence[2]['categories']
+            ratings={n['key']:n for n in evidence[2]['judgments']}
+            summaries[suite][label]['primary_all3_score2']=sum(all(ratings[k][m]==2 for m in ('grammar','relevance','context')) for k,i in evidence[1].items() if i['condition']=='suppressed')
+        comparisons[suite]=dict(paired=paired['paired'],statistical_note=paired['statistical_note'],
             difference_direction='New C1 varied input structures minus new C0 fixed inputs, same answers/order/teachers')
         count+=len(left[2]['judgments'])+len(right[2]['judgments'])
         print(json.dumps(dict(suite=suite,C0=left[3]['primary']['joint_grammar_relevance_score2'],C1=right[3]['primary']['joint_grammar_relevance_score2'],

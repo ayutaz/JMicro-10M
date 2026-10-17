@@ -29,3 +29,11 @@ CPUではread境界・split/重複拒否・中断済み出力の再開・failed�
 C0の25万教師時点の全10応答を厳密な32token raw/実履歴と個別理由で確認した。内容成立は1/10（必要な五枚）で、日時の紐付け・二属性・訂正・厳密表記の失敗が残る。主点は100万のまま。[途中notes](../reports/phase7/chat-recovery-20261018/input-structure-main/diagnostics/C0/250000_notes.json)。
 
 最終採点は旧rawを各々の元configで検証し、実messages/checks/ID/bytes/stop等が全て同一の応答だけ既存理由付きnotesを再利用する。異なる履歴や競合する採点は新たに全文確認する。実ブラウザーは新CPUポート7866/7867で各3会話×6応答、計36応答を確認する準備を済ませたが、未実施である。全3,466主応答・40途中・36実ブラウザー・全履歴/全state・最終採否が残っており、goalはACTIVE。
+
+## 対照学習・実ブラウザー確認（17:25UTC）
+
+C0は1,929更新・正確1,000,000教師で完了した。全1,929実履歴がCPU replayの教師量/microbatch/LRと一致し、119 Adam step・全typed state有限性・RNG・終端sampler・source配合も照合した。実step1,062.237380秒、stage1,106.619771秒。[監査](../reports/phase7/chat-recovery-20261018/input-structure-main/C0/training_audit.json)。元Base/fresh Adamから新しく学習した結果を、旧C1とCPUで比較するとmodel/Adam/scheduler/RNG/sampler/全非時間履歴が厳密一致した。保存済み全fieldで異なるのは新manifestのhashだけだった。ファイル全体のhashは異なり、旧checkpointのコピーではない。これは同seedの数値再現で、独立Base全pipelineや品質採用ではない。[数値比較](../reports/phase7/chat-recovery-20261018/input-structure-main/C0/historical_numeric_comparison.json)。
+
+新対照CPU UI http://127.0.0.1:7867 を実起動し、専用のheadless実ブラウザーで3会話×6応答を実施した。全18の送信履歴1/3/5/7/9/11件、actual Assistant本文、会話reset、DOM/API同一、既定32と16/32/64選択を確認した。全18をstrict raw/実履歴と個別理由で確認し、内容成立1/18、自然停止17/18だった。訂正群では「時刻は午後三時です。」が6回続き、午後四時半への訂正を保持できなかった。画面の記録とCDP通信を保存し、PNGも直接確認した。[実ブラウザー原結果](../reports/phase7/chat-recovery-20261018/input-structure-main/practical/C0/browser.json) / [全理由](../reports/phase7/chat-recovery-20261018/input-structure-main/practical/C0/notes.json)。
+
+同じ実科学processはC1の新学習へ進んだ。C1の完了・実会話18応答・全主3,466応答とCI/回帰・採否はこの時点では未完了で、goalはACTIVEのまま。
