@@ -15,7 +15,7 @@ $arguments=@('--headless=new','--disable-gpu','--no-first-run','--no-default-bro
 if($AttachPID){
     $prior=Get-Content -LiteralPath $target -Raw | ConvertFrom-Json -Depth 80
     $ownedProcess=Get-Process -Id $AttachPID -ErrorAction Stop
-    if($prior.helper_pid -ne $AttachPID -or $ownedProcess.StartTime.ToUniversalTime().Ticks -ne ([DateTime]$prior.helper_start).ToUniversalTime().Ticks -or $prior.conversations.Count -gt 0){throw 'Only the same verified helper before any completed conversation may attach'}
+    if($prior.helper_pid -ne $AttachPID -or $ownedProcess.StartTime.ToUniversalTime().Ticks -ne ([DateTime]$prior.helper_start).ToUniversalTime().Ticks -or $prior.conversations.Count -gt 0 -or $prior.in_progress_conversation.turns.Count -gt 0){throw 'Only the same verified helper before any model response may attach'}
     Copy-Item -LiteralPath $target -Destination (Join-Path $root 'browser-initial-observation.json')
 }else{
     if(Test-Path -LiteralPath $target){throw 'Prior browser evidence exists; inspect actual helper and partial state before any new start'}
@@ -71,14 +71,16 @@ try{
         $reset=JS '(()=>{document.querySelector("#reset").click();return {messages:document.querySelectorAll(".message").length,input:document.querySelector("#input").value};})()'
         if($reset.messages -ne 0 -or $reset.input -ne ''){throw 'Reset retained old UI history'}
         $turns=@()
+        $report.in_progress_conversation=@{name=$case.name;turns=@()};Save-Report
         foreach($text in $case.users){
             $value=ConvertTo-Json -InputObject $text -Compress
             $expression='(async()=>{const input=document.querySelector("#input");input.value='+$value+';document.querySelector("#form").requestSubmit();for(let i=0;i<300;i++){await new Promise(r=>setTimeout(r,50));if(!document.querySelector("#send").disabled){const rows=[...document.querySelectorAll(".message")].map(n=>({role:n.classList.contains("assistant")?"assistant":"user",text:[...n.childNodes].filter(x=>x.nodeType===Node.TEXT_NODE).map(x=>x.textContent).join("")}));return {messages:rows,status:document.querySelector("#status").textContent,error:document.querySelector("#status").classList.contains("error")};}}throw Error("UI timeout");})()'
             $result=JS $expression;if($result.error){throw $result.status}
             $turns+=@{user=$text;UI=$result}
+            $report.in_progress_conversation.turns=$turns;Save-Report
             [PSCustomObject]@{arm=$Arm;conversation=$case.name;user=$text;reply=$result.messages[-1].text}|ConvertTo-Json -Compress|Write-Output
         }
-        $report.conversations+=@{name=$case.name;reset=$reset;turns=$turns};Save-Report
+        $report.conversations+=@{name=$case.name;reset=$reset;turns=$turns};$report.in_progress_conversation=$null;Save-Report
     }
     $requests=@($script:events|Where-Object {$_.method -eq 'Network.requestWillBeSent' -and $_.params.request.url -eq "http://127.0.0.1:$Port/api/chat"})
     $network=@()
@@ -101,6 +103,7 @@ try{
     $report.status='all18_actual_browser_responses_pending_literal_review'
 }catch{$report.status='failed_partial_preserved';$report.error=$_.Exception.Message;throw}
 finally{
+    $script:events|ConvertTo-Json -Depth 100|Set-Content -LiteralPath (Join-Path $root 'CDP_events.json') -Encoding utf8
     $report.ended_at=[DateTime]::UtcNow.ToString('o');Save-Report
     if($socket.State -eq [System.Net.WebSockets.WebSocketState]::Open){try{$null=CDP 'Browser.close' @{}}catch{}}
     $socket.Dispose()
