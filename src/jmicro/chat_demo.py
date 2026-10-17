@@ -29,9 +29,17 @@ TRAIN_RESULT = ROOT / 'reports/phase7/chat-first-sft-20261010/result.json'
 ASSETS = ROOT / 'webui/chat'
 
 
+def validate_response_limit(data):
+    limit = data.get('max_new_tokens', 32)
+    if type(limit) is not int or not 8 <= limit <= 64:
+        raise ValueError('返答の上限は8〜64トークンで指定してください。')
+    return limit
+
+
 def validate_messages(data):
-    if not isinstance(data, dict) or set(data) != {'messages'}:
+    if not isinstance(data, dict) or 'messages' not in data or set(data) - {'messages', 'max_new_tokens'}:
         raise ValueError('messagesを指定してください。')
+    validate_response_limit(data)
     messages = data['messages']
     if not isinstance(messages, list) or not 1 <= len(messages) <= 65 or len(messages) % 2 != 1:
         raise ValueError('会話履歴はUserから交互に並べ、最後をUserにしてください。')
@@ -92,7 +100,7 @@ class ChatEngine:
                          tokenizer_sha256=TOKENIZER_SHA, parent_sha256=PARENT_SHA,
                          parameters=10001152, SFT_teacher_tokens=1899555, SFT_epochs=3,
                          device='CPU', precision='FP32 / math attention', decoding='greedy',
-                         context=1024, max_new_tokens=64, Base_adopted=False, Chat_adopted=False,
+                         context=1024, max_new_tokens=32, max_new_tokens_range=[8, 64], Base_adopted=False, Chat_adopted=False,
                          original_model_source_sha256=MODEL_SHA,
                          checkpoint_model_source_LF_sha256=MODEL_LF_SHA,
                          model_source_difference='CRLF versus LF only; original files unchanged')
@@ -100,12 +108,13 @@ class ChatEngine:
 
     def prepare(self, data):
         messages = validate_messages(data)
-        _, removed = self.tok.chat_prompt(messages, 1024 - 64)
+        _, removed = self.tok.chat_prompt(messages, 1024 - validate_response_limit(data))
         if removed:
             raise ValueError('文脈の上限に達しました。「新しい会話」で始め直してください。')
         return messages
 
-    def reply(self, messages):
+    def reply(self, messages, max_new_tokens=32):
+        validate_response_limit(dict(max_new_tokens=max_new_tokens))
         started = time.monotonic()
 
         def check():
@@ -115,7 +124,7 @@ class ChatEngine:
                 raise TimeoutError('生成が60秒を超えました。')
 
         with sdpa_kernel(SDPBackend.MATH):
-            row = generate_reply(self.model, self.tok, messages, 'cpu', 'fp32', 64, True, check)
+            row = generate_reply(self.model, self.tok, messages, 'cpu', 'fp32', max_new_tokens, True, check)
         if row['removed_turns']:
             raise RuntimeError('Unexpected history truncation')
         return dict(**row, seconds=time.monotonic() - started)
@@ -170,13 +179,15 @@ def make_handler(engine):
                 if not 0 < length <= 70000:
                     raise ValueError('入力サイズが不正です。')
                 self.connection.settimeout(10)
-                messages = engine.prepare(json.loads(self.rfile.read(length)))
+                data = json.loads(self.rfile.read(length))
+                messages = engine.prepare(data)
+                max_new_tokens = validate_response_limit(data)
             except (ValueError, UnicodeError, TimeoutError) as error:
                 return self.respond(400, dict(error=str(error)))
             if not engine.lock.acquire(blocking=False):
                 return self.respond(409, dict(error='応答を生成中です。少し待ってください。'))
             try:
-                response = engine.reply(messages)
+                response = engine.reply(messages, max_new_tokens=max_new_tokens)
                 self.respond(200, dict(response=response, model=engine.info['name']))
             except (TimeoutError, ValueError) as error:
                 self.respond(400, dict(error=str(error)))
