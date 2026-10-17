@@ -1,5 +1,7 @@
 # 文書一覧
 
+2026-10-17追加: [157：現行Chatの100ケース品質診断](157_chat_quality_100_results.md)。実API200応答を全件確認。最終100の総合成立22、計算・厳密形式0/10、実会話6応答目0/20。同文固定は11/20会話で再現。全CSV・raw・理由付き判定を保存した。
+
 2026-10-17完了: [結果156](156_answer_curriculum_results.md)に計画151の全5段階・全2,628応答比較・実UIをまとめた。新DEV内容11→17/80、差CIが0を含み既知の一部悪化もあり、改善未実証・候補品質不採用。別seed再現の事前条件は非発動。試用は[候補7864](http://127.0.0.1:7864)・[対照7865](http://127.0.0.1:7865)。以下は各時点の更新履歴。
 
 2026-10-17実学習開始: [155：現在のSFT](155_answer_curriculum_execution_status.md)。全40技術更新・保存再開を確認し、新対照C0を学習中。[154：時間計画の明示訂正](154_curriculum_resource_replan.md)。新goalの4/5は未完了。
@@ -153,6 +155,7 @@
 | [154_curriculum_resource_replan.md](154_curriculum_resource_replan.md) | 本学習前に発生した時間計画不足と別resource-v2の事前訂正 |
 | [155_answer_curriculum_execution_status.md](155_answer_curriculum_execution_status.md) | 新教材の実配合・GPU gate・主SFTの実行状況 |
 | [156_answer_curriculum_results.md](156_answer_curriculum_results.md) | 回答学習5段階の完了・全2,628内容比較・改善未実証の結果 |
+| [157_chat_quality_100_results.md](157_chat_quality_100_results.md) | 現行Chatの100ケース・全200応答の品質、正答、継続会話の失敗 |
 
 <!-- Historical incoming heading aliases. Original text is preserved in baseline snapshots. -->
 <a id="今回の文書と計画"></a>

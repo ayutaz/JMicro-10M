@@ -1,5 +1,7 @@
 # 全ドキュメント・保存原文の一覧
 
+2026-10-17品質診断追記: [157](157_chat_quality_100_results.md)に現行Chatの固定100ケース・実200応答の全件評価を追加。総合22/100・継続会話の記憶/訂正の最終0/20、同文3連以上11/20会話。原回答CSVと全判定理由も保存した。元の棚卸し件数や固定履歴へ後続追加を混ぜない。
+
 2026-10-17最終追記: [計画151](151_answer_learning_execution_plan.md)の5段階は[結果156](156_answer_curriculum_results.md)まで実行・全要件監査を完了した。新DEV内容11→17/80だが差CIが0を含み一部既知悪化もあるため、改善未実証・候補品質不採用。[154](154_curriculum_resource_replan.md)は本学習前の資源計画改訂、[155](155_answer_curriculum_execution_status.md)は日付付き実行履歴として保持する。元の文書棚卸し件数や固定原文は変更しない。以下のactive/未完了は当時の記録。
 
 2026-10-17新goal追記: [151](151_answer_learning_execution_plan.md)は新5段階の実行計画、[152](152_answer_learning_diagnosis_results.md)は1〜3の実結果、[153](153_answer_curriculum_comparison.md)は改善教材による新対照比較の事前方針。新goalはactiveで、主SFT・未知入力評価・新UI会話は未完了。
