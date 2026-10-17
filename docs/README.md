@@ -1,5 +1,7 @@
 # 文書一覧
 
+2026-10-17完了: [結果156](156_answer_curriculum_results.md)に計画151の全5段階・全2,628応答比較・実UIをまとめた。新DEV内容11→17/80、差CIが0を含み既知の一部悪化もあり、改善未実証・候補品質不採用。別seed再現の事前条件は非発動。試用は[候補7864](http://127.0.0.1:7864)・[対照7865](http://127.0.0.1:7865)。以下は各時点の更新履歴。
+
 2026-10-17実学習開始: [155：現在のSFT](155_answer_curriculum_execution_status.md)。全40技術更新・保存再開を確認し、新対照C0を学習中。[154：時間計画の明示訂正](154_curriculum_resource_replan.md)。新goalの4/5は未完了。
 
 2026-10-17新goal進行中: [計画151](151_answer_learning_execution_plan.md)の1〜3を完了し、4/5の主SFTと未知入力・実会話は未完了。[診断152](152_answer_learning_diagnosis_results.md) / [教材比較の事前方針153](153_answer_curriculum_comparison.md)。前回150の完了とは別の依頼です。
@@ -150,6 +152,7 @@
 | [153_answer_curriculum_comparison.md](153_answer_curriculum_comparison.md) | 根拠付き対話と確認済み公開回答を補う新対照SFTの事前方針 |
 | [154_curriculum_resource_replan.md](154_curriculum_resource_replan.md) | 本学習前に発生した時間計画不足と別resource-v2の事前訂正 |
 | [155_answer_curriculum_execution_status.md](155_answer_curriculum_execution_status.md) | 新教材の実配合・GPU gate・主SFTの実行状況 |
+| [156_answer_curriculum_results.md](156_answer_curriculum_results.md) | 回答学習5段階の完了・全2,628内容比較・改善未実証の結果 |
 
 <!-- Historical incoming heading aliases. Original text is preserved in baseline snapshots. -->
 <a id="今回の文書と計画"></a>

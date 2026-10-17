@@ -1,5 +1,7 @@
 # 回答教材SFTの実行状況
 
+最終確定: 全5段階の実行と要件監査が完了した。[結果156](156_answer_curriculum_results.md) / [全比較](../reports/phase7/chat-answer-learning-20261017/curriculum-main-resource-v2/final_analysis.json) / [完了監査](../reports/phase7/chat-answer-learning-20261017/curriculum-main-resource-v2/completion.json)。全2,628応答に理由を付け、固有1,554件・実履歴/ID/bytes等の完全一致再利用1,074件を検証。内容C0→C1は新11→17、前回新13→20、lr8→14、意味8→20、汎化7→13、元会話18→16各80。主新DEVの差CI[-.0375,.175]は0を含み、一部件数悪化もあり、事前改善条件と絶対品質screenは未達。候補は改善未実証・品質不採用で閉鎖し、条件付きseed43再現は非発動。12:31UTCに両科学workerの終了と元Base/全6UIの生存・実lockを再確認。主stage計2,708.290790秒と旧失敗の持越を保持した。以下の「未完了/実行中/次は」は各観測時点の履歴である。
+
 12:16 UTC終端観測: 全2,628応答の生成が12:15:21Zに正常終了した。元科学process488265とWindows19704は実不在、launcher exit0/元UI復帰0。Base UIの新実PID494317・idle HTTP・元親hash・実kernel FLOCK/dxg、旧新の全6UIの生存を再確認した。主run stage累計2,708.290790秒（旧failed probe5.505592秒も含む）、うち全評価710.317102秒。追加のGPU学習・再起動・新TESTは行っていない。
 
 内容判定は876/2,628まで完了。C0/new219件は内容11/80・自己生成履歴の文脈3/24、対応するC1/new219件は17/80・8/24。C0/previous_new219件は13/80・2/24、C0/lr219件は8/80・1/24。新80問の増加6件は単独で全体改善の証明にしない。残りはC0のsemantic/generalization/original、C1のprevious_new/lr/semantic/generalization/originalの8suite・1,752件で、CI・既知退行・条件付きseed43の判断はその後。全40途中診断と実UI20応答のnotesは完了している。
