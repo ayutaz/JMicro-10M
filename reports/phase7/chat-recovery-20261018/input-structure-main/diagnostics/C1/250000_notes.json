@@ -1,0 +1,100 @@
+{
+  "raw": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/diagnostics/C1/250000.json",
+    "sha256": "355b1c572a2c74f315468bb0268918ccabbc7ff63f20c69df2ad610652098555"
+  },
+  "authored": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/diagnostics/C1/250000_authored.json",
+    "sha256": "a8fe69e35ace4dd83543bfc978f703fa7c8295868a563869078e2f5f8dbde0f5"
+  },
+  "all_reviewed": true,
+  "responses": 10,
+  "judgments": [
+    {
+      "id": "recovery-unseen-greeting-01",
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "朝の会話への誘いに未提示の飲酒を持ち込み、同じ句を繰り返して上限で途切れた。"
+    },
+    {
+      "id": "recovery-unseen-emotion-02",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "鉢が割れて悲しいというUser本文をそのまま復唱し、気持ちを受け止める応答はない。"
+    },
+    {
+      "id": "recovery-unseen-daily-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "料理を盛り付けると答え、たまった食器を少しずつ片付ける相談に応じない。"
+    },
+    {
+      "id": "recovery-unseen-binding-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "今日の病院を選べず、昨日の行き先として提示された港を答えている。"
+    },
+    {
+      "id": "recovery-unseen-numbers-05",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "五枚という枚数と単位を変えずに、質問へ直接短く回答している。"
+    },
+    {
+      "id": "recovery-unseen-format-06",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "数値とコンマは正しいが、表記だけという条件に反しですを付け足している。"
+    },
+    {
+      "id": "recovery-unseen-missing-07",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "料理を手伝う意思を繰り返すだけで、次に材料を提示してもらう確認がない。"
+    },
+    {
+      "id": "recovery-unseen-followup-01",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "子猫の名前メイは正しく返すが、同時に求められた器の色の白が欠ける。"
+    },
+    {
+      "id": "recovery-unseen-correction-01",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "小箱を金曜と表現して対象と曜日を混同し、最新の紫と日曜を答えない。"
+    },
+    {
+      "id": "recovery-unseen-context-01",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "太鼓という楽器を復唱し、担当者として明示された兄を回答しない。"
+    }
+  ],
+  "rubric": {
+    "grammar": "0: unreadable/broken; 1: understandable with awkward or incomplete clauses; 2: natural complete Japanese. Score language separately from factual correctness.",
+    "relevance": "0: unrelated/contradicts the request; 1: partly relevant or vague; 2: directly responds to the final User in the actual history. Do not require literal gold wording.",
+    "context": "0: loses or contradicts required conditions; 1: partial/ambiguous retention; 2: retains all relevant conditions and corrections in the actual history. For own-history use generated replies, never supplied gold Assistant messages.",
+    "rationale": "At least 12 characters explaining the particular response. Keep fantasy, alternate natural answers, numeric correctness, grammar, and stopping distinct."
+  },
+  "reviewer": "Codex nonblind, actual full history; not independent human",
+  "created_at": "2026-10-17T17:30:49.642406Z",
+  "source": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/review_chat_recovery_aux.py",
+    "sha256": "8e3e0b0e05a441c6b72e2f310fd9af440b4e91f7cadfd18b8f3d788d97e51ceb"
+  },
+  "content": 1,
+  "protected_TEST_used": false,
+  "primary_model_selection": false,
+  "practical_not_combined_with_DEV": false
+}
