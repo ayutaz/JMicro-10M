@@ -1,5 +1,7 @@
 # 現在の状態
 
+2026-10-17 SFT計画: 現在は[次のSFT計画149](149_chat_sft_next_plan.md)の作成・保存まで。元10B Baseから、公開会話の幅を広げた候補と従来データ対照を、同10M/共通設定/各100万Assistant教師で比較する案。新素材の採用量・split・実行configは未確定/未凍結。今回の新教材処理・重み読取り・GPU・学習は0。
+
 更新: 2026-10-17 JST。文書目標は645b3d09で完了。ユーザーがチャットSFT・動作確認へ方針を変更したため、最初のRealPersonaChat SFT済みモデルをローカルChat画面へ接続した。事前学習とSFT学習の完了、正式品質の採用未達、実際の短い会話成立を区別する。
 
 ## 現在試せるChat
@@ -8,7 +10,7 @@
 
 5会話10応答を全件確認し、EOT終了10/10・有効UTF8 10/10・履歴削除0。挨拶/食べ物の質問に短く返答する一方、入力の復唱や猫の名前を忘れる失敗が残った。[raw](../reports/phase7/chat-demo-20261017/raw.json)・[全個別notes](../reports/phase7/chat-demo-20261017/notes.json)。これは既存モデルの新しい操作確認で、旧DEV80採点の再評価・救済でも新しいblind TESTでもない。
 
-[最新結果・更新記録148](148_latest_base_and_documentation.md) / [現在の計画145](145_post_rejection_next_plan.md) / [文書一覧](README.md) / [全件カタログ](document_catalog.md)。
+[次のSFT計画149](149_chat_sft_next_plan.md) / [Baseの残課題145](145_post_rejection_next_plan.md) / [文書一覧](README.md) / [全件カタログ](document_catalog.md)。
 
 最新のRDrop25M比較は4,420更新・正確25,000,000教師まで完了し、不採用で固定条件を閉鎖した。対照→候補は一貫性1→3/80、適切完結3→6/80、EOS11→19/80、反復53→49/80。BPBは0.9927168291→1.0279654060（3.5507%悪化）。全80件を理由付きで確認したCodex非blind評価で、独立人間blindではない。
 

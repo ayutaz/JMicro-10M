@@ -1,10 +1,12 @@
 # JMicro-10M development and training
 
-更新: 2026-10-17 JST。ユーザーがBase完成待ちから、チャットデータによるSFT・動作確認へ方針を変更した。事前学習は終了済みであり、Baseの正式品質未達だけをSFT/動作確認の禁止理由にしない。最初に、既存RealPersonaChat SFT3周checkpointをCPUのローカルChat画面へ接続し、実際の短い会話とrawを確認する。同じ閉じたSFTを無根拠に再学習せず、以前の採否・基準は保存する。Base/Chatの正式採用は未達。
+更新: 2026-10-17 JST。ユーザーの現在の依頼は次のSFT計画作成。docs/149_chat_sft_next_plan.mdに、公開会話/短い質問応答の新しい教材recipeと従来教材対照、同10M/元10B親・各100万Assistant教師の最初の比較案を保存する。今回は計画・一次資料確認・文書保存のみで、新教材/評価本文の処理、重み読取り、GPU推論/学習は開始しない。設定は未凍結の提案。Baseの正式品質未達だけをChat SFTの禁止理由にしない。Base/Chatの正式採用は未達。
+
+The existing first SFT Chat UI and all five practical conversations were delivered at 216a636f. This turn prepares the next SFT plan only. Reuse the completed Base pretraining, keep the original 10M/native sources and all prior negative results, and do not restart a closed condition. The first proposed comparison tests a broader public conversational data recipe with a matched fresh control, not another template-slot expansion or a rescue of the old low-LR run. Data availability, split isolation, numerical feasibility and run contracts remain to be fixed before execution.
 
 The documentation-only goal was completed at 645b3d09. The latest user instruction authorizes Chat/SFT exploration and practical chat verification; it overrides the previous documentation-only scope below. Immediate work serves the existing first SFT model on CPU at a separate loopback port, with bounded actual conversation checks. Preserve original Base UI, all frozen training records and native sources; do not relaunch an old scientific condition. No paid cloud, external publication, model-size increase or TEST preparation is authorized. Do not ask again whether to resume chat verification.
 
-[最新結果・更新記録148](docs/148_latest_base_and_documentation.md) / [現在の計画145](docs/145_post_rejection_next_plan.md) / [文書一覧](docs/README.md) / [全件カタログ](docs/document_catalog.md)。
+[SFT計画149](docs/149_chat_sft_next_plan.md) / [Baseの残課題145](docs/145_post_rejection_next_plan.md) / [文書一覧](docs/README.md) / [全件カタログ](docs/document_catalog.md)。
 
 最新のRDrop25M比較は4,420更新・正確25,000,000教師まで完了し、不採用で固定条件を閉鎖した。対照→候補は一貫性1→3/80、適切完結3→6/80、EOS11→19/80、反復53→49/80。BPBは0.9927168291→1.0279654060（3.5507%悪化）。全80件を理由付きで確認したCodex非blind評価で、独立人間blindではない。
 

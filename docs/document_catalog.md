@@ -1,5 +1,7 @@
 # 全ドキュメント・保存原文の一覧
 
+2026-10-17追記: [SFT計画149](149_chat_sft_next_plan.md)を追加。以下の976パス/原文copy数は645b3d09の文書更新時点の棚卸しで、後続の追加を当時のbaselineへ書き戻さない。
+
 更新: 2026-10-17 JST。現在の依頼は「ドキュメントをすべて最新にして」。元の「4まで」の目標は未達のままユーザーが解除した。今回の作業範囲は文書更新・棚卸し・保存検証・ローカルGitコミット。Base/Chatは未完成・未採用。
 
 [最新結果・更新記録148](148_latest_base_and_documentation.md) / [現在の計画145](145_post_rejection_next_plan.md) / [文書一覧](README.md) / [全件カタログ](document_catalog.md)。
@@ -35,6 +37,7 @@
 | [docs/13_tokenizer_dialogue_data_research.md](13_tokenizer_dialogue_data_research.md) | 最新化 |
 | [docs/145_post_rejection_next_plan.md](145_post_rejection_next_plan.md) | 最新化 |
 | [docs/148_latest_base_and_documentation.md](148_latest_base_and_documentation.md) | 最新化 |
+| [docs/149_chat_sft_next_plan.md](149_chat_sft_next_plan.md) | 後続のSFT計画として追加 |
 | [docs/14_evaluation_deployment_research.md](14_evaluation_deployment_research.md) | 最新化 |
 | [docs/15_project_roadmap.md](15_project_roadmap.md) | 最新化 |
 | [docs/43_local_webui.md](43_local_webui.md) | 最新化 |

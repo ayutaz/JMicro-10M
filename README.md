@@ -4,7 +4,7 @@
 
 **[Chatを試す：http://127.0.0.1:7861](http://127.0.0.1:7861)** — 元10B BaseへRealPersonaChatで3周SFTした10Mモデル。短い返答と履歴を試せます。今回の新たな再学習はなく、既存の学習済みモデルをCPU FP32で利用できるローカル画面です。[操作と実例](docs/43_local_webui.md)。
 
-[最新結果・更新記録148](docs/148_latest_base_and_documentation.md) / [現在の計画145](docs/145_post_rejection_next_plan.md) / [文書一覧](docs/README.md) / [全件カタログ](docs/document_catalog.md)。
+[次のSFT計画149](docs/149_chat_sft_next_plan.md) / [Baseの残課題145](docs/145_post_rejection_next_plan.md) / [文書一覧](docs/README.md) / [全件カタログ](docs/document_catalog.md)。
 
 約1,000万パラメータで自然な日本語の続きを生成し、その後に短い会話を行うモデルを目指す研究プロジェクトです。モデル・Tokenizer・学習評価基盤をスクラッチで構築しています。
 
@@ -28,7 +28,9 @@
 
 ## 現在の作業と次の計画
 
-現在はChatの実動作確認です。最初のSFTモデルで5会話10応答を確認し、全10応答がEOTで自然停止しました。挨拶・食べ物の好みなどへの返答は成立しますが、名前の記憶や入力の復唱に失敗が残ります。元の正式品質基準を変更したり、短い動作確認を正式採用へ読み替えたりはしていません。[動作確認記録](reports/phase7/chat-demo-20261017/notes.json)。Baseの残課題は[計画145](docs/145_post_rejection_next_plan.md)に保全しています。
+次の依頼はSFT計画の作成。[計画149](docs/149_chat_sft_next_plan.md)では、元の学習済みBaseから公開会話/短い質問応答を使う新候補を作り、従来データの対照と各100万Assistant教師で比較する案を具体化しました。教材の採用可能量と実装/実機確認後に設定を固定します。今回は新しい学習を開始していません。
+
+直前のChat実動作確認では、最初のSFTモデルで5会話10応答を確認し、全10応答がEOTで自然停止しました。挨拶・食べ物の好みなどへの返答は成立しますが、名前の記憶や入力の復唱に失敗が残ります。元の正式品質基準を変更したり、短い動作確認を正式採用へ読み替えたりはしていません。[動作確認記録](reports/phase7/chat-demo-20261017/notes.json)。Baseの残課題は[計画145](docs/145_post_rejection_next_plan.md)に保全しています。
 
 ## 基盤と履歴
 

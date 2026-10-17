@@ -1,0 +1,47 @@
+{
+  "observed_at": "2026-10-17T06:00:11.2665040Z",
+  "request": "sftを進めたいので、計画を立ててください",
+  "scope": "Plan only. No project corpus/TEST/model read, data preparation, new inference, GPU or training.",
+  "baseline_commit": "216a636f6bbe2cf2f69207dbb4f4547bea1baa6b",
+  "plan": "docs/149_chat_sft_next_plan.md",
+  "recipe_status": "proposed_not_frozen",
+  "comparison": "New natural/public conversational data recipe versus existing RPC under matched new SFT contract",
+  "parameters": 10001152,
+  "parent_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+  "proposed_teachers_each": 1000000,
+  "proposed_max_complete_response_overshoot": 63,
+  "proposed_sources_teacher_percent": {
+    "RealPersonaChat": 70,
+    "magpie_sft": 30
+  },
+  "data_availability_confirmed": false,
+  "source_revisions_to_pin_before_preparation": true,
+  "new_data_prepared": false,
+  "new_inference": false,
+  "new_training": false,
+  "GPU_seconds": 0,
+  "TEST_opened": false,
+  "global_local_GPU_cap": null,
+  "source_observations": [
+    {
+      "facts": "Official public release reports 13,583 Japanese dialogues; human-to-human persona conversations. Not all are eligible project TRAIN.",
+      "url": "https://github.com/nu-dialogue/real-persona-chat"
+    },
+    {
+      "facts": "Japanese synthetic user/assistant pairs and generator provenance; Apache-2.0 displayed. Eligibility and quantity of complete short replies have not been measured.",
+      "url": "https://huggingface.co/datasets/llm-jp/magpie-sft-v1.0"
+    }
+  ],
+  "prior_evidence": [
+    "docs/129_chat_first_sft_execution.md",
+    "docs/136_chat_generalization_results.md",
+    "docs/138_chat_semantic_diversity_results.md",
+    "docs/141_chat_lr_comparison_results.md",
+    "reports/phase7/chat-demo-20261017/notes.json"
+  ],
+  "main_endpoint": "Final 1M-teacher checkpoint for both arms; intermediate snapshots diagnostic only",
+  "planned_final_responses": 2190,
+  "quality_gates_preserved": true,
+  "SFT_reproducibility_is_not_fresh_Base_training": true,
+  "next_action": "Measure eligible training data and preserve existing held-out IDs; freeze data, DEV-only artifacts, actual implementation and measured execution contract before learning."
+}
