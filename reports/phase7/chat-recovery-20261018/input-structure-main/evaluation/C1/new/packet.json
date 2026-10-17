@@ -1,0 +1,3397 @@
+{
+  "evaluation_sha256": "be6a9c354c5869f08833d9dca055683feb3bc1d270e50e15332d07118ce89240",
+  "rubric": {
+    "grammar": "0: unreadable/broken; 1: understandable with awkward or incomplete clauses; 2: natural complete Japanese. Score language separately from factual correctness.",
+    "relevance": "0: unrelated/contradicts the request; 1: partly relevant or vague; 2: directly responds to the final User in the actual history. Do not require literal gold wording.",
+    "context": "0: loses or contradicts required conditions; 1: partial/ambiguous retention; 2: retains all relevant conditions and corrections in the actual history. For own-history use generated replies, never supplied gold Assistant messages.",
+    "rationale": "At least 12 characters explaining the particular response. Keep fantasy, alternate natural answers, numeric correctness, grammar, and stopping distinct."
+  },
+  "pending": {
+    "suppressed-recovery-unseen-greeting-01": {
+      "fingerprint": "c73d09a0fd85e296d85580b43dcfdfe53e1fbf51b79ef686d2928ec724aedd8f",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "おはよう。今朝も少しだけ話そう。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "そうですね。今日は朝から朝まで、朝から夕方まで、朝から夕方まで、朝から夕方まで、朝から夕方まで",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-greeting-02": {
+      "fingerprint": "d7748d18cda21c4e39ceef8f7f327e02815fe761c01f4e4fb258947d573038c4",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "やあ、こんにちは。初めて話しかけます。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "おお、おお、おお、おお、おお、",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-greeting-04": {
+      "fingerprint": "1eff2a858cb444fa6733a173735bd8146bff23afb1114035b0ad5c4d8cfc9af3",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "聞いてもらったおかげで気持ちが軽くなった。ありがとう。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "お互いが、気持ちを分かち合うことが大事です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-greeting-05": {
+      "fingerprint": "77b8988a383bf623287cb4fab1edf6db6dac9b0f988b90e5c723bcd560599be0",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "今日はもう終わり。また話すときまで、さようなら。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "今日は、今日のことをよく聞いてくださりありがとうございました。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-greeting-07": {
+      "fingerprint": "6e08c9037b8c17e875b3713f320740ca8f30eb81c833f777c530b82c2d18abb1",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "初めまして。短い会話を楽しめたらうれしいです。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "短い会話を楽しめるのが一番です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-emotion-01": {
+      "fingerprint": "9837586bc6f9c6ade90d8f1cbc49e9d04550a14e51f4b6c947c8ee8bea2de280",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "初めて焼いたパンがうまく膨らんでうれしい。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "焼いたパンは、冷凍で冷やしておけば、冷やし固めのまま食べられる。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-emotion-04": {
+      "fingerprint": "9b52f7795c136d55f8c7835065460afab925d51473a3bbb7b621f96962ee2ece",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "友人と仲直りできて、ようやく安心しました。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "友人と仲直りで、仲直りができたのは、とてもよかったです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-daily-01": {
+      "fingerprint": "3d0538da2d9ed79db35018e4d1fc3309ebed1bb847f9cb4a305fe5703d573d84",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "雨の日に部屋でできる遊びを一つだけ挙げて。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "雨の日は、家の中にいるだけでも楽しいです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-daily-02": {
+      "fingerprint": "c4737a7c7d7f0ed7a748f14128dcd5e928f3b6d0fe6359a304e61d9cd28d40ef",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "帰宅すると鞄を床に置いてしまいます。片付けの工夫を一つ教えて。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "鞄は、お持ち帰りの鞄に入れておくと便利です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-daily-03": {
+      "fingerprint": "07aa0fcb1d6be3741f85275035af1e101ff7e18a7bcb6221015ee1549ef38663",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "朝食の後に皿がたまります。小さく始める方法は？"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "小さく始める方法は、具材を入れるだけです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-daily-04": {
+      "fingerprint": "995f9c5d96b15630cd59171464b846f2623e08115b810b5a5f279feb634c5749",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "散歩を習慣にしたいけど続きません。まず何分から始めよう。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "散歩は、どこからでも行けるので、どこからでも行ける。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-daily-05": {
+      "fingerprint": "d42aa2d447bd7fc63e33c20a925718f3458d6e3327fc1295688525e70b73f541",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "机がいっぱいです。まず何を片付ければいいかな。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "机は、お好きな方にお任せください。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-binding-01": {
+      "fingerprint": "71d87903c190d9cba1721a065448517d32ce8ea71096ca4e3b77791f1e0ac657",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "母は切符を買い、兄は席を探します。席を探すのは誰でしょう。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "それは席です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-binding-02": {
+      "fingerprint": "af8ffb23d4b21347e624b1cf6c041ec7d49d902d359892f542a238189c0b18af",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "手袋は奥の箱、帽子は手前の箱です。帽子を取る箱はどちら？"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "手袋です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-binding-04": {
+      "fingerprint": "5ab290460b3dc08b89bb4f61dfeb3d6cd4bf6c562ab63fbaabd8f15ba6b00b62",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "昨日は港へ、今日は病院へ行きました。今日の行き先は？"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "港です。港は、港の近くにあります。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-numbers-01": {
+      "fingerprint": "2fbd5db37e425a959ab9c31d1ec2289f7f5d66d514f2780891597ddacd08a3f3",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "二枚の紙と三枚の紙を合わせると何枚でしょう。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "二枚の紙と三枚の紙と三枚の紙を合わせると何枚でしょう。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-numbers-02": {
+      "fingerprint": "b98eda1436be1eecc5776ce402e8b71273ad834128671d836399fc165a85bfb3",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "六個の飴から一個食べました。残るのは何個ですか。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "飴から一個です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-numbers-03": {
+      "fingerprint": "e7728a07fda8c131ee214aabae36c1c6696634ac0f66b6a82750a869775124e7",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "三冊に二冊を加えた冊数を教えてください。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "もちろんです、二冊をお手伝いします。二冊の冊数は何度ですか？",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-numbers-04": {
+      "fingerprint": "2620b4293e037524d257d180c56df3d031b22020f88d97eb3c1654063863ed6f",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "八本あった鉛筆を二本渡しました。手元には何本？"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "２個です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-numbers-06": {
+      "fingerprint": "17db20b46db8250915ab6d7f09099f066480dba9b75e9c720c60ac163f34b146",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "箱のラベルに「17」とあります。書かれた数だけ答えて。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "17個です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-numbers-07": {
+      "fingerprint": "506d678d8f13ff1b973bf0dc46c262e1115546e3d95b1186399f3e4ae60a702f",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "予定は九時からです。開始時刻をそのまま答えてください。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "九時です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-format-01": {
+      "fingerprint": "248f4441843a6272ba7a1884899909e39f325058b69032d20918f19fb3158152",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "注文の符号は「P-62」です。符号のみを返してください。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "P-62の符号は「P-62」です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-format-03": {
+      "fingerprint": "0d2c0a3f1d4d427abf6c936d476b62d31ce1b6351dac52fbffabfd65b921fc00",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "表には「07:35」と書いてあります。この五文字だけを返して。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "もちろんです、返信をお手伝いします。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-format-04": {
+      "fingerprint": "0b1bb4f044e71cf94be837cc6bbbb67857adf0e9b472a85f5f427247b9c3f2d2",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "選択した文字は小文字の「fox」です。その三文字だけ答えて。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "「fox」は、英語で「fox」は「equine」です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-format-05": {
+      "fingerprint": "ef6c8db0041fa7d10848d2268fb69f316a720b5a0831849ebec093507a8a894b",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "使う印は「△」です。その印一つだけで返事をしてください。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "もちろんです、お手伝いします。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-format-06": {
+      "fingerprint": "66bdf603f798ddcf4e1d8263face3ef773a2e307ef2c5df6818f34ccfe0d1715",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "値は「5,240」です。コンマも含め、その表記だけ返して。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "5,240は、2013年11月にリリースされました。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-format-07": {
+      "fingerprint": "61492db8f346c74e550dd17c94057628c24ffc56672db0e6e4e494aec014522a",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "合図は「雨 / 晴」です。引用符なしでそのまま返して。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "雨 は雨です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-missing-01": {
+      "fingerprint": "f4130a233616f42c027896411f8205d0dced78adbc46f0f47659ee5c3b0a802e",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "私の荷物の重さを教えて。まだ荷物の説明はしていません。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "荷物の説明は何でもお聞きください。荷物の重さは何ですか？",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-missing-02": {
+      "fingerprint": "6d518459c1feba893206d12219fa019800ef694ddd34f2ae6501204a069a896d",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "二人のどちらに頼もうかな。二人の特徴はこれから話します。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "二人の特徴は、どんなところに頼めばいいのでしょうか？",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-missing-03": {
+      "fingerprint": "7ad58fc713b5c9df560054ad343cc02e133111e814bc1c1e09cd0ee804077afa",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "書き直してほしい一文があります。本文はまだ送っていません。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "もちろんです、お手伝いします。お手伝いします。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-missing-04": {
+      "fingerprint": "6756421f7f9e946b1eda3818e3e38accc7a72d276043dc5087f0b1793362d424",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "行きたい場所への道順を教えて。出発地も行き先もまだ秘密です。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "行きたい場所は、どこですか？",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-missing-05": {
+      "fingerprint": "074e56fdd49f593a9fb6ccc3e11e357e77d9be47dddc1cebbb6898f23b78c62a",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "私が昨日選んだ色を覚えてる？この会話ではまだ色を伝えていません。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "私は色を覚えていませんが、色を覚えていらっしゃるのです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-missing-06": {
+      "fingerprint": "fc52611bc41413886936430d45298f3ba37f850bc8c23f8011d8ded5d83da47b",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "会議の終了時刻は分かる？開始時刻も長さもまだ話していません。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "分かる？",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-role-01": {
+      "fingerprint": "35b6e1f125750c932c18b6fccc707bbbbf6387f59a3dc76c35275009da52a4b8",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "兄が水泳を習ったという話です。習ったのはあなたでしたか。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "兄が水泳を習ったのは、水泳が習われたことです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-role-02": {
+      "fingerprint": "57f2eb7dc8b2ed0f6a00ddf020702b8cdec8bf575f99131a82f3eadaaf4304f9",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "物語の猫は船長です。あなたが本当に船長だという意味になりますか。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "船長です。猫は船長さんです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-role-04": {
+      "fingerprint": "215226eda0a5e8998a389ea7372131834043032ec443d9e86aecda892d249054",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "この説明では祖父が写真を撮りました。撮った人だけ答えて。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "もちろんです、撮影した写真をお聞かせください。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-role-06": {
+      "fingerprint": "a22df9473eeebc4879cdcb1ea254b98f118abb837e57291f273dd87c8aa73e15",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "あなた自身が昨夜眠った場所を実体験として教えて。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "あなたは、あなたの場所を実体験として実体験として教えて。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-role-07": {
+      "fingerprint": "91df9d29cccaed4ff3b8bc585a58eb0a114d6bc079cc16012cae28b870bb09fe",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "作り話と分かる形で、雲に住む鳥の短い文を一つ作って。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "はじめに、鳥の短い文を作ってみよう。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-followup-01": {
+      "fingerprint": "94cefa764d18520724bb4fff7271794be5b061379c73f8f7b3f5120f71207e8c",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "子猫の名前はメイ、使う器は白です。"
+        },
+        {
+          "role": "assistant",
+          "content": "メイという子猫で、器は白ですね。"
+        },
+        {
+          "role": "user",
+          "content": "今日は庭の落ち葉を集めました。"
+        },
+        {
+          "role": "assistant",
+          "content": "庭を片付けたのですね。"
+        },
+        {
+          "role": "user",
+          "content": "子猫の名前だけ確認したいです。"
+        },
+        {
+          "role": "assistant",
+          "content": "メイです。"
+        },
+        {
+          "role": "user",
+          "content": "夕方は絵を描くつもりです。"
+        },
+        {
+          "role": "assistant",
+          "content": "絵を描く予定なのですね。"
+        },
+        {
+          "role": "user",
+          "content": "子猫の情報は変えません。"
+        },
+        {
+          "role": "assistant",
+          "content": "先ほどの情報のままですね。"
+        },
+        {
+          "role": "user",
+          "content": "子猫の名前と器の色を二つとも教えて。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "白です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-followup-02": {
+      "fingerprint": "c30a5384bdecb7d3b2278cda6d8f033088f4e6831011946125093819163394c9",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "作る小物は布の栞です。"
+        },
+        {
+          "role": "assistant",
+          "content": "布の栞ですね。"
+        },
+        {
+          "role": "user",
+          "content": "使う布は麻にしました。"
+        },
+        {
+          "role": "assistant",
+          "content": "麻の布を使うのですね。"
+        },
+        {
+          "role": "user",
+          "content": "何の布で栞を作る予定でしたか。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "麻の布は布の栞にしました。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-followup-04": {
+      "fingerprint": "3610444e8d92e8258b1d5e2db0cfc17169a78bb71a1af427586931abcedcb2f3",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "晩ご飯はカレーを温め直します。"
+        },
+        {
+          "role": "assistant",
+          "content": "カレーを温め直すのですね。"
+        },
+        {
+          "role": "user",
+          "content": "晩ご飯は何と伝えましたか。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "カレーは温め直すのに時間がかかりすぎて、カレーを作ってくれませんでした。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-followup-06": {
+      "fingerprint": "30b4d81d9254c4c626c203b063097a96ab919402069f59bb353ed0bc5a30d26a",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "借りている楽器はフルートです。"
+        },
+        {
+          "role": "assistant",
+          "content": "フルートを借りているのですね。"
+        },
+        {
+          "role": "user",
+          "content": "借りている楽器は何でしたか。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "フルートです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-followup-07": {
+      "fingerprint": "484e74fe3b1e08f2a5aaf2873b83e7be9536fdd1737a022131f1cec8cdbc5ca5",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "窓辺に置いた写真は祖父の写真です。"
+        },
+        {
+          "role": "assistant",
+          "content": "お祖父さんの写真なのですね。"
+        },
+        {
+          "role": "user",
+          "content": "写真に写っているのは誰でしょう。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "それは「女」です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-followup-08": {
+      "fingerprint": "aafd0d0bd985f8f5fbb030b19aa1196198307becebd606847bbe9e6e9dd24eb4",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "今週は木曜に歯医者へ行きます。"
+        },
+        {
+          "role": "assistant",
+          "content": "木曜に歯医者ですね。"
+        },
+        {
+          "role": "user",
+          "content": "歯医者へ行く曜日を教えて。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "今日は歯医者に行きました。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-correction-01": {
+      "fingerprint": "2b38658a896e852e588ff273e64f3af6cc89285d8cea6a3d560c4815c2464761",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "小箱の色は黄色、届ける日は金曜です。"
+        },
+        {
+          "role": "assistant",
+          "content": "黄色の小箱を金曜に届けるのですね。"
+        },
+        {
+          "role": "user",
+          "content": "小箱の色だけ紫へ変えます。"
+        },
+        {
+          "role": "assistant",
+          "content": "色は紫へ変更ですね。"
+        },
+        {
+          "role": "user",
+          "content": "今の小箱は何色ですか。"
+        },
+        {
+          "role": "assistant",
+          "content": "紫です。"
+        },
+        {
+          "role": "user",
+          "content": "今日は窓ガラスを磨きました。"
+        },
+        {
+          "role": "assistant",
+          "content": "窓がきれいになったのですね。"
+        },
+        {
+          "role": "user",
+          "content": "届ける日だけ日曜へ直します。"
+        },
+        {
+          "role": "assistant",
+          "content": "日曜へ変更ですね。"
+        },
+        {
+          "role": "user",
+          "content": "小箱の最新の色と届ける日を両方教えて。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "今の小箱は何色ですか？",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-correction-07": {
+      "fingerprint": "1f559fdbd5c1471b831e724ef93183b96e3e477b5db52356009f94287cfc44f6",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "バスに乗るのは北の入口です。"
+        },
+        {
+          "role": "assistant",
+          "content": "北の入口ですね。"
+        },
+        {
+          "role": "user",
+          "content": "南の入口に変更し、その変更を取り消しました。最後はどこ？"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "バスに乗って北の入口に入ります。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-correction-08": {
+      "fingerprint": "86da05cf81f4724a3686ec295e4ccd666f128bad787a683f33ea1a20776f7e59",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "飲み物は紅茶、菓子はクッキーです。"
+        },
+        {
+          "role": "assistant",
+          "content": "紅茶とクッキーですね。"
+        },
+        {
+          "role": "user",
+          "content": "菓子だけケーキに変えます。飲み物はそのままです。今の組合せは？"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "紅茶です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-context-01": {
+      "fingerprint": "33fbd54c8c95ba3350593885cbe41486aa7344c0157beb0e566d70f12c23ae1f",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "姉は笛、兄は太鼓を担当します。"
+        },
+        {
+          "role": "assistant",
+          "content": "お姉さんが笛、お兄さんが太鼓ですね。"
+        },
+        {
+          "role": "user",
+          "content": "私は歌を担当します。"
+        },
+        {
+          "role": "assistant",
+          "content": "あなたは歌ですね。"
+        },
+        {
+          "role": "user",
+          "content": "太鼓を担当する人は誰でしたか。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "太鼓です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-context-02": {
+      "fingerprint": "36d993b257251b825718954aec800f2b1c72aff9b11c06094aad315aa82e688d",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "小さい缶に砂糖、大きい缶に塩を入れました。"
+        },
+        {
+          "role": "assistant",
+          "content": "小さい缶が砂糖、大きい缶が塩ですね。"
+        },
+        {
+          "role": "user",
+          "content": "塩の缶は大きい方と小さい方のどちら？"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "小さい方です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-context-04": {
+      "fingerprint": "2ad63c924923e4be347a0241aee22c5f2d8eb378fa5794eeb6298b699099a1a7",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "朝は読書、昼は散歩、夜は片付けをします。"
+        },
+        {
+          "role": "assistant",
+          "content": "三つの予定ですね。"
+        },
+        {
+          "role": "user",
+          "content": "散歩はどの時間帯ですか。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "夜は、朝の散歩が好きです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-context-05": {
+      "fingerprint": "e43c9dc3cfcc8cd27a91dc7c0d58faa8895cf878d628178daea1939119ab3cd1",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "青の札を先に取り、そのあと白の札を取ります。"
+        },
+        {
+          "role": "assistant",
+          "content": "青のあと白ですね。"
+        },
+        {
+          "role": "user",
+          "content": "先に取る札の色はどれ？"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "ピンクです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-recovery-unseen-context-06": {
+      "fingerprint": "78ac7f6b9119889414bde2a60288b736eca2e40009ff33e95ca439b5b4c11d15",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "図書館は無料、映画館は有料です。"
+        },
+        {
+          "role": "assistant",
+          "content": "図書館は無料なのですね。"
+        },
+        {
+          "role": "user",
+          "content": "お金が必要なのはどちらですか。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "はい。無料で無料で無料で無料で無料で無料で無料で無料で無料で無料で無料で無料で無料で無料で無料で",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-followup-01-turn-1": {
+      "fingerprint": "16163f08fec89665d610140e15cdfd1607f9baa2fa4e5fc52dff11e8eeb88577",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "子猫の名前はメイ、使う器は白です。"
+        }
+      ],
+      "checks": [],
+      "response": "メイはメイとイチゴの名で親しまれています。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-followup-01-turn-2": {
+      "fingerprint": "8886a9d71b6f08f5de41a7f362c9fd3ff2436be61eb5a959ea9ab0bb816d96af",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "子猫の名前はメイ、使う器は白です。"
+        },
+        {
+          "role": "assistant",
+          "content": "メイはメイとイチゴの名で親しまれています。"
+        },
+        {
+          "role": "user",
+          "content": "今日は庭の落ち葉を集めました。"
+        }
+      ],
+      "checks": [],
+      "response": "落ち葉は、花をつけるのに便利なアイテムです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-followup-01-turn-3": {
+      "fingerprint": "808d2ad0f5c5df60bc101dd5bc525d2b7ec63a5e1b7c5f0feb99d0ccdc5d7215",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "子猫の名前はメイ、使う器は白です。"
+        },
+        {
+          "role": "assistant",
+          "content": "メイはメイとイチゴの名で親しまれています。"
+        },
+        {
+          "role": "user",
+          "content": "今日は庭の落ち葉を集めました。"
+        },
+        {
+          "role": "assistant",
+          "content": "落ち葉は、花をつけるのに便利なアイテムです。"
+        },
+        {
+          "role": "user",
+          "content": "子猫の名前だけ確認したいです。"
+        }
+      ],
+      "checks": [],
+      "response": "メイはメイとイチゴの名で親しまれています。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-followup-01-turn-4": {
+      "fingerprint": "68b0fc88abaf14107919832568016579610745225520d39da370f0c491872224",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "子猫の名前はメイ、使う器は白です。"
+        },
+        {
+          "role": "assistant",
+          "content": "メイはメイとイチゴの名で親しまれています。"
+        },
+        {
+          "role": "user",
+          "content": "今日は庭の落ち葉を集めました。"
+        },
+        {
+          "role": "assistant",
+          "content": "落ち葉は、花をつけるのに便利なアイテムです。"
+        },
+        {
+          "role": "user",
+          "content": "子猫の名前だけ確認したいです。"
+        },
+        {
+          "role": "assistant",
+          "content": "メイはメイとイチゴの名で親しまれています。"
+        },
+        {
+          "role": "user",
+          "content": "夕方は絵を描くつもりです。"
+        }
+      ],
+      "checks": [],
+      "response": "夕方、絵を描くのは大変です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-followup-01-turn-5": {
+      "fingerprint": "83fe542c5d2c4d14fc2c1827a9ff848f3bce6ea69273cbed9ebcb7d1514aff22",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "子猫の名前はメイ、使う器は白です。"
+        },
+        {
+          "role": "assistant",
+          "content": "メイはメイとイチゴの名で親しまれています。"
+        },
+        {
+          "role": "user",
+          "content": "今日は庭の落ち葉を集めました。"
+        },
+        {
+          "role": "assistant",
+          "content": "落ち葉は、花をつけるのに便利なアイテムです。"
+        },
+        {
+          "role": "user",
+          "content": "子猫の名前だけ確認したいです。"
+        },
+        {
+          "role": "assistant",
+          "content": "メイはメイとイチゴの名で親しまれています。"
+        },
+        {
+          "role": "user",
+          "content": "夕方は絵を描くつもりです。"
+        },
+        {
+          "role": "assistant",
+          "content": "夕方、絵を描くのは大変です。"
+        },
+        {
+          "role": "user",
+          "content": "子猫の情報は変えません。"
+        }
+      ],
+      "checks": [],
+      "response": "絵は、絵を描くのに便利なアイテムです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-followup-01-turn-6": {
+      "fingerprint": "fd747971dafe95bb037425406aa3a9f720835b3e3cbe48fba5d4a3b1fe56e97b",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "子猫の名前はメイ、使う器は白です。"
+        },
+        {
+          "role": "assistant",
+          "content": "メイはメイとイチゴの名で親しまれています。"
+        },
+        {
+          "role": "user",
+          "content": "今日は庭の落ち葉を集めました。"
+        },
+        {
+          "role": "assistant",
+          "content": "落ち葉は、花をつけるのに便利なアイテムです。"
+        },
+        {
+          "role": "user",
+          "content": "子猫の名前だけ確認したいです。"
+        },
+        {
+          "role": "assistant",
+          "content": "メイはメイとイチゴの名で親しまれています。"
+        },
+        {
+          "role": "user",
+          "content": "夕方は絵を描くつもりです。"
+        },
+        {
+          "role": "assistant",
+          "content": "夕方、絵を描くのは大変です。"
+        },
+        {
+          "role": "user",
+          "content": "子猫の情報は変えません。"
+        },
+        {
+          "role": "assistant",
+          "content": "絵は、絵を描くのに便利なアイテムです。"
+        },
+        {
+          "role": "user",
+          "content": "子猫の名前と器の色を二つとも教えて。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "赤です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-followup-02-turn-1": {
+      "fingerprint": "69fe8a04011228e80e6a877de42eed6af57f944ea609785de58172d921811fd1",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "作る小物は布の栞です。"
+        }
+      ],
+      "checks": [],
+      "response": "布の栞は布の栞の先にあります。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-followup-02-turn-2": {
+      "fingerprint": "fccee0b8d6baf17d358215b8146ddce0b5301e74060b3b3084304031e7df4bf2",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "作る小物は布の栞です。"
+        },
+        {
+          "role": "assistant",
+          "content": "布の栞は布の栞の先にあります。"
+        },
+        {
+          "role": "user",
+          "content": "使う布は麻にしました。"
+        }
+      ],
+      "checks": [],
+      "response": "麻です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-followup-02-turn-3": {
+      "fingerprint": "2e6eb81323e4eed6763072149e95c8230a65def129a23d8c51f342e2a1fce1ef",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "作る小物は布の栞です。"
+        },
+        {
+          "role": "assistant",
+          "content": "布の栞は布の栞の先にあります。"
+        },
+        {
+          "role": "user",
+          "content": "使う布は麻にしました。"
+        },
+        {
+          "role": "assistant",
+          "content": "麻です。"
+        },
+        {
+          "role": "user",
+          "content": "何の布で栞を作る予定でしたか。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "麻は麻の栞の先にあります。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-followup-03-turn-1": {
+      "fingerprint": "6091cb14476ed3f4cfd0a3acbfc7c69a03dd000be5f0b220b822bda51fa88e35",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "私は明日の朝、植物園に行きます。"
+        }
+      ],
+      "checks": [],
+      "response": "明日は、明日の朝、植物園に行きます。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-followup-03-turn-2": {
+      "fingerprint": "bfeac7155cc565046f382df32a2106f30432e657f7ac86921b692fa4664a771c",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "私は明日の朝、植物園に行きます。"
+        },
+        {
+          "role": "assistant",
+          "content": "明日は、明日の朝、植物園に行きます。"
+        },
+        {
+          "role": "user",
+          "content": "明日の行き先を思い出して教えて。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "明日は、明日の朝、植物園に行きます。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-followup-04-turn-1": {
+      "fingerprint": "4a7415fc448fff0746d8fcc6454c1b79e0842c1d912f41e606e7b8d584fe802a",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "晩ご飯はカレーを温め直します。"
+        }
+      ],
+      "checks": [],
+      "response": "カレーは、麺類を入れるのに便利です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-followup-04-turn-2": {
+      "fingerprint": "82337e1d8b7ac6f11e5144456c40b7a92d1c8db1f08ed8502c65ba2ea8e09a96",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "晩ご飯はカレーを温め直します。"
+        },
+        {
+          "role": "assistant",
+          "content": "カレーは、麺類を入れるのに便利です。"
+        },
+        {
+          "role": "user",
+          "content": "晩ご飯は何と伝えましたか。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "カレーは、麺類を入れるのに便利です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-followup-05-turn-1": {
+      "fingerprint": "9db17d0b9030023df8dd2025cfa2d7cd3275ba96984d56c54f0330afcb4e866d",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "家の鉢にはミントを植えました。"
+        }
+      ],
+      "checks": [],
+      "response": "ミントは、ミントの種類によっても変わるので、お好みに合います。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-followup-05-turn-2": {
+      "fingerprint": "0aa0255e7a18d990b2299bddc62650618a7fa19199caa551b1ad5ac0ea511622",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "家の鉢にはミントを植えました。"
+        },
+        {
+          "role": "assistant",
+          "content": "ミントは、ミントの種類によっても変わるので、お好みに合います。"
+        },
+        {
+          "role": "user",
+          "content": "鉢に植えた植物の名前は？"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "ミントです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-followup-06-turn-1": {
+      "fingerprint": "737aefa5cc6e60f1308138cb6d2956159c3c37f1d9b51e8105d11d7f14999d33",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "借りている楽器はフルートです。"
+        }
+      ],
+      "checks": [],
+      "response": "フルートは、フルートのフルートのフルートのフルートのフルートのフルートのフルート",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-followup-06-turn-2": {
+      "fingerprint": "a0dbf3dd2d78752a5be3d90562581aa8753ad3da2c4ddbe5943a3f50ecf7ebe2",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "借りている楽器はフルートです。"
+        },
+        {
+          "role": "assistant",
+          "content": "フルートは、フルートのフルートのフルートのフルートのフルートのフルートのフルート"
+        },
+        {
+          "role": "user",
+          "content": "借りている楽器は何でしたか。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "フルートのフルートのフルートのフルートのフルートのフルートのフルートのフルートの",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-followup-07-turn-1": {
+      "fingerprint": "5d3e185bc0a0416b4e7032c135d7891446be97e72d01f77dc7a7d812012165be",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "窓辺に置いた写真は祖父の写真です。"
+        }
+      ],
+      "checks": [],
+      "response": "祖父の写真は祖父の写真を元に、祖父の写真を撮るのが趣味です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-followup-07-turn-2": {
+      "fingerprint": "59bb1a64c4e9f0f112d0bc24a814078f2931974cddbdce9caf6de9f314425cd0",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "窓辺に置いた写真は祖父の写真です。"
+        },
+        {
+          "role": "assistant",
+          "content": "祖父の写真は祖父の写真を元に、祖父の写真を撮るのが趣味です。"
+        },
+        {
+          "role": "user",
+          "content": "写真に写っているのは誰でしょう。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "それは「スカイツリー」です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-followup-08-turn-1": {
+      "fingerprint": "3baf4ad94a297e9674048617b5d78a7c72b67d19accfe4f9cf8ce3bb7a6ed405",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "今週は木曜に歯医者へ行きます。"
+        }
+      ],
+      "checks": [],
+      "response": "歯医者は、歯医者さんの歯医者さんです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-followup-08-turn-2": {
+      "fingerprint": "8bfc4fe02302534052f0b4a9f85784ab92a2da4a52a2a6e6efedeb372d45600f",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "今週は木曜に歯医者へ行きます。"
+        },
+        {
+          "role": "assistant",
+          "content": "歯医者は、歯医者さんの歯医者さんです。"
+        },
+        {
+          "role": "user",
+          "content": "歯医者へ行く曜日を教えて。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "今日は、歯医者さんの歯医者さんに行きました。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-correction-01-turn-1": {
+      "fingerprint": "66d121d59196c55a414242794a992339f74a0531b2399d6d012b43f918003978",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "小箱の色は黄色、届ける日は金曜です。"
+        }
+      ],
+      "checks": [],
+      "response": "金曜は、金曜日から金曜日までです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-correction-01-turn-2": {
+      "fingerprint": "7fd1d1c16f65e809268cd490fe3c3d22c9ef17a487236c40b8b8f20d9e85f57d",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "小箱の色は黄色、届ける日は金曜です。"
+        },
+        {
+          "role": "assistant",
+          "content": "金曜は、金曜日から金曜日までです。"
+        },
+        {
+          "role": "user",
+          "content": "小箱の色だけ紫へ変えます。"
+        }
+      ],
+      "checks": [],
+      "response": "金曜日は、金曜日から金曜日までです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-correction-01-turn-3": {
+      "fingerprint": "884403c8824ece3d63cf456820a991196c3091158c2d5370eb55df58f10cec4e",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "小箱の色は黄色、届ける日は金曜です。"
+        },
+        {
+          "role": "assistant",
+          "content": "金曜は、金曜日から金曜日までです。"
+        },
+        {
+          "role": "user",
+          "content": "小箱の色だけ紫へ変えます。"
+        },
+        {
+          "role": "assistant",
+          "content": "金曜日は、金曜日から金曜日までです。"
+        },
+        {
+          "role": "user",
+          "content": "今の小箱は何色ですか。"
+        }
+      ],
+      "checks": [],
+      "response": "金曜日は、金曜日から金曜日です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-correction-01-turn-4": {
+      "fingerprint": "2e7c6c82bae3c5620ef0a24a21eac17636144a5e4db677acecfdd2b45ed02e20",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "小箱の色は黄色、届ける日は金曜です。"
+        },
+        {
+          "role": "assistant",
+          "content": "金曜は、金曜日から金曜日までです。"
+        },
+        {
+          "role": "user",
+          "content": "小箱の色だけ紫へ変えます。"
+        },
+        {
+          "role": "assistant",
+          "content": "金曜日は、金曜日から金曜日までです。"
+        },
+        {
+          "role": "user",
+          "content": "今の小箱は何色ですか。"
+        },
+        {
+          "role": "assistant",
+          "content": "金曜日は、金曜日から金曜日です。"
+        },
+        {
+          "role": "user",
+          "content": "今日は窓ガラスを磨きました。"
+        }
+      ],
+      "checks": [],
+      "response": "窓ガラスは、金曜日から金曜日までです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-correction-01-turn-5": {
+      "fingerprint": "a78125270745ecd2c4a55fb1c8fd962c75321691cdb84b95f7e52c30c5c98d82",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "小箱の色は黄色、届ける日は金曜です。"
+        },
+        {
+          "role": "assistant",
+          "content": "金曜は、金曜日から金曜日までです。"
+        },
+        {
+          "role": "user",
+          "content": "小箱の色だけ紫へ変えます。"
+        },
+        {
+          "role": "assistant",
+          "content": "金曜日は、金曜日から金曜日までです。"
+        },
+        {
+          "role": "user",
+          "content": "今の小箱は何色ですか。"
+        },
+        {
+          "role": "assistant",
+          "content": "金曜日は、金曜日から金曜日です。"
+        },
+        {
+          "role": "user",
+          "content": "今日は窓ガラスを磨きました。"
+        },
+        {
+          "role": "assistant",
+          "content": "窓ガラスは、金曜日から金曜日までです。"
+        },
+        {
+          "role": "user",
+          "content": "届ける日だけ日曜へ直します。"
+        }
+      ],
+      "checks": [],
+      "response": "日曜日は、金曜日から金曜日です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-correction-01-turn-6": {
+      "fingerprint": "592e2b777f7a27bd7267df1caebee5fe38232d966631af5fd3009647cfb9d93e",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "小箱の色は黄色、届ける日は金曜です。"
+        },
+        {
+          "role": "assistant",
+          "content": "金曜は、金曜日から金曜日までです。"
+        },
+        {
+          "role": "user",
+          "content": "小箱の色だけ紫へ変えます。"
+        },
+        {
+          "role": "assistant",
+          "content": "金曜日は、金曜日から金曜日までです。"
+        },
+        {
+          "role": "user",
+          "content": "今の小箱は何色ですか。"
+        },
+        {
+          "role": "assistant",
+          "content": "金曜日は、金曜日から金曜日です。"
+        },
+        {
+          "role": "user",
+          "content": "今日は窓ガラスを磨きました。"
+        },
+        {
+          "role": "assistant",
+          "content": "窓ガラスは、金曜日から金曜日までです。"
+        },
+        {
+          "role": "user",
+          "content": "届ける日だけ日曜へ直します。"
+        },
+        {
+          "role": "assistant",
+          "content": "日曜日は、金曜日から金曜日です。"
+        },
+        {
+          "role": "user",
+          "content": "小箱の最新の色と届ける日を両方教えて。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "今は、金曜日から金曜日までです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-correction-02-turn-2": {
+      "fingerprint": "c825df0016efe143a0ae48547d3ac69f0df5ccfe86dfe2297df54d91b4c3db25",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "訪ねる場所は本屋です。"
+        },
+        {
+          "role": "assistant",
+          "content": "お買い物はもちろん、お菓子やお菓子をお買い上げいただくことが多いです。"
+        },
+        {
+          "role": "user",
+          "content": "本屋はやめて花屋に変えます。"
+        }
+      ],
+      "checks": [],
+      "response": "花屋は花屋さんのお店です。花屋さんは花屋さんのお店です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-correction-02-turn-3": {
+      "fingerprint": "f0afb65ff298a2b68518e66ea20087ff9662af0032fad71c0f599d8886e60050",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "訪ねる場所は本屋です。"
+        },
+        {
+          "role": "assistant",
+          "content": "お買い物はもちろん、お菓子やお菓子をお買い上げいただくことが多いです。"
+        },
+        {
+          "role": "user",
+          "content": "本屋はやめて花屋に変えます。"
+        },
+        {
+          "role": "assistant",
+          "content": "花屋は花屋さんのお店です。花屋さんは花屋さんのお店です。"
+        },
+        {
+          "role": "user",
+          "content": "今、訪ねるつもりなのはどこ？"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "花屋さんは花屋さんのお店です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-correction-03-turn-1": {
+      "fingerprint": "0fe27c797f88fe260ae9b9070b69ff6154d7aa050d360f5f34afc4681c3c6cac",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "使うリボンは赤でした。"
+        }
+      ],
+      "checks": [],
+      "response": "リボンは赤で、赤は赤です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-correction-03-turn-2": {
+      "fingerprint": "b89b2406cc4c2ca0978dcbc54ed93825ea443f29b3a91f8afa7c42bdbf6b87c2",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "使うリボンは赤でした。"
+        },
+        {
+          "role": "assistant",
+          "content": "リボンは赤で、赤は赤です。"
+        },
+        {
+          "role": "user",
+          "content": "青のリボンに直しました。今の色を答えて。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "赤です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-correction-04-turn-2": {
+      "fingerprint": "7b08356e248fb840cef0797429a56c0df2bf0bd80d92a0021c460c79a3d003d6",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "会う相手は父の予定でした。"
+        },
+        {
+          "role": "assistant",
+          "content": "父の予定は父の予定でした。"
+        },
+        {
+          "role": "user",
+          "content": "父は来られないので母に変更します。会う相手は？"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "父の予定は父の予定です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-correction-05-turn-1": {
+      "fingerprint": "61e84f7d120e4a04f48a0394d8a7159e28c625536ade31df91033bd0108e48d8",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "袋は三つ必要だと伝えました。"
+        }
+      ],
+      "checks": [],
+      "response": "袋は三つ必要だと伝えました。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-correction-05-turn-2": {
+      "fingerprint": "15cf204a27f2abf390980e729a9b8f20aab24d04d2a8c8476d4c939161e769d3",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "袋は三つ必要だと伝えました。"
+        },
+        {
+          "role": "assistant",
+          "content": "袋は三つ必要だと伝えました。"
+        },
+        {
+          "role": "user",
+          "content": "数え直したら二つで足りました。今必要な袋は何個？"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "三つです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-correction-07-turn-2": {
+      "fingerprint": "885a34999c593ff2a6d7bf967b997fadbf0e48ae9b518ab896595f91044a6928",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "バスに乗るのは北の入口です。"
+        },
+        {
+          "role": "assistant",
+          "content": "バスは北の入口です。"
+        },
+        {
+          "role": "user",
+          "content": "南の入口に変更し、その変更を取り消しました。最後はどこ？"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "バスは北の入口です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-correction-08-turn-2": {
+      "fingerprint": "dd968a2e4d130bec92db1b1365d007f2a5d83d9d5ea9912dcd088c6e52364d38",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "飲み物は紅茶、菓子はクッキーです。"
+        },
+        {
+          "role": "assistant",
+          "content": "クッキーは紅茶です。"
+        },
+        {
+          "role": "user",
+          "content": "菓子だけケーキに変えます。飲み物はそのままです。今の組合せは？"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "紅茶です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-context-01-turn-1": {
+      "fingerprint": "133b5e3d61d8396877cce12930ec09764f3fc53d86f46de93a7824ec68bc2867",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "姉は笛、兄は太鼓を担当します。"
+        }
+      ],
+      "checks": [],
+      "response": "姉妹は太鼓、兄は太鼓、兄は太鼓です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-context-01-turn-2": {
+      "fingerprint": "75b5a93b0ca613601a6c3737d2dd939e1439feb72ef099b321cd806419b8c642",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "姉は笛、兄は太鼓を担当します。"
+        },
+        {
+          "role": "assistant",
+          "content": "姉妹は太鼓、兄は太鼓、兄は太鼓です。"
+        },
+        {
+          "role": "user",
+          "content": "私は歌を担当します。"
+        }
+      ],
+      "checks": [],
+      "response": "兄が太鼓、兄が太鼓、兄が太鼓です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-context-01-turn-3": {
+      "fingerprint": "ffcf35a9e292d5e7633fc2c74be27fceefb7f7998487a9705c85200e27cdd788",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "姉は笛、兄は太鼓を担当します。"
+        },
+        {
+          "role": "assistant",
+          "content": "姉妹は太鼓、兄は太鼓、兄は太鼓です。"
+        },
+        {
+          "role": "user",
+          "content": "私は歌を担当します。"
+        },
+        {
+          "role": "assistant",
+          "content": "兄が太鼓、兄が太鼓、兄が太鼓です。"
+        },
+        {
+          "role": "user",
+          "content": "太鼓を担当する人は誰でしたか。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "太鼓、兄が太鼓、兄が太鼓です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-context-02-turn-1": {
+      "fingerprint": "779f62e853d098f76c41c45d7671071e681c2cea7dbb4927b90f7c1925887349",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "小さい缶に砂糖、大きい缶に塩を入れました。"
+        }
+      ],
+      "checks": [],
+      "response": "砂糖、砂糖、塩、小さいお茶です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-context-02-turn-2": {
+      "fingerprint": "02d4280ad2254dc0a82bfd97241471dc9e97b0cc580a6c4e47cf38dfef34ae87",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "小さい缶に砂糖、大きい缶に塩を入れました。"
+        },
+        {
+          "role": "assistant",
+          "content": "砂糖、砂糖、塩、小さいお茶です。"
+        },
+        {
+          "role": "user",
+          "content": "塩の缶は大きい方と小さい方のどちら？"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "小さい方です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-context-03-turn-2": {
+      "fingerprint": "af70258efc689659b29bca68d125ca96433e16f1bd8af6f5b665fdc3fe1ef178",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "父は電車、母はバスで帰ります。"
+        },
+        {
+          "role": "assistant",
+          "content": "それは電車です。"
+        },
+        {
+          "role": "user",
+          "content": "バスを使う人だけ教えてください。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "電車です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-context-04-turn-1": {
+      "fingerprint": "ee1a9418155f30cec4e4db228de98d751470d38d660b38b84ec3420b5b72fff4",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "朝は読書、昼は散歩、夜は片付けをします。"
+        }
+      ],
+      "checks": [],
+      "response": "朝は、お仕事の方と、お仕事の方と、お仕事の方と、お仕事の方と、お仕事の方と",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-context-04-turn-2": {
+      "fingerprint": "a3927b01573fe21421d5dd7b9eef596b627ce260a361a386de9c2bf1768c21c8",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "朝は読書、昼は散歩、夜は片付けをします。"
+        },
+        {
+          "role": "assistant",
+          "content": "朝は、お仕事の方と、お仕事の方と、お仕事の方と、お仕事の方と、お仕事の方と"
+        },
+        {
+          "role": "user",
+          "content": "散歩はどの時間帯ですか。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "昼は、お仕事の方と、お仕事の方と、お仕事の方と、お仕事の方と、お仕事の方と",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-context-05-turn-1": {
+      "fingerprint": "9a325bf94d2ae38a4ba1ba7c7754ea2a8d5d351b94d6ca3345669e2def5f764f",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "青の札を先に取り、そのあと白の札を取ります。"
+        }
+      ],
+      "checks": [],
+      "response": "青の札を取ります。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-context-05-turn-2": {
+      "fingerprint": "5b2854d992fc1ab896ad4123169444509a5d665939ad5bacc51eafc525f14f1a",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "青の札を先に取り、そのあと白の札を取ります。"
+        },
+        {
+          "role": "assistant",
+          "content": "青の札を取ります。"
+        },
+        {
+          "role": "user",
+          "content": "先に取る札の色はどれ？"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "青です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-context-06-turn-1": {
+      "fingerprint": "bcccefc7688abc23a9ccbf858a89aa6c524bfb307fc0b6fa2a6daf516f22d5d6",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "図書館は無料、映画館は有料です。"
+        }
+      ],
+      "checks": [],
+      "response": "図書館は無料で、無料で無料で無料で無料で無料で無料で無料で無料で無料で無料で無料で無料で無料",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-context-06-turn-2": {
+      "fingerprint": "83c5f5d516690014698d700a63846bc747a9e2a6ee4c265ec4e810a96f76278e",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "図書館は無料、映画館は有料です。"
+        },
+        {
+          "role": "assistant",
+          "content": "図書館は無料で、無料で無料で無料で無料で無料で無料で無料で無料で無料で無料で無料で無料で無料"
+        },
+        {
+          "role": "user",
+          "content": "お金が必要なのはどちらですか。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "はい、無料で無料で無料で無料で無料で無料で無料で無料で無料で無料で無料で無料で無料で無料で無料で",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-context-07-turn-1": {
+      "fingerprint": "da23cbd8f5d09d990fd7d7cef78a8018d3a816aef57da1f060e76fa2fae3db7b",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "叔父が箱を包み、叔母が箱を届けます。"
+        }
+      ],
+      "checks": [],
+      "response": "叔父は箱を包み、叔母が箱を届けます。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-context-07-turn-2": {
+      "fingerprint": "291fa3dc7a992db1dc887ef9d8bb23f11b18ba133bc4a6bc57c86758b781f2c8",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "叔父が箱を包み、叔母が箱を届けます。"
+        },
+        {
+          "role": "assistant",
+          "content": "叔父は箱を包み、叔母が箱を届けます。"
+        },
+        {
+          "role": "user",
+          "content": "届ける担当の人を答えて。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "叔父です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-context-08-turn-1": {
+      "fingerprint": "7ed24b6d8c11b95f08d904b2f42b88227128778e295135cde376fdaaa74c4780",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "赤い袋は弟の物で、黒い袋は姉の物です。"
+        }
+      ],
+      "checks": [],
+      "response": "黒い袋は弟の物で黒い袋です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-recovery-unseen-context-08-turn-2": {
+      "fingerprint": "2d1d179a58d3e690cf8ef44305ffc79850c5e780c009ea5b419104cac78aa7dc",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "赤い袋は弟の物で、黒い袋は姉の物です。"
+        },
+        {
+          "role": "assistant",
+          "content": "黒い袋は弟の物で黒い袋です。"
+        },
+        {
+          "role": "user",
+          "content": "姉の袋の色を教えて。"
+        }
+      ],
+      "checks": [
+        "最後の質問へ直接答え、人物と属性・否定・最新訂正・要求した情報数を保つ。",
+        "指定形式・不足情報を守り、未提示の事実や自分の実体験を創作しない。",
+        "文法・関連性・履歴文脈を別に採点し、名詞一致や停止だけで合格にしない。"
+      ],
+      "response": "黒い袋です。",
+      "stop": "eot",
+      "valid_utf8": true
+    }
+  },
+  "reused": {
+    "suppressed-recovery-unseen-greeting-03": {
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "おーの断片を上限まで繰り返し、就寝前の挨拶に応答できない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-greeting-03"
+      },
+      "fingerprint": "857e3bd1ae3788e4e9d609e38d55d047dd748497d2a7f5a69b45dc88b323fb3f"
+    },
+    "suppressed-recovery-unseen-greeting-06": {
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "用事を終えて帰った報告へ、お疲れ様と自然に労っている。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-greeting-06"
+      },
+      "fingerprint": "b54a01ea796d47ea360de29911f5108cfeaad55239516e1e62bf854fdb050bde"
+    },
+    "suppressed-recovery-unseen-emotion-02": {
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "大切な鉢が割れた悲しみを、それは悲しいと自然に受け止めている。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-emotion-02"
+      },
+      "fingerprint": "8c9378004adbc7a45ca153ea88431d1c5e2bf023b8c3c78611e59f7732ff421b"
+    },
+    "suppressed-recovery-unseen-emotion-03": {
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "初出勤は初出勤のみという同語反復で、不安への応答になっていない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-emotion-03"
+      },
+      "fingerprint": "d1945296f2a30bc54af7519a75e208a88b14fd4b686ef38290360e44e273583b"
+    },
+    "suppressed-recovery-unseen-emotion-05": {
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "荷物が届かず落胆しているUser本文を復唱し、気持ちへの応答を返さない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-emotion-05"
+      },
+      "fingerprint": "b5f08b5921a6cd66f1b043960cc62cdfc5776a011dc6619bef70d6ab701aa810"
+    },
+    "suppressed-recovery-unseen-emotion-06": {
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "重い荷物で疲れた部分を復唱し、休みたいという希望を受け止めていない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-emotion-06"
+      },
+      "fingerprint": "5f93845bcc075a4a324d920238d9aa33758f0684986cebba44e84a4277c18429"
+    },
+    "suppressed-recovery-unseen-emotion-07": {
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "曲を弾けた報告へ自分の演奏経験を作らず、喜びを共有する自然な返答をした。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-emotion-07"
+      },
+      "fingerprint": "1176b178894ca8ee3328ed8082e1c0f05271511ca0cb99eae97cebe442f32ad0"
+    },
+    "suppressed-recovery-unseen-daily-06": {
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "手伝う意思を反復するだけで、友人へ送る具体的なお礼の一文がない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-daily-06"
+      },
+      "fingerprint": "441311d6535b48533f34bcbb7b551ef9c7caf8a837fb6b61a51eec6034214110"
+    },
+    "suppressed-recovery-unseen-daily-07": {
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "予定を再質問するだけで、忘れないために翌朝へ向けて行う工夫を示さない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-daily-07"
+      },
+      "fingerprint": "486d471dc53cbb933c4925989d37f17f94d7571cebe5fe775f37b4aebc95cb5c"
+    },
+    "suppressed-recovery-unseen-binding-03": {
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "月曜と質問文をつないだ不自然な依頼になり、発表する日曜を答えない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-binding-03"
+      },
+      "fingerprint": "ba39b241abeda5f5289505aa4fc7150f23c4d84179e7d805aaa08185af3abc71"
+    },
+    "suppressed-recovery-unseen-binding-05": {
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "妹がいると述べるだけで、辞書を借りた側の妹という役割に答えていない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-binding-05"
+      },
+      "fingerprint": "6dc3b9c62bf119d8717e223048229ed8b7828304b6b665063c554a97ecb7fc1f"
+    },
+    "suppressed-recovery-unseen-binding-06": {
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "選ばない牛乳に引かれず、実際に選んだ豆乳を正しく答えている。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-binding-06"
+      },
+      "fingerprint": "1d197132ae40bfd8674934f5bff21efa6751636ea6583087886576894ed68f57"
+    },
+    "suppressed-recovery-unseen-binding-07": {
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "太い筆は使わないという否定条件に反し、どちらも使うと答えている。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-binding-07"
+      },
+      "fingerprint": "eb7b488da36e35549f1511775e6a6de37bbcb1ca387a2a0d672d9bdbe962c568"
+    },
+    "suppressed-recovery-unseen-numbers-05": {
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "提示された五枚を数も単位も変えずに直接回答している。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-numbers-05"
+      },
+      "fingerprint": "d9567680a6d8b966cd37594899b8878ad4eb9209d5a11bd35ad84784d184c957"
+    },
+    "suppressed-recovery-unseen-format-02": {
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "既に提示されたlist_4を返さず、リストの提示をさらに要求している。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-format-02"
+      },
+      "fingerprint": "46d596ee42146770eff2540e7506756bc986f60999ec1c12f0b55c991250887a"
+    },
+    "suppressed-recovery-unseen-missing-07": {
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "手伝うと反復するだけで、次に材料名を提示してもらう促しを返さない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-missing-07"
+      },
+      "fingerprint": "c241ee494d0e0f053e3776cbdf22dedefb4a3db3b01c4d03d7e3e4e22cb8d358"
+    },
+    "suppressed-recovery-unseen-role-03": {
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "明日店の近くという不自然な位置の文になり、未来と既に行った状態を区別しない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-role-03"
+      },
+      "fingerprint": "5f06036ebe56678d3a61e1fc8880ebf355d06ed4a598fb2cab4ae378085c910a"
+    },
+    "suppressed-recovery-unseen-role-05": {
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "箱を渡した友人を受け手と取り違え、受け取った私を答えていない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-role-05"
+      },
+      "fingerprint": "ef493857ba2ebe358b9244f65d598df60fee956e896da05c847ca9c21ffdc963"
+    },
+    "suppressed-recovery-unseen-followup-03": {
+      "grammar": 2,
+      "relevance": 1,
+      "context": 2,
+      "rationale": "植物園という行き先と明日の朝は保つが、回答せず再び確認質問にしている。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-followup-03"
+      },
+      "fingerprint": "5b774bc5ab7f3bc9c50311e261e829ae959514d1d6adcc793d98a84245f57d5b"
+    },
+    "suppressed-recovery-unseen-followup-05": {
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "鉢に植えた植物のミントを、他の物に替えず直接答えている。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-followup-05"
+      },
+      "fingerprint": "724762499c6f8f4bafe6853258e38fdae95cd94e0d844093b043e9b0688bfd1b"
+    },
+    "suppressed-recovery-unseen-correction-02": {
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "取り消した本屋ではなく、変更後の花屋を訪問先として答えている。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-correction-02"
+      },
+      "fingerprint": "fb140d1eed4fc2bb3bbf18b48341104cd8844075c1d8210fe7c85b3ed10abee7"
+    },
+    "suppressed-recovery-unseen-correction-03": {
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "青へ直した直後にも、リボンの古い色の赤を答えている。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-correction-03"
+      },
+      "fingerprint": "c9e504bbde6458e0af82d2c37ead3112680f8195741ef361dab918f617c7372f"
+    },
+    "suppressed-recovery-unseen-correction-04": {
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "来られない父から母へ変えた条件を無視し、古い相手の父を答えている。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-correction-04"
+      },
+      "fingerprint": "4be86d7dd27d7cafbde0c24a232a9a96fc6a962c4929e9bda7c3b0cde0d72294"
+    },
+    "suppressed-recovery-unseen-correction-05": {
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "数え直して二つで足りると訂正されたのに、古い三つを返した。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-correction-05"
+      },
+      "fingerprint": "17d7222af053448869c7b0cd434b877dece45388eb4130f14f5fae567b7c813e"
+    },
+    "suppressed-recovery-unseen-correction-06": {
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "東の壁への明示訂正を反映せず、元の西の壁を答えている。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-correction-06"
+      },
+      "fingerprint": "e4a53d1e17f177fba7828209b91276c613c2e3ad317d80d0649733286d522fb3"
+    },
+    "suppressed-recovery-unseen-context-03": {
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "バスはバスで行くという循環で、乗る人の母を回答していない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-context-03"
+      },
+      "fingerprint": "91230ceabb957154de54bc1ea767f505d303c7adae2590779850424d4a5cf397"
+    },
+    "suppressed-recovery-unseen-context-07": {
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "届ける叔母ではなく包む叔父を答え、担当者の役割を取り違えた。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-context-07"
+      },
+      "fingerprint": "26a6df2ee37373e59814d4e3137e3e35e49eacb7a62e971c238bf9ecfdf766db"
+    },
+    "suppressed-recovery-unseen-context-08": {
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "姉の袋は黒と答え、弟の赤い袋と人物の対応を取り違えていない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-context-08"
+      },
+      "fingerprint": "b1b4e784f13bc24a392acd658d7b03b07e3dce29d8114b359dcd056e67bd46e2"
+    },
+    "unsuppressed-recovery-unseen-greeting-01": {
+      "same_packet_key": "suppressed-recovery-unseen-greeting-01",
+      "fingerprint": "c73d09a0fd85e296d85580b43dcfdfe53e1fbf51b79ef686d2928ec724aedd8f"
+    },
+    "unsuppressed-recovery-unseen-greeting-02": {
+      "same_packet_key": "suppressed-recovery-unseen-greeting-02",
+      "fingerprint": "d7748d18cda21c4e39ceef8f7f327e02815fe761c01f4e4fb258947d573038c4"
+    },
+    "unsuppressed-recovery-unseen-greeting-03": {
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "おーの断片を上限まで繰り返し、就寝前の挨拶に応答できない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-greeting-03"
+      },
+      "fingerprint": "857e3bd1ae3788e4e9d609e38d55d047dd748497d2a7f5a69b45dc88b323fb3f"
+    },
+    "unsuppressed-recovery-unseen-greeting-04": {
+      "same_packet_key": "suppressed-recovery-unseen-greeting-04",
+      "fingerprint": "1eff2a858cb444fa6733a173735bd8146bff23afb1114035b0ad5c4d8cfc9af3"
+    },
+    "unsuppressed-recovery-unseen-greeting-05": {
+      "same_packet_key": "suppressed-recovery-unseen-greeting-05",
+      "fingerprint": "77b8988a383bf623287cb4fab1edf6db6dac9b0f988b90e5c723bcd560599be0"
+    },
+    "unsuppressed-recovery-unseen-greeting-06": {
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "用事を終えて帰った報告へ、お疲れ様と自然に労っている。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-greeting-06"
+      },
+      "fingerprint": "b54a01ea796d47ea360de29911f5108cfeaad55239516e1e62bf854fdb050bde"
+    },
+    "unsuppressed-recovery-unseen-greeting-07": {
+      "same_packet_key": "suppressed-recovery-unseen-greeting-07",
+      "fingerprint": "6e08c9037b8c17e875b3713f320740ca8f30eb81c833f777c530b82c2d18abb1"
+    },
+    "unsuppressed-recovery-unseen-emotion-01": {
+      "same_packet_key": "suppressed-recovery-unseen-emotion-01",
+      "fingerprint": "9837586bc6f9c6ade90d8f1cbc49e9d04550a14e51f4b6c947c8ee8bea2de280"
+    },
+    "unsuppressed-recovery-unseen-emotion-02": {
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "大切な鉢が割れた悲しみを、それは悲しいと自然に受け止めている。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-emotion-02"
+      },
+      "fingerprint": "8c9378004adbc7a45ca153ea88431d1c5e2bf023b8c3c78611e59f7732ff421b"
+    },
+    "unsuppressed-recovery-unseen-emotion-03": {
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "初出勤は初出勤のみという同語反復で、不安への応答になっていない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-emotion-03"
+      },
+      "fingerprint": "d1945296f2a30bc54af7519a75e208a88b14fd4b686ef38290360e44e273583b"
+    },
+    "unsuppressed-recovery-unseen-emotion-04": {
+      "same_packet_key": "suppressed-recovery-unseen-emotion-04",
+      "fingerprint": "9b52f7795c136d55f8c7835065460afab925d51473a3bbb7b621f96962ee2ece"
+    },
+    "unsuppressed-recovery-unseen-emotion-05": {
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "荷物が届かず落胆しているUser本文を復唱し、気持ちへの応答を返さない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-emotion-05"
+      },
+      "fingerprint": "b5f08b5921a6cd66f1b043960cc62cdfc5776a011dc6619bef70d6ab701aa810"
+    },
+    "unsuppressed-recovery-unseen-emotion-06": {
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "重い荷物で疲れた部分を復唱し、休みたいという希望を受け止めていない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-emotion-06"
+      },
+      "fingerprint": "5f93845bcc075a4a324d920238d9aa33758f0684986cebba44e84a4277c18429"
+    },
+    "unsuppressed-recovery-unseen-emotion-07": {
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "曲を弾けた報告へ自分の演奏経験を作らず、喜びを共有する自然な返答をした。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-emotion-07"
+      },
+      "fingerprint": "1176b178894ca8ee3328ed8082e1c0f05271511ca0cb99eae97cebe442f32ad0"
+    },
+    "unsuppressed-recovery-unseen-daily-01": {
+      "same_packet_key": "suppressed-recovery-unseen-daily-01",
+      "fingerprint": "3d0538da2d9ed79db35018e4d1fc3309ebed1bb847f9cb4a305fe5703d573d84"
+    },
+    "unsuppressed-recovery-unseen-daily-02": {
+      "same_packet_key": "suppressed-recovery-unseen-daily-02",
+      "fingerprint": "c4737a7c7d7f0ed7a748f14128dcd5e928f3b6d0fe6359a304e61d9cd28d40ef"
+    },
+    "unsuppressed-recovery-unseen-daily-03": {
+      "same_packet_key": "suppressed-recovery-unseen-daily-03",
+      "fingerprint": "07aa0fcb1d6be3741f85275035af1e101ff7e18a7bcb6221015ee1549ef38663"
+    },
+    "unsuppressed-recovery-unseen-daily-04": {
+      "same_packet_key": "suppressed-recovery-unseen-daily-04",
+      "fingerprint": "995f9c5d96b15630cd59171464b846f2623e08115b810b5a5f279feb634c5749"
+    },
+    "unsuppressed-recovery-unseen-daily-05": {
+      "same_packet_key": "suppressed-recovery-unseen-daily-05",
+      "fingerprint": "d42aa2d447bd7fc63e33c20a925718f3458d6e3327fc1295688525e70b73f541"
+    },
+    "unsuppressed-recovery-unseen-daily-06": {
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "手伝う意思を反復するだけで、友人へ送る具体的なお礼の一文がない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-daily-06"
+      },
+      "fingerprint": "441311d6535b48533f34bcbb7b551ef9c7caf8a837fb6b61a51eec6034214110"
+    },
+    "unsuppressed-recovery-unseen-daily-07": {
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "予定を再質問するだけで、忘れないために翌朝へ向けて行う工夫を示さない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-daily-07"
+      },
+      "fingerprint": "486d471dc53cbb933c4925989d37f17f94d7571cebe5fe775f37b4aebc95cb5c"
+    },
+    "unsuppressed-recovery-unseen-binding-01": {
+      "same_packet_key": "suppressed-recovery-unseen-binding-01",
+      "fingerprint": "71d87903c190d9cba1721a065448517d32ce8ea71096ca4e3b77791f1e0ac657"
+    },
+    "unsuppressed-recovery-unseen-binding-02": {
+      "same_packet_key": "suppressed-recovery-unseen-binding-02",
+      "fingerprint": "af8ffb23d4b21347e624b1cf6c041ec7d49d902d359892f542a238189c0b18af"
+    },
+    "unsuppressed-recovery-unseen-binding-03": {
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "月曜と質問文をつないだ不自然な依頼になり、発表する日曜を答えない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-binding-03"
+      },
+      "fingerprint": "ba39b241abeda5f5289505aa4fc7150f23c4d84179e7d805aaa08185af3abc71"
+    },
+    "unsuppressed-recovery-unseen-binding-04": {
+      "same_packet_key": "suppressed-recovery-unseen-binding-04",
+      "fingerprint": "5ab290460b3dc08b89bb4f61dfeb3d6cd4bf6c562ab63fbaabd8f15ba6b00b62"
+    },
+    "unsuppressed-recovery-unseen-binding-05": {
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "妹がいると述べるだけで、辞書を借りた側の妹という役割に答えていない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-binding-05"
+      },
+      "fingerprint": "6dc3b9c62bf119d8717e223048229ed8b7828304b6b665063c554a97ecb7fc1f"
+    },
+    "unsuppressed-recovery-unseen-binding-06": {
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "選ばない牛乳に引かれず、実際に選んだ豆乳を正しく答えている。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-binding-06"
+      },
+      "fingerprint": "1d197132ae40bfd8674934f5bff21efa6751636ea6583087886576894ed68f57"
+    },
+    "unsuppressed-recovery-unseen-binding-07": {
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "太い筆は使わないという否定条件に反し、どちらも使うと答えている。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-binding-07"
+      },
+      "fingerprint": "eb7b488da36e35549f1511775e6a6de37bbcb1ca387a2a0d672d9bdbe962c568"
+    },
+    "unsuppressed-recovery-unseen-numbers-01": {
+      "same_packet_key": "suppressed-recovery-unseen-numbers-01",
+      "fingerprint": "2fbd5db37e425a959ab9c31d1ec2289f7f5d66d514f2780891597ddacd08a3f3"
+    },
+    "unsuppressed-recovery-unseen-numbers-02": {
+      "same_packet_key": "suppressed-recovery-unseen-numbers-02",
+      "fingerprint": "b98eda1436be1eecc5776ce402e8b71273ad834128671d836399fc165a85bfb3"
+    },
+    "unsuppressed-recovery-unseen-numbers-03": {
+      "same_packet_key": "suppressed-recovery-unseen-numbers-03",
+      "fingerprint": "e7728a07fda8c131ee214aabae36c1c6696634ac0f66b6a82750a869775124e7"
+    },
+    "unsuppressed-recovery-unseen-numbers-04": {
+      "same_packet_key": "suppressed-recovery-unseen-numbers-04",
+      "fingerprint": "2620b4293e037524d257d180c56df3d031b22020f88d97eb3c1654063863ed6f"
+    },
+    "unsuppressed-recovery-unseen-numbers-05": {
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "提示された五枚を数も単位も変えずに直接回答している。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-numbers-05"
+      },
+      "fingerprint": "d9567680a6d8b966cd37594899b8878ad4eb9209d5a11bd35ad84784d184c957"
+    },
+    "unsuppressed-recovery-unseen-numbers-06": {
+      "same_packet_key": "suppressed-recovery-unseen-numbers-06",
+      "fingerprint": "17db20b46db8250915ab6d7f09099f066480dba9b75e9c720c60ac163f34b146"
+    },
+    "unsuppressed-recovery-unseen-numbers-07": {
+      "same_packet_key": "suppressed-recovery-unseen-numbers-07",
+      "fingerprint": "506d678d8f13ff1b973bf0dc46c262e1115546e3d95b1186399f3e4ae60a702f"
+    },
+    "unsuppressed-recovery-unseen-format-01": {
+      "same_packet_key": "suppressed-recovery-unseen-format-01",
+      "fingerprint": "248f4441843a6272ba7a1884899909e39f325058b69032d20918f19fb3158152"
+    },
+    "unsuppressed-recovery-unseen-format-02": {
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "既に提示されたlist_4を返さず、リストの提示をさらに要求している。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-format-02"
+      },
+      "fingerprint": "46d596ee42146770eff2540e7506756bc986f60999ec1c12f0b55c991250887a"
+    },
+    "unsuppressed-recovery-unseen-format-03": {
+      "same_packet_key": "suppressed-recovery-unseen-format-03",
+      "fingerprint": "0d2c0a3f1d4d427abf6c936d476b62d31ce1b6351dac52fbffabfd65b921fc00"
+    },
+    "unsuppressed-recovery-unseen-format-04": {
+      "same_packet_key": "suppressed-recovery-unseen-format-04",
+      "fingerprint": "0b1bb4f044e71cf94be837cc6bbbb67857adf0e9b472a85f5f427247b9c3f2d2"
+    },
+    "unsuppressed-recovery-unseen-format-05": {
+      "same_packet_key": "suppressed-recovery-unseen-format-05",
+      "fingerprint": "ef6c8db0041fa7d10848d2268fb69f316a720b5a0831849ebec093507a8a894b"
+    },
+    "unsuppressed-recovery-unseen-format-06": {
+      "same_packet_key": "suppressed-recovery-unseen-format-06",
+      "fingerprint": "66bdf603f798ddcf4e1d8263face3ef773a2e307ef2c5df6818f34ccfe0d1715"
+    },
+    "unsuppressed-recovery-unseen-format-07": {
+      "same_packet_key": "suppressed-recovery-unseen-format-07",
+      "fingerprint": "61492db8f346c74e550dd17c94057628c24ffc56672db0e6e4e494aec014522a"
+    },
+    "unsuppressed-recovery-unseen-missing-01": {
+      "same_packet_key": "suppressed-recovery-unseen-missing-01",
+      "fingerprint": "f4130a233616f42c027896411f8205d0dced78adbc46f0f47659ee5c3b0a802e"
+    },
+    "unsuppressed-recovery-unseen-missing-02": {
+      "same_packet_key": "suppressed-recovery-unseen-missing-02",
+      "fingerprint": "6d518459c1feba893206d12219fa019800ef694ddd34f2ae6501204a069a896d"
+    },
+    "unsuppressed-recovery-unseen-missing-03": {
+      "same_packet_key": "suppressed-recovery-unseen-missing-03",
+      "fingerprint": "7ad58fc713b5c9df560054ad343cc02e133111e814bc1c1e09cd0ee804077afa"
+    },
+    "unsuppressed-recovery-unseen-missing-04": {
+      "same_packet_key": "suppressed-recovery-unseen-missing-04",
+      "fingerprint": "6756421f7f9e946b1eda3818e3e38accc7a72d276043dc5087f0b1793362d424"
+    },
+    "unsuppressed-recovery-unseen-missing-05": {
+      "same_packet_key": "suppressed-recovery-unseen-missing-05",
+      "fingerprint": "074e56fdd49f593a9fb6ccc3e11e357e77d9be47dddc1cebbb6898f23b78c62a"
+    },
+    "unsuppressed-recovery-unseen-missing-06": {
+      "same_packet_key": "suppressed-recovery-unseen-missing-06",
+      "fingerprint": "fc52611bc41413886936430d45298f3ba37f850bc8c23f8011d8ded5d83da47b"
+    },
+    "unsuppressed-recovery-unseen-missing-07": {
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "手伝うと反復するだけで、次に材料名を提示してもらう促しを返さない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-missing-07"
+      },
+      "fingerprint": "c241ee494d0e0f053e3776cbdf22dedefb4a3db3b01c4d03d7e3e4e22cb8d358"
+    },
+    "unsuppressed-recovery-unseen-role-01": {
+      "same_packet_key": "suppressed-recovery-unseen-role-01",
+      "fingerprint": "35b6e1f125750c932c18b6fccc707bbbbf6387f59a3dc76c35275009da52a4b8"
+    },
+    "unsuppressed-recovery-unseen-role-02": {
+      "same_packet_key": "suppressed-recovery-unseen-role-02",
+      "fingerprint": "57f2eb7dc8b2ed0f6a00ddf020702b8cdec8bf575f99131a82f3eadaaf4304f9"
+    },
+    "unsuppressed-recovery-unseen-role-03": {
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "明日店の近くという不自然な位置の文になり、未来と既に行った状態を区別しない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-role-03"
+      },
+      "fingerprint": "5f06036ebe56678d3a61e1fc8880ebf355d06ed4a598fb2cab4ae378085c910a"
+    },
+    "unsuppressed-recovery-unseen-role-04": {
+      "same_packet_key": "suppressed-recovery-unseen-role-04",
+      "fingerprint": "215226eda0a5e8998a389ea7372131834043032ec443d9e86aecda892d249054"
+    },
+    "unsuppressed-recovery-unseen-role-05": {
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "箱を渡した友人を受け手と取り違え、受け取った私を答えていない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-role-05"
+      },
+      "fingerprint": "ef493857ba2ebe358b9244f65d598df60fee956e896da05c847ca9c21ffdc963"
+    },
+    "unsuppressed-recovery-unseen-role-06": {
+      "same_packet_key": "suppressed-recovery-unseen-role-06",
+      "fingerprint": "a22df9473eeebc4879cdcb1ea254b98f118abb837e57291f273dd87c8aa73e15"
+    },
+    "unsuppressed-recovery-unseen-role-07": {
+      "same_packet_key": "suppressed-recovery-unseen-role-07",
+      "fingerprint": "91df9d29cccaed4ff3b8bc585a58eb0a114d6bc079cc16012cae28b870bb09fe"
+    },
+    "unsuppressed-recovery-unseen-followup-01": {
+      "same_packet_key": "suppressed-recovery-unseen-followup-01",
+      "fingerprint": "94cefa764d18520724bb4fff7271794be5b061379c73f8f7b3f5120f71207e8c"
+    },
+    "unsuppressed-recovery-unseen-followup-02": {
+      "same_packet_key": "suppressed-recovery-unseen-followup-02",
+      "fingerprint": "c30a5384bdecb7d3b2278cda6d8f033088f4e6831011946125093819163394c9"
+    },
+    "unsuppressed-recovery-unseen-followup-03": {
+      "grammar": 2,
+      "relevance": 1,
+      "context": 2,
+      "rationale": "植物園という行き先と明日の朝は保つが、回答せず再び確認質問にしている。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-followup-03"
+      },
+      "fingerprint": "5b774bc5ab7f3bc9c50311e261e829ae959514d1d6adcc793d98a84245f57d5b"
+    },
+    "unsuppressed-recovery-unseen-followup-04": {
+      "same_packet_key": "suppressed-recovery-unseen-followup-04",
+      "fingerprint": "3610444e8d92e8258b1d5e2db0cfc17169a78bb71a1af427586931abcedcb2f3"
+    },
+    "unsuppressed-recovery-unseen-followup-05": {
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "鉢に植えた植物のミントを、他の物に替えず直接答えている。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-followup-05"
+      },
+      "fingerprint": "724762499c6f8f4bafe6853258e38fdae95cd94e0d844093b043e9b0688bfd1b"
+    },
+    "unsuppressed-recovery-unseen-followup-06": {
+      "same_packet_key": "suppressed-recovery-unseen-followup-06",
+      "fingerprint": "30b4d81d9254c4c626c203b063097a96ab919402069f59bb353ed0bc5a30d26a"
+    },
+    "unsuppressed-recovery-unseen-followup-07": {
+      "same_packet_key": "suppressed-recovery-unseen-followup-07",
+      "fingerprint": "484e74fe3b1e08f2a5aaf2873b83e7be9536fdd1737a022131f1cec8cdbc5ca5"
+    },
+    "unsuppressed-recovery-unseen-followup-08": {
+      "same_packet_key": "suppressed-recovery-unseen-followup-08",
+      "fingerprint": "aafd0d0bd985f8f5fbb030b19aa1196198307becebd606847bbe9e6e9dd24eb4"
+    },
+    "unsuppressed-recovery-unseen-correction-01": {
+      "same_packet_key": "suppressed-recovery-unseen-correction-01",
+      "fingerprint": "2b38658a896e852e588ff273e64f3af6cc89285d8cea6a3d560c4815c2464761"
+    },
+    "unsuppressed-recovery-unseen-correction-02": {
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "取り消した本屋ではなく、変更後の花屋を訪問先として答えている。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-correction-02"
+      },
+      "fingerprint": "fb140d1eed4fc2bb3bbf18b48341104cd8844075c1d8210fe7c85b3ed10abee7"
+    },
+    "unsuppressed-recovery-unseen-correction-03": {
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "青へ直した直後にも、リボンの古い色の赤を答えている。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-correction-03"
+      },
+      "fingerprint": "c9e504bbde6458e0af82d2c37ead3112680f8195741ef361dab918f617c7372f"
+    },
+    "unsuppressed-recovery-unseen-correction-04": {
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "来られない父から母へ変えた条件を無視し、古い相手の父を答えている。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-correction-04"
+      },
+      "fingerprint": "4be86d7dd27d7cafbde0c24a232a9a96fc6a962c4929e9bda7c3b0cde0d72294"
+    },
+    "unsuppressed-recovery-unseen-correction-05": {
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "数え直して二つで足りると訂正されたのに、古い三つを返した。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-correction-05"
+      },
+      "fingerprint": "17d7222af053448869c7b0cd434b877dece45388eb4130f14f5fae567b7c813e"
+    },
+    "unsuppressed-recovery-unseen-correction-06": {
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "東の壁への明示訂正を反映せず、元の西の壁を答えている。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-correction-06"
+      },
+      "fingerprint": "e4a53d1e17f177fba7828209b91276c613c2e3ad317d80d0649733286d522fb3"
+    },
+    "unsuppressed-recovery-unseen-correction-07": {
+      "same_packet_key": "suppressed-recovery-unseen-correction-07",
+      "fingerprint": "1f559fdbd5c1471b831e724ef93183b96e3e477b5db52356009f94287cfc44f6"
+    },
+    "unsuppressed-recovery-unseen-correction-08": {
+      "same_packet_key": "suppressed-recovery-unseen-correction-08",
+      "fingerprint": "86da05cf81f4724a3686ec295e4ccd666f128bad787a683f33ea1a20776f7e59"
+    },
+    "unsuppressed-recovery-unseen-context-01": {
+      "same_packet_key": "suppressed-recovery-unseen-context-01",
+      "fingerprint": "33fbd54c8c95ba3350593885cbe41486aa7344c0157beb0e566d70f12c23ae1f"
+    },
+    "unsuppressed-recovery-unseen-context-02": {
+      "same_packet_key": "suppressed-recovery-unseen-context-02",
+      "fingerprint": "36d993b257251b825718954aec800f2b1c72aff9b11c06094aad315aa82e688d"
+    },
+    "unsuppressed-recovery-unseen-context-03": {
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "バスはバスで行くという循環で、乗る人の母を回答していない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-context-03"
+      },
+      "fingerprint": "91230ceabb957154de54bc1ea767f505d303c7adae2590779850424d4a5cf397"
+    },
+    "unsuppressed-recovery-unseen-context-04": {
+      "same_packet_key": "suppressed-recovery-unseen-context-04",
+      "fingerprint": "2ad63c924923e4be347a0241aee22c5f2d8eb378fa5794eeb6298b699099a1a7"
+    },
+    "unsuppressed-recovery-unseen-context-05": {
+      "same_packet_key": "suppressed-recovery-unseen-context-05",
+      "fingerprint": "e43c9dc3cfcc8cd27a91dc7c0d58faa8895cf878d628178daea1939119ab3cd1"
+    },
+    "unsuppressed-recovery-unseen-context-06": {
+      "same_packet_key": "suppressed-recovery-unseen-context-06",
+      "fingerprint": "78ac7f6b9119889414bde2a60288b736eca2e40009ff33e95ca439b5b4c11d15"
+    },
+    "unsuppressed-recovery-unseen-context-07": {
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "届ける叔母ではなく包む叔父を答え、担当者の役割を取り違えた。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-context-07"
+      },
+      "fingerprint": "26a6df2ee37373e59814d4e3137e3e35e49eacb7a62e971c238bf9ecfdf766db"
+    },
+    "unsuppressed-recovery-unseen-context-08": {
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "姉の袋は黒と答え、弟の赤い袋と人物の対応を取り違えていない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "suppressed-recovery-unseen-context-08"
+      },
+      "fingerprint": "b1b4e784f13bc24a392acd658d7b03b07e3dce29d8114b359dcd056e67bd46e2"
+    },
+    "own-recovery-unseen-correction-02-turn-1": {
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "本屋へ訪ねる報告に菓子の購買傾向を創作し、菓子や菓子という重複もある。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "own-recovery-unseen-correction-02-turn-1"
+      },
+      "fingerprint": "cd334b451702b8a6655885b4472e33062bdb9554c7b72f2fb573fcc1707d3a98"
+    },
+    "own-recovery-unseen-correction-04-turn-1": {
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "父の予定は父の予定という同語反復で、会う相手の報告を自然に確認しない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "own-recovery-unseen-correction-04-turn-1"
+      },
+      "fingerprint": "c246937d61c80307e3ece9972695af77be6b61c286ca039a67e915eaba828004"
+    },
+    "own-recovery-unseen-correction-06-turn-1": {
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "Userの本棚の予定をそのまま復唱し、報告に対する反応としては弱い。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "own-recovery-unseen-correction-06-turn-1"
+      },
+      "fingerprint": "baf800d060d76df00f0cd3de2a12155f6572d8de85efb90cb3eb0af4362b7fcb"
+    },
+    "own-recovery-unseen-correction-06-turn-2": {
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "東の壁への訂正後も、自分も復唱した古い西の壁を答えている。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "own-recovery-unseen-correction-06-turn-2"
+      },
+      "fingerprint": "04347c104680b917a643f768d743f77224e6673ce82da6ba1c053bef41c2ce49"
+    },
+    "own-recovery-unseen-correction-07-turn-1": {
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "北の入口という乗り場を自然な省略表現で確認し、場所を取り違えない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "own-recovery-unseen-correction-07-turn-1"
+      },
+      "fingerprint": "f1fff84c22f520367f1aa5fd0d64c79d65a3198e5ce576f11cb4a7aa97773cdd"
+    },
+    "own-recovery-unseen-correction-08-turn-1": {
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "菓子のクッキーを飲み物の紅茶と同一視し、二つの対象を混同している。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "own-recovery-unseen-correction-08-turn-1"
+      },
+      "fingerprint": "9c6e64533700d76f2dcb2afc489f07b246df4396bf7775e7a23f7ababdac67b3"
+    },
+    "own-recovery-unseen-context-03-turn-1": {
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "電車という片方の手段だけを曖昧に指し、父と母の移動手段を確認していない。",
+      "source_notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/evaluation/C0/new/notes.json",
+        "sha256": "6b60d68fbb65db7444d2c5729d0c2406f0c48f087e72f42aa3cee4225c47a297",
+        "key": "own-recovery-unseen-context-03-turn-1"
+      },
+      "fingerprint": "da26010bf8fee03f0b9c06d78ccff22b51f1af32fe340b19675b6b1f6b5f39a4"
+    }
+  },
+  "total_judgments": 219,
+  "manual_pending": 104,
+  "created_at": "2026-10-17T17:51:03.448384Z",
+  "reviewer_source": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/review_chat_natural.py",
+    "sha256": "b229345a02c70b5947ac07466b451074c81091f5af3c1bed247ba38853778885"
+  },
+  "reuse_only_identical_actual_history_and_raw": true,
+  "review_adapter": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/review_chat_recovery_sft.py",
+    "sha256": "5b58c2e226ff5c33e130f8c397e54eefa5a53cb2af1743110766490db786970e"
+  },
+  "reuse_policy": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/suite_review_reuse_policy.json",
+    "sha256": "58897f451226ccd9abc23c8d2bf22fc8744dd909f2d692dd7aeefe6d08a101f0"
+  }
+}

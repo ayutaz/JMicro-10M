@@ -166,6 +166,8 @@
 | [159_chat_recovery_diagnosis_results.md](159_chat_recovery_diagnosis_results.md) | 対照100ケース・履歴要因・Base通常文・samplingの全800応答診断 |
 | [160_chat_input_structure_sft_comparison.md](160_chat_input_structure_sft_comparison.md) | 正答・配合・教師量を保った入力配置変更の対照SFT事前方針 |
 | [161_chat_input_structure_execution_status.md](161_chat_input_structure_execution_status.md) | 新対照SFTの教材QA・全消費一致・実行契約と進捗 |
+| [162_chat_input_structure_sft_results.md](162_chat_input_structure_sft_results.md) | 入力配置の対照SFT・全3,466内容/36実ブラウザー・候補不採用の結果 |
+| [163_chat_next_capability_diagnosis_plan.md](163_chat_next_capability_diagnosis_plan.md) | 最新の二属性回答を少数教材で点検する次の課題・段階予算・分岐 |
 
 <!-- Historical incoming heading aliases. Original text is preserved in baseline snapshots. -->
 <a id="今回の文書と計画"></a>
