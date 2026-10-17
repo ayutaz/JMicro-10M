@@ -126,7 +126,7 @@ def main():
         candidate_improvement_demonstrated=final['candidate_improvement_demonstrated'],
         candidate_all_absolute_DEV_screens_pass=final['candidate_all_absolute_DEV_screens_pass'],
         decision='Fixed trial completed; quality adoption remains separate',Chat_adopted=False,Base_adopted=False,protected_TEST_used=False,
-        explicit_resource_amendment=c['resource_replan'],original3600_time_plan_was_not_met=True,
+        explicit_resource_amendment=c['resource_replan'],original3600_forecast_gate_failed_before_science=True,
         owned_GPU_stage_wall_seconds=ledger['total_seconds'],GPU_ledger=ref(RUN/'GPU_ledger.json'),
         independent_human_or_blind_TEST=False,formal_Base_fullpipeline_fullDEV440_and_newTEST_still_pending=True,source=ref(__file__)))
     print('All five stages proven complete from actual evidence; no quality adoption claim')
