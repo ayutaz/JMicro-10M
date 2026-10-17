@@ -1,5 +1,7 @@
 # 文書一覧
 
+2026-10-17 SFT完了: [結果150](150_chat_natural_sft_results.md)。計画149の全5段階・全2,190内容比較・実UI会話まで完了。新DEV内容5→5/80で改善未実証、候補不採用。短文設定の[試用Chat](http://127.0.0.1:7862)は既定32token、16/32/64選択。以下は各時点の文書更新履歴。
+
 2026-10-17 SFT計画: [149：次のSFT計画](149_chat_sft_next_plan.md)を追加。元の学習済みBaseを用い、新しい公開会話教材と従来教材を各100万Assistant教師で比べる最初の試行案。今回は計画作成のみ。
 
 2026-10-17追記: 文書更新は645b3d09で完了後、ユーザーの指示でChatの動作確認へ移行。[SFT済みChatを試す](http://127.0.0.1:7861) / [操作43](43_local_webui.md) / [現在の状態](autonomous_status.md)。以下の文書更新説明はその納品時点の記録。
@@ -138,6 +140,7 @@
 | [147_evaluation_boundary_repair.md](147_evaluation_boundary_repair.md) | Base再開: 評価入力の分離修理 |
 | [148_latest_base_and_documentation.md](148_latest_base_and_documentation.md) | 最新RDrop25Mの採否と全文書更新 |
 | [149_chat_sft_next_plan.md](149_chat_sft_next_plan.md) | 公開会話の幅を広げる次のSFT計画 |
+| [150_chat_natural_sft_results.md](150_chat_natural_sft_results.md) | 短文SFTの全2,190内容比較と5段階完了・候補不採用 |
 
 <!-- Historical incoming heading aliases. Original text is preserved in baseline snapshots. -->
 <a id="今回の文書と計画"></a>

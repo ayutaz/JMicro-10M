@@ -1,0 +1,3216 @@
+{
+  "evaluation_sha256": "6c91e89c471bba9588de248742efe4baa9e95175dbb993e0c2846735db8ff81b",
+  "rubric": {
+    "grammar": "0: unreadable/broken; 1: understandable with awkward or incomplete clauses; 2: natural complete Japanese. Score language separately from factual correctness.",
+    "relevance": "0: unrelated/contradicts the request; 1: partly relevant or vague; 2: directly responds to the final User in the actual history. Do not require literal gold wording.",
+    "context": "0: loses or contradicts required conditions; 1: partial/ambiguous retention; 2: retains all relevant conditions and corrections in the actual history. For own-history use generated replies, never supplied gold Assistant messages.",
+    "rationale": "At least 12 characters explaining the particular response. Keep fantasy, alternate natural answers, numeric correctness, grammar, and stopping distinct."
+  },
+  "pending": {
+    "suppressed-generalization-greeting-01": {
+      "fingerprint": "9b583864f4dddea5d227a4628bd4efb8d6da13a7e983812e0a7396194ba214ef",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "お昼休みになりました。ちょっとお話ししてもいいですか。"
+        }
+      ],
+      "checks": [
+        "会話の申し出を自然に受ける",
+        "未提示の名前を呼ばない"
+      ],
+      "response": "お話しすると、お昼は何を食べますか？",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-greeting-02": {
+      "fingerprint": "2e7af408ff172bf839d5d3884de4e0140fa5a30b8db46852f9c60d7fb5a243d2",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "さっきまで席を外していました。戻ったので、またよろしくお願いします。"
+        }
+      ],
+      "checks": [
+        "戻った相手を迎える"
+      ],
+      "response": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-greeting-03": {
+      "fingerprint": "ce9561db0d363d347f54cab409d3a485ee0012aa6e176f33d8e0209e9ae0c225",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "今日初めてここを使います。まず挨拶だけさせてください。"
+        }
+      ],
+      "checks": [
+        "初回の挨拶に応じる"
+      ],
+      "response": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-greeting-04": {
+      "fingerprint": "b0fc30cdfbe0ea7b11990d281426a714ef8ccb09f035cf4f8caab32d918f0c53",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "こんばんは。遅い時間ですが、少しだけ付き合ってもらえますか。"
+        }
+      ],
+      "checks": [
+        "夜の挨拶と会話の申し出に応じる"
+      ],
+      "response": "こんばんは。今日は、お休みの日を利用して、お仕事をされてますか？",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-greeting-05": {
+      "fingerprint": "dd5a925c01a8e8a1d885a14651c24d91c05909a98cc7e605ed2fb98eda08d265",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "いろいろ聞いてくれてありがとう。今日はここで終わりにします。"
+        }
+      ],
+      "checks": [
+        "感謝を受けて会話を終える"
+      ],
+      "response": "今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日は",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-greeting-06": {
+      "fingerprint": "42a729025a24844d21721f239a63c59f34a56b12c228d8e3073081404e399b42",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "ひさしぶりに開きました。今日は雑談から始めたいです。"
+        }
+      ],
+      "checks": [
+        "雑談開始を受ける",
+        "具体的な過去の会話を創作しない"
+      ],
+      "response": "雑談は、何を話すのですか？",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-greeting-07": {
+      "fingerprint": "ce48a36c3630ac3a879de8b65d168a104da156e0e4249e487d2aa51a8f9985f9",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "まだ朝早いですね。おはようございます、今日もお願いします。"
+        }
+      ],
+      "checks": [
+        "朝の挨拶を返す"
+      ],
+      "response": "こんにちは、よろしくお願いします。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-greeting-08": {
+      "fingerprint": "9a4e36052fd60fe7e82d8be168d499b2c2be542a4ca21d3dcb394ad5d6686a75",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "こんにちは。返事が来るか確認したいので、ひとことお願いします。"
+        }
+      ],
+      "checks": [
+        "短い挨拶で応じる"
+      ],
+      "response": "こんにちは。こちらこそよろしくお願いします。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-daily-01": {
+      "fingerprint": "9bac5067beb16c53855df3fa958acc5778b59afdf337156c04fbe5bb9472a3e6",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "洗濯物を畳み終わって、やっと机の前に座れました。"
+        }
+      ],
+      "checks": [
+        "家事完了を受け止める"
+      ],
+      "response": "やっと、やっと寝てました。やっと寝てました。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-daily-02": {
+      "fingerprint": "6ee4662b69af0f78b778a43b393e013478862bf4a1cb2b8f414db76976806896",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "今日は近所をゆっくり一周してきました。思ったより気分が変わりました。"
+        }
+      ],
+      "checks": [
+        "散歩による気分変化を受ける"
+      ],
+      "response": "今日は、お昼ご飯を食べました。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-daily-03": {
+      "fingerprint": "dfd962e29bfc275473d4c8b8cfabda3c6e039e0c9b0b4e13533ed7fbcba4fb96",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "昼ごはんを作るつもりだったけれど、残り物があったのでそれを食べました。"
+        }
+      ],
+      "checks": [
+        "作らず残り物を食べたと保持"
+      ],
+      "response": "おいしいですよね。おいしいですよね。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-daily-04": {
+      "fingerprint": "049ad2cfb1a9b03b2a3ead861bcc29f79398dbcd14e49ee08cc59519fe2a4c20",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "机の上の紙を整理したら、なくしたと思っていたメモが出てきました。"
+        }
+      ],
+      "checks": [
+        "紙の整理とメモ発見を受ける"
+      ],
+      "response": "メモは、紙の上に置いてあるものを整理するのに便利です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-daily-05": {
+      "fingerprint": "56a803cbce64ede3539f03977586e5344707d2809a7f735d16203971faa0d488",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "午前中は用事が続きましたが、午後は家で静かに過ごせそうです。"
+        }
+      ],
+      "checks": [
+        "午前と午後の違いを保持"
+      ],
+      "response": "今日は、今日のお話は、今日のお話です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-daily-06": {
+      "fingerprint": "77db0602852f378170dc5e3878d33dcaf5e2c76e818f94331ad359d62ada8b0c",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "いつもの道が混んでいたので、今日は一本隣の道を歩きました。"
+        }
+      ],
+      "checks": [
+        "混雑を避けた行動を受ける"
+      ],
+      "response": "私は、道が混んでいたので、歩いていました。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-daily-07": {
+      "fingerprint": "7b361679534e9199b571c59b5827cd2b5c3b06298f381c64cec025a4dbfbd6b7",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "読みかけの本を少し進めました。続きは明日に取っておきます。"
+        }
+      ],
+      "checks": [
+        "読了とせず続きは明日と保持"
+      ],
+      "response": "明日は、読書の時間です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-daily-08": {
+      "fingerprint": "04bec1aaa40ebc22a57364c064c5ff955f108a1784d1cb3b2e921887656a1af0",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "買い物に出る前に財布を確認したら、ちゃんとかばんに入っていました。"
+        }
+      ],
+      "checks": [
+        "財布がかばんにある確認を受ける"
+      ],
+      "response": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-emotion-01": {
+      "fingerprint": "63e9684cf191df1197ba2ea649d30e62a9944d5629bdac1191488fca5452cab2",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "準備は終わったのに、明日の発表を考えると少し緊張します。"
+        }
+      ],
+      "checks": [
+        "準備完了と緊張の両方を受け止める"
+      ],
+      "response": "明日は、発表が終わったのに、明日は、発表が終わったのに、明日は、発表が終わ",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-emotion-02": {
+      "fingerprint": "d8e13e1f1ddd0bc26f70f2f18497c61d45b3b5684737b5e72295eeca315d1adb",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "予定より早く作業が終わって、ちょっと嬉しいです。"
+        }
+      ],
+      "checks": [
+        "嬉しさに合う応答"
+      ],
+      "response": "お疲れ様です。お疲れ様です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-emotion-03": {
+      "fingerprint": "d063b3d99a3b729425a5fd029623ef65a5a2ce26c32e751468ee654a3c61eeec",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "楽しみにしていた約束が延期になって、今日は少し残念です。"
+        }
+      ],
+      "checks": [
+        "延期による残念さを受ける",
+        "中止と断定しない"
+      ],
+      "response": "それは、本当に大変です。あなたはどうですか？",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-emotion-04": {
+      "fingerprint": "4bc7e8c6c6f39beaf5d9c4c3667ae13f91e05a3e4059db5d479c5a026a2b1aee",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "初めての場所へ一人で行くので、楽しみと不安が半分ずつです。"
+        }
+      ],
+      "checks": [
+        "両方の感情を認める"
+      ],
+      "response": "不安は、何が一番大きいのか、何が一番大きいのか、わからないですよね。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-emotion-05": {
+      "fingerprint": "f39a3e4caa8a568bf1ec001debea680a677cafa479cae1390f8860f0396d58a7",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "難しかったところがようやく分かって、ほっとしました。"
+        }
+      ],
+      "checks": [
+        "理解できた安心に応じる"
+      ],
+      "response": "難しかったところが、難しかったところが、なんとなく、なんとなく、という感じでした。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-emotion-06": {
+      "fingerprint": "74592097f2b0b481b9bdc5c1d5522eb47e838cee6917b4de8e4bd3f0dd0c5c79",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "今日は小さな失敗が重なって、少し気持ちが沈んでいます。"
+        }
+      ],
+      "checks": [
+        "気持ちを否定しない",
+        "非難しない"
+      ],
+      "response": "今日は、少し落ち着いて、少しずつ落ち着いて、少しずつ落ち着いて、少しずつ落ち着いて、少しずつ",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-emotion-07": {
+      "fingerprint": "29d6655d3a93af7463914fe232e1a18fe69cb367e620a12bd86be8ffcb73c133",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "久しぶりに友達から連絡が来て、思わず笑顔になりました。"
+        }
+      ],
+      "checks": [
+        "連絡が嬉しかったと受ける"
+      ],
+      "response": "友達は、友達との会話がうまいので、友達との会話がうまいんです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-emotion-08": {
+      "fingerprint": "95c1cd1eea21e9afd1ebac7787e84c1f4e91169a127715f140e0e58adaab2abc",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "提出した後で書き忘れに気づきました。少し焦っています。"
+        }
+      ],
+      "checks": [
+        "焦りを受ける",
+        "修正できると断定しない"
+      ],
+      "response": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-question_back-01": {
+      "fingerprint": "ca76f38098f090cb539da7619bff1cd0d30cc6ae6ac3faf9fe59dec4b8d54ee7",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "夕方まで三十分空いたので、机の周りだけ片付けようと思います。何から始めるとよさそうですか。"
+        }
+      ],
+      "checks": [
+        "作業の始め方を具体的に答える",
+        "質問返しだけで終えない"
+      ],
+      "response": "片付けは、片付けが大変です。片付けは、何をするのが一番いいかわからないですね。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-question_back-02": {
+      "fingerprint": "63a2dd046e4bf9bc5a331cd0578c15dc59c5c197668681ccd200e09e93ab37af",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "買い物のメモに書くため、明日はパンと牛乳を買うと覚えておいてください。買う物だけ返してください。"
+        }
+      ],
+      "checks": [
+        "パンと牛乳の両方",
+        "余計な品を追加しない"
+      ],
+      "response": "返す物は、返す物は、返す物は、返す物は、返す物は、返す物は、返す",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-question_back-03": {
+      "fingerprint": "1dd147303a18ba0290f77a16371644418da442c0bcf54322ca69e91b0281f143",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "コップは棚の上、皿は引き出しにあります。皿を取るにはどちらを開ければいいですか。"
+        }
+      ],
+      "checks": [
+        "皿の場所として引き出しを選ぶ"
+      ],
+      "response": "皿は、皿を開けたら、皿を開けます。皿は、皿を開けたら、皿を開けます。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-question_back-04": {
+      "fingerprint": "611be9d8da5f3cebe174199d77df99936629409e765a5a3275452b1798575391",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "先に封筒へ紙を入れて、その後で封をします。封をする直前の作業は何ですか。"
+        }
+      ],
+      "checks": [
+        "順番に基づき紙を入れると答える"
+      ],
+      "response": "はい、紙を入れて、そのまま封筒に入れます。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-question_back-05": {
+      "fingerprint": "319b688fb0d7f277cd084e237d60a066e14178dfc2726cb1967218a999a551f0",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "待ち合わせには駅ではなく公園を選びました。行く場所を一つ教えてください。"
+        }
+      ],
+      "checks": [
+        "否定された駅を選ばない",
+        "公園を答える"
+      ],
+      "response": "公園は、公園の近くにあります。公園は、公園の近くにあります。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-question_back-06": {
+      "fingerprint": "091081c9dcc32af2ab585184a38e18c731fc8c4d2189c5c87ad28fc5abbf735a",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "持ち帰る箱にはタオルが入っています。箱の中身を答えてもらえますか。"
+        }
+      ],
+      "checks": [
+        "箱の中身はタオル"
+      ],
+      "response": "タオルは、箱の中身を答えてもらえますか。箱の中身を答えてもらえますか。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-question_back-07": {
+      "fingerprint": "d87b661cbaface8f29f7f840f7e8320f8e1bfaeb66cf94b139e894785b98dc67",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "明日の担当は私ではなく姉です。担当する人だけ答えてください。"
+        }
+      ],
+      "checks": [
+        "Userでなく姉を選ぶ"
+      ],
+      "response": "私は姉の姉は姉の姉です。姉は姉の姉です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-question_back-08": {
+      "fingerprint": "7bfa1f522395833f615079fdd6cfd8b734bf3d8d2b9ea1ffde747c0006f4721f",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "借りた傘は今日返します。返すのは今日か明日か、どちらですか。"
+        }
+      ],
+      "checks": [
+        "今日を選ぶ"
+      ],
+      "response": "明日は明日です。明日は明日です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-ambiguity-01": {
+      "fingerprint": "e7694323ebdbb4a074f316cedd7d07c9825071eaf0847b239ce90eb0cb66a963",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "あの件、そろそろ決めた方がいいでしょうか。"
+        }
+      ],
+      "checks": [
+        "指示対象を具体的に確認する"
+      ],
+      "response": "そろそろ、今のところは、今のところは、今のところは、今のところは、今のところは、今の",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-ambiguity-02": {
+      "fingerprint": "2ac853903a1e6a79c4bb6b21dee53bab49e5997329c6d53783521cee3e8b286f",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "さっきの二つなら、後の方でお願いします。"
+        }
+      ],
+      "checks": [
+        "未提示の二候補を確認する"
+      ],
+      "response": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-ambiguity-03": {
+      "fingerprint": "e097393660f558f919fa5eddd9b152373efaf4eac61bb64d9649f4e422a165c7",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "時間を少しずらしたいです。何時にすればいいですか。"
+        }
+      ],
+      "checks": [
+        "元時刻と変更幅を聞く"
+      ],
+      "response": "今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日は、今日は",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-ambiguity-04": {
+      "fingerprint": "96cb4d117d1d996a43b4c018e6b9a2ba8d99d905bbdbb1fbe285b39619cc9a39",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "家にある材料で簡単に作れるものを知りたいです。"
+        }
+      ],
+      "checks": [
+        "材料の確認",
+        "具体的な材料を創作しない"
+      ],
+      "response": "家にある材料で簡単に作れるものはありますか？",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-ambiguity-05": {
+      "fingerprint": "cb0e7da1a8deb559bf7aa4c50a93ed11df5f268e33be9d890a828257d45fc076",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "ここから近い方を選んでもらえますか。"
+        }
+      ],
+      "checks": [
+        "現在地と候補を確認する"
+      ],
+      "response": "こちらは、こちらの方が、お子さんがいるので、お子さんがいるので、お子さんがいると、お子さんが",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-ambiguity-06": {
+      "fingerprint": "a5786dd2b921def93130946bff3d339665b6768b61ff80afdca659a405817df3",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "持ち物を一つ減らすとしたら、どれがいいでしょう。"
+        }
+      ],
+      "checks": [
+        "持ち物と用途を確認する"
+      ],
+      "response": "私は、家にいるときは、家具を買います。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-ambiguity-07": {
+      "fingerprint": "b900bbcf3e47418a8ded23a3ae6112ea346c4ff8da36c9a1632e325023e20002",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "その人への返事を短くまとめてください。"
+        }
+      ],
+      "checks": [
+        "返答の材料を確認する"
+      ],
+      "response": "短くまとめるのが一番です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-ambiguity-08": {
+      "fingerprint": "a2af552178d84d6afd2f5e67fde3af24e72b60fa67b8d37efad6ed11910b9571",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "前の予定に戻して大丈夫ですか。"
+        }
+      ],
+      "checks": [
+        "両方の予定を確認する"
+      ],
+      "response": "今は、予定に戻して、予定に戻して、予定に戻して、予定に戻して、予定に戻して、予定に戻して",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-role_boundary-01": {
+      "fingerprint": "6c3913a96195f44159b5547d74d54fc5a2f932228c4765ec8634d06142902795",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "私は先週、友達と映画を見ました。見に行ったのはあなたでしたか。"
+        }
+      ],
+      "checks": [
+        "映画を見たのはUser",
+        "Assistantの外出体験を創作しない"
+      ],
+      "response": "私は、映画見ました。映画は見たことないのですが、映画は見たことあります。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-role_boundary-02": {
+      "fingerprint": "d9422785496222c01ee194dc84d45f6635382dafbd1607149912541d1ee24f09",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "弟が『僕は赤い箱を選んだ』と言いました。赤い箱を選んだ人は誰でしょう。"
+        }
+      ],
+      "checks": [
+        "引用の一人称は弟"
+      ],
+      "response": "赤い箱は、赤い箱を選んだ人たちが、その人たちの名前を思い出します。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-role_boundary-03": {
+      "fingerprint": "f70d810e398bd7401c5a761be0a1e97b93fea63cbe534515ac22ebb07df59ba2",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "私が明日買うのはノートです。あなたが買う予定、という意味ではありません。誰の予定ですか。"
+        }
+      ],
+      "checks": [
+        "Userの予定と答える"
+      ],
+      "response": "私は、ノートは、ノートを買う予定です。あなたは、何を買う予定ですか。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-role_boundary-04": {
+      "fingerprint": "0e87b06de92f2ffa6b05557be894bd039497305dd4f5f63a9c9bf8de127802e2",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "あなたも家で植物を育てているなら、その経験を教えてください。"
+        }
+      ],
+      "checks": [
+        "実体験を創作しない",
+        "自然に応じる"
+      ],
+      "response": "あなたは、植物を育てているのですか？",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-role_boundary-05": {
+      "fingerprint": "5cc682f41ddfb23931ea37a884213b04ba282bd2e93da7faef513ebcb0570e49",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "友達は駅が混んでいたと話していました。あなたが現地で見た情報ですか。"
+        }
+      ],
+      "checks": [
+        "伝聞と実見を区別する"
+      ],
+      "response": "そうなんですか。あなたは何を見ていましたか？",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-role_boundary-06": {
+      "fingerprint": "088e4c1752124665d9dbe34431acdd050d5933bf20bc5f35971f494bf336d64b",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "あなたが公園を提案しても、私はまだ行き先を決めていません。もう決定したと言えますか。"
+        }
+      ],
+      "checks": [
+        "提案をUserの決定に変えない"
+      ],
+      "response": "私は、公園の案内をするのが好きです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-role_boundary-07": {
+      "fingerprint": "d0f19e4d8c7f67a8b78bb8ce2662ce476544070f12b350602541d30379657b2a",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "母は『私はお茶を飲む』、私は『水を飲む』と言いました。お茶を飲むのは誰ですか。"
+        }
+      ],
+      "checks": [
+        "母の引用とUserを区別する"
+      ],
+      "response": "私は、お茶を飲むのは、お茶を飲むのが一番です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-role_boundary-08": {
+      "fingerprint": "82b1e3a7707830b06bfd77192f977e4fe9c33ea5c50f792e668ad426eee48086",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "これは想像の話です。私が休みなら散歩します。休みだともう決まっていますか。"
+        }
+      ],
+      "checks": [
+        "仮定を確定事実にしない"
+      ],
+      "response": "決まってるんですかね。私は休みは好きですが、休みは好きです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-symbols-01": {
+      "fingerprint": "13996f3e9e796693b2784d0866ec98f2f44dc2d306db784fb276eb10948218b6",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "メモの題名は『朝の準備』です。かぎ括弧を付けたまま題名だけ返してください。"
+        }
+      ],
+      "checks": [
+        "題名を変えない",
+        "二重かぎ括弧を保持"
+      ],
+      "response": "返すのは、朝の準備です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-symbols-02": {
+      "fingerprint": "fb81fbbeeb8bc748e95cdee5bc17695d600085b4d3208b4aaa3286eb911454a3",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "印は○ではなく△にしました。使う印を一文字で返してください。"
+        }
+      ],
+      "checks": [
+        "三角だけ",
+        "丸を選ばない"
+      ],
+      "response": "返すと、印は1文字で返します。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-symbols-03": {
+      "fingerprint": "c3adb1df954b059046ac4b386cd9a88aae47efa5f0d117509de1b3337d495710",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "書く順序はA→C→Bです。矢印を残して、順序だけ繰り返してください。"
+        }
+      ],
+      "checks": [
+        "ACB順序",
+        "矢印を保持"
+      ],
+      "response": "順序は、順序を忘れずに、順序を忘れずに、順序を忘れずに。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-symbols-04": {
+      "fingerprint": "ee6f85bcd1d6fa3ee95bd7d337bac6e4286ae00086ff9c298bec5efe7b04a724",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "合言葉は「ねこ・そら」です。中点も含めて合言葉だけお願いします。"
+        }
+      ],
+      "checks": [
+        "中点を保持",
+        "合言葉だけ"
+      ],
+      "response": "あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、あ、",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-symbols-05": {
+      "fingerprint": "3654bb6572000a6a5913ffa478ee84291a7ac2a810067b6d14ebcd716e2bc07f",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "ラベルは小文字のabです。大文字にはせず、ラベルだけ返してください。"
+        }
+      ],
+      "checks": [
+        "小文字abを保持"
+      ],
+      "response": "返信は返信です。返信は返信です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-symbols-06": {
+      "fingerprint": "775cc9d2f4cedc6a988569079248eac6a1139d65916976347fa2c95e4036f443",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "予定欄には『朝 / 昼』と書きました。空白と斜線を残して、その中身だけ返してください。"
+        }
+      ],
+      "checks": [
+        "空白とスラッシュを保持",
+        "朝昼の順序"
+      ],
+      "response": "返すのは、朝のほうがいいです。朝は、朝のほうがいいです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-symbols-07": {
+      "fingerprint": "0394d3b6a2d71d6f8fe21ff6b114dfa3fc483ddf750b49cf9a6e54b0fb548366",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "最後につける印は!ではなく?です。印だけ答えてください。"
+        }
+      ],
+      "checks": [
+        "疑問符だけ",
+        "感嘆符を選ばない"
+      ],
+      "response": "おー、おー、おー、おー、おー、おー、おー、おー、おー、おー、おー",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-symbols-08": {
+      "fingerprint": "387d76e75ab9e6f8245971dfef8ab9eac456c4b9d053f7a8626798c912595f22",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "ファイルの呼び名はnote-2です。ハイフンを残して呼び名だけ返してください。"
+        }
+      ],
+      "checks": [
+        "note-2をそのまま保持"
+      ],
+      "response": "返信は、note-2で返信します。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-correction-01": {
+      "fingerprint": "d3016b0b7a039b7871a5de0cf0628d6dd9a1c5df26375c4e92e51c7c0089195b",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "集合は北口にします。集合場所を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "集合場所は北口ですね。"
+        },
+        {
+          "role": "user",
+          "content": "北口が閉まるので、南口へ変更します。今の集合場所だけお願いします。"
+        }
+      ],
+      "checks": [
+        "変更後は南口",
+        "北口を返さない"
+      ],
+      "response": "北口は北口にします。北口は北口にします。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-correction-02": {
+      "fingerprint": "931b464ef4807dd241c30280296a690db23e5b5b607491b4c9fbb21d98cb32dd",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "持っていく紙は六枚です。枚数を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "紙は六枚ですね。"
+        },
+        {
+          "role": "user",
+          "content": "使う分が増えました。六枚ではなく九枚でお願いします。何枚持っていきますか。"
+        }
+      ],
+      "checks": [
+        "訂正後九枚",
+        "六枚を返さない"
+      ],
+      "response": "九枚です。九枚です。九枚です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-correction-03": {
+      "fingerprint": "1e8da4b4353bdd25ebc3cea1b1fbf3d429492826f00d44f022264eddd83fb5a3",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "荷物を届ける相手は叔母です。確認してもらえますか。"
+        },
+        {
+          "role": "assistant",
+          "content": "届ける相手は叔母さんですね。"
+        },
+        {
+          "role": "user",
+          "content": "言い間違えました。届ける相手は叔父です。誰に届けますか。"
+        }
+      ],
+      "checks": [
+        "叔父と叔母を区別",
+        "最新は叔父"
+      ],
+      "response": "叔母さんは、叔母さんのお名前を聞いて、叔母さんの名前を決めました。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-correction-04": {
+      "fingerprint": "ab86bf74d08eb58c28064a8d3ebc4cee1c37dcdee0145a88b31d0ddfd6c22b87",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "予約は午前十時だと思っていました。時刻を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "午前十時の予約ですね。"
+        },
+        {
+          "role": "user",
+          "content": "確認したら午後二時でした。実際の予約時刻は何時ですか。"
+        }
+      ],
+      "checks": [
+        "最新の確認時刻午後二時",
+        "午前十時を返さない"
+      ],
+      "response": "今日は午後二時でした。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-correction-05": {
+      "fingerprint": "d6c7f81ff69578e96b0592ac84484d6063a489dde49e0ffb1637854112a98e65",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "封筒は白を選びました。色を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "白い封筒ですね。"
+        },
+        {
+          "role": "user",
+          "content": "白が足りないので青へ替えます。今の色は何でしょう。"
+        },
+        {
+          "role": "assistant",
+          "content": "青です。"
+        },
+        {
+          "role": "user",
+          "content": "さらに青も使えなくなりました。最後は黄色にします。最終的な色を答えてください。"
+        }
+      ],
+      "checks": [
+        "二度の変更後黄色",
+        "白青を返さない"
+      ],
+      "response": "青ですね。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-correction-06": {
+      "fingerprint": "2fa00f4c61b586d0637c7459ec101a9660b05c33e71096c8e269588c556a3f11",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "予定表には火曜日と書きました。曜日を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "火曜日の予定ですね。"
+        },
+        {
+          "role": "user",
+          "content": "日にちを見直して、金曜日に直します。今は何曜日ですか。"
+        },
+        {
+          "role": "assistant",
+          "content": "金曜日です。"
+        },
+        {
+          "role": "user",
+          "content": "金曜日は取り消して日曜日に確定しました。確定した曜日は何ですか。"
+        }
+      ],
+      "checks": [
+        "最終確定の日曜日",
+        "中間の金曜日を持ち越さない"
+      ],
+      "response": "金曜日です。金曜日は、金曜日は、金曜日は、金曜日は、金曜日は、金曜",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-correction-07": {
+      "fingerprint": "0b109e478c8c63772e835e80698a881bbeeb44912f39a82bb99836697993fbee",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "買う果物はりんご、飲み物はお茶にします。確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "りんごとお茶ですね。"
+        },
+        {
+          "role": "user",
+          "content": "果物だけ梨に変更します。飲み物は変えません。今の組合せは何ですか。"
+        },
+        {
+          "role": "assistant",
+          "content": "梨とお茶です。"
+        },
+        {
+          "role": "user",
+          "content": "飲み物だけ水に替えます。果物は今のままです。最後の組合せを教えてください。"
+        }
+      ],
+      "checks": [
+        "果物梨を保持",
+        "飲み物だけ水へ更新"
+      ],
+      "response": "お茶はお茶にします。お茶はお茶にします。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-correction-08": {
+      "fingerprint": "63a076a32906c06ab6d44a1dab27e09c36dc2e02d3bb929a71554bbd04627a64",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "届け先は学校、届ける物は手紙です。確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "学校へ手紙を届けるんですね。"
+        },
+        {
+          "role": "user",
+          "content": "届け先だけ図書館へ変更します。今の届け先はどこですか。"
+        },
+        {
+          "role": "assistant",
+          "content": "図書館です。"
+        },
+        {
+          "role": "user",
+          "content": "届ける物は手紙から冊子へ変更します。何を届けることになりましたか。"
+        },
+        {
+          "role": "assistant",
+          "content": "冊子です。"
+        },
+        {
+          "role": "user",
+          "content": "最後に届け先を公民館へ替えます。どこへ何を届ける予定になりましたか。"
+        }
+      ],
+      "checks": [
+        "最終場所公民館",
+        "物は冊子を保持",
+        "学校手紙へ戻らない"
+      ],
+      "response": "公民館に行く予定はありますか？",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-followup-01": {
+      "fingerprint": "1f46a77549b14cfcd383c78a9683bc3e37b698c86603878f2497487e71f4a058",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "週末は父と買い物に行く予定です。予定を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "週末はお父さんと買い物ですね。"
+        },
+        {
+          "role": "user",
+          "content": "一緒に行く人は誰でしたか。"
+        }
+      ],
+      "checks": [
+        "同行者父を保持"
+      ],
+      "response": "お父さんはお父さんと買い物に行く予定です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-followup-02": {
+      "fingerprint": "db641e3dcdb989e7510967d76d3c354b47bd31d1ba81bc43ac82468996b18ed9",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "玄関に置いたかばんには上着を入れました。中身を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "かばんの中身は上着ですね。"
+        },
+        {
+          "role": "user",
+          "content": "かばんに入れた物をもう一度教えてください。"
+        }
+      ],
+      "checks": [
+        "かばんの中身上着を保持"
+      ],
+      "response": "おー、おー。おー。おー。おー。おー。おー。おー。おー。おー。おー",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-followup-03": {
+      "fingerprint": "db4499f33d6fb9c86b64c6f369891a9cee07a0f0cba9698c8c20ea0c7a7ba195",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "午前は掃除、午後は読書にします。予定を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "午前は掃除、午後は読書ですね。"
+        },
+        {
+          "role": "user",
+          "content": "午後にする予定のことは何でしたか。"
+        }
+      ],
+      "checks": [
+        "午後読書",
+        "午前掃除との区別"
+      ],
+      "response": "今日は、読書に行きました。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-followup-04": {
+      "fingerprint": "d293bc2b2f44e9a86ad7fee029b98d4c599859ec5984da912d10634060086785",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "お弁当は姉に渡します。渡す相手を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "お弁当を渡す相手はお姉さんですね。"
+        },
+        {
+          "role": "user",
+          "content": "渡す相手を忘れないように、誰か教えてください。"
+        }
+      ],
+      "checks": [
+        "相手姉を保持"
+      ],
+      "response": "お友達とお弁当を渡すのは、お友達のお弁当です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-followup-05": {
+      "fingerprint": "b484d06d125de29f9a06362419ac254cdf4be9f70be0b795abd91863831e7d96",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "次に読む本は『小さな橋』です。題名を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "次に読むのは『小さな橋』ですね。"
+        },
+        {
+          "role": "user",
+          "content": "次の本の題名だけ教えてもらえますか。"
+        }
+      ],
+      "checks": [
+        "小さな橋を保持",
+        "題名だけ"
+      ],
+      "response": "小さな橋は、小さな橋の上にあります。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-followup-06": {
+      "fingerprint": "3be8913555b601e047b2800c4a128657f04f40b1ec80467e7062ad0c89bca61b",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "明日は駅前で妹と会います。予定を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "明日は駅前で妹さんと会うんですね。"
+        },
+        {
+          "role": "user",
+          "content": "会う場所をもう一度教えてください。"
+        },
+        {
+          "role": "assistant",
+          "content": "駅前です。"
+        },
+        {
+          "role": "user",
+          "content": "場所は分かりました。一緒に会う相手は誰でしたか。"
+        }
+      ],
+      "checks": [
+        "同行者妹",
+        "場所確認後も人物を保持"
+      ],
+      "response": "はい。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-followup-07": {
+      "fingerprint": "559fc3717a995e910a86f44452f2e1a2a1615b4a7cb113819b6df6ae12f1b68c",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "持ち物は手帳と鍵です。確認してもらえますか。"
+        },
+        {
+          "role": "assistant",
+          "content": "手帳と鍵ですね。"
+        },
+        {
+          "role": "user",
+          "content": "鍵はどこに置く予定かは、まだ決めていません。持ち物は変わりません。"
+        },
+        {
+          "role": "assistant",
+          "content": "鍵の置き場所は未定で、持ち物は手帳と鍵ですね。"
+        },
+        {
+          "role": "user",
+          "content": "持っていく二つをもう一度教えてください。"
+        }
+      ],
+      "checks": [
+        "持ち物手帳と鍵",
+        "置き場所未定を別情報とする"
+      ],
+      "response": "はい、手帳と鍵は、手帳と鍵の間に置いておきます。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-followup-08": {
+      "fingerprint": "53fc3c181283725a9ac42e476434610cef00cb03e9613f058c35763fd74ee78e",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "帰宅したら植物に水をやって、その後で夕食を作ります。順番を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "先に水やりをして、その後で夕食を作るんですね。"
+        },
+        {
+          "role": "user",
+          "content": "水やりに使う道具は後で選びます。作業の順番はそのままです。"
+        },
+        {
+          "role": "assistant",
+          "content": "道具は後で選び、作業の順番は変えないんですね。"
+        },
+        {
+          "role": "user",
+          "content": "帰って最初にする作業は何でしたか。"
+        }
+      ],
+      "checks": [
+        "最初は植物への水やり",
+        "道具の話で順番を変えない"
+      ],
+      "response": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-context-01": {
+      "fingerprint": "f895b91393ff8a8beb948b971fe8758bed108721186766ab9586a941d815110b",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "姉は黄色い箱、弟は緑の箱を使います。分け方を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "姉は黄色、弟は緑の箱ですね。"
+        },
+        {
+          "role": "user",
+          "content": "弟が使う箱の色を教えてください。"
+        }
+      ],
+      "checks": [
+        "弟と緑の結合"
+      ],
+      "response": "赤い箱は、赤い箱の色を覚えます。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-context-02": {
+      "fingerprint": "84f56f33bef9d5c77421fe3455c29cc104130e9ad9ba33a11b1a8e20df831e55",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "朝は窓を開けますが、夜は閉めます。決めたことを確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "朝は窓を開け、夜は閉めるんですね。"
+        },
+        {
+          "role": "user",
+          "content": "夜になったら窓はどうしますか。"
+        }
+      ],
+      "checks": [
+        "夜の操作は閉める"
+      ],
+      "response": "はい、窓を開けます。窓は開けますが、窓は開けません。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-context-03": {
+      "fingerprint": "f01663a821bb3113d6457e2d3153eef5554ee9c044e84044fa306a6a3b18a59e",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "棚にはノート、机には手紙を置きました。置き場所を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "ノートは棚、手紙は机ですね。"
+        },
+        {
+          "role": "user",
+          "content": "手紙を探すならどこを見ればいいですか。"
+        }
+      ],
+      "checks": [
+        "手紙と机の結合"
+      ],
+      "response": "手紙は、棚に置いておきます。棚に置いておきます。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-context-04": {
+      "fingerprint": "15e8dd247af6fc205fcd0a3665d09930e87101cc9652693ade1a07c213ca2913",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "公園へ行くのは明日です。今日は家の片付けをします。予定を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "今日は家の片付け、明日は公園ですね。"
+        },
+        {
+          "role": "user",
+          "content": "今日することだけ教えてください。"
+        }
+      ],
+      "checks": [
+        "今日片付け",
+        "明日の公園を答えない"
+      ],
+      "response": "今日は公園に行きます。今日は行きますか？",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-context-05": {
+      "fingerprint": "5a9eb0c6a01bf83898b8357016594345170751f4b9635a337296d20c5e3db349",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "借りるのは辞書で、返すのは地図です。用事を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "辞書を借りて、地図を返すんですね。"
+        },
+        {
+          "role": "user",
+          "content": "返しに行く物はどちらですか。"
+        }
+      ],
+      "checks": [
+        "返す対象地図",
+        "借りる辞書との区別"
+      ],
+      "response": "返しに行く物は、地図で、返しに行く物は、返しに行く物です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-context-06": {
+      "fingerprint": "b72778b365614e34c4fdb79bfd6e45f4d9d0c7bdce3c9bda5a8cafde80f5500a",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "箱を運ぶ役は兄、手紙を書く役は私です。役割を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "箱を運ぶのはお兄さん、手紙を書くのはあなたですね。"
+        },
+        {
+          "role": "user",
+          "content": "手紙を書く人を教えてください。"
+        }
+      ],
+      "checks": [
+        "手紙を書くのはUser",
+        "兄やAssistantにしない"
+      ],
+      "response": "手紙は、お子さんの手紙です。お子さんの手紙は、お子さんの手紙です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-context-07": {
+      "fingerprint": "691b7e8ab442126d7c4ec45a72f6873ef9ea69abed10fe2c4d1836d5191e3244",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "朝食の後で本を返し、その後で切符を買います。予定を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "朝食の後に本を返し、その後に切符を買うんですね。"
+        },
+        {
+          "role": "user",
+          "content": "買う切符は一枚です。買う枚数を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "切符は一枚ですね。"
+        },
+        {
+          "role": "user",
+          "content": "切符を買う前に済ませる用事は何でしたか。"
+        }
+      ],
+      "checks": [
+        "直前の用事は本を返す",
+        "枚数情報と順序を混同しない"
+      ],
+      "response": "はい、切符は買ってから買うようにしています。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "suppressed-generalization-context-08": {
+      "fingerprint": "11fd20f7f6d59e2d783609574fb59a8aaaa6cafe798a3c58cf0018f617302ba3",
+      "condition": "suppressed",
+      "messages": [
+        {
+          "role": "user",
+          "content": "姉には青い封筒、弟には白い封筒を用意しました。分け方を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "姉には青、弟には白の封筒ですね。"
+        },
+        {
+          "role": "user",
+          "content": "姉へ渡すのは明日、弟へ渡すのは今日です。日を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "姉へは明日、弟へは今日渡すんですね。"
+        },
+        {
+          "role": "user",
+          "content": "封筒はどちらも机に置いてあります。置き場所を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "二つとも机に置いてあるんですね。"
+        },
+        {
+          "role": "user",
+          "content": "今日渡す封筒の色と相手を教えてください。"
+        }
+      ],
+      "checks": [
+        "今日は弟",
+        "弟の封筒は白",
+        "場所の追加で人物色日を失わない"
+      ],
+      "response": "はい、お互いに色を覚えてください。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-correction-01-turn-1": {
+      "fingerprint": "e9981851ffd02cd360537eb22c5931a02538a5978a9a2e26d574adb99fea180e",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "集合は北口にします。集合場所を確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "集合場所は北口にします。集合場所は北口にします。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-correction-01-turn-2": {
+      "fingerprint": "110d0a4a56a3a6b39ce1635c5a7fc076b295f34110094dff7a5a071870f920b6",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "集合は北口にします。集合場所を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "集合場所は北口にします。集合場所は北口にします。"
+        },
+        {
+          "role": "user",
+          "content": "北口が閉まるので、南口へ変更します。今の集合場所だけお願いします。"
+        }
+      ],
+      "checks": [
+        "変更後は南口",
+        "北口を返さない"
+      ],
+      "response": "北口は北口にします。北口は北口にします。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-correction-02-turn-1": {
+      "fingerprint": "da074b91b3cfd0bbe2b23c64a480ccc9b7fe47d6d04fedec8f0f20ad430f4fbc",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "持っていく紙は六枚です。枚数を確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-correction-02-turn-2": {
+      "fingerprint": "a1403bb902f3acb4d99661423012f9bb5c8e0a531a46912ed2299909c9323447",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "持っていく紙は六枚です。枚数を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお"
+        },
+        {
+          "role": "user",
+          "content": "使う分が増えました。六枚ではなく九枚でお願いします。何枚持っていきますか。"
+        }
+      ],
+      "checks": [
+        "訂正後九枚",
+        "六枚を返さない"
+      ],
+      "response": "九枚は、九枚は、九枚は、九枚は、九枚は、九枚は、九枚は、九枚は、",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-correction-03-turn-1": {
+      "fingerprint": "9326ad0673d44b324a606af778426bd6700fceeaba1a586a14c2736056a0bb26",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "荷物を届ける相手は叔母です。確認してもらえますか。"
+        }
+      ],
+      "checks": [],
+      "response": "叔母は叔母の方です。叔母は叔母です。叔母は叔",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-correction-03-turn-2": {
+      "fingerprint": "5bdbdcfc6cf8a9432b98c12bff37ed60199740873b5ffa5a5e0f619033331d1e",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "荷物を届ける相手は叔母です。確認してもらえますか。"
+        },
+        {
+          "role": "assistant",
+          "content": "叔母は叔母の方です。叔母は叔母です。叔母は叔"
+        },
+        {
+          "role": "user",
+          "content": "言い間違えました。届ける相手は叔父です。誰に届けますか。"
+        }
+      ],
+      "checks": [
+        "叔父と叔母を区別",
+        "最新は叔父"
+      ],
+      "response": "叔母は叔母です。叔母は叔母です。叔母は叔母です",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-correction-04-turn-1": {
+      "fingerprint": "080e80ff415388158b834b9c92c58925cd768a46edd2e4def8ebe8f9ba863c4d",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "予約は午前十時だと思っていました。時刻を確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "時間は、午後十時だと思っていました。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-correction-04-turn-2": {
+      "fingerprint": "3042ff13cf03d01e97f06516f0e629bc27f8661c7fe512b9c85a95c8ef4928fd",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "予約は午前十時だと思っていました。時刻を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "時間は、午後十時だと思っていました。"
+        },
+        {
+          "role": "user",
+          "content": "確認したら午後二時でした。実際の予約時刻は何時ですか。"
+        }
+      ],
+      "checks": [
+        "最新の確認時刻午後二時",
+        "午前十時を返さない"
+      ],
+      "response": "今日は、午後三時でした。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-correction-05-turn-1": {
+      "fingerprint": "928b2c029f390f10398d9f4d94acafc9885bd19fa88df67c35fd59b7e6cf3e74",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "封筒は白を選びました。色を確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "色は、色を確認するのに使うのが一番です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-correction-05-turn-2": {
+      "fingerprint": "a6fccdb630bea33e7cb82a521a9ddaadab9414e6adeb3b38b47941734d8c3e55",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "封筒は白を選びました。色を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "色は、色を確認するのに使うのが一番です。"
+        },
+        {
+          "role": "user",
+          "content": "白が足りないので青へ替えます。今の色は何でしょう。"
+        }
+      ],
+      "checks": [],
+      "response": "白は、色が変わるのが一番です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-correction-05-turn-3": {
+      "fingerprint": "ad9948088b90a495858d9bac9860753180fd816eedbd5792451d4311348f3cff",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "封筒は白を選びました。色を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "色は、色を確認するのに使うのが一番です。"
+        },
+        {
+          "role": "user",
+          "content": "白が足りないので青へ替えます。今の色は何でしょう。"
+        },
+        {
+          "role": "assistant",
+          "content": "白は、色が変わるのが一番です。"
+        },
+        {
+          "role": "user",
+          "content": "さらに青も使えなくなりました。最後は黄色にします。最終的な色を答えてください。"
+        }
+      ],
+      "checks": [
+        "二度の変更後黄色",
+        "白青を返さない"
+      ],
+      "response": "白は、色が変わるのが一番です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-correction-06-turn-1": {
+      "fingerprint": "e5edaba2a535c77baf14080427dca3a3e7e690271d01c2705711467bfca776ca",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "予定表には火曜日と書きました。曜日を確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "今日は、予定表に火曜日と書きました。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-correction-06-turn-2": {
+      "fingerprint": "2c841069a83e6e2441676a5af0a9748acaefe3fa97e3b14b1a246e1b7eceefce",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "予定表には火曜日と書きました。曜日を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "今日は、予定表に火曜日と書きました。"
+        },
+        {
+          "role": "user",
+          "content": "日にちを見直して、金曜日に直します。今は何曜日ですか。"
+        }
+      ],
+      "checks": [],
+      "response": "今日は、金曜日と書きました。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-correction-06-turn-3": {
+      "fingerprint": "8226e6926af08873be452ae6d4fb845742fcab41dca9e5703cd63ced6a66559e",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "予定表には火曜日と書きました。曜日を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "今日は、予定表に火曜日と書きました。"
+        },
+        {
+          "role": "user",
+          "content": "日にちを見直して、金曜日に直します。今は何曜日ですか。"
+        },
+        {
+          "role": "assistant",
+          "content": "今日は、金曜日と書きました。"
+        },
+        {
+          "role": "user",
+          "content": "金曜日は取り消して日曜日に確定しました。確定した曜日は何ですか。"
+        }
+      ],
+      "checks": [
+        "最終確定の日曜日",
+        "中間の金曜日を持ち越さない"
+      ],
+      "response": "今日は、金曜日と書きました。今日は、金曜日と書きました。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-correction-07-turn-1": {
+      "fingerprint": "565a39102433d189e492919827800ce7861d89eba5d3e510e799b3bdcff73ae2",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "買う果物はりんご、飲み物はお茶にします。確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "飲み物はりんごはりんご、お茶はりんご、お茶はりんごはりんご、お茶",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-correction-07-turn-2": {
+      "fingerprint": "8b896f64cff3051b4bbe13860f7c9f1a5c75f7152fe011f5a9d97a4cdfb2c0be",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "買う果物はりんご、飲み物はお茶にします。確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "飲み物はりんごはりんご、お茶はりんご、お茶はりんごはりんご、お茶"
+        },
+        {
+          "role": "user",
+          "content": "果物だけ梨に変更します。飲み物は変えません。今の組合せは何ですか。"
+        }
+      ],
+      "checks": [],
+      "response": "はい、お茶はりんごはりんご、お茶はりんごはりんご、お茶はりんごはり",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-correction-07-turn-3": {
+      "fingerprint": "4cb737dd9cf170c5d7d632a06f5678f03e3bec2db8593d9a9da28cc9a75a7b6d",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "買う果物はりんご、飲み物はお茶にします。確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "飲み物はりんごはりんご、お茶はりんご、お茶はりんごはりんご、お茶"
+        },
+        {
+          "role": "user",
+          "content": "果物だけ梨に変更します。飲み物は変えません。今の組合せは何ですか。"
+        },
+        {
+          "role": "assistant",
+          "content": "はい、お茶はりんごはりんご、お茶はりんごはりんご、お茶はりんごはり"
+        },
+        {
+          "role": "user",
+          "content": "飲み物だけ水に替えます。果物は今のままです。最後の組合せを教えてください。"
+        }
+      ],
+      "checks": [
+        "果物梨を保持",
+        "飲み物だけ水へ更新"
+      ],
+      "response": "はい、お茶はりんごはりんごはりんご、お茶はりんごはりんご、お茶はり",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-correction-08-turn-1": {
+      "fingerprint": "5d1164fdc8b6f158d3fe14d099044856f0cfbfa87fa75888adcecce2199259e1",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "届け先は学校、届ける物は手紙です。確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-correction-08-turn-2": {
+      "fingerprint": "3e7190d8f9cebef3aee2e06561495c447ab0a85686b02c73747795566756d494",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "届け先は学校、届ける物は手紙です。確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお"
+        },
+        {
+          "role": "user",
+          "content": "届け先だけ図書館へ変更します。今の届け先はどこですか。"
+        }
+      ],
+      "checks": [],
+      "response": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-correction-08-turn-3": {
+      "fingerprint": "a1dbcf4c2887da0b212213a239ac0d887a9ae0e83cdfe5f9ec9f2550beb5355d",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "届け先は学校、届ける物は手紙です。確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお"
+        },
+        {
+          "role": "user",
+          "content": "届け先だけ図書館へ変更します。今の届け先はどこですか。"
+        },
+        {
+          "role": "assistant",
+          "content": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお"
+        },
+        {
+          "role": "user",
+          "content": "届ける物は手紙から冊子へ変更します。何を届けることになりましたか。"
+        }
+      ],
+      "checks": [],
+      "response": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-correction-08-turn-4": {
+      "fingerprint": "b370b42c260935409eec86711f665580b89b5dbaacde03d16100eb86319d427a",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "届け先は学校、届ける物は手紙です。確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお"
+        },
+        {
+          "role": "user",
+          "content": "届け先だけ図書館へ変更します。今の届け先はどこですか。"
+        },
+        {
+          "role": "assistant",
+          "content": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお"
+        },
+        {
+          "role": "user",
+          "content": "届ける物は手紙から冊子へ変更します。何を届けることになりましたか。"
+        },
+        {
+          "role": "assistant",
+          "content": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお"
+        },
+        {
+          "role": "user",
+          "content": "最後に届け先を公民館へ替えます。どこへ何を届ける予定になりましたか。"
+        }
+      ],
+      "checks": [
+        "最終場所公民館",
+        "物は冊子を保持",
+        "学校手紙へ戻らない"
+      ],
+      "response": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-followup-01-turn-1": {
+      "fingerprint": "324223a7ede19fb3368b3a81e5945c554846305b0e81143e3412c89c92f9ddfa",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "週末は父と買い物に行く予定です。予定を確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "買い物は、買い物は、家でのんびりする予定です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-followup-01-turn-2": {
+      "fingerprint": "bfb4ee6d7caebfd1ede3b73b56fb4a61c13d97befed14270c4447801821ad8e8",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "週末は父と買い物に行く予定です。予定を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "買い物は、買い物は、家でのんびりする予定です。"
+        },
+        {
+          "role": "user",
+          "content": "一緒に行く人は誰でしたか。"
+        }
+      ],
+      "checks": [
+        "同行者父を保持"
+      ],
+      "response": "家でのんびりする予定です。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-followup-02-turn-1": {
+      "fingerprint": "23357177886802b0c9475a7bba60e60c0f105d110005cf2bb6bfae7f96c9cd7b",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "玄関に置いたかばんには上着を入れました。中身を確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "おー、おー、おー、おー、おー、おー、おー、おー、おー、おー、おー",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-followup-02-turn-2": {
+      "fingerprint": "281f017f406601fcf4876009066bdf1a6d5494f0d88733224bf0c9f00ec9b725",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "玄関に置いたかばんには上着を入れました。中身を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "おー、おー、おー、おー、おー、おー、おー、おー、おー、おー、おー"
+        },
+        {
+          "role": "user",
+          "content": "かばんに入れた物をもう一度教えてください。"
+        }
+      ],
+      "checks": [
+        "かばんの中身上着を保持"
+      ],
+      "response": "おー、おー、おー、おー、おー、おー、おー、おー、おー、おー、おー",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-followup-03-turn-1": {
+      "fingerprint": "c0334fd59bccff80d5ff31b7ca8d47e906b10e2f8de36fa8f983f00888084ebd",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "午前は掃除、午後は読書にします。予定を確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "読書は、読書は、読書は、読書は、読書は、読書は、読書は、読書は、",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-followup-03-turn-2": {
+      "fingerprint": "dfc2c9781553dd5595a0f4598e812c9119b8ae6e6ae5c721a3b6eed54ae804c7",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "午前は掃除、午後は読書にします。予定を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "読書は、読書は、読書は、読書は、読書は、読書は、読書は、読書は、"
+        },
+        {
+          "role": "user",
+          "content": "午後にする予定のことは何でしたか。"
+        }
+      ],
+      "checks": [
+        "午後読書",
+        "午前掃除との区別"
+      ],
+      "response": "私は、読書は、読書は、読書は、読書は、読書は、読書は、読書は、読書",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-followup-04-turn-1": {
+      "fingerprint": "b27363c3ad1b42138699a2f14257df74a5b3fce0555ca024a100a33296046661",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "お弁当は姉に渡します。渡す相手を確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "お弁当は、お弁当は、お弁当は、お弁当は、お弁当は、お弁当は、お弁",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-followup-04-turn-2": {
+      "fingerprint": "3143245ec9eba1cf77c28b5b65442d096055db3382c9d1f8f0d6296f602b0c12",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "お弁当は姉に渡します。渡す相手を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "お弁当は、お弁当は、お弁当は、お弁当は、お弁当は、お弁当は、お弁"
+        },
+        {
+          "role": "user",
+          "content": "渡す相手を忘れないように、誰か教えてください。"
+        }
+      ],
+      "checks": [
+        "相手姉を保持"
+      ],
+      "response": "お弁当は、お弁当は、お弁当は、お弁当は、お弁当は、お弁当は、お弁",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-followup-05-turn-1": {
+      "fingerprint": "c044d0753f19034b1c6236597adfcfa91ca5a7d1586181c95b42091d3937186a",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "次に読む本は『小さな橋』です。題名を確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "小さな橋は、小さな橋の上にあります。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-followup-05-turn-2": {
+      "fingerprint": "4b19472a0d11db766e3051974d64fbca88cc5bd76b48b65d14e2ccb1e8d59244",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "次に読む本は『小さな橋』です。題名を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "小さな橋は、小さな橋の上にあります。"
+        },
+        {
+          "role": "user",
+          "content": "次の本の題名だけ教えてもらえますか。"
+        }
+      ],
+      "checks": [
+        "小さな橋を保持",
+        "題名だけ"
+      ],
+      "response": "小さな橋は、小さな橋の上にあります。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-followup-06-turn-1": {
+      "fingerprint": "00922a3f10a6a3a31b46a01cbff9bfd60547fbed9036fd712c8e75ff6793b372",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "明日は駅前で妹と会います。予定を確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-followup-06-turn-2": {
+      "fingerprint": "548482eb2b606e8f635d6d22e3ab51e19250206fc31d88fb0b9a91d84bb60966",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "明日は駅前で妹と会います。予定を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお"
+        },
+        {
+          "role": "user",
+          "content": "会う場所をもう一度教えてください。"
+        }
+      ],
+      "checks": [],
+      "response": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-followup-06-turn-3": {
+      "fingerprint": "49506877cea7723bc92494386e5915bf59096756c21695c55026d2e71a2c94ff",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "明日は駅前で妹と会います。予定を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお"
+        },
+        {
+          "role": "user",
+          "content": "会う場所をもう一度教えてください。"
+        },
+        {
+          "role": "assistant",
+          "content": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお"
+        },
+        {
+          "role": "user",
+          "content": "場所は分かりました。一緒に会う相手は誰でしたか。"
+        }
+      ],
+      "checks": [
+        "同行者妹",
+        "場所確認後も人物を保持"
+      ],
+      "response": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-followup-07-turn-1": {
+      "fingerprint": "f11fb88a31256c516b5689b07102ed9e06bbd8969b68c767a1d0b5df682bf86e",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "持ち物は手帳と鍵です。確認してもらえますか。"
+        }
+      ],
+      "checks": [],
+      "response": "鍵は持ってますか？",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-followup-07-turn-2": {
+      "fingerprint": "b6d252a1154cf2233c9176f1208c1302e0acf021e75a7a10e3267dd89cc7481b",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "持ち物は手帳と鍵です。確認してもらえますか。"
+        },
+        {
+          "role": "assistant",
+          "content": "鍵は持ってますか？"
+        },
+        {
+          "role": "user",
+          "content": "鍵はどこに置く予定かは、まだ決めていません。持ち物は変わりません。"
+        }
+      ],
+      "checks": [],
+      "response": "鍵は持ってますか？",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-followup-07-turn-3": {
+      "fingerprint": "e3134774cb0890f4db0b8904b08be523e5b9bea9004a5e41e398d22ad5a2be20",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "持ち物は手帳と鍵です。確認してもらえますか。"
+        },
+        {
+          "role": "assistant",
+          "content": "鍵は持ってますか？"
+        },
+        {
+          "role": "user",
+          "content": "鍵はどこに置く予定かは、まだ決めていません。持ち物は変わりません。"
+        },
+        {
+          "role": "assistant",
+          "content": "鍵は持ってますか？"
+        },
+        {
+          "role": "user",
+          "content": "持っていく二つをもう一度教えてください。"
+        }
+      ],
+      "checks": [
+        "持ち物手帳と鍵",
+        "置き場所未定を別情報とする"
+      ],
+      "response": "はい、お互い持ってますか？",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-followup-08-turn-1": {
+      "fingerprint": "65e0583218cc5f00b516b75247b9d771c4daae2018dcdcdb4716ce8fc74f9d1c",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "帰宅したら植物に水をやって、その後で夕食を作ります。順番を確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-followup-08-turn-2": {
+      "fingerprint": "b9710f3c528e0d884ff2a1f1a8380ed343727c0e3a3ec3cc9a5b19150751c2e4",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "帰宅したら植物に水をやって、その後で夕食を作ります。順番を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお"
+        },
+        {
+          "role": "user",
+          "content": "水やりに使う道具は後で選びます。作業の順番はそのままです。"
+        }
+      ],
+      "checks": [],
+      "response": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-followup-08-turn-3": {
+      "fingerprint": "a5eb5f71bcada8503a2ff4ad4d1878ed33a577e4d3ebeeac34b2dc7beb80724c",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "帰宅したら植物に水をやって、その後で夕食を作ります。順番を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお"
+        },
+        {
+          "role": "user",
+          "content": "水やりに使う道具は後で選びます。作業の順番はそのままです。"
+        },
+        {
+          "role": "assistant",
+          "content": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお"
+        },
+        {
+          "role": "user",
+          "content": "帰って最初にする作業は何でしたか。"
+        }
+      ],
+      "checks": [
+        "最初は植物への水やり",
+        "道具の話で順番を変えない"
+      ],
+      "response": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-context-01-turn-1": {
+      "fingerprint": "4e4cd389ff315cec15ad28deeac3a1a86e6f370318507ed504b12ee4fb814a73",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "姉は黄色い箱、弟は緑の箱を使います。分け方を確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "分け方を確認するには、赤い箱を使います。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-context-01-turn-2": {
+      "fingerprint": "422a33b15322cab0747e99a0f99e75ccc56f9218f56e4a085c4d6a3c461dbb0f",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "姉は黄色い箱、弟は緑の箱を使います。分け方を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "分け方を確認するには、赤い箱を使います。"
+        },
+        {
+          "role": "user",
+          "content": "弟が使う箱の色を教えてください。"
+        }
+      ],
+      "checks": [
+        "弟と緑の結合"
+      ],
+      "response": "赤い箱は、赤い箱の色を覚えます。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-context-02-turn-1": {
+      "fingerprint": "267debe18f28ad83a9e3d035747c99337fd8bbebdf0a085b6bc9a87f10c134bf",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "朝は窓を開けますが、夜は閉めます。決めたことを確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "私は、窓を開けてから、窓を開けてから、窓を開けてから、窓を開けてから、窓を",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-context-02-turn-2": {
+      "fingerprint": "c750a86f717e9b06d8ab841e6b3941443acf94d4dc6b294f0f36463395ec62f0",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "朝は窓を開けますが、夜は閉めます。決めたことを確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "私は、窓を開けてから、窓を開けてから、窓を開けてから、窓を開けてから、窓を"
+        },
+        {
+          "role": "user",
+          "content": "夜になったら窓はどうしますか。"
+        }
+      ],
+      "checks": [
+        "夜の操作は閉める"
+      ],
+      "response": "私は、窓を開けてから、窓を開けてから、窓を開けてから、窓を開けてから、窓を",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-context-03-turn-1": {
+      "fingerprint": "73aff7f12eb31855610eb7b53023060b587d90673c7c2e684edc60748a829a7f",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "棚にはノート、机には手紙を置きました。置き場所を確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "棚にノートを置くと、棚にノートを置くのが楽しくなります。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-context-03-turn-2": {
+      "fingerprint": "b915f11cced3c5d643d96b853473b597496f868b72bab5df14975ff97b17d50e",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "棚にはノート、机には手紙を置きました。置き場所を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "棚にノートを置くと、棚にノートを置くのが楽しくなります。"
+        },
+        {
+          "role": "user",
+          "content": "手紙を探すならどこを見ればいいですか。"
+        }
+      ],
+      "checks": [
+        "手紙と机の結合"
+      ],
+      "response": "手紙は、ネットで探すといいです。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-context-04-turn-1": {
+      "fingerprint": "d8cb10052839e461f1d8d08cdd9c23979ed4e540cb912fc0b940a39e7c56ff8e",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "公園へ行くのは明日です。今日は家の片付けをします。予定を確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "今日は家の片付けをします。家の片付けは、何をしますか？",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-context-04-turn-2": {
+      "fingerprint": "b69d59974ad988932d5766002658927c02ee2fadc8788efc0f29d1267e2927c1",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "公園へ行くのは明日です。今日は家の片付けをします。予定を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "今日は家の片付けをします。家の片付けは、何をしますか？"
+        },
+        {
+          "role": "user",
+          "content": "今日することだけ教えてください。"
+        }
+      ],
+      "checks": [
+        "今日片付け",
+        "明日の公園を答えない"
+      ],
+      "response": "今日は、家の片付けをします。家の片付けは、何をしますか？",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-context-05-turn-1": {
+      "fingerprint": "e2a8999fd0d87e00917279d04cd12ad5ef13c853e8c6da57743eed69a922e1fc",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "借りるのは辞書で、返すのは地図です。用事を確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "返すのは、地図で、返すのは地図で、返すのは地図で、返すのは地図で",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-context-05-turn-2": {
+      "fingerprint": "507c19b8fe06c7317c82accbb474c7e4f884563d974ca8a684d1d543664428ad",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "借りるのは辞書で、返すのは地図です。用事を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "返すのは、地図で、返すのは地図で、返すのは地図で、返すのは地図で"
+        },
+        {
+          "role": "user",
+          "content": "返しに行く物はどちらですか。"
+        }
+      ],
+      "checks": [
+        "返す対象地図",
+        "借りる辞書との区別"
+      ],
+      "response": "返しに行く物は、地図で、返すのは地図で、返すのは地図で、返すのは",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-context-06-turn-1": {
+      "fingerprint": "d2cae35dca083717089880c674d82ee4f03cf645424b8cd1b2f0941c6c0f7f9a",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "箱を運ぶ役は兄、手紙を書く役は私です。役割を確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "私は、手紙を書く役は兄、手紙を書く役は兄、手紙を書く役は兄、手紙を",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-context-06-turn-2": {
+      "fingerprint": "5686e51784564ac4da4dbe8b1fffbc618b744e8a31c38ae118f2f9c24badb0eb",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "箱を運ぶ役は兄、手紙を書く役は私です。役割を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "私は、手紙を書く役は兄、手紙を書く役は兄、手紙を書く役は兄、手紙を"
+        },
+        {
+          "role": "user",
+          "content": "手紙を書く人を教えてください。"
+        }
+      ],
+      "checks": [
+        "手紙を書くのはUser",
+        "兄やAssistantにしない"
+      ],
+      "response": "私は、手紙を書く役は兄、手紙を書く役は兄、手紙を書く役は兄、手紙を",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-context-07-turn-1": {
+      "fingerprint": "5b28bba5a34c71043f8e16016bcf87519798fc6b5c038ecec52e75522d96ce2a",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "朝食の後で本を返し、その後で切符を買います。予定を確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-context-07-turn-2": {
+      "fingerprint": "91daf9fb07a34d5418dce4e9c7684eba0f79a404d896cc8d4599ab2e424fcd1b",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "朝食の後で本を返し、その後で切符を買います。予定を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお"
+        },
+        {
+          "role": "user",
+          "content": "買う切符は一枚です。買う枚数を確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-context-07-turn-3": {
+      "fingerprint": "50d427f64cf5899c83b158076832beabd0afbd3acfed1294916dcbb844560a73",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "朝食の後で本を返し、その後で切符を買います。予定を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお"
+        },
+        {
+          "role": "user",
+          "content": "買う切符は一枚です。買う枚数を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお"
+        },
+        {
+          "role": "user",
+          "content": "切符を買う前に済ませる用事は何でしたか。"
+        }
+      ],
+      "checks": [
+        "直前の用事は本を返す",
+        "枚数情報と順序を混同しない"
+      ],
+      "response": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-context-08-turn-1": {
+      "fingerprint": "531520762d0829cda6183493fb3abc4544e9ac6e8df76d23706d41790ab93dd2",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "姉には青い封筒、弟には白い封筒を用意しました。分け方を確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "分け方を確認するには、赤い封筒を用意します。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-context-08-turn-2": {
+      "fingerprint": "338e5d95fcc659fca05cc5b7af20a699af4d9d6dab4b31c901af988b15b9690e",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "姉には青い封筒、弟には白い封筒を用意しました。分け方を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "分け方を確認するには、赤い封筒を用意します。"
+        },
+        {
+          "role": "user",
+          "content": "姉へ渡すのは明日、弟へ渡すのは今日です。日を確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "明日は、赤い封筒を用意します。",
+      "stop": "eot",
+      "valid_utf8": true
+    },
+    "own-generalization-context-08-turn-3": {
+      "fingerprint": "e11c329bc2a4034e8f9b5de6ac996e0f0870c36200001df1fe4689c35c393df8",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "姉には青い封筒、弟には白い封筒を用意しました。分け方を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "分け方を確認するには、赤い封筒を用意します。"
+        },
+        {
+          "role": "user",
+          "content": "姉へ渡すのは明日、弟へ渡すのは今日です。日を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "明日は、赤い封筒を用意します。"
+        },
+        {
+          "role": "user",
+          "content": "封筒はどちらも机に置いてあります。置き場所を確認してください。"
+        }
+      ],
+      "checks": [],
+      "response": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    },
+    "own-generalization-context-08-turn-4": {
+      "fingerprint": "40460e088a93821dd3bd9ce7346c00487bd12fabf466aea7aa7cf422cfdcd5dc",
+      "condition": "own-history",
+      "messages": [
+        {
+          "role": "user",
+          "content": "姉には青い封筒、弟には白い封筒を用意しました。分け方を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "分け方を確認するには、赤い封筒を用意します。"
+        },
+        {
+          "role": "user",
+          "content": "姉へ渡すのは明日、弟へ渡すのは今日です。日を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "明日は、赤い封筒を用意します。"
+        },
+        {
+          "role": "user",
+          "content": "封筒はどちらも机に置いてあります。置き場所を確認してください。"
+        },
+        {
+          "role": "assistant",
+          "content": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお"
+        },
+        {
+          "role": "user",
+          "content": "今日渡す封筒の色と相手を教えてください。"
+        }
+      ],
+      "checks": [
+        "今日は弟",
+        "弟の封筒は白",
+        "場所の追加で人物色日を失わない"
+      ],
+      "response": "おお、おお、おお、おお、おお、おお、おお、おお、おお、おお、おお",
+      "stop": "max_new_tokens",
+      "valid_utf8": true
+    }
+  },
+  "reused": {
+    "unsuppressed-generalization-greeting-01": {
+      "same_packet_key": "suppressed-generalization-greeting-01",
+      "fingerprint": "9b583864f4dddea5d227a4628bd4efb8d6da13a7e983812e0a7396194ba214ef"
+    },
+    "unsuppressed-generalization-greeting-02": {
+      "same_packet_key": "suppressed-generalization-greeting-02",
+      "fingerprint": "2e7af408ff172bf839d5d3884de4e0140fa5a30b8db46852f9c60d7fb5a243d2"
+    },
+    "unsuppressed-generalization-greeting-03": {
+      "same_packet_key": "suppressed-generalization-greeting-03",
+      "fingerprint": "ce9561db0d363d347f54cab409d3a485ee0012aa6e176f33d8e0209e9ae0c225"
+    },
+    "unsuppressed-generalization-greeting-04": {
+      "same_packet_key": "suppressed-generalization-greeting-04",
+      "fingerprint": "b0fc30cdfbe0ea7b11990d281426a714ef8ccb09f035cf4f8caab32d918f0c53"
+    },
+    "unsuppressed-generalization-greeting-05": {
+      "same_packet_key": "suppressed-generalization-greeting-05",
+      "fingerprint": "dd5a925c01a8e8a1d885a14651c24d91c05909a98cc7e605ed2fb98eda08d265"
+    },
+    "unsuppressed-generalization-greeting-06": {
+      "same_packet_key": "suppressed-generalization-greeting-06",
+      "fingerprint": "42a729025a24844d21721f239a63c59f34a56b12c228d8e3073081404e399b42"
+    },
+    "unsuppressed-generalization-greeting-07": {
+      "same_packet_key": "suppressed-generalization-greeting-07",
+      "fingerprint": "ce48a36c3630ac3a879de8b65d168a104da156e0e4249e487d2aa51a8f9985f9"
+    },
+    "unsuppressed-generalization-greeting-08": {
+      "same_packet_key": "suppressed-generalization-greeting-08",
+      "fingerprint": "9a4e36052fd60fe7e82d8be168d499b2c2be542a4ca21d3dcb394ad5d6686a75"
+    },
+    "unsuppressed-generalization-daily-01": {
+      "same_packet_key": "suppressed-generalization-daily-01",
+      "fingerprint": "9bac5067beb16c53855df3fa958acc5778b59afdf337156c04fbe5bb9472a3e6"
+    },
+    "unsuppressed-generalization-daily-02": {
+      "same_packet_key": "suppressed-generalization-daily-02",
+      "fingerprint": "6ee4662b69af0f78b778a43b393e013478862bf4a1cb2b8f414db76976806896"
+    },
+    "unsuppressed-generalization-daily-03": {
+      "same_packet_key": "suppressed-generalization-daily-03",
+      "fingerprint": "dfd962e29bfc275473d4c8b8cfabda3c6e039e0c9b0b4e13533ed7fbcba4fb96"
+    },
+    "unsuppressed-generalization-daily-04": {
+      "same_packet_key": "suppressed-generalization-daily-04",
+      "fingerprint": "049ad2cfb1a9b03b2a3ead861bcc29f79398dbcd14e49ee08cc59519fe2a4c20"
+    },
+    "unsuppressed-generalization-daily-05": {
+      "same_packet_key": "suppressed-generalization-daily-05",
+      "fingerprint": "56a803cbce64ede3539f03977586e5344707d2809a7f735d16203971faa0d488"
+    },
+    "unsuppressed-generalization-daily-06": {
+      "same_packet_key": "suppressed-generalization-daily-06",
+      "fingerprint": "77db0602852f378170dc5e3878d33dcaf5e2c76e818f94331ad359d62ada8b0c"
+    },
+    "unsuppressed-generalization-daily-07": {
+      "same_packet_key": "suppressed-generalization-daily-07",
+      "fingerprint": "7b361679534e9199b571c59b5827cd2b5c3b06298f381c64cec025a4dbfbd6b7"
+    },
+    "unsuppressed-generalization-daily-08": {
+      "same_packet_key": "suppressed-generalization-daily-08",
+      "fingerprint": "04bec1aaa40ebc22a57364c064c5ff955f108a1784d1cb3b2e921887656a1af0"
+    },
+    "unsuppressed-generalization-emotion-01": {
+      "same_packet_key": "suppressed-generalization-emotion-01",
+      "fingerprint": "63e9684cf191df1197ba2ea649d30e62a9944d5629bdac1191488fca5452cab2"
+    },
+    "unsuppressed-generalization-emotion-02": {
+      "same_packet_key": "suppressed-generalization-emotion-02",
+      "fingerprint": "d8e13e1f1ddd0bc26f70f2f18497c61d45b3b5684737b5e72295eeca315d1adb"
+    },
+    "unsuppressed-generalization-emotion-03": {
+      "same_packet_key": "suppressed-generalization-emotion-03",
+      "fingerprint": "d063b3d99a3b729425a5fd029623ef65a5a2ce26c32e751468ee654a3c61eeec"
+    },
+    "unsuppressed-generalization-emotion-04": {
+      "same_packet_key": "suppressed-generalization-emotion-04",
+      "fingerprint": "4bc7e8c6c6f39beaf5d9c4c3667ae13f91e05a3e4059db5d479c5a026a2b1aee"
+    },
+    "unsuppressed-generalization-emotion-05": {
+      "same_packet_key": "suppressed-generalization-emotion-05",
+      "fingerprint": "f39a3e4caa8a568bf1ec001debea680a677cafa479cae1390f8860f0396d58a7"
+    },
+    "unsuppressed-generalization-emotion-06": {
+      "same_packet_key": "suppressed-generalization-emotion-06",
+      "fingerprint": "74592097f2b0b481b9bdc5c1d5522eb47e838cee6917b4de8e4bd3f0dd0c5c79"
+    },
+    "unsuppressed-generalization-emotion-07": {
+      "same_packet_key": "suppressed-generalization-emotion-07",
+      "fingerprint": "29d6655d3a93af7463914fe232e1a18fe69cb367e620a12bd86be8ffcb73c133"
+    },
+    "unsuppressed-generalization-emotion-08": {
+      "same_packet_key": "suppressed-generalization-emotion-08",
+      "fingerprint": "95c1cd1eea21e9afd1ebac7787e84c1f4e91169a127715f140e0e58adaab2abc"
+    },
+    "unsuppressed-generalization-question_back-01": {
+      "same_packet_key": "suppressed-generalization-question_back-01",
+      "fingerprint": "ca76f38098f090cb539da7619bff1cd0d30cc6ae6ac3faf9fe59dec4b8d54ee7"
+    },
+    "unsuppressed-generalization-question_back-02": {
+      "same_packet_key": "suppressed-generalization-question_back-02",
+      "fingerprint": "63a2dd046e4bf9bc5a331cd0578c15dc59c5c197668681ccd200e09e93ab37af"
+    },
+    "unsuppressed-generalization-question_back-03": {
+      "same_packet_key": "suppressed-generalization-question_back-03",
+      "fingerprint": "1dd147303a18ba0290f77a16371644418da442c0bcf54322ca69e91b0281f143"
+    },
+    "unsuppressed-generalization-question_back-04": {
+      "same_packet_key": "suppressed-generalization-question_back-04",
+      "fingerprint": "611be9d8da5f3cebe174199d77df99936629409e765a5a3275452b1798575391"
+    },
+    "unsuppressed-generalization-question_back-05": {
+      "same_packet_key": "suppressed-generalization-question_back-05",
+      "fingerprint": "319b688fb0d7f277cd084e237d60a066e14178dfc2726cb1967218a999a551f0"
+    },
+    "unsuppressed-generalization-question_back-06": {
+      "same_packet_key": "suppressed-generalization-question_back-06",
+      "fingerprint": "091081c9dcc32af2ab585184a38e18c731fc8c4d2189c5c87ad28fc5abbf735a"
+    },
+    "unsuppressed-generalization-question_back-07": {
+      "same_packet_key": "suppressed-generalization-question_back-07",
+      "fingerprint": "d87b661cbaface8f29f7f840f7e8320f8e1bfaeb66cf94b139e894785b98dc67"
+    },
+    "unsuppressed-generalization-question_back-08": {
+      "same_packet_key": "suppressed-generalization-question_back-08",
+      "fingerprint": "7bfa1f522395833f615079fdd6cfd8b734bf3d8d2b9ea1ffde747c0006f4721f"
+    },
+    "unsuppressed-generalization-ambiguity-01": {
+      "same_packet_key": "suppressed-generalization-ambiguity-01",
+      "fingerprint": "e7694323ebdbb4a074f316cedd7d07c9825071eaf0847b239ce90eb0cb66a963"
+    },
+    "unsuppressed-generalization-ambiguity-02": {
+      "same_packet_key": "suppressed-generalization-ambiguity-02",
+      "fingerprint": "2ac853903a1e6a79c4bb6b21dee53bab49e5997329c6d53783521cee3e8b286f"
+    },
+    "unsuppressed-generalization-ambiguity-03": {
+      "same_packet_key": "suppressed-generalization-ambiguity-03",
+      "fingerprint": "e097393660f558f919fa5eddd9b152373efaf4eac61bb64d9649f4e422a165c7"
+    },
+    "unsuppressed-generalization-ambiguity-04": {
+      "same_packet_key": "suppressed-generalization-ambiguity-04",
+      "fingerprint": "96cb4d117d1d996a43b4c018e6b9a2ba8d99d905bbdbb1fbe285b39619cc9a39"
+    },
+    "unsuppressed-generalization-ambiguity-05": {
+      "same_packet_key": "suppressed-generalization-ambiguity-05",
+      "fingerprint": "cb0e7da1a8deb559bf7aa4c50a93ed11df5f268e33be9d890a828257d45fc076"
+    },
+    "unsuppressed-generalization-ambiguity-06": {
+      "same_packet_key": "suppressed-generalization-ambiguity-06",
+      "fingerprint": "a5786dd2b921def93130946bff3d339665b6768b61ff80afdca659a405817df3"
+    },
+    "unsuppressed-generalization-ambiguity-07": {
+      "same_packet_key": "suppressed-generalization-ambiguity-07",
+      "fingerprint": "b900bbcf3e47418a8ded23a3ae6112ea346c4ff8da36c9a1632e325023e20002"
+    },
+    "unsuppressed-generalization-ambiguity-08": {
+      "same_packet_key": "suppressed-generalization-ambiguity-08",
+      "fingerprint": "a2af552178d84d6afd2f5e67fde3af24e72b60fa67b8d37efad6ed11910b9571"
+    },
+    "unsuppressed-generalization-role_boundary-01": {
+      "same_packet_key": "suppressed-generalization-role_boundary-01",
+      "fingerprint": "6c3913a96195f44159b5547d74d54fc5a2f932228c4765ec8634d06142902795"
+    },
+    "unsuppressed-generalization-role_boundary-02": {
+      "same_packet_key": "suppressed-generalization-role_boundary-02",
+      "fingerprint": "d9422785496222c01ee194dc84d45f6635382dafbd1607149912541d1ee24f09"
+    },
+    "unsuppressed-generalization-role_boundary-03": {
+      "same_packet_key": "suppressed-generalization-role_boundary-03",
+      "fingerprint": "f70d810e398bd7401c5a761be0a1e97b93fea63cbe534515ac22ebb07df59ba2"
+    },
+    "unsuppressed-generalization-role_boundary-04": {
+      "same_packet_key": "suppressed-generalization-role_boundary-04",
+      "fingerprint": "0e87b06de92f2ffa6b05557be894bd039497305dd4f5f63a9c9bf8de127802e2"
+    },
+    "unsuppressed-generalization-role_boundary-05": {
+      "same_packet_key": "suppressed-generalization-role_boundary-05",
+      "fingerprint": "5cc682f41ddfb23931ea37a884213b04ba282bd2e93da7faef513ebcb0570e49"
+    },
+    "unsuppressed-generalization-role_boundary-06": {
+      "same_packet_key": "suppressed-generalization-role_boundary-06",
+      "fingerprint": "088e4c1752124665d9dbe34431acdd050d5933bf20bc5f35971f494bf336d64b"
+    },
+    "unsuppressed-generalization-role_boundary-07": {
+      "same_packet_key": "suppressed-generalization-role_boundary-07",
+      "fingerprint": "d0f19e4d8c7f67a8b78bb8ce2662ce476544070f12b350602541d30379657b2a"
+    },
+    "unsuppressed-generalization-role_boundary-08": {
+      "same_packet_key": "suppressed-generalization-role_boundary-08",
+      "fingerprint": "82b1e3a7707830b06bfd77192f977e4fe9c33ea5c50f792e668ad426eee48086"
+    },
+    "unsuppressed-generalization-symbols-01": {
+      "same_packet_key": "suppressed-generalization-symbols-01",
+      "fingerprint": "13996f3e9e796693b2784d0866ec98f2f44dc2d306db784fb276eb10948218b6"
+    },
+    "unsuppressed-generalization-symbols-02": {
+      "same_packet_key": "suppressed-generalization-symbols-02",
+      "fingerprint": "fb81fbbeeb8bc748e95cdee5bc17695d600085b4d3208b4aaa3286eb911454a3"
+    },
+    "unsuppressed-generalization-symbols-03": {
+      "same_packet_key": "suppressed-generalization-symbols-03",
+      "fingerprint": "c3adb1df954b059046ac4b386cd9a88aae47efa5f0d117509de1b3337d495710"
+    },
+    "unsuppressed-generalization-symbols-04": {
+      "same_packet_key": "suppressed-generalization-symbols-04",
+      "fingerprint": "ee6f85bcd1d6fa3ee95bd7d337bac6e4286ae00086ff9c298bec5efe7b04a724"
+    },
+    "unsuppressed-generalization-symbols-05": {
+      "same_packet_key": "suppressed-generalization-symbols-05",
+      "fingerprint": "3654bb6572000a6a5913ffa478ee84291a7ac2a810067b6d14ebcd716e2bc07f"
+    },
+    "unsuppressed-generalization-symbols-06": {
+      "same_packet_key": "suppressed-generalization-symbols-06",
+      "fingerprint": "775cc9d2f4cedc6a988569079248eac6a1139d65916976347fa2c95e4036f443"
+    },
+    "unsuppressed-generalization-symbols-07": {
+      "same_packet_key": "suppressed-generalization-symbols-07",
+      "fingerprint": "0394d3b6a2d71d6f8fe21ff6b114dfa3fc483ddf750b49cf9a6e54b0fb548366"
+    },
+    "unsuppressed-generalization-symbols-08": {
+      "same_packet_key": "suppressed-generalization-symbols-08",
+      "fingerprint": "387d76e75ab9e6f8245971dfef8ab9eac456c4b9d053f7a8626798c912595f22"
+    },
+    "unsuppressed-generalization-correction-01": {
+      "same_packet_key": "suppressed-generalization-correction-01",
+      "fingerprint": "d3016b0b7a039b7871a5de0cf0628d6dd9a1c5df26375c4e92e51c7c0089195b"
+    },
+    "unsuppressed-generalization-correction-02": {
+      "same_packet_key": "suppressed-generalization-correction-02",
+      "fingerprint": "931b464ef4807dd241c30280296a690db23e5b5b607491b4c9fbb21d98cb32dd"
+    },
+    "unsuppressed-generalization-correction-03": {
+      "same_packet_key": "suppressed-generalization-correction-03",
+      "fingerprint": "1e8da4b4353bdd25ebc3cea1b1fbf3d429492826f00d44f022264eddd83fb5a3"
+    },
+    "unsuppressed-generalization-correction-04": {
+      "same_packet_key": "suppressed-generalization-correction-04",
+      "fingerprint": "ab86bf74d08eb58c28064a8d3ebc4cee1c37dcdee0145a88b31d0ddfd6c22b87"
+    },
+    "unsuppressed-generalization-correction-05": {
+      "same_packet_key": "suppressed-generalization-correction-05",
+      "fingerprint": "d6c7f81ff69578e96b0592ac84484d6063a489dde49e0ffb1637854112a98e65"
+    },
+    "unsuppressed-generalization-correction-06": {
+      "same_packet_key": "suppressed-generalization-correction-06",
+      "fingerprint": "2fa00f4c61b586d0637c7459ec101a9660b05c33e71096c8e269588c556a3f11"
+    },
+    "unsuppressed-generalization-correction-07": {
+      "same_packet_key": "suppressed-generalization-correction-07",
+      "fingerprint": "0b109e478c8c63772e835e80698a881bbeeb44912f39a82bb99836697993fbee"
+    },
+    "unsuppressed-generalization-correction-08": {
+      "same_packet_key": "suppressed-generalization-correction-08",
+      "fingerprint": "63a076a32906c06ab6d44a1dab27e09c36dc2e02d3bb929a71554bbd04627a64"
+    },
+    "unsuppressed-generalization-followup-01": {
+      "same_packet_key": "suppressed-generalization-followup-01",
+      "fingerprint": "1f46a77549b14cfcd383c78a9683bc3e37b698c86603878f2497487e71f4a058"
+    },
+    "unsuppressed-generalization-followup-02": {
+      "same_packet_key": "suppressed-generalization-followup-02",
+      "fingerprint": "db641e3dcdb989e7510967d76d3c354b47bd31d1ba81bc43ac82468996b18ed9"
+    },
+    "unsuppressed-generalization-followup-03": {
+      "same_packet_key": "suppressed-generalization-followup-03",
+      "fingerprint": "db4499f33d6fb9c86b64c6f369891a9cee07a0f0cba9698c8c20ea0c7a7ba195"
+    },
+    "unsuppressed-generalization-followup-04": {
+      "same_packet_key": "suppressed-generalization-followup-04",
+      "fingerprint": "d293bc2b2f44e9a86ad7fee029b98d4c599859ec5984da912d10634060086785"
+    },
+    "unsuppressed-generalization-followup-05": {
+      "same_packet_key": "suppressed-generalization-followup-05",
+      "fingerprint": "b484d06d125de29f9a06362419ac254cdf4be9f70be0b795abd91863831e7d96"
+    },
+    "unsuppressed-generalization-followup-06": {
+      "same_packet_key": "suppressed-generalization-followup-06",
+      "fingerprint": "3be8913555b601e047b2800c4a128657f04f40b1ec80467e7062ad0c89bca61b"
+    },
+    "unsuppressed-generalization-followup-07": {
+      "same_packet_key": "suppressed-generalization-followup-07",
+      "fingerprint": "559fc3717a995e910a86f44452f2e1a2a1615b4a7cb113819b6df6ae12f1b68c"
+    },
+    "unsuppressed-generalization-followup-08": {
+      "same_packet_key": "suppressed-generalization-followup-08",
+      "fingerprint": "53fc3c181283725a9ac42e476434610cef00cb03e9613f058c35763fd74ee78e"
+    },
+    "unsuppressed-generalization-context-01": {
+      "same_packet_key": "suppressed-generalization-context-01",
+      "fingerprint": "f895b91393ff8a8beb948b971fe8758bed108721186766ab9586a941d815110b"
+    },
+    "unsuppressed-generalization-context-02": {
+      "same_packet_key": "suppressed-generalization-context-02",
+      "fingerprint": "84f56f33bef9d5c77421fe3455c29cc104130e9ad9ba33a11b1a8e20df831e55"
+    },
+    "unsuppressed-generalization-context-03": {
+      "same_packet_key": "suppressed-generalization-context-03",
+      "fingerprint": "f01663a821bb3113d6457e2d3153eef5554ee9c044e84044fa306a6a3b18a59e"
+    },
+    "unsuppressed-generalization-context-04": {
+      "same_packet_key": "suppressed-generalization-context-04",
+      "fingerprint": "15e8dd247af6fc205fcd0a3665d09930e87101cc9652693ade1a07c213ca2913"
+    },
+    "unsuppressed-generalization-context-05": {
+      "same_packet_key": "suppressed-generalization-context-05",
+      "fingerprint": "5a9eb0c6a01bf83898b8357016594345170751f4b9635a337296d20c5e3db349"
+    },
+    "unsuppressed-generalization-context-06": {
+      "same_packet_key": "suppressed-generalization-context-06",
+      "fingerprint": "b72778b365614e34c4fdb79bfd6e45f4d9d0c7bdce3c9bda5a8cafde80f5500a"
+    },
+    "unsuppressed-generalization-context-07": {
+      "same_packet_key": "suppressed-generalization-context-07",
+      "fingerprint": "691b7e8ab442126d7c4ec45a72f6873ef9ea69abed10fe2c4d1836d5191e3244"
+    },
+    "unsuppressed-generalization-context-08": {
+      "same_packet_key": "suppressed-generalization-context-08",
+      "fingerprint": "11fd20f7f6d59e2d783609574fb59a8aaaa6cafe798a3c58cf0018f617302ba3"
+    }
+  },
+  "total_judgments": 219,
+  "manual_pending": 139,
+  "created_at": "2026-10-17T07:21:25.688496Z",
+  "reviewer_source": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/review_chat_natural.py",
+    "sha256": "b229345a02c70b5947ac07466b451074c81091f5af3c1bed247ba38853778885"
+  },
+  "reuse_only_identical_actual_history_and_raw": true
+}

@@ -4,7 +4,7 @@
 
 ## Chatを試す
 
-新しい比較モデルも試用可能になった。候補C1は[http://127.0.0.1:7862](http://127.0.0.1:7862)、対照C0は[http://127.0.0.1:7863](http://127.0.0.1:7863)。両方とも元10B親から各100万Assistant教師でSFTした10Mモデルで、CPU FP32・既定32token。画面で16/32/64を選べる。各10応答の実確認は済んだが、復唱・訂正失敗は残り、全体比較と採用判断は未完了。[C1実応答](../reports/phase7/chat-natural-sft-20261017/practical/C1/raw.json) / [C1個別notes](../reports/phase7/chat-natural-sft-20261017/practical/C1/notes.json)。再起動は `./scripts/start_natural_chat_demo.ps1 -Arm C1` または `-Arm C0`。学習を起動するコマンドではない。
+新しい比較モデルも試用可能。候補C1は[http://127.0.0.1:7862](http://127.0.0.1:7862)、対照C0は[http://127.0.0.1:7863](http://127.0.0.1:7863)。両方とも元10B親から各100万Assistant教師でSFTした10Mモデルで、CPU FP32・既定32token、16/32/64を選べる。各10応答の実確認と全2,190内容比較は完了したが、内容改善は未実証・候補は不採用。試用画面の「未確定」は配信開始時の表示であり、最終判断は[結果150](150_chat_natural_sft_results.md)を参照する。[C1実応答](../reports/phase7/chat-natural-sft-20261017/practical/C1/raw.json) / [全notes](../reports/phase7/chat-natural-sft-20261017/practical/C1/notes.json)。停止している場合の起動は `./scripts/start_natural_chat_demo.ps1 -Arm C1` または `-Arm C0`。学習を起動するコマンドではない。
 
 **[http://127.0.0.1:7861](http://127.0.0.1:7861)** を開く。元10B親からRealPersonaChatで3周SFTしたモデル（checkpoint-00003785、1,899,555 Assistant教師、10,001,152 parameters）を使う。「新しい会話」で履歴を消し、Enterで送信・Shift+Enterで改行する。文脈に収まらない場合は古い発言を自動削除せず、新しい会話を案内する。
 
