@@ -1,0 +1,1092 @@
+{
+  "checkpoint": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-natural-sft-20261017/C0/checkpoint-00000961.pt",
+    "sha256": "6f34cb60b9dc962ada90c14260863e44460bf1455a83a282e6f16d4ed228a71c",
+    "update": 961,
+    "Assistant_teachers": 500434,
+    "valid_inputs": 8197024,
+    "physical_inputs": 49250304,
+    "EOT_teachers": 31802
+  },
+  "config_sha256": "ec0b61b2961ef9294cb840cb86ad6f5ba291ea1c4a0213d0404e9fa87cdb464d",
+  "outputs": [
+    {
+      "case": {
+        "id": "natural-unseen-greeting-01",
+        "family_id": "natural-unseen-greeting-01",
+        "category": "greeting",
+        "split": "dev",
+        "messages": [
+          {
+            "role": "user",
+            "content": "こんにちは。用事を済ませたので少しお話ししたいな。"
+          }
+        ],
+        "checks": [
+          "提示条件と話者を守って最後の質問に自然に答える。",
+          "未提供の属性を作らず、短く完結する。反復・復唱で代用しない。",
+          "文法・関連性・自生成履歴の文脈を別々に判定。gold単語一致だけで意味を採点しない。"
+        ]
+      },
+      "response": {
+        "text": "お話ししたいことはありますか？",
+        "valid_utf8": true,
+        "raw_bytes_hex": "e3818ae8a9b1e38197e38197e3819fe38184e38193e381a8e381afe38182e3828ae381bee38199e3818befbc9f",
+        "decode_error": null,
+        "generated_ids": [
+          291,
+          614,
+          282,
+          751,
+          818,
+          1571,
+          323,
+          7
+        ],
+        "generated_tokens": 8,
+        "stop_reason": "eot",
+        "role_leak": false,
+        "unexpected_special": false,
+        "empty_response": false,
+        "suppressed": true,
+        "suppressed_ids": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "decoding": "greedy",
+        "prompt_ids": [
+          2,
+          5,
+          1021,
+          266,
+          393,
+          344,
+          267,
+          1232,
+          327,
+          471,
+          297,
+          352,
+          926,
+          291,
+          614,
+          282,
+          751,
+          280,
+          266,
+          7,
+          6
+        ],
+        "prompt_tokens": 21,
+        "removed_turns": 0,
+        "full_history_retained": true,
+        "user_turns": 1,
+        "max_new_tokens": 32,
+        "repetition": false,
+        "repeat_metrics": {
+          "char_4gram_repeat": 0.0,
+          "token_4gram_repeat": 0.0,
+          "same_sentence_reappears": false,
+          "first_adjacent_triple_repeat_char": null
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "natural-unseen-daily-01",
+        "family_id": "natural-unseen-daily-01",
+        "category": "daily",
+        "split": "dev",
+        "messages": [
+          {
+            "role": "user",
+            "content": "靴箱を片付けたいけれど、どこから始めようかな。"
+          }
+        ],
+        "checks": [
+          "提示条件と話者を守って最後の質問に自然に答える。",
+          "未提供の属性を作らず、短く完結する。反復・復唱で代用しない。",
+          "文法・関連性・自生成履歴の文脈を別々に判定。gold単語一致だけで意味を採点しない。"
+        ]
+      },
+      "response": {
+        "text": "靴箱は、靴箱の中に入ってる靴箱を片付けるのが一番いいです。",
+        "valid_utf8": true,
+        "raw_bytes_hex": "e99db4e7aeb1e381afe38081e99db4e7aeb1e381aee4b8ade381abe585a5e381a3e381a6e3828be99db4e7aeb1e38292e78987e4bb98e38191e3828be381aee3818ce4b880e795aae38184e38184e381a7e38199e38082",
+        "decode_error": null,
+        "generated_ids": [
+          2968,
+          2587,
+          270,
+          265,
+          2968,
+          2587,
+          264,
+          329,
+          269,
+          405,
+          300,
+          283,
+          2968,
+          2587,
+          267,
+          2599,
+          814,
+          283,
+          264,
+          268,
+          1165,
+          473,
+          275,
+          266,
+          7
+        ],
+        "generated_tokens": 25,
+        "stop_reason": "eot",
+        "role_leak": false,
+        "unexpected_special": false,
+        "empty_response": false,
+        "suppressed": true,
+        "suppressed_ids": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "decoding": "greedy",
+        "prompt_ids": [
+          2,
+          5,
+          2968,
+          2587,
+          267,
+          2599,
+          814,
+          502,
+          425,
+          415,
+          679,
+          265,
+          1126,
+          287,
+          1025,
+          533,
+          727,
+          266,
+          7,
+          6
+        ],
+        "prompt_tokens": 20,
+        "removed_turns": 0,
+        "full_history_retained": true,
+        "user_turns": 1,
+        "max_new_tokens": 32,
+        "repetition": false,
+        "repeat_metrics": {
+          "char_4gram_repeat": 0.0,
+          "token_4gram_repeat": 0.0,
+          "same_sentence_reappears": false,
+          "first_adjacent_triple_repeat_char": null
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "natural-unseen-emotion-01",
+        "family_id": "natural-unseen-emotion-01",
+        "category": "emotion",
+        "split": "dev",
+        "messages": [
+          {
+            "role": "user",
+            "content": "練習で昨日より上手にできて、うれしい。"
+          }
+        ],
+        "checks": [
+          "提示条件と話者を守って最後の質問に自然に答える。",
+          "未提供の属性を作らず、短く完結する。反復・復唱で代用しない。",
+          "文法・関連性・自生成履歴の文脈を別々に判定。gold単語一致だけで意味を採点しない。"
+        ]
+      },
+      "response": {
+        "text": "練習で上手にできて、うれしい。",
+        "valid_utf8": true,
+        "raw_bytes_hex": "e7b7b4e7bf92e381a7e4b88ae6898be381abe381a7e3818de381a6e38081e38186e3828ce38197e38184e38082",
+        "decode_error": null,
+        "generated_ids": [
+          2097,
+          271,
+          377,
+          363,
+          269,
+          832,
+          296,
+          265,
+          345,
+          415,
+          659,
+          266,
+          7
+        ],
+        "generated_tokens": 13,
+        "stop_reason": "eot",
+        "role_leak": false,
+        "unexpected_special": false,
+        "empty_response": false,
+        "suppressed": true,
+        "suppressed_ids": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "decoding": "greedy",
+        "prompt_ids": [
+          2,
+          5,
+          2097,
+          271,
+          2571,
+          308,
+          536,
+          377,
+          363,
+          269,
+          832,
+          296,
+          265,
+          345,
+          415,
+          659,
+          266,
+          7,
+          6
+        ],
+        "prompt_tokens": 19,
+        "removed_turns": 0,
+        "full_history_retained": true,
+        "user_turns": 1,
+        "max_new_tokens": 32,
+        "repetition": false,
+        "repeat_metrics": {
+          "char_4gram_repeat": 0.0,
+          "token_4gram_repeat": 0.0,
+          "same_sentence_reappears": false,
+          "first_adjacent_triple_repeat_char": null
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "natural-unseen-question_back-01",
+        "family_id": "natural-unseen-question_back-01",
+        "category": "question_back",
+        "split": "dev",
+        "messages": [
+          {
+            "role": "user",
+            "content": "封筒は厚い方が四枚、薄い方が一枚です。薄い封筒は何枚ですか。"
+          }
+        ],
+        "checks": [
+          "提示条件と話者を守って最後の質問に自然に答える。",
+          "未提供の属性を作らず、短く完結する。反復・復唱で代用しない。",
+          "文法・関連性・自生成履歴の文脈を別々に判定。gold単語一致だけで意味を採点しない。"
+        ]
+      },
+      "response": {
+        "text": "厚い方が一枚です。厚い方が一枚です。厚い方が一枚です。",
+        "valid_utf8": true,
+        "raw_bytes_hex": "e58e9ae38184e696b9e3818ce4b880e69e9ae381a7e38199e38082e58e9ae38184e696b9e3818ce4b880e69e9ae381a7e38199e38082e58e9ae38184e696b9e3818ce4b880e69e9ae381a7e38199e38082",
+        "decode_error": null,
+        "generated_ids": [
+          2432,
+          276,
+          813,
+          330,
+          2452,
+          275,
+          266,
+          2432,
+          276,
+          813,
+          330,
+          2452,
+          275,
+          266,
+          2432,
+          276,
+          813,
+          330,
+          2452,
+          275,
+          266,
+          7
+        ],
+        "generated_tokens": 22,
+        "stop_reason": "eot",
+        "role_leak": false,
+        "unexpected_special": false,
+        "empty_response": false,
+        "suppressed": true,
+        "suppressed_ids": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "decoding": "greedy",
+        "prompt_ids": [
+          2,
+          5,
+          3002,
+          3946,
+          270,
+          2432,
+          276,
+          813,
+          1933,
+          2452,
+          265,
+          2336,
+          276,
+          813,
+          330,
+          2452,
+          275,
+          266,
+          2336,
+          276,
+          3002,
+          3946,
+          270,
+          488,
+          2452,
+          527,
+          266,
+          7,
+          6
+        ],
+        "prompt_tokens": 29,
+        "removed_turns": 0,
+        "full_history_retained": true,
+        "user_turns": 1,
+        "max_new_tokens": 32,
+        "repetition": true,
+        "repeat_metrics": {
+          "char_4gram_repeat": 0.625,
+          "token_4gram_repeat": 0.5789473684210527,
+          "same_sentence_reappears": true,
+          "first_adjacent_triple_repeat_char": 0
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "natural-unseen-ambiguity-01",
+        "family_id": "natural-unseen-ambiguity-01",
+        "category": "ambiguity",
+        "split": "dev",
+        "messages": [
+          {
+            "role": "user",
+            "content": "その道具の使い方を教えて。道具の名前はまだ言っていないよ。"
+          }
+        ],
+        "checks": [
+          "提示条件と話者を守って最後の質問に自然に答える。",
+          "未提供の属性を作らず、短く完結する。反復・復唱で代用しない。",
+          "文法・関連性・自生成履歴の文脈を別々に判定。gold単語一致だけで意味を採点しない。"
+        ]
+      },
+      "response": {
+        "text": "それは、今の時代は、道具の名前が、今の時代は、道具の名前が、今の時代は、道具の",
+        "valid_utf8": true,
+        "raw_bytes_hex": "e3819de3828ce381afe38081e4bb8ae381aee69982e4bba3e381afe38081e98193e585b7e381aee5908de5898de3818ce38081e4bb8ae381aee69982e4bba3e381afe38081e98193e585b7e381aee5908de5898de3818ce38081e4bb8ae381aee69982e4bba3e381afe38081e98193e585b7e381ae",
+        "decode_error": null,
+        "generated_ids": [
+          875,
+          265,
+          510,
+          264,
+          1006,
+          270,
+          265,
+          597,
+          1070,
+          264,
+          1632,
+          268,
+          265,
+          510,
+          264,
+          1006,
+          270,
+          265,
+          597,
+          1070,
+          264,
+          1632,
+          268,
+          265,
+          510,
+          264,
+          1006,
+          270,
+          265,
+          597,
+          1070,
+          264
+        ],
+        "generated_tokens": 32,
+        "stop_reason": "max_new_tokens",
+        "role_leak": false,
+        "unexpected_special": false,
+        "empty_response": false,
+        "suppressed": true,
+        "suppressed_ids": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "decoding": "greedy",
+        "prompt_ids": [
+          2,
+          5,
+          324,
+          597,
+          1070,
+          264,
+          924,
+          348,
+          267,
+          2127,
+          296,
+          266,
+          597,
+          1070,
+          264,
+          1632,
+          270,
+          916,
+          739,
+          300,
+          1849,
+          508,
+          266,
+          7,
+          6
+        ],
+        "prompt_tokens": 25,
+        "removed_turns": 0,
+        "full_history_retained": true,
+        "user_turns": 1,
+        "max_new_tokens": 32,
+        "repetition": false,
+        "repeat_metrics": {
+          "char_4gram_repeat": 0.5555555555555556,
+          "token_4gram_repeat": 0.5862068965517241,
+          "same_sentence_reappears": false,
+          "first_adjacent_triple_repeat_char": null
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "natural-unseen-role_boundary-01",
+        "family_id": "natural-unseen-role_boundary-01",
+        "category": "role_boundary",
+        "split": "dev",
+        "messages": [
+          {
+            "role": "user",
+            "content": "友人が山登りをしたと話しました。登ったのはあなたですか。"
+          }
+        ],
+        "checks": [
+          "提示条件と話者を守って最後の質問に自然に答える。",
+          "未提供の属性を作らず、短く完結する。反復・復唱で代用しない。",
+          "文法・関連性・自生成履歴の文脈を別々に判定。gold単語一致だけで意味を採点しない。"
+        ]
+      },
+      "response": {
+        "text": "私は山登りをしたことありますか？",
+        "valid_utf8": true,
+        "raw_bytes_hex": "e7a781e381afe5b1b1e799bbe3828ae38292e38197e3819fe38193e381a8e38182e3828ae381bee38199e3818befbc9f",
+        "decode_error": null,
+        "generated_ids": [
+          846,
+          636,
+          2491,
+          290,
+          267,
+          295,
+          349,
+          1571,
+          323,
+          7
+        ],
+        "generated_tokens": 10,
+        "stop_reason": "eot",
+        "role_leak": false,
+        "unexpected_special": false,
+        "empty_response": false,
+        "suppressed": true,
+        "suppressed_ids": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "decoding": "greedy",
+        "prompt_ids": [
+          2,
+          5,
+          2509,
+          942,
+          636,
+          2491,
+          290,
+          267,
+          295,
+          272,
+          614,
+          649,
+          266,
+          2491,
+          373,
+          264,
+          270,
+          996,
+          527,
+          266,
+          7,
+          6
+        ],
+        "prompt_tokens": 22,
+        "removed_turns": 0,
+        "full_history_retained": true,
+        "user_turns": 1,
+        "max_new_tokens": 32,
+        "repetition": false,
+        "repeat_metrics": {
+          "char_4gram_repeat": 0.0,
+          "token_4gram_repeat": 0.0,
+          "same_sentence_reappears": false,
+          "first_adjacent_triple_repeat_char": null
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "natural-unseen-symbols-01",
+        "family_id": "natural-unseen-symbols-01",
+        "category": "symbols",
+        "split": "dev",
+        "messages": [
+          {
+            "role": "user",
+            "content": "受付番号は「K-28」で、「K-82」ではありません。番号だけ返して。"
+          }
+        ],
+        "checks": [
+          "提示条件と話者を守って最後の質問に自然に答える。",
+          "未提供の属性を作らず、短く完結する。反復・復唱で代用しない。",
+          "文法・関連性・自生成履歴の文脈を別々に判定。gold単語一致だけで意味を採点しない。"
+        ]
+      },
+      "response": {
+        "text": "こちらは、K-28です。K-82は、28の番号です。",
+        "valid_utf8": true,
+        "raw_bytes_hex": "e38193e381a1e38289e381afe380814b2d3238e381a7e38199e380824b2d3832e381afe380813238e381aee795aae58fb7e381a7e38199e38082",
+        "decode_error": null,
+        "generated_ids": [
+          922,
+          270,
+          265,
+          808,
+          309,
+          305,
+          443,
+          275,
+          266,
+          808,
+          309,
+          443,
+          305,
+          270,
+          265,
+          305,
+          443,
+          264,
+          1676,
+          1866,
+          275,
+          266,
+          7
+        ],
+        "generated_tokens": 23,
+        "stop_reason": "eot",
+        "role_leak": false,
+        "unexpected_special": false,
+        "empty_response": false,
+        "suppressed": true,
+        "suppressed_ids": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "decoding": "greedy",
+        "prompt_ids": [
+          2,
+          5,
+          918,
+          723,
+          1676,
+          1866,
+          270,
+          285,
+          808,
+          309,
+          305,
+          443,
+          281,
+          271,
+          559,
+          808,
+          309,
+          443,
+          305,
+          281,
+          1494,
+          266,
+          1676,
+          1866,
+          480,
+          1209,
+          294,
+          266,
+          7,
+          6
+        ],
+        "prompt_tokens": 30,
+        "removed_turns": 0,
+        "full_history_retained": true,
+        "user_turns": 1,
+        "max_new_tokens": 32,
+        "repetition": false,
+        "repeat_metrics": {
+          "char_4gram_repeat": 0.0,
+          "token_4gram_repeat": 0.0,
+          "same_sentence_reappears": false,
+          "first_adjacent_triple_repeat_char": null
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "natural-unseen-correction-01",
+        "family_id": "natural-unseen-correction-01",
+        "category": "correction",
+        "split": "dev",
+        "messages": [
+          {
+            "role": "user",
+            "content": "植木鉢は玄関に置きます。"
+          },
+          {
+            "role": "assistant",
+            "content": "玄関ですね。"
+          },
+          {
+            "role": "user",
+            "content": "植木鉢は玄関ではなくベランダへ変更します。今の置き場所は？"
+          }
+        ],
+        "checks": [
+          "提示条件と話者を守って最後の質問に自然に答える。",
+          "未提供の属性を作らず、短く完結する。反復・復唱で代用しない。",
+          "文法・関連性・自生成履歴の文脈を別々に判定。gold単語一致だけで意味を採点しない。"
+        ]
+      },
+      "response": {
+        "text": "ベランダに置くと、ベランダの方がいいです。",
+        "valid_utf8": true,
+        "raw_bytes_hex": "e38399e383a9e383b3e38380e381abe7bdaee3818fe381a8e38081e38399e383a9e383b3e38380e381aee696b9e3818ce38184e38184e381a7e38199e38082",
+        "decode_error": null,
+        "generated_ids": [
+          670,
+          1099,
+          588,
+          269,
+          874,
+          299,
+          272,
+          265,
+          670,
+          1099,
+          588,
+          264,
+          813,
+          473,
+          275,
+          266,
+          7
+        ],
+        "generated_tokens": 17,
+        "stop_reason": "eot",
+        "role_leak": false,
+        "unexpected_special": false,
+        "empty_response": false,
+        "suppressed": true,
+        "suppressed_ids": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "decoding": "greedy",
+        "prompt_ids": [
+          2,
+          5,
+          2303,
+          799,
+          3498,
+          270,
+          2724,
+          925,
+          269,
+          874,
+          673,
+          266,
+          7,
+          6,
+          2724,
+          925,
+          379,
+          266,
+          7,
+          5,
+          2303,
+          799,
+          3498,
+          270,
+          2724,
+          925,
+          1104,
+          670,
+          1099,
+          588,
+          562,
+          1344,
+          364,
+          266,
+          510,
+          264,
+          874,
+          315,
+          831,
+          270,
+          323,
+          7,
+          6
+        ],
+        "prompt_tokens": 43,
+        "removed_turns": 0,
+        "full_history_retained": true,
+        "user_turns": 2,
+        "max_new_tokens": 32,
+        "repetition": false,
+        "repeat_metrics": {
+          "char_4gram_repeat": 0.05555555555555555,
+          "token_4gram_repeat": 0.0,
+          "same_sentence_reappears": false,
+          "first_adjacent_triple_repeat_char": null
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "natural-unseen-followup-01",
+        "family_id": "natural-unseen-followup-01",
+        "category": "followup",
+        "split": "dev",
+        "messages": [
+          {
+            "role": "user",
+            "content": "休日に刺繍を始めたいです。"
+          },
+          {
+            "role": "assistant",
+            "content": "刺繍を始めたいのですね。"
+          },
+          {
+            "role": "user",
+            "content": "さっき始めたいと言った趣味は何ですか。"
+          }
+        ],
+        "checks": [
+          "提示条件と話者を守って最後の質問に自然に答える。",
+          "未提供の属性を作らず、短く完結する。反復・復唱で代用しない。",
+          "文法・関連性・自生成履歴の文脈を別々に判定。gold単語一致だけで意味を採点しない。"
+        ]
+      },
+      "response": {
+        "text": "刺繍は、刺繍の基本的なやり方を学びます。",
+        "valid_utf8": true,
+        "raw_bytes_hex": "e588bae7b98de381afe38081e588bae7b98de381aee59fbae69cace79a84e381aae38284e3828ae696b9e38292e5ada6e381b3e381bee38199e38082",
+        "decode_error": null,
+        "generated_ids": [
+          2464,
+          239,
+          193,
+          149,
+          270,
+          265,
+          2464,
+          239,
+          193,
+          149,
+          264,
+          1258,
+          495,
+          278,
+          290,
+          348,
+          267,
+          394,
+          651,
+          310,
+          266,
+          7
+        ],
+        "generated_tokens": 22,
+        "stop_reason": "eot",
+        "role_leak": false,
+        "unexpected_special": false,
+        "empty_response": false,
+        "suppressed": true,
+        "suppressed_ids": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "decoding": "greedy",
+        "prompt_ids": [
+          2,
+          5,
+          1572,
+          1387,
+          2464,
+          239,
+          193,
+          149,
+          267,
+          1025,
+          502,
+          275,
+          266,
+          7,
+          6,
+          2464,
+          239,
+          193,
+          149,
+          267,
+          1025,
+          502,
+          264,
+          379,
+          266,
+          7,
+          5,
+          338,
+          399,
+          315,
+          1025,
+          502,
+          272,
+          739,
+          373,
+          3068,
+          743,
+          270,
+          488,
+          527,
+          266,
+          7,
+          6
+        ],
+        "prompt_tokens": 43,
+        "removed_turns": 0,
+        "full_history_retained": true,
+        "user_turns": 2,
+        "max_new_tokens": 32,
+        "repetition": false,
+        "repeat_metrics": {
+          "char_4gram_repeat": 0.0,
+          "token_4gram_repeat": 0.05263157894736842,
+          "same_sentence_reappears": false,
+          "first_adjacent_triple_repeat_char": null
+        }
+      }
+    },
+    {
+      "case": {
+        "id": "natural-unseen-context-01",
+        "family_id": "natural-unseen-context-01",
+        "category": "context",
+        "split": "dev",
+        "messages": [
+          {
+            "role": "user",
+            "content": "上の引き出しに切手、下の引き出しに輪ゴムを入れました。"
+          },
+          {
+            "role": "assistant",
+            "content": "上に切手、下に輪ゴムですね。"
+          },
+          {
+            "role": "user",
+            "content": "輪ゴムが入っている引き出しはどちらですか。"
+          }
+        ],
+        "checks": [
+          "提示条件と話者を守って最後の質問に自然に答える。",
+          "未提供の属性を作らず、短く完結する。反復・復唱で代用しない。",
+          "文法・関連性・自生成履歴の文脈を別々に判定。gold単語一致だけで意味を採点しない。"
+        ]
+      },
+      "response": {
+        "text": "輪ゴムは、下の引き出しに入れてます。",
+        "valid_utf8": true,
+        "raw_bytes_hex": "e8bcaae382b4e383a0e381afe38081e4b88be381aee5bc95e3818de587bae38197e381abe585a5e3828ce381a6e381bee38199e38082",
+        "decode_error": null,
+        "generated_ids": [
+          2361,
+          776,
+          412,
+          270,
+          265,
+          462,
+          264,
+          1027,
+          1409,
+          269,
+          854,
+          296,
+          310,
+          266,
+          7
+        ],
+        "generated_tokens": 15,
+        "stop_reason": "eot",
+        "role_leak": false,
+        "unexpected_special": false,
+        "empty_response": false,
+        "suppressed": true,
+        "suppressed_ids": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "decoding": "greedy",
+        "prompt_ids": [
+          2,
+          5,
+          377,
+          264,
+          1027,
+          1409,
+          269,
+          762,
+          363,
+          265,
+          462,
+          264,
+          1027,
+          1409,
+          269,
+          2361,
+          776,
+          412,
+          267,
+          854,
+          391,
+          266,
+          7,
+          6,
+          377,
+          269,
+          762,
+          363,
+          265,
+          462,
+          269,
+          2361,
+          776,
+          412,
+          379,
+          266,
+          7,
+          5,
+          2361,
+          776,
+          412,
+          268,
+          405,
+          489,
+          1027,
+          1409,
+          270,
+          2180,
+          527,
+          266,
+          7,
+          6
+        ],
+        "prompt_tokens": 52,
+        "removed_turns": 0,
+        "full_history_retained": true,
+        "user_turns": 2,
+        "max_new_tokens": 32,
+        "repetition": false,
+        "repeat_metrics": {
+          "char_4gram_repeat": 0.0,
+          "token_4gram_repeat": 0.0,
+          "same_sentence_reappears": false,
+          "first_adjacent_triple_repeat_char": null
+        }
+      }
+    }
+  ],
+  "primary_selection": false,
+  "max_new_tokens": 32,
+  "protected_TEST_used": false
+}
