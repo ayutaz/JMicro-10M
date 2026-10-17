@@ -1,0 +1,1900 @@
+{
+  "evaluation_sha256": "5d92a3587e1adbb053bd64031de2a53e05dce6af4fbe26f322667e97d04a35d5",
+  "rubric": {
+    "grammar": "0: unreadable/broken; 1: understandable with awkward or incomplete clauses; 2: natural complete Japanese. Score language separately from factual correctness.",
+    "relevance": "0: unrelated/contradicts the request; 1: partly relevant or vague; 2: directly responds to the final User in the actual history. Do not require literal gold wording.",
+    "context": "0: loses or contradicts required conditions; 1: partial/ambiguous retention; 2: retains all relevant conditions and corrections in the actual history. For own-history use generated replies, never supplied gold Assistant messages.",
+    "rationale": "At least 12 characters explaining the particular response. Keep fantasy, alternate natural answers, numeric correctness, grammar, and stopping distinct."
+  },
+  "reviewer": {
+    "kind": "codex_nonblind",
+    "identity": "Codex",
+    "independent_human": false,
+    "blind": false
+  },
+  "judgments": [
+    {
+      "key": "suppressed-answer-unseen-greeting-01",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "仕事を終えた相手のこんにちはへ、自然な挨拶を短く返している。"
+    },
+    {
+      "key": "suppressed-answer-unseen-greeting-02",
+      "grammar": 1,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "おはようを二度重ねる表現は不自然だが、目覚めた相手へ挨拶と労いを返している。"
+    },
+    {
+      "key": "suppressed-answer-unseen-greeting-03",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "休みの日を食べに行くという不整合な予定を作り、会話に来た相手への挨拶に答えない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-greeting-04",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "挨拶自体は返すが、こんばんはという夜の呼び掛けをこんにちはへ取り違えている。"
+    },
+    {
+      "key": "suppressed-answer-unseen-greeting-05",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "助かったという語は拾うが、既に感謝した相手へ助かったかを再確認し別れを受けない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-greeting-06",
+      "grammar": 1,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "同じおやすみなさいを二度繰り返すが、休む相手へ適切な別れを返している。"
+    },
+    {
+      "key": "suppressed-answer-unseen-greeting-07",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "長い一日という言葉に長いですねと返すだけで、帰宅への受け止めが弱い。"
+    },
+    {
+      "key": "suppressed-answer-unseen-greeting-08",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "初めて来た人からのこんにちはへ、自然な挨拶を短く返している。",
+      "reuse": {
+        "grammar": 2,
+        "relevance": 2,
+        "context": 2,
+        "rationale": "初めて来た人からのこんにちはへ、自然な挨拶を短く返している。",
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/curriculum-main-resource-v2/evaluation/C0/new/notes.json",
+          "sha256": "601826bafb82ffbc76e953932651af702aeeb230914b24442345ab49cb04ddbe",
+          "key": "suppressed-answer-unseen-greeting-08"
+        },
+        "fingerprint": "9856a38a37c7d148427f825b5d1bbdfc9170c1f07fdb91d23f2cab2aca53d5d2"
+      }
+    },
+    {
+      "key": "suppressed-answer-unseen-daily-01",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "書類の話題には沿うが、積もった書類の整理ではなく新たに準備するとだけ答えている。"
+    },
+    {
+      "key": "suppressed-answer-unseen-daily-02",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "暑かったので暑かったという循環で寒い日の条件にも反し、室内の気晴らしを提案しない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-daily-03",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "忘れ物を入れるという不自然な助言で、忘れ物を減らす工夫を答えていない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-daily-04",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "短いお礼が難しいという感想だけで、求められた最初の一文を作っていない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-daily-05",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "趣味を尋ね返すだけで、時間がない中で読書を始める方法に答えない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-daily-06",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "片付けが面倒だという訴えに、大変ですと短く自然に共感している。"
+    },
+    {
+      "key": "suppressed-answer-unseen-daily-07",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "明日の準備という依頼を繰り返して聞き返し、具体的な確認項目を示していない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-daily-08",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "絵には関連するが、油絵を描きたいという自分側の希望で何から描くかの提案が曖昧。"
+    },
+    {
+      "key": "suppressed-answer-unseen-emotion-01",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "うれしいですを二度重ねるだけで、練習の成果を喜ぶ報告への応答が単調になっている。"
+    },
+    {
+      "key": "suppressed-answer-unseen-emotion-02",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "しおりをなくした悲しみを、それは悲しいと自然に受け止めている。"
+    },
+    {
+      "key": "suppressed-answer-unseen-emotion-03",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "既に無事終わった報告を、これから無事終えてほしいという希望に戻している。"
+    },
+    {
+      "key": "suppressed-answer-unseen-emotion-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "落ち着かないという気持ちに答えず、発表が遅いという未提供の事実を作っている。"
+    },
+    {
+      "key": "suppressed-answer-unseen-emotion-05",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "友人への落胆を扱わず、手伝いや仕事の話へ無関係に切り替えている。"
+    },
+    {
+      "key": "suppressed-answer-unseen-emotion-06",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "写真が見つかった喜びへ、こちらこそという対応しない挨拶と話すよう促すだけを返す。"
+    },
+    {
+      "key": "suppressed-answer-unseen-emotion-07",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "失敗には触れるが何が起きているか分からないと述べるだけで、落ち込む相手を十分受けない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-emotion-08",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "手伝う内容の一般的な確認へずれ、お礼を受けた温かい気持ちへの応答がない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-question_back-01",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "提示された二つの施設のどちらでもない名称を作り、火曜に休む美術館を答えない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-question_back-02",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "到着の九時半を答えず、出発も八時から九時へ取り違えている。"
+    },
+    {
+      "key": "suppressed-answer-unseen-question_back-03",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "棚と紙の語はあるが、糸の場所を逆に質問し、紙がある南を特定しない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-question_back-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "父の手袋は白という対応を無視し、姉の赤を答えている。"
+    },
+    {
+      "key": "suppressed-answer-unseen-question_back-05",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "手伝うという句を重ねるだけで、先に宛名を書くという作業順を答えない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-question_back-06",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "九枚から三枚を引いた残り六枚ではなく、使った三枚を答える。"
+    },
+    {
+      "key": "suppressed-answer-unseen-question_back-07",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "無料という語を返すだけで、無料なのが入場か冊子かを特定しない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-question_back-08",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "方角を問われて植物名のバラを返し、ユリがある東側を答えない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-ambiguity-01",
+      "grammar": 0,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "直したいという未完の句を何度も反復し、未指定の修正箇所を確認できていない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-ambiguity-02",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "手伝う内容を一般的に問い直すだけで、翻訳するために送る言葉を具体的に求めない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-ambiguity-03",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "気軽に聞くよう促すだけで、会場名がないという不足情報を確認しない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-ambiguity-04",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "手伝う意向だけで、本を選ぶために必要な興味分野を尋ねていない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-ambiguity-05",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "どの道も進むべきかと問い直すだけで、現在地と目的地を確認しない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-ambiguity-06",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "尋ねられた寸法を逆に何度も聞き返し、まず必要な対象の特定をしていない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-ambiguity-07",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "案の内容が未提示なことに対応し、どのような案かを自然に確認している。"
+    },
+    {
+      "key": "suppressed-answer-unseen-ambiguity-08",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "必要な布の枚数を二枚と正しく取り出し、短く直接答える。"
+    },
+    {
+      "key": "suppressed-answer-unseen-role_boundary-01",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "自分には旅行した経験がないと明確に答えて母の旅行を自分の経験にせず、続けて関連質問をしている。"
+    },
+    {
+      "key": "suppressed-answer-unseen-role_boundary-02",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "小説の主人公の料理人という職業を、自分の実際の仕事として肯定している。"
+    },
+    {
+      "key": "suppressed-answer-unseen-role_boundary-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "渡した弟と受け取った友人を同一視し、傘の受け手を正しく答えていない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-role_boundary-04",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "相談段階の予約がまだ済んでいないことを明確に答えている。冒頭のはいは相槌として読める。"
+    },
+    {
+      "key": "suppressed-answer-unseen-role_boundary-05",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "外出先で外出ますという崩れた文で、外出が未確定かを答えていない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-role_boundary-06",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "実体験という単語だけで、夕食の話も実体験がないという説明も出していない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-role_boundary-07",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "撮影者を祖母から母へ取り違え、与えられた人物関係を失っている。"
+    },
+    {
+      "key": "suppressed-answer-unseen-role_boundary-08",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "猫の一文という依頼の語を言い換えるだけで、架空と断った月の猫の物語を作っていない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-symbols-01",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "指定番号自体は保持するが番号を返す番号という循環になり、番号だけの形式にも従わない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-symbols-02",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "時刻16:25は合っているが、表記だけという明示条件に反してですを加えている。"
+    },
+    {
+      "key": "suppressed-answer-unseen-symbols-03",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "選ばれたvwxを正しく取り出し、除外されたyzと混同せず答えている。"
+    },
+    {
+      "key": "suppressed-answer-unseen-symbols-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "手伝い方を聞き返す定型文で、指定ファイル名memo_9を返していない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-symbols-05",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "一般的な支援の質問に戻り、指定された印だけの回答を出していない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-symbols-06",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "新しいB39は保持するが画面を見せる依頼を反復し、表示だけを答える条件を守らない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-symbols-07",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "左の札を外した後に残る文字を右と正しく答えている。"
+    },
+    {
+      "key": "suppressed-answer-unseen-symbols-08",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "数値とカンマは合っているが、そのまま返す条件に反してですを付けている。"
+    },
+    {
+      "key": "suppressed-answer-unseen-correction-01",
+      "grammar": 0,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "書斎の語はあるが前後の句を繰り返して途切れ、訂正後の置き場所の回答が成立しない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-correction-02",
+      "grammar": 1,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "今の土曜日という表現は不自然だが、変更後の発送予定を土曜と正しく取り出している。"
+    },
+    {
+      "key": "suppressed-answer-unseen-correction-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "一人欠席で四席へ変えた後も古い五つを答えている。"
+    },
+    {
+      "key": "suppressed-answer-unseen-correction-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "表紙を白へ変更した後も古い紺色を答えている。"
+    },
+    {
+      "key": "suppressed-answer-unseen-correction-05",
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "空の返答であり、本館への会議場所の訂正に何も答えていない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-correction-06",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "交代後の案内担当を長谷川さんと正しく答えている。"
+    },
+    {
+      "key": "suppressed-answer-unseen-correction-07",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "不要になったバターを返し、代わりにチーズを買うという訂正を無視している。"
+    },
+    {
+      "key": "suppressed-answer-unseen-correction-08",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "十六時半へ延期された開場を古い十五時と答えている。"
+    },
+    {
+      "key": "suppressed-answer-unseen-followup-01",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "前に体験したいと言った活動を陶芸と正しく取り出している。"
+    },
+    {
+      "key": "suppressed-answer-unseen-followup-02",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "梨の語は拾うが梨が甘い物を好むという不自然な説明で、買った果物を直接答えない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-followup-03",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 1,
+      "rationale": "作文の題を海と正しく取り出すが、書いてもらうという未提示の依頼関係に変える点は曖昧。"
+    },
+    {
+      "key": "suppressed-answer-unseen-followup-04",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "修理したという動作だけを返し、問われた台所の戸という場所を答えない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-followup-05",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "水族館の前で見たという句を重ね、移動手段の電車を答えていない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-followup-06",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "借りている本が園芸についてだと正しく答えている。"
+    },
+    {
+      "key": "suppressed-answer-unseen-followup-07",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "父への贈り物として選んだ品を靴下と正しく取り出している。"
+    },
+    {
+      "key": "suppressed-answer-unseen-followup-08",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "ヨーグルトを食べたことがないと反復し、食べたと述べたユーザーの情報と話者を混同している。"
+    },
+    {
+      "key": "suppressed-answer-unseen-context-01",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "コップがある左ではなく、皿のある右の戸棚を答えている。"
+    },
+    {
+      "key": "suppressed-answer-unseen-context-02",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "弁当という別の持ち物の話へ戻り、切符を持つ姉を答えていない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-context-03",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "今週訪れた場所を植物園と正しく答え、先週の博物館と区別している。"
+    },
+    {
+      "key": "suppressed-answer-unseen-context-04",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "午後の在宅を復唱するだけで、買い物に行く午前という時間帯を答えない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-context-05",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "包む役の叔母を正しく答え、届ける叔父と区別している。"
+    },
+    {
+      "key": "suppressed-answer-unseen-context-06",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "使う白い紐と線の話に変わり、使わない黒い紐を答えない。"
+    },
+    {
+      "key": "suppressed-answer-unseen-context-07",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "練習を未提供の月曜と答え、木曜への変更と金曜の本番を両方失っている。"
+    },
+    {
+      "key": "suppressed-answer-unseen-context-08",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "取り出す対象のタオルだけを返し、問われた布の袋を答えていない。"
+    },
+    {
+      "key": "unsuppressed-answer-unseen-greeting-01",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "仕事を終えた相手のこんにちはへ、自然な挨拶を短く返している。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-greeting-01",
+        "fingerprint": "21fcaf18f7bca56be6de80b2a9d54b16a054066918b4b6c16fe615023aa894f0"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-greeting-02",
+      "grammar": 1,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "おはようを二度重ねる表現は不自然だが、目覚めた相手へ挨拶と労いを返している。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-greeting-02",
+        "fingerprint": "efcfaf3d72f84c99b72bcfe61eafa7fe34eb066e048e64ee367bda89b35c9e3b"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-greeting-03",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "休みの日を食べに行くという不整合な予定を作り、会話に来た相手への挨拶に答えない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-greeting-03",
+        "fingerprint": "c41b1a63f481d7bafaa9deda57b2609b8b42bec674aa746c5c95305ec8e70982"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-greeting-04",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "挨拶自体は返すが、こんばんはという夜の呼び掛けをこんにちはへ取り違えている。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-greeting-04",
+        "fingerprint": "df98294ecb6425c47e99cc5c847572eb380a29c97310e889ad02908e17ccee05"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-greeting-05",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "助かったという語は拾うが、既に感謝した相手へ助かったかを再確認し別れを受けない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-greeting-05",
+        "fingerprint": "3ddf374c00d9d05673afa5fcf2c3620d6f01e42bc882757dd5c18055db408e60"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-greeting-06",
+      "grammar": 1,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "同じおやすみなさいを二度繰り返すが、休む相手へ適切な別れを返している。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-greeting-06",
+        "fingerprint": "2012faeb11e05e8c2df3c2b8e3e573f9e04dd1c52c9ddbdf7570ccd0e07bfd81"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-greeting-07",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "長い一日という言葉に長いですねと返すだけで、帰宅への受け止めが弱い。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-greeting-07",
+        "fingerprint": "1a67dcca3b3ac8db3eafbcf9905aaccfbc705ce44d21af0e1b4387a592738a8c"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-greeting-08",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "初めて来た人からのこんにちはへ、自然な挨拶を短く返している。",
+      "reuse": {
+        "grammar": 2,
+        "relevance": 2,
+        "context": 2,
+        "rationale": "初めて来た人からのこんにちはへ、自然な挨拶を短く返している。",
+        "source_notes": {
+          "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/curriculum-main-resource-v2/evaluation/C0/new/notes.json",
+          "sha256": "601826bafb82ffbc76e953932651af702aeeb230914b24442345ab49cb04ddbe",
+          "key": "suppressed-answer-unseen-greeting-08"
+        },
+        "fingerprint": "9856a38a37c7d148427f825b5d1bbdfc9170c1f07fdb91d23f2cab2aca53d5d2"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-daily-01",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "書類の話題には沿うが、積もった書類の整理ではなく新たに準備するとだけ答えている。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-daily-01",
+        "fingerprint": "d01754df63dc8c6d06d87682c6d9485232824a491c1d54c6abc585f5653a4f43"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-daily-02",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "暑かったので暑かったという循環で寒い日の条件にも反し、室内の気晴らしを提案しない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-daily-02",
+        "fingerprint": "2bd276e1c9430676c61bdfea4124c8b06a99f61d177ca76d0f14ad35885f951d"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-daily-03",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "忘れ物を入れるという不自然な助言で、忘れ物を減らす工夫を答えていない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-daily-03",
+        "fingerprint": "55a112994cf6ec418ae3f973ced6e32345312ec30287829cc9cad17ced1abb3d"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-daily-04",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "短いお礼が難しいという感想だけで、求められた最初の一文を作っていない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-daily-04",
+        "fingerprint": "4c3848d86463cde828920877f38b128ba3291022fd0b35c926d09575c134295c"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-daily-05",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "趣味を尋ね返すだけで、時間がない中で読書を始める方法に答えない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-daily-05",
+        "fingerprint": "6b12c29af76bec81731317f511f24816d054d8af9171fb8f069f2907fc3dd0cf"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-daily-06",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "片付けが面倒だという訴えに、大変ですと短く自然に共感している。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-daily-06",
+        "fingerprint": "f2064027ed3f7570dc40ceacf8bc54149a1f003247611370b45dc9f11591d5d7"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-daily-07",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "明日の準備という依頼を繰り返して聞き返し、具体的な確認項目を示していない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-daily-07",
+        "fingerprint": "743832e95b288e4618699d9a8b6ba0fef1bf15cdef0aa238e87fb5479fd4a76b"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-daily-08",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "絵には関連するが、油絵を描きたいという自分側の希望で何から描くかの提案が曖昧。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-daily-08",
+        "fingerprint": "920188aaefe22151dcd4b380cffe63be4f55016edd0ba65e42ffd3e5b726aca7"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-emotion-01",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "うれしいですを二度重ねるだけで、練習の成果を喜ぶ報告への応答が単調になっている。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-emotion-01",
+        "fingerprint": "80774b15a5e82b23e8ce0c8108584f8c6ad2ab017e05e4c2b481e9e55d5fbc8e"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-emotion-02",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "しおりをなくした悲しみを、それは悲しいと自然に受け止めている。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-emotion-02",
+        "fingerprint": "d0c81051fd200e8c8f6dee23152515945864c00dc10a3b2a489d9443b0e3e132"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-emotion-03",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "既に無事終わった報告を、これから無事終えてほしいという希望に戻している。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-emotion-03",
+        "fingerprint": "2db7787fc79840c0f538f93a2f6dd777a261fc8bb0164a598368a42d058fae88"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-emotion-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "落ち着かないという気持ちに答えず、発表が遅いという未提供の事実を作っている。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-emotion-04",
+        "fingerprint": "a9e118e323fa2da3d35b826353bfa64e4ed974db1e292ece0f689fc28af373bb"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-emotion-05",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "友人への落胆を扱わず、手伝いや仕事の話へ無関係に切り替えている。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-emotion-05",
+        "fingerprint": "8843b4a96faf08df3d3f5ce3097e3409dd7bf78c6ee2d407f83ef7955aa3f6e3"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-emotion-06",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "写真が見つかった喜びへ、こちらこそという対応しない挨拶と話すよう促すだけを返す。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-emotion-06",
+        "fingerprint": "00d2cc328e017b2c04901ab8451f34ddf091bffe41ffce1a32b6a4f0e783ef5b"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-emotion-07",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "失敗には触れるが何が起きているか分からないと述べるだけで、落ち込む相手を十分受けない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-emotion-07",
+        "fingerprint": "f75f25417a62c7b0958b53505549252cea59a2aa2f20a4ff2e2b7b0af675356c"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-emotion-08",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "手伝う内容の一般的な確認へずれ、お礼を受けた温かい気持ちへの応答がない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-emotion-08",
+        "fingerprint": "91c4fcf1dce228c16fcde5dae0c6313189a03c3db3fcab5a7b3b20b7924f831d"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-question_back-01",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "提示された二つの施設のどちらでもない名称を作り、火曜に休む美術館を答えない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-question_back-01",
+        "fingerprint": "5ab045f9940563dfc31dd0aa12edbfbb59480f9eabc8c8593e7c2515feab8321"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-question_back-02",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "到着の九時半を答えず、出発も八時から九時へ取り違えている。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-question_back-02",
+        "fingerprint": "4c7cab29ca2bab874990cd8ee2c5ab0ad568c19cf4a251dac225539f9b774bcb"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-question_back-03",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "棚と紙の語はあるが、糸の場所を逆に質問し、紙がある南を特定しない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-question_back-03",
+        "fingerprint": "131b0d2d71dd47a7929c3105aa82e6d39bd9c28eef9ad1fe53c9413708cc2435"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-question_back-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "父の手袋は白という対応を無視し、姉の赤を答えている。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-question_back-04",
+        "fingerprint": "7053912463367d646abd7ac318bb4bb9e6e3f07e9b604103de21e00b4408174b"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-question_back-05",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "手伝うという句を重ねるだけで、先に宛名を書くという作業順を答えない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-question_back-05",
+        "fingerprint": "56ce7ff22ce359731146243000346c6df0daa176087863d23b82145cf7993d80"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-question_back-06",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "九枚から三枚を引いた残り六枚ではなく、使った三枚を答える。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-question_back-06",
+        "fingerprint": "db25941c6fc4603b95105fb929af56ff575e0cf7270984bff87103946b035dd3"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-question_back-07",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "無料という語を返すだけで、無料なのが入場か冊子かを特定しない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-question_back-07",
+        "fingerprint": "e9ab4ccb8262a6eb701c87610de2aee38e3ac2429543a73ddfbc8b863c36a78c"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-question_back-08",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "方角を問われて植物名のバラを返し、ユリがある東側を答えない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-question_back-08",
+        "fingerprint": "d2893f8072c8b04eba9e8f81d29854631743673cd8cbdef55fbdda6ee898c9da"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-ambiguity-01",
+      "grammar": 0,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "直したいという未完の句を何度も反復し、未指定の修正箇所を確認できていない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-ambiguity-01",
+        "fingerprint": "15270493ca26663932384f43eed397a66a5c04095aba101d9d366aa477dd838a"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-ambiguity-02",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "手伝う内容を一般的に問い直すだけで、翻訳するために送る言葉を具体的に求めない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-ambiguity-02",
+        "fingerprint": "b7b05988bb7e395ec5524f75cf5fd50d4fa6b121b2e50ef89d21bab83368c0c1"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-ambiguity-03",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "気軽に聞くよう促すだけで、会場名がないという不足情報を確認しない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-ambiguity-03",
+        "fingerprint": "2ad692e115beb7df47547d49c23225d87a29cd68d61fa3f35ee6281107e9c9ab"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-ambiguity-04",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "手伝う意向だけで、本を選ぶために必要な興味分野を尋ねていない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-ambiguity-04",
+        "fingerprint": "0fc0ad9873f2344fa0f76ec33fd85e320963a6051f0a4a9b34de9e62487efac7"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-ambiguity-05",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "どの道も進むべきかと問い直すだけで、現在地と目的地を確認しない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-ambiguity-05",
+        "fingerprint": "3729508a47096dc61bdb67f6cea20c1e25b93d0f640bf78967d337386d7dd9cd"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-ambiguity-06",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "尋ねられた寸法を逆に何度も聞き返し、まず必要な対象の特定をしていない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-ambiguity-06",
+        "fingerprint": "2570a4279ef1fa7331bba0e5dc1421f19c274fa717eb7a2bf40b444908702871"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-ambiguity-07",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "案の内容が未提示なことに対応し、どのような案かを自然に確認している。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-ambiguity-07",
+        "fingerprint": "a27f19de5f6a8c95f82c2aaf07028f9d3e2c52bbf31b54dfb637afd19c55c0df"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-ambiguity-08",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "必要な布の枚数を二枚と正しく取り出し、短く直接答える。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-ambiguity-08",
+        "fingerprint": "ddebb2c0c4d66551fc7432470c07531bdb808823fc9e0b9d8b6a8e389e806e17"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-role_boundary-01",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "自分には旅行した経験がないと明確に答えて母の旅行を自分の経験にせず、続けて関連質問をしている。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-role_boundary-01",
+        "fingerprint": "82be222d5284bd53888b2c8a5713d998cd621060e4fa4dcbb708ebb64bbca55c"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-role_boundary-02",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "小説の主人公の料理人という職業を、自分の実際の仕事として肯定している。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-role_boundary-02",
+        "fingerprint": "d0d01a3dfbcbb0d9015a0d16e0d8ea66ab43e97e4c1dd63a39dd7c9fc029e2dc"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-role_boundary-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "渡した弟と受け取った友人を同一視し、傘の受け手を正しく答えていない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-role_boundary-03",
+        "fingerprint": "bed06c54dc2b7f0fd51aa2a97b87f0f38e5919775265188cdd06e1f451beda30"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-role_boundary-04",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "相談段階の予約がまだ済んでいないことを明確に答えている。冒頭のはいは相槌として読める。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-role_boundary-04",
+        "fingerprint": "66415a32e06f8bea9cf547688c3e2a080cd69a875f0ad9ccbf0805d8a077ee7b"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-role_boundary-05",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "外出先で外出ますという崩れた文で、外出が未確定かを答えていない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-role_boundary-05",
+        "fingerprint": "e795171d9bbc8c2c57d56f102cf2b077993192be972799e06a197c938d1d3d15"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-role_boundary-06",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "実体験という単語だけで、夕食の話も実体験がないという説明も出していない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-role_boundary-06",
+        "fingerprint": "0234f1ea8dea6b8bae6142e3115150898739f560d1de9aba7f03512c2e5c681c"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-role_boundary-07",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "撮影者を祖母から母へ取り違え、与えられた人物関係を失っている。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-role_boundary-07",
+        "fingerprint": "a5361b5dcfe4f7a5fac0baeff887a20a76b51e3c923f68e6cab03bbb55347aef"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-role_boundary-08",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "猫の一文という依頼の語を言い換えるだけで、架空と断った月の猫の物語を作っていない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-role_boundary-08",
+        "fingerprint": "41e907e5ebe668e5c7b1ba12c9204967b2615a4941824574e8f657ee751f52d0"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-symbols-01",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "指定番号自体は保持するが番号を返す番号という循環になり、番号だけの形式にも従わない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-symbols-01",
+        "fingerprint": "704facca67ca578293b9a31eb08400c13679ebc88d1659bc46ac160e3b36bb8f"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-symbols-02",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "時刻16:25は合っているが、表記だけという明示条件に反してですを加えている。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-symbols-02",
+        "fingerprint": "a5eff4482cc3bc64ca28faee7da8bfbfb636cffb7d39f5f92076a5fa8ba3a5f6"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-symbols-03",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "選ばれたvwxを正しく取り出し、除外されたyzと混同せず答えている。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-symbols-03",
+        "fingerprint": "81b4b3da9406ea3e6d2ffe52096c89cd967b98db9fd6c6adc044172cb2be4d6e"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-symbols-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "手伝い方を聞き返す定型文で、指定ファイル名memo_9を返していない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-symbols-04",
+        "fingerprint": "8a0de41e7950dbbb1028fe1b9bc12d503023b49c7bb250772c69afb08e7d4905"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-symbols-05",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "一般的な支援の質問に戻り、指定された印だけの回答を出していない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-symbols-05",
+        "fingerprint": "bfd548c853f0e6bcc9b124d168398795fac72c57e58687aa39752f9048ae6c5e"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-symbols-06",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "新しいB39は保持するが画面を見せる依頼を反復し、表示だけを答える条件を守らない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-symbols-06",
+        "fingerprint": "24fb1c454a0494b6ce5238b14fbb13702f0beb6102d38ed0e250caa96b9ffdf2"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-symbols-07",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "左の札を外した後に残る文字を右と正しく答えている。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-symbols-07",
+        "fingerprint": "58313def5d61ec5a999bb11eadcc67868fffab3a334fe4b2eb0e4ec6efec8fb8"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-symbols-08",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "数値とカンマは合っているが、そのまま返す条件に反してですを付けている。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-symbols-08",
+        "fingerprint": "09f7a808b5886a7c974f71f751e58d054f59d3343f2d0f117266ea19660f8f94"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-correction-01",
+      "grammar": 0,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "書斎の語はあるが前後の句を繰り返して途切れ、訂正後の置き場所の回答が成立しない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-correction-01",
+        "fingerprint": "10a2d453a3bc8ad9dcf7f64a84a0ba365bed522e696907a1e1cb511c23b69335"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-correction-02",
+      "grammar": 1,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "今の土曜日という表現は不自然だが、変更後の発送予定を土曜と正しく取り出している。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-correction-02",
+        "fingerprint": "8128fa4017b92af71c0c46c1e2a6a956bf6a35267bb3acb4b21caee70a7c36db"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-correction-03",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "一人欠席で四席へ変えた後も古い五つを答えている。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-correction-03",
+        "fingerprint": "eff9dbf914e9a9c4122973ddebcb983a54b9d61a08bffb1d756fbe363dcaeebe"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-correction-04",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "表紙を白へ変更した後も古い紺色を答えている。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-correction-04",
+        "fingerprint": "56c63988f2b2ea86d0a1837192b2662c72324f14ecf44baf1f9f7c20ab281646"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-correction-05",
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "空の返答であり、本館への会議場所の訂正に何も答えていない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-correction-05",
+        "fingerprint": "394cfd5740e4a4063c95d88b7d6b1b897c0ec7a7be4a821a8cf78a98c9ce944a"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-correction-06",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "交代後の案内担当を長谷川さんと正しく答えている。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-correction-06",
+        "fingerprint": "43acd7dc2019d35cb175793c715956da10e9223eaef3c5a9376401c8da01cc5a"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-correction-07",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "不要になったバターを返し、代わりにチーズを買うという訂正を無視している。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-correction-07",
+        "fingerprint": "8654b7831ce354e3c51bd625cd61c83f36105fab712f2099359b3d3c617817fb"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-correction-08",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "十六時半へ延期された開場を古い十五時と答えている。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-correction-08",
+        "fingerprint": "cad0a7774fd8cfd3ce759fd179d7826b570f0875483749c4bca182e881be18a4"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-followup-01",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "前に体験したいと言った活動を陶芸と正しく取り出している。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-followup-01",
+        "fingerprint": "c89203e8ab7bda63e3157114e79efe62956b13203ee6bd67e9e3e62f4e51085f"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-followup-02",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "梨の語は拾うが梨が甘い物を好むという不自然な説明で、買った果物を直接答えない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-followup-02",
+        "fingerprint": "5ed62b491bb8a7b33d48632742347564ead056a017bea42e6fd23d1968ad89e7"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-followup-03",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 1,
+      "rationale": "作文の題を海と正しく取り出すが、書いてもらうという未提示の依頼関係に変える点は曖昧。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-followup-03",
+        "fingerprint": "b4f6358e2d5d55a67d54ceeeb87a09f95b96335d03cd258f8e191f1783a9f371"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-followup-04",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "修理したという動作だけを返し、問われた台所の戸という場所を答えない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-followup-04",
+        "fingerprint": "90fd3a3e4d908a54269fe2f17a2471e030fbfb4b49f8934a36f8698220638170"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-followup-05",
+      "grammar": 1,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "水族館の前で見たという句を重ね、移動手段の電車を答えていない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-followup-05",
+        "fingerprint": "87d3e3450b1ca7ca2abdb31e727449f8c710d084c4179abc991fad32f42c0d3c"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-followup-06",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "借りている本が園芸についてだと正しく答えている。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-followup-06",
+        "fingerprint": "eaf2a840c6b065db92d0239838ea170029c6c26e997dead95de919ccdd9a9ca0"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-followup-07",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "父への贈り物として選んだ品を靴下と正しく取り出している。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-followup-07",
+        "fingerprint": "0aa9e5378435b3bf0b43af3de396da833f692c001880788c544b987c2b74bcf0"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-followup-08",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "ヨーグルトを食べたことがないと反復し、食べたと述べたユーザーの情報と話者を混同している。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-followup-08",
+        "fingerprint": "7bc744689ea339f3c46c5aa8bf89810d699602891b4a8c886db5530a10842a2a"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-context-01",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "コップがある左ではなく、皿のある右の戸棚を答えている。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-context-01",
+        "fingerprint": "b1ed8b97bde3a0c8cf2b707579ed1707f18fc080489d035424c015fbeda02856"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-context-02",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "弁当という別の持ち物の話へ戻り、切符を持つ姉を答えていない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-context-02",
+        "fingerprint": "9912256d65e5124ab86b8ffef0801bfcf53c68b95e4c53f4fa437a1b1bd64c47"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-context-03",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "今週訪れた場所を植物園と正しく答え、先週の博物館と区別している。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-context-03",
+        "fingerprint": "331ef95a6b04da119de39785d7933dd635b8ac04d2b3e1be18afbf5a71df0155"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-context-04",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "午後の在宅を復唱するだけで、買い物に行く午前という時間帯を答えない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-context-04",
+        "fingerprint": "f0c9d6498d3727a6ac691df6016904d37c953699fc9a772f43567cd3c2afbf6e"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-context-05",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "包む役の叔母を正しく答え、届ける叔父と区別している。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-context-05",
+        "fingerprint": "3d1445f12a70e171586ff47b0f2edbe738dc5127e33f80f8eac9cb6692da766a"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-context-06",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "使う白い紐と線の話に変わり、使わない黒い紐を答えない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-context-06",
+        "fingerprint": "7b4f0dc0807436db08128e65c74e65f2c47c8a6767e0883aa8d669db2618a51d"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-context-07",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "練習を未提供の月曜と答え、木曜への変更と金曜の本番を両方失っている。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-context-07",
+        "fingerprint": "5bac38ec2921f167e80f83edb66e626e0153a4e2d22efe6cb4d3bbb93489f04f"
+      }
+    },
+    {
+      "key": "unsuppressed-answer-unseen-context-08",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "取り出す対象のタオルだけを返し、問われた布の袋を答えていない。",
+      "reuse": {
+        "same_packet_key": "suppressed-answer-unseen-context-08",
+        "fingerprint": "dbb87ed27e88f5899c661aa7e87d1724df0e7f1f2ffd60bada326669d50a204c"
+      }
+    },
+    {
+      "key": "own-answer-unseen-correction-01-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "本を寝室に置くというユーザーの予定を、余計な内容を足さず正しく確認している。"
+    },
+    {
+      "key": "own-answer-unseen-correction-01-turn-2",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "書斎の前という句を重ねた後に寝室へ置くと戻り、ユーザーの訂正と場所関係を失っている。"
+    },
+    {
+      "key": "own-answer-unseen-correction-02-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "木曜という発送予定を正しく確認し、別の曜日を作っていない。"
+    },
+    {
+      "key": "own-answer-unseen-correction-02-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "発送日を土曜へ変えたというユーザーの報告を、土曜日と正しく短く受けている。"
+    },
+    {
+      "key": "own-answer-unseen-correction-02-turn-3",
+      "grammar": 1,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "今の土曜日という言い方は不自然だが、実際の自生成履歴でも変更後の土曜を答える。"
+    },
+    {
+      "key": "own-answer-unseen-correction-03-turn-1",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "必要な五席という最初の指定を二席へ取り違えている。"
+    },
+    {
+      "key": "own-answer-unseen-correction-03-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "四席への訂正を使わず、自分の前の誤った二席を答えている。"
+    },
+    {
+      "key": "own-answer-unseen-correction-04-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "表紙を紺にするという意向をそのまま正しく受け止めている。"
+    },
+    {
+      "key": "own-answer-unseen-correction-04-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "白への変更後も前の紺にしたいという文を返し、訂正を反映していない。"
+    },
+    {
+      "key": "own-answer-unseen-correction-04-turn-3",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "自分の誤った紺の返事を続け、ユーザーが採用した白を答えない。"
+    },
+    {
+      "key": "own-answer-unseen-correction-05-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "東館で会議を行うという最初の予定を正しく確認している。"
+    },
+    {
+      "key": "own-answer-unseen-correction-05-turn-2",
+      "grammar": 0,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "空の返答で、本館へ変わった会議場所を答えていない。"
+    },
+    {
+      "key": "own-answer-unseen-correction-06-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "案内の話題を受けて手伝う意向を示し、必要な支援を自然に尋ねている。"
+    },
+    {
+      "key": "own-answer-unseen-correction-06-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "一般的な支援の質問を繰り返すだけで、長谷川さんへの担当変更を明確に受けない。"
+    },
+    {
+      "key": "own-answer-unseen-correction-06-turn-3",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "必要な手伝いを尋ね返し、現在の担当者の長谷川さんを答えていない。"
+    },
+    {
+      "key": "own-answer-unseen-correction-07-turn-1",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "バターをバターと一緒に入れるという循環した文で、購入予定を自然には受けていない。"
+    },
+    {
+      "key": "own-answer-unseen-correction-07-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "不要なバターを再び答え、チーズへの購入品の変更を無視している。"
+    },
+    {
+      "key": "own-answer-unseen-correction-08-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "最初の開場予定を十五時と正しく受け、別の時刻を足していない。"
+    },
+    {
+      "key": "own-answer-unseen-correction-08-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "十六時半への延期後も、古い十五時の予定をそのまま返している。"
+    },
+    {
+      "key": "own-answer-unseen-correction-08-turn-3",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "自分の前応答に引かれて古い十五時を答え、延期後の時刻を取り出せない。"
+    },
+    {
+      "key": "own-answer-unseen-followup-01-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "陶芸の話には沿うが一般的な学習コースの定義に変わり、体験希望の受け止めが弱い。"
+    },
+    {
+      "key": "own-answer-unseen-followup-01-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "体験したい活動を問われ、陶芸を学ぶコースと実際の会話に沿った活動を直接返している。"
+    },
+    {
+      "key": "own-answer-unseen-followup-02-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "梨は梨のみという自己定義で、買ってきたという報告を自然に受け止める応答が弱い。"
+    },
+    {
+      "key": "own-answer-unseen-followup-02-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "自己定義的な言い方でも、買ってきた果物を梨と正しく限定して答えている。"
+    },
+    {
+      "key": "own-answer-unseen-followup-03-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "作文のテーマである海を正しく受け止めている。"
+    },
+    {
+      "key": "own-answer-unseen-followup-03-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "ユーザーが示した来週の締切を正しく短く確認している。"
+    },
+    {
+      "key": "own-answer-unseen-followup-03-turn-3",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "間に締切の話が入った実履歴でも、作文の題を海と正しく答える。"
+    },
+    {
+      "key": "own-answer-unseen-followup-04-turn-1",
+      "grammar": 1,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "台所の戸修理という名詞の連結は不自然だが、ユーザーの修理した対象は正しく保持している。"
+    },
+    {
+      "key": "own-answer-unseen-followup-04-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "直したという動作だけを返し、どこの戸かという質問に場所を答えない。"
+    },
+    {
+      "key": "own-answer-unseen-followup-05-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "水族館という話題に未提供のプールと近さを追加し、旅行先の条件を作り変えている。"
+    },
+    {
+      "key": "own-answer-unseen-followup-05-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "自分の作ったプールの位置の話を続け、電車で移動するという新しい報告を受けない。"
+    },
+    {
+      "key": "own-answer-unseen-followup-05-turn-3",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "プールと水族館の位置を繰り返し、問われた移動手段の電車を答えない。"
+    },
+    {
+      "key": "own-answer-unseen-followup-06-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "借りているのが園芸の本という情報を、別の分野を加えず正しく確認する。"
+    },
+    {
+      "key": "own-answer-unseen-followup-06-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "実際の返答を含む履歴から、借りた本の分野を園芸と正しく取り出している。"
+    },
+    {
+      "key": "own-answer-unseen-followup-07-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "靴下という品物名だけを返し、父への贈り物を決めた報告への受け止めは弱い。"
+    },
+    {
+      "key": "own-answer-unseen-followup-07-turn-2",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "来月という将来と靴下にしたという選択を混ぜ、父に渡す予定への応答が不自然。"
+    },
+    {
+      "key": "own-answer-unseen-followup-07-turn-3",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "間に来月渡すという話が入っても、選んだ贈り物を靴下と正しく答える。"
+    },
+    {
+      "key": "own-answer-unseen-followup-08-turn-1",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "ヨーグルトを食べたという報告を正しく受け、別の食べ物を作っていない。"
+    },
+    {
+      "key": "own-answer-unseen-followup-08-turn-2",
+      "grammar": 1,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "食べましたが食べましたという反復は不自然だが、食べた対象をヨーグルトと正しく取り出している。"
+    },
+    {
+      "key": "own-answer-unseen-context-01-turn-1",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "手伝うという句を重ねるだけで、左右の戸棚の収納を内容として受け止めない。"
+    },
+    {
+      "key": "own-answer-unseen-context-01-turn-2",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "自分の前の手伝う句を繰り返し、コップがある左の戸棚を答えない。"
+    },
+    {
+      "key": "own-answer-unseen-context-02-turn-1",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "切符を切手と定義し直し、弟姉の持ち物の話を別の語義の話へ取り違えている。"
+    },
+    {
+      "key": "own-answer-unseen-context-02-turn-2",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "切手のことという自分の誤った説明を続け、ユーザーの弁当の報告に応じない。"
+    },
+    {
+      "key": "own-answer-unseen-context-02-turn-3",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "切手は切手という自己定義で、切符を持つ姉を答えていない。"
+    },
+    {
+      "key": "own-answer-unseen-context-03-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "博物館の中に植物園があるという未提供の位置関係を加え、先週今週の訪問を受けない。"
+    },
+    {
+      "key": "own-answer-unseen-context-03-turn-2",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "自分の前の不適切な説明があっても、今週訪れた場所を植物園と正しく答える。"
+    },
+    {
+      "key": "own-answer-unseen-context-04-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "午前の買い物を午後へ取り違え、二つの時間帯の対応を失っている。"
+    },
+    {
+      "key": "own-answer-unseen-context-04-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "家で過ごす話には触れるが、家の中がすっきりするという根拠のない一般論へずれる。"
+    },
+    {
+      "key": "own-answer-unseen-context-04-turn-3",
+      "grammar": 2,
+      "relevance": 0,
+      "context": 0,
+      "rationale": "自分が生成した家がすっきりした話を続け、買い物に行く午前という時刻を答えない。"
+    },
+    {
+      "key": "own-answer-unseen-context-05-turn-1",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "手伝うという同じ句を重ねるだけで、叔父と叔母の役割分担を明確に受けない。"
+    },
+    {
+      "key": "own-answer-unseen-context-05-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "自分が包むという意向に変わり、ユーザーが示した担当の叔母を答えない。"
+    },
+    {
+      "key": "own-answer-unseen-context-06-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "黒を使わないと言った直後に黒を使うと述べ、白を使うという指定を失っている。"
+    },
+    {
+      "key": "own-answer-unseen-context-06-turn-2",
+      "grammar": 1,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "黒の語はあるが答えてから黒を使うという崩れた文で、使わない色の指定を守らない。"
+    },
+    {
+      "key": "own-answer-unseen-context-07-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "本番の金曜は保持するが、練習日を水曜から金曜へ勝手に変えている。"
+    },
+    {
+      "key": "own-answer-unseen-context-07-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "本番が金曜という別の情報を返すだけで、練習を木曜へ変えた新情報を明確に受けない。"
+    },
+    {
+      "key": "own-answer-unseen-context-07-turn-3",
+      "grammar": 2,
+      "relevance": 2,
+      "context": 2,
+      "rationale": "本番の日は変更なしという報告を、変えていないと正しく確認している。"
+    },
+    {
+      "key": "own-answer-unseen-context-07-turn-4",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 0,
+      "rationale": "金曜と週末の練習だけを述べ、練習木曜と本番金曜という二つの対応を答えない。"
+    },
+    {
+      "key": "own-answer-unseen-context-08-turn-1",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "タオルの語だけを返し、紙袋のパンと布袋のタオルという収納分担を十分受けない。"
+    },
+    {
+      "key": "own-answer-unseen-context-08-turn-2",
+      "grammar": 2,
+      "relevance": 1,
+      "context": 1,
+      "rationale": "タオルという対象だけを返し、取り出す布の袋を答えていない。"
+    }
+  ],
+  "pending_all_content_judgments": false,
+  "source": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/curriculum-main-resource-v2/evaluation/C1/new/authored_indices.tsv",
+    "sha256": "d9f81ff78cf7cd6084addd7b7b466258de55884f9cdce3b9a2f278174c374d41"
+  },
+  "validator_source": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/review_chat_natural.py",
+    "sha256": "b229345a02c70b5947ac07466b451074c81091f5af3c1bed247ba38853778885"
+  },
+  "created_at": "2026-10-17T12:15:38.454395Z"
+}

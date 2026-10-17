@@ -1,5 +1,11 @@
 # 回答教材SFTの実行状況
 
+12:16 UTC終端観測: 全2,628応答の生成が12:15:21Zに正常終了した。元科学process488265とWindows19704は実不在、launcher exit0/元UI復帰0。Base UIの新実PID494317・idle HTTP・元親hash・実kernel FLOCK/dxg、旧新の全6UIの生存を再確認した。主run stage累計2,708.290790秒（旧failed probe5.505592秒も含む）、うち全評価710.317102秒。追加のGPU学習・再起動・新TESTは行っていない。
+
+内容判定は876/2,628まで完了。C0/new219件は内容11/80・自己生成履歴の文脈3/24、対応するC1/new219件は17/80・8/24。C0/previous_new219件は13/80・2/24、C0/lr219件は8/80・1/24。新80問の増加6件は単独で全体改善の証明にしない。残りはC0のsemantic/generalization/original、C1のprevious_new/lr/semantic/generalization/originalの8suite・1,752件で、CI・既知退行・条件付きseed43の判断はその後。全40途中診断と実UI20応答のnotesは完了している。
+
+[終端・元UI復帰](../reports/phase7/chat-answer-learning-20261017/curriculum-main-resource-v2/terminal_restoration_observation.json) / [Windows実不在](../reports/phase7/chat-answer-learning-20261017/curriculum-main-resource-v2/windows_terminal_observation.json)。新goalはactiveで、最終全要件監査・結果納品は未完了。
+
 12:12 UTC追記: 両腕の学習と全状態照合を完了した。C0=1,921更新1,000,017教師、C1=1,929更新1,000,000教師。C1 checkpoint SHA `b5cb947c2d580e8ec4a080cfa71571a5e59baa2d24272c4229634799c913bc61`、実step1,061.089919秒、train_C1 stage1,100.504930秒。元Base・全native source・教師/主点・品質閾値は保持している。
 
 新[候補Chat7864](http://127.0.0.1:7864)と[対照7865](http://127.0.0.1:7865)を実起動し、各5会話10応答の実履歴・raw・HTTP asset・既定32/16・32・64選択・実processを確認。内容成立2→4/10、EOT10→10。候補は猫名を回答し時刻未提供を確認したが、金曜への変更を古い水曜と答えた。少数UI例を正式改善の証拠にしない。候補50万の10診断では内容4/10となり、途中40応答全ての理由付きnotesも完了したが、主選定点は100万を維持した。

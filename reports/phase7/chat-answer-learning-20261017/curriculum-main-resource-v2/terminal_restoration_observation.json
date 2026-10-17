@@ -1,0 +1,241 @@
+{
+  "observed_at": "2026-10-17T12:16:20.653953Z",
+  "scientific_identity": {
+    "pid": 488265,
+    "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+    "start_ticks": "87977686",
+    "status": "complete_raw_pending_all_content_and_UI",
+    "config_sha256": "e9172f65215fe44f2a94f5c0e9f1429175a27917b3d32b3e09c848cb318e9e46",
+    "started_at": "2026-10-17T11:30:18.122212Z",
+    "ended_at": "2026-10-17T12:15:21.266188Z"
+  },
+  "scientific_process_alive": false,
+  "Windows": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/curriculum-main-resource-v2/windows_terminal_observation.json",
+    "sha256": "1aa0822fbfd643705dac4808c6510cd1b862b97b19c170b74c84b189f92af187"
+  },
+  "servers": {
+    "7860": {
+      "identity": {
+        "pid": 494317,
+        "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+        "start_ticks": "88248660"
+      },
+      "HTTP": {
+        "name": "JMicro-10M",
+        "kind": "Base / 文章の続き",
+        "parameters": 10001152,
+        "training_tokens": 10000007168,
+        "update": 305176,
+        "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase6/base-10b-20261004/decay/checkpoint-00305176.pt",
+        "checkpoint_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+        "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+        "device": "NVIDIA GeForce RTX 4090",
+        "precision": "BF16 / math attention",
+        "context": 1024,
+        "busy": false
+      },
+      "record": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/local/webui/server.json",
+        "sha256": "926f39bc4ffd8284400c22d8014601a3aff001dd20062d22e1430175e1687473"
+      }
+    },
+    "7861": {
+      "identity": {
+        "pid": 466302,
+        "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+        "start_ticks": "86079620"
+      },
+      "HTTP": {
+        "name": "JMicro-10M Chat",
+        "kind": "Chat / RealPersonaChat SFT 3周",
+        "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-first-sft-20261010/checkpoint-00003785.pt",
+        "checkpoint_sha256": "1c79692f71efacecf5444a6be250518a4603248ee2b2811b531e566f2cfc2f24",
+        "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+        "parent_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+        "parameters": 10001152,
+        "SFT_teacher_tokens": 1899555,
+        "SFT_epochs": 3,
+        "device": "CPU",
+        "precision": "FP32 / math attention",
+        "decoding": "greedy",
+        "context": 1024,
+        "max_new_tokens": 32,
+        "max_new_tokens_range": [
+          8,
+          64
+        ],
+        "Base_adopted": false,
+        "Chat_adopted": false,
+        "original_model_source_sha256": "298bbac76c5b99c9831039116b704b0371612f9a28f68b81afc824a1d9bbde83",
+        "checkpoint_model_source_LF_sha256": "2861baaf1860174fc8f7ae5da23386ae39146b8a907077bce4958a4b6b315b3a",
+        "model_source_difference": "CRLF versus LF only; original files unchanged",
+        "busy": false
+      },
+      "record": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/local/chat-webui/server.json",
+        "sha256": "12674505f17b653717d9bf33ef547be804ab2bb2e5cf7031f989bc999ed87514"
+      }
+    },
+    "7862": {
+      "identity": {
+        "pid": 469317,
+        "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+        "start_ticks": "86371042"
+      },
+      "HTTP": {
+        "name": "JMicro-10M C1",
+        "kind": "新しい会話モデル（試験中）",
+        "arm": "C1",
+        "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-natural-sft-20261017/C1/checkpoint-00001921.pt",
+        "checkpoint_sha256": "61a91716be30dcf9fd9753008f0c976e84507da2f02f20af2258d8f2999825af",
+        "config_sha256": "ec0b61b2961ef9294cb840cb86ad6f5ba291ea1c4a0213d0404e9fa87cdb464d",
+        "parent_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+        "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+        "parameters": 10001152,
+        "SFT_teacher_tokens": 1000017,
+        "device": "CPU",
+        "precision": "FP32 / math attention",
+        "decoding": "greedy",
+        "context": 1024,
+        "max_new_tokens": 32,
+        "max_new_tokens_range": [
+          8,
+          64
+        ],
+        "Chat_adopted": false,
+        "Base_adopted": false,
+        "quality_status": "研究用の比較。正式採用は未確定。",
+        "busy": false
+      },
+      "record": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/local/chat-natural-C1/server.json",
+        "sha256": "b8db72c8b5c58f1c85317d88988aa9f0e44972bff3316074b85bf5dbb5e05835"
+      }
+    },
+    "7863": {
+      "identity": {
+        "pid": 468625,
+        "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+        "start_ticks": "86285259"
+      },
+      "HTTP": {
+        "name": "JMicro-10M C0",
+        "kind": "比較用の会話モデル（試験中）",
+        "arm": "C0",
+        "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-natural-sft-20261017/C0/checkpoint-00001921.pt",
+        "checkpoint_sha256": "722a826afa18ca3f91878edc126f161d8978dd574c6b247cc8e08e3eb3fdff60",
+        "config_sha256": "ec0b61b2961ef9294cb840cb86ad6f5ba291ea1c4a0213d0404e9fa87cdb464d",
+        "parent_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+        "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+        "parameters": 10001152,
+        "SFT_teacher_tokens": 1000009,
+        "device": "CPU",
+        "precision": "FP32 / math attention",
+        "decoding": "greedy",
+        "context": 1024,
+        "max_new_tokens": 32,
+        "max_new_tokens_range": [
+          8,
+          64
+        ],
+        "Chat_adopted": false,
+        "Base_adopted": false,
+        "quality_status": "研究用の比較。正式採用は未確定。",
+        "busy": false
+      },
+      "record": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/local/chat-natural-C0/server.json",
+        "sha256": "0887eba5572851dd4da16396b60df1a583cbed3e77391a8a3454e5c444b5b9c2"
+      }
+    },
+    "7864": {
+      "identity": {
+        "pid": 491648,
+        "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+        "start_ticks": "88178227"
+      },
+      "HTTP": {
+        "name": "JMicro-10M 回答学習 C1",
+        "kind": "改善教材の会話モデル（試験中）",
+        "arm": "C1",
+        "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/curriculum-main-resource-v2/C1/checkpoint-00001929.pt",
+        "checkpoint_sha256": "b5cb947c2d580e8ec4a080cfa71571a5e59baa2d24272c4229634799c913bc61",
+        "config_sha256": "e9172f65215fe44f2a94f5c0e9f1429175a27917b3d32b3e09c848cb318e9e46",
+        "parent_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+        "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+        "parameters": 10001152,
+        "SFT_teacher_tokens": 1000000,
+        "device": "CPU",
+        "precision": "FP32 / math attention",
+        "decoding": "greedy",
+        "context": 1024,
+        "max_new_tokens": 32,
+        "max_new_tokens_range": [
+          8,
+          64
+        ],
+        "Chat_adopted": false,
+        "Base_adopted": false,
+        "quality_status": "研究用の比較。正式採用は未確定。",
+        "busy": false
+      },
+      "record": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/local/chat-answer-C1/server.json",
+        "sha256": "ed23a4e629042d590c46f17300032a1a8f76052e8890460d58054fa51a72779f"
+      }
+    },
+    "7865": {
+      "identity": {
+        "pid": 489707,
+        "boot_id": "4052bfc5-3850-44e4-9123-d34a9e19f36e",
+        "start_ticks": "88069787"
+      },
+      "HTTP": {
+        "name": "JMicro-10M 回答学習 C0",
+        "kind": "比較用の会話モデル（試験中）",
+        "arm": "C0",
+        "checkpoint": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-answer-learning-20261017/curriculum-main-resource-v2/C0/checkpoint-00001921.pt",
+        "checkpoint_sha256": "55280bf3d14361db1687d0e2471c82f96c6407e4f608c8e6508a2d73effa3a1f",
+        "config_sha256": "e9172f65215fe44f2a94f5c0e9f1429175a27917b3d32b3e09c848cb318e9e46",
+        "parent_sha256": "410f975d848938627aafb4fa1d5483bf45fadbb7f9c05ed7d1c8f9d45c368290",
+        "tokenizer_sha256": "a7aabac51efa0712aef6f2e5956ac7d0e7fa92de869d730af2492f79c5cfa318",
+        "parameters": 10001152,
+        "SFT_teacher_tokens": 1000017,
+        "device": "CPU",
+        "precision": "FP32 / math attention",
+        "decoding": "greedy",
+        "context": 1024,
+        "max_new_tokens": 32,
+        "max_new_tokens_range": [
+          8,
+          64
+        ],
+        "Chat_adopted": false,
+        "Base_adopted": false,
+        "quality_status": "研究用の比較。正式採用は未確定。",
+        "busy": false
+      },
+      "record": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/local/chat-answer-C0/server.json",
+        "sha256": "3c59388a72ee0aeb98cbdccb4d95474896b8c03509fd7101b0add4a0e0e00db4"
+      }
+    }
+  },
+  "actual_kernel_FLOCK": [
+    "1: FLOCK  ADVISORY  WRITE 494317 08:30:171740 0 EOF"
+  ],
+  "Base_dxg_fds": [
+    "5",
+    "12"
+  ],
+  "all_frozen_scientific_sources_match": true,
+  "raw_outputs": 2628,
+  "owned_main_GPU_stage_wall_seconds": 2708.2907896289835,
+  "source": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/observe_answer_curriculum_terminal.py",
+    "sha256": "6350d787e5a1fb925476408bcf4a536611a3a8e023a0b172e6910c59d62a5804"
+  },
+  "new_generation_or_training": 0,
+  "all_content_reviews_still_pending": true
+}
