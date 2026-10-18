@@ -67,6 +67,8 @@ uv run --frozen --extra ml --extra hub python artifacts/latest-chat/inspect_mode
 
 ## コードと研究記録を読む
 
+文書の入口は[読む順序と主要文書](docs/README.md)、整理・統合・削除の記録は[全文書更新167](docs/167_current_state_and_documentation.md)です。
+
 | 場所 | 内容 |
 |---|---|
 | [src/jmicro](src/jmicro) | モデル、Tokenizer、学習、推論、評価の実装 |

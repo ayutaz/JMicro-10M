@@ -1,49 +1,27 @@
-# 文書一覧
+# 文書を読む順序
 
-2026-10-18現在: [公開モデルとOSSコード166](166_public_models_and_oss.md) / [最新SFT結果165](165_chat_two_attribute_diagnosis_results.md) / [一つ前の比較162](162_chat_input_structure_sft_results.md)。最新の5工程は完了し候補は品質不採用。以下の「準備中」「実行中」は各日付時点の経過である。
+更新: 2026-10-18 JST。
 
-2026-10-18主SFT準備: [事前方針160](160_chat_input_structure_sft_comparison.md) / [実行状況161](161_chat_input_structure_execution_status.md)。同じ正答・教師列の入力配置比較、両腕CPU全1M一致、新DEV・全3466応答契約と12CPU workflow checksを準備済み。GPU学習・最終判定は未完了。
+最新SFTは実行・全件評価を完了し、候補は品質不採用です。Base 3系列と最新SFTの重みは申請不要で公開し、コードはApache-2.0になりました。
 
-2026-10-18実行中: [159：対照モデルと履歴条件の診断結果](159_chat_recovery_diagnosis_results.md)。全800新規応答と尤度640候補を確認。次は根拠ある入力構造の変更を一つ選び、新対照SFTと未知入力・実会話の判定まで実行する。新goalはACTIVE。
+## まず読む文書
 
-2026-10-18追加: [158：失敗原因の調査と次の改善計画](158_chat_quality_investigation_and_next_plan.md)。著作TRAIN2,048件の全件監査、原因として未分離の要因、対照100case→履歴条件診断→根拠に基づく新SFT→全品質判定の段階計画。実行量・時間枠・終了条件を明記した。追加生成・学習0。
+| 目的 | 主文書 |
+|---|---|
+| モデルを取得して試す | [プロジェクトREADME](../README.md) / [保存範囲](126_model_archive.md) |
+| 現在の結果と公開 | [状態](autonomous_status.md) / [最新結果165](165_chat_two_attribute_diagnosis_results.md) / [公開166](166_public_models_and_oss.md) |
+| 構成・Tokenizer・学習 | [モデル構成](03_architecture.md) / [データ](../data/README.md) |
+| 評価の基準と限界 | [評価方法](evaluation_protocol.md) / [残課題](10_next_steps.md) |
+| 環境・保存先・画面 | [引継ぎ](windows_handoff.md) / [WebUI](43_local_webui.md) |
+| 過去の研究を探す | [総覧](125_project_retrospective.md) / [実験索引](base_experiment_lookup.md) / [全件カタログ](document_catalog.md) |
 
-2026-10-17追加: [157：現行Chatの100ケース品質診断](157_chat_quality_100_results.md)。実API200応答を全件確認。最終100の総合成立22、計算・厳密形式0/10、実会話6応答目0/20。同文固定は11/20会話で再現。全CSV・raw・理由付き判定を保存した。
+重複する設計・計画は主文書へ統合しました。旧入口はリンク互換性のため案内だけ残し、古い文書更新報告142/146/148は[更新記録167](167_current_state_and_documentation.md)へ統合・削除しています。日付付き実験結果、凍結契約、source snapshot、原文copy、第三者の帰属は保持しています。
 
-2026-10-17完了: [結果156](156_answer_curriculum_results.md)に計画151の全5段階・全2,628応答比較・実UIをまとめた。新DEV内容11→17/80、差CIが0を含み既知の一部悪化もあり、改善未実証・候補品質不採用。別seed再現の事前条件は非発動。試用は[候補7864](http://127.0.0.1:7864)・[対照7865](http://127.0.0.1:7865)。以下は各時点の更新履歴。
+## 番号付きの計画と結果
 
-2026-10-17実学習開始: [155：現在のSFT](155_answer_curriculum_execution_status.md)。全40技術更新・保存再開を確認し、新対照C0を学習中。[154：時間計画の明示訂正](154_curriculum_resource_replan.md)。新goalの4/5は未完了。
+以下は現在の実行順ではありません。各文書の日付・対象・採否で読み、古い「実行中」「未公開」「次は」を現在の状態へ持ち込まないでください。
 
-2026-10-17新goal進行中: [計画151](151_answer_learning_execution_plan.md)の1〜3を完了し、4/5の主SFTと未知入力・実会話は未完了。[診断152](152_answer_learning_diagnosis_results.md) / [教材比較の事前方針153](153_answer_curriculum_comparison.md)。前回150の完了とは別の依頼です。
-
-2026-10-17 SFT完了: [結果150](150_chat_natural_sft_results.md)。計画149の全5段階・全2,190内容比較・実UI会話まで完了。新DEV内容5→5/80で改善未実証、候補不採用。短文設定の[試用Chat](http://127.0.0.1:7862)は既定32token、16/32/64選択。以下は各時点の文書更新履歴。
-
-2026-10-17 SFT計画: [149：次のSFT計画](149_chat_sft_next_plan.md)を追加。元の学習済みBaseを用い、新しい公開会話教材と従来教材を各100万Assistant教師で比べる最初の試行案。今回は計画作成のみ。
-
-2026-10-17追記: 文書更新は645b3d09で完了後、ユーザーの指示でChatの動作確認へ移行。[SFT済みChatを試す](http://127.0.0.1:7861) / [操作43](43_local_webui.md) / [現在の状態](autonomous_status.md)。以下の文書更新説明はその納品時点の記録。
-
-更新: 2026-10-17 JST。現在の依頼は「ドキュメントをすべて最新にして」。元の「4まで」の目標は未達のままユーザーが解除した。今回の作業範囲は文書更新・棚卸し・保存検証・ローカルGitコミット。Base/Chatは未完成・未採用。
-
-[最新結果・更新記録148](148_latest_base_and_documentation.md) / [現在の計画145](145_post_rejection_next_plan.md) / [文書一覧](README.md) / [全件カタログ](document_catalog.md)。
-
-最新のRDrop25M比較は4,420更新・正確25,000,000教師まで完了し、不採用で固定条件を閉鎖した。対照→候補は一貫性1→3/80、適切完結3→6/80、EOS11→19/80、反復53→49/80。BPBは0.9927168291→1.0279654060（3.5507%悪化）。全80件を理由付きで確認したCodex非blind評価で、独立人間blindではない。
-
-ユーザーの「上限はないので無限に使っていいです」により、ローカルGPUの累積利用時間に上限はない。旧180/4800秒による閉鎖判断は当時の契約として保全する。今後の各比較には実行前の有限な教師量・時間上限・評価保存枠・終了条件が必要。累積上限解除は今回の文書依頼を学習再開へ変えるものではない。
-
-## 読む順序
-
-1. [状態](autonomous_status.md)・[最新結果と文書更新148](148_latest_base_and_documentation.md)。
-2. [計画145](145_post_rejection_next_plan.md)・[ロードマップ](15_project_roadmap.md)・[チェックリスト](10_next_steps.md)。
-3. [評価契約](evaluation_protocol.md)・[読取り分離の当時の修理147](147_evaluation_boundary_repair.md)。
-4. [引継ぎ](windows_handoff.md)・[UI43](43_local_webui.md)・[保存126](126_model_archive.md)。
-5. [実験検索](base_experiment_lookup.md)・[総覧125](125_project_retrospective.md)・[固定台帳](retrospective/README.md)。
-6. [全件カタログ](document_catalog.md)。現行・日付付き/固定履歴・原文copyを区別する。
-
-旧142/146はそれぞれの日付の文書納品記録。143/144は文書長重みの凍結計画/結果、147は修理当時の実行記録として保全する。固定履歴の「次は/稼働中」は現在の実行許可や状態ではない。
-
-## 番号付きの計画・結果
-
-| 文書 | 主題 |
+| 文書 | 内容 |
 |---|---|
 | [01_project_goal.md](01_project_goal.md) | プロジェクト目的 |
 | [02_research_summary.md](02_research_summary.md) | 調査要約 |
@@ -148,31 +126,35 @@
 | [139_chat_lr_comparison_plan.md](139_chat_lr_comparison_plan.md) | 次介入1件・低学習率SFT比較と条件付き独立確認 |
 | [140_chat_lr_comparison_execution.md](140_chat_lr_comparison_execution.md) | 低学習率SFT比較・実行履歴 |
 | [141_chat_lr_comparison_results.md](141_chat_lr_comparison_results.md) | 低学習率SFT比較の結果（141） |
-| [142_documentation_refresh.md](142_documentation_refresh.md) | 全ドキュメントの最新化（142） |
 | [143_base_document_balance_plan.md](143_base_document_balance_plan.md) | Base再開: 文書長による損失配分の比較 |
 | [144_base_document_balance_results.md](144_base_document_balance_results.md) | 文書長による損失配分の比較結果 |
 | [145_post_rejection_next_plan.md](145_post_rejection_next_plan.md) | 不採用結果を踏まえた次の計画 |
-| [146_documentation_followup.md](146_documentation_followup.md) | 最新Base結果・目標の未達を踏まえた文書更新 |
 | [147_evaluation_boundary_repair.md](147_evaluation_boundary_repair.md) | Base再開: 評価入力の分離修理 |
-| [148_latest_base_and_documentation.md](148_latest_base_and_documentation.md) | 最新RDrop25Mの採否と全文書更新 |
-| [149_chat_sft_next_plan.md](149_chat_sft_next_plan.md) | 公開会話の幅を広げる次のSFT計画 |
-| [150_chat_natural_sft_results.md](150_chat_natural_sft_results.md) | 短文SFTの全2,190内容比較と5段階完了・候補不採用 |
-| [151_answer_learning_execution_plan.md](151_answer_learning_execution_plan.md) | 参考比較から新しい回答教材SFT・実会話までの新5段階 |
-| [152_answer_learning_diagnosis_results.md](152_answer_learning_diagnosis_results.md) | 実参考80比較・TRAIN120点検・32件学習診断の確定結果 |
-| [153_answer_curriculum_comparison.md](153_answer_curriculum_comparison.md) | 根拠付き対話と確認済み公開回答を補う新対照SFTの事前方針 |
-| [154_curriculum_resource_replan.md](154_curriculum_resource_replan.md) | 本学習前に発生した時間計画不足と別resource-v2の事前訂正 |
-| [155_answer_curriculum_execution_status.md](155_answer_curriculum_execution_status.md) | 新教材の実配合・GPU gate・主SFTの実行状況 |
-| [156_answer_curriculum_results.md](156_answer_curriculum_results.md) | 回答学習5段階の完了・全2,628内容比較・改善未実証の結果 |
-| [157_chat_quality_100_results.md](157_chat_quality_100_results.md) | 現行Chatの100ケース・全200応答の品質、正答、継続会話の失敗 |
-| [158_chat_quality_investigation_and_next_plan.md](158_chat_quality_investigation_and_next_plan.md) | 著作TRAIN全件調査と、原因の切り分けから次の対照SFTへ進む計画 |
-| [159_chat_recovery_diagnosis_results.md](159_chat_recovery_diagnosis_results.md) | 対照100ケース・履歴要因・Base通常文・samplingの全800応答診断 |
-| [160_chat_input_structure_sft_comparison.md](160_chat_input_structure_sft_comparison.md) | 正答・配合・教師量を保った入力配置変更の対照SFT事前方針 |
-| [161_chat_input_structure_execution_status.md](161_chat_input_structure_execution_status.md) | 新対照SFTの教材QA・全消費一致・実行契約と進捗 |
-| [162_chat_input_structure_sft_results.md](162_chat_input_structure_sft_results.md) | 入力配置の対照SFT・全3,466内容/36実ブラウザー・候補不採用の結果 |
-| [163_chat_next_capability_diagnosis_plan.md](163_chat_next_capability_diagnosis_plan.md) | 最新の二属性回答を少数教材で点検する次の課題・段階予算・分岐 |
-| [164_chat_two_attribute_diagnosis_execution.md](164_chat_two_attribute_diagnosis_execution.md) | 二属性64教材・未知64/実会話16・既存評価の実行条件 |
-| [165_chat_two_attribute_diagnosis_results.md](165_chat_two_attribute_diagnosis_results.md) | 全1,973応答の結果・未知値30/32と質問構造15/32・候補不採用と次の切り分け |
+| [149_chat_sft_next_plan.md](149_chat_sft_next_plan.md) | 次のSFT計画：実際の会話データの幅を広げる |
+| [150_chat_natural_sft_results.md](150_chat_natural_sft_results.md) | 会話教材を広げた短文SFTの比較結果 |
+| [151_answer_learning_execution_plan.md](151_answer_learning_execution_plan.md) | 回答学習を切り分ける次の5段階 |
+| [152_answer_learning_diagnosis_results.md](152_answer_learning_diagnosis_results.md) | 回答学習の切り分け：参考比較・教材点検・少量診断 |
+| [153_answer_curriculum_comparison.md](153_answer_curriculum_comparison.md) | 回答教材を補う1件の対照SFT：事前方針 |
+| [154_curriculum_resource_replan.md](154_curriculum_resource_replan.md) | 主SFT前の時間計画の訂正 |
+| [155_answer_curriculum_execution_status.md](155_answer_curriculum_execution_status.md) | 回答教材SFTの実行状況 |
+| [156_answer_curriculum_results.md](156_answer_curriculum_results.md) | 回答教材を補ったSFTの比較結果 |
+| [157_chat_quality_100_results.md](157_chat_quality_100_results.md) | 現行Chatの100ケース品質診断 |
+| [158_chat_quality_investigation_and_next_plan.md](158_chat_quality_investigation_and_next_plan.md) | 短い日本語チャットの失敗原因と次の改善計画 |
+| [159_chat_recovery_diagnosis_results.md](159_chat_recovery_diagnosis_results.md) | 対照モデルと履歴条件を変えたチャット診断 |
+| [160_chat_input_structure_sft_comparison.md](160_chat_input_structure_sft_comparison.md) | 情報配置を変える教材による新しい対照SFT |
+| [161_chat_input_structure_execution_status.md](161_chat_input_structure_execution_status.md) | 情報配置の対照SFTの実行状況 |
+| [162_chat_input_structure_sft_results.md](162_chat_input_structure_sft_results.md) | 情報配置を変えた対照SFTの結果 |
+| [163_chat_next_capability_diagnosis_plan.md](163_chat_next_capability_diagnosis_plan.md) | 今回の失敗から進める次の課題と計画 |
+| [164_chat_two_attribute_diagnosis_execution.md](164_chat_two_attribute_diagnosis_execution.md) | 二つの最新情報を答える能力の診断 |
+| [165_chat_two_attribute_diagnosis_results.md](165_chat_two_attribute_diagnosis_results.md) | 二つの情報を答える学習と転用の診断結果 |
+| [166_public_models_and_oss.md](166_public_models_and_oss.md) | 公開モデルとOSSコードの保存先 |
+| [167](167_current_state_and_documentation.md) | 全文書の更新・統合・削除の記録 |
 
-<!-- Historical incoming heading aliases. Original text is preserved in baseline snapshots. -->
+[現在の状態](autonomous_status.md) / [最新SFT結果](165_chat_two_attribute_diagnosis_results.md) / [公開モデル](166_public_models_and_oss.md) / [文書一覧](README.md)
+
+<!-- Preserve incoming links to earlier headings; previous text is in Git history. -->
 <a id="今回の文書と計画"></a>
+<a id="文書一覧"></a>
 <a id="現行仕様と履歴"></a>
+<a id="番号付きの計画結果"></a>
+<a id="読む順序"></a>
