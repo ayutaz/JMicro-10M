@@ -168,6 +168,8 @@
 | [161_chat_input_structure_execution_status.md](161_chat_input_structure_execution_status.md) | 新対照SFTの教材QA・全消費一致・実行契約と進捗 |
 | [162_chat_input_structure_sft_results.md](162_chat_input_structure_sft_results.md) | 入力配置の対照SFT・全3,466内容/36実ブラウザー・候補不採用の結果 |
 | [163_chat_next_capability_diagnosis_plan.md](163_chat_next_capability_diagnosis_plan.md) | 最新の二属性回答を少数教材で点検する次の課題・段階予算・分岐 |
+| [164_chat_two_attribute_diagnosis_execution.md](164_chat_two_attribute_diagnosis_execution.md) | 二属性64教材・未知64/実会話16・既存評価の実行条件 |
+| [165_chat_two_attribute_diagnosis_results.md](165_chat_two_attribute_diagnosis_results.md) | 全1,973応答の結果・未知値30/32と質問構造15/32・候補不採用と次の切り分け |
 
 <!-- Historical incoming heading aliases. Original text is preserved in baseline snapshots. -->
 <a id="今回の文書と計画"></a>

@@ -1,5 +1,7 @@
 # JMicro-10M
 
+2026-10-18最新結果: [二つの情報を答える学習の5工程を完了](docs/165_chat_two_attribute_diagnosis_results.md)。64教材は全て学習でき、未知の値30/32問に正答しましたが、質問構造の変更15/32問、実会話最終9/16件で主比較への条件に届きませんでした。既存7組では全て内容成立が減り、公開100ケースも直前の19→3件のため今回の候補は不採用です。[全1,973応答と理由](reports/phase7/chat-two-attribute-20261018/all1973_responses.csv) / [次の切り分け方](docs/165_chat_two_attribute_diagnosis_results.md#次に分ける課題)。以下は各時点の経過です。
+
 2026-10-18最終結果: [入力配置の対照SFTと全4工程を完了](docs/162_chat_input_structure_sft_results.md)。全3,466主応答・40途中・36実ブラウザーを確認しました。新80問は内容19→12/80、最終文脈7→6/24、公開100ケースの総合成立22→19/100で、新候補は品質不採用です。[次の課題と64件の能力診断計画163](docs/163_chat_next_capability_diagnosis_plan.md) / [全回答CSV](reports/phase7/chat-recovery-20261018/input-structure-main/all3466_responses.csv)。[新候補7866](http://127.0.0.1:7866) / [新対照7867](http://127.0.0.1:7867) は研究用・未採用、既定32トークンです。以下は各時点の経過です。
 
 2026-10-18新対照SFT: [実行状況161](docs/161_chat_input_structure_execution_status.md)。対照は100万教師で完了し全状態・全履歴を監査、実ブラウザー18応答も確認しました。訂正で同文6連続が残り、候補の学習と全3,466応答の最終比較は継続中です。試行全体と品質採用は未完了です。

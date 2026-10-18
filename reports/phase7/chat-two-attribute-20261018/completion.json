@@ -1,0 +1,80 @@
+{
+  "created_at": "2026-10-18T02:41:46.888876Z",
+  "config": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/configs/phase7/chat-two-attribute-20261018.json",
+    "sha256": "32804bb9d68fea46c2df67eec4bdb52ef0c904ec39e3291b413d4dc76c2f5d2b"
+  },
+  "source": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/scripts/complete_two_attribute_diagnosis.py",
+    "sha256": "e8ab8de9040f474f15d9a21261cb7a19e02c1ee9f24c3948ed006adc6307dca7"
+  },
+  "status": "all_five_steps_completed_candidate_not_adopted",
+  "requirements": {
+    "1_TRAIN64_authored_and_all_verified": {
+      "passed": true,
+      "manifest": {
+        "path": "/home/aihub_ubuntu/jmicro-data/phase7/chat-two-attribute-20261018/manifest.json",
+        "sha256": "f0bb6b402a92caf38427a095eacb6bb324ff807ba5af63da30bf961fc2224198"
+      },
+      "review": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-two-attribute-20261018/TRAIN_review.json",
+        "sha256": "353c4d2ee09b95237575b940b8433dee5b5674996650a0309eed874d74a0d92d"
+      }
+    },
+    "2_small_SFT_original_Base_fresh_Adam": {
+      "passed": true,
+      "gate": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-two-attribute-20261018/native_gate.json",
+        "sha256": "9a17e432ebe0a33fb842b7af06144b4c7406395c410073bb81be17aac40b0452"
+      },
+      "audit": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-two-attribute-20261018/learning_audit.json",
+        "sha256": "315771e27c00762f05a93078f45234dc1b7a0e57c52b38594626fa0c436b2822"
+      }
+    },
+    "3_unseen64_and_actual_own16_all240": {
+      "passed": true,
+      "notes": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-two-attribute-20261018/diagnosis/notes.json",
+        "sha256": "7fa812e4f132f64ffc8e3423f50993561bc55447460d1a77c98ecf2402f13f3f"
+      }
+    },
+    "4_result_based_branch_and_closed_condition": {
+      "passed": true,
+      "decision": "investigate_transfer_before_main_SFT",
+      "evidence": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-two-attribute-20261018/final_analysis.json",
+        "sha256": "4918fafb8dae59986a21605311073bc9548e5bc1d4b9bb8d1cee7628defad12e"
+      },
+      "main_SFT_started": false
+    },
+    "5_all_existing7_and_public100_regressions": {
+      "passed": true,
+      "responses": 1733,
+      "analysis": {
+        "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-two-attribute-20261018/final_analysis.json",
+        "sha256": "4918fafb8dae59986a21605311073bc9548e5bc1d4b9bb8d1cee7628defad12e"
+      }
+    }
+  },
+  "all1973_reviews": true,
+  "total_GPU_stage_seconds": 748.7386209618999,
+  "previous_GPU_ledger": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-recovery-20261018/input-structure-main/GPU_ledger.json",
+    "sha256": "e2f02650164cf369e8df6633b317dcc08cf13448d5a5ded2d0a6a6c39b661ca1"
+  },
+  "scientific_process_terminal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-two-attribute-20261018/terminal_observation.json",
+    "sha256": "98cdcf9b5ab5fd3071e17ef32c8b34ad6d8a3d8dbd1d0d349b6de9f5a3dca937"
+  },
+  "windows_worker_terminal": {
+    "path": "/home/aihub_ubuntu/src/japanese-tiny-llm-10m/reports/phase7/chat-two-attribute-20261018/windows_terminal_observation.json",
+    "sha256": "905b08f9a6336bbaf326491aebabab3b04528ac71ab8bf101e15039f88a2f3e9"
+  },
+  "original_UI_restored": true,
+  "Chat_adopted": false,
+  "Base_adopted": false,
+  "new_TEST": false,
+  "stable_chat_model_completed": false,
+  "formal_Base_and_independent_whole_pipeline_completed": false
+}
