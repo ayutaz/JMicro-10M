@@ -6,9 +6,15 @@
 |---|---|
 | [Base研究保存版](https://huggingface.co/japanese-data-analyze/JMicro-10M-research-archive) | web-10b / staged-10p6b / teacher-decay-2b。以前のmanual gateを解除 |
 | [最新SFT研究モデル](https://huggingface.co/japanese-data-analyze/JMicro-10M-chat-research-20261018) | 二情報回答の診断で得た最終重み、Tokenizer、native実装、CPU読み込みコード、評価結果 |
-| [GitHub](https://github.com/ayutaz/japanese-tiny-llm-10m) | ソースコード・学習条件・結果・研究記録。READMEから入手・実行手順を確認できる |
+| [GitHub](https://github.com/ayutaz/JMicro-10M) | ソースコード・学習条件・結果・研究記録。READMEから入手・実行手順を確認できる |
 
 最新SFTは64教材の全文再現を達成したが、質問構造の変更15/32、実会話最終9/16、固定100ケースのタスク成立3/100だった。[全結果165](165_chat_two_attribute_diagnosis_results.md)の不採用判断を保持している。公開は品質採用や学習の再開を意味しない。
+
+## 名称の統一
+
+2026-10-18、GitHubのリポジトリ名をモデル名と同じ`JMicro-10M`へ変更した。正規URLは`https://github.com/ayutaz/JMicro-10M`。READMEのclone先・移動先、現行文書と公開案内のリンクを新しいURLへ揃えた。Hugging FaceのモデルIDは既にJMicro-10Mを使用している。
+
+既存の実行環境のディレクトリ名、固定した実験設定・結果・source snapshot・過去の公開記録は当時の状態を保つ。旧名を含む履歴やデータセットIDを、今回のGitHub改名だけで書き換えない。
 
 ## 保存と検証
 

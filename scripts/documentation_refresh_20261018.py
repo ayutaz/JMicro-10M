@@ -137,7 +137,7 @@ def page(name,title,body,previous=True):
     text=f'# {title}\n\n更新: 2026-10-18 JST。\n\n{body.strip()}\n\n{navigation(name)}\n'
     if previous:
         revision=read_baseline()['initial_commit']
-        text+=f'\n前版の設計・調査・運用記録は[更新前の本文](https://github.com/ayutaz/japanese-tiny-llm-10m/blob/{revision}/{name})に保存しています。過去の「最新」「実行中」はその記載時点の状態です。\n'
+        text+=f'\n前版の設計・調査・運用記録は[更新前の本文](https://github.com/ayutaz/JMicro-10M/blob/{revision}/{name})に保存しています。過去の「最新」「実行中」はその記載時点の状態です。\n'
     write(name,text)
 
 
@@ -174,7 +174,7 @@ def catalog():
         pieces+=['',f'## {title}','','| 文書 | 内容と現在の扱い |','|---|---|']
         for row in sorted(rows,key=lambda r:r['path']):
             if row['category']==category:
-                target = (f"https://github.com/ayutaz/japanese-tiny-llm-10m/blob/{b['initial_commit']}/{row['path']}"
+                target = (f"https://github.com/ayutaz/JMicro-10M/blob/{b['initial_commit']}/{row['path']}"
                           if row['path'] in REMOVED else href(name,row['path']))
                 handling = '更新記録167へ統合・現行treeから削除。リンク先は保存した原版' if row['path'] in REMOVED else context(row['path'])
                 pieces.append(f"| [{row['path']}]({target}) | {row['title'].replace('|','/')} — {handling} |")

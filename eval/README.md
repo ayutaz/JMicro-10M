@@ -12,7 +12,7 @@ TRAIN/DEV/TESTのfamily分離、専用DEV artifact、manifest、実履歴とraw 
 
 [現在の状態](../docs/autonomous_status.md) / [最新SFT結果](../docs/165_chat_two_attribute_diagnosis_results.md) / [公開モデル](../docs/166_public_models_and_oss.md) / [文書一覧](../docs/README.md)
 
-前版の設計・調査・運用記録は[更新前の本文](https://github.com/ayutaz/japanese-tiny-llm-10m/blob/ed91c002cdfe52c879e275241c58436bfef3e394/eval/README.md)に保存しています。過去の「最新」「実行中」はその記載時点の状態です。
+前版の設計・調査・運用記録は[更新前の本文](https://github.com/ayutaz/JMicro-10M/blob/ed91c002cdfe52c879e275241c58436bfef3e394/eval/README.md)に保存しています。過去の「最新」「実行中」はその記載時点の状態です。
 
 <!-- Preserve incoming links to earlier headings; previous text is in Git history. -->
 <a id="v1固定入力の契約"></a>

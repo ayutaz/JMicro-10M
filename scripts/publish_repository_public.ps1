@@ -23,10 +23,10 @@ $apiHeaders = @{
     'User-Agent' = 'JMicro-publication'
     'X-GitHub-Api-Version' = '2022-11-28'
 }
-$endpoint = 'https://api.github.com/repos/ayutaz/japanese-tiny-llm-10m'
+$endpoint = 'https://api.github.com/repos/ayutaz/JMicro-10M'
 try {
     $before = Invoke-RestMethod -Uri $endpoint -Headers $apiHeaders
-    if ($before.full_name -ne 'ayutaz/japanese-tiny-llm-10m') { throw 'Unexpected repository' }
+    if ($before.full_name -ne 'ayutaz/JMicro-10M') { throw 'Unexpected repository' }
     if (-not $Publish) {
         $before | Select-Object full_name, private, visibility, permissions, license
         return
@@ -43,7 +43,7 @@ try {
     $head = (git -C $projectRoot rev-parse HEAD).Trim()
     if ($LASTEXITCODE -ne 0) { throw 'Git HEAD unavailable' }
     $remoteOutput = git -c credential.helper= -c http.extraHeader= ls-remote `
-        https://github.com/ayutaz/japanese-tiny-llm-10m.git refs/heads/main
+        https://github.com/ayutaz/JMicro-10M.git refs/heads/main
     if ($LASTEXITCODE -ne 0 -or -not $remoteOutput) {
         throw 'Anonymous Git endpoint is unavailable; public API state alone is insufficient'
     }

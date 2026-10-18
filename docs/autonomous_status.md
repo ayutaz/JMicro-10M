@@ -2,7 +2,7 @@
 
 更新: 2026-10-18 JST。
 
-最新のSFT試行は完了しましたが、一般会話の品質が低下したため不採用です。Base 3系列と最新SFTの重みは申請・ログイン不要で公開し、GitHubのコードはApache-2.0にしました。現在の作業は文書の更新・整理とpushです。新しい学習や評価は開始していません。
+最新のSFT試行は完了しましたが、一般会話の品質が低下したため不採用です。Base 3系列と最新SFTの重みは申請・ログイン不要で公開し、GitHubのコードはApache-2.0にしました。文書の更新・整理は完了し、現在の作業はJMicro-10Mへの名称統一と関連リンクの更新です。新しい学習や評価は開始していません。
 
 ## 最新SFTの結果
 
@@ -26,7 +26,7 @@
 
 [現在の状態](autonomous_status.md) / [最新SFT結果](165_chat_two_attribute_diagnosis_results.md) / [公開モデル](166_public_models_and_oss.md) / [文書一覧](README.md)
 
-前版の設計・調査・運用記録は[更新前の本文](https://github.com/ayutaz/japanese-tiny-llm-10m/blob/ed91c002cdfe52c879e275241c58436bfef3e394/docs/autonomous_status.md)に保存しています。過去の「最新」「実行中」はその記載時点の状態です。
+前版の設計・調査・運用記録は[更新前の本文](https://github.com/ayutaz/JMicro-10M/blob/ed91c002cdfe52c879e275241c58436bfef3e394/docs/autonomous_status.md)に保存しています。過去の「最新」「実行中」はその記載時点の状態です。
 
 <!-- Preserve incoming links to earlier headings; previous text is in Git history. -->
 <a id="ui保存先履歴"></a>

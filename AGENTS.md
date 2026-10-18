@@ -2,13 +2,13 @@
 
 ## Current scope 2026-10-18
 
-The active user goal is to update ALL documentation, consolidate overlapping explanations, delete unnecessary documents, and push the verified changes. GitHub and all four published models are already public/ungated. Original code is Apache-2.0; model weights, Tokenizer artifacts, external datasets and third-party code retain their separate conditions.
+The active user goal is to unify the GitHub repository and model name as JMicro-10M, update current links and the article, and publish the verified changes. The preceding documentation refresh is complete. GitHub and all four published models are already public/ungated. Original code is Apache-2.0; model weights, Tokenizer artifacts, external datasets and third-party code retain their separate conditions.
 
 Latest diagnostic SFT: 483 updates/250003 teachers; TRAIN64 exact, unseen values30/32, structure15/32 (two fields0/16), own final9/16; public100 task3/100. All1973 reviewed. Five-step execution COMPLETE; candidate REJECTED. Formal Base/Chat adoption, independent whole pipeline, required fullDEV/all440/new sealedTEST remain unachieved. This documentation goal does not restart any research/training/evaluation or switch the UI model.
 
 Read [current state](docs/autonomous_status.md), [remaining work](docs/10_next_steps.md), [latest fixed results](docs/165_chat_two_attribute_diagnosis_results.md), [publication](docs/166_public_models_and_oss.md), and [documentation catalog](docs/document_catalog.md). Preserve frozen scientific sources/configs/results/weights, dataset boundaries, negative decisions and all historical costs. Dated active/live/next statements are historical, not current authorization. Do not reopen a closed job or use a small memorization result as Base/Chat qualification.
 
-The full preceding instructions and progress chronology are preserved at [the pre-refresh Git revision](https://github.com/ayutaz/japanese-tiny-llm-10m/blob/ed91c002cdfe52c879e275241c58436bfef3e394/AGENTS.md). Documentation-maintenance summaries142/146/148 are consolidated into167 and removed from the current tree; original scientific records and their source snapshots remain intact.
+The full preceding instructions and progress chronology are preserved at [the pre-refresh Git revision](https://github.com/ayutaz/JMicro-10M/blob/ed91c002cdfe52c879e275241c58436bfef3e394/AGENTS.md). Documentation-maintenance summaries142/146/148 are consolidated into167 and removed from the current tree; original scientific records and their source snapshots remain intact.
 
 ## Fixed model-size requirement — user clarification, 2026-10-08 JST
 
