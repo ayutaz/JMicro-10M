@@ -1,5 +1,7 @@
 # 研究モデルのHugging Face保存
 
+2026-10-18公開設定更新: ユーザーの指示でBase 3系列のmanual gateを解除し、申請・ログイン不要のpublicへ変更した。[最新SFTも公開](166_public_models_and_oss.md)。以下の手動承認・保存契約は2026-10-09時点の履歴であり、現在の入手方法は[README](../README.md)を参照する。
+
 更新: 2026-10-17 JST。現在の依頼は「ドキュメントをすべて最新にして」。元の「4まで」の目標は未達のままユーザーが解除した。今回の作業範囲は文書更新・棚卸し・保存検証・ローカルGitコミット。Base/Chatは未完成・未採用。
 
 [最新結果・更新記録148](148_latest_base_and_documentation.md) / [現在の計画145](145_post_rejection_next_plan.md) / [文書一覧](README.md) / [全件カタログ](document_catalog.md)。

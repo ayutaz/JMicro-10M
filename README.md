@@ -1,80 +1,91 @@
 # JMicro-10M
 
-2026-10-18最新結果: [二つの情報を答える学習の5工程を完了](docs/165_chat_two_attribute_diagnosis_results.md)。64教材は全て学習でき、未知の値30/32問に正答しましたが、質問構造の変更15/32問、実会話最終9/16件で主比較への条件に届きませんでした。既存7組では全て内容成立が減り、公開100ケースも直前の19→3件のため今回の候補は不採用です。[全1,973応答と理由](reports/phase7/chat-two-attribute-20261018/all1973_responses.csv) / [次の切り分け方](docs/165_chat_two_attribute_diagnosis_results.md#次に分ける課題)。以下は各時点の経過です。
+約1,000万パラメータの日本語言語モデルを、事前学習からチャット向けの追加学習まで調べた研究プロジェクトです。モデル本体、Tokenizer、学習・推論コード、評価結果を公開しています。
 
-2026-10-18最終結果: [入力配置の対照SFTと全4工程を完了](docs/162_chat_input_structure_sft_results.md)。全3,466主応答・40途中・36実ブラウザーを確認しました。新80問は内容19→12/80、最終文脈7→6/24、公開100ケースの総合成立22→19/100で、新候補は品質不採用です。[次の課題と64件の能力診断計画163](docs/163_chat_next_capability_diagnosis_plan.md) / [全回答CSV](reports/phase7/chat-recovery-20261018/input-structure-main/all3466_responses.csv)。[新候補7866](http://127.0.0.1:7866) / [新対照7867](http://127.0.0.1:7867) は研究用・未採用、既定32トークンです。以下は各時点の経過です。
+**現在のモデルは研究用です。短い定型課題は学習できますが、一般会話・訂正・継続会話の品質は実用水準に達していません。** 成功した例だけでなく、改善しなかった実験と実際の回答も残しています。
 
-2026-10-18新対照SFT: [実行状況161](docs/161_chat_input_structure_execution_status.md)。対照は100万教師で完了し全状態・全履歴を監査、実ブラウザー18応答も確認しました。訂正で同文6連続が残り、候補の学習と全3,466応答の最終比較は継続中です。試行全体と品質採用は未完了です。
+## モデルをダウンロードする
 
-2026-10-18実行中: [切り分け結果159](docs/159_chat_recovery_diagnosis_results.md)。新規800応答を全件確認しました。同100ケースの総合成立は対照12→現行22/100ですが、二情報の回答や訂正・継続会話は未解決です。「4まで」の目標に沿って、新しい対照SFTと未知入力・実会話の評価へ進めます。学習・最終判定は未完了です。
+Hugging Faceで公開しています。アクセス申請・ログインは不要です。GitHubのcloneにモデルの重みや学習データは含まれません。
 
-2026-10-18調査・次計画: [失敗原因と改善計画158](docs/158_chat_quality_investigation_and_next_plan.md)。追加著作TRAIN全2,048件を照合し、固定した提示順・集合時刻だけの訂正・加算だけの計算・32種類の転記対象を確認しました。次は対照モデルの同100ケース評価と、履歴・質問位置・情報数を分ける診断を先行します。新しい生成・学習は未開始、候補は未採用です。
+| 保存先 | 内容 |
+|---|---|
+| [Baseモデルの研究保存版](https://huggingface.co/japanese-data-analyze/JMicro-10M-research-archive) | 元の10B入力token、段階学習の約10.6B入力token、2B教師tokenの3系列 |
+| [最新SFT研究モデル](https://huggingface.co/japanese-data-analyze/JMicro-10M-chat-research-20261018) | 64件の教材で追加学習した最終重み。評価・読み込みコード付き。一般会話の品質不採用 |
 
-2026-10-17品質診断: 現行Chatを[100ケース・200応答で評価](docs/157_chat_quality_100_results.md)。最終回答の総合成立22/100、簡単な計算0/10、6応答目の記憶・訂正0/20。同じ返答が3回以上続く会話は11/20でした。[全回答CSV](reports/phase7/chat-quality-100-20261017/responses.csv)。今回の固定診断の結果で、一般的な利用全体の精度推定ではありません。
+10Mはパラメータ数、10Bや2Bは各系列の学習量です。どちらの保存先もnative PyTorch形式で、Hugging Face Transformersの`AutoModelForCausalLM`へ直接読み込む形式ではありません。
 
-2026-10-17追試: ユーザー報告の「返答が同じ文へ固まる」を7864の実ブラウザー6応答会話で再現しました。入力と履歴は正しく送られており、モデル自身の反復です。短い会話の確認だけでは継続会話の安定性を確認できていませんでした。会話品質は未解決・未採用です。[再現結果](docs/156_answer_curriculum_results.md#後続の実ブラウザー確認同文への固定を再現)。画面は実際のモデル名を表示するよう修正しました。
+## 最新モデルをCPUで試す
 
-2026-10-17最終結果: [回答学習の5段階を完了](docs/156_answer_curriculum_results.md)。参考比較・教材点検・少数診断・新対照SFT・全2,628応答と実UI会話まで確認しました。新80問の内容は11→17/80ですが差の95%CIは−3.75〜+17.50ポイント、元会話は18→16/80で、今回の候補は改善未実証・品質不採用です。[候補を試す7864](http://127.0.0.1:7864) / [対照7865](http://127.0.0.1:7865)。返信は既定32トークン、16/32/64選択。以下は各時点の経過です。
+[Git](https://git-scm.com/)と[uv](https://docs.astral.sh/uv/)を用意して実行します。学習やGPUは不要です。
 
-2026-10-17 12:16 UTC: 両SFTと全2,628応答の生成が完了し、元Base画面も復帰しました。内容採点は876件まで完了、残り1,752件を確認中です。新80問は対照11→候補17/80ですが、正式品質の改善・採用は未判定です。[候補7864](http://127.0.0.1:7864) / [対照7865](http://127.0.0.1:7865) / [詳細155](docs/155_answer_curriculum_execution_status.md)。
+```sh
+git clone https://github.com/ayutaz/japanese-tiny-llm-10m.git
+cd japanese-tiny-llm-10m
+uv python install 3.12.7
+uv sync --frozen --python 3.12.7 --extra ml --extra hub
+uv run --frozen --extra hub hf download japanese-data-analyze/JMicro-10M-chat-research-20261018 --local-dir artifacts/latest-chat
+uv run --frozen --extra ml --extra hub python artifacts/latest-chat/inspect_model.py --prompt 'こんにちは。' --max-new-tokens 32
+```
 
-2026-10-17 12:12 UTC: 新しい対照・候補のSFTと保存状態照合、各10応答の実チャット確認を完了しました。[候補Chat7864](http://127.0.0.1:7864) / [対照7865](http://127.0.0.1:7865)。全2,628応答の内容比較は進行中で、正式品質の改善・採用は未判定です。[実行状況155](docs/155_answer_curriculum_execution_status.md)。以下は以前の経過です。
+本文と停止理由をJSONで表示します。既定はgreedy・最大32tokenです。`--prompt`で質問を変更できます。短くしても、内容の正しさや会話の安定性は保証されません。
 
-2026-10-17 11:32 UTC: [回答教材SFT155](docs/155_answer_curriculum_execution_status.md)は40技術更新と全state保存再開に合格し、新対照モデルの本学習を開始しました。旧時間枠の不足は[154](docs/154_curriculum_resource_replan.md)に失敗と明示訂正を保存しています。新しい5段階goalはactiveで、候補学習・全2,628内容比較・新UI会話は未完了。以下の「準備中」は以前の経過です。
+専用Tokenizerは改行や特殊文字を保つための処理を含みます。モデルと一緒に保存した`jmicro.tokenizer.Tokenizer`を使ってください。ブラウザー画面や従来のWSL環境で試す場合は[ローカルWebUI](docs/43_local_webui.md)と[環境の引継ぎ](docs/windows_handoff.md)を参照してください。
 
-2026-10-17現在: 新しい[回答学習計画151](docs/151_answer_learning_execution_plan.md)は段階1〜3を完了、改善教材のSFTと未知入力・実会話確認（4/5）は実行準備中です。[診断結果152](docs/152_answer_learning_diagnosis_results.md) / [次比較153](docs/153_answer_curriculum_comparison.md)。32件のTRAIN応答は再現できましたが、未知入力の改善や正式採用はまだ示していません。以下の旧計画149・最初のSFTの記述は各時点の履歴です。
+## どこまでできたか
 
-更新: 2026-10-17 JST。文書更新は645b3d09で完了。その後、ユーザーの指示でチャットSFT・動作確認へ方針を変更しました。Baseの事前学習と最初のチャットSFTは終了済みで、現在は学習済みChatを実際に試せます。正式なBase/Chat品質基準は未達です。
+2026年10月18日の最新SFTでは、元Baseから64件の教材を250,003 Assistant教師token、483更新で学習しました。
 
-**[Chatを試す：http://127.0.0.1:7861](http://127.0.0.1:7861)** — 元10B BaseへRealPersonaChatで3周SFTした10Mモデル。短い返答と履歴を試せます。今回の新たな再学習はなく、既存の学習済みモデルをCPU FP32で利用できるローカル画面です。[操作と実例](docs/43_local_webui.md)。
+| 評価 | 結果 |
+|---|---:|
+| 学習教材の回答を全文再現 | 64/64 |
+| 同じ質問形式で未知の値に回答 | 30/32 |
+| 質問表現・配置を変えた回答 | 15/32（二項目回答は0/16） |
+| 自分の過去の返答を含む会話の最終回答 | 9/16 |
+| 固定した100ケースでのタスク成立 | 3/100（直前の別SFTモデルは19/100） |
 
-[次のSFT計画149](docs/149_chat_sft_next_plan.md) / [Baseの残課題145](docs/145_post_rejection_next_plan.md) / [文書一覧](docs/README.md) / [全件カタログ](docs/document_catalog.md)。
+限定課題の学習は成立しましたが、質問の言い換えへの転用が弱く、既存7組の評価でも内容成立が減りました。今回の候補は不採用です。同じ返答への固定、空応答、過去の情報を訂正できない問題が残っています。
 
-約1,000万パラメータで自然な日本語の続きを生成し、その後に短い会話を行うモデルを目指す研究プロジェクトです。モデル・Tokenizer・学習評価基盤をスクラッチで構築しています。
+上の結果はBF16/math・greedy最大32tokenでの固定DEV評価です。全1,973応答をCodexで非blind判定しており、独立した人手評価や一般利用全体の精度ではありません。旧モデルとの比較は教材と学習量が異なり、単独要因の因果実験ではありません。CPU FP32の試用と評価時の数値条件も異なります。
 
-最新のRDrop25M比較は4,420更新・正確25,000,000教師まで完了し、不採用で固定条件を閉鎖した。対照→候補は一貫性1→3/80、適切完結3→6/80、EOS11→19/80、反復53→49/80。BPBは0.9927168291→1.0279654060（3.5507%悪化）。全80件を理由付きで確認したCodex非blind評価で、独立人間blindではない。
+- [最新の学習条件と評価結果](docs/165_chat_two_attribute_diagnosis_results.md)
+- [全1,973応答と判定理由のCSV](reports/phase7/chat-two-attribute-20261018/all1973_responses.csv)
+- [一つ前のSFT比較と全3,466応答](docs/162_chat_input_structure_sft_results.md)
+- [Base学習からの研究総覧](docs/125_project_retrospective.md)
 
-[RDrop完了記録](reports/phase6/rdrop-science-20261016/completion.json) / [原採点・全guard](reports/phase6/rdrop-science-20261016/review.json) / [GPU上限解除記録](reports/phase6/rdrop-science-preparation-20261016/authorization.json)。
+## モデルの構成
 
-| DEV80指標 | 同25M対照 | RDrop候補 | 元絶対条件 |
-|---|---:|---:|---:|
-| 文法成立 | 44 | 47 | ≥56 |
-| 一貫性成立 | 1 | 3 | ≥27 |
-| 適切な完結 | 3 | 6 | ≥27 |
-| EOS停止 | 11 | 19 | ≥37 |
-| 規定反復 | 53 | 49 | ≤18 |
+| 項目 | 値 |
+|---|---|
+| パラメータ数 | 10,001,152 |
+| Transformer層数 | 13 |
+| hidden / FFN | 256 / 640 |
+| Attention | GQA、4 query heads / 2 key-value heads |
+| 語彙数 / context | 4,096 / 1,024 token |
+| 実装 | PyTorch、専用SentencePiece Tokenizer |
+| 元の学習環境 | WSL2 / RTX 4090 / Python 3.12.7 / uv |
 
-意味の循環や因果・数量の誤りは残っています。EOS/反復flagだけの改善を能力完成とせず、この固定recipeは不採用です。10Mの限界や単独原因が証明されたわけではありません。
+## コードと研究記録を読む
 
-有資格のBase recipe、親の事前学習からやり直す真にfreshな独立学習seed43、実全文DEV、標準400生成＋長文40の全内容、新しい封印TEST、採用・復旧確認は未達。次の比較は未選定・未凍結。終了した条件の再起動や閾値緩和で進めない。
+| 場所 | 内容 |
+|---|---|
+| [src/jmicro](src/jmicro) | モデル、Tokenizer、学習、推論、評価の実装 |
+| [scripts](scripts)・[configs](configs) | 各実験の実行コードと条件 |
+| [tests](tests) | 数式・保存再開・データ境界などの検証 |
+| [docs](docs/README.md) | 実験の方針・結果・運用手順 |
+| [reports](reports/README.md) | 保存した評価・監査記録。Git管理対象の記録を収録 |
 
-ユーザーの「上限はないので無限に使っていいです」により、ローカルGPUの累積利用時間に上限はない。旧180/4800秒による閉鎖判断は当時の契約として保全する。今後の各比較には実行前の有限な教師量・時間上限・評価保存枠・終了条件が必要。今回のチャット動作確認は、新しいユーザー指示に基づく。
+過去の文書にある「実行中」「次に行う」は、その文書の日付時点の記録です。実験完了と品質改善を区別し、正式なBase品質認定・独立した全工程の再現・新しい封印TESTによる最終評価は未達として残しています。10Mモデル全般の限界を証明した結果ではありません。
 
-## 現在の作業と次の計画
+コードを変更する場合は、[AGENTS.md](AGENTS.md)の運用ルールと関連する実験条件を確認してください。終了した実験の設定・結果を上書きせず、改善案は別の比較として残します。
 
-現在の依頼は[新計画151](docs/151_answer_learning_execution_plan.md)の5までの実行です。参考比較・教材点検・32件の学習診断は完了。公開教材の個別点検と著作した根拠付き対話を組み合わせ、[比較153](docs/153_answer_curriculum_comparison.md)の配合をCPUで計測しています。新しい主SFT、全2,628応答の比較、新UI会話は未実施です。前回149の試行は[結果150](docs/150_chat_natural_sft_results.md)として完了し、改善未実証で閉鎖済みです。
+## ライセンス
 
-直前のChat実動作確認では、最初のSFTモデルで5会話10応答を確認し、全10応答がEOTで自然停止しました。挨拶・食べ物の好みなどへの返答は成立しますが、名前の記憶や入力の復唱に失敗が残ります。元の正式品質基準を変更したり、短い動作確認を正式採用へ読み替えたりはしていません。[動作確認記録](reports/phase7/chat-demo-20261017/notes.json)。Baseの残課題は[計画145](docs/145_post_rejection_next_plan.md)に保全しています。
+プロジェクトのコードは[Apache License 2.0](LICENSE)で公開しています。第三者コードの帰属と既存ライセンスは[NOTICE](NOTICE)および[src/jmicro/_vendor](src/jmicro/_vendor)を参照してください。
 
-## 基盤と履歴
+モデル重み・Tokenizer・外部データには、このコードライセンスを一括して適用していません。各保存先の説明と元データの条件を確認してください。リポジトリのpublic設定と、各成果物の利用許諾は別です。
 
-native10,001,152 parameters、13層/hidden256/FFN640/GQA4Q2KV、Tokenizer4096、context1024です。モデル/Tokenizer、WSLでの実学習、全state保存再開、各種評価は実装済みです。
-
-Baseの文書長重み、進行長補助、ScaleGrad、今回RDrop、およびSFT141までの固定比較は不採用です。[総覧125](docs/125_project_retrospective.md)・[実験検索](docs/base_experiment_lookup.md)から原記録をたどれます。
-
-## 保存したモデル
-
-2026-10-09の[Hugging Face研究保存版](https://huggingface.co/japanese-data-analyze/JMicro-10M-research-archive)は、web-10b/staged-10p6b/teacher-decay-2bの当時の3系列です。ダウンロードは手動承認、dataset/samplerは含まず、後続候補の公開ではありません。[保存契約126](docs/126_model_archive.md)。10B/2Bは各系列の学習量で、パラメータ数は10Mです。
-
-## ローカルで試す
-
-元10B Base用の[WebUI](http://127.0.0.1:7860)を使います。[操作43](docs/43_local_webui.md)と[Windows/WSL引継ぎ](docs/windows_handoff.md)を参照してください。Git cloneに重み・大容量dataは含まれません。
-
-## 開発環境
-
-WindowsがGit正本、WSL2/Linux disk/RTX4090が実行環境。Python3.12.7をuvで管理し、全Pythonをuv run --frozenから実行します。欠損時の復元は[引継ぎ](docs/windows_handoff.md)、運用ルールは[AGENTS.md](AGENTS.md)。
-
-<!-- Historical incoming heading aliases. Original text is preserved in baseline snapshots. -->
+<!-- Preserve links from historical documents. -->
 <a id="前回のchat比較141"></a>
 <a id="成立した基盤と残る課題"></a>
 <a id="最新baseの結果"></a>

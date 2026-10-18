@@ -1,5 +1,7 @@
 # 文書一覧
 
+2026-10-18現在: [公開モデルとOSSコード166](166_public_models_and_oss.md) / [最新SFT結果165](165_chat_two_attribute_diagnosis_results.md) / [一つ前の比較162](162_chat_input_structure_sft_results.md)。最新の5工程は完了し候補は品質不採用。以下の「準備中」「実行中」は各日付時点の経過である。
+
 2026-10-18主SFT準備: [事前方針160](160_chat_input_structure_sft_comparison.md) / [実行状況161](161_chat_input_structure_execution_status.md)。同じ正答・教師列の入力配置比較、両腕CPU全1M一致、新DEV・全3466応答契約と12CPU workflow checksを準備済み。GPU学習・最終判定は未完了。
 
 2026-10-18実行中: [159：対照モデルと履歴条件の診断結果](159_chat_recovery_diagnosis_results.md)。全800新規応答と尤度640候補を確認。次は根拠ある入力構造の変更を一つ選び、新対照SFTと未知入力・実会話の判定まで実行する。新goalはACTIVE。
