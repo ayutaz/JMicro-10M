@@ -77,12 +77,12 @@
 | [docs/139_chat_lr_comparison_plan.md](139_chat_lr_comparison_plan.md) | 次介入1件・低学習率SFT比較と条件付き独立確認 — 日付付きの計画・結果・source snapshot。現在の指示ではない |
 | [docs/140_chat_lr_comparison_execution.md](140_chat_lr_comparison_execution.md) | 低学習率SFT比較・実行履歴 — 日付付きの計画・結果・source snapshot。現在の指示ではない |
 | [docs/141_chat_lr_comparison_results.md](141_chat_lr_comparison_results.md) | 低学習率SFT比較の結果（141） — 日付付きの計画・結果・source snapshot。現在の指示ではない |
-| [docs/142_documentation_refresh.md](https://github.com/ayutaz/japanese-tiny-llm-10m/blob/ed91c002cdfe52c879e275241c58436bfef3e394/docs/142_documentation_refresh.md) | 全ドキュメントの最新化（142） — 更新記録167へ統合・現行treeから削除。リンク先は保存した原版 |
+| [docs/142_documentation_refresh.md](https://github.com/ayutaz/JMicro-10M/blob/ed91c002cdfe52c879e275241c58436bfef3e394/docs/142_documentation_refresh.md) | 全ドキュメントの最新化（142） — 更新記録167へ統合・現行treeから削除。リンク先は保存した原版 |
 | [docs/143_base_document_balance_plan.md](143_base_document_balance_plan.md) | Base再開: 文書長による損失配分の比較 — 日付付きの計画・結果・source snapshot。現在の指示ではない |
 | [docs/144_base_document_balance_results.md](144_base_document_balance_results.md) | 文書長による損失配分の比較結果 — 日付付きの計画・結果・source snapshot。現在の指示ではない |
-| [docs/146_documentation_followup.md](https://github.com/ayutaz/japanese-tiny-llm-10m/blob/ed91c002cdfe52c879e275241c58436bfef3e394/docs/146_documentation_followup.md) | 最新Base結果・目標の未達を踏まえた文書更新 — 更新記録167へ統合・現行treeから削除。リンク先は保存した原版 |
+| [docs/146_documentation_followup.md](https://github.com/ayutaz/JMicro-10M/blob/ed91c002cdfe52c879e275241c58436bfef3e394/docs/146_documentation_followup.md) | 最新Base結果・目標の未達を踏まえた文書更新 — 更新記録167へ統合・現行treeから削除。リンク先は保存した原版 |
 | [docs/147_evaluation_boundary_repair.md](147_evaluation_boundary_repair.md) | Base再開: 評価入力の分離修理 — 日付付きの計画・結果・source snapshot。現在の指示ではない |
-| [docs/148_latest_base_and_documentation.md](https://github.com/ayutaz/japanese-tiny-llm-10m/blob/ed91c002cdfe52c879e275241c58436bfef3e394/docs/148_latest_base_and_documentation.md) | 最新Base結果と全文書更新（2026-10-17） — 更新記録167へ統合・現行treeから削除。リンク先は保存した原版 |
+| [docs/148_latest_base_and_documentation.md](https://github.com/ayutaz/JMicro-10M/blob/ed91c002cdfe52c879e275241c58436bfef3e394/docs/148_latest_base_and_documentation.md) | 最新Base結果と全文書更新（2026-10-17） — 更新記録167へ統合・現行treeから削除。リンク先は保存した原版 |
 | [docs/149_chat_sft_next_plan.md](149_chat_sft_next_plan.md) | 次のSFT計画：実際の会話データの幅を広げる — 実行済み・不採用。結果150、後続165 |
 | [docs/150_chat_natural_sft_results.md](150_chat_natural_sft_results.md) | 会話教材を広げた短文SFTの比較結果 — 実行済み・不採用。結果150、後続165 |
 | [docs/151_answer_learning_execution_plan.md](151_answer_learning_execution_plan.md) | 回答学習を切り分ける次の5段階 — 実行・判定済み。結果156/157、後続165 |

@@ -20,8 +20,8 @@ Hugging Faceで公開しています。アクセス申請・ログインは不�
 [Git](https://git-scm.com/)と[uv](https://docs.astral.sh/uv/)を用意して実行します。学習やGPUは不要です。
 
 ```sh
-git clone https://github.com/ayutaz/japanese-tiny-llm-10m.git
-cd japanese-tiny-llm-10m
+git clone https://github.com/ayutaz/JMicro-10M.git
+cd JMicro-10M
 uv python install 3.12.7
 uv sync --frozen --python 3.12.7 --extra ml --extra hub
 uv run --frozen --extra hub hf download japanese-data-analyze/JMicro-10M-chat-research-20261018 --local-dir artifacts/latest-chat

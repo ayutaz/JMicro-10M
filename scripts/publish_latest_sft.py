@@ -57,7 +57,7 @@ tags:
 - text-generation
 inference: false
 ---
-# JMicro 10M チャット学習の研究モデル
+# JMicro-10M チャット学習の研究モデル
 
 日本語の約1,000万パラメータBaseモデルに、二つの情報を答える64件の教材で
 SFT（教師あり追加学習）を行った最終重みです。**一般会話の品質は改善せず、
@@ -85,7 +85,7 @@ context1024。元Baseからfresh Adam、seed42、LR1e-4、BF16/mathで483更新�
 Codexで非blind判定しており、独立人手評価や一般的な利用全体の精度ではありません。
 既存7組の内容成立も全て低下しました。旧モデルと教材・教師量が異なる歴史的比較です。
 空応答、同文反復、履歴の訂正失敗、UTF8破損が残ります。
-[評価の全文と全回答](https://github.com/ayutaz/japanese-tiny-llm-10m/blob/main/docs/165_chat_two_attribute_diagnosis_results.md) /
+[評価の全文と全回答](https://github.com/ayutaz/JMicro-10M/blob/main/docs/165_chat_two_attribute_diagnosis_results.md) /
 [集計JSON](research/final_analysis.json)。
 
 ## CPUで試す

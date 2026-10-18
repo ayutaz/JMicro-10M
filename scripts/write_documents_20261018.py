@@ -91,7 +91,7 @@ TRAINを確定してから評価を用意し、DEV/TESTを教師へ混ぜませ�
 
 最新モデル保存版にはデータセット・sampler・optimizer・RNGを含めていません。古いBase保存版の数値学習状態も、data/samplerなしでの厳密再開を保証しません。初期pilot/Tokenizer bundleは別のdataset保存で、[Hub取得手順](../docs/huggingface_handoff.md)を参照してください。
 
-コードのApache-2.0を、外部教材・モデル重み・Tokenizerへ一括適用していません。元教材の出所と条件は各実験記録へ保持しています。再生成や再学習は、[当時の手順](https://github.com/ayutaz/japanese-tiny-llm-10m/blob/ed91c002cdfe52c879e275241c58436bfef3e394/data/README.md)を読んだだけで開始しないでください。
+コードのApache-2.0を、外部教材・モデル重み・Tokenizerへ一括適用していません。元教材の出所と条件は各実験記録へ保持しています。再生成や再学習は、[当時の手順](https://github.com/ayutaz/JMicro-10M/blob/ed91c002cdfe52c879e275241c58436bfef3e394/data/README.md)を読んだだけで開始しないでください。
 '''),
 'docs/evaluation_protocol.md': ('評価方法と結果の読み方', '''
 最新SFTの全1,973応答は確認済みで、候補は不採用です。評価が完了したことと、Base/Chatの正式品質条件を満たしたことを区別します。
@@ -378,7 +378,7 @@ Latest diagnostic SFT: 483 updates/250003 teachers; TRAIN64 exact, unseen values
 
 Read [current state](docs/autonomous_status.md), [remaining work](docs/10_next_steps.md), [latest fixed results](docs/165_chat_two_attribute_diagnosis_results.md), [publication](docs/166_public_models_and_oss.md), and [documentation catalog](docs/document_catalog.md). Preserve frozen scientific sources/configs/results/weights, dataset boundaries, negative decisions and all historical costs. Dated active/live/next statements are historical, not current authorization. Do not reopen a closed job or use a small memorization result as Base/Chat qualification.
 
-The full preceding instructions and progress chronology are preserved at [the pre-refresh Git revision](https://github.com/ayutaz/japanese-tiny-llm-10m/blob/{revision}/AGENTS.md). Documentation-maintenance summaries142/146/148 are consolidated into167 and removed from the current tree; original scientific records and their source snapshots remain intact.
+The full preceding instructions and progress chronology are preserved at [the pre-refresh Git revision](https://github.com/ayutaz/JMicro-10M/blob/{revision}/AGENTS.md). Documentation-maintenance summaries142/146/148 are consolidated into167 and removed from the current tree; original scientific records and their source snapshots remain intact.
 
 {rules}
 '''

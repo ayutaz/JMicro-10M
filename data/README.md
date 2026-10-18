@@ -20,11 +20,11 @@ TRAINを確定してから評価を用意し、DEV/TESTを教師へ混ぜませ�
 
 最新モデル保存版にはデータセット・sampler・optimizer・RNGを含めていません。古いBase保存版の数値学習状態も、data/samplerなしでの厳密再開を保証しません。初期pilot/Tokenizer bundleは別のdataset保存で、[Hub取得手順](../docs/huggingface_handoff.md)を参照してください。
 
-コードのApache-2.0を、外部教材・モデル重み・Tokenizerへ一括適用していません。元教材の出所と条件は各実験記録へ保持しています。再生成や再学習は、[当時の手順](https://github.com/ayutaz/japanese-tiny-llm-10m/blob/ed91c002cdfe52c879e275241c58436bfef3e394/data/README.md)を読んだだけで開始しないでください。
+コードのApache-2.0を、外部教材・モデル重み・Tokenizerへ一括適用していません。元教材の出所と条件は各実験記録へ保持しています。再生成や再学習は、[当時の手順](https://github.com/ayutaz/JMicro-10M/blob/ed91c002cdfe52c879e275241c58436bfef3e394/data/README.md)を読んだだけで開始しないでください。
 
 [現在の状態](../docs/autonomous_status.md) / [最新SFT結果](../docs/165_chat_two_attribute_diagnosis_results.md) / [公開モデル](../docs/166_public_models_and_oss.md) / [文書一覧](../docs/README.md)
 
-前版の設計・調査・運用記録は[更新前の本文](https://github.com/ayutaz/japanese-tiny-llm-10m/blob/ed91c002cdfe52c879e275241c58436bfef3e394/data/README.md)に保存しています。過去の「最新」「実行中」はその記載時点の状態です。
+前版の設計・調査・運用記録は[更新前の本文](https://github.com/ayutaz/JMicro-10M/blob/ed91c002cdfe52c879e275241c58436bfef3e394/data/README.md)に保存しています。過去の「最新」「実行中」はその記載時点の状態です。
 
 <!-- Preserve incoming links to earlier headings; previous text is in Git history. -->
 <a id="phase-1-pilotの再生成"></a>
