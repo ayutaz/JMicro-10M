@@ -42,7 +42,12 @@ try {
     if ($public.private -or $public.visibility -ne 'public') { throw 'Anonymous public verification failed' }
     $head = (git -C $projectRoot rev-parse HEAD).Trim()
     if ($LASTEXITCODE -ne 0) { throw 'Git HEAD unavailable' }
-    $remoteHead = (git -C $projectRoot ls-remote origin refs/heads/main) -split '\s+'
+    $remoteOutput = git -c credential.helper= -c http.extraHeader= ls-remote `
+        https://github.com/ayutaz/japanese-tiny-llm-10m.git refs/heads/main
+    if ($LASTEXITCODE -ne 0 -or -not $remoteOutput) {
+        throw 'Anonymous Git endpoint is unavailable; public API state alone is insufficient'
+    }
+    $remoteHead = $remoteOutput -split '\s+'
     if ($remoteHead[0] -ne $head) { throw 'Local and remote main differ' }
     $readme = Invoke-RestMethod -Uri ($endpoint + '/readme?ref=' + $head) -Headers $anonymousHeaders
     $remoteReadme = [Convert]::FromBase64String(($readme.content -replace '\s', ''))
@@ -58,13 +63,14 @@ try {
         status='public_and_anonymously_verified'
         repository=$public.full_name
         url=$public.html_url
-        previously_private=$before.private
+        private_at_start_of_verification=$before.private
         private=$public.private
         visibility=$public.visibility
         revision=$head
         license_spdx=$license.license.spdx_id
         README_SHA256=[Convert]::ToHexString($digest).ToLowerInvariant()
         anonymous_README_exact=$true
+        anonymous_git_head_exact=$true
         recorded_at_UTC=[DateTime]::UtcNow.ToString('o')
     }
     $destination = Join-Path $projectRoot 'reports/publication/repository-public-20261018.json'

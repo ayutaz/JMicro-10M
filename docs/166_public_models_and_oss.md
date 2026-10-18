@@ -1,6 +1,6 @@
 # 公開モデルとOSSコードの保存先
 
-2026-10-18。Hugging FaceのBase 3系列と最新SFT研究モデルを、アクセス申請・ログイン不要で公開した。GitHubのコードはApache-2.0で公開する。学習済みの重み・Tokenizerには、今回新しい一括ライセンスを付与していない。
+2026-10-18。Hugging FaceのBase 3系列と最新SFT研究モデルを、アクセス申請・ログイン不要で公開した。GitHubのコードはApache-2.0で公開した。学習済みの重み・Tokenizerには、今回新しい一括ライセンスを付与していない。
 
 | 公開先 | 内容 |
 |---|---|
@@ -27,3 +27,5 @@
 READMEは過去の進捗の羅列をやめ、概要、モデル入手先、CPU実行手順、現在の評価結果、実装と研究記録への入口へ整理した。以前のREADMEと過去の公開設定はGit履歴・原記録へ残っている。研究記録の日付時点の「未公開」「実行中」等を、現在の状態へ書き換えてはいない。
 
 最初のローカル保存案にあったstate tensor数119の表記は、共有重みの別名を含む120 entriesと混同していたため、アップロード前に訂正した。元の科学学習・モデル重み・評価の変更はない。
+
+GitHubのpublic切替直後、Git endpointが一度403/disabledを返して確認処理が停止した。原因は確定していない。その後の匿名APIはpublic/disabled=false、ページはHTTP200、匿名Gitのmainは公開commitと一致した。READMEの全bytesとApache-2.0の検出も匿名APIで確認した。[公開確認記録](../reports/publication/repository-public-20261018.json)。初回の補助PowerShellの空結果処理は、Gitの終了コードを明示検査するよう修正している。
